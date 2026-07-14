@@ -76,6 +76,26 @@
     </image:image>
   </url>
   <url>
+    <loc>https://onerkoray.github.io/keymint/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onerkoray.github.io/images/keymint-koray-oner.png</image:loc>
+      <image:title>KeyMint Şifre Üreteci — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://onerkoray.github.io/keymint/sifre-guc-testi/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://onerkoray.github.io/images/sifre-guc-testi-koray-oner.png</image:loc>
+      <image:title>Şifre Güç Testi — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://onerkoray.github.io/decorpalette/</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
