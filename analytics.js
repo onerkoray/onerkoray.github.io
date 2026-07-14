@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var GA_ID = "G-XXXXXXXXXX"; // <-- BURAYA GA4 Ölçüm Kimliğinizi yazın
+  var GA_ID = "G-2GNZPW1LPT"; // <-- BURAYA GA4 Ölçüm Kimliğinizi yazın
 
   // Kimlik ayarlanmadıysa hiçbir şey yükleme (gizlilik korunur).
   if (!GA_ID || GA_ID.indexOf("G-") !== 0 || GA_ID === "G-XXXXXXXXXX") return;
