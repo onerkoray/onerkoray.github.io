@@ -95,6 +95,12 @@
       <image:title>Şifre Güç Testi — Koray Öner</image:title>
     </image:image>
   </url>
+  <url><loc>https://onerkoray.github.io/keymint/pin-uretici/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://onerkoray.github.io/keymint/parola-cumlesi/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://onerkoray.github.io/keymint/wifi-sifresi/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://onerkoray.github.io/keymint/hash-uretici/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://onerkoray.github.io/keymint/base64/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://onerkoray.github.io/keymint/uuid-uretici/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url>
     <loc>https://onerkoray.github.io/decorpalette/</loc>
     <lastmod>2026-07-14</lastmod>
