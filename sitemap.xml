@@ -66,6 +66,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://onerkoray.github.io/yas-hesaplama/</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onerkoray.github.io/images/yas-hesaplama-koray-oner.png</image:loc>
+      <image:title>Yaş Hesaplama — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://onerkoray.github.io/decorpalette/</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>

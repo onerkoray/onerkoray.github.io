@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yaş Hesaplama — Kaç Yaşındayım ve İki Tarih Arası Gün Hesaplama | Koray Öner</title>
+  <meta name="description" content="Yaş hesaplama aracı: doğum tarihinize göre kaç yaşında olduğunuzu yıl, ay ve gün olarak; iki tarih arasındaki gün sayısını ve doğum gününüze kalan süreyi anında hesaplayın. Ücretsiz.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://onerkoray.github.io/yas-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Yaş Hesaplama — Kaç Yaşındayım?">
+  <meta property="og:description" content="Doğum tarihine göre yaşınızı ve iki tarih arasındaki gün sayısını anında hesaplayın.">
+  <meta property="og:url" content="https://onerkoray.github.io/yas-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://onerkoray.github.io/images/yas-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Yaş Hesaplama — Koray Öner tarafından geliştirilen ücretsiz araç">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Yaş Hesaplama — Kaç Yaşındayım?">
+  <meta name="twitter:description" content="Yaşınızı ve iki tarih arasındaki gün sayısını anında hesaplayın.">
+  <meta name="twitter:image" content="https://onerkoray.github.io/images/yas-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../yuzde-hesaplama/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://onerkoray.github.io/yas-hesaplama/#app",
+        "name": "Yaş Hesaplama Aracı",
+        "url": "https://onerkoray.github.io/yas-hesaplama/",
+        "image": "https://onerkoray.github.io/images/yas-hesaplama-koray-oner.png",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "description": "Doğum tarihine göre yaş ve iki tarih arasındaki gün sayısını hesaplayan ücretsiz araç.",
+        "author": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "creator": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "publisher": { "@id": "https://onerkoray.github.io/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onerkoray.github.io/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://onerkoray.github.io/",
+        "jobTitle": "Yazılım Geliştirici",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://substack.com/@korayner",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://dl.acm.org/profile/81100070426",
+          "https://metu.academia.edu/KorayÖner",
+          "https://500px.com/p/korayoner",
+          "https://www.reddit.com/user/Affectionate_Fig3049"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://onerkoray.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Yaş Hesaplama", "item": "https://onerkoray.github.io/yas-hesaplama/" }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "Yaş nasıl hesaplanır?",
+        "description": "Doğum tarihinden bugüne yaşı hesaplamanın adımları.",
+        "step": [
+          { "@type": "HowToStep", "position": 1, "name": "Doğum tarihini girin", "text": "Gün, ay ve yıl olarak doğum tarihinizi seçin." },
+          { "@type": "HowToStep", "position": 2, "name": "Hedef tarihi belirleyin", "text": "Varsayılan bugündür; isterseniz başka bir tarih seçebilirsiniz." },
+          { "@type": "HowToStep", "position": 3, "name": "Sonucu okuyun", "text": "Yaşınız yıl, ay ve gün olarak; ayrıca toplam gün ve doğum gününüze kalan süre gösterilir." }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Yaş nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "Doğum tarihinizden bugüne kadar geçen tam yıl sayısı yaşınızı verir. Ay ve gün, henüz tamamlanmamış yılın kalan kısmını gösterir." } },
+          { "@type": "Question", "name": "İki tarih arasındaki gün sayısı nasıl bulunur?", "acceptedAnswer": { "@type": "Answer", "text": "İki tarih arasındaki fark milisaniye cinsinden hesaplanıp güne çevrilir. Bu araç artık yılları da dikkate alarak doğru gün sayısını verir." } },
+          { "@type": "Question", "name": "Artık yıl hesabı doğru mu?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. Hesaplama takvim tarihlerine dayanır ve 29 Şubat dahil artık yılları otomatik olarak dikkate alır." } },
+          { "@type": "Question", "name": "Doğum günüme kaç gün kaldığını gösterir mi?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. Bir sonraki doğum gününüze kalan gün sayısı sonuçlarda ayrıca gösterilir." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <span class="brand-mark" aria-hidden="true">KÖ</span>
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> Yaş Hesaplama
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Reklamsız · Anında sonuç</p>
+        <h1 id="hero-title">Yaş Hesaplama</h1>
+        <p class="lede">
+          Doğum tarihini gir; kaç yaşında olduğunu yıl, ay ve gün olarak öğren. İki tarih arasındaki
+          gün sayısını ve doğum gününe kalan süreyi de saniyeler içinde hesapla. Her şey tarayıcında çalışır.
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">Yaş hesaplama aracı</h2>
+
+        <div class="tabs" role="tablist" aria-label="Hesaplama türü">
+          <button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" class="tab">Kaç yaşındayım?</button>
+          <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" class="tab" tabindex="-1">İki tarih arası</button>
+        </div>
+
+        <form id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="panel">
+          <p class="panel-q">
+            <label for="p1-dogum">Doğum tarihi</label>
+            <input type="date" id="p1-dogum" aria-label="Doğum tarihi">
+            <label for="p1-hedef">hesaplama tarihi</label>
+            <input type="date" id="p1-hedef" aria-label="Hesaplama tarihi">
+          </p>
+          <output class="result" id="p1-out" aria-live="polite"></output>
+        </form>
+
+        <form id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="panel" hidden>
+          <p class="panel-q">
+            <label for="p2-bas">Başlangıç</label>
+            <input type="date" id="p2-bas" aria-label="Başlangıç tarihi">
+            <label for="p2-bit">bitiş</label>
+            <input type="date" id="p2-bit" aria-label="Bitiş tarihi">
+          </p>
+          <output class="result" id="p2-out" aria-live="polite"></output>
+        </form>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 14 Temmuz 2026</p>
+
+        <h2 id="nasil">Yaş nasıl hesaplanır?</h2>
+        <p>
+          Yaş, doğum tarihinizden bugüne kadar geçen tam yıl sayısıdır. Ancak çoğu zaman merak edilen
+          yalnızca kaç yılın dolduğu değil, o yıla ek olarak kaç ay ve gün geçtiğidir. Bu araç doğum
+          tarihinizi bugünle karşılaştırır, tamamlanan yılları sayar, ardından kalan ay ve günleri
+          takvim kurallarına göre çıkarır. Hesaplama <strong>artık yılları ve ayların farklı gün
+          sayılarını</strong> otomatik dikkate aldığı için sonuç her zaman doğrudur.
+        </p>
+        <p>
+          İki tarih arasındaki gün sayısını bulmak da benzer şekilde çalışır: iki tarih arasındaki fark
+          hesaplanıp güne çevrilir. Bu; bir etkinliğe kalan günü saymak, kıdem süresini bulmak veya iki
+          olay arasındaki mesafeyi ölçmek için kullanışlıdır.
+        </p>
+
+        <h3>Nerelerde işe yarar?</h3>
+        <ul>
+          <li><strong>Resmî işlemler:</strong> Yaş sınırı gerektiren başvuru ve sınavlarda tam yaşınızı doğrulamak.</li>
+          <li><strong>Doğum günü planı:</strong> Bir sonraki doğum gününüze kalan günü görmek.</li>
+          <li><strong>Kıdem ve süre:</strong> İşe giriş veya bir olaydan bu yana geçen gün sayısını bulmak.</li>
+          <li><strong>Etkinlik geri sayımı:</strong> Tatil, sınav ya da özel bir güne kalan zamanı ölçmek.</li>
+        </ul>
+
+        <h3>Sık karıştırılan noktalar</h3>
+        <ul>
+          <li><strong>Tam yaş ve devam eden yaş farkı:</strong> “25 yaşında” olmak, 25’i doldurup 26’ya doğru ilerlediğiniz anlamına gelir.</li>
+          <li><strong>Artık yıl (29 Şubat):</strong> 29 Şubat doğumlular için yaş, takvim kurallarına göre doğru sayılır.</li>
+          <li><strong>Ay uzunlukları:</strong> Aylar 28–31 gün arası değiştiği için “ay + gün” hesabı sabit değil, takvime bağlıdır.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Yaş nasıl hesaplanır?</summary><p>Doğum tarihinizden bugüne kadar geçen tam yıl sayısı yaşınızı verir. Ay ve gün, henüz tamamlanmamış yılın kalanını gösterir.</p></details>
+          <details><summary>İki tarih arasındaki gün sayısını nasıl bulurum?</summary><p>“İki tarih arası” sekmesinde başlangıç ve bitiş tarihlerini seçin; araç artık yılları da dikkate alarak toplam gün sayısını verir.</p></details>
+          <details><summary>Artık yıl hesabı doğru mu?</summary><p>Evet. Hesaplama takvim tarihlerine dayanır ve 29 Şubat dahil artık yılları otomatik dikkate alır.</p></details>
+          <details><summary>Doğum günüme kaç gün kaldığını gösterir mi?</summary><p>Evet. Bir sonraki doğum gününüze kalan gün sayısı sonuçlarda ayrıca gösterilir.</p></details>
+          <details><summary>Kaç günlük olduğumu öğrenebilir miyim?</summary><p>Evet. Sonuçlarda yaşınızın yanı sıra toplam yaşadığınız gün sayısı da yer alır.</p></details>
+          <details><summary>Gelecekteki bir tarih için yaş hesaplar mı?</summary><p>Evet. Hesaplama tarihini ileri bir güne alarak o tarihte kaç yaşında olacağınızı görebilirsiniz.</p></details>
+          <details><summary>Verilerim kaydediliyor mu?</summary><p>Hayır. Tüm hesaplama cihazınızda yapılır; girdiğiniz tarihler hiçbir yere gönderilmez.</p></details>
+          <details><summary>Bu araç ücretli mi?</summary><p>Hayır, tamamen ücretsizdir; kayıt gerektirmez ve reklam içermez.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlar:</p>
+        <ul>
+          <li><a href="../yuzde-hesaplama/">Yüzde Hesaplama</a></li>
+          <li><a href="../final-notu-hesaplama/">Final Notu Hesaplama</a></li>
+          <li><a href="../">Tüm projeler</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>
