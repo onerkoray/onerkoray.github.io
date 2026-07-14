@@ -1,0 +1,40 @@
+/* Son Depremler — sayfaya özel stiller */
+.quake-toolbar { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.filter-group { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip {
+  font: inherit; font-weight: 600; cursor: pointer; padding: .45rem .9rem;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text-muted);
+  border-radius: 999px; transition: border-color .15s, color .15s, background .15s;
+}
+.chip:hover { color: var(--text); }
+.chip.is-active { background: var(--brand); border-color: var(--brand); color: #fff; }
+
+.quake-status { color: var(--text-muted); font-size: var(--step--1); margin: .5rem 0 1rem; }
+
+.quake-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.quake-item {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: .8rem 1rem; box-shadow: var(--shadow);
+}
+.mag {
+  display: grid; place-items: center; width: 56px; height: 56px; border-radius: 12px;
+  font-weight: 800; font-size: 1.25rem; color: #fff; flex: none;
+}
+.mag-s { background: #4a9e6f; }   /* < 3 */
+.mag-m { background: #e0a500; }   /* 3-3.9 */
+.mag-l { background: #e07a2f; }   /* 4-4.9 */
+.mag-x { background: #d24141; }   /* 5+ */
+.quake-info { min-width: 0; }
+.quake-place { font-weight: 700; margin: 0 0 .2rem; overflow-wrap: anywhere; }
+.quake-meta { margin: 0; color: var(--text-muted); font-size: var(--step--1); }
+.quake-map { white-space: nowrap; font-size: var(--step--1); font-weight: 600; text-decoration: none; }
+.quake-map:hover { text-decoration: underline; }
+
+.quake-source { margin-top: 1.25rem; }
+.quake-error { border-left: 3px solid #d24141; background: var(--surface-2); padding: 1rem 1.25rem; border-radius: var(--radius-sm); }
+
+@media (max-width: 560px) {
+  .quake-item { grid-template-columns: auto 1fr; }
+  .quake-map { grid-column: 1 / -1; }
+}
