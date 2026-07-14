@@ -111,6 +111,14 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 .project-links { color: var(--text-muted); font-size: var(--step--1); margin-bottom: 0; }
 .project-card--soon { border-style: dashed; box-shadow: none; background: var(--surface-2); }
 
+.social-list { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; margin: 1rem 0 0; padding: 0; }
+.social-list a {
+  display: inline-flex; align-items: center; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 999px; padding: .45rem 1rem; text-decoration: none; color: var(--text);
+  font-size: var(--step--1); font-weight: 600; transition: border-color .15s, color .15s;
+}
+.social-list a:hover { border-color: var(--brand); color: var(--brand-strong); }
+
 .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding-block: 2rem; }
 .muted { color: var(--text-muted); font-size: var(--step--1); }
 
