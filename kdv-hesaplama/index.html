@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KDV Hesaplama — KDV Dahil ve Hariç Tutar Hesaplama Aracı</title>
+  <meta name="description" content="KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://onerkoray.github.io/kdv-hesaplama/">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="KDV Hesaplama — KDV Dahil ve Hariç Tutar Aracı">
+  <meta property="og:description" content="KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. Anında, ücretsiz ve reklamsız.">
+  <meta property="og:url" content="https://onerkoray.github.io/kdv-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="KDV Hesaplama Aracı">
+  <meta name="twitter:description" content="KDV dahil/hariç tutar hesaplama — ücretsiz ve hızlı.">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../yuzde-hesaplama/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://onerkoray.github.io/kdv-hesaplama/#app",
+        "name": "KDV Hesaplama Aracı",
+        "url": "https://onerkoray.github.io/kdv-hesaplama/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "description": "Ücretsiz KDV hesaplama aracı: KDV ekleme ve KDV dahil tutardan KDV ayırma.",
+        "author": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "creator": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "publisher": { "@id": "https://onerkoray.github.io/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onerkoray.github.io/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://onerkoray.github.io/",
+        "jobTitle": "Yazılım Geliştirici",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://substack.com/@korayner",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://dl.acm.org/profile/81100070426",
+          "https://metu.academia.edu/KorayÖner",
+          "https://500px.com/p/korayoner",
+          "https://www.reddit.com/user/Affectionate_Fig3049"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://onerkoray.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "KDV Hesaplama", "item": "https://onerkoray.github.io/kdv-hesaplama/" }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "KDV nasıl hesaplanır?",
+        "description": "KDV hariç bir tutara KDV eklemenin adımları.",
+        "step": [
+          { "@type": "HowToStep", "position": 1, "name": "Matrahı girin", "text": "KDV hariç tutarı (matrah) yazın, örneğin 1.000 TL." },
+          { "@type": "HowToStep", "position": 2, "name": "KDV oranını seçin", "text": "Ürün veya hizmete uygulanan oranı seçin: %1, %10 veya %20." },
+          { "@type": "HowToStep", "position": 3, "name": "Hesaplayın", "text": "Matrahı orana göre çarpın: 1.000 × 20 ÷ 100 = 200 TL KDV; KDV dahil toplam 1.200 TL." }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "KDV nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "KDV hariç tutarı KDV oranıyla çarpıp 100'e bölersiniz. 1.000 TL matraha %20 KDV: 1.000 × 20 ÷ 100 = 200 TL." } },
+          { "@type": "Question", "name": "KDV dahil tutardan KDV nasıl ayrılır?", "acceptedAnswer": { "@type": "Answer", "text": "KDV dahil tutarı (1 + oran/100) değerine bölerek matrahı bulur, farkı KDV olarak alırsınız. 1.200 ÷ 1,20 = 1.000 TL matrah, 200 TL KDV." } },
+          { "@type": "Question", "name": "Türkiye'de KDV oranları nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Genel KDV oranı %20'dir. Bazı ürün ve hizmetlerde %10 ve %1 gibi indirimli oranlar uygulanır." } },
+          { "@type": "Question", "name": "KDV dahil ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "Fiyatın içinde KDV'nin de bulunduğu anlamına gelir; etiket fiyatı ödenecek son tutardır." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <span class="brand-mark" aria-hidden="true">KÖ</span>
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> KDV Hesaplama
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Reklamsız · Anında sonuç</p>
+        <h1 id="hero-title">KDV Hesaplama</h1>
+        <p class="lede">
+          KDV hariç tutara KDV ekleyin ya da KDV dahil tutardan KDV’yi ayırın. %1, %10 ve %20
+          oranlarıyla matrah, KDV tutarı ve toplam anında hesaplanır. Kayıt yok, reklam yok — her şey
+          tarayıcınızda çalışır.
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">KDV hesaplama aracı</h2>
+
+        <div class="tabs" role="tablist" aria-label="Hesaplama türü">
+          <button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" class="tab">KDV ekle (hariç → dahil)</button>
+          <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" class="tab" tabindex="-1">KDV ayır (dahil → hariç)</button>
+        </div>
+
+        <fieldset class="rate-group" aria-label="KDV oranı">
+          <legend>KDV oranı</legend>
+          <label><input type="radio" name="rate" value="1"> %1</label>
+          <label><input type="radio" name="rate" value="10"> %10</label>
+          <label><input type="radio" name="rate" value="20" checked> %20</label>
+          <label class="rate-custom">Diğer:
+            <input type="number" id="rate-custom" inputmode="decimal" step="any" min="0" placeholder="oran" aria-label="Özel KDV oranı">
+          </label>
+        </fieldset>
+
+        <form id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="panel">
+          <p class="panel-q">
+            <label for="p1-matrah">KDV hariç tutar (matrah)</label>
+            <input type="number" id="p1-matrah" inputmode="decimal" step="any" value="1000" aria-label="KDV hariç tutar"> TL
+          </p>
+          <output class="result" id="p1-out" aria-live="polite"></output>
+        </form>
+
+        <form id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="panel" hidden>
+          <p class="panel-q">
+            <label for="p2-dahil">KDV dahil tutar</label>
+            <input type="number" id="p2-dahil" inputmode="decimal" step="any" value="1200" aria-label="KDV dahil tutar"> TL
+          </p>
+          <output class="result" id="p2-out" aria-live="polite"></output>
+        </form>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 14 Temmuz 2026</p>
+
+        <h2 id="nasil">KDV nedir ve nasıl hesaplanır?</h2>
+        <p>
+          KDV, yani Katma Değer Vergisi, bir mal veya hizmetin satışında fiyata eklenen dolaylı bir
+          vergidir. Nihai olarak tüketici öder, işletmeler ise topladıkları KDV’yi devlete beyan eder.
+          Türkiye’de genel oran %20’dir; bazı gıda ürünleri, kitaplar ve belirli hizmetlerde %10 veya
+          %1 gibi indirimli oranlar uygulanır. Doğru oranı seçmek, faturayı hatasız kesmenin ilk adımıdır.
+        </p>
+        <p>
+          KDV eklemenin mantığı basittir: <strong>KDV hariç tutarı (matrahı) oranla çarpıp 100’e
+          bölersiniz.</strong> 1.000 TL’lik bir hizmete %20 KDV uygulandığında vergi 1.000 × 20 ÷ 100 =
+          200 TL olur; KDV dahil toplam 1.200 TL’dir. Tersine, elinizde yalnızca KDV dahil tutar varsa,
+          bu tutarı 1,20’ye bölerek matrahı geri bulur, aradaki farkı KDV olarak alırsınız.
+        </p>
+
+        <h3>KDV hesaplama formülleri</h3>
+        <ul>
+          <li><strong>KDV tutarı:</strong> KDV = Matrah × Oran ÷ 100</li>
+          <li><strong>KDV dahil toplam:</strong> Toplam = Matrah × (1 + Oran ÷ 100)</li>
+          <li><strong>Dahil tutardan matrah:</strong> Matrah = Dahil ÷ (1 + Oran ÷ 100)</li>
+          <li><strong>Dahil tutardan KDV:</strong> KDV = Dahil − Matrah</li>
+        </ul>
+
+        <h3>Örnekler</h3>
+        <ul>
+          <li><strong>%20 ekleme:</strong> 2.500 TL matraha %20 KDV → 500 TL KDV, 3.000 TL toplam.</li>
+          <li><strong>%10 ekleme:</strong> 800 TL matraha %10 KDV → 80 TL KDV, 880 TL toplam.</li>
+          <li><strong>Dahil tutardan ayırma:</strong> 1.180 TL (%18 dahil) → matrah 1.000 TL, KDV 180 TL.</li>
+        </ul>
+
+        <h3>Sık yapılan KDV hataları</h3>
+        <ul>
+          <li><strong>Dahil tutardan KDV’yi %20 çıkarmak.</strong> KDV dahil tutardan vergiyi ayırmak için 1,20’ye bölmek gerekir; doğrudan %20 çıkarmak fazla düşük matrah verir.</li>
+          <li><strong>Yanlış oran seçmek.</strong> Ürün grubuna göre oran %1, %10 veya %20 olabilir; oranı sözleşmeye ve mevzuata göre teyit edin.</li>
+          <li><strong>Yuvarlama sırası.</strong> Kalem kalem yuvarlamak ile toplamda yuvarlamak arasında kuruş farkı oluşabilir; fatura düzeninize uygun yöntemi tutarlı uygulayın.</li>
+        </ul>
+
+        <h3>Kimler kullanır?</h3>
+        <ul>
+          <li>Fatura kesen esnaf, serbest meslek erbabı ve KOBİ’ler</li>
+          <li>Fiyatlandırma yaparken KDV dahil/hariç ayrımı gereken satıcılar</li>
+          <li>Bütçe ve gider planı yapan muhasebe ve satın alma birimleri</li>
+        </ul>
+
+        <p class="disclaimer muted">
+          <strong>Bilgilendirme:</strong> Bu araç genel hesaplama amaçlıdır ve resmî mali müşavirlik
+          hizmeti yerine geçmez. Güncel KDV oranları ve istisnalar için Gelir İdaresi Başkanlığı’nın
+          resmî düzenlemelerini ve mali müşavirinizi esas alın.
+        </p>
+      </div>
+    </article>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>KDV nasıl hesaplanır?</summary><p>KDV hariç tutarı KDV oranıyla çarpıp 100’e bölersiniz. 1.000 TL matraha %20 KDV 200 TL eder, toplam 1.200 TL olur.</p></details>
+          <details><summary>KDV dahil tutardan KDV nasıl ayrılır?</summary><p>KDV dahil tutarı (1 + oran ÷ 100) değerine bölerek matrahı bulur, farkı KDV olarak alırsınız. 1.200 ÷ 1,20 = 1.000 TL matrah, 200 TL KDV.</p></details>
+          <details><summary>Türkiye’de KDV oranları kaçtır?</summary><p>Genel oran %20’dir. Bazı ürün ve hizmetlerde %10 ve %1 indirimli oranlar uygulanır.</p></details>
+          <details><summary>KDV dahil ne demek?</summary><p>Fiyatın içinde verginin de bulunduğu anlamına gelir; etiketteki tutar ödenecek son fiyattır.</p></details>
+          <details><summary>KDV hariç ne demek?</summary><p>Fiyata henüz KDV eklenmediği anlamına gelir; ödemede üzerine ilgili oranda KDV eklenir.</p></details>
+          <details><summary>%20 KDV nasıl eklenir?</summary><p>Tutarı 1,20 ile çarparsınız. 500 TL × 1,20 = 600 TL, yani 100 TL KDV eklenmiş olur.</p></details>
+          <details><summary>Matrah nedir?</summary><p>Matrah, KDV’nin üzerinden hesaplandığı KDV hariç tutardır.</p></details>
+          <details><summary>Bu araç ücretli mi?</summary><p>Hayır, tamamen ücretsizdir; kayıt veya üyelik gerektirmez, reklam içermez.</p></details>
+          <details><summary>Verilerim saklanıyor mu?</summary><p>Hayır. Bütün hesaplamalar cihazınızda yapılır; girdiğiniz tutarlar hiçbir yere gönderilmez.</p></details>
+          <details><summary>Farklı bir oran girebilir miyim?</summary><p>Evet. Hazır oranların yanındaki “Diğer” alanına dilediğiniz oranı yazabilirsiniz.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlar:</p>
+        <ul>
+          <li><a href="../yuzde-hesaplama/">Yüzde Hesaplama</a> — indirim, oran ve artış/azalış hesaplama.</li>
+          <li><a href="../decorpalette/">DecorPalette</a> — iç mekân renk paleti üreteci.</li>
+          <li><a href="../">Tüm projeler</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İnternet Hız Testi — İndirme Hızı ve Ping Ölçümü</title>
+  <meta name="description" content="İnternet hız testi: indirme (download) hızınızı ve ping (gecikme) değerinizi tarayıcınızda ölçün. Ücretsiz, reklamsız ve kayıt gerektirmeyen internet hızı ölçme aracı.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://onerkoray.github.io/internet-hiz-testi/">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="İnternet Hız Testi — İndirme Hızı ve Ping Ölçümü">
+  <meta property="og:description" content="İndirme hızınızı ve ping değerinizi tarayıcınızda ücretsiz ölçün.">
+  <meta property="og:url" content="https://onerkoray.github.io/internet-hiz-testi/">
+  <meta property="og:locale" content="tr_TR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="İnternet Hız Testi">
+  <meta name="twitter:description" content="İndirme hızı ve ping ölçümü — ücretsiz ve reklamsız.">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../yuzde-hesaplama/style.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://onerkoray.github.io/internet-hiz-testi/#app",
+        "name": "İnternet Hız Testi",
+        "url": "https://onerkoray.github.io/internet-hiz-testi/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "description": "Tarayıcı tabanlı internet hız testi: indirme hızı ve ping ölçümü.",
+        "author": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "creator": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "publisher": { "@id": "https://onerkoray.github.io/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onerkoray.github.io/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://onerkoray.github.io/",
+        "jobTitle": "Yazılım Geliştirici",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://substack.com/@korayner",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://dl.acm.org/profile/81100070426",
+          "https://metu.academia.edu/KorayÖner",
+          "https://500px.com/p/korayoner",
+          "https://www.reddit.com/user/Affectionate_Fig3049"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://onerkoray.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "İnternet Hız Testi", "item": "https://onerkoray.github.io/internet-hiz-testi/" }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "İnternet hız testi nasıl yapılır?",
+        "description": "İndirme hızını ve pingi doğru ölçmenin adımları.",
+        "step": [
+          { "@type": "HowToStep", "position": 1, "name": "Diğer uygulamaları kapatın", "text": "İndirme yapan program ve sekmeleri kapatarak bağlantıyı boşaltın." },
+          { "@type": "HowToStep", "position": 2, "name": "Testi başlatın", "text": "Başlat düğmesine basın; ping ardından indirme hızı ölçülür." },
+          { "@type": "HowToStep", "position": 3, "name": "Sonucu değerlendirin", "text": "Mbps cinsinden indirme hızını ve milisaniye cinsinden pingi karşılaştırın." }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "İnternet hız testi nasıl yapılır?", "acceptedAnswer": { "@type": "Answer", "text": "Diğer indirmeleri durdurun, testi başlatın ve indirme hızınızı Mbps, pinginizi milisaniye cinsinden okuyun. Sağlıklı sonuç için testi birkaç kez tekrarlayın." } },
+          { "@type": "Question", "name": "Mbps ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "Mbps, saniyede megabit demektir ve internet hızının birimidir. 1 bayt 8 bit olduğundan 80 Mbps yaklaşık 10 MB/s indirme hızına denk gelir." } },
+          { "@type": "Question", "name": "Ping nedir ve kaç olmalı?", "acceptedAnswer": { "@type": "Answer", "text": "Ping, verinin gidiş-dönüş gecikmesidir; milisaniye ile ölçülür. Genelde 20 ms altı çok iyi, 20-60 ms iyi, 100 ms üzeri oyun ve görüntülü görüşmede fark edilir gecikme anlamına gelir." } },
+          { "@type": "Question", "name": "Bu test yükleme (upload) hızını ölçüyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bu araç tamamen tarayıcıda çalıştığı ve sunucu tarafı bileşen kullanmadığı için yalnızca indirme hızını ve pingi ölçer; yükleme hızı ölçümü sunucu gerektirir." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <span class="brand-mark" aria-hidden="true">KÖ</span>
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#test">Test</a></li>
+          <li><a href="#nasil">Nasıl çalışır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> İnternet Hız Testi
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Reklamsız · Kayıt yok</p>
+        <h1 id="hero-title">İnternet Hız Testi</h1>
+        <p class="lede">
+          İndirme (download) hızınızı ve ping değerinizi doğrudan tarayıcınızda ölçün. Test aynı sunucudan
+          veri indirilerek yapılır; hiçbir kişisel bilgi toplanmaz.
+        </p>
+      </div>
+    </section>
+
+    <section id="test" class="speedtest" aria-labelledby="test-title">
+      <div class="wrap">
+        <h2 id="test-title" class="visually-hidden">Hız testi</h2>
+        <div class="gauge-grid">
+          <div class="gauge">
+            <p class="gauge-label">İndirme</p>
+            <p class="gauge-value"><span id="dl-value">—</span> <span class="gauge-unit">Mbps</span></p>
+          </div>
+          <div class="gauge">
+            <p class="gauge-label">Ping</p>
+            <p class="gauge-value"><span id="ping-value">—</span> <span class="gauge-unit">ms</span></p>
+          </div>
+        </div>
+
+        <div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+
+        <div class="test-actions">
+          <button class="btn btn-primary" type="button" id="startBtn">Testi başlat</button>
+          <p class="test-status" id="status" role="status" aria-live="polite">Ölçmek için “Testi başlat”a basın.</p>
+        </div>
+        <p class="muted upload-note">Not: Yükleme (upload) hızı, sunucu tarafı bileşen gerektirdiği için bu araçta ölçülmez.</p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 14 Temmuz 2026</p>
+
+        <h2 id="nasil">İnternet hız testi nasıl çalışır?</h2>
+        <p>
+          Bir hız testi, bilinen boyutta bir veri parçasının ne kadar sürede indirildiğini ölçer ve
+          bunu saniyedeki megabit (Mbps) cinsinden hıza çevirir. Bu araç, aynı sunucuda barındırılan bir
+          veri dosyasını arka arkaya indirir, geçen süreyi ve inen bayt miktarını sayar, ardından
+          hızınızı hesaplar. Ping ölçümü ise küçük bir isteğin gidiş-dönüş süresini birkaç kez ölçüp en
+          düşük değeri alır; bu, bağlantınızın tepki gecikmesini gösterir.
+        </p>
+        <p>
+          Sonuçların gerçek bağlantı kapasitenizi yansıtması için testi başlatmadan önce video, oyun ve
+          büyük indirmeler gibi bant genişliği tüketen işlemleri durdurun. Wi-Fi yerine kabloya
+          bağlanmak, modeme yakın olmak ve testi birkaç kez tekrarlayıp ortalama almak daha tutarlı
+          ölçüm sağlar.
+        </p>
+
+        <h3>Sonuçları nasıl yorumlamalı?</h3>
+        <ul>
+          <li><strong>İndirme hızı (Mbps):</strong> Sayfa açma, video izleme ve dosya indirme hızını belirler. HD video için ~10 Mbps, 4K için ~25 Mbps genelde yeterlidir.</li>
+          <li><strong>Ping (ms):</strong> Gecikmeyi gösterir. Çevrimiçi oyun ve görüntülü görüşmede düşük ping, yüksek hızdan daha önemlidir. 20 ms altı çok iyidir.</li>
+          <li><strong>Mbps ve MB/s farkı:</strong> Hız bit, dosya boyutu bayt ile ölçülür. 8 Mbps ≈ 1 MB/s’tir; 80 Mbps bağlantı yaklaşık 10 MB/s indirme demektir.</li>
+        </ul>
+
+        <h3>Hız düşükse ne yapmalı?</h3>
+        <ul>
+          <li>Modemi yeniden başlatın ve güncel olduğundan emin olun.</li>
+          <li>Wi-Fi yerine Ethernet kablosu deneyin; duvar ve mesafe sinyali zayıflatır.</li>
+          <li>Aynı ağdaki diğer cihazların arka planda indirme yapmadığını kontrol edin.</li>
+          <li>Sorun sürüyorsa taahhüt hızınızı internet sağlayıcınızla karşılaştırın.</li>
+        </ul>
+
+        <p class="disclaimer muted">
+          <strong>Bilgilendirme:</strong> Bu ölçüm; tarayıcı, cihaz performansı, sunucu konumu ve ağ
+          yoğunluğundan etkilenir. Sonuçlar yaklaşık değerdir ve sağlayıcınızın taahhüt ettiği hız için
+          resmî ölçümlerin yerini tutmaz.
+        </p>
+      </div>
+    </article>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>İnternet hız testi nasıl yapılır?</summary><p>Bant genişliği tüketen işlemleri durdurun, testi başlatın ve indirme hızınızı Mbps, pinginizi milisaniye cinsinden okuyun. Sağlıklı sonuç için birkaç kez tekrarlayın.</p></details>
+          <details><summary>Mbps ne demek?</summary><p>Saniyede megabit demektir ve internet hızının birimidir. 8 Mbps yaklaşık 1 MB/s indirme hızına karşılık gelir.</p></details>
+          <details><summary>Ping nedir, kaç olmalı?</summary><p>Verinin gidiş-dönüş gecikmesidir. 20 ms altı çok iyi, 20-60 ms iyi, 100 ms üzeri oyun ve görüşmede fark edilir gecikmedir.</p></details>
+          <details><summary>Bu test yükleme hızını ölçüyor mu?</summary><p>Hayır. Araç tamamen tarayıcıda çalıştığı için yalnızca indirme hızını ve pingi ölçer; yükleme ölçümü sunucu gerektirir.</p></details>
+          <details><summary>Sonuçlar neden her seferinde değişiyor?</summary><p>Ağ yoğunluğu, Wi-Fi sinyali, cihaz yükü ve arka plan uygulamaları ölçümü etkiler. Ortalamak için birkaç kez ölçün.</p></details>
+          <details><summary>Wi-Fi mi kablo mu daha doğru sonuç verir?</summary><p>Kablolu (Ethernet) bağlantı sinyal kaybı yaşamadığı için genellikle daha yüksek ve tutarlı sonuç verir.</p></details>
+          <details><summary>Test verilerim kaydediliyor mu?</summary><p>Hayır. Ölçüm cihazınızda yapılır; kişisel veri toplanmaz ve hiçbir yere gönderilmez.</p></details>
+          <details><summary>Neden gerçek hızımdan düşük çıkıyor?</summary><p>Tarayıcı tabanlı testler ve tek sunucu, çok yüksek bağlantılarda kapasitenin tamamını dolduramayabilir. Referans olarak birden fazla test kullanın.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlar:</p>
+        <ul>
+          <li><a href="../kdv-hesaplama/">KDV Hesaplama</a></li>
+          <li><a href="../yuzde-hesaplama/">Yüzde Hesaplama</a></li>
+          <li><a href="../">Tüm projeler</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

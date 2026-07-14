@@ -1,0 +1,22 @@
+/* İnternet Hız Testi — sayfaya özel stiller */
+.gauge-grid {
+  display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-bottom: 1.25rem;
+}
+.gauge {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.5rem; box-shadow: var(--shadow); text-align: center;
+}
+.gauge-label { text-transform: uppercase; letter-spacing: .1em; font-size: var(--step--1); font-weight: 700; color: var(--text-muted); margin: 0 0 .5rem; }
+.gauge-value { font-size: clamp(2rem, 1.4rem + 3vw, 3.2rem); font-weight: 800; letter-spacing: -.03em; margin: 0; color: var(--brand-strong); }
+:root[data-theme="dark"] .gauge-value, :root[data-theme="auto"] .gauge-value { color: var(--brand); }
+.gauge-unit { font-size: var(--step-1); color: var(--text-muted); font-weight: 600; }
+
+.progress { height: 8px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; overflow: hidden; margin-bottom: 1.25rem; }
+.progress-bar { height: 100%; width: 0; background: var(--brand); transition: width .2s ease; }
+
+.test-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.test-status { margin: 0; color: var(--text-muted); font-size: var(--step--1); }
+.upload-note { margin-top: 1rem; }
+
+@media (prefers-reduced-motion: reduce) { .progress-bar { transition: none; } }
