@@ -1,4 +1,4 @@
-/* Öner Koray — kişisel sayfa · tema geçişi ve yıl */
+/* Koray Öner — kişisel sayfa · tema geçişi ve yıl */
 (function () {
   "use strict";
   var KEY = "onerkoray.theme";

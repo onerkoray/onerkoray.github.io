@@ -1,6 +1,6 @@
 # onerkoray.github.io
 
-Öner Koray'ın kişisel sayfası ve açık kaynak proje koleksiyonunun ana giriş noktası.
+Koray Öner'ın kişisel sayfası ve açık kaynak proje koleksiyonunun ana giriş noktası.
 
 Modern web teknolojileriyle (HTML, CSS, vanilla JavaScript) geliştirilen; hızlı, erişilebilir
 ve ücretsiz web araçları. Framework yok, bağımlılık yok, derleme adımı yok.
@@ -24,4 +24,4 @@ python -m http.server 8080
 
 ## Lisans
 
-MIT © Öner Koray
+MIT © Koray Öner
