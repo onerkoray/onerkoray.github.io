@@ -1,0 +1,11 @@
+/* AUTHOR */
+  Ad: Koray Öner
+  Rol: Yazılım Geliştirici, Açık Kaynak Geliştirici
+  GitHub: https://github.com/onerkoray
+  LinkedIn: https://www.linkedin.com/in/korayoner/
+  Site: https://onerkoray.github.io
+
+/* SITE */
+  Standartlar: HTML5, CSS3, ES2019+
+  Bileşenler: Vanilla JavaScript, bağımlılık yok
+  Son güncelleme: 2026-07-14
