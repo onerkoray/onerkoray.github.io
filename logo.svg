@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="Koray Öner">
+  <defs>
+    <linearGradient id="kg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12a184"/>
+      <stop offset="1" stop-color="#0a5f4e"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#kg)"/>
+  <text x="20" y="21" text-anchor="middle" dominant-baseline="central"
+    font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#ffffff">KÖ</text>
+</svg>
