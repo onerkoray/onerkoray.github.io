@@ -228,14 +228,15 @@
   <main id="main">
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="wrap hero-inner">
-        <p class="eyebrow">Yazılım Geliştirici · Açık Kaynak</p>
-        <h1 id="hero-title">Merhaba, ben Koray Öner.</h1>
-        <p class="lede">
+        <p class="eyebrow reveal">Yazılım Geliştirici · Açık Kaynak</p>
+        <h1 id="hero-title" class="reveal" style="--reveal-delay:80ms">Merhaba, ben <span class="accent">Koray Öner</span>.</h1>
+        <p class="lede reveal" style="--reveal-delay:160ms">
           Modern web teknolojileriyle hızlı, erişilebilir ve kullanıcı dostu uygulamalar
           geliştiriyorum. Günlük hayatı kolaylaştıran, ücretsiz ve açık kaynak web araçları üretiyorum.
         </p>
-        <div class="hero-actions">
+        <div class="hero-actions reveal" style="--reveal-delay:240ms">
           <a class="btn btn-primary" href="#projects">Projeleri incele</a>
           <a class="btn btn-ghost" href="https://github.com/onerkoray" rel="noopener">GitHub profilim</a>
         </div>
@@ -244,7 +245,7 @@
 
     <!-- ABOUT / BIO -->
     <section id="about" class="about" aria-labelledby="about-title">
-      <div class="wrap prose">
+      <div class="wrap prose reveal">
         <h2 id="about-title">Hakkımda</h2>
         <figure class="about-figure">
           <img src="images/koray-oner.png" width="120" height="120" alt="Koray Öner — yazılım geliştirici" loading="lazy" decoding="async">
@@ -294,12 +295,12 @@
     <!-- PROJECTS -->
     <section id="projects" class="projects" aria-labelledby="projects-title">
       <div class="wrap">
-        <div class="section-head">
+        <div class="section-head reveal">
           <h2 id="projects-title">Projeler</h2>
           <p>Günlük hayatta işe yarayan, ücretsiz ve açık kaynak web araçları. Koleksiyon sürekli büyüyor.</p>
         </div>
         <ul class="project-grid">
-          <li class="project-card">
+          <li class="project-card reveal">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0e7c66"></span>
               <span style="background:#e07a5f"></span>
@@ -316,7 +317,7 @@
               </p>
             </div>
           </li>
-          <li class="project-card">
+          <li class="project-card reveal">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0a5f4e"></span>
               <span style="background:#0e7c66"></span>
@@ -332,7 +333,7 @@
               </p>
             </div>
           </li>
-          <li class="project-card">
+          <li class="project-card reveal">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#1f9c80"></span>
               <span style="background:#0e7c66"></span>
@@ -346,7 +347,7 @@
               <p class="project-links"><a href="kdv-hesaplama/">Aracı aç</a></p>
             </div>
           </li>
-          <li class="project-card">
+          <li class="project-card reveal">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#3d5a80"></span>
               <span style="background:#2bb596"></span>
@@ -360,7 +361,7 @@
               <p class="project-links"><a href="internet-hiz-testi/">Testi aç</a></p>
             </div>
           </li>
-          <li class="project-card">
+          <li class="project-card reveal">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0a5f4e"></span>
               <span style="background:#2bb596"></span>
@@ -374,7 +375,7 @@
               <p class="project-links"><a href="final-notu-hesaplama/">Aracı aç</a></p>
             </div>
           </li>
-          <li class="project-card">
+          <li class="project-card reveal">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#4a9e6f"></span>
               <span style="background:#e0a500"></span>
@@ -388,7 +389,7 @@
               <p class="project-links"><a href="son-depremler/">Listeyi aç</a></p>
             </div>
           </li>
-          <li class="project-card">
+          <li class="project-card reveal">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0a5f4e"></span>
               <span style="background:#14795e"></span>
@@ -402,7 +403,7 @@
               <p class="project-links"><a href="yas-hesaplama/">Aracı aç</a></p>
             </div>
           </li>
-          <li class="project-card">
+          <li class="project-card reveal">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0a5f4e"></span>
               <span style="background:#0e7c66"></span>
@@ -416,7 +417,7 @@
               <p class="project-links"><a href="keymint/">Aracı aç</a> · <a href="keymint/sifre-guc-testi/">Şifre Güç Testi</a></p>
             </div>
           </li>
-          <li class="project-card project-card--soon">
+          <li class="project-card project-card--soon reveal">
             <div class="project-body">
               <h3>Yeni araçlar yolda</h3>
               <p>Şifre oluşturucular, hesaplayıcılar ve dönüştürücüler dahil yeni web araçları
@@ -430,7 +431,7 @@
 
     <!-- CONTACT -->
     <section id="contact" class="contact" aria-labelledby="contact-title">
-      <div class="wrap prose">
+      <div class="wrap prose reveal">
         <h2 id="contact-title">İletişim & Katkı</h2>
         <p>
           Ziyaretiniz için teşekkür ederim. Geliştirdiğim projeleri inceleyebilir, yeni çalışmalarımı
