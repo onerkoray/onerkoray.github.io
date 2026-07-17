@@ -11,8 +11,8 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Koray Öner — Yazılım Geliştirici & Açık Kaynak Projeleri</title>
-  <meta name="description" content="Koray Öner'ın kişisel sayfası. Modern web teknolojileriyle geliştirilen hızlı, erişilebilir ve kullanıcı dostu açık kaynak web araçları: şifre oluşturucular, hesaplayıcılar, dönüştürücüler ve daha fazlası.">
+  <title>Koray Öner — Ücretsiz ve Üyeliksiz Web Araçları | Yazılım Geliştirici</title>
+  <meta name="description" content="Koray Öner'in açık kaynak web araçları: maaş, kıdem tazminatı, KDV, yüzde, yaş ve final notu hesaplama; şifre üreteci, hız testi ve son depremler. Tamamen ücretsiz, üyelik gerektirmez, reklamsız.">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
@@ -260,8 +260,15 @@
         <h1 id="hero-title" class="reveal" style="--reveal-delay:80ms">Merhaba, ben <span class="accent">Koray Öner</span>.</h1>
         <p class="lede reveal" style="--reveal-delay:160ms">
           Modern web teknolojileriyle hızlı, erişilebilir ve kullanıcı dostu uygulamalar
-          geliştiriyorum. Günlük hayatı kolaylaştıran, ücretsiz ve açık kaynak web araçları üretiyorum.
+          geliştiriyorum. Bütün araçlarım tamamen ücretsizdir, üyelik gerektirmez ve hesaplamalar
+          tarayıcınızda yapılır — verileriniz cihazınızdan çıkmaz.
         </p>
+        <ul class="badges reveal" style="--reveal-delay:200ms" aria-label="Site özellikleri">
+          <li>Ücretsiz</li>
+          <li>Üyeliksiz</li>
+          <li>Reklamsız</li>
+          <li>Açık kaynak</li>
+        </ul>
         <div class="hero-actions reveal" style="--reveal-delay:240ms">
           <a class="btn btn-primary" href="#projects">Projeleri incele</a>
           <a class="btn btn-ghost" href="https://github.com/onerkoray" rel="noopener">GitHub profilim</a>
@@ -323,10 +330,35 @@
       <div class="wrap">
         <div class="section-head reveal">
           <h2 id="projects-title">Projeler</h2>
-          <p>Günlük hayatta işe yarayan, ücretsiz ve açık kaynak web araçları. Koleksiyon sürekli büyüyor.</p>
+          <p>Tüm araçlar ücretsizdir ve üyelik gerektirmez. Aradığınız aracı yazın ya da kategori seçin.</p>
+        </div>
+        <div class="tool-search reveal" role="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="tool-search-input" placeholder="Araç ara: maaş, kıdem, KDV, şifre…" aria-label="Araçlarda ara">
+        </div>
+        <div class="chips reveal" role="group" aria-label="Kategori filtresi">
+          <button type="button" class="chip" data-filter="hepsi" aria-pressed="true">Tümü</button>
+          <button type="button" class="chip" data-filter="maas" aria-pressed="false">Maaş &amp; Tazminat</button>
+          <button type="button" class="chip" data-filter="vergi" aria-pressed="false">Vergi &amp; Finans</button>
+          <button type="button" class="chip" data-filter="genel" aria-pressed="false">Genel</button>
         </div>
         <ul class="project-grid">
-          <li class="project-card reveal">
+          <li class="project-card reveal" data-cat="maas" data-tags="kıdem ihbar tazminat tavan işten çıkış istifa fesih">
+            <div class="project-swatch" aria-hidden="true">
+              <span style="background:#0e7c66"></span>
+              <span style="background:#2bb596"></span>
+              <span style="background:#ffd479"></span>
+              <span style="background:#0a5f4e"></span>
+            </div>
+            <div class="project-body">
+              <h3><span class="logo-badge" aria-hidden="true">📋</span> <a href="https://korayoner.github.io/kidem-tazminati-hesaplama/">Kıdem ve İhbar Tazminatı Hesaplama 2026</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
+              <p>Güncel kıdem tazminatı tavanı ve giydirilmiş brüt ücretle kıdem tazminatını gün gün
+              hesaplar; ihbar tazminatını da vergisiyle gösterir, PDF rapor sunar.</p>
+              <p class="project-links"><a href="https://korayoner.github.io/kidem-tazminati-hesaplama/">Aracı aç</a></p>
+            </div>
+          </li>
+          <li class="project-card reveal" data-cat="maas" data-tags="maaş brüt net bordro sgk vergi asgari ücret">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0a5f4e"></span>
               <span style="background:#0e7c66"></span>
@@ -335,12 +367,13 @@
             </div>
             <div class="project-body">
               <h3><span class="logo-badge" aria-hidden="true">₺</span> <a href="maas-hesaplama/">Brüt Net Maaş Hesaplama 2026</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
               <p>Güncel vergi dilimleri, SGK tavanı ve asgari ücret istisnasıyla ay ay 12 aylık bordro
               dökümü. Netten brüte de kuruş hassasiyetinde hesaplar.</p>
               <p class="project-links"><a href="maas-hesaplama/">Aracı aç</a></p>
             </div>
           </li>
-          <li class="project-card reveal">
+          <li class="project-card reveal" data-cat="genel" data-tags="dither piksel retro görsel efekt tasarım">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0a0a0a"></span>
               <span style="background:#3a3a34"></span>
@@ -349,6 +382,7 @@
             </div>
             <div class="project-body">
               <h3><span class="logo-badge" aria-hidden="true">▚</span> <a href="https://onerkoray.github.io/dither-studio/">Dither Studio</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
               <p>Görselleri 1-bit, 8-bit, 16-bit ve 32-bit derinliklerde dithering efektiyle retro/piksel
               estetiğine dönüştüren araç. Floyd–Steinberg, Atkinson ve ordered (Bayer) dithering — tamamı
               tarayıcıda, görseller cihazdan çıkmadan.</p>
@@ -358,7 +392,7 @@
               </p>
             </div>
           </li>
-          <li class="project-card reveal">
+          <li class="project-card reveal" data-cat="genel" data-tags="renk paleti dekorasyon tasarım wcag">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0e7c66"></span>
               <span style="background:#e07a5f"></span>
@@ -367,6 +401,7 @@
             </div>
             <div class="project-body">
               <h3><span class="logo-badge" aria-hidden="true">🎨</span> <a href="decorpalette/">DecorPalette</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
               <p>İç mekân tasarımı için erişilebilir renk paleti üreteci. WCAG kontrast denetimi, palet
               kilitleme ve CSS/JSON dışa aktarma — tamamı tarayıcıda, gizliliğe saygılı.</p>
               <p class="project-links">
@@ -375,7 +410,7 @@
               </p>
             </div>
           </li>
-          <li class="project-card reveal">
+          <li class="project-card reveal" data-cat="genel" data-tags="yüzde oran indirim artış azalış">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0a5f4e"></span>
               <span style="background:#0e7c66"></span>
@@ -384,6 +419,7 @@
             </div>
             <div class="project-body">
               <h3><span class="logo-badge" aria-hidden="true">%</span> <a href="yuzde-hesaplama/">Yüzde Hesaplama</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
               <p>Bir sayının yüzdesini, iki sayı arasındaki oranı, yüzde artış/azalışı ve yüzde
               ekleme/çıkarmayı anında hesaplayan pratik, reklamsız araç.</p>
               <p class="project-links">
@@ -391,7 +427,7 @@
               </p>
             </div>
           </li>
-          <li class="project-card reveal">
+          <li class="project-card reveal" data-cat="vergi" data-tags="kdv katma değer vergisi dahil hariç fatura">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#1f9c80"></span>
               <span style="background:#0e7c66"></span>
@@ -400,12 +436,13 @@
             </div>
             <div class="project-body">
               <h3><span class="logo-badge" aria-hidden="true">₺</span> <a href="kdv-hesaplama/">KDV Hesaplama</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
               <p>KDV hariç tutara KDV ekleyin ya da KDV dahil tutardan KDV’yi ayırın. %1, %10 ve %20
               oranlarıyla matrah, KDV ve toplam anında.</p>
               <p class="project-links"><a href="kdv-hesaplama/">Aracı aç</a></p>
             </div>
           </li>
-          <li class="project-card reveal">
+          <li class="project-card reveal" data-cat="genel" data-tags="internet hız testi indirme ping speed">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#3d5a80"></span>
               <span style="background:#2bb596"></span>
@@ -414,12 +451,13 @@
             </div>
             <div class="project-body">
               <h3><span class="logo-badge" aria-hidden="true">📶</span> <a href="internet-hiz-testi/">İnternet Hız Testi</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
               <p>İndirme (download) hızınızı ve ping değerinizi doğrudan tarayıcınızda, reklamsız olarak
               ölçün. Kayıt gerektirmez.</p>
               <p class="project-links"><a href="internet-hiz-testi/">Testi aç</a></p>
             </div>
           </li>
-          <li class="project-card reveal">
+          <li class="project-card reveal" data-cat="genel" data-tags="final vize not ortalama sınav okul">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0a5f4e"></span>
               <span style="background:#2bb596"></span>
@@ -428,12 +466,13 @@
             </div>
             <div class="project-body">
               <h3><span class="logo-badge" aria-hidden="true">🎓</span> <a href="final-notu-hesaplama/">Final Notu Hesaplama</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
               <p>Vize notu ve ağırlıklara göre dersten geçmek için finalden kaç almanız gerektiğini ve
               dönem ortalamanızı anında hesaplayın.</p>
               <p class="project-links"><a href="final-notu-hesaplama/">Aracı aç</a></p>
             </div>
           </li>
-          <li class="project-card reveal">
+          <li class="project-card reveal" data-cat="genel" data-tags="deprem kandilli büyüklük son dakika">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#4a9e6f"></span>
               <span style="background:#e0a500"></span>
@@ -442,12 +481,13 @@
             </div>
             <div class="project-body">
               <h3><span class="logo-badge" aria-hidden="true">🌍</span> <a href="son-depremler/">Son Depremler</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
               <p>Türkiye ve çevresindeki son dakika depremleri büyüklük, derinlik, yer ve saat
               bilgisiyle canlı listeleyin. Kandilli verisiyle, reklamsız.</p>
               <p class="project-links"><a href="son-depremler/">Listeyi aç</a></p>
             </div>
           </li>
-          <li class="project-card reveal">
+          <li class="project-card reveal" data-cat="genel" data-tags="yaş doğum tarihi kaç yaşındayım gün">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0a5f4e"></span>
               <span style="background:#14795e"></span>
@@ -456,12 +496,13 @@
             </div>
             <div class="project-body">
               <h3><span class="logo-badge" aria-hidden="true">🎂</span> <a href="yas-hesaplama/">Yaş Hesaplama</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
               <p>Doğum tarihine göre kaç yaşında olduğunu yıl/ay/gün olarak, iki tarih arası gün sayısını
               ve doğum gününe kalan süreyi anında hesapla.</p>
               <p class="project-links"><a href="yas-hesaplama/">Aracı aç</a></p>
             </div>
           </li>
-          <li class="project-card reveal">
+          <li class="project-card reveal" data-cat="genel" data-tags="şifre parola güvenlik üreteç password">
             <div class="project-swatch" aria-hidden="true">
               <span style="background:#0a5f4e"></span>
               <span style="background:#0e7c66"></span>
@@ -470,6 +511,7 @@
             </div>
             <div class="project-body">
               <h3><span class="logo-badge" aria-hidden="true">🔐</span> <a href="keymint/">KeyMint — Şifre Üreteci</a></h3>
+              <p class="card-badges" aria-hidden="true"><span>Ücretsiz</span><span>Üyeliksiz</span></p>
               <p>Kırılması zor, rastgele ve güvenli şifreler oluşturun. Güç ölçer, tek tıkla kopyalama;
               şifreniz tamamen tarayıcıda üretilir, hiçbir yere gönderilmez.</p>
               <p class="project-links"><a href="keymint/">Aracı aç</a> · <a href="keymint/sifre-guc-testi/">Şifre Güç Testi</a></p>
@@ -484,6 +526,7 @@
             </div>
           </li>
         </ul>
+        <p class="no-results" id="no-results" hidden>Aramanızla eşleşen araç bulunamadı. Farklı bir anahtar kelime deneyin.</p>
       </div>
     </section>
 

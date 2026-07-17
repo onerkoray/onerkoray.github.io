@@ -27,6 +27,111 @@
   var yr = document.getElementById("year");
   if (yr) yr.textContent = new Date().getFullYear();
 
+  /* ---- Renk paleti seçici (header'a otomatik eklenir) ---- */
+  var ACCENT_KEY = "onerkoray.accent";
+  var ACCENTS = [
+    ["mavi", "#2160b4", "Mavi"],
+    ["yesil", "#0e7c66", "Yeşil"],
+    ["camgobegi", "#0c7f93", "Camgöbeği"],
+    ["turuncu", "#bb5714", "Turuncu"],
+    ["gul", "#b0345c", "Gül"]
+  ];
+  function applyAccent(name) {
+    if (name && name !== "mavi") document.documentElement.setAttribute("data-accent", name);
+    else document.documentElement.removeAttribute("data-accent");
+    document.querySelectorAll(".palette-pop button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String((b.getAttribute("data-accent") || "mavi") === (name || "mavi")));
+    });
+  }
+  applyAccent(localStorage.getItem(ACCENT_KEY) || "mavi");
+
+  /* Widget yoksa header'a enjekte et (tüm alt sayfalarda markup gerektirmez) */
+  var headerInner = document.querySelector(".site-header .header-inner");
+  if (headerInner && !headerInner.querySelector(".palette")) {
+    var pal = document.createElement("div");
+    pal.className = "palette";
+    pal.innerHTML =
+      '<button class="theme-toggle palette-toggle" type="button" aria-expanded="false" aria-label="Renk paleti seç">' +
+      '<span class="palette-dot" aria-hidden="true"></span><span class="theme-toggle-label">Renk</span></button>' +
+      '<div class="palette-pop" hidden>' +
+      ACCENTS.map(function (a) {
+        return '<button type="button" data-accent="' + a[0] + '" style="--sw:' + a[1] + '" aria-label="' + a[2] + ' tema"></button>';
+      }).join("") +
+      "</div>";
+    var themeBtn = headerInner.querySelector("#themeToggle");
+    headerInner.insertBefore(pal, themeBtn);
+    applyAccent(localStorage.getItem(ACCENT_KEY) || "mavi");
+  }
+
+  var palToggle = document.querySelector(".palette-toggle");
+  var palPop = document.querySelector(".palette-pop");
+  if (palToggle && palPop) {
+    palToggle.addEventListener("click", function () {
+      var open = palPop.hidden;
+      palPop.hidden = !open;
+      palToggle.setAttribute("aria-expanded", String(open));
+    });
+    document.addEventListener("click", function (e) {
+      if (!palPop.hidden && !e.target.closest(".palette")) {
+        palPop.hidden = true;
+        palToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+    palPop.querySelectorAll("button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var name = b.getAttribute("data-accent") || "yesil";
+        localStorage.setItem(ACCENT_KEY, name);
+        applyAccent(name);
+      });
+    });
+  }
+
+  /* ---- Araç dizini: arama + kategori filtresi (ana sayfa) ---- */
+  var search = document.getElementById("tool-search-input");
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".chip[data-filter]"));
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".project-card[data-tags]"));
+  if (cards.length && (search || chips.length)) {
+    var activeCat = "hepsi";
+    function applyFilter() {
+      var q = search ? search.value.trim().toLocaleLowerCase("tr") : "";
+      var visible = 0;
+      cards.forEach(function (card) {
+        var tags = (card.getAttribute("data-tags") || "").toLocaleLowerCase("tr");
+        var cat = card.getAttribute("data-cat") || "";
+        var okCat = activeCat === "hepsi" || cat === activeCat;
+        var okText = !q || tags.indexOf(q) !== -1 || card.textContent.toLocaleLowerCase("tr").indexOf(q) !== -1;
+        var show = okCat && okText;
+        card.classList.toggle("is-hidden", !show);
+        if (show) visible++;
+      });
+      var empty = document.getElementById("no-results");
+      if (empty) empty.hidden = visible > 0;
+    }
+    if (search) search.addEventListener("input", applyFilter);
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        activeCat = chip.getAttribute("data-filter");
+        chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
+        applyFilter();
+      });
+    });
+  }
+
+  /* ---- Rapor yazdırma (araç sayfaları) ---- */
+  var printBtn = document.getElementById("printBtn");
+  if (printBtn) {
+    printBtn.addEventListener("click", function () {
+      var dateEl = document.getElementById("report-date");
+      if (dateEl) {
+        dateEl.textContent = new Date().toLocaleDateString("tr-TR", {
+          day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit"
+        });
+      }
+      if (typeof window.buildReportInputs === "function") window.buildReportInputs();
+      window.print();
+    });
+  }
+
   /* Header'a kaydırma durumunda gölge ekle */
   var header = document.querySelector(".site-header");
   if (header) {
