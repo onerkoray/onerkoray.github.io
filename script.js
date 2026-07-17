@@ -146,6 +146,11 @@
     calcWrap.appendChild(foot);
     if (typeof window.buildReportInputs !== "function") {
       window.buildReportInputs = function () {
+        var esc = function (s) {
+          return String(s).replace(/[&<>"']/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+          });
+        };
         var parts = [];
         document.querySelectorAll(".calc input, .calc select").forEach(function (el) {
           if (el.type === "hidden" || el.closest("[hidden]") || !el.value) return;
@@ -157,9 +162,9 @@
           if (!lab && el.closest("label")) lab = el.closest("label").textContent.trim();
           if (el.type === "radio" || el.type === "checkbox") {
             if (!el.checked) return;
-            parts.push("<strong>" + (lab || el.name || "Seçim") + "</strong>");
+            parts.push("<strong>" + esc(lab || el.name || "Seçim") + "</strong>");
           } else {
-            parts.push((lab ? "<strong>" + lab + ":</strong> " : "") + el.value);
+            parts.push((lab ? "<strong>" + esc(lab) + ":</strong> " : "") + esc(el.value));
           }
         });
         inputsDiv.innerHTML = parts.join(" &nbsp;·&nbsp; ");
