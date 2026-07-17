@@ -160,8 +160,18 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 .project-links { color: var(--text-muted); font-size: var(--step--1); margin-bottom: 0; }
 .project-card--soon { border-style: dashed; box-shadow: none; background: var(--surface-2); }
 
-.about-figure { float: right; margin: 0 0 1rem 1.5rem; text-align: center; }
-.about-figure img { border-radius: 20px; box-shadow: var(--shadow); }
+.about-figure { float: right; margin: 0 0 1rem 1.5rem; text-align: center; position: relative; }
+.about-figure img { border-radius: 20px; box-shadow: var(--shadow); position: relative; z-index: 1; }
+/* Logonun arkasında dönen, renk değiştiren yumuşak hale */
+.about-figure::before {
+  content: ""; position: absolute; top: 60px; left: 50%;
+  width: 172px; height: 172px; transform: translate(-50%, -50%);
+  z-index: 0; border-radius: 50%; pointer-events: none;
+  background: conic-gradient(from 0deg, var(--brand), #ffd479, var(--accent-bright), #5b9be6, var(--brand));
+  filter: blur(26px); opacity: .5;
+  animation: aboutHalo 9s linear infinite;
+}
+@keyframes aboutHalo { to { transform: translate(-50%, -50%) rotate(360deg); } }
 .about-figure figcaption { font-size: var(--step--1); color: var(--text-muted); margin-top: .5rem; }
 @media (max-width: 560px) { .about-figure { float: none; margin: 0 auto 1.5rem; } }
 
