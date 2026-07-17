@@ -27,6 +27,19 @@
   var yr = document.getElementById("year");
   if (yr) yr.textContent = new Date().getFullYear();
 
+  /* Alt sayfalarda (breadcrumb'lı) header menüsüne "Araçlar" kısayolu ekle:
+     kullanıcı araç listesine tek tıkla döner, önce ana sayfa tepesine gitmez. */
+  (function () {
+    var crumb = document.querySelector(".breadcrumb");
+    var navList = document.querySelector(".site-nav ul");
+    if (!crumb || !navList || navList.querySelector('a[href$="#projects"]')) return;
+    var li = document.createElement("li");
+    li.innerHTML = '<a href="/#projects">Araçlar</a>';
+    var home = navList.querySelector("li"); // "Ana Sayfa" öğesinden sonra
+    if (home && home.nextSibling) navList.insertBefore(li, home.nextSibling);
+    else navList.appendChild(li);
+  })();
+
   /* ---- Renk paleti seçici (header'a otomatik eklenir) ---- */
   var ACCENT_KEY = "onerkoray.accent";
   var ACCENTS = [
