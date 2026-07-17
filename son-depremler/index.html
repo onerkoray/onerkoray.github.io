@@ -11,8 +11,8 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Son Depremler — Canlı Son Dakika Deprem Listesi (Kandilli) | Koray Öner</title>
-  <meta name="description" content="Son depremler listesi: Türkiye ve çevresinde meydana gelen son dakika depremleri büyüklük, derinlik, yer ve saat bilgisiyle canlı görün. Kandilli verisiyle ücretsiz ve reklamsız.">
+  <title>Son Depremler — Canlı Liste, Diyagram ve Tarihe Göre Sorgu | Koray Öner</title>
+  <meta name="description" content="Son depremler: Türkiye ve çevresindeki son dakika depremleri canlı listeleyin, son 5 depremi renkli diyagramda görün, geçmiş tarihleri USGS arşivinden sorgulayın. Kandilli verisiyle ücretsiz, üyeliksiz, reklamsız.">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
@@ -137,8 +137,15 @@
         <h1 id="hero-title">Son Depremler</h1>
         <p class="lede">
           Türkiye ve çevresinde meydana gelen son dakika depremleri; büyüklük, derinlik, yer ve saat
-          bilgisiyle canlı olarak görün. Veriler Kandilli Rasathanesi kayıtlarından alınır.
+          bilgisiyle canlı olarak görün. Son 5 deprem renkli diyagramda; geçmiş tarihler USGS
+          arşivinden sorgulanabilir. Veriler Kandilli Rasathanesi kayıtlarından alınır.
         </p>
+        <ul class="badges" aria-label="Araç özellikleri">
+          <li>Ücretsiz</li>
+          <li>Üyeliksiz</li>
+          <li>Reklamsız</li>
+          <li>Canlı veri</li>
+        </ul>
       </div>
     </section>
 
@@ -155,6 +162,17 @@
           </div>
           <button class="btn btn-primary" type="button" id="refreshBtn">Yenile</button>
         </div>
+
+        <form class="date-query" id="dateForm">
+          <label for="qdate">Tarihe göre sorgula <span class="muted-note">(USGS arşivi, Türkiye ve çevresi)</span></label>
+          <div class="date-query-row">
+            <input type="date" id="qdate" min="1970-01-01" required>
+            <button class="btn btn-primary" type="submit">Sorgula</button>
+            <button class="btn btn-ghost" type="button" id="liveBtn" hidden>Canlıya dön</button>
+          </div>
+        </form>
+
+        <div class="quake-chart" id="chart" aria-live="polite"></div>
 
         <p class="quake-status" id="status" role="status" aria-live="polite">Depremler yükleniyor…</p>
         <ol class="quake-list" id="list" aria-label="Son depremler"></ol>
@@ -218,7 +236,9 @@
           <details><summary>Liste ne sıklıkla güncellenir?</summary><p>Sayfayı açtığınızda ve “Yenile”ye bastığınızda en güncel kayıtlar çekilir. Sağlayıcıdaki gecikmelere göre birkaç dakika fark olabilir.</p></details>
           <details><summary>Büyüklük neden sonradan değişiyor?</summary><p>İlk değerler otomatik hesaplanır; uzmanlar verileri incelediğinde büyüklük bir miktar revize edilebilir.</p></details>
           <details><summary>Veriler açılmıyorsa ne yapmalıyım?</summary><p>Veri sağlayıcı geçici olarak yanıt vermiyor olabilir. “Yenile”yi deneyin veya doğrudan AFAD ve Kandilli sayfalarını ziyaret edin.</p></details>
-          <details><summary>Bu araç ücretli mi?</summary><p>Hayır, tamamen ücretsizdir; kayıt gerektirmez ve reklam içermez.</p></details>
+          <details><summary>Geçmiş tarihli depremleri nasıl sorgularım?</summary><p>"Tarihe göre sorgula" alanından bir tarih seçin. Geçmiş kayıtlar, ABD Jeoloji Araştırmaları Kurumu'nun (USGS) herkese açık arşivinden Türkiye ve çevresi (35–43K, 25–45D) için çekilir; 1970'e kadar sorgulanabilir. Canlı listeye "Canlıya dön" ile geçersiniz.</p></details>
+          <details><summary>Diyagramda ne gösteriliyor?</summary><p>Listelenen verideki en son 5 depremin büyüklükleri, her biri farklı renkte çubuklarla karşılaştırmalı gösterilir; çubuğun üzerine gelince yer ve saat bilgisi görünür.</p></details>
+          <details><summary>Bu araç ücretli mi?</summary><p>Hayır, tamamen ücretsizdir; üyelik ve kayıt gerektirmez, reklam içermez.</p></details>
         </div>
       </div>
     </section>

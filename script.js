@@ -117,6 +117,56 @@
     });
   }
 
+  /* ---- Jenerik rapor: hesap araçlarına otomatik rapor başlığı + yazdır düğmesi ---- */
+  var calcWrap = document.querySelector(".calc .wrap");
+  if (calcWrap && !document.getElementById("printBtn")) {
+    var h1 = document.querySelector("h1");
+    var icon = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+    var head = document.createElement("div");
+    head.className = "report-head";
+    head.setAttribute("aria-hidden", "true");
+    head.innerHTML = (icon ? '<img src="' + icon.getAttribute("href") + '" alt="">' : "") +
+      '<div><div class="report-title">' + (h1 ? h1.textContent : document.title) + " — Rapor</div>" +
+      '<div class="report-meta">' + location.host + location.pathname + ' · Rapor tarihi: <span id="report-date"></span></div></div>';
+    calcWrap.insertBefore(head, calcWrap.firstChild);
+    var inputsDiv = document.createElement("div");
+    inputsDiv.className = "report-inputs";
+    inputsDiv.id = "report-inputs";
+    inputsDiv.setAttribute("aria-hidden", "true");
+    calcWrap.insertBefore(inputsDiv, head.nextSibling);
+    var bar = document.createElement("p");
+    bar.className = "report-actions no-print";
+    bar.innerHTML = '<button type="button" id="printBtn" class="btn btn-primary">🖨 Raporu yazdır / PDF kaydet</button>';
+    calcWrap.appendChild(bar);
+    var foot = document.createElement("div");
+    foot.className = "report-foot";
+    foot.setAttribute("aria-hidden", "true");
+    foot.textContent = "Bu rapor " + location.host + location.pathname +
+      " adresindeki ücretsiz araçla bilgilendirme amaçlı oluşturulmuştur. · © Koray Öner";
+    calcWrap.appendChild(foot);
+    if (typeof window.buildReportInputs !== "function") {
+      window.buildReportInputs = function () {
+        var parts = [];
+        document.querySelectorAll(".calc input, .calc select").forEach(function (el) {
+          if (el.type === "hidden" || el.closest("[hidden]") || !el.value) return;
+          var lab = "";
+          if (el.id) {
+            var l = document.querySelector('label[for="' + el.id + '"]');
+            if (l) lab = l.textContent.trim();
+          }
+          if (!lab && el.closest("label")) lab = el.closest("label").textContent.trim();
+          if (el.type === "radio" || el.type === "checkbox") {
+            if (!el.checked) return;
+            parts.push("<strong>" + (lab || el.name || "Seçim") + "</strong>");
+          } else {
+            parts.push((lab ? "<strong>" + lab + ":</strong> " : "") + el.value);
+          }
+        });
+        inputsDiv.innerHTML = parts.join(" &nbsp;·&nbsp; ");
+      };
+    }
+  }
+
   /* ---- Rapor yazdırma (araç sayfaları) ---- */
   var printBtn = document.getElementById("printBtn");
   if (printBtn) {

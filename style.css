@@ -270,7 +270,7 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   .site-header, .breadcrumb, .hero, .faq, .related, .content, .site-footer,
   .theme-toggle, .palette, .hero-actions, .no-print, .tabs, .skip-link { display: none !important; }
   .calc { padding: 0 !important; }
-  .calc form.panel { display: none !important; }
+  .calc .panel-q, .calc .rate-group, .calc form.panel[hidden] { display: none !important; }
   .panel { box-shadow: none !important; border: 1px solid var(--border) !important; break-inside: avoid; }
   .sum-card { break-inside: avoid; box-shadow: none !important; }
   table { break-inside: auto; }
