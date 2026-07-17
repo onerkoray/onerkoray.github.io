@@ -1,25 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Koray Öner">
   <defs>
-    <linearGradient id="lg-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#16a98a"/>
-      <stop offset=".55" stop-color="#0e7c66"/>
-      <stop offset="1" stop-color="#064639"/>
+    <linearGradient id="lg-brkt" x1="14" y1="18" x2="50" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14b28e"/>
+      <stop offset="1" stop-color="#0a5f4e"/>
     </linearGradient>
-    <linearGradient id="lg-shine" x1="0" y1="0" x2="0" y2="34" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="lg-spark" x1="24" y1="20" x2="42" y2="46" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ffe9b0"/>
-      <stop offset="1" stop-color="#f5b93e"/>
+    <linearGradient id="lg-tile" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f4f2ec"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="15" fill="url(#lg-bg)"/>
-  <path d="M0 15C0 6.7 6.7 0 15 0h34c8.3 0 15 6.7 15 15v11H0z" fill="url(#lg-shine)"/>
-  <g fill="none" stroke="#ffffff" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M19.5 20 L9 32 L19.5 44"/>
-    <path d="M44.5 20 L55 32 L44.5 44"/>
+  <rect x="1" y="1" width="62" height="62" rx="14.5" fill="url(#lg-tile)" stroke="#e0dcd2" stroke-width="1.5"/>
+  <g fill="none" stroke="url(#lg-brkt)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 21 L11.5 32 L22 43"/>
+    <path d="M42 21 L52.5 32 L42 43"/>
   </g>
-  <path d="M32 15.5c1.9 8.6 4.4 11.6 12 13.9-7.6 2.3-10.1 5.3-12 13.9-1.9-8.6-4.4-11.6-12-13.9 7.6-2.3 10.1-5.3 12-13.9z" fill="url(#lg-spark)"/>
-  <circle cx="43" cy="45.5" r="2.4" fill="#ffe9b0" opacity=".95"/>
+  <line x1="35.6" y1="18.5" x2="28.4" y2="45.5" stroke="#232d29" stroke-width="4.6" stroke-linecap="round"/>
 </svg>
