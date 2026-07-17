@@ -12,9 +12,11 @@
     status: document.getElementById("status"),
     refresh: document.getElementById("refreshBtn"),
     chart: document.getElementById("chart"),
-    dateForm: document.getElementById("dateForm"),
     qdate: document.getElementById("qdate"),
+    qdateLabel: document.getElementById("qdate-label"),
     liveBtn: document.getElementById("liveBtn"),
+    datePill: document.getElementById("datePill"),
+    modePills: Array.prototype.slice.call(document.querySelectorAll(".mode-pill")),
     chips: Array.prototype.slice.call(document.querySelectorAll(".chip"))
   };
 
@@ -141,7 +143,6 @@
           };
         }).filter(function (q) { return isFinite(q.mag); });
         state.mode = "archive";
-        if (els.liveBtn) els.liveBtn.hidden = false;
         if (!state.quakes.length) {
           els.list.innerHTML = ""; renderChart();
           els.status.textContent = "Bu tarihte bölgede kayıtlı deprem bulunamadı (USGS, min. 1.5).";
@@ -154,7 +155,6 @@
 
   function load() {
     state.mode = "live";
-    if (els.liveBtn) els.liveBtn.hidden = true;
     els.status.textContent = "Depremler yükleniyor…";
     els.refresh.disabled = true;
     fetch(API, { cache: "no-store" })
@@ -169,15 +169,46 @@
       .then(function () { els.refresh.disabled = false; });
   }
 
-  els.refresh.addEventListener("click", load);
-  if (els.dateForm) {
-    if (els.qdate) els.qdate.max = new Date().toISOString().slice(0, 10);
-    els.dateForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (els.qdate && els.qdate.value) loadArchive(els.qdate.value);
+  els.refresh.addEventListener("click", function () {
+    setActivePill(els.liveBtn);
+    if (els.qdateLabel) els.qdateLabel.textContent = "Tarih seç";
+    load();
+  });
+
+  /* Mod çubuğu: Canlı / Bugün / Dün / takvim — seçim anında sorgular */
+  function setActivePill(el) {
+    els.modePills.forEach(function (p) { p.classList.toggle("is-active", p === el); });
+  }
+  function isoDaysAgo(n) {
+    var d = new Date(); d.setDate(d.getDate() - n);
+    return d.toISOString().slice(0, 10);
+  }
+  if (els.qdate) {
+    els.qdate.max = new Date().toISOString().slice(0, 10);
+    els.qdate.addEventListener("change", function () {
+      if (!els.qdate.value) return;
+      if (els.qdateLabel) {
+        els.qdateLabel.textContent = new Date(els.qdate.value + "T00:00:00")
+          .toLocaleDateString("tr-TR", { day: "numeric", month: "short", year: "numeric" });
+      }
+      setActivePill(els.datePill);
+      loadArchive(els.qdate.value);
     });
   }
-  if (els.liveBtn) els.liveBtn.addEventListener("click", load);
+  els.modePills.forEach(function (pill) {
+    if (pill === els.datePill) return;
+    pill.addEventListener("click", function () {
+      setActivePill(pill);
+      if (pill === els.liveBtn) {
+        if (els.qdateLabel) els.qdateLabel.textContent = "Tarih seç";
+        load();
+      } else {
+        var d = isoDaysAgo(parseInt(pill.getAttribute("data-days"), 10) || 0);
+        if (els.qdate) els.qdate.value = d;
+        loadArchive(d);
+      }
+    });
+  });
   els.chips.forEach(function (chip) {
     chip.addEventListener("click", function () {
       els.chips.forEach(function (c) { c.classList.remove("is-active"); });

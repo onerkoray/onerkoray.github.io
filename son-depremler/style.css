@@ -39,15 +39,46 @@
   .quake-map { grid-column: 1 / -1; }
 }
 
-/* Tarihe göre sorgu */
-.date-query { margin: 0 0 1.25rem; }
-.date-query label { display: block; font-weight: 700; font-size: var(--step--1); margin-bottom: .4rem; }
-.date-query .muted-note { font-weight: 500; color: var(--text-muted); }
-.date-query-row { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
-.date-query input[type="date"] {
-  font: inherit; padding: .55rem .7rem; border: 1px solid var(--border);
-  border-radius: var(--radius-sm); background: var(--surface); color: var(--text);
+/* Mod çubuğu: Canlı / Bugün / Dün / takvim */
+.mode-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .5rem;
+  margin: 0 0 1.25rem; padding: .45rem;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+  width: fit-content; max-width: 100%;
 }
+.mode-pill {
+  position: relative; display: inline-flex; align-items: center; gap: .4rem;
+  font: inherit; font-size: var(--step--1); font-weight: 600; cursor: pointer;
+  padding: .5rem 1rem; border-radius: 999px; border: 1px solid transparent;
+  background: transparent; color: var(--text-muted);
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease, transform .15s ease;
+}
+.mode-pill:hover { color: var(--text); background: color-mix(in srgb, var(--brand) 8%, transparent); }
+.mode-pill:active { transform: scale(.97); }
+.mode-pill.is-active {
+  background: var(--brand); color: #fff;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--brand) 40%, transparent);
+}
+.mode-pill svg { width: 15px; height: 15px; }
+.live-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #e04a4a;
+  animation: livePulse 2s ease-out infinite;
+}
+.mode-pill.is-active .live-dot { background: #fff; }
+@keyframes livePulse {
+  0% { box-shadow: 0 0 0 0 rgba(224,74,74,.45); }
+  70% { box-shadow: 0 0 0 7px rgba(224,74,74,0); }
+  100% { box-shadow: 0 0 0 0 rgba(224,74,74,0); }
+}
+.mode-date input[type="date"] {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  opacity: 0; cursor: pointer; border: 0;
+}
+.mode-date input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute; inset: 0; width: 100%; height: 100%; cursor: pointer;
+}
+.mode-hint { padding: 0 .75rem 0 .25rem; }
+@media (max-width: 560px) { .mode-hint { display: none; } .mode-bar { width: 100%; justify-content: center; } }
 
 /* Son 5 deprem diyagramı */
 .quake-chart { margin: 0 0 1.5rem; }
