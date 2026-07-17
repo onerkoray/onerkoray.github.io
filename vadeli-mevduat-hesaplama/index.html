@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vadeli Mevduat Faizi Hesaplama 2026 — Net Getiri ve Stopaj | Koray Öner</title>
+  <meta name="description" content="Vadeli mevduat faizi hesaplama aracı: anapara, yıllık faiz oranı ve vadeye göre brüt faizi, stopaj kesintisini ve net getiriyi anında hesaplayın. Güncel stopaj oranlarıyla, ücretsiz ve reklamsız.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://onerkoray.github.io/vadeli-mevduat-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Vadeli Mevduat Faizi Hesaplama 2026 — Net Getiri ve Stopaj">
+  <meta property="og:description" content="Anapara, faiz oranı ve vadeye göre brüt faizi, stopajı ve net getiriyi hesaplayın.">
+  <meta property="og:url" content="https://onerkoray.github.io/vadeli-mevduat-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://onerkoray.github.io/images/vadeli-mevduat-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz vadeli mevduat faizi hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vadeli Mevduat Faizi Hesaplama 2026">
+  <meta name="twitter:description" content="Brüt faiz, stopaj ve net getiri — ücretsiz mevduat hesaplama.">
+  <meta name="twitter:image" content="https://onerkoray.github.io/images/vadeli-mevduat-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://onerkoray.github.io/vadeli-mevduat-hesaplama/#app",
+        "name": "Vadeli Mevduat Faizi Hesaplama Aracı",
+        "url": "https://onerkoray.github.io/vadeli-mevduat-hesaplama/",
+        "image": "https://onerkoray.github.io/images/vadeli-mevduat-hesaplama-koray-oner.png",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "description": "Anapara, yıllık faiz oranı ve vadeye göre brüt faiz, stopaj ve net getiri hesaplayan ücretsiz araç.",
+        "author": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "creator": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "publisher": { "@id": "https://onerkoray.github.io/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onerkoray.github.io/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://onerkoray.github.io/",
+        "jobTitle": "Yazılım Geliştirici",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://onerkoray.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Vadeli Mevduat Faizi Hesaplama", "item": "https://onerkoray.github.io/vadeli-mevduat-hesaplama/" }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "Vadeli mevduat faizi nasıl hesaplanır?",
+        "description": "Net mevduat getirisini üç adımda hesaplama.",
+        "step": [
+          { "@type": "HowToStep", "position": 1, "name": "Anaparayı girin", "text": "Yatıracağınız tutarı yazın." },
+          { "@type": "HowToStep", "position": 2, "name": "Faiz ve vadeyi girin", "text": "Bankanın yıllık brüt faiz oranını ve vadeyi (gün) girin." },
+          { "@type": "HowToStep", "position": 3, "name": "Stopajı seçin", "text": "Vadeye uygun stopaj oranını seçin; araç brüt faizi, stopajı ve net getiriyi hesaplar." }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Vadeli mevduat faizi nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "Brüt faiz = anapara × yıllık faiz oranı × (vade günü ÷ 365). Bu tutardan stopaj düşülür, kalan net faiz anaparaya eklenir. Örneğin 100.000 TL, yıllık %45 faiz, 32 gün: brüt faiz ≈ 3.945 TL." } },
+          { "@type": "Question", "name": "Mevduat stopajı ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "TL vadeli mevduatta stopaj, vadeye göre değişir ve Cumhurbaşkanı kararıyla belirlenir: genellikle 6 aya kadar daha yüksek, 1 yıl ve üzeri vadelerde daha düşüktür. Güncel oranı bankanızdan teyit edin." } },
+          { "@type": "Question", "name": "Faiz bileşik mi hesaplanıyor?", "acceptedAnswer": { "@type": "Answer", "text": "Tek vade için faiz basit yöntemle (gün esaslı) hesaplanır. Vade sonunda faizi anaparaya ekleyip yeniden yatırırsanız bileşik getiri elde edersiniz." } },
+          { "@type": "Question", "name": "Yıllık faiz oranı ile gerçek getiri aynı mı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bankalar yıllık faiz açıklar ama getiri, vade gününüz kadar ve stopaj düşülerek gerçekleşir. Kısa vadede net getiri, yıllık orandan belirgin biçimde düşüktür." } },
+          { "@type": "Question", "name": "Bu hesaplama kesin mi?", "acceptedAnswer": { "@type": "Answer", "text": "Bilgilendirme amaçlıdır. Bankaların gün sayımı, stopaj uygulaması ve promosyon oranları nihai tutarı değiştirebilir." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> Vadeli Mevduat Faizi Hesaplama
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Reklamsız · Anında sonuç</p>
+        <img class="tool-logo" src="favicon.svg" width="60" height="60" alt="" aria-hidden="true" decoding="async">
+        <h1 id="hero-title">Vadeli Mevduat Faizi Hesaplama 2026</h1>
+        <p class="lede">
+          Anaparanızı, yıllık faiz oranını ve vadeyi girin; <strong>brüt faizi</strong>, kesilen
+          <strong>stopajı</strong> ve elinize geçecek <strong>net getiriyi</strong> anında görün.
+          Gün esaslı hesaplama tamamen tarayıcınızda yapılır.
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">Vadeli mevduat faizi hesaplama aracı</h2>
+
+        <form id="mevduat-form" class="panel">
+          <div class="field-grid">
+            <p class="panel-q">
+              <label for="in-principal">Anapara</label>
+              <input type="text" id="in-principal" inputmode="decimal" value="100000"> TL
+            </p>
+            <p class="panel-q">
+              <label for="in-rate">Yıllık brüt faiz oranı</label>
+              <input type="text" id="in-rate" inputmode="decimal" value="45"> %
+            </p>
+            <p class="panel-q">
+              <label for="in-days">Vade</label>
+              <input type="text" id="in-days" inputmode="numeric" value="32"> gün
+            </p>
+            <p class="panel-q">
+              <label for="in-tax">Stopaj oranı <span class="muted-note">(vadeye göre — güncelini teyit edin)</span></label>
+              <select id="in-tax">
+                <option value="7.5" selected>%7,5 · TL, 6 aya kadar</option>
+                <option value="5">%5 · TL, 6–12 ay</option>
+                <option value="2.5">%2,5 · TL, 1 yıl ve üzeri</option>
+                <option value="15">%15 · döviz / diğer</option>
+                <option value="0">%0 · istisna</option>
+              </select>
+            </p>
+          </div>
+        </form>
+
+        <div id="results" aria-live="polite"></div>
+        <p id="msg" class="muted-note" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 17 Temmuz 2026</p>
+
+        <h2 id="nasil">Vadeli mevduat faizi nasıl hesaplanır?</h2>
+        <p>
+          Vadeli mevduatta faiz <strong>gün esaslı</strong> işler. Brüt faiz şu formülle bulunur:
+        </p>
+        <p class="formula">Brüt faiz = Anapara × (Yıllık oran ÷ 100) × (Vade günü ÷ 365)</p>
+        <p>
+          Brüt faizden <strong>stopaj (gelir vergisi kesintisi)</strong> düşülür ve kalan net faiz
+          anaparaya eklenir. Örneğin 100.000 TL, yıllık %45 faiz, 32 gün ve %7,5 stopaj için brüt faiz
+          ≈ 3.945 TL, stopaj ≈ 296 TL, <strong>net faiz ≈ 3.649 TL</strong> olur; vade sonu bakiye
+          103.649 TL'dir.
+        </p>
+
+        <h2 id="stopaj">Stopaj oranları neden değişir?</h2>
+        <p>
+          TL mevduat stopajı, Cumhurbaşkanı kararıyla belirlenir ve <strong>vadeye göre kademelidir</strong>:
+          kısa vadelerde daha yüksek, uzun vadelerde daha düşük oran uygulanır; bu, uzun vadeli tasarrufu
+          teşvik etmek içindir. Döviz tevdiat hesaplarında oran farklıdır. Oranlar dönemsel olarak
+          güncellendiği için hesap açmadan önce bankanızdan teyit edin.
+        </p>
+
+        <h2 id="ipuclari">Getiriyi artırmanın yolları</h2>
+        <ul>
+          <li>Aynı faizde <em>uzun vade</em> hem daha düşük stopaj hem daha uzun süre faiz demektir.</li>
+          <li>Vade sonunda faizi anaparaya ekleyip yenilerseniz <em>bileşik getiri</em> elde edersiniz.</li>
+          <li>Bankaların <em>ilk kez</em> ve <em>yeni para</em> promosyon oranlarını karşılaştırın.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Vadeli mevduat faizi nasıl hesaplanır?</summary><p>Brüt faiz = anapara × yıllık oran × (vade günü ÷ 365). Bu tutardan stopaj düşülür, kalan net faiz anaparaya eklenir.</p></details>
+          <details><summary>Mevduat stopajı ne kadar?</summary><p>TL vadeli mevduatta stopaj vadeye göre değişir ve Cumhurbaşkanı kararıyla belirlenir; kısa vadede yüksek, uzun vadede düşüktür. Güncel oranı bankanızdan teyit edin.</p></details>
+          <details><summary>Faiz bileşik mi hesaplanır?</summary><p>Tek vade için basit (gün esaslı) hesaplanır. Vade sonunda faizi anaparaya ekleyip yenilerseniz bileşik getiri olur.</p></details>
+          <details><summary>Kısa vadede neden az kazanıyorum?</summary><p>Yıllık faiz yalnızca vade günü kadar işler. 32 günlük mevduat, yıllık oranın yaklaşık 32/365'i kadar getiri sağlar.</p></details>
+          <details><summary>Enflasyonu yener mi?</summary><p>Bu araç nominal getiriyi gösterir. Reel getiri için net faizden dönem enflasyonunu düşmeniz gerekir.</p></details>
+          <details><summary>Verilerim kaydediliyor mu?</summary><p>Hayır. Tüm hesaplama tarayıcınızda yapılır; girdiğiniz tutarlar hiçbir yere gönderilmez.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <ul>
+          <li><a href="../kredi-hesaplama/">Kredi Hesaplama 2026</a> — aylık taksit ve ödeme planı.</li>
+          <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama 2026</a> — 12 aylık bordro dökümü.</li>
+          <li><a href="../kira-artisi-hesaplama/">Kira Artışı Hesaplama 2026</a> — TÜFE yasal zam oranı.</li>
+          <li><a href="../">Tüm projeler</a> — büyüyen açık kaynak araç koleksiyonu.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı teklif değildir.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

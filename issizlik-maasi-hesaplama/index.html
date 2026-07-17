@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İşsizlik Maaşı Hesaplama 2026 — İşsizlik Ödeneği ve Süresi | Koray Öner</title>
+  <meta name="description" content="İşsizlik maaşı hesaplama aracı: son 4 aylık brüt kazanca ve prim gün sayısına göre aylık işsizlik ödeneğini, tavanı, damga vergisini ve kaç ay alacağınızı 2026 parametreleriyle hesaplayın. Ücretsiz.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://onerkoray.github.io/issizlik-maasi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="İşsizlik Maaşı Hesaplama 2026 — İşsizlik Ödeneği ve Süresi">
+  <meta property="og:description" content="Son 4 aylık kazanç ve prim gününe göre aylık işsizlik ödeneğini ve süresini hesaplayın.">
+  <meta property="og:url" content="https://onerkoray.github.io/issizlik-maasi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://onerkoray.github.io/images/issizlik-maasi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz işsizlik maaşı hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="İşsizlik Maaşı Hesaplama 2026">
+  <meta name="twitter:description" content="İşsizlik ödeneği tutarı ve süresi — ücretsiz hesaplama.">
+  <meta name="twitter:image" content="https://onerkoray.github.io/images/issizlik-maasi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://onerkoray.github.io/issizlik-maasi-hesaplama/#app",
+        "name": "İşsizlik Maaşı Hesaplama Aracı",
+        "url": "https://onerkoray.github.io/issizlik-maasi-hesaplama/",
+        "image": "https://onerkoray.github.io/images/issizlik-maasi-hesaplama-koray-oner.png",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "description": "Son 4 aylık brüt kazanç ve prim gün sayısına göre işsizlik ödeneğini ve süresini hesaplayan ücretsiz araç.",
+        "author": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "creator": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "publisher": { "@id": "https://onerkoray.github.io/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onerkoray.github.io/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://onerkoray.github.io/",
+        "jobTitle": "Yazılım Geliştirici",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://onerkoray.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "İşsizlik Maaşı Hesaplama", "item": "https://onerkoray.github.io/issizlik-maasi-hesaplama/" }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "İşsizlik maaşı nasıl hesaplanır?",
+        "description": "İşsizlik ödeneğini üç adımda hesaplama.",
+        "step": [
+          { "@type": "HowToStep", "position": 1, "name": "Ortalama kazancı girin", "text": "Son 4 ayın brüt aylık kazanç ortalamasını yazın." },
+          { "@type": "HowToStep", "position": 2, "name": "Prim gününü girin", "text": "Son 3 yıldaki toplam prim gün sayınızı girin." },
+          { "@type": "HowToStep", "position": 3, "name": "Sonucu okuyun", "text": "Araç ödeneği (%40, asgari ücretin %80'i tavanı) ve süresini hesaplar." }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "İşsizlik maaşı nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "Aylık işsizlik ödeneği, son 4 ayın ortalama günlük brüt kazancının %40'ının 30 katıdır. Tutar, aylık brüt asgari ücretin %80'ini geçemez ve sadece damga vergisi kesilir." } },
+          { "@type": "Question", "name": "2026 işsizlik maaşı en fazla ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "2026'da aylık brüt asgari ücret 33.030 TL olduğundan işsizlik ödeneği tavanı bunun %80'i olan 26.424 TL brüttür; damga vergisi düşülünce net yaklaşık 26.223 TL olur." } },
+          { "@type": "Question", "name": "İşsizlik maaşı kaç ay ödenir?", "acceptedAnswer": { "@type": "Answer", "text": "Son 3 yıldaki prim gün sayısına göre: 600 gün için 6 ay, 900 gün için 8 ay, 1080 gün için 10 ay ödenir." } },
+          { "@type": "Question", "name": "İşsizlik maaşı şartları nelerdir?", "acceptedAnswer": { "@type": "Answer", "text": "Hizmet akdinin kendi isteği dışında sona ermesi, son 120 gün kesintisiz prim ve son 3 yılda en az 600 gün işsizlik sigortası primi ödemiş olmak; işten çıkıştan sonraki 30 gün içinde İŞKUR'a başvurmak gerekir." } },
+          { "@type": "Question", "name": "İşsizlik maaşından ne kesilir?", "acceptedAnswer": { "@type": "Answer", "text": "İşsizlik ödeneğinden gelir vergisi ve SGK primi kesilmez; yalnızca binde 7,59 damga vergisi kesilir. Ayrıca İŞKUR bu süre boyunca genel sağlık sigortası primlerinizi öder." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> İşsizlik Maaşı Hesaplama
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Reklamsız · Anında sonuç</p>
+        <img class="tool-logo" src="favicon.svg" width="60" height="60" alt="" aria-hidden="true" decoding="async">
+        <h1 id="hero-title">İşsizlik Maaşı Hesaplama 2026</h1>
+        <p class="lede">
+          Son 4 aylık brüt kazancınıza ve prim gün sayınıza göre <strong>aylık işsizlik ödeneğini</strong>,
+          uygulanan tavanı ve <strong>kaç ay</strong> alacağınızı 2026 parametreleriyle hesaplayın.
+          Hesaplama tamamen tarayıcınızda yapılır.
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">İşsizlik maaşı hesaplama aracı</h2>
+
+        <form id="issizlik-form" class="panel">
+          <div class="field-grid">
+            <p class="panel-q">
+              <label for="in-avg">Son 4 ayın brüt maaş ortalaması</label>
+              <input type="text" id="in-avg" inputmode="decimal" value="45000"> TL
+            </p>
+            <p class="panel-q">
+              <label for="in-days">Son 3 yıldaki prim gün sayısı</label>
+              <select id="in-days">
+                <option value="600" selected>600 gün → 6 ay ödeme</option>
+                <option value="900">900 gün → 8 ay ödeme</option>
+                <option value="1080">1080 gün ve üzeri → 10 ay ödeme</option>
+                <option value="0">600 günden az (hak yok)</option>
+              </select>
+            </p>
+          </div>
+        </form>
+
+        <div id="results" aria-live="polite"></div>
+        <p id="msg" class="muted-note" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 17 Temmuz 2026 · 2026 asgari ücret (brüt 33.030 TL) esas alınmıştır</p>
+
+        <h2 id="nasil">İşsizlik maaşı nasıl hesaplanır?</h2>
+        <p>
+          Aylık işsizlik ödeneği, sigortalının <strong>son 4 aylık prime esas kazancının günlük
+          ortalamasının %40'ı</strong> üzerinden hesaplanır ve 30 günle çarpılır. Yani kabaca son 4 ay
+          brüt ortalamasının <strong>%40'ıdır</strong>. Ancak bir üst sınır vardır:
+        </p>
+        <p class="formula">Aylık ödenek = Ortalama brüt × %40 &nbsp;(tavan: brüt asgari ücret × %80)</p>
+        <p>
+          2026'da aylık brüt asgari ücret 33.030 TL olduğundan <strong>ödenek tavanı 26.424 TL brüttür</strong>.
+          Ödenekten gelir vergisi ve SGK kesilmez; yalnızca <strong>binde 7,59 damga vergisi</strong> düşülür.
+        </p>
+
+        <h2 id="sure">Kaç ay ödenir?</h2>
+        <p>Ödeme süresi, son 3 yıldaki prim gün sayısına bağlıdır:</p>
+        <ul>
+          <li><strong>600 gün</strong> prim → 180 gün (6 ay)</li>
+          <li><strong>900 gün</strong> prim → 240 gün (8 ay)</li>
+          <li><strong>1080 gün ve üzeri</strong> prim → 300 gün (10 ay)</li>
+        </ul>
+
+        <h2 id="sartlar">İşsizlik maaşı şartları</h2>
+        <ul>
+          <li>Hizmet akdinin kendi istek ve kusurunuz dışında sona ermesi (istifa hariç).</li>
+          <li>Son 120 gün hizmet akdine tabi ve kesintisiz prim ödemiş olmak.</li>
+          <li>Son 3 yılda en az 600 gün işsizlik sigortası primi ödemiş olmak.</li>
+          <li>İşten çıkıştan sonraki <strong>30 gün içinde</strong> İŞKUR'a (e-Devlet üzerinden) başvurmak.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>İşsizlik maaşı nasıl hesaplanır?</summary><p>Son 4 ayın ortalama günlük brüt kazancının %40'ının 30 katıdır; yani kabaca brüt ortalamanın %40'ı. Tutar, brüt asgari ücretin %80'ini geçemez ve sadece damga vergisi kesilir.</p></details>
+          <details><summary>2026'da en fazla ne kadar alınır?</summary><p>Aylık brüt asgari ücret 33.030 TL olduğundan tavan 26.424 TL brüttür; damga vergisi sonrası net ≈ 26.223 TL.</p></details>
+          <details><summary>İşsizlik maaşı kaç ay ödenir?</summary><p>600 gün primle 6 ay, 900 günle 8 ay, 1080 gün ve üzeri primle 10 ay ödenir.</p></details>
+          <details><summary>İstifa edersem alabilir miyim?</summary><p>Kural olarak hayır. İşsizlik ödeneği, iş akdinin kendi iradeniz dışında sona ermesi hâlinde ödenir. Haklı nedenle fesih gibi istisnalar için İŞKUR'a danışın.</p></details>
+          <details><summary>Ne zaman başvurmalıyım?</summary><p>İşten ayrılıştan sonraki 30 gün içinde İŞKUR'a veya e-Devlet üzerinden başvurun; gecikmede geç kalınan süre toplam hak edişten düşülebilir.</p></details>
+          <details><summary>Başka kesinti var mı?</summary><p>Hayır; sadece binde 7,59 damga vergisi kesilir. Ayrıca İŞKUR genel sağlık sigortası priminizi öder.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <ul>
+          <li><a href="https://korayoner.github.io/kidem-tazminati-hesaplama/">Kıdem ve İhbar Tazminatı Hesaplama 2026</a> — işten çıkışta hak edişler.</li>
+          <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama 2026</a> — 12 aylık bordro dökümü.</li>
+          <li><a href="../kredi-hesaplama/">Kredi Hesaplama 2026</a> — aylık taksit ve ödeme planı.</li>
+          <li><a href="../">Tüm projeler</a> — büyüyen açık kaynak araç koleksiyonu.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; kesin tutar için İŞKUR'a danışın.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>
