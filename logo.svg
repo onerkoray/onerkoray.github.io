@@ -9,10 +9,19 @@
       <stop offset="1" stop-color="#f4f2ec"/>
     </linearGradient>
   </defs>
+  <style>
+    @keyframes koBL { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-1.7px); } }
+    @keyframes koBR { 0%,100% { transform: translateX(0); } 50% { transform: translateX(1.7px); } }
+    @keyframes koSL { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-4deg); } }
+    .ko-bl { animation: koBL 3.2s ease-in-out infinite; }
+    .ko-br { animation: koBR 3.2s ease-in-out infinite; }
+    .ko-sl { animation: koSL 3.2s ease-in-out infinite; transform-origin: 32px 32px; transform-box: fill-box; }
+    @media (prefers-reduced-motion: reduce) { .ko-bl, .ko-br, .ko-sl { animation: none; } }
+  </style>
   <rect x="1" y="1" width="62" height="62" rx="14.5" fill="url(#lg-tile)" stroke="#e0dcd2" stroke-width="1.5"/>
   <g fill="none" stroke="url(#lg-brkt)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M22 21 L11.5 32 L22 43"/>
-    <path d="M42 21 L52.5 32 L42 43"/>
+    <path class="ko-bl" d="M22 21 L11.5 32 L22 43"/>
+    <path class="ko-br" d="M42 21 L52.5 32 L42 43"/>
   </g>
-  <line x1="35.6" y1="18.5" x2="28.4" y2="45.5" stroke="#232d29" stroke-width="4.6" stroke-linecap="round"/>
+  <line class="ko-sl" x1="35.6" y1="18.5" x2="28.4" y2="45.5" stroke="#232d29" stroke-width="4.6" stroke-linecap="round"/>
 </svg>

@@ -330,3 +330,14 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   50% { filter: drop-shadow(0 2px 9px color-mix(in srgb, var(--brand) 50%, transparent)); }
 }
 .brand-mark { animation: brandGlow 4.5s ease-in-out infinite; }
+/* Görsel gizli (erişilebilirlik) — TANIMSIZDI: gizli başlıklar/altyazılar büyük görünüyordu */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* Divider'lar site genelinde: ana sayfa bölümleri de net bantlara ayrılır */
+.projects, .contact { border-top: 1px solid var(--border); }
