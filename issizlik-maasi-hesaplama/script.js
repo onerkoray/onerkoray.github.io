@@ -17,9 +17,18 @@
   function num(id) {
     var el = document.getElementById(id);
     if (!el) return NaN;
-    var raw = String(el.value).trim();
+    var raw = String(el.value).trim().replace(/\s/g, "");
     if (raw === "") return NaN;
-    return parseFloat(raw.replace(/\./g, "").replace(",", "."));
+    if (raw.indexOf(",") >= 0) {
+      raw = raw.replace(/\./g, "").replace(",", "."); // virgül ondalık, nokta binlik
+    } else {
+      // yalnızca nokta: tüm gruplar tam 3 basamaksa binlik (100.000), aksi ondalık (3.79)
+      var parts = raw.split(".");
+      if (parts.length > 1 && parts.slice(1).every(function (p) { return p.length === 3; })) {
+        raw = parts.join("");
+      }
+    }
+    return parseFloat(raw);
   }
 
   function sumCard(label, value, note) {

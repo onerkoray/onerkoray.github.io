@@ -293,3 +293,40 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   }
 }
 .report-inputs, .report-foot { display: none; }
+/* ================= Araç sayfaları: net alanlar, divider'lar, accent ================= */
+/* Bölümler net bantlara ayrılır (düz sayfa yerine belirgin alanlar) */
+.calc { border-top: 1px solid var(--border); }
+.content { border-top: 1px solid var(--border); }
+.faq { background: var(--surface-2); border-block: 1px solid var(--border); }
+.related { border-top: 1px solid var(--border); }
+
+/* Hesaplayıcı formunu belirgin bir panel içine al */
+.calc form.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: clamp(1rem, .6rem + 1.5vw, 1.5rem);
+  box-shadow: var(--shadow);
+}
+
+/* İçerik başlıklarına accent'e bağlı ince üst çizgi (palet değişince renk değişir) */
+.content .prose h2, .faq .prose > h2 {
+  padding-top: .5rem;
+  border-top: 3px solid color-mix(in srgb, var(--brand) 60%, transparent);
+  display: inline-block;
+}
+
+/* Birincil sonuç kartı accent ile vurgulanır → renk paleti gözle görülür çalışır */
+.sum-grid .sum-card:first-child {
+  border-color: color-mix(in srgb, var(--brand) 50%, var(--border));
+  background: color-mix(in srgb, var(--brand) 10%, var(--surface));
+}
+.sum-grid .sum-card:first-child .sum-value { color: var(--brand-strong); }
+
+/* Formül kutusuna accent kenar */
+.formula { border-left: 3px solid var(--brand); }
+
+/* Hareketli logo: accent renginde yumuşak parıltı (hover'daki dönüşle çakışmaz) */
+@keyframes brandGlow {
+  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  50% { filter: drop-shadow(0 2px 9px color-mix(in srgb, var(--brand) 50%, transparent)); }
+}
+.brand-mark { animation: brandGlow 4.5s ease-in-out infinite; }
