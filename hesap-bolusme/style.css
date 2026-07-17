@@ -1,0 +1,46 @@
+/* Hesap Bölüşme — araca özgü stiller */
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 4px 20px;
+}
+.panel-q .muted-note { display: block; font-size: .75rem; opacity: .65; }
+#bolusme-form input[type="text"] {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--border, rgba(127,127,127,.3));
+  border-radius: 8px;
+  background: var(--surface, transparent);
+  color: inherit;
+  max-width: 12rem;
+}
+
+.sum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 20px 0 8px;
+}
+.sum-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--border, rgba(127,127,127,.25));
+  border-radius: 12px;
+  background: var(--surface, rgba(127,127,127,.06));
+}
+.sum-label { font-size: .8rem; opacity: .75; }
+.sum-value { font-size: 1.25rem; letter-spacing: -0.01em; }
+.sum-note { font-size: .75rem; opacity: .6; }
+.table-note { margin-top: 10px; display: block; }
+
+.formula {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  background: var(--surface, rgba(127,127,127,.08));
+  border: 1px solid var(--border, rgba(127,127,127,.2));
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: .95rem;
+}

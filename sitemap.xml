@@ -66,6 +66,26 @@
     </image:image>
   </url>
   <url>
+    <loc>https://onerkoray.github.io/hesap-bolusme/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://onerkoray.github.io/images/hesap-bolusme-koray-oner.png</image:loc>
+      <image:title>Hesap Bölüşme (AA) Hesaplama — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://onerkoray.github.io/birim-cevirici/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://onerkoray.github.io/images/birim-cevirici-koray-oner.png</image:loc>
+      <image:title>Birim Çevirici — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://onerkoray.github.io/yuzde-hesaplama/</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>

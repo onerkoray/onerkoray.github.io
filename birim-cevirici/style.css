@@ -1,0 +1,50 @@
+/* Birim Çevirici — araca özgü stiller */
+
+#cevirici-form { display: flex; flex-direction: column; gap: 14px; }
+.panel-q { margin: 0; }
+#cevirici-form input[type="text"], #cevirici-form select {
+  font: inherit;
+  padding: 9px 10px;
+  border: 1px solid var(--border, rgba(127,127,127,.3));
+  border-radius: 8px;
+  background: var(--surface, transparent);
+  color: inherit;
+  width: 100%;
+}
+
+.convert-row {
+  display: grid;
+  grid-template-columns: minmax(6rem, 1fr) minmax(9rem, 1.4fr) auto minmax(9rem, 1.4fr);
+  gap: 12px;
+  align-items: end;
+}
+.swap-btn {
+  flex: none;
+  padding: 9px 12px;
+  font-size: 1.1rem;
+  line-height: 1;
+  align-self: end;
+  margin-bottom: 1px;
+}
+
+.convert-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 16px;
+  margin: 20px 0 8px;
+  padding: 18px 20px;
+  border: 1px solid color-mix(in srgb, var(--brand) 45%, var(--border));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--brand) 8%, var(--surface));
+}
+.cr-in, .cr-out { font-size: clamp(1.3rem, 1rem + 1.6vw, 2rem); font-weight: 800; letter-spacing: -.02em; }
+.cr-out { color: var(--brand-strong); }
+.cr-in span, .cr-out span { font-size: .9rem; font-weight: 600; opacity: .7; letter-spacing: 0; }
+.cr-eq { font-size: 1.4rem; opacity: .5; font-weight: 700; }
+.table-note { margin-top: 8px; display: block; }
+
+@media (max-width: 640px) {
+  .convert-row { grid-template-columns: 1fr 1fr; }
+  .swap-btn { grid-column: 1 / -1; width: 100%; }
+}

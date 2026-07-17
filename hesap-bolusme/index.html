@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hesap Bölüşme (AA) Hesaplama — Kişi Başı Tutar ve Bahşiş | Koray Öner</title>
+  <meta name="description" content="Hesap bölüşme aracı: restoran, kafe veya grup harcamasını kişi sayısına böler; bahşiş ekler ve kuruş farkını adil dağıtır. Kişi başı tutarı saniyede hesaplayın. Ücretsiz, reklamsız, kayıtsız.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://onerkoray.github.io/hesap-bolusme/">
+
+  <link rel="icon" href="../favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Hesap Bölüşme (AA) Hesaplama — Kişi Başı Tutar ve Bahşiş">
+  <meta property="og:description" content="Grup hesabını kişi sayısına böl, bahşiş ekle, kuruş farkını adil dağıt.">
+  <meta property="og:url" content="https://onerkoray.github.io/hesap-bolusme/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://onerkoray.github.io/images/hesap-bolusme-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz hesap bölüşme aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hesap Bölüşme (AA) Hesaplama">
+  <meta name="twitter:description" content="Kişi başı tutar ve bahşiş — ücretsiz hesap bölüşme.">
+  <meta name="twitter:image" content="https://onerkoray.github.io/images/hesap-bolusme-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://onerkoray.github.io/hesap-bolusme/#app",
+        "name": "Hesap Bölüşme (AA) Hesaplama Aracı",
+        "url": "https://onerkoray.github.io/hesap-bolusme/",
+        "image": "https://onerkoray.github.io/images/hesap-bolusme-koray-oner.png",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "description": "Grup harcamasını kişi sayısına bölen, bahşiş ekleyen ve kuruş farkını adil dağıtan ücretsiz araç.",
+        "author": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "creator": { "@id": "https://onerkoray.github.io/#oner-koray" },
+        "publisher": { "@id": "https://onerkoray.github.io/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://onerkoray.github.io/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://onerkoray.github.io/",
+        "jobTitle": "Yazılım Geliştirici",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://onerkoray.github.io/" },
+          { "@type": "ListItem", "position": 2, "name": "Hesap Bölüşme", "item": "https://onerkoray.github.io/hesap-bolusme/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Hesap nasıl bölüşülür?", "acceptedAnswer": { "@type": "Answer", "text": "Toplam tutar (varsa bahşiş eklenerek) kişi sayısına bölünür. Bölünme tam çıkmazsa, kuruş farkı birkaç kişiye birer kuruş fazladan yansıtılarak toplam korunur." } },
+          { "@type": "Question", "name": "Bahşiş nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "Bahşiş, hesap tutarının yüzdesi olarak eklenir. Örneğin 1.000 TL hesaba %10 bahşiş 100 TL'dir; toplam 1.100 TL kişi sayısına bölünür." } },
+          { "@type": "Question", "name": "Kuruş farkı neden oluşur?", "acceptedAnswer": { "@type": "Answer", "text": "Toplam kişi sayısına tam bölünmediğinde ortaya çıkar. Araç, herkesin adil ödemesi için farkı en aza indirir ve kimin bir kuruş fazla ödeyeceğini gösterir." } },
+          { "@type": "Question", "name": "AA ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "AA (ayrı ayrı / Almanya usulü), herkesin hesabı eşit paylaştığı ödeme biçimidir. Bu araç AA bölüşmeyi ve bahşişi tek ekranda hesaplar." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> Hesap Bölüşme
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Reklamsız · Anında sonuç</p>
+        <img class="tool-logo" src="favicon.svg" width="60" height="60" alt="" aria-hidden="true" decoding="async">
+        <h1 id="hero-title">Hesap Bölüşme (AA)</h1>
+        <p class="lede">
+          Restoran, kafe ya da grup harcamasını adil bölüşün. Toplam tutarı ve kişi sayısını girin,
+          isterseniz <strong>bahşiş</strong> ekleyin; araç <strong>kişi başı tutarı</strong> hesaplar ve
+          bölünmeyen <strong>kuruş farkını</strong> adilce dağıtır.
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">Hesap bölüşme aracı</h2>
+
+        <form id="bolusme-form" class="panel">
+          <div class="field-grid">
+            <p class="panel-q">
+              <label for="in-total">Toplam hesap tutarı</label>
+              <input type="text" id="in-total" inputmode="decimal" value="1000"> TL
+            </p>
+            <p class="panel-q">
+              <label for="in-people">Kişi sayısı</label>
+              <input type="text" id="in-people" inputmode="numeric" value="4">
+            </p>
+            <p class="panel-q">
+              <label for="in-tip">Bahşiş <span class="muted-note">(opsiyonel)</span></label>
+              <input type="text" id="in-tip" inputmode="decimal" value="0"> %
+            </p>
+          </div>
+        </form>
+
+        <div id="results" aria-live="polite"></div>
+        <p id="msg" class="muted-note" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 17 Temmuz 2026</p>
+
+        <h2 id="nasil">Hesap nasıl bölüşülür?</h2>
+        <p>
+          En basit haliyle toplam tutar, kişi sayısına bölünür. Bahşiş varsa önce hesaba eklenir:
+        </p>
+        <p class="formula">Kişi başı = (Toplam + Bahşiş) ÷ Kişi sayısı</p>
+        <p>
+          Gerçek hayatta tutar çoğu zaman kişilere tam bölünmez. Örneğin 1.000 TL'yi 3 kişiye böldüğünüzde
+          kişi başı 333,33 TL olur ama üçünün toplamı 999,99 TL eder — 1 kuruş eksik. Bu araç farkı
+          gizlemez: <strong>bir kişiye 1 kuruş fazla</strong> yazarak toplamı korur ve kimin ödeyeceğini
+          açıkça gösterir.
+        </p>
+
+        <h2 id="bahsis">Bahşiş ne kadar olmalı?</h2>
+        <p>
+          Türkiye'de restoranlarda bahşiş genellikle hesabın <strong>%5–%10'u</strong> arasındadır;
+          hizmetten memnuniyete göre değişir. Bazı mekânlar servis ücretini hesaba ekler; bu durumda
+          ayrıca bahşiş bırakmak zorunda değilsiniz.
+        </p>
+      </div>
+    </article>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Hesap nasıl bölüşülür?</summary><p>Toplam tutar (varsa bahşiş eklenerek) kişi sayısına bölünür. Tam bölünmezse kuruş farkı birkaç kişiye birer kuruş yansıtılır.</p></details>
+          <details><summary>Bahşiş nasıl hesaplanır?</summary><p>Bahşiş, hesabın yüzdesidir. 1.000 TL'ye %10 bahşiş 100 TL eder; toplam 1.100 TL bölüşülür.</p></details>
+          <details><summary>Kuruş farkı neden oluşur?</summary><p>Tutar kişi sayısına tam bölünmediğinde. Araç farkı en aza indirir ve kimin 1 kuruş fazla ödeyeceğini gösterir.</p></details>
+          <details><summary>AA ne demek?</summary><p>Herkesin hesabı eşit paylaştığı ödeme biçimidir (ayrı ayrı / Alman usulü).</p></details>
+          <details><summary>Verilerim kaydediliyor mu?</summary><p>Hayır. Tüm hesaplama tarayıcınızda yapılır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <ul>
+          <li><a href="../birim-cevirici/">Birim Çevirici</a> — uzunluk, ağırlık, sıcaklık ve daha fazlası.</li>
+          <li><a href="../yuzde-hesaplama/">Yüzde Hesaplama</a> — oran, artış ve azalış.</li>
+          <li><a href="../kdv-hesaplama/">KDV Hesaplama</a> — KDV dahil/hariç tutar.</li>
+          <li><a href="../">Tüm projeler</a> — büyüyen açık kaynak araç koleksiyonu.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>
