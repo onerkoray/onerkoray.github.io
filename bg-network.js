@@ -26,7 +26,7 @@
     };
   }
 
-  var W = 0, H = 0, DPR = 1, pts = [], LINK = 130;
+  var W = 0, H = 0, DPR = 1, pts = [], LINK = 118;
   var mouse = { x: -9999, y: -9999, down: false, grab: -1 };
   var colors = { dot: "14,124,102", line: "14,124,102", dotA: 0.35, lineA: 0.13 };
 
@@ -51,8 +51,8 @@
                  hexToRgb(cs.getPropertyValue("--brand") || "") || "14,124,102";
     var dark = isDark();
     colors.dot = colors.line = accent;
-    colors.dotA = dark ? 0.45 : 0.35;
-    colors.lineA = dark ? 0.16 : 0.12;
+    colors.dotA = dark ? 0.6 : 0.5;
+    colors.lineA = dark ? 0.26 : 0.2;
   }
 
   function build() {
@@ -61,7 +61,7 @@
     DPR = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = W * DPR; canvas.height = H * DPR;
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    var count = Math.max(28, Math.min(85, Math.round((W * H) / 22000)));
+    var count = Math.max(40, Math.min(130, Math.round((W * H) / 14000)));
     pts = [];
     for (var i = 0; i < count; i++) {
       pts.push({
