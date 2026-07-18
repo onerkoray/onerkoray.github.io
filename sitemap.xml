@@ -181,6 +181,16 @@
       <image:title>Brüt Net Maaş Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://onerkoray.github.io/serbest-meslek-makbuzu-hesaplama/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onerkoray.github.io/images/serbest-meslek-makbuzu-hesaplama-koray-oner.png</image:loc>
+      <image:title>Serbest Meslek Makbuzu Hesaplama 2026 — Koray Öner</image:title>
+    </image:image>
+  </url>
   <url><loc>https://onerkoray.github.io/maas-hesaplama/brut-net-tablosu/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://onerkoray.github.io/maas-hesaplama/35000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://onerkoray.github.io/maas-hesaplama/40000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
