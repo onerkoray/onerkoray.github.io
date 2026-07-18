@@ -369,3 +369,25 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
   outline-offset: 1px;
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 14%, transparent);
 }
+
+/* Araç kartları ve panellerde hafif accent parlaması */
+.project-card, .panel, .live-card {
+  box-shadow: var(--shadow, 0 1px 6px rgba(16,24,20,.05)),
+              0 0 24px color-mix(in srgb, var(--accent-bright, #2bb596) 14%, transparent);
+}
+.project-card:hover {
+  box-shadow: 0 2px 6px rgba(16,24,20,.08), 0 20px 40px rgba(16,24,20,.14),
+              0 0 34px color-mix(in srgb, var(--accent-bright, #2bb596) 26%, transparent);
+}
+.panel:focus-within, .live-card:hover {
+  box-shadow: 0 4px 14px rgba(16,24,20,.08),
+              0 0 30px color-mix(in srgb, var(--accent-bright, #2bb596) 18%, transparent);
+}
+:root[data-theme="dark"] .project-card, :root[data-theme="dark"] .panel, :root[data-theme="dark"] .live-card {
+  box-shadow: 0 1px 6px rgba(0,0,0,.3),
+              0 0 26px color-mix(in srgb, var(--accent-bright, #2bb596) 13%, transparent);
+}
+:root[data-theme="dark"] .project-card:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,.4),
+              0 0 36px color-mix(in srgb, var(--accent-bright, #2bb596) 26%, transparent);
+}
