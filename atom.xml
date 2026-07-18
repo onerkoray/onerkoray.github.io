@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Koray Öner — Ücretsiz Web Araçları</title>
+  <subtitle>Türkiye için ücretsiz, reklamsız hesaplama araçları: maaş, vergi, kredi ve daha fazlası.</subtitle>
+  <link href="https://onerkoray.github.io/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://onerkoray.github.io/" rel="alternate" type="text/html"/>
+  <id>https://onerkoray.github.io/</id>
+  <updated>2026-07-18T12:00:00+03:00</updated>
+  <author><name>Koray Öner</name><uri>https://onerkoray.github.io/</uri></author>
+
+  <entry>
+    <title>Gümrük Vergisi Hesaplama 2026 — Yurt Dışı Alışveriş ve IMEI Harcı</title>
+    <link href="https://onerkoray.github.io/gumruk-vergisi-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://onerkoray.github.io/gumruk-vergisi-hesaplama/</id>
+    <updated>2026-07-18T12:00:00+03:00</updated>
+    <summary>30 € muafiyet kalktı: AB'den %30, diğer ülkelerden %60 vergi. Yurt dışı sipariş maliyeti ve telefon IMEI kayıt harcı dahil gerçek maliyet hesaplama.</summary>
+  </entry>
+  <entry>
+    <title>Araç ÖTV Hesaplama — ÖTV + KDV ve Anahtar Teslim Fiyat</title>
+    <link href="https://onerkoray.github.io/otv-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://onerkoray.github.io/otv-hesaplama/</id>
+    <updated>2026-07-18T12:00:00+03:00</updated>
+    <summary>Motor hacmi ve matraha göre ÖTV dilimi, KDV ve anahtar teslim fiyat; elektrikli ve hibrit dilimleri, vergi yükü analiziyle.</summary>
+  </entry>
+  <entry>
+    <title>MTV Hesaplama 2026 — Motorlu Taşıtlar Vergisi</title>
+    <link href="https://onerkoray.github.io/mtv-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://onerkoray.github.io/mtv-hesaplama/</id>
+    <updated>2026-07-18T12:00:00+03:00</updated>
+    <summary>Motor hacmi, yaş ve taşıt değerine göre 2026 MTV, Ocak/Temmuz taksitleri ve gelecek yıllar projeksiyonu.</summary>
+  </entry>
+  <entry>
+    <title>Serbest Meslek Makbuzu Hesaplama 2026 — Stopaj, KDV, Net/Brüt</title>
+    <link href="https://onerkoray.github.io/serbest-meslek-makbuzu-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://onerkoray.github.io/serbest-meslek-makbuzu-hesaplama/</id>
+    <updated>2026-07-18T09:00:00+03:00</updated>
+    <summary>Brütten nete veya netten brüte; %20 stopaj, KDV ve tevkifat dahil. 2026 tarifesiyle yıllık gelir vergisi tahmini.</summary>
+  </entry>
+  <entry>
+    <title>Brüt Net Maaş Hesaplama 2026</title>
+    <link href="https://onerkoray.github.io/maas-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://onerkoray.github.io/maas-hesaplama/</id>
+    <updated>2026-07-16T12:00:00+03:00</updated>
+    <summary>Güncel vergi dilimleri, SGK tavanı ve asgari ücret istisnasıyla 12 aylık bordro dökümü; netten brüte kuruş hassasiyetinde.</summary>
+  </entry>
+  <entry>
+    <title>Hesap Bölüşme ve Birim Çevirici</title>
+    <link href="https://onerkoray.github.io/hesap-bolusme/" rel="alternate" type="text/html"/>
+    <id>https://onerkoray.github.io/hesap-bolusme/</id>
+    <updated>2026-07-17T12:00:00+03:00</updated>
+    <summary>Restoran adisyonunu adil bölüşme (AA) ve pratik birim çevirme araçları.</summary>
+  </entry>
+  <entry>
+    <title>Kredi Hesaplama — Taksit ve Toplam Maliyet</title>
+    <link href="https://onerkoray.github.io/kredi-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://onerkoray.github.io/kredi-hesaplama/</id>
+    <updated>2026-07-17T12:00:00+03:00</updated>
+    <summary>İhtiyaç, konut ve taşıt kredisinde aylık taksit, toplam geri ödeme ve ödeme planı.</summary>
+  </entry>
+  <entry>
+    <title>KDV Hesaplama — Dahil/Hariç</title>
+    <link href="https://onerkoray.github.io/kdv-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://onerkoray.github.io/kdv-hesaplama/</id>
+    <updated>2026-07-14T12:00:00+03:00</updated>
+    <summary>KDV hariç tutara KDV ekleyin veya dahil tutardan ayırın; %1, %10, %20 oranlarıyla.</summary>
+  </entry>
+</feed>
