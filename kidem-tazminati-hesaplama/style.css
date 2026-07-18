@@ -1,0 +1,79 @@
+/* Kıdem Tazminatı Hesaplama — araca özgü stiller (özet kartları + döküm tablosu) */
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 4px 20px;
+}
+.panel-q--check { grid-column: 1 / -1; }
+.panel-q .muted-note { display: block; font-size: .75rem; opacity: .65; }
+#kidem-form select, #kidem-form input[type="date"] {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--border, rgba(127,127,127,.3));
+  border-radius: 8px;
+  background: var(--surface, transparent);
+  color: inherit;
+}
+
+/* Gün / ay / yıl tarih seçici */
+.date-trio {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr 5rem;
+  gap: 6px;
+}
+.date-trio select {
+  font: inherit;
+  padding: 8px 8px;
+  border: 1px solid var(--border, rgba(127,127,127,.3));
+  border-radius: 8px;
+  background: var(--surface, transparent);
+  color: inherit;
+  min-width: 0;
+  cursor: pointer;
+}
+.date-trio select:focus-visible {
+  outline: 2px solid var(--accent, #10b981);
+  outline-offset: 1px;
+}
+
+.sum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 20px 0 8px;
+}
+.sum-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--border, rgba(127,127,127,.25));
+  border-radius: 12px;
+  background: var(--surface, rgba(127,127,127,.06));
+}
+.sum-label { font-size: .8rem; opacity: .75; }
+.sum-value { font-size: 1.25rem; letter-spacing: -0.01em; }
+.sum-note { font-size: .75rem; opacity: .6; }
+
+.table-scroll { overflow-x: auto; margin-top: 20px; }
+table.payroll {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+table.payroll th, table.payroll td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border, rgba(127,127,127,.2));
+}
+table.payroll.detail th { text-align: left; font-weight: 500; }
+table.payroll.detail td { text-align: right; white-space: nowrap; }
+table.payroll tbody tr:nth-child(even) { background: rgba(127,127,127,.05); }
+.table-note { margin-top: 8px; display: block; }
+
+table.brackets { width: 100%; border-collapse: collapse; margin: 12px 0 20px; }
+table.brackets th, table.brackets td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border, rgba(127,127,127,.2));
+}
