@@ -362,3 +362,10 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 .legal-note p { font-size: var(--step--1); color: var(--text-muted); margin: 0 0 .75rem; }
 .legal-note p:last-child { margin-bottom: 0; }
 .footer-disclaimer { font-size: var(--step--1); max-width: 60ch; }
+
+/* Input odak parlaması (site geneli) */
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--brand) 60%, transparent);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 14%, transparent);
+}
