@@ -351,3 +351,14 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 
 /* Divider'lar site genelinde: ana sayfa bölümleri de net bantlara ayrılır */
 .projects, .contact { border-top: 1px solid var(--border); }
+
+/* Yasal bilgilendirme kutusu (Hakkımda) */
+.legal-note {
+  margin-top: 2rem; padding: 1.25rem 1.5rem;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-left: 4px solid var(--brand); border-radius: var(--radius-sm);
+}
+.legal-note h3 { margin: 0 0 .6rem; font-size: var(--step-0); }
+.legal-note p { font-size: var(--step--1); color: var(--text-muted); margin: 0 0 .75rem; }
+.legal-note p:last-child { margin-bottom: 0; }
+.footer-disclaimer { font-size: var(--step--1); max-width: 60ch; }
