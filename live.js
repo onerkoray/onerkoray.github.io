@@ -352,8 +352,12 @@
     tip.classList.remove("show");
   }
   slices.forEach(function (s) {
+    s.setAttribute("tabindex", "0");
+    s.setAttribute("aria-label", s.getAttribute("data-lang") + " yüzde " + s.getAttribute("data-pct"));
     s.addEventListener("mouseenter", function () { showTip(s); });
     s.addEventListener("mouseleave", hideTip);
+    s.addEventListener("focus", function () { showTip(s); });
+    s.addEventListener("blur", hideTip);
     s.addEventListener("click", function (e) {
       e.stopPropagation();
       if (active === s) hideTip(); else showTip(s);

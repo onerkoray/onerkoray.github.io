@@ -138,7 +138,7 @@ html { scroll-behavior: smooth; }
   .tech-panel { width: 100%; max-width: 420px; margin-inline: auto; }
 }
 
-.tech-panel{width:100%;height:100%;padding:28px 26px 24px;box-sizing:border-box;display:flex;flex-direction:column;gap:22px;
+.tech-panel{width:100%;height:100%;padding:24px 26px 20px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;
   background: color-mix(in srgb, var(--surface) 88%, var(--brand));
   border: 1px solid color-mix(in srgb, var(--brand) 22%, var(--border));
   box-shadow: var(--shadow), inset 0 0 60px color-mix(in srgb, var(--brand) 6%, transparent);
@@ -171,19 +171,58 @@ html { scroll-behavior: smooth; }
 .lang-tip.show{opacity:1}
 .lang-tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
   border:5px solid transparent;border-top-color:color-mix(in srgb, var(--brand) 35%, var(--border))}
-.tech-group{border-top:1px solid var(--border);padding-top:16px}
+.tech-group{border-top:1px solid var(--border);padding-top:12px}
 .tech-group h3{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px;color:var(--text-muted)}
 .tech-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 .tech-tags li{font-size:12.5px;padding:5px 11px;border-radius:99px;border:1px solid var(--border);
   background:var(--surface);color:var(--text);cursor:default;
   transition:transform .15s,border-color .15s,color .15s}
 .tech-tags li:hover{transform:translateY(-2px);border-color:var(--brand);color:var(--brand-strong)}
-.tech-panel__foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
+.tech-panel__foot{margin-top:auto;padding-top:12px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted)}
 .tech-panel__foot a{text-decoration:none;font-weight:600;color:var(--brand-strong)}
 .tech-panel__foot a:hover{text-decoration:underline}
 
+/* Klavye odağı: panelde gezinen odak kaybolmasın, kontur canlı olsun */
+.tech-panel :focus-visible,
+.lang-bar span:focus-visible{
+  outline:2px solid var(--focus);outline-offset:3px;border-radius:8px;
+  animation:focusRing .3s ease-out
+}
+.lang-bar span:focus-visible{transform:scaleY(1.8);opacity:1}
+.tech-tags li:focus-visible{transform:translateY(-2px);border-color:var(--brand);color:var(--brand-strong)}
+@keyframes focusRing{
+  0%{outline-offset:8px;outline-color:transparent}
+  100%{outline-offset:3px;outline-color:var(--focus)}
+}
+
+/* Nav: Projeler sekmesi öne çıksın */
+.site-nav a.nav-featured{
+  color:var(--brand-strong);font-weight:700;position:relative;
+  padding:.3rem .75rem;border-radius:999px;
+  background:color-mix(in srgb, var(--brand) 12%, transparent);
+  border:1px solid color-mix(in srgb, var(--brand) 30%, transparent);
+  transition:background .2s ease,border-color .2s ease
+}
+.site-nav a.nav-featured::before{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--brand);margin-right:.45rem;vertical-align:.06em;
+  box-shadow:0 0 0 0 color-mix(in srgb, var(--brand) 50%, transparent);
+  animation:navDot 2.4s ease-out infinite
+}
+.site-nav a.nav-featured:hover{
+  background:color-mix(in srgb, var(--brand) 20%, transparent);
+  border-color:var(--brand);color:var(--brand-strong)
+}
+@keyframes navDot{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--brand) 45%, transparent)}
+  70%{box-shadow:0 0 0 6px transparent}
+  100%{box-shadow:0 0 0 0 transparent}
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lang-bar span{transition:none}
-  .lang-bar span:hover,.lang-bar span.is-active{transform:none}
-  .tech-tags li:hover{transform:none}
+  .lang-bar span:hover,.lang-bar span.is-active,.lang-bar span:focus-visible{transform:none}
+  .tech-tags li:hover,.tech-tags li:focus-visible{transform:none}
+  .tech-panel :focus-visible,.lang-bar span:focus-visible{animation:none}
+  .site-nav a.nav-featured::before{animation:none}
 }
