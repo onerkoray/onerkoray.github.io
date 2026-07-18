@@ -391,3 +391,11 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
   box-shadow: 0 20px 40px rgba(0,0,0,.4),
               0 0 36px color-mix(in srgb, var(--accent-bright, #2bb596) 26%, transparent);
 }
+
+/* Paragraflar iki yana yaslı + Türkçe heceleme (başlık/liste hariç) */
+.prose p, .project-body > p:not(.card-badges):not(.project-links), .lede {
+  text-align: justify; hyphens: auto; -webkit-hyphens: auto; text-wrap: pretty;
+}
+@media (max-width: 480px) {
+  .lede { text-align: left; } /* dar ekranda hero yazısında nehir boşluğu olmasın */
+}

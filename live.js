@@ -35,10 +35,31 @@
     '<div class="live-card lc-skeleton" id="lv-wx-card"><span class="lc-label" id="lv-city">Hava</span>' +
     '<span class="lc-value" id="lv-wx">......</span><span class="lc-sub" id="lv-wx-sub"></span></div>' +
     '<div class="live-card lc-skeleton" id="lv-sun-card"><span class="lc-label" id="lv-sun-label">Gün batımı</span>' +
-    '<span class="lc-value" id="lv-sun">......</span><span class="lc-sub" id="lv-sun-sub"></span></div>';
+    '<span class="lc-value" id="lv-sun">......</span><span class="lc-sub" id="lv-sun-sub"></span></div>' +
+    '<div class="live-card"><span class="lc-label">Sonraki tatil</span>' +
+    '<span class="lc-value" id="lv-hol"></span><span class="lc-sub" id="lv-hol-sub"></span></div>' +
+    '<div class="live-card"><span class="lc-label">Dünya saatleri</span>' +
+    '<span class="lc-world" id="lv-world"></span></div>';
   heroActions.parentNode.insertBefore(bar, heroActions.nextSibling);
 
   var sunTimes = null; // { sunrise: Date, sunset: Date }
+
+  // 2026-2027 resmi tatiller
+  var TATIL = [
+    ["2026-03-20", "Ramazan Bayramı"], ["2026-04-23", "Ulusal Egemenlik Bayramı"], ["2026-05-01", "Emek ve Dayanışma Günü"],
+    ["2026-05-19", "Gençlik ve Spor Bayramı"], ["2026-05-27", "Kurban Bayramı"], ["2026-07-15", "Demokrasi ve Millî Birlik Günü"],
+    ["2026-08-30", "Zafer Bayramı"], ["2026-10-29", "Cumhuriyet Bayramı"], ["2027-01-01", "Yılbaşı"]
+  ];
+  function nextHoliday(n) {
+    for (var i = 0; i < TATIL.length; i++) {
+      var d = new Date(TATIL[i][0] + "T00:00:00");
+      if (d > n) return [d, TATIL[i][1]];
+    }
+    return null;
+  }
+  function worldTime(tz) {
+    return new Intl.DateTimeFormat("tr-TR", { hour: "2-digit", minute: "2-digit", timeZone: tz }).format(new Date());
+  }
   function tick() {
     var n = new Date();
     var dp = daypart(n.getHours());
@@ -63,6 +84,18 @@
         " · Doğuş " + pad(sunTimes.sunrise.getHours()) + ":" + pad(sunTimes.sunrise.getMinutes());
       $("#lv-sun-card").classList.remove("lc-skeleton");
     }
+    // sonraki tatil
+    var nh = nextHoliday(n);
+    if (nh) {
+      var kalan = Math.ceil((nh[0] - n) / 864e5);
+      $("#lv-hol").textContent = kalan + " gün";
+      $("#lv-hol-sub").textContent = nh[1] + " · " + nh[0].getDate() + " " + AYLAR[nh[0].getMonth()];
+    }
+    // dünya saatleri
+    $("#lv-world").innerHTML =
+      "<span>İstanbul<b>" + worldTime("Europe/Istanbul") + "</b></span>" +
+      "<span>New York<b>" + worldTime("America/New_York") + "</b></span>" +
+      "<span>Tokyo<b>" + worldTime("Asia/Tokyo") + "</b></span>";
   }
   tick();
   setInterval(tick, 1000);
