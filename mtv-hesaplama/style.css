@@ -1,0 +1,18 @@
+/* MTV Hesaplama — sayfaya özel ek stiller (bd-table stilleri SMM sayfasından gelir) */
+.fld-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .35rem 1.25rem; margin-bottom: .75rem; }
+.fld-grid .panel-q { margin-bottom: .75rem; flex-direction: column; align-items: flex-start; gap: .35rem; }
+.fld-grid .panel-q input, .fld-grid .panel-q select { width: 100%; max-width: 100%; }
+.panel-q select {
+  font: inherit; font-weight: 700; padding: .5rem .7rem;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg); color: var(--text);
+}
+
+.proj-title { font-size: var(--step-0); margin: 1.5rem 0 .6rem; }
+.muted-inline { font-weight: 500; font-size: var(--step--1); color: var(--text-muted); }
+.proj { display: grid; gap: .4rem; }
+.proj-row { display: grid; grid-template-columns: 3.2rem 1fr auto; align-items: center; gap: .6rem; }
+.proj-year { font-size: var(--step--1); font-weight: 700; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.proj-bar-wrap { background: var(--surface-2); border-radius: 999px; height: .8rem; overflow: hidden; }
+.proj-bar { display: block; height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand-strong)); border-radius: 999px; transition: width .3s ease; }
+.proj-val { font-size: var(--step--1); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }

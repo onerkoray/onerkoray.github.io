@@ -182,6 +182,36 @@
     </image:image>
   </url>
   <url>
+    <loc>https://onerkoray.github.io/mtv-hesaplama/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onerkoray.github.io/images/mtv-hesaplama-koray-oner.png</image:loc>
+      <image:title>MTV Hesaplama 2026 — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://onerkoray.github.io/otv-hesaplama/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onerkoray.github.io/images/otv-hesaplama-koray-oner.png</image:loc>
+      <image:title>Araç ÖTV Hesaplama — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://onerkoray.github.io/gumruk-vergisi-hesaplama/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onerkoray.github.io/images/gumruk-vergisi-hesaplama-koray-oner.png</image:loc>
+      <image:title>Gümrük Vergisi Hesaplama 2026 — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://onerkoray.github.io/serbest-meslek-makbuzu-hesaplama/</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
