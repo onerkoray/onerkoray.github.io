@@ -138,7 +138,7 @@ html { scroll-behavior: smooth; }
   .tech-panel { width: 100%; max-width: 420px; margin-inline: auto; }
 }
 
-.tech-panel{width:100%;height:auto;align-self:start;padding:16px 18px 12px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;
+.tech-panel{width:100%;height:100%;align-self:stretch;padding:16px 18px 12px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;
   background: color-mix(in srgb, var(--surface) 68%, transparent);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   border: 1px solid color-mix(in srgb, var(--brand) 20%, transparent);
@@ -236,3 +236,6 @@ html { scroll-behavior: smooth; }
   .tech-panel :focus-visible,.lang-bar span:focus-visible{animation:none}
   .site-nav a.nav-featured::before{animation:none}
 }
+
+/* Canlı bar: iki sütunun altında tam genişlik — panel ile simetrik */
+.hero-inner > .live-bar{grid-column:1 / -1}

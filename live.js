@@ -40,7 +40,8 @@
     '<span class="lc-value" id="lv-hol"></span><span class="lc-sub" id="lv-hol-sub"></span></div>' +
     '<div class="live-card"><span class="lc-label">Dünya saatleri</span>' +
     '<span class="lc-world" id="lv-world"></span></div>';
-  heroActions.parentNode.insertBefore(bar, heroActions.nextSibling);
+  var heroInner = heroActions.closest(".hero-inner");
+  if (heroInner) { heroInner.appendChild(bar); } else { heroActions.parentNode.insertBefore(bar, heroActions.nextSibling); }
 
   var sunTimes = null; // { sunrise: Date, sunset: Date }
 
