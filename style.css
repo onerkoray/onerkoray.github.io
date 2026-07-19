@@ -155,7 +155,8 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 .project-card:hover .project-body h3 a { color: var(--brand-strong); }
 .project-body { padding: 1.25rem; }
 .project-body h3 { margin-bottom: .5rem; }
-.logo-badge { display: inline-flex; align-items: center; justify-content: center; width: 1.9em; height: 1.9em; margin-right: .1em; border-radius: 9px; background: var(--surface-2, #eef2f1); font-size: .85em; line-height: 1; vertical-align: -.35em; box-shadow: var(--shadow); }
+.logo-badge { display: inline-flex; align-items: center; justify-content: center; width: 1.9em; height: 1.9em; margin-right: .1em; border-radius: 9px; background: var(--surface-2, #eef2f1); font-size: .85em; line-height: 1; vertical-align: -.35em; box-shadow: var(--shadow); color: var(--brand); }
+.logo-badge svg { width: 1.05em; height: 1.05em; }
 .project-body h3 a { text-decoration: none; }
 .project-links { color: var(--text-muted); font-size: var(--step--1); margin-bottom: 0; }
 .project-card--soon { border-style: dashed; box-shadow: none; background: var(--surface-2); }
