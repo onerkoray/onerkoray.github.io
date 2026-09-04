@@ -159,6 +159,7 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   transition: transform .35s cubic-bezier(.34,1.4,.64,1);
 }
 .project-card:hover .project-cover { transform: scale(1.03); }
+.project-cover--tile { aspect-ratio: 3 / 1; }
 .project-body h3 a { position: relative; transition: color .2s ease; }
 .project-card:hover .project-body h3 a { color: var(--brand-strong); }
 .project-body { padding: 1.25rem; }
