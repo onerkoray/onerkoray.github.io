@@ -146,6 +146,10 @@ SPEC = {
    "Metni Base64'e kodlayın veya Base64'ü metne çözün. UTF-8 uyumlu.",
    ["Ücretsiz", "Reklamsız", "UTF-8", "Tarayıcıda"]),
 
+ "torba-yasa-ne-var-ne-yok": ("makaleler/torba-yasa-ne-var-ne-yok", "Torba Yasada", "Ne Var, Ne Yok?",
+   "5 Eylül 2026: sunulmuş teklif yok. Çıkanlar, takvim ve beklentiler ayrı ayrı.",
+   ["Kaynaklı", "Güncel", "Reklamsız", "Makale"]),
+
  "kademeli-emeklilik-son-durum": ("makaleler/kademeli-emeklilik-son-durum", "Kademeli Emeklilik", "Son Durum 2026",
    "Teklif Meclis'te hangi aşamada, kimleri kapsıyor ve şu an hangi şartlar geçerli?",
    ["Kaynaklı", "Güncel", "Reklamsız", "Makale"]),
