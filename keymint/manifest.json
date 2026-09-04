@@ -1,0 +1,12 @@
+{
+  "name": "KeyMint — Şifre Üreteci",
+  "short_name": "KeyMint",
+  "description": "Güçlü ve rastgele şifreler oluşturun. Ücretsiz, reklamsız ve tamamen tarayıcıda.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0d10",
+  "theme_color": "#0e7c66",
+  "lang": "tr",
+  "icons": [ { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" } ]
+}

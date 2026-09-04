@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hash Üreteci — SHA-256, SHA-1, SHA-512 Özeti Oluştur | Koray Öner</title>
+  <meta name="description" content="Hash üreteci: metninizin SHA-256, SHA-1 veya SHA-512 özetini (hash) anında hesaplayın. Tamamen tarayıcıda çalışır, veriniz gönderilmez. Ücretsiz ve reklamsız.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/keymint/hash-uretici/">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Hash Üreteci — SHA-256 / SHA-1 / SHA-512">
+  <meta property="og:description" content="Metninizin SHA özetini anında hesaplayın. Tamamen tarayıcıda.">
+  <meta property="og:url" content="https://korayoner.dev/keymint/hash-uretici/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/hash-uretici-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Hash Üreteci — Koray Öner">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hash Üreteci — SHA-256 / SHA-1 / SHA-512">
+  <meta name="twitter:description" content="Metninizin SHA özetini anında hesaplayın. Tamamen tarayıcıda.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/hash-uretici-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/keymint/hash-uretici/#app",
+        "name": "Hash Üreteci",
+        "url": "https://korayoner.dev/keymint/hash-uretici/",
+        "image": "https://korayoner.dev/images/hash-uretici-koray-oner.png",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "description": "Hash üreteci: metninizin SHA-256, SHA-1 veya SHA-512 özetini (hash) anında hesaplayın. Tamamen tarayıcıda çalışır, veriniz gönderilmez. Ücretsiz ve reklamsız.",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "jobTitle": "Yazılım Geliştirici",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://substack.com/@korayner",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://dl.acm.org/profile/81100070426",
+          "https://metu.academia.edu/KorayÖner",
+          "https://500px.com/p/korayoner",
+          "https://www.reddit.com/user/Affectionate_Fig3049"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "KeyMint", "item": "https://korayoner.dev/keymint/" },
+          { "@type": "ListItem", "position": 3, "name": "Hash Üreteci", "item": "https://korayoner.dev/keymint/hash-uretici/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Metnim bir yere gönderiliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Özet, tarayıcınızın yerleşik Web Crypto API'siyle cihazınızda hesaplanır; veri gönderilmez." } },
+          { "@type": "Question", "name": "Hangi algoritmayı seçmeliyim?", "acceptedAnswer": { "@type": "Answer", "text": "Genel kullanım için SHA-256 idealdir. Daha yüksek güvenlik için SHA-512 kullanın; SHA-1'i yalnızca eski uyumluluk için tercih edin." } },
+          { "@type": "Question", "name": "Hash'ten orijinal metni geri alabilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Hash tek yönlüdür; özetten girdiye geri dönmek pratikte imkânsızdır." } },
+          { "@type": "Question", "name": "Neden MD5 yok?", "acceptedAnswer": { "@type": "Answer", "text": "MD5 kırılmış kabul edilir ve tarayıcıların Web Crypto API'sinde bulunmaz. Güvenli SHA ailesi sunulmaktadır." } },
+          { "@type": "Question", "name": "Parola saklamak için hash kullanabilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Düz SHA parola saklamak için yeterli değildir; bcrypt, scrypt veya Argon2 gibi tuzlu ve yavaş algoritmalar kullanılmalıdır." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="KeyMint ana sayfa">
+        <span class="brand-mark" aria-hidden="true">🔐</span>
+        <span class="brand-name">KeyMint</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="https://korayoner.dev/">Koray Öner</a></li>
+          <li><a href="../">Şifre Üreteci</a></li>
+          <li><a href="../#araclar">Tüm araçlar</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="https://korayoner.dev/">Ana Sayfa</a> <span aria-hidden="true">›</span>
+      <a href="../">KeyMint</a> <span aria-hidden="true">›</span> Hash Üreteci
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="eyebrow">Ücretsiz · Reklamsız · %100 tarayıcıda</p>
+        <img class="tool-logo" src="favicon.svg" width="60" height="60" alt="" aria-hidden="true" decoding="async">
+        <h1 id="hero-title">Hash Üreteci (SHA-256 / SHA-512)</h1>
+        <p class="lede">Bir metnin kriptografik özetini (hash) anında hesaplayın. SHA-256, SHA-1 ve SHA-512 desteklenir. Tüm hesaplama tarayıcınızda, tarayıcının yerleşik Web Crypto API'siyle yapılır.</p>
+      </div>
+    </section>
+
+    <section id="arac" aria-label="Araç">
+      <div class="wrap">
+        <div class="tool">
+          <label for="input" style="font-weight:600;display:block;margin-bottom:.5rem;">Metin</label>
+          <textarea id="input" rows="4" class="pw-check-input" placeholder="Özetini almak istediğiniz metni yazın">Merhaba dünya</textarea>
+          <div class="options">
+            <div class="option-row"><label for="algo">Algoritma</label>
+              <select id="algo" style="font:inherit;padding:.5rem;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);">
+                <option value="SHA-256">SHA-256</option><option value="SHA-1">SHA-1</option><option value="SHA-512">SHA-512</option><option value="SHA-384">SHA-384</option>
+              </select>
+            </div>
+          </div>
+          <label for="output" style="font-weight:600;display:block;margin:1rem 0 .5rem;">Özet (hex)</label>
+          <textarea id="output" rows="3" class="pw-check-input" readonly aria-label="Hash sonucu" style="word-break:break-all;"></textarea>
+          <div class="pw-actions"><button class="btn btn-ghost" type="button" id="copyBtn">Kopyala</button></div>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="https://korayoner.dev/#about" rel="author">Koray Öner</a> · Güncelleme: 15 Temmuz 2026</p>
+        <h2>Hash (özet) nedir?</h2>
+        <p>Hash, herhangi bir uzunluktaki veriyi sabit uzunlukta, benzersiz görünen bir dizeye dönüştüren tek yönlü bir fonksiyondur. Aynı girdi her zaman aynı özeti verir, ancak özetten geri girdiye ulaşmak pratikte imkânsızdır. Hash'ler dosya bütünlüğü doğrulama, veri parmak izi ve dijital imza gibi alanlarda kullanılır.</p>
+        <h3>Kullanım alanları</h3>
+        <ul>
+          <li><strong>Bütünlük kontrolü:</strong> İndirilen bir dosyanın bozulup bozulmadığını özetini karşılaştırarak doğrulama.</li>
+          <li><strong>Parmak izi:</strong> Bir metnin değişip değişmediğini kısa bir özetle izleme.</li>
+          <li><strong>Geliştirme:</strong> API imzaları, önbellek anahtarları ve test verileri üretme.</li>
+        </ul>
+        <p><strong>Not:</strong> SHA-1 artık güvenlik açısından zayıf kabul edilir; yeni projelerde SHA-256 veya SHA-512 tercih edin. Parola saklamak için düz hash yerine bcrypt/Argon2 gibi özel algoritmalar kullanılmalıdır.</p>
+        <p class="disclaimer muted"><strong>Bilgilendirme:</strong> Tüm işlemler tarayıcınızda yapılır; girdiğiniz veriler hiçbir yere gönderilmez. Kritik hesaplarda güçlü, benzersiz şifreler ve iki adımlı doğrulama kullanın.</p>
+      </div>
+    </article>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Metnim bir yere gönderiliyor mu?</summary><p>Hayır. Özet, tarayıcınızın yerleşik Web Crypto API'siyle cihazınızda hesaplanır; veri gönderilmez.</p></details>
+          <details><summary>Hangi algoritmayı seçmeliyim?</summary><p>Genel kullanım için SHA-256 idealdir. Daha yüksek güvenlik için SHA-512 kullanın; SHA-1'i yalnızca eski uyumluluk için tercih edin.</p></details>
+          <details><summary>Hash'ten orijinal metni geri alabilir miyim?</summary><p>Hayır. Hash tek yönlüdür; özetten girdiye geri dönmek pratikte imkânsızdır.</p></details>
+          <details><summary>Neden MD5 yok?</summary><p>MD5 kırılmış kabul edilir ve tarayıcıların Web Crypto API'sinde bulunmaz. Güvenli SHA ailesi sunulmaktadır.</p></details>
+          <details><summary>Parola saklamak için hash kullanabilir miyim?</summary><p>Düz SHA parola saklamak için yeterli değildir; bcrypt, scrypt veya Argon2 gibi tuzlu ve yavaş algoritmalar kullanılmalıdır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>KeyMint şifre araçları</h2>
+        <ul>
+          <li><a href="../">Şifre Üreteci</a></li>
+          <li><a href="../sifre-guc-testi/">Şifre Güç Testi</a></li>
+          <li><a href="../pin-uretici/">PIN Kodu Üreteci</a></li>
+          <li><a href="../parola-cumlesi/">Parola Cümlesi Üreteci</a></li>
+          <li><a href="../wifi-sifresi/">WiFi Şifresi Üreteci</a></li>
+          <li><a href="../hash-uretici/">Hash Üreteci</a></li>
+          <li><a href="../base64/">Base64 Kodlayıcı</a></li>
+          <li><a href="../uuid-uretici/">UUID Üreteci</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> KeyMint · Koray Öner tarafından geliştirildi · Ücretsiz ve açık kaynak.</p>
+    </div>
+  </footer>
+
+  <script src="../common.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

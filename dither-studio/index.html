@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dither Studio — 1-bit, 8-bit, 16-bit ve 32-bit Dithering Aracı | Koray Öner</title>
+  <meta name="description" content="Görsellerinizi 1-bit, 8-bit, 16-bit ve 32-bit dithering efektleriyle retro/piksel estetiğine dönüştüren ücretsiz, tarayıcı tabanlı araç. Floyd–Steinberg ve ordered dithering. Koray Öner tarafından geliştirildi." />
+  <meta name="author" content="Koray Öner" />
+  <meta name="keywords" content="dithering, dither aracı, 1-bit, 8-bit, 16-bit, 32-bit, floyd steinberg, ordered dithering, bayer, piksel sanatı, retro görsel, Koray Öner" />
+  <link rel="canonical" href="https://korayoner.dev/dither-studio/" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dither Studio — Dithering Görsel Aracı" />
+  <meta property="og:description" content="1-bit, 8-bit, 16-bit ve 32-bit dithering ile görsel oluşturma aracı. Koray Öner." />
+  <meta property="og:url" content="https://korayoner.dev/dither-studio/" />
+  <meta property="og:image" content="https://korayoner.dev/dither-studio/og-image.png" />
+  <meta property="og:image:secure_url" content="https://korayoner.dev/dither-studio/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Dither Studio — dithered bağlantı ağı ve başlık, Koray Öner" />
+  <meta property="og:site_name" content="Dither Studio" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="Koray Öner" />
+  <meta name="twitter:image" content="https://korayoner.dev/dither-studio/og-image.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230a0a0a'/><g fill='%23e8e4d8'><rect x='0' y='0' width='2' height='2'/><rect x='4' y='0' width='2' height='2'/><rect x='2' y='2' width='2' height='2'/><rect x='6' y='2' width='2' height='2'/><rect x='0' y='4' width='2' height='2'/><rect x='4' y='4' width='2' height='2'/><rect x='10' y='6' width='2' height='2'/><rect x='12' y='8' width='2' height='2'/><rect x='8' y='10' width='2' height='2'/><rect x='14' y='12' width='2' height='2'/></g></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Dither Studio",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "1-bit, 8-bit, 16-bit ve 32-bit dithering ile tarayıcı tabanlı görsel oluşturma aracı.",
+    "url": "https://korayoner.dev/dither-studio/",
+    "author": { "@type": "Person", "name": "Koray Öner", "url": "https://korayoner.dev/" },
+    "creator": { "@type": "Person", "name": "Koray Öner" }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">DITHER<span class="dim">STUDIO</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#tool">Araç</a>
+      <a href="#hakkinda">Hakkında</a>
+      <a href="https://korayoner.dev/" rel="author">Koray Öner</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <canvas id="heroDither" class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-inner">
+        <p class="eyebrow">DITHER · STUDIO</p>
+        <h1>Dithering Görsel Aracı</h1>
+        <p class="lede">Görsellerinizi <strong>1-bit</strong>, <strong>8-bit</strong>, <strong>16-bit</strong> ve <strong>32-bit</strong> derinliklerinde dithering efektiyle dönüştürün. Her şey tarayıcınızda çalışır — hiçbir görsel sunucuya yüklenmez.</p>
+        <a href="#tool" class="btn primary hero-cta">Aracı Aç ↓</a>
+      </div>
+    </section>
+
+    <section id="tool" class="studio">
+      <div class="controls" aria-label="Kontroller">
+        <div class="drop" id="drop">
+          <input type="file" id="file" accept="image/*" hidden />
+          <button type="button" id="pick" class="btn primary">Görsel Seç</button>
+          <p class="hint">veya sürükleyip bırakın · <button type="button" id="sample" class="linkbtn">örnek yükle</button></p>
+        </div>
+
+        <fieldset class="group">
+          <legend>Bit Derinliği</legend>
+          <div class="segmented" id="depth" role="radiogroup">
+            <button role="radio" aria-checked="true" data-depth="1" class="seg on">1-bit</button>
+            <button role="radio" aria-checked="false" data-depth="8" class="seg">8-bit</button>
+            <button role="radio" aria-checked="false" data-depth="16" class="seg">16-bit</button>
+            <button role="radio" aria-checked="false" data-depth="32" class="seg">32-bit</button>
+          </div>
+          <p class="depth-note" id="depthNote"></p>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Dithering Yöntemi</legend>
+          <select id="method">
+            <option value="floyd">Floyd–Steinberg (hata yayılımı)</option>
+            <option value="atkinson">Atkinson</option>
+            <option value="bayer4">Ordered · Bayer 4×4</option>
+            <option value="bayer8">Ordered · Bayer 8×8</option>
+            <option value="none">Yok (sadece kuantalama)</option>
+          </select>
+          <p class="depth-note" id="methodNote"></p>
+        </fieldset>
+
+        <fieldset class="group" id="paletteGroup">
+          <legend>Palet <span class="dim">· 1-bit</span></legend>
+          <div class="palettes" id="palette">
+            <button class="sw on" data-fg="#e8e4d8" data-bg="#0a0a0a" style="--a:#e8e4d8;--b:#0a0a0a" title="Kağıt"></button>
+            <button class="sw" data-fg="#00ff9c" data-bg="#001b12" style="--a:#00ff9c;--b:#001b12" title="Terminal"></button>
+            <button class="sw" data-fg="#ffb000" data-bg="#1a0e00" style="--a:#ffb000;--b:#1a0e00" title="Amber"></button>
+            <button class="sw" data-fg="#8be9fd" data-bg="#0b1020" style="--a:#8be9fd;--b:#0b1020" title="Buz"></button>
+            <button class="sw" data-fg="#ffffff" data-bg="#000000" style="--a:#ffffff;--b:#000000" title="Mono"></button>
+            <button class="sw" data-fg="#ff5c8a" data-bg="#1c0716" style="--a:#ff5c8a;--b:#1c0716" title="Neon"></button>
+            <button class="sw" data-fg="#c8ff00" data-bg="#12160a" style="--a:#c8ff00;--b:#12160a" title="Asit"></button>
+            <button class="sw" data-fg="#d8b4ff" data-bg="#140b1f" style="--a:#d8b4ff;--b:#140b1f" title="Mor"></button>
+          </div>
+          <div class="custom-pal">
+            <label>Ön renk <input type="color" id="fgColor" value="#e8e4d8" /></label>
+            <label>Zemin <input type="color" id="bgColor" value="#0a0a0a" /></label>
+          </div>
+          <p class="depth-note" id="paletteNote"></p>
+        </fieldset>
+
+        <fieldset class="group sliders">
+          <legend>Ayarlar</legend>
+          <label>Piksel Boyutu <span id="scaleVal">1×</span>
+            <input type="range" id="scale" min="1" max="8" step="1" value="1" />
+          </label>
+          <label>Kontrast <span id="contrastVal">0</span>
+            <input type="range" id="contrast" min="-100" max="100" step="1" value="0" />
+          </label>
+          <label>Parlaklık <span id="brightVal">0</span>
+            <input type="range" id="brightness" min="-100" max="100" step="1" value="0" />
+          </label>
+          <label class="check"><input type="checkbox" id="serpentine" checked /> Serpentine tarama</label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="button" id="download" class="btn primary" disabled>PNG İndir</button>
+          <button type="button" id="reset" class="btn ghost">Sıfırla</button>
+        </div>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="canvas" aria-label="Dithering önizleme"></canvas>
+        <p class="empty" id="empty">Başlamak için bir görsel yükleyin.</p>
+      </div>
+    </section>
+
+    <hr class="dither-rule" aria-hidden="true" />
+
+    <section id="hakkinda" class="about">
+      <h2>Dithering nedir?</h2>
+      <p>Dithering, sınırlı bir renk paletiyle daha zengin tonların yanılsamasını yaratmak için pikselleri düzenli veya hesaplanmış desenler halinde dağıtan bir tekniktir. Retro bilgisayarlar, gazete baskıları ve piksel sanatının karakteristik dokusu buradan gelir.</p>
+      <ul class="depths">
+        <li><b>1-bit</b> — iki renk. Klasik siyah/beyaz veya tek renk paletli, en güçlü desen etkisi.</li>
+        <li><b>8-bit</b> — 256 renk (3-3-2 RGB kuantalama). Erken dönem oyun konsolu estetiği.</li>
+        <li><b>16-bit</b> — 65.536 renk (5-6-5 RGB). Yumuşak degradeler, hafif bantlaşma.</li>
+        <li><b>32-bit</b> — tam renk + alfa. Hafif dithering ile bantlaşma giderme.</li>
+      </ul>
+      <p class="credit">Tasarım ve geliştirme: <a href="https://korayoner.dev/" rel="author"><strong>Koray Öner</strong></a>. Açık kaynak — MIT lisansı.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> <a href="https://korayoner.dev/" rel="author">Koray Öner</a> · Dither Studio</p>
+    <p class="fine">Tüm işlemler istemci tarafında yapılır. Görselleriniz cihazınızdan çıkmaz.</p>
+  </footer>
+
+  <script src="hero.js"></script>
+  <script src="dither.js"></script>
+</body>
+</html>

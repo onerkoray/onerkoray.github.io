@@ -1,0 +1,14 @@
+/* AUTHOR */
+  Creator & Maintainer: Koray Öner
+  GitHub: https://github.com/onerkoray
+  Site: https://korayoner.dev/decorpalette/
+  Contact: https://github.com/onerkoray
+
+/* THANKS */
+  To the open web platform and the WCAG working group.
+
+/* SITE */
+  Standards: HTML5, CSS3, ES2019+
+  Components: Vanilla JavaScript, no frameworks, no dependencies
+  Software: Any text editor
+  Last update: 2026-07-14

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PIN Kodu Üreteci — Rastgele Güvenli PIN Oluştur | Koray Öner</title>
+  <meta name="description" content="PIN kodu üreteci: 4, 6 veya 8 haneli rastgele ve güvenli PIN oluşturun. Kriptografik rastgelelik, zayıf kalıp uyarısı, tek tıkla kopyalama. Ücretsiz ve tamamen tarayıcıda.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/keymint/pin-uretici/">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="PIN Kodu Üreteci — Rastgele Güvenli PIN">
+  <meta property="og:description" content="4, 6 veya 8 haneli rastgele PIN oluşturun. Ücretsiz ve tamamen tarayıcıda.">
+  <meta property="og:url" content="https://korayoner.dev/keymint/pin-uretici/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/pin-uretici-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PIN Kodu Üreteci — Koray Öner">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PIN Kodu Üreteci — Rastgele Güvenli PIN">
+  <meta name="twitter:description" content="4, 6 veya 8 haneli rastgele PIN oluşturun. Ücretsiz ve tamamen tarayıcıda.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/pin-uretici-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/keymint/pin-uretici/#app",
+        "name": "PIN Kodu Üreteci",
+        "url": "https://korayoner.dev/keymint/pin-uretici/",
+        "image": "https://korayoner.dev/images/pin-uretici-koray-oner.png",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "description": "PIN kodu üreteci: 4, 6 veya 8 haneli rastgele ve güvenli PIN oluşturun. Kriptografik rastgelelik, zayıf kalıp uyarısı, tek tıkla kopyalama. Ücretsiz ve tamamen tarayıcıda.",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "jobTitle": "Yazılım Geliştirici",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://substack.com/@korayner",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://dl.acm.org/profile/81100070426",
+          "https://metu.academia.edu/KorayÖner",
+          "https://500px.com/p/korayoner",
+          "https://www.reddit.com/user/Affectionate_Fig3049"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "KeyMint", "item": "https://korayoner.dev/keymint/" },
+          { "@type": "ListItem", "position": 3, "name": "PIN Kodu Üreteci", "item": "https://korayoner.dev/keymint/pin-uretici/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "PIN kaç haneli olmalı?", "acceptedAnswer": { "@type": "Answer", "text": "Mümkünse 6 hane veya daha fazlasını tercih edin. 4 hane 10.000 olasılık sunarken, 6 hane 1.000.000 olasılık sunar ve tahmin edilmesi çok daha zordur." } },
+          { "@type": "Question", "name": "Bu PIN'ler gerçekten rastgele mi?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. Kriptografik rastgelelik için tarayıcının crypto.getRandomValues fonksiyonu kullanılır." } },
+          { "@type": "Question", "name": "PIN'im kaydediliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. PIN tamamen cihazınızda üretilir ve hiçbir yere gönderilmez." } },
+          { "@type": "Question", "name": "Zayıf kalıpları önle seçeneği ne yapar?", "acceptedAnswer": { "@type": "Answer", "text": "1234, 0000 veya 1111 gibi çok sık kullanılan tahmin edilebilir dizileri üretimden eler." } },
+          { "@type": "Question", "name": "Aynı PIN'i her yerde kullanabilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Kullanmayın. Her kart ve cihaz için ayrı PIN belirlemek güvenliğinizi artırır." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="KeyMint ana sayfa">
+        <span class="brand-mark" aria-hidden="true">🔐</span>
+        <span class="brand-name">KeyMint</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="https://korayoner.dev/">Koray Öner</a></li>
+          <li><a href="../">Şifre Üreteci</a></li>
+          <li><a href="../#araclar">Tüm araçlar</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="https://korayoner.dev/">Ana Sayfa</a> <span aria-hidden="true">›</span>
+      <a href="../">KeyMint</a> <span aria-hidden="true">›</span> PIN Kodu Üreteci
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="eyebrow">Ücretsiz · Reklamsız · %100 tarayıcıda</p>
+        <img class="tool-logo" src="favicon.svg" width="60" height="60" alt="" aria-hidden="true" decoding="async">
+        <h1 id="hero-title">PIN Kodu Üreteci</h1>
+        <p class="lede">Telefon, kart veya cihaz kilidi için rastgele ve güvenli bir PIN oluşturun. Uzunluğu seçin, üretin ve kopyalayın — PIN tamamen tarayıcınızda üretilir.</p>
+      </div>
+    </section>
+
+    <section id="arac" aria-label="Araç">
+      <div class="wrap">
+        <div class="tool">
+          <div class="pw-output">
+            <input type="text" id="pin" readonly aria-label="Üretilen PIN" placeholder="PIN burada görünecek">
+            <button class="btn btn-ghost" type="button" id="copyBtn">Kopyala</button>
+          </div>
+          <div class="options">
+            <div class="option-row"><label for="len">Hane sayısı</label><span class="count-badge" id="lenVal">6</span></div>
+            <input type="range" id="len" min="3" max="12" value="6" aria-label="Hane sayısı">
+            <label class="check"><input type="checkbox" id="avoidWeak" checked> Zayıf kalıpları önle (1234, 1111, 0000)</label>
+          </div>
+          <div class="pw-actions"><button class="btn btn-primary" type="button" id="genBtn">Yeni PIN üret</button></div>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="https://korayoner.dev/#about" rel="author">Koray Öner</a> · Güncelleme: 15 Temmuz 2026</p>
+        <h2>PIN kodu neden rastgele olmalı?</h2>
+        <p>PIN kodları kısa olduğu için tahmin edilmeye açıktır. "1234", "0000" veya doğum yılı gibi kalıplar en çok denenen kombinasyonlardır. Rastgele üretilmiş bir PIN, bu yaygın tahminlere karşı çok daha güvenlidir. Bu araç PIN'i tarayıcınızın kriptografik rastgelelik kaynağıyla üretir; hiçbir yere gönderilmez.</p>
+        <h3>Güvenli PIN için ipuçları</h3>
+        <ul>
+          <li>Ardışık (1234) veya tekrar eden (1111) rakamlardan kaçının.</li>
+          <li>Doğum tarihi, telefon numarası gibi kişisel bilgileri kullanmayın.</li>
+          <li>Mümkünse 4 hane yerine 6 veya daha fazlasını tercih edin.</li>
+          <li>Farklı kartlar ve cihazlar için farklı PIN'ler belirleyin.</li>
+        </ul>
+        <p class="disclaimer muted"><strong>Bilgilendirme:</strong> Tüm işlemler tarayıcınızda yapılır; girdiğiniz veriler hiçbir yere gönderilmez. Kritik hesaplarda güçlü, benzersiz şifreler ve iki adımlı doğrulama kullanın.</p>
+      </div>
+    </article>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>PIN kaç haneli olmalı?</summary><p>Mümkünse 6 hane veya daha fazlasını tercih edin. 4 hane 10.000 olasılık sunarken, 6 hane 1.000.000 olasılık sunar ve tahmin edilmesi çok daha zordur.</p></details>
+          <details><summary>Bu PIN'ler gerçekten rastgele mi?</summary><p>Evet. Kriptografik rastgelelik için tarayıcının crypto.getRandomValues fonksiyonu kullanılır.</p></details>
+          <details><summary>PIN'im kaydediliyor mu?</summary><p>Hayır. PIN tamamen cihazınızda üretilir ve hiçbir yere gönderilmez.</p></details>
+          <details><summary>Zayıf kalıpları önle seçeneği ne yapar?</summary><p>1234, 0000 veya 1111 gibi çok sık kullanılan tahmin edilebilir dizileri üretimden eler.</p></details>
+          <details><summary>Aynı PIN'i her yerde kullanabilir miyim?</summary><p>Kullanmayın. Her kart ve cihaz için ayrı PIN belirlemek güvenliğinizi artırır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>KeyMint şifre araçları</h2>
+        <ul>
+          <li><a href="../">Şifre Üreteci</a></li>
+          <li><a href="../sifre-guc-testi/">Şifre Güç Testi</a></li>
+          <li><a href="../pin-uretici/">PIN Kodu Üreteci</a></li>
+          <li><a href="../parola-cumlesi/">Parola Cümlesi Üreteci</a></li>
+          <li><a href="../wifi-sifresi/">WiFi Şifresi Üreteci</a></li>
+          <li><a href="../hash-uretici/">Hash Üreteci</a></li>
+          <li><a href="../base64/">Base64 Kodlayıcı</a></li>
+          <li><a href="../uuid-uretici/">UUID Üreteci</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> KeyMint · Koray Öner tarafından geliştirildi · Ücretsiz ve açık kaynak.</p>
+    </div>
+  </footer>
+
+  <script src="../common.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

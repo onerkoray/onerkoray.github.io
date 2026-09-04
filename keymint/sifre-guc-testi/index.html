@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Şifre Güç Testi — Parola Güvenlik Kontrolü (Ne Kadar Güçlü?) | Koray Öner</title>
+  <meta name="description" content="Şifre güç testi: parolanızın ne kadar güçlü olduğunu, entropi ve tahmini kırılma süresiyle anında ölçün. Tamamen tarayıcıda çalışır, şifreniz hiçbir yere gönderilmez. Ücretsiz ve reklamsız.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/keymint/sifre-guc-testi/">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Şifre Güç Testi — Parolanız Ne Kadar Güçlü?">
+  <meta property="og:description" content="Parolanızın gücünü entropi ve tahmini kırılma süresiyle ölçün. Tamamen tarayıcıda, gizli.">
+  <meta property="og:url" content="https://korayoner.dev/keymint/sifre-guc-testi/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/sifre-guc-testi-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Şifre Güç Testi — Koray Öner">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Şifre Güç Testi — Ne Kadar Güçlü?">
+  <meta name="twitter:description" content="Parolanızın gücünü anında ölçün. Tamamen tarayıcıda, gizli.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/sifre-guc-testi-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/keymint/sifre-guc-testi/#app",
+        "name": "Şifre Güç Testi",
+        "url": "https://korayoner.dev/keymint/sifre-guc-testi/",
+        "image": "https://korayoner.dev/images/sifre-guc-testi-koray-oner.png",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "description": "Parolanın gücünü entropi ve tahmini kırılma süresiyle ölçen, tarayıcı tabanlı ücretsiz araç.",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "jobTitle": "Yazılım Geliştirici",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://substack.com/@korayner",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://dl.acm.org/profile/81100070426",
+          "https://metu.academia.edu/KorayÖner",
+          "https://500px.com/p/korayoner",
+          "https://www.reddit.com/user/Affectionate_Fig3049"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "KeyMint", "item": "https://korayoner.dev/keymint/" },
+          { "@type": "ListItem", "position": 3, "name": "Şifre Güç Testi", "item": "https://korayoner.dev/keymint/sifre-guc-testi/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Şifre güç testi şifremi kaydediyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Analiz tamamen tarayıcınızda yapılır; girdiğiniz parola hiçbir sunucuya gönderilmez ve saklanmaz." } },
+          { "@type": "Question", "name": "Şifre gücü nasıl ölçülür?", "acceptedAnswer": { "@type": "Answer", "text": "Şifrenin uzunluğu ve içerdiği karakter türlerinden entropi (bit cinsinden belirsizlik) hesaplanır. Entropi arttıkça şifreyi tahmin etmek üstel olarak zorlaşır." } },
+          { "@type": "Question", "name": "Tahmini kırılma süresi ne anlama gelir?", "acceptedAnswer": { "@type": "Answer", "text": "Saldırganın kaba kuvvetle tüm olasılıkları deneyerek şifreyi bulması için gereken ortalama süredir. Yalnızca bir tahmindir; gerçek süre saldırganın gücüne göre değişir." } },
+          { "@type": "Question", "name": "Kaç bit entropi yeterlidir?", "acceptedAnswer": { "@type": "Answer", "text": "Genel olarak 60 bit iyi, 80 bit ve üzeri çok güçlü kabul edilir. Bunun için 16 karakter ve karışık karakter türleri önerilir." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="KeyMint ana sayfa">
+        <span class="brand-mark" aria-hidden="true">🔐</span>
+        <span class="brand-name">KeyMint</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="https://korayoner.dev/">Koray Öner</a></li>
+          <li><a href="../">Şifre Üreteci</a></li>
+          <li><a href="#test">Test</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="https://korayoner.dev/">Ana Sayfa</a> <span aria-hidden="true">›</span>
+      <a href="../">KeyMint</a> <span aria-hidden="true">›</span> Şifre Güç Testi
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="eyebrow">Ücretsiz · Reklamsız · %100 tarayıcıda</p>
+        <img class="tool-logo" src="favicon.svg" width="60" height="60" alt="" aria-hidden="true" decoding="async">
+        <h1 id="hero-title">Şifre Güç Testi</h1>
+        <p class="lede">
+          Parolanızın ne kadar güçlü olduğunu entropi ve tahmini kırılma süresiyle anında görün.
+          Analiz cihazınızda yapılır; girdiğiniz şifre <strong>hiçbir yere gönderilmez</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section id="test" aria-labelledby="test-title">
+      <div class="wrap">
+        <h2 id="test-title" class="visually-hidden">Şifre güç testi</h2>
+        <div class="tool">
+          <label for="pw" style="font-weight:600; display:block; margin-bottom:.5rem;">Şifrenizi yazın</label>
+          <input type="password" id="pw" class="pw-check-input" autocomplete="off" autocapitalize="off"
+                 spellcheck="false" placeholder="Denemek için bir şifre yazın">
+          <label class="check" style="margin-top:.75rem;"><input type="checkbox" id="reveal"> Şifreyi göster</label>
+
+          <div class="meter" aria-hidden="true" style="margin-top:1.25rem;"><div class="meter-bar" id="meterBar"></div></div>
+          <p class="strength-label" id="strength" aria-live="polite">Bir şifre yazın</p>
+
+          <output class="result" id="out" aria-live="polite" style="margin-top:1rem;"></output>
+          <ul class="feedback" id="feedback"></ul>
+        </div>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="https://korayoner.dev/#about" rel="author">Koray Öner</a> · Güncelleme: 15 Temmuz 2026</p>
+
+        <h2 id="nasil">Şifre gücü nasıl ölçülür?</h2>
+        <p>
+          Bir şifrenin gücü, onu tahmin etmenin ne kadar zor olduğuyla ölçülür. Bunu ifade etmenin en
+          yaygın yolu <strong>entropi</strong>dir: bit cinsinden belirsizlik. Entropi, şifrenin
+          uzunluğu ile kullanılan karakter havuzunun büyüklüğüne bağlıdır ve her ek karakterle üstel
+          olarak artar. Örneğin yalnızca küçük harf içeren 8 karakterlik bir şifrenin entropisi düşükken,
+          16 karakterlik karışık bir şifreninki katbekat yüksektir.
+        </p>
+        <p>
+          Bu araç, girdiğiniz şifrenin uzunluğunu ve içerdiği karakter türlerini (küçük/büyük harf,
+          rakam, sembol) analiz eder, entropiyi hesaplar ve saldırganın kaba kuvvetle şifreyi bulması
+          için gereken kabaca süreyi tahmin eder. Ayrıca sık yapılan hataları (kısa uzunluk, yalnızca
+          harf kullanımı, tekrar eden karakterler, yaygın kalıplar) tespit edip öneriler sunar.
+        </p>
+
+        <h3>Sonucu nasıl yorumlamalı?</h3>
+        <ul>
+          <li><strong>40 bitin altı:</strong> Zayıf — modern donanımla hızla kırılabilir.</li>
+          <li><strong>40–60 bit:</strong> Orta — kişisel olmayan hesaplar için sınırda kabul edilebilir.</li>
+          <li><strong>60–80 bit:</strong> Güçlü — çoğu hesap için yeterli.</li>
+          <li><strong>80 bit ve üzeri:</strong> Çok güçlü — önerilen hedef.</li>
+        </ul>
+
+        <h3>Neden gerçek şifrelerinizi de test edebilirsiniz?</h3>
+        <p>
+          Bu araç şifrenizi hiçbir yere göndermediği için gerçek parolalarınızı da güvenle
+          deneyebilirsiniz. Yine de en iyi uygulama, güçlü ve benzersiz şifreleri
+          <a href="../">KeyMint Şifre Üreteci</a> ile oluşturup bir parola yöneticisinde saklamaktır.
+        </p>
+
+        <p class="disclaimer muted">
+          <strong>Bilgilendirme:</strong> Tahmini kırılma süresi kabaca bir hesaptır ve saldırganın
+          donanımına göre değişir. Bu araç, şifrenizin daha önce bir veri sızıntısında yer alıp almadığını
+          kontrol etmez; kritik hesaplarda mutlaka iki adımlı doğrulama kullanın.
+        </p>
+      </div>
+    </article>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Bu araç şifremi kaydediyor mu?</summary><p>Hayır. Analiz tamamen tarayıcınızda yapılır; girdiğiniz parola hiçbir yere gönderilmez veya saklanmaz.</p></details>
+          <details><summary>Şifre gücü nasıl ölçülür?</summary><p>Şifrenin uzunluğu ve karakter türlerinden entropi (bit) hesaplanır; entropi arttıkça tahmin etmek üstel olarak zorlaşır.</p></details>
+          <details><summary>Tahmini kırılma süresi ne demek?</summary><p>Saldırganın tüm olasılıkları deneyerek şifreyi bulması için gereken ortalama süredir; yalnızca bir tahmindir.</p></details>
+          <details><summary>Kaç bit entropi yeterlidir?</summary><p>60 bit iyi, 80 bit ve üzeri çok güçlü kabul edilir. Bunun için 16 karakter ve karışık türler önerilir.</p></details>
+          <details><summary>Gerçek şifremi yazmam güvenli mi?</summary><p>Evet, çünkü şifre hiçbir yere iletilmez. Yine de tedbir olarak testten sonra alanı temizleyebilirsiniz.</p></details>
+          <details><summary>Sızıntı kontrolü yapıyor mu?</summary><p>Hayır. Bu araç yalnızca güç analizi yapar; sızıntı kontrolü için bu şifreyi değiştirin ve 2FA kullanın.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>Koray Öner'in diğer araçları</h2>
+        <ul>
+          <li><a href="../">KeyMint Şifre Üreteci</a> — güçlü ve rastgele şifreler oluşturun.</li>
+          <li><a href="https://korayoner.dev/yuzde-hesaplama/">Yüzde Hesaplama</a></li>
+          <li><a href="https://korayoner.dev/">Tüm projeler</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> KeyMint · Koray Öner tarafından geliştirildi · Ücretsiz ve açık kaynak.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

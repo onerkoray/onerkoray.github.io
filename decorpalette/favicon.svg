@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="DecorPalette">
+  <rect width="32" height="32" rx="7" fill="#0e7c66"/>
+  <path d="M16 5a11 11 0 0 0 0 22c1.9 0 2.6-1.2 2.6-2.6 0-1.4-1.2-2.2-1.2-3.6 0-1.1.9-2 2-2H22a6 6 0 0 0 0-13.8Z" fill="#ffffff"/>
+  <circle cx="11" cy="12" r="1.6" fill="#0e7c66"/>
+  <circle cx="16" cy="10" r="1.6" fill="#ffd479"/>
+  <circle cx="21" cy="12" r="1.6" fill="#e07a5f"/>
+</svg>
