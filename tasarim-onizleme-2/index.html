@@ -275,7 +275,7 @@
       <a class="row rev" data-c="finans" data-img="vadeli-mevduat-hesaplama-koray-oner.png" href="../vadeli-mevduat-hesaplama/"><span class="n">11</span><span class="t">Vadeli Mevduat<span>Stopaj ve net getiri</span></span><span class="k">Finans</span></a>
       <a class="row rev" data-c="finans" data-img="kira-artisi-hesaplama-koray-oner.png" href="../kira-artisi-hesaplama/"><span class="n">12</span><span class="t">Kira Artışı<span>TÜFE'ye göre yasal azami oran</span></span><span class="k">Finans</span></a>
 
-      <a class="row rev" data-c="veri" data-img="" href="../doviz-kurlari/"><span class="n">13</span><span class="t">TCMB Döviz Kurları<span>Her iş günü otomatik güncellenir</span></span><span class="k">Veri</span></a>
+      <a class="row rev" data-c="veri" data-img="doviz-kurlari-koray-oner.png" href="../doviz-kurlari/"><span class="n">13</span><span class="t">TCMB Döviz Kurları<span>Her iş günü otomatik güncellenir</span></span><span class="k">Veri</span></a>
       <a class="row rev" data-c="veri" data-img="son-depremler-koray-oner.png" href="../son-depremler/"><span class="n">14</span><span class="t">Son Depremler<span>Canlı liste ve arşiv sorgusu</span></span><span class="k">Veri</span></a>
 
       <a class="row rev" data-c="genel" data-img="yuzde-hesaplama-koray-oner.png" href="../yuzde-hesaplama/"><span class="n">15</span><span class="t">Yüzde<span>Oran, indirim, artış ve azalış</span></span><span class="k">Genel</span></a>
@@ -285,7 +285,7 @@
       <a class="row rev" data-c="genel" data-img="final-notu-hesaplama-koray-oner.png" href="../final-notu-hesaplama/"><span class="n">19</span><span class="t">Final Notu<span>Geçmek için gereken not</span></span><span class="k">Genel</span></a>
       <a class="row rev" data-c="genel" data-img="internet-hiz-testi-koray-oner.png" href="../internet-hiz-testi/"><span class="n">20</span><span class="t">İnternet Hız Testi<span>İndirme hızı ve ping</span></span><span class="k">Genel</span></a>
       <a class="row rev" data-c="genel" data-img="keymint-koray-oner.png" href="../keymint/"><span class="n">21</span><span class="t">KeyMint<span>Güçlü şifre üreteci</span></span><span class="k">Genel</span></a>
-      <a class="row rev" data-c="genel" data-img="" href="../decorpalette/"><span class="n">22</span><span class="t">DecorPalette<span>Erişilebilir renk paleti üreteci</span></span><span class="k">Genel</span></a>
+      <a class="row rev" data-c="genel" data-img="../decorpalette/images/og-cover.svg" href="../decorpalette/"><span class="n">22</span><span class="t">DecorPalette<span>Erişilebilir renk paleti üreteci</span></span><span class="k">Genel</span></a>
     </div>
   </section>
 
@@ -355,7 +355,7 @@
       var f = r.dataset.img;
       if (!f) return;
       r.addEventListener("pointerenter", function () {
-        pimg.src = "../images/" + f;
+        pimg.src = f.indexOf("/") >= 0 ? f : "../images/" + f;
         peek.classList.add("on");
       });
       r.addEventListener("pointerleave", function () { peek.classList.remove("on"); });
