@@ -400,3 +400,33 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 @media (max-width: 480px) {
   .lede { text-align: left; } /* dar ekranda hero yazısında nehir boşluğu olmasın */
 }
+
+/* ---------- Breadcrumb (site geneli; araç sayfaları kendi CSS'inde de tanımlar) ---------- */
+.breadcrumb { padding-top: 1.25rem; font-size: var(--step--1); color: var(--text-muted); }
+.breadcrumb a { color: var(--text-muted); }
+.breadcrumb a:hover { color: var(--brand-strong); }
+
+/* ---------- Footer yasal bağlantıları ---------- */
+.footer-links {
+  list-style: none; margin: .75rem 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .4rem 1.1rem;
+  font-size: var(--step--1);
+}
+.footer-links a { color: var(--text-muted); text-decoration: none; }
+.footer-links a:hover, .footer-links a:focus-visible { color: var(--brand-strong); text-decoration: underline; }
+
+/* ---------- Veri kaynakları ve güncelleme bloğu ---------- */
+.sources {
+  margin-top: 2rem; padding: 1.25rem 1.5rem;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-left: 4px solid var(--brand); border-radius: var(--radius-sm);
+}
+.sources h2, .sources h3 { margin: 0 0 .5rem; font-size: var(--step-0); }
+.sources p { font-size: var(--step--1); color: var(--text-muted); margin: 0 0 .75rem; text-align: left; }
+.sources ul { margin: 0 0 .75rem; padding-left: 1.15rem; font-size: var(--step--1); color: var(--text-muted); }
+.sources li { margin-bottom: .35rem; }
+.sources > :last-child { margin-bottom: 0; }
+.sources .updated {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-weight: 600; color: var(--text);
+}

@@ -1,27 +1,27 @@
-# onerkoray.github.io
+# korayoner.dev
 
-Koray Öner'ın kişisel sayfası ve açık kaynak proje koleksiyonunun ana giriş noktası.
+Koray Öner'in kişisel sitesi (korayoner.dev) ve açık kaynak proje koleksiyonunun ana giriş noktası.
 
 Modern web teknolojileriyle (HTML, CSS, vanilla JavaScript) geliştirilen; hızlı, erişilebilir
 ve ücretsiz web araçları. Framework yok, bağımlılık yok, derleme adımı yok.
 
-**Canlı:** https://onerkoray.github.io/
+**Canlı:** https://korayoner.dev/
 
 ## Projeler
 
-- **[Brüt Net Maaş Hesaplama 2026](https://onerkoray.github.io/maas-hesaplama/)** — 12 aylık bordro dökümü, netten brüte çevirme.
-- **[Kıdem ve İhbar Tazminatı Hesaplama 2026](https://korayoner.github.io/kidem-tazminati-hesaplama/)** — güncel tavanla kıdem/ihbar tazminatı (kardeş site).
-- **[KDV Hesaplama](https://onerkoray.github.io/kdv-hesaplama/)** — KDV dahil/hariç tutar hesaplama.
-- **[Yüzde Hesaplama](https://onerkoray.github.io/yuzde-hesaplama/)** — oran, indirim, artış/azalış.
-- **[Yaş Hesaplama](https://onerkoray.github.io/yas-hesaplama/)** — yıl/ay/gün yaş ve doğum gününe kalan süre.
-- **[Final Notu Hesaplama](https://onerkoray.github.io/final-notu-hesaplama/)** — geçme notu ve ortalama.
-- **[İnternet Hız Testi](https://onerkoray.github.io/internet-hiz-testi/)** — indirme hızı ve ping.
-- **[Son Depremler](https://onerkoray.github.io/son-depremler/)** — canlı Kandilli listesi, renkli diyagram, USGS tarih arşivi.
-- **[KeyMint](https://onerkoray.github.io/keymint/)** — güvenli şifre üreteci.
-- **[Dither Studio](https://onerkoray.github.io/dither-studio/)** — retro/piksel görsel efektleri.
-- **[DecorPalette](https://onerkoray.github.io/decorpalette/)** — WCAG uyumlu renk paleti üreteci.
+- **[Brüt Net Maaş Hesaplama 2026](https://korayoner.dev/maas-hesaplama/)** — 12 aylık bordro dökümü, netten brüte çevirme.
+- **[Kıdem ve İhbar Tazminatı Hesaplama 2026](https://korayoner.dev/kidem-tazminati-hesaplama/)** — güncel tavanla kıdem/ihbar tazminatı.
+- **[KDV Hesaplama](https://korayoner.dev/kdv-hesaplama/)** — KDV dahil/hariç tutar hesaplama.
+- **[Yüzde Hesaplama](https://korayoner.dev/yuzde-hesaplama/)** — oran, indirim, artış/azalış.
+- **[Yaş Hesaplama](https://korayoner.dev/yas-hesaplama/)** — yıl/ay/gün yaş ve doğum gününe kalan süre.
+- **[Final Notu Hesaplama](https://korayoner.dev/final-notu-hesaplama/)** — geçme notu ve ortalama.
+- **[İnternet Hız Testi](https://korayoner.dev/internet-hiz-testi/)** — indirme hızı ve ping.
+- **[Son Depremler](https://korayoner.dev/son-depremler/)** — canlı Kandilli listesi, renkli diyagram, USGS tarih arşivi.
+- **[KeyMint](https://korayoner.dev/keymint/)** — güvenli şifre üreteci.
+- **[Dither Studio](https://korayoner.dev/dither-studio/)** — retro/piksel görsel efektleri.
+- **[DecorPalette](https://korayoner.dev/decorpalette/)** — WCAG uyumlu renk paleti üreteci.
 
-Kardeş site: [korayoner.github.io](https://korayoner.github.io/)
+Tüm projeler bu tek repoda toplanmıştır; site [korayoner.dev](https://korayoner.dev/) üzerinden yayınlanır.
 
 ## Yerel çalıştırma
 

@@ -1,4 +1,5 @@
 Contact: https://github.com/onerkoray
-Expires: 2027-07-14T00:00:00.000Z
+Expires: 2027-09-04T00:00:00.000Z
+Policy: https://korayoner.dev/kullanim-kosullari/
 Preferred-Languages: tr, en
-Canonical: https://onerkoray.github.io/.well-known/security.txt
+Canonical: https://korayoner.dev/.well-known/security.txt

@@ -2,278 +2,266 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://onerkoray.github.io/</loc>
+    <loc>https://korayoner.dev/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/koray-oner-kapak.png</image:loc>
+      <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
       <image:title>Koray Öner — ücretsiz açık kaynak web araçları</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/koray-oner-portre.jpg</image:loc>
+      <image:loc>https://korayoner.dev/images/koray-oner-portre.jpg</image:loc>
       <image:title>Koray Öner — yazılım geliştirici</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/hakkimda/</loc>
+    <loc>https://korayoner.dev/hakkimda/</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/koray-oner-portre.jpg</image:loc>
+      <image:loc>https://korayoner.dev/images/koray-oner-portre.jpg</image:loc>
       <image:title>Koray Öner — yazılım geliştirici</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/dither-studio/</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://korayoner.dev/kira-artisi-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/dither-studio/og-image.png</image:loc>
-      <image:title>Dither Studio — Dithering Görsel Aracı · Koray Öner</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://onerkoray.github.io/kira-artisi-hesaplama/</loc>
-    <lastmod>2026-07-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://onerkoray.github.io/images/kira-artisi-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/kira-artisi-hesaplama-koray-oner.png</image:loc>
       <image:title>Kira Artışı Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/kredi-hesaplama/</loc>
-    <lastmod>2026-07-17</lastmod>
+    <loc>https://korayoner.dev/kredi-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/kredi-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/kredi-hesaplama-koray-oner.png</image:loc>
       <image:title>Kredi Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/vadeli-mevduat-hesaplama/</loc>
-    <lastmod>2026-07-17</lastmod>
+    <loc>https://korayoner.dev/vadeli-mevduat-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/vadeli-mevduat-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/vadeli-mevduat-hesaplama-koray-oner.png</image:loc>
       <image:title>Vadeli Mevduat Faizi Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/issizlik-maasi-hesaplama/</loc>
-    <lastmod>2026-07-17</lastmod>
+    <loc>https://korayoner.dev/issizlik-maasi-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/issizlik-maasi-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/issizlik-maasi-hesaplama-koray-oner.png</image:loc>
       <image:title>İşsizlik Maaşı Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/hesap-bolusme/</loc>
+    <loc>https://korayoner.dev/hesap-bolusme/</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/hesap-bolusme-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/hesap-bolusme-koray-oner.png</image:loc>
       <image:title>Hesap Bölüşme (AA) Hesaplama — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/birim-cevirici/</loc>
+    <loc>https://korayoner.dev/birim-cevirici/</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/birim-cevirici-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/birim-cevirici-koray-oner.png</image:loc>
       <image:title>Birim Çevirici — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/yuzde-hesaplama/</loc>
+    <loc>https://korayoner.dev/yuzde-hesaplama/</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/yuzde-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/yuzde-hesaplama-koray-oner.png</image:loc>
       <image:title>Yüzde Hesaplama — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/kdv-hesaplama/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <loc>https://korayoner.dev/kdv-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/kdv-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/kdv-hesaplama-koray-oner.png</image:loc>
       <image:title>KDV Hesaplama — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/internet-hiz-testi/</loc>
+    <loc>https://korayoner.dev/internet-hiz-testi/</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/internet-hiz-testi-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/internet-hiz-testi-koray-oner.png</image:loc>
       <image:title>İnternet Hız Testi — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/final-notu-hesaplama/</loc>
+    <loc>https://korayoner.dev/final-notu-hesaplama/</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/final-notu-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/final-notu-hesaplama-koray-oner.png</image:loc>
       <image:title>Final Notu Hesaplama — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/son-depremler/</loc>
+    <loc>https://korayoner.dev/son-depremler/</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/son-depremler-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/son-depremler-koray-oner.png</image:loc>
       <image:title>Son Depremler — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/yas-hesaplama/</loc>
+    <loc>https://korayoner.dev/yas-hesaplama/</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/yas-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/yas-hesaplama-koray-oner.png</image:loc>
       <image:title>Yaş Hesaplama — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/keymint/</loc>
-    <lastmod>2026-07-15</lastmod>
+    <loc>https://korayoner.dev/maas-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/keymint-koray-oner.png</image:loc>
-      <image:title>KeyMint Şifre Üreteci — Koray Öner</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://onerkoray.github.io/keymint/sifre-guc-testi/</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://onerkoray.github.io/images/sifre-guc-testi-koray-oner.png</image:loc>
-      <image:title>Şifre Güç Testi — Koray Öner</image:title>
-    </image:image>
-  </url>
-  <url><loc>https://onerkoray.github.io/keymint/pin-uretici/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onerkoray.github.io/keymint/parola-cumlesi/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onerkoray.github.io/keymint/wifi-sifresi/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onerkoray.github.io/keymint/hash-uretici/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onerkoray.github.io/keymint/base64/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onerkoray.github.io/keymint/uuid-uretici/</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url>
-    <loc>https://onerkoray.github.io/maas-hesaplama/</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://onerkoray.github.io/images/maas-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/maas-hesaplama-koray-oner.png</image:loc>
       <image:title>Brüt Net Maaş Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/kidem-tazminati-hesaplama/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://korayoner.dev/kidem-tazminati-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/kidem-tazminati-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/kidem-tazminati-hesaplama-koray-oner.png</image:loc>
       <image:title>Kıdem ve İhbar Tazminatı Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/mtv-hesaplama/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://korayoner.dev/mtv-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/mtv-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/mtv-hesaplama-koray-oner.png</image:loc>
       <image:title>MTV Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/otv-hesaplama/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://korayoner.dev/otv-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/otv-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/otv-hesaplama-koray-oner.png</image:loc>
       <image:title>Araç ÖTV Hesaplama — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/gumruk-vergisi-hesaplama/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://korayoner.dev/gumruk-vergisi-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/gumruk-vergisi-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/gumruk-vergisi-hesaplama-koray-oner.png</image:loc>
       <image:title>Gümrük Vergisi Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://onerkoray.github.io/serbest-meslek-makbuzu-hesaplama/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/</loc>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://onerkoray.github.io/images/serbest-meslek-makbuzu-hesaplama-koray-oner.png</image:loc>
+      <image:loc>https://korayoner.dev/images/serbest-meslek-makbuzu-hesaplama-koray-oner.png</image:loc>
       <image:title>Serbest Meslek Makbuzu Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/brut-net-tablosu/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/35000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/40000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/45000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/50000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/55000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/60000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/65000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/70000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/75000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/80000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/85000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/90000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/95000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/100000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/110000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/120000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/130000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/140000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/150000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/160000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/175000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/200000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/225000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/250000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/300000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/350000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/400000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://onerkoray.github.io/maas-hesaplama/500000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/brut-net-tablosu/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/35000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/40000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/45000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/50000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/55000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/60000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/65000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/70000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/75000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/80000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/85000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/90000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/95000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/100000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/110000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/120000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/130000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/140000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/150000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/160000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/175000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/200000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/225000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/250000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/300000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/350000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/400000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://korayoner.dev/maas-hesaplama/500000-tl-brut-ne-kadar-net/</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url>
-    <loc>https://onerkoray.github.io/decorpalette/</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://korayoner.dev/iletisim/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://korayoner.dev/gizlilik/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/kullanim-kosullari/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url><loc>https://korayoner.dev/keymint/</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://korayoner.dev/keymint/sifre-guc-testi/</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://korayoner.dev/keymint/pin-uretici/</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://korayoner.dev/keymint/parola-cumlesi/</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://korayoner.dev/keymint/wifi-sifresi/</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://korayoner.dev/keymint/hash-uretici/</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://korayoner.dev/keymint/base64/</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://korayoner.dev/keymint/uuid-uretici/</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://korayoner.dev/decorpalette/</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://korayoner.dev/decorpalette/docs/user-guide.html</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://korayoner.dev/decorpalette/docs/privacy.html</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://korayoner.dev/dither-studio/</loc><lastmod>2026-07-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
