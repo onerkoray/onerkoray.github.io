@@ -86,28 +86,24 @@ def find_chrome():
 
 
 def read_cards():
-    """Ana sayfadaki kartlardan slug, kategori ve ikon SVG'sini cikar."""
-    s = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
-    cards = re.findall(
-        r'<li class="project-card[^"]*"[^>]*data-cat="([^"]*)"[^>]*>(.*?)</li>', s, re.S)
+    """Ikon ve kategoriler tools/card-icons.json'da tutulur.
+
+    Onceden ana sayfadaki kart rozetlerinden okunuyordu; rozetler karodaki
+    ikonu tekrarladigi icin kaldirilinca bu kaynak kayboldu. Yeni arac
+    eklerken bu dosyaya bir satir ekle.
+    """
+    path = os.path.join(ROOT, "tools", "card-icons.json")
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
     out = {}
-    for cat, body in cards:
-        h = re.search(r"<h3>(.*?)</h3>", body, re.S)
-        if not h:
-            continue
-        a = re.search(r'<a href="([^"]+)">(.*?)</a>', h.group(1), re.S)
-        svg = re.search(r"(<svg .*?</svg>)", h.group(1), re.S)
-        if not (a and svg):
-            continue
-        slug = a.group(1).strip("/").split("/")[-1]
-        icon = svg.group(1)
-        # kart rozetinde kucuk cizilmis; karo icin daha kalin ve beyaz olsun
+    for slug, rec in data.items():
+        icon = rec["svg"]
+        # rozette kucuk cizilmisti; karo icin daha kalin ve beyaz olsun
         icon = re.sub(r'stroke-width="[^"]*"', 'stroke-width="1.6"', icon)
         icon = icon.replace('stroke="currentColor"', 'stroke="#ffffff"')
-        if 'stroke=' not in icon:
+        if "stroke=" not in icon:
             icon = icon.replace("<svg ", '<svg stroke="#ffffff" ', 1)
-        icon = icon.replace('fill="none"', 'fill="none"')
-        out[slug] = {"cat": cat, "svg": icon}
+        out[slug] = {"cat": rec["cat"], "svg": icon}
     return out
 
 
