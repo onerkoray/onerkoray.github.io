@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="auto">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Notice — DecorPalette</title>
@@ -20,7 +28,8 @@
   <meta name="twitter:title" content="Privacy Notice — DecorPalette">
   <meta name="twitter:image" content="https://korayoner.dev/images/koray-oner-kapak.png">
   <link rel="canonical" href="https://korayoner.dev/decorpalette/docs/privacy.html">
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=2">
   <link rel="stylesheet" href="../style.css">
   <script type="application/ld+json">
   {
@@ -53,7 +62,7 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="../"><span class="brand-name">DecorPalette</span></a>
-      <nav class="site-nav" aria-label="Primary"><ul><li><a href="../">Home</a></li></ul></nav>
+      <nav class="site-nav" aria-label="Primary"><ul><li><a href="../">Home</a></li><li><a href="../../">Koray Öner</a></li></ul></nav>
     </div>
   </header>
   <main id="main">
@@ -80,12 +89,24 @@
         <p>You can delete any saved palette from within the app, or clear all stored data through your browser settings at any time.</p>
 
         <h2>Contact</h2>
-        <p>Questions about privacy or security can be sent to <a href="https://github.com/onerkoray">github.com/onerkoray</a>.</p>
+        <p>Questions about privacy or security can be sent to <a href="https://github.com/onerkoray" rel="noopener">github.com/onerkoray</a>.</p>
 
         <p><a href="../">← Back to the app</a></p>
       </div>
     </article>
   </main>
-  <footer class="site-footer"><div class="wrap footer-legal"><p class="muted">© 2026 DecorPalette · Created by Koray Öner · MIT License.</p></div></footer>
+  <footer class="site-footer">
+    <div class="wrap footer-legal">
+      <p class="muted">© 2026 DecorPalette · Created by Koray Öner · MIT License.</p>
+      <ul class="footer-links" aria-label="Site links">
+        <li><a href="../../">Koray Öner</a></li>
+        <li><a href="../../hakkimda/">About</a></li>
+        <li><a href="../../makaleler/">Articles</a></li>
+        <li><a href="../../iletisim/">Contact</a></li>
+        <li><a href="../../gizlilik/">Privacy &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Terms of use</a></li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>

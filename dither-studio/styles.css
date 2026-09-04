@@ -1,7 +1,7 @@
 :root{
   --bg:#0a0a0a; --panel:#111210; --panel-2:#16171410; --ink:#e8e4d8;
   --dim:#8a8778; --line:#26251f; --accent:#e8e4d8; --accent-ink:#0a0a0a;
-  --radius:10px; --mono:"SFMono-Regular",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+  --radius:10px; --mono:ui-monospace,"SFMono-Regular","SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
   --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
 *{box-sizing:border-box}
@@ -143,3 +143,19 @@ canvas{max-width:100%; image-rendering:pixelated; display:none; box-shadow:0 8px
   .controls{position:static}
   .depths{grid-template-columns:1fr}
 }
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important; animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+}
+
+/* Site geneli yasal/marka baglantilari */
+.footer-links{
+  list-style:none; margin:14px 0 0; padding:0;
+  display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; font-size:13px;
+}
+.footer-links a{color:var(--dim); text-decoration:none}
+.footer-links a:hover,.footer-links a:focus-visible{color:var(--ink); text-decoration:underline}

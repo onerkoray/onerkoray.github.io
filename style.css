@@ -199,7 +199,17 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .hero-bg { display: none; }
 }
-@media (max-width: 640px) { .site-nav { display: none; } .theme-toggle-label { display: none; } }
+/* Mobilde menuyu gizlemek yerine ikinci satira alip yatay kaydirilabilir yap:
+   680px altinda header'da hicbir gezinme baglantisi kalmiyordu. */
+@media (max-width: 680px) {
+  .header-inner { flex-wrap: wrap; gap: .6rem 1rem; padding-bottom: .45rem; }
+  .site-nav { order: 3; flex-basis: 100%; margin-left: 0; overflow-x: auto; scrollbar-width: none; }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav ul { gap: 1rem; padding-bottom: .3rem; }
+  .site-nav a { white-space: nowrap; }
+  .theme-toggle { margin-left: auto; }
+  .theme-toggle-label { display: none; }
+}
 
 /* =========================================================================
    Renk paleti seçici (header)
@@ -209,6 +219,9 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   width: 14px; height: 14px; border-radius: 50%;
   background: conic-gradient(#0e7c66 0 72deg, #2160b4 0 144deg, #6a4fc0 0 216deg, #bb5714 0 288deg, #b0345c 0);
 }
+/* display:flex, UA'nin [hidden] kuralini eziyordu: acilir kutu her sayfada
+   surekli aciktı ve mobilde menuyu kapatiyordu. */
+.palette-pop[hidden] { display: none; }
 .palette-pop {
   position: absolute; right: 0; top: calc(100% + 8px); z-index: 60;
   display: flex; gap: .5rem; padding: .6rem .7rem;

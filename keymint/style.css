@@ -42,7 +42,7 @@ h1 { font-size: var(--step-4); } h2 { font-size: var(--step-3); } h3 { font-size
 p { margin: 0 0 1rem; }
 a { color: var(--brand-strong); text-underline-offset: 2px; }
 a:hover { color: var(--brand); }
-code { font-family: ui-monospace, Menlo, Consolas, monospace; background: var(--surface-2); border-radius: 6px; padding: .1em .4em; }
+code { font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace; background: var(--surface-2); border-radius: 6px; padding: .1em .4em; }
 .wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
 
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
@@ -82,7 +82,7 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4rem) 0; }
 .tool { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(1.25rem,1rem + 2vw,2rem); box-shadow: var(--shadow); }
 .pw-output { display: flex; gap: .6rem; margin-bottom: 1rem; }
 .pw-output input {
-  flex: 1; min-width: 0; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 1.15rem;
+  flex: 1; min-width: 0; font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace; font-size: 1.15rem;
   padding: .8rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-sm);
   background: var(--bg); color: var(--text); letter-spacing: .03em;
 }
@@ -101,10 +101,10 @@ input[type="range"] { accent-color: var(--brand); width: 100%; }
 .checks { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); }
 .check { display: flex; align-items: center; gap: .5rem; font-weight: 500; cursor: pointer; }
 .check input { accent-color: var(--brand); width: 18px; height: 18px; }
-.count-badge { font-family: ui-monospace, monospace; font-weight: 700; color: var(--brand-strong); }
+.count-badge { font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace; font-weight: 700; color: var(--brand-strong); }
 
 .pw-check-input {
-  width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 1.1rem;
+  width: 100%; font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace; font-size: 1.1rem;
   padding: .8rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-sm);
   background: var(--bg); color: var(--text);
 }
@@ -140,3 +140,12 @@ input[type="range"] { accent-color: var(--brand); width: 100%; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { transition-duration: .001ms !important; } }
 @media (max-width: 600px) { .site-nav { display: none; } .theme-toggle-label { display: none; } }
 @media print { .site-header,.theme-toggle,.pw-actions { display: none !important; } body { background: #fff; color: #000; } }
+
+/* Site geneli yasal/marka baglantilari (kok style.css ile ayni gorunum) */
+.footer-links {
+  list-style: none; margin: .75rem 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .4rem 1.1rem;
+  font-size: var(--step--1);
+}
+.footer-links a { color: var(--text-muted); text-decoration: none; }
+.footer-links a:hover, .footer-links a:focus-visible { color: var(--brand-strong); text-decoration: underline; }

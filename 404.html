@@ -12,27 +12,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sayfa bulunamadı — Koray Öner</title>
-  <meta name="description" content="Aradığınız sayfa bulunamadı. Ana sayfaya dönebilirsiniz.">
+  <meta name="description" content="Aradığınız sayfa bulunamadı. Ana sayfaya veya araçlar listesine dönebilirsiniz.">
+  <meta name="author" content="Koray Öner">
   <meta name="robots" content="noindex, follow">
-  <meta name="theme-color" content="#0e7c66">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.ico?v=2" sizes="32x32">
   <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="/" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="/logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="/">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="/makaleler/">Makaleler</a></li>
+          <li><a href="/hakkimda/">Hakkımda</a></li>
+          <li><a href="/iletisim/">İletişim</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
   <main id="main">
     <section class="hero">
       <div class="wrap hero-inner">
         <p class="eyebrow">Hata 404</p>
         <h1>Bu sayfayı bulamadık.</h1>
-        <p class="lede">Bağlantı bozuk olabilir veya sayfa taşınmış olabilir.</p>
+        <p class="lede">Bağlantı bozuk olabilir veya sayfa taşınmış olabilir. Aşağıdan devam edebilirsiniz.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="/">Ana sayfaya dön</a>
-          <a class="btn btn-ghost" href="/#projects">Projeleri gör</a>
+          <a class="btn btn-ghost" href="/#projects">Araçları gör</a>
         </div>
       </div>
     </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>En çok kullanılan araçlar</h2>
+        <ul>
+          <li><a href="/maas-hesaplama/">Brüt Net Maaş Hesaplama 2026</a> — 12 aylık bordro dökümü.</li>
+          <li><a href="/kidem-tazminati-hesaplama/">Kıdem ve İhbar Tazminatı</a> — güncel tavanla.</li>
+          <li><a href="/kdv-hesaplama/">KDV Hesaplama</a> — dahil/hariç tutar.</li>
+          <li><a href="/doviz-kurlari/">TCMB Döviz Kurları</a> — her iş günü güncellenir.</li>
+          <li><a href="/makaleler/">Makaleler</a> — mevzuat rehberleri.</li>
+        </ul>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="/hakkimda/">Hakkımda</a></li>
+        <li><a href="/makaleler/">Makaleler</a></li>
+        <li><a href="/iletisim/">İletişim</a></li>
+        <li><a href="/gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="/kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
   <script src="/bg-network.js" defer></script>
 </body>
 </html>

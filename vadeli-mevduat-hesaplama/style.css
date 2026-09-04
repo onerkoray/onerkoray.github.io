@@ -37,7 +37,7 @@
 .table-note { margin-top: 10px; display: block; }
 
 .formula {
-  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;
   background: var(--surface, rgba(127,127,127,.08));
   border: 1px solid var(--border, rgba(127,127,127,.2));
   border-radius: 8px;

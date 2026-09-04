@@ -100,7 +100,7 @@ a { color: var(--brand-strong); text-decoration-thickness: 1px; text-underline-o
 a:hover { color: var(--brand); }
 
 code, kbd {
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;
   font-size: .9em;
 }
 kbd {
@@ -235,7 +235,7 @@ section { padding: clamp(2.5rem, 1.5rem + 4vw, 4.5rem) 0; }
 }
 .swatch-lock[aria-pressed="true"] { background: var(--brand); color: #fff; }
 .swatch-meta { padding: .75rem .85rem; display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
-.swatch-hex { font-family: ui-monospace, monospace; font-weight: 600; letter-spacing: .02em; }
+.swatch-hex { font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace; font-weight: 600; letter-spacing: .02em; }
 .swatch-copy {
   font: inherit; font-size: var(--step--1); cursor: pointer; color: var(--text-muted);
   background: none; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .3rem .55rem;
@@ -323,3 +323,12 @@ section { padding: clamp(2.5rem, 1.5rem + 4vw, 4.5rem) 0; }
   .swatch, .controls, .contrast-result { box-shadow: none; border: 1px solid #999; }
   a { text-decoration: underline; }
 }
+
+/* Site geneli yasal/marka baglantilari (kok style.css ile ayni gorunum) */
+.footer-links {
+  list-style: none; margin: .75rem 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .4rem 1.1rem;
+  font-size: var(--step--1);
+}
+.footer-links a { color: var(--text-muted); text-decoration: none; }
+.footer-links a:hover, .footer-links a:focus-visible { color: var(--brand-strong); text-decoration: underline; }

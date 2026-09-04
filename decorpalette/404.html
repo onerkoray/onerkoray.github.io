@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="auto">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page not found — DecorPalette</title>
   <meta name="description" content="The page you requested could not be found. Return to DecorPalette to build accessible interior color palettes.">
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#0e7c66">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="./"><span class="brand-name">DecorPalette</span></a>
+      <nav class="site-nav" aria-label="Primary"><ul>
+        <li><a href="./">Home</a></li>
+        <li><a href="docs/user-guide.html">User guide</a></li>
+        <li><a href="../">Koray Öner</a></li>
+      </ul></nav>
+    </div>
+  </header>
   <main id="main">
     <section class="hero">
       <div class="wrap hero-inner">
@@ -20,10 +40,24 @@
         <p class="lede">The link may be broken or the page may have moved. Let's get you back to a working palette.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="./">Back to home</a>
-          <a class="btn btn-ghost" href="#generator">Open the generator</a>
+          <a class="btn btn-ghost" href="./#generator">Open the generator</a>
         </div>
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> DecorPalette · Created by Koray Öner · MIT License.</p>
+      <ul class="footer-links" aria-label="Site links">
+        <li><a href="../">Koray Öner</a></li>
+        <li><a href="../hakkimda/">About</a></li>
+        <li><a href="../makaleler/">Articles</a></li>
+        <li><a href="../iletisim/">Contact</a></li>
+        <li><a href="../gizlilik/">Privacy &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Terms of use</a></li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>
