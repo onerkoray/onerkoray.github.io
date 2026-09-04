@@ -1,5 +1,6 @@
 Contact: mailto:iletisim@korayoner.dev
-Expires: 2027-09-04T00:00:00.000Z
-Policy: https://korayoner.dev/kullanim-kosullari/
+Contact: https://korayoner.dev/iletisim/
+Expires: 2027-09-05T00:00:00.000Z
+Policy: https://korayoner.dev/kullanim-kosullari/#guvenlik
 Preferred-Languages: tr, en
 Canonical: https://korayoner.dev/.well-known/security.txt
