@@ -5,9 +5,19 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-05T10:00:00+03:00</updated>
+  <updated>2026-09-05T20:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Torba yasada ne var, ne yok? Beklentiler ve gerçek durum</title>
+    <link href="https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/</id>
+    <updated>2026-09-05T20:00:00+03:00</updated>
+    <published>2026-09-05T20:00:00+03:00</published>
+    <category term="Makale"/>
+    <summary>5 Eylül 2026 itibarıyla sunulmuş bir teklif yok. 2026'da çıkan kanunlar, Ekim takvimi ve dolaşan beklenti listesinin hukuki durumu ayrı ayrı. 7582, 7589 ve 7590 sayılı kanunlar yazın yürürlüğe girdi; TBMM 1 Ekim 2026'da açılıyor. Kademeli emeklilik ve Bağ-Kur 7.200 gün düzenlemesi henüz yasalaşmadı.</summary>
+  </entry>
 
   <entry>
     <title>Kademeli emeklilik son durum: yasalaştı mı, kimleri kapsıyor?</title>
