@@ -430,3 +430,26 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
   display: inline-flex; align-items: center; gap: .4rem;
   font-weight: 600; color: var(--text);
 }
+
+/* ---------- Veri tablosu (site geneli; günlük veri sayfaları kullanır) ---------- */
+.table-wrap { overflow-x: auto; margin: 1.25rem 0; }
+.data-table {
+  width: 100%; border-collapse: collapse; min-width: 480px;
+  font-variant-numeric: tabular-nums;
+}
+.data-table caption {
+  caption-side: top; text-align: left; padding-bottom: .75rem;
+  font-size: var(--step--1); color: var(--text-muted);
+}
+.data-table th, .data-table td {
+  padding: .6rem .75rem; text-align: right; white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+.data-table thead th {
+  font-size: var(--step--1); text-transform: uppercase; letter-spacing: .04em;
+  color: var(--text-muted); font-weight: 600;
+}
+.data-table thead th:first-child, .data-table tbody th { text-align: left; }
+.data-table tbody th { font-weight: 600; }
+.data-table tbody tr:nth-child(even) { background: color-mix(in srgb, var(--text) 4%, transparent); }
+.data-table tbody tr:hover { background: color-mix(in srgb, var(--brand) 7%, transparent); }

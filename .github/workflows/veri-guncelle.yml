@@ -1,0 +1,43 @@
+name: Günlük veri güncelleme
+
+# TCMB bülteni her iş günü ~15.30'da (TRT) yayımlanır.
+# 16:10 TRT = 13:10 UTC. Hafta içi çalışır; hafta sonu yeni bülten yok.
+on:
+  schedule:
+    - cron: "10 13 * * 1-5"
+  workflow_dispatch: {}      # elle de tetiklenebilir
+
+permissions:
+  contents: write
+
+concurrency:
+  group: veri-guncelle
+  cancel-in-progress: false
+
+jobs:
+  guncelle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Kaynakları test et
+        run: python tools/update_data.py --check
+
+      - name: Sayfaları yeniden üret
+        run: python tools/update_data.py
+
+      - name: Değişiklik varsa commit et
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Değişiklik yok, commit atlanıyor."
+            exit 0
+          fi
+          git config user.name  "korayoner-bot"
+          git config user.email "onerkoray@users.noreply.github.com"
+          git add -A
+          git commit -m "Günlük veri güncellemesi ($(date -u +%Y-%m-%d))"
+          git push
