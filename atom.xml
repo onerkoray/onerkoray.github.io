@@ -5,70 +5,196 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-07-19T12:00:00+03:00</updated>
+  <updated>2026-09-04T21:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
+  <icon>https://korayoner.dev/favicon.svg</icon>
 
   <entry>
     <title>Kıdem ve İhbar Tazminatı Hesaplama 2026</title>
     <link href="https://korayoner.dev/kidem-tazminati-hesaplama/" rel="alternate" type="text/html"/>
     <id>https://korayoner.dev/kidem-tazminati-hesaplama/</id>
-    <updated>2026-07-18T14:00:00+03:00</updated>
-    <summary>Kıdem ve ihbar tazminatını 2026 tavanı, giydirilmiş brüt ve damga vergisiyle hesaplayın; yazdırılabilir rapor dahil.</summary>
-  </entry>
-  <entry>
-    <title>Gümrük Vergisi Hesaplama 2026 — Yurt Dışı Alışveriş ve IMEI Harcı</title>
-    <link href="https://korayoner.dev/gumruk-vergisi-hesaplama/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/gumruk-vergisi-hesaplama/</id>
     <updated>2026-07-18T12:00:00+03:00</updated>
-    <summary>30 € muafiyet kalktı: AB'den %30, diğer ülkelerden %60 vergi. Yurt dışı sipariş maliyeti ve telefon IMEI kayıt harcı dahil gerçek maliyet hesaplama.</summary>
+    <published>2026-07-18T12:00:00+03:00</published>
+    <summary>2026 kıdem tazminatı hesaplama: güncel tavan (Temmuz–Aralık 73.729,84 TL), giydirilmiş brüt ücret, damga vergisi ve ihbar tazminatıyla gün gün hesaplayın; PDF rapor alın. Tamamen ücretsiz, üyelik gerektirmez.</summary>
   </entry>
+
   <entry>
-    <title>Araç ÖTV Hesaplama — ÖTV + KDV ve Anahtar Teslim Fiyat</title>
-    <link href="https://korayoner.dev/otv-hesaplama/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/otv-hesaplama/</id>
+    <title>Serbest Meslek Makbuzu Hesaplama</title>
+    <link href="https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/</id>
     <updated>2026-07-18T12:00:00+03:00</updated>
-    <summary>Motor hacmi ve matraha göre ÖTV dilimi, KDV ve anahtar teslim fiyat; elektrikli ve hibrit dilimleri, vergi yükü analiziyle.</summary>
+    <published>2026-07-18T12:00:00+03:00</published>
+    <summary>Serbest meslek makbuzu (SMM) hesaplama aracı: brütten nete veya netten brüte; %20 gelir vergisi stopajı, KDV ve KDV tevkifatı dahil. 2026 oranlarıyla anında, ücretsiz ve reklamsız. Ayrıca yıllık gelir vergisi tahmini.</summary>
   </entry>
+
   <entry>
-    <title>MTV Hesaplama 2026 — Motorlu Taşıtlar Vergisi</title>
+    <title>MTV Hesaplama 2026</title>
     <link href="https://korayoner.dev/mtv-hesaplama/" rel="alternate" type="text/html"/>
     <id>https://korayoner.dev/mtv-hesaplama/</id>
     <updated>2026-07-18T12:00:00+03:00</updated>
-    <summary>Motor hacmi, yaş ve taşıt değerine göre 2026 MTV, Ocak/Temmuz taksitleri ve gelecek yıllar projeksiyonu.</summary>
+    <published>2026-07-18T12:00:00+03:00</published>
+    <summary>2026 MTV hesaplama aracı: motor silindir hacmi, araç yaşı ve taşıt değerine göre motorlu taşıtlar vergisini anında hesaplayın. Otomobil ve motosiklet tarifesi, taksit tutarları ve gelecek yıllar projeksiyonu. Ücretsiz ve reklamsız.</summary>
   </entry>
+
   <entry>
-    <title>Serbest Meslek Makbuzu Hesaplama 2026 — Stopaj, KDV, Net/Brüt</title>
-    <link href="https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/</id>
-    <updated>2026-07-18T09:00:00+03:00</updated>
-    <summary>Brütten nete veya netten brüte; %20 stopaj, KDV ve tevkifat dahil. 2026 tarifesiyle yıllık gelir vergisi tahmini.</summary>
+    <title>Araç ÖTV Hesaplama</title>
+    <link href="https://korayoner.dev/otv-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/otv-hesaplama/</id>
+    <updated>2026-07-18T12:00:00+03:00</updated>
+    <published>2026-07-18T12:00:00+03:00</published>
+    <summary>2026 araç ÖTV hesaplama: motor hacmi ve matraha göre ÖTV oranı, ÖTV tutarı, KDV ve anahtar teslim fiyat. Benzinli, dizel, hibrit (HEV/PHEV) ve elektrikli araç dilimleri. Vergi yükü analizi ile, ücretsiz ve reklamsız.</summary>
   </entry>
+
+  <entry>
+    <title>Gümrük Vergisi Hesaplama</title>
+    <link href="https://korayoner.dev/gumruk-vergisi-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/gumruk-vergisi-hesaplama/</id>
+    <updated>2026-07-18T12:00:00+03:00</updated>
+    <published>2026-07-18T12:00:00+03:00</published>
+    <summary>2026 gümrük vergisi hesaplama: yurt dışı alışverişte (Temu, AliExpress, Amazon) yeni vergi oranları — AB&#x27;den %30, diğer ülkelerden %60, ÖTV IV listesi +%20. 30 € muafiyet kalktı. Telefon IMEI kayıt harcı 54.258 TL dahil toplam maliyet. Ücretsiz ve reklamsız.</summary>
+  </entry>
+
+  <entry>
+    <title>Birim Çevirici</title>
+    <link href="https://korayoner.dev/birim-cevirici/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/birim-cevirici/</id>
+    <updated>2026-07-18T12:00:00+03:00</updated>
+    <published>2026-07-18T12:00:00+03:00</published>
+    <summary>Ücretsiz birim çevirici: uzunluk, ağırlık, sıcaklık, alan, hacim, hız, veri ve zaman birimlerini anında dönüştürün. Metre-inç, kg-libre, °C-°F, m²-dönüm ve daha fazlası. Reklamsız, kayıtsız.</summary>
+  </entry>
+
+  <entry>
+    <title>Hesap Bölüşme (AA)</title>
+    <link href="https://korayoner.dev/hesap-bolusme/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/hesap-bolusme/</id>
+    <updated>2026-07-18T12:00:00+03:00</updated>
+    <published>2026-07-18T12:00:00+03:00</published>
+    <summary>Hesap bölüşme aracı: restoran, kafe veya grup harcamasını kişi sayısına böler; bahşiş ekler ve kuruş farkını adil dağıtır. Kişi başı tutarı saniyede hesaplayın. Ücretsiz, reklamsız, kayıtsız.</summary>
+  </entry>
+
+  <entry>
+    <title>İşsizlik Maaşı Hesaplama 2026</title>
+    <link href="https://korayoner.dev/issizlik-maasi-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/issizlik-maasi-hesaplama/</id>
+    <updated>2026-07-17T12:00:00+03:00</updated>
+    <published>2026-07-17T12:00:00+03:00</published>
+    <summary>İşsizlik maaşı hesaplama aracı: son 4 aylık brüt kazanca ve prim gün sayısına göre aylık işsizlik ödeneğini, tavanı, damga vergisini ve kaç ay alacağınızı 2026 parametreleriyle hesaplayın. Ücretsiz.</summary>
+  </entry>
+
+  <entry>
+    <title>Kredi Hesaplama 2026</title>
+    <link href="https://korayoner.dev/kredi-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/kredi-hesaplama/</id>
+    <updated>2026-07-17T12:00:00+03:00</updated>
+    <published>2026-07-17T12:00:00+03:00</published>
+    <summary>Kredi hesaplama aracı: ihtiyaç, konut ve taşıt kredisinde aylık taksiti, toplam geri ödemeyi, toplam faizi ve ay ay ödeme planını (anapara-faiz dağılımı) anında hesaplayın. Ücretsiz, reklamsız.</summary>
+  </entry>
+
+  <entry>
+    <title>Vadeli Mevduat Faizi Hesaplama 2026</title>
+    <link href="https://korayoner.dev/vadeli-mevduat-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/vadeli-mevduat-hesaplama/</id>
+    <updated>2026-07-17T12:00:00+03:00</updated>
+    <published>2026-07-17T12:00:00+03:00</published>
+    <summary>Vadeli mevduat faizi hesaplama aracı: anapara, yıllık faiz oranı ve vadeye göre brüt faizi, stopaj kesintisini ve net getiriyi anında hesaplayın. Güncel stopaj oranlarıyla, ücretsiz ve reklamsız.</summary>
+  </entry>
+
+  <entry>
+    <title>Kira Artışı Hesaplama 2026</title>
+    <link href="https://korayoner.dev/kira-artisi-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/kira-artisi-hesaplama/</id>
+    <updated>2026-07-17T12:00:00+03:00</updated>
+    <published>2026-07-17T12:00:00+03:00</published>
+    <summary>Kira artışı hesaplama aracı: konut ve iş yeri kiralarında 12 aylık TÜFE ortalamasına göre yasal azami zam oranını, yeni kirayı ve artış farkını saniyede hesaplayın. Ücretsiz, reklamsız, kayıtsız.</summary>
+  </entry>
+
   <entry>
     <title>Brüt Net Maaş Hesaplama 2026</title>
     <link href="https://korayoner.dev/maas-hesaplama/" rel="alternate" type="text/html"/>
     <id>https://korayoner.dev/maas-hesaplama/</id>
     <updated>2026-07-16T12:00:00+03:00</updated>
-    <summary>Güncel vergi dilimleri, SGK tavanı ve asgari ücret istisnasıyla 12 aylık bordro dökümü; netten brüte kuruş hassasiyetinde.</summary>
+    <published>2026-07-16T12:00:00+03:00</published>
+    <summary>2026 brüt net maaş hesaplama: güncel vergi dilimleri, SGK tavanı, asgari ücret istisnası ve damga vergisiyle ay ay 12 aylık bordro dökümü. Netten brüte de hesaplar — ücretsiz ve reklamsız.</summary>
   </entry>
+
   <entry>
-    <title>Hesap Bölüşme ve Birim Çevirici</title>
-    <link href="https://korayoner.dev/hesap-bolusme/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/hesap-bolusme/</id>
-    <updated>2026-07-17T12:00:00+03:00</updated>
-    <summary>Restoran adisyonunu adil bölüşme (AA) ve pratik birim çevirme araçları.</summary>
+    <title>Dithering Görsel Aracı</title>
+    <link href="https://korayoner.dev/dither-studio/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/dither-studio/</id>
+    <updated>2026-07-15T12:00:00+03:00</updated>
+    <published>2026-07-15T12:00:00+03:00</published>
+    <summary>Görsellerinizi 1-bit, 8-bit, 16-bit ve 32-bit dithering efektleriyle retro/piksel estetiğine dönüştüren ücretsiz, tarayıcı tabanlı araç. Floyd–Steinberg ve ordered dithering. Koray Öner tarafından geliştirildi.</summary>
   </entry>
+
   <entry>
-    <title>Kredi Hesaplama — Taksit ve Toplam Maliyet</title>
-    <link href="https://korayoner.dev/kredi-hesaplama/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/kredi-hesaplama/</id>
-    <updated>2026-07-17T12:00:00+03:00</updated>
-    <summary>İhtiyaç, konut ve taşıt kredisinde aylık taksit, toplam geri ödeme ve ödeme planı.</summary>
-  </entry>
-  <entry>
-    <title>KDV Hesaplama — Dahil/Hariç</title>
+    <title>KDV Hesaplama</title>
     <link href="https://korayoner.dev/kdv-hesaplama/" rel="alternate" type="text/html"/>
     <id>https://korayoner.dev/kdv-hesaplama/</id>
     <updated>2026-07-14T12:00:00+03:00</updated>
-    <summary>KDV hariç tutara KDV ekleyin veya dahil tutardan ayırın; %1, %10, %20 oranlarıyla.</summary>
+    <published>2026-07-14T12:00:00+03:00</published>
+    <summary>KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV&#x27;yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.</summary>
+  </entry>
+
+  <entry>
+    <title>Yüzde Hesaplama</title>
+    <link href="https://korayoner.dev/yuzde-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/yuzde-hesaplama/</id>
+    <updated>2026-07-14T12:00:00+03:00</updated>
+    <published>2026-07-14T12:00:00+03:00</published>
+    <summary>Yüzde hesaplama aracı: bir sayının yüzdesini, iki sayı arasındaki yüzdeyi, yüzde artış ve azalışı saniyeler içinde hesaplayın. Formüller, örnekler ve sık sorulan sorularla ücretsiz yüzde hesaplama.</summary>
+  </entry>
+
+  <entry>
+    <title>Yaş Hesaplama</title>
+    <link href="https://korayoner.dev/yas-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/yas-hesaplama/</id>
+    <updated>2026-07-14T12:00:00+03:00</updated>
+    <published>2026-07-14T12:00:00+03:00</published>
+    <summary>Yaş hesaplama aracı: doğum tarihinize göre kaç yaşında olduğunuzu yıl, ay ve gün olarak; iki tarih arasındaki gün sayısını ve doğum gününüze kalan süreyi anında hesaplayın. Ücretsiz.</summary>
+  </entry>
+
+  <entry>
+    <title>Final Notu Hesaplama</title>
+    <link href="https://korayoner.dev/final-notu-hesaplama/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/final-notu-hesaplama/</id>
+    <updated>2026-07-14T12:00:00+03:00</updated>
+    <published>2026-07-14T12:00:00+03:00</published>
+    <summary>Final notu hesaplama aracı: vize notu ve ağırlıklara göre dersten geçmek için finalden kaç almanız gerektiğini ve dönem sonu ortalamanızı anında hesaplayın. Ücretsiz ve reklamsız.</summary>
+  </entry>
+
+  <entry>
+    <title>İnternet Hız Testi</title>
+    <link href="https://korayoner.dev/internet-hiz-testi/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/internet-hiz-testi/</id>
+    <updated>2026-07-14T12:00:00+03:00</updated>
+    <published>2026-07-14T12:00:00+03:00</published>
+    <summary>İnternet hız testi: indirme (download) hızınızı ve ping (gecikme) değerinizi tarayıcınızda ölçün. Ücretsiz, reklamsız ve kayıt gerektirmeyen internet hızı ölçme aracı.</summary>
+  </entry>
+
+  <entry>
+    <title>Son Depremler</title>
+    <link href="https://korayoner.dev/son-depremler/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/son-depremler/</id>
+    <updated>2026-07-14T12:00:00+03:00</updated>
+    <published>2026-07-14T12:00:00+03:00</published>
+    <summary>Son depremler: Türkiye ve çevresindeki son dakika depremleri canlı listeleyin, son 5 depremi renkli diyagramda görün, geçmiş tarihleri USGS arşivinden sorgulayın. Kandilli verisiyle ücretsiz, üyeliksiz, reklamsız.</summary>
+  </entry>
+
+  <entry>
+    <title>KeyMint — Güçlü Şifre Üreteci</title>
+    <link href="https://korayoner.dev/keymint/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/keymint/</id>
+    <updated>2026-07-14T12:00:00+03:00</updated>
+    <published>2026-07-14T12:00:00+03:00</published>
+    <summary>KeyMint ile güçlü ve rastgele şifre oluşturun. Uzunluk, büyük/küçük harf, rakam ve sembol seçenekleriyle güvenli parola üretin. Ücretsiz, reklamsız ve tamamen tarayıcıda — şifreniz hiçbir yere gönderilmez.</summary>
+  </entry>
+
+  <entry>
+    <title>Design color palettes that make rooms feel intentional.</title>
+    <link href="https://korayoner.dev/decorpalette/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/decorpalette/</id>
+    <updated>2026-07-14T12:00:00+03:00</updated>
+    <published>2026-07-14T12:00:00+03:00</published>
+    <summary>DecorPalette is a free, privacy-first color palette generator for interior design. Build accessible room palettes, check WCAG contrast, lock shades, and export to CSS, JSON, or clipboard — all in your browser.</summary>
   </entry>
 </feed>
