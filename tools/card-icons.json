@@ -1,0 +1,90 @@
+{
+ "doviz-kurlari": {
+  "cat": "vergi",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M15 9.5A3.5 3.5 0 0 0 9 12a3.5 3.5 0 0 0 6 2.5\"/></svg>"
+ },
+ "maas-hesaplama": {
+  "cat": "maas",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"6\" width=\"20\" height=\"12\" rx=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2.5\"/><path d=\"M6 12h.01M18 12h.01\"/></svg>"
+ },
+ "kidem-tazminati-hesaplama": {
+  "cat": "maas",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><path d=\"M14 2v6h6\"/><path d=\"M8 13h8M8 17h5\"/></svg>"
+ },
+ "issizlik-maasi-hesaplama": {
+  "cat": "maas",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/><path d=\"M9 12l2 2 4-4\"/></svg>"
+ },
+ "serbest-meslek-makbuzu-hesaplama": {
+  "cat": "vergi",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 2v20l2.5-1.5L10 22l2-1.5L14 22l2.5-1.5L19 22V2l-2.5 1.5L14 2l-2 1.5L10 2 7.5 3.5z\"/><path d=\"M9 8h6M9 12h6M9 16h4\"/></svg>"
+ },
+ "kredi-hesaplama": {
+  "cat": "vergi",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 21h18\"/><path d=\"M5 21V9l7-5 7 5v12\"/><path d=\"M9 21v-6h6v6\"/></svg>"
+ },
+ "vadeli-mevduat-hesaplama": {
+  "cat": "vergi",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><ellipse cx=\"12\" cy=\"6\" rx=\"8\" ry=\"3\"/><path d=\"M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6\"/><path d=\"M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6\"/></svg>"
+ },
+ "kira-artisi-hesaplama": {
+  "cat": "vergi",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/><path d=\"M9 22V12h6v10\"/></svg>"
+ },
+ "yuzde-hesaplama": {
+  "cat": "genel",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19 5 5 19\"/><circle cx=\"6.5\" cy=\"6.5\" r=\"2.5\"/><circle cx=\"17.5\" cy=\"17.5\" r=\"2.5\"/></svg>"
+ },
+ "birim-cevirici": {
+  "cat": "genel",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 8h14\"/><path d=\"m13 4 4 4-4 4\"/><path d=\"M21 16H7\"/><path d=\"m11 12-4 4 4 4\"/></svg>"
+ },
+ "hesap-bolusme": {
+  "cat": "genel",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/></svg>"
+ },
+ "decorpalette": {
+  "cat": "genel",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2a10 10 0 1 0 0 20 2 2 0 0 0 2-2v-1a2 2 0 0 1 2-2h1a4 4 0 0 0 4-4 10 10 0 0 0-9-11z\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1\"/><circle cx=\"13\" cy=\"6.5\" r=\"1\"/><circle cx=\"16.5\" cy=\"10.5\" r=\"1\"/></svg>"
+ },
+ "dither-studio": {
+  "cat": "genel",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 9h18M9 3v18\"/></svg>"
+ },
+ "kdv-hesaplama": {
+  "cat": "vergi",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"5\"/><path d=\"m15 9-6 6\"/><path d=\"M9.4 9.4h.01M14.6 14.6h.01\"/></svg>"
+ },
+ "mtv-hesaplama": {
+  "cat": "vergi",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 17v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4\"/><path d=\"m5 11 1.5-4.4A2 2 0 0 1 8.4 5.2h7.2a2 2 0 0 1 1.9 1.4L19 11\"/><circle cx=\"7.5\" cy=\"17\" r=\"1.5\"/><circle cx=\"16.5\" cy=\"17\" r=\"1.5\"/></svg>"
+ },
+ "otv-hesaplama": {
+  "cat": "vergi",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3H5a2 2 0 0 0-2 2v7l9 9a1.4 1.4 0 0 0 2 0l7-7a1.4 1.4 0 0 0 0-2z\"/><circle cx=\"8\" cy=\"8\" r=\"1.2\"/></svg>"
+ },
+ "gumruk-vergisi-hesaplama": {
+  "cat": "vergi",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m3 7 9-4 9 4v10l-9 4-9-4z\"/><path d=\"m3 7 9 4 9-4\"/><path d=\"M12 11v10\"/></svg>"
+ },
+ "internet-hiz-testi": {
+  "cat": "genel",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 15a8 8 0 1 1 16 0\"/><path d=\"m12 15 4.5-4.5\"/><circle cx=\"12\" cy=\"15\" r=\"1\"/></svg>"
+ },
+ "final-notu-hesaplama": {
+  "cat": "genel",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m2 9 10-5 10 5-10 5z\"/><path d=\"M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5\"/></svg>"
+ },
+ "son-depremler": {
+  "cat": "genel",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12h4l3-8 4 16 3-8h4\"/></svg>"
+ },
+ "yas-hesaplama": {
+  "cat": "genel",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 10h18M8 3v4M16 3v4\"/></svg>"
+ },
+ "keymint": {
+  "cat": "genel",
+  "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"11\" width=\"14\" height=\"9\" rx=\"2\"/><path d=\"M8 11V7a4 4 0 0 1 8 0v4\"/></svg>"
+ }
+}
