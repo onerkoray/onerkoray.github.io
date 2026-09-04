@@ -5,3 +5,6 @@ Thumbs.db
 # Ekran görüntüleri ve geçici görseller
 Ekran*.png
 *.screenshot.png
+
+.vercel
+.env*
