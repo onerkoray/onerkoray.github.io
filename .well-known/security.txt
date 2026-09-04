@@ -1,4 +1,4 @@
-Contact: https://github.com/onerkoray
+Contact: mailto:iletisim@korayoner.dev
 Expires: 2027-09-04T00:00:00.000Z
 Policy: https://korayoner.dev/kullanim-kosullari/
 Preferred-Languages: tr, en
