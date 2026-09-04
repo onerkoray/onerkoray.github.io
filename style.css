@@ -148,9 +148,17 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 .project-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .project-card { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform .3s cubic-bezier(.34,1.4,.64,1), box-shadow .3s ease, border-color .3s ease; }
 .project-card:hover { transform: translateY(-6px); border-color: color-mix(in srgb, var(--brand) 45%, var(--border)); box-shadow: 0 2px 6px rgba(16,24,20,.08), 0 20px 40px rgba(16,24,20,.14); }
-.project-swatch { display: flex; block-size: 72px; }
-.project-swatch span { flex: 1; transition: flex .35s ease; }
-.project-card:hover .project-swatch span:nth-child(1) { flex: 1.8; }
+/* Kart kapagi: paylasim gorselleri yalnizca og:image icinde yasiyordu, yani
+   sayfada hic render edilmiyordu. Google Gorseller sayfada gercekten yer alan
+   gorselleri indeksler — kapaklar artik kartlarda gorunuyor. */
+.project-cover {
+  display: block; inline-size: 100%; block-size: auto;
+  aspect-ratio: 1200 / 630; object-fit: cover;
+  border-block-end: 1px solid var(--border);
+  background: var(--surface-2);
+  transition: transform .35s cubic-bezier(.34,1.4,.64,1);
+}
+.project-card:hover .project-cover { transform: scale(1.03); }
 .project-body h3 a { position: relative; transition: color .2s ease; }
 .project-card:hover .project-body h3 a { color: var(--brand-strong); }
 .project-body { padding: 1.25rem; }
@@ -500,3 +508,18 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 
 /* Metin ağırlıklı tablolarda sağa yaslama okunmuyor: sola çek */
 .data-table--text th, .data-table--text td { text-align: left; white-space: normal; }
+
+/* ---------- Paylasilabilir ozet karti ----------
+   Kapaklar yalnizca og:image icinde yasarken hicbir sayfada render edilmiyor,
+   dolayisiyla Google Gorseller tarafindan indekslenemiyordu. Hesap sayfalari
+   artik kendi kartlarini gorunur bicimde tasiyor. */
+.share-card { margin: 1.5rem 0 0; max-inline-size: 620px; }
+.share-card img {
+  display: block; inline-size: 100%; block-size: auto;
+  aspect-ratio: 1200 / 630;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+.share-card figcaption {
+  margin-top: .5rem; font-size: var(--step--1); color: var(--text-muted);
+}
