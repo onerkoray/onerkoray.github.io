@@ -200,8 +200,13 @@
       }
       palette = next;
       render();
-      announce(`Generated ${count} colors using the ${els.harmony.value} harmony.`);
+      announce(`${count} renk üretildi (${HARMONY_TR[els.harmony.value] || els.harmony.value} uyumu).`);
     }
+
+    const HARMONY_TR = {
+      analogous: "komşu renkler", complementary: "tamamlayıcı", split: "bölünmüş tamamlayıcı",
+      triadic: "üçlü", tetradic: "dörtlü", monochromatic: "tek renkli",
+    };
 
     function render() {
       els.swatches.innerHTML = "";
@@ -212,22 +217,22 @@
         li.innerHTML = `
           <div class="swatch-color" style="background:${sw.hex}">
             <button class="swatch-lock" type="button" aria-pressed="${sw.locked}"
-              aria-label="${sw.locked ? "Unlock" : "Lock"} color ${sw.hex}"
+              aria-label="${sw.hex} rengini ${sw.locked ? "kilidi aç" : "kilitle"}"
               style="color:${text};background:${sw.locked ? "" : "rgba(255,255,255,.85)"}">
               ${sw.locked ? "&#128274;" : "&#128275;"}
             </button>
           </div>
           <div class="swatch-meta">
             <span class="swatch-hex">${sw.hex}</span>
-            <button class="swatch-copy" type="button" data-hex="${sw.hex}">Copy</button>
+            <button class="swatch-copy" type="button" data-hex="${sw.hex}">Kopyala</button>
           </div>`;
 
         $(".swatch-lock", li).addEventListener("click", () => toggleLock(index));
         $(".swatch-copy", li).addEventListener("click", async (e) => {
           const ok = await copyText(sw.hex);
-          e.currentTarget.textContent = ok ? "Copied!" : "Failed";
-          announce(ok ? `Copied ${sw.hex} to clipboard.` : "Clipboard copy failed.");
-          setTimeout(() => { e.currentTarget.textContent = "Copy"; }, 1400);
+          e.currentTarget.textContent = ok ? "Kopyalandı!" : "Başarısız";
+          announce(ok ? `${sw.hex} panoya kopyalandı.` : "Panoya kopyalanamadı.");
+          setTimeout(() => { e.currentTarget.textContent = "Kopyala"; }, 1400);
         });
         els.swatches.appendChild(li);
       });
@@ -243,7 +248,7 @@
       } else {
         const norm = Color.normalizeHex(els.baseHex.value);
         if (norm) { els.base.value = norm; els.baseHex.setCustomValidity(""); }
-        else { els.baseHex.setCustomValidity("Enter a valid 6-digit hex color."); return; }
+        else { els.baseHex.setCustomValidity("Geçerli bir 6 haneli hex renk kodu girin."); return; }
       }
       generate();
     }
@@ -268,15 +273,15 @@
 
       $("#copyCssBtn").addEventListener("click", async () => {
         const ok = await copyText(asCss());
-        announce(ok ? "Copied palette as CSS custom properties." : "Clipboard copy failed.");
+        announce(ok ? "Palet CSS değişkenleri olarak kopyalandı." : "Panoya kopyalanamadı.");
       });
       $("#copyJsonBtn").addEventListener("click", async () => {
         const ok = await copyText(asJson());
-        announce(ok ? "Copied palette as JSON." : "Clipboard copy failed.");
+        announce(ok ? "Palet JSON olarak kopyalandı." : "Panoya kopyalanamadı.");
       });
       $("#saveBtn").addEventListener("click", () => {
         Library.save(palette.map((s) => s.hex));
-        announce("Palette saved to your library.");
+        announce("Palet kitaplığınıza kaydedildi.");
       });
 
       // Space to shuffle (ignore when typing in a control).
@@ -343,7 +348,7 @@
       hexInput.addEventListener("change", () => {
         const norm = Color.normalizeHex(hexInput.value);
         if (norm) { picker.value = norm; hexInput.setCustomValidity(""); update(); }
-        else { hexInput.setCustomValidity("Enter a valid 6-digit hex color."); }
+        else { hexInput.setCustomValidity("Geçerli bir 6 haneli hex renk kodu girin."); }
       });
     }
 
@@ -374,11 +379,11 @@
         li.className = "saved-card";
         const strip = entry.colors.map((c) => `<span style="background:${c}"></span>`).join("");
         li.innerHTML = `
-          <div class="saved-strip" role="img" aria-label="Palette: ${entry.colors.join(", ")}">${strip}</div>
+          <div class="saved-strip" role="img" aria-label="Palet: ${entry.colors.join(", ")}">${strip}</div>
           <div class="saved-actions">
-            <button type="button" data-action="load">Load</button>
-            <button type="button" data-action="copy">Copy</button>
-            <button type="button" data-action="remove">Remove</button>
+            <button type="button" data-action="load">Yükle</button>
+            <button type="button" data-action="copy">Kopyala</button>
+            <button type="button" data-action="remove">Sil</button>
           </div>`;
         $('[data-action="load"]', li).addEventListener("click", () => {
           Generator.load(entry.colors);

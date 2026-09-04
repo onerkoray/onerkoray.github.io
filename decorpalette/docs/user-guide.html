@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="auto">
+<html lang="tr" data-theme="auto">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
@@ -11,32 +11,32 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>User Guide — DecorPalette</title>
-  <meta name="description" content="A complete guide to generating, locking, checking, and exporting interior color palettes with DecorPalette.">
+  <title>DecorPalette Kullanım Kılavuzu | Koray Öner</title>
+  <meta name="description" content="DecorPalette ile iç mekân renk paleti üretme, renk kilitleme, kontrast ölçme ve dışa aktarmanın tam kılavuzu.">
   <meta name="theme-color" content="#0e7c66">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Koray Öner">
-  <meta property="og:title" content="User Guide — DecorPalette">
-  <meta property="og:description" content="A complete guide to generating, locking, checking, and exporting interior color palettes with DecorPalette.">
+  <meta property="og:title" content="DecorPalette Kullanım Kılavuzu">
+  <meta property="og:description" content="DecorPalette ile iç mekân renk paleti üretme, renk kilitleme, kontrast ölçme ve dışa aktarmanın tam kılavuzu.">
   <meta property="og:url" content="https://korayoner.dev/decorpalette/docs/user-guide.html">
-  <meta property="og:locale" content="en_US">
+  <meta property="og:locale" content="tr_TR">
   <meta property="og:image" content="https://korayoner.dev/images/koray-oner-kapak.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="User Guide — DecorPalette">
+  <meta name="twitter:title" content="DecorPalette Kullanım Kılavuzu">
   <meta name="twitter:image" content="https://korayoner.dev/images/koray-oner-kapak.png">
   <link rel="canonical" href="https://korayoner.dev/decorpalette/docs/user-guide.html">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": "DecorPalette user guide",
+    "headline": "DecorPalette kullanım kılavuzu",
     "author": { "@type": "Person", "name": "Koray Öner", "url": "https://github.com/onerkoray" },
     "publisher": { "@type": "Organization", "name": "DecorPalette", "logo": "https://korayoner.dev/decorpalette/favicon.svg" },
     "mainEntityOfPage": "https://korayoner.dev/decorpalette/docs/user-guide.html",
-    "inLanguage": "en"
+    "inLanguage": "tr"
   }
   </script>
   <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
@@ -48,57 +48,57 @@
     "@type": "BreadcrumbList",
     "@id": "https://korayoner.dev/decorpalette/docs/user-guide.html#breadcrumb",
     "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://korayoner.dev/" },
+        { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
         { "@type": "ListItem", "position": 2, "name": "DecorPalette", "item": "https://korayoner.dev/decorpalette/" },
-        { "@type": "ListItem", "position": 3, "name": "User Guide", "item": "https://korayoner.dev/decorpalette/docs/user-guide.html" }
+        { "@type": "ListItem", "position": 3, "name": "Kullanım Kılavuzu", "item": "https://korayoner.dev/decorpalette/docs/user-guide.html" }
     ]
   }
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="../"><span class="brand-name">DecorPalette</span></a>
-      <nav class="site-nav" aria-label="Primary"><ul><li><a href="../">Home</a></li><li><a href="../#faq">FAQ</a></li><li><a href="../../">Koray Öner</a></li></ul></nav>
+      <nav class="site-nav" aria-label="Birincil"><ul><li><a href="../../">Koray Öner</a></li><li><a href="../../#projects">Tüm araçlar</a></li><li><a href="../">DecorPalette</a></li><li><a href="../#faq">S.S.S.</a></li></ul></nav>
     </div>
   </header>
   <main id="main">
     <article class="content">
       <div class="wrap prose">
-        <nav aria-label="Breadcrumb"><a href="../">Home</a> › User Guide</nav>
-        <h1>DecorPalette user guide</h1>
-        <p>This guide, written by DecorPalette's creator <strong>Koray Öner</strong>, walks through every feature so you can move from a single anchor color to a finished, accessible scheme.</p>
+        <nav aria-label="Site haritası"><a href="../../">Ana Sayfa</a> › <a href="../">DecorPalette</a> › Kullanım Kılavuzu</nav>
+        <h1>DecorPalette kullanım kılavuzu</h1>
+        <p>DecorPalette'in geliştiricisi <strong>Koray Öner</strong> tarafından yazılan bu kılavuz, tek bir çapa renginden bitmiş ve erişilebilir bir şemaya ulaşmanız için tüm özellikleri anlatır.</p>
 
-        <h2>1. Choosing a base color</h2>
-        <p>Use the color picker or type a six-digit hex value into the field beside it. The two inputs stay in sync, and an invalid hex is rejected with a validation message rather than breaking the palette.</p>
+        <h2>1. Ana rengi seçmek</h2>
+        <p>Renk seçiciyi kullanın ya da yanındaki alana altı haneli bir hex değeri yazın. İki alan birbirine bağlı çalışır; geçersiz bir hex girildiğinde palet bozulmaz, bunun yerine bir uyarı gösterilir.</p>
 
-        <h2>2. Selecting a harmony</h2>
-        <p>Each harmony applies a different set of hue rotations to your base color. Analogous stays close for calm, tonal rooms; complementary and triadic create bolder contrast for accent-driven spaces; monochromatic varies only lightness for a refined single-hue look.</p>
+        <h2>2. Uyum kuralını seçmek</h2>
+        <p>Her uyum kuralı ana renginize farklı bir ton döndürmesi uygular. Komşu renkler sakin ve tonal odalar için dar bir aralıkta kalır; tamamlayıcı ve üçlü uyumlar vurgu odaklı mekânlar için daha güçlü kontrast üretir; tek renkli uyum yalnızca açıklığı değiştirerek rafine, tek tonlu bir görünüm verir.</p>
 
-        <h2>3. Locking and shuffling</h2>
-        <p>Press the lock button on any swatch to keep it fixed. Pressing <kbd>Space</kbd> (or the Shuffle button) regenerates only the unlocked colors, letting you converge on a scheme one decision at a time.</p>
+        <h2>3. Kilitleme ve karıştırma</h2>
+        <p>Sabit kalmasını istediğiniz rengin kilit düğmesine basın. <kbd>Boşluk</kbd> tuşu (ya da Karıştır düğmesi) yalnızca kilitli olmayan renkleri yeniden üretir; böylece şemaya adım adım yaklaşırsınız.</p>
 
-        <h2>4. Checking contrast</h2>
-        <p>The contrast checker computes the WCAG relative-luminance ratio between a text color and a background color. Aim for 4.5:1 for body text and 3:1 for large text to meet WCAG 2.2 AA.</p>
+        <h2>4. Kontrastı ölçmek</h2>
+        <p>Kontrast ölçer, metin rengi ile zemin rengi arasındaki WCAG bağıl parlaklık oranını hesaplar. WCAG 2.2 AA için gövde metninde 4,5:1, büyük metinde 3:1 hedefleyin.</p>
 
-        <h2>5. Exporting and saving</h2>
-        <p>Copy the whole palette as CSS custom properties or a JSON array, or save it to your local library. Saved palettes persist in your browser and can be reloaded into the generator at any time.</p>
+        <h2>5. Dışa aktarma ve kaydetme</h2>
+        <p>Paletin tamamını CSS değişkeni ya da JSON dizisi olarak kopyalayın veya yerel kitaplığınıza kaydedin. Kayıtlı paletler tarayıcınızda kalır ve istediğiniz zaman üretece geri yüklenebilir.</p>
 
-        <p><a href="../">← Back to the app</a></p>
+        <p><a href="../">← Araca dön</a></p>
       </div>
     </article>
   </main>
   <footer class="site-footer">
     <div class="wrap footer-legal">
-      <p class="muted">© 2026 DecorPalette · Created by Koray Öner · MIT License.</p>
-      <ul class="footer-links" aria-label="Site links">
+      <p class="muted">© 2026 DecorPalette · Koray Öner tarafından geliştirildi · MIT lisansı.</p>
+      <ul class="footer-links" aria-label="Site bağlantıları">
         <li><a href="../../">Koray Öner</a></li>
-        <li><a href="../../hakkimda/">About</a></li>
-        <li><a href="../../makaleler/">Articles</a></li>
-        <li><a href="../../iletisim/">Contact</a></li>
-        <li><a href="../../gizlilik/">Privacy &amp; KVKK</a></li>
-        <li><a href="../../kullanim-kosullari/">Terms of use</a></li>
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../../makaleler/">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
       </ul>
     </div>
   </footer>

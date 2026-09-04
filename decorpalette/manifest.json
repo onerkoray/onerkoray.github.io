@@ -1,17 +1,31 @@
 {
-  "name": "DecorPalette — Interior Color Palette Generator",
+  "name": "DecorPalette — Renk Paleti Üreteci",
   "short_name": "DecorPalette",
-  "description": "Build accessible interior-design color palettes, check WCAG contrast, and export to CSS or JSON — privately in your browser.",
+  "description": "İç mekân dekorasyonu için erişilebilir renk paletleri üretin; WCAG kontrastını ölçün, CSS veya JSON olarak dışa aktarın.",
   "start_url": "./?utm_source=pwa",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#0b0d10",
   "theme_color": "#0e7c66",
-  "lang": "en",
-  "categories": ["design", "productivity", "utilities"],
+  "lang": "tr",
+  "categories": [
+    "design",
+    "productivity",
+    "utilities"
+  ],
   "icons": [
-    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
