@@ -170,11 +170,17 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 .project-card--soon { border-style: dashed; box-shadow: none; background: var(--surface-2); }
 
 .about-figure { float: right; margin: 0 0 1rem 1.5rem; text-align: center; position: relative; }
-.about-figure img { border-radius: 20px; box-shadow: var(--shadow); position: relative; z-index: 1; }
+.about-figure img {
+  border-radius: 20px; box-shadow: var(--shadow); position: relative; z-index: 1;
+  /* Tasarim onizlemelerindeki siyah-beyaz islem; uzerine gelince renge doner */
+  filter: grayscale(1) contrast(1.05);
+  transition: filter .45s ease;
+}
+.about-figure:hover img, .about-figure:focus-within img { filter: grayscale(0) contrast(1); }
 /* Logonun arkasında dönen, renk değiştiren yumuşak hale */
 .about-figure::before {
-  content: ""; position: absolute; top: 60px; left: 50%;
-  width: 172px; height: 172px; transform: translate(-50%, -50%);
+  content: ""; position: absolute; top: 34%; left: 50%;
+  inline-size: 62%; aspect-ratio: 1; transform: translate(-50%, -50%);
   z-index: 0; border-radius: 50%; pointer-events: none;
   background: conic-gradient(from 0deg, var(--brand), #ffd479, var(--accent-bright), #5b9be6, var(--brand));
   filter: blur(26px); opacity: .5;
