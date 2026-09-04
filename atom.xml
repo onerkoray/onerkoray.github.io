@@ -5,9 +5,19 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-04T21:00:00+03:00</updated>
+  <updated>2026-09-05T10:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Kademeli emeklilik son durum: yasalaştı mı, kimleri kapsıyor?</title>
+    <link href="https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/" rel="alternate" type="text/html"/>
+    <id>https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/</id>
+    <updated>2026-09-05T10:00:00+03:00</updated>
+    <published>2026-09-05T10:00:00+03:00</published>
+    <category term="Makale"/>
+    <summary>Kademeli emeklilik yasalaşmadı: 2/2755 esas numaralı teklif 6 Aralık 2024'ten bu yana Plan ve Bütçe Komisyonu'nda bekliyor. Teklifin yasama sürecinde hangi aşamada olduğu, kimleri kapsadığı ve 8 Eylül 1999 - 30 Nisan 2008 arası sigortalılara şu an uygulanan yaş ve prim gün şartları.</summary>
+  </entry>
 
   <entry>
     <title>Kıdem ve İhbar Tazminatı Hesaplama 2026</title>

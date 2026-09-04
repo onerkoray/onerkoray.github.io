@@ -146,6 +146,10 @@ SPEC = {
    "Metni Base64'e kodlayın veya Base64'ü metne çözün. UTF-8 uyumlu.",
    ["Ücretsiz", "Reklamsız", "UTF-8", "Tarayıcıda"]),
 
+ "kademeli-emeklilik-son-durum": ("makaleler/kademeli-emeklilik-son-durum", "Kademeli Emeklilik", "Son Durum 2026",
+   "Teklif Meclis'te hangi aşamada, kimleri kapsıyor ve şu an hangi şartlar geçerli?",
+   ["Kaynaklı", "Güncel", "Reklamsız", "Makale"]),
+
  "doviz-kurlari": ("doviz-kurlari", "TCMB", "Döviz Kurları",
    "Merkez Bankası gösterge kurları, her iş günü otomatik güncellenir.",
    ["Ücretsiz", "Reklamsız", "Resmî veri", "Her iş günü"]),
