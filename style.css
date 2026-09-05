@@ -550,10 +550,17 @@ table.payroll thead th { font-size: .78rem; text-transform: uppercase; letter-sp
 table.payroll tbody th { text-align: left; font-weight: 600; }
 table.payroll tbody tr:nth-child(even) { background: rgba(127,127,127,.05); }
 
-table.param-table { min-width: 900px; }
-table.param-table td:nth-child(5),
-table.param-table td:nth-child(6),
-table.param-table td:nth-child(7) { white-space: normal; text-align: left; min-width: 180px; }
+/* Parametre tablolari .prose olcusunden (68ch) genis; okunabilmesi icin
+   kapsayicidan tasip sayfa genisligine yayilirlar. */
+.param-table { min-width: 0; font-size: .84rem; }
+.prose > .table-scroll {
+  width: min(100vw - 2.5rem, 1000px);
+  margin-inline: calc(50% - min(50vw - 1.25rem, 500px));
+}
+.param-table th, .param-table td { padding: 7px 9px; }
+/* Yalnizca metin sutunlari sola yaslanir; tarife tablosunda hepsi sayidir. */
+.param-limits tbody td:nth-child(5),
+.param-limits tbody td:nth-child(6) { white-space: normal; text-align: left; }
 
 dl.changelog { margin: 1rem 0 0; }
 dl.changelog dt {
