@@ -1,0 +1,104 @@
+/* Çalışma Biçimi Karşılaştırma — araca özgü stiller.
+   Form stilleri ../isten-ayrilma-hesaplama/style.css'ten gelir. */
+
+.cmp-intro { margin: 0 0 14px; font-size: var(--step--1); }
+
+.cmp-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.cmp-card {
+  position: relative;
+  padding: 18px 18px 14px;
+  border: 1px solid var(--border, rgba(127,127,127,.22));
+  border-radius: 12px;
+  background: var(--surface, rgba(127,127,127,.04));
+  min-width: 0;
+}
+.cmp-card.is-best {
+  border-color: rgba(14,124,102,.55);
+  box-shadow: 0 0 0 1px rgba(14,124,102,.25);
+}
+.cmp-flag {
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  background: #0e7c66;
+  color: #fff;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+.cmp-card h3 { margin: 0 0 6px; font-size: var(--step--1); font-weight: 700; }
+.cmp-net {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+.cmp-card.is-best .cmp-net { color: var(--brand-strong, #0e7c66); }
+.cmp-sub { margin: 2px 0 10px; font-size: .8rem; opacity: .7; }
+.cmp-meta { display: grid; gap: 4px; margin: 0; font-size: .8rem; }
+.cmp-meta > div { display: flex; justify-content: space-between; gap: 10px; }
+.cmp-meta dt { margin: 0; opacity: .65; }
+.cmp-meta dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.cmp-diff { color: #b04a3a; }
+@media (prefers-color-scheme: dark) { .cmp-diff { color: #f08a7a; } }
+
+/* ---- karşılaştırma tablosu ---- */
+table.cmp-table { min-width: 720px; }
+table.cmp-table thead th.is-best { color: var(--brand-strong, #0e7c66); }
+table.cmp-table tbody tr.row-total th,
+table.cmp-table tbody tr.row-total td {
+  border-top: 2px solid var(--border, rgba(127,127,127,.35));
+  font-size: 1.02em;
+}
+table.cmp-table tbody tr.row-head th {
+  padding-top: 18px;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  opacity: .65;
+  border-bottom-color: transparent;
+}
+table.cmp-table tbody tr.row-head td { border-bottom-color: transparent; }
+table.cmp-table .na { opacity: .4; }
+table.cmp-table td.win {
+  background: rgba(14,124,102,.12);
+  font-weight: 700;
+  color: var(--brand-strong, #0e7c66);
+}
+table.cmp-table td.win-name { text-align: left; font-weight: 600; white-space: normal; }
+@media (prefers-color-scheme: dark) {
+  table.cmp-table td.win { background: rgba(79,209,174,.16); color: #4fd1ae; }
+  table.cmp-table thead th.is-best { color: #4fd1ae; }
+}
+
+/* ---- senaryo notları ---- */
+.note-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+.note-card {
+  padding: 16px 18px;
+  border: 1px solid var(--border, rgba(127,127,127,.22));
+  border-radius: 12px;
+  background: var(--surface, rgba(127,127,127,.04));
+  min-width: 0;
+}
+.note-card.is-best { border-color: rgba(14,124,102,.45); }
+.note-card h4 { margin: 0 0 8px; font-size: var(--step--1); font-weight: 700; }
+.note-card ul { margin: 0; padding-left: 1.1rem; font-size: .84rem; line-height: 1.55; opacity: .82; }
+.note-card li { margin-bottom: 6px; }
+.note-card li:last-child { margin-bottom: 0; }
+table.cmp-table .refund { color: #0e7c66; font-weight: 600; }
+@media (prefers-color-scheme: dark) { table.cmp-table .refund { color: #4fd1ae; } }

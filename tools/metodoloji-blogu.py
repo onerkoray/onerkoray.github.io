@@ -40,7 +40,7 @@ HARIC = {
 MOTORLU = {
     "maas-hesaplama", "isten-ayrilma-hesaplama",
     "kidem-tazminati-hesaplama", "issizlik-maasi-hesaplama",
-    "serbest-meslek-makbuzu-hesaplama",
+    "serbest-meslek-makbuzu-hesaplama", "calisma-bicimi-karsilastirma",
 }
 
 MOTOR_SURUMU = "1.0.0"

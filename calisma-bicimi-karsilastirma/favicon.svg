@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Çalışma Biçimi Karşılaştırma">
+  <defs>
+    <linearGradient id="cb-bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#16a98a"/>
+      <stop offset=".55" stop-color="#0e7c66"/>
+      <stop offset="1" stop-color="#064639"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#cb-bg)"/>
+  <path d="M32 12v40" stroke="#dff2ec" stroke-width="2.4" stroke-linecap="round" opacity=".55"/>
+  <path d="M14 20h36" stroke="#dff2ec" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="32" cy="20" r="3.4" fill="#ffe3a1" stroke="#064639" stroke-width="1.4"/>
+  <path d="M14 20l-6 13a6.5 6.5 0 0 0 12 0z" fill="#dff2ec" stroke="#064639" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M50 20l-6 13a6.5 6.5 0 0 0 12 0z" fill="#f5b93e" stroke="#064639" stroke-width="1.6" stroke-linejoin="round"/>
+  <rect x="26" y="49" width="12" height="4" rx="2" fill="#dff2ec" stroke="#064639" stroke-width="1.4"/>
+</svg>

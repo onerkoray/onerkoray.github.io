@@ -68,6 +68,19 @@
         { ay: 1, tutar: 64948.77 },
         { ay: 7, tutar: 73729.84 }
       ],
+      /* Şirketleşme ve bağımsız çalışma parametreleri.
+         Beyan haddi ayrıca tanımlanmaz: GVK m.86 uyarınca tarifenin ikinci
+         diliminin üst sınırıdır, yani dilimler[1][0]. */
+      sirket: {
+        kurumlarVergisi: 0.25,          // KVK m.32 genel oran
+        karPayiStopaji: 0.15,           // GVK 94/6-b, 9286 sayılı CB Kararı (Ara. 2024)
+        karPayiIstisnaOrani: 0.50,      // GVK m.22 — kâr payının yarısı istisna
+        hizmetIhracatiIndirimi: 0.80,   // GVK m.89/13 — yurt dışına verilen hizmetlerde
+        serbestMeslekStopaji: 0.20,     // GVK m.94/2 — kurum/işletmelere kesilen makbuzda
+        bagkurOrani: 0.3475,            // 4/b: %20 MYÖ + %12,5 GSS + %2 kısa vadeli
+        bagkurIndirimliOran: 0.2975,    // borcu olmayan düzenli ödeyende 5 puanlık indirim
+        dayanak: "KVK m.32, GVK m.22, m.86, m.89/13, m.94; 5510 m.80-81"
+      },
       dayanak: "GVK m.103 (2026 tarifesi), GVK m.32 asgari ücret istisnası, 5510/82 (tavan = taban x 9)"
     },
 
