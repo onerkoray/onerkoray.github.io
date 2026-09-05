@@ -57,6 +57,9 @@
       tavanKatsayisi: 9,
       oranlar: VARSAYILAN_ORANLAR,
       dilimler: [[190000, 0.15], [400000, 0.20], [1500000, 0.27], [5300000, 0.35], [null, 0.40]],
+      // Ücret dışı gelirler (serbest meslek, ticari, kira) için ayrı tarife:
+      // üçüncü dilimin üst sınırı ücret tarifesinden farklıdır (1.000.000 / 1.500.000).
+      dilimlerUcretDisi: [[190000, 0.15], [400000, 0.20], [1000000, 0.27], [5300000, 0.35], [null, 0.40]],
       donemler: [
         { ay: 1, asgariBrut: 33030.00, asgariNet: 28075.50, sgkTavan: 297270.00 }
       ],

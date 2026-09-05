@@ -1,6 +1,10 @@
-/* Serbest Meslek Makbuzu Hesaplama — makbuz (brüt/net) + yıllık gelir vergisi (bağımlılıksız) */
+/* Serbest Meslek Makbuzu Hesaplama — makbuz (brüt/net) + yıllık gelir vergisi.
+   Gelir vergisi tarifesi ../bordro/parametreler.js içindeki "ücret dışı" tarifeden
+   okunur; burada kopyası tutulmaz. */
 (function () {
   "use strict";
+  var B = window.Bordro;
+  if (!B) return;
 
   var nf = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   function fmt(n) { return isFinite(n) ? nf.format(Math.round(n * 100) / 100) : "—"; }
@@ -16,21 +20,12 @@
     return el ? parseFloat(el.value) : dflt;
   }
 
-  // 2026 ücret dışı gelir vergisi tarifesi
-  var LOWER = [0, 190000, 400000, 1000000, 5300000];
-  var BASE  = [0, 28500, 70500, 232500, 1737500];
-  var RATE  = [0.15, 0.20, 0.27, 0.35, 0.40];
-  function incomeTax(k) {
-    if (!(k > 0)) return 0;
-    var i = LOWER.length - 1;
-    while (i > 0 && k <= LOWER[i]) i--;
-    return BASE[i] + (k - LOWER[i]) * RATE[i];
-  }
-  function marginalRate(k) {
-    var i = LOWER.length - 1;
-    while (i > 0 && k <= LOWER[i]) i--;
-    return RATE[i];
-  }
+  /* Ücret dışı (serbest meslek / ticari) gelir vergisi tarifesi.
+     Ücret tarifesinden ayrıdır: üçüncü dilimin üst sınırı farklıdır. */
+  var VERGI_YILI = B.parametreler[new Date().getFullYear()] ? new Date().getFullYear() : B.sonYil();
+  var DILIMLER = B.parametre(VERGI_YILI).dilimlerUcretDisi;
+  function incomeTax(k) { return B.tarifeVergisi(k, DILIMLER); }
+  function marginalRate(k) { return B.dilimOrani(k, DILIMLER); }
 
   function rows(pairs) {
     var html = '<table class="bd-table"><tbody>';

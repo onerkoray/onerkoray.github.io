@@ -212,7 +212,12 @@
     var giydirilmis = ciplak + ekler;
 
     var hizmet = hizmetSuresi(g.iseGiris, g.cikis);
-    var oran = marjinalOran(ciplak, g.cikis);
+    /* Marjinal oran normalde çıkış ayındaki kümülatif matrahtan türetilir. Bu,
+       yıl başından beri aynı ücretle çalışıldığını varsayar; yıl içinde işe
+       girmiş biri için sapabilir. g.marjinalOran verilirse o kullanılır. */
+    var oran = (typeof g.marjinalOran === "number" && g.marjinalOran > 0)
+      ? g.marjinalOran
+      : marjinalOran(ciplak, g.cikis);
     var uyarilar = [];
 
     /* --- kıdem tazminatı --- */

@@ -37,7 +37,11 @@ HARIC = {
 
 # Bordro Motoru'nu fiilen kullanan araçlar. Buraya yazılmayan sayfa, motoru
 # kullandığını iddia eden bir künye almaz.
-MOTORLU = {"maas-hesaplama", "isten-ayrilma-hesaplama"}
+MOTORLU = {
+    "maas-hesaplama", "isten-ayrilma-hesaplama",
+    "kidem-tazminati-hesaplama", "issizlik-maasi-hesaplama",
+    "serbest-meslek-makbuzu-hesaplama",
+}
 
 MOTOR_SURUMU = "1.0.0"
 MOTOR_TARIHI = "2026-09-05"

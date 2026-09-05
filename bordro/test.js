@@ -125,6 +125,22 @@ ok("2026 / 190.000 matrahın vergisi = 28.500", yakin(B.tarifeVergisi(190000, B.
 ok("2026 / 400.000 matrahın vergisi = 70.500", yakin(B.tarifeVergisi(400000, B.parametre(2026).dilimler), 28500 + 210000 * 0.20));
 ok("2020 / 22.000 matrahın vergisi = 3.300", yakin(B.tarifeVergisi(22000, B.parametre(2020).dilimler), 3300));
 
+/* 9b — Ücret dışı (serbest meslek / ticari) tarifesi.
+       Ücret tarifesinden ayrıdır; üçüncü dilimin üst sınırı farklıdır. */
+baslik("Ücret dışı gelir vergisi tarifesi");
+var ud = B.parametre(2026).dilimlerUcretDisi;
+ok("2026 ücret dışı tarife tanımlı", Array.isArray(ud) && ud.length === 5);
+ok("Ücret tarifesinden farklı (3. dilim 1.000.000 / 1.500.000)",
+  ud[2][0] === 1000000 && B.parametre(2026).dilimler[2][0] === 1500000);
+[[190000, 28500], [400000, 70500], [1000000, 232500], [5300000, 1737500]].forEach(function (c) {
+  ok("Ücret dışı: " + c[0] + " matrahın vergisi = " + c[1],
+    yakin(B.tarifeVergisi(c[0], ud), c[1]), B.tarifeVergisi(c[0], ud).toFixed(2));
+});
+ok("Ücret dışı marjinal oran 500.000'de %27", B.dilimOrani(500000, ud) === 0.27);
+ok("Ücret tarifesinde 500.000'de de %27", B.dilimOrani(500000, B.parametre(2026).dilimler) === 0.27);
+ok("1.200.000'de tarifeler ayrışır: ücret dışı %35, ücret %27",
+  B.dilimOrani(1200000, ud) === 0.35 && B.dilimOrani(1200000, B.parametre(2026).dilimler) === 0.27);
+
 /* 10 — Her yıl için parametre bütünlüğü */
 baslik("Parametre bütünlüğü");
 B.yillar().forEach(function (yil) {
