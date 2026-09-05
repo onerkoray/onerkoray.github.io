@@ -50,6 +50,10 @@ SPEC = {
    "Güncel vergi dilimleri, SGK tavanı ve damga vergisiyle ay ay 12 aylık bordro.",
    ["Ücretsiz", "Reklamsız", "12 aylık bordro", "Netten brüte"]),
 
+ "calisma-bicimi-karsilastirma": ("calisma-bicimi-karsilastirma", "Şahıs mı, Limited mi,", "Maaşlı mı?",
+   "Aynı maliyet dört çalışma biçiminde ne kadarını size bırakıyor? Vergi, prim ve gider dahil.",
+   ["Ücretsiz", "Reklamsız", "4 senaryo", "Kesişim tablosu"]),
+
  "isten-ayrilma-hesaplama": ("isten-ayrilma-hesaplama", "İşten Ayrılma", "Paketi 2026",
    "Kıdem, ihbar, izin, son ücret ve işsizlik maaşı tek hesapta — ödeme takvimiyle.",
    ["Ücretsiz", "Reklamsız", "Hak matrisi", "Ödeme takvimi"]),

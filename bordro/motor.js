@@ -76,8 +76,14 @@
     var d = donem(P, ay);
     var o = P.oranlar;
 
+    /* secenekler.primsiz: ücret geliri var ama 4/a primi yok.
+       Tipik örnek, limited şirket ortağına ödenen huzur hakkı/ücret — ortak
+       zaten 4/b sigortalısı olduğu için bu ödemeden SGK primi kesilmez, ama
+       ödeme ücret sayıldığından gelir ve damga vergisine tabidir. */
+    var primsiz = !!(secenekler && secenekler.primsiz);
+
     // Prime esas kazanç: alt sınır asgari ücret, üst sınır SGK tavanı.
-    var primEsas = Math.min(Math.max(brut, d.asgariBrut), d.sgkTavan);
+    var primEsas = primsiz ? 0 : Math.min(Math.max(brut, d.asgariBrut), d.sgkTavan);
     var sgk = primEsas * o.sgkIsci;
     var issizlik = primEsas * o.issizlikIsci;
 

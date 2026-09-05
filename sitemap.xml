@@ -186,6 +186,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/calisma-bicimi-karsilastirma/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/calisma-bicimi-karsilastirma-koray-oner.png</image:loc>
+      <image:title>Şahıs mı, Limited mi, Maaşlı mı? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/mtv-hesaplama/</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
