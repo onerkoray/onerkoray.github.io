@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bordro Motoru — Metodoloji ve Parametreler (2020-2026) | Koray Öner</title>
+  <meta name="description" content="Koray Öner'in maaş araçlarını çalıştıran açık bordro motoru: 2020-2026 vergi dilimleri, asgari ücret, SGK tavanı, istisnalar, hesap adımları ve değişiklik günlüğü.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/bordro/">
+
+  <link rel="icon" href="../favicon.ico?v=2" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Bordro Motoru — Metodoloji ve Parametreler (2020-2026)">
+  <meta property="og:description" content="Maaş hesaplarının arkasındaki açık çekirdek: yıl yıl yasal parametreler, hesap adımları, doğrulama testleri ve değişiklik günlüğü.">
+  <meta property="og:url" content="https://korayoner.dev/bordro/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/bordro-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen açık bordro motoru">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bordro Motoru — Metodoloji ve Parametreler">
+  <meta name="twitter:description" content="2020-2026 bordro parametreleri, hesap adımları ve değişiklik günlüğü — açık ve test edilmiş.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/bordro-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://korayoner.dev/bordro/#makale",
+        "headline": "Bordro Motoru — metodoloji, parametreler ve değişiklik günlüğü",
+        "description": "Türkiye ücret bordrosu hesaplamasının adım adım metodolojisi ve 2020-2026 yasal parametrelerinin yıl yıl dökümü.",
+        "url": "https://korayoner.dev/bordro/",
+        "inLanguage": "tr",
+        "datePublished": "2026-09-05",
+        "dateModified": "2026-09-05",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "about": ["Bordro", "Gelir vergisi", "Asgari ücret", "SGK primi"],
+        "citation": [
+          "193 sayılı Gelir Vergisi Kanunu m.103",
+          "193 sayılı Gelir Vergisi Kanunu m.32",
+          "5510 sayılı Kanun m.82",
+          "488 sayılı Damga Vergisi Kanunu"
+        ]
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://korayoner.dev/bordro/#motor",
+        "name": "Bordro Motoru",
+        "description": "Türkiye ücret bordrosu hesaplama çekirdeği: kümülatif gelir vergisi tarifesi, SGK taban/tavan, asgari ücret istisnası, AGİ rejimi ve damga vergisi. Bağımlılıksız JavaScript.",
+        "url": "https://korayoner.dev/bordro/",
+        "programmingLanguage": "JavaScript",
+        "runtimePlatform": ["Web browser", "Node.js"],
+        "license": "https://opensource.org/licenses/MIT",
+        "codeRepository": "https://github.com/onerkoray/onerkoray.github.io",
+        "softwareVersion": "1.0.0",
+        "inLanguage": "tr",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
+        "maintainer": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Dataset",
+        "@id": "https://korayoner.dev/bordro/#parametreler",
+        "name": "Türkiye bordro parametreleri, 2020-2026",
+        "description": "Yıl yıl gelir vergisi tarifesi, brüt ve net asgari ücret, SGK prim taban ve tavanı, istisna rejimi ve damga vergisi oranı.",
+        "url": "https://korayoner.dev/bordro/#parametreler",
+        "temporalCoverage": "2020/2026",
+        "spatialCoverage": "Türkiye",
+        "inLanguage": "tr",
+        "license": "https://opensource.org/licenses/MIT",
+        "isAccessibleForFree": true,
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
+        "distribution": {
+          "@type": "DataDownload",
+          "encodingFormat": "application/javascript",
+          "contentUrl": "https://korayoner.dev/bordro/parametreler.js"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "image": "https://korayoner.dev/images/koray-oner-portre.jpg",
+        "url": "https://korayoner.dev/",
+        "jobTitle": "Yazılım Geliştirici",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerv",
+          "https://www.instagram.com/korayonerv/",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://dl.acm.org/profile/81100070426",
+          "https://metu.academia.edu/Koray%C3%96ner",
+          "https://500px.com/p/korayoner"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Bordro Motoru", "item": "https://korayoner.dev/bordro/" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#metodoloji">Metodoloji</a></li>
+          <li><a href="#parametreler">Parametreler</a></li>
+          <li><a href="#gunluk">Değişiklik günlüğü</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> Bordro Motoru
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Açık çekirdek · 2020-2026 · MIT lisansı</p>
+        <h1 id="hero-title">Bordro Motoru</h1>
+        <p class="lede">
+          Bu sitedeki maaş hesaplarının tamamı tek bir çekirdekten geçer. Çekirdeğin yasal
+          parametreleri, hesap adımları, doğrulama testleri ve değişiklik geçmişi burada
+          <strong>açıkça yayımlanır</strong> — çünkü bir hesaplayıcıya güvenmek için
+          sonucu değil, yöntemi görebilmek gerekir.
+        </p>
+        <p class="muted">
+          Hazırlayan <a href="../hakkimda/" rel="author">Koray Öner</a> ·
+          Sürüm 1.0.0 · Son güncelleme: 5 Eylül 2026
+        </p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <h2 id="metodoloji">Bir ayın bordrosu nasıl hesaplanır?</h2>
+        <p>
+          Motor her ayı sırayla hesaplar ve yıl boyunca iki ayrı birikim taşır: çalışanın
+          kümülatif gelir vergisi matrahı ve asgari ücretlinin kümülatif matrahı. İkincisi,
+          istisnanın doğru büyüklüğünü bulmak için gereklidir.
+        </p>
+        <ol>
+          <li>
+            <strong>Prime esas kazanç.</strong> Brüt ücret, asgari ücret ile SGK tavanı
+            arasına sıkıştırılır. Tavanın üzerindeki kazançtan ek prim kesilmez; asgari
+            ücretin altındaki ücret için prim yine asgari ücret üzerinden hesaplanır.
+          </li>
+          <li>
+            <strong>SGK kesintileri.</strong> Prime esas kazancın %14'ü SGK işçi payı,
+            %1'i işsizlik sigortası işçi payıdır.
+          </li>
+          <li>
+            <strong>Gelir vergisi matrahı.</strong> Brüt ücretten bu iki kesinti düşülür.
+          </li>
+          <li>
+            <strong>Kümülatif tarife.</strong> Ayın vergisi, <em>yılbaşından bu aya kadar
+            biriken matrahın vergisi</em> ile <em>önceki aya kadar biriken matrahın vergisi</em>
+            arasındaki farktır. Net maaşın yıl içinde düşmesinin tek sebebi budur.
+          </li>
+          <li>
+            <strong>İstisna.</strong> 2022'den itibaren, asgari ücretlinin aynı dönemdeki
+            vergisi hesaplanan vergiden düşülür. 2020-2021'de bunun yerine asgari geçim
+            indirimi (AGİ) uygulanır.
+          </li>
+          <li>
+            <strong>Damga vergisi.</strong> 2022'den itibaren brütün asgari ücreti aşan
+            kısmı üzerinden binde 7,59; 2020-2021'de brütün tamamı üzerinden.
+          </li>
+          <li>
+            <strong>Net ücret.</strong> Brütten SGK, işsizlik, gelir vergisi ve damga
+            vergisi düşülerek bulunur.
+          </li>
+        </ol>
+
+        <h3>Neden net maaş yıl ortasında bazen yükselir?</h3>
+        <p>
+          Çoğu hesaplayıcı net maaşın yıl boyunca yalnızca düştüğünü varsayar. Doğru değildir.
+          İstisna, asgari ücretlinin <em>kendi</em> kümülatif matrahına uygulanan tarifeden
+          gelir. Asgari ücretlinin matrahı da yıl içinde üst dilime geçer ve istisna tutarı
+          büyür. Yüksek ücretli çalışan zaten üst bir dilimde sabitlenmişse, büyüyen istisna
+          net maaşı o ay <strong>yukarı</strong> çeker. 2026'da 150.000 TL brüt ücrette bu,
+          Temmuz ve Ağustos aylarında görülür. Motor bu davranışı hesaplar ve testle sabitler.
+        </p>
+
+        <h3>Netten brüte</h3>
+        <p>
+          Kapalı bir formülü yoktur: dilimler ve istisnalar zinciri tersine çevrilemez.
+          Motor, hedef neti veren brütü ikili aramayla 60 yinelemede kuruş altı hassasiyetle
+          çözer. Sonuç, brütten nete hesapla gidiş-dönüş testinden geçirilir.
+        </p>
+
+        <h3>Doğrulama</h3>
+        <p>
+          En güçlü kontrol noktası şudur: motora brüt asgari ücret verildiğinde çıkan net,
+          Asgari Ücret Tespit Komisyonu'nun ilan ettiği resmî net asgari ücrete eşit olmalıdır.
+          Bu tek kontrol; tarife, prim oranları, istisna ve damga zincirinin tamamını aynı anda
+          doğrular. Test kümesi bunu <strong>her yıl ve her dönem için ayrı ayrı</strong>
+          kontrol eder; toplam 70 doğrulama çalışır.
+        </p>
+        <pre class="code-block"><code>node bordro/test.js
+  ✓ 2026 / Ocak net asgari ücret = 28075.5
+  ✓ 2023 / Temmuz net asgari ücret = 11402.32
+  ✓ 2021 / Ocak net asgari ücret = 2825.9
+  …
+  70 geçti, 0 kaldı.</code></pre>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="parametreler">
+      <div class="wrap prose">
+        <h2 id="parametreler">Yıl yıl yasal parametreler</h2>
+        <p>
+          Aşağıdaki tablo motorun tek doğruluk kaynağı olan
+          <a href="parametreler.js">parametreler.js</a> dosyasından üretilir; sayfa ile
+          motor arasında sapma olamaz.
+        </p>
+        <!-- PARAMETRE-TABLOSU:BASLANGIC -->
+        <div class="table-scroll">
+          <table class="payroll param-table">
+            <caption class="visually-hidden">2020-2026 bordro parametreleri</caption>
+            <thead><tr>
+              <th scope="col">Dönem</th>
+              <th scope="col">Asgari ücret (brüt)</th>
+              <th scope="col">Asgari ücret (net)</th>
+              <th scope="col">SGK prim tavanı</th>
+              <th scope="col">Gelir vergisi tarifesi (ücret)</th>
+              <th scope="col">İstisna rejimi</th>
+              <th scope="col">Damga vergisi tabanı</th>
+            </tr></thead>
+            <tbody>
+            <tr><th scope="row">2026</th><td>33.030,00</td><td>28.075,50</td><td>297.270,00</td><td>190.000 TL'ye kadar %15; 400.000 TL'ye kadar %20; 1.500.000 TL'ye kadar %27; 5.300.000 TL'ye kadar %35; üzeri %40</td><td>Asgari ücret istisnası</td><td>asgari ücreti aşan kısım</td></tr>
+            <tr><th scope="row">2025</th><td>26.005,50</td><td>22.104,67</td><td>195.041,25</td><td>158.000 TL'ye kadar %15; 330.000 TL'ye kadar %20; 1.200.000 TL'ye kadar %27; 4.300.000 TL'ye kadar %35; üzeri %40</td><td>Asgari ücret istisnası</td><td>asgari ücreti aşan kısım</td></tr>
+            <tr><th scope="row">2024</th><td>20.002,50</td><td>17.002,12</td><td>150.018,75</td><td>110.000 TL'ye kadar %15; 230.000 TL'ye kadar %20; 870.000 TL'ye kadar %27; 3.000.000 TL'ye kadar %35; üzeri %40</td><td>Asgari ücret istisnası</td><td>asgari ücreti aşan kısım</td></tr>
+            <tr><th scope="row">2023 · Ocak'tan itibaren</th><td>10.008,00</td><td>8.506,80</td><td>75.060,00</td><td>70.000 TL'ye kadar %15; 150.000 TL'ye kadar %20; 550.000 TL'ye kadar %27; 1.900.000 TL'ye kadar %35; üzeri %40</td><td>Asgari ücret istisnası</td><td>asgari ücreti aşan kısım</td></tr>
+            <tr><th scope="row">2023 · Temmuz'dan itibaren</th><td>13.414,50</td><td>11.402,32</td><td>100.608,75</td><td>aynı</td><td>Asgari ücret istisnası</td><td>asgari ücreti aşan kısım</td></tr>
+            <tr><th scope="row">2022 · Ocak'tan itibaren</th><td>5.004,00</td><td>4.253,40</td><td>37.530,00</td><td>32.000 TL'ye kadar %15; 70.000 TL'ye kadar %20; 250.000 TL'ye kadar %27; 880.000 TL'ye kadar %35; üzeri %40</td><td>Asgari ücret istisnası</td><td>asgari ücreti aşan kısım</td></tr>
+            <tr><th scope="row">2022 · Temmuz'dan itibaren</th><td>6.471,00</td><td>5.500,35</td><td>48.532,50</td><td>aynı</td><td>Asgari ücret istisnası</td><td>asgari ücreti aşan kısım</td></tr>
+            <tr><th scope="row">2021</th><td>3.577,50</td><td>2.825,90</td><td>26.831,25</td><td>24.000 TL'ye kadar %15; 53.000 TL'ye kadar %20; 190.000 TL'ye kadar %27; 650.000 TL'ye kadar %35; üzeri %40</td><td>AGİ</td><td>brütün tamamı</td></tr>
+            <tr><th scope="row">2020</th><td>2.943,00</td><td>2.324,71</td><td>22.072,50</td><td>22.000 TL'ye kadar %15; 49.000 TL'ye kadar %20; 180.000 TL'ye kadar %27; 600.000 TL'ye kadar %35; üzeri %40</td><td>AGİ</td><td>brütün tamamı</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted-note">
+          Tutarlar aylık ve TL cinsindendir. Tüm yıllarda kesinti oranları sabittir:
+          SGK işçi payı %14, işsizlik sigortası işçi payı %1,
+          damga vergisi binde 7,59,
+          işveren SGK payı %21,75 ve işveren işsizlik payı %2 (teşviksiz).
+        </p>
+
+        <h3>Yıl bazında yasal dayanak</h3>
+        <dl class="changelog">
+          <dt>2026</dt>
+          <dd>GVK m.103 (2026 tarifesi), GVK m.32 asgari ücret istisnası, 5510/82 (tavan = taban x 9)</dd>
+          <dt>2025</dt>
+          <dd>GVK m.103 (2025 tarifesi), GVK m.32, 5510/82 (tavan = taban x 7,5)</dd>
+          <dt>2024</dt>
+          <dd>GVK m.103 (2024 tarifesi), GVK m.32, 5510/82</dd>
+          <dt>2023</dt>
+          <dd>GVK m.103 (2023 tarifesi), GVK m.32, 5510/82 — Asgari ücret 1 Temmuz 2023'te yeniden belirlendi; istisna, damga ve SGK tavanı Temmuz'dan itibaren yeni tutar üzerinden uygulanır.</dd>
+          <dt>2022</dt>
+          <dd>7349 sayılı Kanun, GVK m.103 (2022 tarifesi), GVK m.32, 5510/82 — AGİ 7349 sayılı Kanun ile kaldırıldı; yerine tüm ücretlilere asgari ücret gelir ve damga vergisi istisnası getirildi. Asgari ücret 1 Temmuz 2022'de yeniden belirlendi.</dd>
+          <dt>2021</dt>
+          <dd>GVK m.103 (2021 tarifesi), GVK m.32 (mülga AGİ), 5510/82 — AGİ rejimi. Asgari ücretlinin net ücreti, yıl içinde vergi dilimi ilerlese de ilave AGİ ile 2.825,90 TL'nin altına düşürülmez.</dd>
+          <dt>2020</dt>
+          <dd>GVK m.103 (2020 tarifesi), GVK m.32 (mülga AGİ), 5510/82 — AGİ rejimi. Bu yılda asgari ücretlinin neti için taban koruma uygulaması bulunmadığından, yıl sonuna doğru vergi dilimi ilerledikçe net ücret Ocak ayının altına düşer.</dd>
+        </dl>
+        <!-- PARAMETRE-TABLOSU:BITIS -->
+      </div>
+    </section>
+
+    <section class="content" aria-labelledby="gunluk">
+      <div class="wrap prose">
+        <h2 id="gunluk">Değişiklik günlüğü</h2>
+
+        <h3>Motor sürümleri</h3>
+        <dl class="changelog">
+          <dt>1.0.0 — 5 Eylül 2026</dt>
+          <dd>
+            Hesaplama çekirdeği araç sayfasından ayrıldı ve <a href="motor.js">bordro/motor.js</a>
+            olarak bağımsız hâle geldi. 2020-2026 arası yedi bordro yılı eklendi. Yıl içi asgari
+            ücret değişiklikleri (2022 ve 2023 Temmuz), AGİ rejimi (2020-2021), prime esas kazanç
+            alt sınırı ve vergi dilimi geçişinin işaretlenmesi desteklendi. 70 doğrulama testi eklendi.
+          </dd>
+          <dt>0.1.0 — 16 Temmuz 2026</dt>
+          <dd>
+            İlk sürüm: yalnızca 2026 bordro yılı, kümülatif tarife, asgari ücret istisnası,
+            damga vergisi ve netten brüte ikili arama.
+          </dd>
+        </dl>
+
+        <h3>Parametre yürürlük takvimi</h3>
+        <p class="muted">
+          Aşağıdaki tarihler mevzuatın yürürlük tarihleridir; motorun bu değerleri kapsayan
+          sürümü her zaman yukarıdaki sürüm günlüğünde belirtilir.
+        </p>
+        <dl class="changelog">
+          <dt>1 Ocak 2026</dt>
+          <dd>Asgari ücret brüt 33.030,00 TL. Gelir vergisi tarifesi 190.000 / 400.000 / 1.500.000 / 5.300.000 TL eşiklerine yükseldi. SGK prim tavanı taban tutarın 9 katına çıkarıldı.</dd>
+          <dt>1 Ocak 2025</dt>
+          <dd>Asgari ücret brüt 26.005,50 TL. Tarife eşikleri 158.000 / 330.000 / 1.200.000 / 4.300.000 TL.</dd>
+          <dt>1 Ocak 2024</dt>
+          <dd>Asgari ücret brüt 20.002,50 TL. Tarife eşikleri 110.000 / 230.000 / 870.000 / 3.000.000 TL.</dd>
+          <dt>1 Temmuz 2023</dt>
+          <dd>Asgari ücret yıl ortasında brüt 13.414,50 TL'ye yükseldi; istisna, damga tabanı ve SGK tavanı Temmuz'dan itibaren yeni tutar üzerinden uygulandı.</dd>
+          <dt>1 Ocak 2023</dt>
+          <dd>Asgari ücret brüt 10.008,00 TL. Tarife eşikleri 70.000 / 150.000 / 550.000 / 1.900.000 TL.</dd>
+          <dt>1 Temmuz 2022</dt>
+          <dd>Asgari ücret yıl ortasında brüt 6.471,00 TL'ye yükseldi.</dd>
+          <dt>1 Ocak 2022</dt>
+          <dd>7349 sayılı Kanun ile asgari geçim indirimi (AGİ) kaldırıldı; yerine tüm ücretlilere asgari ücret tutarında gelir ve damga vergisi istisnası getirildi. Bu, 2020-2021 ile 2022 sonrası bordroların yapısal olarak farklı hesaplanmasının sebebidir.</dd>
+          <dt>1 Ocak 2021</dt>
+          <dd>Asgari ücret brüt 3.577,50 TL. Asgari ücretlinin net ücretinin yıl içinde vergi dilimi ilerlemesi nedeniyle 2.825,90 TL'nin altına düşmemesi için ilave AGİ uygulaması başladı.</dd>
+          <dt>1 Ocak 2020</dt>
+          <dd>Asgari ücret brüt 2.943,00 TL. AGİ rejimi; damga vergisi brütün tamamı üzerinden.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="content" aria-labelledby="kapsam-title">
+      <div class="wrap prose">
+        <h2 id="kapsam-title">Kapsam ve bilinen sınırlar</h2>
+        <p>Motorun ne yaptığı kadar ne yapmadığı da açıktır:</p>
+        <ul>
+          <li><strong>Kapsam dışı:</strong> engellilik indirimi, bireysel emeklilik (BES) ve özel sağlık sigortası kesintileri, SGDP'li (emekli) çalışan, sektörel ve bölgesel prim teşvikleri, yabancı uyruklu istisnaları, teknopark ve Ar-Ge indirimleri, yemek ve yol istisnaları, prim ve ikramiye gibi ek ödemeler.</li>
+          <li><strong>İşveren maliyeti</strong> teşviksiz standart oranlarla (%21,75 SGK + %2 işsizlik) hesaplanır; 5 puanlık indirim ve diğer teşvikler uygulanmaz.</li>
+          <li><strong>2020 bordro yılında</strong> asgari ücretlinin neti için taban koruma uygulaması bulunmadığından, yıl sonuna doğru net ücretin Ocak ayının altına düşmesi beklenen davranıştır.</li>
+          <li>Motor <strong>bilgilendirme amaçlıdır</strong>. Resmî işlemlerde mali müşavirinizi ve Gelir İdaresi Başkanlığı düzenlemelerini esas alın.</li>
+        </ul>
+        <p>
+          Bir oran veya tutarın güncelliğini yitirdiğini fark ederseniz
+          <a href="../iletisim/">bana bildirin</a>; mevzuat değişiklikleri öncelikli olarak işlenir
+          ve bu sayfadaki günlüğe tarihiyle yazılır.
+        </p>
+      </div>
+    </section>
+
+    <section class="content" aria-labelledby="kullanim-title">
+      <div class="wrap prose">
+        <h2 id="kullanim-title">Kendi projenizde kullanma</h2>
+        <p>
+          Motor bağımlılıksızdır ve MIT lisanslıdır. Hem tarayıcıda hem Node.js'te aynı
+          dosyalar çalışır.
+        </p>
+        <pre class="code-block"><code>&lt;script src="https://korayoner.dev/bordro/parametreler.js"&gt;&lt;/script&gt;
+&lt;script src="https://korayoner.dev/bordro/motor.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  var sonuc = Bordro.hesaplaYil(75000, 2026);
+  sonuc.aylar[0].net;                // Ocak ayı net ücreti
+  sonuc.toplam.net;                  // yıllık toplam net
+  Bordro.nettenBrute(60000, 2026);   // hedef neti veren brüt
+  Bordro.yillar();                   // [2026, 2025, … 2020]
+&lt;/script&gt;</code></pre>
+        <p>
+          Dosyalar: <a href="motor.js">motor.js</a> (hesaplama),
+          <a href="parametreler.js">parametreler.js</a> (yasal parametreler),
+          <a href="test.js">test.js</a> (doğrulama).
+          Kaynak kod <a href="https://github.com/onerkoray/onerkoray.github.io" rel="noopener">GitHub'da</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Veri kaynakları</h2>
+          <ul>
+            <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> m.103 tarifesi ve m.32 asgari ücret istisnası — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a>, <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>5510 sayılı <strong>Kanun m.82</strong> uyarınca prime esas kazancın alt ve üst sınırı — <a href="https://www.sgk.gov.tr/" rel="noopener">Sosyal Güvenlik Kurumu</a></li>
+            <li><strong>Asgari Ücret Tespit Komisyonu</strong> kararları — <a href="https://www.csgb.gov.tr/" rel="noopener">Çalışma ve Sosyal Güvenlik Bakanlığı</a>, <a href="https://www.resmigazete.gov.tr/" rel="noopener">Resmî Gazete</a></li>
+            <li>488 sayılı <strong>Damga Vergisi Kanunu</strong> ekli (1) sayılı tablo — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li>7349 sayılı Kanun — AGİ'nin kaldırılması ve asgari ücret istisnasının getirilmesi</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>Bu motoru kullanan araçlar</h2>
+        <ul>
+          <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — 2020-2026 arası her yıl için 12 aylık bordro dökümü ve netten brüte.</li>
+          <li><a href="../maas-hesaplama/brut-net-tablosu/">Brüt-Net Maaş Tablosu</a> — sık aranan tutarların net karşılıkları.</li>
+          <li><a href="../kidem-tazminati-hesaplama/">Kıdem ve İhbar Tazminatı Hesaplama</a></li>
+          <li><a href="../issizlik-maasi-hesaplama/">İşsizlik Maaşı Hesaplama</a></li>
+          <li><a href="../">Tüm araçlar</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../script.js" defer></script>
+  <script src="/bg-network.js" defer></script>
+</body>
+</html>

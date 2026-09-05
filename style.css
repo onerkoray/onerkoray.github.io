@@ -530,3 +530,96 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 .share-card figcaption {
   margin-top: .5rem; font-size: var(--step--1); color: var(--text-muted);
 }
+
+/* ---- Bordro motoru: parametre tablosu, günlük, kod blokları ---- */
+.table-scroll { overflow-x: auto; margin-top: 20px; }
+table.payroll {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  font-size: .9rem;
+  min-width: 640px;
+}
+table.payroll th, table.payroll td {
+  padding: 8px 10px;
+  text-align: right;
+  border-bottom: 1px solid var(--border, rgba(127,127,127,.2));
+  white-space: nowrap;
+}
+table.payroll thead th { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; opacity: .7; }
+table.payroll tbody th { text-align: left; font-weight: 600; }
+table.payroll tbody tr:nth-child(even) { background: rgba(127,127,127,.05); }
+
+table.param-table { min-width: 900px; }
+table.param-table td:nth-child(5),
+table.param-table td:nth-child(6),
+table.param-table td:nth-child(7) { white-space: normal; text-align: left; min-width: 180px; }
+
+dl.changelog { margin: 1rem 0 0; }
+dl.changelog dt {
+  font-weight: 650;
+  margin-top: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+dl.changelog dt:first-child { margin-top: 0; }
+dl.changelog dd {
+  margin: .25rem 0 0;
+  padding-left: 0;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+pre.code-block {
+  overflow-x: auto;
+  padding: 14px 16px;
+  border: 1px solid var(--border, rgba(127,127,127,.2));
+  border-radius: 10px;
+  background: rgba(127,127,127,.06);
+  font-size: .85rem;
+  line-height: 1.55;
+  margin: 1rem 0;
+}
+pre.code-block code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+/* ---- Metodoloji / künye bloğu (tüm araç sayfalarında) ---- */
+.method { padding: 8px 0 4px; }
+.method-card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 22px 24px;
+  border: 1px solid var(--border, rgba(127,127,127,.2));
+  border-radius: 14px;
+  background: var(--surface, rgba(127,127,127,.04));
+}
+.method-portrait {
+  flex: 0 0 auto;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+.method-body { min-width: 0; }
+.method-body h2 { margin: 0 0 .5rem; font-size: var(--step-0); }
+.method-body p { margin: 0 0 .75rem; font-size: var(--step--1); color: var(--text-muted); }
+.method-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin: 0;
+  font-size: var(--step--1);
+}
+.method-meta > div { min-width: 0; }
+.method-meta dt {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  opacity: .65;
+  margin: 0;
+}
+.method-meta dd { margin: 2px 0 0; font-weight: 600; }
+@media (max-width: 560px) {
+  .method-card { flex-direction: column; gap: 14px; }
+  .method-portrait { width: 64px; height: 64px; }
+}

@@ -42,6 +42,10 @@ SPEC = {
    "Hesaplayıcılar, dönüştürücüler, üreteçler ve günlük hayatı kolaylaştıran pratik araçlar.",
    ["Ücretsiz", "Reklamsız", "Üyeliksiz", "Açık kaynak"]),
 
+ "bordro": ("bordro", "Bordro", "Motoru",
+   "Maaş hesaplarının açık çekirdeği: 2020-2026 parametreleri, metodoloji ve değişiklik günlüğü.",
+   ["Açık kaynak", "2020-2026", "70 test", "MIT"]),
+
  "maas-hesaplama": ("maas-hesaplama", "Brüt Net", "Maaş Hesaplama 2026",
    "Güncel vergi dilimleri, SGK tavanı ve damga vergisiyle ay ay 12 aylık bordro.",
    ["Ücretsiz", "Reklamsız", "12 aylık bordro", "Netten brüte"]),

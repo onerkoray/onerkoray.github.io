@@ -12,7 +12,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Brüt Net Maaş Hesaplama 2026 — 12 Aylık Bordro | Koray Öner</title>
-  <meta name="description" content="2026 brüt net maaş hesaplama: güncel vergi dilimleri, SGK tavanı, asgari ücret istisnası ve damga vergisiyle ay ay bordro. Netten brüte de.">
+  <meta name="description" content="2026 brüt net maaş hesaplama: vergi dilimleri, SGK tavanı, asgari ücret istisnası ve damga vergisiyle ay ay bordro. 2020-2026 arası geçmiş yıllar ve netten brüte dahil.">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
@@ -28,7 +28,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Koray Öner">
   <meta property="og:title" content="Brüt Net Maaş Hesaplama 2026 — 12 Aylık Bordro Dökümü">
-  <meta property="og:description" content="2026 vergi dilimleri, SGK tavanı ve asgari ücret istisnasıyla ay ay net maaş. Netten brüte de hesaplar.">
+  <meta property="og:description" content="2026 vergi dilimleri, SGK tavanı ve asgari ücret istisnasıyla ay ay net maaş. 2020-2026 arası her bordro yılı ve netten brüte.">
   <meta property="og:url" content="https://korayoner.dev/maas-hesaplama/">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:image" content="https://korayoner.dev/images/maas-hesaplama-koray-oner.png">
@@ -37,7 +37,7 @@
   <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz maaş hesaplama aracı">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Brüt Net Maaş Hesaplama 2026">
-  <meta name="twitter:description" content="Ay ay 12 aylık bordro dökümü ve netten brüte hesaplama — ücretsiz, reklamsız.">
+  <meta name="twitter:description" content="2020-2026 arası her bordro yılı için ay ay 12 aylık döküm ve netten brüte — ücretsiz, reklamsız.">
   <meta name="twitter:image" content="https://korayoner.dev/images/maas-hesaplama-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css">
@@ -50,7 +50,8 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "dateModified": "2026-07-16",
+        "dateModified": "2026-09-05",
+        "softwareVersion": "1.0.0",
         "@id": "https://korayoner.dev/maas-hesaplama/#app",
         "name": "Brüt Net Maaş Hesaplama 2026",
         "url": "https://korayoner.dev/maas-hesaplama/",
@@ -60,7 +61,9 @@
         "inLanguage": "tr",
         "isAccessibleForFree": true,
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "description": "2026 yılı brüt-net ve netten brüte maaş hesaplama aracı: güncel gelir vergisi dilimleri, SGK tavanı, asgari ücret istisnası, damga vergisi ve 12 aylık bordro dökümü.",
+        "description": "2020-2026 arası brüt-net ve netten brüte maaş hesaplama aracı: yıl yıl gelir vergisi dilimleri, SGK tavanı, asgari ücret istisnası, AGİ rejimi, damga vergisi ve 12 aylık bordro dökümü.",
+        "isBasedOn": { "@id": "https://korayoner.dev/bordro/#motor" },
+        "maintainer": { "@id": "https://korayoner.dev/#oner-koray" },
         "author": { "@id": "https://korayoner.dev/#oner-koray" },
         "creator": { "@id": "https://korayoner.dev/#oner-koray" },
         "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
@@ -113,6 +116,8 @@
           { "@type": "Question", "name": "Asgari ücret istisnası nedir?", "acceptedAnswer": { "@type": "Answer", "text": "2022'den beri her çalışanın maaşının asgari ücrete isabet eden kısmı gelir ve damga vergisinden istisnadır. 2026'da bu istisna Ocak ayında 4.211,33 TL gelir vergisi ve 250,70 TL damga vergisine karşılık gelir." } },
           { "@type": "Question", "name": "SGK tavanı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "SGK primleri en fazla brüt asgari ücretin 9 katı üzerinden hesaplanır. 2026'da aylık prim tavanı 297.270 TL'dir; bunun üzerindeki brüt kazançtan ek SGK primi kesilmez." } },
           { "@type": "Question", "name": "Netten brüte maaş nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "Doğrudan formülü yoktur; vergi dilimleri ve istisnalar nedeniyle deneme-yanılma (iteratif) çözüm gerekir. Bu araç, hedef net maaşı veren brütü ikili arama algoritmasıyla kuruş hassasiyetinde bulur." } },
+          { "@type": "Question", "name": "Geçmiş yılların maaşı hesaplanabilir mi?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. Araç 2020-2026 arası her bordro yılını kendi gelir vergisi tarifesi, asgari ücreti ve SGK tavanıyla hesaplar. 2020-2021'de AGİ rejimi, 2022'den itibaren asgari ücret istisnası uygulanır; 2022 ve 2023'te yıl ortasındaki asgari ücret değişikliği Temmuz'dan itibaren dikkate alınır." } },
+          { "@type": "Question", "name": "Net maaş yıl ortasında neden yükselebilir?", "acceptedAnswer": { "@type": "Answer", "text": "Asgari ücret istisnası, asgari ücretlinin kümülatif matrahına uygulanan tarifeden hesaplanır. Asgari ücretlinin matrahı üst vergi dilimine geçtiğinde istisna tutarı büyür; üst dilimde sabitlenmiş bir çalışanın neti bu nedenle o ay yükselebilir." } },
           { "@type": "Question", "name": "Damga vergisi ne kadar kesilir?", "acceptedAnswer": { "@type": "Answer", "text": "Brüt ücretin asgari ücreti aşan kısmı üzerinden binde 7,59 (%0,759) oranında damga vergisi kesilir." } },
           { "@type": "Question", "name": "İşverene maliyet nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "Brüt maaşın üzerine işveren SGK payı (%21,75) ve işveren işsizlik payı (%2) eklenir. Teşvik uygulanmayan durumda toplam maliyet brütün yaklaşık %123,75'idir." } }
         ]
@@ -152,13 +157,14 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">2026 parametreleriyle · Ücretsiz · Reklamsız</p>
+        <p class="eyebrow">2020-2026 bordro yılları · Ücretsiz · Reklamsız</p>
         <img class="tool-logo" src="favicon.svg" width="60" height="60" alt="" aria-hidden="true" decoding="async">
         <h1 id="hero-title">Brüt Net Maaş Hesaplama 2026</h1>
         <p class="lede">
           Güncel gelir vergisi dilimleri, SGK tavanı, asgari ücret istisnası ve damga vergisiyle
           net maaşınızı <strong>ay ay, 12 aylık bordro dökümü</strong> hâlinde hesaplayın. Netten brüte de
-          çevirir. Kayıt yok, reklam yok — her şey tarayıcınızda çalışır.
+          çevirir ve <strong>2020'ye kadar geçmiş bordro yıllarını</strong> da hesaplar — her yıl kendi
+          vergi tarifesi, asgari ücreti ve istisna rejimiyle. Kayıt yok, reklam yok; her şey tarayıcınızda çalışır.
         </p>
       </div>
     </section>
@@ -166,6 +172,26 @@
     <section id="hesapla" class="calc" aria-labelledby="calc-title">
       <div class="wrap">
         <h2 id="calc-title" class="visually-hidden">Maaş hesaplama aracı</h2>
+
+        <div class="year-row">
+          <label for="in-year">Bordro yılı</label>
+          <select id="in-year" aria-describedby="year-note"></select>
+          <span class="year-note" id="year-note">2020'den bugüne — geçmiş yılların bordrosunu da hesaplar.</span>
+        </div>
+
+        <div class="year-row" id="agi-row" hidden>
+          <label for="in-agi">Asgari geçim indirimi (AGİ)</label>
+          <select id="in-agi">
+            <option value="0.50">Bekâr</option>
+            <option value="0.60">Evli, eşi çalışmıyor</option>
+            <option value="0.675">Evli, eşi çalışmıyor + 1 çocuk</option>
+            <option value="0.75">Evli, eşi çalışmıyor + 2 çocuk</option>
+            <option value="0.55">Bekâr + 1 çocuk</option>
+            <option value="0.575">Evli, eşi çalışıyor + 1 çocuk</option>
+            <option value="0.65">Evli, eşi çalışıyor + 2 çocuk</option>
+          </select>
+          <span class="year-note">2022'de kaldırılan AGİ, yalnızca 2020-2021 bordrolarında uygulanır.</span>
+        </div>
 
         <div class="tabs" role="tablist" aria-label="Hesaplama yönü">
           <button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" class="tab">Brütten nete</button>
@@ -196,7 +222,7 @@
 
     <article class="content">
       <div class="wrap prose">
-        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 16 Temmuz 2026 · 2026 yılı yasal parametreleri</p>
+        <p class="byline muted">Hazırlayan <a href="../hakkimda/" rel="author">Koray Öner</a> · Güncelleme: 5 Eylül 2026 · 2020-2026 yasal parametreleri · <a href="../bordro/">metodoloji ve değişiklik günlüğü</a></p>
 
         <h2 id="nasil">Brüt maaştan net maaş nasıl hesaplanır?</h2>
         <p>
@@ -275,8 +301,9 @@
         <div class="sources">
           <h2 id="kaynak-title">Veri kaynakları ve güncelleme</h2>
           <p>
-            <span class="updated">Parametreler en son 16 Temmuz 2026 tarihinde gözden geçirildi.</span>
-            Geçerli dönem: 2026 bordro yılı.
+            <span class="updated">Parametreler en son 5 Eylül 2026 tarihinde gözden geçirildi.</span>
+            Kapsanan dönem: 2020-2026 bordro yılları. Yıl yıl tam parametre dökümü ve tarihli
+            değişiklik günlüğü için <a href="../bordro/">Bordro Motoru</a> sayfasına bakın.
           </p>
           <p>Brüt-net dönüşümünde kullanılan vergi dilimleri, SGK taban ve tavan tutarları, asgari ücret istisnası ve damga vergisi oranı şu kaynaklardan doğrulanmıştır:</p>
           <ul>
@@ -306,6 +333,8 @@
           <details><summary>Netten brüte hesap neden zordur?</summary><p>Vergi dilimleri ve istisnalar yüzünden tek formülü yoktur; iteratif çözüm gerekir. Bu araç ikili arama ile kuruş hassasiyetinde çözer.</p></details>
           <details><summary>İşverene maliyetim nedir?</summary><p>Brütün üzerine %21,75 SGK ve %2 işsizlik işveren payı eklenir; teşviksiz toplam maliyet brütün yaklaşık %123,75'idir.</p></details>
           <details><summary>AGİ hâlâ var mı?</summary><p>Hayır. Asgari geçim indirimi 2022'de kaldırıldı; yerine tüm çalışanlar için asgari ücret vergi istisnası getirildi.</p></details>
+          <details><summary>Geçmiş yılların maaşını hesaplayabilir miyim?</summary><p>Evet. Yıl seçiminden 2020'ye kadar geri gidebilirsiniz. Her yıl kendi gelir vergisi tarifesi, asgari ücreti ve SGK tavanıyla hesaplanır; 2020-2021 için AGİ rejimi, 2022'den itibaren asgari ücret istisnası uygulanır. 2022 ve 2023'te asgari ücret yıl ortasında değiştiği için Temmuz'dan itibaren yeni tutarlar devreye girer.</p></details>
+          <details><summary>Net maaşım yıl ortasında neden yükseldi?</summary><p>Asgari ücret istisnası, asgari ücretlinin kendi kümülatif matrahına uygulanan tarifeden gelir. Asgari ücretlinin matrahı da yıl içinde üst dilime geçtiğinde istisna büyür. Siz zaten üst bir dilimde sabitlendiyseniz, büyüyen istisna netinizi o ay yukarı çeker. Tabloda ▲ işaretli aylar dilim geçişlerini gösterir.</p></details>
           <details><summary>Bu araç ücretli mi, verilerim saklanıyor mu?</summary><p>Tamamen ücretsizdir, reklam içermez. Bütün hesaplamalar cihazınızda yapılır; girdiğiniz tutarlar hiçbir yere gönderilmez.</p></details>
           <details><summary>Kıdem tazminatı da hesaplanıyor mu?</summary><p>Evet. <a href="../kidem-tazminati-hesaplama/">Kıdem ve İhbar Tazminatı Hesaplama</a> aracı 2026 tavanı ve giydirilmiş brüt ücretle kıdem ile ihbar tazminatını damga vergisi dahil hesaplar.</p></details>
         </div>
@@ -323,6 +352,7 @@
         </ul>
         <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlar:</p>
         <ul>
+          <li><a href="../bordro/">Bordro Motoru</a> — bu hesabın açık çekirdeği: 2020-2026 parametreleri, metodoloji ve değişiklik günlüğü.</li>
           <li><a href="../kidem-tazminati-hesaplama/">Kıdem ve İhbar Tazminatı Hesaplama</a> — 2026 tavanıyla, damga vergisi dahil.</li>
           <li><a href="../serbest-meslek-makbuzu-hesaplama/">Serbest Meslek Makbuzu Hesaplama</a> — stopaj ve KDV dahil brüt/net.</li>
           <li><a href="../kdv-hesaplama/">KDV Hesaplama</a> — KDV dahil/hariç tutar hesaplama.</li>
@@ -331,8 +361,29 @@
         </ul>
       </div>
     </section>
-  </main>
 
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu sayfadaki hesapları <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Sonuçlar, açık kaynaklı <a href="../bordro/">Bordro Motoru</a> çekirdeğinden gelir: kullanılan yasal parametreler, adım adım hesap yöntemi ve doğrulama testleri <a href="../bordro/#metodoloji">metodoloji sayfasında</a> herkese açıktır.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Hesaplama çekirdeği</dt><dd><a href="../bordro/">Bordro Motoru 1.0.0</a></dd></div>
+            <div><dt>Son gözden geçirme</dt><dd><time datetime="2026-09-05">5 Eylül 2026</time></dd></div>
+            <div><dt>Değişiklik günlüğü</dt><dd><a href="../bordro/#gunluk">Yayımlanıyor</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
       <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
@@ -346,6 +397,8 @@
     </div>
   </footer>
 
+  <script src="../bordro/parametreler.js" defer></script>
+  <script src="../bordro/motor.js" defer></script>
   <script src="script.js" defer></script>
   <script src="../script.js" defer></script>
   <script src="/bg-network.js" defer></script>

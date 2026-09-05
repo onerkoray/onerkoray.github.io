@@ -1,0 +1,149 @@
+/*!
+ * Türkiye Bordro Parametreleri — 2020-2026
+ * Kaynak: GVK m.103 / m.32, 5510 sayılı Kanun m.82, 488 sayılı DVK,
+ *         Asgari Ücret Tespit Komisyonu kararları (Resmî Gazete).
+ *
+ * Bu dosya motorun tek doğruluk kaynağıdır (single source of truth).
+ * Yeni bir bordro yılı eklemek için: yeni bir yıl bloğu + bordro/test.js
+ * içindeki resmî net asgari ücret referansı. Başka hiçbir yeri değiştirmeye
+ * gerek yoktur.
+ *
+ * Lisans: MIT — Koray Öner, https://korayoner.dev/bordro/
+ */
+(function (root, factory) {
+  "use strict";
+  var v = factory();
+  if (typeof module === "object" && module.exports) module.exports = v;
+  else root.BORDRO_PARAMETRELERI = v;
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+
+  /* Tüm yıllarda değişmeyen kesinti oranları.
+     Bir yıl bunlardan sapıyorsa yıl bloğunda "oranlar" ile ezilir. */
+  var VARSAYILAN_ORANLAR = {
+    sgkIsci: 0.14,          // SGK işçi payı (malullük/yaşlılık/ölüm + GSS)
+    issizlikIsci: 0.01,     // işsizlik sigortası işçi payı
+    sgkIsveren: 0.2175,     // SGK işveren payı — teşviksiz
+    issizlikIsveren: 0.02,  // işsizlik sigortası işveren payı
+    damga: 0.00759          // damga vergisi — binde 7,59 (2013'ten beri sabit)
+  };
+
+  /* 2020-2021 asgari geçim indirimi (AGİ) oranları — GVK m.32 (mülga).
+     AGİ = aylık brüt asgari ücret x toplam oran x %15 */
+  var AGI_ORANLARI = {
+    kendisi: 0.50,
+    calismayanEs: 0.10,
+    ilkIkiCocuk: 0.075,   // her biri
+    ucuncuCocuk: 0.10,
+    digerCocuk: 0.05
+  };
+
+  return {
+    2026: {
+      yil: 2026,
+      guncelleme: "2026-07-16",
+      istisnaRejimi: "asgari-ucret",   // ücretin asgari ücrete isabet eden kısmı istisna
+      damgaIstisnasi: true,
+      tavanKatsayisi: 9,
+      oranlar: VARSAYILAN_ORANLAR,
+      dilimler: [[190000, 0.15], [400000, 0.20], [1500000, 0.27], [5300000, 0.35], [null, 0.40]],
+      donemler: [
+        { ay: 1, asgariBrut: 33030.00, asgariNet: 28075.50, sgkTavan: 297270.00 }
+      ],
+      dayanak: "GVK m.103 (2026 tarifesi), GVK m.32 asgari ücret istisnası, 5510/82 (tavan = taban x 9)"
+    },
+
+    2025: {
+      yil: 2025,
+      guncelleme: "2026-07-16",
+      istisnaRejimi: "asgari-ucret",
+      damgaIstisnasi: true,
+      tavanKatsayisi: 7.5,
+      oranlar: VARSAYILAN_ORANLAR,
+      dilimler: [[158000, 0.15], [330000, 0.20], [1200000, 0.27], [4300000, 0.35], [null, 0.40]],
+      donemler: [
+        { ay: 1, asgariBrut: 26005.50, asgariNet: 22104.67, sgkTavan: 195041.25 }
+      ],
+      dayanak: "GVK m.103 (2025 tarifesi), GVK m.32, 5510/82 (tavan = taban x 7,5)"
+    },
+
+    2024: {
+      yil: 2024,
+      guncelleme: "2026-07-16",
+      istisnaRejimi: "asgari-ucret",
+      damgaIstisnasi: true,
+      tavanKatsayisi: 7.5,
+      oranlar: VARSAYILAN_ORANLAR,
+      dilimler: [[110000, 0.15], [230000, 0.20], [870000, 0.27], [3000000, 0.35], [null, 0.40]],
+      donemler: [
+        { ay: 1, asgariBrut: 20002.50, asgariNet: 17002.12, sgkTavan: 150018.75 }
+      ],
+      dayanak: "GVK m.103 (2024 tarifesi), GVK m.32, 5510/82"
+    },
+
+    2023: {
+      yil: 2023,
+      guncelleme: "2026-07-16",
+      istisnaRejimi: "asgari-ucret",
+      damgaIstisnasi: true,
+      tavanKatsayisi: 7.5,
+      oranlar: VARSAYILAN_ORANLAR,
+      dilimler: [[70000, 0.15], [150000, 0.20], [550000, 0.27], [1900000, 0.35], [null, 0.40]],
+      donemler: [
+        { ay: 1, asgariBrut: 10008.00, asgariNet: 8506.80, sgkTavan: 75060.00 },
+        { ay: 7, asgariBrut: 13414.50, asgariNet: 11402.32, sgkTavan: 100608.75 }
+      ],
+      notlar: "Asgari ücret 1 Temmuz 2023'te yeniden belirlendi; istisna, damga ve SGK tavanı Temmuz'dan itibaren yeni tutar üzerinden uygulanır.",
+      dayanak: "GVK m.103 (2023 tarifesi), GVK m.32, 5510/82"
+    },
+
+    2022: {
+      yil: 2022,
+      guncelleme: "2026-07-16",
+      istisnaRejimi: "asgari-ucret",   // 7349 sayılı Kanun ile 1 Ocak 2022'de yürürlüğe girdi
+      damgaIstisnasi: true,
+      tavanKatsayisi: 7.5,
+      oranlar: VARSAYILAN_ORANLAR,
+      dilimler: [[32000, 0.15], [70000, 0.20], [250000, 0.27], [880000, 0.35], [null, 0.40]],
+      donemler: [
+        { ay: 1, asgariBrut: 5004.00, asgariNet: 4253.40, sgkTavan: 37530.00 },
+        { ay: 7, asgariBrut: 6471.00, asgariNet: 5500.35, sgkTavan: 48532.50 }
+      ],
+      notlar: "AGİ 7349 sayılı Kanun ile kaldırıldı; yerine tüm ücretlilere asgari ücret gelir ve damga vergisi istisnası getirildi. Asgari ücret 1 Temmuz 2022'de yeniden belirlendi.",
+      dayanak: "7349 sayılı Kanun, GVK m.103 (2022 tarifesi), GVK m.32, 5510/82"
+    },
+
+    2021: {
+      yil: 2021,
+      guncelleme: "2026-07-16",
+      istisnaRejimi: "agi",
+      damgaIstisnasi: false,           // damga vergisi brütün tamamı üzerinden
+      tavanKatsayisi: 7.5,
+      oranlar: VARSAYILAN_ORANLAR,
+      agiOranlari: AGI_ORANLARI,
+      dilimler: [[24000, 0.15], [53000, 0.20], [190000, 0.27], [650000, 0.35], [null, 0.40]],
+      donemler: [
+        { ay: 1, asgariBrut: 3577.50, asgariNet: 2825.90, sgkTavan: 26831.25 }
+      ],
+      netAsgariTaban: 2825.90,
+      notlar: "AGİ rejimi. Asgari ücretlinin net ücreti, yıl içinde vergi dilimi ilerlese de ilave AGİ ile 2.825,90 TL'nin altına düşürülmez.",
+      dayanak: "GVK m.103 (2021 tarifesi), GVK m.32 (mülga AGİ), 5510/82"
+    },
+
+    2020: {
+      yil: 2020,
+      guncelleme: "2026-07-16",
+      istisnaRejimi: "agi",
+      damgaIstisnasi: false,
+      tavanKatsayisi: 7.5,
+      oranlar: VARSAYILAN_ORANLAR,
+      agiOranlari: AGI_ORANLARI,
+      dilimler: [[22000, 0.15], [49000, 0.20], [180000, 0.27], [600000, 0.35], [null, 0.40]],
+      donemler: [
+        { ay: 1, asgariBrut: 2943.00, asgariNet: 2324.71, sgkTavan: 22072.50 }
+      ],
+      notlar: "AGİ rejimi. Bu yılda asgari ücretlinin neti için taban koruma uygulaması bulunmadığından, yıl sonuna doğru vergi dilimi ilerledikçe net ücret Ocak ayının altına düşer.",
+      dayanak: "GVK m.103 (2020 tarifesi), GVK m.32 (mülga AGİ), 5510/82"
+    }
+  };
+});
