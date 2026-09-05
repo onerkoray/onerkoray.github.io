@@ -32,7 +32,7 @@ BIT = "<!-- METODOLOJI-BLOGU:BITIS -->"
 # Araç olmayan sayfalar: kurumsal, yasal, içerik ve taslak sayfalar.
 HARIC = {
     "gizlilik", "iletisim", "kullanim-kosullari", "hakkimda", "makaleler",
-    "bordro", "tasarim-onizleme", "tasarim-onizleme-2",
+    "bordro",
 }
 
 # Bordro Motoru'nu fiilen kullanan araçlar. Buraya yazılmayan sayfa, motoru
