@@ -35,6 +35,10 @@ HARIC = {
     "bordro", "tasarim-onizleme", "tasarim-onizleme-2",
 }
 
+# Bordro Motoru'nu fiilen kullanan araçlar. Buraya yazılmayan sayfa, motoru
+# kullandığını iddia eden bir künye almaz.
+MOTORLU = {"maas-hesaplama", "isten-ayrilma-hesaplama"}
+
 MOTOR_SURUMU = "1.0.0"
 MOTOR_TARIHI = "2026-09-05"
 MOTOR_TARIHI_TR = "5 Eylül 2026"
@@ -178,7 +182,7 @@ def main():
         with io.open(sayfa, encoding="utf-8") as f:
             html = f.read()
         kok = "../" * derinlik
-        motorlu = (ad == "maas-hesaplama")
+        motorlu = ad in MOTORLU
         yeni = uygula(html, blok(html, kok, motorlu))
         if yeni is None:
             atlanan.append(os.path.relpath(sayfa, ROOT))

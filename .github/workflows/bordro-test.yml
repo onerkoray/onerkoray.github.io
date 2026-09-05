@@ -31,6 +31,9 @@ jobs:
       - name: Motor testleri
         run: node bordro/test.js
 
+      - name: Çıkış paketi testleri
+        run: node bordro/cikis-test.js
+
       - name: Parametre tablosu güncel mi
         run: node tools/bordro-tablo.js --check
 

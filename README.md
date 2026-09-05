@@ -11,6 +11,7 @@ ve ücretsiz web araçları. Framework yok, bağımlılık yok, derleme adımı 
 
 - **[Brüt Net Maaş Hesaplama](https://korayoner.dev/maas-hesaplama/)** — 2020-2026 arası her bordro yılı için 12 aylık döküm, netten brüte çevirme.
 - **[Bordro Motoru](https://korayoner.dev/bordro/)** — maaş hesaplarının açık çekirdeği: yıl yıl yasal parametreler, metodoloji, değişiklik günlüğü.
+- **[İşten Ayrılma Paketi Hesaplama](https://korayoner.dev/isten-ayrilma-hesaplama/)** — kıdem, ihbar, yıllık izin, son ay ücreti ve işsizlik maaşı tek hesapta; fesih türüne göre hak matrisi ve ödeme takvimi.
 - **[Kıdem ve İhbar Tazminatı Hesaplama 2026](https://korayoner.dev/kidem-tazminati-hesaplama/)** — güncel tavanla kıdem/ihbar tazminatı.
 - **[KDV Hesaplama](https://korayoner.dev/kdv-hesaplama/)** — KDV dahil/hariç tutar hesaplama.
 - **[Yüzde Hesaplama](https://korayoner.dev/yuzde-hesaplama/)** — oran, indirim, artış/azalış.
@@ -41,12 +42,15 @@ Bordro.yillar();                    // [2026, 2025, … 2020]
 | --- | --- |
 | `bordro/parametreler.js` | 2020-2026 yasal parametreleri — tek doğruluk kaynağı |
 | `bordro/motor.js` | Hesaplama: kümülatif tarife, SGK taban/tavan, istisnalar, damga, netten brüte |
+| `bordro/cikis.js` | Çıkış paketi: fesih türü hak matrisi, kıdem, ihbar, izin, işsizlik ödeneği ve takvim |
 | `bordro/test.js` | 70 doğrulama; en güçlüsü resmî net asgari ücret karşılaştırması |
+| `bordro/cikis-test.js` | 98 doğrulama; en güçlüsü "hak yoksa tutar da yok" değişmezi |
 | `tools/bordro-tablo.js` | `bordro/index.html` parametre tablosunu parametrelerden üretir |
 | `tools/metodoloji-blogu.py` | Araç sayfalarına metodoloji/künye bloğunu yerleştirir |
 
 ```bash
-node bordro/test.js                     # motoru doğrula
+node bordro/test.js                     # bordro motorunu doğrula
+node bordro/cikis-test.js               # çıkış paketi motorunu doğrula
 node tools/bordro-tablo.js              # parametre tablosunu yeniden üret
 python tools/metodoloji-blogu.py        # künyeleri güncelle
 ```

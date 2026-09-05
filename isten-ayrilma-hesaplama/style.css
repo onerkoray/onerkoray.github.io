@@ -1,0 +1,174 @@
+/* İşten Ayrılma Paketi — araca özgü stiller.
+   Ortak tablo/özet stilleri ../style.css ve ../maas-hesaplama/style.css'ten gelir. */
+
+/* ---- form ---- */
+.exit-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.field-group {
+  border: 1px solid var(--border, rgba(127, 127, 127, .22));
+  border-radius: 12px;
+  padding: 16px 18px 6px;
+  margin: 0;
+  min-width: 0;
+}
+.field-group legend {
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  opacity: .7;
+  padding: 0 6px;
+}
+.field { margin: 0 0 14px; display: flex; flex-direction: column; gap: 6px; }
+.field label { font-weight: 600; font-size: var(--step--1); }
+.field input[type="text"],
+.field input[type="date"],
+.field select {
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border, rgba(127, 127, 127, .3));
+  background: var(--surface, transparent);
+  color: inherit;
+  font: inherit;
+  width: 100%;
+  max-width: 100%;
+}
+.field-note { font-size: .82rem; opacity: .7; line-height: 1.45; }
+.field-check { flex-direction: row; align-items: flex-start; }
+.field-check label { display: flex; gap: 8px; align-items: flex-start; font-weight: 500; }
+.field-check input { margin-top: .18em; flex: 0 0 auto; }
+
+.msg {
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(200, 120, 0, .35);
+  background: rgba(224, 138, 0, .10);
+  font-size: var(--step--1);
+}
+
+.block-title { margin: 30px 0 12px; font-size: var(--step-0); }
+
+/* ---- hak kartları ---- */
+.rights-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+.right-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border: 1px solid var(--border, rgba(127, 127, 127, .22));
+  border-radius: 12px;
+  background: var(--surface, rgba(127, 127, 127, .04));
+  min-width: 0;
+}
+.right-badge {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: .8rem;
+  font-weight: 700;
+  color: #fff;
+}
+.right-card.is-yes { border-color: rgba(14, 124, 102, .45); }
+.right-card.is-yes .right-badge { background: #0e7c66; }
+.right-card.is-no .right-badge { background: rgba(127, 127, 127, .55); }
+.right-body { min-width: 0; }
+.right-body h3 { margin: 0 0 4px; font-size: var(--step--1); font-weight: 700; }
+.right-amount {
+  margin: 0;
+  font-size: 1.18rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.right-none { margin: 0; font-size: 1.05rem; font-weight: 600; opacity: .55; }
+.right-note { margin: 4px 0 0; font-size: .82rem; opacity: .72; line-height: 1.45; }
+
+.sum-card--ana { border-color: rgba(14, 124, 102, .45); }
+
+/* ---- döküm tablosu ---- */
+table.detail tbody tr.row-head th {
+  padding-top: 18px;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  opacity: .65;
+  border-bottom-color: transparent;
+}
+table.detail tbody tr.row-head td { border-bottom-color: transparent; }
+
+/* ---- zaman çizelgesi ---- */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 26px;
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--border, rgba(127, 127, 127, .3));
+}
+.tl-item { position: relative; padding: 0 0 22px; }
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: -26px;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg, #f6f4ef);
+  border: 3px solid #0e7c66;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-date {
+  display: block;
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  opacity: .65;
+}
+.tl-body h4 { margin: 2px 0 0; font-size: var(--step-0); }
+.tl-amount {
+  margin: 4px 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--brand-strong, #0e7c66);
+}
+.tl-detail { margin: 4px 0 0; font-size: .86rem; opacity: .75; line-height: 1.5; }
+
+@media (prefers-color-scheme: dark) {
+  .tl-item::before { background: #0b0d10; }
+}
+:root[data-theme="dark"] .tl-item::before { background: #0b0d10; }
+
+/* ---- hak matrisi tablosu ---- */
+.matris td.yes { color: #0e7c66; font-weight: 700; }
+.matris td.no { opacity: .5; }
+.matris td.maybe { color: #c07800; font-weight: 600; }
+.matris tbody th { white-space: normal; min-width: 190px; }
+.matris td:last-child { white-space: normal; text-align: left; min-width: 240px; }
+@media (prefers-color-scheme: dark) {
+  .matris td.yes { color: #4fd1ae; }
+  .matris td.maybe { color: #f0b429; }
+}

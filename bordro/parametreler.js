@@ -38,6 +38,16 @@
     digerCocuk: 0.05
   };
 
+  /* İşsizlik ödeneği — 4447 sayılı Kanun m.50.
+     Oran ve tavan yıllardır değişmedi; bir yıl saparsa yıl bloğunda ezilir. */
+  var ISSIZLIK_VARSAYILAN = {
+    oran: 0.40,           // son 4 ayın prime esas kazanç ortalamasının %40'ı
+    tavanOrani: 0.80,     // ödenek, brüt asgari ücretin %80'ini aşamaz
+    basvuruGunu: 30,      // fesihten itibaren İŞKUR'a başvuru süresi
+    // [son 3 yıldaki asgari prim günü, ödenek gün sayısı]
+    sureler: [[1080, 300], [900, 240], [600, 180]]
+  };
+
   return {
     2026: {
       yil: 2026,
@@ -49,6 +59,11 @@
       dilimler: [[190000, 0.15], [400000, 0.20], [1500000, 0.27], [5300000, 0.35], [null, 0.40]],
       donemler: [
         { ay: 1, asgariBrut: 33030.00, asgariNet: 28075.50, sgkTavan: 297270.00 }
+      ],
+      issizlik: ISSIZLIK_VARSAYILAN,
+      kidemTavanlari: [
+        { ay: 1, tutar: 64948.77 },
+        { ay: 7, tutar: 73729.84 }
       ],
       dayanak: "GVK m.103 (2026 tarifesi), GVK m.32 asgari ücret istisnası, 5510/82 (tavan = taban x 9)"
     },
@@ -64,6 +79,11 @@
       donemler: [
         { ay: 1, asgariBrut: 26005.50, asgariNet: 22104.67, sgkTavan: 195041.25 }
       ],
+      issizlik: ISSIZLIK_VARSAYILAN,
+      kidemTavanlari: [
+        { ay: 1, tutar: 46655.43 },
+        { ay: 7, tutar: 53919.68 }
+      ],
       dayanak: "GVK m.103 (2025 tarifesi), GVK m.32, 5510/82 (tavan = taban x 7,5)"
     },
 
@@ -78,6 +98,7 @@
       donemler: [
         { ay: 1, asgariBrut: 20002.50, asgariNet: 17002.12, sgkTavan: 150018.75 }
       ],
+      issizlik: ISSIZLIK_VARSAYILAN,
       dayanak: "GVK m.103 (2024 tarifesi), GVK m.32, 5510/82"
     },
 
@@ -93,6 +114,7 @@
         { ay: 1, asgariBrut: 10008.00, asgariNet: 8506.80, sgkTavan: 75060.00 },
         { ay: 7, asgariBrut: 13414.50, asgariNet: 11402.32, sgkTavan: 100608.75 }
       ],
+      issizlik: ISSIZLIK_VARSAYILAN,
       notlar: "Asgari ücret 1 Temmuz 2023'te yeniden belirlendi; istisna, damga ve SGK tavanı Temmuz'dan itibaren yeni tutar üzerinden uygulanır.",
       dayanak: "GVK m.103 (2023 tarifesi), GVK m.32, 5510/82"
     },
@@ -109,6 +131,7 @@
         { ay: 1, asgariBrut: 5004.00, asgariNet: 4253.40, sgkTavan: 37530.00 },
         { ay: 7, asgariBrut: 6471.00, asgariNet: 5500.35, sgkTavan: 48532.50 }
       ],
+      issizlik: ISSIZLIK_VARSAYILAN,
       notlar: "AGİ 7349 sayılı Kanun ile kaldırıldı; yerine tüm ücretlilere asgari ücret gelir ve damga vergisi istisnası getirildi. Asgari ücret 1 Temmuz 2022'de yeniden belirlendi.",
       dayanak: "7349 sayılı Kanun, GVK m.103 (2022 tarifesi), GVK m.32, 5510/82"
     },
@@ -125,6 +148,7 @@
       donemler: [
         { ay: 1, asgariBrut: 3577.50, asgariNet: 2825.90, sgkTavan: 26831.25 }
       ],
+      issizlik: ISSIZLIK_VARSAYILAN,
       netAsgariTaban: 2825.90,
       notlar: "AGİ rejimi. Asgari ücretlinin net ücreti, yıl içinde vergi dilimi ilerlese de ilave AGİ ile 2.825,90 TL'nin altına düşürülmez.",
       dayanak: "GVK m.103 (2021 tarifesi), GVK m.32 (mülga AGİ), 5510/82"
@@ -142,6 +166,7 @@
       donemler: [
         { ay: 1, asgariBrut: 2943.00, asgariNet: 2324.71, sgkTavan: 22072.50 }
       ],
+      issizlik: ISSIZLIK_VARSAYILAN,
       notlar: "AGİ rejimi. Bu yılda asgari ücretlinin neti için taban koruma uygulaması bulunmadığından, yıl sonuna doğru vergi dilimi ilerledikçe net ücret Ocak ayının altına düşer.",
       dayanak: "GVK m.103 (2020 tarifesi), GVK m.32 (mülga AGİ), 5510/82"
     }

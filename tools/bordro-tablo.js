@@ -23,7 +23,12 @@ var SAYFA = path.join(KOK, "bordro", "index.html");
 var BAS = "<!-- PARAMETRE-TABLOSU:BASLANGIC -->";
 var BIT = "<!-- PARAMETRE-TABLOSU:BITIS -->";
 
+var MATRIS_SAYFA = path.join(KOK, "isten-ayrilma-hesaplama", "index.html");
+var MBAS = "<!-- HAK-MATRISI:BASLANGIC -->";
+var MBIT = "<!-- HAK-MATRISI:BITIS -->";
+
 var B = require(path.join(KOK, "bordro", "motor.js"));
+var C = require(path.join(KOK, "bordro", "cikis.js"));
 
 var nf = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 var nf0 = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
@@ -135,24 +140,81 @@ function uret() {
   ].join("\n");
 }
 
-function main() {
-  var html = fs.readFileSync(SAYFA, "utf8");
-  var i = html.indexOf(BAS), j = html.indexOf(BIT);
+/* Fesih türü / hak matrisi — bordro/cikis.js içindeki FESIH_TURLERI tablosundan.
+   Sayfadaki görünür matris ile hesabın kullandığı matris aynı kaynaktan gelir. */
+function hakHucresi(v) {
+  if (v === true) return '<td class="yes">Var</td>';
+  if (v === false) return '<td class="no">Yok</td>';
+  return '<td class="maybe">Sözleşmeye bağlı</td>';
+}
+
+function uretMatris() {
+  var satirlar = C.FESIH_TURLERI.map(function (t) {
+    return "            <tr>" +
+      '<th scope="row">' + esc(t.kisa) + "</th>" +
+      hakHucresi(t.kidem) +
+      hakHucresi(t.ihbar) +
+      hakHucresi(t.issizlik) +
+      "<td>" + esc(t.dayanak) + "</td>" +
+      "</tr>";
+  }).join("\n");
+
+  return [
+    MBAS,
+    '        <div class="table-scroll">',
+    '          <table class="payroll matris">',
+    '            <caption class="visually-hidden">Fesih türüne göre kıdem, ihbar ve işsizlik ödeneği hakları</caption>',
+    "            <thead><tr>",
+    '              <th scope="col">Sözleşme nasıl sona erdi?</th>',
+    '              <th scope="col">Kıdem tazminatı</th>',
+    '              <th scope="col">İhbar tazminatı</th>',
+    '              <th scope="col">İşsizlik ödeneği</th>',
+    '              <th scope="col">Yasal dayanak</th>',
+    "            </tr></thead>",
+    "            <tbody>",
+    satirlar,
+    "            </tbody>",
+    "          </table>",
+    "        </div>",
+    '        <p class="muted-note">',
+    "          &ldquo;İhbar tazminatı&rdquo; sütunu <strong>işçiye ödenip ödenmediğini</strong> gösterir.",
+    "          İstifada işçinin kendisi ihbar süresine uymazsa işverene ihbar tazminatı ödemek",
+    "          durumunda kalabilir. Kıdem tazminatı için ayrıca en az bir yıl çalışmış olmak şarttır.",
+    "        </p>",
+    "        " + MBIT
+  ].join("\n");
+}
+
+function isle(dosya, bas, bit, uretici, ad) {
+  var html = fs.readFileSync(dosya, "utf8");
+  var i = html.indexOf(bas), j = html.indexOf(bit);
   if (i === -1 || j === -1) {
-    console.error("İşaretçiler bulunamadı: " + BAS + " / " + BIT);
+    console.error("İşaretçiler bulunamadı (" + ad + "): " + bas + " / " + bit);
     process.exit(2);
   }
-  var yeni = html.slice(0, i) + uret() + html.slice(j + BIT.length);
+  var yeni = html.slice(0, i) + uretici() + html.slice(j + bit.length);
+  return { dosya: dosya, eski: html, yeni: yeni, ad: ad, degisti: yeni !== html };
+}
+
+function main() {
+  var isler = [
+    isle(SAYFA, BAS, BIT, uret, "parametre tabloları"),
+    isle(MATRIS_SAYFA, MBAS, MBIT, uretMatris, "hak matrisi")
+  ];
+  var degisen = isler.filter(function (x) { return x.degisti; });
 
   if (process.argv.indexOf("--check") !== -1) {
-    if (yeni === html) { console.log("Parametre tabloları güncel."); process.exit(0); }
-    console.error("Parametre tabloları güncel değil — 'node tools/bordro-tablo.js' çalıştırın.");
+    if (!degisen.length) { console.log("Üretilen tablolar güncel."); process.exit(0); }
+    console.error("Güncel değil (" + degisen.map(function (x) { return x.ad; }).join(", ") +
+      ") — 'node tools/bordro-tablo.js' çalıştırın.");
     process.exit(1);
   }
 
-  if (yeni === html) { console.log("Değişiklik yok."); return; }
-  fs.writeFileSync(SAYFA, yeni, "utf8");
-  console.log("bordro/index.html parametre tabloları güncellendi (" + B.yillar().length + " yıl).");
+  if (!degisen.length) { console.log("Değişiklik yok."); return; }
+  degisen.forEach(function (x) {
+    fs.writeFileSync(x.dosya, x.yeni, "utf8");
+    console.log(path.relative(KOK, x.dosya) + " — " + x.ad + " güncellendi.");
+  });
 }
 
 main();
