@@ -52,6 +52,8 @@ table.brackets th, table.brackets td {
   gap: 10px 14px;
   margin: 0 0 16px;
 }
+/* JS bu satiri el.hidden ile gizliyor; kosulsuz display onu ezer. */
+.year-row[hidden] { display: none; }
 .year-row label { font-weight: 600; }
 .year-row select {
   padding: 8px 12px;
