@@ -1,0 +1,38 @@
+name: Bordro motoru testleri
+
+# Motorun doğruluğu sitenin en kırılgan iddiası: bir parametre yanlış girilirse
+# hiçbir şey görünürde bozulmaz, sadece sonuçlar sessizce yanlış olur.
+# Bu yüzden her değişiklikte resmî net asgari ücret referansı yeniden doğrulanır.
+
+on:
+  push:
+    paths:
+      - "bordro/**"
+      - "tools/bordro-tablo.js"
+      - "tools/metodoloji-blogu.py"
+      - ".github/workflows/bordro-test.yml"
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  dogrula:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Motor testleri
+        run: node bordro/test.js
+
+      - name: Parametre tablosu güncel mi
+        run: node tools/bordro-tablo.js --check
+
+      - name: Araç künyeleri güncel mi
+        run: python tools/metodoloji-blogu.py --check

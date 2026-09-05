@@ -43,3 +43,31 @@ table.brackets th, table.brackets td {
   text-align: left;
   border-bottom: 1px solid var(--border, rgba(127,127,127,.2));
 }
+
+/* ---- Yıl seçimi ve dilim geçişi işaretleri ---- */
+.year-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 0 0 16px;
+}
+.year-row label { font-weight: 600; }
+.year-row select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border, rgba(127,127,127,.3));
+  background: var(--surface, transparent);
+  color: inherit;
+  font: inherit;
+}
+.year-note { font-size: .85rem; opacity: .7; }
+
+table.payroll td.rate { font-variant-numeric: tabular-nums; opacity: .75; }
+table.payroll tr.bracket-jump { background: rgba(224, 138, 0, .10); }
+table.payroll tr.bracket-jump th { position: relative; }
+.jump-flag { color: #c07800; font-size: .78em; margin-left: 2px; }
+@media (prefers-color-scheme: dark) {
+  table.payroll tr.bracket-jump { background: rgba(255, 176, 32, .12); }
+  .jump-flag { color: #f0b429; }
+}
