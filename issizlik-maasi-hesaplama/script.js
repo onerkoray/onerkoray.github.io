@@ -1,34 +1,30 @@
-/* İşsizlik Maaşı Hesaplama — 2026 parametreleri (bağımlılıksız).
-   Aylık ödenek = son 4 ay brüt ortalaması × %40, tavan: brüt asgari ücret × %80.
-   Yalnızca damga vergisi (binde 7,59) kesilir. Tüm hesaplama istemci tarafında. */
+/* İşsizlik Maaşı — arayüz katmanı.
+   Ödenek oranı, tavanı, süre kademeleri, SGK tavanı ve damga vergisi
+   ../bordro/parametreler.js içindedir; bu dosya formu okur ve sonucu çizer.
+   Parametrelerin kopyası burada tutulmaz. */
 (function () {
   "use strict";
-
-  /* ---------- 2026 yasal parametreleri ---------- */
-  var MIN_GROSS = 33030.00;      // aylık brüt asgari ücret 2026
-  var SGK_CEILING = 297270.00;   // aylık SGK prim (PEK) tavanı
-  var RATE = 0.40;               // ödenek oranı
-  var CAP_RATE = 0.80;           // tavan: asgari ücretin %80'i
-  var STAMP = 0.00759;           // damga vergisi
+  var B = window.Bordro;
+  var C = window.BordroCikis;
+  if (!B || !C) return;
 
   var nf = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   function fmt(n) { return isFinite(n) ? nf.format(Math.round(n * 100) / 100) : "—"; }
+  function el(id) { return document.getElementById(id); }
 
+  /* Türkçe sayı girişi: "45.000" binlik, "45000,50" ondalık. */
   function num(id) {
-    var el = document.getElementById(id);
-    if (!el) return NaN;
-    var raw = String(el.value).trim().replace(/\s/g, "");
-    if (raw === "") return NaN;
-    if (raw.indexOf(",") >= 0) {
-      raw = raw.replace(/\./g, "").replace(",", "."); // virgül ondalık, nokta binlik
+    var e = el(id);
+    if (!e) return NaN;
+    var ham = String(e.value).trim().replace(/\s/g, "");
+    if (ham === "") return NaN;
+    if (ham.indexOf(",") >= 0) {
+      ham = ham.replace(/\./g, "").replace(",", ".");
     } else {
-      // yalnızca nokta: tüm gruplar tam 3 basamaksa binlik (100.000), aksi ondalık (3.79)
-      var parts = raw.split(".");
-      if (parts.length > 1 && parts.slice(1).every(function (p) { return p.length === 3; })) {
-        raw = parts.join("");
-      }
+      var p = ham.split(".");
+      if (p.length > 1 && p.slice(1).every(function (x) { return x.length === 3; })) ham = p.join("");
     }
-    return parseFloat(raw);
+    return parseFloat(ham);
   }
 
   function sumCard(label, value, note) {
@@ -37,69 +33,85 @@
       '</strong><span class="sum-note">' + note + "</span></div>";
   }
 
-  function monthsForDays(days) {
-    if (days >= 1080) return 10;
-    if (days >= 900) return 8;
-    if (days >= 600) return 6;
-    return 0;
+  /* Hesap, içinde bulunulan bordro yılının parametreleriyle yapılır. */
+  function aktifYil() {
+    var y = new Date().getFullYear();
+    return B.parametreler[y] ? y : B.sonYil();
   }
 
   function recalc() {
-    var results = document.getElementById("results");
-    var msg = document.getElementById("msg");
+    var results = el("results");
+    var msg = el("msg");
 
     var avg = num("in-avg");
-    var days = parseInt(document.getElementById("in-days").value, 10);
+    var primGunu = parseInt(el("in-days").value, 10);
 
     if (isNaN(avg) || avg <= 0) {
       results.innerHTML = ""; msg.hidden = true; return;
     }
     msg.hidden = true;
 
-    var months = monthsForDays(days);
-    if (months === 0) {
+    var yil = aktifYil();
+    var P = B.parametre(yil);
+    var issizlik = P.issizlik;
+    var donem = B.donem(P, new Date().getMonth() + 1);
+    var damgaOrani = P.oranlar.damga;
+
+    var gun = C.odenekGunu(primGunu, issizlik);
+    if (gun === 0) {
       results.innerHTML = "";
       msg.textContent = "Son 3 yılda en az 600 gün prim ödenmemişse işsizlik ödeneğine hak kazanılmaz.";
-      msg.hidden = false; return;
+      msg.hidden = false;
+      return;
     }
+    var ay = gun / 30;
 
-    // Prime esas kazanç tavanla sınırlıdır
-    var pek = Math.min(avg, SGK_CEILING);
-    var raw = pek * RATE;                       // %40
-    var cap = MIN_GROSS * CAP_RATE;             // tavan
-    var gross = Math.min(raw, cap);
-    var capped = raw > cap;
-    var stamp = gross * STAMP;
-    var net = gross - stamp;
-    var total = net * months;
+    // Prime esas kazanç SGK tavanıyla sınırlıdır.
+    var pek = Math.min(avg, donem.sgkTavan);
+    var ham = pek * issizlik.oran;
+    var tavan = donem.asgariBrut * issizlik.tavanOrani;
+    var brut = Math.min(ham, tavan);
+    var tavanUygulandi = ham > tavan;
+    var damga = brut * damgaOrani;
+    var net = brut - damga;
+    var toplam = net * ay;
+
+    var oranYuzde = Math.round(issizlik.oran * 100);
+    var tavanYuzde = Math.round(issizlik.tavanOrani * 100);
 
     var cards =
       sumCard("Net aylık ödenek", fmt(net) + " TL", "Damga vergisi düşülmüş") +
-      sumCard("Ödeme süresi", months + " ay", days + " gün prim") +
-      sumCard("Toplam net ödeme", fmt(total) + " TL", months + " ay boyunca") +
-      sumCard("Brüt aylık ödenek", fmt(gross) + " TL", capped ? "Tavan uygulandı (asgari × %80)" : "Kazancın %40'ı");
+      sumCard("Ödeme süresi", ay + " ay", gun + " gün ödenek · " + primGunu + " gün prim") +
+      sumCard("Toplam net ödeme", fmt(toplam) + " TL", ay + " ay boyunca") +
+      sumCard("Brüt aylık ödenek", fmt(brut) + " TL",
+        tavanUygulandi ? "Tavan uygulandı (asgari × %" + tavanYuzde + ")" : "Kazancın %" + oranYuzde + "'ı");
 
     var rows =
-      "<tr><th>Hesaba esas kazanç (%40 öncesi)</th><td>" + fmt(pek) + " TL" +
-        (avg > SGK_CEILING ? " (SGK tavanı uygulandı)" : "") + "</td></tr>" +
-      "<tr><th>Kazancın %40'ı</th><td>" + fmt(raw) + " TL</td></tr>" +
-      "<tr><th>Ödenek tavanı (asgari × %80)</th><td>" + fmt(cap) + " TL</td></tr>" +
-      "<tr><th>Brüt aylık ödenek</th><td>" + fmt(gross) + " TL</td></tr>" +
-      "<tr><th>Damga vergisi (binde 7,59)</th><td>− " + fmt(stamp) + " TL</td></tr>" +
+      "<tr><th>Hesaba esas kazanç (%" + oranYuzde + " öncesi)</th><td>" + fmt(pek) + " TL" +
+        (avg > donem.sgkTavan ? " (SGK tavanı uygulandı)" : "") + "</td></tr>" +
+      "<tr><th>Kazancın %" + oranYuzde + "'ı</th><td>" + fmt(ham) + " TL</td></tr>" +
+      "<tr><th>Ödenek tavanı (asgari brüt × %" + tavanYuzde + ")</th><td>" + fmt(tavan) + " TL</td></tr>" +
+      "<tr><th>Brüt aylık ödenek</th><td>" + fmt(brut) + " TL</td></tr>" +
+      "<tr><th>Damga vergisi (binde 7,59)</th><td>− " + fmt(damga) + " TL</td></tr>" +
       "<tr><th><strong>Net aylık ödenek</strong></th><td><strong>" + fmt(net) + " TL</strong></td></tr>";
 
     results.innerHTML = '<div class="sum-grid">' + cards + "</div>" +
-      '<div class="table-scroll"><table class="payroll detail"><caption class="visually-hidden">İşsizlik ödeneği dökümü</caption><tbody>' +
+      '<div class="table-scroll"><table class="payroll detail">' +
+      '<caption class="visually-hidden">İşsizlik ödeneği dökümü</caption><tbody>' +
       rows + "</tbody></table></div>" +
-      '<p class="muted-note table-note">Ödenekten gelir vergisi ve SGK primi kesilmez. Tutar bilgilendirme amaçlıdır; kesin hesap İŞKUR tarafından yapılır.</p>';
+      '<p class="muted-note table-note">Ödenekten gelir vergisi ve SGK primi kesilmez. ' +
+      yil + " yılı parametreleriyle hesaplandı; kesin tutar İŞKUR tarafından belirlenir.</p>" +
+      '<p class="muted-note table-note">Hesaplama çekirdeği: <a href="../bordro/">açık kaynak bordro motoru</a>. ' +
+      'Ödeneğin ne zaman yatacağını ve çıkışta doğan diğer alacakları birlikte görmek için ' +
+      '<a href="../isten-ayrilma-hesaplama/">İşten Ayrılma Paketi</a> aracını kullanın.</p>';
   }
 
   ["in-avg", "in-days"].forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) { el.addEventListener("input", recalc); el.addEventListener("change", recalc); }
+    var e = el(id);
+    if (e) { e.addEventListener("input", recalc); e.addEventListener("change", recalc); }
   });
 
-  var y = document.getElementById("year");
+  var y = el("year");
   if (y) y.textContent = new Date().getFullYear();
 
   recalc();

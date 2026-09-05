@@ -34,6 +34,9 @@ jobs:
       - name: Çıkış paketi testleri
         run: node bordro/cikis-test.js
 
+      - name: Parametre kopyası var mı
+        run: node tools/parametre-kopyasi.js --check
+
       - name: Parametre tablosu güncel mi
         run: node tools/bordro-tablo.js --check
 
