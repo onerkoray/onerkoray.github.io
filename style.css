@@ -630,26 +630,4 @@ pre.code-block code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas
   .method-card { flex-direction: column; gap: 14px; }
   .method-portrait { width: 64px; height: 64px; }
 }
-
-/* ---- Hakkımda sayfası tanıtım afişi ---- */
-.about-banner-wrap { padding: 6px 0 2px; }
-.about-banner { margin: 0; }
-.about-banner img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 14px;
-  border: 1px solid var(--border, rgba(127,127,127,.2));
-}
-.about-banner figcaption {
-  margin-top: 10px;
-  font-size: var(--step--1);
-  color: var(--text-muted);
-  text-align: center;
-}
-@media (max-width: 560px) {
-  /* Dar ekranda afişteki metin okunamayacak kadar küçülüyor; anlamı zaten
-     alt metninde ve sayfa gövdesinde olduğu için köşeleri yumuşatıp bırakıyoruz. */
-  .about-banner img { border-radius: 10px; }
-  .about-banner figcaption { text-align: left; }
 }
