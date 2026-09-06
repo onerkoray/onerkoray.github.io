@@ -10,6 +10,7 @@ on:
       - "bordro/**"
       - "tools/bordro-tablo.js"
       - "tools/metodoloji-blogu.py"
+      - "tools/make-og.py"
       - ".github/workflows/bordro-test.yml"
   pull_request:
   workflow_dispatch: {}
@@ -54,3 +55,8 @@ jobs:
 
       - name: Araç künyeleri güncel mi
         run: python tools/metodoloji-blogu.py --check
+
+      - name: Paylaşım kartı paletleri kontrastı geçiyor mu
+        # Kart renkleri elle seçilirse sessizce AA altına düşüyor (eski tek
+        # şablonun yeşili beyaz metinde 3.28:1 idi). Tarayıcı gerektirmez.
+        run: python tools/make-og.py --kontrast

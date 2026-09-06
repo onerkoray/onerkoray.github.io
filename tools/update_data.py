@@ -134,12 +134,12 @@ PAGE = """<!DOCTYPE html>
   <meta property="og:description" content="Merkez Bankası resmî döviz kurları, her iş günü güncellenir. Dolar {usd_satis} TL, euro {eur_satis} TL.">
   <meta property="og:url" content="{site}/doviz-kurlari/">
   <meta property="og:locale" content="tr_TR">
-  <meta property="og:image" content="{site}/images/doviz-kurlari-koray-oner.png">
+  <meta property="og:image" content="{site}/images/doviz-kurlari-koray-oner.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TCMB Döviz Kurları — {tarih_metin}">
-  <meta name="twitter:image" content="{site}/images/doviz-kurlari-koray-oner.png">
+  <meta name="twitter:image" content="{site}/images/doviz-kurlari-koray-oner.png?v=2">
 
   <link rel="stylesheet" href="../style.css">
 
