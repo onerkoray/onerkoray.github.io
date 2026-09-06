@@ -69,7 +69,7 @@ ok("Tam 1 yılda kıdem = giydirilmiş brüt (tavan altında)",
 
 var tavanli = ornek({ ciplakBrut: 200000, giydirmeEkleri: 0, iseGiris: "2025-09-30" });
 ok("Tavanın üzerinde ücrette tavan uygulanır", tavanli.kidem.tavanUygulandi === true);
-ok("Tavanlı kıdem = tavan tutarı (1 yıl)", yakin(tavanli.kidem.brut, 73729.84, 0.02),
+ok("Tavanlı kıdem = tavan tutarı (1 yıl)", yakin(tavanli.kidem.brut, 73729.87, 0.02),
   tavanli.kidem.brut.toFixed(2));
 ok("Kıdemden gelir vergisi kesilmez, yalnızca damga",
   yakin(tavanli.kidem.net, tavanli.kidem.brut * (1 - 0.00759), 0.02));
@@ -78,7 +78,7 @@ var haziran = ornek({ cikis: "2026-06-30", iseGiris: "2025-06-30" });
 ok("Fesih tarihi Haziran ise ilk yarıyıl tavanı uygulanır",
   haziran.kidem.tavan === 64948.77, String(haziran.kidem.tavan));
 ok("Fesih tarihi Eylül ise ikinci yarıyıl tavanı uygulanır",
-  ornek().kidem.tavan === 73729.84);
+  ornek().kidem.tavan === 73729.87);
 
 /* 3 — İhbar tazminatı kademeleri (4857 m.17) */
 baslik("İhbar süresi kademeleri");
@@ -179,6 +179,26 @@ C.FESIH_TURLERI.forEach(function (t) {
 ok("Bilinmeyen fesih türü hata fırlatır", (function () {
   try { C.fesih("yok"); return false; } catch (e) { return true; }
 })());
+
+baslik("Kıdem tazminatı tavanı — resmî tutarlar");
+/* Bu dört sayı motorun en kırılgan noktası: yanlış girilirse hiçbir şey
+   görünürde bozulmaz, yalnızca tavana takılan her kıdem yılında sessizce
+   sapma birikir. 1.0.1 sürümünde 2026/II değeri 73.729,84 olarak girilmiş
+   olduğu fark edildi; doğrusu 73.729,87.
+   Kaynak: Hazine ve Maliye Bakanlığı Mali ve Sosyal Haklar Genelgeleri
+   (2026/II için 3.7.2026 tarih ve 27998389-010.06.02-4870801 sayılı). */
+[
+  [2025, 1, 46655.43], [2025, 7, 53919.68],
+  [2026, 1, 64948.77], [2026, 7, 73729.87]
+].forEach(function (t) {
+  var yil = t[0], ay = t[1], beklenen = t[2];
+  var liste = B.parametre(yil).kidemTavanlari;
+  var kayit = null;
+  for (var i = 0; i < liste.length; i++) if (liste[i].ay === ay) kayit = liste[i];
+  ok(yil + "/" + (ay === 1 ? "I" : "II") + ". dönem kıdem tavanı = " + beklenen,
+     !!kayit && kayit.tutar === beklenen,
+     kayit ? "bulunan: " + kayit.tutar : "dönem kaydı yok");
+});
 
 console.log("\n" + gecen + " geçti, " + kalan + " kaldı.");
 process.exit(kalan ? 1 : 0);

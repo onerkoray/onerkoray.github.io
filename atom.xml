@@ -5,10 +5,24 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-05T20:00:00+03:00</updated>
+  <updated>2026-09-06T13:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
 
+  <entry>
+    <title>Kıdem tazminatı tavanı: maaşınız artıyor, tazminatınız neden artmıyor?</title>
+    <link href="https://korayoner.dev/makaleler/kidem-tazminati-tavani/"/>
+    <id>https://korayoner.dev/makaleler/kidem-tazminati-tavani/</id>
+    <updated>2026-09-06T13:00:00+03:00</updated>
+    <summary>Temmuz–Aralık 2026 tavanı 73.729,87 TL. Üstünde tazminat düzleşiyor: 90.000 TL ile 150.000 TL brüt aynı tutarı veriyor, yol-yemek yardımı da hiçbir şey eklemiyor.</summary>
+  </entry>
+  <entry>
+    <title>İstifa edince kıdem tazminatı alınır mı?</title>
+    <link href="https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/"/>
+    <id>https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/</id>
+    <updated>2026-09-06T13:00:00+03:00</updated>
+    <summary>Genel kural doğru ama yarım: işçinin kendi isteğiyle ayrıldığı beş durumda kıdem doğuyor. 10 yıllık bir çalışanda fark sıfır lira ile 665.279 lira arasında.</summary>
+  </entry>
   <entry>
     <title>Asgari ücret nasıl belirlenir? Ve neden herkesi ilgilendirir</title>
     <link href="https://korayoner.dev/makaleler/asgari-ucret-nasil-belirlenir/"/>

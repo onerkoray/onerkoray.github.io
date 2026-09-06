@@ -30,7 +30,7 @@ var IMZALAR = [
   { desen: /\b26005\.5\d*\b/, ad: "2025 brüt asgari ücret" },
   { desen: /\b195041\.25\b/, ad: "2025 SGK prim tavanı" },
   { desen: /\b0\.00759\b/, ad: "damga vergisi oranı" },
-  { desen: /\b73729\.84\b/, ad: "2026/II kıdem tavanı" },
+  { desen: /\b73729\.87\b/, ad: "2026/II kıdem tavanı" },
   { desen: /\b64948\.77\b/, ad: "2026/I kıdem tavanı" },
   { desen: /\b53919\.68\b/, ad: "2025/II kıdem tavanı" },
   { desen: /\b46655\.43\b/, ad: "2025/I kıdem tavanı" },

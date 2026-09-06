@@ -1,5 +1,15 @@
 [
   {
+    "slug": "kidem-tazminati-tavani",
+    "kicker": "Tazminat",
+    "alt": "On yıllık kıdem tazminatının giydirilmiş brüt ücrete göre seyri; 73.730 TL'de çizgi düzleşiyor"
+  },
+  {
+    "slug": "istifa-edince-kidem-tazminati",
+    "kicker": "Tazminat",
+    "alt": "Aynı ücret ve kıdemde ayrılma şeklinin tazminata etkisi: gerekçesiz istifada sıfır, evlilik ve askerlikte 665.279 TL, işveren feshinde 755.628 TL"
+  },
+  {
     "slug": "sahis-mi-limited-mi",
     "kicker": "Vergi",
     "alt": "Gelir düzeyine göre en çok net bırakan çalışma biçimini gösteren renkli bant grafiği"

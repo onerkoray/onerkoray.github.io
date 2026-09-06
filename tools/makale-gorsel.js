@@ -30,6 +30,7 @@ var KOK = path.dirname(__dirname);
 var CIKTI = path.join(KOK, "images", "makale");
 var B = require(path.join(KOK, "bordro", "motor.js"));
 var CB = require(path.join(KOK, "bordro", "calisma-bicimi.js"));
+var CK = require(path.join(KOK, "bordro", "cikis.js"));
 
 var CHROME = [
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
@@ -213,6 +214,107 @@ function durumIsareti(satirlar) {
     '" role="img" aria-label="Yazinin ele aldigi baslikların guncel durumu">' + ic + "</svg>";
 }
 
+/* Yatay sütun: aynı kişi, aynı ücret, farklı ayrılma şekli.
+   Tek ölçü (para) olduğu için tek hue — kategorik palet kullanılmıyor. */
+function sutunAyrilmaSekli() {
+  var ort = { ciplakBrut: 60000, giydirmeEkleri: 7000,
+              iseGiris: "2016-09-01", cikis: "2026-09-01" };
+  function hesap(tur) {
+    var r = CK.hesapla({ fesihTuru: tur, ciplakBrut: ort.ciplakBrut,
+      giydirmeEkleri: ort.giydirmeEkleri, iseGiris: ort.iseGiris, cikis: ort.cikis });
+    var k = r.kidem.hak ? r.kidem.net : 0;
+    var i = (r.ihbar && r.ihbar.hak) ? r.ihbar.net : 0;
+    return k + i;
+  }
+  var satirlar = [
+    { ad: "Gerekçesiz istifa", alt: "Kıdem yok, ihbar yok", v: hesap("istifa") },
+    { ad: "Evlilik · askerlik · haklı fesih", alt: "Kıdem doğar", v: hesap("evlilik") },
+    { ad: "İşveren feshi", alt: "Kıdem + ihbar", v: hesap("isveren") }
+  ];
+  var enCok = Math.max.apply(null, satirlar.map(function (s) { return s.v; })) || 1;
+  var W = 600, H = 360, P = 28, BG = W - 2 * P - 150;
+
+  var ic = satirlar.map(function (s, i) {
+    var yb = 78 + i * 100;
+    var gen = Math.max(2, s.v / enCok * BG);
+    var sifir = s.v <= 0;
+    return '<text x="' + P + '" y="' + (yb - 26) + '" font-size="18" font-weight="700" fill="' +
+      R.murekkep + '">' + esc(s.ad) + "</text>" +
+      '<text x="' + P + '" y="' + (yb - 7) + '" font-size="13" fill="' + R.ikincil + '">' +
+      esc(s.alt) + "</text>" +
+      (sifir
+        ? '<rect x="' + P + '" y="' + yb + '" width="46" height="26" rx="4" fill="' +
+          R.s2 + '" fill-opacity="0.16"/>'
+        : '<rect x="' + P + '" y="' + yb + '" width="' + gen.toFixed(1) +
+          '" height="26" rx="4" fill="' + R.marka + '"/>') +
+      '<text x="' + (sifir ? P + 58 : P + gen + 12) + '" y="' + (yb + 19) +
+      '" font-size="19" font-weight="800" fill="' + (sifir ? R.s2 : R.murekkep) + '">' +
+      (sifir ? "0 TL" : nf0.format(s.v) + " TL") + "</text>";
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Ayni ucret ve kidemde ayrilma seklinin tazminata etkisi">' +
+    '<text x="' + P + '" y="' + (P + 6) + '" font-size="15" fill="' + R.ikincil +
+    '">10 yıl kıdem · 60.000 TL brüt + 7.000 TL yol-yemek · net</text>' + ic + "</svg>";
+}
+
+/* Kıdem tazminatının giydirilmiş ücrete göre seyri: tavandan sonra düzleşir.
+   Yazının tezi tam olarak bu kırılma, o yüzden kırılma noktası işaretli. */
+function cizgiTavan() {
+  var giris = "2016-09-01", cikis = "2026-09-01";
+  function kidem(giydirilmis) {
+    return CK.hesapla({ fesihTuru: "isveren", ciplakBrut: giydirilmis,
+      giydirmeEkleri: 0, iseGiris: giris, cikis: cikis }).kidem.net;
+  }
+  var tavan = CK.hesapla({ fesihTuru: "isveren", ciplakBrut: 50000, giydirmeEkleri: 0,
+    iseGiris: giris, cikis: cikis }).kidem.tavan;
+
+  var x0 = 40000, x1 = 160000, N = 40;
+  var noktalar = [];
+  for (var i = 0; i <= N; i++) {
+    var g = x0 + (x1 - x0) * i / N;
+    noktalar.push([g, kidem(g)]);
+  }
+  var enCok = noktalar[N][1];
+  var W = 600, H = 360, P = 30, TA = 44;
+  var px = function (g) { return P + 4 + (g - x0) / (x1 - x0) * (W - 2 * P - 8); };
+  var py = function (v) { return H - TA - v / enCok * (H - P - TA - 26); };
+
+  var d = noktalar.map(function (n, i) {
+    return (i ? "L" : "M") + px(n[0]).toFixed(1) + " " + py(n[1]).toFixed(1);
+  }).join(" ");
+
+  var izgara = [0, 0.5, 1].map(function (t) {
+    var yy = P + t * (H - P - TA - 26);
+    return '<line x1="' + P + '" y1="' + yy + '" x2="' + (W - P) + '" y2="' + yy +
+      '" stroke="' + R.izgara + '" stroke-width="1"/>';
+  }).join("");
+
+  var kx = px(tavan), ky = py(kidem(tavan));
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Kidem tazminatinin giydirilmis ucrete gore seyri ve tavan kirilmasi">' +
+    izgara +
+    '<line x1="' + kx.toFixed(1) + '" y1="' + (P - 4) + '" x2="' + kx.toFixed(1) + '" y2="' +
+    (H - TA) + '" stroke="' + R.s2 + '" stroke-width="2" stroke-dasharray="5 4"/>' +
+    '<path d="' + d + '" fill="none" stroke="' + R.marka +
+    '" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>' +
+    '<circle cx="' + kx.toFixed(1) + '" cy="' + ky.toFixed(1) + '" r="7" fill="' + R.s2 +
+    '" stroke="' + R.zemin + '" stroke-width="2.5"/>' +
+    /* Etiketler dirseğin ALTINA: üstte seri başlığı ve düz çizgi var,
+       oraya yazınca üst üste biniyorlardı. */
+    '<text x="' + (kx + 14) + '" y="' + (ky + 30) + '" font-size="16" font-weight="700" fill="' +
+    R.s2 + '">Tavan ' + nf0.format(tavan) + " TL</text>" +
+    '<text x="' + (kx + 14) + '" y="' + (ky + 50) + '" font-size="14" fill="' + R.ikincil +
+    '">bu noktadan sonra düz</text>' +
+    '<text x="' + P + '" y="' + (P + 6) + '" font-size="15" fill="' + R.ikincil +
+    '">10 yıllık kıdem tazminatı (net)</text>' +
+    '<text x="' + P + '" y="' + (H - 10) + '" font-size="14" fill="' + R.ikincil +
+    '">40 bin</text>' +
+    '<text x="' + (W - P) + '" y="' + (H - 10) + '" font-size="14" text-anchor="end" fill="' +
+    R.ikincil + '">giydirilmiş brüt · 160 bin</text>' +
+    "</svg>";
+}
+
 /* ---------- kapaklar ---------- */
 
 var KAPAKLAR = {
@@ -245,6 +347,18 @@ var KAPAKLAR = {
         { durum: "bekliyor", baslik: "Yasama yılı", alt: "1 Ekim 2026'da açılıyor" }
       ]);
     }
+  },
+  "istifa-edince-kidem-tazminati": {
+    kicker: "Tazminat",
+    baslik: "İstifa edince kıdem alınır mı?",
+    alt: "Aynı ücret, aynı kıdem — fark 665 bin lira",
+    cizim: sutunAyrilmaSekli
+  },
+  "kidem-tazminati-tavani": {
+    kicker: "Tazminat",
+    baslik: "Kıdem tazminatı tavanı",
+    alt: "Maaş artıyor, tazminat artmıyor",
+    cizim: cizgiTavan
   },
   "kademeli-emeklilik-son-durum": {
     kicker: "Mevzuat",

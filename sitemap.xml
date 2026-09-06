@@ -568,4 +568,24 @@
       <image:title>Şahıs, limited ve maaşlı çalışmanın karşılaştırması — Koray Öner</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/kidem-tazminati-tavani/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/kidem-tazminati-tavani.png</image:loc>
+      <image:title>Kıdem tazminatı tavanı: maaşınız artıyor, tazminatınız neden artmıyor? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/istifa-edince-kidem-tazminati.png</image:loc>
+      <image:title>İstifa edince kıdem tazminatı alınır mı? — Koray Öner</image:title>
+    </image:image>
+  </url>
 </urlset>

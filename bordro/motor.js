@@ -193,7 +193,7 @@
   }
 
   return {
-    surum: "1.0.0",
+    surum: "1.0.1",
     AY_ADLARI: AY_ADLARI,
     parametreler: PARAMETRELER,
     yillar: yillar,
