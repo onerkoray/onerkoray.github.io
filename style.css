@@ -777,3 +777,67 @@ button:active:not(:disabled),
    132 piksel yatay kaydırılabilir hâle getiriyordu. Ölçüm: 390px genişlikte
    iframe içinde documentElement.scrollWidth = 507, clientWidth = 375. */
 select { max-width: 100%; }
+
+/* =========================================================================
+   Diyagram katmanı — tools/diyagram.js tarafından üretilen SVG şemalar
+   -------------------------------------------------------------------------
+   Renkler CSS değişkenlerinden okunur, böylece açık/koyu temaya kendiliğinden
+   uyar; SVG'nin içine sabit renk yazılmaz.
+
+   Dar ekran: şema küçültülmez, KAYDIRILIR. viewBox ile ölçeklemek 375 pikselde
+   yazıyı 5 piksele indiriyordu. Sitenin geniş tablolarında zaten kullanılan
+   kalıp burada da uygulanıyor (kaydırma kabı + min-width).
+   ========================================================================= */
+.diyagram-kap {
+  overflow-x: auto;
+  margin: 1.75rem 0 .5rem;
+  padding-bottom: .35rem;
+}
+/* Şema, okuma ölçüsünden (68ch) geniştir; tablolarda olduğu gibi ölçüyü
+   aşıp sayfa genişliğini kullanır. Aksi halde prose sütununa sıkışıp
+   sağdan kırpılıyordu. */
+.prose > .diyagram-kap {
+  width: min(100vw - 2.5rem, 1120px);
+  margin-inline: calc(50% - min(50vw - 1.25rem, 560px));
+}
+.diyagram {
+  display: block;
+  height: auto;
+  /* Genişlik SVG'nin kendi width niteliğinden gelir; küçültmek yerine
+     kaydırılır ki yazı hiçbir ekranda okunmaz hâle gelmesin. */
+  max-width: none;
+}
+.diyagram .dg-bag {
+  fill: none;
+  stroke: color-mix(in srgb, var(--brand) 42%, transparent);
+  stroke-width: 1.4;
+}
+.diyagram .dg-nokta { fill: var(--brand); }
+.diyagram .dg-hub rect {
+  fill: var(--brand);
+  stroke: none;
+}
+.diyagram .dg-hub-yazi {
+  fill: var(--brand-contrast, #fff);
+  font: 700 16px/1 inherit;
+}
+.diyagram .dg-hub-alt {
+  fill: color-mix(in srgb, var(--brand-contrast, #fff) 82%, transparent);
+  font: 500 12px/1 inherit;
+}
+.diyagram .dg-dal rect {
+  fill: color-mix(in srgb, var(--brand) 12%, var(--surface));
+  stroke: color-mix(in srgb, var(--brand) 38%, transparent);
+  stroke-width: 1.2;
+}
+.diyagram .dg-dal-yazi { fill: var(--brand-strong); font: 700 14px/1 inherit; }
+.diyagram .dg-yaprak { fill: var(--text); font: 600 13px/1 inherit; }
+.diyagram .dg-yaprak-alt { fill: var(--text-muted); font: 400 11.5px/1 inherit; }
+
+/* Koyu temada marka rengi açıldığı için hub yazısı koyu mürekkebe döner. */
+:root[data-theme="dark"] .diyagram .dg-hub-yazi,
+:root[data-theme="dark"] .diyagram .dg-hub-alt { fill: #0b0d10; }
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .diyagram .dg-hub-yazi,
+  :root[data-theme="auto"] .diyagram .dg-hub-alt { fill: #0b0d10; }
+}
