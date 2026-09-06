@@ -40,8 +40,15 @@
     '<span class="lc-value" id="lv-hol"></span><span class="lc-sub" id="lv-hol-sub"></span></div>' +
     '<div class="live-card"><span class="lc-label">Dünya saatleri</span>' +
     '<span class="lc-world" id="lv-world"></span></div>';
-  var heroInner = heroActions.closest(".hero-inner");
-  if (heroInner) { heroInner.appendChild(bar); } else { heroActions.parentNode.insertBefore(bar, heroActions.nextSibling); }
+  /* Canli serit artik hero'nun icinde degil, araclarin ve makalelerin altindaki
+     kendi yuvasinda duruyor: urun ilk ekranda, ortam bilgisi asagida. */
+  var yuva = document.getElementById("live-slot");
+  if (yuva) { yuva.appendChild(bar); }
+  else {
+    var heroInner = heroActions.closest(".hero-inner");
+    if (heroInner) { heroInner.appendChild(bar); }
+    else { heroActions.parentNode.insertBefore(bar, heroActions.nextSibling); }
+  }
 
   var sunTimes = null; // { sunrise: Date, sunset: Date }
 
