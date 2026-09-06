@@ -66,7 +66,7 @@
       issizlik: ISSIZLIK_VARSAYILAN,
       kidemTavanlari: [
         { ay: 1, tutar: 64948.77 },
-        { ay: 7, tutar: 73729.84 }
+        { ay: 7, tutar: 73729.87 }
       ],
       /* Şirketleşme ve bağımsız çalışma parametreleri.
          Beyan haddi ayrıca tanımlanmaz: GVK m.86 uyarınca tarifenin ikinci

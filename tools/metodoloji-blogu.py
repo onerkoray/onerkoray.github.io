@@ -43,7 +43,7 @@ MOTORLU = {
     "serbest-meslek-makbuzu-hesaplama", "calisma-bicimi-karsilastirma",
 }
 
-MOTOR_SURUMU = "1.0.0"
+MOTOR_SURUMU = "1.0.1"
 MOTOR_TARIHI = "2026-09-05"
 MOTOR_TARIHI_TR = "5 Eylül 2026"
 

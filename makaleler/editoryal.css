@@ -137,3 +137,18 @@ a:hover .ed-cover, .ed-item:hover .ed-cover { transform: scale(1.02); }
 .ed-tumu a::after { content: "→"; transition: transform .22s cubic-bezier(.22,.61,.36,1); }
 .ed-tumu a:hover { border-bottom-color: var(--brand); }
 .ed-tumu a:hover::after { transform: translateX(4px); }
+
+/* Yazı içindeki hak matrisi hücreleri.
+   Bu üç renk araç sayfasında ölçülüp düzeltilmişti (zebra zemininde
+   yes 6.62, maybe 5.71, no 6.16 — "no" eskiden opacity .5 ile 3.19'du).
+   Kural orada .matris'e bağlıydı ve o stil dosyası yazılarda yüklenmiyor;
+   ölçümler aynı tablo biçimi için geçerli olduğundan değerler korunarak
+   buraya alındı. */
+.ed-body table.payroll td.yes { color: #0a5f4e; font-weight: 700; }
+.ed-body table.payroll td.no { opacity: .72; }
+.ed-body table.payroll td.maybe { color: #8f5200; font-weight: 600; }
+
+@media (prefers-color-scheme: dark) {
+  .ed-body table.payroll td.yes { color: #4fd1ae; }
+  .ed-body table.payroll td.maybe { color: #f0b429; }
+}
