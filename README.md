@@ -54,6 +54,7 @@ Bordro.yillar();                    // [2026, 2025, … 2020]
 | `tools/sayfa-denetimi.py` | Kırık bağlantı, meta, görsel, başlık düzeni ve sitemap denetimi |
 | `tools/makale-gorsel.js` | Makale kapakları: motordan üretilen veri illüstrasyonları |
 | `tools/makale-listesi.py` | Makale listelerini yazıların kendisinden üretir (başlık, özet, okuma süresi) |
+| `tools/diyagram.js` | Açıklayıcı şemalar: içerik motordan ve depodan üretilir, elle çizilmez |
 | `tools/make-og.py` | Paylaşım kartları: 8 palet × 4 düzen, aileye göre dağıtılır; `--kontrast` ile doğrulanır |
 | `tools/css-kontrol.js` | CSS parantez dengesi — bozuk parantez sonraki kuralı sessizce düşürür |
 | `tools/parametre-kopyasi.js` | Yasal parametrelerin motor dışına kopyalanmasını engeller |
@@ -67,6 +68,7 @@ node tools/bordro-tablo.js              # parametre tablosunu yeniden üret
 python tools/metodoloji-blogu.py        # künyeleri güncelle
 python tools/sayfa-denetimi.py          # sayfa kalitesi denetimi
 node tools/css-kontrol.js               # CSS parantez dengesi
+node tools/diyagram.js                  # şemaları yeniden üret
 python tools/make-og.py --kontrast      # kart paletleri AA geçiyor mu
 python tools/make-og.py                 # paylaşım kartlarını yeniden üret (Chrome gerekir)
 ```

@@ -57,6 +57,11 @@ jobs:
       - name: Araç künyeleri güncel mi
         run: python tools/metodoloji-blogu.py --check
 
+      - name: Diyagramlar güncel mi
+        # Şema içeriği motordan ve depodan üretiliyor; elle çizilmiş bir şema
+        # eskirken sessiz kalır, üretilen şema burada patlar.
+        run: node tools/diyagram.js --check
+
       - name: Paylaşım kartı paletleri kontrastı geçiyor mu
         # Kart renkleri elle seçilirse sessizce AA altına düşüyor (eski tek
         # şablonun yeşili beyaz metinde 3.28:1 idi). Tarayıcı gerektirmez.
