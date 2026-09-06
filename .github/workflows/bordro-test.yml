@@ -37,6 +37,9 @@ jobs:
       - name: Çalışma biçimi testleri
         run: node bordro/calisma-bicimi-test.js
 
+      - name: Makale listeleri güncel mi
+        run: python tools/makale-listesi.py --check
+
       - name: Sayfa kalitesi denetimi
         run: python tools/sayfa-denetimi.py --check
 

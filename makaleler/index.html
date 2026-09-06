@@ -40,6 +40,7 @@
   <meta name="twitter:image" content="https://korayoner.dev/images/koray-oner-kapak.png">
 
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="editoryal.css">
 
   <script type="application/ld+json">
   {
@@ -122,91 +123,125 @@
       <a href="../">Ana Sayfa</a> <span aria-hidden="true">/</span> <span>Makaleler</span>
     </nav>
 
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap hero-inner">
-        <p class="eyebrow">Makaleler</p>
+    <section class="ed-hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="kicker">Makaleler</p>
         <h1 id="hero-title">Emeklilik, bordro ve vergi rehberleri</h1>
-        <p class="lede">
-          Araçlarımın arkasındaki mevzuatı anlatan yazılar. Her yazıda dayanak kanun ve
+        <p class="ed-standfirst">Araçlarımın arkasındaki mevzuatı anlatan yazılar. Her yazıda dayanak kanun ve
           kurum bağlantısı verilir, iddia edilen her sayının kaynağı gösterilir ve
           mevzuat değiştikçe yazı güncellenir — yayın tarihi değil,
-          <strong>son güncelleme tarihi</strong> esastır.
-        </p>
+          <strong>son güncelleme tarihi</strong> esastır.</p>
       </div>
     </section>
 
-    <section class="articles" aria-labelledby="yazilar-title">
+    <section class="content" aria-label="Yazılar">
       <div class="wrap">
-        <h2 id="yazilar-title">Tüm yazılar</h2>
-        <ul class="article-grid" aria-labelledby="yazilar-title">
-          <li class="article-card reveal">
-            <h3><a href="sahis-mi-limited-mi/">Şahıs mı, limited mi, maaşlı mı? Tek bir eşik yok</a></h3>
-            <p class="card-badges" aria-hidden="true"><span>Vergi</span><span>Hesaplı</span></p>
-            <p>"3,5 milyon üstü limited" diye tek bir eşik yok. Kazanan gelir aralığı boyunca beş kez el değiştiriyor; çoğu insanın bandında kazanan maaşlı çalışma.</p>
-            <p class="article-meta">
-              <a href="sahis-mi-limited-mi/">Yazıyı oku</a>
-              <span aria-hidden="true">·</span>
-              <span>Son güncelleme: <time datetime="2026-09-06">6 Eylül 2026</time></span>
+        <!-- MAKALE-LISTESI:BASLANGIC -->
+        <article class="ed-lead">
+          <div>
+            <p class="ed-kicker">Vergi</p>
+            <h2 class="ed-title"><a href="sahis-mi-limited-mi/">Şahıs mı, limited mi, maaşlı mı? Tek bir eşik yok</a></h2>
+            <p class="ed-dek">Aynı gelirin şahıs işletmesi, limited şirket ve maaşlı çalışmada elde bıraktığı para — 2026 rakamlarıyla, kazananın nerede değiştiği dahil.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>7 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-06">6 Eylül 2026</time></span>
             </p>
-          </li>
-          <li class="article-card reveal">
-            <h3><a href="asgari-ucret-nasil-belirlenir/">Asgari ücret nasıl belirlenir? Ve neden herkesi ilgilendirir</a></h3>
-            <p class="card-badges" aria-hidden="true"><span>Bordro</span><span>Kaynaklı</span></p>
-            <p>Komisyonun yapısı ve aralık takvimi. Ve az bilinen gerçek: 2026'da 35.000 TL de 400.000 TL de kazanan, yılda aynı tutarda istisna alıyor.</p>
-            <p class="article-meta">
-              <a href="asgari-ucret-nasil-belirlenir/">Yazıyı oku</a>
-              <span aria-hidden="true">·</span>
-              <span>Son güncelleme: <time datetime="2026-09-06">6 Eylül 2026</time></span>
-            </p>
-          </li>
-          <li class="article-card reveal">
-            <h3><a href="maasim-neden-dustu/">Maaşım neden düştü? Kümülatif vergi matrahının işleyişi</a></h3>
-            <p class="card-badges" aria-hidden="true"><span>Bordro</span><span>Hesaplı</span></p>
-            <p>
-              Brüt değişmedi ama net azaldı. Mekanizma 2026 rakamlarıyla ay ay; ve çoğu
-              kaynağın atladığı ayrıntı: net maaş bazı aylarda tam tersine yükselir.
-            </p>
-            <p class="article-meta">
-              <a href="maasim-neden-dustu/">Yazıyı oku</a>
-              <span aria-hidden="true">·</span>
-              <span>Son güncelleme: <time datetime="2026-09-06">6 Eylül 2026</time></span>
-            </p>
-          </li>
+          </div>
+            <figure class="ed-figure">
+              <a href="sahis-mi-limited-mi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/sahis-mi-limited-mi-kart.png" width="800" height="500"
+                     sizes="(max-width: 820px) 100vw, 45vw" alt="Gelir düzeyine göre en çok net bırakan çalışma biçimini gösteren renkli bant grafiği" loading="lazy" decoding="async">
+              </a>
+            </figure>
+        </article>
 
-          <li class="article-card reveal">
-            <h3><a href="torba-yasa-ne-var-ne-yok/">Torba yasada ne var, ne yok? Beklentiler ve gerçek durum</a></h3>
-            <p class="card-badges" aria-hidden="true"><span>Güncel</span><span>Kaynaklı</span></p>
-            <p>5 Eylül 2026 itibarıyla sunulmuş bir teklif yok. 2026'da çıkan kanunlar, Ekim takvimi ve dolaşan beklenti listesinin hukuki durumu ayrı ayrı.</p>
-            <p class="article-meta">
-              <a href="torba-yasa-ne-var-ne-yok/">Yazıyı oku</a>
-              <span aria-hidden="true">·</span>
-              <span>Son güncelleme: <time datetime="2026-09-05">5 Eylül 2026</time></span>
+        <div class="ed-rule"><h2>Diğer yazılar</h2></div>
+        <ul class="ed-list">
+          <li class="ed-item">
+            <figure class="ed-figure">
+              <a href="asgari-ucret-nasil-belirlenir/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/asgari-ucret-nasil-belirlenir-kart.png" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Her çalışanın yıllık asgari ücret istisnasının 2022'den 2026'ya büyümesini gösteren sütun grafiği" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Bordro</p>
+              <h3 class="ed-title"><a href="asgari-ucret-nasil-belirlenir/">Asgari ücret nasıl belirlenir? Ve neden yalnızca asgari ücretliyi ilgilendirmez</a></h3>
+              <p class="ed-dek">Komisyonun yapısı, aralık takvimi ve az bilinen gerçek: 2026'da her çalışan, maaşı ne olursa olsun aynı tutarda asgari ücret istisnası alıyor.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-06">6 Eylül 2026</time></span>
             </p>
+            </div>
           </li>
-
-          <li class="article-card reveal">
-            <h3><a href="kademeli-emeklilik-son-durum/">Kademeli emeklilik son durum: yasalaştı mı, kimleri kapsıyor?</a></h3>
-            <p class="card-badges" aria-hidden="true"><span>Güncel</span><span>Kaynaklı</span></p>
-            <p>
-              Kısa cevap: hayır, yasalaşmadı. Teklifin Meclis'teki gerçek durumu, kimleri
-              kapsadığı ve 1999-2008 arası sigortalılara şu an hangi kuralların uygulandığı.
+          <li class="ed-item">
+            <figure class="ed-figure">
+              <a href="maasim-neden-dustu/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/maasim-neden-dustu-kart.png" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="80.000 TL brüt ücretin 2026 boyunca aylık net seyri; temmuzda dip, ağustosta yükseliş" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Bordro</p>
+              <h3 class="ed-title"><a href="maasim-neden-dustu/">Maaşım neden düştü? Kümülatif vergi matrahının işleyişi</a></h3>
+              <p class="ed-dek">Net maaş yıl içinde neden azalır, hangi ayda dilim atlarsınız ve neden bazı aylarda tam tersine yükselir? 2026 rakamlarıyla.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>8 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-06">6 Eylül 2026</time></span>
             </p>
-            <p class="article-meta">
-              <a href="kademeli-emeklilik-son-durum/">Yazıyı oku</a>
-              <span aria-hidden="true">·</span>
-              <span>Son güncelleme: <time datetime="2026-09-05">5 Eylül 2026</time></span>
-            </p>
+            </div>
           </li>
-
-          <li class="article-card article-card--soon reveal">
-            <h3>Yeni yazılar hazırlanıyor</h3>
-            <p>
-              Bağ-Kur emeklilik şartları, kıdem tazminatı tavanı ve gelir vergisi dilimleri
-              üzerine rehberler yolda. Yeni yazılar için
-              <a href="../atom.xml">Atom akışını</a> takip edebilirsiniz.
+          <li class="ed-item">
+            <figure class="ed-figure">
+              <a href="torba-yasa-ne-var-ne-yok/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/torba-yasa-ne-var-ne-yok-kart.png" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Torba yasa başlıklarının güncel durumunu gösteren işaret listesi" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Mevzuat</p>
+              <h3 class="ed-title"><a href="torba-yasa-ne-var-ne-yok/">Yakında çıkacak torba yasa: ne var, ne yok?</a></h3>
+              <p class="ed-dek">Sunulmuş bir teklif henüz yok. 2026'da hangi kanunlar çıktı, Ekim'de ne bekleniyor ve dolaşan listelerin hukuki durumu ne?</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>7 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-05">5 Eylül 2026</time></span>
             </p>
+            </div>
+          </li>
+          <li class="ed-item">
+            <figure class="ed-figure">
+              <a href="kademeli-emeklilik-son-durum/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/kademeli-emeklilik-son-durum-kart.png" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Kademeli emeklilik teklifinin Meclis'teki durumunu gösteren işaret listesi" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Mevzuat</p>
+              <h3 class="ed-title"><a href="kademeli-emeklilik-son-durum/">Kademeli emeklilik son durum: yasalaştı mı, kimleri kapsıyor?</a></h3>
+              <p class="ed-dek">Kısa cevap: hayır. Teklif Plan ve Bütçe Komisyonu'nda bekliyor. Kimleri kapsıyor ve şu an hangi şartlar geçerli?</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>7 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-05">5 Eylül 2026</time></span>
+            </p>
+            </div>
           </li>
         </ul>
+        <!-- MAKALE-LISTESI:BITIS -->
       </div>
     </section>
 
