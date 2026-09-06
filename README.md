@@ -52,6 +52,8 @@ Bordro.yillar();                    // [2026, 2025, … 2020]
 | `tools/bordro-tablo.js` | `bordro/index.html` parametre tablosunu parametrelerden üretir |
 | `tools/metodoloji-blogu.py` | Araç sayfalarına metodoloji/künye bloğunu yerleştirir |
 | `tools/sayfa-denetimi.py` | Kırık bağlantı, meta, görsel, başlık düzeni ve sitemap denetimi |
+| `tools/makale-gorsel.js` | Makale kapakları: motordan üretilen veri illüstrasyonları |
+| `tools/makale-listesi.py` | Makale listelerini yazıların kendisinden üretir (başlık, özet, okuma süresi) |
 | `tools/css-kontrol.js` | CSS parantez dengesi — bozuk parantez sonraki kuralı sessizce düşürür |
 | `tools/parametre-kopyasi.js` | Yasal parametrelerin motor dışına kopyalanmasını engeller |
 
