@@ -41,6 +41,7 @@ MOTORLU = {
     "maas-hesaplama", "isten-ayrilma-hesaplama",
     "kidem-tazminati-hesaplama", "issizlik-maasi-hesaplama",
     "serbest-meslek-makbuzu-hesaplama", "calisma-bicimi-karsilastirma",
+    "isveren-maliyeti-hesaplama",
 }
 
 MOTOR_SURUMU = "1.0.1"

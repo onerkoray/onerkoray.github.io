@@ -1,0 +1,69 @@
+/* İşveren Maliyeti Hesaplama — araca özgü stiller */
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 4px 20px;
+}
+.panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
+#maliyet-form input[type="text"], #maliyet-form select {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--border, rgba(127,127,127,.3));
+  border-radius: 8px;
+  background: var(--surface, transparent);
+  color: inherit;
+}
+#maliyet-form input[type="text"] { max-width: 12rem; }
+
+.sum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 20px 0 8px;
+}
+.sum-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--border, rgba(127,127,127,.25));
+  border-radius: 12px;
+  background: var(--surface, rgba(127,127,127,.06));
+}
+.sum-label { font-size: .8rem; opacity: .75; }
+.sum-value { font-size: 1.25rem; letter-spacing: -0.01em; }
+.sum-note { font-size: .75rem; opacity: .72; }
+
+.table-scroll { overflow-x: auto; margin-top: 20px; }
+table.payroll { width: 100%; border-collapse: collapse; font-size: .9rem; }
+table.payroll th, table.payroll td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border, rgba(127,127,127,.2));
+}
+table.payroll.detail th { text-align: left; font-weight: 500; }
+table.payroll.detail td { text-align: right; white-space: nowrap; }
+table.payroll tbody tr:nth-child(even) { background: rgba(127,127,127,.05); }
+.table-note { margin-top: 8px; display: block; }
+
+.formula {
+  font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;
+  background: var(--surface, rgba(127,127,127,.08));
+  border: 1px solid var(--border, rgba(127,127,127,.2));
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: .95rem;
+}
+
+/* Ay ay tablo yalnizca net anlasmada cikar; brut anlasmada maliyet sabittir.
+   Sag hizalama sayilari karsilastirilabilir tutuyor. */
+table.payroll.aylik th { text-align: left; font-weight: 500; }
+table.payroll.aylik td { text-align: right; white-space: nowrap; }
+table.payroll.aylik thead th { font-weight: 700; }
+table.payroll tbody tr.net-up td, table.payroll tbody tr.net-up th {
+  border-bottom: 2px solid var(--border, rgba(127,127,127,.35));
+}
+
+/* Tesvik kutucugu: form icinde ayri bir satir. */
+.onay { display: flex; align-items: center; gap: .55rem; margin: 4px 0 0; }
+.onay input { width: 18px; height: 18px; }

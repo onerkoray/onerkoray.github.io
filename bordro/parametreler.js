@@ -24,6 +24,10 @@
     sgkIsci: 0.14,          // SGK işçi payı (malullük/yaşlılık/ölüm + GSS)
     issizlikIsci: 0.01,     // işsizlik sigortası işçi payı
     sgkIsveren: 0.2175,     // SGK işveren payı — teşviksiz
+    /* 5510 m.81/ı: şartları sağlayan işverende SGK işveren payından 5 puan
+       indirilir (prim borcu yoksa, bildirge zamanında verilmişse). İşsizlik
+       işveren payına uygulanmaz. */
+    sgkIsverenIndirim: 0.05,
     issizlikIsveren: 0.02,  // işsizlik sigortası işveren payı
     damga: 0.00759          // damga vergisi — binde 7,59 (2013'ten beri sabit)
   };

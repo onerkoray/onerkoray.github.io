@@ -157,5 +157,48 @@ B.yillar().forEach(function (yil) {
   ok(yil + " parametre bloğu tutarlı", sorun.length === 0, sorun.join(", "));
 });
 
+baslik("İşveren maliyeti ve 5 puanlık indirim");
+(function () {
+  var a = B.hesaplaYil(60000, 2026).aylar[0];
+  var t = B.hesaplaYil(60000, 2026, { tesvik5Puan: true }).aylar[0];
+  var o = B.parametre(2026).oranlar;
+  ok("Maliyet = brüt + işveren primleri",
+     yakin(a.isverenMaliyeti, a.brut + a.isverenSgk + a.isverenIssizlik, 0.01));
+  ok("İşveren SGK payı prime esas kazanç üzerinden",
+     yakin(a.isverenSgk, a.primEsas * o.sgkIsveren, 0.01));
+  ok("5 puanlık indirim tam 5 puan düşürür",
+     yakin(a.isverenSgk - t.isverenSgk, a.primEsas * o.sgkIsverenIndirim, 0.01),
+     "fark: " + (a.isverenSgk - t.isverenSgk));
+  ok("İndirim işsizlik işveren payına uygulanmaz",
+     yakin(a.isverenIssizlik, t.isverenIssizlik, 0.001));
+  /* SGK tavanı: tavanın üstünde prim büyümüyor, ücret büyüyor. */
+  var y = B.hesaplaYil(400000, 2026).aylar[0];
+  ok("Tavanın üstünde prime esas kazanç tavanla sınırlı",
+     yakin(y.primEsas, y.sgkTavan, 0.01), "primEsas: " + y.primEsas);
+})();
+
+baslik("Net ücret sözleşmesi — 12 aylık brüt");
+(function () {
+  var HEDEF = 60000;
+  var brutler = B.nettenBruteYil(HEDEF, 2026);
+  var y = B.hesaplaYil(brutler, 2026);
+  var enBuyukSapma = 0;
+  y.aylar.forEach(function (a) {
+    enBuyukSapma = Math.max(enBuyukSapma, Math.abs(a.net - HEDEF));
+  });
+  ok("Net her ay hedefte kalır", enBuyukSapma < 0.05,
+     "en büyük sapma: " + enBuyukSapma.toFixed(2));
+  ok("Brüt yıl içinde yükselir", brutler[6] > brutler[0]);
+  /* Ay ay çözümleri tek tek alıp yan yana koymak neti tutturmuyor;
+     regresyonu yakalamak için o yanlış yöntemin sapması da ölçülüyor. */
+  var tekTek = [];
+  for (var i = 0; i < 12; i++) tekTek.push(B.nettenBrute(HEDEF, 2026, i));
+  var yanlis = B.hesaplaYil(tekTek, 2026);
+  var sapma = 0;
+  yanlis.aylar.forEach(function (a) { sapma = Math.max(sapma, Math.abs(a.net - HEDEF)); });
+  ok("Tek tek çözüm neti tutturmaz (nettenBruteYil bu yüzden var)", sapma > 1,
+     "sapma: " + sapma.toFixed(2));
+})();
+
 console.log("\n" + gecen + " geçti, " + kalan + " kaldı.");
 process.exit(kalan ? 1 : 0);

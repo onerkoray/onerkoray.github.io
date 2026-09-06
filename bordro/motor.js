@@ -81,6 +81,10 @@
        zaten 4/b sigortalısı olduğu için bu ödemeden SGK primi kesilmez, ama
        ödeme ücret sayıldığından gelir ve damga vergisine tabidir. */
     var primsiz = !!(secenekler && secenekler.primsiz);
+    /* secenekler.tesvik5Puan: 5510 m.81/ı beş puanlık indirim. Oran
+       parametrelerden gelir; araç sayfaları kopyalamaz. */
+    var isvSgkOran = o.sgkIsveren -
+      ((secenekler && secenekler.tesvik5Puan) ? (o.sgkIsverenIndirim || 0) : 0);
 
     // Prime esas kazanç: alt sınır asgari ücret, üst sınır SGK tavanı.
     var primEsas = primsiz ? 0 : Math.min(Math.max(brut, d.asgariBrut), d.sgkTavan);
@@ -138,7 +142,9 @@
       gelirVergisi: gelirVergisi,
       damga: damga,
       net: net,
-      isverenMaliyeti: brut + primEsas * (o.sgkIsveren + o.issizlikIsveren),
+      isverenSgk: primEsas * isvSgkOran,
+      isverenIssizlik: primEsas * o.issizlikIsveren,
+      isverenMaliyeti: brut + primEsas * (isvSgkOran + o.issizlikIsveren),
       asgariBrut: d.asgariBrut,
       sgkTavan: d.sgkTavan
     };
@@ -179,6 +185,40 @@
 
   /* ---------- netten brüte ---------- */
 
+  /* Net ücret sözleşmesinin 12 aylık brütü.
+
+     Neden ayrı bir fonksiyon: nettenBrute() tek bir ayı çözerken o brütün yıl
+     boyunca SABİT olduğunu varsayar. Net sözleşmede brüt her ay değişir, bu
+     yüzden kümülatif matrah başka türlü birikir; aylık çözümleri tek tek alıp
+     yan yana koymak neti bazı aylarda hedefin üstüne çıkarıyordu. Burada her
+     ay, o aya kadar GERÇEKLEŞEN birikimle çözülür ve çözüldükten sonra birikim
+     o brütle ilerletilir. */
+  function nettenBruteYil(hedefNet, yil, secenekler) {
+    var P = parametre(yil);
+    var birikim = { matrah: 0, asgariMatrah: 0 };
+    var brutler = [];
+
+    function netAt(x, ay) {
+      var kopya = {};
+      for (var k in birikim) if (Object.prototype.hasOwnProperty.call(birikim, k)) kopya[k] = birikim[k];
+      return hesaplaAy(x, ay, P, kopya, secenekler).net;
+    }
+
+    for (var ay = 1; ay <= 12; ay++) {
+      var alt = hedefNet, ust = hedefNet * 2.2 + 1000, guvenlik = 0;
+      while (netAt(ust, ay) < hedefNet && guvenlik++ < 60) ust *= 1.5;
+      for (var i = 0; i < 60; i++) {
+        var orta = (alt + ust) / 2;
+        if (netAt(orta, ay) < hedefNet) alt = orta; else ust = orta;
+      }
+      var g = Math.round(ust * 100) / 100;
+      brutler.push(g);
+      hesaplaAy(g, ay, P, birikim, secenekler); // birikimi bu brütle ilerlet
+    }
+    return brutler;
+  }
+
+
   /* Hedef neti verilen ayda (0 = Ocak) sağlayan brütü ikili aramayla çözer. */
   function nettenBrute(hedefNet, yil, ayIndex, secenekler) {
     ayIndex = ayIndex || 0;
@@ -204,6 +244,7 @@
     dilimOrani: dilimOrani,
     hesaplaAy: hesaplaAy,
     hesaplaYil: hesaplaYil,
-    nettenBrute: nettenBrute
+    nettenBrute: nettenBrute,
+    nettenBruteYil: nettenBruteYil
   };
 });
