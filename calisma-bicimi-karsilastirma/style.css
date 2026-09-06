@@ -55,7 +55,7 @@
 
 /* ---- karşılaştırma tablosu ---- */
 table.cmp-table { min-width: 720px; }
-table.cmp-table thead th.is-best { color: var(--brand-strong, #0e7c66); }
+table.cmp-table thead th.is-best { color: #063528; }
 table.cmp-table tbody tr.row-total th,
 table.cmp-table tbody tr.row-total td {
   border-top: 2px solid var(--border, rgba(127,127,127,.35));
@@ -70,7 +70,8 @@ table.cmp-table tbody tr.row-head th {
   border-bottom-color: transparent;
 }
 table.cmp-table tbody tr.row-head td { border-bottom-color: transparent; }
-table.cmp-table .na { opacity: .4; }
+/* 0.4'te kontrast 2.41 idi — gercek icerik, dekoratif degil. */
+table.cmp-table .na { opacity: .7; }
 table.cmp-table td.win {
   background: rgba(14,124,102,.12);
   font-weight: 700;

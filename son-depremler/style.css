@@ -22,7 +22,7 @@
   font-weight: 800; font-size: 1.25rem; color: #fff; flex: none;
 }
 .mag-s { background: #4a9e6f; }   /* < 3 */
-.mag-m { background: #e0a500; }   /* 3-3.9 */
+.mag-m { background: #b07f00; }   /* 3-3.9 */
 .mag-l { background: #e07a2f; }   /* 4-4.9 */
 .mag-x { background: #d24141; }   /* 5+ */
 .quake-info { min-width: 0; }

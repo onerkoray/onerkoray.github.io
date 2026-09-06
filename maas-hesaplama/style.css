@@ -17,7 +17,7 @@
 }
 .sum-label { font-size: .8rem; opacity: .75; }
 .sum-value { font-size: 1.25rem; letter-spacing: -0.01em; }
-.sum-note { font-size: .75rem; opacity: .6; }
+.sum-note { font-size: .75rem; opacity: .72; }
 
 .table-scroll { overflow-x: auto; margin-top: 20px; }
 table.payroll {

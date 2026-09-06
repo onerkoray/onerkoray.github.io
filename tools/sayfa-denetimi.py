@@ -23,6 +23,8 @@ Kullanım:
 """
 
 import io
+import collections
+import json
 import os
 import re
 import sys
@@ -106,6 +108,29 @@ def main():
             hedef = os.path.normpath(os.path.join(taban, yol.lstrip("/")))
             if not (os.path.exists(hedef) or os.path.exists(os.path.join(hedef, "index.html"))):
                 bulgu("KIRIK BAGLANTI", p, href)
+
+        # 1b) yapisal ve guvenlik kontrolleri
+        # Bu dort sinif denetim disindaydi ve elle yapilan taramada bulundu;
+        # buraya alindi ki bir daha sessizce girmesinler.
+        for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', s, re.S):
+            try:
+                json.loads(m.group(1))
+            except Exception as e:
+                bulgu("JSON-LD BOZUK", p, str(e)[:60])
+
+        kimlikler = re.findall(r'\sid="([^"]+)"', s)
+        for kimlik, adet in collections.Counter(kimlikler).items():
+            if adet > 1:
+                bulgu("TEKRARLI ID", p, "id=%s (%d kez)" % (kimlik, adet))
+
+        for m in re.finditer(r'<a[^>]*target="_blank"[^>]*>', s):
+            if "noopener" not in m.group(0):
+                bulgu("BLANK NOOPENER YOK", p, m.group(0)[:60])
+
+        # http:// yalnizca ALT KAYNAK icin sorun (karisik icerik). Disa giden
+        # baglanti degil: Kandilli'nin https karsiligi yok, o bilincli kaldi.
+        for m in re.finditer(r'src="(http://[^"]+)"', s):
+            bulgu("HTTP KAYNAK", p, m.group(1)[:60])
 
         if denetim_disi(p):
             continue
