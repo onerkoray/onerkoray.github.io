@@ -416,7 +416,7 @@
     <priority>0.6</priority>
   
     <image:image>
-      <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
+      <image:loc>https://korayoner.dev/images/iletisim-koray-oner.png</image:loc>
       <image:title>İletişim — Koray Öner — Koray Öner</image:title>
     </image:image>
   </url>
@@ -427,7 +427,7 @@
     <priority>0.4</priority>
   
     <image:image>
-      <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
+      <image:loc>https://korayoner.dev/images/gizlilik-koray-oner.png</image:loc>
       <image:title>Gizlilik Politikası ve KVKK Aydınlatma Metni — Koray Öner</image:title>
     </image:image>
   </url>
@@ -438,7 +438,7 @@
     <priority>0.4</priority>
   
     <image:image>
-      <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
+      <image:loc>https://korayoner.dev/images/kullanim-kosullari-koray-oner.png</image:loc>
       <image:title>Kullanım Koşulları ve Sorumluluk Reddi — Koray Öner</image:title>
     </image:image>
   </url>
@@ -522,7 +522,7 @@
   </url>
   <url><loc>https://korayoner.dev/makaleler/</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
     <image:image>
-      <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
+      <image:loc>https://korayoner.dev/images/makaleler-koray-oner.png</image:loc>
       <image:title>Makaleler — Emeklilik, Bordro ve Vergi — Koray Öner</image:title>
     </image:image>
   </url>
