@@ -538,4 +538,14 @@
       <image:title>Torba Yasada Ne Var, Ne Yok — Koray Öner</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/maasim-neden-dustu/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/maasim-neden-dustu-koray-oner.png</image:loc>
+      <image:title>Maaşım neden düştü? Kümülatif vergi matrahı — Koray Öner</image:title>
+    </image:image>
+  </url>
 </urlset>

@@ -23,6 +23,17 @@ var SAYFA = path.join(KOK, "bordro", "index.html");
 var BAS = "<!-- PARAMETRE-TABLOSU:BASLANGIC -->";
 var BIT = "<!-- PARAMETRE-TABLOSU:BITIS -->";
 
+var MAKALE_SAYFA = path.join(KOK, "makaleler", "maasim-neden-dustu", "index.html");
+var OBAS = "<!-- ORNEK-BORDRO:BASLANGIC -->";
+var OBIT = "<!-- ORNEK-BORDRO:BITIS -->";
+var GBAS = "<!-- DILIM-GECIS:BASLANGIC -->";
+var GBIT = "<!-- DILIM-GECIS:BITIS -->";
+
+/* Makaledeki örnek bordro bu brüt ücret üzerinden anlatılıyor.
+   Değiştirilirse yazıdaki rakamlar da elden geçirilmeli. */
+var ORNEK_BRUT = 80000;
+var GECIS_BRUTLERI = [40000, 50000, 60000, 75000, 100000, 150000, 200000, 300000];
+
 var MATRIS_SAYFA = path.join(KOK, "isten-ayrilma-hesaplama", "index.html");
 var MBAS = "<!-- HAK-MATRISI:BASLANGIC -->";
 var MBIT = "<!-- HAK-MATRISI:BITIS -->";
@@ -185,35 +196,140 @@ function uretMatris() {
   ].join("\n");
 }
 
-function isle(dosya, bas, bit, uretici, ad) {
-  var html = fs.readFileSync(dosya, "utf8");
-  var i = html.indexOf(bas), j = html.indexOf(bit);
+/* Makale: 80.000 TL brütte 12 aylık bordro. Yazının merkezindeki "Temmuz'da dip,
+   Ağustos'ta yükseliş" anlatısı bu tablodan okunuyor; elle yazılırsa motorla sapar. */
+function uretOrnekBordro() {
+  var y = B.hesaplaYil(ORNEK_BRUT, B.sonYil());
+  var enDusuk = y.aylar.reduce(function (a, b) { return b.net < a.net ? b : a; });
+
+  var satirlar = y.aylar.map(function (a, i) {
+    var yukseldi = i > 0 && a.net > y.aylar[i - 1].net + 0.01;
+    var sinif = yukseldi ? " class=\"net-up\"" : (a.dilimGecisi ? " class=\"bracket-jump\"" : "");
+    return "            <tr" + sinif + ">" +
+      "<th scope=\"row\">" + a.ayAdi +
+        (a.dilimGecisi ? " <span class=\"jump-flag\" title=\"Üst vergi dilimine geçildi\">▲</span>" : "") +
+        (yukseldi ? " <span class=\"up-flag\" title=\"Net bu ay yükseldi\">▲</span>" : "") +
+      "</th>" +
+      "<td>" + tl(a.matrah) + "</td>" +
+      "<td>" + tl(a.kumulatifMatrah) + "</td>" +
+      "<td>%" + Math.round(a.dilim * 100) + "</td>" +
+      "<td>" + tl(a.istisna) + "</td>" +
+      "<td>" + tl(a.gelirVergisi) + "</td>" +
+      "<td><strong>" + tl(a.net) + "</strong></td>" +
+      "</tr>";
+  }).join("\n");
+
+  return [
+    OBAS,
+    '        <div class="table-scroll">',
+    '          <table class="payroll makale-bordro">',
+    '            <caption class="visually-hidden">' + ORNEK_BRUT.toLocaleString("tr-TR") +
+      " TL brüt ücretin " + B.sonYil() + " yılı 12 aylık bordrosu</caption>",
+    "            <thead><tr>",
+    '              <th scope="col">Ay</th>',
+    '              <th scope="col">Aylık matrah</th>',
+    '              <th scope="col">Kümülatif matrah</th>',
+    '              <th scope="col">Dilim</th>',
+    '              <th scope="col">İstisna</th>',
+    '              <th scope="col">Ödenen gelir vergisi</th>',
+    '              <th scope="col">Net maaş</th>',
+    "            </tr></thead>",
+    "            <tbody>",
+    satirlar,
+    "            </tbody>",
+    "          </table>",
+    "        </div>",
+    '        <p class="muted-note">',
+    "          Tutarlar TL. ▲ işaretli satırlar dilim geçişini ve netin yükseldiği ayı gösterir.",
+    "          Ocak neti " + tl(y.aylar[0].net) + " TL, en düşük ay " + enDusuk.ayAdi + " (" +
+      tl(enDusuk.net) + " TL), Aralık neti " + tl(y.aylar[11].net) + " TL.",
+    "          Ocak ile Aralık arasındaki fark <strong>" + tl(y.aylar[0].net - y.aylar[11].net) +
+      " TL</strong>; 12 aylık ortalama net " + tl(y.toplam.ortalamaNet) + " TL.",
+    "        </p>",
+    "        " + OBIT
+  ].join("\n");
+}
+
+/* Makale: hangi brütte hangi ayda dilim atlanıyor. */
+function uretDilimGecis() {
+  var satirlar = GECIS_BRUTLERI.map(function (brut) {
+    var aylar = B.hesaplaYil(brut, B.sonYil()).aylar;
+    var gecisler = aylar.filter(function (a) { return a.dilimGecisi; });
+    var hucre = gecisler.length
+      ? gecisler.map(function (a) { return a.ayAdi + " → %" + Math.round(a.dilim * 100); }).join("<br>")
+      : "Yıl boyunca aynı dilimde";
+    return "            <tr><th scope=\"row\">" + tam(brut) + " TL</th>" +
+      "<td>" + hucre + "</td>" +
+      "<td>" + tl(aylar[0].net) + "</td>" +
+      "<td>" + tl(aylar[11].net) + "</td>" +
+      "<td>" + tl(aylar[0].net - aylar[11].net) + "</td></tr>";
+  }).join("\n");
+
+  return [
+    GBAS,
+    '        <div class="table-scroll">',
+    '          <table class="payroll makale-gecis">',
+    '            <caption class="visually-hidden">Brüt ücrete göre vergi dilimi geçiş ayları</caption>',
+    "            <thead><tr>",
+    '              <th scope="col">Aylık brüt ücret</th>',
+    '              <th scope="col">Dilim geçişleri</th>',
+    '              <th scope="col">Ocak neti</th>',
+    '              <th scope="col">Aralık neti</th>',
+    '              <th scope="col">Fark</th>',
+    "            </tr></thead>",
+    "            <tbody>",
+    satirlar,
+    "            </tbody>",
+    "          </table>",
+    "        </div>",
+    "        " + GBIT
+  ].join("\n");
+}
+
+/* İşler dosya bazında biriktirilir. Aynı dosyada birden fazla işaretçi bölgesi
+   olabildiği için (makale sayfasında iki tablo var), her iş bir öncekinin
+   sonucunu girdi alır; yoksa ikinci yazma birincisini eziyordu. */
+function uygula(icerik, bas, bit, uretici, ad) {
+  var i = icerik.indexOf(bas), j = icerik.indexOf(bit);
   if (i === -1 || j === -1) {
     console.error("İşaretçiler bulunamadı (" + ad + "): " + bas + " / " + bit);
     process.exit(2);
   }
-  var yeni = html.slice(0, i) + uretici() + html.slice(j + bit.length);
-  return { dosya: dosya, eski: html, yeni: yeni, ad: ad, degisti: yeni !== html };
+  return icerik.slice(0, i) + uretici() + icerik.slice(j + bit.length);
 }
 
 function main() {
   var isler = [
-    isle(SAYFA, BAS, BIT, uret, "parametre tabloları"),
-    isle(MATRIS_SAYFA, MBAS, MBIT, uretMatris, "hak matrisi")
+    { dosya: SAYFA, bas: BAS, bit: BIT, uretici: uret, ad: "parametre tabloları" },
+    { dosya: MATRIS_SAYFA, bas: MBAS, bit: MBIT, uretici: uretMatris, ad: "hak matrisi" },
+    { dosya: MAKALE_SAYFA, bas: OBAS, bit: OBIT, uretici: uretOrnekBordro, ad: "makale örnek bordrosu" },
+    { dosya: MAKALE_SAYFA, bas: GBAS, bit: GBIT, uretici: uretDilimGecis, ad: "makale dilim geçiş tablosu" }
   ];
-  var degisen = isler.filter(function (x) { return x.degisti; });
+
+  var asil = {}, guncel = {}, degisenAdlar = [];
+  isler.forEach(function (x) {
+    if (!(x.dosya in asil)) {
+      asil[x.dosya] = fs.readFileSync(x.dosya, "utf8");
+      guncel[x.dosya] = asil[x.dosya];
+    }
+    var once = guncel[x.dosya];
+    guncel[x.dosya] = uygula(once, x.bas, x.bit, x.uretici, x.ad);
+    if (guncel[x.dosya] !== once) degisenAdlar.push(x.ad);
+  });
+
+  var degisenDosyalar = Object.keys(asil).filter(function (d) { return guncel[d] !== asil[d]; });
 
   if (process.argv.indexOf("--check") !== -1) {
-    if (!degisen.length) { console.log("Üretilen tablolar güncel."); process.exit(0); }
-    console.error("Güncel değil (" + degisen.map(function (x) { return x.ad; }).join(", ") +
+    if (!degisenAdlar.length) { console.log("Üretilen tablolar güncel."); process.exit(0); }
+    console.error("Güncel değil (" + degisenAdlar.join(", ") +
       ") — 'node tools/bordro-tablo.js' çalıştırın.");
     process.exit(1);
   }
 
-  if (!degisen.length) { console.log("Değişiklik yok."); return; }
-  degisen.forEach(function (x) {
-    fs.writeFileSync(x.dosya, x.yeni, "utf8");
-    console.log(path.relative(KOK, x.dosya) + " — " + x.ad + " güncellendi.");
+  if (!degisenDosyalar.length) { console.log("Değişiklik yok."); return; }
+  degisenDosyalar.forEach(function (d) {
+    fs.writeFileSync(d, guncel[d], "utf8");
+    console.log(path.relative(KOK, d) + " güncellendi.");
   });
 }
 
