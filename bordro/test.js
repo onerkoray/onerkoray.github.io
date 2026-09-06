@@ -200,5 +200,23 @@ baslik("Net ücret sözleşmesi — 12 aylık brüt");
      "sapma: " + sapma.toFixed(2));
 })();
 
+baslik("Fazla mesai parametreleri");
+(function () {
+  B.yillar().forEach(function (yil) {
+    var f = B.parametre(yil).fazlaMesai;
+    ok(yil + " fazla mesai parametreleri tanımlı",
+       !!f && f.aylikSaat === 225 && f.fazlaCalismaKat === 1.5 &&
+       f.fazlaSureliKat === 1.25 && f.yillikUstSinirSaat === 270,
+       f ? JSON.stringify(f) : "yok");
+  });
+  /* Saat ücreti ve zamlı tutar: 60.000 TL brütte 10 saat %50 zamlı
+     fazla çalışma tam 4.000 TL brüt eder. */
+  var f = B.parametre(2026).fazlaMesai;
+  var saatlik = 60000 / f.aylikSaat;
+  ok("60.000 TL brütte saat ücreti 266,67", yakin(saatlik, 266.6667, 0.001));
+  ok("10 saat %50 zamlı mesai 4.000 TL brüt",
+     yakin(saatlik * f.fazlaCalismaKat * 10, 4000, 0.01));
+})();
+
 console.log("\n" + gecen + " geçti, " + kalan + " kaldı.");
 process.exit(kalan ? 1 : 0);
