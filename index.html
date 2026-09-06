@@ -587,6 +587,11 @@
   ]
 }
   </script>
+  <noscript>
+    <!-- .reveal markup'ta yazılı; JS kapalıysa opacity:0 içeriği
+         tamamen gizler. Bu geçersiz kılma olmadan sayfa boş görünüyordu. -->
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
 </head>
 <body>
   <a class="skip-link" href="#main">İçeriğe geç</a>

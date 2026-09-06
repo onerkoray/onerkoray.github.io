@@ -228,3 +228,167 @@
   }, { rootMargin: "0px 0px -10% 0px", threshold: 0.08 });
   reveals.forEach(function (el) { io.observe(el); });
 })();
+
+/* ============================================================================
+   Hareket katmanı
+   ----------------------------------------------------------------------------
+   Kaydırmada belirme ana sayfa dışında hiçbir sayfada yoktu. Burada sayfanın
+   TÜRÜNE göre farklı bloklar seçiliyor; her yere aynı efekti uygulamak yazı
+   sayfalarında okumayı bölüyordu.
+
+     yazı sayfası  -> yalnızca görsel bloklar (figür, tablo, uyarı kutusu)
+     yazı listesi  -> manşet, ayraç ve liste öğeleri (kademeli)
+     diğer sayfa   -> hero dışındaki bölümler
+
+   Sınıflar JS tarafından atanır: script çalışmazsa içerik gizlenmez.
+   ========================================================================== */
+(function () {
+  "use strict";
+
+  var azalt = window.matchMedia &&
+              window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var ana = document.querySelector("main");
+
+  /* ---- 1) Kaydırmada belirme ---- */
+  (function () {
+    if (azalt || !ana || !("IntersectionObserver" in window)) return;
+    // Ana sayfada markup'ta yazılı .reveal düzeni var; ona karışma.
+    if (document.querySelector(".reveal")) return;
+
+    var hedefler = [];
+    function topla(secici, kok) {
+      var l = (kok || ana).querySelectorAll(secici);
+      for (var i = 0; i < l.length; i++) {
+        if (hedefler.indexOf(l[i]) < 0) hedefler.push(l[i]);
+      }
+    }
+
+    if (ana.querySelector(".ed-body")) {
+      // Yazı sayfası: metin akışına dokunma, yalnızca görsel bloklar.
+      topla(".ed-figure, .ed-body > figure, .ed-body > table," +
+            " .ed-body > .table-scroll, .ed-body > .legal-note");
+    } else if (ana.querySelector(".ed-list, .ed-lead")) {
+      // Yazı listesi
+      topla(".ed-lead, .ed-rule, .ed-item");
+    } else {
+      // Araç ve kurumsal sayfalar: hero hariç bölümler
+      var bolumler = ana.children;
+      for (var i = 0; i < bolumler.length; i++) {
+        var b = bolumler[i];
+        if (b.tagName !== "SECTION") continue;
+        if (b.classList.contains("hero")) continue;
+        hedefler.push(b);
+      }
+    }
+    if (!hedefler.length) return;
+
+    document.documentElement.classList.add("js-hrk");
+
+    var yukseklik = window.innerHeight || 800;
+    hedefler.forEach(function (el) {
+      // Zaten ekranda olan blok gizlenmez: yoksa açılışta görünen içerik
+      // önce kaybolup sonra beliriyor — göze çarpan bir titreme.
+      if (el.getBoundingClientRect().top < yukseklik * 0.92) return;
+      // Kademe sayacı ebeveynin ÜZERİNDE tutulur; düz nesnede DOM düğümünü
+      // anahtar yapmak hepsini "[object HTMLElement]" anahtarına çökertiyor
+      // ve kademe kardeşler arası değil, sayfa geneli sayaca dönüşüyordu.
+      var ebeveyn = el.parentNode;
+      var sira = ebeveyn.__hrkSira || 0;
+      ebeveyn.__hrkSira = sira + 1;
+      if (sira) el.style.setProperty("--hrk-gecikme", Math.min(sira, 4) * 80 + "ms");
+      el.classList.add("hrk");
+    });
+
+    var gizli = ana.querySelectorAll(".hrk");
+    if (!gizli.length) return;
+
+    var io = new IntersectionObserver(function (girisler) {
+      girisler.forEach(function (g) {
+        if (!g.isIntersecting) return;
+        g.target.classList.add("gorunur");
+        io.unobserve(g.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
+
+    for (var j = 0; j < gizli.length; j++) io.observe(gizli[j]);
+
+    // Emniyet: gözlemci hiç tetiklenmezse içerik gizli kalmasın.
+    setTimeout(function () {
+      var kalan = document.querySelectorAll(".hrk:not(.gorunur)");
+      for (var k = 0; k < kalan.length; k++) kalan[k].classList.add("gorunur");
+    }, 3000);
+  })();
+
+  /* ---- 2) Okuma ilerlemesi (yalnızca yazı sayfaları) ---- */
+  (function () {
+    var govde = document.querySelector(".ed-body");
+    var baslik = document.querySelector(".site-header");
+    if (!govde || !baslik) return;
+
+    var cubuk = document.createElement("div");
+    cubuk.className = "okuma-cubugu";
+    cubuk.setAttribute("aria-hidden", "true");
+    baslik.appendChild(cubuk);
+
+    var bekliyor = false;
+    function guncelle() {
+      bekliyor = false;
+      var r = govde.getBoundingClientRect();
+      var yol = r.height - window.innerHeight;
+      var p = yol <= 0
+        ? (r.bottom <= window.innerHeight ? 1 : 0)
+        : (-r.top) / yol;
+      cubuk.style.transform = "scaleX(" + Math.max(0, Math.min(1, p)) + ")";
+    }
+    function iste() {
+      if (bekliyor) return;
+      bekliyor = true;
+      requestAnimationFrame(guncelle);
+    }
+    window.addEventListener("scroll", iste, { passive: true });
+    window.addEventListener("resize", iste, { passive: true });
+    guncelle();
+  })();
+})();
+
+/* ============================================================================
+   Sonuç nabzı — çıktı değiştiğinde görsel geri bildirim
+   ----------------------------------------------------------------------------
+   Araçlar anlık hesaplıyor; girdiyi değiştirince sonuç sessizce yer
+   değiştiriyordu. Kısa bir halka, çıktının YENİLENDİĞİNİ gösteriyor.
+
+   Metne dokunulmuyor: <output> öğeleri aria-live bölgesi, içeriği oynatmak
+   ekran okuyucuya her ara değeri okuturdu. Buradaki hareket tamamen görsel.
+   ========================================================================== */
+(function () {
+  "use strict";
+  if (!("MutationObserver" in window)) return;
+  var azalt = window.matchMedia &&
+              window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (azalt) return;
+
+  var ciktilar = document.querySelectorAll("output, .result");
+  if (!ciktilar.length) return;
+
+  // Açılıştaki ilk hesap nabız saymasın: her sayfa yüklenişinde yanıp
+  // sönmek geri bildirim değil, gürültü olurdu.
+  var hazir = false;
+  setTimeout(function () { hazir = true; }, 700);
+
+  ciktilar.forEach(function (el) {
+    var sonSefer = 0;
+    var gozlemci = new MutationObserver(function () {
+      if (!hazir) return;
+      var simdi = Date.now();
+      if (simdi - sonSefer < 220) return;   // hızlı yazımda spam olmasın
+      sonSefer = simdi;
+      el.classList.remove("sonuc-nabiz");
+      void el.offsetWidth;                  // animasyonu yeniden başlat
+      el.classList.add("sonuc-nabiz");
+    });
+    gozlemci.observe(el, { childList: true, characterData: true, subtree: true });
+    el.addEventListener("animationend", function () {
+      el.classList.remove("sonuc-nabiz");
+    });
+  });
+})();

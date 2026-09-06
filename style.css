@@ -702,3 +702,71 @@ pre.code-block code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas
   .project-card:hover { transform: none; }
   .project-card::after { transform: scaleX(1); opacity: .35; }
 }
+
+/* =========================================================================
+   Hareket katmanı
+   -------------------------------------------------------------------------
+   Sorun: kaydırmada belirme yalnızca ana sayfada vardı (38 öğe). Diğer 71
+   sayfada tek bir hareket yoktu; ana sayfa yaşarken araç ve yazı sayfaları
+   taş gibi duruyordu. Bu tutarsızlık "yarım kalmış" izlenimi veriyordu.
+
+   .hrk sınıfını CSS değil JS atar. Script çalışmazsa hiçbir şey gizlenmez —
+   sayfa hareketsiz ama eksiksiz görünür. (Ana sayfadaki eski .reveal sınıfı
+   markup'ta yazılı olduğu için bu güvenceye sahip değildi; oraya <noscript>
+   geçersiz kılması eklendi.)
+
+   Ölçü: yalnızca YAPISAL bloklar ve görsel öğeler belirir. Yazı gövdesindeki
+   paragraflar belirmez — okumayı böler ve ucuz durur.
+   ========================================================================= */
+.hrk {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .55s ease,
+              transform .55s cubic-bezier(.22, 1, .36, 1);
+  transition-delay: var(--hrk-gecikme, 0ms);
+}
+.hrk.gorunur { opacity: 1; transform: none; }
+
+/* Okuma ilerlemesi — yalnızca yazı sayfalarında, yapışkan başlığın alt
+   kenarına oturur (.site-header konumlandırılmış olduğu için sabitlenir). */
+.okuma-cubugu {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 3px;
+  transform: scaleX(0); transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--brand), var(--brand-strong));
+  pointer-events: none;
+}
+
+/* Editoryal bölüm çizgisi görünür olunca çizilsin. Kural .js-hrk altında:
+   script çalışmazsa çizgi olduğu gibi görünür, scaleX(0)'da takılı kalmaz. */
+.js-hrk .ed-rule::after {
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform .85s cubic-bezier(.22, 1, .36, 1) .12s;
+}
+.js-hrk .ed-rule.gorunur::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hrk { opacity: 1 !important; transform: none !important; }
+  .js-hrk .ed-rule::after { transform: scaleX(1) !important; }
+  .okuma-cubugu { transition: none; }
+}
+
+/* Sonuç güncellendiğinde nabız — hesap makinesi sitesinde en anlamlı hareket
+   bu: kullanıcı girdiyi değiştirdiğinde çıktının YENİLENDİĞİNİ görüyor.
+   Halka kullanılıyor (arka plan değil): .result kendi zeminini taşıyabiliyor
+   ve arka planı canlandırmak onunla çakışırdı. live.css'teki livePulse ile
+   aynı dil. */
+@keyframes sonucNabiz {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 42%, transparent); }
+  70%  { box-shadow: 0 0 0 9px color-mix(in srgb, var(--brand) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 0%, transparent); }
+}
+.sonuc-nabiz { animation: sonucNabiz .75s ease-out; border-radius: 10px; }
+
+/* Basma geri bildirimi: tıklamanın kaydedildiği anında belli olsun. */
+button:active:not(:disabled),
+.btn:active:not(:disabled) { transform: translateY(1px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sonuc-nabiz { animation: none; }
+  button:active:not(:disabled), .btn:active:not(:disabled) { transform: none; }
+}
