@@ -809,35 +809,58 @@ select { max-width: 100%; }
 }
 .diyagram .dg-bag {
   fill: none;
-  stroke: color-mix(in srgb, var(--brand) 42%, transparent);
-  stroke-width: 1.4;
+  stroke: color-mix(in srgb, var(--brand) 45%, transparent);
+  stroke-linecap: round;
 }
 .diyagram .dg-nokta { fill: var(--brand); }
-.diyagram .dg-hub rect {
-  fill: var(--brand);
-  stroke: none;
+.diyagram .dg-ikon,
+.diyagram .dg-marka {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
-.diyagram .dg-hub-yazi {
-  fill: var(--brand-contrast, #fff);
-  font: 700 16px/1 inherit;
+
+/* Merkez madalyon: kesikli dış halka + dolu çekirdek + marka işareti */
+.diyagram .dg-halka {
+  fill: none;
+  stroke: color-mix(in srgb, var(--brand) 32%, transparent);
+  stroke-width: 1.4;
+  stroke-dasharray: 3 7;
 }
-.diyagram .dg-hub-alt {
-  fill: color-mix(in srgb, var(--brand-contrast, #fff) 82%, transparent);
-  font: 500 12px/1 inherit;
-}
+.diyagram .dg-cekirdek { fill: var(--brand); }
+.diyagram .dg-marka { color: var(--brand-contrast, #fff); stroke-width: 2.1; }
+/* Ad ve sürüm dairenin ALTINDA, sayfa zemininde duruyor; bu yüzden marka
+   kontrastı değil normal mürekkep rengi kullanılıyor. */
+.diyagram .dg-hub-yazi { fill: var(--text); font: 700 16px/1 inherit; }
+.diyagram .dg-hub-alt { fill: var(--text-muted); font: 500 12px/1 inherit; }
+
+/* Dal pili + sayaç rozeti */
 .diyagram .dg-dal rect {
-  fill: color-mix(in srgb, var(--brand) 12%, var(--surface));
-  stroke: color-mix(in srgb, var(--brand) 38%, transparent);
+  fill: color-mix(in srgb, var(--brand) 14%, var(--surface));
+  stroke: color-mix(in srgb, var(--brand) 40%, transparent);
   stroke-width: 1.2;
 }
+.diyagram .dg-dal { color: var(--brand-strong); }
 .diyagram .dg-dal-yazi { fill: var(--brand-strong); font: 700 14px/1 inherit; }
-.diyagram .dg-yaprak { fill: var(--text); font: 600 13px/1 inherit; }
-.diyagram .dg-yaprak-alt { fill: var(--text-muted); font: 400 11.5px/1 inherit; }
+.diyagram .dg-sayac { fill: var(--brand); }
+.diyagram .dg-sayac-yazi { fill: var(--brand-contrast, #fff); font: 700 12px/1 inherit; }
 
-/* Koyu temada marka rengi açıldığı için hub yazısı koyu mürekkebe döner. */
-:root[data-theme="dark"] .diyagram .dg-hub-yazi,
-:root[data-theme="dark"] .diyagram .dg-hub-alt { fill: #0b0d10; }
+/* Yaprak kartları */
+.diyagram .dg-kart rect {
+  fill: var(--surface);
+  stroke: var(--border);
+  stroke-width: 1.1;
+}
+.diyagram .dg-kart { color: var(--brand); }
+.diyagram .dg-kart-yazi { fill: var(--text); font: 650 13px/1 inherit; }
+.diyagram .dg-kart-alt { fill: var(--text-muted); font: 400 11.5px/1 inherit; }
+
+/* Koyu temada marka rengi açıldığından üstündeki yazı koyu mürekkebe döner. */
+:root[data-theme="dark"] .diyagram .dg-sayac-yazi { fill: #0b0d10; }
+:root[data-theme="dark"] .diyagram .dg-marka { color: #0b0d10; }
 @media (prefers-color-scheme: dark) {
-  :root[data-theme="auto"] .diyagram .dg-hub-yazi,
-  :root[data-theme="auto"] .diyagram .dg-hub-alt { fill: #0b0d10; }
+  :root[data-theme="auto"] .diyagram .dg-sayac-yazi { fill: #0b0d10; }
+  :root[data-theme="auto"] .diyagram .dg-marka { color: #0b0d10; }
 }

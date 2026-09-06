@@ -74,105 +74,137 @@ var ARAC_ADI = {
   "fazla-mesai-hesaplama": "Fazla mesai"
 };
 
-/* ---------------- düzen ---------------- */
+/* ---------------- düzen ----------------
 
-var SATIR = 34;        // yaprak satır yüksekliği (başlık + alt satır)
-var UST = 26;
-var ALT = 22;
-var HUB_G = 210;       // merkez kutu genişliği
-var DAL_G = 150;
-var BOSLUK = 62;       // sütunlar arası
+   İlk sürüm çıplak kutulardan oluşuyordu ve organizasyon şeması gibi
+   okunuyordu. Referans türünde olan şey şu: merkez bir madalyon, dallarda
+   sayaç rozeti, yapraklarda İKONLU kart. İkonlar zaten depoda vardı
+   (tools/card-icons.json), kullanılmıyordu.
+   ------------------------------------------------------------------- */
 
-/* Metin genişliği ölçümü. SVG'de metin taşarsa viewBox onu kırpar; sabit bir
-   sütun genişliği varsaymak etiketleri sağdan kesiyordu. Sistem yazı tipi için
-   karakter başına ortalama genişlik yeterince iyi bir yaklaşım. */
-function metinG(metin, punto, kalin) {
-  return String(metin).length * punto * (kalin ? 0.56 : 0.52);
+var HUB_R = 62;              // merkez madalyon yarıçapı
+var HUB_SUT = 200;           // merkez sütun genişliği
+var DAL_G = 208, DAL_Y = 42; // dal pili (sayaç rozetiyle çakışmasın)
+var KART_G = 322;            // yaprak kartı
+var KART_Y_TAM = 58;         // alt satırı olan kart
+var KART_Y_SADE = 38;        // yalnız başlık
+var ARA = 8;                 // kartlar arası
+var DAL_ARA = 26;            // dallar arası
+var SUT_ARA = 66;            // sütunlar arası
+var UST = 30, ALT = 30;
+
+/* card-icons.json'daki 24x24 ikonun iç içeriği. */
+function ikonIc(svg) {
+  if (!svg) return "";
+  return String(svg).replace(/^<svg[^>]*>/, "").replace(/<\/svg>$/, "");
 }
 
-function kutu(x, y, g, h, r) {
-  return '<rect x="' + x + '" y="' + y + '" width="' + g + '" height="' + h +
-    '" rx="' + (r || 9) + '"/>';
+/* Dal ve parametre yaprakları için küçük çizimler (24x24, stroke tabanlı). */
+var GLIF = {
+  tarife: '<path d="M4 19h16"/><path d="M7 19V9"/><path d="M12 19V5"/><path d="M17 19v-7"/>',
+  asgari: '<circle cx="12" cy="12" r="8.5"/><path d="M9.5 9h5"/><path d="M12 9v7"/><path d="M9.5 12.5h5"/>',
+  sgk: '<path d="M12 3 5 6v5.5c0 4.3 3 8.2 7 9.5 4-1.3 7-5.2 7-9.5V6z"/><path d="M9.5 12l1.8 1.8L15 10"/>',
+  kidem: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7"/><path d="M3 12h18"/>',
+  issizlik: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+  bordro: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',
+  nettenBrute: '<path d="M4 8h12l-3-3"/><path d="M20 16H8l3 3"/>',
+  cikis: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>',
+  senaryo: '<path d="M12 3v18"/><path d="M5 8h14"/><path d="m5 8-2 6h4z"/><path d="m19 8-2 6h4z"/>',
+  test: '<path d="m9 3 .5 7.5L4.5 19a1.6 1.6 0 0 0 1.4 2.4h12.2A1.6 1.6 0 0 0 19.5 19l-5-8.5L15 3"/><path d="M8.5 3h7"/>',
+  kopya: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/>',
+  tablo: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10"/>',
+  denetim: '<path d="M12 3 5 6v5.5c0 4.3 3 8.2 7 9.5 4-1.3 7-5.2 7-9.5V6z"/><path d="M9 12.5l2 2 4-4"/>'
+};
+
+function ikonG(ic, x, y, boy) {
+  var o = (boy || 22) / 24;
+  return '<g class="dg-ikon" transform="translate(' + x + ',' + y + ') scale(' + o.toFixed(4) + ')">' +
+    ic + "</g>";
 }
 
-/* Sağdan sola akan yumuşak bağlantı: dikeyde ortadan çıkıp ortaya girer. */
-function bag(x1, y1, x2, y2) {
-  var dx = (x2 - x1) * 0.55;
-  return '<path class="dg-bag" d="M' + x1 + " " + y1 +
+function bag(x1, y1, x2, y2, kalinlik) {
+  var dx = (x2 - x1) * 0.5;
+  return '<path class="dg-bag" stroke-width="' + kalinlik + '" d="M' + x1 + " " + y1 +
     " C" + (x1 + dx) + " " + y1 + "," + (x2 - dx) + " " + y2 + "," + x2 + " " + y2 + '"/>';
 }
 
-function nokta(x, y) { return '<circle class="dg-nokta" cx="' + x + '" cy="' + y + '" r="3.2"/>'; }
+function nokta(x, y, r) {
+  return '<circle class="dg-nokta" cx="' + x + '" cy="' + y + '" r="' + (r || 3.4) + '"/>';
+}
 
-/* dallar: [{ ad, alt, yapraklar: [{ad, alt}] }] */
+/* dallar: [{ ad, glif, yapraklar: [{ ad, alt, ikon }] }] */
 function agac(baslik, aciklama, merkez, merkezAlt, dallar) {
-  var toplamYaprak = dallar.reduce(function (t, d) { return t + d.yapraklar.length; }, 0);
-  var araBosluk = 18;
-  var H = UST + ALT + toplamYaprak * SATIR + (dallar.length - 1) * araBosluk;
-
-  /* En uzun yaprak etiketine göre genişlik — kırpılma olmasın. */
-  var enUzun = 0;
-  dallar.forEach(function (d) {
-    d.yapraklar.forEach(function (yp) {
-      enUzun = Math.max(enUzun, metinG(yp.ad, 13, true));
-      if (yp.alt) enUzun = Math.max(enUzun, metinG(yp.alt, 11.5, false));
-    });
-  });
-  var YAP_G = Math.ceil(enUzun) + 24;
-  var W = HUB_G + BOSLUK + DAL_G + BOSLUK + YAP_G + 24;
-
-  var x0 = 12;
-  var x1 = x0 + HUB_G + BOSLUK;
-  var x2 = x1 + DAL_G + BOSLUK;
+  var x0 = 10;
+  var xHub = x0 + HUB_SUT / 2;
+  var xDal = x0 + HUB_SUT + SUT_ARA;
+  var xKart = xDal + DAL_G + SUT_ARA;
+  var W = xKart + KART_G + 18;
 
   var parcalar = [];
   var y = UST;
-  var dalMerkezleri = [];
+  var dalBilgi = [];
 
   dallar.forEach(function (d) {
     var basY = y;
-    var yapraklar = [];
+    var kartlar = [];
     d.yapraklar.forEach(function (yp) {
-      var yy = y + SATIR / 2;
-      yapraklar.push({ y: yy, veri: yp });
-      y += SATIR;
+      var h = yp.alt ? KART_Y_TAM : KART_Y_SADE;
+      kartlar.push({ y: y, h: h, veri: yp });
+      y += h + ARA;
     });
-    var dalY = (basY + y) / 2;
-    dalMerkezleri.push(dalY);
-
-    // dal kutusu
-    parcalar.push('<g class="dg-dal">' +
-      kutu(x1, dalY - 17, DAL_G, 34, 10) +
-      '<text class="dg-dal-yazi" x="' + (x1 + DAL_G / 2) + '" y="' + (dalY + 5) +
-      '" text-anchor="middle">' + esc(d.ad) + "</text></g>");
-
-    // dal -> yapraklar
-    yapraklar.forEach(function (yp) {
-      parcalar.push(bag(x1 + DAL_G, dalY, x2, yp.y));
-      parcalar.push(nokta(x2, yp.y));
-      /* Başlık ve alt satır: 13 px punto için 13 px aralık çakışıyordu. */
-      var altVar = !!yp.veri.alt;
-      parcalar.push('<text class="dg-yaprak" x="' + (x2 + 12) + '" y="' +
-        (altVar ? yp.y - 4 : yp.y + 4) + '">' + esc(yp.veri.ad) + "</text>");
-      if (altVar) {
-        parcalar.push('<text class="dg-yaprak-alt" x="' + (x2 + 12) + '" y="' + (yp.y + 12) + '">' +
-          esc(yp.veri.alt) + "</text>");
-      }
-    });
-
-    y += araBosluk;
+    var sonY = y - ARA;
+    dalBilgi.push({ merkez: (basY + sonY) / 2, dal: d, kartlar: kartlar });
+    y += DAL_ARA;
   });
 
+  var H = y - DAL_ARA + ALT;
   var hubY = H / 2;
-  dalMerkezleri.forEach(function (dy) {
-    parcalar.unshift(bag(x0 + HUB_G, hubY, x1, dy));
-    parcalar.push(nokta(x1, dy));
+
+  dalBilgi.forEach(function (b) {
+    // hub -> dal
+    parcalar.push(bag(xHub + HUB_R, hubY, xDal, b.merkez, 2.4));
+
+    // dal pili
+    parcalar.push('<g class="dg-dal">' +
+      '<rect x="' + xDal + '" y="' + (b.merkez - DAL_Y / 2) + '" width="' + DAL_G +
+      '" height="' + DAL_Y + '" rx="' + (DAL_Y / 2) + '"/>' +
+      ikonG(GLIF[b.dal.glif] || "", xDal + 15, b.merkez - 10, 20) +
+      '<text class="dg-dal-yazi" x="' + (xDal + 45) + '" y="' + (b.merkez + 5) + '">' +
+      esc(b.dal.ad) + "</text>" +
+      '<circle class="dg-sayac" cx="' + (xDal + DAL_G - 24) + '" cy="' + b.merkez + '" r="13"/>' +
+      '<text class="dg-sayac-yazi" x="' + (xDal + DAL_G - 24) + '" y="' + (b.merkez + 4) +
+      '" text-anchor="middle">' + b.kartlar.length + "</text>" +
+      "</g>");
+    parcalar.push(nokta(xDal, b.merkez, 4));
+
+    // dal -> kartlar
+    b.kartlar.forEach(function (k) {
+      var ky = k.y + k.h / 2;
+      parcalar.push(bag(xDal + DAL_G, b.merkez, xKart, ky, 1.4));
+      parcalar.push(nokta(xKart, ky, 3));
+      parcalar.push('<g class="dg-kart">' +
+        '<rect x="' + xKart + '" y="' + k.y + '" width="' + KART_G + '" height="' + k.h + '" rx="11"/>' +
+        ikonG(k.veri.ikon || "", xKart + 14, ky - 11, 22) +
+        '<text class="dg-kart-yazi" x="' + (xKart + 48) + '" y="' +
+        (k.veri.alt ? ky - 6 : ky + 4) + '">' + esc(k.veri.ad) + "</text>" +
+        (k.veri.alt
+          ? '<text class="dg-kart-alt" x="' + (xKart + 48) + '" y="' + (ky + 14) + '">' +
+            esc(k.veri.alt) + "</text>"
+          : "") +
+        "</g>");
+    });
   });
 
-  var hub = '<g class="dg-hub">' + kutu(x0, hubY - 31, HUB_G, 62, 14) +
-    '<text class="dg-hub-yazi" x="' + (x0 + HUB_G / 2) + '" y="' + (hubY - 4) +
+  /* Merkez madalyon. Ad ve sürüm daire İÇİNE sığmıyordu (124 piksellik
+     dairede iki satır metin dışarı taşıyordu); dairenin altına alındı. */
+  var hub = '<g class="dg-hub">' +
+    '<circle class="dg-halka" cx="' + xHub + '" cy="' + hubY + '" r="' + (HUB_R + 10) + '"/>' +
+    '<circle class="dg-cekirdek" cx="' + xHub + '" cy="' + hubY + '" r="' + HUB_R + '"/>' +
+    '<g class="dg-marka" transform="translate(' + (xHub - 27) + ',' + (hubY - 27) + ') scale(2.25)">' +
+    '<path d="M9 4 4 12l5 8"/><path d="M15 4l5 8-5 8"/>' + "</g>" +
+    '<text class="dg-hub-yazi" x="' + xHub + '" y="' + (hubY + HUB_R + 34) +
     '" text-anchor="middle">' + esc(merkez) + "</text>" +
-    '<text class="dg-hub-alt" x="' + (x0 + HUB_G / 2) + '" y="' + (hubY + 15) +
+    '<text class="dg-hub-alt" x="' + xHub + '" y="' + (hubY + HUB_R + 53) +
     '" text-anchor="middle">' + esc(merkezAlt) + "</text></g>";
 
   return '<svg class="diyagram" viewBox="0 0 ' + W + " " + H + '" width="' + W +
@@ -188,41 +220,49 @@ function motorEkosistemi() {
   var yillar = B.yillar().slice().sort();
   var araclar = motorluAraclar();
   var testler = testSayisi();
-  var P = B.parametre(B.sonYil());
+  var ikonlar = JSON.parse(oku("tools/card-icons.json"));
+
+  function aracIkon(slug) {
+    return ikonlar[slug] ? ikonIc(ikonlar[slug].svg) : "";
+  }
 
   var dallar = [
     {
       ad: "Parametreler",
+      glif: "bordro",
       yapraklar: [
-        { ad: "Gelir vergisi tarifesi", alt: "m.103 · ücret ve ücret dışı" },
-        { ad: "Asgari ücret ve istisna", alt: "m.32 · yıl içi dönemler dahil" },
-        { ad: "SGK prime esas kazanç", alt: "5510 m.82 · alt ve üst sınır" },
-        { ad: "Kıdem tazminatı tavanı", alt: "1475 m.14 · altı aylık dönem" },
-        { ad: "İşsizlik ve fazla mesai", alt: "4447 m.50 · 4857 m.41" }
+        { ad: "Gelir vergisi tarifesi", alt: "GVK m.103 · ücret ve ücret dışı", ikon: GLIF.tarife },
+        { ad: "Asgari ücret ve istisna", alt: "GVK m.32 · yıl içi dönemler dahil", ikon: GLIF.asgari },
+        { ad: "Prime esas kazanç", alt: "5510 m.82 · alt ve üst sınır", ikon: GLIF.sgk },
+        { ad: "Kıdem tazminatı tavanı", alt: "1475 m.14 · altı aylık dönem", ikon: GLIF.kidem },
+        { ad: "İşsizlik ve fazla mesai", alt: "4447 m.50 · 4857 m.41", ikon: GLIF.issizlik }
       ]
     },
     {
       ad: "Hesaplar",
+      glif: "nettenBrute",
       yapraklar: [
-        { ad: "Aylık ve 12 aylık bordro", alt: "kümülatif matrah takibi" },
-        { ad: "Netten brüte", alt: "tek ay ve net sözleşme için 12 ay" },
-        { ad: "Çıkış paketi", alt: C.FESIH_TURLERI.length + " fesih türü · hak matrisi" },
-        { ad: "Çalışma biçimi", alt: "aynı maliyette dört senaryo" }
+        { ad: "Aylık ve 12 aylık bordro", alt: "kümülatif matrah takibi", ikon: GLIF.bordro },
+        { ad: "Netten brüte", alt: "tek ay ve net sözleşme için 12 ay", ikon: GLIF.nettenBrute },
+        { ad: "Çıkış paketi", alt: C.FESIH_TURLERI.length + " fesih türü · hak matrisi", ikon: GLIF.cikis },
+        { ad: "Çalışma biçimi", alt: "aynı maliyette dört senaryo", ikon: GLIF.senaryo }
       ]
     },
     {
       ad: "Araçlar",
+      glif: "tablo",
       yapraklar: araclar.map(function (a) {
-        return { ad: ARAC_ADI[a] || a, alt: "/" + a + "/" };
+        return { ad: ARAC_ADI[a] || a, ikon: aracIkon(a) };
       })
     },
     {
       ad: "Denetim",
+      glif: "denetim",
       yapraklar: [
-        { ad: testler + " doğrulama testi", alt: "resmî tutarlara sabitlenmiş" },
-        { ad: "Parametre kopyası kontrolü", alt: "motor dışında yasal sayı yok" },
-        { ad: "Üretilen tablo kontrolü", alt: "sayfa ile motor ayrışamaz" },
-        { ad: "Sayfa ve CSS denetimi", alt: "her push'ta çalışır" }
+        { ad: testler + " doğrulama testi", alt: "resmî tutarlara sabitlenmiş", ikon: GLIF.test },
+        { ad: "Parametre kopyası kontrolü", alt: "motor dışında yasal sayı yok", ikon: GLIF.kopya },
+        { ad: "Üretilen tablo ve şema", alt: "sayfa ile motor ayrışamaz", ikon: GLIF.tablo },
+        { ad: "Sayfa, CSS ve kontrast", alt: "her push'ta çalışır", ikon: GLIF.denetim }
       ]
     }
   ];
@@ -234,7 +274,7 @@ function motorEkosistemi() {
       " araç ve her push'ta çalışan denetimler. " + yillar[0] + "-" +
       yillar[yillar.length - 1] + " arası " + yillar.length + " bordro yılı kapsanıyor.",
     "Bordro Motoru",
-    "sürüm " + B.surum + " · " + yillar.length + " yıl · MIT",
+    "v" + B.surum + " · " + yillar.length + " yıl · MIT",
     dallar
   );
 }
