@@ -1,17 +1,18 @@
-name: Bordro motoru testleri
+name: Site doğrulamaları
 
 # Motorun doğruluğu sitenin en kırılgan iddiası: bir parametre yanlış girilirse
-# hiçbir şey görünürde bozulmaz, sadece sonuçlar sessizce yanlış olur.
-# Bu yüzden her değişiklikte resmî net asgari ücret referansı yeniden doğrulanır.
+# hiçbir şey görünürde bozulmaz, sadece sonuçlar sessizce yanlış olur. Bu yüzden
+# her değişiklikte resmî net asgari ücret referansı yeniden doğrulanır.
+#
+# yol (paths) filtresi KALDIRILDI. Buradaki yedi kontrolün dördü motorun değil
+# SİTENİN tamamına bakıyor: sayfa denetimi 81 sayfayı, parametre kopyası bütün
+# ağacı, CSS kontrolü stil dosyalarını, makale listesi ise makaleleri tarıyor.
+# Filtre yalnızca bordro/ ve üç aracı kapsadığı için bu dördü çoğu push'ta hiç
+# çalışmıyordu — muhafızlar duruyor ama nöbet tutmuyorlardı. İş tarayıcı
+# gerektirmiyor ve saniyeler sürüyor; her push'ta çalışması doğru olanı.
 
 on:
   push:
-    paths:
-      - "bordro/**"
-      - "tools/bordro-tablo.js"
-      - "tools/metodoloji-blogu.py"
-      - "tools/make-og.py"
-      - ".github/workflows/bordro-test.yml"
   pull_request:
   workflow_dispatch: {}
 
