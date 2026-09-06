@@ -635,4 +635,70 @@ pre.code-block code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas
   .method-card { flex-direction: column; gap: 14px; }
   .method-portrait { width: 64px; height: 64px; }
 }
+
+/* =========================================================================
+   Tasarım katmanı — dinamik ama sade dokunuşlar
+   ========================================================================= */
+
+/* ---- Bölüm başlıklarına ritim: başlığın üstünde kısa aksan çizgisi ---- */
+.section-head > h2:first-child::before,
+.about > .wrap > h2:first-child::before,
+.contact > .wrap > h2:first-child::before {
+  content: "";
+  display: block;
+  width: 34px; height: 3px;
+  margin-bottom: .9rem;
+  border-radius: 99px;
+  background: var(--brand);
+  opacity: .85;
+}
+
+/* ---- Kart etkileşimi: daha kısıtlı kalkış, daha net kenar ----
+   Önceki hâli 6px yaylanmalı bir sıçramaydı; modern arayüzlerde hareket
+   daha küçük, geçiş daha yumuşak olur. */
+.project-card {
+  transition: transform .28s cubic-bezier(.22,.61,.36,1),
+              box-shadow .28s ease, border-color .28s ease;
+}
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1px 2px rgba(16,24,20,.06), 0 12px 28px rgba(16,24,20,.10);
+}
+/* Kartın üst kenarında marka rengi bir çizgi, üzerine gelince soldan büyür */
+.project-card::after {
+  content: "";
+  position: absolute; left: 0; top: 0; height: 2px; width: 100%;
+  background: var(--brand);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .32s cubic-bezier(.22,.61,.36,1);
+  z-index: 2;
+}
+.project-card:hover::after, .project-card:focus-within::after { transform: scaleX(1); }
+.project-card--soon::after { display: none; }
+
+/* ---- Bağlantı okları: yerinde duran ok, üzerine gelince ilerler ----
+   Yalnızca kartın birincil bağlantısına uygulanır; ikincil bağlantılara da
+   eklenince satır ok kalabalığına dönüşüyordu. */
+.project-links a:first-child::after,
+.article-meta > a:first-child::after {
+  content: "→";
+  display: inline-block;
+  margin-left: .32em;
+  transition: transform .22s cubic-bezier(.22,.61,.36,1);
+}
+.project-card:hover .project-links a:first-child::after,
+.project-links a:first-child:hover::after,
+.article-card:hover .article-meta > a:first-child::after { transform: translateX(4px); }
+
+/* ---- Rakamlar: hesaplama sitesinde sayılar hizalı okunmalı ---- */
+.sum-value, .right-amount, .tl-amount, table.payroll td, table.payroll th {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Hareket tercihi: azaltılmış hareket isteyene sadece renk kalır ---- */
+@media (prefers-reduced-motion: reduce) {
+  .project-card, .project-card::after,
+  .project-links a:first-child::after, .article-meta > a:first-child::after { transition: none; }
+  .project-card:hover { transform: none; }
+  .project-card::after { transform: scaleX(1); opacity: .35; }
 }

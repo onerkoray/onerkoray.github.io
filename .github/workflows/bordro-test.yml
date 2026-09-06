@@ -37,6 +37,9 @@ jobs:
       - name: Çalışma biçimi testleri
         run: node bordro/calisma-bicimi-test.js
 
+      - name: CSS parantez dengesi
+        run: node tools/css-kontrol.js --check
+
       - name: Parametre kopyası var mı
         run: node tools/parametre-kopyasi.js --check
 
