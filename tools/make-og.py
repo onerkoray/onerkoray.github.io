@@ -46,6 +46,10 @@ SPEC = {
    "Maaş hesaplarının açık çekirdeği: 2020-2026 parametreleri, metodoloji ve değişiklik günlüğü.",
    ["Açık kaynak", "2020-2026", "70 test", "MIT"]),
 
+ "maasim-neden-dustu": ("makaleler/maasim-neden-dustu", "Maaşım Neden", "Düştü?",
+   "Kümülatif vergi matrahı ay ay: hangi ayda dilim atlarsınız, net neden bazen yükselir?",
+   ["Makale", "2026 rakamları", "Kaynaklı", "Ay ay tablo"]),
+
  "maas-hesaplama": ("maas-hesaplama", "Brüt Net", "Maaş Hesaplama 2026",
    "Güncel vergi dilimleri, SGK tavanı ve damga vergisiyle ay ay 12 aylık bordro.",
    ["Ücretsiz", "Reklamsız", "12 aylık bordro", "Netten brüte"]),
