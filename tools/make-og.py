@@ -128,6 +128,10 @@ SPEC = {
    "Güncel tavan, giydirilmiş brüt ücret ve damga vergisiyle gün gün hesaplama.",
    ["Güncel tavan", "PDF rapor"], "bordro"),
 
+ "fazla-mesai-hesaplama": ("fazla-mesai-hesaplama", "Fazla Mesai", "Ücreti 2026",
+   "Brütü değil elinize geçeni hesaplayın: aynı mesai ocakta ve aralıkta farklı net bırakır.",
+   ["%50 ve %25", "12 ay karşılaştırma"], "bordro"),
+
  "isveren-maliyeti-hesaplama": ("isveren-maliyeti-hesaplama", "İşveren", "Maliyeti 2026",
    "Bir çalışan işverene ne kadara mal oluyor? SGK işveren payı ve 5 puanlık indirim dahil.",
    ["Brüt & net mod", "5 puan indirimi"], "bordro"),

@@ -618,4 +618,14 @@
       <image:title>İşveren Maliyeti Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://korayoner.dev/fazla-mesai-hesaplama/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/fazla-mesai-hesaplama-koray-oner.png</image:loc>
+      <image:title>Fazla Mesai Ücreti Hesaplama 2026 — Koray Öner</image:title>
+    </image:image>
+  </url>
 </urlset>
