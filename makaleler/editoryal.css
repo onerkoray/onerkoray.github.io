@@ -48,7 +48,10 @@
 }
 .ed-meta .ed-author { display: inline-flex; align-items: center; gap: .45rem; font-weight: 650; color: var(--text); }
 .ed-meta img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; filter: grayscale(1); }
-.ed-sep { opacity: .45; }
+/* Ayrac noktasi. 0.45 opaklikta kontrast 1.97 idi; aria-hidden olsa da
+   okunabilir kalmali. Opaklik tamamen kaldirildi: kucuk bir nokta zaten
+   gorsel olarak geri planda duruyor, soldurmaya gerek yok. */
+.ed-sep { color: var(--text-muted); }
 
 /* ---- kapak görseli ---- */
 .ed-cover {

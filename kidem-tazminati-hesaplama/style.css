@@ -6,7 +6,7 @@
   gap: 4px 20px;
 }
 .panel-q--check { grid-column: 1 / -1; }
-.panel-q .muted-note { display: block; font-size: .75rem; opacity: .65; }
+.panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
 #kidem-form select, #kidem-form input[type="date"] {
   font: inherit;
   padding: 8px 10px;
@@ -54,7 +54,7 @@
 }
 .sum-label { font-size: .8rem; opacity: .75; }
 .sum-value { font-size: 1.25rem; letter-spacing: -0.01em; }
-.sum-note { font-size: .75rem; opacity: .6; }
+.sum-note { font-size: .75rem; opacity: .72; }
 
 .table-scroll { overflow-x: auto; margin-top: 20px; }
 table.payroll {

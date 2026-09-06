@@ -770,3 +770,10 @@ button:active:not(:disabled),
   .sonuc-nabiz { animation: none; }
   button:active:not(:disabled), .btn:active:not(:disabled) { transform: none; }
 }
+
+/* Seçim kutusu, en uzun seçeneğinin genişliğine göre boyutlanır. Kıdem
+   tazminatı sayfasındaki "Otomatik — çıkış ayının kümülatif matrahına göre"
+   seçeneği kutuyu 470 pikselde tutuyor ve 375 piksellik ekranda sayfayı
+   132 piksel yatay kaydırılabilir hâle getiriyordu. Ölçüm: 390px genişlikte
+   iframe içinde documentElement.scrollWidth = 507, clientWidth = 375. */
+select { max-width: 100%; }

@@ -159,3 +159,9 @@ canvas{max-width:100%; image-rendering:pixelated; display:none; box-shadow:0 8px
 }
 .footer-links a{color:var(--dim); text-decoration:none}
 .footer-links a:hover,.footer-links a:focus-visible{color:var(--ink); text-decoration:underline}
+
+/* Dar ekranda gezinme başlıktan taşıyordu (375px'te 45 piksel yatay kaydırma).
+   Ana sitedeki çözümün aynısı: gizlemek yerine ikinci satıra al. */
+@media (max-width: 680px) {
+  .site-nav { flex-wrap: wrap; gap: 12px 16px; }
+}

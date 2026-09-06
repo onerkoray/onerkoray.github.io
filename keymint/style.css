@@ -92,6 +92,20 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4rem) 0; }
 .meter-bar { height: 100%; width: 0; transition: width .2s ease, background .2s ease; }
 .strength-label { font-weight: 700; font-size: var(--step--1); }
 .s-bad { color: var(--bad); } .s-warn { color: var(--warn); } .s-ok { color: var(--ok); } .s-strong { color: var(--brand-strong); }
+
+/* Acik temada etiket metni: --warn (#d99a00) beyaz uzerinde 2.45, --ok
+   (#2e8b57) 4.25 idi. Yalnizca METIN koyultuluyor; olcum cubugu
+   (.bar-warn/.bar-ok) canli rengini koruyor — cubuk grafik oge, metin
+   kontrast esigine tabi degil. Koyu temada zaten yeterli oldugu icin
+   degisken degerine geri donuluyor. */
+.s-warn { color: #9c6e00; }   /* 4.52 */
+.s-ok   { color: #2c8654; }   /* 4.52 */
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .s-warn { color: var(--warn); }
+  :root[data-theme="auto"] .s-ok   { color: var(--ok); }
+}
+:root[data-theme="dark"] .s-warn { color: var(--warn); }
+:root[data-theme="dark"] .s-ok   { color: var(--ok); }
 .bar-bad { background: var(--bad); } .bar-warn { background: var(--warn); } .bar-ok { background: var(--ok); } .bar-strong { background: var(--brand); }
 
 .options { display: grid; gap: 1rem; margin-top: 1.5rem; }

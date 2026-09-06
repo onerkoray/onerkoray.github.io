@@ -40,7 +40,7 @@
 }
 .cr-in, .cr-out { font-size: clamp(1.3rem, 1rem + 1.6vw, 2rem); font-weight: 800; letter-spacing: -.02em; }
 .cr-out { color: var(--brand-strong); }
-.cr-in span, .cr-out span { font-size: .9rem; font-weight: 600; opacity: .7; letter-spacing: 0; }
+.cr-in span, .cr-out span { font-size: .9rem; font-weight: 600; opacity: .85; letter-spacing: 0; }
 .cr-eq { font-size: 1.4rem; opacity: .5; font-weight: 700; }
 .table-note { margin-top: 8px; display: block; }
 
