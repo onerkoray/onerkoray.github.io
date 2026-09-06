@@ -37,11 +37,13 @@ CHROME_CANDIDATES = [
     r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
 ]
 
-# Kategoriye gore hafif ton farki — tarama kolaylasir, marka tek kalir
+# Kategoriye gore ton farki — TEK HUE AILESI (yesil) icinde derinlik kademesi.
+# Onceden uc ayri renkti (yesil / teal / mavi); marka yesile alininca mavi
+# karolar kimlikle catisiyordu. Ayrim korundu ama tek aile icinde kaldi.
 GRADIENTS = {
-    "maas":  ("#0a5f4e", "#14957a"),
-    "vergi": ("#0b5566", "#12879a"),
-    "genel": ("#123a63", "#1d6fa5"),
+    "maas":  ("#053b33", "#0e7c66"),   # marka yesili — imza kategori
+    "vergi": ("#06413f", "#11888a"),   # teale kacan yesil
+    "genel": ("#0d4536", "#37a06f"),   # acik, taze yesil
 }
 
 TPL = """<!DOCTYPE html><html><head><meta charset="utf-8"><style>
@@ -57,24 +59,20 @@ TPL = """<!DOCTYPE html><html><head><meta charset="utf-8"><style>
   .dots {{
     position:absolute; inset:0;
     background-image:radial-gradient(rgba(255,255,255,.10) 1.4px, transparent 1.4px);
-    background-size:26px 26px; opacity:.55;
+    background-size:26px 26px; opacity:.30;
   }}
   .pad {{ position:absolute; inset:0; display:flex; align-items:center; padding:0 72px; }}
   .icon {{ width:150px; height:150px; flex:none; opacity:.97; }}
   .icon svg {{ width:100%; height:100%; display:block; }}
-  .mark {{
-    position:absolute; right:72px; bottom:56px;
-    font-size:34px; font-weight:600; letter-spacing:.01em; color:rgba(255,255,255,.82);
-  }}
   .rule {{
-    position:absolute; right:72px; top:56px; width:120px; height:5px; border-radius:99px;
-    background:rgba(255,255,255,.5);
+    position:absolute; right:72px; top:50%; transform:translateY(-50%);
+    width:4px; height:150px; border-radius:99px;
+    background:linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.12));
   }}
 </style></head><body>
   <div class="dots"></div>
   <div class="rule"></div>
   <div class="pad"><div class="icon">{svg}</div></div>
-  <div class="mark">korayoner.dev</div>
 </body></html>"""
 
 
