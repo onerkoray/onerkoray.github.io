@@ -588,4 +588,24 @@
       <image:title>İstifa edince kıdem tazminatı alınır mı? — Koray Öner</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/issizlik-maasi-ne-kadar.png</image:loc>
+      <image:title>İşsizlik maaşı ne kadar? Tavanı net asgari ücretin altında — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/net-maas-mi-brut-maas-mi.png</image:loc>
+      <image:title>Net maaşta mı, brüt maaşta mı anlaşmalı? — Koray Öner</image:title>
+    </image:image>
+  </url>
 </urlset>

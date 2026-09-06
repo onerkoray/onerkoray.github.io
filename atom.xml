@@ -5,10 +5,24 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-06T13:00:00+03:00</updated>
+  <updated>2026-09-06T16:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
 
+  <entry>
+    <title>İşsizlik maaşı ne kadar? Tavanı net asgari ücretin altında</title>
+    <link href="https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/"/>
+    <id>https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/</id>
+    <updated>2026-09-06T16:00:00+03:00</updated>
+    <summary>2026'da ödenek en çok 26.223,44 TL net — net asgari ücretin 1.852 TL altında. Tavan 66.060 TL brütte doluyor, süre en fazla 10 ay.</summary>
+  </entry>
+  <entry>
+    <title>Net maaşta mı, brüt maaşta mı anlaşmalı?</title>
+    <link href="https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/"/>
+    <id>https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/</id>
+    <updated>2026-09-06T16:00:00+03:00</updated>
+    <summary>Aynı ocak netinden başlayan iki anlaşmada çalışanın yıllık geliri 50.241 TL, işverenin maliyeti 106.077 TL ayrışıyor.</summary>
+  </entry>
   <entry>
     <title>Kıdem tazminatı tavanı: maaşınız artıyor, tazminatınız neden artmıyor?</title>
     <link href="https://korayoner.dev/makaleler/kidem-tazminati-tavani/"/>

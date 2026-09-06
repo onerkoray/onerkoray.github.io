@@ -315,6 +315,116 @@ function cizgiTavan() {
     "</svg>";
 }
 
+/* İki seri: aynı ocak netinden başlayan net ve brüt anlaşmanın 12 aylık seyri.
+   İki seri olduğu için kategorik palet ve lejant zorunlu; marka yeşili
+   kategorik seri olarak kullanılamıyor (kroma tabanının altında). */
+function cizgiNetBrutAnlasma() {
+  var HEDEF = 60000;
+  var brutOcak = B.nettenBrute(HEDEF, 2026, 0);
+  var sabit = B.hesaplaYil(brutOcak, 2026).aylar.map(function (a) { return a.net; });
+  var net = [];
+  for (var i = 0; i < 12; i++) net.push(HEDEF);
+
+  var hepsi = sabit.concat(net);
+  var enAz = Math.min.apply(null, hepsi), tepe = Math.max.apply(null, hepsi);
+  // Ust seri tam tavana oturuyordu; cizgi ust kenara yapisik duruyordu.
+  var enCok = tepe + (tepe - enAz) * 0.14;
+  var W = 600, H = 360, P = 30, UST = 84, ALT = 34;
+  var x = function (i) { return P + i * (W - 2 * P) / 11; };
+  var y = function (v) { return H - ALT - (v - enAz) / (enCok - enAz) * (H - UST - ALT); };
+  function yol(dizi) {
+    return dizi.map(function (v, i) {
+      return (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1);
+    }).join(" ");
+  }
+  var izgara = [0, 0.5, 1].map(function (t) {
+    var yy = UST + t * (H - UST - ALT);
+    return '<line x1="' + P + '" y1="' + yy + '" x2="' + (W - P) + '" y2="' + yy +
+      '" stroke="' + R.izgara + '" stroke-width="1"/>';
+  }).join("");
+
+  function lejant(cx, renk, metin) {
+    return '<rect x="' + cx + '" y="52" width="13" height="13" rx="3" fill="' + renk + '"/>' +
+      '<text x="' + (cx + 19) + '" y="63" font-size="15" fill="' + R.murekkep + '">' +
+      esc(metin) + "</text>";
+  }
+
+  var fark = HEDEF - sabit[11];
+  var yillik = 0;
+  for (var j = 0; j < 12; j++) yillik += HEDEF - sabit[j];
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Net anlasma ile brut anlasmanin 12 aylik net maas seyri">' +
+    '<text x="' + P + '" y="30" font-size="15" fill="' + R.ikincil +
+    '">Aylık net maaş · 2026 · ikisi de ocakta 60.000 TL</text>' +
+    lejant(P, R.s1, "Net anlaşma") + lejant(P + 175, R.s2, "Brüt anlaşma") +
+    izgara +
+    '<path d="' + yol(net) + '" fill="none" stroke="' + R.s1 + '" stroke-width="3"/>' +
+    '<path d="' + yol(sabit) + '" fill="none" stroke="' + R.s2 +
+    '" stroke-width="3" stroke-linejoin="round"/>' +
+    '<line x1="' + x(11).toFixed(1) + '" y1="' + y(HEDEF).toFixed(1) + '" x2="' +
+    x(11).toFixed(1) + '" y2="' + y(sabit[11]).toFixed(1) + '" stroke="' + R.murekkep +
+    '" stroke-width="1.5" stroke-dasharray="4 3"/>' +
+    /* Iki rakam birlikte: yalnizca aralik farki yazilinca kapaktaki
+       "yilda 50 bin lira" ifadesiyle celisiyor gibi okunuyordu. */
+    '<text x="' + (x(11) - 12) + '" y="' + ((y(HEDEF) + y(sabit[11])) / 2 - 2) +
+    '" text-anchor="end" font-size="15" font-weight="700" fill="' + R.s2 + '">Aralık: ' +
+    nf0.format(fark) + " TL</text>" +
+    '<text x="' + (x(11) - 12) + '" y="' + ((y(HEDEF) + y(sabit[11])) / 2 + 18) +
+    '" text-anchor="end" font-size="17" font-weight="800" fill="' + R.s2 + '">yılda ' +
+    nf0.format(yillik) + " TL</text>" +
+    '<text x="' + P + '" y="' + (H - 8) + '" font-size="14" fill="' + R.ikincil + '">Ocak</text>' +
+    '<text x="' + (W - P) + '" y="' + (H - 8) + '" font-size="14" text-anchor="end" fill="' +
+    R.ikincil + '">Aralık</text>' +
+    "</svg>";
+}
+
+/* İşsizlik ödeneği: iki tutar ve referans olarak net asgari ücret.
+   Tek ölçü (aylık TL) olduğu için tek hue; asgari ücret bir SERİ değil,
+   kıyas çizgisi — kesikli çizgiyle veriliyor. */
+function sutunIssizlikTavani() {
+  var P26 = B.parametre(2026), d = B.donem(P26, 9), I = P26.issizlik;
+  var damga = P26.oranlar.damga;
+  var tabanBrut = d.asgariBrut * I.oran;
+  var tavanBrut = d.asgariBrut * I.tavanOrani;
+  var taban = tabanBrut * (1 - damga);
+  var tavan = tavanBrut * (1 - damga);
+  var netAsgari = B.hesaplaYil(d.asgariBrut, 2026).aylar[0].net;
+
+  var W = 600, H = 360, P = 28, SOL = 150;
+  var enCok = netAsgari * 1.12;
+  var gen = function (v) { return v / enCok * (W - P - SOL - 96); };
+  var satirlar = [
+    { ad: "Asgari ücretli", alt: "ödeneğin tabanı", v: taban },
+    { ad: "66.060 TL ve üstü", alt: "ödeneğin tavanı", v: tavan }
+  ];
+  var ic = satirlar.map(function (s, i) {
+    var yb = 132 + i * 96;
+    return '<text x="' + P + '" y="' + (yb - 24) + '" font-size="18" font-weight="700" fill="' +
+      R.murekkep + '">' + esc(s.ad) + "</text>" +
+      '<text x="' + P + '" y="' + (yb - 5) + '" font-size="13" fill="' + R.ikincil + '">' +
+      esc(s.alt) + "</text>" +
+      '<rect x="' + P + '" y="' + yb + '" width="' + gen(s.v).toFixed(1) +
+      '" height="26" rx="4" fill="' + R.marka + '"/>' +
+      '<text x="' + (P + gen(s.v) + 12) + '" y="' + (yb + 19) +
+      '" font-size="18" font-weight="800" fill="' + R.murekkep + '">' +
+      nf0.format(s.v) + " TL</text>";
+  }).join("");
+
+  var rx = P + gen(netAsgari);
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Issizlik odeneginin taban ve tavani net asgari ucretle karsilastirmali">' +
+    '<text x="' + P + '" y="' + (P + 4) + '" font-size="15" fill="' + R.ikincil +
+    '">Aylık işsizlik ödeneği (net) · 2026</text>' +
+    '<line x1="' + rx.toFixed(1) + '" y1="64" x2="' + rx.toFixed(1) + '" y2="' + (H - 54) +
+    '" stroke="' + R.s2 + '" stroke-width="2" stroke-dasharray="5 4"/>' +
+    '<text x="' + (rx - 8) + '" y="76" text-anchor="end" font-size="15" font-weight="700" fill="' +
+    R.s2 + '">net asgari ücret ' + nf0.format(netAsgari) + " TL</text>" +
+    ic +
+    '<text x="' + P + '" y="' + (H - 22) + '" font-size="15" fill="' + R.ikincil +
+    '">Tavan bile net asgari ücretin ' + nf0.format(netAsgari - tavan) + " TL altında.</text>" +
+    "</svg>";
+}
+
 /* ---------- kapaklar ---------- */
 
 var KAPAKLAR = {
@@ -359,6 +469,18 @@ var KAPAKLAR = {
     baslik: "Kıdem tazminatı tavanı",
     alt: "Maaş artıyor, tazminat artmıyor",
     cizim: cizgiTavan
+  },
+  "net-maas-mi-brut-maas-mi": {
+    kicker: "Bordro",
+    baslik: "Net maaşta mı, brüt maaşta mı?",
+    alt: "Aynı rakam, yılda 50 bin lira fark",
+    cizim: cizgiNetBrutAnlasma
+  },
+  "issizlik-maasi-ne-kadar": {
+    kicker: "Sosyal Güvenlik",
+    baslik: "İşsizlik maaşı ne kadar?",
+    alt: "Tavanı bile net asgari ücretin altında",
+    cizim: sutunIssizlikTavani
   },
   "kademeli-emeklilik-son-durum": {
     kicker: "Mevzuat",
