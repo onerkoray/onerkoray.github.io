@@ -46,6 +46,14 @@ SPEC = {
    "Maaş hesaplarının açık çekirdeği: 2020-2026 parametreleri, metodoloji ve değişiklik günlüğü.",
    ["Açık kaynak", "2020-2026", "70 test", "MIT"]),
 
+ "sahis-mi-limited-mi": ("makaleler/sahis-mi-limited-mi", "Sahis mi,", "Limited mi?",
+   "Tek bir esik yok: kazanan gelir araliginda bes kez el degistiriyor. 2026 rakamlariyla.",
+   ["Makale", "2026", "Kirilim noktalari", "Kaynakli"]),
+
+ "asgari-ucret-nasil-belirlenir": ("makaleler/asgari-ucret-nasil-belirlenir", "Asgari Ucret", "Nasil Belirlenir?",
+   "Komisyon, takvim ve az bilinen gercek: asgari ucret her calisanin netini degistirir.",
+   ["Makale", "Komisyon", "Aralik takvimi", "Kaynakli"]),
+
  "maasim-neden-dustu": ("makaleler/maasim-neden-dustu", "Maaşım Neden", "Düştü?",
    "Kümülatif vergi matrahı ay ay: hangi ayda dilim atlarsınız, net neden bazen yükselir?",
    ["Makale", "2026 rakamları", "Kaynaklı", "Ay ay tablo"]),

@@ -34,12 +34,48 @@ var GBIT = "<!-- DILIM-GECIS:BITIS -->";
 var ORNEK_BRUT = 80000;
 var GECIS_BRUTLERI = [40000, 50000, 60000, 75000, 100000, 150000, 200000, 300000];
 
+var SAHIS_SAYFA = path.join(KOK, "makaleler", "sahis-mi-limited-mi", "index.html");
+var KBAS = "<!-- KARSILASTIRMA-TABLOSU:BASLANGIC -->";
+var KBIT = "<!-- KARSILASTIRMA-TABLOSU:BITIS -->";
+var RBAS = "<!-- KIRILIM-TABLOSU:BASLANGIC -->";
+var RBIT = "<!-- KIRILIM-TABLOSU:BITIS -->";
+
+var ASGARI_SAYFA = path.join(KOK, "makaleler", "asgari-ucret-nasil-belirlenir", "index.html");
+var IBAS = "<!-- ISTISNA-TABLOSU:BASLANGIC -->";
+var IBIT = "<!-- ISTISNA-TABLOSU:BITIS -->";
+var YBAS = "<!-- ISTISNA-YILLAR:BASLANGIC -->";
+var YBIT = "<!-- ISTISNA-YILLAR:BITIS -->";
+
+/* Makale senaryolari: yillik gider sabit tutulup gelir taraniyor. */
+var KARSILASTIRMA_GIDER = 200000;
+var KARSILASTIRMA_GELIRLER = [600000, 1200000, 2000000, 3000000, 5000000, 8000000];
+var ISTISNA_BRUTLERI = [35000, 50000, 80000, 120000, 200000, 400000];
+
+var SAHIS_SAYFA = path.join(KOK, "makaleler", "sahis-mi-limited-mi", "index.html");
+var KBAS = "<!-- KARSILASTIRMA-TABLOSU:BASLANGIC -->";
+var KBIT = "<!-- KARSILASTIRMA-TABLOSU:BITIS -->";
+var RBAS = "<!-- KIRILIM-TABLOSU:BASLANGIC -->";
+var RBIT = "<!-- KIRILIM-TABLOSU:BITIS -->";
+
+var ASGARI_SAYFA = path.join(KOK, "makaleler", "asgari-ucret-nasil-belirlenir", "index.html");
+var IBAS = "<!-- ISTISNA-TABLOSU:BASLANGIC -->";
+var IBIT = "<!-- ISTISNA-TABLOSU:BITIS -->";
+var YBAS = "<!-- ISTISNA-YILLAR:BASLANGIC -->";
+var YBIT = "<!-- ISTISNA-YILLAR:BITIS -->";
+
+/* Makale senaryolari: yillik gider sabit tutulup gelir taraniyor. */
+var KARSILASTIRMA_GIDER = 200000;
+var KARSILASTIRMA_GELIRLER = [600000, 1200000, 2000000, 3000000, 5000000, 8000000];
+var ISTISNA_BRUTLERI = [35000, 50000, 80000, 120000, 200000, 400000];
+
 var MATRIS_SAYFA = path.join(KOK, "isten-ayrilma-hesaplama", "index.html");
 var MBAS = "<!-- HAK-MATRISI:BASLANGIC -->";
 var MBIT = "<!-- HAK-MATRISI:BITIS -->";
 
 var B = require(path.join(KOK, "bordro", "motor.js"));
 var C = require(path.join(KOK, "bordro", "cikis.js"));
+var CB = require(path.join(KOK, "bordro", "calisma-bicimi.js"));
+var CB = require(path.join(KOK, "bordro", "calisma-bicimi.js"));
 
 var nf = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 var nf0 = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
@@ -289,6 +325,141 @@ function uretDilimGecis() {
 /* İşler dosya bazında biriktirilir. Aynı dosyada birden fazla işaretçi bölgesi
    olabildiği için (makale sayfasında iki tablo var), her iş bir öncekinin
    sonucunu girdi alır; yoksa ikinci yazma birincisini eziyordu. */
+/* Makale: calisma bicimi karsilastirmasi. */
+function uretKarsilastirma() {
+  var satirlar = KARSILASTIRMA_GELIRLER.map(function (m) {
+    var r = CB.karsilastir({ yillikMaliyet: m, yillikGider: KARSILASTIRMA_GIDER, ihracatOrani: 0 });
+    var h = {};
+    r.senaryolar.forEach(function (x) { h[x.kod] = x; });
+    function hucre(kod) {
+      var x = h[kod];
+      return "<td" + (x.enIyi ? ' class=\"net-up\"' : "") + ">" + tam(x.net) +
+        (x.enIyi ? ' <span class=\"up-flag\" title=\"Bu gelirde en yuksek net\">\u25B2</span>' : "") + "</td>";
+    }
+    return "            <tr><th scope=\"row\">" + tam(m) + "</th>" +
+      hucre("calisan") + hucre("sahis") + hucre("limited") + hucre("limitedUcret") + "</tr>";
+  }).join("\n");
+
+  return [
+    KBAS,
+    '        <div class="table-scroll">',
+    '          <table class="payroll makale-karsilastirma">',
+    '            <caption class="visually-hidden">Yillik toplam maliyete gore dort calisma biciminde elde kalan net</caption>',
+    "            <thead><tr>",
+    '              <th scope="col">Yıllık toplam maliyet</th>',
+    '              <th scope="col">Maaşlı çalışan</th>',
+    '              <th scope="col">Şahıs işletmesi</th>',
+    '              <th scope="col">Limited (kâr payı)</th>',
+    '              <th scope="col">Limited (ücret + kâr payı)</th>',
+    "            </tr></thead>",
+    "            <tbody>",
+    satirlar,
+    "            </tbody>",
+    "          </table>",
+    "        </div>",
+    '        <p class="muted-note">',
+    "          Tutarlar yıllık ve TL. Karşı tarafın katlandığı toplam maliyet sabit tutulmuştur;",
+    "          yıllık gider " + tam(KARSILASTIRMA_GIDER) + " TL, hizmet ihracatı yok.",
+    "          \u25B2 o gelir düzeyinde elde en çok parayı bırakan seçenektir.",
+    "        </p>",
+    "        " + KBIT
+  ].join("\n");
+}
+
+/* Makale: kazananin el degistirdigi noktalar — 100.000 TL adimlarla taranir. */
+function uretKirilim() {
+  var satirlar = [], onceki = null;
+  for (var m = 400000; m <= 12000000; m += 100000) {
+    var r = CB.karsilastir({ yillikMaliyet: m, yillikGider: KARSILASTIRMA_GIDER, ihracatOrani: 0 });
+    if (r.enIyi.kisa === onceki) continue;
+    var ikinci = r.senaryolar.slice().sort(function (a, b) { return b.net - a.net; })[1];
+    var fark = (r.enIyi.net - ikinci.net) / r.enIyi.net * 100;
+    satirlar.push("            <tr><th scope=\"row\">" + tam(m) + " TL</th>" +
+      "<td>" + esc(r.enIyi.kisa) + "</td>" +
+      "<td>" + esc(ikinci.kisa) + "</td>" +
+      "<td>%" + fark.toFixed(2) + "</td></tr>");
+    onceki = r.enIyi.kisa;
+  }
+  return [
+    RBAS,
+    '        <div class="table-scroll">',
+    '          <table class="payroll makale-kirilim">',
+    '            <caption class="visually-hidden">Kazanan calisma biciminin degistigi gelir duzeyleri</caption>',
+    "            <thead><tr>",
+    '              <th scope="col">Bu gelirden itibaren</th>',
+    '              <th scope="col">Kazanan</th>',
+    '              <th scope="col">İkinci sıradaki</th>',
+    '              <th scope="col">Aradaki fark</th>',
+    "            </tr></thead>",
+    "            <tbody>",
+    satirlar.join("\n"),
+    "            </tbody>",
+    "          </table>",
+    "        </div>",
+    '        <p class="muted-note">',
+    "          Yıllık gider " + tam(KARSILASTIRMA_GIDER) + " TL, hizmet ihracatı yok, 100.000 TL",
+    "          adımlarla tarandı. Fark küçüldükçe seçim vergiyle açıklanamaz hâle gelir.",
+    "        </p>",
+    "        " + RBIT
+  ].join("\n");
+}
+
+/* Makale: ayni yilda farkli brutlerde yillik istisna kazanci (hepsi ayni cikar). */
+function uretIstisna() {
+  var yil = B.sonYil();
+  var satirlar = ISTISNA_BRUTLERI.map(function (b) {
+    var t = B.hesaplaYil(b, yil).toplam;
+    return "            <tr><th scope=\"row\">" + tl(b) + "</th><td>" + tl(t.istisna) + "</td></tr>";
+  }).join("\n");
+  return [
+    IBAS,
+    '        <div class="table-scroll">',
+    '          <table class="payroll makale-istisna">',
+    '            <caption class="visually-hidden">' + yil + ' yilinda brut ucrete gore yillik asgari ucret istisnasi</caption>',
+    "            <thead><tr>",
+    '              <th scope="col">Aylık brüt ücret</th>',
+    '              <th scope="col">Yıllık istisna kazancı</th>',
+    "            </tr></thead>",
+    "            <tbody>",
+    satirlar,
+    "            </tbody>",
+    "          </table>",
+    "        </div>",
+    "        " + IBIT
+  ].join("\n");
+}
+
+/* Makale: istisnanin yillar icindeki buyumesi. */
+function uretIstisnaYillar() {
+  var satirlar = B.yillar().filter(function (y) {
+    return B.parametre(y).istisnaRejimi === "asgari-ucret";
+  }).sort().map(function (y) {
+    var P = B.parametre(y);
+    var d = P.donemler[P.donemler.length - 1];
+    var t = B.hesaplaYil(d.asgariBrut * 6, y).toplam;
+    return "            <tr><th scope=\"row\">" + y + "</th>" +
+      "<td>" + tl(d.asgariBrut) + "</td>" +
+      "<td>" + tl(t.istisna) + "</td></tr>";
+  }).join("\n");
+  return [
+    YBAS,
+    '        <div class="table-scroll">',
+    '          <table class="payroll makale-istisna-yillar">',
+    '            <caption class="visually-hidden">Yillara gore brut asgari ucret ve yillik istisna kazanci</caption>',
+    "            <thead><tr>",
+    '              <th scope="col">Yıl</th>',
+    '              <th scope="col">Brüt asgari ücret</th>',
+    '              <th scope="col">Yıllık istisna kazancı</th>',
+    "            </tr></thead>",
+    "            <tbody>",
+    satirlar,
+    "            </tbody>",
+    "          </table>",
+    "        </div>",
+    "        " + YBIT
+  ].join("\n");
+}
+
 function uygula(icerik, bas, bit, uretici, ad) {
   var i = icerik.indexOf(bas), j = icerik.indexOf(bit);
   if (i === -1 || j === -1) {
@@ -303,7 +474,11 @@ function main() {
     { dosya: SAYFA, bas: BAS, bit: BIT, uretici: uret, ad: "parametre tabloları" },
     { dosya: MATRIS_SAYFA, bas: MBAS, bit: MBIT, uretici: uretMatris, ad: "hak matrisi" },
     { dosya: MAKALE_SAYFA, bas: OBAS, bit: OBIT, uretici: uretOrnekBordro, ad: "makale örnek bordrosu" },
-    { dosya: MAKALE_SAYFA, bas: GBAS, bit: GBIT, uretici: uretDilimGecis, ad: "makale dilim geçiş tablosu" }
+    { dosya: MAKALE_SAYFA, bas: GBAS, bit: GBIT, uretici: uretDilimGecis, ad: "makale dilim geçiş tablosu" },
+    { dosya: SAHIS_SAYFA, bas: KBAS, bit: KBIT, uretici: uretKarsilastirma, ad: "çalışma biçimi karşılaştırması" },
+    { dosya: SAHIS_SAYFA, bas: RBAS, bit: RBIT, uretici: uretKirilim, ad: "kırılım tablosu" },
+    { dosya: ASGARI_SAYFA, bas: IBAS, bit: IBIT, uretici: uretIstisna, ad: "istisna tablosu" },
+    { dosya: ASGARI_SAYFA, bas: YBAS, bit: YBIT, uretici: uretIstisnaYillar, ad: "istisna yıllar tablosu" }
   ];
 
   var asil = {}, guncel = {}, degisenAdlar = [];

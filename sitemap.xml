@@ -548,4 +548,24 @@
       <image:title>Maaşım neden düştü? Kümülatif vergi matrahı — Koray Öner</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/asgari-ucret-nasil-belirlenir/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/asgari-ucret-nasil-belirlenir-koray-oner.png</image:loc>
+      <image:title>Asgari ücretin belirlenme süreci ve tüm çalışanlara etkisi — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/sahis-mi-limited-mi/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/sahis-mi-limited-mi-koray-oner.png</image:loc>
+      <image:title>Şahıs, limited ve maaşlı çalışmanın karşılaştırması — Koray Öner</image:title>
+    </image:image>
+  </url>
 </urlset>
