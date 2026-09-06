@@ -51,6 +51,9 @@ Bordro.yillar();                    // [2026, 2025, … 2020]
 | `tools/parametre-kopyasi.js` | Yasal parametrenin `bordro/` dışına kopyalanmasını CI'da engeller |
 | `tools/bordro-tablo.js` | `bordro/index.html` parametre tablosunu parametrelerden üretir |
 | `tools/metodoloji-blogu.py` | Araç sayfalarına metodoloji/künye bloğunu yerleştirir |
+| `tools/sayfa-denetimi.py` | Kırık bağlantı, meta, görsel, başlık düzeni ve sitemap denetimi |
+| `tools/css-kontrol.js` | CSS parantez dengesi — bozuk parantez sonraki kuralı sessizce düşürür |
+| `tools/parametre-kopyasi.js` | Yasal parametrelerin motor dışına kopyalanmasını engeller |
 
 ```bash
 node bordro/test.js                     # bordro motorunu doğrula
@@ -59,6 +62,8 @@ node bordro/calisma-bicimi-test.js      # çalışma biçimi motorunu doğrula
 node tools/parametre-kopyasi.js         # parametre kopyası var mı
 node tools/bordro-tablo.js              # parametre tablosunu yeniden üret
 python tools/metodoloji-blogu.py        # künyeleri güncelle
+python tools/sayfa-denetimi.py          # sayfa kalitesi denetimi
+node tools/css-kontrol.js               # CSS parantez dengesi
 ```
 
 Yeni bir bordro yılı eklemek için `bordro/parametreler.js` içine bir yıl bloğu yazmak yeterlidir;
