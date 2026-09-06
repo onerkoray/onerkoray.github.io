@@ -85,3 +85,10 @@ table.payroll tbody tr.net-up { background: rgba(14, 169, 138, .16); }
 table.makale-bordro { min-width: 780px; }
 table.makale-gecis { min-width: 640px; }
 table.makale-gecis td:first-of-type { white-space: normal; text-align: left; line-height: 1.5; }
+
+/* Makale karşılaştırma tabloları */
+table.makale-karsilastirma { min-width: 720px; }
+table.makale-kirilim { min-width: 620px; }
+table.makale-kirilim td:first-of-type,
+table.makale-kirilim td:nth-of-type(2) { white-space: normal; text-align: left; }
+table.makale-istisna, table.makale-istisna-yillar { min-width: 0; }
