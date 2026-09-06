@@ -68,7 +68,7 @@ table.brackets th, table.brackets td {
 table.payroll td.rate { font-variant-numeric: tabular-nums; opacity: .75; }
 table.payroll tbody tr.bracket-jump { background: rgba(224, 138, 0, .14); }
 table.payroll tbody tr.bracket-jump th { position: relative; }
-.jump-flag { color: #c07800; font-size: .78em; margin-left: 2px; }
+.jump-flag { color: #8f5200; font-size: .78em; margin-left: 2px; }  /* satir zemininde 5.05 */
 @media (prefers-color-scheme: dark) {
   table.payroll tbody tr.bracket-jump { background: rgba(255, 176, 32, .16); }
   .jump-flag { color: #f0b429; }
@@ -77,7 +77,7 @@ table.payroll tbody tr.bracket-jump th { position: relative; }
 /* Netin yükseldiği ay — dilim geçişinden ayrı işaretlenir.
    Dilim geçişi kötü haber (amber), istisna büyümesi iyi haber (yeşil). */
 table.payroll tbody tr.net-up { background: rgba(14, 169, 138, .16); }
-.up-flag { color: #0e7c66; font-size: .78em; margin-left: 2px; }
+.up-flag { color: #0a5f4e; font-size: .78em; margin-left: 2px; }  /* satir zemininde 5.97 */
 @media (prefers-color-scheme: dark) {
   table.payroll tbody tr.net-up { background: rgba(79, 209, 174, .18); }
   .up-flag { color: #4fd1ae; }

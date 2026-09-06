@@ -163,9 +163,11 @@ table.detail tbody tr.row-head td { border-bottom-color: transparent; }
 :root[data-theme="dark"] .tl-item::before { background: #0b0d10; }
 
 /* ---- hak matrisi tablosu ---- */
-.matris td.yes { color: #0e7c66; font-weight: 700; }
-.matris td.no { opacity: .5; }
-.matris td.maybe { color: #c07800; font-weight: 600; }
+/* Renkler WCAG AA (4.5) esigine gore secildi; olculen oranlar yorumda.
+   Onceki degerler zebra satirinda ve krem zeminde esigin altinda kaliyordu. */
+.matris td.yes { color: #0a5f4e; font-weight: 700; }    /* zebra zeminde 6.62 */
+.matris td.no { opacity: .72; }                          /* 6.16 — .5'te 3.19'du */
+.matris td.maybe { color: #8f5200; font-weight: 600; }   /* 5.71 */
 .matris tbody th { white-space: normal; min-width: 190px; }
 .matris td:last-child { white-space: normal; text-align: left; min-width: 240px; }
 @media (prefers-color-scheme: dark) {
