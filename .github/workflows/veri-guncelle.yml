@@ -30,6 +30,21 @@ jobs:
       - name: Sayfaları yeniden üret
         run: python tools/update_data.py
 
+      # update_data.py doviz sayfasini SABLONDAN bastan yaziyor; sablonda
+      # og:image:alt, twitter:description ve kunye blogu yok. Bunlari
+      # sonradan ekleyen uretecler burada calismazsa her veri
+      # guncellemesinde siliniyorlar ve site dogrulamalari kiriliyor.
+      # 2026-09-07'de tam olarak bu oldu.
+      - name: Ortak etiket ve künyeleri tamamla
+        run: |
+          python tools/paylasim-meta.py
+          python tools/metodoloji-blogu.py
+
+      # Bot'un urettigi commit push edilmeden once kendi kurallarindan
+      # gecsin: kirik bir sayfa main'e girmesin.
+      - name: Üretilen sayfaları denetle
+        run: python tools/sayfa-denetimi.py --check
+
       - name: Değişiklik varsa commit et
         run: |
           if [ -z "$(git status --porcelain)" ]; then
