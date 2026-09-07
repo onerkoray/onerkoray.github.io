@@ -50,11 +50,27 @@
   </entry>
 
   <entry>
+    <title>Kredi Hesabı Metodolojisi</title>
+    <link href="https://korayoner.dev/kredi-hesaplama/metodoloji/"/>
+    <id>https://korayoner.dev/kredi-hesaplama/metodoloji/</id>
+    <updated>2026-09-07T00:00:00+03:00</updated>
+    <summary>Kredi taksiti, KKDF ve BSMV, yıllık maliyet oranı ve erken kapama nasıl hesaplanıyor? Formüller, kuruş aritmetiği, 64 test ve oranların neden koda gömülmediği.</summary>
+  </entry>
+
+  <entry>
     <title>KDV Tevkifatı Nedir? Faturaya Nasıl Yazılır</title>
     <link href="https://korayoner.dev/makaleler/kdv-tevkifati-nedir/"/>
     <id>https://korayoner.dev/makaleler/kdv-tevkifati-nedir/</id>
     <updated>2026-09-07T00:00:00+03:00</updated>
     <summary>Tevkifat fatura toplamını değil tahsilatı değiştirir: 100.000 TL matrahta 5/10 ile ödenecek tutar 120.000 değil 110.000 TL olur. Adım adım.</summary>
+  </entry>
+
+  <entry>
+    <title>Yıllık Maliyet Oranı Nedir?</title>
+    <link href="https://korayoner.dev/makaleler/kredi-yillik-maliyet-orani/"/>
+    <id>https://korayoner.dev/makaleler/kredi-yillik-maliyet-orani/</id>
+    <updated>2026-09-07T00:00:00+03:00</updated>
+    <summary>Aylık %2,89 faizli kredide bankanın söylediği yıllık oran %34,68; gerçek maliyet %56,31. Farkı üreten üç şey ve iki teklifi doğru karşılaştırmanın yolu.</summary>
   </entry>
 
   <entry>

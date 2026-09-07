@@ -548,4 +548,24 @@
       <image:title>KDV tevkifatı nedir, faturaya nasıl yazılır? — Koray Öner</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://korayoner.dev/kredi-hesaplama/metodoloji/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/kredi-metodoloji-koray-oner.png</image:loc>
+      <image:title>Kredi Hesabı Metodolojisi — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/kredi-yillik-maliyet-orani/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/kredi-yillik-maliyet-orani.png</image:loc>
+      <image:title>Yıllık maliyet oranı nedir? — Koray Öner</image:title>
+    </image:image>
+  </url>
 </urlset>

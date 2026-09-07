@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kredi Hesabı Metodolojisi | Koray Öner</title>
+  <meta name="description" content="Kredi taksiti, KKDF ve BSMV, yıllık maliyet oranı ve erken kapama nasıl hesaplanıyor? Formüller, kuruş aritmetiği, 64 test ve oranların neden koda gömülmediği.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/kredi-hesaplama/metodoloji/">
+
+  <link rel="icon" href="../../favicon.ico?v=2" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=2">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Kredi Hesabı Metodolojisi">
+  <meta property="og:description" content="Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor? Açık defter.">
+  <meta property="og:url" content="https://korayoner.dev/kredi-hesaplama/metodoloji/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/kredi-metodoloji-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kredi Hesabı Metodolojisi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kredi Hesabı Metodolojisi">
+  <meta name="twitter:description" content="Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor?">
+  <meta name="twitter:image" content="https://korayoner.dev/images/kredi-metodoloji-koray-oner.png">
+
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://korayoner.dev/kredi-hesaplama/metodoloji/#article",
+        "headline": "Kredi hesabı metodolojisi",
+        "url": "https://korayoner.dev/kredi-hesaplama/metodoloji/",
+        "inLanguage": "tr",
+        "datePublished": "2026-09-07",
+        "dateModified": "2026-09-07",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "about": { "@id": "https://korayoner.dev/kredi-hesaplama/#app" },
+        "description": "Kredi taksitinin, brütleşmiş aylık maliyet oranının, yıllık maliyet oranının ve erken kapamanın hesap yöntemi; kuruş aritmetiği ve test kapsamı."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Kredi Hesaplama", "item": "https://korayoner.dev/kredi-hesaplama/" },
+          { "@type": "ListItem", "position": 3, "name": "Metodoloji", "item": "https://korayoner.dev/kredi-hesaplama/metodoloji/" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="../">Aracı aç</a></li>
+          <li><a href="#formul">Formüller</a></li>
+          <li><a href="#test">Testler</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Kredi Hesaplama</a> <span aria-hidden="true">&#8250;</span> Metodoloji
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Açık defter · MIT lisanslı · 64 test</p>
+        <h1 id="hero-title">Kredi hesabı metodolojisi</h1>
+        <p class="lede">
+          Bir kredi hesabında yanlış sayı, ekranda hata vermez: taksit makul görünür,
+          plan basılır, yanlışlık ancak bankanın planıyla karşılaştırılınca anlaşılır.
+          Bu sayfa hesabın nasıl kurulduğunu ve o sessiz hatalara karşı ne yapıldığını
+          anlatıyor — <strong>iddia olarak değil, formül ve test olarak.</strong>
+        </p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../../hakkimda/" rel="author">Koray Öner</a> · Güncelleme: 7 Eylül 2026 · <a href="../">Aracı aç</a></p>
+
+        <h2 id="formul">1. Taksit formülü</h2>
+        <p>
+          Eşit taksitli (annüite) kredide her ay aynı tutarı ödersiniz; taksitin içindeki
+          faiz ve anapara payları ise her ay değişir.
+        </p>
+        <p class="formula">T = A × r ÷ (1 − (1 + r)<sup>−n</sup>)</p>
+        <p>
+          <strong>A</strong> anapara, <strong>n</strong> vade (ay), <strong>r</strong> aylık
+          maliyet oranı. Faiz sıfırsa formül tanımsızdır; o durumda taksit anaparanın vadeye
+          bölümüdür ve kod bunu ayrıca ele alır.
+        </p>
+
+        <h2 id="brut">2. r, ilan edilen faiz değildir</h2>
+        <p>
+          Tüketici ve taşıt kredilerinde her ay tahakkuk eden faizin üzerinden
+          <strong>KKDF</strong> ve <strong>BSMV</strong> alınır. İkisi de anaparadan değil
+          faizden hesaplanır — ama sonuçta taksite eklenir. Dolayısıyla o ay paranın gerçek
+          bedeli şudur:
+        </p>
+        <p class="formula">r = aylık faiz × (1 + KKDF + BSMV)</p>
+        <p>
+          Aylık %2,89 faiz, %15 KKDF ve %15 BSMV ile <strong>aylık %3,757</strong> olur.
+          Amortisman bu oranla kurulur; Türkiye'de bankaların taksiti böyle hesaplamasının
+          sebebi budur. <strong>Konut kredileri her iki kesintiden de istisnadır</strong> —
+          aynı faizle konut taksitinin neden daha düşük çıktığının cevabı burada.
+        </p>
+
+        <h2 id="kurus">3. Amortisman kuruş tamsayısı üzerinde yürür</h2>
+        <p>
+          İlk sürümde hesap ondalıkla yapılıyor ve her hücre ayrı yuvarlanıyordu. Sonuç:
+          bazı satırlarda <em>faiz + KKDF + BSMV + anapara</em> toplamı taksitten 1-2 kuruş
+          sapıyordu. Kullanıcıya gösterilen bir ödeme planında bu görünür bir tutarsızlıktır.
+        </p>
+        <p>
+          Aritmetik tamsayı kuruşa taşındı. Her ay şu sırayla hesaplanıyor: aylık maliyet
+          kalan borçtan bulunuyor, içindeki KKDF ve BSMV ayrılıyor, <strong>artık kuruş
+          faize yazılıyor</strong> — faiz en büyük kalem olduğu için oransal sapması en
+          küçük olan odur ve satır böylece tam kapanır.
+        </p>
+        <p>
+          Sonuç iki değişmez: <strong>her satırda faiz + KKDF + BSMV + anapara = taksit</strong>
+          ve <strong>anapara payları toplamı kredi tutarına kuruşu kuruşuna eşit.</strong>
+          İkisi de test edilir; son taksit kalan borcu sıfırlayacak şekilde düzeltilir.
+        </p>
+
+        <h2 id="ymo">4. Yıllık maliyet oranı</h2>
+        <p>
+          YMO, bütün ödemeleri ve masrafları bugüne indirgeyerek tek bir orana çeviren
+          değerdir: <strong>ödemelerin bugünkü değerini ele geçen tutara eşitleyen aylık
+          oran</strong> bulunur, sonra yıllığa çevrilir.
+        </p>
+        <p class="formula">Σ Tₖ ÷ (1 + r)<sup>k</sup> = A − peşin masraflar &nbsp;·&nbsp; YMO = (1 + r)<sup>12</sup> − 1</p>
+        <p>
+          Aylık faizi 12 ile çarpmak iki sebeple yanlıştır: <strong>faiz bileşikleşir</strong>
+          ve <strong>peşin masraf krediyi küçültür</strong> — aynı taksiti daha az paraya
+          ödersiniz.
+        </p>
+        <p>
+          Kök, <strong>ikiye bölme</strong> ile bulunuyor. Newton yöntemi kötü bir başlangıç
+          noktasında ıraksayabiliyor; ikiye bölme her zaman yakınsıyor ve burada hız sorun değil.
+        </p>
+        <div class="legal-note">
+          <h3>Buradaki hata neredeyse yayına gidiyordu</h3>
+          <p>
+            İlk yazımda aramanın yönü ters kurulmuştu. Fonksiyon oranla birlikte
+            <em>azalıyor</em>; artıyormuş gibi arayınca YMO sessizce <strong>sıfır</strong>
+            dönüyordu. Sayfa açılıyor, hiçbir yerde hata çıkmıyor, yalnızca aracın en önemli
+            rakamı yanlış oluyordu. Testler yakaladı — çünkü test hesabın kendisini değil
+            <strong>tanımını</strong> sınıyor: bulunan oranla indirgenen taksitlerin toplamı
+            ele geçen tutara eşit olmalı.
+          </p>
+        </div>
+
+        <h2 id="erken">5. Erken kapama</h2>
+        <p>
+          Belirli bir taksitten sonra kapatmanın bedeli <strong>kalan anaparadır</strong>;
+          ödenmemiş taksitlerin içindeki faiz, KKDF ve BSMV yükünden kurtulursunuz. Araç
+          bunu "kaçınılan maliyet" olarak gösterir: kalan taksitlerin toplamı eksi kalan
+          anapara eksi varsa tazminat.
+        </p>
+        <p>
+          Tüketici kredilerinde erken ödemede <strong>kalan faizden indirim yapılması
+          zorunludur.</strong> Konut kredilerinde sabit faizli sözleşmelerde erken ödeme
+          tazminatı istenebilir; oran kodda sabit değil, girdi olarak alınır — çünkü kalan
+          vadeye göre değişir.
+        </p>
+
+        <h2 id="oranlar">6. Vergi oranları neden koda gömülmedi?</h2>
+        <p>
+          KKDF ve BSMV oranları Cumhurbaşkanı kararıyla değişebilir ve kredi türüne göre
+          farklıdır. Kodda sabit tutulsalardı, oran değiştiği gün araç sessizce yanlış
+          hesaplamaya başlardı ve bunu kimse fark etmezdi.
+        </p>
+        <p>
+          Bu yüzden oranlar <strong>girdi</strong>. Arayüz kredi türüne göre bir varsayılan
+          gösterir, kullanıcı kendi sözleşmesindeki oranı girer. Çekirdek hangi oranı
+          verirseniz onunla doğru hesaplar. <strong>Garanti edilen şey aritmetiktir, oranın
+          güncelliği değil</strong> — ve sayfa bunu açıkça söyler.
+        </p>
+
+        <h2 id="test">7. Testler</h2>
+        <p>Hesap katmanı arayüzden ayrı yazılmıştır ve tarayıcısız çalıştırılabilir.</p>
+        <ul>
+          <li><strong>Formül doğrulaması</strong> — elde hesaplanabilir durum: 100.000 TL, aylık %1, 12 ay → 8.884,88 TL.</li>
+          <li><strong>Planın kapanması</strong> — her satır tam kapanıyor mu, anapara toplamı krediye eşit mi, kalan borç hiç artıyor mu.</li>
+          <li><strong>YMO'nun tanımı</strong> — bulunan oranla indirgenen ödemeler ele geçen tutara eşit mi; masrafsız kredide YMO gerçekten (1+i)<sup>12</sup>−1 mi.</li>
+          <li><strong>Vergiler</strong> — faizin üzerinden mi alınıyor, anaparadan mı.</li>
+          <li><strong>Erken kapama ve ek ödeme</strong> — yön ve büyüklük tutarlı mı.</li>
+          <li><strong>200 rastgele kredi</strong> — rastgele tutar, faiz, vade ve vergi bileşimlerinde anapara kuruşu kuruşuna kapanıyor mu.</li>
+        </ul>
+        <p>
+          Toplam <strong>64 test</strong>, her değişiklikte otomatik çalışır; kırıldığında
+          yayın durur. Bu sayfadaki her iddianın karşılığı çalıştırılabilir bir testtir.
+        </p>
+
+        <h2 id="sinir">8. Neyi hesaplamıyor?</h2>
+        <p>Sınırları söylemek, ne yaptığını söylemek kadar önemli:</p>
+        <ul>
+          <li><strong>Gün sayımı.</strong> Bankalar 30/360 ya da gerçek gün gibi farklı yöntemler kullanabilir; bu araç aylık dönem varsayar. Sapma genellikle birkaç lira düzeyindedir.</li>
+          <li><strong>Değişken faiz.</strong> Sabit faizli kredi varsayılır; endekse bağlı krediler kapsam dışıdır.</li>
+          <li><strong>Ödeme atlamalı ve balon ödemeli planlar</strong> hesaplanmaz.</li>
+          <li><strong>Enflasyon.</strong> Sonuçlar nominaldir; reel maliyet hesaplanmaz.</li>
+          <li><strong>Kredi notu ve onay.</strong> Araç bir teklif değildir, bağlayıcı değildir.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanaklar</h2>
+          <ul>
+            <li>6502 sayılı <strong>Tüketicinin Korunması Hakkında Kanun</strong> — tüketici kredisi, erken ödeme ve cayma hakkı — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li><strong>Tüketici Kredisi Sözleşmeleri Yönetmeliği</strong> — yıllık maliyet oranının tanımı — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>6802 sayılı <strong>Gider Vergileri Kanunu</strong> — BSMV — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li><strong>KKDF</strong> kesintisi ve oranları — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li>Kaynak kodu ve testler — <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">açık kaynak çekirdek (MIT)</a></li>
+          </ul>
+          <p class="muted-note">
+            Bilgilendirme amaçlıdır; bağlayıcı teklif değildir. Bir bilgi güncelliğini
+            yitirdiyse <a href="../../iletisim/">bana bildirin</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili sayfalar</h2>
+        <ul>
+          <li><a href="../">Kredi Hesaplama ve Gerçek Maliyet</a> — aracın kendisi.</li>
+          <li><a href="../../makaleler/kredi-yillik-maliyet-orani/">Yıllık maliyet oranı nedir?</a> — bankanın söylediği faiz neden yanıltır (makale).</li>
+          <li><a href="../../vadeli-mevduat-hesaplama/">Vadeli Mevduat Hesaplama</a> — stopaj sonrası net getiri.</li>
+          <li><a href="../../fatura-olusturma/metodoloji/">Fatura Merkezi metodolojisi</a> — sitenin diğer açık hesap çekirdeği.</li>
+          <li><a href="../../bordro/">Bordro Motoru</a> — ücret hesaplarının açık çekirdeği.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanaklar</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanaklar</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı teklif için bankanıza başvurun.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../../makaleler/">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>
