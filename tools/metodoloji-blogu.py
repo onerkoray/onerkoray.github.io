@@ -121,7 +121,7 @@ def blok(html, kok, motorlu):
         if tarih:
             satirlar.append(satir("Son gözden geçirme", tarih))
         satirlar.append(satir("Kaynak kod",
-                              "<a href=\"https://github.com/onerkoray/onerkoray.github.io\" rel=\"noopener\">GitHub</a>"))
+                              "<a href=\"https://github.com/onerkoray/hesap-cekirdegi\" rel=\"noopener\">GitHub</a>"))
     else:
         # Mevzuata dayanmayan araçlar (üreteçler, dönüştürücüler, ölçüm araçları):
         # burada anlatılacak bir "kaynak" yok; künye kişiyi ve gizlilik davranışını belgeler.
@@ -135,7 +135,7 @@ def blok(html, kok, motorlu):
             satir("Geliştiren", "<a href=\"%shakkimda/\" rel=\"author\">Koray Öner</a>" % kok),
             satir("Çalışma yeri", "Tarayıcınız — sunucuya veri gitmez"),
             satir("Kaynak kod",
-                  "<a href=\"https://github.com/onerkoray/onerkoray.github.io\" rel=\"noopener\">GitHub</a>"),
+                  "<a href=\"https://github.com/onerkoray/hesap-cekirdegi\" rel=\"noopener\">GitHub</a>"),
         ]
 
     return "\n".join([
