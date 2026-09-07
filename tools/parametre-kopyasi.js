@@ -19,7 +19,11 @@ var path = require("path");
 var KOK = path.dirname(__dirname);
 
 /* Taranmayacak yollar: parametrelerin asıl yeri ve üretim araçları. */
-var MUAF = ["bordro", "tools", "node_modules", ".git", "images"];
+/* _cekirdek: tools/cekirdek.py'nin urettigi ayna paket. Icinde
+   parametreler.js'in kopyasi VAR ve olmasi gerekiyor; o bir kopya degil,
+   yayina hazirlanmis halin kendisi. Taranirsa her uretimde yanlis alarm
+   veriyor. */
+var MUAF = ["bordro", "tools", "node_modules", ".git", "images", "_cekirdek"];
 
 /* Yalnızca bu dosyada bulunması gereken, ayırt edici parametre değerleri.
    Genel sayılar (0.20, 12, 30…) bilinçli olarak listelenmedi — yanlış alarm üretir. */
