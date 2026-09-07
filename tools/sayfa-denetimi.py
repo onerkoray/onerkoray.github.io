@@ -238,7 +238,26 @@ def main():
         for u in sorted(sm_urls & noindex_urls):
             bulgu("SITEMAP CELISKI", u, "sayfa noindex ama sitemap'te")
 
-    # 8) site geneli şema tutarlılığı
+    # 8) CNAME dosyası — taşıyıcı, silinirse site ikiye bölünür
+    #
+    # Site Vercel'de yayınlanıyor ama depoda GitHub Pages hâlâ açık. Pages'i
+    # ayakta tutan tek şey CNAME dosyası: onu görünce onerkoray.github.io'yu
+    # korayoner.dev'e 301'liyor ve kendi kopyasını SUNMUYOR.
+    #
+    # CNAME silinirse Pages sitenin tamamını onerkoray.github.io altında
+    # yayınlamaya başlar: her sayfanın ikinci bir kopyası, kendi canonical'ı
+    # başka alan adını gösterirken. Bu, bir alan adı taşımasında yapılabilecek
+    # en pahalı hatadır ve hiçbir yerde hata vermez — site çalışmaya devam eder.
+    if not os.path.exists("CNAME"):
+        bulgu("CNAME YOK", "CNAME",
+              "GitHub Pages siteyi onerkoray.github.io altinda kopyalayacak")
+    else:
+        cname = oku("CNAME").strip()
+        if cname != "korayoner.dev":
+            bulgu("CNAME YANLIS", "CNAME",
+                  "beklenen korayoner.dev, bulunan: " + (cname or "(bos)"))
+
+    # 9) site geneli şema tutarlılığı
     #
     # Bu üç kural elle bulunması imkânsız hatalara karşı. Ana sayfa hem kendini
     # ProfilePage ilan ediyordu hem de /hakkimda/ aynı şeyi söylüyordu; site
