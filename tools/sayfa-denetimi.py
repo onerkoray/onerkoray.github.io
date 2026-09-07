@@ -90,6 +90,11 @@ def main():
     def bulgu(tur, sayfa, detay=""):
         bulgular.append((tur, sayfa, detay))
 
+    # Site geneli sema toplayicilari (bkz. 8)
+    sema_tekil = collections.defaultdict(list)
+    sema_person = set()
+
+
     basliklar, aciklamalar = {}, {}
 
     for p in sayfalar:
@@ -114,9 +119,22 @@ def main():
         # buraya alindi ki bir daha sessizce girmesinler.
         for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', s, re.S):
             try:
-                json.loads(m.group(1))
+                veri = json.loads(m.group(1))
             except Exception as e:
                 bulgu("JSON-LD BOZUK", p, str(e)[:60])
+                continue
+            # Site geneli sema kimligi: asagida (8) toplu degerlendiriliyor.
+            dugumler = veri.get("@graph", [veri]) if isinstance(veri, dict) else veri
+            for d in dugumler:
+                if not isinstance(d, dict):
+                    continue
+                tur = d.get("@type")
+                if isinstance(tur, list):
+                    tur = "/".join(str(x) for x in tur)
+                if tur in ("ProfilePage", "WebSite"):
+                    sema_tekil[tur].append(p)
+                if tur == "Person" and d.get("@id"):
+                    sema_person.add(d["@id"])
 
         kimlikler = re.findall(r'\sid="([^"]+)"', s)
         for kimlik, adet in collections.Counter(kimlikler).items():
@@ -219,6 +237,26 @@ def main():
             bulgu("SITEMAP FAZLA", u, "sayfa dosyasi yok")
         for u in sorted(sm_urls & noindex_urls):
             bulgu("SITEMAP CELISKI", u, "sayfa noindex ama sitemap'te")
+
+    # 8) site geneli şema tutarlılığı
+    #
+    # Bu üç kural elle bulunması imkânsız hatalara karşı. Ana sayfa hem kendini
+    # ProfilePage ilan ediyordu hem de /hakkimda/ aynı şeyi söylüyordu; site
+    # Google'a "bu kişinin iki profil sayfası var" diyordu ve Google birini
+    # seçip diğerini "kopya, farklı standart sayfa" olarak işaretledi.
+    # Aynı biçimde tek alan adı altında iki WebSite düğümü site kimliğini böler.
+    for tur, sinir, aciklama in (
+        ("ProfilePage", 1, "kişinin tek bir profil sayfası olmalı"),
+        ("WebSite", 1, "alan adı başına tek WebSite düğümü olmalı"),
+    ):
+        yerler = sema_tekil.get(tur, [])
+        if len(yerler) > sinir:
+            bulgu("SEMA CAKISMASI", ", ".join(sorted(yerler)),
+                  "%d adet %s - %s" % (len(yerler), tur, aciklama))
+
+    if len(sema_person) > 1:
+        bulgu("SEMA KIMLIK COKLU", "site geneli",
+              "Person @id tutarsiz: " + ", ".join(sorted(sema_person)))
 
     # rapor
     print("%d sayfa tarandi, %d bulgu" % (len(sayfalar), len(bulgular)))

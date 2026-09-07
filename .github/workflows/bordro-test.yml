@@ -47,8 +47,19 @@ jobs:
       - name: Makale listeleri güncel mi
         run: python tools/makale-listesi.py --check
 
+      - name: Besleme (atom.xml) güncel mi
+        # Besleme elle bakılıyordu ve sessizce bayatladı: üç yeni araç eksikti.
+        # robots.txt'te Sitemap olarak duyurulduğu için eksik girdi, yeni sayfanın
+        # bir keşif yolunu kaybetmesi demek.
+        run: python tools/besleme.py --check
+
       - name: Sayfa kalitesi denetimi
         run: python tools/sayfa-denetimi.py --check
+
+      - name: Paylaşım meta etiketleri tam mı
+        # og:image:alt 37, twitter:description 32 sayfada eksikti. İkisi de
+        # sessiz eksik: sayfa açılır, kart görünür, kimse hata görmez.
+        run: python tools/paylasim-meta.py --check
 
       - name: CSS parantez dengesi
         run: node tools/css-kontrol.js --check

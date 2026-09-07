@@ -5,279 +5,287 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-06T16:00:00+03:00</updated>
+  <updated>2026-09-07T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
 
   <entry>
-    <title>İşsizlik maaşı ne kadar? Tavanı net asgari ücretin altında</title>
-    <link href="https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/"/>
-    <id>https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/</id>
-    <updated>2026-09-06T16:00:00+03:00</updated>
-    <summary>2026'da ödenek en çok 26.223,44 TL net — net asgari ücretin 1.852 TL altında. Tavan 66.060 TL brütte doluyor, süre en fazla 10 ay.</summary>
-  </entry>
-  <entry>
-    <title>Net maaşta mı, brüt maaşta mı anlaşmalı?</title>
-    <link href="https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/"/>
-    <id>https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/</id>
-    <updated>2026-09-06T16:00:00+03:00</updated>
-    <summary>Aynı ocak netinden başlayan iki anlaşmada çalışanın yıllık geliri 50.241 TL, işverenin maliyeti 106.077 TL ayrışıyor.</summary>
-  </entry>
-  <entry>
-    <title>Kıdem tazminatı tavanı: maaşınız artıyor, tazminatınız neden artmıyor?</title>
-    <link href="https://korayoner.dev/makaleler/kidem-tazminati-tavani/"/>
-    <id>https://korayoner.dev/makaleler/kidem-tazminati-tavani/</id>
-    <updated>2026-09-06T13:00:00+03:00</updated>
-    <summary>Temmuz–Aralık 2026 tavanı 73.729,87 TL. Üstünde tazminat düzleşiyor: 90.000 TL ile 150.000 TL brüt aynı tutarı veriyor, yol-yemek yardımı da hiçbir şey eklemiyor.</summary>
-  </entry>
-  <entry>
-    <title>İstifa edince kıdem tazminatı alınır mı?</title>
-    <link href="https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/"/>
-    <id>https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/</id>
-    <updated>2026-09-06T13:00:00+03:00</updated>
-    <summary>Genel kural doğru ama yarım: işçinin kendi isteğiyle ayrıldığı beş durumda kıdem doğuyor. 10 yıllık bir çalışanda fark sıfır lira ile 665.279 lira arasında.</summary>
-  </entry>
-  <entry>
-    <title>Asgari ücret nasıl belirlenir? Ve neden herkesi ilgilendirir</title>
-    <link href="https://korayoner.dev/makaleler/asgari-ucret-nasil-belirlenir/"/>
-    <id>https://korayoner.dev/makaleler/asgari-ucret-nasil-belirlenir/</id>
-    <updated>2026-09-06T10:00:00+03:00</updated>
-    <summary>Komisyonun yapısı ve aralık takvimi. Ve az bilinen gerçek: 2026'da 35.000 TL de 400.000 TL de kazanan, yılda aynı tutarda istisna alıyor.</summary>
-  </entry>
-  <entry>
-    <title>Şahıs mı, limited mi, maaşlı mı? Tek bir eşik yok</title>
-    <link href="https://korayoner.dev/makaleler/sahis-mi-limited-mi/"/>
-    <id>https://korayoner.dev/makaleler/sahis-mi-limited-mi/</id>
-    <updated>2026-09-06T10:00:00+03:00</updated>
-    <summary>"3,5 milyon üstü limited" diye tek bir eşik yok. Kazanan gelir aralığı boyunca beş kez el değiştiriyor; çoğu insanın bandında kazanan maaşlı çalışma.</summary>
-  </entry>
-  <entry>
-    <title>Maaşım neden düştü? Kümülatif vergi matrahının işleyişi</title>
-    <link href="https://korayoner.dev/makaleler/maasim-neden-dustu/"/>
-    <id>https://korayoner.dev/makaleler/maasim-neden-dustu/</id>
-    <updated>2026-09-06T09:00:00+03:00</updated>
-    <summary>Net maaş yıl içinde neden azalır, hangi ayda hangi dilime geçilir ve neden bazı aylarda tam tersine yükselir — 2026 rakamlarıyla ay ay.</summary>
-  </entry>
-  <entry>
-    <title>Şahıs mı, Limited mi, Maaşlı mı? — Çalışma Biçimi Karşılaştırma 2026</title>
-    <link href="https://korayoner.dev/calisma-bicimi-karsilastirma/"/>
-    <id>https://korayoner.dev/calisma-bicimi-karsilastirma/</id>
-    <updated>2026-09-05T10:00:00+03:00</updated>
-    <summary>Aynı yıllık maliyetin maaşlı çalışan, şahıs işletmesi ve limited şirket senaryolarında ne kadarının elde kaldığını vergi, prim ve gider dahil karşılaştıran ücretsiz araç.</summary>
-  </entry>
-  <entry>
-    <title>İşten Ayrılma Paketi Hesaplama 2026</title>
-    <link href="https://korayoner.dev/isten-ayrilma-hesaplama/"/>
-    <id>https://korayoner.dev/isten-ayrilma-hesaplama/</id>
-    <updated>2026-09-05T09:00:00+03:00</updated>
-    <summary>Kıdem, ihbar, kullanılmayan yıllık izin, son ay ücreti ve işsizlik ödeneğini fesih türüne göre birlikte hesaplayan, ödemelerin takvimini çıkaran ücretsiz araç.</summary>
-  </entry>
-  <entry>
-    <title>Torba yasada ne var, ne yok? Beklentiler ve gerçek durum</title>
-    <link href="https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/</id>
-    <updated>2026-09-05T20:00:00+03:00</updated>
-    <published>2026-09-05T20:00:00+03:00</published>
-    <category term="Makale"/>
-    <summary>5 Eylül 2026 itibarıyla sunulmuş bir teklif yok. 2026'da çıkan kanunlar, Ekim takvimi ve dolaşan beklenti listesinin hukuki durumu ayrı ayrı. 7582, 7589 ve 7590 sayılı kanunlar yazın yürürlüğe girdi; TBMM 1 Ekim 2026'da açılıyor. Kademeli emeklilik ve Bağ-Kur 7.200 gün düzenlemesi henüz yasalaşmadı.</summary>
+    <title>Fatura Oluşturma ve PDF İndirme</title>
+    <link href="https://korayoner.dev/fatura-olusturma/"/>
+    <id>https://korayoner.dev/fatura-olusturma/</id>
+    <updated>2026-09-07T00:00:00+03:00</updated>
+    <summary>Ücretsiz fatura ve proforma oluşturucu: KDV, satır ve genel iskonto, tevkifat, tutar yazıyla, dört şablon ve PDF. Üyelik yok; veriler tarayıcınızdan çıkmaz.</summary>
   </entry>
 
   <entry>
-    <title>Kademeli emeklilik son durum: yasalaştı mı, kimleri kapsıyor?</title>
-    <link href="https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/" rel="alternate" type="text/html"/>
+    <title>Fazla Mesai Ücreti Hesaplama 2026</title>
+    <link href="https://korayoner.dev/fazla-mesai-hesaplama/"/>
+    <id>https://korayoner.dev/fazla-mesai-hesaplama/</id>
+    <updated>2026-09-07T00:00:00+03:00</updated>
+    <summary>Fazla mesai ücreti: %50 ve %25 zamlı saatlerin brüt karşılığı ve — asıl önemlisi — elinize geçen net. Aynı mesai ocakta ve aralıkta farklı para bırakır.</summary>
+  </entry>
+
+  <entry>
+    <title>İşveren Maliyeti Hesaplama 2026</title>
+    <link href="https://korayoner.dev/isveren-maliyeti-hesaplama/"/>
+    <id>https://korayoner.dev/isveren-maliyeti-hesaplama/</id>
+    <updated>2026-09-07T00:00:00+03:00</updated>
+    <summary>Bir çalışan işverene ne kadara mal oluyor? Brüt ya da net ücretten aylık ve yıllık maliyet, SGK işveren payı ve 5 puanlık indirim — 2026 parametreleriyle.</summary>
+  </entry>
+
+  <entry>
+    <title>İşsizlik Maaşı Ne Kadar? 2026 Tavan ve Süre</title>
+    <link href="https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/"/>
+    <id>https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/</id>
+    <updated>2026-09-06T16:00:00+03:00</updated>
+    <summary>2026'da işsizlik ödeneği en az 13.111,72 TL, en çok 26.223,44 TL net. Tavan 66.060 TL brütte doluyor ve net asgari ücretin 1.852 TL altında kalıyor.</summary>
+  </entry>
+
+  <entry>
+    <title>Net Maaşta mı, Brüt Maaşta mı Anlaşmalı? 2026</title>
+    <link href="https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/"/>
+    <id>https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/</id>
+    <updated>2026-09-06T16:00:00+03:00</updated>
+    <summary>Aynı rakamda anlaşan iki kişiden net anlaşan 720.000 TL, brüt anlaşan 669.758 TL alıyor. 2026 rakamlarıyla ay ay fark ve işverene maliyeti.</summary>
+  </entry>
+
+  <entry>
+    <title>İstifa Edince Kıdem Tazminatı Alınır mı? 2026</title>
+    <link href="https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/"/>
+    <id>https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/</id>
+    <updated>2026-09-06T13:00:00+03:00</updated>
+    <summary>Gerekçesiz istifa eden kıdem alamaz — ama işçinin kendi ayrıldığı beş durumda kıdem doğar. 11 fesih türünün hak tablosu ve aynı ücrette 665.279 TL'lik fark.</summary>
+  </entry>
+
+  <entry>
+    <title>Kıdem Tazminatı Tavanı 2026 Ne Kadar?</title>
+    <link href="https://korayoner.dev/makaleler/kidem-tazminati-tavani/"/>
+    <id>https://korayoner.dev/makaleler/kidem-tazminati-tavani/</id>
+    <updated>2026-09-06T13:00:00+03:00</updated>
+    <summary>Kıdem tazminatı tavanı Temmuz–Aralık 2026'da 73.729,87 TL. Tavanı aşan ücretlerde tazminat sabitleniyor: 90.000 TL ile 150.000 TL brüt aynı tazminatı veriyor.</summary>
+  </entry>
+
+  <entry>
+    <title>Asgari Ücret Nasıl Belirlenir? 2027 Takvimi</title>
+    <link href="https://korayoner.dev/makaleler/asgari-ucret-nasil-belirlenir/"/>
+    <id>https://korayoner.dev/makaleler/asgari-ucret-nasil-belirlenir/</id>
+    <updated>2026-09-06T10:00:00+03:00</updated>
+    <summary>Asgari ücreti kim, nasıl ve ne zaman belirliyor? Komisyonun yapısı, aralık takvimi ve az bilinen bir gerçek: asgari ücret her çalışanın netini değiştirir.</summary>
+  </entry>
+
+  <entry>
+    <title>Şahıs mı, Limited mi? Gerçek Karşılaştırma</title>
+    <link href="https://korayoner.dev/makaleler/sahis-mi-limited-mi/"/>
+    <id>https://korayoner.dev/makaleler/sahis-mi-limited-mi/</id>
+    <updated>2026-09-06T10:00:00+03:00</updated>
+    <summary>Tek bir eşik yok: kazanan gelir aralığı boyunca beş kez el değiştiriyor. Şahıs, limited ve maaşlı çalışmanın 2026 rakamlarıyla karşılaştırması.</summary>
+  </entry>
+
+  <entry>
+    <title>Maaşım Neden Düştü? Vergi Dilimi Etkisi</title>
+    <link href="https://korayoner.dev/makaleler/maasim-neden-dustu/"/>
+    <id>https://korayoner.dev/makaleler/maasim-neden-dustu/</id>
+    <updated>2026-09-06T09:00:00+03:00</updated>
+    <summary>Net maaşınız yıl içinde neden azalıyor, hangi ayda hangi dilime geçiyorsunuz ve neden bazı aylarda tam tersine yükseliyor? 2026 rakamlarıyla ay ay anlatım.</summary>
+  </entry>
+
+  <entry>
+    <title>Torba Yasa 2026: Ne Var, Ne Yok</title>
+    <link href="https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/"/>
+    <id>https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/</id>
+    <updated>2026-09-05T20:00:00+03:00</updated>
+    <summary>Yeni torba yasada ne var? 5 Eylül 2026 itibarıyla sunulmuş bir teklif yok. 2026'da çıkan kanunlar, Ekim takvimi ve beklenti listesinin hukuki durumu.</summary>
+  </entry>
+
+  <entry>
+    <title>Şahıs mı Limited mi Maaşlı mı? 2026</title>
+    <link href="https://korayoner.dev/calisma-bicimi-karsilastirma/"/>
+    <id>https://korayoner.dev/calisma-bicimi-karsilastirma/</id>
+    <updated>2026-09-05T10:00:00+03:00</updated>
+    <summary>Aynı parayı maaşlı, şahıs işletmesi veya limited şirket olarak kazansanız elinizde ne kalır? Vergi, prim ve gider dahil dört senaryoyu yan yana karşılaştırın.</summary>
+  </entry>
+
+  <entry>
+    <title>Kademeli Emeklilik Son Durum 2026</title>
+    <link href="https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/"/>
     <id>https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/</id>
     <updated>2026-09-05T10:00:00+03:00</updated>
-    <published>2026-09-05T10:00:00+03:00</published>
-    <category term="Makale"/>
-    <summary>Kademeli emeklilik yasalaşmadı: 2/2755 esas numaralı teklif 6 Aralık 2024'ten bu yana Plan ve Bütçe Komisyonu'nda bekliyor. Teklifin yasama sürecinde hangi aşamada olduğu, kimleri kapsadığı ve 8 Eylül 1999 - 30 Nisan 2008 arası sigortalılara şu an uygulanan yaş ve prim gün şartları.</summary>
+    <summary>Kademeli emeklilik yasalaştı mı? Teklifin TBMM'deki gerçek durumu, kimleri kapsadığı ve 1999-2008 arası sigortalılara şu an uygulanan yaş ve prim gün şartları.</summary>
+  </entry>
+
+  <entry>
+    <title>İşten Ayrılma Hesaplama 2026 — Çıkış Paketi</title>
+    <link href="https://korayoner.dev/isten-ayrilma-hesaplama/"/>
+    <id>https://korayoner.dev/isten-ayrilma-hesaplama/</id>
+    <updated>2026-09-05T09:00:00+03:00</updated>
+    <summary>İşten ayrılınca eline ne zaman ne geçer? Fesih türüne göre kıdem, ihbar, yıllık izin, son ay ücreti ve işsizlik maaşı — tek ekranda, ödeme takvimiyle.</summary>
+  </entry>
+
+  <entry>
+    <title>Birim Çevirici — Uzunluk, Ağırlık, Sıcaklık</title>
+    <link href="https://korayoner.dev/birim-cevirici/"/>
+    <id>https://korayoner.dev/birim-cevirici/</id>
+    <updated>2026-07-18T12:00:00+03:00</updated>
+    <summary>Ücretsiz birim çevirici: uzunluk, ağırlık, sıcaklık, alan, hacim, hız, veri ve zaman. Metre-inç, kg-libre, °C-°F, m²-dönüm ve fazlası.</summary>
+  </entry>
+
+  <entry>
+    <title>Gümrük Vergisi Hesaplama 2026 — Yurt Dışı</title>
+    <link href="https://korayoner.dev/gumruk-vergisi-hesaplama/"/>
+    <id>https://korayoner.dev/gumruk-vergisi-hesaplama/</id>
+    <updated>2026-07-18T12:00:00+03:00</updated>
+    <summary>2026 gümrük vergisi hesaplama: yurt dışı alışverişte AB&amp;#x27;den %30, diğer ülkelerden %60 vergi ve IMEI kayıt harcı dahil toplam maliyeti bulun.</summary>
+  </entry>
+
+  <entry>
+    <title>Hesap Bölüşme (AA) — Kişi Başı Tutar</title>
+    <link href="https://korayoner.dev/hesap-bolusme/"/>
+    <id>https://korayoner.dev/hesap-bolusme/</id>
+    <updated>2026-07-18T12:00:00+03:00</updated>
+    <summary>Hesap bölüşme aracı: restoran veya grup harcamasını kişi sayısına böler, bahşiş ekler ve kuruş farkını adil dağıtır. Ücretsiz.</summary>
   </entry>
 
   <entry>
     <title>Kıdem ve İhbar Tazminatı Hesaplama 2026</title>
-    <link href="https://korayoner.dev/kidem-tazminati-hesaplama/" rel="alternate" type="text/html"/>
+    <link href="https://korayoner.dev/kidem-tazminati-hesaplama/"/>
     <id>https://korayoner.dev/kidem-tazminati-hesaplama/</id>
     <updated>2026-07-18T12:00:00+03:00</updated>
-    <published>2026-07-18T12:00:00+03:00</published>
-    <summary>2026 kıdem tazminatı hesaplama: güncel tavan (Temmuz–Aralık 73.729,84 TL), giydirilmiş brüt ücret, damga vergisi ve ihbar tazminatıyla gün gün hesaplayın; PDF rapor alın. Tamamen ücretsiz, üyelik gerektirmez.</summary>
+    <summary>2026 kıdem tazminatı hesaplama: güncel tavan, giydirilmiş brüt ücret, damga vergisi ve ihbar tazminatıyla gün gün hesaplayın, PDF rapor alın.</summary>
   </entry>
 
   <entry>
-    <title>Serbest Meslek Makbuzu Hesaplama</title>
-    <link href="https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/</id>
-    <updated>2026-07-18T12:00:00+03:00</updated>
-    <published>2026-07-18T12:00:00+03:00</published>
-    <summary>Serbest meslek makbuzu (SMM) hesaplama aracı: brütten nete veya netten brüte; %20 gelir vergisi stopajı, KDV ve KDV tevkifatı dahil. 2026 oranlarıyla anında, ücretsiz ve reklamsız. Ayrıca yıllık gelir vergisi tahmini.</summary>
-  </entry>
-
-  <entry>
-    <title>MTV Hesaplama 2026</title>
-    <link href="https://korayoner.dev/mtv-hesaplama/" rel="alternate" type="text/html"/>
+    <title>MTV Hesaplama 2026 — Motorlu Taşıtlar Vergisi</title>
+    <link href="https://korayoner.dev/mtv-hesaplama/"/>
     <id>https://korayoner.dev/mtv-hesaplama/</id>
     <updated>2026-07-18T12:00:00+03:00</updated>
-    <published>2026-07-18T12:00:00+03:00</published>
-    <summary>2026 MTV hesaplama aracı: motor silindir hacmi, araç yaşı ve taşıt değerine göre motorlu taşıtlar vergisini anında hesaplayın. Otomobil ve motosiklet tarifesi, taksit tutarları ve gelecek yıllar projeksiyonu. Ücretsiz ve reklamsız.</summary>
+    <summary>2026 MTV hesaplama: motor hacmi, araç yaşı ve taşıt değerine göre motorlu taşıtlar vergisi, taksit tutarları ve yıllık projeksiyon.</summary>
   </entry>
 
   <entry>
-    <title>Araç ÖTV Hesaplama</title>
-    <link href="https://korayoner.dev/otv-hesaplama/" rel="alternate" type="text/html"/>
+    <title>Araç ÖTV Hesaplama 2026 — Anahtar Teslim Fiyat</title>
+    <link href="https://korayoner.dev/otv-hesaplama/"/>
     <id>https://korayoner.dev/otv-hesaplama/</id>
     <updated>2026-07-18T12:00:00+03:00</updated>
-    <published>2026-07-18T12:00:00+03:00</published>
-    <summary>2026 araç ÖTV hesaplama: motor hacmi ve matraha göre ÖTV oranı, ÖTV tutarı, KDV ve anahtar teslim fiyat. Benzinli, dizel, hibrit (HEV/PHEV) ve elektrikli araç dilimleri. Vergi yükü analizi ile, ücretsiz ve reklamsız.</summary>
+    <summary>2026 araç ÖTV hesaplama: motor hacmi ve matraha göre ÖTV, KDV ve anahtar teslim fiyat. Benzinli, dizel, hibrit ve elektrikli dilimleri.</summary>
   </entry>
 
   <entry>
-    <title>Gümrük Vergisi Hesaplama</title>
-    <link href="https://korayoner.dev/gumruk-vergisi-hesaplama/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/gumruk-vergisi-hesaplama/</id>
+    <title>Serbest Meslek Makbuzu Hesaplama 2026</title>
+    <link href="https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/"/>
+    <id>https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/</id>
     <updated>2026-07-18T12:00:00+03:00</updated>
-    <published>2026-07-18T12:00:00+03:00</published>
-    <summary>2026 gümrük vergisi hesaplama: yurt dışı alışverişte (Temu, AliExpress, Amazon) yeni vergi oranları — AB&#x27;den %30, diğer ülkelerden %60, ÖTV IV listesi +%20. 30 € muafiyet kalktı. Telefon IMEI kayıt harcı 54.258 TL dahil toplam maliyet. Ücretsiz ve reklamsız.</summary>
-  </entry>
-
-  <entry>
-    <title>Birim Çevirici</title>
-    <link href="https://korayoner.dev/birim-cevirici/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/birim-cevirici/</id>
-    <updated>2026-07-18T12:00:00+03:00</updated>
-    <published>2026-07-18T12:00:00+03:00</published>
-    <summary>Ücretsiz birim çevirici: uzunluk, ağırlık, sıcaklık, alan, hacim, hız, veri ve zaman birimlerini anında dönüştürün. Metre-inç, kg-libre, °C-°F, m²-dönüm ve daha fazlası. Reklamsız, kayıtsız.</summary>
-  </entry>
-
-  <entry>
-    <title>Hesap Bölüşme (AA)</title>
-    <link href="https://korayoner.dev/hesap-bolusme/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/hesap-bolusme/</id>
-    <updated>2026-07-18T12:00:00+03:00</updated>
-    <published>2026-07-18T12:00:00+03:00</published>
-    <summary>Hesap bölüşme aracı: restoran, kafe veya grup harcamasını kişi sayısına böler; bahşiş ekler ve kuruş farkını adil dağıtır. Kişi başı tutarı saniyede hesaplayın. Ücretsiz, reklamsız, kayıtsız.</summary>
+    <summary>Serbest meslek makbuzu hesaplama: brütten nete, netten brüte; %20 stopaj, KDV ve KDV tevkifatı dahil, 2026 oranlarıyla. Ücretsiz.</summary>
   </entry>
 
   <entry>
     <title>İşsizlik Maaşı Hesaplama 2026</title>
-    <link href="https://korayoner.dev/issizlik-maasi-hesaplama/" rel="alternate" type="text/html"/>
+    <link href="https://korayoner.dev/issizlik-maasi-hesaplama/"/>
     <id>https://korayoner.dev/issizlik-maasi-hesaplama/</id>
     <updated>2026-07-17T12:00:00+03:00</updated>
-    <published>2026-07-17T12:00:00+03:00</published>
-    <summary>İşsizlik maaşı hesaplama aracı: son 4 aylık brüt kazanca ve prim gün sayısına göre aylık işsizlik ödeneğini, tavanı, damga vergisini ve kaç ay alacağınızı 2026 parametreleriyle hesaplayın. Ücretsiz.</summary>
+    <summary>İşsizlik maaşı hesaplama: son 4 aylık brüt kazanca ve prim gün sayısına göre aylık ödeneği, tavanı ve kaç ay alacağınızı hesaplayın.</summary>
   </entry>
 
   <entry>
-    <title>Kredi Hesaplama 2026</title>
-    <link href="https://korayoner.dev/kredi-hesaplama/" rel="alternate" type="text/html"/>
+    <title>Kira Artışı Hesaplama 2026 — TÜFE Zam Oranı</title>
+    <link href="https://korayoner.dev/kira-artisi-hesaplama/"/>
+    <id>https://korayoner.dev/kira-artisi-hesaplama/</id>
+    <updated>2026-07-17T12:00:00+03:00</updated>
+    <summary>Kira artışı hesaplama: konut ve iş yeri kiralarında 12 aylık TÜFE ortalamasına göre yasal azami zam oranını ve yeni kirayı bulun.</summary>
+  </entry>
+
+  <entry>
+    <title>Kredi Hesaplama 2026 — Taksit ve Ödeme Planı</title>
+    <link href="https://korayoner.dev/kredi-hesaplama/"/>
     <id>https://korayoner.dev/kredi-hesaplama/</id>
     <updated>2026-07-17T12:00:00+03:00</updated>
-    <published>2026-07-17T12:00:00+03:00</published>
-    <summary>Kredi hesaplama aracı: ihtiyaç, konut ve taşıt kredisinde aylık taksiti, toplam geri ödemeyi, toplam faizi ve ay ay ödeme planını (anapara-faiz dağılımı) anında hesaplayın. Ücretsiz, reklamsız.</summary>
+    <summary>Kredi hesaplama: ihtiyaç, konut ve taşıt kredisinde aylık taksit, toplam geri ödeme, toplam faiz ve ay ay ödeme planı. Ücretsiz.</summary>
   </entry>
 
   <entry>
     <title>Vadeli Mevduat Faizi Hesaplama 2026</title>
-    <link href="https://korayoner.dev/vadeli-mevduat-hesaplama/" rel="alternate" type="text/html"/>
+    <link href="https://korayoner.dev/vadeli-mevduat-hesaplama/"/>
     <id>https://korayoner.dev/vadeli-mevduat-hesaplama/</id>
     <updated>2026-07-17T12:00:00+03:00</updated>
-    <published>2026-07-17T12:00:00+03:00</published>
-    <summary>Vadeli mevduat faizi hesaplama aracı: anapara, yıllık faiz oranı ve vadeye göre brüt faizi, stopaj kesintisini ve net getiriyi anında hesaplayın. Güncel stopaj oranlarıyla, ücretsiz ve reklamsız.</summary>
+    <summary>Vadeli mevduat faizi hesaplama: anapara, faiz oranı ve vadeye göre brüt faiz, stopaj kesintisi ve net getiri. Güncel stopaj oranlarıyla.</summary>
   </entry>
 
   <entry>
-    <title>Kira Artışı Hesaplama 2026</title>
-    <link href="https://korayoner.dev/kira-artisi-hesaplama/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/kira-artisi-hesaplama/</id>
-    <updated>2026-07-17T12:00:00+03:00</updated>
-    <published>2026-07-17T12:00:00+03:00</published>
-    <summary>Kira artışı hesaplama aracı: konut ve iş yeri kiralarında 12 aylık TÜFE ortalamasına göre yasal azami zam oranını, yeni kirayı ve artış farkını saniyede hesaplayın. Ücretsiz, reklamsız, kayıtsız.</summary>
-  </entry>
-
-  <entry>
-    <title>Brüt Net Maaş Hesaplama 2026</title>
-    <link href="https://korayoner.dev/maas-hesaplama/" rel="alternate" type="text/html"/>
+    <title>Brüt Net Maaş Hesaplama 2026 — 12 Aylık Bordro</title>
+    <link href="https://korayoner.dev/maas-hesaplama/"/>
     <id>https://korayoner.dev/maas-hesaplama/</id>
     <updated>2026-07-16T12:00:00+03:00</updated>
-    <published>2026-07-16T12:00:00+03:00</published>
-    <summary>2026 brüt net maaş hesaplama: güncel vergi dilimleri, SGK tavanı, asgari ücret istisnası ve damga vergisiyle ay ay 12 aylık bordro dökümü. Netten brüte de hesaplar — ücretsiz ve reklamsız.</summary>
+    <summary>2026 brüt net maaş hesaplama: vergi dilimleri, SGK tavanı ve asgari ücret istisnasıyla ay ay bordro. 2020-2026 geçmiş yıllar ve netten brüte dahil.</summary>
   </entry>
 
   <entry>
-    <title>Dithering Görsel Aracı</title>
-    <link href="https://korayoner.dev/dither-studio/" rel="alternate" type="text/html"/>
+    <title>Dither Studio — Dithering Görsel Aracı</title>
+    <link href="https://korayoner.dev/dither-studio/"/>
     <id>https://korayoner.dev/dither-studio/</id>
     <updated>2026-07-15T12:00:00+03:00</updated>
-    <published>2026-07-15T12:00:00+03:00</published>
-    <summary>Görsellerinizi 1-bit, 8-bit, 16-bit ve 32-bit dithering efektleriyle retro/piksel estetiğine dönüştüren ücretsiz, tarayıcı tabanlı araç. Floyd–Steinberg ve ordered dithering. Koray Öner tarafından geliştirildi.</summary>
+    <summary>Görsellerinizi 1-bit, 8-bit, 16-bit ve 32-bit dithering efektleriyle retro/piksel estetiğine dönüştürün. Floyd–Steinberg ve ordered dithering.</summary>
   </entry>
 
   <entry>
-    <title>KDV Hesaplama</title>
-    <link href="https://korayoner.dev/kdv-hesaplama/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/kdv-hesaplama/</id>
+    <title>DecorPalette — Renk Paleti Üreteci</title>
+    <link href="https://korayoner.dev/decorpalette/"/>
+    <id>https://korayoner.dev/decorpalette/</id>
     <updated>2026-07-14T12:00:00+03:00</updated>
-    <published>2026-07-14T12:00:00+03:00</published>
-    <summary>KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV&#x27;yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.</summary>
+    <summary>İç mekân dekorasyonu için ücretsiz renk paleti üreteci. Erişilebilir palet oluşturun, WCAG kontrastını ölçün, CSS veya JSON olarak dışa aktarın.</summary>
   </entry>
 
   <entry>
-    <title>Yüzde Hesaplama</title>
-    <link href="https://korayoner.dev/yuzde-hesaplama/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/yuzde-hesaplama/</id>
-    <updated>2026-07-14T12:00:00+03:00</updated>
-    <published>2026-07-14T12:00:00+03:00</published>
-    <summary>Yüzde hesaplama aracı: bir sayının yüzdesini, iki sayı arasındaki yüzdeyi, yüzde artış ve azalışı saniyeler içinde hesaplayın. Formüller, örnekler ve sık sorulan sorularla ücretsiz yüzde hesaplama.</summary>
-  </entry>
-
-  <entry>
-    <title>Yaş Hesaplama</title>
-    <link href="https://korayoner.dev/yas-hesaplama/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/yas-hesaplama/</id>
-    <updated>2026-07-14T12:00:00+03:00</updated>
-    <published>2026-07-14T12:00:00+03:00</published>
-    <summary>Yaş hesaplama aracı: doğum tarihinize göre kaç yaşında olduğunuzu yıl, ay ve gün olarak; iki tarih arasındaki gün sayısını ve doğum gününüze kalan süreyi anında hesaplayın. Ücretsiz.</summary>
-  </entry>
-
-  <entry>
-    <title>Final Notu Hesaplama</title>
-    <link href="https://korayoner.dev/final-notu-hesaplama/" rel="alternate" type="text/html"/>
+    <title>Final Notu Hesaplama — Finalden Kaç Almalıyım?</title>
+    <link href="https://korayoner.dev/final-notu-hesaplama/"/>
     <id>https://korayoner.dev/final-notu-hesaplama/</id>
     <updated>2026-07-14T12:00:00+03:00</updated>
-    <published>2026-07-14T12:00:00+03:00</published>
-    <summary>Final notu hesaplama aracı: vize notu ve ağırlıklara göre dersten geçmek için finalden kaç almanız gerektiğini ve dönem sonu ortalamanızı anında hesaplayın. Ücretsiz ve reklamsız.</summary>
+    <summary>Final notu hesaplama: vize notu ve ağırlıklara göre dersten geçmek için finalden kaç almanız gerektiğini ve ortalamanızı hesaplayın.</summary>
   </entry>
 
   <entry>
-    <title>İnternet Hız Testi</title>
-    <link href="https://korayoner.dev/internet-hiz-testi/" rel="alternate" type="text/html"/>
+    <title>İnternet Hız Testi — İndirme Hızı ve Ping</title>
+    <link href="https://korayoner.dev/internet-hiz-testi/"/>
     <id>https://korayoner.dev/internet-hiz-testi/</id>
     <updated>2026-07-14T12:00:00+03:00</updated>
-    <published>2026-07-14T12:00:00+03:00</published>
-    <summary>İnternet hız testi: indirme (download) hızınızı ve ping (gecikme) değerinizi tarayıcınızda ölçün. Ücretsiz, reklamsız ve kayıt gerektirmeyen internet hızı ölçme aracı.</summary>
+    <summary>İnternet hız testi: indirme hızınızı ve ping değerinizi tarayıcınızda ölçün. Ücretsiz, reklamsız ve kayıt gerektirmez.</summary>
   </entry>
 
   <entry>
-    <title>Son Depremler</title>
-    <link href="https://korayoner.dev/son-depremler/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/son-depremler/</id>
+    <title>KDV Hesaplama — Dahil ve Hariç Tutar</title>
+    <link href="https://korayoner.dev/kdv-hesaplama/"/>
+    <id>https://korayoner.dev/kdv-hesaplama/</id>
     <updated>2026-07-14T12:00:00+03:00</updated>
-    <published>2026-07-14T12:00:00+03:00</published>
-    <summary>Son depremler: Türkiye ve çevresindeki son dakika depremleri canlı listeleyin, son 5 depremi renkli diyagramda görün, geçmiş tarihleri USGS arşivinden sorgulayın. Kandilli verisiyle ücretsiz, üyeliksiz, reklamsız.</summary>
+    <summary>KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.</summary>
   </entry>
 
   <entry>
     <title>KeyMint — Güçlü Şifre Üreteci</title>
-    <link href="https://korayoner.dev/keymint/" rel="alternate" type="text/html"/>
+    <link href="https://korayoner.dev/keymint/"/>
     <id>https://korayoner.dev/keymint/</id>
     <updated>2026-07-14T12:00:00+03:00</updated>
-    <published>2026-07-14T12:00:00+03:00</published>
-    <summary>KeyMint ile güçlü ve rastgele şifre oluşturun. Uzunluk, büyük/küçük harf, rakam ve sembol seçenekleriyle güvenli parola üretin. Ücretsiz, reklamsız ve tamamen tarayıcıda — şifreniz hiçbir yere gönderilmez.</summary>
+    <summary>KeyMint ile güçlü ve rastgele şifre oluşturun. Uzunluk, harf, rakam ve sembol seçenekleriyle. Tamamen tarayıcıda — şifreniz gönderilmez.</summary>
   </entry>
 
   <entry>
-    <title>Design color palettes that make rooms feel intentional.</title>
-    <link href="https://korayoner.dev/decorpalette/" rel="alternate" type="text/html"/>
-    <id>https://korayoner.dev/decorpalette/</id>
+    <title>Son Depremler — Canlı Deprem Listesi</title>
+    <link href="https://korayoner.dev/son-depremler/"/>
+    <id>https://korayoner.dev/son-depremler/</id>
     <updated>2026-07-14T12:00:00+03:00</updated>
-    <published>2026-07-14T12:00:00+03:00</published>
-    <summary>DecorPalette, iç mekân dekorasyonu için ücretsiz ve gizliliğe saygılı bir renk paleti üreteci. Erişilebilir oda paletleri oluşturun, WCAG kontrastını ölçün, tonları kilitleyin ve CSS, JSON ya da panoya aktarın — hepsi tarayıcınızda.</summary>
+    <summary>Son depremler: Türkiye ve çevresindeki son dakika depremlerini canlı izleyin, renkli diyagramda görün, geçmiş tarihleri arşivden sorgulayın.</summary>
+  </entry>
+
+  <entry>
+    <title>Yaş Hesaplama — Kaç Yaşındayım?</title>
+    <link href="https://korayoner.dev/yas-hesaplama/"/>
+    <id>https://korayoner.dev/yas-hesaplama/</id>
+    <updated>2026-07-14T12:00:00+03:00</updated>
+    <summary>Yaş hesaplama aracı: doğum tarihinize göre kaç yaşında olduğunuzu yıl, ay ve gün olarak; iki tarih arası gün sayısını hesaplayın.</summary>
+  </entry>
+
+  <entry>
+    <title>Yüzde Hesaplama — Oran, İndirim ve Artış</title>
+    <link href="https://korayoner.dev/yuzde-hesaplama/"/>
+    <id>https://korayoner.dev/yuzde-hesaplama/</id>
+    <updated>2026-07-14T12:00:00+03:00</updated>
+    <summary>Yüzde hesaplama aracı: bir sayının yüzdesi, iki sayı arasındaki yüzde, yüzde artış ve azalış. Formüller ve örneklerle, ücretsiz.</summary>
   </entry>
 </feed>
