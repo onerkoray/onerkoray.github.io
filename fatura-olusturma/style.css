@@ -8,7 +8,10 @@
  */
 
 /* ================================ düzen ================================= */
-.wrap.wrap-genis { width: min(100% - 2.5rem, 1420px); }
+/* Bu araçta iki geniş sütun yan yana duruyor; sitenin 1080px'lik ölçüsü de,
+   ilk denediğim 1420px de yetmiyordu: düzenleyici sütunu 1920px'lik ekranda
+   bile 580px'te kalıyordu. */
+.wrap.wrap-genis { width: min(100% - 2.5rem, 1600px); }
 
 .lede-uyari {
   font-size: var(--step-0);
@@ -28,8 +31,21 @@
    sayfa yatay kayıyordu. Hücrelerin küçülmesine izin verip taşmayı
    belgenin kendi kaydırma kutusunda tutuyoruz. */
 .fatura-duzen > * { min-width: 0; }
-@media (min-width: 1180px) {
-  .fatura-duzen { grid-template-columns: minmax(400px, 5fr) minmax(560px, 7fr); }
+/* Oran ters kurulmustu: cok sayida denetim tasiyan duzenleyiciye 5/12,
+   sabit genislikli bir belgeye 7/12 veriliyordu. Duzenleyici artik genis olan.
+   Esik 1180'den 1280'e cikti: altinda tek sutun daha iyi calisiyor. */
+@media (min-width: 1280px) {
+  .fatura-duzen { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+  /* Düzenleyici uzun, belge kısa: sayfa aşağı kaydıkça sağ sütun boş kalıyordu.
+     Belge yapışkan olunca girdi ile sonucu aynı anda görüyorsunuz — bu aracın
+     bütün iddiası zaten "yazarken oluşan belge". */
+  .onizleme-sutun {
+    position: sticky; top: 4.5rem;
+    max-height: calc(100vh - 6rem); overflow-y: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .onizleme-sutun { position: static; max-height: none; }
 }
 
 /* ============================= düzenleyici ============================== */
@@ -128,17 +144,46 @@
 .birim-dugme:hover { border-color: var(--brand); color: var(--brand-strong); }
 
 /* ------------------------------ kalemler ------------------------------- */
+/* SATIR İKİ KADEMELİ.
+   Önce hepsini tek satıra dizmiştim: uzun bir metin alanı (açıklama) ile yedi
+   kısa sayı alanını aynı satıra sıkıştırmak, hangi genişlik verilirse verilsin
+   birini eziyordu — önce başlıklar üst üste bindi, düzeltince açıklama kutusu
+   80 piksele düştü. Açıklama artık kendi satırında ve tam genişlikte; sayılar
+   altta, her biri metninin gerçekten ihtiyaç duyduğu tabanla. */
 .kalem-basliklar, .kalem-satir {
   display: grid; gap: .4rem;
-  grid-template-columns: minmax(0, 2.6fr) 4.2rem 5.2rem minmax(0, 1.5fr) minmax(0, 1.4fr) 4.6rem minmax(0, 1.4fr) 4.6rem;
+  grid-template-columns:
+    4.2rem                /* miktar */
+    5.4rem                /* birim */
+    minmax(6rem, 1fr)     /* birim fiyat */
+    minmax(5.6rem, 1fr)   /* iskonto */
+    4.6rem                /* KDV */
+    minmax(7rem, 1fr)     /* tutar */
+    4.8rem;               /* satır düğmeleri */
   align-items: center;
 }
+.kalem-satir .h-aciklama { grid-column: 1 / -1; }
+/* Açıklama başlık şeridinde yer almadığı için etiketini kendisi taşıyor. */
+.kalem-satir .h-aciklama::before {
+  content: attr(data-etiket);
+  display: block; margin-bottom: .15rem;
+  font-size: .68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--text-muted);
+}
+
 .kalem-basliklar {
   font-size: .72rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: .05em; color: var(--text-muted);
   padding: 0 0 .4rem; border-bottom: 1px solid var(--border); margin-bottom: .5rem;
 }
-.kalem-satir { padding: .35rem 0; }
+/* Sayı alanları sağa yaslı; başlıkları da sağa yaslanmazsa sütunla
+   hizalanmıyor ve göz hangi başlığın hangi kutuya ait olduğunu aramak
+   zorunda kalıyor. */
+.kalem-basliklar > span:nth-child(1),
+.kalem-basliklar > span:nth-child(3),
+.kalem-basliklar > span:nth-child(4),
+.kalem-basliklar > span:nth-child(6) { text-align: right; }
+.kalem-satir { padding: .6rem 0; }
 .kalem-satir + .kalem-satir { border-top: 1px dashed var(--border); }
 .kalem-hucre { min-width: 0; }
 .kalem-hucre input, .kalem-hucre select {
@@ -153,6 +198,7 @@
 .k-tutar {
   display: block; text-align: right; font-weight: 700;
   font-variant-numeric: tabular-nums; font-size: var(--step--1);
+  white-space: nowrap;
 }
 .h-islem { display: flex; gap: .15rem; justify-content: flex-end; }
 .satir-dugme {
@@ -163,12 +209,20 @@
 .satir-dugme:hover { border-color: var(--brand); color: var(--brand-strong); }
 .satir-sil:hover { border-color: #a5401c; color: #a5401c; }
 
-/* Dar ekranda tablo satırı kart olur; başlık şeridi gizlenir ve her hücre
-   kendi etiketini data-etiket'ten alır. */
-@media (max-width: 900px) {
+/* Kalem ızgarasının kart düzenine geçişi ÖLÇÜT OLARAK PENCEREYİ ALAMAZ.
+   Bu bileşenin genişliğini sayfa ızgarası belirliyor; 1920px'lik bir ekranda
+   bile düzenleyici sütunu 580px olabiliyordu ve pencere ölçen bir @media
+   kuralı "geniş ekran" deyip sekiz sütunlu tabloyu 580px'e sıkıştırıyordu.
+   Başlıklar üst üste biniyordu. Ölçüt artık kabın kendi genişliği. */
+.fatura-editor { container-type: inline-size; }
+
+@container (max-width: 700px) {
   .kalem-basliklar { display: none; }
   .kalem-satir {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Sabit iki sütun 640 piksellik bir kapta yarısını boş bırakıyordu.
+       auto-fit, kap ne kadarsa o kadar sütun açıyor: dar telefonda iki,
+       tablette üç, dar masaüstü sütununda dört. */
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
     border: 1px solid var(--border); border-radius: var(--radius-sm);
     padding: .7rem; margin-bottom: .6rem; gap: .55rem;
   }
@@ -186,6 +240,29 @@
      dugmeler alt alta diziliyordu. Yeniden flex'e cekiliyor. */
   .h-islem { display: flex; grid-column: 1 / -1; justify-content: flex-start; }
   .satir-dugme { width: auto; padding-inline: .7rem; }
+}
+
+/* Kap sorgusunu desteklemeyen eski tarayıcılar için yedek: orada pencere
+   ölçüsüne dönülüyor, çünkü hiç kart düzeni olmaması daha kötü. */
+@supports not (container-type: inline-size) {
+  @media (max-width: 1279px) {
+    .kalem-basliklar { display: none; }
+    .kalem-satir {
+      grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: .7rem; margin-bottom: .6rem; gap: .55rem;
+    }
+    .kalem-hucre { display: grid; gap: .2rem; }
+    .kalem-hucre[data-etiket]:not(.h-islem)::before {
+      content: attr(data-etiket);
+      font-size: .68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .05em; color: var(--text-muted);
+    }
+    .h-aciklama { grid-column: 1 / -1; }
+    .h-tutar { grid-column: 1 / -1; text-align: right; }
+    .h-islem { display: flex; grid-column: 1 / -1; justify-content: flex-start; }
+    .satir-dugme { width: auto; padding-inline: .7rem; }
+  }
 }
 
 .editor-aksiyonlar {
