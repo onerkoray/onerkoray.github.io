@@ -1,5 +1,15 @@
 [
   {
+    "slug": "kdv-tevkifati-nedir",
+    "kicker": "Vergi",
+    "alt": "Tevkifat fatura toplamını değiştirmez; 100.000 TL matrahta 5/10 ile tahsil edilecek tutar 110.000 TL olur"
+  },
+  {
+    "slug": "proforma-fatura-nedir",
+    "kicker": "Fatura ve Belge",
+    "alt": "Proforma muhasebe kaydı doğurmaz ama kabul edilince sözleşme kurar; dört belgenin farkı tek tabloda"
+  },
+  {
     "slug": "issizlik-maasi-ne-kadar",
     "kicker": "Sosyal Güvenlik",
     "alt": "İşsizlik ödeneğinin tabanı 13.112 TL, tavanı 26.223 TL; ikisi de net asgari ücret olan 28.076 TL'nin altında"

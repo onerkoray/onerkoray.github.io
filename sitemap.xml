@@ -518,4 +518,34 @@
       <image:title>Fatura Oluşturma ve PDF İndirme — Koray Öner</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://korayoner.dev/fatura-olusturma/metodoloji/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/fatura-metodoloji-koray-oner.png</image:loc>
+      <image:title>Fatura Merkezi Metodolojisi — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/proforma-fatura-nedir/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/proforma-fatura-nedir.png</image:loc>
+      <image:title>Proforma fatura nedir, faturadan farkı ne? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/kdv-tevkifati-nedir/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/kdv-tevkifati-nedir.png</image:loc>
+      <image:title>KDV tevkifatı nedir, faturaya nasıl yazılır? — Koray Öner</image:title>
+    </image:image>
+  </url>
 </urlset>

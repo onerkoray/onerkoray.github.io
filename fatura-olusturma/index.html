@@ -11,8 +11,8 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fatura Oluşturma ve PDF İndirme | Koray Öner</title>
-  <meta name="description" content="Ücretsiz fatura ve proforma oluşturucu: KDV, satır ve genel iskonto, tevkifat, tutar yazıyla, dört şablon ve PDF. Üyelik yok; veriler tarayıcınızdan çıkmaz.">
+  <title>Fatura ve Teklif Oluşturma Merkezi | Koray Öner</title>
+  <meta name="description" content="Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti. Üyeliksiz; veriler tarayıcınızda kalır.">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
@@ -27,17 +27,17 @@
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Koray Öner">
-  <meta property="og:title" content="Fatura Oluşturma ve PDF İndirme">
-  <meta property="og:description" content="KDV, iskonto, tevkifat ve tutar yazıyla. Dört şablon, anında PDF. Üyelik yok, veriler tarayıcınızdan çıkmıyor.">
+  <meta property="og:title" content="Fatura ve Teklif Merkezi">
+  <meta property="og:description" content="Teklif ver, faturaya çevir, tahsilatı takip et. Belge arşivi ve özet tarayıcında; üyelik yok, veri dışarı çıkmıyor.">
   <meta property="og:url" content="https://korayoner.dev/fatura-olusturma/">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:image" content="https://korayoner.dev/images/fatura-olusturma-koray-oner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Fatura oluşturma ve PDF indirme aracı">
+  <meta property="og:image:alt" content="Fatura ve Teklif Merkezi">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Fatura Oluşturma ve PDF İndirme">
-  <meta name="twitter:description" content="KDV, iskonto, tevkifat ve tutar yazıyla dört şablonda fatura. Üyeliksiz, tarayıcıda çalışır.">
+  <meta name="twitter:title" content="Fatura ve Teklif Merkezi">
+  <meta name="twitter:description" content="Teklif ver, faturaya çevir, tahsilatı takip et. Arşiv ve özet tarayıcında kalır.">
   <meta name="twitter:image" content="https://korayoner.dev/images/fatura-olusturma-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css">
@@ -50,7 +50,7 @@
       {
         "@type": "WebApplication",
         "@id": "https://korayoner.dev/fatura-olusturma/#app",
-        "name": "Fatura Oluşturma",
+        "name": "Fatura ve Teklif Merkezi",
         "url": "https://korayoner.dev/fatura-olusturma/",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
@@ -58,14 +58,14 @@
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
         "author": { "@id": "https://korayoner.dev/#oner-koray" },
         "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
-        "featureList": "KDV oranları, satır ve genel iskonto, KDV tevkifatı, tutar yazıyla, VKN/TCKN doğrulaması, çok para birimi, dört fatura şablonu, PDF çıktısı, JSON kaydet ve yükle",
-        "description": "Firma ve müşteri bilgileri, ürün/hizmet kalemleri, KDV, iskonto ve tevkifatla fatura veya proforma fatura hazırlayıp PDF olarak indirmenizi sağlar. Tüm hesap ve veri tarayıcıda kalır."
+        "featureList": "Teklif hazırlama, teklifi faturaya çevirme, belge arşivi, tahsilat durumu takibi, müşteri defteri, ürün ve hizmet kataloğu, yıllık özet ve analitik, KDV oranları, satır ve genel iskonto, KDV tevkifatı, tutar yazıyla, VKN/TCKN ve IBAN doğrulaması, çok para birimi, dört belge şablonu, A4 PDF çıktısı, tam yedek alma ve geri yükleme",
+        "description": "Teklif hazırlayıp tek tuşla faturaya çevirmenizi, belgelerinizi arşivlemenizi, tahsilat durumunu izlemenizi ve yıllık özet almanızı sağlar. Sunucu yoktur; bütün belgeler ve müşteri defteri kullanıcının tarayıcısında kalır."
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Fatura Oluşturma", "item": "https://korayoner.dev/fatura-olusturma/" }
+          { "@type": "ListItem", "position": 2, "name": "Fatura ve Teklif Merkezi", "item": "https://korayoner.dev/fatura-olusturma/" }
         ]
       },
       {
@@ -139,7 +139,8 @@
         <ul>
           <li><a href="../">Ana Sayfa</a></li>
           <li><a href="/#projects">Araçlar</a></li>
-          <li><a href="#olustur">Oluştur</a></li>
+          <li><a href="#olustur">Çalışma alanı</a></li>
+          <li><a href="metodoloji/">Metodoloji</a></li>
           <li><a href="#nasil">Nasıl kullanılır</a></li>
           <li><a href="#sss">S.S.S.</a></li>
         </ul>
@@ -153,19 +154,20 @@
 
   <main id="main">
     <nav class="breadcrumb wrap" aria-label="Site haritası">
-      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Fatura Oluşturma
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Fatura ve Teklif Merkezi
     </nav>
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
         <p class="eyebrow">Ücretsiz · Üyeliksiz · Tarayıcıda kalır</p>
         <img class="tool-logo" src="favicon.svg" width="60" height="60" alt="" aria-hidden="true" decoding="async">
-        <h1 id="hero-title">Fatura Oluşturma ve PDF İndirme</h1>
+        <h1 id="hero-title">Fatura ve Teklif Merkezi</h1>
         <p class="lede">
-          Firma ve müşteri bilgilerinizi, kalemleri, KDV'yi ve iskontoyu girin;
-          belge sağda <strong>anında ve gerçek boyutuyla</strong> oluşsun, tek tuşla PDF'e kaydedin.
-          KDV tevkifatı, tutar yazıyla ve VKN doğrulaması dahil.
-          <strong>Hiçbir bilgi sunucuya gönderilmez.</strong>
+          <strong>Teklif verin, iş onaylanınca tek tuşla faturaya çevirin.</strong>
+          Belgeleriniz arşivde durur, tahsilat durumunu işaretlersiniz, yıl sonunda
+          kaç teklifin işe döndüğünü ve ortalama kaç günde tahsil ettiğinizi görürsünüz.
+          KDV tevkifatı, tutar yazıyla, müşteri defteri ve ürün kataloğu dahil.
+          <strong>Sunucu yok: bütün belgeler sizin tarayıcınızda kalır.</strong>
         </p>
         <p class="lede lede-uyari">
           Bu araç <strong>proforma fatura, teklif ve fatura taslağı</strong> üretir.
@@ -199,6 +201,32 @@
                 <span class="renk-secim" role="radiogroup" aria-labelledby="renk-etiket" id="renk-secim"></span>
               </p>
             </div>
+
+            <details class="editor-blok" id="blok-arsiv">
+              <summary><span class="blok-no blok-no--arsiv">≡</span> Belgelerim
+                <span class="blok-ipucu" id="arsiv-sayi">henüz belge yok</span></summary>
+              <div class="blok-ic">
+                <p class="blok-aksiyon arsiv-suzgec">
+                  <label class="visually-hidden" for="in-arsiv-filtre">Belgeleri süz</label>
+                  <select id="in-arsiv-filtre">
+                    <option value="">Hepsi</option>
+                    <option value="teklif">Teklif ve proformalar</option>
+                    <option value="fatura">Faturalar</option>
+                    <option value="taslak">Taslak</option>
+                    <option value="gonderildi">Gönderildi</option>
+                    <option value="odendi">Ödendi</option>
+                    <option value="iptal">İptal</option>
+                  </select>
+                  <label class="visually-hidden" for="in-arsiv-ara">Ara</label>
+                  <input type="search" id="in-arsiv-ara" placeholder="Numara veya müşteri ara">
+                </p>
+                <div id="arsiv-listesi"></div>
+                <p class="alan-not">
+                  Belgeler yalnızca bu tarayıcıda saklanır. Başka bir cihaza taşımak
+                  veya kaybetmemek için aşağıdan <strong>yedek alın</strong>.
+                </p>
+              </div>
+            </details>
 
             <details class="editor-blok" open>
               <summary><span class="blok-no">1</span> Firma bilgileriniz <span class="blok-ipucu">satıcı</span></summary>
@@ -360,6 +388,13 @@
                 </div>
                 <div id="kalem-listesi"></div>
                 <p class="blok-aksiyon">
+                  <label class="visually-hidden" for="in-katalog">Katalogdan kalem ekle</label>
+                  <select id="in-katalog"><option value="">— Katalog boş —</option></select>
+                  <button type="button" class="btn btn-ghost btn-kucuk" id="btn-katalog-ekle">Kalemleri kataloğa ekle</button>
+                  <button type="button" class="btn btn-ghost btn-kucuk" id="btn-katalog-temizle">Kataloğu temizle</button>
+                  <span class="alan-durum" id="durum-katalog" aria-live="polite"></span>
+                </p>
+                <p class="blok-aksiyon">
                   <button type="button" class="btn btn-ghost btn-kucuk" id="btn-kalem-ekle">+ Kalem ekle</button>
                   <span class="alan-not">Tutar sütunu KDV hariçtir; KDV belgenin altında toplanır. İskonto kutusunun yanındaki %/₺ düğmesiyle oran ve tutar arasında geçiş yapabilirsiniz.</span>
                 </p>
@@ -396,11 +431,38 @@
               </div>
             </details>
 
+            <details class="editor-blok" id="blok-ozet">
+              <summary><span class="blok-no blok-no--arsiv">%</span> Özet ve analitik</summary>
+              <div class="blok-ic">
+                <p class="alan alan-genis">
+                  <label for="in-ozet-yil">Yıl</label>
+                  <select id="in-ozet-yil"></select>
+                  <span class="alan-not">Rakamlar arşivinizdeki belgelerden hesaplanır;
+                    iptal edilenler sayılmaz, dövizli belgeler TL karşılığıyla toplanır.</span>
+                </p>
+                <div id="ozet-icerik"></div>
+              </div>
+            </details>
+
+            <div class="acik-belge" id="acik-belge" data-arsivde="hayir">
+              <div class="acik-belge-bilgi">
+                <span class="acik-belge-etiket">Üzerinde çalışılan belge</span>
+                <strong id="acik-belge-ad">Yeni belge</strong>
+              </div>
+              <p class="acik-belge-islem">
+                <label class="visually-hidden" for="in-acik-durum">Belge durumu</label>
+                <select id="in-acik-durum" disabled></select>
+                <button type="button" class="btn btn-primary btn-kucuk" id="btn-arsive-kaydet">Arşive kaydet</button>
+                <button type="button" class="btn btn-ghost btn-kucuk" id="btn-yeni-belge" hidden>Yeni belge</button>
+              </p>
+            </div>
+
             <div class="editor-aksiyonlar">
               <button type="button" class="btn btn-primary" id="btn-pdf">PDF olarak indir</button>
-              <button type="button" class="btn btn-ghost" id="btn-json-kaydet">Faturayı kaydet (.json)</button>
-              <label class="btn btn-ghost btn-dosya" for="in-json-yukle">Fatura yükle (.json)</label>
-              <input type="file" id="in-json-yukle" accept="application/json,.json" hidden>
+              <button type="button" class="btn btn-ghost" id="btn-yedek-al">Yedek al (tüm arşiv)</button>
+              <label class="btn btn-ghost btn-dosya" for="in-yedek-yukle">Yedek yükle</label>
+              <input type="file" id="in-yedek-yukle" accept="application/json,.json" hidden>
+              <button type="button" class="btn btn-ghost" id="btn-json-kaydet">Bu belgeyi indir (.json)</button>
               <button type="button" class="btn btn-ghost" id="btn-ornek">Örnek doldur</button>
               <button type="button" class="btn btn-ghost" id="btn-temizle">Temizle</button>
             </div>
@@ -506,7 +568,7 @@
 
     <article class="content">
       <div class="wrap prose">
-        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 7 Eylül 2026 · Hesap çekirdeği 78 testle doğrulanıyor</p>
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 7 Eylül 2026 · Hesap ve arşiv çekirdeği <a href="metodoloji/">159 testle doğrulanıyor</a></p>
 
         <h2 id="nasil">Nasıl kullanılır?</h2>
         <p>
@@ -689,6 +751,7 @@
   </footer>
 
   <script src="fatura.js" defer></script>
+  <script src="arsiv.js" defer></script>
   <script src="script.js" defer></script>
   <script src="../script.js" defer></script>
 </body>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fatura Merkezi Metodolojisi | Koray Öner</title>
+  <meta name="description" content="Fatura Merkezi nasıl hesaplıyor, veri nerede duruyor? Kuruş aritmetiği, iskonto dağıtımı, tevkifat, VKN ve IBAN doğrulaması, 159 test.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/fatura-olusturma/metodoloji/">
+
+  <link rel="icon" href="../../favicon.ico?v=2" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=2">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Fatura Merkezi Metodolojisi">
+  <meta property="og:description" content="Tutar nasıl hesaplanıyor, veri nerede duruyor, hangi testler koruyor? Sunucusuz bir muhasebe aracının açık defteri.">
+  <meta property="og:url" content="https://korayoner.dev/fatura-olusturma/metodoloji/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/fatura-metodoloji-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fatura Merkezi Metodolojisi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fatura Merkezi Metodolojisi">
+  <meta name="twitter:description" content="Kuruş aritmetiği, iskonto dağıtımı, tevkifat ve 159 test. Sunucusuz bir aracın açık defteri.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/fatura-metodoloji-koray-oner.png">
+
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://korayoner.dev/fatura-olusturma/metodoloji/#article",
+        "headline": "Fatura ve Teklif Merkezi metodolojisi",
+        "url": "https://korayoner.dev/fatura-olusturma/metodoloji/",
+        "inLanguage": "tr",
+        "datePublished": "2026-09-07",
+        "dateModified": "2026-09-07",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "about": { "@id": "https://korayoner.dev/fatura-olusturma/#app" },
+        "description": "Fatura ve Teklif Merkezi'nin tutar hesabı, veri saklama modeli, doğrulama algoritmaları ve test kapsamı."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Fatura ve Teklif Merkezi", "item": "https://korayoner.dev/fatura-olusturma/" },
+          { "@type": "ListItem", "position": 3, "name": "Metodoloji", "item": "https://korayoner.dev/fatura-olusturma/metodoloji/" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="../">Aracı aç</a></li>
+          <li><a href="#hesap">Hesap</a></li>
+          <li><a href="#veri">Veri</a></li>
+          <li><a href="#test">Testler</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Fatura ve Teklif Merkezi</a> <span aria-hidden="true">&#8250;</span> Metodoloji
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Açık defter · MIT lisanslı · 159 test</p>
+        <h1 id="hero-title">Fatura Merkezi metodolojisi</h1>
+        <p class="lede">
+          Bir fatura aracının en tehlikeli özelliği, yanlış olduğunda hata vermemesidir.
+          Tutar yanlış hesaplanır, belge yine basılır; arşiv sessizce bozulur, sayfa
+          yine açılır. Bu sayfa, o sessiz hataları engellemek için ne yapıldığını
+          anlatıyor — <strong>iddia olarak değil, kod ve test olarak.</strong>
+        </p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../../hakkimda/" rel="author">Koray Öner</a> · Güncelleme: 7 Eylül 2026 · <a href="../">Aracı aç</a></p>
+
+        <h2 id="sunucusuz">Neden sunucu yok?</h2>
+        <p>
+          Bu araç bir hesap açtırmaz, veri toplamaz ve hiçbir şeyi sunucuya göndermez.
+          Bu bir eksiklik değil, <strong>bilinçli bir takas</strong>. Faturalarınız
+          müşteri ünvanlarını, vergi numaralarını, fiyatlarınızı ve kâr marjınızı içerir;
+          bu bilgiler kimsenin sunucusunda durmak zorunda değil.
+        </p>
+        <p>Takasın bedeli de açık olmalı. Sunucusuz olmanın <strong>maliyeti</strong> şudur:</p>
+        <ul>
+          <li>Cihazlar arasında otomatik eşitleme yoktur. Taşıma, <strong>yedek dosyasıyla</strong> yapılır.</li>
+          <li>Tarayıcı verisini silerseniz arşiv de silinir. Bu yüzden yedek alma araçta ikincil bir düğme değil, ısrarla hatırlatılan bir adımdır.</li>
+          <li>Ekip çalışması yoktur; çalışma alanı tek kişiye aittir.</li>
+          <li>Ödeme <strong>tahsilatı</strong> yapılmaz. Yalnızca "ödendi" olarak işaretlenir. Gerçek tahsilat sunucu, lisans ve kart altyapısı gerektirir; sınır burasıdır.</li>
+        </ul>
+        <p>
+          Buna karşılık kazandığınız şey şudur: internet olmadan da çalışır, kapanma
+          riski olan bir servise bağımlı değilsiniz ve verinizin nerede olduğunu
+          bilirsiniz — cihazınızda.
+        </p>
+
+        <h2 id="hesap">Tutar nasıl hesaplanıyor?</h2>
+
+        <h3>Kuruş, kayan nokta değil</h3>
+        <p>
+          Aritmetiğin tamamı <strong>tam sayı kuruş</strong> üzerinde yürür. Kayan noktalı
+          sayılarla 3,5 saat × 1.250,50 TL çarpımı 4.376,749999… gibi bir değer üretebilir;
+          bordroda görmezden gelinebilecek bu kayma, faturada kalem toplamı ile belge
+          toplamının tutmaması demektir. Tutarlar yalnızca ekrana yazılırken liraya çevrilir.
+        </p>
+
+        <h3 id="iskonto">Genel iskonto satırlara dağıtılır</h3>
+        <p>
+          En kritik karar burada. Genel iskontoyu fatura toplamından düşmek kolaydır ve
+          KDV oranı tek olduğunda sonucu değiştirmez. <strong>Oranlar karıştığında yanlış
+          sonuç verir.</strong> Biri %20, biri %1 KDV'li iki kalemden oluşan 2.000 TL'lik
+          faturaya %10 iskonto uygulayalım:
+        </p>
+        <p class="formula">Doğru: (900 × %20) + (900 × %1) = 180 + 9 = <strong>189 TL KDV</strong></p>
+        <p>
+          İskontoyu toplamdan düşüp KDV'yi eski matrahtan hesaplayan bir araç 210 TL bulur;
+          iskontonun tamamını %20'lik kalemden düşen bir araç 190 TL bulur. Üçü de
+          "çalışıyor" görünür. Bu araç iskontoyu satırların ara toplamına orantılı dağıtır.
+        </p>
+        <p>
+          Dağıtımda <strong>en büyük artık yöntemi</strong> kullanılır: bölünemeyen kuruşlar
+          buharlaşmaz, en büyük ondalık artığa sahip satırlara birer birer eklenir. 1 kuruşluk
+          bir iskonto üç satıra bölündüğünde bile kalemlerin toplamı belge toplamına eşit kalır.
+        </p>
+
+        <h3 id="tevkifat">KDV tevkifatı</h3>
+        <p>
+          Kısmi tevkifatta hesaplanan KDV'nin bir kısmını satıcı tahsil etmez; alıcı doğrudan
+          vergi dairesine öder. <strong>Belge toplamı değişmez, tahsil edilecek tutar
+          değişir.</strong> 100.000 TL matrah ve %20 KDV'de 5/10 tevkifatla:
+        </p>
+        <ul>
+          <li>Hesaplanan KDV: 20.000 TL</li>
+          <li>Tevkif edilen (5/10): 10.000 TL — alıcı beyan eder</li>
+          <li>Tahsil edilecek KDV: 10.000 TL</li>
+          <li>Genel toplam 120.000 TL · <strong>Ödenecek 110.000 TL</strong></li>
+        </ul>
+
+        <h3 id="yaziyla">Tutar yazıyla</h3>
+        <p>
+          Türkçenin kuralları burada kolayca ıskalanır ve otomatik üretilen yazıyla
+          tutarların çoğu şu üçünden en az birinde takılır:
+          "1.000 TL" <em>bir bin lira</em> değil <strong>bin lira</strong>;
+          "100 TL" <em>bir yüz lira</em> değil <strong>yüz lira</strong>;
+          ama "1.000.000 TL" gerçekten <strong>bir milyon lira</strong>.
+          Üçü de ayrı ayrı test edilir.
+        </p>
+
+        <h3 id="dogrulama">VKN, TCKN ve IBAN doğrulaması</h3>
+        <p>
+          Bu üç numaranın hepsi kendi içinde sağlama hanesi taşır. Araç bu sağlamayı
+          hesaplar; <strong>tek haneli yazım hatalarının tamamı yakalanır</strong>. Yanlış
+          yazılmış bir vergi numarası, faturanın en sık ve en sessiz hatasıdır: belge basılır,
+          gönderilir, gider yazılamadığında fark edilir. IBAN için ISO 7064 mod-97 sağlaması
+          uygulanır.
+        </p>
+
+        <h3 id="doviz">Dövizli belgeler</h3>
+        <p>
+          USD, EUR ve GBP seçilebilir. Yurt içi işlemlerde döviz üzerinden düzenlenen
+          belgelerde Türk Lirası karşılığının da gösterilmesi gerekir; girdiğiniz kur
+          üzerinden TL karşılığı belgeye yazılır. Özet ekranında farklı para birimindeki
+          belgeler <strong>TL karşılığıyla</strong> toplanır — aksi halde çıkan sayı anlamsız olurdu.
+        </p>
+
+        <h2 id="veri">Veri nerede duruyor?</h2>
+        <p>
+          Her şey tek bir anahtar altında, tarayıcınızın yerel deposunda tutulur:
+          <code>fatura:calisma</code>. İçinde firma bilgileriniz, belge arşiviniz, müşteri
+          defteriniz, ürün kataloğunuz, numara sayaçlarınız ve şablon tercihiniz bulunur.
+        </p>
+        <p>
+          Önceden beş ayrı anahtar vardı. Tek anahtara geçilmesinin sebebi bütünlük:
+          belgeler, müşteriler ve sayaç birbirine bağlı olduğu için, biri yazılıp diğeri
+          yazılamadığında (depolama kotası dolduğunda) arşiv tutarsız kalıyordu.
+        </p>
+
+        <h3>Belge kendi kopyasını taşır</h3>
+        <p>
+          Bir belge kesildikten sonra firma adresiniz değişirse, <strong>eski belge eski
+          bilgiyle kalmalıdır</strong>. Bu yüzden her belge, firma ve müşteri bilgisinin o
+          andaki kopyasını içinde tutar; referans tutmaz. Muhasebede belge geriye dönük
+          değişmez.
+        </p>
+
+        <h3>Teklif faturaya çevrilince ne oluyor?</h3>
+        <p>
+          Teklif <strong>silinmez ve değişmez</strong>. Yeni fatura kaynağına bağlanır ve
+          belgede "hangi tekliften geldiği" görünür. Sebebi kayıt bütünlüğü: müşteriye
+          gönderilmiş bir teklifi sonradan faturaya çevirip yok etmek, neyin teklif edilip
+          neyin faturalandığını karşılaştırılamaz hale getirir.
+        </p>
+
+        <h3>Numaralar</h3>
+        <p>
+          Sayaç türe ve yıla göre ayrıdır: teklifler (<code>TKF</code>) ve faturalar
+          (<code>FTR</code>) aynı diziyi paylaşmaz. Sayaç bozulsa bile arşivdeki en büyük
+          numara esas alınır — <strong>iki belgenin aynı numarayı alması muhasebede kabul
+          edilemez.</strong>
+        </p>
+
+        <h3>Bozuk veri</h3>
+        <p>
+          Dışarıdan gelen her şey (yüklenen yedek, eski sürüm depo) bir normalleştirmeden
+          geçer: eksik alanlar tamamlanır, tipi yanlış olanlar düzeltilir, çakışan kimlikler
+          yenilenir. Bozuk bir dosya yüzünden aracın hiç açılmaması, kullanıcının bütün
+          arşivini kaybetmesinden daha iyi değildir; <strong>kurtarılabilen kurtarılır.</strong>
+        </p>
+
+        <h2 id="test">Testler ve denetim</h2>
+        <p>Hesap ve arşiv katmanları arayüzden ayrı yazılmıştır; ikisi de tarayıcısız çalıştırılabilir.</p>
+        <ul>
+          <li><strong>78 test</strong> — tutar hesabı: KDV, iskonto dağıtımı, tevkifat, yazıyla tutar, VKN/TCKN, sınır durumları.</li>
+          <li><strong>81 test</strong> — çalışma alanı: numara çakışması, dönüşüm bütünlüğü, durum akışı, özet sayıları, bozuk veri kurtarma, yedek gidiş-dönüşü.</li>
+          <li>Ayrıca <strong>200 rastgele fatura</strong> üretilip her birinde "kalemlerin toplamı = belge toplamı" değişmezi doğrulanır.</li>
+        </ul>
+        <p>
+          İkisi de her değişiklikte otomatik çalışır. Test kırıldığında yayın durur.
+          Bu sayfadaki her iddia, çalıştırılabilir bir testin karşılığıdır.
+        </p>
+
+        <h2 id="yasal">Yasal konum</h2>
+        <p>
+          Bu araç <strong>yasal e-Fatura veya e-Arşiv Fatura düzenlemez.</strong> Türkiye'de
+          fatura ya anlaşmalı matbaada bastırılmış matbu belgeyle ya da GİB sistemi üzerinden
+          düzenlenir; bir PDF'i kendiniz üretmek fatura düzenlemek anlamına gelmez.
+        </p>
+        <p>
+          Üretilen belgeler <strong>proforma fatura, teklif, ön bilgilendirme ve fatura
+          taslağı</strong> niteliğindedir. Vergi mükellefiyseniz asıl faturayı mali
+          müşavirinizin veya e-belge entegratörünüzün sistemi üzerinden kesin.
+        </p>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanaklar</h2>
+          <ul>
+            <li>213 sayılı <strong>Vergi Usul Kanunu m.229-232</strong> — faturanın tanımı, şekli ve nizamı — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li><strong>509 Sıra No.lu VUK Genel Tebliği</strong> — e-Fatura ve e-Arşiv uygulaması — <a href="https://ebelge.gib.gov.tr/" rel="noopener">GİB e-Belge Portalı</a></li>
+            <li>3065 sayılı <strong>KDV Kanunu m.9</strong> ve KDV Genel Uygulama Tebliği — kısmi tevkifat — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li><strong>ISO 7064 mod-97</strong> — IBAN sağlama algoritması</li>
+            <li>Kaynak kodu ve testler — <a href="https://github.com/onerkoray/onerkoray.github.io" rel="noopener">GitHub deposu</a> (MIT)</li>
+          </ul>
+          <p class="muted-note">
+            Bilgilendirme amaçlıdır; mali müşavirlik hizmeti yerine geçmez. Bir bilgi
+            güncelliğini yitirdiyse <a href="../../iletisim/">bana bildirin</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili sayfalar</h2>
+        <ul>
+          <li><a href="../">Fatura ve Teklif Merkezi</a> — aracın kendisi.</li>
+          <li><a href="../../makaleler/proforma-fatura-nedir/">Proforma fatura nedir?</a> — teklif, proforma ve fatura arasındaki fark.</li>
+          <li><a href="../../makaleler/kdv-tevkifati-nedir/">KDV tevkifatı nedir?</a> — hangi işte hangi oran, faturaya nasıl yazılır.</li>
+          <li><a href="../../serbest-meslek-makbuzu-hesaplama/">Serbest Meslek Makbuzu</a> — stopaj ve KDV tevkifatıyla makbuz.</li>
+          <li><a href="../../bordro/">Bordro Motoru</a> — sitenin diğer açık hesap çekirdeği.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanaklar</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanaklar</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/onerkoray.github.io" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yasal fatura için mali müşavirinize veya e-Belge entegratörünüze başvurun.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../../makaleler/">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>
