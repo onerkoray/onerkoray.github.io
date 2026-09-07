@@ -387,3 +387,87 @@ html { scroll-behavior: smooth; }
   .hero-quick ul::before { transition: opacity .2s ease; }
   .hero-quick.is-visible li { animation: none; }
 }
+
+
+/* ---- Kart karolari ----
+   Karo eskiden 600x200 bir .webp goruntusuydu. Goruntu oldugu icin
+   icindeki sembol hareket edemiyor, yuksek yogunluklu ekranda
+   bulaniklasiyor ve 27 istek / 116KB tutuyordu. Artik sayfanin kendi
+   ogesi: zemin CSS gradyani, sembol gercek SVG (tools/kart-karo.py,
+   kaynak tools/card-icons.json).
+
+   Olculer 1200x400'luk eski tasarimdan BIREBIR tasindi; container query
+   birimi (cqw) sayesinde oran korunuyor: 1200px = 100cqw, yani eski
+   72px kenar bosluğu 6cqw, 150px sembol 12.5cqw, 26px nokta araligi
+   2.1667cqw. Karo kucultuldugunde de ayni kompozisyon cikiyor. */
+.karo {
+  container-type: inline-size;
+  position: relative; aspect-ratio: 3 / 1; overflow: hidden;
+  border-block-end: 1px solid var(--border);
+  background-image:
+    radial-gradient(63.3cqw 105cqw at 88% -10%, rgba(255,255,255,.13), transparent 62%),
+    linear-gradient(115deg, var(--k1) 0%, var(--k2) 100%);
+  transition: transform .35s cubic-bezier(.34,1.4,.64,1);
+}
+/* Kategoriye gore ton farki - TEK hue ailesi icinde derinlik kademesi.
+   Degerler eski karo ureteci make-card-tiles.py'den tasindi; o
+   dosya kaldirildi, tek dogruluk kaynagi artik burasi. */
+.karo--maas  { --k1: #053b33; --k2: #0e7c66; }
+.karo--vergi { --k1: #06413f; --k2: #11888a; }
+.karo--genel { --k1: #0d4536; --k2: #37a06f; }
+
+/* Nokta dokusu. Kaymanin dikissiz olmasi icin katman bir desen boyu
+   buyutuluyor ve tam bir desen boyu oteleniyor. */
+.karo::before {
+  content: ""; position: absolute; inset: -2.1667cqw 0 0 -2.1667cqw;
+  background-image: radial-gradient(rgba(255,255,255,.10) 0.1167cqw, transparent 0.1167cqw);
+  background-size: 2.1667cqw 2.1667cqw;
+  opacity: .30;
+  animation: karoDoku 26s linear infinite;
+}
+@keyframes karoDoku {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(2.1667cqw, 2.1667cqw, 0); }
+}
+
+/* Sagdaki dikey cizgi */
+.karo::after {
+  content: ""; position: absolute; right: 6cqw; top: 50%;
+  width: .333cqw; height: 12.5cqw; border-radius: 99px;
+  transform: translateY(-50%);
+  background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.12));
+  transition: height .35s cubic-bezier(.34,1.4,.64,1), opacity .3s ease;
+}
+
+.karo-ikon {
+  position: absolute; left: 6cqw; top: 50%;
+  inline-size: 12.5cqw; block-size: 12.5cqw;
+  margin-block-start: -6.25cqw;
+  color: #fff; opacity: .97;
+  animation: karoNefes 7s ease-in-out infinite;
+  transition: transform .35s cubic-bezier(.34,1.4,.64,1);
+}
+.karo-ikon svg {
+  inline-size: 100%; block-size: 100%; display: block;
+  stroke-width: 1.6;      /* karo olceginde 2 kalin duruyordu */
+}
+@keyframes karoNefes {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-.55cqw) scale(1.035); }
+}
+/* Yirmi yedi karo ayni anda nefes alirsa izgara bir butun gibi atiyor.
+   Bes kovaya bolunerek faz kaydiriliyor; hareket var, ritim yok. */
+.project-grid > li:nth-child(5n+1) .karo-ikon { animation-delay: 0s; }
+.project-grid > li:nth-child(5n+2) .karo-ikon { animation-delay: -1.4s; }
+.project-grid > li:nth-child(5n+3) .karo-ikon { animation-delay: -2.8s; }
+.project-grid > li:nth-child(5n+4) .karo-ikon { animation-delay: -4.2s; }
+.project-grid > li:nth-child(5n+5) .karo-ikon { animation-delay: -5.6s; }
+
+.project-card:hover .karo { transform: scale(1.03); }
+.project-card:hover .karo-ikon { transform: scale(1.1); }
+.project-card:hover .karo::after { height: 17cqw; opacity: .85; }
+
+@media (prefers-reduced-motion: reduce) {
+  .karo, .karo::before, .karo-ikon, .karo::after { animation: none; transition: none; }
+  .project-card:hover .karo, .project-card:hover .karo-ikon { transform: none; }
+}
