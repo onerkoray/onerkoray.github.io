@@ -190,23 +190,35 @@ def main():
             bulgu("DESCRIPTION TEKRAR", ", ".join(ps), d[:60])
 
     # 7) sitemap kapsamı
+    #
+    # noindex sayfalar bu kuralın dışındadır ve KURALI TERSİNE ÇEVİRİR:
+    # "dizine girme" diyen bir sayfayı sitemap'e koymak Google'a çelişkili iki
+    # sinyal göndermek olur. Bu yüzden noindex sayfa sitemap'te OLMAMALIDIR;
+    # varsa bulgu üretilir.
     if os.path.exists("sitemap.xml"):
         sm = oku("sitemap.xml")
         sm_urls = set(re.findall(r"<loc>https://korayoner\.dev/(.*?)</loc>", sm))
         sayfa_urls = set()
+        noindex_urls = set()
         for p in sayfalar:
             if denetim_disi(p):
                 continue
             if p.endswith("/index.html"):
-                sayfa_urls.add(p[: -len("index.html")])
+                u = p[: -len("index.html")]
             elif p == "index.html":
-                sayfa_urls.add("")
+                u = ""
             else:
-                sayfa_urls.add(p)
+                u = p
+            if re.search(r'<meta[^>]+name="robots"[^>]*noindex', oku(p), re.I):
+                noindex_urls.add(u)
+            else:
+                sayfa_urls.add(u)
         for u in sorted(sayfa_urls - sm_urls):
             bulgu("SITEMAP EKSIK", u or "(ana sayfa)")
-        for u in sorted(sm_urls - sayfa_urls):
+        for u in sorted(sm_urls - sayfa_urls - noindex_urls):
             bulgu("SITEMAP FAZLA", u, "sayfa dosyasi yok")
+        for u in sorted(sm_urls & noindex_urls):
+            bulgu("SITEMAP CELISKI", u, "sayfa noindex ama sitemap'te")
 
     # rapor
     print("%d sayfa tarandi, %d bulgu" % (len(sayfalar), len(bulgular)))

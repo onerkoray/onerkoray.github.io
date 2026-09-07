@@ -62,6 +62,13 @@ jobs:
       - name: Araç künyeleri güncel mi
         run: python tools/metodoloji-blogu.py --check
 
+      - name: Maaş sayfaları güncel mi
+        # Bu 28 sayfa bir zamanlar birbirinin rakam değiştirilmiş kopyasıydı;
+        # kelime örtüşmeleri 0,813 idi. Seçili 8'i motordan üretilen ve elle
+        # yazılmış bölümler alıyor, kalan 20'si noindex. Bu kontrol hem blokların
+        # motorla uyumunu hem de noindex ile sitemap'in çelişmemesini doğrular.
+        run: node tools/maas-sayfalari.js --check
+
       - name: Diyagramlar güncel mi
         # Şema içeriği motordan ve depodan üretiliyor; elle çizilmiş bir şema
         # eskirken sessiz kalır, üretilen şema burada patlar.
