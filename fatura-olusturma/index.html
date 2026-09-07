@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fatura Oluşturma ve PDF İndirme | Koray Öner</title>
+  <meta name="description" content="Ücretsiz fatura ve proforma oluşturucu: KDV, satır ve genel iskonto, tevkifat, tutar yazıyla, dört şablon ve PDF. Üyelik yok; veriler tarayıcınızdan çıkmaz.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/fatura-olusturma/">
+
+  <link rel="icon" href="../favicon.ico?v=2" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Fatura Oluşturma ve PDF İndirme">
+  <meta property="og:description" content="KDV, iskonto, tevkifat ve tutar yazıyla. Dört şablon, anında PDF. Üyelik yok, veriler tarayıcınızdan çıkmıyor.">
+  <meta property="og:url" content="https://korayoner.dev/fatura-olusturma/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/fatura-olusturma-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fatura oluşturma ve PDF indirme aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fatura Oluşturma ve PDF İndirme">
+  <meta name="twitter:description" content="KDV, iskonto, tevkifat ve tutar yazıyla dört şablonda fatura. Üyeliksiz, tarayıcıda çalışır.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/fatura-olusturma-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/fatura-olusturma/#app",
+        "name": "Fatura Oluşturma",
+        "url": "https://korayoner.dev/fatura-olusturma/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "featureList": "KDV oranları, satır ve genel iskonto, KDV tevkifatı, tutar yazıyla, VKN/TCKN doğrulaması, çok para birimi, dört fatura şablonu, PDF çıktısı, JSON kaydet ve yükle",
+        "description": "Firma ve müşteri bilgileri, ürün/hizmet kalemleri, KDV, iskonto ve tevkifatla fatura veya proforma fatura hazırlayıp PDF olarak indirmenizi sağlar. Tüm hesap ve veri tarayıcıda kalır."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Fatura Oluşturma", "item": "https://korayoner.dev/fatura-olusturma/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Bu araçla oluşturulan belge yasal bir fatura mıdır?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Türkiye'de yasal fatura ya matbu (anlaşmalı matbaada bastırılmış, seri ve sıra numaralı) belge olarak ya da e-Fatura/e-Arşiv Fatura olarak GİB sistemi üzerinden düzenlenir. Bir PDF'i kendiniz üretmekle fatura düzenlemiş olmazsınız. Bu araç proforma fatura, teklif, ön bilgilendirme belgesi ve fatura taslağı üretir; kesilecek asıl faturanın tutarlarını önceden görmek, müşteriye fiyat sunmak ve kendi kaydınızı tutmak için kullanılır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Proforma fatura nedir, normal faturadan farkı nedir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Proforma fatura, satış gerçekleşmeden önce alıcıya verilen ve teklif niteliği taşıyan belgedir. Muhasebe kaydına konu olmaz, KDV doğurmaz ve ödeme yükümlülüğü yaratmaz; fiyatı, miktarı, teslim ve ödeme koşullarını yazılı hale getirir. Asıl fatura, mal teslim edildikten veya hizmet ifa edildikten sonra düzenlenir ve vergisel sonuç doğuran belge odur." }
+          },
+          {
+            "@type": "Question",
+            "name": "Faturada tutarın yazıyla yazılması zorunlu mu?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Türkiye'de faturada tutarın hem rakamla hem yazıyla gösterilmesi yerleşik uygulamadır ve Vergi Usul Kanunu'nun fatura nizamına ilişkin düzenlemeleriyle uyumludur. Amacı rakamın sonradan değiştirilmesini zorlaştırmaktır: 1.000 TL'yi 11.000 TL yapmak kolaydır, ama yazıyla yazılmış tutarı da tutarlı biçimde değiştirmek gerekir. Bu araç yazıyla karşılığı otomatik üretir; 'bir bin' değil 'bin', 'bir yüz' değil 'yüz' gibi Türkçe kuralları uygular." }
+          },
+          {
+            "@type": "Question",
+            "name": "KDV tevkifatı nedir, faturaya nasıl yansır?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Kısmi KDV tevkifatında, hesaplanan KDV'nin bir kısmını satıcı değil alıcı doğrudan vergi dairesine öder. Örneğin 100.000 TL matrahlı, %20 KDV'li bir işlemde KDV 20.000 TL'dir; 5/10 tevkifat uygulanırsa 10.000 TL'yi alıcı beyan eder, satıcı yalnızca 10.000 TL KDV tahsil eder ve faturada ödenecek tutar 110.000 TL olur. Fatura toplamı değişmez, tahsil edilecek tutar değişir. Yapı işleri, temizlik, danışmanlık ve yemek hizmeti gibi işlerde 2/10 ile 9/10 arasında oranlar uygulanır." }
+          },
+          {
+            "@type": "Question",
+            "name": "İskonto KDV'den önce mi sonra mı düşülür?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Önce. İskonto matrahı azaltır; KDV, iskonto düşüldükten sonraki tutar üzerinden hesaplanır. Bu ayrım özellikle KDV oranı karışık faturalarda önemlidir: %20 ve %1 oranlı kalemleri olan bir faturada genel iskontoyu toplamdan düşmek KDV'yi yanlış hesaplar. Bu araç genel iskontoyu satırların ara toplamına orantılı biçimde dağıtır, böylece her oranın matrahı doğru azalır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Girdiğim firma ve müşteri bilgileri bir sunucuya gidiyor mu?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Fatura tamamen tarayıcınızda oluşturulur; hiçbir alan sunucuya gönderilmez. Firma bilgileriniz ve müşteri defteriniz yalnızca sizin tarayıcınızın yerel deposunda (localStorage) saklanır ve dilediğiniz an temizlenebilir. Faturayı JSON olarak indirip başka bir cihazda geri yükleyebilirsiniz." }
+          },
+          {
+            "@type": "Question",
+            "name": "Döviz cinsinden fatura düzenleyebilir miyim?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Evet, USD, EUR ve GBP seçilebilir. Yurt içi işlemlerde döviz üzerinden düzenlenen faturalarda Türk Lirası karşılığının da gösterilmesi gerekir; araç, girdiğiniz kur üzerinden TL karşılığını belgeye otomatik yazar. Kur alanına Türkiye Cumhuriyet Merkez Bankası'nın ilgili günkü kuru girilir; güncel kurlara döviz kurları sayfasından bakabilirsiniz." }
+          },
+          {
+            "@type": "Question",
+            "name": "PDF nasıl indiriliyor?",
+            "acceptedAnswer": { "@type": "Answer", "text": "PDF indir düğmesi tarayıcının yazdırma penceresini açar; hedef olarak 'PDF olarak kaydet' seçilir. Sayfa A4 için hazırlanmıştır ve çıktıda yalnızca fatura belgesi yer alır, site menüsü ve formlar çıkmaz. Tarayıcının yazdırma ayarlarında 'Arka plan grafikleri' seçeneğini açık bırakmak, renkli şablonların doğru basılması için gereklidir." }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="#olustur">Oluştur</a></li>
+          <li><a href="#nasil">Nasıl kullanılır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Fatura Oluşturma
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Üyeliksiz · Tarayıcıda kalır</p>
+        <img class="tool-logo" src="favicon.svg" width="60" height="60" alt="" aria-hidden="true" decoding="async">
+        <h1 id="hero-title">Fatura Oluşturma ve PDF İndirme</h1>
+        <p class="lede">
+          Firma ve müşteri bilgilerinizi, kalemleri, KDV'yi ve iskontoyu girin;
+          belge sağda <strong>anında ve gerçek boyutuyla</strong> oluşsun, tek tuşla PDF'e kaydedin.
+          KDV tevkifatı, tutar yazıyla ve VKN doğrulaması dahil.
+          <strong>Hiçbir bilgi sunucuya gönderilmez.</strong>
+        </p>
+        <p class="lede lede-uyari">
+          Bu araç <strong>proforma fatura, teklif ve fatura taslağı</strong> üretir.
+          Yasal e-Fatura veya e-Arşiv Fatura düzenlemez —
+          <a href="#yasal">sebebini aşağıda açıkladım</a>.
+        </p>
+      </div>
+    </section>
+
+    <section id="olustur" class="calc" data-rapor="yok" aria-labelledby="calc-title">
+      <div class="wrap wrap-genis">
+        <h2 id="calc-title" class="visually-hidden">Fatura oluşturma aracı</h2>
+
+        <div class="fatura-duzen">
+
+          <!-- ============================ DÜZENLEYİCİ ============================ -->
+          <form id="fatura-form" class="fatura-editor no-print" autocomplete="off">
+
+            <div class="editor-bar">
+              <p class="editor-bar-grup">
+                <label for="in-sablon">Şablon</label>
+                <select id="in-sablon">
+                  <option value="klasik">Klasik</option>
+                  <option value="modern">Modern</option>
+                  <option value="minimal">Minimal</option>
+                  <option value="kurumsal">Kurumsal</option>
+                </select>
+              </p>
+              <p class="editor-bar-grup">
+                <span id="renk-etiket">Vurgu rengi</span>
+                <span class="renk-secim" role="radiogroup" aria-labelledby="renk-etiket" id="renk-secim"></span>
+              </p>
+            </div>
+
+            <details class="editor-blok" open>
+              <summary><span class="blok-no">1</span> Firma bilgileriniz <span class="blok-ipucu">satıcı</span></summary>
+              <div class="blok-ic">
+                <div class="alan-izgara">
+                  <p class="alan alan-genis">
+                    <label for="in-firma-unvan">Ünvan / ad soyad</label>
+                    <input type="text" id="in-firma-unvan" placeholder="Örnek Yazılım Ltd. Şti.">
+                  </p>
+                  <p class="alan alan-genis">
+                    <label for="in-firma-adres">Adres</label>
+                    <textarea id="in-firma-adres" rows="2" placeholder="Mahalle, cadde, no, ilçe/il"></textarea>
+                  </p>
+                  <p class="alan">
+                    <label for="in-firma-vd">Vergi dairesi</label>
+                    <input type="text" id="in-firma-vd" placeholder="Kadıköy">
+                  </p>
+                  <p class="alan">
+                    <label for="in-firma-vkn">VKN / TCKN</label>
+                    <input type="text" id="in-firma-vkn" inputmode="numeric" placeholder="10 veya 11 hane">
+                    <span class="alan-durum" id="durum-firma-vkn" aria-live="polite"></span>
+                  </p>
+                  <p class="alan">
+                    <label for="in-firma-tel">Telefon</label>
+                    <input type="text" id="in-firma-tel" inputmode="tel" placeholder="0212 000 00 00">
+                  </p>
+                  <p class="alan">
+                    <label for="in-firma-eposta">E-posta</label>
+                    <input type="text" id="in-firma-eposta" inputmode="email" placeholder="fatura@ornek.com">
+                  </p>
+                  <p class="alan">
+                    <label for="in-firma-web">Web sitesi</label>
+                    <input type="text" id="in-firma-web" placeholder="ornek.com">
+                  </p>
+                  <p class="alan">
+                    <label for="in-firma-mersis">MERSİS / Ticaret sicil</label>
+                    <input type="text" id="in-firma-mersis" placeholder="isteğe bağlı">
+                  </p>
+                  <p class="alan alan-genis">
+                    <label for="in-firma-iban">IBAN</label>
+                    <input type="text" id="in-firma-iban" placeholder="TR00 0000 0000 0000 0000 0000 00">
+                    <span class="alan-durum" id="durum-iban" aria-live="polite"></span>
+                  </p>
+                  <p class="alan alan-genis">
+                    <label for="in-logo">Logo (isteğe bağlı)</label>
+                    <input type="file" id="in-logo" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+                    <span class="alan-not">Logo yalnızca sizin tarayıcınızda saklanır, hiçbir yere yüklenmez. En fazla 1 MB.</span>
+                  </p>
+                </div>
+                <p class="blok-aksiyon">
+                  <button type="button" class="btn btn-ghost btn-kucuk" id="btn-firma-kaydet">Firma bilgilerimi bu tarayıcıya kaydet</button>
+                  <button type="button" class="btn btn-ghost btn-kucuk" id="btn-logo-sil">Logoyu kaldır</button>
+                  <span class="alan-durum" id="durum-firma" aria-live="polite"></span>
+                </p>
+              </div>
+            </details>
+
+            <details class="editor-blok" open>
+              <summary><span class="blok-no">2</span> Müşteri bilgileri <span class="blok-ipucu">alıcı</span></summary>
+              <div class="blok-ic">
+                <p class="alan alan-genis">
+                  <label for="in-musteri-kayitli">Kayıtlı müşteri</label>
+                  <select id="in-musteri-kayitli"><option value="">— Yeni müşteri —</option></select>
+                  <span class="alan-not">Müşteri defteri bu tarayıcıda tutulur.</span>
+                </p>
+                <div class="alan-izgara">
+                  <p class="alan alan-genis">
+                    <label for="in-musteri-unvan">Ünvan / ad soyad</label>
+                    <input type="text" id="in-musteri-unvan" placeholder="Alıcı Ticaret A.Ş.">
+                  </p>
+                  <p class="alan alan-genis">
+                    <label for="in-musteri-adres">Adres</label>
+                    <textarea id="in-musteri-adres" rows="2"></textarea>
+                  </p>
+                  <p class="alan">
+                    <label for="in-musteri-vd">Vergi dairesi</label>
+                    <input type="text" id="in-musteri-vd">
+                  </p>
+                  <p class="alan">
+                    <label for="in-musteri-vkn">VKN / TCKN</label>
+                    <input type="text" id="in-musteri-vkn" inputmode="numeric">
+                    <span class="alan-durum" id="durum-musteri-vkn" aria-live="polite"></span>
+                  </p>
+                  <p class="alan">
+                    <label for="in-musteri-tel">Telefon</label>
+                    <input type="text" id="in-musteri-tel" inputmode="tel">
+                  </p>
+                  <p class="alan">
+                    <label for="in-musteri-eposta">E-posta</label>
+                    <input type="text" id="in-musteri-eposta" inputmode="email">
+                  </p>
+                </div>
+                <p class="blok-aksiyon">
+                  <button type="button" class="btn btn-ghost btn-kucuk" id="btn-musteri-kaydet">Müşteriyi deftere ekle</button>
+                  <button type="button" class="btn btn-ghost btn-kucuk" id="btn-musteri-sil">Seçili müşteriyi sil</button>
+                  <span class="alan-durum" id="durum-musteri" aria-live="polite"></span>
+                </p>
+              </div>
+            </details>
+
+            <details class="editor-blok" open>
+              <summary><span class="blok-no">3</span> Belge bilgileri</summary>
+              <div class="blok-ic">
+                <div class="alan-izgara">
+                  <p class="alan">
+                    <label for="in-belge-turu">Belge türü</label>
+                    <select id="in-belge-turu">
+                      <option value="PROFORMA FATURA">Proforma fatura</option>
+                      <option value="FATURA">Fatura</option>
+                      <option value="TEKLİF">Teklif</option>
+                      <option value="ÖN BİLGİLENDİRME">Ön bilgilendirme formu</option>
+                      <option value="MAKBUZ">Makbuz</option>
+                    </select>
+                  </p>
+                  <p class="alan">
+                    <label for="in-belge-no">Belge numarası</label>
+                    <input type="text" id="in-belge-no" placeholder="PRF2026000001">
+                  </p>
+                  <p class="alan">
+                    <label for="in-tarih">Düzenleme tarihi</label>
+                    <input type="date" id="in-tarih">
+                  </p>
+                  <p class="alan">
+                    <label for="in-vade">Vade tarihi</label>
+                    <input type="date" id="in-vade">
+                  </p>
+                  <p class="alan">
+                    <label for="in-odeme-kosulu">Ödeme koşulu</label>
+                    <input type="text" id="in-odeme-kosulu" placeholder="Fatura tarihinden itibaren 30 gün">
+                  </p>
+                  <p class="alan">
+                    <label for="in-referans">Sipariş / referans no</label>
+                    <input type="text" id="in-referans" placeholder="isteğe bağlı">
+                  </p>
+                  <p class="alan">
+                    <label for="in-para">Para birimi</label>
+                    <select id="in-para">
+                      <option value="TRY">₺ Türk Lirası</option>
+                      <option value="USD">$ ABD Doları</option>
+                      <option value="EUR">€ Euro</option>
+                      <option value="GBP">£ İngiliz Sterlini</option>
+                    </select>
+                  </p>
+                  <p class="alan" id="alan-kur" hidden>
+                    <label for="in-kur">TCMB kuru (1 birim = ? TL)</label>
+                    <input type="text" id="in-kur" inputmode="decimal" value="1">
+                    <span class="alan-not">Dövizli faturada TL karşılığı belgede gösterilir. <a href="../doviz-kurlari/">Güncel kurlar</a>.</span>
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details class="editor-blok" open>
+              <summary><span class="blok-no">4</span> Ürün / hizmet kalemleri</summary>
+              <div class="blok-ic">
+                <div class="kalem-basliklar" aria-hidden="true">
+                  <span>Açıklama</span><span>Miktar</span><span>Birim</span>
+                  <span>Birim fiyat</span><span>İskonto</span><span>KDV</span><span>Tutar (KDV hariç)</span><span></span>
+                </div>
+                <div id="kalem-listesi"></div>
+                <p class="blok-aksiyon">
+                  <button type="button" class="btn btn-ghost btn-kucuk" id="btn-kalem-ekle">+ Kalem ekle</button>
+                  <span class="alan-not">İskonto kutusunun yanındaki %/₺ düğmesiyle oran ve tutar arasında geçiş yapabilirsiniz.</span>
+                </p>
+              </div>
+            </details>
+
+            <details class="editor-blok">
+              <summary><span class="blok-no">5</span> İskonto, tevkifat ve notlar</summary>
+              <div class="blok-ic">
+                <div class="alan-izgara">
+                  <p class="alan">
+                    <label for="in-genel-iskonto">Genel iskonto</label>
+                    <span class="girdi-ikili">
+                      <input type="text" id="in-genel-iskonto" inputmode="decimal" value="0">
+                      <button type="button" class="birim-dugme" id="btn-genel-iskonto-tur"
+                              aria-label="İskonto türünü değiştir">%</button>
+                    </span>
+                    <span class="alan-not">Kalemlere ara toplam oranında dağıtılır, KDV matrahı buna göre düşer.</span>
+                  </p>
+                  <p class="alan">
+                    <label for="in-tevkifat">KDV tevkifatı</label>
+                    <select id="in-tevkifat"></select>
+                    <span class="alan-not">Hesaplanan KDV'nin bu kısmını alıcı doğrudan vergi dairesine öder.</span>
+                  </p>
+                  <p class="alan alan-genis">
+                    <label for="in-notlar">Notlar / açıklama</label>
+                    <textarea id="in-notlar" rows="3" placeholder="Teslim koşulları, garanti, banka bilgisi…"></textarea>
+                  </p>
+                  <p class="alan alan-genis">
+                    <label for="in-kosullar">Şartlar (küçük punto, belgenin altında)</label>
+                    <textarea id="in-kosullar" rows="2"></textarea>
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <div class="editor-aksiyonlar">
+              <button type="button" class="btn btn-primary" id="btn-pdf">PDF olarak indir</button>
+              <button type="button" class="btn btn-ghost" id="btn-json-kaydet">Faturayı kaydet (.json)</button>
+              <label class="btn btn-ghost btn-dosya" for="in-json-yukle">Fatura yükle (.json)</label>
+              <input type="file" id="in-json-yukle" accept="application/json,.json" hidden>
+              <button type="button" class="btn btn-ghost" id="btn-ornek">Örnek doldur</button>
+              <button type="button" class="btn btn-ghost" id="btn-temizle">Temizle</button>
+            </div>
+            <p class="alan-durum editor-durum" id="durum-genel" aria-live="polite"></p>
+          </form>
+
+          <!-- ============================ ÖNİZLEME ============================ -->
+          <div class="onizleme-sutun">
+            <p class="onizleme-baslik no-print">
+              <span>Canlı önizleme</span>
+              <span class="onizleme-not">PDF çıktısı birebir budur</span>
+            </p>
+
+            <div id="onizleme" class="onizleme-kagit">
+              <article id="belge" class="belge sablon-klasik" data-renk="yesil" aria-live="polite">
+
+                <header class="belge-ust">
+                  <div class="belge-satici">
+                    <img id="bl-logo" class="belge-logo" src="" alt="" width="180" height="60" hidden>
+                    <div class="belge-satici-ad" id="bl-firma-unvan">Firma ünvanınız</div>
+                    <div class="belge-satici-detay">
+                      <div id="bl-firma-adres"></div>
+                      <div id="bl-firma-vergi"></div>
+                      <div id="bl-firma-iletisim"></div>
+                      <div id="bl-firma-mersis"></div>
+                    </div>
+                  </div>
+                  <div class="belge-kimlik">
+                    <div class="belge-tur" id="bl-belge-turu">PROFORMA FATURA</div>
+                    <dl class="belge-kimlik-liste">
+                      <div><dt>Belge No</dt><dd id="bl-belge-no">—</dd></div>
+                      <div><dt>Düzenleme</dt><dd id="bl-tarih">—</dd></div>
+                      <div class="bl-satir-vade"><dt>Vade</dt><dd id="bl-vade">—</dd></div>
+                      <div class="bl-satir-referans"><dt>Referans</dt><dd id="bl-referans">—</dd></div>
+                    </dl>
+                  </div>
+                </header>
+
+                <section class="belge-taraflar">
+                  <div class="belge-taraf">
+                    <div class="belge-taraf-etiket">Sayın (Alıcı)</div>
+                    <div class="belge-taraf-ad" id="bl-musteri-unvan">Müşteri ünvanı</div>
+                    <div class="belge-taraf-detay">
+                      <div id="bl-musteri-adres"></div>
+                      <div id="bl-musteri-vergi"></div>
+                      <div id="bl-musteri-iletisim"></div>
+                    </div>
+                  </div>
+                  <div class="belge-taraf belge-odeme">
+                    <div class="belge-taraf-etiket">Ödeme bilgileri</div>
+                    <div class="belge-taraf-detay">
+                      <div id="bl-odeme-kosulu"></div>
+                      <div id="bl-iban"></div>
+                      <div id="bl-kur"></div>
+                    </div>
+                  </div>
+                </section>
+
+                <div class="belge-tablo-kap">
+                  <table class="belge-tablo">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="s-no">#</th>
+                        <th scope="col" class="s-aciklama">Açıklama</th>
+                        <th scope="col" class="s-sayi">Miktar</th>
+                        <th scope="col" class="s-sayi">Birim fiyat</th>
+                        <th scope="col" class="s-sayi s-iskonto">İskonto</th>
+                        <th scope="col" class="s-sayi">KDV</th>
+                        <th scope="col" class="s-sayi">Tutar (KDV hariç)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="bl-kalemler"></tbody>
+                  </table>
+                </div>
+
+                <section class="belge-alt-blok">
+                  <div class="belge-sol">
+                    <div class="belge-yaziyla">
+                      <span class="belge-yaziyla-etiket">Yalnız</span>
+                      <span id="bl-yaziyla">Sıfır Türk Lirası</span>
+                      <span class="belge-yaziyla-etiket">#</span>
+                    </div>
+                    <div class="belge-notlar" id="bl-notlar"></div>
+                  </div>
+                  <div class="belge-sag">
+                    <table class="belge-toplam">
+                      <tbody id="bl-toplam"></tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <footer class="belge-dip">
+                  <div class="belge-kosullar" id="bl-kosullar"></div>
+                  <div class="belge-damga" id="bl-damga"></div>
+                </footer>
+
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 7 Eylül 2026 · Hesap çekirdeği 78 testle doğrulanıyor</p>
+
+        <h2 id="nasil">Nasıl kullanılır?</h2>
+        <p>
+          Sıra yukarıdan aşağı: <strong>firma bilgilerinizi bir kez</strong> girip
+          "bu tarayıcıya kaydet" derseniz bir daha yazmanız gerekmez. Müşteriyi deftere
+          eklerseniz sonraki faturalarda listeden seçilir. Kalemleri girdikçe sağdaki belge
+          canlı güncellenir; gördüğünüz sayfa, PDF olarak inen sayfanın birebir aynısıdır.
+        </p>
+        <p>
+          Belge numarası otomatik artar: <code>PRF2026000001</code> kaydettiğinizde bir
+          sonraki fatura <code>PRF2026000002</code> ile açılır. Numaranın sonundaki rakam
+          dizisi artırılır, önündeki harf ve yıl kısmına dokunulmaz.
+        </p>
+
+        <h2 id="iskonto">İskonto neden satırlara dağıtılıyor?</h2>
+        <p>
+          Genel iskontoyu fatura toplamından düşmek kolaydır ve çoğu ücretsiz araç bunu
+          yapar. KDV oranı tek olduğunda sonucu değiştirmez; <strong>oranlar
+          karıştığında yanlış sonuç verir</strong>. Örnek: biri %20, biri %1 KDV'li iki
+          kalemden oluşan 2.000 TL'lik bir faturaya %10 iskonto uygulayalım.
+        </p>
+        <p class="formula">Doğru: (900 × %20) + (900 × %1) = 180 + 9 = <strong>189 TL KDV</strong></p>
+        <p>
+          İskontoyu toplamdan düşüp KDV'yi eski matrahtan hesaplayan bir araç 210 TL bulur;
+          iskontonun tamamını %20'lik kalemden düşen bir araç 190 TL bulur. Üçü de "çalışıyor"
+          görünür. Bu araç iskontoyu satırların ara toplamına orantılı dağıtır ve
+          <strong>kuruş artığını kaybetmez</strong>: 1 kuruşluk iskonto üç satıra bölündüğünde
+          bile kalemlerin toplamı fatura toplamına eşit kalır.
+        </p>
+
+        <h2 id="yazi">Tutar neden yazıyla da yazılıyor?</h2>
+        <p>
+          Faturada tutarın yazıyla gösterilmesi Türkiye'de yerleşik bir uygulamadır ve amacı
+          basittir: <strong>rakamla oynamayı zorlaştırmak</strong>. 1.000'i 11.000 yapmak bir
+          hamledir; yazıyla yazılmış tutarı da tutarlı biçimde değiştirmek gerekir.
+        </p>
+        <p>
+          Türkçenin kuralları burada kolayca ıskalanır. "1.000 TL" <em>bir bin lira</em> değil
+          <strong>bin lira</strong>; "100 TL" <em>bir yüz lira</em> değil <strong>yüz
+          lira</strong>; ama "1.000.000 TL" gerçekten <strong>bir milyon lira</strong>. Otomatik
+          üretilen yazıyla tutarların çoğu bu üçünden en az birinde takılır. Buradaki dönüştürücü
+          bu kalıpları ayrı ayrı test ediyor.
+        </p>
+
+        <h2 id="tevkifat">KDV tevkifatı faturaya nasıl yansır?</h2>
+        <p>
+          Kısmi tevkifatta hesaplanan KDV'nin bir bölümünü satıcı tahsil etmez;
+          alıcı doğrudan vergi dairesine öder. Fatura toplamı değişmez,
+          <strong>tahsil edilecek tutar değişir</strong>. 100.000 TL matrah, %20 KDV ve 5/10
+          tevkifat için:
+        </p>
+        <ul>
+          <li>Hesaplanan KDV: <strong>20.000 TL</strong></li>
+          <li>Tevkif edilen KDV (5/10): <strong>10.000 TL</strong> — alıcı beyan eder</li>
+          <li>Tahsil edilecek KDV: <strong>10.000 TL</strong></li>
+          <li>Fatura genel toplamı: 120.000 TL · <strong>Ödenecek: 110.000 TL</strong></li>
+        </ul>
+        <p>
+          Araç bu ayrımı belgede iki ayrı satır olarak gösterir. Hangi işlemde hangi oranın
+          uygulanacağı işin türüne bağlıdır; oranı siz seçersiniz.
+        </p>
+
+        <h2 id="yasal">Bu belge yasal fatura değildir — neden?</h2>
+        <p>
+          Açık olmakta fayda var, çünkü bu konuda internette çok sayıda yanıltıcı sayfa var.
+          Türkiye'de fatura ya <strong>anlaşmalı matbaada bastırılmış matbu belgeyle</strong> ya da
+          <strong>e-Fatura / e-Arşiv Fatura olarak GİB sistemi üzerinden</strong> düzenlenir.
+          Bir PDF'i kendiniz üretmek, fatura düzenlemek anlamına gelmez: belgenin GİB'e
+          raporlanması, imzalanması ve zincire girmesi gerekir.
+        </p>
+        <p>Buradan çıkan belge şunlar için kullanılır:</p>
+        <ul>
+          <li><strong>Proforma fatura</strong> — satış öncesi teklif; muhasebe kaydı doğurmaz.</li>
+          <li><strong>Teklif ve ön bilgilendirme</strong> — fiyat, miktar ve koşulların yazılı hali.</li>
+          <li><strong>Fatura taslağı</strong> — kesilecek asıl faturanın tutarlarını önden görmek.</li>
+          <li><strong>Kendi kaydınız</strong> — serbest çalışanlar için basit bir arşiv.</li>
+        </ul>
+        <p>
+          Vergi mükellefiyseniz asıl faturayı mali müşavirinizin veya entegratörünüzün sistemi
+          üzerinden kesin. Serbest meslek erbabıysanız
+          <a href="../serbest-meslek-makbuzu-hesaplama/">serbest meslek makbuzu hesaplama</a>
+          aracı stopaj ve KDV tevkifatını makbuz mantığıyla hesaplar.
+        </p>
+
+        <h2 id="gizlilik">Verileriniz nereye gidiyor?</h2>
+        <p>
+          Hiçbir yere. Fatura tarayıcınızda oluşur; ne kalem açıklamaları ne müşteri bilgisi
+          ne de logo sunucuya gönderilir — bu sitede zaten böyle bir uç nokta yok. Firma
+          bilgileriniz ve müşteri defteriniz <strong>yalnızca bu tarayıcının yerel deposunda</strong>
+          durur. Ortak kullanılan bir bilgisayardaysanız işiniz bittiğinde "Temizle" düğmesini
+          kullanın. Faturayı JSON olarak indirip başka bir cihazda geri yükleyebilirsiniz.
+        </p>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanaklar ve kapsam</h2>
+          <ul>
+            <li>213 sayılı <strong>Vergi Usul Kanunu m.229-232</strong> — faturanın tanımı, şekli ve nizamı — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li><strong>509 Sıra No.lu VUK Genel Tebliği</strong> — e-Fatura ve e-Arşiv Fatura uygulaması — <a href="https://ebelge.gib.gov.tr/" rel="noopener">GİB e-Belge Portalı</a></li>
+            <li>3065 sayılı <strong>KDV Kanunu m.9</strong> ve <strong>KDV Genel Uygulama Tebliği</strong> — kısmi tevkifat oran ve kapsamı — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li>KDV oranları (%1, %10, %20) — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a> · <a href="../kdv-hesaplama/">KDV hesaplama aracı</a></li>
+            <li>Döviz kuru referansı — <a href="../doviz-kurlari/">TCMB günlük kurları</a> (her iş günü otomatik güncellenir)</li>
+          </ul>
+          <p class="muted-note">
+            Bu araç bilgilendirme amaçlıdır; mali müşavirlik hizmeti yerine geçmez ve
+            <strong>yasal e-Fatura/e-Arşiv düzenlemez</strong>. Tevkifat oranının işlem türüne
+            uygunluğu kullanıcının sorumluluğundadır. Bir bilgi güncelliğini yitirdiyse
+            <a href="../iletisim/">bana bildirin</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Bu belge yasal fatura yerine geçer mi?</summary><p>Hayır. Yasal fatura ya matbu belgeyle ya da e-Fatura/e-Arşiv olarak GİB üzerinden düzenlenir. Buradan çıkan PDF proforma fatura, teklif veya taslak niteliğindedir.</p></details>
+          <details><summary>Proforma faturanın normal faturadan farkı ne?</summary><p>Proforma satış öncesi verilen tekliftir: muhasebe kaydı doğurmaz, KDV doğurmaz, ödeme yükümlülüğü yaratmaz. Asıl fatura teslim veya ifadan sonra düzenlenir ve vergisel sonucu o doğurur.</p></details>
+          <details><summary>İskonto KDV'den önce mi düşülür?</summary><p>Önce. KDV, iskonto düşüldükten sonraki matrahtan hesaplanır. Genel iskonto bu araçta satırlara orantılı dağıtılır; oranlar karışıksa doğru sonuç ancak böyle çıkar.</p></details>
+          <details><summary>KDV tevkifatı ödenecek tutarı nasıl değiştirir?</summary><p>Fatura toplamı aynı kalır, tahsil edilecek KDV azalır. 100.000 TL matrah + %20 KDV'de 5/10 tevkifatla ödenecek tutar 120.000 değil 110.000 TL olur; kalan 10.000 TL'yi alıcı vergi dairesine öder.</p></details>
+          <details><summary>Tutar yazıyla otomatik mi yazılıyor?</summary><p>Evet. "1.000 TL" için <em>bin lira</em>, "100 TL" için <em>yüz lira</em>, "1.000.000 TL" için <em>bir milyon lira</em> yazar — bu üç kural ayrı ayrı test edilmiştir.</p></details>
+          <details><summary>Girdiğim bilgiler bir sunucuya gidiyor mu?</summary><p>Hayır. Her şey tarayıcınızda kalır; firma bilgisi ve müşteri defteri yalnızca yerel depoda saklanır. Ortak bilgisayarda "Temizle" düğmesini kullanın.</p></details>
+          <details><summary>Dolar veya euro cinsinden fatura kesebilir miyim?</summary><p>Evet. USD, EUR ve GBP seçilebilir; girdiğiniz TCMB kuruyla TL karşılığı belgeye otomatik yazılır. Yurt içi işlemlerde TL karşılığının gösterilmesi gerekir.</p></details>
+          <details><summary>PDF nasıl indiriliyor, yazı tipi bozuluyor mu?</summary><p>"PDF olarak indir" tarayıcının yazdırma penceresini açar; hedefi "PDF olarak kaydet" seçin. Sayfa A4'e göre hazırlanmıştır ve sistem yazı tipleri kullanır, dışarıdan font yüklenmez. Renkli şablonlar için "Arka plan grafikleri" seçeneğini açık bırakın.</p></details>
+          <details><summary>Faturayı sonra düzenleyebilir miyim?</summary><p>Evet. Yazdıklarınız tarayıcıda taslak olarak saklanır ve sayfayı kapatıp açtığınızda geri gelir. Kalıcı arşiv için "Faturayı kaydet (.json)" ile indirip istediğiniz zaman geri yükleyin.</p></details>
+          <details><summary>VKN doğrulaması ne yapıyor?</summary><p>Vergi kimlik numarası ve T.C. kimlik numarası kendi içinde sağlama hanesi taşır. Araç bu sağlamayı kontrol eder ve tek haneli yazım hatalarının tamamını yakalar — yanlış VKN, faturanın en sık ve en sessiz hatasıdır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <ul>
+          <li><a href="../kdv-hesaplama/">KDV Hesaplama</a> — dahil/hariç çevirme, oran bazlı hızlı hesap.</li>
+          <li><a href="../serbest-meslek-makbuzu-hesaplama/">Serbest Meslek Makbuzu</a> — stopaj ve KDV tevkifatıyla brütten nete makbuz.</li>
+          <li><a href="../calisma-bicimi-karsilastirma/">Şahıs mı, limited mi, maaşlı mı?</a> — aynı gelirin dört çalışma biçimindeki net karşılığı.</li>
+          <li><a href="../doviz-kurlari/">Döviz Kurları</a> — TCMB günlük kurları, dövizli fatura için.</li>
+          <li><a href="../isveren-maliyeti-hesaplama/">İşveren Maliyeti</a> — bir çalışanın işverene toplam maliyeti.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanaklar ve kapsam</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanaklar ve kapsam</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/onerkoray.github.io" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yasal fatura için mali müşavirinize veya e-Belge entegratörünüze başvurun.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="fatura.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>
