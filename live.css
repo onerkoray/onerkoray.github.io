@@ -252,29 +252,115 @@ html { scroll-behavior: smooth; }
 /* ---- Hero hızlı erişim paneli ----
    Teknoloji panelinin bıraktığı yeri ürün dolduruyor: ilk ekranda
    en çok kullanılan araçlara doğrudan bağlantı. */
-.hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+.hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) 336px; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
 @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; } }
 
+/* Panel eskiden bes ayni metin blogundan olusuyordu: goz tutunacak yer
+   bulamiyor, satirlarin tiklanabilir oldugu ancak uzerine gelince
+   anlasiliyordu. Uc sey eklendi ve ucu de zaten var olan sistemlerden
+   geliyor, panele ozel bir sus degil:
+     - satir ikonu -> tools/card-icons.json (proje kartlarinin kaynagi)
+     - sirali giris -> .reveal'in --reveal-delay kalibi
+     - odak halkasi -> .tech-panel'in var(--focus) konturu
+   Boylece panel sayfanin geri kalanina eklemlenir. */
 .hero-quick {
-  border: 1px solid color-mix(in srgb, var(--brand) 22%, var(--border));
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--brand) 20%, var(--border));
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 72%, transparent);
-  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-  padding: 16px 18px;
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  padding: 15px 15px 13px;
   box-shadow: var(--shadow);
+  overflow: hidden;
+}
+/* Ustte ince marka seridi: panel hero'nun icinde yuzen yabanci bir kutu
+   degil, sayfanin parcasi gibi dursun. */
+.hero-quick::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brand) 24%, var(--brand-strong) 56%, transparent);
+  opacity: .8;
 }
 .hero-quick h2 {
-  margin: 0 0 .6rem; font-size: .74rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted);
+  display: flex; align-items: center; gap: .6rem;
+  margin: 0 0 .55rem; font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .09em; color: var(--text-muted);
 }
-.hero-quick ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.hero-quick h2::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+.hero-quick ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
 .hero-quick a {
-  display: block; padding: 9px 10px; border-radius: 10px;
-  text-decoration: none; color: var(--text); transition: background .18s ease, color .18s ease;
+  display: grid; grid-template-columns: 34px minmax(0, 1fr) 14px;
+  align-items: center; gap: 10px;
+  padding: 8px 9px; border-radius: 11px;
+  text-decoration: none; color: var(--text);
+  transition: background .18s ease, transform .18s cubic-bezier(.22,1,.36,1);
 }
-.hero-quick a:hover, .hero-quick a:focus-visible { background: color-mix(in srgb, var(--brand) 10%, transparent); }
-.hero-quick a span { display: block; font-weight: 650; font-size: .94rem; }
-.hero-quick a small { display: block; margin-top: 1px; font-size: .78rem; color: var(--text-muted); line-height: 1.4; }
-.hero-quick a:hover span { color: var(--brand-strong); }
-.hero-quick__foot { margin: .7rem 0 0; padding-top: .6rem; border-top: 1px solid var(--border); font-size: .84rem; }
-.hero-quick__foot a { color: var(--brand-strong); font-weight: 650; text-decoration: none; padding: 0; }
+.hq-ico {
+  display: grid; place-items: center;
+  inline-size: 34px; block-size: 34px; border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--brand) 24%, transparent);
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+  color: var(--brand-strong);
+  transition: background .2s ease, border-color .2s ease, color .2s ease,
+              transform .2s cubic-bezier(.22,1,.36,1);
+}
+.hq-ico svg { inline-size: 17px; block-size: 17px; display: block; }
+.hq-yazi { min-inline-size: 0; }
+.hq-ad { display: block; font-weight: 650; font-size: .93rem; line-height: 1.25;
+  transition: color .18s ease; }
+.hero-quick a small { display: block; margin-top: 2px; font-size: .775rem;
+  color: var(--text-muted); line-height: 1.35; }
+.hq-ok {
+  inline-size: 14px; block-size: 14px;
+  fill: none; stroke: var(--brand-strong); stroke-width: 2.2;
+  stroke-linecap: round; stroke-linejoin: round;
+  opacity: 0; transform: translateX(-5px);
+  transition: opacity .18s ease, transform .18s cubic-bezier(.22,1,.36,1);
+}
+
+.hero-quick a:hover, .hero-quick a:focus-visible {
+  background: color-mix(in srgb, var(--brand) 9%, transparent);
+  transform: translateX(2px);
+}
+.hero-quick a:hover .hq-ico, .hero-quick a:focus-visible .hq-ico {
+  background: var(--brand); border-color: var(--brand); color: #fff;
+  transform: scale(1.06) rotate(-3deg);
+}
+.hero-quick a:hover .hq-ad, .hero-quick a:focus-visible .hq-ad { color: var(--brand-strong); }
+.hero-quick a:hover .hq-ok, .hero-quick a:focus-visible .hq-ok { opacity: 1; transform: none; }
+.hero-quick a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Sirali giris: panel gorununce satirlar tek tek yerine oturur. Gecikme
+   --i ile satirin kendisinden geliyor. */
+.hero-quick.is-visible li {
+  animation: hqIn .5s cubic-bezier(.22,1,.36,1) backwards;
+  animation-delay: calc(var(--i, 0) * 65ms + 260ms);
+}
+@keyframes hqIn { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+
+.hero-quick__foot {
+  display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+  margin: .65rem 0 0; padding-top: .6rem;
+  border-top: 1px solid var(--border); font-size: .83rem;
+}
+.hero-quick__foot a {
+  display: inline-flex; align-items: center; gap: .35rem;
+  color: var(--brand-strong); font-weight: 650; text-decoration: none; padding: 0;
+}
+.hq-ok-mini { display: inline-block; transition: transform .18s cubic-bezier(.22,1,.36,1); }
+.hero-quick__foot a:hover .hq-ok-mini { transform: translateX(3px); }
+/* Sayac gercek: index.html'deki proje karti sayisindan uretiliyor ve
+   sayfa-denetimi.py bunu dogruluyor. */
+.hq-sayi {
+  font-size: .74rem; color: var(--text-muted); font-variant-numeric: tabular-nums;
+  border: 1px solid var(--border); border-radius: 999px; padding: .12rem .5rem;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-quick a, .hq-ico, .hq-ok, .hq-ok-mini { transition: none; }
+  .hero-quick.is-visible li { animation: none; }
+  .hero-quick a:hover, .hero-quick a:focus-visible { transform: none; }
+  .hero-quick a:hover .hq-ico, .hero-quick a:focus-visible .hq-ico { transform: none; }
+  .hq-ok { opacity: 1; transform: none; }   /* hareket yoksa ok hep gorunsun */
+}
