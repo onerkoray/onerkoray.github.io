@@ -482,6 +482,24 @@ var KAPAKLAR = {
     alt: "Tavanı bile net asgari ücretin altında",
     cizim: sutunIssizlikTavani
   },
+  "proforma-fatura-nedir": {
+    kicker: "Fatura ve Belge",
+    baslik: "Proforma fatura nedir?",
+    alt: "Vergisel sonucu yok, hukuki sonucu olabilir",
+    cizim: function () {
+      return durumIsareti([
+        { durum: "yok", baslik: "Muhasebe kaydı doğurur mu?", alt: "Hayır — deftere yazılmaz" },
+        { durum: "yok", baslik: "KDV doğurur mu?", alt: "Hayır — beyannameye girmez" },
+        { durum: "var", baslik: "Sözleşme kurabilir mi?", alt: "Evet — kabul edilirse bağlar" }
+      ]);
+    }
+  },
+  "kdv-tevkifati-nedir": {
+    kicker: "Vergi",
+    baslik: "KDV tevkifatı nedir?",
+    alt: "Fatura toplamı değişmez, tahsilat bölünür",
+    cizim: sutunTevkifat
+  },
   "kademeli-emeklilik-son-durum": {
     kicker: "Mevzuat",
     baslik: "Kademeli emeklilik son durum",
@@ -530,6 +548,63 @@ var SABLON =
   '<div class="sag">{svg}</div>' +
   '<p class="imza"><b>Koray Öner</b> · korayoner.dev</p>' +
   "</body></html>";
+
+/* Tevkifat: genel toplam SABIT kalirken tahsilatin nasil bolundugu.
+   Yazinin tek iddiasi bu, gorsel de onu gostermeli — her cubuk ayni boyda. */
+function sutunTevkifat() {
+  var W = 600, H = 360, P = 30;
+  var oranlar = [
+    { ad: "Yok", tevkif: 0 },
+    { ad: "2/10", tevkif: 4000 },
+    { ad: "5/10", tevkif: 10000 },
+    { ad: "9/10", tevkif: 18000 }
+  ];
+  var matrah = 100000, kdv = 20000, toplam = matrah + kdv;
+  var solX = P + 4, genislik = W - P * 2 - 8;
+  var cubukY = 74, cubukH = 46, aralik = 22;
+
+  var ic = oranlar.map(function (o, i) {
+    var y = cubukY + i * (cubukH + aralik);
+    var tahsil = toplam - o.tevkif;
+    var wTahsil = Math.round(genislik * tahsil / toplam);
+    var wTevkif = genislik - wTahsil;
+    var parca =
+      '<text x="' + solX + '" y="' + (y - 7) + '" font-size="17" font-weight="700" fill="' +
+        R.murekkep + '">' + o.ad + "</text>" +
+      '<rect x="' + solX + '" y="' + y + '" width="' + wTahsil + '" height="' + cubukH +
+        '" rx="4" fill="' + R.marka + '"/>' +
+      '<text x="' + (solX + 12) + '" y="' + (y + cubukH / 2 + 6) +
+        '" font-size="17" font-weight="700" fill="#ffffff">' +
+        nf0.format(tahsil) + " TL</text>";
+    if (wTevkif > 0) {
+      parca +=
+        '<rect x="' + (solX + wTahsil + 2) + '" y="' + y + '" width="' + (wTevkif - 2) +
+          '" height="' + cubukH + '" rx="4" fill="' + R.s2 + '" fill-opacity="0.85"/>';
+      if (wTevkif > 96) {
+        parca += '<text x="' + (solX + wTahsil + 12) + '" y="' + (y + cubukH / 2 + 6) +
+          '" font-size="16" font-weight="700" fill="#ffffff">' + nf0.format(o.tevkif) + "</text>";
+      }
+    }
+    return parca;
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Tevkifat oranı ' +
+    'değişse de fatura toplamı 120.000 TL sabit kalıyor; değişen, satıcıya ödenen kısım">' +
+    '<text x="' + solX + '" y="30" font-size="18" font-weight="700" fill="' + R.murekkep +
+      '">Fatura toplamı her satırda 120.000 TL</text>' +
+    '<text x="' + solX + '" y="52" font-size="15" fill="' + R.ikincil +
+      '">100.000 TL matrah + %20 KDV</text>' +
+    ic +
+    '<rect x="' + solX + '" y="' + (H - 34) + '" width="13" height="13" rx="3" fill="' +
+      R.marka + '"/>' +
+    '<text x="' + (solX + 20) + '" y="' + (H - 23) + '" font-size="15" fill="' + R.ikincil +
+      '">Satıcıya ödenen</text>' +
+    '<rect x="' + (solX + 168) + '" y="' + (H - 34) + '" width="13" height="13" rx="3" fill="' +
+      R.s2 + '" fill-opacity="0.85"/>' +
+    '<text x="' + (solX + 188) + '" y="' + (H - 23) + '" font-size="15" fill="' + R.ikincil +
+      '">Alıcının vergi dairesine ödediği</text>' +
+    "</svg>";
+}
 
 function chromeBul() {
   for (var i = 0; i < CHROME.length; i++) {

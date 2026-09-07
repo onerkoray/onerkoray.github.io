@@ -16,29 +16,68 @@
     return d;
   }
 
-  /* ------------------------------------------------------------ yerel depo */
-  var ANAHTAR = {
-    firma: "fatura:firma",
-    musteriler: "fatura:musteriler",
-    taslak: "fatura:taslak",
-    ayar: "fatura:ayar",
-    sayac: "fatura:sayac"
+  /* ------------------------------------------------------- çalışma alanı */
+  var A = window.FaturaArsiv;
+
+  /* Tek anahtar. Önceden beş ayrı anahtar vardı (firma, müşteriler, taslak,
+     ayar, sayaç); belgeler, müşteriler ve sayaç birbirine bağlı olduğu için
+     birinin yazılıp diğerinin yazılamadığı durumda (kota dolması) arşiv
+     tutarsız kalıyordu. Artık hepsi tek bir nesne olarak yazılıyor. */
+  var DEPO = "fatura:calisma";
+  var ESKI = {
+    firma: "fatura:firma", musteriler: "fatura:musteriler",
+    taslak: "fatura:taslak", ayar: "fatura:ayar", sayac: "fatura:sayac"
   };
 
   /* localStorage gizli sekmede ve site verisi kapalı tarayıcılarda okurken
      bile istisna atabiliyor; her erişim sarmalanıyor. */
-  function depoOku(anahtar, varsayilan) {
+  function ham(anahtar, varsayilan) {
     try {
       var s = localStorage.getItem(anahtar);
       return s ? JSON.parse(s) : varsayilan;
     } catch (e) { return varsayilan; }
   }
-  function depoYaz(anahtar, deger) {
+  function hamYaz(anahtar, deger) {
     try { localStorage.setItem(anahtar, JSON.stringify(deger)); return true; }
     catch (e) { return false; }
   }
-  function depoSil(anahtar) {
-    try { localStorage.removeItem(anahtar); } catch (e) { /* yoksay */ }
+
+  var alan = null;              /* tek gerçeklik kaynağı */
+  var acikBelgeId = null;       /* düzenlenen arşiv belgesi, yoksa yeni belge */
+
+  function alaniYukle() {
+    var kayit = ham(DEPO, null);
+    if (kayit) return A.normalize(kayit);
+
+    /* Eski sürümden taşıma. Eski anahtarlar SİLİNMİYOR: taşıma bir hata
+       yaparsa kullanıcının elinde hâlâ orijinali dursun. */
+    var a = A.bosCalismaAlani();
+    var eskiFirma = ham(ESKI.firma, null);
+    if (eskiFirma) a.firma = eskiFirma;
+    var eskiMusteri = ham(ESKI.musteriler, null);
+    if (Array.isArray(eskiMusteri)) a.musteriler = eskiMusteri;
+    var eskiAyar = ham(ESKI.ayar, null);
+    if (eskiAyar) a.ayar = { sablon: eskiAyar.sablon || "klasik", renk: eskiAyar.renk || "yesil" };
+    var eskiSayac = ham(ESKI.sayac, null);
+    if (eskiSayac) a.sayac = eskiSayac;
+    var eskiTaslak = ham(ESKI.taslak, null);
+    if (eskiTaslak && eskiTaslak.kalemler) {
+      var d = A.iceAktar(eskiTaslak);
+      if (d && d.belgeler.length) {
+        a.belgeler = d.belgeler;
+        if (!a.firma.unvan && d.firma) a.firma = d.firma;
+      }
+    }
+    return a;
+  }
+
+  function alaniKaydet() {
+    if (!hamYaz(DEPO, alan)) {
+      durum("durum-genel", "Kaydedilemedi — tarayıcı depolaması dolu veya kapalı " +
+        "olabilir. Verinizi kaybetmemek için yedek alın.", "uyari");
+      return false;
+    }
+    return true;
   }
 
   /* ------------------------------------------------------------ alan haritası */
@@ -286,7 +325,17 @@
     return cikti;
   }
 
-  /* ------------------------------------------------------------ form <-> nesne */
+  /* ------------------------------------------------------------ form <-> nesne
+     Formdaki alan adları ("belge-turu") ile arşiv modelindeki adlar ("tur")
+     farklı; ikisini burada eşliyoruz ki arşiv katmanı formu tanımak zorunda
+     kalmasın. */
+  var FORM_ARSIV = {
+    "belge-turu": "tur", "belge-no": "no", "tarih": "tarih", "vade": "vade",
+    "odeme-kosulu": "odemeKosulu", "referans": "referans", "para": "para",
+    "kur": "kur", "genel-iskonto": "genelIskonto", "notlar": "notlar",
+    "kosullar": "kosullar"
+  };
+
   function belgeyiOku() {
     var b = { firma: {}, musteri: {}, kalemler: kalemleriOku() };
     FIRMA.forEach(function (k) { b.firma[k] = ($("in-firma-" + k) || {}).value || ""; });
@@ -297,6 +346,35 @@
     b.genelIskontoTur = $("btn-genel-iskonto-tur").getAttribute("data-tur") || "oran";
     b.logo = $("bl-logo").getAttribute("src") || "";
     return b;
+  }
+
+  /** Formdaki hâli arşiv belgesi biçimine çevirir. */
+  function formdanArsiv() {
+    var f = belgeyiOku();
+    var b = { firma: f.firma, musteri: f.musteri, kalemler: f.kalemler,
+              genelIskontoTur: f.genelIskontoTur, sablon: f.sablon,
+              renk: f.renk, logo: f.logo, tevkifat: tevkifatSec() };
+    for (var k in FORM_ARSIV) {
+      if (Object.prototype.hasOwnProperty.call(FORM_ARSIV, k)) b[FORM_ARSIV[k]] = f[k];
+    }
+    return b;
+  }
+
+  /** Arşiv belgesini forma yazar. */
+  function arsivdenForma(b) {
+    var f = { firma: b.firma, musteri: b.musteri, kalemler: b.kalemler,
+              genelIskontoTur: b.genelIskontoTur, sablon: b.sablon,
+              renk: b.renk, logo: b.logo };
+    for (var k in FORM_ARSIV) {
+      if (Object.prototype.hasOwnProperty.call(FORM_ARSIV, k)) f[k] = b[FORM_ARSIV[k]];
+    }
+    belgeyiYaz(f);
+    var tv = $("in-tevkifat");
+    var pay = (b.tevkifat && b.tevkifat.pay) || 0;
+    for (var i = 0; i < F.TEVKIFAT_ORANLARI.length; i++) {
+      if (F.TEVKIFAT_ORANLARI[i].pay === pay) { tv.value = String(i); break; }
+    }
+    $("alan-kur").hidden = (b.para || "TRY") === "TRY";
   }
 
   function belgeyiYaz(b) {
@@ -537,43 +615,42 @@
     return F.TEVKIFAT_ORANLARI[i] || F.TEVKIFAT_ORANLARI[0];
   }
 
-  /* ------------------------------------------------------------ taslak */
-  var taslakZamanlayici = null;
-  function taslakKaydet(b) {
-    clearTimeout(taslakZamanlayici);
-    taslakZamanlayici = setTimeout(function () { depoYaz(ANAHTAR.taslak, b); }, 400);
+  /* --------------------------------------------------------- otomatik kayıt
+     Açık belge arşivdeyse ona yazılır; değilse "üzerinde çalışılan belge"
+     olarak arşive girmemiş halde tutulur. Her tuşta yazmak yerine kısa bir
+     gecikme: uzun bir faturada her karakter için localStorage'a yazmak
+     yazmayı gözle görülür biçimde ağırlaştırıyor. */
+  var kayitZamanlayici = null;
+  function taslakKaydet() {
+    clearTimeout(kayitZamanlayici);
+    kayitZamanlayici = setTimeout(function () {
+      var b = formdanArsiv();
+      if (acikBelgeId) {
+        A.belgeGuncelle(alan, acikBelgeId, b);
+      } else {
+        alan.acikTaslak = b;
+      }
+      alan.firma = b.firma;
+      alan.ayar = { sablon: b.sablon, renk: b.renk };
+      hamYaz(DEPO, alan);
+      arsiviCiz();
+    }, 500);
   }
 
-  /* ------------------------------------------------------------ belge no */
-  function sonrakiNo(tur) {
-    var onek = BELGE_ONEK[tur] || "BLG";
-    var yil = new Date().getFullYear();
-    var sayaclar = depoOku(ANAHTAR.sayac, {});
-    var anahtar = onek + yil;
-    var deger = Number(sayaclar[anahtar] || 0) + 1;
-    return { metin: anahtar + String(deger).padStart(6, "0"), anahtar: anahtar, deger: deger };
-  }
-  /* Numara ancak belge dışa aktarıldığında "kullanılmış" sayılır; her tuşta
-     artsaydı sayaç boşuna şişerdi. */
-  function noyuTuket() {
-    var mevcut = $("in-belge-no").value.trim();
-    var eslesme = /^([A-ZÇĞİÖŞÜ]+\d{4})(\d+)$/.exec(mevcut);
-    if (!eslesme) return;
-    var sayaclar = depoOku(ANAHTAR.sayac, {});
-    sayaclar[eslesme[1]] = Math.max(Number(sayaclar[eslesme[1]] || 0), Number(eslesme[2]));
-    depoYaz(ANAHTAR.sayac, sayaclar);
+  /* ------------------------------------------------------------- belge no */
+  function yeniNo(tur) {
+    return A.sonrakiNo(alan, tur, new Date().getFullYear());
   }
 
-  /* ------------------------------------------------------------ müşteri defteri */
+  /* ------------------------------------------------------ müşteri defteri */
   function musterileriListele(secili) {
     var s = $("in-musteri-kayitli");
-    var defter = depoOku(ANAHTAR.musteriler, []);
     s.textContent = "";
     var ilk = el("option");
     ilk.value = "";
-    ilk.textContent = defter.length ? "— Yeni müşteri —" : "— Kayıtlı müşteri yok —";
+    ilk.textContent = alan.musteriler.length ? "— Yeni müşteri —" : "— Kayıtlı müşteri yok —";
     s.appendChild(ilk);
-    defter.forEach(function (m, i) {
+    alan.musteriler.forEach(function (m, i) {
       var o = el("option");
       o.value = String(i);
       o.textContent = m.unvan || "(isimsiz)";
@@ -582,7 +659,25 @@
     if (secili != null) s.value = String(secili);
   }
 
-  /* ------------------------------------------------------------ dosya */
+  /* -------------------------------------------------------------- katalog */
+  function katalogCiz() {
+    var s = $("in-katalog");
+    if (!s) return;
+    s.textContent = "";
+    var ilk = el("option");
+    ilk.value = "";
+    ilk.textContent = alan.katalog.length
+      ? "— Katalogdan kalem ekle —" : "— Katalog boş —";
+    s.appendChild(ilk);
+    alan.katalog.forEach(function (k, i) {
+      var o = el("option");
+      o.value = String(i);
+      o.textContent = k.aciklama + (k.birimFiyat ? " · " + F.para(F.sayi(k.birimFiyat), "TRY") : "");
+      s.appendChild(o);
+    });
+  }
+
+  /* --------------------------------------------------------------- dosya */
   function dosyaIndir(adi, icerik, tur) {
     var blob = new Blob([icerik], { type: tur });
     var url = URL.createObjectURL(blob);
@@ -596,16 +691,260 @@
   }
 
   function dosyaAdi(b, uzanti) {
-    var parcalar = [(b["belge-turu"] || "belge").replace(/\s+/g, "-")];
-    if (b["belge-no"]) parcalar.push(b["belge-no"]);
+    var parcalar = [String(b.tur || b["belge-turu"] || "belge").replace(/\s+/g, "-")];
+    var no = b.no || b["belge-no"];
+    if (no) parcalar.push(no);
     if (b.musteri && b.musteri.unvan) {
       parcalar.push(b.musteri.unvan.replace(/[^\wçğıöşüÇĞİÖŞÜ]+/g, "-").replace(/^-|-$/g, ""));
     }
     return parcalar.join("-").slice(0, 90) + uzanti;
   }
 
-  /* ------------------------------------------------------------ örnek */
+  /* --------------------------------------------------------------- arşiv */
+  function durumEtiketi(d) {
+    for (var i = 0; i < A.DURUMLAR.length; i++) if (A.DURUMLAR[i].ad === d) return A.DURUMLAR[i].etiket;
+    return d;
+  }
+
+  function arsiviCiz() {
+    var liste = $("arsiv-listesi");
+    if (!liste) return;
+    var suz = ($("in-arsiv-filtre") || {}).value || "";
+    var ara = (($("in-arsiv-ara") || {}).value || "").trim().toLocaleLowerCase("tr-TR");
+
+    var belgeler = alan.belgeler.filter(function (b) {
+      if (suz === "teklif" && A.turBilgi(b.tur).fatura) return false;
+      if (suz === "fatura" && !A.turBilgi(b.tur).fatura) return false;
+      if (suz && suz !== "teklif" && suz !== "fatura" && b.durum !== suz) return false;
+      if (ara) {
+        var havuz = ((b.no || "") + " " + (b.musteri && b.musteri.unvan ? b.musteri.unvan : "") +
+                     " " + b.tur).toLocaleLowerCase("tr-TR");
+        if (havuz.indexOf(ara) === -1) return false;
+      }
+      return true;
+    });
+
+    $("arsiv-sayi").textContent = alan.belgeler.length
+      ? alan.belgeler.length + " belge" : "henüz belge yok";
+
+    liste.textContent = "";
+    if (!belgeler.length) {
+      var bos = el("p", "alan-not");
+      bos.textContent = alan.belgeler.length
+        ? "Bu süzgece uyan belge yok."
+        : "Henüz kaydedilmiş belge yok. Aşağıda bir belge hazırlayıp " +
+          "“Arşive kaydet” deyin.";
+      liste.appendChild(bos);
+      return;
+    }
+
+    belgeler.forEach(function (b) {
+      var t = A.belgeToplami(b);
+      var satir = el("div", "arsiv-satir" + (b.id === acikBelgeId ? " arsiv-acik" : ""));
+
+      var sol = el("div", "arsiv-kimlik");
+      var no = el("span", "arsiv-no");
+      no.textContent = b.no || "(numarasız)";
+      var tur = el("span", "arsiv-tur");
+      tur.textContent = b.tur;
+      var mus = el("span", "arsiv-musteri");
+      mus.textContent = (b.musteri && b.musteri.unvan) ? b.musteri.unvan : "—";
+      sol.appendChild(no); sol.appendChild(tur); sol.appendChild(mus);
+      if (b.kaynakNo) {
+        var kaynak = el("span", "arsiv-kaynak");
+        kaynak.textContent = b.kaynakNo + " → dönüştürüldü";
+        sol.appendChild(kaynak);
+      }
+
+      var orta = el("div", "arsiv-sayilar");
+      var tarih = el("span", "arsiv-tarih");
+      tarih.textContent = tarihTr(b.tarih);
+      var tutar = el("span", "arsiv-tutar");
+      tutar.textContent = F.para(t.odenecek, b.para);
+      orta.appendChild(tarih); orta.appendChild(tutar);
+
+      var rozet = el("span", "arsiv-durum durum-" + b.durum);
+      rozet.textContent = durumEtiketi(b.durum);
+      /* Vadesi geçmiş olan, bekleyenler arasında görünür olmalı. */
+      if (b.durum === "gonderildi" && b.vade && b.vade < A.bugun()) {
+        rozet.textContent += " · vadesi geçti";
+        rozet.classList.add("durum-gecikmis");
+      }
+      orta.appendChild(rozet);
+
+      var sag = el("div", "arsiv-islem");
+      function dugme(metin, baslik, islev, sinif) {
+        var d = el("button", "satir-dugme" + (sinif ? " " + sinif : ""));
+        d.type = "button"; d.textContent = metin; d.title = baslik;
+        d.setAttribute("aria-label", baslik + " — " + (b.no || b.tur));
+        d.addEventListener("click", islev);
+        sag.appendChild(d);
+      }
+      dugme("Aç", "Belgeyi düzenlemek için aç", function () { belgeyiAc(b.id); });
+      if (!A.turBilgi(b.tur).fatura) {
+        dugme("→ Fatura", "Faturaya çevir", function () { faturayaCevir(b.id); }, "satir-vurgu");
+      }
+      dugme("Kopyala", "Kopyasını oluştur", function () {
+        var k = A.belgeKopyala(alan, b.id);
+        alaniKaydet(); arsiviCiz();
+        durum("durum-genel", k.no + " olarak kopyalandı.", "basarili");
+      });
+      dugme("✕", "Belgeyi sil", function () {
+        if (!window.confirm((b.no || "Bu belge") + " silinecek. Emin misiniz?")) return;
+        A.belgeSil(alan, b.id);
+        if (acikBelgeId === b.id) acikBelgeId = null;
+        alaniKaydet(); arsiviCiz(); acikBelgeCiz();
+        durum("durum-genel", "Belge silindi.", "basarili");
+      }, "satir-sil");
+
+      satir.appendChild(sol); satir.appendChild(orta); satir.appendChild(sag);
+      liste.appendChild(satir);
+    });
+  }
+
+  function belgeyiAc(id) {
+    var b = A.belgeBul(alan, id);
+    if (!b) return;
+    acikBelgeId = id;
+    arsivdenForma(b);
+    ciz();
+    acikBelgeCiz();
+    arsiviCiz();
+    durum("durum-genel", (b.no || "Belge") + " açıldı; değişiklikler doğrudan kaydediliyor.", "basarili");
+    var hedef = $("olustur");
+    if (hedef && hedef.scrollIntoView) hedef.scrollIntoView({ block: "start" });
+  }
+
+  function faturayaCevir(id) {
+    var kaynak = A.belgeBul(alan, id);
+    if (!kaynak) return;
+    var f = A.tekliftenFatura(alan, id, "FATURA");
+    if (!f) {
+      durum("durum-genel", "Bu belge zaten bir fatura.", "uyari");
+      return;
+    }
+    alaniKaydet();
+    belgeyiAc(f.id);
+    durum("durum-genel", kaynak.no + " → " + f.no + " olarak faturaya çevrildi. " +
+      "Teklif arşivde olduğu gibi duruyor.", "basarili");
+  }
+
+  /** Üstteki "açık belge" çubuğu: hangi belgedeyiz, durumu ne. */
+  function acikBelgeCiz() {
+    var cubuk = $("acik-belge");
+    if (!cubuk) return;
+    var b = acikBelgeId ? A.belgeBul(alan, acikBelgeId) : null;
+    $("acik-belge-ad").textContent = b
+      ? (b.no || b.tur) + " · arşivde"
+      : "Yeni belge — henüz arşive kaydedilmedi";
+    cubuk.setAttribute("data-arsivde", b ? "evet" : "hayir");
+    var sec = $("in-acik-durum");
+    sec.disabled = !b;
+    if (b) sec.value = b.durum;
+    $("btn-arsive-kaydet").textContent = b ? "Arşivdeki belgeyi güncelle" : "Arşive kaydet";
+    $("btn-yeni-belge").hidden = !b;
+  }
+
+  /* ---------------------------------------------------------------- özet */
+  function ozetCiz() {
+    var kap = $("ozet-icerik");
+    if (!kap) return;
+    var yil = Number(($("in-ozet-yil") || {}).value || new Date().getFullYear());
+    var o = A.ozet(alan, yil);
+
+    kap.textContent = "";
+    if (!o.belgeSayisi) {
+      var bos = el("p", "alan-not");
+      bos.textContent = yil + " yılında kayıtlı belge yok.";
+      kap.appendChild(bos);
+      return;
+    }
+
+    var izgara = el("div", "ozet-izgara");
+    function kart(etiket, deger, not, vurgu) {
+      var k = el("div", "ozet-kart" + (vurgu ? " ozet-vurgu" : ""));
+      var e = el("span", "ozet-etiket"); e.textContent = etiket;
+      var d = el("strong", "ozet-deger"); d.textContent = deger;
+      k.appendChild(e); k.appendChild(d);
+      if (not) { var n = el("span", "ozet-not"); n.textContent = not; k.appendChild(n); }
+      izgara.appendChild(k);
+    }
+    var tl = function (n) { return F.para(n, "TRY"); };
+
+    kart("Kesilen fatura", o.faturaSayisi + " belge", tl(o.faturaTutari), true);
+    kart("Tahsil edilen", tl(o.tahsilEdilen),
+         o.faturaTutari > 0
+           ? "%" + Math.round(100 * o.tahsilEdilen / o.faturaTutari) + " tahsilat"
+           : "");
+    kart("Bekleyen", tl(o.bekleyen),
+         o.vadesiGecen ? o.vadesiGecen + " belgenin vadesi geçti" : "vadesi geçen yok");
+    kart("Teklif", o.teklifSayisi + " belge", tl(o.teklifTutari));
+    kart("Teklif dönüşümü",
+         o.donusumOrani == null ? "—" : "%" + o.donusumOrani,
+         o.donusumOrani == null ? "teklif yok" : o.donusenTeklif + " / " + o.teklifSayisi + " teklif işe döndü");
+    kart("Ortalama tahsilat",
+         o.ortalamaTahsilatGunu == null ? "—" : o.ortalamaTahsilatGunu + " gün",
+         o.ortalamaTahsilatGunu == null ? "ödenmiş fatura yok" : "fatura tarihinden ödemeye");
+    kap.appendChild(izgara);
+
+    /* Aylık dağılım — küçük bir çubuk şerit; ayrı bir kütüphane gerektirmiyor. */
+    var enBuyuk = 0;
+    o.aylik.forEach(function (a) { if (a.tutar > enBuyuk) enBuyuk = a.tutar; });
+    if (enBuyuk > 0) {
+      var basl = el("p", "ozet-alt-baslik");
+      basl.textContent = yil + " aylık dağılım";
+      kap.appendChild(basl);
+      var serit = el("div", "ozet-aylik");
+      var adlar = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+      o.aylik.forEach(function (a, i) {
+        var s = el("div", "ozet-ay");
+        var c = el("div", "ozet-cubuk");
+        c.style.height = Math.max(2, Math.round(52 * a.tutar / enBuyuk)) + "px";
+        c.title = adlar[i] + ": " + tl(a.tutar) + " (" + a.sayi + " belge)";
+        var ad = el("span", "ozet-ay-ad"); ad.textContent = adlar[i];
+        s.appendChild(c); s.appendChild(ad);
+        serit.appendChild(s);
+      });
+      kap.appendChild(serit);
+    }
+
+    if (o.musteriler.length) {
+      var b2 = el("p", "ozet-alt-baslik");
+      b2.textContent = "En çok iş yapılan müşteriler";
+      kap.appendChild(b2);
+      var ul = el("ul", "ozet-musteri");
+      o.musteriler.forEach(function (m) {
+        var li = el("li");
+        var ad = el("span"); ad.textContent = m.unvan;
+        var tt = el("strong"); tt.textContent = tl(m.tutar);
+        li.appendChild(ad); li.appendChild(tt);
+        ul.appendChild(li);
+      });
+      kap.appendChild(ul);
+    }
+  }
+
+  function ozetYillariniListele() {
+    var s = $("in-ozet-yil");
+    if (!s) return;
+    var yillar = {};
+    yillar[new Date().getFullYear()] = true;
+    alan.belgeler.forEach(function (b) {
+      var y = String(b.tarih || "").slice(0, 4);
+      if (/^\d{4}$/.test(y)) yillar[y] = true;
+    });
+    var mevcut = s.value;
+    s.textContent = "";
+    Object.keys(yillar).sort().reverse().forEach(function (y) {
+      var o = el("option"); o.value = y; o.textContent = y;
+      s.appendChild(o);
+    });
+    if (mevcut && yillar[mevcut]) s.value = mevcut;
+  }
+
+  /* --------------------------------------------------------------- örnek */
   function ornekDoldur() {
+    acikBelgeId = null;
     belgeyiYaz({
       firma: {
         unvan: "Örnek Yazılım ve Danışmanlık Ltd. Şti.",
@@ -621,8 +960,8 @@
         vd: "Maslak", vkn: "9876543217",
         tel: "0212 000 00 00", eposta: "muhasebe@denemeticaret.com"
       },
-      "belge-turu": "PROFORMA FATURA",
-      "belge-no": sonrakiNo("PROFORMA FATURA").metin,
+      "belge-turu": "TEKLİF",
+      "belge-no": yeniNo("TEKLİF"),
       tarih: bugunIso(),
       "odeme-kosulu": "Fatura tarihinden itibaren 30 gün",
       referans: "SIP-2026-0184",
@@ -640,12 +979,18 @@
         { aciklama: "Basılı kullanım kılavuzu", miktar: "50", birim: "Adet", birimFiyat: "180", iskonto: "0", iskontoTur: "oran", kdvOran: "1" }
       ]
     });
+    $("in-tevkifat").value = "0";
+    $("alan-kur").hidden = true;
     ciz();
-    durum("durum-genel", "Örnek fatura dolduruldu.", "basarili");
+    acikBelgeCiz();
+    durum("durum-genel", "Örnek teklif dolduruldu. “Arşive kaydet” deyip " +
+      "sonra “→ Fatura” ile faturaya çevirebilirsiniz.", "basarili");
   }
 
-  /* ------------------------------------------------------------ kurulum */
+  /* ------------------------------------------------------------- kurulum */
   function kur() {
+    alan = alaniYukle();
+
     /* renk seçicisi */
     var renkKap = $("renk-secim");
     RENKLER.forEach(function (r) {
@@ -657,11 +1002,7 @@
       b.setAttribute("aria-label", r.etiket);
       b.title = r.etiket;
       b.style.setProperty("--nokta", r.renk);
-      b.addEventListener("click", function () {
-        rengiUygula(r.ad);
-        depoYaz(ANAHTAR.ayar, { sablon: $("in-sablon").value, renk: r.ad });
-        ciz();
-      });
+      b.addEventListener("click", function () { rengiUygula(r.ad); ciz(); });
       renkKap.appendChild(b);
     });
 
@@ -674,28 +1015,35 @@
       tv.appendChild(o);
     });
 
-    /* kayıtlı ayar ve firma */
-    var ayar = depoOku(ANAHTAR.ayar, { sablon: "klasik", renk: "yesil" });
-    $("in-sablon").value = ayar.sablon || "klasik";
-    rengiUygula(ayar.renk || "yesil");
+    /* durum listesi */
+    var ds = $("in-acik-durum");
+    A.DURUMLAR.forEach(function (d) {
+      var o = el("option"); o.value = d.ad; o.textContent = d.etiket;
+      ds.appendChild(o);
+    });
 
-    var taslak = depoOku(ANAHTAR.taslak, null);
-    if (taslak) {
-      belgeyiYaz(taslak);
+    $("in-sablon").value = alan.ayar.sablon || "klasik";
+    rengiUygula(alan.ayar.renk || "yesil");
+
+    /* Son bırakılan yere dön: arşivdeki bir belge açıksa o, değilse kaydedilmemiş taslak. */
+    if (alan.acikTaslak) {
+      arsivdenForma(A.normalize({ belgeler: [alan.acikTaslak] }).belgeler[0]);
+    } else if (alan.belgeler.length) {
+      belgeyiAc(alan.belgeler[0].id);
     } else {
-      var firma = depoOku(ANAHTAR.firma, null);
-      if (firma) {
-        FIRMA.forEach(function (k) {
-          var e = $("in-firma-" + k);
-          if (e) e.value = firma[k] || "";
-        });
-        logoyuUygula(firma.logo || "");
-      }
+      FIRMA.forEach(function (k) {
+        var e = $("in-firma-" + k);
+        if (e) e.value = (alan.firma && alan.firma[k]) || "";
+      });
+      logoyuUygula((alan.firma && alan.firma.logo) || "");
       $("in-tarih").value = bugunIso();
-      $("in-belge-no").value = sonrakiNo($("in-belge-turu").value).metin;
+      $("in-belge-no").value = yeniNo($("in-belge-turu").value);
       kalemEkle({});
     }
+
     musterileriListele();
+    katalogCiz();
+    ozetYillariniListele();
 
     /* --- olay bağlama --- */
     var form = $("fatura-form");
@@ -708,17 +1056,10 @@
     });
     $("alan-kur").hidden = $("in-para").value === "TRY";
 
-    $("in-sablon").addEventListener("change", function () {
-      depoYaz(ANAHTAR.ayar, { sablon: $("in-sablon").value, renk: $("belge").getAttribute("data-renk") });
-    });
-
-    /* Belge türü değişince numara öneki de değişmeli; ama kullanıcı numarayı
-       elle yazdıysa ona dokunulmaz. */
     $("in-belge-turu").addEventListener("change", function () {
       var mevcut = $("in-belge-no").value.trim();
-      var otomatik = /^[A-ZÇĞİÖŞÜ]+\d{10}$/.test(mevcut);
-      if (!mevcut || otomatik) {
-        $("in-belge-no").value = sonrakiNo($("in-belge-turu").value).metin;
+      if (!mevcut || /^[A-ZÇĞİÖŞÜ]+\d{10}$/.test(mevcut)) {
+        $("in-belge-no").value = yeniNo($("in-belge-turu").value);
       }
       ciz();
     });
@@ -737,16 +1078,97 @@
       if (son) son.querySelector(".k-aciklama").focus();
     });
 
+    /* --- açık belge çubuğu --- */
+    $("btn-arsive-kaydet").addEventListener("click", function () {
+      var b = formdanArsiv();
+      if (acikBelgeId) {
+        A.belgeGuncelle(alan, acikBelgeId, b);
+        durum("durum-genel", "Arşivdeki belge güncellendi.", "basarili");
+      } else {
+        var yeni = A.belgeEkle(alan, b);
+        acikBelgeId = yeni.id;
+        delete alan.acikTaslak;
+        durum("durum-genel", yeni.no + " arşive kaydedildi.", "basarili");
+      }
+      alaniKaydet();
+      arsiviCiz(); acikBelgeCiz(); ozetYillariniListele(); ozetCiz();
+    });
+
+    $("btn-yeni-belge").addEventListener("click", function () {
+      acikBelgeId = null;
+      delete alan.acikTaslak;
+      MUSTERI.forEach(function (k) { var e = $("in-musteri-" + k); if (e) e.value = ""; });
+      ["odeme-kosulu", "referans", "notlar", "kosullar"].forEach(function (k) {
+        var e = $("in-" + k); if (e) e.value = "";
+      });
+      $("in-genel-iskonto").value = "0";
+      $("in-tevkifat").value = "0";
+      $("in-vade").value = "";
+      $("in-tarih").value = bugunIso();
+      $("in-belge-no").value = yeniNo($("in-belge-turu").value);
+      $("kalem-listesi").textContent = "";
+      kalemEkle({});
+      ciz(); acikBelgeCiz(); arsiviCiz();
+      durum("durum-genel", "Yeni belge hazır.", "basarili");
+    });
+
+    $("in-acik-durum").addEventListener("change", function () {
+      if (!acikBelgeId) return;
+      A.durumDegistir(alan, acikBelgeId, $("in-acik-durum").value);
+      alaniKaydet(); arsiviCiz(); ozetCiz();
+      durum("durum-genel", "Durum güncellendi.", "basarili");
+    });
+
+    /* --- arşiv süzgeçleri --- */
+    $("in-arsiv-filtre").addEventListener("change", arsiviCiz);
+    $("in-arsiv-ara").addEventListener("input", arsiviCiz);
+
+    /* --- özet --- */
+    $("in-ozet-yil").addEventListener("change", ozetCiz);
+    $("blok-ozet").addEventListener("toggle", function () {
+      if ($("blok-ozet").open) { ozetYillariniListele(); ozetCiz(); }
+    });
+
+    /* --- katalog --- */
+    $("in-katalog").addEventListener("change", function () {
+      var ix = $("in-katalog").value;
+      if (ix === "") return;
+      var k = alan.katalog[Number(ix)];
+      if (!k) return;
+      kalemEkle({ aciklama: k.aciklama, birim: k.birim, birimFiyat: k.birimFiyat,
+                  kdvOran: k.kdvOran, miktar: "1", iskonto: "0", iskontoTur: "oran" });
+      $("in-katalog").value = "";
+      ciz();
+    });
+
+    $("btn-katalog-ekle").addEventListener("click", function () {
+      var kalemler = kalemleriOku().filter(function (k) { return String(k.aciklama || "").trim(); });
+      if (!kalemler.length) {
+        durum("durum-katalog", "Önce en az bir kalem açıklaması yazın.", "uyari");
+        return;
+      }
+      kalemler.forEach(function (k) { A.katalogEkle(alan, k); });
+      alaniKaydet(); katalogCiz();
+      durum("durum-katalog", kalemler.length + " kalem kataloğa eklendi.", "basarili");
+    });
+
+    $("btn-katalog-temizle").addEventListener("click", function () {
+      if (!alan.katalog.length) return;
+      if (!window.confirm("Katalogdaki " + alan.katalog.length + " kalem silinecek.")) return;
+      alan.katalog = [];
+      alaniKaydet(); katalogCiz();
+      durum("durum-katalog", "Katalog temizlendi.", "basarili");
+    });
+
     /* --- firma --- */
     $("btn-firma-kaydet").addEventListener("click", function () {
       var kayit = {};
       FIRMA.forEach(function (k) { kayit[k] = ($("in-firma-" + k) || {}).value || ""; });
       kayit.logo = $("bl-logo").getAttribute("src") || "";
-      var yazildi = depoYaz(ANAHTAR.firma, kayit);
-      durum("durum-firma", yazildi
-        ? "Firma bilgileriniz bu tarayıcıya kaydedildi."
-        : "Kaydedilemedi — tarayıcınız site verisi saklamayı engelliyor olabilir.",
-        yazildi ? "basarili" : "uyari");
+      alan.firma = kayit;
+      durum("durum-firma", alaniKaydet()
+        ? "Firma bilgileriniz bu tarayıcıya kaydedildi." : "Kaydedilemedi.",
+        "basarili");
     });
 
     $("in-logo").addEventListener("change", function (e) {
@@ -778,7 +1200,7 @@
     $("in-musteri-kayitli").addEventListener("change", function () {
       var ix = $("in-musteri-kayitli").value;
       if (ix === "") return;
-      var m = depoOku(ANAHTAR.musteriler, [])[Number(ix)];
+      var m = alan.musteriler[Number(ix)];
       if (!m) return;
       MUSTERI.forEach(function (k) {
         var e = $("in-musteri-" + k);
@@ -794,68 +1216,80 @@
         durum("durum-musteri", "Önce müşteri ünvanını yazın.", "uyari");
         return;
       }
-      var defter = depoOku(ANAHTAR.musteriler, []);
-      /* Aynı ünvan yeniden kaydedilirse yeni kayıt açılmaz, mevcut güncellenir. */
       var mevcut = -1;
-      for (var i = 0; i < defter.length; i++) {
-        if ((defter[i].unvan || "").trim().toLocaleLowerCase("tr-TR") ===
+      for (var i = 0; i < alan.musteriler.length; i++) {
+        if ((alan.musteriler[i].unvan || "").trim().toLocaleLowerCase("tr-TR") ===
             m.unvan.trim().toLocaleLowerCase("tr-TR")) { mevcut = i; break; }
       }
-      if (mevcut > -1) defter[mevcut] = m; else defter.push(m);
-      if (depoYaz(ANAHTAR.musteriler, defter)) {
-        musterileriListele(mevcut > -1 ? mevcut : defter.length - 1);
-        durum("durum-musteri", mevcut > -1 ? "Müşteri güncellendi." : "Müşteri deftere eklendi.", "basarili");
-      } else {
-        durum("durum-musteri", "Kaydedilemedi — tarayıcı site verisi saklamıyor.", "uyari");
-      }
+      if (mevcut > -1) alan.musteriler[mevcut] = m; else alan.musteriler.push(m);
+      alaniKaydet();
+      musterileriListele(mevcut > -1 ? mevcut : alan.musteriler.length - 1);
+      durum("durum-musteri", mevcut > -1 ? "Müşteri güncellendi." : "Müşteri deftere eklendi.", "basarili");
     });
 
     $("btn-musteri-sil").addEventListener("click", function () {
       var ix = $("in-musteri-kayitli").value;
       if (ix === "") { durum("durum-musteri", "Önce listeden bir müşteri seçin.", "uyari"); return; }
-      var defter = depoOku(ANAHTAR.musteriler, []);
-      defter.splice(Number(ix), 1);
-      depoYaz(ANAHTAR.musteriler, defter);
+      alan.musteriler.splice(Number(ix), 1);
+      alaniKaydet();
       musterileriListele();
       durum("durum-musteri", "Müşteri defterden silindi.", "basarili");
     });
 
-    /* --- dışa/içe aktarma --- */
-    $("btn-json-kaydet").addEventListener("click", function () {
-      var b = belgeyiOku();
-      noyuTuket();
-      dosyaIndir(dosyaAdi(b, ".json"), JSON.stringify(b, null, 2), "application/json");
-      durum("durum-genel", "Fatura JSON olarak indirildi.", "basarili");
+    /* --- yedekleme ---
+       Bu aracın en büyük riski sunucusuz olmasının bedeli: tarayıcı verisi
+       silinirse arşiv gider. Yedek almak bu yüzden ikincil bir özellik değil. */
+    $("btn-yedek-al").addEventListener("click", function () {
+      var ad = "fatura-merkezi-yedek-" + A.bugun() + ".json";
+      dosyaIndir(ad, JSON.stringify(A.disaAktar(alan), null, 2), "application/json");
+      durum("durum-genel", alan.belgeler.length + " belge yedeklendi: " + ad, "basarili");
     });
 
-    $("in-json-yukle").addEventListener("change", function (e) {
+    $("in-yedek-yukle").addEventListener("change", function (e) {
       var dosya = e.target.files && e.target.files[0];
       if (!dosya) return;
       var okuyucu = new FileReader();
       okuyucu.onload = function () {
-        try {
-          var b = JSON.parse(String(okuyucu.result));
-          if (!b || typeof b !== "object") throw new Error("biçim");
-          belgeyiYaz(b);
-          ciz();
-          durum("durum-genel", "Fatura yüklendi.", "basarili");
-        } catch (hata) {
-          durum("durum-genel", "Dosya okunamadı: bu araçla kaydedilmiş bir .json bekleniyor.", "uyari");
+        var gelen = null;
+        try { gelen = A.iceAktar(JSON.parse(String(okuyucu.result))); }
+        catch (hata) { gelen = null; }
+        if (!gelen) {
+          durum("durum-genel", "Dosya okunamadı: bu araçla alınmış bir yedek bekleniyor.", "uyari");
+          e.target.value = "";
+          return;
         }
+        if (alan.belgeler.length && !window.confirm(
+            "Yüklenecek yedekte " + gelen.belgeler.length + " belge var. " +
+            "Şu anki " + alan.belgeler.length + " belgelik arşivin YERİNE geçecek. " +
+            "Devam edilsin mi?")) { e.target.value = ""; return; }
+        alan = gelen;
+        acikBelgeId = null;
+        alaniKaydet();
+        FIRMA.forEach(function (k) {
+          var el2 = $("in-firma-" + k);
+          if (el2) el2.value = (alan.firma && alan.firma[k]) || "";
+        });
+        logoyuUygula((alan.firma && alan.firma.logo) || "");
+        musterileriListele(); katalogCiz(); ozetYillariniListele();
+        if (alan.belgeler.length) belgeyiAc(alan.belgeler[0].id);
+        else { $("kalem-listesi").textContent = ""; kalemEkle({}); ciz(); }
+        arsiviCiz(); acikBelgeCiz(); ozetCiz();
+        durum("durum-genel", gelen.belgeler.length + " belgelik yedek yüklendi.", "basarili");
         e.target.value = "";
       };
       okuyucu.readAsText(dosya);
     });
 
+    /* --- tek belge dışa aktarma (paylaşmak için) --- */
+    $("btn-json-kaydet").addEventListener("click", function () {
+      var b = formdanArsiv();
+      dosyaIndir(dosyaAdi(b, ".json"), JSON.stringify(b, null, 2), "application/json");
+      durum("durum-genel", "Belge JSON olarak indirildi.", "basarili");
+    });
+
     /* --- PDF --- */
     $("btn-pdf").addEventListener("click", function () {
-      var b = belgeyiOku();
-      if (!b.firma.unvan.trim() || !b.musteri.unvan.trim()) {
-        durum("durum-genel", "Firma ve müşteri ünvanı boşken de yazdırabilirsiniz; " +
-          "ama belgede yer tutucu metin görünür.", "uyari");
-      }
-      noyuTuket();
-      /* Tarayıcı "PDF olarak kaydet"te dosya adını sayfa başlığından türetir. */
+      var b = formdanArsiv();
       var eskiBaslik = document.title;
       document.title = dosyaAdi(b, "");
       window.print();
@@ -866,13 +1300,16 @@
 
     $("btn-temizle").addEventListener("click", function () {
       if (!window.confirm(
-        "Formdaki her şey ve bu tarayıcıda saklanan firma bilgisi, müşteri defteri " +
-        "ve taslak silinecek. Devam edilsin mi?")) return;
-      depoSil(ANAHTAR.firma);
-      depoSil(ANAHTAR.musteriler);
-      depoSil(ANAHTAR.taslak);
-      depoSil(ANAHTAR.ayar);
-      depoSil(ANAHTAR.sayac);
+        "Bu tarayıcıdaki TÜM çalışma alanı silinecek: " + alan.belgeler.length +
+        " belge, " + alan.musteriler.length + " müşteri, firma bilgileri ve katalog. " +
+        "Bu işlem geri alınamaz. Önce yedek almak ister misiniz?\n\n" +
+        "Yine de silmek için Tamam'a basın.")) return;
+      try { localStorage.removeItem(DEPO); } catch (e) { /* yoksay */ }
+      Object.keys(ESKI).forEach(function (k) {
+        try { localStorage.removeItem(ESKI[k]); } catch (e) { /* yoksay */ }
+      });
+      alan = A.bosCalismaAlani();
+      acikBelgeId = null;
       FIRMA.forEach(function (k) { var e = $("in-firma-" + k); if (e) e.value = ""; });
       MUSTERI.forEach(function (k) { var e = $("in-musteri-" + k); if (e) e.value = ""; });
       ["odeme-kosulu", "referans", "notlar", "kosullar"].forEach(function (k) {
@@ -882,17 +1319,19 @@
       $("in-tevkifat").value = "0";
       $("in-vade").value = "";
       $("in-tarih").value = bugunIso();
-      $("in-belge-no").value = sonrakiNo($("in-belge-turu").value).metin;
+      $("in-belge-no").value = yeniNo($("in-belge-turu").value);
       logoyuUygula("");
       $("in-logo").value = "";
       $("kalem-listesi").textContent = "";
       kalemEkle({});
-      musterileriListele();
-      ciz();
-      durum("durum-genel", "Her şey temizlendi.", "basarili");
+      musterileriListele(); katalogCiz(); ozetYillariniListele();
+      ciz(); arsiviCiz(); acikBelgeCiz(); ozetCiz();
+      durum("durum-genel", "Çalışma alanı temizlendi.", "basarili");
     });
 
     ciz();
+    arsiviCiz();
+    acikBelgeCiz();
   }
 
   if (document.readyState === "loading") {

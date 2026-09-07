@@ -44,6 +44,11 @@ jobs:
       - name: Çalışma biçimi testleri
         run: node bordro/calisma-bicimi-test.js
 
+      - name: Fatura arşiv (çalışma alanı) testleri
+        # Bir arşivin sessizce bozulması, yanlış tutardan daha kötüdür:
+        # yanlış tutar görülür, kaybolan belge görülmez.
+        run: node fatura-olusturma/arsiv-test.js
+
       - name: Makale listeleri güncel mi
         run: python tools/makale-listesi.py --check
 

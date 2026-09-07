@@ -144,6 +144,10 @@ SPEC = {
    "Brütten nete veya netten brüte; stopaj, KDV ve KDV tevkifatı dahil.",
    ["Stopaj + KDV", "Tevkifat"], "bordro"),
 
+ "fatura-metodoloji": ("fatura-olusturma/metodoloji", "Fatura Merkezi", "Metodolojisi",
+   "Kuruş aritmetiği, iskonto dağıtımı, tevkifat ve 159 test. Sunucusuz bir aracın açık defteri.",
+   ["159 test", "MIT"], "vergi"),
+
  "fatura-olusturma": ("fatura-olusturma", "Fatura", "Oluşturma ve PDF",
    "KDV, iskonto, tevkifat ve tutar yazıyla — dört şablonda faturanızı hazırlayıp PDF indirin.",
    ["4 şablon", "Üyeliksiz"], "vergi"),

@@ -10,11 +10,11 @@
   <icon>https://korayoner.dev/favicon.svg</icon>
 
   <entry>
-    <title>Fatura Oluşturma ve PDF İndirme</title>
+    <title>Fatura ve Teklif Oluşturma Merkezi</title>
     <link href="https://korayoner.dev/fatura-olusturma/"/>
     <id>https://korayoner.dev/fatura-olusturma/</id>
     <updated>2026-09-07T00:00:00+03:00</updated>
-    <summary>Ücretsiz fatura ve proforma oluşturucu: KDV, satır ve genel iskonto, tevkifat, tutar yazıyla, dört şablon ve PDF. Üyelik yok; veriler tarayıcınızdan çıkmaz.</summary>
+    <summary>Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti. Üyeliksiz; veriler tarayıcınızda kalır.</summary>
   </entry>
 
   <entry>
@@ -31,6 +31,22 @@
     <id>https://korayoner.dev/isveren-maliyeti-hesaplama/</id>
     <updated>2026-09-07T00:00:00+03:00</updated>
     <summary>Bir çalışan işverene ne kadara mal oluyor? Brüt ya da net ücretten aylık ve yıllık maliyet, SGK işveren payı ve 5 puanlık indirim — 2026 parametreleriyle.</summary>
+  </entry>
+
+  <entry>
+    <title>KDV Tevkifatı Nedir? Faturaya Nasıl Yazılır</title>
+    <link href="https://korayoner.dev/makaleler/kdv-tevkifati-nedir/"/>
+    <id>https://korayoner.dev/makaleler/kdv-tevkifati-nedir/</id>
+    <updated>2026-09-07T00:00:00+03:00</updated>
+    <summary>Tevkifat fatura toplamını değil tahsilatı değiştirir: 100.000 TL matrahta 5/10 ile ödenecek tutar 120.000 değil 110.000 TL olur. Adım adım.</summary>
+  </entry>
+
+  <entry>
+    <title>Proforma Fatura Nedir? Faturadan Farkı</title>
+    <link href="https://korayoner.dev/makaleler/proforma-fatura-nedir/"/>
+    <id>https://korayoner.dev/makaleler/proforma-fatura-nedir/</id>
+    <updated>2026-09-07T00:00:00+03:00</updated>
+    <summary>Proforma muhasebe kaydı doğurmaz, KDV yaratmaz — ama kabul edilirse sözleşme kurar. Teklif, proforma, fatura ve irsaliye farkı tabloyla.</summary>
   </entry>
 
   <entry>
