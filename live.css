@@ -279,10 +279,24 @@ html { scroll-behavior: smooth; }
 .hero-quick__foot { margin: .7rem 0 0; padding-top: .6rem; border-top: 1px solid var(--border); font-size: .84rem; }
 .hero-quick__foot a { color: var(--brand-strong); font-weight: 650; text-decoration: none; padding: 0; }
 
-/* Tek ekleme: satirin uzerine gelince sagda beliren ok.
-   Panelin asil eksigi satirlarin tiklanabilir gorunmemesiydi; bunu
-   cozmek icin durgun halde HICBIR sey eklemeye gerek yok. Ok isaretleme
-   metni degil, o yuzden ::after ile geliyor; ekran okuyucu gormez. */
+/* ---- Panel etkilesimi ----
+   Durgun halde panele hicbir sey eklenmiyor; hareketin tamami etkilesimde.
+   Uc parca var:
+
+   1) KAYAN VURGU. Satirlarin kendi zemini yok; satirlar arasinda TEK bir
+      blok kayiyor - sekme gostergesi gibi. Bes ayri zemin yerine tek bir
+      nesnenin yer degistirmesi, listeyi "bes kutu" degil "bir liste" gibi
+      okutuyor. :has() ile calisiyor, JS yok. Destegi olmayan tarayicida
+      taban kural (satirin kendi zemini) devrede kaliyor, yani hicbir sey
+      kaybolmuyor - bu yuzden taban kural silinmedi.
+
+   2) OK. Satirin tiklanabilir oldugu durgun halde belli degildi. Ok
+      isaretleme metni olmadigi icin ::after ile geliyor, ekran okuyucu
+      gormez; klavye odaginda da cikiyor.
+
+   3) SIRALI GIRIS. Panel gorununce satirlar tek tek yerine oturuyor.
+      Gecikme nth-child ile veriliyor cunku markup'a dokunmak gerekmesin.
+*/
 .hero-quick a {
   display: grid; grid-template-columns: minmax(0, 1fr) auto;
   align-items: center; column-gap: .6rem;
@@ -294,11 +308,47 @@ html { scroll-behavior: smooth; }
   opacity: 0; transform: translateX(-4px);
   transition: opacity .18s ease, transform .18s cubic-bezier(.22,1,.36,1);
 }
-.hero-quick a:hover::after, .hero-quick a:focus-visible::after {
-  opacity: 1; transform: none;
-}
+.hero-quick a:hover::after, .hero-quick a:focus-visible::after { opacity: 1; transform: none; }
 .hero-quick a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.hero-quick.is-visible li { animation: hqSatir .5s cubic-bezier(.22,1,.36,1) backwards; }
+.hero-quick.is-visible li:nth-child(1) { animation-delay: 250ms; }
+.hero-quick.is-visible li:nth-child(2) { animation-delay: 315ms; }
+.hero-quick.is-visible li:nth-child(3) { animation-delay: 380ms; }
+.hero-quick.is-visible li:nth-child(4) { animation-delay: 445ms; }
+.hero-quick.is-visible li:nth-child(5) { animation-delay: 510ms; }
+@keyframes hqSatir { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+
+@supports selector(:has(*)) {
+  .hero-quick { --satir: 56px; }
+  .hero-quick ul { position: relative; gap: 0; }
+  .hero-quick a {
+    padding: 0 12px; min-block-size: var(--satir);
+    align-content: center; position: relative; z-index: 1;
+  }
+  /* satirin kendi zemini kayan bloga birakiliyor */
+  .hero-quick a:hover, .hero-quick a:focus-visible { background: transparent; }
+  .hero-quick ul::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0;
+    block-size: var(--satir); border-radius: 10px;
+    background: color-mix(in srgb, var(--brand) 11%, transparent);
+    opacity: 0;
+    transition: transform .3s cubic-bezier(.22,1,.36,1), opacity .2s ease;
+  }
+  .hero-quick ul:has(a:hover)::before,
+  .hero-quick ul:has(a:focus-visible)::before { opacity: 1; }
+  .hero-quick ul:has(li:nth-child(2) a:hover)::before,
+  .hero-quick ul:has(li:nth-child(2) a:focus-visible)::before { transform: translateY(calc(var(--satir) * 1)); }
+  .hero-quick ul:has(li:nth-child(3) a:hover)::before,
+  .hero-quick ul:has(li:nth-child(3) a:focus-visible)::before { transform: translateY(calc(var(--satir) * 2)); }
+  .hero-quick ul:has(li:nth-child(4) a:hover)::before,
+  .hero-quick ul:has(li:nth-child(4) a:focus-visible)::before { transform: translateY(calc(var(--satir) * 3)); }
+  .hero-quick ul:has(li:nth-child(5) a:hover)::before,
+  .hero-quick ul:has(li:nth-child(5) a:focus-visible)::before { transform: translateY(calc(var(--satir) * 4)); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .hero-quick a::after { transition: none; opacity: 1; transform: none; }
+  .hero-quick ul::before { transition: opacity .2s ease; }
+  .hero-quick.is-visible li { animation: none; }
 }
