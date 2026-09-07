@@ -347,6 +347,38 @@ html { scroll-behavior: smooth; }
   .hero-quick ul:has(li:nth-child(5) a:focus-visible)::before { transform: translateY(calc(var(--satir) * 4)); }
 }
 
+/* ---- Ikinci blok: son eklenenler ----
+   Panelin altina ikinci bir liste koymanin tek gercek riski, birincinin
+   KOPYASI gibi durmasiydi; ust uste iki ayni liste tekduze okunur. Bu
+   yuzden ikinci blok bilerek daha YOGUN: tek satir, aciklama yok, sagda
+   tur etiketi. Boylece panel "iki liste" degil, bir birincil bir ikincil
+   blok olarak okunuyor.
+   Yer olcuyle secildi: sol sutun 499px, panel 415px idi - panelin altinda
+   zaten 84px bosluk vardi, bu blok oraya oturuyor. */
+.hero-quick__ara {
+  margin: .85rem 0 .5rem; padding-top: .75rem;
+  border-top: 1px solid var(--border);
+  font-size: .7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .09em; color: var(--text-muted);
+}
+.hq-yeni { --satir: 38px; }
+.hq-yeni a { grid-template-columns: minmax(0, 1fr) auto auto; column-gap: .55rem; }
+.hq-yeni a span {
+  grid-column: 1; font-size: .875rem; font-weight: 600;
+  /* Satirlar TEK satir kalmak zorunda: kayan vurgunun mesafesi sabit
+     satir yuksekligine bagli, bir baslik sarinca hiza bozuluyor
+     (ilk denemede ucuncu satir 38 yerine 46px olmustu). Sarma
+     yapisal olarak kapatildi; uzun baslik uc nokta ile kesilir. */
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.hq-yeni em {
+  grid-column: 2; font-style: normal; font-size: .68rem;
+  color: var(--text-muted); letter-spacing: .02em; white-space: nowrap;
+  transition: color .18s ease;
+}
+.hq-yeni a::after { grid-column: 3; grid-row: 1; }
+.hq-yeni a:hover em, .hq-yeni a:focus-visible em { color: var(--brand-strong); }
+
 @media (prefers-reduced-motion: reduce) {
   .hero-quick a::after { transition: none; opacity: 1; transform: none; }
   .hero-quick ul::before { transition: opacity .2s ease; }
