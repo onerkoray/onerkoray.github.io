@@ -101,6 +101,9 @@ jobs:
         # eskirken sessiz kalır, üretilen şema burada patlar.
         run: node tools/diyagram.js --check
 
+      - name: Stil damgaları güncel mi
+        run: python tools/stil-damgasi.py --check
+
       - name: Marka ikonları favicon.svg ile uyumlu mu
         run: |
           pip install --quiet pillow

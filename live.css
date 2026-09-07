@@ -364,7 +364,10 @@ html { scroll-behavior: smooth; }
 .hq-yeni { --satir: 38px; }
 .hq-yeni a { grid-template-columns: minmax(0, 1fr) auto auto; column-gap: .55rem; }
 .hq-yeni a span {
-  grid-column: 1; font-size: .875rem; font-weight: 600;
+  /* Baslik tipografisi ust listeyle AYNI; ikincillik yazi boyutuyla
+     degil satirin yogunluguyla anlatiliyor (aciklama yok, tur
+     etiketi var, satir 56 yerine 38px). */
+  grid-column: 1;
   /* Satirlar TEK satir kalmak zorunda: kayan vurgunun mesafesi sabit
      satir yuksekligine bagli, bir baslik sarinca hiza bozuluyor
      (ilk denemede ucuncu satir 38 yerine 46px olmustu). Sarma
