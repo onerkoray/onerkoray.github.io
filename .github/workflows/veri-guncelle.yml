@@ -39,6 +39,7 @@ jobs:
         run: |
           python tools/paylasim-meta.py
           python tools/metodoloji-blogu.py
+          python tools/stil-damgasi.py
 
       # Bot'un urettigi commit push edilmeden once kendi kurallarindan
       # gecsin: kirik bir sayfa main'e girmesin.
