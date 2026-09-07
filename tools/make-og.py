@@ -168,6 +168,10 @@ SPEC = {
    "Yurt dışı alışverişte vergi, IMEI kayıt harcı ve toplam maliyet.",
    ["AB & diğer ülke", "IMEI harcı"], "vergi"),
 
+ "kredi-metodoloji": ("kredi-hesaplama/metodoloji", "Kredi Hesabı", "Metodolojisi",
+   "Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor? 64 test.",
+   ["64 test", "MIT"], "finans"),
+
  "kredi-hesaplama": ("kredi-hesaplama", "Kredi Hesaplama", "ve Gerçek Maliyet",
    "Bankanın ilan ettiği faiz ödeyeceğiniz maliyet değildir: KKDF, BSMV ve masraflarla yıllık maliyet oranı.",
    ["YMO hesabı", "Ödeme planı"], "finans"),

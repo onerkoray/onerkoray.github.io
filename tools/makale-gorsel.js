@@ -482,6 +482,12 @@ var KAPAKLAR = {
     alt: "Tavanı bile net asgari ücretin altında",
     cizim: sutunIssizlikTavani
   },
+  "kredi-yillik-maliyet-orani": {
+    kicker: "Finans",
+    baslik: "Yıllık maliyet oranı nedir?",
+    alt: "Bankanın söylediği faiz, ödediğiniz bedel değil",
+    cizim: merdivenYmo
+  },
   "proforma-fatura-nedir": {
     kicker: "Fatura ve Belge",
     baslik: "Proforma fatura nedir?",
@@ -604,6 +610,45 @@ function sutunTevkifat() {
     '<text x="' + (solX + 188) + '" y="' + (H - 23) + '" font-size="15" fill="' + R.ikincil +
       '">Alıcının vergi dairesine ödediği</text>' +
     "</svg>";
+}
+
+/* Ilan edilen orandan gercek maliyete: her adimda ne eklendigini gosteren
+   merdiven. Yazinin tek iddiasi bu dort basamak. */
+function merdivenYmo() {
+  var W = 600, H = 360, P = 30;
+  var adimlar = [
+    { ad: "Aylık faiz", oran: 2.89, not: "vitrindeki rakam", renk: R.ikincil },
+    { ad: "+ KKDF ve BSMV", oran: 3.757, not: "aylık maliyet oranı", renk: R.s1 },
+    { ad: "× 12 (basit)", oran: 34.68, not: "yaygın ama eksik", renk: R.s2 },
+    { ad: "Yıllık maliyet oranı", oran: 56.31, not: "gerçekte ödediğiniz", renk: R.marka }
+  ];
+  var enBuyuk = 56.31;
+  var solX = P + 4, genislik = W - P * 2 - 130;
+  var y0 = 78, yH = 44, ara = 24;
+
+  var ic = adimlar.map(function (a, i) {
+    var y = y0 + i * (yH + ara);
+    var w = Math.max(6, Math.round(genislik * a.oran / enBuyuk));
+    var son = i === adimlar.length - 1;
+    return '<text x="' + solX + '" y="' + (y - 7) + '" font-size="16" font-weight="' +
+        (son ? "800" : "700") + '" fill="' + R.murekkep + '">' + esc(a.ad) + "</text>" +
+      '<rect x="' + solX + '" y="' + y + '" width="' + w + '" height="' + yH +
+        '" rx="4" fill="' + a.renk + '"' + (son ? "" : ' fill-opacity="0.75"') + "/>" +
+      '<text x="' + (solX + w + 12) + '" y="' + (y + yH / 2 - 2) +
+        '" font-size="' + (son ? 21 : 18) + '" font-weight="800" fill="' +
+        (son ? R.marka : R.murekkep) + '">%' +
+        a.oran.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) +
+        "</text>" +
+      '<text x="' + (solX + w + 12) + '" y="' + (y + yH / 2 + 15) +
+        '" font-size="13" fill="' + R.ikincil + '">' + esc(a.not) + "</text>";
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Aylık %2,89 ' +
+    'faizden gerçek yıllık maliyet %56,31 oranına dört adımda">' +
+    '<text x="' + solX + '" y="34" font-size="18" font-weight="700" fill="' + R.murekkep +
+      '">250.000 TL · 36 ay · ihtiyaç kredisi</text>' +
+    '<text x="' + solX + '" y="56" font-size="15" fill="' + R.ikincil +
+      '">Vitrindeki orandan ödenen bedele</text>' + ic + "</svg>";
 }
 
 function chromeBul() {
