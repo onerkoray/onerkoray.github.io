@@ -91,6 +91,10 @@ def main():
         bulgular.append((tur, sayfa, detay))
 
     # Site geneli sema toplayicilari (bkz. 8)
+    # Olcum kimligi toplayicisi (bkz. 10)
+    olcum_kimlikleri = collections.defaultdict(list)
+    gtag_sayisi = {}
+
     sema_tekil = collections.defaultdict(list)
     sema_person = set()
 
@@ -135,6 +139,13 @@ def main():
                     sema_tekil[tur].append(p)
                 if tur == "Person" and d.get("@id"):
                     sema_person.add(d["@id"])
+
+        # Analitik etiketi: eksikse o sayfanin trafigi hic gorunmez,
+        # fazlaysa sayfa goruntulemesi ikiye katlanir. Ikisi de sessiz.
+        bulunan = re.findall(r'gtag/js\?id=(G-[A-Z0-9]+)', s)
+        gtag_sayisi[p] = len(bulunan)
+        for g in set(bulunan):
+            olcum_kimlikleri[g].append(p)
 
         kimlikler = re.findall(r'\sid="([^"]+)"', s)
         for kimlik, adet in collections.Counter(kimlikler).items():
@@ -276,6 +287,23 @@ def main():
     if len(sema_person) > 1:
         bulgu("SEMA KIMLIK COKLU", "site geneli",
               "Person @id tutarsiz: " + ", ".join(sorted(sema_person)))
+
+    # 10) analitik etiketi
+    #
+    # Beklenen: her denetlenen sayfada TAM BIR gtag blogu ve site genelinde
+    # TEK bir olcum kimligi. Ucu de bir kez bozuldu; bu kural o gunu
+    # tekrar etmesin diye burada.
+    beklenen = [x for x in sayfalar if not denetim_disi(x)]
+    if len(olcum_kimlikleri) > 1:
+        for g, ps in sorted(olcum_kimlikleri.items()):
+            bulgu("OLCUM KIMLIGI COKLU", ", ".join(sorted(ps)[:3]),
+                  "%s (%d sayfa)" % (g, len(ps)))
+    for p2 in beklenen:
+        adet = gtag_sayisi.get(p2, 0)
+        if adet == 0:
+            bulgu("ANALITIK YOK", p2, "sayfanin trafigi olculmuyor")
+        elif adet > 1:
+            bulgu("GTAG TEKRARI", p2, "%d kez yuklenmis" % adet)
 
     # rapor
     print("%d sayfa tarandi, %d bulgu" % (len(sayfalar), len(bulgular)))
