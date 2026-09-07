@@ -12,3 +12,6 @@ Ekran*.png
 # Cekirdek deposu icin uretilen paket (tools/cekirdek.py).
 # Site deposunda durmasi gereksiz; her uretimde yeniden olusuyor.
 _cekirdek/
+
+# Python onbellegi (tools/*.py calisinca olusuyor)
+__pycache__/
