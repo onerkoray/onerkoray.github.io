@@ -305,6 +305,45 @@ def main():
         elif adet > 1:
             bulgu("GTAG TEKRARI", p2, "%d kez yuklenmis" % adet)
 
+    # 11) ana sayfadaki hizli erisim paneli
+    #
+    # Panel iki seyi tekrar ediyor: arac ikonlarini (tools/card-icons.json)
+    # ve toplam arac sayisini (ana sayfadaki proje karti adedi). Ikisi de
+    # elle yazilmis olsa sessizce eskirdi - yeni bir arac eklenince sayac
+    # yanlis, bir ikon degisince panel ile kartlar farkli olurdu. Panelin
+    # "sistemin parcasi" olmasi bu bagin dogrulanmasina bagli.
+    kok_html = os.path.join(KOK, "index.html")
+    if os.path.exists(kok_html):
+        h = io.open(kok_html, encoding="utf-8").read()
+        panel = re.search(r'<aside class="hero-quick.*?</aside>', h, re.S)
+        if panel:
+            gov = panel.group(0)
+            ikon_yolu = os.path.join(KOK, "tools", "card-icons.json")
+            kaynak = json.load(io.open(ikon_yolu, encoding="utf-8"))
+            satirlar = re.findall(
+                r'data-ikon="([^"]+)".*?(<svg .*?</svg>)', gov, re.S)
+            if not satirlar:
+                bulgu("HIZLI PANEL BOS", "index.html", "data-ikon tasiyan satir yok")
+            for slug, svg in satirlar:
+                if slug not in kaynak:
+                    bulgu("HIZLI IKON KAYNAKSIZ", "index.html",
+                          "%s card-icons.json'da yok" % slug)
+                    continue
+                # markup'a sadece aria-hidden ekleniyor; gerisi birebir olmali
+                sade = svg.replace(' aria-hidden="true"', "", 1)
+                if sade.strip() != kaynak[slug]["svg"].strip():
+                    bulgu("HIZLI IKON ESKI", "index.html",
+                          "%s ikonu card-icons.json ile ayni degil" % slug)
+                if not os.path.isdir(os.path.join(KOK, slug)):
+                    bulgu("HIZLI BAGLANTI KIRIK", "index.html", slug + "/ yok")
+            sayac = re.search(r'class="hq-sayi">([0-9]+)', gov)
+            gercek = len(re.findall(r'class="project-card', h))
+            if not sayac:
+                bulgu("HIZLI SAYAC YOK", "index.html", "hq-sayi bulunamadi")
+            elif int(sayac.group(1)) != gercek:
+                bulgu("HIZLI SAYAC YANLIS", "index.html",
+                      "panelde %s, ana sayfada %d arac" % (sayac.group(1), gercek))
+
     # rapor
     print("%d sayfa tarandi, %d bulgu" % (len(sayfalar), len(bulgular)))
     if not bulgular:
