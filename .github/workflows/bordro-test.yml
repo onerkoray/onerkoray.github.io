@@ -58,6 +58,12 @@ jobs:
         # bir keşif yolunu kaybetmesi demek.
         run: python tools/besleme.py --check
 
+      - name: Çekirdek deposu tutarlı mı
+        # Site 80'den fazla sayfada "hesap yöntemi ve testler herkese açık"
+        # diyor. Bu kontrol, o iddianın hedefi olan dosyaların yerinde durduğunu
+        # ve sayfaların doğru depoya bağlandığını doğrular.
+        run: python tools/cekirdek.py --check
+
       - name: Sayfa kalitesi denetimi
         run: python tools/sayfa-denetimi.py --check
 

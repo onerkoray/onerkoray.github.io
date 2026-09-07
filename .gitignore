@@ -8,3 +8,7 @@ Ekran*.png
 
 .vercel
 .env*
+
+# Cekirdek deposu icin uretilen paket (tools/cekirdek.py).
+# Site deposunda durmasi gereksiz; her uretimde yeniden olusuyor.
+_cekirdek/
