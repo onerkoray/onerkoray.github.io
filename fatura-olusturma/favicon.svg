@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Fatura oluşturma">
+  <defs>
+    <linearGradient id="fv-bg" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14b28e"/>
+      <stop offset="1" stop-color="#0a5f4e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#fv-bg)"/>
+  <!-- Alt kenarı testere dişli belge: fatura/fişin evrensel silueti -->
+  <path d="M17 12h30v38l-5-3.4-5 3.4-5-3.4-5 3.4-5-3.4-5 3.4z"
+        fill="#f4f2ec"/>
+  <g stroke="#0a5f4e" stroke-width="3" stroke-linecap="round">
+    <line x1="24" y1="22" x2="40" y2="22"/>
+    <line x1="24" y1="29" x2="40" y2="29"/>
+    <line x1="24" y1="36" x2="34" y2="36"/>
+  </g>
+</svg>

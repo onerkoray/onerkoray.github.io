@@ -131,7 +131,9 @@
   }
 
   /* ---- Jenerik rapor: hesap araçlarına otomatik rapor başlığı + yazdır düğmesi ---- */
-  var calcWrap = document.querySelector(".calc .wrap");
+  /* data-rapor="yok" diyen araclar kendi belgesini uretir (or. fatura
+     olusturucu); jenerik rapor basligi ve yazdir dugmesi onlara eklenmez. */
+  var calcWrap = document.querySelector('.calc:not([data-rapor="yok"]) .wrap');
   if (calcWrap && !document.getElementById("printBtn")) {
     var h1 = document.querySelector("h1");
     var icon = document.querySelector('link[rel="icon"][type="image/svg+xml"]');

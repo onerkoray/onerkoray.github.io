@@ -144,6 +144,10 @@ SPEC = {
    "Brütten nete veya netten brüte; stopaj, KDV ve KDV tevkifatı dahil.",
    ["Stopaj + KDV", "Tevkifat"], "bordro"),
 
+ "fatura-olusturma": ("fatura-olusturma", "Fatura", "Oluşturma ve PDF",
+   "KDV, iskonto, tevkifat ve tutar yazıyla — dört şablonda faturanızı hazırlayıp PDF indirin.",
+   ["4 şablon", "Üyeliksiz"], "vergi"),
+
  "kdv-hesaplama": ("kdv-hesaplama", "KDV", "Hesaplama",
    "KDV hariç tutara KDV ekleyin ya da KDV dahil tutardan KDV'yi ayırın.",
    ["%1 · %10 · %20", "Anında"], "vergi"),

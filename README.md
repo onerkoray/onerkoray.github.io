@@ -14,6 +14,7 @@ ve ücretsiz web araçları. Framework yok, bağımlılık yok, derleme adımı 
 - **[Şahıs mı, Limited mi, Maaşlı mı?](https://korayoner.dev/calisma-bicimi-karsilastirma/)** — aynı yıllık maliyetin dört çalışma biçiminde ne kadarının elde kaldığı; kesişim tablosuyla.
 - **[İşten Ayrılma Paketi Hesaplama](https://korayoner.dev/isten-ayrilma-hesaplama/)** — kıdem, ihbar, yıllık izin, son ay ücreti ve işsizlik maaşı tek hesapta; fesih türüne göre hak matrisi ve ödeme takvimi.
 - **[Kıdem ve İhbar Tazminatı Hesaplama 2026](https://korayoner.dev/kidem-tazminati-hesaplama/)** — güncel tavanla kıdem/ihbar tazminatı.
+- **[Fatura Oluşturma ve PDF İndirme](https://korayoner.dev/fatura-olusturma/)** — proforma fatura, teklif ve fatura taslağı: KDV, satır ve genel iskonto, KDV tevkifatı, tutar yazıyla, VKN/IBAN doğrulaması, dört şablon ve A4 PDF çıktısı.
 - **[KDV Hesaplama](https://korayoner.dev/kdv-hesaplama/)** — KDV dahil/hariç tutar hesaplama.
 - **[Yüzde Hesaplama](https://korayoner.dev/yuzde-hesaplama/)** — oran, indirim, artış/azalış.
 - **[Yaş Hesaplama](https://korayoner.dev/yas-hesaplama/)** — yıl/ay/gün yaş ve doğum gününe kalan süre.

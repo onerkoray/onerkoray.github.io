@@ -1,0 +1,426 @@
+/* Fatura Oluşturma — araca özel stiller.
+ *
+ * İki katman var ve bilinçli olarak birbirinden ayrık:
+ *   1) DÜZENLEYİCİ — sitenin tema değişkenlerini kullanır, koyu temaya uyar.
+ *   2) BELGE — her zaman kâğıt: beyaz zemin, koyu mürekkep, sabit ölçüler.
+ *      Koyu temada da beyaz kalır, çünkü ekranda gördüğünüz şey PDF'in
+ *      kendisidir; koyu zeminli göstermek çıktıyı yanlış tanıtırdı.
+ */
+
+/* ================================ düzen ================================= */
+.wrap.wrap-genis { width: min(100% - 2.5rem, 1420px); }
+
+.lede-uyari {
+  font-size: var(--step-0);
+  border-left: 3px solid var(--brand);
+  padding-left: .9rem;
+  margin-top: 1rem;
+}
+
+.fatura-duzen {
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+/* Izgara hücreleri varsayılan olarak min-width:auto taşır; belge 540px'lik
+   asgari genişliğini hücreye, hücre de sayfaya dayatıyordu ve 390px'te tüm
+   sayfa yatay kayıyordu. Hücrelerin küçülmesine izin verip taşmayı
+   belgenin kendi kaydırma kutusunda tutuyoruz. */
+.fatura-duzen > * { min-width: 0; }
+@media (min-width: 1180px) {
+  .fatura-duzen { grid-template-columns: minmax(400px, 5fr) minmax(560px, 7fr); }
+}
+
+/* ============================= düzenleyici ============================== */
+.editor-bar {
+  display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; align-items: end;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: .9rem 1.1rem; margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+.editor-bar-grup { display: grid; gap: .35rem; margin: 0; }
+.editor-bar-grup > label, .editor-bar-grup > span:first-child {
+  font-size: var(--step--1); font-weight: 600; color: var(--text-muted);
+}
+
+.renk-secim { display: flex; gap: .45rem; }
+.renk-nokta {
+  width: 26px; height: 26px; border-radius: 50%; cursor: pointer;
+  background: var(--nokta); border: 2px solid transparent;
+  box-shadow: 0 0 0 1px var(--border);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.renk-nokta:hover { transform: scale(1.12); }
+.renk-nokta[aria-checked="true"] {
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--text);
+}
+
+.editor-blok {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); margin-bottom: .85rem; box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.editor-blok > summary {
+  cursor: pointer; padding: .85rem 1.1rem; font-weight: 700;
+  display: flex; align-items: center; gap: .6rem; list-style: none;
+}
+.editor-blok > summary::-webkit-details-marker { display: none; }
+.editor-blok > summary::after {
+  content: "▾"; margin-left: auto; color: var(--text-muted);
+  transition: transform .2s ease;
+}
+.editor-blok[open] > summary::after { transform: rotate(180deg); }
+.editor-blok > summary:hover { background: var(--surface-2); }
+.blok-no {
+  display: inline-grid; place-items: center; width: 22px; height: 22px;
+  border-radius: 50%; background: var(--brand); color: var(--brand-contrast);
+  font-size: .75rem; font-weight: 800; flex: none;
+}
+.blok-ipucu {
+  font-weight: 500; font-size: var(--step--1); color: var(--text-muted);
+}
+.blok-ic { padding: 0 1.1rem 1.1rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+
+.alan-izgara {
+  display: grid; gap: .85rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+.alan { display: grid; gap: .3rem; margin: 0; align-content: start; }
+.alan-genis { grid-column: 1 / -1; }
+.alan > label { font-size: var(--step--1); font-weight: 600; }
+.alan input[type="text"], .alan input[type="date"], .alan select, .alan textarea {
+  width: 100%; max-width: 100%; padding: .5rem .65rem;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg); color: var(--text); font: inherit; font-size: var(--step--1);
+}
+.alan textarea { resize: vertical; }
+.alan input:focus-visible, .alan select:focus-visible, .alan textarea:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 1px;
+}
+.alan input[type="file"] { font-size: var(--step--1); color: var(--text-muted); }
+.alan-not { font-size: .78rem; color: var(--text-muted); line-height: 1.45; }
+.alan-durum { font-size: .78rem; color: var(--text-muted); min-height: 1em; }
+.durum-basarili { color: var(--brand-strong); font-weight: 600; }
+.durum-uyari { color: #a5401c; font-weight: 600; }
+:root[data-theme="dark"] .durum-uyari { color: #f0a17c; }
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .durum-uyari { color: #f0a17c; }
+}
+
+.blok-aksiyon {
+  display: flex; flex-wrap: wrap; gap: .6rem; align-items: center;
+  margin: 1rem 0 0;
+}
+.btn-kucuk { padding: .4rem .8rem; font-size: var(--step--1); }
+.btn-dosya { cursor: pointer; }
+
+.girdi-ikili { display: flex; }
+.girdi-ikili input {
+  border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;
+  border-right: 0 !important; min-width: 0;
+}
+.birim-dugme {
+  flex: none; width: 2.3rem; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--surface-2); color: var(--text); font: inherit; font-weight: 700;
+}
+.birim-dugme:hover { border-color: var(--brand); color: var(--brand-strong); }
+
+/* ------------------------------ kalemler ------------------------------- */
+.kalem-basliklar, .kalem-satir {
+  display: grid; gap: .4rem;
+  grid-template-columns: minmax(0, 2.6fr) 4.2rem 5.2rem minmax(0, 1.5fr) minmax(0, 1.4fr) 4.6rem minmax(0, 1.4fr) 4.6rem;
+  align-items: center;
+}
+.kalem-basliklar {
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--text-muted);
+  padding: 0 0 .4rem; border-bottom: 1px solid var(--border); margin-bottom: .5rem;
+}
+.kalem-satir { padding: .35rem 0; }
+.kalem-satir + .kalem-satir { border-top: 1px dashed var(--border); }
+.kalem-hucre { min-width: 0; }
+.kalem-hucre input, .kalem-hucre select {
+  width: 100%; max-width: 100%; padding: .42rem .55rem;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg); color: var(--text); font: inherit; font-size: var(--step--1);
+}
+.kalem-hucre input:focus-visible, .kalem-hucre select:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 1px;
+}
+.k-miktar, .k-fiyat, .k-iskonto { text-align: right; }
+.k-tutar {
+  display: block; text-align: right; font-weight: 700;
+  font-variant-numeric: tabular-nums; font-size: var(--step--1);
+}
+.h-islem { display: flex; gap: .15rem; justify-content: flex-end; }
+.satir-dugme {
+  width: 1.5rem; height: 1.6rem; cursor: pointer; line-height: 1;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--surface-2); color: var(--text-muted); font-size: .8rem;
+}
+.satir-dugme:hover { border-color: var(--brand); color: var(--brand-strong); }
+.satir-sil:hover { border-color: #a5401c; color: #a5401c; }
+
+/* Dar ekranda tablo satırı kart olur; başlık şeridi gizlenir ve her hücre
+   kendi etiketini data-etiket'ten alır. */
+@media (max-width: 900px) {
+  .kalem-basliklar { display: none; }
+  .kalem-satir {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: .7rem; margin-bottom: .6rem; gap: .55rem;
+  }
+  .kalem-satir + .kalem-satir { border-top: 1px solid var(--border); }
+  .kalem-hucre { display: grid; gap: .2rem; }
+  .kalem-hucre[data-etiket]:not(.h-islem)::before {
+    content: attr(data-etiket);
+    font-size: .68rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .05em; color: var(--text-muted);
+  }
+  .h-aciklama { grid-column: 1 / -1; }
+  .h-tutar { grid-column: 1 / -1; text-align: right; }
+  .k-tutar { font-size: var(--step-0); }
+  /* .kalem-hucre burada grid oluyor ve islem hucresinin flex'ini eziyordu;
+     dugmeler alt alta diziliyordu. Yeniden flex'e cekiliyor. */
+  .h-islem { display: flex; grid-column: 1 / -1; justify-content: flex-start; }
+  .satir-dugme { width: auto; padding-inline: .7rem; }
+}
+
+.editor-aksiyonlar {
+  display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem;
+  padding-top: 1.25rem; border-top: 1px solid var(--border);
+}
+.editor-durum { margin-top: .6rem; }
+
+/* ============================== önizleme =============================== */
+.onizleme-baslik {
+  display: flex; align-items: baseline; gap: .6rem; margin: 0 0 .6rem;
+  font-weight: 700;
+}
+.onizleme-not { font-size: var(--step--1); font-weight: 500; color: var(--text-muted); }
+
+.onizleme-kagit {
+  background: #f1f1ee; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem;
+  max-width: 100%; overflow-x: auto;
+}
+:root[data-theme="dark"] .onizleme-kagit { background: #23262b; }
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .onizleme-kagit { background: #23262b; }
+}
+
+/* =============================== BELGE =================================
+   Buradan aşağısı kâğıt. Site değişkenleri kullanılmaz; ölçüler sabittir
+   çünkü aynı kutu A4'e basılıyor. --fa: şablonun vurgu rengi. */
+.belge {
+  --fa: #0e7c66;
+  --fa-koyu: #0a5a4a;
+  --fa-cok-acik: #eef5f3;
+  --mur: #14181b;
+  --mur-soluk: #5c666d;
+  --cizgi: #d7d9d5;
+
+  background: #fff; color: var(--mur);
+  min-width: 540px; margin: 0 auto; padding: 26px 28px 22px;
+  font-size: 12px; line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 10px 30px rgba(0,0,0,.12);
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.belge * { box-sizing: border-box; }
+
+.belge[data-renk="yesil"]    { --fa: #0e7c66; --fa-koyu: #0a5a4a; --fa-cok-acik: #eaf4f1; }
+.belge[data-renk="lacivert"] { --fa: #1e3a8a; --fa-koyu: #172c69; --fa-cok-acik: #eceffa; }
+.belge[data-renk="bordo"]    { --fa: #8c1d3f; --fa-koyu: #6d1631; --fa-cok-acik: #faecf1; }
+.belge[data-renk="antrasit"] { --fa: #334155; --fa-koyu: #1f2937; --fa-cok-acik: #eef1f5; }
+.belge[data-renk="turuncu"]  { --fa: #b45309; --fa-koyu: #8a3f07; --fa-cok-acik: #fdf1e4; }
+.belge[data-renk="mor"]      { --fa: #5b21b6; --fa-koyu: #46188c; --fa-cok-acik: #f1ecfb; }
+
+/* --------------------------- üst blok --------------------------- */
+.belge-ust {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px;
+  align-items: start; padding-bottom: 14px; margin-bottom: 16px;
+  border-bottom: 1px solid var(--cizgi);
+}
+.belge-logo { max-width: 180px; max-height: 60px; width: auto; height: auto; margin-bottom: 8px; display: block; }
+.belge-satici-ad { font-size: 15px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 4px; }
+.belge-satici-detay, .belge-taraf-detay { color: var(--mur-soluk); font-size: 11px; line-height: 1.55; }
+.belge-satici-detay > div:empty, .belge-taraf-detay > div:empty { display: none; }
+
+.belge-kimlik { text-align: right; }
+.belge-tur {
+  font-size: 20px; font-weight: 800; letter-spacing: .04em;
+  color: var(--fa); margin-bottom: 8px;
+}
+.belge-kimlik-liste { margin: 0; font-size: 11px; }
+.belge-kimlik-liste > div {
+  display: flex; justify-content: flex-end; gap: 10px; padding: 1.5px 0;
+}
+.belge-kimlik-liste > div[hidden] { display: none; }
+.belge-kimlik-liste dt { color: var(--mur-soluk); }
+.belge-kimlik-liste dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* --------------------------- taraflar --------------------------- */
+.belge-taraflar {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; margin-bottom: 16px;
+}
+.belge-taraf-etiket {
+  font-size: 9px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--fa); margin-bottom: 4px;
+}
+.belge-taraf-ad { font-weight: 700; font-size: 13px; margin-bottom: 3px; }
+.belge-odeme { text-align: right; }
+
+/* ---------------------------- kalemler ---------------------------- */
+.belge-tablo-kap { overflow-x: auto; }
+.belge-tablo { width: 100%; border-collapse: collapse; font-size: 11px; }
+.belge-tablo thead { display: table-header-group; }
+.belge-tablo th, .belge-tablo td { padding: 6px 8px; vertical-align: top; }
+.belge-tablo thead th {
+  text-align: left; font-size: 9px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .06em;
+}
+.belge-tablo .s-no { width: 26px; text-align: right; color: var(--mur-soluk); }
+.belge-tablo .s-sayi { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.belge-tablo thead .s-sayi { text-align: right; }
+.belge-tablo .s-tutar { font-weight: 700; }
+.belge-tablo .s-aciklama { width: 42%; }
+.belge-bos { color: #9aa3a9; font-style: italic; }
+.belge[data-iskonto="yok"] .s-iskonto { display: none; }
+
+/* -------------------------- alt blok ---------------------------- */
+.belge-alt-blok {
+  display: grid; grid-template-columns: 1fr minmax(240px, 300px);
+  gap: 24px; margin-top: 16px; align-items: start;
+}
+.belge-yaziyla {
+  border: 1px solid var(--cizgi); border-left: 3px solid var(--fa);
+  border-radius: 3px; padding: 7px 10px; font-size: 11px; line-height: 1.5;
+}
+.belge-yaziyla-etiket { color: var(--mur-soluk); font-weight: 700; }
+.belge-notlar { margin-top: 10px; font-size: 11px; color: var(--mur-soluk); line-height: 1.55; }
+
+.belge-toplam { width: 100%; border-collapse: collapse; font-size: 11px; }
+.belge-toplam th {
+  text-align: left; font-weight: 500; color: var(--mur-soluk); padding: 4px 0;
+}
+.belge-toplam td {
+  text-align: right; font-weight: 700; padding: 4px 0;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.belge-toplam .toplam-ara th, .belge-toplam .toplam-ara td {
+  border-top: 1px solid var(--cizgi); padding-top: 6px;
+}
+.belge-toplam .toplam-odenecek th, .belge-toplam .toplam-odenecek td {
+  border-top: 2px solid var(--fa); padding-top: 7px; padding-bottom: 6px;
+  font-size: 14px; font-weight: 800; color: var(--fa-koyu);
+}
+.belge-toplam .toplam-tl th, .belge-toplam .toplam-tl td {
+  font-size: 10px; color: var(--mur-soluk); font-weight: 600;
+}
+
+.belge-dip {
+  margin-top: 18px; padding-top: 10px; border-top: 1px solid var(--cizgi);
+  font-size: 9.5px; color: var(--mur-soluk); line-height: 1.5;
+}
+.belge-kosullar:not(:empty) { margin-bottom: 6px; }
+.belge-damga { font-size: 9px; }
+
+/* ============================= ŞABLONLAR ============================== */
+
+/* --- Klasik: çerçeveli tablo, matbu faturaya en yakın duran biçim --- */
+.sablon-klasik { border-top: 4px solid var(--fa); }
+.sablon-klasik .belge-satici-ad { font-family: Georgia, "Times New Roman", serif; }
+.sablon-klasik .belge-tur { font-family: Georgia, "Times New Roman", serif; letter-spacing: .02em; }
+.sablon-klasik .belge-tablo th, .sablon-klasik .belge-tablo td {
+  border: 1px solid var(--cizgi);
+}
+.sablon-klasik .belge-tablo thead th {
+  background: var(--fa-cok-acik); color: var(--fa-koyu);
+  border-color: var(--cizgi);
+}
+
+/* --- Modern: renkli başlık bandı, çizgisiz tablo --- */
+.sablon-modern { padding: 0 0 22px; overflow: hidden; border-radius: 4px; }
+.sablon-modern .belge-ust {
+  background: var(--fa); color: #fff; margin: 0 0 18px;
+  padding: 22px 28px; border-bottom: 0;
+}
+.sablon-modern .belge-tur { color: #fff; }
+.sablon-modern .belge-satici-detay { color: rgba(255,255,255,.85); }
+.sablon-modern .belge-kimlik-liste dt { color: rgba(255,255,255,.8); }
+.sablon-modern .belge-kimlik-liste dd { color: #fff; }
+.sablon-modern .belge-taraflar,
+.sablon-modern .belge-tablo-kap,
+.sablon-modern .belge-alt-blok,
+.sablon-modern .belge-dip { margin-inline: 28px; }
+.sablon-modern .belge-tablo thead th {
+  border-bottom: 2px solid var(--fa); color: var(--fa-koyu);
+}
+.sablon-modern .belge-tablo tbody tr + tr td { border-top: 1px solid var(--cizgi); }
+.sablon-modern .belge-yaziyla { background: var(--fa-cok-acik); border-color: transparent; }
+
+/* --- Minimal: dolgu yok, ince çizgiler, bol boşluk --- */
+.sablon-minimal { padding: 34px 32px 26px; }
+.sablon-minimal .belge-ust { border-bottom-width: 2px; border-bottom-color: var(--mur); padding-bottom: 18px; }
+.sablon-minimal .belge-tur {
+  font-size: 13px; letter-spacing: .22em; color: var(--mur); font-weight: 700;
+}
+.sablon-minimal .belge-taraf-etiket { color: var(--mur-soluk); }
+.sablon-minimal .belge-tablo thead th { border-bottom: 1px solid var(--mur); }
+.sablon-minimal .belge-tablo tbody tr + tr td { border-top: 1px solid #ecedea; }
+.sablon-minimal .belge-yaziyla { border: 0; border-left: 2px solid var(--mur); border-radius: 0; padding-left: 10px; }
+.sablon-minimal .belge-toplam .toplam-odenecek th,
+.sablon-minimal .belge-toplam .toplam-odenecek td {
+  border-top-color: var(--mur); color: var(--mur);
+}
+
+/* --- Kurumsal: sol renk şeridi, zebra satırlar, kutulu toplam --- */
+.sablon-kurumsal { border-left: 10px solid var(--fa); padding-left: 24px; }
+.sablon-kurumsal .belge-ust { border-bottom: 2px solid var(--fa); }
+.sablon-kurumsal .belge-tur {
+  background: var(--fa); color: #fff; display: inline-block;
+  padding: 4px 12px; border-radius: 3px; font-size: 15px; letter-spacing: .08em;
+}
+.sablon-kurumsal .belge-tablo thead th {
+  background: var(--fa); color: #fff;
+}
+.sablon-kurumsal .belge-tablo tbody tr:nth-child(even) td { background: var(--fa-cok-acik); }
+.sablon-kurumsal .belge-sag {
+  border: 1px solid var(--cizgi); border-radius: 4px; padding: 10px 12px;
+  background: #fcfcfb;
+}
+.sablon-kurumsal .belge-taraf-etiket { letter-spacing: .12em; }
+
+/* ============================== YAZDIRMA ==============================
+   Sayfada yalnızca belge basılır. visibility yöntemi seçildi: display:none
+   ile üst kapsayıcıları gizlemek belgeyi de gizlerdi. */
+@media print {
+  @page { size: A4; margin: 11mm; }
+
+  body { visibility: hidden; background: #fff !important; }
+  #onizleme, #onizleme * { visibility: visible; }
+  #onizleme {
+    position: absolute; left: 0; top: 0; width: 100%;
+    margin: 0; padding: 0; border: 0; background: #fff; overflow: visible;
+  }
+  .onizleme-kagit { padding: 0; border: 0; background: #fff; box-shadow: none; }
+
+  /* Ekranda belge 12px; baskida 10.5pt (~14px) verilince metin %17 buyuyor ve
+     yogun bir fatura ikinci sayfaya tasiyordu. 9.5pt ekrandaki yogunluga denk
+     dusuyor ve fatura icin alisildik bir punto. */
+  .belge {
+    min-width: 0; width: 100%; margin: 0; box-shadow: none;
+    font-size: 9.5pt; line-height: 1.42;
+    padding-top: 0; padding-bottom: 0;
+  }
+  .sablon-modern { border-radius: 0; }
+
+  /* Sayfa bölünmelerinde blokların ikiye ayrılmaması */
+  .belge-ust, .belge-taraflar, .belge-alt-blok, .belge-dip { break-inside: avoid; }
+  .belge-tablo tr { break-inside: avoid; }
+
+  .no-print, .editor-bar, .fatura-editor, .onizleme-baslik { display: none !important; }
+}

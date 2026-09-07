@@ -33,6 +33,11 @@ jobs:
       - name: Motor testleri
         run: node bordro/test.js
 
+      - name: Fatura çekirdeği testleri
+        # Fatura tutarı sessizce yanlış olabilen bir sayıdır: kuruş dağıtımında
+        # bir hata olsa belge yine oluşur, yalnızca toplam tutmaz.
+        run: node fatura-olusturma/test.js
+
       - name: Çıkış paketi testleri
         run: node bordro/cikis-test.js
 
