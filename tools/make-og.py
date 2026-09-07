@@ -168,9 +168,9 @@ SPEC = {
    "Yurt dışı alışverişte vergi, IMEI kayıt harcı ve toplam maliyet.",
    ["AB & diğer ülke", "IMEI harcı"], "vergi"),
 
- "kredi-hesaplama": ("kredi-hesaplama", "Kredi", "Hesaplama 2026",
-   "İhtiyaç, konut ve taşıt kredisinde taksit ve ay ay ödeme planı.",
-   ["Ödeme planı", "Toplam faiz"], "finans"),
+ "kredi-hesaplama": ("kredi-hesaplama", "Kredi Hesaplama", "ve Gerçek Maliyet",
+   "Bankanın ilan ettiği faiz ödeyeceğiniz maliyet değildir: KKDF, BSMV ve masraflarla yıllık maliyet oranı.",
+   ["YMO hesabı", "Ödeme planı"], "finans"),
 
  "vadeli-mevduat-hesaplama": ("vadeli-mevduat-hesaplama", "Vadeli Mevduat", "Faizi Hesaplama",
    "Anapara, faiz oranı ve vadeye göre brüt faiz, stopaj ve net getiri.",

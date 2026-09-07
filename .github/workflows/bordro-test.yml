@@ -33,6 +33,11 @@ jobs:
       - name: Motor testleri
         run: node bordro/test.js
 
+      - name: Kredi çekirdeği testleri
+        # YMO ikiye bölmesinin yönü ters kurulduğunda oran sessizce 0
+        # dönüyordu: sayfa açılıyor, hiçbir yerde hata yok, yalnızca rakam yanlış.
+        run: node kredi-hesaplama/test.js
+
       - name: Fatura çekirdeği testleri
         # Fatura tutarı sessizce yanlış olabilen bir sayıdır: kuruş dağıtımında
         # bir hata olsa belge yine oluşur, yalnızca toplam tutmaz.

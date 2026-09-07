@@ -61,3 +61,105 @@ table.payroll tbody tr:nth-child(even) { background: rgba(127,127,127,.05); }
   padding: 12px 14px;
   font-size: .95rem;
 }
+
+/* ===================== Kredi merkezi: ek arayüz katmanı =====================
+   Aracın iddiası tek bir karşılaştırmada duruyor: bankanın söylediği oran ile
+   gerçek maliyet. O yüzden en belirgin görsel öğe o karşılaştırma. */
+
+.alan-izgara {
+  display: grid; gap: .85rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+.alan { display: grid; gap: .3rem; margin: 0; align-content: start; }
+.alan-tek { max-width: 26rem; }
+.alan > label { font-size: var(--step--1); font-weight: 600; }
+.alan input[type="text"], .alan select {
+  width: 100%; max-width: 100%; padding: .5rem .65rem;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg); color: var(--text); font: inherit; font-size: var(--step--1);
+}
+.alan input:focus-visible, .alan select:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 1px;
+}
+.alan-not { font-size: .78rem; color: var(--text-muted); line-height: 1.45; }
+
+/* Birim etiketi girdinin içinde durur: "250.000 TL" tek bir kutu gibi okunur */
+.girdi-son { display: flex; align-items: stretch; }
+.girdi-son input {
+  border-top-right-radius: 0 !important; border-bottom-right-radius: 0 !important;
+  border-right: 0 !important; min-width: 0; text-align: right;
+}
+.girdi-son > span {
+  flex: none; display: grid; place-items: center; padding: 0 .6rem;
+  border: 1px solid var(--border); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--surface-2); color: var(--text-muted);
+  font-size: var(--step--1); font-weight: 600;
+}
+
+.ek-blok {
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  margin-top: 1rem; background: var(--bg);
+}
+.ek-blok > summary {
+  cursor: pointer; padding: .6rem .9rem; font-weight: 600;
+  display: flex; align-items: center; gap: .6rem; list-style: none;
+  font-size: var(--step--1);
+}
+.ek-blok > summary::-webkit-details-marker { display: none; }
+.ek-blok > summary::after { content: "▾"; margin-left: auto; color: var(--text-muted); }
+.ek-blok[open] > summary::after { transform: rotate(180deg); }
+.ek-blok .blok-ipucu { font-weight: 500; color: var(--text-muted); }
+.ek-ic { padding: 0 .9rem .9rem; }
+
+/* --------------------- ilan edilen oran ile gerçek maliyet --------------- */
+.ymo-vurgu {
+  display: grid; align-items: center; gap: .75rem 1.5rem; margin-top: 1.25rem;
+  grid-template-columns: 1fr auto 1fr;
+  padding: 1.1rem 1.25rem; border-radius: var(--radius);
+  border: 1px solid color-mix(in srgb, var(--brand) 35%, var(--border));
+  background: color-mix(in srgb, var(--brand) 6%, var(--surface));
+}
+.ymo-taraf { display: grid; gap: .15rem; }
+.ymo-etiket {
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--text-muted);
+}
+.ymo-deger { font-size: var(--step-2); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.ymo-gercek .ymo-deger { color: var(--brand-strong); }
+.ymo-not { font-size: .78rem; color: var(--text-muted); }
+.ymo-ok { font-size: var(--step-2); color: var(--text-muted); }
+.ymo-aciklama {
+  grid-column: 1 / -1; margin: 0; font-size: var(--step--1);
+  color: var(--text-muted); line-height: 1.5;
+}
+@media (max-width: 620px) {
+  .ymo-vurgu { grid-template-columns: 1fr; }
+  .ymo-ok { transform: rotate(90deg); justify-self: start; }
+}
+
+/* ------------------------------- sekmeler ------------------------------- */
+.sekmeler { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1.5rem 0 1rem; }
+.sekme {
+  padding: .45rem .9rem; cursor: pointer; font: inherit; font-size: var(--step--1);
+  font-weight: 600; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--surface); color: var(--text-muted);
+}
+.sekme:hover { border-color: var(--brand); color: var(--brand-strong); }
+.sekme[aria-selected="true"] {
+  background: var(--brand); border-color: var(--brand); color: var(--brand-contrast);
+}
+.sekme-govde[hidden] { display: none; }
+
+.sum-vurgu {
+  border-color: color-mix(in srgb, var(--brand) 50%, var(--border));
+  background: color-mix(in srgb, var(--brand) 10%, var(--surface));
+}
+.sum-vurgu .sum-value { color: var(--brand-strong); }
+.kiyas-giris { margin-bottom: 1rem; }
+
+/* Uzun ödeme planı yazdırılabilir olmalı; başlık her sayfada tekrar etsin. */
+@media print {
+  .sekmeler, .ek-blok, .ymo-vurgu { display: none !important; }
+  .sekme-govde[hidden] { display: block !important; }
+  .payroll thead { display: table-header-group; }
+}

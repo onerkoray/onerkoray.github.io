@@ -51,6 +51,8 @@ DOSYALAR = [
     ("bordro/test.js",                    "bordro/test.js"),
     ("bordro/cikis-test.js",              "bordro/cikis-test.js"),
     ("bordro/calisma-bicimi-test.js",     "bordro/calisma-bicimi-test.js"),
+    ("kredi-hesaplama/hesap.js",          "kredi/hesap.js"),
+    ("kredi-hesaplama/test.js",           "kredi/test.js"),
     ("fatura-olusturma/fatura.js",        "fatura/fatura.js"),
     ("fatura-olusturma/arsiv.js",         "fatura/arsiv.js"),
     ("fatura-olusturma/test.js",          "fatura/test.js"),
@@ -98,6 +100,7 @@ def test_sayilari():
     """
     sonuc = {}
     for ad, yol in (("bordro", "bordro/test.js"),
+                    ("kredi", "kredi-hesaplama/test.js"),
                     ("cikis", "bordro/cikis-test.js"),
                     ("calisma", "bordro/calisma-bicimi-test.js"),
                     ("fatura", "fatura-olusturma/test.js"),
@@ -143,6 +146,11 @@ Kümülatif gelir vergisi tarifesi (GVK m.103), asgari ücret istisnası (m.32),
 SGK taban ve tavanı (5510 m.82), damga vergisi, netten brüte iteratif çözüm,
 kıdem ve ihbar tazminatı, işsizlik ödeneği, çalışma biçimi karşılaştırması.
 
+### `kredi/` — kredi maliyeti
+Eşit taksitli (annüite) kredi, KKDF ve BSMV ile brütleşmiş aylık maliyet oranı,
+kuruş tamsayısı üzerinde amortisman, yıllık maliyet oranı (YMO), erken kapama,
+ek ödeme senaryosu ve iki teklifin karşılaştırılması.
+
 ### `fatura/` — fatura ve teklif
 Tam sayı kuruş aritmetiği, satır ve genel iskonto (en büyük artık yöntemiyle
 dağıtım), KDV tevkifatı, tutar yazıyla, VKN/TCKN ve IBAN sağlaması, belge
@@ -154,6 +162,7 @@ arşivi ve teklif→fatura dönüşümü.
 node bordro/test.js                 # %(bordro)d test
 node bordro/cikis-test.js           # %(cikis)d test
 node bordro/calisma-bicimi-test.js  # %(calisma)d test
+node kredi/test.js                  # %(kredi)d test
 node fatura/test.js                 # %(fatura)d test
 node fatura/arsiv-test.js           # %(arsiv)d test
 ```
@@ -184,6 +193,7 @@ kurum görüşü yerine geçmez.
 """ % {
         "bordro": sayilar["bordro"], "cikis": sayilar["cikis"],
         "calisma": sayilar["calisma"], "fatura": sayilar["fatura"],
+        "kredi": sayilar["kredi"],
         "arsiv": sayilar["arsiv"], "toplam": toplam, "surum": surum(),
         "yil_ilk": min(yillar) if yillar else "?",
         "yil_son": max(yillar) if yillar else "?",
