@@ -32,15 +32,41 @@ os.chdir(KOK)
 SITE = "https://korayoner.dev"
 BESLEME = "atom.xml"
 
-# Beslemeye GIRMEYECEK sayfalar. Gerekce her biri icin ayri:
-#   kurumsal/yasal sayfalar -> "yeni icerik" degil
-#   makaleler/ ve index     -> liste sayfasi, kendisi icerik degil
-#   doviz-kurlari           -> her is gunu otomatik degisiyor, beslemeyi bogar
-#   bordro                  -> arac degil, metodoloji belgesi
-HARIC_KOK = {
-    "hakkimda", "iletisim", "gizlilik", "kullanim-kosullari",
-    "makaleler", "doviz-kurlari", "bordro",
-}
+# ---------------------------------------------------------------------------
+# BESLEME KAPSAMI
+#
+# Onceki surum yalnizca "*/index.html" ve "makaleler/*/index.html" glob'una
+# bakiyordu. Bu SESSIZ bir kordu: fatura-olusturma/metodoloji/ yayinlandiginda
+# besleme onu hic gormedi ve kontrol de gecti, cunku sayfanin var oldugunu
+# bilmiyordu. Beslemenin engellemesi gereken bayatlamayi kuralin kendisi
+# uretiyordu.
+#
+# Artik SITEDEKI HER dizine acik sayfa siniflandirilmak ZORUNDA: ya beslemeye
+# girer ya da asagidaki listelerden birine gerekcesiyle yazilir. Siniflanmamis
+# bir sayfa --check'i patlatir; yeni sayfa eklendiginde karar vermek gerekir.
+# ---------------------------------------------------------------------------
+
+# Kurumsal ve yasal sayfalar: "yeni icerik" degil, kalici sayfalar.
+HARIC_KURUMSAL = {"hakkimda/", "iletisim/", "gizlilik/", "kullanim-kosullari/"}
+
+# Liste sayfalari: kendileri icerik degil, iceriklerin dizini.
+HARIC_LISTE = {"makaleler/"}
+
+# Her is gunu otomatik degisiyor; beslemeye girseydi her gun basa gecerdi.
+HARIC_CANLI = {"doviz-kurlari/"}
+
+
+def haric_turetilmis(u):
+    """Tek bir aracin turetilmis alt sayfalari.
+
+    maas-hesaplama/<tutar>-tl-brut-ne-kadar-net/ ve brut-net-tablosu, ayni
+    aracin ciktilaridir; dokuzu birden beslemeye girseydi listeyi doldururdu.
+    keymint alt araclari ve decorpalette dokumanlari da ust sayfalariyla
+    birlikte anilir.
+    """
+    return ((u.startswith("maas-hesaplama/") and u != "maas-hesaplama/")
+            or (u.startswith("keymint/") and u != "keymint/")
+            or u.startswith("decorpalette/docs/"))
 
 
 def oku(p):
@@ -71,20 +97,59 @@ def noindex_mi(s):
     return bool(re.search(r'<meta[^>]+name="robots"[^>]*noindex', s, re.I))
 
 
-def adaylar():
-    """Beslemede olmasi gereken sayfalar: kok seviyedeki araclar ve makaleler."""
-    bulunan = []
-    for yol in sorted(glob.glob("*/index.html")) + sorted(glob.glob("makaleler/*/index.html")):
-        yol = yol.replace(os.sep, "/")
-        parca = yol.split("/")
-        if parca[0] in ("tools", "images"):
-            continue
-        if len(parca) == 2 and parca[0] in HARIC_KOK:
-            continue
+def tum_sayfalar():
+    """Sitedeki butun HTML sayfalari (araclar ve icerik)."""
+    bulunan = set()
+    for desen in ("*.html", "*/*.html", "*/*/*.html", "*/*/*/*.html"):
+        for p in glob.glob(desen):
+            p = p.replace(os.sep, "/")
+            if p.split("/")[0] in ("tools", "images", "node_modules"):
+                continue
+            ad = p.split("/")[-1]
+            if ad == "404.html" or (ad.startswith("google") and ad.endswith(".html")):
+                continue
+            bulunan.add(p)
+    return sorted(bulunan)
+
+
+def url_yolu(p):
+    if p == "index.html":
+        return ""
+    if p.endswith("/index.html"):
+        return p[: -len("index.html")]
+    return p
+
+
+def siniflandir():
+    """Her sayfayi ya beslemeye alir ya da gerekcesiyle disarida birakir.
+
+    Doner: (adaylar, disarida, siniflanmamis)
+    """
+    adaylar, disarida, siniflanmamis = [], [], []
+    for yol in tum_sayfalar():
+        u = url_yolu(yol)
         if noindex_mi(oku(yol)):
-            continue
-        bulunan.append((SITE + "/" + yol[: -len("index.html")], yol))
-    return bulunan
+            disarida.append((u, "noindex"))
+        elif u == "":
+            disarida.append((u, "ana sayfa"))
+        elif u in HARIC_KURUMSAL:
+            disarida.append((u, "kurumsal/yasal"))
+        elif u in HARIC_LISTE:
+            disarida.append((u, "liste sayfasi"))
+        elif u in HARIC_CANLI:
+            disarida.append((u, "gunluk degisiyor"))
+        elif haric_turetilmis(u):
+            disarida.append((u, "turetilmis alt sayfa"))
+        elif u.endswith("/"):
+            adaylar.append((SITE + "/" + u, yol))
+        else:
+            # .html ile biten, dizin olmayan sayfa: beklenmiyor
+            siniflanmamis.append(u)
+    return adaylar, disarida, siniflanmamis
+
+
+def adaylar():
+    return siniflandir()[0]
 
 
 def mevcut_girdiler(s):
@@ -144,6 +209,27 @@ def uret():
 
 def main():
     kontrol = "--check" in sys.argv
+
+    _, disarida, siniflanmamis = siniflandir()
+    if siniflanmamis:
+        print("Siniflandirilmamis sayfa var; beslemeye girip girmeyecegine "
+              "karar verilmeli:", file=sys.stderr)
+        for u in siniflanmamis:
+            print("  - " + u, file=sys.stderr)
+        print("tools/besleme.py icindeki listelere ekleyin.", file=sys.stderr)
+        return 1
+
+    if "--kapsam" in sys.argv:
+        ad, _, _ = siniflandir()
+        print("Beslemede (%d):" % len(ad))
+        for u, _y in ad:
+            print("  + " + u.replace(SITE + "/", ""))
+        print("")
+        print("Disarida (%d):" % len(disarida))
+        for u, neden in sorted(disarida):
+            print("  - %-46s %s" % (u or "(ana sayfa)", neden))
+        return 0
+
     yeni, eklenen, adet = uret()
     eski = oku(BESLEME) if os.path.exists(BESLEME) else ""
 

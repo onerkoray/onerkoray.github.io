@@ -10,11 +10,27 @@
   <icon>https://korayoner.dev/favicon.svg</icon>
 
   <entry>
+    <title>Bordro Motoru — Metodoloji ve Parametreler</title>
+    <link href="https://korayoner.dev/bordro/"/>
+    <id>https://korayoner.dev/bordro/</id>
+    <updated>2026-09-07T00:00:00+03:00</updated>
+    <summary>Koray Öner'in maaş araçlarını çalıştıran açık bordro motoru: 2020-2026 vergi dilimleri, asgari ücret, SGK tavanı, istisnalar, hesap adımları ve değişiklik günlüğü.</summary>
+  </entry>
+
+  <entry>
     <title>Fatura ve Teklif Oluşturma Merkezi</title>
     <link href="https://korayoner.dev/fatura-olusturma/"/>
     <id>https://korayoner.dev/fatura-olusturma/</id>
     <updated>2026-09-07T00:00:00+03:00</updated>
     <summary>Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti. Üyeliksiz; veriler tarayıcınızda kalır.</summary>
+  </entry>
+
+  <entry>
+    <title>Fatura Merkezi Metodolojisi</title>
+    <link href="https://korayoner.dev/fatura-olusturma/metodoloji/"/>
+    <id>https://korayoner.dev/fatura-olusturma/metodoloji/</id>
+    <updated>2026-09-07T00:00:00+03:00</updated>
+    <summary>Fatura Merkezi nasıl hesaplıyor, veri nerede duruyor? Kuruş aritmetiği, iskonto dağıtımı, tevkifat, VKN ve IBAN doğrulaması, 159 test.</summary>
   </entry>
 
   <entry>
