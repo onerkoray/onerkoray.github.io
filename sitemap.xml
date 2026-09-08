@@ -76,6 +76,22 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/finansal-ozgurluk-hesaplama/</loc>
+    <lastmod>2026-09-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/finansal-ozgurluk-hesaplama-koray-oner.png</image:loc>
+      <image:title>Finansal Özgürlük (FIRE) Hesaplama — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/</loc>
+    <lastmod>2026-09-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/fire-metodoloji-koray-oner.png</image:loc>
+      <image:title>FIRE Simülasyonu Metodolojisi — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/birikim-hesaplama/</loc>
     <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FIRE Simülasyonu Metodolojisi | Koray Öner</title>
+  <meta name="description" content="Monte Carlo nasıl kuruldu? Getiri ve enflasyonun korelasyonlu üretimi, Student-t birim varyans tuzağı, sequence-of-returns ve 40 test.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/">
+
+  <link rel="icon" href="../../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="FIRE Simülasyonu Metodolojisi">
+  <meta property="og:description" content="Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor? Açık defter.">
+  <meta property="og:url" content="https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/fire-metodoloji-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FIRE Simülasyonu Metodolojisi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FIRE Simülasyonu Metodolojisi">
+  <meta name="twitter:description" content="Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor?">
+  <meta name="twitter:image" content="https://korayoner.dev/images/fire-metodoloji-koray-oner.png">
+
+  <link rel="stylesheet" href="../../style.css?v=834d5d98">
+  <link rel="stylesheet" href="../style.css?v=444c70c5">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/#article",
+        "headline": "Simülasyon metodolojisi",
+        "url": "https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/",
+        "inLanguage": "tr",
+        "datePublished": "2026-09-07",
+        "dateModified": "2026-09-07",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "about": { "@id": "https://korayoner.dev/finansal-ozgurluk-hesaplama/#app" },
+        "description": "FIRE simülasyonunun yöntemi: Monte Carlo, getiri ve enflasyonun korelasyonlu üretimi, Student-t birim varyans ölçeklemesi, sequence-of-returns riski, güvenli çekimin çözücüyle bulunması ve Web Worker kararının ölçümle gerekçelendirilmesi."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Finansal Özgürlük Hesaplama", "item": "https://korayoner.dev/finansal-ozgurluk-hesaplama/" },
+          { "@type": "ListItem", "position": 3, "name": "Metodoloji", "item": "https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="../">Aracı aç</a></li>
+          <li><a href="#formul">Formüller</a></li>
+          <li><a href="#test">Testler</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Finansal Özgürlük Hesaplama</a> <span aria-hidden="true">&#8250;</span> Metodoloji
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Açık defter · MIT lisanslı · 40 test</p>
+        <h1 id="hero-title">Simülasyon metodolojisi</h1>
+        <p class="lede">
+          Bu araç Singapur için yazılmış açık kaynaklı bir FIRE planlayıcısının
+          mimarisi incelenerek kuruldu. Bu sayfa neyin alındığını, neyin
+          <em>alınmadığını</em> ve Türkiye için nelerin yeniden türetilmek zorunda
+          kaldığını anlatıyor — <strong>iddia olarak değil, formül ve test olarak.</strong>
+        </p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../../hakkimda/" rel="author">Koray Öner</a> · Güncelleme: 8 Eylül 2026 · <a href="../">Aracı aç</a></p>
+
+        <h2 id="kaynak">1. Mimari nereden geldi, ne alınmadı</h2>
+        <p>
+          Bu aracın mimarisi <a href="https://github.com/RemarkRemedy/fireplanner" rel="noopener">RemarkRemedy/fireplanner</a>
+          (MIT) incelenerek çıkarıldı: Singapur için yazılmış, %100 istemci tarafı
+          çalışan bir FIRE planlayıcısı. Ondan alınan şey <strong>yöntem</strong>:
+        </p>
+        <ul>
+          <li>Monte Carlo ile belirsizliği ölçmek, tek bir tahmin vermemek</li>
+          <li>Yüzdelik bantlar (aynı seti kullanıyoruz: 5, 10, 25, 50, 75, 90, 95)</li>
+          <li>Başarı oranı tanımı: <code>1 − başarısız / toplam</code></li>
+          <li>Sequence-of-returns riskini modele sokmak</li>
+          <li>Yağlı kuyruk için Student-t (kaynakta df=5; burada da varsayılan 5)</li>
+          <li>Ağır hesabı Web Worker'a vermek</li>
+        </ul>
+        <p>
+          Alınmayan şey <strong>kurallar</strong>. CPF hesapları ve faiz kademeleri,
+          SRS indirimi, BSD/ABSD damga vergileri, Bala's Table arsa payı değer kaybı,
+          HDB parasal hale getirme — hiçbirinin Türkiye'de karşılığı yok. Türkiye
+          tarafındaki karşılıklar zaten sitenin kendi çekirdeklerinde:
+          <a href="../../bordro/">bordro motoru</a> (kümülatif matrah),
+          <a href="../../birikim-hesaplama/">BES</a> (devlet katkısı, tavan, hak kazanma),
+          <a href="../../kredi-hesaplama/">kredi</a>,
+          <a href="../../ev-almak-mi-kiralamak-mi/">ev/kira</a>.
+        </p>
+        <p>
+          Tarihi veriyle bootstrap yöntemi de <strong>taşınmadı</strong>. Kaynak araç
+          Singapur borsası (1987–2024) ve enflasyonu (1961–2024) için gerçek seriyle
+          yeniden örnekleme yapıyor. Elimizde aynı güvenilirlikte, doğrulanabilir bir
+          BIST/TÜFE serisi yok; olmayan veriyi ezberden yazmaktansa parametreleri
+          kullanıcıya sormayı tercih ettik.
+        </p>
+
+        <h2 id="enflasyon">2. Türkiye farkı: enflasyon da rastgeledir</h2>
+        <p>
+          Kaynak araç getiriyi rastgeleleştirip enflasyonu büyük ölçüde sabit tutuyor.
+          Düşük ve istikrarlı enflasyona sahip bir ülkede bu savunulabilir bir
+          basitleştirme. <strong>Türkiye'de baskın belirsizlik enflasyonun
+          kendisidir</strong>; onu sabitleyip yalnızca getiriyi oynatan bir plan
+          tehlikeli biçimde iyimser çıkar.
+        </p>
+        <p>
+          Burada iki şok birlikte üretiliyor ve aralarındaki korelasyon girdi. 2×2
+          Cholesky ayrıştırması elle yazıldı, kütüphane yok:
+        </p>
+        <p class="formula">z₂ = ρ·z₁ + √(1−ρ²)·z₀</p>
+        <p>
+          Bir test üretilen korelasyonu ölçüp isteneni tutturduğunu doğruluyor
+          (0,0 · 0,5 · 0,9 için ayrı ayrı).
+        </p>
+
+        <h2 id="dagilim">3. Yağlı kuyruk ve birim varyans tuzağı</h2>
+        <p>
+          Normal dağılım uç yılları olduğundan seyrek gösterir. Varsayılan dağılım bu
+          yüzden Student-t (df=5) — kaynaktaki değerin aynısı.
+        </p>
+        <p>
+          Burada sessiz bir tuzak var: Student-t'nin varyansı 1 değil
+          <strong>df/(df−2)</strong>'dir. df=5 için bu 1,667, yani standart sapma
+          %29 fazla. Ölçeklenmezse kullanıcının girdiği oynaklık sessizce büyür ve
+          bütün sonuçlar kötümserleşir. Üretilen değer bu yüzden √(df/(df−2))'ye
+          bölünüyor ve bir test varyansın 1'e yakın kaldığını doğruluyor.
+        </p>
+
+        <h2 id="basari">4. Başarısızlık ne demek?</h2>
+        <p>
+          Kaynakta başarı ölçütü "bakiye sıfırın altına düşmesin". Yüksek enflasyonda
+          bu ölçüt aldatıcı olur: para nominal olarak durur, alım gücü biter. Burada
+          çekim her yıl enflasyon kadar artırılır — yani alım gücü sabit tutulur — ve
+          bir yol <strong>o çekimi karşılayamadığı anda</strong> başarısız sayılır.
+          Raporlanan bakiyeler ayrıca bugünün parasına indirgenir.
+        </p>
+        <p>
+          Bunun bir sonucu var ve testte ortaya çıktı: <strong>çekim sıfırsa hiçbir
+          yol başarısız olamaz</strong>, çünkü karşılanacak bir yükümlülük yoktur. İlk
+          sürümde "çekimsiz bile yetmiyor" diye ulaşılamaz bir dal yazmıştım; test
+          onu yakaladı, dal kaldırıldı ve yerine anlamlı olan kondu: sürdürülebilir
+          çekim pratikte sıfıra düşüyorsa bunu söylemek.
+        </p>
+
+        <h2 id="sira">5. Sequence-of-returns riski</h2>
+        <p>
+          Emeklilik döneminde <strong>çekim yılın başında</strong> yapılır, getiri
+          sonra uygulanır. Kötü bir yıl böylece doğrudan anaparayı vurur ve sonraki iyi
+          yıllar daha küçük bir anapara üzerinde çalışır. Aynı ortalama getiriyle bile
+          oynaklık arttıkça başarı oranının düşmesi bu etkinin gözlemlenebilir izidir;
+          bir test tam olarak bunu sınıyor.
+        </p>
+
+        <h2 id="cozucu">6. %4 kuralı yerine çözücü</h2>
+        <p>
+          Kaynakta varsayılan güvenli çekim oranı %4. O kural düşük ve istikrarlı
+          enflasyonda türetildi; Türkiye'de kullanmak yanlış olurdu. Burada güvenli
+          oran <em>varsayılmıyor</em>: hedef başarı olasılığını (varsayılan %90)
+          sağlayan en yüksek çekim ikiye bölmeyle bulunuyor ve tanımıyla sınanıyor —
+          bulunan çekimde başarı hedefi tutmalı, %25 fazlası tutmamalı.
+        </p>
+
+        <h2 id="worker">7. Web Worker — ölçümle gerekçelendirildi</h2>
+        <p>
+          Worker "mimari olsun diye" değil, ölçüm gerektirdiği için var:
+        </p>
+        <table class="veri-tablo">
+          <thead><tr><th scope="col">İşlem</th><th scope="col">Süre</th><th scope="col">Nerede</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Tek simülasyon (2.000 yol)</th><td>66 ms</td><td>ana iş parçacığı</td></tr>
+            <tr><th scope="row">Güvenli çekim (~40 simülasyon)</th><td>1.476 ms</td><td>Web Worker</td></tr>
+          </tbody>
+        </table>
+        <p>
+          66 ms'lik iş için worker kurmak gereksiz karmaşıklık olurdu; 1,5 saniyelik iş
+          ise arayüzü gözle görülür biçimde dondurur. Worker kurulamazsa (eski tarayıcı,
+          dosya protokolü) hesap ana iş parçacığında yapılır: yavaş ama çalışır.
+          Kullanıcıya "hesaplanamadı" göstermek en kötü seçenek olurdu.
+        </p>
+
+        <h2 id="tekrar">8. Tekrar edilebilirlik</h2>
+        <p>
+          Rastgelelik <strong>tohumlu</strong>: aynı girdi her zaman aynı sonucu verir.
+          Tohumsuz bir Monte Carlo'da ne test yazılabilir ne de kullanıcı "az önce %87
+          diyordu" dediğinde cevap verilebilir. Üreteç mulberry32; bir test aynı
+          tohumun aynı diziyi ürettiğini doğruluyor.
+        </p>
+
+        <h2 id="tabanlar">9. İki fiziksel taban</h2>
+        <p>
+          Yağlı kuyruk dağılımı %−100'den kötü getiri üretebiliyor. Kaldıraçsız bir
+          portföyde bu imkânsızdır — her şeyinizi kaybetmekten fazlasını
+          kaybedemezsiniz — ve bakiyeyi negatife çeviriyordu. Bunu da test yakaladı:
+          "çekim sıfırken hiçbir yol başarısız olamaz" iddiası düştü. Getiriye −%95,
+          enflasyona −%90 taban kondu.
+        </p>
+
+        <h2 id="grafik">10. Grafik neden karekök ölçekli?</h2>
+        <p>
+          Doğrusal ölçekte en iyi senaryolar (yağlı kuyruk + bileşik getiri) o kadar
+          yükseğe çıkıyor ki ortanca çizgi tabana yapışıyor ve grafik asıl bilgiyi
+          gizliyor. Dikey eksen bu yüzden karekök ölçekli: sıralamayı ve sıfırı korur,
+          büyük değerleri sıkıştırır. <strong>Hiçbir senaryo kesilmiyor</strong> ve
+          ölçek grafiğin altında açıkça yazılı; kesin sayılar tabloda.
+        </p>
+
+        <h2 id="test">11. Testler</h2>
+        <p>
+          Çekirdek DOM bilmez; <code>node finansal-ozgurluk-hesaplama/test.js</code>
+          ile çalıştırılır ve <strong>40 test</strong> her yayından önce CI'da koşar.
+          Testlerin çoğu istatistiksel değişmezleri sınıyor: üreteçlerin ortalama ve
+          varyansı, üretilen korelasyon, belirsizlik sıfırken elle doğrulanabilir
+          sonuç (1.000.000 × 1,2³ = 1.728.000), bantların sıralılığı, çözücülerin
+          tanımı.
+        </p>
+
+        <h2 id="sinir">12. Neyi hesaplamıyor?</h2>
+        <ul>
+          <li><strong>Tarihi veri yok.</strong> Parametreleri siz giriyorsunuz; araç geçmişten örnekleme yapmıyor.</li>
+          <li><strong>Vergi yok.</strong> Getiri stopajı, istisnalar ve beyan yükümlülüğü kapsam dışı; net getiriyi girin.</li>
+          <li><strong>Tek portföy.</strong> Varlık sınıfı kırılımı ve aralarındaki korelasyon modellenmiyor. Kaynak araç 8 varlık sınıfı ve 8×8 korelasyon matrisi kullanıyor; doğrulanabilir Türkiye matrisimiz olmadığı için tek getiri/oynaklık çiftine indirgendi.</li>
+          <li><strong>SGK aylığı yok.</strong> Devletin yaşlılık aylığı hesaba girmez.</li>
+          <li><strong>Ömür belirsizliği yok.</strong> Süreyi siz veriyorsunuz; yaşam süresi rastgeleleştirilmiyor.</li>
+          <li><strong>Olasılık garanti değildir.</strong> Sonuç sizin varsayımlarınız altında geçerli; varsayımlar yanlışsa olasılık da yanlıştır.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanaklar</h2>
+          <ul>
+            <li>Mimari kaynağı — <a href="https://github.com/RemarkRemedy/fireplanner" rel="noopener">RemarkRemedy/fireplanner</a> (MIT), Singapur FIRE planlayıcısı. Yöntem alındı, Singapur kuralları alınmadı.</li>
+            <li>Monte Carlo, Cholesky ayrıştırması ve Student-t dağılımı — standart sayısal yöntemler; uygulama bu depoda açık.</li>
+            <li>Türkiye tarafındaki mevzuat hesapları ayrı çekirdeklerde: <a href="../../bordro/">Bordro Motoru</a>, <a href="../../birikim-hesaplama/">BES</a>, <a href="../../kredi-hesaplama/">kredi</a>.</li>
+            <li>Kaynak kodu ve testler — <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">açık kaynak çekirdek (MIT)</a></li>
+          </ul>
+          <p class="muted-note">
+            Bilgilendirme amaçlıdır; bağlayıcı teklif değildir. Bir bilgi güncelliğini
+            yitirdiyse <a href="../../iletisim/">bana bildirin</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili sayfalar</h2>
+        <ul>
+          <li><a href="../">Finansal Özgürlük (FIRE) Hesaplama</a> — aracın kendisi.</li>
+          <li><a href="../../birikim-hesaplama/">BES ve Birikim Hesaplama</a> — belirlenimci karşılığı.</li>
+          <li><a href="../../zam-hesaplama/">Zam Hesaplama</a> — katkı kapasitesini belirleyen şey.</li>
+          <li><a href="../../ev-almak-mi-kiralamak-mi/">Ev Almak mı Kiralamak mı</a> — fırsat maliyeti.</li>
+          <li><a href="../../bordro/">Bordro Motoru</a> — ücret hesaplarının açık çekirdeği.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanaklar</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanaklar</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı teklif için bankanıza başvurun.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../../makaleler/">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>
