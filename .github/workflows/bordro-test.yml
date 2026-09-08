@@ -20,7 +20,12 @@ jobs:
   dogrula:
     runs-on: ubuntu-latest
     steps:
+      # hizli-panel.py "son eklenenler" listesini sayfaların İLK COMMIT
+      # tarihinden üretiyor. checkout varsayılan olarak sığ klon (depth 1)
+      # yapar ve o geçmiş olmadan tarih okunamaz; fetch-depth: 0 şart.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -74,6 +79,9 @@ jobs:
         # diyor. Bu kontrol, o iddianın hedefi olan dosyaların yerinde durduğunu
         # ve sayfaların doğru depoya bağlandığını doğrular.
         run: python tools/cekirdek.py --check
+
+      - name: Hızlı erişim paneli güncel mi
+        run: python tools/hizli-panel.py --check
 
       - name: Sayfa kalitesi denetimi
         run: python tools/sayfa-denetimi.py --check
