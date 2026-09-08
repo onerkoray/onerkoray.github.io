@@ -324,6 +324,41 @@ def main():
             bulgu("FILTRE BOS", "index.html",
                   '"%s" filtresi hicbir karti gostermiyor' % f)
 
+    # 12) sitenin KENDINI ilan ettigi adresler https ve dogru alan adi mi
+    #
+    # onerkoray.github.io -> korayoner.dev yonlendirmesi iki adim: GitHub
+    # once http://korayoner.dev'e gonderiyor (kendi sertifikasi olmadigi
+    # icin), Vercel oradan https'e cikiyor. O ilk adim bizim elimizde degil.
+    # Elimizde olan sey, SITENIN KENDI beyanlarina http:// ya da eski alan
+    # adinin hic girmemesi: canonical, og:url ve site haritasi Google'a
+    # "dogru adres bu" diyen yerler. Oralara bir http:// sizarsa yonlendirme
+    # zinciri uzar ve kanonik sinyal bolunur -- sayfa yine acildigi icin de
+    # kimse fark etmez.
+    beyanlar = [
+        (r'rel="canonical"\s+href="([^"]+)"', "canonical"),
+        (r'property="og:url"\s+content="([^"]+)"', "og:url"),
+    ]
+    for p3 in sayfalar:
+        if denetim_disi(p3):
+            continue
+        s3 = io.open(os.path.join(KOK, p3), encoding="utf-8").read()
+        for kalip, ad in beyanlar:
+            for u in re.findall(kalip, s3):
+                if u.startswith("http://"):
+                    bulgu("BEYAN HTTP", p3, "%s: %s" % (ad, u))
+                elif "onerkoray.github.io" in u:
+                    bulgu("BEYAN ESKI ALAN", p3, "%s: %s" % (ad, u))
+
+    for ad3, yol3 in (("sitemap.xml", "sitemap.xml"), ("atom.xml", "atom.xml")):
+        t3 = os.path.join(KOK, yol3)
+        if not os.path.exists(t3):
+            continue
+        icerik3 = io.open(t3, encoding="utf-8").read()
+        if "http://korayoner" in icerik3 or "http://onerkoray" in icerik3:
+            bulgu("BEYAN HTTP", ad3, "http:// adres iceriyor")
+        if "onerkoray.github.io" in icerik3:
+            bulgu("BEYAN ESKI ALAN", ad3, "eski alan adi iceriyor")
+
     # rapor
     print("%d sayfa tarandi, %d bulgu" % (len(sayfalar), len(bulgular)))
     if not bulgular:
