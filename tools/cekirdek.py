@@ -53,6 +53,8 @@ DOSYALAR = [
     ("bordro/calisma-bicimi-test.js",     "bordro/calisma-bicimi-test.js"),
     ("kredi-hesaplama/hesap.js",          "kredi/hesap.js"),
     ("kredi-hesaplama/test.js",           "kredi/test.js"),
+    ("ev-almak-mi-kiralamak-mi/hesap.js", "ev-kira/hesap.js"),
+    ("ev-almak-mi-kiralamak-mi/test.js",  "ev-kira/test.js"),
     ("birikim-hesaplama/hesap.js",        "birikim/hesap.js"),
     ("birikim-hesaplama/test.js",         "birikim/test.js"),
     ("fatura-olusturma/fatura.js",        "fatura/fatura.js"),
@@ -65,6 +67,10 @@ DOSYALAR = [
 # degistigi icin bu yollar duzeltilmeli.
 YOL_DUZELTME = [
     ('require("./fatura.js")', 'require("./fatura.js")'),   # ayni klasorde kaliyor
+    # Ev/kira cekirdegi kredi cekirdegini cagiriyor. Sitede klasor adi
+    # "kredi-hesaplama", pakette "kredi" -- yol duzeltilmezse paketlenmis
+    # test dosya bulamiyor. (Ilk pakette tam bunu yakaladi.)
+    ('require("../kredi-hesaplama/hesap.js")', 'require("../kredi/hesap.js")'),
 ]
 
 LISANS = """MIT License
@@ -105,6 +111,7 @@ def test_sayilari():
                     ("kredi", "kredi-hesaplama/test.js"),
                     ("cikis", "bordro/cikis-test.js"),
                     ("calisma", "bordro/calisma-bicimi-test.js"),
+                    ("ev-kira", "ev-almak-mi-kiralamak-mi/test.js"),
                     ("birikim", "birikim-hesaplama/test.js"),
                     ("fatura", "fatura-olusturma/test.js"),
                     ("arsiv", "fatura-olusturma/arsiv-test.js")):
@@ -256,7 +263,27 @@ def main():
     for kaynak, hedef in DOSYALAR:
         h = os.path.join(CIKTI, hedef)
         os.makedirs(os.path.dirname(h), exist_ok=True)
-        shutil.copyfile(kaynak, h)
+        # YOL_DUZELTME buraya kadar TANIMLIYDI AMA HIC UYGULANMIYORDU:
+        # dosyalar duz kopyalaniyordu. Ev/kira cekirdegi eklenince ortaya
+        # cikti -- pakette klasor adi "kredi", kaynakta "kredi-hesaplama"
+        # oldugu icin paketlenmis test modulu bulamadi.
+        icerik = io.open(kaynak, encoding="utf-8").read()
+        for eski, yeni in YOL_DUZELTME:
+            icerik = icerik.replace(eski, yeni)
+        io.open(h, "w", encoding="utf-8", newline="").write(icerik)
+
+    # Paketlenmis testler GERCEKTEN kosuyor mu? Yol duzeltmesi unutulursa
+    # paket sessizce bozuk cikiyordu; artik burada yakalaniyor.
+    for klasor in sorted(set(os.path.dirname(h) for _, h in DOSYALAR)):
+        for dosya in sorted(os.listdir(os.path.join(CIKTI, klasor))):
+            if not dosya.endswith("test.js"):
+                continue
+            yol = os.path.join(CIKTI, klasor, dosya)
+            r = subprocess.run(["node", yol], capture_output=True)
+            if r.returncode != 0:
+                print("Paketlenmis test kosmuyor: %s/%s" % (klasor, dosya), file=sys.stderr)
+                print(r.stderr.decode("utf-8", "replace")[:400], file=sys.stderr)
+                return 1
 
     sayilar = test_sayilari()
     io.open(os.path.join(CIKTI, "README.md"), "w", encoding="utf-8", newline="").write(

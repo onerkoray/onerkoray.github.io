@@ -38,6 +38,9 @@ jobs:
         # dönüyordu: sayfa açılıyor, hiçbir yerde hata yok, yalnızca rakam yanlış.
         run: node kredi-hesaplama/test.js
 
+      - name: Ev/kira karşılaştırma testleri
+        run: node ev-almak-mi-kiralamak-mi/test.js
+
       - name: Birikim çekirdeği testleri
         run: node birikim-hesaplama/test.js
 

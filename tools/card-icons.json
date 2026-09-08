@@ -110,5 +110,9 @@
   "birikim-hesaplama": {
     "cat": "vergi",
     "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 20h18\"/><rect x=\"5\" y=\"13\" width=\"4\" height=\"7\" rx=\"1\"/><rect x=\"10\" y=\"9\" width=\"4\" height=\"11\" rx=\"1\"/><rect x=\"15\" y=\"4\" width=\"4\" height=\"16\" rx=\"1\"/></svg>"
+  },
+  "ev-almak-mi-kiralamak-mi": {
+    "cat": "vergi",
+    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 11l6-5 6 5v8H3z\"/><path d=\"M13 19h8v-6l-4-3-4 3\"/><path d=\"M7 19v-4h2v4\"/></svg>"
   }
 }
