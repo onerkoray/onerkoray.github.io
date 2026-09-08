@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finansal Özgürlük (FIRE) Hesaplama | Koray Öner</title>
+  <meta name="description" content="Planınız hangi olasılıkla tutar? Monte Carlo ile getiri ve enflasyonu birlikte rastgeleleştirir, başarı oranını ve sürdürülebilir çekimi hesaplar.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/finansal-ozgurluk-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Finansal Özgürlük (FIRE) Hesaplama">
+  <meta property="og:description" content="Tek bir tahmin değil, binlerce senaryo. Getiri ve enflasyon birlikte rastgeleleşir; planınızın tutma olasılığını verir.">
+  <meta property="og:url" content="https://korayoner.dev/finansal-ozgurluk-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/finansal-ozgurluk-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Finansal Özgürlük (FIRE) Hesaplama">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Finansal Özgürlük (FIRE) Hesaplama">
+  <meta name="twitter:description" content="Planınız hangi olasılıkla tutar? Monte Carlo ile başarı oranı ve sürdürülebilir çekim.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/finansal-ozgurluk-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=834d5d98">
+  <link rel="stylesheet" href="style.css?v=444c70c5">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/finansal-ozgurluk-hesaplama/#app",
+        "name": "Finansal Özgürlük (FIRE) Hesaplama",
+        "url": "https://korayoner.dev/finansal-ozgurluk-hesaplama/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "featureList": "Monte Carlo simülasyonu, getiri ve enflasyonun korelasyonlu olarak rastgeleleştirilmesi, yağlı kuyruk (Student-t) dağılımı, başarı oranı, yüzdelik bantlar, sequence-of-returns riski, sürdürülebilir çekim tutarının simülasyondan çözülmesi, gereken birikim tutarı, Web Worker ile hesaplama",
+        "description": "Finansal özgürlük planının hangi olasılıkla tuttuğunu Monte Carlo ile ölçer. Türkiye için getiri ve enflasyon birlikte rastgeleleştirilir; yüzde 4 kuralı kullanılmaz."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Finansal Özgürlük Hesaplama", "item": "https://korayoner.dev/finansal-ozgurluk-hesaplama/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Monte Carlo simülasyonu neden gerekli?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Tek bir ortalama getiri varsayan hesap size tek bir gelecek gösterir ve o geleceğin gerçekleşme olasılığı hakkında hiçbir şey söylemez. Monte Carlo binlerce farklı yol üretir; her yolda getiri ve enflasyon farklı gerçekleşir. Sonuç bir tutar değil bir olasılıktır: planınız kaç senaryoda tutuyor. Aynı ortalamaya sahip iki plandan biri yüzde doksan, diğeri yüzde altmış oranında tutabilir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Neden enflasyon da rastgeleleştiriliyor?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Çünkü Türkiye'de baskın belirsizlik enflasyonun kendisidir. Yurt dışı için yazılmış planlayıcılar genellikle yalnızca getiriyi rastgeleleştirip enflasyonu sabit tutar; düşük ve istikrarlı enflasyonda bu savunulabilir. Enflasyonu sabit varsayan bir plan Türkiye'de tehlikeli biçimde iyimser çıkar. Bu araçta getiri ve enflasyon birlikte üretilir ve aralarındaki korelasyon girdi olarak alınır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Yüzde 4 kuralı Türkiye'de geçerli mi?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Birikiminizin yüzde dördünü çekme kuralı düşük ve istikrarlı enflasyona sahip bir ortamda türetildi. Bu araç herhangi bir güvenli çekim oranı varsaymaz; hedeflediğiniz başarı olasılığını sağlayan çekim tutarını simülasyonun kendisinden çözer. Sonuç sizin girdiğiniz getiri, enflasyon ve oynaklık varsayımlarına göre değişir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Sequence-of-returns riski nedir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Getirilerin sırasının sonucu değiştirmesidir. Emeklilik döneminde her yıl para çektiğiniz için kötü yılların başta gelmesi, aynı ortalamayla bile birikimi kalıcı olarak küçültür; sonra gelen iyi yıllar daha az anapara üzerinde çalışır. Bu araçta çekim yılın başında yapılır ve getiri sonra uygulanır, böylece bu risk modele girer." }
+          },
+          {
+            "@type": "Question",
+            "name": "Başarı oranı yüzde doksan ne demek?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Simüle edilen senaryoların yüzde doksanında birikiminiz planladığınız süre boyunca alım gücünü koruyan çekimleri karşılayabildi demektir. Kalan yüzde onda birikim erken tükendi. Bu bir garanti değil, girdiğiniz varsayımlar altında hesaplanmış bir olasılıktır; varsayımlar yanlışsa olasılık da yanlış olur." }
+          },
+          {
+            "@type": "Question",
+            "name": "Yağlı kuyruk dağılımı neden kullanılıyor?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Normal dağılım uç yılları olduğundan seyrek gösterir. Finansal getirilerde çok kötü ve çok iyi yıllar normal dağılımın öngördüğünden sık görülür. Araç varsayılan olarak Student-t dağılımı kullanır; bu, aynı ortalama ve standart sapmayla daha fazla uç senaryo üretir ve planı daha zorlu bir sınavdan geçirir. İsterseniz normal dağılıma geçebilirsiniz." }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="metodoloji/">Metodoloji</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Finansal Özgürlük Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <h1>Finansal özgürlük hesaplama</h1>
+        <p class="hero-alt">
+          Diğer hesaplayıcılar tek bir gelecek gösterir. Asıl soru şu:
+          <strong>bu plan hangi olasılıkla tutar?</strong> Bu araç binlerce senaryo
+          üretir — ve Türkiye için kritik farkla: <strong>getiri ile enflasyonu
+          birlikte</strong> rastgeleleştirir. Enflasyonu sabit varsayan bir plan
+          burada tehlikeli biçimde iyimser çıkar.
+        </p>
+        <p class="muted kunye-satiri">
+          <a href="metodoloji/">40 testle doğrulanıyor</a> ·
+          Hesap tarayıcınızda çalışır, veri gönderilmez ·
+          %4 kuralı kullanılmaz
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" data-rapor="yok">
+      <div class="wrap">
+        <div class="bi-duzen">
+          <div class="bi-form">
+            <h2>Planınız</h2>
+            <div class="alan-grid">
+              <label>Bugünkü birikiminiz (₺)
+                <input type="text" inputmode="decimal" id="f-baslangic" value="2.000.000">
+              </label>
+              <label>Aylık katkı (₺)
+                <input type="text" inputmode="decimal" id="f-katki" value="30.000">
+              </label>
+              <label>Kaç yıl sonra bırakacaksınız?
+                <input type="text" inputmode="numeric" id="f-yil" value="15">
+              </label>
+              <label>Bıraktıktan sonra kaç yıl?
+                <input type="text" inputmode="numeric" id="f-sure" value="35">
+              </label>
+              <label>Aylık çekim (bugünün parasıyla, ₺)
+                <input type="text" inputmode="decimal" id="f-cekim" value="60.000">
+                <small>Her yıl enflasyon kadar artırılır; alım gücü sabit tutulur.</small>
+              </label>
+            </div>
+
+            <h2>Varsayımlar</h2>
+            <div class="alan-grid">
+              <label>Yıllık getiri — ortalama (%)
+                <input type="text" inputmode="decimal" id="f-getiri" value="40">
+              </label>
+              <label>Getiri oynaklığı (± %)
+                <input type="text" inputmode="decimal" id="f-getiri-sapma" value="25">
+                <small>Standart sapma. Hisse ağırlıklı portföyde yüksek, mevduatta düşük.</small>
+              </label>
+              <label>Yıllık enflasyon — ortalama (%)
+                <input type="text" inputmode="decimal" id="f-enflasyon" value="30">
+              </label>
+              <label>Enflasyon oynaklığı (± %)
+                <input type="text" inputmode="decimal" id="f-enflasyon-sapma" value="12">
+              </label>
+              <label>Getiri–enflasyon korelasyonu
+                <input type="text" inputmode="decimal" id="f-korelasyon" value="0,5">
+                <small>Mevduat/tahvil enflasyonu takip eder (yüksek); hisse ve altında ilişki zayıftır.</small>
+              </label>
+              <label>Dağılım
+                <select id="f-dagilim">
+                  <option value="t" selected>Yağlı kuyruk (Student-t)</option>
+                  <option value="normal">Normal</option>
+                </select>
+                <small>Yağlı kuyruk daha çok uç senaryo üretir; planı zorlu sınar.</small>
+              </label>
+              <label>Senaryo sayısı
+                <select id="f-yol">
+                  <option value="1000">1.000</option>
+                  <option value="2000" selected>2.000</option>
+                  <option value="5000">5.000</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="bi-sonuc">
+            <div class="reel-kart" id="f-kart">
+              <p class="reel-etiket">Planın tutma olasılığı</p>
+              <p class="reel-deger" id="f-basari">—</p>
+              <p class="reel-alt" id="f-basari-alt">—</p>
+            </div>
+
+            <dl class="ozet-liste">
+              <div><dt>Bırakma anındaki birikim (ortanca)</dt><dd id="f-emeklilikte">—</dd></div>
+              <div><dt>Kötü senaryoda (p10)</dt><dd id="f-p10">—</dd></div>
+              <div><dt>İyi senaryoda (p90)</dt><dd id="f-p90">—</dd></div>
+              <div class="vurgu"><dt>Sürdürülebilir aylık çekim</dt><dd id="f-guvenli">—</dd></div>
+              <div><dt>Bu çekim için gereken birikim</dt><dd id="f-gereken">—</dd></div>
+            </dl>
+
+            <p class="uyari" id="f-uyari" hidden></p>
+          </div>
+        </div>
+
+        <h3>Birikiminizin yol yelpazesi — bugünün parasıyla</h3>
+        <p class="muted">
+          Koyu çizgi ortanca senaryo. Bantlar senaryoların %50'sini (koyu) ve %80'ini
+          (açık) kapsıyor. Genişleyen yelpaze belirsizliğin zamanla büyümesi demek.
+          <strong>Dikey eksen karekök ölçekli</strong>: doğrusal ölçekte en iyi
+          senaryolar o kadar yükseğe çıkıyor ki ortanca çizgi görünmez oluyordu.
+          Hiçbir senaryo kesilmedi; kesin sayılar aşağıdaki tabloda.
+        </p>
+        <div class="grafik-kap">
+          <svg id="f-grafik" viewBox="0 0 720 300" role="img"
+               aria-labelledby="f-grafik-baslik"></svg>
+          <p id="f-grafik-baslik" class="visually-hidden">
+            Yıllara göre birikim yelpazesi grafiği; sayısal karşılığı aşağıdaki tabloda.
+          </p>
+        </div>
+
+        <div class="table-scroll">
+          <table class="veri-tablo">
+            <caption>Beş yılda bir: birikim yüzdelikleri (bugünün parasıyla)</caption>
+            <thead>
+              <tr><th scope="col">Yıl</th><th scope="col">Kötü (p10)</th>
+                  <th scope="col">Ortanca</th><th scope="col">İyi (p90)</th></tr>
+            </thead>
+            <tbody id="f-tablo"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="nasil" class="prose-section">
+      <div class="wrap prose">
+        <h2>Nasıl hesaplanır</h2>
+
+        <h3>Tek tahmin değil, binlerce senaryo</h3>
+        <p>
+          Sabit getiri varsayan bir hesap size tek bir gelecek gösterir ve o geleceğin
+          gerçekleşme ihtimali hakkında hiçbir şey söylemez. Monte Carlo yöntemi
+          binlerce farklı yol üretir; her yolda getiri ve enflasyon farklı gerçekleşir.
+          Çıktı bir tutar değil bir <strong>olasılıktır</strong>: planınız kaç senaryoda
+          tuttu.
+        </p>
+        <p>
+          Bu fark önemli çünkü <em>aynı ortalamaya</em> sahip iki plan çok farklı
+          olasılıklar verebilir. Ortalamayı tutturmak yetmez; yolun nasıl gittiği de
+          önemlidir.
+        </p>
+
+        <h3>Türkiye farkı: enflasyon da rastgeledir</h3>
+        <p>
+          Bu aracın mimarisi Singapur için yazılmış açık kaynaklı bir FIRE
+          planlayıcısından alındı. Oradan gelen şey <strong>yöntem</strong>: Monte
+          Carlo, yüzdelik bantlar, başarı oranı, sequence-of-returns riski, ağır işin
+          Web Worker'a verilmesi. Singapur'a özgü kurallar (CPF, SRS, damga vergileri,
+          arsa payı değer kaybı tabloları) <strong>taşınmadı</strong> — hiçbirinin
+          Türkiye'de karşılığı yok.
+        </p>
+        <p>
+          Ama bir şey aynen taşınamazdı: o araç getiriyi rastgeleleştirip enflasyonu
+          büyük ölçüde sabit tutuyor. Düşük ve istikrarlı enflasyonda bu savunulabilir.
+          <strong>Türkiye'de baskın belirsizlik enflasyonun kendisidir.</strong>
+          Enflasyonu 30'da sabitleyip yalnızca getiriyi oynatan bir plan tehlikeli
+          biçimde iyimser çıkar. Burada ikisi birlikte üretiliyor ve aralarındaki
+          korelasyon sizin girdiniz.
+        </p>
+
+        <h3>Başarısızlık ne demek?</h3>
+        <p>
+          Bir yol, <strong>alım gücünü koruyan çekimi karşılayamadığı</strong> anda
+          başarısız sayılır. Çekim her yıl enflasyon kadar artırılır; birikim o çekimi
+          ödeyemezse plan o senaryoda tutmamıştır. Raporlanan bütün bakiyeler ayrıca
+          bugünün parasına indirgenir, çünkü yüksek enflasyonda nominal olarak hayatta
+          kalmak aldatıcıdır.
+        </p>
+
+        <h3>%4 kuralı kullanılmıyor</h3>
+        <p>
+          Yurt dışı kaynaklarda yaygın olan "birikiminizin %4'ünü çekin" kuralı düşük ve
+          istikrarlı enflasyona sahip bir ortamda türetildi. Bu araç herhangi bir güvenli
+          oran <em>varsaymaz</em>: hedeflediğiniz başarı olasılığını sağlayan çekim
+          tutarını <strong>simülasyonun kendisinden çözer</strong>.
+        </p>
+
+        <h3>Yağlı kuyruk ve sıra riski</h3>
+        <p>
+          Normal dağılım uç yılları olduğundan seyrek gösterir; finansal getirilerde çok
+          kötü ve çok iyi yıllar daha sık görülür. Varsayılan dağılım bu yüzden
+          Student-t. Ayrıca çekim <strong>yılın başında</strong> yapılır, getiri sonra
+          uygulanır: kötü bir yıl doğrudan anaparayı vurur. Sequence-of-returns riskinin
+          modele girdiği yer burasıdır.
+        </p>
+
+        <h3>Neyi hesaplamıyoruz</h3>
+        <ul>
+          <li><strong>Tarihi veri kullanılmıyor.</strong> Kaynak araç Singapur borsası ve enflasyonu için tarihi seriyle bootstrap yapıyor. Elimizde aynı güvenilirlikte doğrulanabilir bir BIST/TÜFE serisi olmadığı için o yöntem taşınmadı; parametreleri siz giriyorsunuz.</li>
+          <li><strong>Vergi modellenmiyor.</strong> Getiri stopajı, istisnalar ve beyan yükümlülüğü kapsam dışı. Net getiriyi girdi olarak verin.</li>
+          <li><strong>Tek portföy.</strong> Varlık sınıfı kırılımı ve aralarındaki korelasyon modellenmiyor; tek bir getiri/oynaklık çifti alınıyor.</li>
+          <li><strong>SGK aylığı yok.</strong> Devletin yaşlılık aylığı bu hesaba girmez; varsa çekim tutarınızı ona göre düşürün.</li>
+          <li><strong>Olasılık garanti değildir.</strong> Sonuç, sizin girdiğiniz varsayımlar altında geçerlidir. Varsayımlar yanlışsa olasılık da yanlıştır.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="sss" class="prose-section alt">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <details><summary>Monte Carlo simülasyonu neden gerekli?</summary>
+          <p>Sabit getiri varsayan hesap tek bir gelecek gösterir ve olasılık hakkında hiçbir şey söylemez. Monte Carlo binlerce yol üretir; çıktı bir tutar değil, planın kaç senaryoda tuttuğudur.</p>
+        </details>
+        <details><summary>Neden enflasyon da rastgeleleştiriliyor?</summary>
+          <p>Türkiye'de baskın belirsizlik enflasyonun kendisi. Yalnızca getiriyi oynatıp enflasyonu sabit tutan bir plan burada tehlikeli biçimde iyimser çıkar.</p>
+        </details>
+        <details><summary>%4 kuralı Türkiye'de geçerli mi?</summary>
+          <p>Hayır. O kural düşük ve istikrarlı enflasyonda türetildi. Bu araç güvenli oranı varsaymaz, hedef başarı olasılığından geriye çözer.</p>
+        </details>
+        <details><summary>Sequence-of-returns riski nedir?</summary>
+          <p>Getirilerin sırasının sonucu değiştirmesi. Kötü yılların başta gelmesi, aynı ortalamayla bile birikimi kalıcı küçültür. Araçta çekim yılın başında yapılır, bu risk modele girer.</p>
+        </details>
+        <details><summary>Başarı oranı %90 ne demek?</summary>
+          <p>Senaryoların %90'ında birikim, alım gücünü koruyan çekimleri planlanan süre boyunca karşılayabildi. Garanti değil, girdiğiniz varsayımlar altında bir olasılık.</p>
+        </details>
+        <details><summary>Yağlı kuyruk dağılımı neden varsayılan?</summary>
+          <p>Normal dağılım uç yılları seyrek gösterir; gerçekte daha sık olurlar. Student-t aynı ortalama ve sapmayla daha çok uç senaryo üretir ve planı daha zorlu sınar.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="prose-section">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="metodoloji/">Simülasyon metodolojisi</a> — dağılımlar, korelasyon, çözücüler ve sınırlar</li>
+          <li><a href="../birikim-hesaplama/">BES ve Birikim Hesaplama</a> — belirlenimci projeksiyon ve devlet katkısı</li>
+          <li><a href="../zam-hesaplama/">Zam Hesaplama</a> — katkı kapasitenizi belirleyen şey</li>
+          <li><a href="../ev-almak-mi-kiralamak-mi/">Ev Almak mı Kiralamak mı</a> — peşinatın fırsat maliyeti</li>
+          <li><a href="../kredi-hesaplama/">Kredi Hesaplama</a> — borcun gerçek yıllık maliyeti</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="hesap.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+  <script src="/bg-network.js" defer></script>
+</body>
+</html>

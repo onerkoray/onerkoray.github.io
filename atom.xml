@@ -42,6 +42,22 @@
   </entry>
 
   <entry>
+    <title>Finansal Özgürlük (FIRE) Hesaplama</title>
+    <link href="https://korayoner.dev/finansal-ozgurluk-hesaplama/"/>
+    <id>https://korayoner.dev/finansal-ozgurluk-hesaplama/</id>
+    <updated>2026-09-08T00:00:00+03:00</updated>
+    <summary>Planınız hangi olasılıkla tutar? Monte Carlo ile getiri ve enflasyonu birlikte rastgeleleştirir, başarı oranını ve sürdürülebilir çekimi hesaplar.</summary>
+  </entry>
+
+  <entry>
+    <title>FIRE Simülasyonu Metodolojisi</title>
+    <link href="https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/"/>
+    <id>https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/</id>
+    <updated>2026-09-08T00:00:00+03:00</updated>
+    <summary>Monte Carlo nasıl kuruldu? Getiri ve enflasyonun korelasyonlu üretimi, Student-t birim varyans tuzağı, sequence-of-returns ve 40 test.</summary>
+  </entry>
+
+  <entry>
     <title>Emekliye Yeni Maaş Sistemi mi Geldi?</title>
     <link href="https://korayoner.dev/makaleler/emekli-maasi-nasil-hesaplanir/"/>
     <id>https://korayoner.dev/makaleler/emekli-maasi-nasil-hesaplanir/</id>
