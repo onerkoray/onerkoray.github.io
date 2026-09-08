@@ -184,6 +184,14 @@ SPEC = {
    "%50 brüt zam nete %43,8 yansıyor. Net %30 artış için brütte %34 istemek gerekiyor.",
    ["Net karşılık", "Pazarlık"], "bordro"),
 
+ "emniyet-metodoloji": ("finansal-emniyet-testi/metodoloji", "Emniyet Testi", "Metodolojisi",
+   "Nakit tabani, sok senaryolari, guvenli karar tutari ve 108 test.",
+   ["108 test", "MIT"], "finans"),
+
+ "finansal-emniyet-testi": ("finansal-emniyet-testi", "Finansal Emniyet", "Testi",
+   "Karsilayabilmek baska, guvenle karsilayabilmek baska. Karariniz yedi soktan geciyor.",
+   ["7 senaryo", "Emniyet skoru"], "finans"),
+
  "fire-metodoloji": ("finansal-ozgurluk-hesaplama/metodoloji", "FIRE Simülasyonu", "Metodolojisi",
    "Monte Carlo nasıl kuruldu? Korelasyonlu getiri-enflasyon, Student-t ve 40 test.",
    ["40 test", "MIT"], "finans"),

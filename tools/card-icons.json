@@ -122,5 +122,9 @@
   "finansal-ozgurluk-hesaplama": {
     "cat": "vergi",
     "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 20h18\"/><path d=\"M4 16c4 0 5-9 9-9s4 5 7 5\"/><path d=\"M4 20c4 0 6-4 9-4s5 2 7 2\"/></svg>"
+  },
+  "finansal-emniyet-testi": {
+    "cat": "vergi",
+    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l7 3v5.5c0 4.3-3 7.4-7 8.5-4-1.1-7-4.2-7-8.5V6z\"/><path d=\"M8.5 12.3l2 2.4 1.5-2 1.5 1.6\"/></svg>"
   }
 }
