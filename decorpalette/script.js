@@ -153,8 +153,35 @@
   const Store = {
     KEY: "decorpalette.saved.v1",
     read() {
-      try { return JSON.parse(localStorage.getItem(Store.KEY)) || []; }
+      try { return Store.normalize(JSON.parse(localStorage.getItem(Store.KEY))); }
       catch (_) { return []; }
+    },
+
+    /* localStorage'dan gelen veri GUVENILMEZ kabul edilir.
+       Kayitli paletler render edilirken renkler dogrudan HTML ozniteligine
+       gomuluyor (style="background:..."). Kullanicinin girdigi renkler
+       zaten normalizeHex'ten geciyor, ama depodan geri okunan degerler
+       tekrar dogrulanmiyordu: bozuk ya da elle degistirilmis bir kayit
+       oznitelikten cikip isaretleme uretebilirdi.
+
+       Ayni yaklasim fatura arsivinde de var (arsiv.js/normalize); iki
+       aracin depoya bakisi ayni olmali. */
+    normalize(ham) {
+      if (!Array.isArray(ham)) return [];
+      return ham
+        .map((e) => {
+          if (!e || typeof e !== "object") return null;
+          const colors = Array.isArray(e.colors)
+            ? e.colors.map(Color.normalizeHex).filter(Boolean)
+            : [];
+          if (!colors.length) return null;
+          return {
+            id: typeof e.id === "string" ? e.id.replace(/[^a-z0-9]/gi, "") : "",
+            colors,
+            created: typeof e.created === "string" ? e.created : "",
+          };
+        })
+        .filter(Boolean);
     },
     write(list) {
       try { localStorage.setItem(Store.KEY, JSON.stringify(list)); return true; }

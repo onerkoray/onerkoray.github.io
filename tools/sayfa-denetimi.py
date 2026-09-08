@@ -400,6 +400,64 @@ def main():
                 bulgu("KART GORSEL BOYUTU", p4,
                       "%s gercek %dx%d, beyan %sx%s" % (rel, gw, gh, g.group(1), y.group(1)))
 
+    # 14) CSP connect-src'deki her dis sunucu gizlilik sayfasinda yazili mi
+    #
+    # Site "verileriniz cihazinizdan cikmaz" diyor; bu dogru ama TAM degil:
+    # birkac sayfa dis API cagiriyor ve her fetch, karsi tarafa ziyaretcinin
+    # IP adresini birakir. Gizlilik sayfasi bunlari tek tek sayiyor.
+    #
+    # Risk sessiz: CSP'ye yeni bir sunucu eklemek bir satirlik is, gizlilik
+    # sayfasini guncellemeyi unutmak ise hicbir hataya yol acmaz -- sadece
+    # beyan ile gercek ayrisir. Bu kural o ikisini birbirine bagliyor.
+    vercel_yol = os.path.join(KOK, "vercel.json")
+    gizlilik_yol = os.path.join(KOK, "gizlilik", "index.html")
+    if os.path.exists(vercel_yol) and os.path.exists(gizlilik_yol):
+        vj = io.open(vercel_yol, encoding="utf-8").read()
+        gz = io.open(gizlilik_yol, encoding="utf-8").read()
+        m5 = re.search(r'connect-src ([^"]+)', vj)
+        if m5:
+            sunucular = re.findall(r"https://([a-z0-9.-]+[.][a-z]{2,})", m5.group(1))
+            # Google'in olcum sunuculari gizlilikte "Google Analytics" basligi
+            # altinda anlatiliyor; host adiyla degil hizmet adiyla.
+            muaf = {"www.google-analytics.com", "region1.google-analytics.com"}
+            for h in sorted(set(sunucular) - muaf):
+                if h not in gz:
+                    bulgu("GIZLILIKTE YOK", "gizlilik/index.html",
+                          "CSP connect-src'de izinli ama sayfada yazmiyor: " + h)
+
+    # 15) CSP betik hash'i sayfalardaki satir ici betikle uyusuyor mu
+    #
+    # script-src'den 'unsafe-inline' kaldirildi; satir ici gtag blogu artik
+    # SHA-256 hash'iyle izinli. Bu CSP'yi belirgin sekilde sertlestiriyor
+    # ama bir tuzak yaratiyor: gtag blogunda tek bir bosluk degisirse hash
+    # tutmaz, tarayici betigi calistirmaz ve ANALITIK BUTUN SITEDE SESSIZCE
+    # DURUR. Sayfa acilmaya devam ettigi icin kimse fark etmez.
+    #
+    # Bu kural hash'i sayfalardan yeniden hesaplayip CSP ile karsilastiriyor.
+    if os.path.exists(vercel_yol):
+        vj2 = io.open(vercel_yol, encoding="utf-8").read()
+        m6 = re.search(r'script-src ([^"]+)', vj2)
+        if m6 and "'unsafe-inline'" not in m6.group(1):
+            import hashlib, base64
+            hashler = set(re.findall(r"'(sha256-[A-Za-z0-9+/=]+)'", m6.group(1)))
+            govdeler = set()
+            for p6 in sayfalar:
+                if denetim_disi(p6):
+                    continue
+                s6 = io.open(os.path.join(KOK, p6), encoding="utf-8").read()
+                for mm in re.finditer(r"<script(?![^>]*src=)([^>]*)>(.*?)</script>", s6, re.S):
+                    tp = re.search(r'type="([^"]+)"', mm.group(1))
+                    if tp and "json" in tp.group(1):
+                        continue   # ld+json calistirilmaz, script-src kapsaminda degil
+                    d6 = hashlib.sha256(mm.group(2).encode("utf-8")).digest()
+                    govdeler.add("sha256-" + base64.b64encode(d6).decode())
+            for g6 in sorted(govdeler - hashler):
+                bulgu("CSP HASH TUTMUYOR", "vercel.json",
+                      "sayfalarda izinsiz satir ici betik var: " + g6)
+            for h6 in sorted(hashler - govdeler):
+                bulgu("CSP HASH ARTIK", "vercel.json",
+                      "CSP'de karsiligi olmayan hash: " + h6)
+
     # rapor
     print("%d sayfa tarandi, %d bulgu" % (len(sayfalar), len(bulgular)))
     if not bulgular:
