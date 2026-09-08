@@ -38,6 +38,9 @@ jobs:
         # dönüyordu: sayfa açılıyor, hiçbir yerde hata yok, yalnızca rakam yanlış.
         run: node kredi-hesaplama/test.js
 
+      - name: Birikim çekirdeği testleri
+        run: node birikim-hesaplama/test.js
+
       - name: Fatura çekirdeği testleri
         # Fatura tutarı sessizce yanlış olabilen bir sayıdır: kuruş dağıtımında
         # bir hata olsa belge yine oluşur, yalnızca toplam tutmaz.

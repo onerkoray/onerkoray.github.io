@@ -305,6 +305,25 @@ def main():
         elif adet > 1:
             bulgu("GTAG TEKRARI", p2, "%d kez yuklenmis" % adet)
 
+    # 11) ana sayfa kategori filtresi
+    #
+    # Kart filtresi TAM ESITLIK ile calisiyor (cat === activeCat). Bir kartin
+    # data-cat degeri hicbir chip'in data-filter degeriyle eslesmiyorsa o kart
+    # "Tumu" disinda HICBIR filtrede gorunmez. Sayfa bozulmadigi icin bu
+    # sessizce yasar: kredi araci tam olarak boyle kaybolmustu
+    # (data-cat="finans", boyle bir chip yok).
+    kok_html = os.path.join(KOK, "index.html")
+    if os.path.exists(kok_html):
+        h = io.open(kok_html, encoding="utf-8").read()
+        kategoriler = set(re.findall(r'data-cat="([a-z]+)"', h))
+        filtreler = set(re.findall(r'data-filter="([a-z]+)"', h)) - {"hepsi"}
+        for c in sorted(kategoriler - filtreler):
+            bulgu("KATEGORI FILTRESIZ", "index.html",
+                  '"%s" kategorisinde kart var ama o filtre yok' % c)
+        for f in sorted(filtreler - kategoriler):
+            bulgu("FILTRE BOS", "index.html",
+                  '"%s" filtresi hicbir karti gostermiyor' % f)
+
     # rapor
     print("%d sayfa tarandi, %d bulgu" % (len(sayfalar), len(bulgular)))
     if not bulgular:

@@ -168,6 +168,14 @@ SPEC = {
    "Yurt dışı alışverişte vergi, IMEI kayıt harcı ve toplam maliyet.",
    ["AB & diğer ülke", "IMEI harcı"], "vergi"),
 
+ "birikim-metodoloji": ("birikim-hesaplama/metodoloji", "Birikim Hesabı", "Metodolojisi",
+   "Reel getiri neden çıkarmayla değil Fisher denklemiyle bulunur? BES devlet katkısı ve stopaj. 67 test.",
+   ["67 test", "MIT"], "finans"),
+
+ "birikim-hesaplama": ("birikim-hesaplama", "BES ve Birikim", "Hesaplama",
+   "%45 getiri, %40 enflasyon: kazancınız %5 değil %3,57. Reel getiri, devlet katkısı ve hak kazanma.",
+   ["Reel getiri", "Devlet katkısı"], "finans"),
+
  "kredi-metodoloji": ("kredi-hesaplama/metodoloji", "Kredi Hesabı", "Metodolojisi",
    "Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor? 64 test.",
    ["64 test", "MIT"], "finans"),

@@ -53,6 +53,8 @@ DOSYALAR = [
     ("bordro/calisma-bicimi-test.js",     "bordro/calisma-bicimi-test.js"),
     ("kredi-hesaplama/hesap.js",          "kredi/hesap.js"),
     ("kredi-hesaplama/test.js",           "kredi/test.js"),
+    ("birikim-hesaplama/hesap.js",        "birikim/hesap.js"),
+    ("birikim-hesaplama/test.js",         "birikim/test.js"),
     ("fatura-olusturma/fatura.js",        "fatura/fatura.js"),
     ("fatura-olusturma/arsiv.js",         "fatura/arsiv.js"),
     ("fatura-olusturma/test.js",          "fatura/test.js"),
@@ -103,6 +105,7 @@ def test_sayilari():
                     ("kredi", "kredi-hesaplama/test.js"),
                     ("cikis", "bordro/cikis-test.js"),
                     ("calisma", "bordro/calisma-bicimi-test.js"),
+                    ("birikim", "birikim-hesaplama/test.js"),
                     ("fatura", "fatura-olusturma/test.js"),
                     ("arsiv", "fatura-olusturma/arsiv-test.js")):
         try:

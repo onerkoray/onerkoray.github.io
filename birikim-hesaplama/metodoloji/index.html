@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Birikim Hesabı Metodolojisi | Koray Öner</title>
+  <meta name="description" content="Reel getiri neden çıkarmayla değil Fisher denklemiyle bulunur? BES devlet katkısı, tavanı, hak kazanma ve stopaj nasıl hesaplanıyor? Formüller ve 67 test.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/birikim-hesaplama/metodoloji/">
+
+  <link rel="icon" href="../../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Birikim Hesabı Metodolojisi">
+  <meta property="og:description" content="Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor? Açık defter.">
+  <meta property="og:url" content="https://korayoner.dev/birikim-hesaplama/metodoloji/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/birikim-metodoloji-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Birikim Hesabı Metodolojisi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Birikim Hesabı Metodolojisi">
+  <meta name="twitter:description" content="Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor?">
+  <meta name="twitter:image" content="https://korayoner.dev/images/birikim-metodoloji-koray-oner.png">
+
+  <link rel="stylesheet" href="../../style.css?v=834d5d98">
+  <link rel="stylesheet" href="../style.css?v=af8be506">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://korayoner.dev/birikim-hesaplama/metodoloji/#article",
+        "headline": "Birikim hesabı metodolojisi",
+        "url": "https://korayoner.dev/birikim-hesaplama/metodoloji/",
+        "inLanguage": "tr",
+        "datePublished": "2026-09-07",
+        "dateModified": "2026-09-07",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "about": { "@id": "https://korayoner.dev/birikim-hesaplama/#app" },
+        "description": "Birikim ve BES hesabının yöntemi: Fisher denklemiyle reel getiri, aylık oranın on ikinci kökle bulunması, tamsayı kuruş aritmetiği ve kesinlik sınırının bildirilmesi, BES devlet katkısı tavanı ile hak kazanma takvimi, çıkış senaryolarına göre stopaj."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Birikim ve BES Hesaplama", "item": "https://korayoner.dev/birikim-hesaplama/" },
+          { "@type": "ListItem", "position": 3, "name": "Metodoloji", "item": "https://korayoner.dev/birikim-hesaplama/metodoloji/" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="../">Aracı aç</a></li>
+          <li><a href="#formul">Formüller</a></li>
+          <li><a href="#test">Testler</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Birikim ve BES Hesaplama</a> <span aria-hidden="true">&#8250;</span> Metodoloji
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Açık defter · MIT lisanslı · 67 test</p>
+        <h1 id="hero-title">Birikim hesabı metodolojisi</h1>
+        <p class="lede">
+          Bir birikim hesabında yanlış sayı sessizdir: grafik yükselir, tablo dolar,
+          hata ancak otuz yıl sonra anlaşılır. Bu sayfa hesabın nasıl kurulduğunu ve
+          iki yaygın kısayolun neden reddedildiğini anlatıyor —
+          <strong>iddia olarak değil, formül ve test olarak.</strong>
+        </p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../../hakkimda/" rel="author">Koray Öner</a> · Güncelleme: 8 Eylül 2026 · <a href="../">Aracı aç</a></p>
+
+        <h2 id="fisher">1. Reel getiri: çıkarma değil bölme</h2>
+        <p>
+          Bu araç iki yaygın kısayolu reddediyor. Birincisi, reel getirinin nominal
+          getiriden enflasyonun çıkarılmasıyla bulunduğu inancı. Doğrusu Fisher
+          denklemidir:
+        </p>
+        <p class="formula">reel = (1 + nominal) ÷ (1 + enflasyon) − 1</p>
+        <p>
+          Neden fark eder? Çünkü çıkarma, enflasyonun <em>getirinin kendisini de</em>
+          değersizleştirdiğini görmez. %45 kazandıran bir yatırım %40 enflasyonda
+          <strong>%5 değil %3,571</strong> kazandırır. Aradaki 1,43 puan tek yılda
+          önemsiz görünür; otuz yıl bileşiklenince birikimi yaklaşık ikiye katlayacak
+          kadar sapar.
+        </p>
+        <p>
+          Hatanın büyüklüğü enflasyonla artar. %5 getiri / %2 enflasyonda çıkarmanın
+          hatası binde 6'dır; %45 / %40'ta yüzde 1,43'e çıkar. Yani düşük enflasyonlu
+          ülkeler için yazılmış hesaplayıcıların kısayolu Türkiye'de savunulabilir
+          değil. Test dosyası bunu ayrıca sınıyor: hatanın enflasyonla büyüdüğünü
+          doğrulayan bir test var.
+        </p>
+
+        <h2 id="kok">2. Aylık oran: bölme değil on ikinci kök</h2>
+        <p>
+          İkinci kısayol, yıllık getiriyi 12'ye bölmek. Getiri her ay bileşiklendiği
+          için aylık oran şudur:
+        </p>
+        <p class="formula">aylık = (1 + yıllık)<sup>1/12</sup> − 1</p>
+        <p>
+          Yıllık %30 için sonuç <strong>%2,2104</strong>'tür, %2,5 değil. Bölme yöntemi
+          bir yılda gözle görülmez ama otuz yıllık bir projeksiyonu yaklaşık %15
+          şişirir. Bu aracın sonuçları başka hesaplayıcılardan düşük çıkıyorsa sebebi
+          çoğu zaman budur. Testlerden biri tanımı doğrudan sınıyor: aylık oran on iki
+          kez bileşiklendiğinde yıllık oranı vermeli.
+        </p>
+
+        <h2 id="kurus">3. Para tamsayı kuruş üzerinde yürür</h2>
+        <p>
+          Bütün tutarlar kuruş tamsayısı olarak tutulur, ondalık kayan noktalı sayı
+          olarak değil. Sebebi ekranda görünür: tabloda yıl yıl gösterilen katkı ve
+          getiri satırları toplandığında <strong>bakiyeye kuruşu kuruşuna eşit</strong>
+          olmalıdır. Kayan noktalı aritmetikte bu eşitlik bozulur ve kullanıcı
+          toplamayınca fark etmediği bir tutarsızlıkla kalır.
+        </p>
+        <p>
+          Aynı yaklaşım sitedeki kredi ve fatura çekirdeklerinde de var; üç araçta üç
+          farklı davranış tutarsızlık olurdu.
+        </p>
+
+        <h2 id="sinir">4. Kesinliğin sınırı gizlenmiyor</h2>
+        <p>
+          Tamsayı kuruş aritmetiğinin bir sınırı var: JavaScript sayıları
+          9.007.199.254.740.991'e (2<sup>53</sup>−1) kadar tam sayıyı kesin tutar.
+          Kuruş cinsinden bu <strong>90 trilyon TL</strong> demek. Gerçek bir birikim
+          planında ulaşılmaz; ama %57 getiri, %50 katkı artışı ve 38 yıl gibi uç
+          parametrelerle aşılabiliyor.
+        </p>
+        <p>
+          Bu sınır rastgele senaryo testiyle ortaya çıktı: üç yüz senaryodan biri
+          "katkı + getiri = bakiye" eşitliğini tutturamadı. İki seçenek vardı —
+          testin toleransını gevşetmek ya da durumu bildirmek. Tolerans gevşetmek
+          hatayı görünmez yapardı, o yüzden çekirdek artık
+          <code>hassasiyetAsildi</code> bayrağı döndürüyor ve arayüz bunu açık bir
+          uyarıya çeviriyor. <strong>Sessizce yaklaşık sayı göstermek yerine
+          yaklaşık olduğunu söylüyor.</strong>
+        </p>
+
+        <h2 id="bes">5. BES: devlet katkısı, tavan, hak kazanma</h2>
+        <p>
+          Devlet katkısı ödenen katkı payının %30'udur (4632 sayılı Kanun ek m.1; oran
+          1 Ocak 2025'ten itibaren %25'ten yükseltildi). Ancak bir takvim yılında ödenen
+          katkı paylarının <strong>brüt asgari ücretin yıllık tutarını</strong> aşan
+          kısmına katkı verilmez. 2026'da aylık brüt asgari ücret 33.030 TL olduğuna
+          göre yıllık tavan 396.360 TL'dir.
+        </p>
+        <p>
+          Araç bu tavanı uygular ve <em>tavan yüzünden alamadığınız tutarı ayrıca
+          gösterir</em>. Bu bilinçli bir tercih: katkınızı tavanın hemen altında tutmak
+          somut bir kazançtır ve çoğu hesaplayıcı bu eşiği hiç göstermez.
+        </p>
+        <p>
+          Devlet katkısının tamamı hemen sizin olmaz. Sistemde kalınan süreye göre
+          3 yılda %15, 6 yılda %35, 10 yılda %60 hak kazanılır; tamamı yalnızca
+          emeklilik hakkı kullanıldığında — 56 yaşını doldurup en az 10 yıl katkı payı
+          ödeyerek — alınır. Bu iki şart <strong>birlikte</strong> aranır ve araç
+          ikisini de kontrol eder.
+        </p>
+        <p>
+          Devlet katkısı ayrı bir hesapta izlenir çünkü hak kazanma oranı yalnızca ona
+          uygulanır: kendi ödediğiniz katkı payı ve onun getirisi her koşulda sizindir.
+        </p>
+
+        <h2 id="stopaj">6. Stopaj yalnızca getiriden alınır</h2>
+        <p>
+          Çıkışta vergilenen tutar anaparanız değil getirinizdir. Oran çıkış şekline
+          göre değişir: emeklilikte %5, on yılı doldurup emekli olmadan çıkışta %10,
+          on yıldan önce ayrılmada %15.
+        </p>
+        <p>
+          Bir ayrıntı çoğu hesaplayıcıda atlanıyor: <strong>devlet katkısının kendisi
+          de</strong> vergiye esas tutara girer, yalnızca getirisi değil. Sebebi basit
+          — o para için siz bir ödeme yapmadınız, dolayısıyla tamamı kazançtır. Araç
+          vergiye esas tutarı bu şekilde kurar ve senaryo tablosunda ayrı sütun olarak
+          gösterir.
+        </p>
+
+        <h2 id="dortkural">7. %4 kuralı neden kullanılmıyor</h2>
+        <p>
+          Yurt dışı emeklilik hesaplayıcılarında yaygın olan "birikiminizin %4'ünü
+          çekin" kuralı, düşük ve istikrarlı enflasyon varsayan bir ortamda türetildi.
+          Türkiye için doğrudan kullanmak yanıltıcı olurdu.
+        </p>
+        <p>
+          Onun yerine şu modellenir: çekim tutarınız her yıl enflasyon kadar artar,
+          birikiminiz nominal getiriyle büyür, süre bu iki eğrinin kesişmesinden çıkar.
+          Anaparayı korumak istiyorsanız çekebileceğiniz tutar reel getiri kadardır.
+          <strong>Reel getiriniz negatifse anaparayı koruyan bir çekim tutarı yoktur</strong> —
+          araç bu durumda sıfır gösterir ve sebebini yazar. Uydurma bir sayı üretmek
+          kullanıcıyı oyalamak olurdu.
+        </p>
+
+        <h2 id="oranlar">8. Oranlar neden koda gömülmedi?</h2>
+        <p>
+          Devlet katkısı oranı, stopaj oranları, tavan katsayısı ve fon gider kesintisi
+          — hepsi mevzuatla ya da sözleşmeyle değişir. Bu yüzden hiçbiri sabit değil,
+          hepsi <strong>düzenlenebilir girdi</strong>. Varsayılan değerler çekirdekteki
+          <code>VARSAYILAN</code> bloğunda, her biri gerekçesiyle birlikte duruyor.
+        </p>
+        <p>
+          Aynı karar kredi aracında KKDF ve BSMV için de verilmişti. Faydası şu: bir
+          oran değiştiğinde araç yanlış cevap vermeye başlamaz, kullanıcı yeni oranı
+          girip doğru sonucu alır.
+        </p>
+
+        <h2 id="test">9. Testler</h2>
+        <p>
+          Çekirdek DOM bilmez; tarayıcıda da Node'da da aynı sonucu üretir ve
+          <code>node birikim-hesaplama/test.js</code> ile doğrudan çalıştırılır.
+          <strong>67 test</strong> her yayından önce CI'da koşar.
+        </p>
+        <p>
+          Testlerin bir kısmı sonucu değil <em>tanımı</em> sınıyor. Örneğin hedef
+          hesabı: bulunan aylık katkı geri beslendiğinde hedefe ulaşmalı ve bunun %1
+          azı ulaşmamalı. Bu yaklaşım sitedeki kredi aracında bir hatayı yakalamıştı —
+          yıllık maliyet oranı arama yönü ters kurulduğu için sessizce sıfır dönüyordu
+          ve yalnızca tanımı sınayan test bunu gördü.
+        </p>
+
+        <h2 id="neyi-degil">10. Neyi hesaplamıyor?</h2>
+        <p>
+          Bu bir projeksiyon aracıdır, kehanet değil. Sabit bir yıllık getiri ve sabit
+          bir enflasyon varsayar; gerçekte ikisi de yıldan yıla oynar ve
+          <em>sıralamaları bile</em> sonucu değiştirir — kötü yılların başta mı sonda mı
+          geldiği, aynı ortalamayla farklı sonuçlar üretir.
+        </p>
+        <ul>
+          <li><strong>Yatırım tavsiyesi vermez.</strong> Hangi fonun ne kazandıracağını bilmez; getiriyi siz girersiniz.</li>
+          <li><strong>Vergi tarafında yalnızca getiri stopajını modeller.</strong> Menkul kıymet türüne göre değişen istisnalar, mevduatta vadeye göre değişen stopaj oranları ve beyan yükümlülüğü kapsam dışıdır.</li>
+          <li><strong>Kur ve döviz kazancı yok.</strong> Tek para birimi TL'dir.</li>
+          <li><strong>SGK emekliliği ile ilgisi yoktur.</strong> BES tamamlayıcı bir sistemdir; devletin yaşlılık aylığı bu araçta hesaplanmaz.</li>
+          <li><strong>Otomatik Katılım (OKS) ayrı bir rejimdir</strong> ve bu sürümde modellenmemiştir.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanaklar</h2>
+          <ul>
+            <li>4632 sayılı <strong>Bireysel Emeklilik Tasarruf ve Yatırım Sistemi Kanunu</strong> ek m.1 — devlet katkısı, tavanı ve hak kazanma süreleri — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> m.94 — bireysel emeklilikten çıkışta stopaj oranları — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li><strong>Asgari Ücret Tespit Komisyonu</strong> kararı — devlet katkısı tavanının dayandığı brüt asgari ücret — <a href="https://www.resmigazete.gov.tr/" rel="noopener">Resmî Gazete</a></li>
+            <li><strong>Tüketici Fiyat Endeksi (TÜFE)</strong> — reel getiri hesabında kullanılan enflasyon ölçüsü — <a href="https://www.tuik.gov.tr/" rel="noopener">TÜİK</a></li>
+            <li>Emeklilik Gözetim Merkezi — <strong>fon gider kesintisi</strong> ve fon getirileri — <a href="https://www.egm.org.tr/" rel="noopener">EGM</a></li>
+            <li>Kaynak kodu ve testler — <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">açık kaynak çekirdek (MIT)</a></li>
+          </ul>
+          <p class="muted-note">
+            Bilgilendirme amaçlıdır; bağlayıcı teklif değildir. Bir bilgi güncelliğini
+            yitirdiyse <a href="../../iletisim/">bana bildirin</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili sayfalar</h2>
+        <ul>
+          <li><a href="../">Birikim ve BES Hesaplama</a> — aracın kendisi.</li>
+          <li><a href="../../kredi-hesaplama/">Kredi Hesaplama</a> — borcun gerçek yıllık maliyeti.</li>
+          <li><a href="../../kredi-hesaplama/metodoloji/">Kredi hesabı metodolojisi</a> — sitenin diğer finansal çekirdeği.</li>
+          <li><a href="../../vadeli-mevduat-hesaplama/">Vadeli Mevduat Hesaplama</a> — stopaj sonrası net getiri.</li>
+          <li><a href="../../bordro/">Bordro Motoru</a> — ücret hesaplarının açık çekirdeği.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanaklar</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanaklar</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı teklif için bankanıza başvurun.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../../makaleler/">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>
