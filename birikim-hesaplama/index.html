@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BES ve Birikim Hesaplama — Reel Getiri | Koray Öner</title>
+  <meta name="description" content="Nominal getiri yanıltır. Enflasyona göre reel getiri, BES devlet katkısı ve hak kazanma, hedefe ulaşmak için aylık katkı ve birikimin kaç yıl yeteceği — tek ekranda.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/birikim-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Birikim ve BES Hesaplama — Gerçek Getiri">
+  <meta property="og:description" content="%45 getiri ve %40 enflasyonda kazancınız %5 değil %3,57. Reel getiri, BES devlet katkısı ve emeklilik birikimi hesaplayıcısı.">
+  <meta property="og:url" content="https://korayoner.dev/birikim-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/birikim-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Birikim ve BES Hesaplama — Gerçek Getiri">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Birikim ve BES Hesaplama — Gerçek Getiri">
+  <meta name="twitter:description" content="Nominal getiri yanıltır. Enflasyona göre reel getiri, BES devlet katkısı ve emeklilik birikimi.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/birikim-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=834d5d98">
+  <link rel="stylesheet" href="style.css?v=af8be506">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/birikim-hesaplama/#app",
+        "name": "Birikim ve BES Hesaplama",
+        "url": "https://korayoner.dev/birikim-hesaplama/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "featureList": "Enflasyona göre reel getiri (Fisher), düzenli katkıyla birikim projeksiyonu, BES devlet katkısı ve tavanı, hak kazanma takvimi, çıkış senaryolarına göre stopaj, hedefe ulaşmak için gerekli aylık katkı, birikimin kaç yıl yeteceği ve sürdürülebilir çekim tutarı",
+        "description": "Birikimin enflasyon karşısındaki gerçek değerini hesaplar. BES devlet katkısını, tavanını ve hak kazanma oranlarını uygular; hedefe ulaşmak için gereken aylık katkıyı ve birikimin kaç yıl yeteceğini bulur."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Birikim ve BES Hesaplama", "item": "https://korayoner.dev/birikim-hesaplama/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Reel getiri nasıl hesaplanır?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Reel getiri, nominal getiriden enflasyonun çıkarılmasıyla değil bölünmesiyle bulunur: reel = (1 + nominal) / (1 + enflasyon) − 1. Bu Fisher denklemidir. %45 getiri ve %40 enflasyonda çıkarma %5 der; doğru sonuç 1,45 / 1,40 − 1 = %3,57'dir. Enflasyon yükseldikçe iki yöntem arasındaki fark büyür, bu yüzden Türkiye'de çıkarma yöntemi ciddi biçimde yanıltıcıdır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Yıllık getiriyi 12'ye bölerek aylık getiri bulunur mu?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Getiri bileşiklendiği için aylık oran yıllık oranın on ikinci köküdür: aylık = (1 + yıllık)^(1/12) − 1. %30 yıllık getiri ayda %2,5 değil %2,21'dir. Bölme yöntemi kısa vadede küçük bir fark yaratır ama otuz yıllık bir birikim projeksiyonunu yaklaşık %15 şişirir." }
+          },
+          {
+            "@type": "Question",
+            "name": "BES devlet katkısı ne kadar ve sınırı var mı?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Devlet katkısı ödenen katkı payının %30'udur. Ancak bir takvim yılında ödenen katkı paylarının brüt asgari ücretin yıllık tutarını aşan kısmına devlet katkısı verilmez. 2026 yılı için aylık brüt asgari ücret 33.030 TL olduğundan yıllık tavan 396.360 TL'dir; bunun üzerindeki katkılarınız için devlet katkısı almazsınız. Araç bu tavanı uygular ve tavan nedeniyle alınamayan tutarı ayrıca gösterir." }
+          },
+          {
+            "@type": "Question",
+            "name": "BES'ten erken çıkarsam devlet katkısının ne kadarını alırım?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Devlet katkısına hak kazanma sistemde kalınan süreye bağlıdır: 3 yıl sonunda %15, 6 yıl sonunda %35, 10 yıl sonunda %60. Emeklilik hakkı kullanıldığında (56 yaşını doldurmak ve en az 10 yıl katkı payı ödemek şartıyla) devlet katkısının tamamına hak kazanılır. Üç yıldan önce ayrılırsanız devlet katkısından hiçbir şey alamazsınız." }
+          },
+          {
+            "@type": "Question",
+            "name": "BES'ten çıkarken ne kadar stopaj ödenir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Stopaj yalnızca getiri üzerinden alınır, kendi ödediğiniz katkı payından değil. Emeklilik hakkı kullanılarak çıkışta %5, on yılı doldurup emekli olmadan çıkışta %10, on yıldan önce ayrılmada %15 uygulanır. Devlet katkısının kendisi ve getirisi de vergiye esas tutara dahildir, çünkü o tutar için siz bir ödeme yapmadınız." }
+          },
+          {
+            "@type": "Question",
+            "name": "Birikimim emeklilikte kaç yıl yeter?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Bu, çekim tutarının enflasyonla artacağı ve birikimin reel getiri kazanacağı varsayımıyla hesaplanır. Yurt dışında yaygın olan %4 kuralı Türkiye'de güvenilir değildir; o kural düşük ve istikrarlı enflasyon varsayar. Anaparayı korumak isterseniz yalnızca reel getiri kadar çekebilirsiniz. Reel getiri negatifse, yani getiriniz enflasyonun altındaysa, anaparayı koruyan bir çekim tutarı yoktur ve birikim her koşulda erir." }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="metodoloji/">Metodoloji</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Birikim ve BES Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <h1>Birikim ve BES Hesaplama</h1>
+        <p class="hero-alt">
+          Nominal getiri size yalan söyler. %45 kazandıran bir yatırım %40 enflasyonda
+          <strong>%5 değil %3,57</strong> kazandırır — ve bu fark otuz yılda birikiminizi ikiye katlar.
+          Bu araç bütün sonuçları hem nominal hem <strong>bugünün parasıyla</strong> gösterir.
+        </p>
+        <p class="muted kunye-satiri">
+          Hesap çekirdeği <a href="metodoloji/">67 testle doğrulanıyor</a> ·
+          Ücretsiz, üyeliksiz, reklamsız · Verileriniz cihazınızdan çıkmaz
+        </p>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section id="hesapla" class="calc" data-rapor="yok">
+      <div class="wrap">
+
+        <div class="sekmeler" role="tablist" aria-label="Hesap türü">
+          <button class="sekme is-acik" role="tab" id="sek-birikim" aria-controls="pan-birikim" aria-selected="true" type="button">Birikim</button>
+          <button class="sekme" role="tab" id="sek-bes" aria-controls="pan-bes" aria-selected="false" type="button">BES</button>
+          <button class="sekme" role="tab" id="sek-hedef" aria-controls="pan-hedef" aria-selected="false" type="button">Hedef</button>
+          <button class="sekme" role="tab" id="sek-tuketim" aria-controls="pan-tuketim" aria-selected="false" type="button">Ne kadar yeter</button>
+        </div>
+
+        <!-- ---------------- BİRİKİM ---------------- -->
+        <div class="sekme-govde" id="pan-birikim" role="tabpanel" aria-labelledby="sek-birikim">
+          <div class="bi-duzen">
+            <div class="bi-form">
+              <h2>Düzenli birikim</h2>
+              <div class="alan-grid">
+                <label>Başlangıç tutarı (₺)
+                  <input type="text" inputmode="decimal" id="b-baslangic" value="50.000">
+                </label>
+                <label>Aylık katkı (₺)
+                  <input type="text" inputmode="decimal" id="b-katki" value="10.000">
+                </label>
+                <label>Katkı yıllık artışı (%)
+                  <input type="text" inputmode="decimal" id="b-artis" value="30">
+                  <small>Ücretiniz de enflasyonla arttığı için katkının sabit kalmasını varsaymak gerçekçi değil.</small>
+                </label>
+                <label>Yıllık getiri (%)
+                  <input type="text" inputmode="decimal" id="b-getiri" value="40">
+                </label>
+                <label>Yıllık enflasyon (%)
+                  <input type="text" inputmode="decimal" id="b-enflasyon" value="30">
+                </label>
+                <label>Süre (yıl)
+                  <input type="text" inputmode="numeric" id="b-yil" value="20">
+                </label>
+                <label>Getiri stopajı (%)
+                  <input type="text" inputmode="decimal" id="b-stopaj" value="15">
+                  <small>Yalnızca getiriden alınır, anaparadan değil.</small>
+                </label>
+              </div>
+            </div>
+
+            <div class="bi-sonuc">
+              <div class="reel-kart" id="b-reel-kart">
+                <p class="reel-etiket">Gerçek (reel) yıllık getiriniz</p>
+                <p class="reel-deger" id="b-reel-oran">—</p>
+                <p class="reel-alt" id="b-reel-aciklama">—</p>
+              </div>
+
+              <dl class="ozet-liste">
+                <div><dt>Yatırdığınız toplam</dt><dd id="b-toplam-katki">—</dd></div>
+                <div><dt>Getiri</dt><dd id="b-toplam-getiri">—</dd></div>
+                <div><dt>Stopaj</dt><dd id="b-stopaj-tutar">—</dd></div>
+                <div class="vurgu"><dt>Net birikim</dt><dd id="b-net">—</dd></div>
+                <div class="vurgu"><dt>Bugünün parasıyla</dt><dd id="b-reel-net">—</dd></div>
+              </dl>
+
+              <p class="uyari" id="b-uyari" hidden></p>
+            </div>
+          </div>
+
+          <div class="table-scroll">
+            <table class="veri-tablo">
+              <caption>Yıl yıl birikim</caption>
+              <thead>
+                <tr><th scope="col">Yıl</th><th scope="col">Katkı</th><th scope="col">Getiri</th>
+                    <th scope="col">Bakiye</th><th scope="col">Bugünün parasıyla</th></tr>
+              </thead>
+              <tbody id="b-tablo"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ---------------- BES ---------------- -->
+        <div class="sekme-govde" id="pan-bes" role="tabpanel" aria-labelledby="sek-bes" hidden>
+          <div class="bi-duzen">
+            <div class="bi-form">
+              <h2>Bireysel Emeklilik (BES)</h2>
+              <div class="alan-grid">
+                <label>Aylık katkı payı (₺)
+                  <input type="text" inputmode="decimal" id="e-katki" value="5.000">
+                </label>
+                <label>Katkı yıllık artışı (%)
+                  <input type="text" inputmode="decimal" id="e-artis" value="30">
+                </label>
+                <label>Yaşınız
+                  <input type="text" inputmode="numeric" id="e-yas" value="35">
+                </label>
+                <label>Sistemde kalacağınız süre (yıl)
+                  <input type="text" inputmode="numeric" id="e-yil" value="21">
+                </label>
+                <label>Fonun yıllık getirisi (%)
+                  <input type="text" inputmode="decimal" id="e-getiri" value="40">
+                </label>
+                <label>Fon gider kesintisi (%/yıl)
+                  <input type="text" inputmode="decimal" id="e-kesinti" value="1,9">
+                  <small>Fondan fona değişir; sözleşmenizde yazar.</small>
+                </label>
+                <label>Yıllık enflasyon (%)
+                  <input type="text" inputmode="decimal" id="e-enflasyon" value="30">
+                </label>
+                <label>Devlet katkısı oranı (%)
+                  <input type="text" inputmode="decimal" id="e-dk" value="30">
+                </label>
+                <label>Aylık brüt asgari ücret (₺)
+                  <input type="text" inputmode="decimal" id="e-asgari" value="33.030">
+                  <small>Devlet katkısı tavanı bunun yıllık tutarıdır.</small>
+                </label>
+              </div>
+            </div>
+
+            <div class="bi-sonuc">
+              <div class="reel-kart" id="e-dk-kart">
+                <p class="reel-etiket">Devlet katkısı toplamı</p>
+                <p class="reel-deger" id="e-dk-toplam">—</p>
+                <p class="reel-alt" id="e-dk-aciklama">—</p>
+              </div>
+
+              <dl class="ozet-liste">
+                <div><dt>Kendi katkınız</dt><dd id="e-kendi-katki">—</dd></div>
+                <div><dt>Kendi birikiminiz</dt><dd id="e-kendi-bakiye">—</dd></div>
+                <div><dt>Devlet katkısı hesabı</dt><dd id="e-devlet-bakiye">—</dd></div>
+                <div class="vurgu"><dt>Brüt toplam</dt><dd id="e-brut">—</dd></div>
+              </dl>
+
+              <p class="uyari" id="e-tavan-uyari" hidden></p>
+            </div>
+          </div>
+
+          <h3>Ne zaman çıkarsanız ne alırsınız</h3>
+          <p class="muted">
+            Devlet katkısına hak kazanma sistemde kaldığınız süreye bağlı. Stopaj yalnızca
+            getiriden alınır; devlet katkısının kendisi de getiri sayılır çünkü onun için
+            siz bir ödeme yapmadınız.
+          </p>
+          <div class="table-scroll">
+            <table class="veri-tablo">
+              <thead>
+                <tr><th scope="col">Senaryo</th><th scope="col">Hak kazanma</th>
+                    <th scope="col">Ele geçen devlet katkısı</th><th scope="col">Stopaj</th>
+                    <th scope="col">Net</th><th scope="col">Bugünün parasıyla</th></tr>
+              </thead>
+              <tbody id="e-senaryo"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ---------------- HEDEF ---------------- -->
+        <div class="sekme-govde" id="pan-hedef" role="tabpanel" aria-labelledby="sek-hedef" hidden>
+          <div class="bi-duzen">
+            <div class="bi-form">
+              <h2>Hedefe ulaşmak</h2>
+              <div class="alan-grid">
+                <label>Hedef tutar (₺)
+                  <input type="text" inputmode="decimal" id="h-hedef" value="5.000.000">
+                </label>
+                <label>Hedef nasıl verildi?
+                  <select id="h-tur">
+                    <option value="bugunku" selected>Bugünün parasıyla</option>
+                    <option value="nominal">O günkü tutar olarak</option>
+                  </select>
+                  <small>"Bugünün parasıyla" seçilirse hedef enflasyonla büyütülür — çoğu insanın kastettiği budur.</small>
+                </label>
+                <label>Başlangıç tutarı (₺)
+                  <input type="text" inputmode="decimal" id="h-baslangic" value="50.000">
+                </label>
+                <label>Süre (yıl)
+                  <input type="text" inputmode="numeric" id="h-yil" value="20">
+                </label>
+                <label>Yıllık getiri (%)
+                  <input type="text" inputmode="decimal" id="h-getiri" value="40">
+                </label>
+                <label>Yıllık enflasyon (%)
+                  <input type="text" inputmode="decimal" id="h-enflasyon" value="30">
+                </label>
+                <label>Katkı yıllık artışı (%)
+                  <input type="text" inputmode="decimal" id="h-artis" value="30">
+                </label>
+              </div>
+            </div>
+
+            <div class="bi-sonuc">
+              <div class="reel-kart">
+                <p class="reel-etiket">Ayda ayırmanız gereken</p>
+                <p class="reel-deger" id="h-aylik">—</p>
+                <p class="reel-alt" id="h-aciklama">—</p>
+              </div>
+              <dl class="ozet-liste">
+                <div><dt>Hedefin o günkü karşılığı</dt><dd id="h-nominal">—</dd></div>
+                <div><dt>Ulaşılan net birikim</dt><dd id="h-ulasilan">—</dd></div>
+              </dl>
+              <p class="uyari" id="h-uyari" hidden></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------------- TÜKETİM ---------------- -->
+        <div class="sekme-govde" id="pan-tuketim" role="tabpanel" aria-labelledby="sek-tuketim" hidden>
+          <div class="bi-duzen">
+            <div class="bi-form">
+              <h2>Birikim kaç yıl yeter</h2>
+              <div class="alan-grid">
+                <label>Birikiminiz (₺)
+                  <input type="text" inputmode="decimal" id="t-baslangic" value="5.000.000">
+                </label>
+                <label>Aylık çekim (₺)
+                  <input type="text" inputmode="decimal" id="t-cekim" value="60.000">
+                  <small>Her yıl enflasyon kadar artırılır.</small>
+                </label>
+                <label>Yıllık getiri (%)
+                  <input type="text" inputmode="decimal" id="t-getiri" value="40">
+                </label>
+                <label>Yıllık enflasyon (%)
+                  <input type="text" inputmode="decimal" id="t-enflasyon" value="30">
+                </label>
+              </div>
+            </div>
+
+            <div class="bi-sonuc">
+              <div class="reel-kart">
+                <p class="reel-etiket">Birikiminiz dayanır</p>
+                <p class="reel-deger" id="t-sure">—</p>
+                <p class="reel-alt" id="t-aciklama">—</p>
+              </div>
+              <dl class="ozet-liste">
+                <div class="vurgu"><dt>Anaparayı koruyan aylık çekim</dt><dd id="t-surdurulebilir">—</dd></div>
+                <div><dt>Reel yıllık getiri</dt><dd id="t-reel">—</dd></div>
+              </dl>
+              <p class="uyari" id="t-uyari" hidden></p>
+            </div>
+          </div>
+
+          <div class="table-scroll">
+            <table class="veri-tablo">
+              <caption>Yıl yıl kalan birikim</caption>
+              <thead>
+                <tr><th scope="col">Yıl</th><th scope="col">Aylık çekim</th><th scope="col">Kalan bakiye</th></tr>
+              </thead>
+              <tbody id="t-tablo"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section id="nasil" class="prose-section">
+      <div class="wrap prose">
+        <h2>Nasıl hesaplanır</h2>
+
+        <h3>Reel getiri: çıkarma değil bölme</h3>
+        <p>
+          Yaygın kısayol <em>reel = nominal − enflasyon</em> demektir. Enflasyonun düşük
+          olduğu ülkelerde bu yaklaşımın hatası küçüktür; Türkiye'de değildir. Doğru
+          formül Fisher denklemidir:
+        </p>
+        <p class="formula">reel = (1 + nominal) ÷ (1 + enflasyon) − 1</p>
+        <p>
+          %45 getiri ve %40 enflasyonda çıkarma <strong>%5</strong> der. Bölme
+          <strong>%3,57</strong> der. Aradaki 1,43 puan küçük görünür ama otuz yıla
+          bileşiklenince birikiminiz yaklaşık ikiye katlanacak kadar sapar. Enflasyon
+          yükseldikçe iki yöntem arasındaki mesafe açılır — bu yüzden burada kısayol yok.
+        </p>
+
+        <h3>Aylık oran: bölme değil on ikinci kök</h3>
+        <p>
+          Yıllık %30 getiri ayda %2,5 değildir. Getiri her ay bileşiklendiği için aylık
+          oran şudur:
+        </p>
+        <p class="formula">aylık = (1 + yıllık)<sup>1/12</sup> − 1</p>
+        <p>
+          %30 için sonuç <strong>%2,2104</strong>'tür. Bölme yöntemi bir yılda gözle
+          görülmez ama otuz yıllık bir projeksiyonu yaklaşık %15 şişirir. Aracın
+          sonuçlarının başka hesaplayıcılardan düşük çıkmasının sebebi çoğu zaman budur.
+        </p>
+
+        <h3>BES devlet katkısı, tavan ve hak kazanma</h3>
+        <p>
+          Devlet katkısı ödediğiniz katkı payının %30'udur. Ancak bir takvim yılında
+          ödenen katkı paylarının <strong>brüt asgari ücretin yıllık tutarını</strong>
+          aşan kısmına katkı verilmez. 2026'da aylık brüt asgari ücret 33.030 TL
+          olduğuna göre yıllık tavan 396.360 TL'dir. Araç bu tavanı uygular ve tavan
+          yüzünden alamadığınız tutarı ayrıca gösterir — çünkü katkınızı bu sınırın
+          hemen altında tutmak somut bir kazançtır.
+        </p>
+        <p>
+          Devlet katkısının tamamı hemen sizin olmaz. Sistemde kaldığınız süreye göre
+          <strong>3 yılda %15</strong>, <strong>6 yılda %35</strong>,
+          <strong>10 yılda %60</strong> hak kazanırsınız. Tamamına ancak emeklilik
+          hakkını kullanarak, yani 56 yaşını doldurup en az 10 yıl katkı payı ödeyerek
+          ulaşırsınız. Üç yıldan önce ayrılırsanız devlet katkısından hiçbir şey almazsınız.
+        </p>
+
+        <h3>Stopaj yalnızca getiriden alınır</h3>
+        <p>
+          Çıkışta vergilenen tutar anaparanız değil <em>getirinizdir</em>. Oran çıkış
+          şekline göre değişir: emeklilikte %5, on yılı doldurup emekli olmadan çıkışta
+          %10, on yıldan önce ayrılmada %15. Bir ayrıntı çoğu hesaplayıcıda atlanır:
+          devlet katkısının <strong>kendisi de</strong> vergiye esas tutara girer,
+          çünkü o para için siz bir ödeme yapmadınız.
+        </p>
+
+        <h3>Emeklilikte %4 kuralı Türkiye'de çalışmaz</h3>
+        <p>
+          Yurt dışı kaynaklarda sık geçen "birikiminizin %4'ünü çekin" kuralı düşük ve
+          istikrarlı enflasyon varsayar. Burada bunun yerine şunu hesaplıyoruz: çekim
+          tutarınız her yıl enflasyon kadar artar, birikiminiz nominal getiriyle büyür.
+          Anaparanızı korumak istiyorsanız çekebileceğiniz tutar <strong>reel
+          getiri</strong> kadardır. Reel getiriniz negatifse — yani getiriniz enflasyonun
+          altındaysa — anaparayı koruyan bir çekim tutarı <strong>yoktur</strong>. Araç
+          bu durumda sıfır gösterir ve sebebini yazar; sizi oyalamaz.
+        </p>
+
+        <h3>Neyi hesaplamıyoruz</h3>
+        <p>
+          Bu araç bir projeksiyon aracıdır, kehanet değil. Sabit bir yıllık getiri ve
+          sabit bir enflasyon varsayar; gerçekte ikisi de yıldan yıla oynar ve sıralaması
+          bile sonucu değiştirir. Yatırım tavsiyesi vermez, hangi fonun ne kazandıracağını
+          bilmez. Vergi tarafında yalnızca getiri stopajını modeller; menkul kıymet türüne
+          göre değişen istisnaları, mevduatta vadeye göre değişen stopaj oranlarını ve
+          beyan yükümlülüğünü kapsamaz.
+        </p>
+      </div>
+    </section>
+
+    <section id="sss" class="prose-section alt">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <details><summary>Reel getiri nasıl hesaplanır?</summary>
+          <p>Nominal getiriden enflasyonu çıkararak değil, bölerek: reel = (1 + nominal) ÷ (1 + enflasyon) − 1. %45 getiri ve %40 enflasyonda çıkarma %5 der, doğrusu %3,57'dir.</p>
+        </details>
+        <details><summary>Yıllık getiriyi 12'ye bölerek aylık getiri bulunur mu?</summary>
+          <p>Hayır. Aylık oran yıllık oranın on ikinci köküdür. %30 yıllık getiri ayda %2,21'dir, %2,5 değil. Bölme otuz yıllık projeksiyonu yaklaşık %15 şişirir.</p>
+        </details>
+        <details><summary>BES devlet katkısı ne kadar ve sınırı var mı?</summary>
+          <p>Katkı payının %30'u. Bir takvim yılında brüt asgari ücretin yıllık tutarını aşan katkılara devlet katkısı verilmez; 2026 için bu tavan 396.360 TL'dir.</p>
+        </details>
+        <details><summary>BES'ten erken çıkarsam devlet katkısının ne kadarını alırım?</summary>
+          <p>3 yılda %15, 6 yılda %35, 10 yılda %60. Tamamı için emeklilik hakkını kullanmanız gerekir: 56 yaş ve en az 10 yıl katkı. Üç yıldan önce çıkışta hiçbir şey alamazsınız.</p>
+        </details>
+        <details><summary>BES'ten çıkarken ne kadar stopaj ödenir?</summary>
+          <p>Yalnızca getiriden: emeklilikte %5, on yılı doldurup emekli olmadan %10, on yıldan önce %15. Devlet katkısının kendisi de vergiye esas tutara dahildir.</p>
+        </details>
+        <details><summary>Birikimim emeklilikte kaç yıl yeter?</summary>
+          <p>Çekiminiz enflasyonla artar, birikiminiz getiriyle büyür. Anaparayı korumak için yalnızca reel getiri kadar çekebilirsiniz; reel getiri negatifse böyle bir tutar yoktur.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="prose-section">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="metodoloji/">Birikim hesabı metodolojisi</a> — formüller, parametreler ve sınırlar</li>
+          <li><a href="../kredi-hesaplama/">Kredi Hesaplama</a> — borcun gerçek yıllık maliyeti</li>
+          <li><a href="../vadeli-mevduat-hesaplama/">Vadeli Mevduat Hesaplama</a> — stopaj sonrası net faiz</li>
+          <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — ne kadar ayırabileceğinizi bulun</li>
+          <li><a href="../makaleler/kredi-yillik-maliyet-orani/">Yıllık maliyet oranı nedir?</a></li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="hesap.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+  <script src="/bg-network.js" defer></script>
+</body>
+</html>

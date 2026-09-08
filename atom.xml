@@ -5,9 +5,25 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-07T00:00:00+03:00</updated>
+  <updated>2026-09-08T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>BES ve Birikim Hesaplama — Reel Getiri</title>
+    <link href="https://korayoner.dev/birikim-hesaplama/"/>
+    <id>https://korayoner.dev/birikim-hesaplama/</id>
+    <updated>2026-09-08T00:00:00+03:00</updated>
+    <summary>Nominal getiri yanıltır. Enflasyona göre reel getiri, BES devlet katkısı ve hak kazanma, hedefe ulaşmak için aylık katkı ve birikimin kaç yıl yeteceği — tek ekranda.</summary>
+  </entry>
+
+  <entry>
+    <title>Birikim Hesabı Metodolojisi</title>
+    <link href="https://korayoner.dev/birikim-hesaplama/metodoloji/"/>
+    <id>https://korayoner.dev/birikim-hesaplama/metodoloji/</id>
+    <updated>2026-09-08T00:00:00+03:00</updated>
+    <summary>Reel getiri neden çıkarmayla değil Fisher denklemiyle bulunur? BES devlet katkısı, tavanı, hak kazanma ve stopaj nasıl hesaplanıyor? Formüller ve 67 test.</summary>
+  </entry>
 
   <entry>
     <title>Bordro Motoru — Metodoloji ve Parametreler</title>
