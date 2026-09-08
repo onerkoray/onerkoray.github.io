@@ -168,6 +168,14 @@ SPEC = {
    "Yurt dışı alışverişte vergi, IMEI kayıt harcı ve toplam maliyet.",
    ["AB & diğer ülke", "IMEI harcı"], "vergi"),
 
+ "ev-kira-metodoloji": ("ev-almak-mi-kiralamak-mi/metodoloji", "Ev mi Kira mı", "Metodolojisi",
+   "Farkın yatırılması kuralı, peşinatın fırsat maliyeti ve başabaş yılı nasıl bulunuyor? 31 test.",
+   ["31 test", "MIT"], "finans"),
+
+ "ev-almak-mi-kiralamak-mi": ("ev-almak-mi-kiralamak-mi", "Ev Almak mı", "Kiralamak mı?",
+   "Kira ödemek boşa para değil. Doğru soru: peşinatı yatırsaydınız ne olurdu?",
+   ["Başabaş yılı", "Fırsat maliyeti"], "finans"),
+
  "birikim-metodoloji": ("birikim-hesaplama/metodoloji", "Birikim Hesabı", "Metodolojisi",
    "Reel getiri neden çıkarmayla değil Fisher denklemiyle bulunur? BES devlet katkısı ve stopaj. 67 test.",
    ["67 test", "MIT"], "finans"),
