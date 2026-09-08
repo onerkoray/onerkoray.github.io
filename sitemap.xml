@@ -56,6 +56,26 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/zam-hesaplama/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/zam-hesaplama-koray-oner.png</image:loc>
+      <image:title>Zam Hesaplama ve Maaş Pazarlığı — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/zam-hesaplama/metodoloji/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/zam-metodoloji-koray-oner.png</image:loc>
+      <image:title>Zam Hesabı Metodolojisi — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/birikim-hesaplama/</loc>
     <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>

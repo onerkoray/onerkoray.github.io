@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zam Hesabı Metodolojisi | Koray Öner</title>
+  <meta name="description" content="Brüt zam oranı neden nete aynen yansımaz? Kümülatif matrah, SGK tavanı ve üç bölge. Pazarlık için geriye çözüm ve 40 test.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/zam-hesaplama/metodoloji/">
+
+  <link rel="icon" href="../../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Zam Hesabı Metodolojisi">
+  <meta property="og:description" content="Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor? Açık defter.">
+  <meta property="og:url" content="https://korayoner.dev/zam-hesaplama/metodoloji/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/zam-metodoloji-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Zam Hesabı Metodolojisi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zam Hesabı Metodolojisi">
+  <meta name="twitter:description" content="Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor?">
+  <meta name="twitter:image" content="https://korayoner.dev/images/zam-metodoloji-koray-oner.png">
+
+  <link rel="stylesheet" href="../../style.css?v=834d5d98">
+  <link rel="stylesheet" href="../style.css?v=19e67087">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://korayoner.dev/zam-hesaplama/metodoloji/#article",
+        "headline": "Zam hesabı metodolojisi",
+        "url": "https://korayoner.dev/zam-hesaplama/metodoloji/",
+        "inLanguage": "tr",
+        "datePublished": "2026-09-07",
+        "dateModified": "2026-09-07",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "about": { "@id": "https://korayoner.dev/zam-hesaplama/#app" },
+        "description": "Zam hesabının yöntemi: bordronun motordan gelmesi, brüt zam oranının nete yansımasını belirleyen kümülatif matrah, asgari ücret ve SGK tavanına göre üç bölge, pazarlık için hedeften geriye çözüm ve prim ayının etkisizliği."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Zam Hesaplama", "item": "https://korayoner.dev/zam-hesaplama/" },
+          { "@type": "ListItem", "position": 3, "name": "Metodoloji", "item": "https://korayoner.dev/zam-hesaplama/metodoloji/" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="../">Aracı aç</a></li>
+          <li><a href="#formul">Formüller</a></li>
+          <li><a href="#test">Testler</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Zam Hesaplama</a> <span aria-hidden="true">&#8250;</span> Metodoloji
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Açık defter · MIT lisanslı · 40 test</p>
+        <h1 id="hero-title">Zam hesabı metodolojisi</h1>
+        <p class="lede">
+          Bu araç bir iddia taşıyor: brüt zam oranı net zam oranı değildir. İddiayı
+          yazarken kendi varsayımım yanlış çıktı ve test onu yakaladı. Bu sayfa
+          hesabın nasıl kurulduğunu, üç bölgenin neden var olduğunu ve neyi
+          hesaplamadığını anlatıyor —
+          <strong>iddia olarak değil, formül ve test olarak.</strong>
+        </p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../../hakkimda/" rel="author">Koray Öner</a> · Güncelleme: 8 Eylül 2026 · <a href="../">Aracı aç</a></p>
+
+        <h2 id="motor">1. Bordro burada yeniden yazılmadı</h2>
+        <p>
+          Bu araç tek bir bordro formülü içermiyor. Ücret matematiğinin tamamı sitenin
+          <a href="../../bordro/">Bordro Motoru</a>'ndan geliyor; buradaki iş senaryo
+          kurmak ve iki senaryoyu karşılaştırmak. İki yerde iki bordro hesabı olsaydı
+          zamanla sessizce ayrışırlardı — bir test bunu doğrudan koruyor: aracın
+          ürettiği yıllık net, motorun aynı brüt için ürettiğiyle kuruşu kuruşuna eşit
+          olmalı.
+        </p>
+        <p>
+          Senaryoları kurmayı mümkün kılan şey motorun bir yeteneği:
+          <code>hesaplaYil()</code> aylık brüt olarak 12 elemanlı bir <strong>dizi</strong>
+          kabul ediyor. "Temmuzda zam aldım" ya da "martta prim aldım" senaryoları bu
+          sayede motorun kendisine kuruluyor — kümülatif matrah, dilim geçişi ve asgari
+          ücret istisnası dahil.
+        </p>
+
+        <h2 id="neden">2. Brüt zam oranı neden nete aynen yansımaz?</h2>
+        <p>
+          Türkiye'de gelir vergisi <strong>kümülatif matrah</strong> üzerinden işler:
+          her ay ödenen vergi, o aya kadar biriken toplam matraha bakılarak belirlenir.
+          Brüt yükseldiğinde matrah daha hızlı birikir ve üst dilimlere daha erken
+          geçilir. Buna asgari ücret istisnasının sabit tutar olması eklenir; brüt
+          büyüdükçe o sabit indirimin oransal değeri küçülür.
+        </p>
+        <p>
+          2026 tarifesiyle ölçülen değer: 100.000 TL brütte %50 zam, yıllık nete
+          <strong>%43,8</strong> olarak yansıyor. Fark 6,2 puan.
+        </p>
+
+        <h2 id="bolgeler">3. Tek kural yoktu — üç bölge var</h2>
+        <p>
+          Bu aracı yazarken ilk varsayımım <em>"net oran her zaman brüt orandan
+          küçüktür"</em> idi. Testi öyle yazdım ve <strong>düştü</strong>: 30.000 TL
+          brütte %10 zam nete %11,98 yansıyordu. Rastgele senaryo testi 150 denemenin
+          52'sinde aynı şeyi söyledi.
+        </p>
+        <p>
+          Model doğruydu, varsayım yanlıştı. Ölçüm üç ayrı bölge olduğunu gösterdi:
+        </p>
+        <table class="veri-tablo">
+          <thead><tr><th scope="col">Bölge</th><th scope="col">%50 zamda net</th><th scope="col">Sebep</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Asgari ücret altı</th><td>%55,1</td><td>net asgari ücret tabanı (ilave AGİ) devrede</td></tr>
+            <tr><th scope="row">Normal bölge</th><td>%37–44</td><td>artan oranlı tarife + kümülatif matrah</td></tr>
+            <tr><th scope="row">Tavanı aşan zam</th><td>%52,5</td><td>artışın bir kısmına SGK primi işlemiyor</td></tr>
+            <tr><th scope="row">Tavan üstü</th><td>%48–53</td><td>zamdan hiç SGK primi kesilmiyor</td></tr>
+          </tbody>
+        </table>
+        <p>
+          Araç artık kullanıcıya <strong>hangi bölgede olduğunu söylüyor</strong> ve
+          testler kuralı yalnızca normal bölgede arıyor. Tavan üstündeki tersine dönüş
+          ayrıca korunuyor — bilinen ve doğru bir davranış olduğu için ileride "hata"
+          sanılıp düzeltilmeye çalışılmasın diye.
+        </p>
+
+        <h2 id="pazarlik">4. Pazarlık: hedeften geriye çözüm</h2>
+        <p>
+          "Net şu kadar artsın" dendiğinde gereken brüt oranın kapalı formülü yok;
+          kümülatif matrah, dilim geçişleri ve istisna araya giriyor. İkiye bölerek
+          çözülüyor ve çözüm <strong>tanımıyla</strong> sınanıyor: bulunan brüt geri
+          beslendiğinde hedef net çıkmalı, %1 azı çıkmamalı.
+        </p>
+        <p>
+          Bir ayrıntı ilk sürümde hataya yol açtı: ikiye bölmede hedefi sağlayan uç
+          <code>ust</code>, ama sonucu kuruşa <em>aşağı</em> yuvarlayınca hedefin 3
+          kuruş altına düşüyordu. Yukarı yuvarlamaya çevrildi; artık bulunan brüt
+          hedefi her zaman sağlıyor.
+        </p>
+        <p>
+          Ölçülen örnek: 100.000 TL brütte net gelirin %30 artması için gereken brüt
+          zam <strong>%34,0</strong>.
+        </p>
+
+        <h2 id="prim">5. "Primi aralıkta alma" — mitin sınavı</h2>
+        <p>
+          Yaygın inanış primin aralıkta alınmasının vergisini artırdığı yönünde.
+          <strong>Doğru değil.</strong> Gelir vergisi kümülatif matrah üzerinden yıllık
+          işlediği için aynı brüt prim hangi ayda ödenirse ödensin yıllık net katkısı
+          aynı çıkıyor.
+        </p>
+        <p>
+          Araç bunu <em>iddia etmiyor</em>: on iki ayın hepsini ayrı ayrı hesaplayıp
+          tabloda gösteriyor ve satırların hepsi aynı sayıyı veriyor. Bir eşik de var —
+          fark bir kuruşu geçerse arayüz bunu bildiriyor, çünkü SGK tavanının devreye
+          girdiği senaryolarda küçük ama gerçek farklar oluşabiliyor.
+        </p>
+        <p>
+          Zammın ayı ise yıllık toplamı gerçekten değiştirir; ama bu bir vergi etkisi
+          değil, kaç ay boyunca yüksek maaş alındığıyla ilgilidir. Zammın net karşılık
+          oranı zam ayından bağımsızdır ve bir test bunu doğruluyor.
+        </p>
+
+        <h2 id="test">6. Testler</h2>
+        <p>
+          Çekirdek DOM bilmez; <code>node zam-hesaplama/test.js</code> ile doğrudan
+          çalıştırılır ve <strong>40 test</strong> her yayından önce CI'da koşar.
+          Testlerin işi bu sayfadaki iddiaları korumak: bordronun motordan geldiği,
+          normal bölgede net oranın brüt orandan küçük olduğu, prim ayının etkisiz
+          olduğu ve pazarlık çözümünün tanımı sağladığı.
+        </p>
+
+        <h2 id="sinir">7. Neyi hesaplamıyor?</h2>
+        <ul>
+          <li><strong>Yalnızca ücret geliri.</strong> Kira, serbest meslek, ticari kazanç ve kâr payı kapsam dışı.</li>
+          <li><strong>Yan haklar yok.</strong> Yemek ve yol yardımının vergi istisnaları, özel sağlık sigortası indirimi, engellilik indirimi modellenmiyor.</li>
+          <li><strong>Prim devri yok.</strong> SGK'nın, prime esas kazanç tavanını aşan ücret dışı ödemeler için öngördüğü takip eden aylara devir kuralı uygulanmıyor; araç primi tek ayda ödenmiş kabul ediyor.</li>
+          <li><strong>Teşvikler varsayılan olarak kapalı.</strong> İşveren maliyeti teşviksiz gösteriliyor.</li>
+          <li><strong>Yıl içinde işe giriş/çıkış yok.</strong> Hesap on iki tam ay varsayar.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanaklar</h2>
+          <ul>
+            <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> m.103 — artan oranlı ücret tarifesi — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li>193 sayılı <strong>GVK m.32</strong> — asgari ücret gelir vergisi istisnası — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li>5510 sayılı <strong>Sosyal Sigortalar ve GSS Kanunu</strong> m.82 — prime esas kazanç alt ve üst sınırı — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>488 sayılı <strong>Damga Vergisi Kanunu</strong> — ücret damga vergisi — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li><strong>Asgari Ücret Tespit Komisyonu</strong> kararı — <a href="https://www.resmigazete.gov.tr/" rel="noopener">Resmî Gazete</a></li>
+            <li>Parametreler ve motor — <a href="../../bordro/">Bordro Motoru</a> · <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">açık kaynak çekirdek (MIT)</a></li>
+          </ul>
+          <p class="muted-note">
+            Bilgilendirme amaçlıdır; bağlayıcı teklif değildir. Bir bilgi güncelliğini
+            yitirdiyse <a href="../../iletisim/">bana bildirin</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili sayfalar</h2>
+        <ul>
+          <li><a href="../">Zam Hesaplama ve Maaş Pazarlığı</a> — aracın kendisi.</li>
+          <li><a href="../../bordro/">Bordro Motoru</a> — bu hesabın kaynağı, metodolojisi ve parametreleri.</li>
+          <li><a href="../../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — 12 aylık bordro dökümü.</li>
+          <li><a href="../../makaleler/maasim-neden-dustu/">Maaşım neden düştü?</a> — kümülatif matrahın anlatımı.</li>
+          <li><a href="../../birikim-hesaplama/">BES ve Birikim Hesaplama</a> — zammı ne yapmalı.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanaklar</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanaklar</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı teklif için bankanıza başvurun.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../../makaleler/">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>

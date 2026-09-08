@@ -176,6 +176,14 @@ SPEC = {
    "Kira ödemek boşa para değil. Doğru soru: peşinatı yatırsaydınız ne olurdu?",
    ["Başabaş yılı", "Fırsat maliyeti"], "finans"),
 
+ "zam-metodoloji": ("zam-hesaplama/metodoloji", "Zam Hesabı", "Metodolojisi",
+   "Brüt zam oranı neden nete aynen yansımaz? Kümülatif matrah, SGK tavanı ve üç bölge. 40 test.",
+   ["40 test", "MIT"], "bordro"),
+
+ "zam-hesaplama": ("zam-hesaplama", "Zam Hesaplama", "ve Maaş Pazarlığı",
+   "%50 brüt zam nete %43,8 yansıyor. Net %30 artış için brütte %34 istemek gerekiyor.",
+   ["Net karşılık", "Pazarlık"], "bordro"),
+
  "birikim-metodoloji": ("birikim-hesaplama/metodoloji", "Birikim Hesabı", "Metodolojisi",
    "Reel getiri neden çıkarmayla değil Fisher denklemiyle bulunur? BES devlet katkısı ve stopaj. 67 test.",
    ["67 test", "MIT"], "finans"),
@@ -334,7 +342,11 @@ def tema(ad, aile, sira):
     verebiliyor. Sirayla dagitinca ayni renkteki kartlar birbirinden
     kesin olarak ayrisiyor.
     """
-    palet = AILE_PALET.get(aile, "marka")
+    if aile not in AILE_PALET:
+        raise SystemExit(
+            "Bilinmeyen kart ailesi: %r. Gecerli aileler: %s"
+            % (aile, ", ".join(sorted(AILE_PALET))))
+    palet = AILE_PALET[aile]
     duzen = DUZENLER[sira % len(DUZENLER)]
     doku = DOKULAR[(sira // len(DUZENLER) + sira) % len(DOKULAR)]
     t = tohum(ad)

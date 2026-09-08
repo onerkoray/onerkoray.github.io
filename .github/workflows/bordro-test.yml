@@ -46,6 +46,9 @@ jobs:
       - name: Ev/kira karşılaştırma testleri
         run: node ev-almak-mi-kiralamak-mi/test.js
 
+      - name: Zam çekirdeği testleri
+        run: node zam-hesaplama/test.js
+
       - name: Birikim çekirdeği testleri
         run: node birikim-hesaplama/test.js
 
