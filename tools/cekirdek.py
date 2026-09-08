@@ -55,6 +55,8 @@ DOSYALAR = [
     ("kredi-hesaplama/test.js",           "kredi/test.js"),
     ("ev-almak-mi-kiralamak-mi/hesap.js", "ev-kira/hesap.js"),
     ("ev-almak-mi-kiralamak-mi/test.js",  "ev-kira/test.js"),
+    ("zam-hesaplama/hesap.js",            "zam/hesap.js"),
+    ("zam-hesaplama/test.js",             "zam/test.js"),
     ("birikim-hesaplama/hesap.js",        "birikim/hesap.js"),
     ("birikim-hesaplama/test.js",         "birikim/test.js"),
     ("fatura-olusturma/fatura.js",        "fatura/fatura.js"),
@@ -71,6 +73,9 @@ YOL_DUZELTME = [
     # "kredi-hesaplama", pakette "kredi" -- yol duzeltilmezse paketlenmis
     # test dosya bulamiyor. (Ilk pakette tam bunu yakaladi.)
     ('require("../kredi-hesaplama/hesap.js")', 'require("../kredi/hesap.js")'),
+    # Zam cekirdegi bordro motorunu cagiriyor; pakette klasor adi ayni
+    # ('bordro') oldugu icin yol degismiyor ama kural burada dursun.
+
 ]
 
 LISANS = """MIT License
@@ -112,6 +117,7 @@ def test_sayilari():
                     ("cikis", "bordro/cikis-test.js"),
                     ("calisma", "bordro/calisma-bicimi-test.js"),
                     ("ev-kira", "ev-almak-mi-kiralamak-mi/test.js"),
+                    ("zam", "zam-hesaplama/test.js"),
                     ("birikim", "birikim-hesaplama/test.js"),
                     ("fatura", "fatura-olusturma/test.js"),
                     ("arsiv", "fatura-olusturma/arsiv-test.js")):

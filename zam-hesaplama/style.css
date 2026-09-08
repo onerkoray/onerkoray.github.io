@@ -1,0 +1,131 @@
+/* Zam Hesaplama — araca özgü stiller.
+   Sekme, tablo ve formül kalıpları kredi aracıyla AYNI dili konuşuyor;
+   iki finansal araç arasında farklı bir görsel dil kurmak kullanıcıya
+   öğrendiğini yeniden öğretmek olurdu. */
+
+/* --------------------------------- sekmeler ------------------------------ */
+.sekmeler { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1.5rem 0 1rem; }
+.sekme {
+  padding: .45rem .9rem; cursor: pointer; font: inherit; font-size: var(--step--1);
+  font-weight: 600; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--surface); color: var(--text-muted);
+}
+.sekme:hover { border-color: var(--brand); color: var(--brand-strong); }
+.sekme[aria-selected="true"] {
+  background: var(--brand); border-color: var(--brand); color: var(--brand-contrast);
+}
+.sekme-govde[hidden] { display: none; }
+
+/* --------------------------------- düzen --------------------------------- */
+/* Form solda, sonuç sağda ve YAPIŞKAN: kullanıcı oranı değiştirirken
+   sonucun değiştiğini görmeli, aşağı kaydırıp geri dönmemeli. */
+.bi-duzen {
+  display: grid; gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: start;
+}
+.bi-duzen > * { min-inline-size: 0; }
+@media (max-width: 860px) { .bi-duzen { grid-template-columns: 1fr; } }
+@media (min-width: 861px) { .bi-sonuc { position: sticky; top: 84px; } }
+
+.bi-form h2, .sekme-govde h3 { margin-block: 0 .6rem; }
+
+.alan-grid {
+  display: grid; gap: .85rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.alan-grid label {
+  display: flex; flex-direction: column; gap: .3rem;
+  font-size: var(--step--1); font-weight: 600;
+}
+.alan-grid input, .alan-grid select {
+  font: inherit; font-weight: 400;
+  padding: .5rem .65rem;
+  border: 1px solid var(--border); border-radius: 9px;
+  background: var(--surface); color: var(--text);
+}
+.alan-grid input:focus-visible, .alan-grid select:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 2px;
+}
+.alan-grid small { font-weight: 400; font-size: .75rem; color: var(--text-muted); line-height: 1.4; }
+
+/* ------------------------------ sonuç kartı ------------------------------ */
+/* Aracın iddiası tek bir sayıda duruyor: reel getiri. En belirgin öğe o. */
+.reel-kart {
+  border: 1px solid color-mix(in srgb, var(--brand) 45%, var(--border));
+  background: color-mix(in srgb, var(--brand) 10%, var(--surface));
+  border-radius: 14px; padding: 1rem 1.15rem; margin-block-end: 1rem;
+}
+.reel-kart.eksi {
+  border-color: color-mix(in srgb, #c0392b 45%, var(--border));
+  background: color-mix(in srgb, #c0392b 9%, var(--surface));
+}
+.reel-etiket {
+  margin: 0 0 .25rem; font-size: .75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted);
+}
+.reel-deger {
+  margin: 0; font-size: clamp(1.7rem, 4.5vw, 2.3rem); font-weight: 800;
+  letter-spacing: -.02em; line-height: 1.1; color: var(--brand-strong);
+  font-variant-numeric: tabular-nums;
+}
+.reel-kart.eksi .reel-deger { color: #c0392b; }
+.reel-alt { margin: .45rem 0 0; font-size: .82rem; color: var(--text-muted); line-height: 1.45; }
+
+.ozet-liste { margin: 0; display: grid; gap: 1px; }
+.ozet-liste > div {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  padding: .55rem .1rem; border-block-end: 1px solid var(--border);
+}
+.ozet-liste dt { font-size: var(--step--1); color: var(--text-muted); }
+.ozet-liste dd {
+  margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.ozet-liste .vurgu dt { color: var(--text); font-weight: 600; }
+.ozet-liste .vurgu dd { color: var(--brand-strong); font-size: 1.05rem; }
+
+.uyari {
+  margin: .9rem 0 0; padding: .7rem .85rem;
+  border: 1px solid color-mix(in srgb, #b8860b 40%, var(--border));
+  background: color-mix(in srgb, #b8860b 8%, var(--surface));
+  border-radius: 10px; font-size: .82rem; line-height: 1.5;
+}
+
+/* --------------------------------- tablo --------------------------------- */
+.table-scroll { overflow-x: auto; margin-block-start: 1.2rem; max-height: 460px; overflow-y: auto; }
+.veri-tablo { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.veri-tablo caption {
+  text-align: left; font-weight: 700; font-size: var(--step--1);
+  padding-block-end: .5rem; color: var(--text-muted);
+}
+.veri-tablo th, .veri-tablo td {
+  padding: .45rem .65rem; text-align: right; white-space: nowrap;
+  border-block-end: 1px solid var(--border); font-variant-numeric: tabular-nums;
+}
+.veri-tablo thead th {
+  position: sticky; top: 0; background: var(--surface-2); font-weight: 600; z-index: 1;
+}
+.veri-tablo tbody th { text-align: left; font-weight: 600; }
+.veri-tablo tbody tr:nth-child(even) { background: color-mix(in srgb, var(--text) 4%, transparent); }
+
+/* -------------------------------- formül --------------------------------- */
+.formula {
+  font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: .75rem .9rem; font-size: .95rem;
+}
+
+.kunye-satiri { font-size: var(--step--1); }
+
+@media print {
+  .sekmeler { display: none !important; }
+  .sekme-govde[hidden] { display: block !important; }
+  .veri-tablo thead { display: table-header-group; }
+  .bi-duzen { grid-template-columns: 1fr; }
+  .bi-sonuc { position: static; }
+}
+
+/* Dilim geçişi olan satır işaretlenir: "maaşım neden düştü" sorusunun
+   cevabı tam olarak o satırda duruyor. */
+.veri-tablo tr.gecis { background: color-mix(in srgb, var(--brand) 12%, transparent); }
+.veri-tablo tr.gecis th { color: var(--brand-strong); }
