@@ -506,6 +506,18 @@ var KAPAKLAR = {
     alt: "Fatura toplamı değişmez, tahsilat bölünür",
     cizim: sutunTevkifat
   },
+  "emekli-maasi-nasil-hesaplanir": {
+    kicker: "Emeklilik",
+    baslik: "Emekliye yeni maaş sistemi mi geldi?",
+    alt: "Önce haberi kontrol ettik",
+    cizim: function () {
+      return durumIsareti([
+        { durum: "yok", baslik: "Yürürlüğe girmiş yeni sistem", alt: "Doğrulanamadı" },
+        { durum: "yok", baslik: "Resmî Gazete tarihi", alt: "Haberde yok" },
+        { durum: "var", baslik: "Dönem kırılmaları", alt: "Gerçek — ve yıllardır yürürlükte" }
+      ]);
+    }
+  },
   "kademeli-emeklilik-son-durum": {
     kicker: "Mevzuat",
     baslik: "Kademeli emeklilik son durum",
