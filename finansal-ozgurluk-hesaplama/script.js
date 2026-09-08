@@ -130,7 +130,31 @@
       return;
     }
     var id = ++isSayaci;
-    bekleyen[id] = geri;
+    /* ZAMAN AŞIMI YEDEĞİ.
+       onerror yalnızca YÜKLENME hatasını yakalar; worker yüklenip cevap
+       vermezse arayüz sonsuza kadar "hesaplanıyor…" yazardı — sayfa
+       bozulmadığı için de kimse fark etmezdi. Headless tarayıcıda
+       worker'ın bitişini doğrulayamadım (sanal zaman worker'ı
+       ilerletmiyor olabilir), o yüzden belirsizliği ortadan kaldırıyoruz:
+       4 saniyede cevap gelmezse hesap ana iş parçacığında yapılır. */
+    var bitti = false;
+    var sure = setTimeout(function () {
+      if (bitti) return;
+      bitti = true;
+      delete bekleyen[id];
+      isci = null;                      // bundan sonra doğrudan ana iş parçacığı
+      geri(is === "guvenliCekim" ? F.guvenliCekim(girdi, hedef)
+                                 : F.gerekenBirikim(girdi, hedef));
+    }, 4000);
+    bekleyen[id] = function (sonuc) {
+      if (bitti) return;
+      bitti = true;
+      clearTimeout(sure);
+      /* Worker cevap verdi ama hata döndüyse de ana iş parçacığına düş. */
+      geri(sonuc !== null && sonuc !== undefined ? sonuc
+           : (is === "guvenliCekim" ? F.guvenliCekim(girdi, hedef)
+                                    : F.gerekenBirikim(girdi, hedef)));
+    };
     isci.postMessage({ id: id, is: is, girdi: girdi, hedef: hedef });
   }
 
