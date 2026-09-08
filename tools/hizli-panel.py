@@ -87,12 +87,24 @@ def noindex_mi(slug):
 
 
 def tarih(slug):
-    """index.html'in ilk commit tarihi. Sığ klonda boş döner (bkz. main)."""
+    """index.html'in ilk commit'i: (unix zaman, kisa tarih).
+
+    ZAMAN DAMGASI GEREKIYOR, TARIH YETMIYOR. Ilk surum yalnizca gunu
+    (--date=short) okuyup esitlik halinde SLUG'a gore siraliyordu. Ayni gun
+    birden fazla sayfa yayimlaninca sonuc sessizce yanlis oldu: yeni eklenen
+    arac, adi alfabetik olarak asagida kaldigi icin "Son eklenenler"e hic
+    girmedi. Panel dogru gorunuyordu ama en yeni sayfayi gizliyordu.
+    Sig klonda bos doner (bkz. main).
+    """
     yol = os.path.join(slug, "index.html").replace("\\", "/")
-    r = subprocess.run(["git", "log", "--diff-filter=A", "--format=%ad",
+    r = subprocess.run(["git", "log", "--diff-filter=A", "--format=%at|%ad",
                         "--date=short", "-1", "--", yol],
                        cwd=KOK, capture_output=True)
-    return r.stdout.decode("utf-8", "replace").strip()
+    ham = r.stdout.decode("utf-8", "replace").strip()
+    if not ham or "|" not in ham:
+        return None
+    zaman, gun = ham.split("|", 1)
+    return (int(zaman), gun)
 
 
 def etiket(slug):
@@ -135,7 +147,9 @@ def toplam():
         t = tarih(slug)
         if t:
             kayit.append((t, slug))
-    kayit.sort(key=lambda x: (x[0], x[1]), reverse=True)
+    # Once zaman damgasina, sonra ada gore: ayni saniyede eklenen iki sayfa
+    # icin ad yalnizca KARARLILIK saglar, sirayi belirlemez.
+    kayit.sort(key=lambda x: (x[0][0], x[1]), reverse=True)
 
     gorulen, sonuc = set(), []
     for t, slug in kayit:
@@ -196,7 +210,7 @@ def main():
 
     if "--liste" in sys.argv:
         for t, slug in kayit[:20]:
-            print("%s  %-42s %s" % (t, slug, tur(slug)))
+            print("%s  %-42s %s" % (t[1], slug, tur(slug)))
         return 0
 
     # En çok kullanılanlar editoryal; yalnızca bağlantıları doğrulanıyor.
