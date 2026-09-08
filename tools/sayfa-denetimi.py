@@ -359,6 +359,47 @@ def main():
         if "onerkoray.github.io" in icerik3:
             bulgu("BEYAN ESKI ALAN", ad3, "eski alan adi iceriyor")
 
+    # 13) paylasim kart gorseli GERCEKTEN var mi ve beyan dogru mu
+    #
+    # paylasim-meta.py etiketlerin VAR OLDUGUNU denetliyor; dosyanin
+    # kendisini kimse denetlemiyordu. Eksik ya da yanlis boyutlu bir kart
+    # gorseli sayfayi bozmaz -- yalnizca X/WhatsApp/LinkedIn onizlemesi
+    # gorselsiz cikar ve bu ancak paylasildiginda fark edilir. Sessiz hata
+    # tanimina birebir uyuyor.
+    #
+    # Boyut da denetleniyor: og:image:width/height dosyayla uyusmazsa
+    # bazi tarayicilar gorseli hic almiyor.
+    try:
+        from PIL import Image as _Img
+    except Exception:
+        _Img = None
+
+    for p4 in sayfalar:
+        if denetim_disi(p4):
+            continue
+        s4 = io.open(os.path.join(KOK, p4), encoding="utf-8").read()
+        adresler = re.findall(
+            r'(?:og:image|twitter:image)"\s+content="https://korayoner[.]dev/([^"]+)"', s4)
+        for rel in set(adresler):
+            hedef4 = os.path.join(KOK, rel.replace("/", os.sep))
+            if not os.path.exists(hedef4):
+                bulgu("KART GORSELI YOK", p4, rel)
+                continue
+            if _Img is None:
+                continue
+            g = re.search(r'og:image:width"\s+content="([0-9]+)"', s4)
+            y = re.search(r'og:image:height"\s+content="([0-9]+)"', s4)
+            if not (g and y):
+                continue
+            try:
+                gw, gh = _Img.open(hedef4).size
+            except Exception:
+                bulgu("KART GORSELI OKUNAMIYOR", p4, rel)
+                continue
+            if (gw, gh) != (int(g.group(1)), int(y.group(1))):
+                bulgu("KART GORSEL BOYUTU", p4,
+                      "%s gercek %dx%d, beyan %sx%s" % (rel, gw, gh, g.group(1), y.group(1)))
+
     # rapor
     print("%d sayfa tarandi, %d bulgu" % (len(sayfalar), len(bulgular)))
     if not bulgular:
