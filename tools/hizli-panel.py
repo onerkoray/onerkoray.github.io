@@ -43,6 +43,8 @@ KISA = {
     "fatura-olusturma": "Fatura ve Teklif Merkezi",
     "fatura-olusturma/metodoloji": "Fatura metodolojisi",
     "kredi-hesaplama/metodoloji": "Kredi metodolojisi",
+    "zam-hesaplama": "Zam Hesaplama",
+    "zam-hesaplama/metodoloji": "Zam metodolojisi",
     "birikim-hesaplama": "BES ve Birikim Hesaplama",
     "birikim-hesaplama/metodoloji": "Birikim metodolojisi",
     "ev-almak-mi-kiralamak-mi": "Ev almak mı, kiralamak mı?",
