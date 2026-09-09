@@ -1133,3 +1133,61 @@ section { padding: var(--bolum) 0; }
 :root .site-header .theme-toggle,
 :root .site-header .palette > button,
 :root .site-header .palette-pop { border-radius: 2px; }
+
+/* ---- 12. Cila: redesign sonrası kalan üç tutarsızlık ---- */
+
+/* 12.1 KARO BANDI SAKİNLEŞTİ.
+   Gradyanlar kötü değildi; BAĞLAMLARI kayboldu. Yuvarlak kartlar, gölgeler
+   ve renkli pill'ler arasında normal duruyorlardı — etraflarındaki her şey
+   susunca sayfanın en yüksek sesli öğesi oldular ve kartın başlığından daha
+   çok dikkat çekiyorlardı.
+
+   Kategori mantığına DOKUNULMADI: renkler live.css'te --k1/--k2 olarak
+   tanımlı ve öyle kalıyor, üç kategori hâlâ birbirinden ayrışıyor. Değişen
+   iki şey var, ikisi de ses düzeyi:
+     - doygunluk %62'ye iniyor (ton korunur, çığlık gider),
+     - bant inceliyor, yani renkli ALAN küçülüyor — görsel ağırlığın asıl
+       kaynağı doygunluk değil alandı.
+   İkon ve iç çubuk cqw ile GENİŞLİĞE göre boyutlandığı için bant incelince
+   küçülmüyorlar; taşma riski yok. */
+/* :root ÖNEKİ ZORUNLU. live.css bu dosyadan SONRA yükleniyor; eşit
+   özgüllükteki bir kural sessizce eziliyor. İlk denemede filter tuttu
+   (live.css'te yok, çakışma yok) ama aspect-ratio tutmadı — ekran
+   görüntüsünde yakalandı. */
+:root .karo { aspect-ratio: 4.2 / 1; filter: saturate(.62); }
+:root .karo::before { opacity: .16; }   /* nokta dokusu bir tık geri çekildi */
+
+/* 12.2 HERO-QUICK KUTUDAN ÇIKTI.
+   Site kutudan hairline'a geçmişti, bu panel geçmemişti: kendi zemini,
+   bulanıklığı ve kenarlığıyla geçmiş tasarımdan kalmış gibi duruyordu.
+   İçerik, sıralama ve bağlantılar aynı — değişen yalnızca kabuk. */
+:root .hero-quick {
+  background: none; border: 0; border-radius: 0; box-shadow: none;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  padding: .2rem 0 .2rem 1.6rem;
+  border-inline-start: 1px solid var(--rule);
+}
+:root .hero-quick a { border-radius: 2px; }
+/* Tek sütuna düşen dar ekranda dikey kural anlamsız olurdu; ayırıcı üste
+   geçiyor. Kırılma noktası live.css'teki mevcut hero kırılmasıyla aynı. */
+@media (max-width: 900px) {
+  :root .hero-quick {
+    padding: 1.4rem 0 .2rem;
+    border-inline-start: 0; border-block-start: 1px solid var(--rule);
+  }
+}
+
+/* 12.3 HEADER YARDIMCI KONTROLLERİ.
+   Asıl tutarsızlık yuvarlaklıkta değil YAZI DİLİNDEYDİ: gezinme mono ve
+   büyük harfken hemen yanındaki iki denetim normal cümle yazısıydı.
+   Yalnızca tipografi hizalandı; biçim, renk, işlev ve aria etiketleri
+   olduğu gibi duruyor (ekran okuyucu görünür metni değil aria-label'ı
+   okuduğu için büyük harf erişilebilirliği etkilemiyor). */
+:root .site-header .theme-toggle,
+:root .site-header .palette > button {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  font-size: .68rem;
+  font-weight: 500;
+}
