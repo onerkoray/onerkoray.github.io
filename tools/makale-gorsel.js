@@ -500,6 +500,12 @@ var KAPAKLAR = {
       ]);
     }
   },
+  "vergi-kamasi-ucretin-gercek-yuku": {
+    kicker: "Kamu maliyesi",
+    baslik: "Vergi kaması",
+    alt: "Yük tavana kadar artıyor, sonra düşüyor",
+    cizim: cizgiKama
+  },
   "zam-net-maasa-ne-kadar-yansir": {
     kicker: "Maaş",
     baslik: "Zam nete ne kadar yansır?",
@@ -844,6 +850,70 @@ function cizgiZamFark() {
       '">33 bin TL brüt</text>' +
     '<text x="' + (W - P - 8) + '" y="' + (H - 12) + '" font-size="13" text-anchor="end" fill="' +
       R.ikincil + '">400 bin TL</text>' +
+    "</svg>";
+}
+
+/* Vergi kaması eğrisi — "ücretin gerçek yükü" kapağı.
+   Yazının bulgusu tek grafikte: ortalama kama prim tavanına kadar yükselip
+   ORADA ZİRVE YAPIYOR ve sonra düşüyor. Değerler bordro motorundan
+   hesaplanıyor. Aralık 600 bin TL'de kesiliyor: tümsek bu aralıkta tamamen
+   görünüyor ve doğrusal eksen bozulmadan okunabiliyor. */
+function cizgiKama() {
+  var noktalar = [33030, 50000, 75000, 100000, 150000, 200000, 250000,
+                  297270, 350000, 420000, 500000, 600000];
+  var veri = noktalar.map(function (b) {
+    var r = B.hesaplaYil(b, 2026);
+    return { b: b, k: (r.toplam.isverenMaliyeti - r.toplam.net) / r.toplam.isverenMaliyeti * 100 };
+  });
+
+  var W = 600, H = 360, P = 30;
+  var altB = noktalar[0], ustB = noktalar[noktalar.length - 1];
+  var enAz = 28, enCok = 54;
+  var x = function (b) { return P + (b - altB) / (ustB - altB) * (W - 2 * P - 10); };
+  var y = function (k) { return 104 + (enCok - k) / (enCok - enAz) * (H - 104 - 46); };
+
+  var d = veri.map(function (v, i) {
+    return (i ? "L" : "M") + x(v.b).toFixed(1) + " " + y(v.k).toFixed(1);
+  }).join(" ");
+
+  var zirve = veri.reduce(function (a, b) { return b.k > a.k ? b : a; });
+  var bas = veri[0], son = veri[veri.length - 1];
+
+  var izgara = [30, 40, 50].map(function (t) {
+    return '<line x1="' + P + '" y1="' + y(t) + '" x2="' + (W - P - 10) + '" y2="' + y(t) +
+      '" stroke="' + R.izgara + '" stroke-width="1"/>' +
+      '<text x="' + (W - P - 6) + '" y="' + (y(t) + 4) + '" font-size="11" fill="' +
+      R.ikincil + '">%' + t + "</text>";
+  }).join("");
+
+  function nokta(v, renk, r) {
+    return '<circle cx="' + x(v.b).toFixed(1) + '" cy="' + y(v.k).toFixed(1) +
+      '" r="' + r + '" fill="' + renk + '" stroke="' + R.zemin + '" stroke-width="2.5"/>';
+  }
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Ortalama vergi ' +
+    'kamasi prim tavanina kadar yukseliyor, tavanda yuzde 51 ile zirve yapip dusuyor">' +
+    '<text x="' + P + '" y="36" font-size="18" font-weight="700" fill="' + R.murekkep +
+      '">İşveren maliyetinin yüzde kaçı vergi ve prim?</text>' +
+    '<text x="' + P + '" y="58" font-size="15" fill="' + R.ikincil +
+      '">Ortalama vergi kaması · 2026</text>' +
+    izgara +
+    '<line x1="' + x(zirve.b).toFixed(1) + '" y1="' + (y(zirve.k) - 6) + '" x2="' +
+      x(zirve.b).toFixed(1) + '" y2="' + (H - 46) + '" stroke="' + R.ikincil +
+      '" stroke-width="1" stroke-dasharray="4 4"/>' +
+    '<path d="' + d + '" fill="none" stroke="' + R.marka +
+      '" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>' +
+    nokta(zirve, R.s2, 7) + nokta(bas, R.marka, 5.5) + nokta(son, R.marka, 5.5) +
+    '<text x="' + x(zirve.b).toFixed(1) + '" y="' + (y(zirve.k) - 16) +
+      '" text-anchor="middle" font-size="17" font-weight="800" fill="' + R.s2 + '">%' +
+      zirve.k.toFixed(1).replace(".", ",") + "</text>" +
+    '<text x="' + x(zirve.b).toFixed(1) + '" y="' + (H - 28) +
+      '" text-anchor="middle" font-size="12" fill="' + R.ikincil + '">prim tavanı</text>' +
+    '<text x="' + (x(bas.b) - 2) + '" y="' + (y(bas.k) + 22) + '" font-size="13" fill="' +
+      R.ikincil + '">asgari ücret · %' + bas.k.toFixed(1).replace(".", ",") + "</text>" +
+    '<text x="' + (W - P - 10) + '" y="' + (y(son.k) + 24) + '" text-anchor="end" ' +
+      'font-size="13" fill="' + R.ikincil + '">600 bin TL · %' +
+      son.k.toFixed(1).replace(".", ",") + "</text>" +
     "</svg>";
 }
 
