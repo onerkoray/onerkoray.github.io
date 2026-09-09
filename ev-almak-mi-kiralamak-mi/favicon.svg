@@ -1,7 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ev almak mı kiralamak mı">
-  <rect width="64" height="64" rx="14" fill="#0e7c66"/>
-  <path d="M8 30 L20 20 L32 30 V46 H8 Z" fill="#fff" opacity=".95"/>
-  <path d="M17 38h6v8h-6z" fill="#0e7c66"/>
-  <path d="M36 46 V30 L48 20 L60 30 v16 Z" fill="#ffd166" opacity=".92" transform="translate(-4,0)"/>
-  <path d="M41 38h6v8h-6z" fill="#0e7c66"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ev Almak mı Kiralamak mı? Hesaplama">
+  <defs>
+    <linearGradient id="fv-bg" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14b28e"/>
+      <stop offset="1" stop-color="#0a5f4e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#fv-bg)"/>
+  <g transform="translate(8 8) scale(2)" fill="none" stroke="#ffffff"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l6-5 6 5v8H3z"/><path d="M13 19h8v-6l-4-3-4 3"/><path d="M7 19v-4h2v4"/></g>
 </svg>

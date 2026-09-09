@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="logo"><rect width="32" height="32" rx="7" fill="#0e7c66"/><text x="16" y="17" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#ffffff">🔐</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="KeyMint">
+  <rect width="32" height="32" rx="7" fill="#0e7c66"/>
+  <g transform="translate(4 4)" fill="none" stroke="#ffffff"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></g>
+</svg>

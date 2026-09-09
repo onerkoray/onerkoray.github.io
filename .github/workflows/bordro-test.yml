@@ -127,6 +127,9 @@ jobs:
       - name: Kart karoları ikon kaynağıyla aynı mı
         run: python tools/kart-karo.py --check
 
+      - name: Faviconlar ikon kaynağıyla aynı mı
+        run: python tools/favikon.py --check
+
       - name: Stil damgaları güncel mi
         run: python tools/stil-damgasi.py --check
 
