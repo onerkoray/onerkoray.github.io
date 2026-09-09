@@ -1191,3 +1191,81 @@ section { padding: var(--bolum) 0; }
   font-size: .68rem;
   font-weight: 500;
 }
+
+/* =========================================================================
+   13. ARAÇ KARTI BANDI — "technical signature"
+   -------------------------------------------------------------------------
+   Yalnızca kart üstündeki renkli bant ve ikonu ilgilendirir; kart gövdesine,
+   tipografiye, metadata'ya, HTML'e ve live.css'e dokunulmadı. Bütün kurallar
+   :root önekli, çünkü live.css bu dosyadan SONRA yükleniyor.
+   ========================================================================= */
+
+/* 13.1 BANT ARTIK PALETİ TAKİP EDİYOR — asıl işlevsel düzeltme.
+   Kategori renkleri live.css'te SABİT yeşiller olarak yazılıydı (#053b33 vb.).
+   Kullanıcı başlıktan turuncuya ya da güle geçtiğinde site değişiyor, 31 kartın
+   bandı yeşil kalıyordu. Artık üç ton da accent token'larından TÜRETİLİYOR:
+   koyu / orta / açık. Kategori kodlaması korunuyor (üç ton hâlâ ayrışıyor),
+   ama hangi renk ailesinde olduğunu palet söylüyor. Sabit renk eklenmedi;
+   koyu uçlar siyahla karıştırılarak elde ediliyor, böylece her palette
+   çalışıyor ve koyu temada da koyu kalıyor. */
+:root .karo--maas  { --k1: color-mix(in srgb, var(--accent-strong) 70%, black);
+                     --k2: var(--accent); }
+:root .karo--vergi { --k1: color-mix(in srgb, var(--accent-strong) 86%, black);
+                     --k2: var(--accent-bright-2); }
+:root .karo--genel { --k1: color-mix(in srgb, var(--accent-strong) 55%, black);
+                     --k2: color-mix(in srgb, var(--accent) 78%, var(--accent-bright)); }
+
+/* 13.2 İKON: aynı aile, daha ince kalem.
+   İkonlar zaten tek kaynaktan (card-icons.json) geliyor ve aynı geometrik
+   dili konuşuyor; sorun ölçek ve ağırlıktı — bantta kaba duruyorlardı.
+   stroke-width SVG'de bir sunum niteliği olduğu için CSS onu ezebiliyor;
+   yani ne JSON'a ne HTML'e dokunmak gerekti. Faviconlar 2'de kalıyor, orada
+   16 pikselde ince çizgi kaybolurdu.
+   Boyut %16 küçüldü; dikey ortalama negatif margin ile yapıldığı için o da
+   yarısı kadar güncellendi, yoksa ikon merkezden kayardı. */
+:root .karo-ikon {
+  inline-size: 10.5cqw; block-size: 10.5cqw; margin-block-start: -5.25cqw;
+  opacity: .92;
+  animation: none;                    /* sürekli "nefes" hareketi kaldırıldı */
+  transition: transform .2s ease-out; /* yaylanma (overshoot) yok */
+}
+:root .karo-ikon svg { stroke-width: 1.5; }
+:root .karo::after {                  /* sağdaki sinyal çubuğu ikonla hizalı */
+  height: 10.5cqw;
+  transition: height .2s ease-out, opacity .2s ease-out;
+}
+
+/* 13.3 DESEN: ikinci bakışta fark edilen teknik doku.
+   Eski nokta dokusunun yerini ince dikey çentikler alıyor — cetvel/sinyal
+   izlenimi, veri sitesine ait bir doku. Kategoriye göre üç varyasyon var ki
+   31 kart tek şablon gibi durmasın; ama üçü de aynı dilde.
+   Kontrast bilerek düşük (%7-9 beyaz): önce ikon, sonra başlık, sonra
+   metadata okunmalı; desen en son fark edilmeli. */
+:root .karo::before {
+  inset: 0;
+  opacity: 1;
+  --karo-adim: 7px;
+  background-image: repeating-linear-gradient(90deg,
+    rgba(255,255,255,.052) 0 1px, transparent 1px var(--karo-adim));
+  background-size: var(--karo-adim) 100%;
+  animation: karoSinyal 18s linear infinite;
+}
+:root .karo--vergi::before { --karo-adim: 11px; }
+:root .karo--genel::before {
+  --karo-adim: 9px;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.048) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.036) 0 1px, transparent 1px 9px);
+}
+/* Kayma tam bir desen boyu kadar: döngü dikişsiz, sıçrama olmuyor. */
+@keyframes karoSinyal { to { background-position-x: var(--karo-adim); } }
+
+/* 13.4 HOVER: zıplama değil, hafif canlanma. */
+:root .project-card:hover .karo-ikon { transform: translateX(2px); opacity: 1; }
+:root .project-card:hover .karo::before { animation-duration: 11s; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root .karo::before { animation: none; }
+  :root .karo-ikon { transition: none; }
+  :root .project-card:hover .karo-ikon { transform: none; }
+}
