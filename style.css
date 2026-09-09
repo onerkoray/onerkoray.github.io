@@ -1229,38 +1229,68 @@ section { padding: var(--bolum) 0; }
   animation: none;                    /* sürekli "nefes" hareketi kaldırıldı */
   transition: transform .2s ease-out; /* yaylanma (overshoot) yok */
 }
-:root .karo-ikon svg { stroke-width: 1.5; }
+:root .karo-ikon svg { stroke-width: 1.4; }
 :root .karo::after {                  /* sağdaki sinyal çubuğu ikonla hizalı */
   height: 10.5cqw;
   transition: height .2s ease-out, opacity .2s ease-out;
 }
 
-/* 13.3 DESEN: ikinci bakışta fark edilen teknik doku.
-   Eski nokta dokusunun yerini ince dikey çentikler alıyor — cetvel/sinyal
-   izlenimi, veri sitesine ait bir doku. Kategoriye göre üç varyasyon var ki
-   31 kart tek şablon gibi durmasın; ama üçü de aynı dilde.
-   Kontrast bilerek düşük (%7-9 beyaz): önce ikon, sonra başlık, sonra
-   metadata okunmalı; desen en son fark edilmeli. */
+/* 13.3 YÜZEY: "üste yapıştırılmış renkli kutu" değil, kartın içine
+   yerleştirilmiş bir görsel yüzey. Bant içeriden boşluk alıyor ve kendi
+   yarıçapını kazanıyor; kart kare kalıyor, içindeki yüzey yumuşak. Derinlik
+   gölgeyle değil, içeriden tek bir hairline ile veriliyor — editoryal dilde
+   gölge yok. Cam efekti, blur ve pencere denetimleri BİLEREK yok: istenen
+   şey yüzey hissi, pencere taklidi değil. */
+:root .karo {
+  margin: 10px 10px 0;
+  border-radius: 11px;
+  border-block-end: 0;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.11);
+}
+
+/* 13.4 TEKNİK İZ: kıvrımlı ve ton-sur-ton.
+   Çentik deseni cetvel gibiydi ama düzdü; yerini akışkan bir ölçüm izi aldı.
+   İz BEYAZ ve düşük alfa — yani rengini karonun kendisinden alıyor. İki
+   faydası var: beş paletin ve koyu temanın hepsinde tek kural çalışıyor, ve
+   iz hiçbir zaman bandın renginden kopuk olamıyor.
+
+   Eğriler bilerek düzgün sinüs DEĞİL: segment genişlikleri farklı (56/60/
+   60/64), böylece çizim "dalga deseni" değil "ölçülmüş bir iz" gibi okunuyor.
+   Her karo 240 piksellik bir parça döşüyor; parçanın başı ile sonu aynı
+   yükseklikte olduğu için kayma dikişsiz.
+
+   GÖRÜNÜRLÜK: alfa %17. Önceki %5'ti ve fark edilmiyordu — bu sefer
+   görünsün istendi. İkonun %92 opak beyazının yanında hâlâ açık ara geride;
+   hiyerarşi (ikon > ad > metadata > iz) korunuyor. */
 :root .karo::before {
   inset: 0;
   opacity: 1;
-  --karo-adim: 7px;
-  background-image: repeating-linear-gradient(90deg,
-    rgba(255,255,255,.052) 0 1px, transparent 1px var(--karo-adim));
-  background-size: var(--karo-adim) 100%;
-  animation: karoSinyal 18s linear infinite;
+  --karo-parca: 240px;
+  background-repeat: repeat-x;
+  background-position: 0 50%;
+  background-size: var(--karo-parca) 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'%3E%3Cpath d='M0 40 C24 40 30 22 56 22 C82 22 88 42 116 42 C144 42 148 26 176 26 C204 26 212 40 240 40' fill='none' stroke='rgba(255,255,255,0.17)' stroke-width='1.5'/%3E%3Cpath d='M0 50 C24 50 30 34 56 34 C82 34 88 51 116 51 C144 51 148 38 176 38 C204 38 212 50 240 50' fill='none' stroke='rgba(255,255,255,0.09)' stroke-width='1'/%3E%3C/svg%3E");
+  animation: karoSinyal 22s linear infinite;
 }
-:root .karo--vergi::before { --karo-adim: 11px; }
+/* Kategoriye göre üç iz ailesi — 31 kart tek şablon gibi durmasın diye.
+   Üçü de aynı çizim dilinde: ince, düşük kontrastlı, akışkan. */
+:root .karo--vergi::before {
+  animation-duration: 26s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'%3E%3Cpath d='M0 30 C34 30 40 46 76 46 C112 46 116 20 152 20 C188 20 196 34 214 34 C226 34 232 30 240 30' fill='none' stroke='rgba(255,255,255,0.17)' stroke-width='1.5'/%3E%3Ccircle cx='76' cy='46' r='2.2' fill='rgba(255,255,255,0.22)'/%3E%3Ccircle cx='152' cy='20' r='2.2' fill='rgba(255,255,255,0.22)'/%3E%3C/svg%3E");
+}
 :root .karo--genel::before {
-  --karo-adim: 9px;
-  background-image:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.048) 0 1px, transparent 1px 9px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.036) 0 1px, transparent 1px 9px);
+  animation-duration: 19s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'%3E%3Cpath d='M0 30 C48 30 54 20 108 20 C162 20 168 30 240 30' fill='none' stroke='rgba(255,255,255,0.16)' stroke-width='1.5'/%3E%3Cpath d='M20 46v7M60 46v7M100 46v7M140 46v7M180 46v7M220 46v7' stroke='rgba(255,255,255,0.13)' stroke-width='1'/%3E%3C/svg%3E");
 }
-/* Kayma tam bir desen boyu kadar: döngü dikişsiz, sıçrama olmuyor. */
-@keyframes karoSinyal { to { background-position-x: var(--karo-adim); } }
+/* Aynı kategoriden iki komşu kart aynı karede yakalanmasın diye faz kayması.
+   background-position ile yapılsaydı döngünün dikişi bozulurdu; negatif
+   gecikme hem dikişsiz hem bedelsiz. */
+:root .project-grid .project-card:nth-child(3n+2) .karo::before { animation-delay: -7s; }
+:root .project-grid .project-card:nth-child(3n+3) .karo::before { animation-delay: -14s; }
+/* Kayma tam bir parça boyu: döngü dikişsiz, sıçrama olmuyor. */
+@keyframes karoSinyal { to { background-position-x: var(--karo-parca); } }
 
-/* 13.4 HOVER: zıplama değil, hafif canlanma. */
+/* 13.5 HOVER: zıplama değil, hafif canlanma. */
 :root .project-card:hover .karo-ikon { transform: translateX(2px); opacity: 1; }
 :root .project-card:hover .karo::before { animation-duration: 11s; }
 
