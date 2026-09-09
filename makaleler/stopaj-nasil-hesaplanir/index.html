@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stopaj Nasıl Hesaplanır? Brütleştirme ve Mahsup | Koray Öner</title>
+  <meta name="description" content="Stopaj brütten kesilir, netten eklenmez. Net 10.000 TL için %20 stopajda brüt 12.000 değil 12.500 TL'dir. Formül, tablo ve stopajın ne zaman nihai vergi olduğu.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/">
+
+  <link rel="icon" href="../../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="../../favicon.svg?v=4" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Stopaj nasıl hesaplanır?">
+  <meta property="og:description" content="Stopaj brütten kesilir. Net 10.000 TL için %20 stopajda brüt 12.000 değil 12.500 TL. Brütleştirme formülü ve stopajın nihai vergi olup olmadığı.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/stopaj-nasil-hesaplanir.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Stopaj nasıl hesaplanır?">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stopaj nasıl hesaplanır?">
+  <meta name="twitter:description" content="Stopaj brütten kesilir, netten eklenmez. Brütleştirme formülü, oranlar ve mahsup mantığı.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/stopaj-nasil-hesaplanir.png">
+
+  <link rel="stylesheet" href="../../style.css?v=f62ecf85">
+  <link rel="stylesheet" href="../editoryal.css?v=a8d9c455">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/#article",
+        "headline": "Stopaj nasıl hesaplanır?",
+        "description": "Stopaj brüt tutar üzerinden kesilir; net tutara eklenerek bulunmaz. Brütleştirme formülü, yaygın oranlar, stopajın nihai vergi mi yoksa mahsup edilen bir peşin ödeme mi olduğu ve yıl sonu mahsup örneği.",
+        "url": "https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/",
+        "inLanguage": "tr",
+        "datePublished": "2026-09-09",
+        "dateModified": "2026-09-09",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "image": "https://korayoner.dev/images/makale/stopaj-nasil-hesaplanir.png",
+        "about": ["Stopaj", "Gelir vergisi tevkifatı", "Serbest meslek", "Kira stopajı", "BES stopajı"],
+        "citation": [
+          "193 sayılı Gelir Vergisi Kanunu m.94",
+          "193 sayılı Gelir Vergisi Kanunu geçici m.67",
+          "4632 sayılı Bireysel Emeklilik Tasarruf ve Yatırım Sistemi Kanunu"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/",
+        "url": "https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/",
+        "name": "Stopaj nasıl hesaplanır?",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "primaryImageOfPage": "https://korayoner.dev/images/makale/stopaj-nasil-hesaplanir.png",
+        "inLanguage": "tr"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Makaleler", "item": "https://korayoner.dev/makaleler/" },
+          { "@type": "ListItem", "position": 3, "name": "Stopaj nasıl hesaplanır?", "item": "https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Stopaj nasıl hesaplanır?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Stopaj brüt tutar üzerinden hesaplanır: stopaj tutarı brüt çarpı orandır. Elinize geçecek net tutar ise brüt eksi stopajdır. Net tutardan yola çıkıyorsanız brütü bulmak için net tutarı bire eksi orana bölmeniz gerekir. Örneğin yüzde yirmi stopajda net on bin liraya karşılık gelen brüt on iki bin beş yüz liradır; on iki bin lira değildir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Net tutardan brüt nasıl bulunur?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Brüt eşittir net bölü bir eksi stopaj oranı. Yüzde yirmi stopajda net on bin lira için brüt on bin bölü sıfır virgül seksen, yani on iki bin beş yüz liradır. En sık yapılan hata net tutarı yüzde yirmi artırmaktır; bu on iki bin lira verir ve kesinti sonrası elinize dokuz bin altı yüz lira geçer. Aradaki dört yüz liralık fark, oranın hangi tutara uygulandığını karıştırmaktan doğar." }
+          },
+          {
+            "@type": "Question",
+            "name": "Stopaj nihai vergi midir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Her zaman değil. İki farklı stopaj vardır. Mevduat getirisi ve bireysel emeklilik çıkışı gibi ödemelerde stopaj nihai vergidir; ayrıca beyan edilmez. Serbest meslek ödemesi, işyeri kirası ve kâr payı gibi ödemelerde ise stopaj bir peşin ödemedir: yıllık beyannamede hesaplanan vergiden mahsup edilir, fazlası iade alınır. Bu ayrım stopajın maliyet mi yoksa yalnızca zamanlama meselesi mi olduğunu belirler." }
+          },
+          {
+            "@type": "Question",
+            "name": "Serbest meslek makbuzunda stopaj kaçtır?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Kurumlara ve işletmelere kesilen serbest meslek makbuzunda gelir vergisi stopajı Gelir Vergisi Kanunu madde 94 uyarınca yüzde yirmi olarak uygulanır. Vergi mükellefi olmayan kişilere kesilen makbuzda stopaj yoktur, çünkü stopaj yapma yükümlülüğü ödemeyi yapan tarafa aittir. Bu nedenle aynı hizmet, müşterinin kim olduğuna göre stopajlı ya da stopajsız olabilir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Stopaj ile KDV tevkifatı aynı şey midir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Stopaj gelir vergisi üzerinde, tevkifat ise katma değer vergisi üzerinde uygulanır. Serbest meslek makbuzunda ikisi aynı belgede görülebilir: önce brüt tutar üzerinden gelir vergisi stopajı hesaplanır, KDV ise brüt tutar üzerine ayrıca eklenir ve tevkifata tabiyse ayrı bir satırda bölünür. İkisi farklı matrahlara uygulandığı için birbirinin yerine geçmez." }
+          },
+          {
+            "@type": "Question",
+            "name": "BES çıkışında stopaj ne kadardır?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Bireysel emeklilik sisteminden çıkışta stopaj yalnızca getiri üzerinden alınır; anaparadan alınmaz. Oran çıkış şekline bağlıdır: on yıl dolmadan ayrılırsa yüzde on beş, on yıl dolduğu hâlde emeklilik şartı sağlanmadan ayrılırsa yüzde on, elli altı yaş ve on yıl şartını tamamlayarak emekli olunursa yüzde beştir. Devlet katkısının kendisi de çıkışta getiri sayılır ve stopaja girer." }
+          },
+          {
+            "@type": "Question",
+            "name": "Kira stopajını kim öder?",
+            "acceptedAnswer": { "@type": "Answer", "text": "İşyeri kiralarında stopajı kiracı keser ve vergi dairesine yatırır; ancak bu vergi mal sahibinin vergisidir. Mal sahibi yıllık beyannamesinde kira gelirini beyan eder ve yıl içinde kesilen stopajı hesaplanan vergiden mahsup eder. Konut kiralarında kiracı bir işletme değilse stopaj yapılmaz. Yürürlükteki oranı işlem tarihinde Gelir İdaresi Başkanlığı kaynağından doğrulamak gerekir." }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="../">Makaleler</a></li>
+          <li><a href="../../serbest-meslek-makbuzu-hesaplama/">Serbest Meslek</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> Stopaj nasıl hesaplanır?
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Vergi</p>
+        <h1 id="hero-title">Stopaj nasıl hesaplanır?</h1>
+        <p class="ed-standfirst">Stopajla ilgili hataların neredeyse tamamı tek bir yerden çıkıyor:
+          <strong>oranın hangi tutara uygulandığı.</strong> Stopaj brütten kesilir, nete eklenmez.
+          Bu farkı atlayan biri net 10.000 TL için 12.000 TL brüt yazar; doğrusu 12.500 TL'dir.
+          Aradaki 400 TL'yi kimse hediye etmez — eksik kalan sizin cebinizden çıkar.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-09">9 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="wrap prose ed-body">
+        <div class="legal-note verdict">
+          <h2 id="kisa-cevap">Kısa cevap</h2>
+          <p>
+            <strong>Stopaj = brüt × oran.</strong> Elinize geçen net ise brüt eksi stopajdır.
+            Net tutarı biliyorsanız brütü bulmak için <strong>brüt = net ÷ (1 − oran)</strong>
+            formülünü kullanın. %20 stopajda net 10.000 TL'ye karşılık gelen brüt
+            <strong>12.500 TL</strong>'dir; stopaj 2.500 TL olur.
+          </p>
+        </div>
+
+        <h2 id="nedir">Stopaj nedir, kimin vergisidir?</h2>
+        <p>
+          Stopaj — kanundaki adıyla <strong>vergi tevkifatı</strong> — verginin, kazancı elde
+          edenden değil <strong>ödemeyi yapandan</strong> tahsil edilmesidir. Dayanağı 193 sayılı
+          Gelir Vergisi Kanunu'nun 94. maddesidir. Ödemeyi yapan taraf, brüt tutardan kanunda
+          yazan oranı keser, kalanı karşı tarafa öder ve kestiği tutarı muhtasar beyanname ile
+          vergi dairesine yatırır.
+        </p>
+        <p>
+          Buradan çıkan ilk sonuç önemli: <strong>stopaj ödemeyi yapanın vergisi değildir.</strong>
+          Kiracı kira stopajını yatırır ama o vergi mal sahibinindir. Şirket serbest meslek
+          stopajını yatırır ama o vergi serbest meslek erbabınındır. Ödeyen yalnızca
+          <em>sorumludur</em>; verginin sahibi kazancı elde edendir. Bu ayrım, yazının geri
+          kalanındaki her şeyi belirliyor.
+        </p>
+
+        <h2 id="hesap">Hesabın kendisi: iki yön</h2>
+        <p>
+          Stopaj hesabı iki yönde çalışır ve insanlar genellikle yanlış yönde yürüdükleri için
+          hata yapar.
+        </p>
+
+        <h3>Brütü biliyorsanız (kolay yön)</h3>
+        <p class="formula">stopaj = brüt × oran &nbsp;·&nbsp; net = brüt − stopaj</p>
+        <p>
+          12.500 TL brüt, %20 stopaj: kesinti 2.500 TL, elinize geçen 10.000 TL.
+        </p>
+
+        <h3>Neti biliyorsanız (hataların çıktığı yön)</h3>
+        <p>
+          "Müşterimden net 10.000 TL almak istiyorum, makbuzu kaça keseyim?" sorusunun cevabı
+          <strong>neti %20 artırmak değildir.</strong> Oran brüte uygulandığı için brütü geri
+          çözmek gerekir:
+        </p>
+        <p class="formula">brüt = net ÷ (1 − oran)</p>
+        <p>
+          10.000 ÷ 0,80 = <strong>12.500 TL</strong>. Yanlış yöntem olan 10.000 × 1,20 ise
+          12.000 TL verir; o brütün stopajı 2.400 TL, eliniz 9.600 TL olur. Fark 400 TL ve
+          bu fark oran büyüdükçe hızla açılır.
+        </p>
+
+        <div class="table-scroll">
+          <table class="payroll">
+            <caption class="visually-hidden">Net 10.000 TL için stopaj oranına göre brüt tutar</caption>
+            <thead>
+              <tr>
+                <th scope="col">Stopaj oranı</th>
+                <th scope="col">Doğru brüt (net ÷ 1−oran)</th>
+                <th scope="col">Stopaj</th>
+                <th scope="col">Yanlış yöntem (net × 1+oran)</th>
+                <th scope="col">Eksik kalan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">%10</th><td>11.111,11 TL</td><td>1.111,11 TL</td><td>11.000,00 TL</td><td>100,00 TL</td></tr>
+              <tr><th scope="row">%15</th><td>11.764,71 TL</td><td>1.764,71 TL</td><td>11.500,00 TL</td><td>225,00 TL</td></tr>
+              <tr class="net-up"><th scope="row">%20</th><td><strong>12.500,00 TL</strong></td><td>2.500,00 TL</td><td>12.000,00 TL</td><td>400,00 TL</td></tr>
+              <tr><th scope="row">%25</th><td>13.333,33 TL</td><td>3.333,33 TL</td><td>12.500,00 TL</td><td>625,00 TL</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ed-note">
+          Son sütun, yanlış yöntemle kesilen bir belgede <strong>elinize geçmeyen</strong>
+          tutardır. %20'de net 10.000 TL beklerken 9.600 TL alırsınız. Sözleşmede "net" yazıyorsa
+          bu fark size kalır.
+        </p>
+
+        <h2 id="nihai">Asıl mesele: stopaj nihai vergi mi, peşin ödeme mi?</h2>
+        <p>
+          Bu, yazının en önemli bölümü ve en çok atlanan yeri. Stopaj her zaman "kesildi, bitti"
+          demek değildir. İki ayrı aile var:
+        </p>
+        <ul>
+          <li>
+            <strong>Nihai stopaj.</strong> Vergi kesildiğinde iş biter; o kazanç yıllık
+            beyannameye girmez. Mevduat ve katılma hesabı getirisi ile bireysel emeklilik
+            çıkışı bu gruptadır. Burada stopaj gerçek bir <em>maliyettir</em>.
+          </li>
+          <li>
+            <strong>Mahsup edilen stopaj.</strong> Kesinti bir <em>peşin ödemedir</em>. Kazanç
+            yıllık beyannameye girer, hesaplanan vergiden yıl içinde kesilen stopaj düşülür;
+            stopaj hesaplanan vergiden fazlaysa aradaki fark <strong>iade alınır</strong>.
+            Serbest meslek kazancı, işyeri kira geliri ve kâr payı bu gruptadır. Burada stopaj
+            bir maliyet değil, bir <em>zamanlama</em> meselesidir.
+          </li>
+        </ul>
+        <p>
+          Serbest çalışanların en yaygın yanılgısı burada: "hem stopaj kesiliyor hem yıl sonunda
+          vergi ödüyorum, iki kez mi vergilendiriliyorum?" Hayır.
+          <strong>Yıl içinde kesilen stopaj, yıl sonunda hesaplanan vergiden düşülür.</strong>
+        </p>
+
+        <h3>Yıl sonu mahsup — somut örnek</h3>
+        <p>
+          Kurumsal müşterilere çalışan bir serbest meslek erbabı, yıl boyunca aylık 12.500 TL
+          brüt karşılığı 12 makbuz kesmiş olsun:
+        </p>
+        <div class="table-scroll">
+          <table class="payroll">
+            <caption class="visually-hidden">Yıllık stopaj mahsubu örneği</caption>
+            <tbody>
+              <tr><th scope="row">Yıllık brüt hasılat</th><td>150.000,00 TL</td></tr>
+              <tr><th scope="row">Yıl içinde kesilen stopaj (%20)</th><td>30.000,00 TL</td></tr>
+              <tr><th scope="row">Yıl içinde eline geçen</th><td>120.000,00 TL</td></tr>
+              <tr><th scope="row">Beyannamede hesaplanan gelir vergisi</th><td>hesaplanır (giderler düşüldükten sonra)</td></tr>
+              <tr class="net-up"><th scope="row">Ödenecek / iade</th><td><strong>hesaplanan vergi − 30.000 TL</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Sonuç negatifse — yani giderler ve indirimler sonrası hesaplanan vergi 30.000 TL'nin
+          altında kaldıysa — <strong>aradaki fark iade edilir.</strong> Bu yüzden stopaj kesilen
+          bir işte gider belgelerini toplamak doğrudan nakit geri dönüşü demektir.
+        </p>
+
+        <h2 id="oranlar">Yaygın stopaj oranları</h2>
+        <p>
+          Aşağıdaki oranlar bu sitenin kendi hesap çekirdeklerinde kullanılan ve test edilen
+          değerlerdir; her satırın yanında hangi araçta çalıştığı yazıyor.
+        </p>
+        <div class="table-scroll">
+          <table class="payroll">
+            <caption class="visually-hidden">Sitenin çekirdeklerinde doğrulanan stopaj oranları</caption>
+            <thead>
+              <tr>
+                <th scope="col">Ödeme türü</th><th scope="col">Oran</th>
+                <th scope="col">Dayanak</th><th scope="col">Niteliği</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Serbest meslek ödemesi (kurumlara kesilen makbuz)</th>
+                <td>%20</td><td>GVK m.94</td><td>Mahsup edilir</td>
+              </tr>
+              <tr>
+                <th scope="row">Kâr payı dağıtımı</th>
+                <td>%15</td><td>GVK m.94/6-b</td><td>Mahsup edilir</td>
+              </tr>
+              <tr>
+                <th scope="row">BES — 10 yıldan önce ayrılma</th>
+                <td>%15</td><td>GVK m.94</td><td>Nihai</td>
+              </tr>
+              <tr>
+                <th scope="row">BES — 10 yıl doldu, emekli olmadan</th>
+                <td>%10</td><td>GVK m.94</td><td>Nihai</td>
+              </tr>
+              <tr class="net-up">
+                <th scope="row">BES — emeklilik (56 yaş + 10 yıl)</th>
+                <td><strong>%5</strong></td><td>GVK m.94</td><td>Nihai</td>
+              </tr>
+              <tr>
+                <th scope="row">Mevduat / katılma hesabı getirisi</th>
+                <td>vadeye göre değişir</td><td>GVK geç. m.67</td><td>Nihai</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ed-note">
+          <strong>Buraya bilerek uzun bir oran listesi koymadım.</strong> Stopaj oranlarının
+          önemli bir kısmı Cumhurbaşkanı Kararı ile değiştirilebiliyor ve internette dolaşan
+          "stopaj oranları tablosu" sayfalarının çoğu tarihsiz. Yukarıdaki satırlar sitenin
+          çalışan araçlarında kullanılan ve güncellenen değerler; bunların dışındaki bir oranı
+          <a href="https://www.gib.gov.tr/" rel="noopener">GİB'in yürürlükteki metninden</a>
+          teyit edin.
+        </p>
+
+        <h3>Kira stopajı</h3>
+        <p>
+          İşyeri kiralarında stopajı <strong>kiracı keser</strong> ve muhtasar beyanname ile
+          yatırır; vergi ise mal sahibinindir ve yıllık beyanda mahsup edilir. Konut kiralarında
+          kiracı bir işletme değilse stopaj yapılmaz — çünkü stopaj yükümlülüğü ödemeyi yapanın
+          sıfatına bağlıdır. Brütleştirme mantığı burada da birebir aynıdır: sözleşmede net kira
+          konuşuluyorsa brüt kira <strong>net ÷ (1 − oran)</strong> ile bulunur. Yürürlükteki
+          oranı işlem tarihinde GİB kaynağından doğrulayın.
+        </p>
+
+        <h2 id="kdv">Stopaj ile KDV tevkifatını karıştırmayın</h2>
+        <p>
+          İkisi aynı belgede görünebildiği için sık karışır, ama farklı vergilerdir:
+        </p>
+        <ul>
+          <li><strong>Stopaj</strong> gelir vergisine aittir ve <strong>brüt tutar üzerinden</strong> hesaplanır.</li>
+          <li><strong>KDV tevkifatı</strong> katma değer vergisine aittir ve <strong>hesaplanan KDV üzerinden</strong> bölünür.</li>
+        </ul>
+        <p>
+          Serbest meslek makbuzunda sıra şöyledir: brüt tutar yazılır, üzerinden gelir vergisi
+          stopajı düşülür; KDV brüt tutar üzerine <em>ayrıca</em> eklenir ve işlem tevkifata
+          tabiyse KDV kendi içinde bölünür. Ayrıntı için
+          <a href="../kdv-tevkifati-nedir/">KDV tevkifatı nedir?</a> yazısına bakabilirsiniz.
+        </p>
+
+        <h2 id="hatalar">Sık yapılan dört hata</h2>
+        <ul>
+          <li><strong>Neti oranla çarpmak.</strong> Yazının başındaki 400 TL'lik fark tam olarak budur. Doğrusu bölmektir.</li>
+          <li><strong>Stopajı gider sanmak.</strong> Mahsup edilen stopaj bir gider değil, peşin ödenmiş vergidir; gider yazılırsa vergi iki kez düşülmüş olur.</li>
+          <li><strong>Her müşteride stopaj beklemek.</strong> Stopaj yükümlülüğü ödeyene aittir; vergi mükellefi olmayan kişiye kesilen makbuzda stopaj çıkmaz.</li>
+          <li><strong>BES'te anaparayı vergiye tabi sanmak.</strong> Stopaj yalnızca getiriden alınır — ama devlet katkısının kendisi de çıkışta getiri sayılır.</li>
+        </ul>
+
+        <div class="legal-note">
+          <h3>Hesabı yaptırmak isterseniz</h3>
+          <p>
+            <a href="../../serbest-meslek-makbuzu-hesaplama/">Serbest Meslek Makbuzu</a> aracında
+            stopaj oranını seçtiğinizde brüt, stopaj, KDV ve elinize geçen tutar ayrı ayrı
+            görünür; net tutardan brüte giden yön de vardır.
+            <a href="../../birikim-hesaplama/">BES ve Birikim Hesaplama</a> ise çıkış zamanına
+            göre üç stopaj senaryosunu birlikte gösterir. Her ikisinin de hesap adımları ve
+            testleri açıktır.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Kaynaklar</h2>
+          <ul>
+            <li>193 sayılı <strong>Gelir Vergisi Kanunu m.94</strong> — vergi tevkifatı, sorumluluk ve oranlar — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>193 sayılı <strong>Gelir Vergisi Kanunu geçici m.67</strong> — menkul sermaye iratlarında tevkifat — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>4632 sayılı <strong>BES Kanunu</strong> — sistemden çıkış ve devlet katkısı — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>Güncel oran ve kapsam — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li>Hesap yöntemi ve testler — <a href="../../birikim-hesaplama/metodoloji/">Birikim metodolojisi</a></li>
+          </ul>
+          <p class="muted-note">
+            Bilgilendirme amaçlıdır; mali müşavirlik yerine geçmez. Stopaj oranları Cumhurbaşkanı
+            Kararı ile değiştirilebilir — işlem tarihindeki yürürlükteki metni esas alın.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Stopaj nasıl hesaplanır?</summary><p>Stopaj brüt tutar üzerinden hesaplanır: <strong>stopaj = brüt × oran</strong>. Elinize geçen net ise brüt eksi stopajdır.</p></details>
+          <details><summary>Net tutardan brüt nasıl bulunur?</summary><p><strong>brüt = net ÷ (1 − oran)</strong>. %20 stopajda net 10.000 TL için brüt 12.500 TL'dir. Neti %20 artırmak (12.000 TL) yanlıştır ve elinize 9.600 TL geçer.</p></details>
+          <details><summary>Stopaj nihai vergi midir?</summary><p>Her zaman değil. Mevduat getirisi ve BES çıkışında nihaidir. Serbest meslek, işyeri kirası ve kâr payında ise peşin ödemedir: yıllık beyanda mahsup edilir, fazlası iade alınır.</p></details>
+          <details><summary>Serbest meslek makbuzunda stopaj kaçtır?</summary><p>Kurum ve işletmelere kesilen makbuzda GVK m.94 uyarınca %20 uygulanır. Vergi mükellefi olmayan kişiye kesilen makbuzda stopaj yoktur.</p></details>
+          <details><summary>Stopaj ile KDV tevkifatı aynı şey mi?</summary><p>Hayır. Stopaj gelir vergisinde ve brüt tutar üzerinde; tevkifat KDV'de ve hesaplanan KDV üzerinde uygulanır. Aynı belgede ayrı satırlarda dururlar.</p></details>
+          <details><summary>BES çıkışında stopaj ne kadar?</summary><p>Yalnızca getiriden alınır. 10 yıl dolmadan %15, 10 yıl dolup emekli olmadan %10, 56 yaş ve 10 yılı tamamlayarak emeklilikte %5. Devlet katkısı da çıkışta getiri sayılır.</p></details>
+          <details><summary>Kira stopajını kim öder?</summary><p>İşyeri kirasında kiracı keser ve yatırır, ama vergi mal sahibinindir; mal sahibi yıllık beyanda mahsup eder. Konut kirasında kiracı işletme değilse stopaj yapılmaz.</p></details>
+          <details><summary>Stopaj gider yazılır mı?</summary><p>Mahsup edilen stopaj gider değil, peşin ödenmiş vergidir. Gider yazılırsa aynı tutar iki kez düşülmüş olur.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../../serbest-meslek-makbuzu-hesaplama/">Serbest Meslek Makbuzu</a> — stopaj, KDV ve elinize geçen tutar bir arada.</li>
+          <li><a href="../../birikim-hesaplama/">BES ve Birikim Hesaplama</a> — çıkış zamanına göre üç stopaj senaryosu.</li>
+          <li><a href="../../vadeli-mevduat-hesaplama/">Vadeli Mevduat Hesaplama</a> — brüt faiz, stopaj ve net getiri.</li>
+          <li><a href="../kdv-tevkifati-nedir/">KDV tevkifatı nedir?</a> — stopajla karıştırılan diğer kesinti (makale).</li>
+          <li><a href="../../calisma-bicimi-karsilastirma/">Çalışma Biçimi Karşılaştırma</a> — serbest meslek, şahıs ve limited şirket vergi yükü.</li>
+          <li><a href="../uzun-vadeli-yatirim-nasil-yapilir/">Uzun vadeli yatırım nasıl yapılır?</a> — stopajın bileşik getiriyi nasıl aşındırdığı (makale).</li>
+          <li><a href="../">Tüm makaleler</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+  <script src="/bg-network.js" defer></script>
+</body>
+</html>
