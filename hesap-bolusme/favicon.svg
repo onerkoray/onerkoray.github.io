@@ -1,7 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hesap bölüşme">
-  <rect width="64" height="64" rx="14" fill="#0e7c66"/>
-  <circle cx="24" cy="26" r="7" fill="#fff" opacity=".95"/>
-  <circle cx="40" cy="26" r="7" fill="#ffd166"/>
-  <path d="M14 46a10 10 0 0 1 20 0z" fill="#fff" opacity=".95"/>
-  <path d="M30 46a10 10 0 0 1 20 0z" fill="#ffd166"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hesap Bölüşme (AA) — Kişi Başı Tutar">
+  <defs>
+    <linearGradient id="fv-bg" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14b28e"/>
+      <stop offset="1" stop-color="#0a5f4e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#fv-bg)"/>
+  <g transform="translate(8 8) scale(2)" fill="none" stroke="#ffffff"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></g>
 </svg>

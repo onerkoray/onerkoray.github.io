@@ -1,7 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kredi hesaplama">
-  <rect width="64" height="64" rx="14" fill="#0e7c66"/>
-  <rect x="12" y="20" width="40" height="26" rx="4" fill="#fff" opacity=".95"/>
-  <rect x="12" y="26" width="40" height="5" fill="#0e7c66"/>
-  <rect x="17" y="37" width="14" height="4" rx="2" fill="#0e7c66"/>
-  <circle cx="44" cy="39" r="4" fill="#ffd166"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kredi Hesaplama ve Gerçek Maliyet">
+  <defs>
+    <linearGradient id="fv-bg" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14b28e"/>
+      <stop offset="1" stop-color="#0a5f4e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#fv-bg)"/>
+  <g transform="translate(8 8) scale(2)" fill="none" stroke="#ffffff"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></g>
 </svg>
