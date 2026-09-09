@@ -500,6 +500,18 @@ var KAPAKLAR = {
       ]);
     }
   },
+  "uzun-vadeli-yatirim-nasil-yapilir": {
+    kicker: "Yatırım",
+    baslik: "Uzun vadeli yatırım nasıl yapılır?",
+    alt: "Getiriyi doğru ölçmek, enstrüman seçmekten önemli",
+    cizim: merdivenReel
+  },
+  "stopaj-nasil-hesaplanir": {
+    kicker: "Vergi",
+    baslik: "Stopaj nasıl hesaplanır?",
+    alt: "Brütten kesilir, nete eklenmez",
+    cizim: sutunBrutlestirme
+  },
   "kdv-tevkifati-nedir": {
     kicker: "Vergi",
     baslik: "KDV tevkifatı nedir?",
@@ -661,6 +673,104 @@ function merdivenYmo() {
       '">250.000 TL · 36 ay · ihtiyaç kredisi</text>' +
     '<text x="' + solX + '" y="56" font-size="15" fill="' + R.ikincil +
       '">Vitrindeki orandan ödenen bedele</text>' + ic + "</svg>";
+}
+
+/* Reel getiri merdiveni — "uzun vadeli yatırım nasıl yapılır" kapağı.
+   Sayılar BURADA HESAPLANIYOR, yazılmıyor: yazıdaki tabloyla ayrışması
+   matematiksel olarak imkânsız. Üç basamak, yazının üç adımı:
+   sanılan getiri -> reel getiri -> vergi sonrası reel getiri. */
+function merdivenReel() {
+  var W0 = 600, H0 = 360, P0 = 30;
+  var nominal = 0.45, enflasyon = 0.40, stopaj = 0.15;
+  function fisher(n, e) { return (1 + n) / (1 + e) - 1; }
+
+  var adimlar = [
+    { ad: "Çıkarma ile (yanlış)", oran: (nominal - enflasyon) * 100,
+      not: "%45 − %40", renk: R.ikincil },
+    { ad: "Reel getiri", oran: fisher(nominal, enflasyon) * 100,
+      not: "1,45 ÷ 1,40 − 1", renk: R.marka },
+    { ad: "Stopajdan sonra", oran: fisher(nominal * (1 - stopaj), enflasyon) * 100,
+      not: "%15 stopaj · alım gücü kaybı", renk: R.s2 }
+  ];
+  var enBuyuk = 5;
+  var solX = P0 + 4, genislik = W0 - P0 * 2 - 190;
+  var y0 = 104, yH = 50, ara = 30;
+
+  var ic = adimlar.map(function (a, i) {
+    var y = y0 + i * (yH + ara);
+    var son = i === adimlar.length - 1;
+    var w = Math.max(8, Math.round(genislik * Math.abs(a.oran) / enBuyuk));
+    return '<text x="' + solX + '" y="' + (y - 8) + '" font-size="16" font-weight="700" fill="' +
+        R.murekkep + '">' + esc(a.ad) + "</text>" +
+      '<rect x="' + solX + '" y="' + y + '" width="' + w + '" height="' + yH +
+        '" rx="4" fill="' + a.renk + '"' + (son ? "" : ' fill-opacity="0.8"') + "/>" +
+      '<text x="' + (solX + w + 12) + '" y="' + (y + yH / 2 - 2) +
+        '" font-size="21" font-weight="800" fill="' + (son ? R.s2 : R.murekkep) + '">' +
+        (a.oran < 0 ? "−" : "") + "%" +
+        Math.abs(a.oran).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) +
+        "</text>" +
+      '<text x="' + (solX + w + 12) + '" y="' + (y + yH / 2 + 17) +
+        '" font-size="13" fill="' + R.ikincil + '">' + esc(a.not) + "</text>";
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W0 + " " + H0 + '" role="img" aria-label="%45 nominal ' +
+    'getiri %40 enflasyonda %3,57 reel, %15 stopajdan sonra eksi %1,25">' +
+    '<text x="' + solX + '" y="40" font-size="18" font-weight="700" fill="' + R.murekkep +
+      '">%45 nominal getiri · %40 enflasyon</text>' +
+    '<text x="' + solX + '" y="64" font-size="15" fill="' + R.ikincil +
+      '">Aynı yatırım, üç farklı ölçüm</text>' + ic + "</svg>";
+}
+
+/* Brütleştirme karşılaştırması — "stopaj nasıl hesaplanır" kapağı.
+   İki sütun, aynı hedef net: doğru yöntem hedefi tutturur, yaygın yanlış
+   yöntem tutturamaz. Eksik kalan tutar da hesaplanıyor. */
+function sutunBrutlestirme() {
+  var W0 = 600, H0 = 360, P0 = 30;
+  var hedefNet = 10000, oran = 0.20;
+  var dogru = hedefNet / (1 - oran);          /* 12.500 */
+  var yanlis = hedefNet * (1 + oran);         /* 12.000 */
+  var yanlisNet = yanlis * (1 - oran);        /*  9.600 */
+  var eksik = hedefNet - yanlisNet;           /*    400 */
+
+  /* Çubuklar bilerek aşağıda: ilk denemede en uzun çubuğun "brüt" etiketi
+     üstteki alt başlığa biniyordu (kapak render edilip görüldü). */
+  var W = W0, taban = 300, enY = 170, enBuyuk = dogru;
+  var sut = [
+    { ad: "brüt = net ÷ 0,80", brut: dogru, net: hedefNet, x: 96, dogruMu: true },
+    { ad: "brüt = net × 1,20", brut: yanlis, net: yanlisNet, x: 336, dogruMu: false }
+  ];
+  var gen = 168;
+
+  function tl(v) { return v.toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + " TL"; }
+
+  var ic = sut.map(function (s) {
+    var h = Math.round(enY * s.brut / enBuyuk);
+    var hNet = Math.round(enY * s.net / enBuyuk);
+    var y = taban - h, yNet = taban - hNet;
+    var netRenk = s.dogruMu ? R.marka : R.s2;
+    return '<rect x="' + s.x + '" y="' + y + '" width="' + gen + '" height="' + h +
+        '" rx="4" fill="' + R.ikincil + '" fill-opacity="0.28"/>' +
+      '<rect x="' + s.x + '" y="' + yNet + '" width="' + gen + '" height="' + hNet +
+        '" rx="4" fill="' + netRenk + '"/>' +
+      '<text x="' + (s.x + gen / 2) + '" y="' + (y - 26) + '" text-anchor="middle" ' +
+        'font-size="21" font-weight="800" fill="' + R.murekkep + '">' + tl(s.brut) + "</text>" +
+      '<text x="' + (s.x + gen / 2) + '" y="' + (y - 8) + '" text-anchor="middle" ' +
+        'font-size="13" fill="' + R.ikincil + '">brüt</text>' +
+      '<text x="' + (s.x + gen / 2) + '" y="' + (yNet + hNet / 2 + 6) + '" text-anchor="middle" ' +
+        'font-size="17" font-weight="800" fill="#ffffff">' + tl(s.net) + "</text>" +
+      '<text x="' + (s.x + gen / 2) + '" y="' + (taban + 24) + '" text-anchor="middle" ' +
+        'font-size="15" font-weight="700" fill="' + (s.dogruMu ? R.marka : R.s2) + '">' +
+        esc(s.ad) + "</text>";
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W + " " + H0 + '" role="img" aria-label="Net 10.000 TL ' +
+    'icin dogru brut 12.500 TL, yaygin yanlis yontemle 12.000 TL ve 400 TL eksik">' +
+    '<text x="' + P0 + '" y="40" font-size="18" font-weight="700" fill="' + R.murekkep +
+      '">Hedef: elimde net 10.000 TL kalsın · %20 stopaj</text>' +
+    '<text x="' + P0 + '" y="64" font-size="15" fill="' + R.ikincil +
+      '">Koyu alan elinize geçen tutar</text>' + ic +
+    '<text x="' + (336 + 168 / 2) + '" y="' + (taban + 48) + '" text-anchor="middle" ' +
+      'font-size="15" font-weight="700" fill="' + R.s2 + '">' + tl(eksik) + " eksik</text></svg>";
 }
 
 function chromeBul() {
