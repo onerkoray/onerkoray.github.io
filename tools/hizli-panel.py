@@ -47,6 +47,7 @@ KISA = {
     "makaleler/uzun-vadeli-yatirim-nasil-yapilir": "Uzun vadeli yatırım",
     "makaleler/stopaj-nasil-hesaplanir": "Stopaj nasıl hesaplanır?",
     "makaleler/zam-net-maasa-ne-kadar-yansir": "Zam nete ne yansır?",
+    "makaleler/vergi-kamasi-ucretin-gercek-yuku": "Vergi kaması",
     "finansal-ozgurluk-hesaplama": "Finansal Özgürlük (FIRE)",
     "finansal-ozgurluk-hesaplama/metodoloji": "FIRE metodolojisi",
     "zam-hesaplama": "Zam Hesaplama",
