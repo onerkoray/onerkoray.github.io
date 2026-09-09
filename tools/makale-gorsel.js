@@ -500,6 +500,12 @@ var KAPAKLAR = {
       ]);
     }
   },
+  "zam-net-maasa-ne-kadar-yansir": {
+    kicker: "Maaş",
+    baslik: "Zam nete ne kadar yansır?",
+    alt: "Aynı zam, farklı maaşta farklı sonuç",
+    cizim: cizgiZamFark
+  },
   "uzun-vadeli-yatirim-nasil-yapilir": {
     kicker: "Yatırım",
     baslik: "Uzun vadeli yatırım nasıl yapılır?",
@@ -771,6 +777,74 @@ function sutunBrutlestirme() {
       '">Koyu alan elinize geçen tutar</text>' + ic +
     '<text x="' + (336 + 168 / 2) + '" y="' + (taban + 48) + '" text-anchor="middle" ' +
       'font-size="15" font-weight="700" fill="' + R.s2 + '">' + tl(eksik) + " eksik</text></svg>";
+}
+
+/* Zam farkı eğrisi — "zam nete ne kadar yansır" kapağı.
+   Yazının tezi tek bir grafikte: %30 brüt zamın nete kaç puan eksik yansıdığı
+   maaşa göre değişiyor ve SGK tavanı civarında SIFIRIN ALTINA iniyor.
+   Değerler zam çekirdeğinden hesaplanıyor; tabloyla ayrışması imkânsız. */
+function cizgiZamFark() {
+  var Z = require(path.join(KOK, "zam-hesaplama", "hesap.js"));
+  var brutler = [33030, 40000, 60000, 80000, 100000, 120000, 150000,
+                 200000, 250000, 280000, 297270, 320000, 350000, 400000];
+  var veri = brutler.map(function (b) {
+    return { b: b, f: Z.zam({ eskiBrut: b, zamYuzde: 30, yil: 2026 }).farkPuan };
+  });
+
+  var W = 600, H = 360, P = 30;
+  var altB = brutler[0], ustB = brutler[brutler.length - 1];
+  var enAz = -3, enCok = 8.5;
+  var x = function (b) { return P + (b - altB) / (ustB - altB) * (W - 2 * P - 8); };
+  var y = function (f) { return 96 + (enCok - f) / (enCok - enAz) * (H - 96 - 46); };
+
+  var d = veri.map(function (v, i) {
+    return (i ? "L" : "M") + x(v.b).toFixed(1) + " " + y(v.f).toFixed(1);
+  }).join(" ");
+
+  /* Sıfır çizgisi: farkın işaret değiştirdiği yer. */
+  var y0 = y(0);
+  var tavanX = x(297270);
+
+  /* En büyük kayıp ve işaretin döndüğü nokta işaretleniyor. */
+  var enKotu = veri.reduce(function (a, b) { return b.f > a.f ? b : a; });
+  var eksi = veri.filter(function (v) { return v.f < 0; })[0];
+
+  function nokta(v, renk) {
+    return '<circle cx="' + x(v.b).toFixed(1) + '" cy="' + y(v.f).toFixed(1) +
+      '" r="6.5" fill="' + renk + '" stroke="' + R.zemin + '" stroke-width="2.5"/>';
+  }
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="%30 brut zammin ' +
+    'nete kac puan eksik yansidigi, maasa gore; SGK tavani civarinda sifirin altina iniyor">' +
+    '<text x="' + P + '" y="34" font-size="18" font-weight="700" fill="' + R.murekkep +
+      '">%30 brüt zam nete kaç puan eksik yansıyor?</text>' +
+    '<text x="' + P + '" y="56" font-size="15" fill="' + R.ikincil +
+      '">Aynı zam, farklı maaşlar · 2026</text>' +
+    /* sıfırın altı: net artış brütü geçiyor */
+    '<rect x="' + P + '" y="' + y0 + '" width="' + (W - 2 * P - 8) + '" height="' +
+      Math.max(0, H - 46 - y0) + '" fill="' + R.s3 + '" fill-opacity="0.10"/>' +
+    '<line x1="' + P + '" y1="' + y0 + '" x2="' + (W - P - 8) + '" y2="' + y0 +
+      '" stroke="' + R.murekkep + '" stroke-width="1.4"/>' +
+    '<line x1="' + tavanX.toFixed(1) + '" y1="90" x2="' + tavanX.toFixed(1) + '" y2="' +
+      (H - 46) + '" stroke="' + R.ikincil + '" stroke-width="1" stroke-dasharray="4 4"/>' +
+    '<path d="' + d + '" fill="none" stroke="' + R.marka +
+      '" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>' +
+    nokta(enKotu, R.s2) + (eksi ? nokta(eksi, R.s3) : "") +
+    '<text x="' + (x(enKotu.b) + 10) + '" y="' + (y(enKotu.f) + 5) + '" font-size="14" ' +
+      'font-weight="700" fill="' + R.s2 + '">' + enKotu.f.toFixed(2).replace(".", ",") +
+      " puan kayıp</text>" +
+    /* Etiket noktanın SOLUNA yaslı: ortalanınca SGK tavanı kesikli çizgisini
+       kesiyordu (kapak render edilip görüldü). */
+    (eksi ? '<text x="' + (x(eksi.b) - 12) + '" y="' + (y(eksi.f) + 24) + '" font-size="14" ' +
+      'font-weight="700" text-anchor="end" fill="' + R.s3 +
+      '">burada işaret dönüyor</text>' : "") +
+    '<text x="' + (tavanX - 6).toFixed(1) + '" y="86" font-size="12" text-anchor="end" fill="' +
+      R.ikincil + '">SGK tavanı</text>' +
+    '<text x="' + P + '" y="' + (H - 12) + '" font-size="13" fill="' + R.ikincil +
+      '">33 bin TL brüt</text>' +
+    '<text x="' + (W - P - 8) + '" y="' + (H - 12) + '" font-size="13" text-anchor="end" fill="' +
+      R.ikincil + '">400 bin TL</text>' +
+    "</svg>";
 }
 
 function chromeBul() {

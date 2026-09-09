@@ -46,6 +46,7 @@ KISA = {
     "makaleler/emekli-maasi-nasil-hesaplanir": "Emekli maaşı: yeni sistem mi?",
     "makaleler/uzun-vadeli-yatirim-nasil-yapilir": "Uzun vadeli yatırım",
     "makaleler/stopaj-nasil-hesaplanir": "Stopaj nasıl hesaplanır?",
+    "makaleler/zam-net-maasa-ne-kadar-yansir": "Zam nete ne yansır?",
     "finansal-ozgurluk-hesaplama": "Finansal Özgürlük (FIRE)",
     "finansal-ozgurluk-hesaplama/metodoloji": "FIRE metodolojisi",
     "zam-hesaplama": "Zam Hesaplama",
