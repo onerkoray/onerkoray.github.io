@@ -44,6 +44,8 @@ KISA = {
     "fatura-olusturma/metodoloji": "Fatura metodolojisi",
     "kredi-hesaplama/metodoloji": "Kredi metodolojisi",
     "makaleler/emekli-maasi-nasil-hesaplanir": "Emekli maaşı: yeni sistem mi?",
+    "makaleler/uzun-vadeli-yatirim-nasil-yapilir": "Uzun vadeli yatırım",
+    "makaleler/stopaj-nasil-hesaplanir": "Stopaj nasıl hesaplanır?",
     "finansal-ozgurluk-hesaplama": "Finansal Özgürlük (FIRE)",
     "finansal-ozgurluk-hesaplama/metodoloji": "FIRE metodolojisi",
     "zam-hesaplama": "Zam Hesaplama",

@@ -43,6 +43,9 @@ jobs:
 
       # Bot'un urettigi commit push edilmeden once kendi kurallarindan
       # gecsin: kirik bir sayfa main'e girmesin.
+      - name: Hızlı erişim panelini tazele
+        run: python tools/hizli-panel.py
+
       - name: Üretilen sayfaları denetle
         run: python tools/sayfa-denetimi.py --check
 
