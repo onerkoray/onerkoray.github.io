@@ -1060,10 +1060,12 @@ section { padding: var(--bolum) 0; }
 
 /* ---- 7. Hero: karakter artık arka plandan değil, tipografiden ---- */
 .hero { padding: clamp(3.5rem,2rem + 7vw,8rem) 0 var(--bolum); }
-/* Blurlu gradient bloblar ve parçacık ağı kaldırıldı. Editoryal hero'da
-   arka plan boştur; boşluğun kendisi bir öğedir. bg-net kanvası bütün
-   sayfalarda script tarafından üretiliyor, o yüzden 100 dosya düzenlemek
-   yerine burada kapatıldı. */
+/* Blurlu gradient bloblar kaldırıldı. Editoryal hero'da arka plan boştur;
+   boşluğun kendisi bir öğedir. Parçacık ağı (#bg-net) önce burada
+   gizlenmişti, ama script yüklenmeye ve requestAnimationFrame döngüsü
+   dönmeye devam ediyordu — görünmeyen bir şey için pil ve CPU. Sonradan
+   dosya ve 80 script etiketi tamamen kaldırıldı; kural yalnızca eski
+   önbellekten sayfa açan ziyaretçiler için duruyor. */
 .hero-bg, #bg-net { display: none !important; }
 /* Başlıktaki isim artık akan gradyan değil, düz marka rengi: 100 pikselde
    hareketli gradyan gösteriş olurdu. Yeşil burada SİNYAL. */
@@ -1083,6 +1085,14 @@ section { padding: var(--bolum) 0; }
   border-inline-end: 1px solid var(--rule);
 }
 .hero-spec span:last-child { padding-inline-end: 0; margin-inline-end: 0; border-inline-end: 0; }
+/* Dar ekranda şerit iki satıra sarıyor ve satır sonunda boşta bir ayraç
+   kalıyordu (360px'te ölçüldü: "…Üyeliksiz |" / "Reklamsız | MIT lisansı").
+   Sarma noktası önceden bilinemeyeceği için ayraç değil boşluk kullanılıyor;
+   masaüstünde şerit tek satıra sığdığı için orada ayraçlar kalıyor. */
+@media (max-width: 620px) {
+  .hero-spec { gap: .5rem 1.3rem; }
+  .hero-spec span { border-inline-end: 0; padding-inline-end: 0; margin-inline-end: 0; }
+}
 
 /* ---- 8. Renk disiplini: yeşil dekorasyon değil, sinyal ---- */
 .article-card, .legal-note, .sources {
