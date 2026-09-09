@@ -97,6 +97,7 @@ def main():
 
     sema_tekil = collections.defaultdict(list)
     sema_person = set()
+    sema_website = set()
 
 
     basliklar, aciklamalar = {}, {}
@@ -135,8 +136,10 @@ def main():
                 tur = d.get("@type")
                 if isinstance(tur, list):
                     tur = "/".join(str(x) for x in tur)
-                if tur in ("ProfilePage", "WebSite"):
+                if tur == "ProfilePage":
                     sema_tekil[tur].append(p)
+                if tur == "WebSite":
+                    sema_website.add((d.get("@id"), d.get("url"), d.get("name")))
                 if tur == "Person" and d.get("@id"):
                     sema_person.add(d["@id"])
 
@@ -275,9 +278,24 @@ def main():
     # Google'a "bu kişinin iki profil sayfası var" diyordu ve Google birini
     # seçip diğerini "kopya, farklı standart sayfa" olarak işaretledi.
     # Aynı biçimde tek alan adı altında iki WebSite düğümü site kimliğini böler.
+    # WEBSITE KURALI DEĞİŞTİ — sayım değil TUTARLILIK.
+    # Eski hâli "site genelinde en fazla bir WebSite düğümü" diyordu ve
+    # ProfilePage kuralından analojiyle yazılmıştı. Analoji tutmuyor:
+    # iki ProfilePage, iki AYRI sayfanın aynı rolü üstlenmesidir (gerçek
+    # çakışma). Aynı WebSite düğümünün her sayfada tekrarlanması ise tek bir
+    # varlığın tekrar tekrar BEYAN EDİLMESİDİR ve JSON-LD'de @id atıfları
+    # sayfa grafiği içinde çözüldüğü için gereklidir: düğüm yoksa o sayfadaki
+    # "isPartOf" hiçbir şeye bağlanmaz. Yaygın eklentiler (Yoast, RankMath)
+    # da bu yüzden düğümü her sayfaya basar.
+    # Asıl tehlike -- site kimliğinin bölünmesi -- ancak düğümler BİRBİRİNDEN
+    # FARKLIYSA doğar; kural artık tam olarak onu arıyor.
+    if len(sema_website) > 1:
+        bulgu("SEMA CAKISMASI", "site geneli",
+              "%d farkli WebSite kimligi: %s"
+              % (len(sema_website), " | ".join(sorted(str(x) for x in sema_website))))
+
     for tur, sinir, aciklama in (
         ("ProfilePage", 1, "kişinin tek bir profil sayfası olmalı"),
-        ("WebSite", 1, "alan adı başına tek WebSite düğümü olmalı"),
     ):
         yerler = sema_tekil.get(tur, [])
         if len(yerler) > sinir:
