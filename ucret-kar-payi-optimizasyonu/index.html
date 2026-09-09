@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ücret mi Kâr Payı mı? Optimum Dağılım | Koray Öner</title>
+  <meta name="description" content="Şirket ortağı gelirini ücret ve kâr payı arasında nasıl paylaştırmalı? Optimum ücreti hesaplar ve beyan eşiğindeki net kaybı uçurumunu gösterir.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/ucret-kar-payi-optimizasyonu/">
+
+  <link rel="icon" href="../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Ücret–Kâr Payı Optimizasyonu">
+  <meta property="og:description" content="Optimum ücret dağılımını hesaplar. Ücreti artırmak neti düşürebilir: beyan eşiğinin altına inince stopaj iadesi kaybolur.">
+  <meta property="og:url" content="https://korayoner.dev/ucret-kar-payi-optimizasyonu/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/ucret-kar-payi-optimizasyonu-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ücret–Kâr Payı Optimizasyonu">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ücret–Kâr Payı Optimizasyonu">
+  <meta name="twitter:description" content="Şirket ortağı için optimum ücret dağılımı ve beyan eşiği uçurumu.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/ucret-kar-payi-optimizasyonu-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=6a56fdae">
+  <link rel="stylesheet" href="style.css?v=f84de939">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/ucret-kar-payi-optimizasyonu/#app",
+        "name": "Ücret–Kâr Payı Optimizasyonu",
+        "url": "https://korayoner.dev/ucret-kar-payi-optimizasyonu/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "featureList": "Ortağa ödenecek optimum ücretin hesaplanması, fizibilite kısıtı, beyan eşiği uçurumunun ikiye bölmeyle bulunması, net-ücret eğrisi, ücretsiz ve azami ücret senaryolarıyla karşılaştırma, kurumlar vergisi ve kâr payı stopajının ayrıştırılması",
+        "description": "Limited şirket ortağının gelirini ücret ve kâr payı arasında nasıl paylaştırırsa eline en çok net geçeceğini hesaplar. Beyan haddi eşiğinde net gelirin düştüğü kırılmayı ayrıca bulur."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Ücret–Kâr Payı Optimizasyonu", "item": "https://korayoner.dev/ucret-kar-payi-optimizasyonu/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Şirket ortağı ücret mi almalı kâr payı mı?",
+            "acceptedAnswer": { "@type": "Answer", "text": "İkisinin karışımı genellikle her ikisinden de iyidir. Ortağa ödenen ücret şirket için giderdir; kurum kazancını düşürür ve böylece kurumlar vergisi ile kâr payı stopajından kaçınılır. Ancak ücret de artan oranlı tarifeyle vergilenir. Bu iki etki bir yerde dengelenir ve optimum ücret genellikle sıfır da değildir, şirketin ödeyebileceği azami tutar da değildir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Ortağa ödenen ücretten SGK primi kesilir mi?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Limited şirket ortağı 5510 sayılı Kanun madde 4 birinci fıkra b bendi uyarınca dört-b sigortalısıdır. Kendi şirketinden ücret alsa da dört-a sigortalısı olmaz; bu nedenle bu ödemeden sigorta ve işsizlik primi kesilmez, yalnızca gelir vergisi ve damga vergisi doğar ve asgari ücret istisnası uygulanır. Ortak ayrıca Bağ-Kur primi öder." }
+          },
+          {
+            "@type": "Question",
+            "name": "Ücreti artırmak net gelirimi düşürebilir mi?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Evet ve bu aracın en önemli bulgusu budur. Ücret arttıkça dağıtılacak kâr payı küçülür. Kâr payının beyana tabi kısmı beyan haddinin altına düşerse beyanname verilmez; beyanname verilmediğinde kesilen kâr payı stopajı mahsup edilemez ve doğacak iade kaybolur. Ölçülen bir örnekte eşiğin bir lira üstüne çıkmak yıllık neti yetmiş bin liranın üzerinde azaltıyor." }
+          },
+          {
+            "@type": "Question",
+            "name": "Beyan haddi nedir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Kâr payının yarısı Gelir Vergisi Kanunu madde 22 uyarınca istisnadır. Kalan yarısı belirli bir tutarı aşarsa yıllık beyanname verilir. Beyanname verildiğinde kesilmiş olan kâr payı stopajının tamamı hesaplanan vergiden mahsup edilir ve stopaj hesaplanan vergiden fazlaysa aradaki fark iade alınır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Şirketin ödeyebileceği ücretin bir sınırı var mı?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Evet. Ücret şirket gideri olduğu için yıllık toplamı hasılat eksi diğer giderleri aşamaz; aşarsa kurum kazancı eksiye düşer ve senaryo gerçek dışı olur. Araç bu fizibilite kısıtını uygular ve önerilen ücret hiçbir zaman şirketin ödeyebileceğinin üstünde olmaz." }
+          },
+          {
+            "@type": "Question",
+            "name": "Bu bir vergi planlaması tavsiyesi mi?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Araç yalnızca belirtilen varsayımlar altında aritmetik yapar. Ortağa ödenen ücretin gerçek bir hizmet karşılığı olması ve usulüne uygun belgelendirilmesi gerekir. Uygulamadan önce mali müşavirinize danışın; sonuçlar seçilen yılın parametreleriyle ve sayfada listelenen sınırlarla geçerlidir." }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="metodoloji/">Metodoloji</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Ücret–Kâr Payı Optimizasyonu
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <h1>Ücret mi, kâr payı mı?</h1>
+        <p class="hero-alt">
+          Şirketinden gelir alan bir ortak için doğru cevap ikisinden biri değil,
+          <strong>ikisinin karışımı</strong>. Bu araç optimum dağılımı hesaplar — ve
+          kimsenin söylemediği bir kırılmayı gösterir: <strong>ücreti artırmak net
+          gelirinizi aniden düşürebilir</strong>, çünkü kâr payı beyan haddinin altına
+          inince kesilen stopajın iadesi kaybolur.
+        </p>
+        <p class="muted kunye-satiri">
+          <a href="metodoloji/">34 testle doğrulanıyor</a> ·
+          Hesap tarayıcınızda çalışır, veri gönderilmez ·
+          Vergi hesabı <a href="../calisma-bicimi-karsilastirma/">çalışma biçimi çekirdeğinden</a> gelir
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc">
+      <div class="wrap">
+        <div class="bi-duzen">
+          <div class="bi-form">
+            <h2>Şirket</h2>
+            <div class="alan-grid">
+              <label>Yıllık hasılat (₺)
+                <input type="text" inputmode="decimal" id="o-hasilat" value="3.000.000">
+                <small>Ortağa aktarılabilecek toplam kaynak.</small>
+              </label>
+              <label>Yıllık işletme gideri (₺)
+                <input type="text" inputmode="decimal" id="o-gider" value="300.000">
+                <small>Ortağa ödenecek ücret hariç.</small>
+              </label>
+              <label>Hizmet ihracatı oranı (%)
+                <input type="text" inputmode="decimal" id="o-ihracat" value="0">
+                <small>Varsa kurum kazancına indirim uygulanır.</small>
+              </label>
+              <label>Bağ-Kur matrahı (aylık ₺)
+                <input type="text" inputmode="decimal" id="o-bagkur" value="0">
+                <small>0 bırakırsanız asgari matrah kullanılır.</small>
+              </label>
+              <label>Tarama çözünürlüğü
+                <input type="text" inputmode="numeric" id="o-adet" value="60">
+                <small>Eşik ayrıca ikiye bölmeyle bulunur.</small>
+              </label>
+            </div>
+            <div class="kutu-grid">
+              <label><input type="checkbox" id="o-bagkur-indirim" checked>
+                <span>Bağ-Kur beş puanlık indirimden yararlanılıyor</span></label>
+            </div>
+
+            <p class="esik-uyari" id="o-esik" hidden></p>
+          </div>
+
+          <div class="bi-sonuc">
+            <div class="optimum-kart">
+              <p class="optimum-etiket">Optimum ortak ücreti</p>
+              <p class="optimum-deger" id="o-optimum">—</p>
+              <p class="optimum-alt" id="o-optimum-alt">—</p>
+            </div>
+
+            <dl class="ozet-liste">
+              <div class="vurgu"><dt>Yıllık net (ortağın eline)</dt><dd id="o-net">—</dd></div>
+              <div><dt>Efektif yük</dt><dd id="o-yuk">—</dd></div>
+              <div><dt>Ücretten gelen net</dt><dd id="o-ucret-net">—</dd></div>
+              <div><dt>Kâr payından gelen net</dt><dd id="o-karpayi">—</dd></div>
+              <div><dt>Kurumlar vergisi</dt><dd id="o-kv">—</dd></div>
+              <div><dt>Kâr payı stopajı</dt><dd id="o-stopaj">—</dd></div>
+              <div><dt>Stopaj iadesi</dt><dd id="o-iade">—</dd></div>
+              <div><dt>Yıllık beyanname</dt><dd id="o-beyan">—</dd></div>
+            </dl>
+
+            <div class="table-scroll">
+              <table class="veri-tablo">
+                <caption>Üç senaryonun yıllık neti</caption>
+                <tbody>
+                  <tr><th scope="row">Hiç ücret ödenmezse</th><td id="o-k-ucretsiz">—</td></tr>
+                  <tr class="opt-satir"><th scope="row">Optimum dağılım</th><td id="o-k-optimum">—</td></tr>
+                  <tr><th scope="row">Azami ücret ödenirse</th><td id="o-k-azami">—</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h3>Ücret arttıkça net nasıl değişiyor?</h3>
+        <p class="muted">
+          Eğri, ortağa ödenen aylık ücrete göre yıllık net geliri gösterir. Nokta optimum
+          dağılım. Kesikli dikey çizgi <strong>beyan eşiği</strong>: onun sağına geçildiğinde
+          beyanname verilmediği için stopaj iadesi kaybolur ve eğri aniden düşer.
+        </p>
+        <div class="grafik-kap">
+          <svg id="o-grafik" viewBox="0 0 760 320" role="img" aria-labelledby="o-grafik-baslik"></svg>
+          <p id="o-grafik-baslik" class="visually-hidden">
+            Ortağa ödenen ücrete göre yıllık net gelir eğrisi; sayısal karşılığı aşağıdaki tabloda.
+          </p>
+        </div>
+
+        <div class="table-scroll">
+          <table class="veri-tablo">
+            <caption>Ücret düzeyine göre dağılım</caption>
+            <thead>
+              <tr>
+                <th scope="col">Aylık ücret</th><th scope="col">Ücret neti</th>
+                <th scope="col">Kâr payı neti</th><th scope="col">Stopaj iadesi</th>
+                <th scope="col">Beyan</th><th scope="col">Yıllık net</th>
+                <th scope="col">Efektif yük</th>
+              </tr>
+            </thead>
+            <tbody id="o-tablo"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="nasil" class="prose-section">
+      <div class="wrap prose">
+        <h2>Nasıl hesaplanır</h2>
+
+        <h3>Dört mekanizma aynı anda çalışıyor</h3>
+        <ul>
+          <li><strong>Ücret şirket için giderdir.</strong> Ödenen her lira kurum kazancını düşürür; böylece %25 kurumlar vergisi ve kalanın %15 kâr payı stopajından kaçınılır.</li>
+          <li><strong>Ama ücret de vergilenir.</strong> Artan oranlı tarife ve kümülatif matrah yüzünden ücret büyüdükçe marjinal oran yükselir.</li>
+          <li><strong>Ortağın ücretinden SGK kesilmez.</strong> Limited ortağı 5510 m.4/1-b uyarınca 4/b sigortalısıdır; kendi şirketinden ücret alsa da 4/a'lı olmaz. Yalnızca gelir ve damga vergisi doğar, asgari ücret istisnası uygulanır.</li>
+          <li><strong>GVK m.22 eşiği.</strong> Kâr payının yarısı istisnadır; kalan yarı beyan haddini aşarsa beyanname verilir ve kesilen stopajın <em>tamamı</em> mahsup edilir — bu çoğu zaman iade doğurur.</li>
+        </ul>
+
+        <h3>Dördüncü madde bir uçurum yaratıyor</h3>
+        <p>
+          Ücreti artırmak kâr payını küçültür. Kâr payının beyana tabi kısmı beyan haddinin
+          <strong>altına</strong> düşerse beyanname verilmez; verilmeyince stopaj mahsup
+          edilemez ve iade kaybolur. Sonuç ters yönlüdür:
+          <strong>ücreti artırdığınız hâlde eline geçen azalır.</strong>
+        </p>
+        <p>
+          Bu kırılma kaba bir taramada görünmez — eşik iki ölçüm noktasının arasına düşer.
+          Araç eşiği <strong>ikiye bölmeyle ayrıca arar</strong> ve iki yanını taramaya
+          ekler; optimum çoğu zaman eşiğin hemen altındadır.
+        </p>
+
+        <h3>Fizibilite kısıtı</h3>
+        <p class="formula">aylık ücret × 12 ≤ hasılat − gider</p>
+        <p>
+          Şirket ödeyemeyeceği ücreti ödeyemez. Bu kısıt olmadan model eksi kurum kazancı
+          üretiyor ve <em>negatif efektif yük</em> gibi anlamsız sonuçlar veriyordu. Araç
+          kısıtı uygular; önerilen ücret hiçbir zaman şirketin ödeyebileceğinin üstünde olmaz.
+        </p>
+
+        <h3>Neyi hesaplamıyoruz</h3>
+        <ul>
+          <li><strong>Bu bir vergi planlaması tavsiyesi değildir.</strong> Ortağa ödenen ücretin gerçek bir hizmet karşılığı olması ve usulüne uygun belgelenmesi gerekir. Uygulamadan önce mali müşavirinize danışın.</li>
+          <li><strong>Tek ortak, düz senaryo.</strong> Birden fazla ortak, farklı pay oranları, geçmiş yıl zararları, yatırım indirimleri ve KDV etkisi modellenmiyor.</li>
+          <li><strong>Yıl içi dağıtım zamanlaması yok.</strong> Kâr payının hangi ayda dağıtıldığı modellenmiyor; hesap yıllık toplamlar üzerinden kurulur.</li>
+          <li><strong>Diğer teşvikler kapsam dışı.</strong> Yalnızca Bağ-Kur beş puanlık indirimi ve hizmet ihracatı indirimi seçenekli olarak var.</li>
+          <li><strong>Parametreye bağlı.</strong> Kurumlar vergisi, stopaj ve beyan haddi değiştiğinde optimum da değişir.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="sss" class="prose-section alt">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <details><summary>Ortak ücret mi almalı kâr payı mı?</summary>
+          <p>Genellikle ikisinin karışımı. Ücret şirket gideri olduğu için kurumlar vergisi ve stopajdan kaçındırır, ama kendisi de artan oranlı vergilenir. Optimum ne sıfır ne de azami tutardır.</p></details>
+        <details><summary>Ortağın ücretinden SGK kesilir mi?</summary>
+          <p>Hayır. Limited ortağı 4/b sigortalısıdır; kendi şirketinden ücret alsa da 4/a'lı olmaz. Yalnızca gelir ve damga vergisi doğar. Ortak ayrıca Bağ-Kur primi öder.</p></details>
+        <details><summary>Ücreti artırmak neti düşürebilir mi?</summary>
+          <p>Evet. Kâr payı beyan haddinin altına inerse beyanname verilmez, kesilen stopaj mahsup edilemez ve iade kaybolur. Araç bu eşiği bulup uyarır.</p></details>
+        <details><summary>Beyan haddi nedir?</summary>
+          <p>Kâr payının yarısı GVK m.22 uyarınca istisnadır; kalan yarı belirli bir tutarı aşarsa beyanname verilir ve stopajın tamamı mahsup edilir.</p></details>
+        <details><summary>Şirketin ödeyebileceği ücretin sınırı var mı?</summary>
+          <p>Var: yıllık ücret, hasılat eksi diğer giderleri aşamaz. Araç bu fizibilite kısıtını uygular.</p></details>
+        <details><summary>Bu vergi planlaması tavsiyesi mi?</summary>
+          <p>Hayır. Yalnızca belirtilen varsayımlar altında aritmetik. Ücretin gerçek bir hizmet karşılığı olması gerekir; uygulamadan önce mali müşavirinize danışın.</p></details>
+      </div>
+    </section>
+
+    <section class="prose-section">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="metodoloji/">Optimizasyon metodolojisi</a> — model, kısıtlar, eşik arama ve sınırlar</li>
+          <li><a href="../calisma-bicimi-karsilastirma/">Çalışma Biçimi Karşılaştırma</a> — çalışan, şahıs ve limited rejimleri</li>
+          <li><a href="../vergi-kamasi-hesaplama/">Vergi Kaması Hesaplama</a> — ücret üzerindeki toplam yük</li>
+          <li><a href="../makaleler/sahis-mi-limited-mi/">Şahıs mı limited mi?</a> — hangi gelirde hangisi (makale)</li>
+          <li><a href="../makaleler/stopaj-nasil-hesaplanir/">Stopaj nasıl hesaplanır?</a> — mahsup mantığı (makale)</li>
+          <li><a href="../serbest-meslek-makbuzu-hesaplama/">Serbest Meslek Makbuzu</a></li>
+          <li><a href="../bordro/">Bordro Motoru</a> — parametreler ve hesap yöntemi</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; mali müşavirlik yerine geçmez.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js" defer></script>
+  <script src="../bordro/motor.js" defer></script>
+  <script src="../bordro/calisma-bicimi.js" defer></script>
+  <script src="hesap.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>
