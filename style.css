@@ -11,14 +11,44 @@
   --brand: var(--accent); --brand-strong: var(--accent-strong); --brand-contrast: #fff;
   --bg: #f7f5f0; --surface: #fff; --surface-2: #f0ece4; --border: #e2ddd2;
   --text: #17201d; --text-muted: #56605c; --focus: var(--accent);
-  --radius-sm: 8px; --radius: 14px;
-  --shadow: 0 1px 2px rgba(16,24,20,.06), 0 8px 24px rgba(16,24,20,.08);
+  /* Köşe ve gölge SIFIRLANDI, tek satırda.
+     14px yarıçap + iki katmanlı gölge, şablon kartının imzasıdır; sitenin
+     içeriği (açık çekirdek, testli hesap, metodoloji) bir doküman dili
+     istiyor. Kesinlik gölgeden değil KURAL ÇİZGİSİNDEN gelir. Bu iki
+     değişken 40'tan fazla bileşende kullanıldığı için burada değişmeleri
+     bütün siteyi tek hamlede düzleştiriyor. */
+  --radius-sm: 2px; --radius: 2px;
+  --shadow: none;
+  /* Hairline: gölgenin yerini alan ayırıcı. Kenarlıktan daha ince okunur. */
+  --rule: color-mix(in srgb, var(--text) 14%, transparent);
+
+  /* İKİ TİPOGRAFİK KATMAN.
+     WEBFONT EKLENMEDİ ve bu bilinçli: sitenin CSP'si sıkı (style-src/font-src
+     üçüncü tarafa kapalı), yeni bir alan adı açmak güvenlik ayarını redesign
+     uğruna gevşetmek olurdu. Ayrıca webfont = CLS + istek + Türkçe glif riski
+     (noktasız ı birçok display fontta eksik).
+     Karakter fontun KENDİSİNDEN değil, KULLANIMINDAN geliyor: display ölçek,
+     sıkı tracking, dar satır aralığı ve bol boşluk. Gerçek bir display font
+     istenirse tek yapılacak --font-display'i değiştirmek. */
+  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display",
+                  "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+               "Liberation Mono", monospace;
+
   --step--1: clamp(.82rem,.78rem + .2vw,.9rem);
   --step-0: clamp(1rem,.95rem + .25vw,1.08rem);
   --step-1: clamp(1.2rem,1.1rem + .5vw,1.4rem);
   --step-2: clamp(1.5rem,1.3rem + 1vw,2rem);
   --step-3: clamp(2rem,1.6rem + 2vw,3rem);
-  --step-4: clamp(2.5rem,1.9rem + 3vw,4rem);
+  --step-4: clamp(2.6rem,1.9rem + 3.4vw,4.6rem);
+  /* Display basamağı — YALNIZCA ana sayfa hero'su. Araç sayfalarının h1'i
+     step-4'te kalır; bir hesap makinesinin başlığı 104 piksel olmamalı. */
+  --step-5: clamp(3rem,1.5rem + 7vw,6.5rem);
+  /* Bölüm ritmi: boşluk artık AYIRICI, o yüzden cesur. */
+  --bolum: clamp(4rem,2.4rem + 5vw,8rem);
+  /* --wrap BİLEREK 1080'de bırakıldı: genişletmek bütün araç sayfalarının
+     çalışan iki sütunlu düzenini etkilerdi. Editoryal his genişlikten değil,
+     tipografi + hairline + boşluktan geliyor. */
   --wrap: 1080px;
 }
 @media (prefers-color-scheme: dark) {
@@ -895,3 +925,211 @@ select { max-width: 100%; }
   :root[data-theme="auto"] .diyagram .dg-sayac-yazi { fill: #0b0d10; }
   :root[data-theme="auto"] .diyagram .dg-marka { color: #0b0d10; }
 }
+
+/* =========================================================================
+   EDİTORYAL KATMAN
+   -------------------------------------------------------------------------
+   Sitenin İÇERİĞİ zaten editoryal ve teknik (açık çekirdekler, 782 test,
+   metodoloji yazıları). GÖRSEL DİLİ ise "arkadaş canlısı SaaS" idi: yuvarlak
+   kart, yumuşak gölge, yaylanan hover, blurlu gradient bloblar, her yerde
+   pill. Sorun tasarımın kötü olması değil, içerik hakkında YANLIŞ ŞEY
+   SÖYLEMESİYDİ. Bu katman o farkı kapatıyor.
+
+   NEDEN TEK BLOK: aynı işi yapmanın iki yolu vardı — yukarıdaki 40 küsur
+   kuralı tek tek düzenlemek ya da hepsini sonda ezmek. İkincisi seçildi;
+   diff küçük, geri alması tek parça ve mevcut kuralların gerekçe yorumları
+   yerinde kalıyor.
+
+   KORUNANLAR: sıcak kâğıt zemin, yeşil marka, logo işareti, tema anahtarı,
+   4 aksan paleti, dark mode, erişilebilirlik katmanı, araç sayfası düzeni.
+   ========================================================================= */
+
+/* ---- 1. Tipografi: başlık bir arayüz etiketi değil, bir ifade ---- */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; }
+/* Optik boyutlandırma: harf büyüdükçe aralık ve satır arası SIKILAŞIR.
+   Eskiden her boyutta sabit -.02em vardı; 64 piksellik başlık 16 piksellik
+   gövdeyle aynı aralığı kullanıyordu ve büyütülmüş arayüz yazısı gibi
+   duruyordu. */
+h1 { letter-spacing: -.035em; line-height: 1; text-wrap: balance; }
+h2 { letter-spacing: -.03em; line-height: 1.06; text-wrap: balance; }
+h3 { letter-spacing: -.015em; line-height: 1.25; }
+.hero-copy h1 {
+  font-size: var(--step-5); max-width: 15ch;
+  letter-spacing: -.045em; line-height: .94; margin-bottom: .35em;
+}
+
+/* ---- 2. Mono metadata katmanı ----
+   Sitenin GERÇEK verileri artık tasarımın parçası. Uydurma etiket yok:
+   araç sayısı, test sayısı, lisans, kategori — hepsi zaten vardı, sadece
+   düz cümlenin içinde saklıydı. */
+.eyebrow, .sec-no, .hero-spec, .card-badges span, .project-links,
+.breadcrumb, .method-meta dt, .hq-yeni em, .ed-kicker, .chip, .mono-link {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: .72rem;
+  font-weight: 500;
+}
+.eyebrow { color: var(--text-muted); margin-bottom: 1.4rem; }
+.project-links { letter-spacing: .08em; }
+.sec-no { color: var(--text-muted); margin: 0 0 1rem; }
+
+/* ---- 3. Bölüm ritmi: ayırıcı artık zemin değil, boşluk ve hairline ---- */
+section { padding: var(--bolum) 0; }
+.projects, .contact, .articles, .calc, .content, .related {
+  border-top: 1px solid var(--rule);
+}
+/* Renkli bantlar kalktı: bölümü zeminle ayırmak, boşluğun yerine geçen
+   zayıf bir araçtır. */
+.about, .faq { background: none; border-block: 1px solid var(--rule); }
+.section-head { max-width: 62ch; margin-bottom: 2.6rem; }
+/* Başlık üstündeki 34 piksellik yeşil çizginin yerini mono bölüm indeksi
+   aldı; ikisi birden görsel gürültü olurdu. */
+.section-head > h2:first-child::before,
+.about > .wrap > h2:first-child::before,
+.contact > .wrap > h2:first-child::before { display: none; }
+.content .prose h2, .faq .prose > h2 { border-top: 0; padding-top: 0; }
+
+/* ---- 4. Kart dili: gölge ve zıplama yerine kural çizgisi ---- */
+.project-card {
+  border-color: var(--rule); box-shadow: none;
+  transition: background .16s ease-out, border-color .16s ease-out;
+}
+/* Yaylanan kalkış oyuncu okunur, premium değil. Yerine sakin bir zemin
+   kayması ve kenarın koyulaşması. */
+.project-card:hover {
+  transform: none; box-shadow: none;
+  background: var(--surface-2);
+  border-color: color-mix(in srgb, var(--text) 40%, transparent);
+}
+.project-card::after { height: 1px; }
+.project-card, .panel, .live-card { box-shadow: none; }
+.panel:focus-within, .live-card:hover { box-shadow: none; }
+/* Koyu temadaki yeşil neon hale kaldırıldı: yapay zekâ girişimi dili,
+   editoryal dille doğrudan çelişiyordu. */
+:root[data-theme="dark"] { --shadow: none; }
+:root[data-theme="dark"] .project-card,
+:root[data-theme="dark"] .panel,
+:root[data-theme="dark"] .live-card { box-shadow: none; }
+:root[data-theme="dark"] .project-card:hover { box-shadow: none; }
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] { --shadow: none; }
+  :root[data-theme="auto"] .project-card,
+  :root[data-theme="auto"] .panel,
+  :root[data-theme="auto"] .live-card { box-shadow: none; }
+}
+.karo { border-radius: 0; }
+/* Rozetler pill olmaktan çıkıp künye satırına döndü. */
+.card-badges { gap: 0; margin-bottom: 1rem; }
+.card-badges span {
+  background: none; border: 0; border-radius: 0; color: var(--text-muted);
+  border-inline-end: 1px solid var(--rule);
+  padding: 0 .7rem 0 0; margin-inline-end: .7rem;
+}
+.card-badges span::before { content: none; }
+.card-badges span:last-child { border-inline-end: 0; }
+
+/* ---- 5. Pill sıfırlama ---- */
+.badges li, .skills li, .social-list a, .theme-toggle,
+.tool-search, .palette-pop, .card-flag, .tech-tags li { border-radius: 2px; }
+.skills li:hover { transform: none; }
+.site-header.is-scrolled { box-shadow: none; }
+/* Filtreler: dolu yeşil pill sayfanın en yüksek kontrastlı öğesiydi —
+   bir filtrenin araçlardan baskın olması hiyerarşiyi ters çeviriyordu. */
+.chips { gap: .3rem 1.5rem; margin-bottom: 2rem; }
+.chip {
+  background: none; border: 0; border-radius: 0;
+  border-bottom: 2px solid transparent;
+  padding: .4rem .1rem; color: var(--text-muted); font-weight: 600;
+}
+.chip:hover { color: var(--text); border-bottom-color: var(--rule); }
+.chip[aria-pressed="true"] {
+  background: none; color: var(--text); font-weight: 700;
+  border-bottom-color: var(--brand);
+}
+
+/* ---- 6. Butonlar ---- */
+.btn { border-radius: 2px; padding: .8rem 1.4rem; font-weight: 650; }
+.btn-ghost { background: none; }
+.mono-link {
+  color: var(--text); text-decoration: none;
+  border-bottom: 1px solid var(--rule); padding-bottom: .25rem;
+  transition: border-color .16s ease-out, color .16s ease-out;
+}
+.mono-link:hover { color: var(--brand-strong); border-bottom-color: var(--brand); }
+
+/* ---- 7. Hero: karakter artık arka plandan değil, tipografiden ---- */
+.hero { padding: clamp(3.5rem,2rem + 7vw,8rem) 0 var(--bolum); }
+/* Blurlu gradient bloblar ve parçacık ağı kaldırıldı. Editoryal hero'da
+   arka plan boştur; boşluğun kendisi bir öğedir. bg-net kanvası bütün
+   sayfalarda script tarafından üretiliyor, o yüzden 100 dosya düzenlemek
+   yerine burada kapatıldı. */
+.hero-bg, #bg-net { display: none !important; }
+/* Başlıktaki isim artık akan gradyan değil, düz marka rengi: 100 pikselde
+   hareketli gradyan gösteriş olurdu. Yeşil burada SİNYAL. */
+.hero h1 .accent { background: none; color: var(--brand-strong); animation: none; }
+.hero-actions { margin-top: 2.2rem; gap: 1.8rem; align-items: center; }
+/* Künye şeridi: sitenin gerçek sayıları. Hiçbiri süs değil — araç sayısı
+   karttan, test sayısı paketlenen çekirdekten geliyor. "Takip yok" gibi bir
+   iddia BİLEREK yazılmadı: sayfada Google Analytics var, o cümle yanlış
+   olurdu. Yazılanların hepsi doğrulanabilir. */
+.hero-spec {
+  display: flex; flex-wrap: wrap; gap: .45rem 0;
+  margin: 2.4rem 0 0; padding-top: 1rem;
+  border-top: 1px solid var(--rule); color: var(--text-muted);
+}
+.hero-spec span {
+  padding-inline-end: 1.1rem; margin-inline-end: 1.1rem;
+  border-inline-end: 1px solid var(--rule);
+}
+.hero-spec span:last-child { padding-inline-end: 0; margin-inline-end: 0; border-inline-end: 0; }
+
+/* ---- 8. Renk disiplini: yeşil dekorasyon değil, sinyal ---- */
+.article-card, .legal-note, .sources {
+  border-left-width: 1px; border-left-color: var(--rule); background: none;
+}
+.formula { border-left: 1px solid var(--rule); }
+.method-card { background: none; border-color: var(--rule); }
+.method-portrait { border-radius: 2px; }
+
+/* ---- 9. Köşe sıfırlama (token kullanmayan yerler) ---- */
+.tool-logo, .about-figure img, .share-card img, pre.code-block,
+.method-card, .brand-mark { border-radius: 2px; }
+
+/* ---- 10. Hareket: hızlı, sessiz, geri bildirim odaklı ---- */
+.reveal, .hrk {
+  transform: translateY(8px);
+  transition: opacity .3s ease-out, transform .3s ease-out;
+}
+/* Süresiz dekoratif animasyonlar kaldırıldı. Marka adındaki renk dalgası
+   KORUNDU: kontrastı ölçülmüş bir marka imzası, dekorasyon değil. */
+.brand-mark { animation: none; box-shadow: none; }
+.about-figure::before { display: none; }
+.project-links a:first-child::after,
+.article-meta > a:first-child::after { transition: transform .16s ease-out; }
+/* İmleci takip eden yeşil hare: bloblarla aynı aileden dekoratif bir
+   arka plan efekti. Kaldırıldı — editoryal hero'da arka plan boştur.
+   ("Canlı" göstergesindeki nabız KORUNDU: o dekorasyon değil, verinin
+   gerçekten yenilendiğini söyleyen bir durum işareti.) */
+.cursor-glow { display: none !important; }
+/* live.css'teki "günün saatine göre hero tonu" katmanı da aynı aileden:
+   hero'nun üstüne pembe/şeftali bir yıkama koyuyordu. Bloblar gittikten
+   sonra tek başına kalan bu ton, temizlenmiş kompozisyonda kirli
+   görünüyordu. Zemin artık sadece kâğıt. */
+.hero::after { display: none !important; }
+
+/* ---- 11. Navigasyon: sistem etiketi gibi ---- */
+.site-nav a {
+  font-family: var(--font-mono); text-transform: uppercase;
+  letter-spacing: .09em; font-size: .7rem; font-weight: 500;
+}
+/* Öne çıkan sekme yeşil bir pill'di ve nabız atıyordu; başlıkta en yüksek
+   kontrastlı öğe bir gezinme bağlantısıydı. Artık vurgu renk + alt kural. */
+:root .site-nav a.nav-featured {
+  background: none; border: 0; border-radius: 0; padding: .3rem 0;
+  border-bottom: 2px solid var(--brand); font-weight: 600;
+}
+.site-nav a.nav-featured::before { display: none; }
+:root .site-header .theme-toggle,
+:root .site-header .palette > button,
+:root .site-header .palette-pop { border-radius: 2px; }
