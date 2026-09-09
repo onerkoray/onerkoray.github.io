@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vergi Kaması Hesaplama 2026 | Koray Öner</title>
+  <meta name="description" content="İşveren maliyetinin ne kadarı vergi ve prim? Ortalama ve marjinal kamayı ücret ekseni boyunca hesaplar, zirveyi bulur ve kapalı formla doğrular.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/vergi-kamasi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Vergi Kaması Hesaplama">
+  <meta property="og:description" content="Ücret ekseni boyunca ortalama ve marjinal vergi kaması. Zirve prime esas kazanç tavanında; sonrasında düşüyor.">
+  <meta property="og:url" content="https://korayoner.dev/vergi-kamasi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/vergi-kamasi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vergi Kaması Hesaplama">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vergi Kaması Hesaplama">
+  <meta name="twitter:description" content="İşveren maliyetinin ne kadarı vergi ve prim? Ortalama ve marjinal kama, kapalı formla doğrulanmış.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/vergi-kamasi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=6a56fdae">
+  <link rel="stylesheet" href="style.css?v=bc050bf0">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/vergi-kamasi-hesaplama/#app",
+        "name": "Vergi Kaması Hesaplama",
+        "url": "https://korayoner.dev/vergi-kamasi-hesaplama/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "featureList": "Ortalama ve marjinal vergi kaması, ücret ekseni boyunca eğri, prime esas kazanç tavanında zirve tespiti, yükün bileşenlerine ayrıştırılması, asgari ücret istisnasının oransal erimesi, dilim geçiş ayları, beş puanlık işveren indirimi senaryosu, kapalı form ile bağımsız doğrulama",
+        "description": "Bir çalışanın işverene maliyeti ile eline geçen net arasındaki farkı ücret ekseni boyunca hesaplar. Ortalama kama prime esas kazanç tavanında zirve yapar ve sonrasında düşer."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Vergi Kaması Hesaplama", "item": "https://korayoner.dev/vergi-kamasi-hesaplama/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Vergi kaması nedir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Bir çalışanın işverene toplam maliyeti ile eline geçen net ücret arasındaki farkın toplam maliyete oranıdır. İşveren sigorta payları, işçi sigorta payları, gelir vergisi ve damga vergisi bu farkı oluşturur. Uluslararası karşılaştırmalarda kullanılan tanım budur." }
+          },
+          {
+            "@type": "Question",
+            "name": "Ortalama kama ile marjinal kama arasındaki fark nedir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Ortalama kama mevcut ücret düzeyindeki toplam yükü gösterir. Marjinal kama ise işverenin ödediği ilave bir liranın ne kadarının vergi ve prim olarak alındığını gösterir. Zam, terfi ve fazla çalışma kararlarını etkileyen büyüklük marjinal olandır ve ortalamadan belirgin biçimde yüksektir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Kama neden yüksek ücrette düşüyor?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Prime esas kazancın bir üst sınırı vardır. Bu tavanın üstündeki kazançtan ne işçi ne işveren sigorta primi kesilir. Tavanın üstündeki her ilave lira yalnızca gelir vergisi ve damga vergisine tabi olduğu için ortalama yük aşağı çekilir. Araç zirvenin tam olarak tavanda oluştuğunu hesaplayarak gösterir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Kapalı form doğrulaması ne işe yarar?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Marjinal oran mevzuattan doğrudan türetilebilir: tavan altında işçi primi artı kalanın vergi dilimiyle çarpımı artı damga vergisi. Araç bir yandan bordro motorundan sayısal türev alarak ölçer, bir yandan bu formülle türetir ve ikisini karşılaştırır. Örtüşmüyorsa hesapta bir hata var demektir; bu kontrol ekranda görünür." }
+          },
+          {
+            "@type": "Question",
+            "name": "Beş puanlık indirim hesaba katılıyor mu?",
+            "acceptedAnswer": { "@type": "Answer", "text": "İsteğe bağlı olarak katılıyor. Beş puanlık işveren prim indirimi işaretlendiğinde işveren yükü ve dolayısıyla kama düşer. İndirim sabit puanlı olduğu için oransal etkisi düşük ücretlerde daha büyüktür; araç bunu da gösterir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Hesap hangi verilere dayanıyor?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yalnızca sitenin kendi açık kaynaklı bordro motoruna ve seçtiğiniz yılın mevzuat parametrelerine. Başka bir kurumun yayımladığı kama değerleri buraya kopyalanmamıştır; uluslararası kaynaklardan yalnızca tanım alınmıştır." }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="metodoloji/">Metodoloji</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Vergi Kaması Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <h1>Vergi kaması hesaplama</h1>
+        <p class="hero-alt">
+          İşveren 100 lira harcadığında çalışanın eline kaç lira geçiyor? Bu araç
+          tek bir ücreti değil, <strong>ücret ekseninin tamamını</strong> hesaplar:
+          ortalama ve marjinal kamayı çıkarır, <strong>zirvenin prime esas kazanç
+          tavanında</strong> oluştuğunu gösterir ve sonucu <strong>kapalı formla
+          bağımsız olarak doğrular</strong>.
+        </p>
+        <p class="muted kunye-satiri">
+          <a href="metodoloji/">39 testle doğrulanıyor</a> ·
+          Hesap tarayıcınızda çalışır, veri gönderilmez ·
+          Sayılar <a href="../bordro/">bordro motorundan</a> gelir
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc">
+      <div class="wrap">
+        <div class="bi-duzen">
+          <div class="bi-form">
+            <h2>Ücret ekseni</h2>
+            <div class="alan-grid">
+              <label>Yıl
+                <select id="k-yil"></select>
+                <small>Parametreler bordro motorundan gelir.</small>
+              </label>
+              <label>Alt sınır (aylık brüt ₺)
+                <input type="text" inputmode="decimal" id="k-alt" value="33.030">
+              </label>
+              <label>Üst sınır (aylık brüt ₺)
+                <input type="text" inputmode="decimal" id="k-ust" value="600.000">
+                <small>Zirveyi görmek için SGK tavanının üstüne çıkın.</small>
+              </label>
+              <label>Nokta sayısı
+                <input type="text" inputmode="numeric" id="k-adet" value="50">
+              </label>
+            </div>
+            <div class="kutu-grid">
+              <label><input type="checkbox" id="k-tesvik">
+                <span>Beş puanlık işveren prim indirimi uygulansın (5510 m.81/ı)</span></label>
+            </div>
+
+            <h2>İncelenen nokta</h2>
+            <div class="alan-grid">
+              <label>Aylık brüt ücret (₺)
+                <input type="text" inputmode="decimal" id="k-nokta" value="100.000">
+                <small>Bu ücretin ayrıntılı analizi sağda.</small>
+              </label>
+            </div>
+            <p class="dogrulama" id="k-dogrulama"></p>
+          </div>
+
+          <div class="bi-sonuc">
+            <div class="zirve-kart">
+              <p class="zirve-etiket">Kamanın zirvesi</p>
+              <p class="zirve-deger" id="k-zirve">—</p>
+              <p class="zirve-alt" id="k-zirve-alt">—</p>
+            </div>
+
+            <dl class="ozet-liste">
+              <div class="vurgu"><dt>Ortalama kama</dt><dd id="k-n-kama">—</dd></div>
+              <div><dt>Çalışan bakışı (brüt tabanlı)</dt><dd id="k-n-calisan">—</dd></div>
+              <div><dt>Marjinal kama</dt><dd id="k-n-marj-kama">—</dd></div>
+              <div><dt>Marjinal oran (çalışan)</dt><dd id="k-n-marj-calisan">—</dd></div>
+              <div><dt>İstisnanın gelire oranı</dt><dd id="k-n-istisna">—</dd></div>
+              <div><dt>Yıllık işveren maliyeti</dt><dd id="k-n-maliyet">—</dd></div>
+              <div><dt>Yıllık net</dt><dd id="k-n-net">—</dd></div>
+              <div><dt>Dilim geçiş ayları</dt><dd id="k-n-gecis">—</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <h3>Ücret ekseni boyunca kama</h3>
+        <p class="muted">
+          Düz çizgi <strong>ortalama</strong>, kesikli çizgi <strong>marjinal</strong> kama.
+          Dikey kesikli çizgi prime esas kazanç tavanı. Ortalama kama tavana kadar yükselir,
+          orada zirve yapar ve sonra düşer — çünkü tavanın üstündeki kazançtan prim alınmaz.
+        </p>
+        <div class="grafik-kap">
+          <svg id="k-grafik" viewBox="0 0 760 320" role="img" aria-labelledby="k-grafik-baslik"></svg>
+          <p id="k-grafik-baslik" class="visually-hidden">
+            Ücret düzeyine göre ortalama ve marjinal vergi kaması; sayısal karşılığı aşağıdaki tabloda.
+          </p>
+        </div>
+        <p class="lejant">
+          <span class="l-ort"><i></i>Ortalama kama</span>
+          <span class="l-marj"><i></i>Marjinal kama</span>
+        </p>
+
+        <div class="table-scroll">
+          <table class="veri-tablo">
+            <caption>Ücret düzeyine göre kama ve istisna oranı</caption>
+            <thead>
+              <tr>
+                <th scope="col">Aylık brüt</th><th scope="col">Ortalama kama</th>
+                <th scope="col">Marjinal kama</th><th scope="col">Marjinal (çalışan)</th>
+                <th scope="col">İstisna / gelir</th>
+              </tr>
+            </thead>
+            <tbody id="k-tablo"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="nasil" class="prose-section">
+      <div class="wrap prose">
+        <h2>Nasıl hesaplanır</h2>
+
+        <h3>Tanım</h3>
+        <p class="formula">kama = (işveren maliyeti − net ücret) ÷ işveren maliyeti</p>
+        <p>
+          Farkı dört kalem oluşturur: <strong>işveren sigorta payları</strong>,
+          <strong>işçi sigorta payları</strong>, <strong>gelir vergisi</strong> ve
+          <strong>damga vergisi</strong>. Araç bu dördünü ayrı ayrı da hesaplar; toplamları
+          kamayı kuruşu kuruşuna vermek zorundadır ve bir test bunu sınar.
+        </p>
+
+        <h3>Ortalama mı, marjinal mi?</h3>
+        <p>
+          <strong>Ortalama kama</strong> mevcut yükü gösterir. <strong>Marjinal kama</strong>
+          ise ilave bir liranın ne kadarının alındığını — yani <em>teşviki</em>. Zam ve terfi
+          kararlarını etkileyen büyüklük marjinal olandır ve ortalamadan belirgin biçimde
+          yüksektir. Araç marjinali aylık brütü <strong>1.000 TL artırıp</strong> yıllık net
+          ve maliyet farkını alarak ölçer.
+        </p>
+
+        <h3>Zirve neden tavanda?</h3>
+        <p>
+          Sigorta primi ücretin tamamından değil <strong>prime esas kazanç</strong>tan alınır
+          ve bunun bir <strong>tavanı</strong> vardır (5510 sayılı Kanun m.82). Tavanın
+          üstündeki kazançtan ne işçi ne işveren primi kesilir; o bölgede ilave lira yalnızca
+          vergilenir. Bu yüzden ortalama yük tavanda zirve yapıp <strong>düşer</strong> ve
+          marjinal kama tavanda yaklaşık <strong>20 puan kırılır</strong>.
+        </p>
+        <p>
+          Aynı sebeple tavanın üstünde <strong>marjinal kama ile marjinal çalışan oranı
+          eşitlenir</strong>: ilave bir brüt lira işverene tam olarak bir liraya mal olur.
+          Bu, hesabın kendi içinde tutarlılık kontrolüdür.
+        </p>
+
+        <h3>Kapalı form doğrulaması</h3>
+        <p>
+          Marjinal oran mevzuattan doğrudan da türetilebilir:
+        </p>
+        <p class="formula">tavan altı: prim + (1 − prim) × dilim + damga<br>tavan üstü: dilim + damga</p>
+        <p>
+          Araç bir yandan motordan <em>ölçer</em>, bir yandan bu formülle <em>türetir</em> ve
+          ikisini ekranda karşılaştırır. İki yol bağımsızdır; örtüşmüyorsa ya motorda ya
+          çekirdekte hata var demektir. Bu, sonucun uydurulmuş bir eğri değil mevzuatın
+          aritmetik sonucu olduğunun kanıtıdır.
+        </p>
+
+        <h3>Neyi hesaplamıyoruz</h3>
+        <ul>
+          <li><strong>Başka kurumların yayımladığı kama değerleri kopyalanmadı.</strong> Uluslararası kaynaklardan yalnızca <em>tanım</em> alındı; bütün sayılar bu sitenin motorundan üretiliyor.</li>
+          <li><strong>Teşvikler sınırlı.</strong> Yalnızca beş puanlık işveren indirimi seçenekli olarak modellendi; diğer istihdam teşvikleri kapsam dışı.</li>
+          <li><strong>Tek ve düz senaryo.</strong> Tam yıl, sabit brüt, ikramiye ve fazla mesai yok; engelli indirimi ve özel istisnalar hariç.</li>
+          <li><strong>Sigorta primi vergi değildir.</strong> Karşılığında emeklilik, sağlık ve işsizlik hakkı doğar. Kama tanımı toplam zorunlu yükü ölçtüğü için primi içerir; primin karşılığı ayrıca değerlendirilmelidir.</li>
+          <li><strong>Parametreye bağlı.</strong> Sonuçlar seçilen yılın parametreleriyle geçerlidir.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="sss" class="prose-section alt">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <details><summary>Vergi kaması nedir?</summary>
+          <p>İşveren maliyeti ile net ücret arasındaki farkın toplam maliyete oranı. İşveren ve işçi primleri, gelir vergisi ve damga vergisini kapsar.</p></details>
+        <details><summary>Ortalama ile marjinal kama farkı nedir?</summary>
+          <p>Ortalama mevcut yükü, marjinal ise ilave bir liranın ne kadarının alındığını gösterir. Zam kararlarını marjinal olan etkiler ve ortalamadan yüksektir.</p></details>
+        <details><summary>Kama neden yüksek ücrette düşüyor?</summary>
+          <p>Prime esas kazancın tavanı var; tavanın üstünden prim kesilmiyor. İlave lira yalnızca vergilendiği için ortalama yük aşağı çekiliyor.</p></details>
+        <details><summary>Kapalı form doğrulaması ne işe yarar?</summary>
+          <p>Marjinal oranı mevzuattan bağımsız olarak türetip ölçümle karşılaştırır. Örtüşmezse hesapta hata var demektir; kontrol ekranda görünür.</p></details>
+        <details><summary>Beş puanlık indirim hesaba katılıyor mu?</summary>
+          <p>İsteğe bağlı. İşaretlendiğinde işveren yükü ve kama düşer; etkisi düşük ücretlerde oransal olarak daha büyüktür.</p></details>
+        <details><summary>Veriler nereden geliyor?</summary>
+          <p>Yalnızca sitenin açık kaynaklı bordro motorundan ve seçilen yılın mevzuat parametrelerinden. Dışarıdan kama değeri kopyalanmadı.</p></details>
+      </div>
+    </section>
+
+    <section class="prose-section">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="metodoloji/">Vergi kaması metodolojisi</a> — tanım, ölçüm, doğrulama ve sınırlar</li>
+          <li><a href="../makaleler/vergi-kamasi-ucretin-gercek-yuku/">Vergi kaması: ücretin gerçek yükü</a> — bu aracın bulgularının anlatımı (makale)</li>
+          <li><a href="../isveren-maliyeti-hesaplama/">İşveren Maliyeti Hesaplama</a> — tek bir ücretin işverene maliyeti</li>
+          <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — 12 aylık bordro dökümü</li>
+          <li><a href="../makaleler/zam-net-maasa-ne-kadar-yansir/">Zam nete ne kadar yansır?</a> — marjinal oranın pazarlıktaki karşılığı</li>
+          <li><a href="../ucret-kar-payi-optimizasyonu/">Ücret–Kâr Payı Optimizasyonu</a> — şirket ortağı için dağılım</li>
+          <li><a href="../bordro/">Bordro Motoru</a> — parametreler ve hesap yöntemi</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; mali müşavirlik yerine geçmez.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js" defer></script>
+  <script src="../bordro/motor.js" defer></script>
+  <script src="hesap.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+</body>
+</html>

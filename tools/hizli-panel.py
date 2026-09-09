@@ -62,6 +62,10 @@ KISA = {
     "isveren-maliyeti-hesaplama": "İşveren Maliyeti Hesaplama",
     "calisma-bicimi-karsilastirma": "Çalışma Biçimi Karşılaştırma",
     "serbest-meslek-makbuzu-hesaplama": "Serbest Meslek Makbuzu",
+    "vergi-kamasi-hesaplama": "Vergi Kaması Hesaplama",
+    "vergi-kamasi-hesaplama/metodoloji": "Vergi kaması metodolojisi",
+    "ucret-kar-payi-optimizasyonu": "Ücret–Kâr Payı Optimizasyonu",
+    "ucret-kar-payi-optimizasyonu/metodoloji": "Ücret–kâr payı metodolojisi",
 }
 
 

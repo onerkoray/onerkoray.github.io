@@ -52,6 +52,16 @@ jobs:
       - name: FIRE simülasyon testleri
         run: node finansal-ozgurluk-hesaplama/test.js
 
+      - name: Vergi kaması testleri
+        # Marjinal oran hem motordan ölçülüyor hem mevzuattan türetiliyor;
+        # ikisi ayrışırsa hata sayfada değil burada görünmeli.
+        run: node vergi-kamasi-hesaplama/test.js
+
+      - name: Ücret–kâr payı optimizasyonu testleri
+        # Bir varsayılan değerin çekirdektekinin tersine kurulması yıllık
+        # nette 14.467 TL sapma üretmişti; onu yakalayan test burada.
+        run: node ucret-kar-payi-optimizasyonu/test.js
+
       - name: Zam çekirdeği testleri
         run: node zam-hesaplama/test.js
 

@@ -184,6 +184,22 @@ SPEC = {
    "%50 brüt zam nete %43,8 yansıyor. Net %30 artış için brütte %34 istemek gerekiyor.",
    ["Net karşılık", "Pazarlık"], "bordro"),
 
+ "vergi-kamasi-metodoloji": ("vergi-kamasi-hesaplama/metodoloji", "Vergi Kaması", "Metodolojisi",
+   "OECD tanımı, marjinal oranın kapalı formdan türetilmesi ve ölçümle karşılaştırılması. 39 test.",
+   ["39 test", "MIT"], "bordro"),
+
+ "vergi-kamasi-hesaplama": ("vergi-kamasi-hesaplama", "Vergi Kaması", "Hesaplama",
+   "İşveren maliyeti ile net ücret arasındaki fark. Zirve 100.000 TL'de değil, SGK tavanında.",
+   ["OECD tanımı", "Marjinal oran"], "bordro"),
+
+ "ucret-kar-payi-metodoloji": ("ucret-kar-payi-optimizasyonu/metodoloji", "Ücret–Kâr Payı", "Metodolojisi",
+   "Beyan eşiğindeki süreksizlik, ikiye bölmeyle çözüm ve çekirdek tutarlılığı. 34 test.",
+   ["34 test", "MIT"], "finans"),
+
+ "ucret-kar-payi-optimizasyonu": ("ucret-kar-payi-optimizasyonu", "Ücret–Kâr Payı", "Optimizasyonu",
+   "Ortak kazancı ücret olarak mı, kâr payı olarak mı almalı? Beyan eşiğini geçmek netinizi düşürür.",
+   ["Optimum ücret", "Beyan eşiği"], "finans"),
+
  "emniyet-metodoloji": ("finansal-emniyet-testi/metodoloji", "Emniyet Testi", "Metodolojisi",
    "Nakit tabani, sok senaryolari, guvenli karar tutari ve 108 test.",
    ["108 test", "MIT"], "finans"),

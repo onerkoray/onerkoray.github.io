@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vergi Kaması Metodolojisi | Koray Öner</title>
+  <meta name="description" content="Vergi kaması nasıl ölçüldü? OECD tanımı, marjinal oranın kapalı formdan türetilmesi, SGK tavanı zirvesi ve 39 test.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/vergi-kamasi-hesaplama/metodoloji/">
+
+  <link rel="icon" href="../../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=4" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Vergi Kaması Metodolojisi">
+  <meta property="og:description" content="Kama tanımı, marjinal oranın mevzuattan türetilmesi ve ölçümle karşılaştırılması. Açık defter.">
+  <meta property="og:url" content="https://korayoner.dev/vergi-kamasi-hesaplama/metodoloji/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/vergi-kamasi-metodoloji-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vergi Kaması Metodolojisi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vergi Kaması Metodolojisi">
+  <meta name="twitter:description" content="Kama tanımı, marjinal oranın mevzuattan türetilmesi ve ölçümle karşılaştırılması. Açık defter.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/vergi-kamasi-metodoloji-koray-oner.png">
+
+  <link rel="stylesheet" href="../../style.css?v=6a56fdae">
+  <link rel="stylesheet" href="../style.css?v=bc050bf0">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://korayoner.dev/vergi-kamasi-hesaplama/metodoloji/#article",
+        "headline": "Vergi kaması metodolojisi",
+        "url": "https://korayoner.dev/vergi-kamasi-hesaplama/metodoloji/",
+        "inLanguage": "tr",
+        "datePublished": "2026-09-09",
+        "dateModified": "2026-09-09",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "about": { "@id": "https://korayoner.dev/vergi-kamasi-hesaplama/#app" },
+        "description": "Vergi kamasının yöntemi: OECD Taxing Wages tanımının alınması, yıllık taban üzerinden ortalama ve marjinal ölçüm, marjinal oranın mevzuattan kapalı formla türetilip ölçümle karşılaştırılması, SGK tavanının ortalama kamada zirve yaratması ve asgari ücret istisnasının oransal erimesi."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Vergi Kaması Hesaplama", "item": "https://korayoner.dev/vergi-kamasi-hesaplama/" },
+          { "@type": "ListItem", "position": 3, "name": "Metodoloji", "item": "https://korayoner.dev/vergi-kamasi-hesaplama/metodoloji/" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+  <noscript>
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="../">Aracı aç</a></li>
+          <li><a href="#dogrulama">Doğrulama</a></li>
+          <li><a href="#testler">Testler</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Vergi Kaması Hesaplama</a> <span aria-hidden="true">&#8250;</span> Metodoloji
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Açık defter · MIT lisanslı · 39 test</p>
+        <h1 id="hero-title">Vergi kaması metodolojisi</h1>
+        <p class="lede">
+          Bu araç, OECD'nin <em>Taxing Wages</em> çalışmasındaki vergi kaması
+          <strong>tanımını</strong> alır; hiçbir kurumun yayımladığı <strong>veriyi</strong>
+          almaz. Bütün sayılar sitenin kendi bordro motorundan üretilir ve marjinal oran
+          mevzuattan bağımsız olarak da türetilip ölçümle karşılaştırılır —
+          <strong>ekranda, gizlenmeden.</strong>
+        </p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../../hakkimda/" rel="author">Koray Öner</a> · Güncelleme: 9 Eylül 2026 · <a href="../">Aracı aç</a></p>
+
+        <h2 id="tanim">1. Tanım</h2>
+        <p class="formula">kama = (işveren maliyeti − net ücret) ÷ işveren maliyeti</p>
+        <p>
+          Vergi kaması, bir çalışanın işverene toplam maliyeti ile eline geçen net ücret
+          arasındaki farkın toplam maliyete oranıdır. Uluslararası karşılaştırmalarda
+          (OECD, <em>Taxing Wages</em>) kullanılan tanım budur. Farkı dört kalem oluşturur:
+          işveren sigorta payları, işçi sigorta payları, gelir vergisi ve damga vergisi.
+        </p>
+        <p>
+          <strong>Yalnızca tanım alındı, veri alınmadı.</strong> Türkiye için OECD'nin ya da
+          başka bir kurumun yayımladığı kama değerleri bu araca kopyalanmamıştır. Bütün
+          sayılar sitenin kendi bordro motorundan, seçilen yılın mevzuat parametreleriyle
+          üretilir. Doğrulayamadığım bir tabloyu yayımlamaktansa hesaplamayı tercih ettim.
+        </p>
+
+        <h2 id="olcum">2. Ölçüm</h2>
+        <h3>Ortalama ve marjinal</h3>
+        <p>
+          <strong>Ortalama kama</strong> mevcut ücret düzeyindeki toplam yükü gösterir.
+          <strong>Marjinal kama</strong> ise ilave bir liranın ne kadarının alındığını —
+          yani <em>teşviki</em>. Zam, terfi ve fazla çalışma kararlarını etkileyen büyüklük
+          marjinal olandır ve ortalamadan belirgin biçimde yüksektir.
+        </p>
+        <p>
+          Marjinal, aylık brüt ücret <strong>1.000 TL</strong> artırılıp yıllık net ve
+          maliyet farkı alınarak ölçülür. Adımın küçültülmesi daha "doğru" değildir:
+          kümülatif matrah yüzünden fonksiyon parçalı doğrusaldır ve çok küçük adım dilim
+          geçişinin tam üstünde gürültü üretir. 1.000 TL, bandın içini ölçecek kadar küçük,
+          gürültüden kaçacak kadar büyüktür.
+        </p>
+
+        <h3>Yıllık taban</h3>
+        <p>
+          Bütün ölçüler <strong>yıllık toplamlar</strong> üzerinden kurulur. Gelir vergisi
+          kümülatif matrah üzerinden alındığı için tek bir ayın hesabı yanıltır: aynı ücretin
+          ocak ayındaki kaması ile aralık ayındaki kaması farklıdır. Yıllık toplam, bu
+          mevsimselliği ortadan kaldırır.
+        </p>
+
+        <h2 id="dogrulama">3. Kapalı form doğrulaması</h2>
+        <p>
+          Bir sayısal sonucun güvenilirliği, bağımsız bir yoldan doğrulanabilmesine bağlıdır.
+          Marjinal oran mevzuattan doğrudan türetilebilir. Tavanın <em>altında</em> ilave bir
+          liralık brütten önce işçi primi kesilir; kalan kısım gelir vergisi matrahına girer;
+          damga brütün tamamından alınır:
+        </p>
+        <p class="formula">tavan altı: prim + (1 − prim) × dilim + damga<br>tavan üstü: dilim + damga</p>
+        <p>
+          Araç bir yandan motordan <strong>ölçer</strong>, bir yandan bu formülle
+          <strong>türetir</strong> ve ikisini <em>ekranda</em> karşılaştırır. İki yol
+          bağımsızdır; örtüşmüyorsa ya motorda ya bu çekirdekte hata var demektir. Bu kontrol
+          gizlenmedi, aracın yüzüne konuldu.
+        </p>
+        <div class="table-scroll">
+          <table class="veri-tablo">
+            <caption>2026 parametreleriyle türetme ve ölçüm</caption>
+            <thead>
+              <tr><th scope="col">Vergi dilimi</th><th scope="col">Türetilen (çalışan)</th><th scope="col">Ölçülen</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">%20</th><td>%32,76</td><td>%32,8</td></tr>
+              <tr><th scope="row">%27</th><td>%38,71</td><td>%38,7</td></tr>
+              <tr><th scope="row">%35</th><td>%45,51</td><td>%45,5</td></tr>
+              <tr><th scope="row">%35 (tavan üstü)</th><td>%35,76</td><td>%35,8</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="tavan">4. Zirve neden tavanda?</h2>
+        <p>
+          Sigorta primi ücretin tamamından değil <strong>prime esas kazanç</strong>tan alınır
+          ve bunun bir <strong>tavanı</strong> vardır (5510 sayılı Kanun m.82). Tavanın
+          üstündeki kazançtan ne işçi ne işveren primi kesilir. O bölgede ilave lira yalnızca
+          vergilenir; dolayısıyla ortalama yük aşağı çekilir.
+        </p>
+        <p>
+          Sonuç, sistemin tavana kadar artan oranlı davranıp <strong>tavandan sonra ortalama
+          yükün azalmasıdır</strong>. Araç zirveyi taramaya ayrıca ekleyerek bulur: ızgara
+          tavanı ıskalarsa eğrinin tepesi kaçardı.
+        </p>
+        <p>
+          Aynı mekanizmanın ikinci sonucu: tavanın üstünde <strong>marjinal kama ile marjinal
+          çalışan oranı eşitlenir</strong>, çünkü ilave bir brüt lira işverene tam olarak bir
+          liraya mal olur. Bu eşitlik modelin kendi içinde tutarlılık kontrolüdür ve testle
+          korunur.
+        </p>
+
+        <h2 id="istisna">5. Asgari ücret istisnasının oransal erimesi</h2>
+        <p>
+          Ortalama kamanın düşük ve orta gelirlerde hızla yükselmesinin başlıca sebebi vergi
+          tarifesi değil, <strong>asgari ücret istisnası</strong>dır (GVK m.32). İstisna
+          <strong>sabit tutarlıdır</strong> ve her ücret düzeyine aynı mutlak tutarda
+          uygulanır; dolayısıyla gelire oranı gelir yükseldikçe düşer. Araç bu oranı ayrı bir
+          sütun olarak gösterir çünkü eğrinin yükselen kısmını açıklayan şey odur.
+        </p>
+
+        <h2 id="tesvik">6. Beş puanlık indirim</h2>
+        <p>
+          5510 sayılı Kanun m.81/ı kapsamındaki beş puanlık işveren prim indirimi
+          <strong>seçenekli</strong> olarak modellendi. İşaretlendiğinde işveren yükü ve
+          dolayısıyla kama düşer; net ücret <em>değişmez</em> çünkü indirim işveren
+          tarafındadır. İndirim sabit puanlı olduğu için oransal etkisi düşük ücretlerde daha
+          büyüktür — yani indirimin kendisi de düşük ücrete daha çok yarar.
+        </p>
+
+        <h2 id="testler">7. Testler</h2>
+        <p>
+          39 test var ve hepsi geçiyor. Ağırlık merkezi, ölçümü bağımsız bir yoldan
+          doğrulamaktır:
+        </p>
+        <ul>
+          <li><strong>Bileşenler toplamı kamayı kuruşu kuruşuna vermeli.</strong> Altı ayrı ücret düzeyinde sınanıyor; tutmazsa bir kalem kayıp ya da iki kez sayılmış demektir.</li>
+          <li><strong>Kapalı form ile ölçüm örtüşmeli.</strong> Üç vergi dilimi ve tavan üstü için ayrı ayrı.</li>
+          <li><strong>Tavan üstünde iki marjinal ölçü eşit olmalı.</strong></li>
+          <li><strong>Zirve tam tavanda olmalı</strong> ve sonrasında düşüş görülmeli — aracın ana iddiası test olarak yazıldı.</li>
+          <li><strong>İstisna oranı monoton azalmalı.</strong></li>
+          <li><strong>Teşvik neti değiştirmemeli</strong>, yalnızca işveren tarafını.</li>
+          <li>Sıfır ücrette NaN üretilmemeli; eğri sınırları kırpılmalı.</li>
+        </ul>
+
+        <h2 id="sinirlar">8. Sınırlar</h2>
+        <ul>
+          <li><strong>Sigorta primi vergi değildir.</strong> Karşılığında emeklilik, sağlık ve işsizlik hakkı doğar. Kama tanımı toplam <em>zorunlu yükü</em> ölçtüğü için primi içerir; primin karşılığı ayrıca değerlendirilmelidir.</li>
+          <li><strong>Teşvikler sınırlı.</strong> Yalnızca beş puanlık indirim modellendi; diğer istihdam teşvikleri kapsam dışı. Bu anlamda değerler bir <em>üst sınır</em>dır.</li>
+          <li><strong>Tek ve düz senaryo.</strong> Tam yıl, sabit brüt, ikramiye ve fazla mesai yok; engelli indirimi ve özel istisnalar hariç.</li>
+          <li><strong>Sayısal türev.</strong> Dilim geçişinin tam üstündeki noktalarda gerçek marjinal oran iki bandın arasında kalabilir.</li>
+          <li><strong>Yalnızca ücret geliri.</strong> Serbest meslek, ticari kazanç ve kâr payı farklı rejimlere tabidir.</li>
+          <li><strong>Normatif iddia yok.</strong> Tavan uygulaması, primin karşılığında doğan hakların da tavanlı olmasıyla gerekçelendirilir. Bu araç yalnızca ölçer.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanaklar</h2>
+          <ul>
+            <li>Vergi kaması tanımı (işveren maliyeti − net) ÷ işveren maliyeti — <a href="https://www.oecd.org/en/publications/taxing-wages-2025_b3a95829-en.html" rel="noopener">OECD, Taxing Wages</a>. <strong>Yalnızca tanım</strong> alındı; ülke değerleri alınmadı.</li>
+            <li>Gelir vergisi tarifesi ve kümülatif matrah — 193 sayılı Gelir Vergisi Kanunu m.103</li>
+            <li>Asgari ücret istisnası — GVK m.32</li>
+            <li>Prime esas kazanç tavanı — 5510 sayılı Kanun m.82</li>
+            <li>Beş puanlık işveren prim indirimi — 5510 sayılı Kanun m.81/ı</li>
+            <li>Damga vergisi — 488 sayılı Damga Vergisi Kanunu</li>
+            <li>Bordro hesabının kendisi — sitenin <a href="../../bordro/">Bordro Motoru</a>. Bu araçta ikinci bir bordro formülü yok.</li>
+            <li>Kaynak kodu ve testler — <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">açık kaynak çekirdek (MIT)</a></li>
+          </ul>
+          <p class="muted-note">
+            Bilgilendirme amaçlıdır; bağlayıcı teklif değildir. Bir bilgi güncelliğini
+            yitirdiyse <a href="../../iletisim/">bana bildirin</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili sayfalar</h2>
+        <ul>
+          <li><a href="../">Vergi Kaması Hesaplama</a> — aracın kendisi.</li>
+          <li><a href="../../makaleler/vergi-kamasi-ucretin-gercek-yuku/">Ücretin gerçek yükü</a> — bu ölçümün bulgularını anlatan makale.</li>
+          <li><a href="../../isveren-maliyeti-hesaplama/">İşveren Maliyeti Hesaplama</a> — kamanın paydası.</li>
+          <li><a href="../../maas-hesaplama/">Maaş Hesaplama</a> — kamanın payındaki net.</li>
+          <li><a href="../../zam-hesaplama/">Zam Hesaplama</a> — marjinal oranın günlük hayattaki karşılığı.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanaklar</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanaklar</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı teklif için mali müşavirinize danışın.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../../makaleler/">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>

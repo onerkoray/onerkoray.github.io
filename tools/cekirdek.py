@@ -59,6 +59,10 @@ DOSYALAR = [
     ("finansal-emniyet-testi/test.js",      "emniyet/test.js"),
     ("finansal-ozgurluk-hesaplama/hesap.js",  "fire/hesap.js"),
     ("finansal-ozgurluk-hesaplama/test.js",   "fire/test.js"),
+    ("vergi-kamasi-hesaplama/hesap.js",   "kama/hesap.js"),
+    ("vergi-kamasi-hesaplama/test.js",    "kama/test.js"),
+    ("ucret-kar-payi-optimizasyonu/hesap.js", "ucret-kar-payi/hesap.js"),
+    ("ucret-kar-payi-optimizasyonu/test.js",  "ucret-kar-payi/test.js"),
     ("zam-hesaplama/hesap.js",            "zam/hesap.js"),
     ("zam-hesaplama/test.js",             "zam/test.js"),
     ("birikim-hesaplama/hesap.js",        "birikim/hesap.js"),
@@ -79,6 +83,8 @@ YOL_DUZELTME = [
     ('require("../kredi-hesaplama/hesap.js")', 'require("../kredi/hesap.js")'),
     # Zam cekirdegi bordro motorunu cagiriyor; pakette klasor adi ayni
     # ('bordro') oldugu icin yol degismiyor ama kural burada dursun.
+    # Ayni gerekce vergi kamasi (../bordro/motor.js) ve ucret-kar payi
+    # (../bordro/calisma-bicimi.js) cekirdekleri icin de gecerli.
 
 ]
 
@@ -123,6 +129,8 @@ def test_sayilari():
                     ("ev-kira", "ev-almak-mi-kiralamak-mi/test.js"),
                     ("emniyet", "finansal-emniyet-testi/test.js"),
                     ("fire", "finansal-ozgurluk-hesaplama/test.js"),
+                    ("kama", "vergi-kamasi-hesaplama/test.js"),
+                    ("ucret-kar-payi", "ucret-kar-payi-optimizasyonu/test.js"),
                     ("zam", "zam-hesaplama/test.js"),
                     ("birikim", "birikim-hesaplama/test.js"),
                     ("fatura", "fatura-olusturma/test.js"),

@@ -1,0 +1,119 @@
+/* Ücret–Kâr Payı Optimizasyonu — araca özgü stiller.
+   Görsel dil sitenin diğer finansal araçlarıyla aynı. Araca özgü olan iki
+   şey var: optimum kartı ve eşik uyarısı. Eşik uyarısı bilerek dikkat
+   çekiyor — aracın en önemli bulgusu orada. */
+
+.bi-duzen {
+  display: grid; gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: start;
+}
+.bi-duzen > * { min-inline-size: 0; }
+@media (max-width: 900px) { .bi-duzen { grid-template-columns: 1fr; } }
+@media (min-width: 901px) { .bi-sonuc { position: sticky; top: 84px; } }
+
+.bi-form h2 { margin-block: 1.6rem .6rem; font-size: var(--step-1); }
+.bi-form h2:first-child { margin-block-start: 0; }
+
+.alan-grid {
+  display: grid; gap: .85rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+.alan-grid label {
+  display: flex; flex-direction: column; gap: .3rem;
+  font-size: var(--step--1); font-weight: 600;
+}
+.alan-grid input[type="text"], .alan-grid select {
+  font: inherit; font-weight: 400; padding: .5rem .65rem;
+  border: 1px solid var(--border); border-radius: 2px;
+  background: var(--surface); color: var(--text);
+}
+.alan-grid input:focus-visible, .alan-grid select:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 2px;
+}
+.alan-grid small { font-weight: 400; font-size: .75rem; color: var(--text-muted); line-height: 1.4; }
+.kutu-grid { display: grid; gap: .55rem; margin-block-start: .8rem; }
+.kutu-grid label {
+  display: flex; align-items: flex-start; gap: .55rem;
+  font-size: var(--step--1); font-weight: 500; line-height: 1.45;
+}
+.kutu-grid input { margin-block-start: .2rem; inline-size: 1rem; block-size: 1rem; }
+
+.optimum-kart {
+  border: 1px solid color-mix(in srgb, var(--brand) 45%, var(--border));
+  background: color-mix(in srgb, var(--brand) 8%, var(--surface));
+  border-radius: 2px; padding: 1rem 1.15rem; margin-block-end: 1rem;
+}
+.optimum-etiket {
+  margin: 0 0 .25rem; font-family: var(--font-mono); font-size: .7rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted);
+}
+.optimum-deger {
+  margin: 0; font-size: clamp(1.7rem, 4.6vw, 2.3rem); font-weight: 800;
+  letter-spacing: -.03em; line-height: 1.05; color: var(--brand-strong);
+  font-variant-numeric: tabular-nums;
+}
+.optimum-alt { margin: .45rem 0 0; font-size: .82rem; color: var(--text-muted); line-height: 1.45; }
+
+/* Eşik uyarısı — aracın asıl bulgusu. Kırmızı değil kehribar: bu bir hata
+   değil, dikkat edilmesi gereken bir kırılma. */
+.esik-uyari {
+  margin: .9rem 0 0; padding: .75rem .9rem;
+  border: 1px solid color-mix(in srgb, #b8860b 45%, var(--border));
+  background: color-mix(in srgb, #b8860b 9%, var(--surface));
+  border-radius: 2px; font-size: .84rem; line-height: 1.55;
+}
+.esik-uyari b { display: block; font-family: var(--font-mono); font-size: .72rem;
+  text-transform: uppercase; letter-spacing: .09em; margin-block-end: .3rem; }
+.esik-uyari[hidden] { display: none; }
+
+.ozet-liste { margin: 0; display: grid; gap: 1px; }
+.ozet-liste > div {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  padding: .55rem .1rem; border-block-end: 1px solid var(--rule, var(--border));
+}
+.ozet-liste dt { font-size: var(--step--1); color: var(--text-muted); }
+.ozet-liste dd {
+  margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.ozet-liste .vurgu dt { color: var(--text); font-weight: 600; }
+.ozet-liste .vurgu dd { color: var(--brand-strong); font-size: 1.05rem; }
+
+.grafik-kap { margin-block: 1rem 0; overflow-x: auto; }
+#o-grafik { inline-size: 100%; block-size: auto; min-inline-size: 520px; display: block; }
+.seri-net { stroke: var(--brand-strong); stroke-width: 2.6; fill: none; stroke-linejoin: round; }
+.cizgi-esik { stroke: #b8860b; stroke-width: 1.4; stroke-dasharray: 5 4; }
+.eksen-cizgi { stroke: var(--border); stroke-width: 1; }
+.eksen { fill: var(--text-muted); font-size: 11px; }
+.opt-nokta { fill: var(--brand-strong); stroke: var(--bg); stroke-width: 2.5; }
+
+.table-scroll { overflow-x: auto; margin-block-start: 1.2rem; max-height: 460px; overflow-y: auto; }
+.veri-tablo { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.veri-tablo caption {
+  text-align: left; font-weight: 700; font-size: var(--step--1);
+  padding-block-end: .5rem; color: var(--text-muted);
+}
+.veri-tablo th, .veri-tablo td {
+  padding: .45rem .65rem; text-align: right; white-space: nowrap;
+  border-block-end: 1px solid var(--rule, var(--border)); font-variant-numeric: tabular-nums;
+}
+.veri-tablo thead th { position: sticky; top: 0; background: var(--surface-2); font-weight: 600; z-index: 1; }
+.veri-tablo tbody th { text-align: left; font-weight: 600; }
+.veri-tablo tr.opt-satir td, .veri-tablo tr.opt-satir th {
+  background: color-mix(in srgb, var(--brand) 14%, transparent); font-weight: 700;
+}
+.veri-tablo tr.esik-satir td, .veri-tablo tr.esik-satir th {
+  background: color-mix(in srgb, #b8860b 14%, transparent);
+}
+
+.formula {
+  font-family: var(--font-mono); background: var(--surface);
+  border: 1px solid var(--rule, var(--border)); border-radius: 2px;
+  padding: .75rem .9rem; font-size: .92rem;
+}
+.kunye-satiri { font-size: var(--step--1); }
+
+@media print {
+  .bi-duzen { grid-template-columns: 1fr; }
+  .bi-sonuc { position: static; }
+}
