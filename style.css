@@ -9,7 +9,7 @@
   --accent: #0e7c66; --accent-strong: #0a5f4e;
   --accent-bright: #2bb596; --accent-bright-2: #1f9c80; --accent-glow: #4fd3b4;
   --brand: var(--accent); --brand-strong: var(--accent-strong); --brand-contrast: #fff;
-  --bg: #f7f5f0; --surface: #fff; --surface-2: #f0ece4; --border: #e2ddd2;
+  --bg: #f5f7f6; --surface: #fff; --surface-2: #eef3f0; --border: #dbe4df;
   --text: #17201d; --text-muted: #56605c; --focus: var(--accent);
   /* Köşe ve gölge SIFIRLANDI, tek satırda.
      14px yarıçap + iki katmanlı gölge, şablon kartının imzasıdır; sitenin
@@ -1408,4 +1408,49 @@ section { padding: var(--bolum) 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .home-page .project-links a::after, .sum-grid .sum-card { transition: none; }
+}
+
+/* Shared surface styling. Brand assets and palette choices stay independent. */
+@media screen {
+  .site-header {
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    border-bottom-color: var(--border);
+    box-shadow: 0 2px 16px color-mix(in srgb, var(--text) 3%, transparent);
+  }
+  :root .site-header .theme-toggle,
+  :root .site-header .palette > button { border-radius: 10px; }
+  :root .site-header .palette-pop {
+    border-radius: 14px;
+    box-shadow: 0 12px 32px color-mix(in srgb, var(--text) 12%, transparent);
+  }
+  .site-nav a { transition: color .18s ease; }
+  .site-nav a:hover { color: var(--brand-strong); }
+  .btn { border-radius: 10px; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #fff;
+    border-color: var(--accent-strong);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  .btn-primary:hover { background: var(--accent-strong); color: #fff; }
+  .calc .panel, .calc form.panel {
+    border-radius: 16px;
+    box-shadow: 0 4px 18px color-mix(in srgb, var(--text) 3%, transparent);
+  }
+  .sum-grid .sum-card {
+    border-radius: 12px;
+    background: linear-gradient(145deg, var(--surface), color-mix(in srgb, var(--brand) 5%, var(--surface)));
+  }
+  .ed-article-hero {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 5%, var(--bg)), var(--bg));
+  }
+  .ed-article-hero h1 { text-wrap: balance; }
+  .ed-body .verdict {
+    border: 1px solid color-mix(in srgb, var(--brand) 25%, var(--border));
+    border-inline-start: 3px solid var(--brand);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--brand) 4%, var(--surface));
+  }
+  .faq details { border-radius: 12px; }
+  .faq details[open] { border-color: color-mix(in srgb, var(--brand) 40%, var(--border)); }
 }
