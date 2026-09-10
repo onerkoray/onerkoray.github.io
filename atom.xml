@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-09T00:00:00+03:00</updated>
+  <updated>2026-09-10T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Mevduat Faizi ve Enflasyon: Reel Getiri</title>
+    <link href="https://korayoner.dev/makaleler/mevduat-faizi-enflasyon-reel-getiri/"/>
+    <id>https://korayoner.dev/makaleler/mevduat-faizi-enflasyon-reel-getiri/</id>
+    <updated>2026-09-10T00:00:00+03:00</updated>
+    <summary>Mevduatın reel getirisi nasıl hesaplanır? 100.000 TL ve 32 gün örneğinde net faiz, stopaj, enflasyon karşılaştırması ve satın alma gücü hesabını inceleyin.</summary>
+  </entry>
 
   <entry>
     <title>Stopaj Nasıl Hesaplanır? Brütleştirme ve Mahsup</title>
