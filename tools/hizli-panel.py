@@ -33,7 +33,7 @@ ETIKET_SINIR = 30   # bundan uzun etiket panelde kesilir; kısası istenir
 
 # Sitenin kendi bölümleri dışındaki alt projeler panele girmez: onlar ayrı
 # ürünler, "yeni araç eklendi" anlamına gelmiyorlar.
-HARIC_KOK = {"decorpalette", "keymint", "dither-studio", "images", "tools",
+HARIC_KOK = {"yayin-ilkeleri", "decorpalette", "keymint", "dither-studio", "images", "tools",
              "node_modules", "_cekirdek", "bordro"}
 
 # Başlığı panele sığmayan sayfalar için kısa etiket. Bir sayfa buraya

@@ -1,6 +1,6 @@
 /*!
  * Türkiye Bordro Parametreleri — 2020-2026
- * Kaynak: GVK m.103 / m.32, 5510 sayılı Kanun m.82, 488 sayılı DVK,
+ * Kaynak: GVK m.103 / m.23/18 (2022+), m.32 (2020–2021 AGİ), 5510 sayılı Kanun m.82, 488 sayılı DVK,
  *         Asgari Ücret Tespit Komisyonu kararları (Resmî Gazete).
  *
  * Bu dosya motorun tek doğruluk kaynağıdır (single source of truth).
@@ -99,7 +99,7 @@
         bagkurIndirimliOran: 0.2975,    // borcu olmayan düzenli ödeyende 5 puanlık indirim
         dayanak: "KVK m.32, GVK m.22, m.86, m.89/13, m.94; 5510 m.80-81"
       },
-      dayanak: "GVK m.103 (2026 tarifesi), GVK m.32 asgari ücret istisnası, 5510/82 (tavan = taban x 9)"
+      dayanak: "GVK m.103 (2026 tarifesi), GVK m.23/18 asgari ücret istisnası, 5510/82 (tavan = taban x 9)"
     },
 
     2025: {
@@ -119,7 +119,7 @@
         { ay: 1, tutar: 46655.43 },
         { ay: 7, tutar: 53919.68 }
       ],
-      dayanak: "GVK m.103 (2025 tarifesi), GVK m.32, 5510/82 (tavan = taban x 7,5)"
+      dayanak: "GVK m.103 (2025 tarifesi), GVK m.23/18, 5510/82 (tavan = taban x 7,5)"
     },
 
     2024: {
@@ -135,7 +135,7 @@
       ],
       issizlik: ISSIZLIK_VARSAYILAN,
       fazlaMesai: FAZLA_MESAI_VARSAYILAN,
-      dayanak: "GVK m.103 (2024 tarifesi), GVK m.32, 5510/82"
+      dayanak: "GVK m.103 (2024 tarifesi), GVK m.23/18, 5510/82"
     },
 
     2023: {
@@ -153,7 +153,7 @@
       issizlik: ISSIZLIK_VARSAYILAN,
       fazlaMesai: FAZLA_MESAI_VARSAYILAN,
       notlar: "Asgari ücret 1 Temmuz 2023'te yeniden belirlendi; istisna, damga ve SGK tavanı Temmuz'dan itibaren yeni tutar üzerinden uygulanır.",
-      dayanak: "GVK m.103 (2023 tarifesi), GVK m.32, 5510/82"
+      dayanak: "GVK m.103 (2023 tarifesi), GVK m.23/18, 5510/82"
     },
 
     2022: {
@@ -171,7 +171,7 @@
       issizlik: ISSIZLIK_VARSAYILAN,
       fazlaMesai: FAZLA_MESAI_VARSAYILAN,
       notlar: "AGİ 7349 sayılı Kanun ile kaldırıldı; yerine tüm ücretlilere asgari ücret gelir ve damga vergisi istisnası getirildi. Asgari ücret 1 Temmuz 2022'de yeniden belirlendi.",
-      dayanak: "7349 sayılı Kanun, GVK m.103 (2022 tarifesi), GVK m.32, 5510/82"
+      dayanak: "7349 sayılı Kanun, GVK m.103 (2022 tarifesi), GVK m.23/18, 5510/82"
     },
 
     2021: {

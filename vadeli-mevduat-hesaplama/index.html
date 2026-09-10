@@ -40,7 +40,7 @@
   <meta name="twitter:description" content="Brüt faiz, stopaj ve net getiri — ücretsiz mevduat hesaplama.">
   <meta name="twitter:image" content="https://korayoner.dev/images/vadeli-mevduat-hesaplama-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=6a56fdae">
+  <link rel="stylesheet" href="../style.css?v=52f21788">
   <link rel="stylesheet" href="style.css?v=db656aea">
 
   <script type="application/ld+json">
@@ -49,7 +49,7 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-09-10",
         "@id": "https://korayoner.dev/vadeli-mevduat-hesaplama/#app",
         "name": "Vadeli Mevduat Faizi Hesaplama Aracı",
         "url": "https://korayoner.dev/vadeli-mevduat-hesaplama/",
@@ -116,7 +116,7 @@
   }
   </script>
 </head>
-<body>
+<body class="calculator-page">
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
   <header class="site-header" role="banner">
@@ -166,7 +166,7 @@
           <div class="field-grid">
             <p class="panel-q">
               <label for="in-principal">Anapara</label>
-              <input type="text" id="in-principal" inputmode="decimal" value="100000"> TL
+              <input type="text" id="in-principal" inputmode="decimal" value="100000"> <span id="principal-unit">TL</span>
             </p>
             <p class="panel-q">
               <label for="in-rate">Yıllık brüt faiz oranı</label>
@@ -176,16 +176,9 @@
               <label for="in-days">Vade</label>
               <input type="text" id="in-days" inputmode="numeric" value="32"> gün
             </p>
-            <p class="panel-q">
-              <label for="in-tax">Stopaj oranı <span class="muted-note">(vadeye göre — güncelini teyit edin)</span></label>
-              <select id="in-tax">
-                <option value="7.5" selected>%7,5 · TL, 6 aya kadar</option>
-                <option value="5">%5 · TL, 6–12 ay</option>
-                <option value="2.5">%2,5 · TL, 1 yıl ve üzeri</option>
-                <option value="15">%15 · döviz / diğer</option>
-                <option value="0">%0 · istisna</option>
-              </select>
-            </p>
+            <p class="panel-q"><label for="in-date">Hesap açılış / yenileme tarihi</label><input type="date" id="in-date" min="2025-07-09" value="2026-09-10"></p>
+            <p class="panel-q"><label for="in-type">Hesap türü</label><select id="in-type"><option value="tl">TL mevduat</option><option value="doviz">Döviz mevduatı</option></select></p>
+            <p class="muted-note">Stopaj, hesap türü ve takvim vadesinden otomatik belirlenir. Döviz hesabında sonuçlar girdiğiniz döviz birimindedir; kur dönüşümü yapılmaz.</p>
           </div>
         </form>
 
@@ -196,8 +189,9 @@
 
     <article class="content">
       <div class="wrap prose">
-        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 17 Temmuz 2026</p>
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 10 Eylül 2026</p>
 
+        <p class="legal-note">Standart TL mevduatta 6 aya kadar (dahil) %17,5; 1 yıla kadar (dahil) %15; 1 yıldan uzun vadede %10. Döviz mevduatında %25. Vade sonu, açılış tarihine gün eklenerek bulunur; altı ay sabit 180 gün kabul edilmez.</p>
         <h2 id="nasil">Vadeli mevduat faizi nasıl hesaplanır?</h2>
         <p>
           Vadeli mevduatta faiz <strong>gün esaslı</strong> işler. Brüt faiz şu formülle bulunur:
@@ -205,11 +199,12 @@
         <p class="formula">Brüt faiz = Anapara × (Yıllık oran ÷ 100) × (Vade günü ÷ 365)</p>
         <p>
           Brüt faizden <strong>stopaj (gelir vergisi kesintisi)</strong> düşülür ve kalan net faiz
-          anaparaya eklenir. Örneğin 100.000 TL, yıllık %45 faiz, 32 gün ve %7,5 stopaj için brüt faiz
-          ≈ 3.945 TL, stopaj ≈ 296 TL, <strong>net faiz ≈ 3.649 TL</strong> olur; vade sonu bakiye
-          103.649 TL'dir.
+          anaparaya eklenir. Örneğin 100.000 TL, yıllık %45 faiz, 32 gün ve %17,5 stopaj için brüt faiz
+          ≈ 3.945 TL, stopaj ≈ 690 TL, <strong>net faiz ≈ 3.255 TL</strong> olur; vade sonu bakiye
+          103.255 TL'dir.
         </p>
 
+        <div class="legal-note"><strong>Geçerli dönem:</strong> 9 Temmuz 2025 ve sonrasında açılan veya yenilenen standart hesaplar. Son mevzuat kontrolü: 10 Eylül 2026. İleri tarihli senaryolar bu tarihte bilinen oranları kullanır; gelecek dönem oranları garanti edilmez. Eski hesaplar, özel istisnalar ve enflasyona bağlı ürünler kapsam dışıdır.</div>
         <h2 id="stopaj">Stopaj oranları neden değişir?</h2>
         <p>
           TL mevduat stopajı, Cumhurbaşkanı kararıyla belirlenir ve <strong>vadeye göre kademelidir</strong>:
@@ -232,13 +227,13 @@
         <div class="sources">
           <h2 id="kaynak-title">Veri kaynakları ve güncelleme</h2>
           <p>
-            <span class="updated">Parametreler en son 17 Temmuz 2026 tarihinde gözden geçirildi.</span>
+            <span class="updated">Parametreler en son 10 Eylül 2026 tarihinde gözden geçirildi.</span>
             Geçerli dönem: yürürlükteki stopaj oranları.
           </p>
           <p>Mevduat faizi ve stopaj hesabı şu kaynaklardan doğrulanmıştır:</p>
           <ul>
-            <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> geçici m.67 uyarınca mevduat faizinde <strong>gelir vergisi stopajı</strong> — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı (GİB)</a>, <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
-            <li>Vade süresine göre farklılaşan stopaj oranlarını belirleyen <strong>Cumhurbaşkanı Kararı</strong> (2006/10731 ve değişiklikleri) — <a href="https://www.resmigazete.gov.tr/" rel="noopener">Resmî Gazete</a></li>
+            <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> geçici m.67 uyarınca mevduat faizinde <strong>gelir vergisi stopajı</strong> — <a href="https://cdn.gib.gov.tr/api/gibportal-file/file/getFileResources?objectKey=arsiv/yardim-kaynaklar/yararli-bilgiler/GVK_Gecici_67_Madde_Kapsaminda_Kesinti_Oranlari.pdf" rel="noopener">Gelir İdaresi Başkanlığı (GİB)</a>, <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.4.193.pdf" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>Vade süresine göre farklılaşan stopaj oranlarını belirleyen <strong>Cumhurbaşkanı Kararı</strong> (2006/10731; 8 Temmuz 2025 tarihli 10041 sayılı değişiklik) — <a href="https://www.resmigazete.gov.tr/" rel="noopener">Resmî Gazete</a></li>
             <li>Basit faiz üzerinden vade sonu getirisi hesabı ve gün sayısı esası — <a href="https://www.tcmb.gov.tr/" rel="noopener">Türkiye Cumhuriyet Merkez Bankası</a></li>
           </ul>
           <p><strong>Dikkat:</strong> Stopaj oranları vade uzunluğuna ve hesabın türüne (TL, döviz, katılım) göre değişir ve Cumhurbaşkanı Kararı ile sık güncellenir.</p>
@@ -256,7 +251,7 @@
         <h2>Sık sorulan sorular</h2>
         <div class="faq-list">
           <details><summary>Vadeli mevduat faizi nasıl hesaplanır?</summary><p>Brüt faiz = anapara × yıllık oran × (vade günü ÷ 365). Bu tutardan stopaj düşülür, kalan net faiz anaparaya eklenir.</p></details>
-          <details><summary>Mevduat stopajı ne kadar?</summary><p>TL vadeli mevduatta stopaj vadeye göre değişir ve Cumhurbaşkanı kararıyla belirlenir; kısa vadede yüksek, uzun vadede düşüktür. Güncel oranı bankanızdan teyit edin.</p></details>
+          <details><summary>Mevduat stopajı ne kadar?</summary><p>TL vadeli mevduatta stopaj vadeye göre değişir ve Cumhurbaşkanı kararıyla belirlenir; 6 aya kadar (dahil) %17,5, 1 yıla kadar (dahil) %15, 1 yıldan uzun vadede %10; döviz hesabında %25 uygulanır. Güncel oranı bankanızdan teyit edin.</p></details>
           <details><summary>Faiz bileşik mi hesaplanır?</summary><p>Tek vade için basit (gün esaslı) hesaplanır. Vade sonunda faizi anaparaya ekleyip yenilerseniz bileşik getiri olur.</p></details>
           <details><summary>Kısa vadede neden az kazanıyorum?</summary><p>Yıllık faiz yalnızca vade günü kadar işler. 32 günlük mevduat, yıllık oranın yaklaşık 32/365'i kadar getiri sağlar.</p></details>
           <details><summary>Enflasyonu yener mi?</summary><p>Bu araç nominal getiriyi gösterir. Reel getiri için net faizden dönem enflasyonunu düşmeniz gerekir.</p></details>
@@ -287,10 +282,11 @@
         <div class="method-body">
           <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
           <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
           <dl class="method-meta">
             <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
             <div><dt>Yöntem</dt><dd>Sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümü</dd></div>
-            <div><dt>Son gözden geçirme</dt><dd>17 Temmuz 2026</dd></div>
+            <div><dt>Son gözden geçirme</dt><dd>10 Eylül 2026</dd></div>
             <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
           </dl>
         </div>
@@ -309,11 +305,13 @@
         <li><a href="../iletisim/">İletişim</a></li>
         <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
         <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
-      </ul>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
-  <script src="../script.js" defer></script>
+  <script src="../finans/kurallar.js?v=6c944fbd" defer></script>
+  <script src="script.js?v=ecbc1bca" defer></script>
+  <script src="../script.js?v=a5414d10" defer></script>
 </body>
 </html>

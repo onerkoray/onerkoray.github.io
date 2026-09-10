@@ -47,7 +47,7 @@ BESLEME = "atom.xml"
 # ---------------------------------------------------------------------------
 
 # Kurumsal ve yasal sayfalar: "yeni icerik" degil, kalici sayfalar.
-HARIC_KURUMSAL = {"hakkimda/", "iletisim/", "gizlilik/", "kullanim-kosullari/"}
+HARIC_KURUMSAL = {"hakkimda/", "iletisim/", "yayin-ilkeleri/", "gizlilik/", "kullanim-kosullari/"}
 
 # Liste sayfalari: kendileri icerik degil, iceriklerin dizini.
 HARIC_LISTE = {"makaleler/"}

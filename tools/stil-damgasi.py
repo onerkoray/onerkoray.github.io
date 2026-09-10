@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""HTML'deki CSS baglantilarina icerik ozetinden damga basar.
+"""HTML'deki CSS ve JavaScript baglantilarina icerik ozetinden damga basar.
 
 NEDEN: stil dosyalari "Cache-Control: max-age=3600" ile sunuluyor. HTML
 aninda tazeleniyor ama CSS bir saate kadar eski kaliyor; arada ziyaretci
@@ -10,7 +10,7 @@ stilinden bir saat once gelmisti.
 
 Ikon damgalari (?v=2, ?v=3) elle bumplaniyor ve unutulabiliyor; burada
 damga DOSYANIN ICERIGINDEN uretiliyor, yani unutulacak bir sey yok.
-CSS degisince damga kendiliginden degisir, degismezse --check kirilir.
+CSS veya JS degisince damga kendiliginden degisir, degismezse --check kirilir.
 
 Kullanim:
     python tools/stil-damgasi.py           # damgalari tazele
@@ -26,7 +26,7 @@ KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ATLA = {".git", "_cekirdek", "node_modules", "__pycache__"}
 # Ters bolu kullanilmiyor: karakter siniflari ayni isi goruyor ve
 # duzenli ifade metin islemleri sirasinda bozulmuyor.
-KALIP = re.compile('href="([^"?]+[.]css)(?:[?]v=[0-9a-f]+)?"')
+KALIP = re.compile('(href|src)="([^"?]+[.](?:css|js))(?:[?]v=[0-9a-f]+)?"')
 
 _ozet = {}
 
@@ -54,12 +54,12 @@ def isle(kontrol):
         dizin = os.path.dirname(hy)
 
         def degistir(m):
-            bagil = m.group(1)
+            bagil = m.group(2)
             hedef = os.path.normpath(os.path.join(dizin, bagil))
             if not os.path.exists(hedef):
                 return m.group(0)      # dis kaynak ya da kirik: dokunma
             sayac[0] += 1
-            return 'href="%s?v=%s"' % (bagil, ozet(hedef))
+            return '%s="%s?v=%s"' % (m.group(1), bagil, ozet(hedef))
 
         yeni, _ = KALIP.subn(degistir, s)
         if yeni != s:

@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -27,7 +27,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/kira-artisi-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -37,7 +37,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/ev-almak-mi-kiralamak-mi/</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -47,7 +47,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/ev-almak-mi-kiralamak-mi/metodoloji/</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -57,7 +57,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/zam-hesaplama/</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -67,7 +67,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/zam-hesaplama/metodoloji/</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -77,7 +77,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/vergi-kamasi-hesaplama/</loc>
-    <lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/vergi-kamasi-hesaplama-koray-oner.png</image:loc>
       <image:title>Vergi Kaması Hesaplama — Koray Öner</image:title>
@@ -85,7 +85,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/vergi-kamasi-hesaplama/metodoloji/</loc>
-    <lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/vergi-kamasi-metodoloji-koray-oner.png</image:loc>
       <image:title>Vergi Kaması Metodolojisi — Koray Öner</image:title>
@@ -93,7 +93,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/ucret-kar-payi-optimizasyonu/</loc>
-    <lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/ucret-kar-payi-optimizasyonu-koray-oner.png</image:loc>
       <image:title>Ücret–Kâr Payı Optimizasyonu — Koray Öner</image:title>
@@ -101,7 +101,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/ucret-kar-payi-optimizasyonu/metodoloji/</loc>
-    <lastmod>2026-09-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/ucret-kar-payi-metodoloji-koray-oner.png</image:loc>
       <image:title>Ücret–Kâr Payı Metodolojisi — Koray Öner</image:title>
@@ -109,7 +109,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/finansal-emniyet-testi/</loc>
-    <lastmod>2026-09-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/finansal-emniyet-testi-koray-oner.png</image:loc>
       <image:title>Finansal Emniyet Testi — Koray Öner</image:title>
@@ -117,7 +117,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/finansal-emniyet-testi/metodoloji/</loc>
-    <lastmod>2026-09-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/emniyet-metodoloji-koray-oner.png</image:loc>
       <image:title>Emniyet Metodolojisi — Koray Öner</image:title>
@@ -125,7 +125,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/finansal-ozgurluk-hesaplama/</loc>
-    <lastmod>2026-09-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/finansal-ozgurluk-hesaplama-koray-oner.png</image:loc>
       <image:title>Finansal Özgürlük (FIRE) Hesaplama — Koray Öner</image:title>
@@ -133,7 +133,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/</loc>
-    <lastmod>2026-09-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/fire-metodoloji-koray-oner.png</image:loc>
       <image:title>FIRE Simülasyonu Metodolojisi — Koray Öner</image:title>
@@ -141,7 +141,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/birikim-hesaplama/</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -151,7 +151,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/birikim-hesaplama/metodoloji/</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -161,7 +161,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/kredi-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -171,7 +171,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/vadeli-mevduat-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -181,7 +181,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/issizlik-maasi-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -191,7 +191,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/hesap-bolusme/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -201,7 +201,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/birim-cevirici/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -211,7 +211,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/yuzde-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -221,7 +221,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/kdv-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -231,7 +231,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/internet-hiz-testi/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -241,7 +241,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/final-notu-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -251,7 +251,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/son-depremler/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -261,7 +261,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/yas-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -271,7 +271,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/maas-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -281,7 +281,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/bordro/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -291,7 +291,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/kidem-tazminati-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -301,7 +301,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/isten-ayrilma-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -311,7 +311,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/calisma-bicimi-karsilastirma/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -321,7 +321,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/mtv-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -331,7 +331,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/otv-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -341,7 +341,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/gumruk-vergisi-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -351,7 +351,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -359,55 +359,55 @@
       <image:title>Serbest Meslek Makbuzu Hesaplama 2026 — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/maas-hesaplama/brut-net-tablosu/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://korayoner.dev/maas-hesaplama/brut-net-tablosu/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/maas-brut-net-tablosu-koray-oner.webp</image:loc>
       <image:title>2026 Brüt–Net Maaş Tablosu (Ay Ay Net Karşılıklar) — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/maas-hesaplama/40000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://korayoner.dev/maas-hesaplama/40000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/maas-40000-tl-brut-ne-kadar-net-koray-oner.webp</image:loc>
       <image:title>40.000 TL Brüt Maaş Ne Kadar Net? (2026 Ay Ay Bordro) — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/maas-hesaplama/50000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://korayoner.dev/maas-hesaplama/50000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/maas-50000-tl-brut-ne-kadar-net-koray-oner.webp</image:loc>
       <image:title>50.000 TL Brüt Maaş Ne Kadar Net? (2026 Ay Ay Bordro) — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/maas-hesaplama/60000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://korayoner.dev/maas-hesaplama/60000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/maas-60000-tl-brut-ne-kadar-net-koray-oner.webp</image:loc>
       <image:title>60.000 TL Brüt Maaş Ne Kadar Net? (2026 Ay Ay Bordro) — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/maas-hesaplama/75000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://korayoner.dev/maas-hesaplama/75000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/maas-75000-tl-brut-ne-kadar-net-koray-oner.webp</image:loc>
       <image:title>75.000 TL Brüt Maaş Ne Kadar Net? (2026 Ay Ay Bordro) — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/maas-hesaplama/100000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://korayoner.dev/maas-hesaplama/100000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/maas-100000-tl-brut-ne-kadar-net-koray-oner.webp</image:loc>
       <image:title>100.000 TL Brüt Maaş Ne Kadar Net? (2026 Ay Ay Bordro) — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/maas-hesaplama/150000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://korayoner.dev/maas-hesaplama/150000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/maas-150000-tl-brut-ne-kadar-net-koray-oner.webp</image:loc>
       <image:title>150.000 TL Brüt Maaş Ne Kadar Net? (2026 Ay Ay Bordro) — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/maas-hesaplama/200000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://korayoner.dev/maas-hesaplama/200000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/maas-200000-tl-brut-ne-kadar-net-koray-oner.webp</image:loc>
       <image:title>200.000 TL Brüt Maaş Ne Kadar Net? (2026 Ay Ay Bordro) — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/maas-hesaplama/300000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+  <url><loc>https://korayoner.dev/maas-hesaplama/300000-tl-brut-ne-kadar-net/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/maas-300000-tl-brut-ne-kadar-net-koray-oner.webp</image:loc>
       <image:title>300.000 TL Brüt Maaş Ne Kadar Net? (2026 Ay Ay Bordro) — Koray Öner</image:title>
@@ -446,55 +446,55 @@
       <image:title>Kullanım Koşulları ve Sorumluluk Reddi — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/keymint/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+  <url><loc>https://korayoner.dev/keymint/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/keymint-koray-oner.png</image:loc>
       <image:title>KeyMint — Güçlü Şifre Üreteci — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/keymint/sifre-guc-testi/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/keymint/sifre-guc-testi/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/sifre-guc-testi-koray-oner.png</image:loc>
       <image:title>Şifre Güç Testi — Parolanız Ne Kadar Güçlü? — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/keymint/pin-uretici/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/keymint/pin-uretici/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/pin-uretici-koray-oner.png</image:loc>
       <image:title>PIN Kodu Üreteci — Rastgele Güvenli PIN — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/keymint/parola-cumlesi/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/keymint/parola-cumlesi/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/parola-cumlesi-koray-oner.png</image:loc>
       <image:title>Parola Cümlesi Üreteci — Kolay ve Güçlü — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/keymint/wifi-sifresi/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/keymint/wifi-sifresi/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/wifi-sifresi-koray-oner.png</image:loc>
       <image:title>WiFi Şifresi Üreteci — Güçlü ve Kolay Yazılan — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/keymint/hash-uretici/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/keymint/hash-uretici/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/hash-uretici-koray-oner.png</image:loc>
       <image:title>Hash Üreteci — SHA-256 / SHA-1 / SHA-512 — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/keymint/base64/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/keymint/base64/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/base64-koray-oner.png</image:loc>
       <image:title>Base64 Kodlayıcı / Çözücü — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/keymint/uuid-uretici/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/keymint/uuid-uretici/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/uuid-uretici-koray-oner.png</image:loc>
       <image:title>UUID Üreteci — Rastgele Benzersiz Kimlik (v4) — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/decorpalette/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/decorpalette/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/decorpalette/images/og-cover.svg</image:loc>
       <image:title>DecorPalette — Renk Paleti Üreteci — Koray Öner</image:title>
@@ -512,13 +512,13 @@
       <image:title>DecorPalette Gizlilik Bildirimi — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/dither-studio/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/dither-studio/</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/dither-studio/og-image.png</image:loc>
       <image:title>Dither Studio — Dithering Görsel Aracı — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/doviz-kurlari/</loc><lastmod>2026-09-08</lastmod><changefreq>daily</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/doviz-kurlari/</loc><lastmod>2026-09-10</lastmod><changefreq>daily</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/doviz-kurlari-koray-oner.png</image:loc>
       <image:title>TCMB Döviz Kurları — 4 Eylül 2026 — Koray Öner</image:title>
@@ -536,7 +536,7 @@
       <image:title>Emekliye yeni maaş sistemi mi geldi? — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>0.9</priority>
+  <url><loc>https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/</loc><lastmod>2026-09-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/makale/kademeli-emeklilik-son-durum.png</image:loc>
       <image:title>Kademeli emeklilik son durum: yasalaştı mı? — Koray Öner</image:title>
@@ -550,7 +550,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/maasim-neden-dustu/</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -560,7 +560,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/asgari-ucret-nasil-belirlenir/</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -580,7 +580,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/kidem-tazminati-tavani/</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -590,7 +590,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -600,7 +600,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -610,7 +610,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -620,7 +620,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/isveren-maliyeti-hesaplama/</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -630,7 +630,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/fazla-mesai-hesaplama/</loc>
-    <lastmod>2026-09-06</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -640,7 +640,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/fatura-olusturma/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -650,7 +650,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/fatura-olusturma/metodoloji/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -660,7 +660,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/proforma-fatura-nedir/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -670,7 +670,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/uzun-vadeli-yatirim-nasil-yapilir/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -680,7 +680,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -690,7 +690,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/zam-net-maasa-ne-kadar-yansir/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -700,7 +700,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/vergi-kamasi-ucretin-gercek-yuku/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -720,7 +720,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/kredi-hesaplama/metodoloji/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -738,4 +738,5 @@
       <image:title>Yıllık maliyet oranı nedir? — Koray Öner</image:title>
     </image:image>
   </url>
+  <url><loc>https://korayoner.dev/yayin-ilkeleri/</loc><lastmod>2026-09-10</lastmod></url>
 </urlset>

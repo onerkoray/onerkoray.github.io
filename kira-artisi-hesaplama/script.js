@@ -21,7 +21,7 @@
         raw = parts.join("");
       }
     }
-    return parseFloat(raw);
+    return Finans.sayi(el.value, el.type === "number");
   }
 
   function sumCard(label, value, note) {
@@ -43,27 +43,17 @@
       results.innerHTML = ""; msg.hidden = true; return;
     }
 
-    // Uygulanacak oran: iş yerinde sözleşme oranı öncelikli; konutta TÜFE tavanı.
-    var rate, rateNote;
-    if (type === "isyeri" && !isNaN(agreed)) {
-      rate = agreed;
-      rateNote = "Sözleşmedeki artış oranı uygulandı";
-    } else if (type === "konut" && !isNaN(agreed) && agreed < tufe) {
-      rate = agreed;
-      rateNote = "Sözleşme oranı TÜFE'nin altında olduğu için uygulandı";
-    } else {
-      rate = tufe;
-      rateNote = type === "konut"
-        ? "12 aylık TÜFE ortalaması — yasal azami"
-        : "Sözleşme oranı girilmediği için TÜFE uygulandı";
+    if (document.getElementById("in-tufe").value.trim() === "") {
+      results.innerHTML = ""; msg.textContent = "Hesaplamak için yenileme ayının TÜFE oranını girin."; msg.hidden = false; return;
     }
-
-    if (isNaN(rate)) {
-      results.innerHTML = "";
-      msg.textContent = "Lütfen geçerli bir TÜFE/artış oranı girin.";
-      msg.hidden = false;
-      return;
+    var calculation;
+    try {
+      calculation = Finans.kira(rent, tufe, document.getElementById("in-agreed").value.trim() === "" ? null : agreed);
+    } catch (err) {
+      results.innerHTML = ""; msg.textContent = err.message; msg.hidden = false; return;
     }
+    var rate = calculation.rate;
+    var rateNote = calculation.limited ? "Sözleşme oranı TÜFE tavanıyla sınırlandı" : "Konut ve çatılı iş yeri için olağan yenileme";
     msg.hidden = true;
 
     var newRent = rent * (1 + rate / 100);
@@ -77,8 +67,8 @@
       sumCard("Uygulanan oran", "%" + pf.format(rate), type === "konut" ? "Konut kirası" : "İş yeri kirası");
 
     var warn = "";
-    if (type === "konut" && !isNaN(tufe) && rate > tufe) {
-      warn = '<p class="muted-note table-note">⚠ Girilen oran 12 aylık TÜFE ortalamasını aşıyor; konut kirasında yasal olarak TÜFE üstü artış yapılamaz.</p>';
+    if (calculation.limited) {
+      warn = '<p class="muted-note table-note">⚠ Girilen oran 12 aylık TÜFE ortalamasını aşıyor; olağan konut ve çatılı iş yeri yenilemesinde TÜFE tavanı uygulandı.</p>';
     }
 
     results.innerHTML = '<div class="sum-grid">' + cards + "</div>" + warn;

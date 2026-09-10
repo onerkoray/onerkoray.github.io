@@ -40,7 +40,7 @@
   <meta name="twitter:description" content="2020-2026 arası her bordro yılı için ay ay 12 aylık döküm ve netten brüte — ücretsiz, reklamsız.">
   <meta name="twitter:image" content="https://korayoner.dev/images/maas-hesaplama-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=6a56fdae">
+  <link rel="stylesheet" href="../style.css?v=52f21788">
   <link rel="stylesheet" href="../yuzde-hesaplama/style.css?v=5e3bf096">
   <link rel="stylesheet" href="style.css?v=17dc2fea">
 
@@ -50,7 +50,7 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "dateModified": "2026-09-05",
+        "dateModified": "2026-09-10",
         "softwareVersion": "1.0.0",
         "@id": "https://korayoner.dev/maas-hesaplama/#app",
         "name": "Brüt Net Maaş Hesaplama 2026",
@@ -126,7 +126,7 @@
   }
   </script>
 </head>
-<body>
+<body class="calculator-page">
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
   <header class="site-header" role="banner">
@@ -307,7 +307,7 @@
           </p>
           <p>Brüt-net dönüşümünde kullanılan vergi dilimleri, SGK taban ve tavan tutarları, asgari ücret istisnası ve damga vergisi oranı şu kaynaklardan doğrulanmıştır:</p>
           <ul>
-            <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> m.103 gelir vergisi tarifesi ve m.32 asgari ücret istisnası — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı (GİB)</a>, <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> m.103 gelir vergisi tarifesi ve m.32 asgari ücret istisnası — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı (GİB)</a>, <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.4.193.pdf" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
             <li>5510 sayılı <strong>Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu</strong> uyarınca prime esas kazancın alt ve üst sınırı — <a href="https://www.sgk.gov.tr/" rel="noopener">Sosyal Güvenlik Kurumu (SGK)</a></li>
             <li>Asgari Ücret Tespit Komisyonu kararı ile belirlenen <strong>2026 yılı asgari ücreti</strong> — <a href="https://www.csgb.gov.tr/" rel="noopener">Çalışma ve Sosyal Güvenlik Bakanlığı</a>, <a href="https://www.resmigazete.gov.tr/" rel="noopener">Resmî Gazete</a></li>
             <li>488 sayılı <strong>Damga Vergisi Kanunu</strong> ekli (1) sayılı tabloya göre ücret damga vergisi oranı — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı (GİB)</a></li>
@@ -375,6 +375,7 @@
         <div class="method-body">
           <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
           <p>Bu sayfadaki hesapları <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Sonuçlar, açık kaynaklı <a href="../bordro/">Bordro Motoru</a> çekirdeğinden gelir: kullanılan yasal parametreler, adım adım hesap yöntemi ve doğrulama testleri <a href="../bordro/#metodoloji">metodoloji sayfasında</a> herkese açıktır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
           <dl class="method-meta">
             <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
             <div><dt>Hesaplama çekirdeği</dt><dd><a href="../bordro/">Bordro Motoru 1.0.1</a></dd></div>
@@ -397,13 +398,14 @@
         <li><a href="../iletisim/">İletişim</a></li>
         <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
         <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
-      </ul>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
     </div>
   </footer>
 
-  <script src="../bordro/parametreler.js" defer></script>
-  <script src="../bordro/motor.js" defer></script>
-  <script src="script.js" defer></script>
-  <script src="../script.js" defer></script>
+  <script src="../bordro/parametreler.js?v=3a9d4b07" defer></script>
+  <script src="../bordro/motor.js?v=5ef870ac" defer></script>
+  <script src="script.js?v=901eeeaf" defer></script>
+  <script src="../script.js?v=a5414d10" defer></script>
 </body>
 </html>

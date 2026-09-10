@@ -105,21 +105,30 @@
   var cards = Array.prototype.slice.call(document.querySelectorAll(".project-card[data-tags]"));
   if (cards.length && (search || chips.length)) {
     var activeCat = "hepsi";
+    function normalizeSearch(text) {
+      return text.toLocaleLowerCase("tr").replace(/ı/g, "i").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
     function applyFilter() {
-      var q = search ? search.value.trim().toLocaleLowerCase("tr") : "";
+      var q = search ? normalizeSearch(search.value.trim()) : "";
       var visible = 0;
       cards.forEach(function (card) {
         var tags = (card.getAttribute("data-tags") || "").toLocaleLowerCase("tr");
         var cat = card.getAttribute("data-cat") || "";
         var okCat = activeCat === "hepsi" || cat === activeCat;
-        var okText = !q || tags.indexOf(q) !== -1 || card.textContent.toLocaleLowerCase("tr").indexOf(q) !== -1;
+        var haystack = normalizeSearch(tags + " " + card.textContent);
+        var okText = !q || q.split(/\s+/).every(function (word) { return haystack.indexOf(word) !== -1; });
         var show = okCat && okText;
         card.classList.toggle("is-hidden", !show);
         if (show) visible++;
       });
       var empty = document.getElementById("no-results");
       if (empty) empty.hidden = visible > 0;
+      var status = document.getElementById("directory-status");
+      if (status) status.textContent = visible + " / " + cards.length + " araç gösteriliyor";
+      var soon = document.querySelector(".project-card--soon");
+      if (soon) soon.hidden = !!q || activeCat !== "hepsi";
     }
+    applyFilter();
     if (search) search.addEventListener("input", applyFilter);
     chips.forEach(function (chip) {
       chip.addEventListener("click", function () {

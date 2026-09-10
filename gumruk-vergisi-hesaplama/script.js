@@ -6,7 +6,7 @@
   function fmt(n) { return isFinite(n) ? nf.format(Math.round(n * 100) / 100) : "—"; }
   function num(id) {
     var el = document.getElementById(id);
-    return el ? parseFloat(String(el.value).replace(/\./g, "").replace(",", ".")) : NaN;
+    return el ? Finans.sayi(el.value, el.type === "number") : NaN;
   }
   function set(id, html) { var el = document.getElementById(id); if (el) el.innerHTML = html; }
 
@@ -50,21 +50,13 @@
 
   function recalcSiparis() {
     var tl = toTL("g-bedel", "g-birim", "g-kur", "kur-wrap");
-    if (isNaN(tl)) { set("g-out", ""); return; }
-    var oran = parseFloat(document.getElementById("g-mensei").value) || 0.60;
-    var ek = parseFloat(document.getElementById("g-otv4").value) || 0;
-    var toplamOran = oran + ek;
-    var vergi = tl * toplamOran;
-    var toplam = tl + vergi;
-
-    var r = [
-      ["Sipariş bedeli", fmt(tl) + " TL"],
-      ["Vergi oranı", "%" + Math.round(toplamOran * 100) + (ek > 0 ? " (%" + Math.round(oran * 100) + " + %20 ÖTV IV)" : "")],
-      ["Gümrük vergisi", fmt(vergi) + " TL"],
-      ["Toplam maliyet", fmt(toplam) + " TL", "bd-total"],
-      ["Ürüne binen ek yük", "%" + fmt(toplamOran * 100)]
-    ];
-    set("g-out", rows(r) + stackBar([[tl, "Ürün bedeli"], [vergi, "Vergi"]], "Maliyetin bileşimi"));
+    var shipping = num("g-shipping"), taxes = num("g-taxes"), fees = num("g-fees");
+    try {
+      var total = Finans.ithalat(tl, 1, shipping, taxes, fees);
+      set("g-out", rows([["Ürün bedeli (TL)", fmt(tl)], ["Kargo ve sigorta", fmt(shipping)], ["Bildirilen vergiler", fmt(taxes)], ["Diğer ücretler", fmt(fees)], ["Girilen tutarlara göre toplam (TL)", fmt(total), "bd-total"]]));
+    } catch (err) {
+      set("g-out", '<p class="muted-note">Toplam için ürün, kur ve tüm masraf alanlarını geçerli tutarlarla doldurun. Olmayan masraf için 0 girin; bilinmeyen vergiye 0 yazmayın.</p>');
+    }
   }
 
   function recalcTelefon() {
@@ -76,18 +68,18 @@
     var r = [
       ["Telefonun yurt dışı fiyatı", fmt(tl) + " TL"],
       ["IMEI kayıt harcı (2026)", fmt(IMEI_HARC) + " TL"],
-      ["Gerçek toplam maliyet", fmt(toplam) + " TL", "bd-total"]
+      ["Cihaz + IMEI harcı", fmt(toplam) + " TL", "bd-total"]
     ];
     if (!isNaN(trFiyat) && trFiyat > 0) {
       var fark = trFiyat - toplam;
       r.push(["Türkiye satış fiyatı", fmt(trFiyat) + " TL"]);
-      r.push([fark >= 0 ? "Getirmek kazandırır" : "Türkiye'den almak kazandırır", fmt(Math.abs(fark)) + " TL", "bd-total"]);
+      r.push([fark >= 0 ? "Girilen Türkiye fiyatından düşük" : "Girilen Türkiye fiyatından yüksek", fmt(Math.abs(fark)) + " TL", "bd-total"]);
     }
     set("t-out", rows(r) + stackBar([[tl, "Telefon bedeli"], [IMEI_HARC, "IMEI harcı"]], "Maliyetin bileşimi"));
   }
 
   function recalc() { recalcSiparis(); recalcTelefon(); }
-  ["g-bedel", "g-birim", "g-kur", "g-mensei", "g-otv4", "t-fiyat", "t-birim", "t-kur", "t-tr"].forEach(function (id) {
+  ["g-bedel", "g-birim", "g-kur", "g-shipping", "g-taxes", "g-fees", "t-fiyat", "t-birim", "t-kur", "t-tr"].forEach(function (id) {
     var el = document.getElementById(id);
     if (el) { el.addEventListener("input", recalc); el.addEventListener("change", recalc); }
   });

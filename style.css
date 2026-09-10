@@ -1309,3 +1309,39 @@ section { padding: var(--bolum) 0; }
   :root .karo-ikon { transition: none; }
   :root .project-card:hover .karo-ikon { transform: none; }
 }
+
+/* Directory and calculator refinements. Keep the existing palette and typography. */
+.home-page .hero { padding-block: clamp(2rem, 5vw, 4rem) 2rem; }
+.home-page .hero h1 { font-size: clamp(2.6rem, 5.4vw, 4.5rem); line-height: 1.06; }
+.home-page .hero .lede { max-width: 38rem; font-size: 1.1rem; line-height: 1.65; }
+.home-page .hero-spec { flex-wrap: wrap; }
+.home-page .hero-quick { border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; background: var(--surface); }
+.topic-index { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-block: 1rem 2.5rem; }
+.topic-index a { display: flex; flex-direction: column; gap: .6rem; padding: 1.2rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); text-decoration: none; color: var(--text); }
+.topic-index a:hover, .topic-index a:focus-visible { border-color: var(--brand); background: var(--surface-2); }
+.topic-index span { color: var(--text-muted); font-size: .88rem; line-height: 1.5; }
+.home-page .projects { padding-block: 2rem; }
+.home-page .project-card { border-radius: 14px; overflow: hidden; }
+.home-page .project-grid { gap: 18px; }
+.directory-status { color: var(--text-muted); font-size: .9rem; margin: .75rem 0 1.25rem; }
+.home-page .tool-search { border-radius: 12px; }
+.home-page .chips { flex-wrap: wrap; }
+.home-page .chip { min-height: 44px; border-radius: 999px; }
+.calculator-page .hero { padding-block: 1.5rem; }
+.calculator-page .hero h1 { font-size: clamp(1.85rem, 3.6vw, 3rem); line-height: 1.15; margin-block: .5rem .75rem; }
+.calculator-page .hero .lede { font-size: 1rem; line-height: 1.6; max-width: 52rem; }
+.calculator-page .calc { padding-top: 1rem; }
+.calculator-page input, .calculator-page select { min-height: 44px; }
+.site-nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.legal-note a { text-underline-offset: .2em; }
+@media (max-width: 640px) {
+  .topic-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .topic-index a { padding: 1rem; }
+  .home-page .hero-inner { gap: 1.5rem; }
+  .home-page .hero-quick { padding: 1rem; }
+  .calculator-page .hero { padding-block: .75rem 1rem; }
+  .calculator-page .hero .eyebrow { margin-bottom: .5rem; }
+  .calculator-page .tool-icon { display: none; }
+  .calculator-page .hero .lede { margin-bottom: 0; }
+  .home-page .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+}

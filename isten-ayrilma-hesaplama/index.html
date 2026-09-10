@@ -40,7 +40,7 @@
   <meta name="twitter:description" content="Kıdem, ihbar, izin, son ücret ve işsizlik maaşı tek ekranda — ödeme takvimiyle.">
   <meta name="twitter:image" content="https://korayoner.dev/images/isten-ayrilma-hesaplama-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=6a56fdae">
+  <link rel="stylesheet" href="../style.css?v=52f21788">
   <link rel="stylesheet" href="../maas-hesaplama/style.css?v=17dc2fea">
   <link rel="stylesheet" href="style.css?v=c12eacc8">
 
@@ -58,7 +58,7 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "tr",
         "isAccessibleForFree": true,
-        "dateModified": "2026-09-05",
+        "dateModified": "2026-09-10",
         "softwareVersion": "1.0.0",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
         "description": "Fesih türüne göre kıdem tazminatı, ihbar tazminatı, kullanılmayan yıllık izin ücreti, son ay ücreti ve işsizlik ödeneğini birlikte hesaplayan, ödemelerin takvimini çıkaran ücretsiz araç.",
@@ -125,7 +125,7 @@
   }
   </script>
 </head>
-<body>
+<body class="calculator-page">
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
   <header class="site-header" role="banner">
@@ -362,8 +362,8 @@
             değişiklik günlüğü için <a href="../bordro/">Bordro Motoru</a> sayfasına bakın.
           </p>
           <ul>
-            <li>4857 sayılı <strong>İş Kanunu</strong> m.17 (ihbar), m.18 (geçerli neden), m.24 ve m.25 (haklı nedenle fesih), m.59 (yıllık izin ücreti) — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
-            <li>1475 sayılı <strong>eski İş Kanunu</strong> m.14 — kıdem tazminatı ve kıdem tavanı — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>4857 sayılı <strong>İş Kanunu</strong> m.17 (ihbar), m.18 (geçerli neden), m.24 ve m.25 (haklı nedenle fesih), m.59 (yıllık izin ücreti) — <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.4857.pdf" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>1475 sayılı <strong>eski İş Kanunu</strong> m.14 — kıdem tazminatı ve kıdem tavanı — <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.1475.pdf" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
             <li>4447 sayılı <strong>İşsizlik Sigortası Kanunu</strong> m.48-51 — ödenek oranı, tavanı, süresi ve başvuru süresi — <a href="https://www.iskur.gov.tr/" rel="noopener">İŞKUR</a></li>
             <li>488 sayılı <strong>Damga Vergisi Kanunu</strong> ekli (1) sayılı tablo — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
             <li>Kıdem tazminatı tavanı — <strong>Hazine ve Maliye Bakanlığı</strong> mali ve sosyal haklara ilişkin genelgeleri</li>
@@ -435,6 +435,7 @@
         <div class="method-body">
           <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
           <p>Bu sayfadaki hesapları <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Sonuçlar, açık kaynaklı <a href="../bordro/">Bordro Motoru</a> çekirdeğinden gelir: kullanılan yasal parametreler, adım adım hesap yöntemi ve doğrulama testleri <a href="../bordro/#metodoloji">metodoloji sayfasında</a> herkese açıktır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
           <dl class="method-meta">
             <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
             <div><dt>Hesaplama çekirdeği</dt><dd><a href="../bordro/">Bordro Motoru 1.0.1</a></dd></div>
@@ -458,14 +459,15 @@
         <li><a href="../iletisim/">İletişim</a></li>
         <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
         <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
-      </ul>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
     </div>
   </footer>
 
-  <script src="../bordro/parametreler.js" defer></script>
-  <script src="../bordro/motor.js" defer></script>
-  <script src="../bordro/cikis.js" defer></script>
-  <script src="script.js" defer></script>
-  <script src="../script.js" defer></script>
+  <script src="../bordro/parametreler.js?v=3a9d4b07" defer></script>
+  <script src="../bordro/motor.js?v=5ef870ac" defer></script>
+  <script src="../bordro/cikis.js?v=37754542" defer></script>
+  <script src="script.js?v=66cb66a9" defer></script>
+  <script src="../script.js?v=a5414d10" defer></script>
 </body>
 </html>
