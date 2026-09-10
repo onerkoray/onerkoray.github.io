@@ -101,6 +101,7 @@
 
   /* ---- Araç dizini: arama + kategori filtresi (ana sayfa) ---- */
   var search = document.getElementById("tool-search-input");
+  var searchClear = document.getElementById("tool-search-clear");
   var chips = Array.prototype.slice.call(document.querySelectorAll(".chip[data-filter]"));
   var cards = Array.prototype.slice.call(document.querySelectorAll(".project-card[data-tags]"));
   if (cards.length && (search || chips.length)) {
@@ -127,9 +128,16 @@
       if (status) status.textContent = visible + " / " + cards.length + " araç gösteriliyor";
       var soon = document.querySelector(".project-card--soon");
       if (soon) soon.hidden = !!q || activeCat !== "hepsi";
+      if (searchClear) searchClear.hidden = !search || !search.value;
     }
     applyFilter();
     if (search) search.addEventListener("input", applyFilter);
+    if (searchClear) searchClear.addEventListener("click", function () {
+      if (!search) return;
+      search.value = "";
+      search.focus();
+      applyFilter();
+    });
     chips.forEach(function (chip) {
       chip.addEventListener("click", function () {
         activeCat = chip.getAttribute("data-filter");

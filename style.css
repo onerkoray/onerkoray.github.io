@@ -1345,3 +1345,67 @@ section { padding: var(--bolum) 0; }
   .calculator-page .hero .lede { margin-bottom: 0; }
   .home-page .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 }
+
+/* 14. Çalışma masası cilası — marka yeşilini korur, hiyerarşiyi güçlendirir. */
+.home-page .hero {
+  background:
+    radial-gradient(55rem 26rem at 4% 0%, color-mix(in srgb, var(--brand) 7%, transparent), transparent 72%),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 42%, transparent), transparent 78%);
+}
+.home-page .hero-copy { max-width: 60rem; }
+.home-page .hero h1 { text-wrap: balance; }
+.home-page .hero-quick {
+  position: relative;
+  overflow: hidden;
+  border-color: color-mix(in srgb, var(--brand) 28%, var(--border));
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--brand) 7%, transparent);
+}
+.home-page .hero-quick::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 3px;
+  background: linear-gradient(90deg, var(--brand), color-mix(in srgb, var(--brand) 20%, transparent));
+}
+.home-page .section-head h2 { text-wrap: balance; }
+.home-page .section-head h2::before {
+  content: ""; display: inline-block; width: 2.6rem; height: .18rem;
+  margin: 0 .7rem .25rem 0; vertical-align: middle; background: var(--brand);
+}
+.home-page .tool-search { max-width: none; padding-inline-end: .65rem; }
+.tool-search-clear {
+  border: 0; background: transparent; color: var(--text-muted); cursor: pointer;
+  font: 600 .78rem var(--font-mono); padding: .55rem .4rem; white-space: nowrap;
+}
+.tool-search-clear:hover, .tool-search-clear:focus-visible { color: var(--brand-strong); }
+.home-page .directory-status {
+  display: inline-flex; align-items: center; min-height: 1.8rem;
+  padding: .2rem .65rem; border: 1px solid var(--border); border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+.home-page .project-card { transition: transform .24s cubic-bezier(.22,1,.36,1), border-color .2s ease, box-shadow .2s ease; }
+.home-page .project-card:focus-within {
+  border-color: color-mix(in srgb, var(--brand) 60%, var(--border));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 14%, transparent);
+}
+.home-page .project-body { display: flex; flex: 1; flex-direction: column; }
+.home-page .project-body > p:not(.card-badges):not(.project-links) { color: var(--text-muted); }
+.home-page .project-links { margin-top: auto; padding-top: .8rem; }
+.home-page .project-links a { display: inline-flex; align-items: center; gap: .35rem; font-weight: 750; }
+.home-page .project-links a::after { content: "↗"; transition: transform .18s ease; }
+.home-page .project-links a:hover::after, .home-page .project-links a:focus-visible::after { transform: translate(2px, -2px); }
+.calc .panel, .calc .year-row { transition: border-color .2s ease, box-shadow .2s ease; }
+.calc .panel:focus-within { border-color: color-mix(in srgb, var(--brand) 48%, var(--border)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 10%, transparent); }
+.calc .panel input, .calc .panel select { border-radius: 10px; }
+.sum-grid .sum-card { min-height: 6.5rem; justify-content: center; transition: transform .18s ease, border-color .18s ease; }
+.sum-grid .sum-card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--brand) 38%, var(--border)); }
+.sum-value { font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) {
+  .home-page .hero { background: linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 48%, transparent), transparent 70%); }
+  .home-page .section-head h2::before { width: 1.8rem; margin-right: .5rem; }
+  .home-page .project-grid { gap: 14px; }
+  .home-page .project-card:hover { transform: none; }
+  .home-page .directory-status { margin-top: .1rem; }
+  .sum-grid .sum-card:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page .project-links a::after, .sum-grid .sum-card { transition: none; }
+}
