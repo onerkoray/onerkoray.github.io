@@ -200,7 +200,7 @@ def panel_yaz(s, yeni):
 def hizli_baglantilar(s):
     """En çok kullanılanlar listesindeki hedefler gerçekten var mı?"""
     i = s.index('<aside class="hero-quick')
-    j = s.index('<h3 class="hero-quick__ara"', i)
+    j = s.index('</aside>', i)
     return re.findall(r'<li><a href="([^"#]+)"', s[i:j])
 
 
