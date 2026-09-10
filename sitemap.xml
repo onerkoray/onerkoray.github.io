@@ -739,4 +739,14 @@
     </image:image>
   </url>
   <url><loc>https://korayoner.dev/yayin-ilkeleri/</loc><lastmod>2026-09-10</lastmod></url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/mevduat-faizi-enflasyon-reel-getiri/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/mevduat-faizi-enflasyon-reel-getiri.png</image:loc>
+      <image:title>Mevduat faizi enflasyonu geçiyor mu? — Koray Öner</image:title>
+    </image:image>
+  </url>
 </urlset>

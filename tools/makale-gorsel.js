@@ -428,6 +428,29 @@ function sutunIssizlikTavani() {
 /* ---------- kapaklar ---------- */
 
 var KAPAKLAR = {
+  "mevduat-faizi-enflasyon-reel-getiri": {
+    kicker: "Finans",
+    baslik: "Mevduat faizi enflasyonu geçiyor mu?",
+    alt: "Aynı bakiye, üç farklı satın alma gücü",
+    cizim: function () {
+      var net = 0.45 * 32 / 365 * (1 - 0.175);
+      var zero = 218, scale = 90;
+      var bars = [0.02, 0.03, 0.04].map(function (inflation, i) {
+        var real = ((1 + net) / (1 + inflation) - 1) * 100;
+        var x = 96 + i * 172, height = Math.abs(real) * scale;
+        var color = real >= 0 ? R.marka : R.s2;
+        return '<rect x="' + x + '" y="' + (real >= 0 ? zero - height : zero) + '" width="92" height="' + height + '" rx="5" fill="' + color + '"/>' +
+          '<text x="' + (x + 46) + '" y="' + (real >= 0 ? zero - height - 14 : zero + height + 28) + '" text-anchor="middle" font-size="26" font-weight="800" fill="' + color + '">' + (real >= 0 ? '+' : '−') + '%' + Math.abs(real).toFixed(2).replace('.', ',') + '</text>' +
+          '<text x="' + (x + 46) + '" y="340" text-anchor="middle" font-size="20" fill="' + R.murekkep + '">%' + Math.round(inflation * 100) + ' enflasyon</text>';
+      }).join('');
+      return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 400">' +
+        '<text x="30" y="34" font-size="24" font-weight="800" fill="' + R.murekkep + '">32 günde reel getiri</text>' +
+        '<text x="30" y="63" font-size="18" fill="' + R.ikincil + '">Net dönem getirisi: %3,2548</text>' +
+        '<line x1="66" y1="218" x2="590" y2="218" stroke="' + R.ikincil + '" stroke-width="1"/>' +
+        '<text x="18" y="224" font-size="18" fill="' + R.ikincil + '">%0</text>' + bars +
+        '<text x="30" y="384" font-size="17" fill="' + R.ikincil + '">Aynı döneme ait varsayımsal enflasyon senaryoları</text></svg>';
+    }
+  },
   "maasim-neden-dustu": {
     kicker: "Bordro",
     baslik: "Maaşım neden düştü?",
