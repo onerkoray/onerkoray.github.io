@@ -471,3 +471,72 @@ html { scroll-behavior: smooth; }
   .karo, .karo::before, .karo-ikon, .karo::after { animation: none; transition: none; }
   .project-card:hover .karo, .project-card:hover .karo-ikon { transform: none; }
 }
+
+/* Home composition: the latest links occupy a shared row, so neither
+   column has to reserve space for the other's secondary content. */
+.home-page .hero-inner { align-items: center; row-gap: 1.5rem; }
+.home-page main > section[id] { scroll-margin-top: 6rem; }
+.home-page .hero { padding-bottom: 1.25rem; }
+.home-page .hero-quick { padding: 1.25rem; box-shadow: none; }
+.home-page .hero-quick h2 { font-size: .8rem; margin-bottom: .75rem; }
+.home-page .hero-quick ul::before { content: none; }
+.home-page .hero-quick a { min-block-size: 0; padding: .7rem .65rem; border-radius: 8px; }
+.home-page .hero-quick a small { font-size: .875rem; }
+.home-page .hero-quick a:hover,
+.home-page .hero-quick a:focus-visible { background: color-mix(in srgb, var(--brand) 8%, var(--surface)); }
+.home-page .hero-quick li + li { border-top: 1px solid var(--border); }
+.home-page .hero-quick__foot { margin-top: .6rem; padding-top: .5rem; }
+.home-page .hero-quick__foot a { display: inline-flex; min-height: 44px; padding-block: .35rem; }
+.home-page .hero-quick__foot a::after { content: none; }
+.hero-latest {
+  grid-column: 1 / -1; min-width: 0; display: grid;
+  grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 1.5rem;
+  padding-block: 1rem; border-block: 1px solid var(--border);
+}
+.hero-latest h2 { margin: 0; font: 600 .8rem/1.5 var(--font-mono); color: var(--text-muted); }
+.hero-latest .hq-yeni { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+.hero-latest .hq-yeni li { min-width: 0; }
+.hero-latest .hq-yeni a {
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+  gap: .3rem; height: 100%; padding: .6rem .85rem; border-radius: 8px;
+  color: var(--text); text-decoration: none; border-inline-start: 2px solid var(--border);
+  transition: background .18s ease, border-color .18s ease;
+}
+.hero-latest .hq-yeni a span { white-space: normal; overflow: visible; font-size: .94rem; font-weight: 650; line-height: 1.4; }
+.hero-latest .hq-yeni em { font-size: .75rem; color: var(--text-muted); }
+.hero-latest .hq-yeni a:hover, .hero-latest .hq-yeni a:focus-visible {
+  border-color: var(--brand); background: color-mix(in srgb, var(--brand) 7%, var(--surface));
+}
+.home-page .topic-index { margin-block: 0 1.75rem; }
+.home-page .topic-index a {
+  position: relative; border-radius: 10px; padding: 1.1rem 1.2rem;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+.home-page .topic-index strong { font-size: 1rem; line-height: 1.4; }
+.home-page .topic-index a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.home-page .chips { gap: .5rem; margin-bottom: .65rem; }
+.home-page .chip { border: 1px solid var(--border); padding: .5rem .9rem; font-size: .875rem; }
+.home-page .chip[aria-pressed="true"] { color: var(--brand-strong); background: color-mix(in srgb, var(--brand) 10%, var(--surface)); border-color: var(--brand); }
+.home-page .project-links a:not(:first-child)::after { content: none; }
+.home-page .project-links a:first-child::after { content: "\2192"; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .home-page .topic-index a:hover { transform: translateY(-3px); }
+  .home-page .project-card:hover { transform: translateY(-3px); }
+}
+@media (max-width: 900px) {
+  .home-page .hero-inner { gap: 1.25rem; }
+  .home-page main > section[id] { scroll-margin-top: 9rem; }
+  .home-page .hero-quick > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem .75rem; }
+  .home-page .hero-quick li + li { border-top: 0; }
+  .hero-latest { grid-template-columns: minmax(0, 1fr); gap: .75rem; }
+}
+@media (max-width: 560px) {
+  .home-page .hero-quick > ul { grid-template-columns: minmax(0, 1fr); }
+  .hero-latest .hq-yeni { grid-template-columns: minmax(0, 1fr); gap: .4rem; }
+  .hero-latest .hq-yeni a { flex-direction: row; align-items: center; justify-content: space-between; gap: .75rem; }
+  .home-page .topic-index { gap: .65rem; }
+  .home-page .topic-index a { padding: .9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page .topic-index a, .hero-latest .hq-yeni a { transition: none; }
+}
