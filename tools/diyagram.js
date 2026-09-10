@@ -10,17 +10,10 @@
  * motorun ve deponun KENDİSİNDEN okunur — sürüm, parametre grupları, motoru
  * kullanan araçlar, test sayıları. Bir şey değişirse `--check` CI'da patlar.
  *
- * NEDEN RADYAL DEĞİL
- * ------------------
- * Bu türün alışıldık hâli merkezden dışa açılan radyal şemadır; güzel durur
- * ama dar ekranda okunmaz — etiketler döner, çakışır, ölçek küçülünce yazı
- * 5 piksele iner. Burada aynı bilgi soldan sağa akan bir ağaçla veriliyor:
- * merkez, dallar, yapraklar ve eğri bağlantılar duruyor; okunabilirlik
- * duruyor. Dar ekranda sitenin tablolarıyla aynı kalıp uygulanıyor (kaydırma
- * kabı + min-width), böylece yazı hiçbir zaman küçülmüyor.
- *
- * Renk tek hue: diyagram veri serisi taşımıyor, kategorik palet gürültü olurdu.
- * Renkler CSS değişkenlerinden geldiği için açık/koyu temaya kendiliğinden uyar.
+ * Bordro ekosistemi erişilebilir HTML kartlarıyla üretilir. SVG yalnızca
+ * dekoratif bağlantıları ve mevcut ikonları çizer; metin mobilde yeniden akar.
+ * Hareket ve etkileşim bordro/diyagram.css ile bordro/diyagram.js içindedir.
+ * JavaScript olmadan da bütün içerik ve araç bağlantıları kullanılabilir.
  *
  * Kullanım:
  *   node tools/diyagram.js           # diyagramları üret ve yerleştir
@@ -74,25 +67,6 @@ var ARAC_ADI = {
   "fazla-mesai-hesaplama": "Fazla mesai"
 };
 
-/* ---------------- düzen ----------------
-
-   İlk sürüm çıplak kutulardan oluşuyordu ve organizasyon şeması gibi
-   okunuyordu. Referans türünde olan şey şu: merkez bir madalyon, dallarda
-   sayaç rozeti, yapraklarda İKONLU kart. İkonlar zaten depoda vardı
-   (tools/card-icons.json), kullanılmıyordu.
-   ------------------------------------------------------------------- */
-
-var HUB_R = 62;              // merkez madalyon yarıçapı
-var HUB_SUT = 200;           // merkez sütun genişliği
-var DAL_G = 208, DAL_Y = 42; // dal pili (sayaç rozetiyle çakışmasın)
-var KART_G = 322;            // yaprak kartı
-var KART_Y_TAM = 58;         // alt satırı olan kart
-var KART_Y_SADE = 38;        // yalnız başlık
-var ARA = 8;                 // kartlar arası
-var DAL_ARA = 26;            // dallar arası
-var SUT_ARA = 66;            // sütunlar arası
-var UST = 30, ALT = 30;
-
 /* card-icons.json'daki 24x24 ikonun iç içeriği. */
 function ikonIc(svg) {
   if (!svg) return "";
@@ -116,102 +90,42 @@ var GLIF = {
   denetim: '<path d="M12 3 5 6v5.5c0 4.3 3 8.2 7 9.5 4-1.3 7-5.2 7-9.5V6z"/><path d="M9 12.5l2 2 4-4"/>'
 };
 
-function ikonG(ic, x, y, boy) {
-  var o = (boy || 22) / 24;
-  return '<g class="dg-ikon" transform="translate(' + x + ',' + y + ') scale(' + o.toFixed(4) + ')">' +
-    ic + "</g>";
+function ikonHTML(ic) {
+  return '<svg class="bm-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">' + ic + '</svg>';
 }
 
-function bag(x1, y1, x2, y2, kalinlik) {
-  var dx = (x2 - x1) * 0.5;
-  return '<path class="dg-bag" stroke-width="' + kalinlik + '" d="M' + x1 + " " + y1 +
-    " C" + (x1 + dx) + " " + y1 + "," + (x2 - dx) + " " + y2 + "," + x2 + " " + y2 + '"/>';
-}
-
-function nokta(x, y, r) {
-  return '<circle class="dg-nokta" cx="' + x + '" cy="' + y + '" r="' + (r || 3.4) + '"/>';
-}
-
-/* dallar: [{ ad, glif, yapraklar: [{ ad, alt, ikon }] }] */
 function agac(baslik, aciklama, merkez, merkezAlt, dallar) {
-  var x0 = 10;
-  var xHub = x0 + HUB_SUT / 2;
-  var xDal = x0 + HUB_SUT + SUT_ARA;
-  var xKart = xDal + DAL_G + SUT_ARA;
-  var W = xKart + KART_G + 18;
-
-  var parcalar = [];
-  var y = UST;
-  var dalBilgi = [];
-
-  dallar.forEach(function (d) {
-    var basY = y;
-    var kartlar = [];
-    d.yapraklar.forEach(function (yp) {
-      var h = yp.alt ? KART_Y_TAM : KART_Y_SADE;
-      kartlar.push({ y: y, h: h, veri: yp });
-      y += h + ARA;
-    });
-    var sonY = y - ARA;
-    dalBilgi.push({ merkez: (basY + sonY) / 2, dal: d, kartlar: kartlar });
-    y += DAL_ARA;
-  });
-
-  var H = y - DAL_ARA + ALT;
-  var hubY = H / 2;
-
-  dalBilgi.forEach(function (b) {
-    // hub -> dal
-    parcalar.push(bag(xHub + HUB_R, hubY, xDal, b.merkez, 2.4));
-
-    // dal pili
-    parcalar.push('<g class="dg-dal">' +
-      '<rect x="' + xDal + '" y="' + (b.merkez - DAL_Y / 2) + '" width="' + DAL_G +
-      '" height="' + DAL_Y + '" rx="' + (DAL_Y / 2) + '"/>' +
-      ikonG(GLIF[b.dal.glif] || "", xDal + 15, b.merkez - 10, 20) +
-      '<text class="dg-dal-yazi" x="' + (xDal + 45) + '" y="' + (b.merkez + 5) + '">' +
-      esc(b.dal.ad) + "</text>" +
-      '<circle class="dg-sayac" cx="' + (xDal + DAL_G - 24) + '" cy="' + b.merkez + '" r="13"/>' +
-      '<text class="dg-sayac-yazi" x="' + (xDal + DAL_G - 24) + '" y="' + (b.merkez + 4) +
-      '" text-anchor="middle">' + b.kartlar.length + "</text>" +
-      "</g>");
-    parcalar.push(nokta(xDal, b.merkez, 4));
-
-    // dal -> kartlar
-    b.kartlar.forEach(function (k) {
-      var ky = k.y + k.h / 2;
-      parcalar.push(bag(xDal + DAL_G, b.merkez, xKart, ky, 1.4));
-      parcalar.push(nokta(xKart, ky, 3));
-      parcalar.push('<g class="dg-kart">' +
-        '<rect x="' + xKart + '" y="' + k.y + '" width="' + KART_G + '" height="' + k.h + '" rx="11"/>' +
-        ikonG(k.veri.ikon || "", xKart + 14, ky - 11, 22) +
-        '<text class="dg-kart-yazi" x="' + (xKart + 48) + '" y="' +
-        (k.veri.alt ? ky - 6 : ky + 4) + '">' + esc(k.veri.ad) + "</text>" +
-        (k.veri.alt
-          ? '<text class="dg-kart-alt" x="' + (xKart + 48) + '" y="' + (ky + 14) + '">' +
-            esc(k.veri.alt) + "</text>"
-          : "") +
-        "</g>");
-    });
-  });
-
-  /* Merkez madalyon. Ad ve sürüm daire İÇİNE sığmıyordu (124 piksellik
-     dairede iki satır metin dışarı taşıyordu); dairenin altına alındı. */
-  var hub = '<g class="dg-hub">' +
-    '<circle class="dg-halka" cx="' + xHub + '" cy="' + hubY + '" r="' + (HUB_R + 10) + '"/>' +
-    '<circle class="dg-cekirdek" cx="' + xHub + '" cy="' + hubY + '" r="' + HUB_R + '"/>' +
-    '<g class="dg-marka" transform="translate(' + (xHub - 27) + ',' + (hubY - 27) + ') scale(2.25)">' +
-    '<path d="M9 4 4 12l5 8"/><path d="M15 4l5 8-5 8"/>' + "</g>" +
-    '<text class="dg-hub-yazi" x="' + xHub + '" y="' + (hubY + HUB_R + 34) +
-    '" text-anchor="middle">' + esc(merkez) + "</text>" +
-    '<text class="dg-hub-alt" x="' + xHub + '" y="' + (hubY + HUB_R + 53) +
-    '" text-anchor="middle">' + esc(merkezAlt) + "</text></g>";
-
-  return '<svg class="diyagram" viewBox="0 0 ' + W + " " + H + '" width="' + W +
-    '" height="' + H + '" role="img" aria-labelledby="dg-b dg-a">' +
-    "<title id=\"dg-b\">" + esc(baslik) + "</title>" +
-    "<desc id=\"dg-a\">" + esc(aciklama) + "</desc>" +
-    parcalar.join("") + hub + "</svg>";
+  var kimlik = ["parametreler", "hesaplar", "araclar", "denetim"];
+  var aciklamalar = ["Hesabın yasal girdileri", "Kuralları sonuca dönüştürür", "Aynı çekirdeği kullanır", "Tutarlılığı doğrular"];
+  var links = ["#parametreler", "#metodoloji", null, "https://github.com/onerkoray/onerkoray.github.io/actions"];
+  var yollar = [125, 375, 625, 875].map(function (x, i) {
+    var d = 'M500 0 V16 Q500 30 ' + (x < 500 ? 480 : 520) + ' 30 H' + (x < 500 ? x + 16 : x - 16) + ' Q' + x + ' 30 ' + x + ' 46 V64';
+    return '<g data-wire="' + kimlik[i] + '"><path class="bm-wire" d="' + d + '"/>' +
+      '<path class="bm-signal" pathLength="100" d="' + d + '"/></g>';
+  }).join('');
+  var kartlar = dallar.map(function (dal, i) {
+    var items = dal.yapraklar.map(function (yp) {
+      var content = ikonHTML(yp.ikon || '') + '<span><strong>' + esc(yp.ad) + '</strong>' +
+        (yp.alt ? '<small>' + esc(yp.alt) + '</small>' : '') + '</span>';
+      return '<li>' + (yp.href ? '<a href="' + yp.href + '">' + content + '<span class="bm-arrow" aria-hidden="true">↗</span></a>' : '<div class="bm-leaf">' + content + '</div>') + '</li>';
+    }).join('');
+    return '<section class="bm-group" data-group="' + kimlik[i] + '" aria-labelledby="bm-' + kimlik[i] + '">' +
+      '<div class="bm-group-head"><span class="bm-group-icon">' + ikonHTML(GLIF[dal.glif]) + '</span>' +
+      '<div><h3 id="bm-' + kimlik[i] + '">' + esc(dal.ad) + '</h3><p>' + aciklamalar[i] + '</p></div>' +
+      '<span class="bm-count" aria-label="' + dal.yapraklar.length + ' bileşen">' + dal.yapraklar.length + '</span></div>' +
+      '<ul class="bm-items">' + items + '</ul>' +
+      (links[i] ? '<a class="bm-more" href="' + links[i] + '">' + ["Parametreleri incele", "Hesap yöntemini oku", "", "Denetimleri gör"][i] + ' <span aria-hidden="true">→</span></a>' : '<p class="bm-note">Bir aracı seçerek hesabı açın.</p>') + '</section>';
+  }).join('\n');
+  return '<div class="bm-map" data-motion="off" aria-label="' + esc(baslik) + '">\n' +
+    '<div class="bm-toolbar"><span class="bm-caption">AÇIK KAYNAK · BİLEŞEN HARİTASI</span>' +
+    '<button class="bm-motion" type="button" hidden>Animasyonu durdur</button></div>\n' +
+    '<p class="visually-hidden">' + esc(aciklama) + '</p>' +
+    '<div class="bm-core"><div class="bm-core-emblem" aria-hidden="true">' +
+      ikonHTML('<path d="m8 6-6 6 6 6M16 6l6 6-6 6M14 3l-4 18"/>') + '</div>' +
+      '<div><p class="bm-core-label">ORTAK HESAP ÇEKİRDEĞİ</p><h3>' + esc(merkez) + '</h3><p class="bm-core-meta">' + esc(merkezAlt) + '</p></div>' +
+      '<span class="bm-core-tag">Bağımlılıksız JavaScript</span></div>\n' +
+    '<svg class="bm-wires" viewBox="0 0 1000 64" width="1000" height="64" preserveAspectRatio="none" aria-hidden="true">' + yollar + '</svg>\n' +
+    '<div class="bm-groups">' + kartlar + '</div>\n</div>';
 }
 
 /* ---------------- diyagramlar ---------------- */
@@ -252,7 +166,7 @@ function motorEkosistemi() {
       ad: "Araçlar",
       glif: "tablo",
       yapraklar: araclar.map(function (a) {
-        return { ad: ARAC_ADI[a] || a, ikon: aracIkon(a) };
+        return { ad: ARAC_ADI[a] || a, ikon: aracIkon(a), href: "../" + a + "/" };
       })
     },
     {
