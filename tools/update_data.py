@@ -357,7 +357,7 @@ PAGE = """<!DOCTYPE html>
         <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
       </ul>
     </div>
-  </footer>
+  <p><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></p></footer>
 
   <script src="../script.js" defer></script>
   <script src="/bg-network.js" defer></script>

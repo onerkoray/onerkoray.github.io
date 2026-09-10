@@ -40,7 +40,7 @@
   <meta name="twitter:description" content="Güncel tavanla kıdem ve ihbar tazminatı hesaplama — ücretsiz, reklamsız, kayıtsız.">
   <meta name="twitter:image" content="https://korayoner.dev/images/kidem-tazminati-hesaplama-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=6a56fdae">
+  <link rel="stylesheet" href="../style.css?v=52f21788">
   <link rel="stylesheet" href="../yuzde-hesaplama/style.css?v=5e3bf096">
   <link rel="stylesheet" href="style.css?v=4a20157f">
 
@@ -50,7 +50,7 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "dateModified": "2026-07-18",
+        "dateModified": "2026-09-10",
         "@id": "https://korayoner.dev/kidem-tazminati-hesaplama/#app",
         "name": "Kıdem ve İhbar Tazminatı Hesaplama 2026",
         "url": "https://korayoner.dev/kidem-tazminati-hesaplama/",
@@ -119,7 +119,7 @@
   }
   </script>
 </head>
-<body>
+<body class="calculator-page">
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
   <header class="site-header" role="banner">
@@ -328,8 +328,8 @@
           </p>
           <p>Kıdem ve ihbar tazminatı hesabında kullanılan tavan tutarı, ihbar süreleri ve vergi kesintileri şu kaynaklardan doğrulanmıştır:</p>
           <ul>
-            <li>1475 sayılı <strong>İş Kanunu</strong>'nun yürürlükteki 14. maddesi (kıdem tazminatı) — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
-            <li>4857 sayılı <strong>İş Kanunu</strong> m.17 (ihbar önelleri) ve m.32 — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a>, <a href="https://www.csgb.gov.tr/" rel="noopener">Çalışma ve Sosyal Güvenlik Bakanlığı</a></li>
+            <li>1475 sayılı <strong>İş Kanunu</strong>'nun yürürlükteki 14. maddesi (kıdem tazminatı) — <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.1475.pdf" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>4857 sayılı <strong>İş Kanunu</strong> m.17 (ihbar önelleri) ve m.32 — <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.4857.pdf" rel="noopener">Mevzuat Bilgi Sistemi</a>, <a href="https://www.csgb.gov.tr/" rel="noopener">Çalışma ve Sosyal Güvenlik Bakanlığı</a></li>
             <li>Hazine ve Maliye Bakanlığı'nın altı aylık dönemler hâlinde yayımladığı <strong>kıdem tazminatı tavanı</strong> — <a href="https://www.resmigazete.gov.tr/" rel="noopener">Resmî Gazete</a></li>
             <li>Kıdem tazminatının damga vergisi dışında vergiden istisna olması: 193 sayılı Gelir Vergisi Kanunu m.25 — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı (GİB)</a></li>
           </ul>
@@ -384,6 +384,7 @@
         <div class="method-body">
           <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
           <p>Bu sayfadaki hesapları <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Sonuçlar, açık kaynaklı <a href="../bordro/">Bordro Motoru</a> çekirdeğinden gelir: kullanılan yasal parametreler, adım adım hesap yöntemi ve doğrulama testleri <a href="../bordro/#metodoloji">metodoloji sayfasında</a> herkese açıktır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
           <dl class="method-meta">
             <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
             <div><dt>Hesaplama çekirdeği</dt><dd><a href="../bordro/">Bordro Motoru 1.0.1</a></dd></div>
@@ -406,14 +407,15 @@
         <li><a href="../iletisim/">İletişim</a></li>
         <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
         <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
-      </ul>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
     </div>
   </footer>
 
-  <script src="../bordro/parametreler.js" defer></script>
-  <script src="../bordro/motor.js" defer></script>
-  <script src="../bordro/cikis.js" defer></script>
-  <script src="script.js" defer></script>
-  <script src="../script.js" defer></script>
+  <script src="../bordro/parametreler.js?v=3a9d4b07" defer></script>
+  <script src="../bordro/motor.js?v=5ef870ac" defer></script>
+  <script src="../bordro/cikis.js?v=37754542" defer></script>
+  <script src="script.js?v=1c8e856e" defer></script>
+  <script src="../script.js?v=a5414d10" defer></script>
 </body>
 </html>

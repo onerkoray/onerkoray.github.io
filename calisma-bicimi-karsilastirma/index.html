@@ -40,7 +40,7 @@
   <meta name="twitter:description" content="Maaşlı, şahıs işletmesi ve limited şirket senaryolarını aynı maliyet üzerinden karşılaştırın.">
   <meta name="twitter:image" content="https://korayoner.dev/images/calisma-bicimi-karsilastirma-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=6a56fdae">
+  <link rel="stylesheet" href="../style.css?v=52f21788">
   <link rel="stylesheet" href="../maas-hesaplama/style.css?v=17dc2fea">
   <link rel="stylesheet" href="../isten-ayrilma-hesaplama/style.css?v=c12eacc8">
   <link rel="stylesheet" href="style.css?v=3e6ff0ca">
@@ -59,7 +59,7 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "tr",
         "isAccessibleForFree": true,
-        "dateModified": "2026-09-05",
+        "dateModified": "2026-09-10",
         "softwareVersion": "1.0.0",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
         "description": "Aynı yıllık maliyetin maaşlı çalışan, şahıs işletmesi ve limited şirket senaryolarında ne kadarının elde kaldığını gelir vergisi, kurumlar vergisi, kâr payı stopajı, SGK ve Bağ-Kur primleriyle birlikte hesaplayan karşılaştırma aracı.",
@@ -113,7 +113,7 @@
   }
   </script>
 </head>
-<body>
+<body class="calculator-page">
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
   <header class="site-header" role="banner">
@@ -320,7 +320,7 @@
             <a href="../bordro/">Bordro Motoru</a> sayfasına bakın.
           </p>
           <ul>
-            <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> m.22 (kâr payı istisnası), m.86 (beyan haddi), m.89/13 (hizmet ihracatı indirimi), m.94 (stopaj), m.103 (tarife) — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a>, <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> m.22 (kâr payı istisnası), m.86 (beyan haddi), m.89/13 (hizmet ihracatı indirimi), m.94 (stopaj), m.103 (tarife) — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a>, <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.4.193.pdf" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
             <li>5520 sayılı <strong>Kurumlar Vergisi Kanunu</strong> m.32 — kurumlar vergisi oranı</li>
             <li>5510 sayılı <strong>Kanun</strong> m.4/1-b, m.80-82 — 4/b sigortalılığı, prim oranları, prime esas kazancın alt ve üst sınırı — <a href="https://www.sgk.gov.tr/" rel="noopener">Sosyal Güvenlik Kurumu</a></li>
             <li>488 sayılı <strong>Damga Vergisi Kanunu</strong> ekli (1) sayılı tablo</li>
@@ -372,6 +372,7 @@
         <div class="method-body">
           <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
           <p>Bu sayfadaki hesapları <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Sonuçlar, açık kaynaklı <a href="../bordro/">Bordro Motoru</a> çekirdeğinden gelir: kullanılan yasal parametreler, adım adım hesap yöntemi ve doğrulama testleri <a href="../bordro/#metodoloji">metodoloji sayfasında</a> herkese açıktır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
           <dl class="method-meta">
             <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
             <div><dt>Hesaplama çekirdeği</dt><dd><a href="../bordro/">Bordro Motoru 1.0.1</a></dd></div>
@@ -395,14 +396,15 @@
         <li><a href="../iletisim/">İletişim</a></li>
         <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
         <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
-      </ul>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
     </div>
   </footer>
 
-  <script src="../bordro/parametreler.js" defer></script>
-  <script src="../bordro/motor.js" defer></script>
-  <script src="../bordro/calisma-bicimi.js" defer></script>
-  <script src="script.js" defer></script>
-  <script src="../script.js" defer></script>
+  <script src="../bordro/parametreler.js?v=3a9d4b07" defer></script>
+  <script src="../bordro/motor.js?v=5ef870ac" defer></script>
+  <script src="../bordro/calisma-bicimi.js?v=eac370c3" defer></script>
+  <script src="script.js?v=83a3eed3" defer></script>
+  <script src="../script.js?v=a5414d10" defer></script>
 </body>
 </html>

@@ -20,7 +20,7 @@
         raw = parts.join("");
       }
     }
-    return parseFloat(raw);
+    return Finans.sayi(el.value, el.type === "number");
   }
 
   function sumCard(label, value, note) {
@@ -33,40 +33,35 @@
     var results = document.getElementById("results");
     var msg = document.getElementById("msg");
 
+    document.getElementById("principal-unit").textContent = document.getElementById("in-type").value === "tl" ? "TL" : "döviz birimi";
     var P = num("in-principal");
     var ratePct = num("in-rate");
-    var days = Math.round(num("in-days"));
-    var taxPct = parseFloat(document.getElementById("in-tax").value);
-
-    if (isNaN(P) || P <= 0 || isNaN(ratePct) || isNaN(days) || days <= 0) {
-      results.innerHTML = ""; msg.hidden = true; return;
-    }
-    if (days > 3650) {
-      results.innerHTML = "";
-      msg.textContent = "Vade en fazla 3650 gün (10 yıl) olabilir.";
-      msg.hidden = false; return;
+    var days = num("in-days");
+    var calculation;
+    try {
+      calculation = Finans.mevduat(P, ratePct, days, document.getElementById("in-date").value, document.getElementById("in-type").value);
+    } catch (err) {
+      results.innerHTML = ""; msg.textContent = err.message; msg.hidden = false; return;
     }
     msg.hidden = true;
-
-    var grossInterest = P * (ratePct / 100) * (days / 365);
-    var tax = grossInterest * (taxPct / 100);
-    var netInterest = grossInterest - tax;
-    var maturity = P + netInterest;
+    var taxPct = calculation.taxPct;
+    var grossInterest = calculation.gross, tax = calculation.tax, netInterest = calculation.net, maturity = calculation.maturity;
+    var unit = document.getElementById("in-type").value === "tl" ? " TL" : " döviz birimi";
     // net yıllıklaştırılmış getiri (bilgi amaçlı)
     var netAnnualPct = (netInterest / P) * (365 / days) * 100;
 
     var cards =
-      sumCard("Net faiz getirisi", fmt(netInterest) + " TL", "Stopaj düşülmüş") +
-      sumCard("Vade sonu bakiye", fmt(maturity) + " TL", "Anapara + net faiz") +
-      sumCard("Brüt faiz", fmt(grossInterest) + " TL", days + " gün · %" + nf.format(ratePct) + " yıllık") +
-      sumCard("Kesilen stopaj", "− " + fmt(tax) + " TL", "%" + nf.format(taxPct) + " oranında") +
+      sumCard("Net faiz getirisi", fmt(netInterest) + unit, "Stopaj düşülmüş") +
+      sumCard("Vade sonu bakiye", fmt(maturity) + unit, "Anapara + net faiz") +
+      sumCard("Brüt faiz", fmt(grossInterest) + unit, days + " gün · %" + nf.format(ratePct) + " yıllık") +
+      sumCard("Kesilen stopaj", "− " + fmt(tax) + unit, "%" + nf.format(taxPct) + " oranında") +
       sumCard("Net yıllık getiri", "%" + nf.format(netAnnualPct), "Yıllıklaştırılmış (bilgi amaçlı)");
 
     results.innerHTML = '<div class="sum-grid">' + cards + "</div>" +
-      '<p class="muted-note table-note">Faiz gün esaslı ve basit yöntemle hesaplanır (365 gün). Stopaj oranını vadenize göre seçtiğinizden emin olun.</p>';
+      '<p class="muted-note table-note">Faiz gün esaslı ve basit yöntemle hesaplanır (365 gün). Stopaj hesap türü ve takvim vadesinden belirlenmiştir.</p>';
   }
 
-  ["in-principal", "in-rate", "in-days", "in-tax"].forEach(function (id) {
+  ["in-principal", "in-rate", "in-days", "in-date", "in-type"].forEach(function (id) {
     var el = document.getElementById(id);
     if (el) { el.addEventListener("input", recalc); el.addEventListener("change", recalc); }
   });
@@ -74,5 +69,7 @@
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
 
+  var today = new Date();
+  document.getElementById("in-date").value = today.getFullYear() + "-" + String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
   recalc();
 })();

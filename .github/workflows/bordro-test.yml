@@ -35,6 +35,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Finans kuralları regresyonları
+        run: node finans/test.js
+
       - name: Motor testleri
         run: node bordro/test.js
 

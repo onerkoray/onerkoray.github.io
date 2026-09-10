@@ -31,7 +31,7 @@ BIT = "<!-- METODOLOJI-BLOGU:BITIS -->"
 
 # Araç olmayan sayfalar: kurumsal, yasal, içerik ve taslak sayfalar.
 HARIC = {
-    "gizlilik", "iletisim", "kullanim-kosullari", "hakkimda", "makaleler",
+    "yayin-ilkeleri", "gizlilik", "iletisim", "kullanim-kosullari", "hakkimda", "makaleler",
     "bordro",
 }
 
@@ -149,6 +149,7 @@ def blok(html, kok, motorlu):
         "          <h2 id=\"metod-title\">%s</h2>" % (
             "Bu aracı kim yaptı, nasıl hesaplıyor?" if hesaplayici else "Bu aracı kim yaptı?"),
         "          <p>%s</p>" % metin,
+        "          <p><a href=\"/yayin-ilkeleri/\">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>",
         "          <dl class=\"method-meta\">",
         "\n".join(satirlar),
         "          </dl>",
