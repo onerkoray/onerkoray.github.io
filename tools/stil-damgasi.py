@@ -33,7 +33,9 @@ _ozet = {}
 
 def ozet(yol):
     if yol not in _ozet:
-        h = hashlib.sha256(io.open(yol, "rb").read()).hexdigest()[:8]
+        # Git normalizes text to LF; Windows and Linux must produce the same stamp.
+        data = io.open(yol, "rb").read().replace(b"\r\n", b"\n")
+        h = hashlib.sha256(data).hexdigest()[:8]
         _ozet[yol] = h
     return _ozet[yol]
 
