@@ -42,6 +42,7 @@
 
   <link rel="stylesheet" href="../../style.css?v=3332183b">
   <link rel="stylesheet" href="../editoryal.css?v=ec476241">
+  <link rel="stylesheet" href="veri-gorselleri.css?v=48394309">
 
   <script type="application/ld+json">
 {
@@ -136,7 +137,7 @@
     <style>.reveal{opacity:1 !important;transform:none !important}</style>
   </noscript>
 </head>
-<body>
+<body class="deposit-article">
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
   <header class="site-header" role="banner">
@@ -209,15 +210,15 @@
         <p>Aşağıdaki örnekte anapara 100.000 TL, yıllık brüt faiz %45, vade 32 gün ve stopaj %17,5'tir.
           Hesap 365 günlük yıl esasıyla yapılır; ek masraf ve faiz işletilmeyen bakiye olmadığı varsayılır.
           <strong>%45 bir banka teklifi veya piyasa ortalaması değil, hesap varsayımıdır.</strong></p>
-        <div class="table-wrap">
-          <table class="data-table">
-            <caption>Tek vadede faiz ve stopaj hesabı</caption>
+        <div class="deposit-table-wrap" role="region" aria-labelledby="interest-caption" tabindex="0">
+          <table class="deposit-table">
+            <caption id="interest-caption"><span>01 / Faiz hesabı</span>100.000 TL'nin 32 günlük yolculuğu</caption>
             <thead><tr><th scope="col">Adım</th><th scope="col">Hesap</th><th scope="col">Sonuç</th></tr></thead>
             <tbody>
               <tr><th scope="row">Brüt faiz</th><td>100.000 × 0,45 × 32 ÷ 365</td><td>3.945,21 TL</td></tr>
               <tr><th scope="row">Stopaj</th><td>Brüt faiz × 0,175</td><td>690,41 TL</td></tr>
-              <tr><th scope="row">Net faiz</th><td>Brüt faiz − stopaj</td><td>3.254,79 TL</td></tr>
-              <tr><th scope="row">Vade sonu bakiye</th><td>Anapara + net faiz</td><td>103.254,79 TL</td></tr>
+              <tr class="deposit-highlight"><th scope="row">Net faiz</th><td>Brüt faiz − stopaj</td><td>3.254,79 TL</td></tr>
+              <tr class="deposit-total"><th scope="row">Vade sonu bakiye</th><td>Anapara + net faiz</td><td>103.254,79 TL</td></tr>
               <tr><th scope="row">Net dönem getirisi</th><td>Net faiz ÷ anapara</td><td>%3,2548</td></tr>
             </tbody>
           </table>
@@ -245,23 +246,34 @@
           1,40 ÷ 1,30 − 1 ≈ %7,69</strong> olur. Oranlar büyüdükçe basit çıkarma daha yanıltıcı hale gelir.</p>
         <p>32 günlük örneğimizde net getiri değişmesin. Aynı dönemin enflasyonu için üç farklı
           <strong>varsayım</strong> kullandığımızda sonuçlar şöyle ayrışır:</p>
-        <div class="table-wrap">
-          <table class="data-table">
-            <caption>Aynı 103.254,79 TL bakiye, üç farklı satın alma gücü</caption>
-            <thead><tr><th scope="col">32 günlük<br>enflasyon varsayımı</th><th scope="col">Reel getiri</th><th scope="col">Başlangıç fiyatlarıyla<br>bakiye</th><th scope="col">Reel kazanç<br>veya kayıp</th></tr></thead>
+        <div class="deposit-table-wrap" role="region" aria-labelledby="scenario-caption" tabindex="0">
+          <table class="deposit-table deposit-scenarios">
+            <caption id="scenario-caption"><span>02 / Satın alma gücü</span>Aynı bakiye, üç farklı sonuç<small>Her senaryoda vade sonu bakiye: 103.254,79 TL</small></caption>
+            <thead><tr><th scope="col">32 günlük<br>enflasyon</th><th scope="col">Reel getiri</th><th scope="col">Başlangıç fiyatlarıyla<br>bakiye</th><th scope="col">Reel kazanç<br>veya kayıp</th></tr></thead>
             <tbody>
-              <tr><th scope="row">%2</th><td>+%1,23</td><td>101.230,19 TL</td><td>+1.230,19 TL</td></tr>
-              <tr><th scope="row">%3</th><td>+%0,25</td><td>100.247,37 TL</td><td>+247,37 TL</td></tr>
-              <tr><th scope="row">%4</th><td>−%0,72</td><td>99.283,46 TL</td><td>−716,54 TL</td></tr>
+              <tr><th scope="row">%2</th><td class="deposit-gain">+%1,23</td><td>101.230,19 TL</td><td class="deposit-gain">+1.230,19 TL</td></tr>
+              <tr><th scope="row">%3</th><td class="deposit-gain">+%0,25</td><td>100.247,37 TL</td><td class="deposit-gain">+247,37 TL</td></tr>
+              <tr><th scope="row">%4</th><td class="deposit-loss">−%0,72</td><td>99.283,46 TL</td><td class="deposit-loss">−716,54 TL</td></tr>
             </tbody>
           </table>
         </div>
         <p>Son satırda hesabınızdan 716,54 TL kesilmez. Bankadaki para yine 103.254,79 TL'dir.
           Fakat bu parayla, vade başında 99.283,46 TL'ye alınabilen mal ve hizmet sepetini alabilirsiniz.
           <strong>Reel kayıp, burada para çıkışı değil satın alma gücü kaybıdır.</strong></p>
-        <figure class="ed-figure">
-          <img class="ed-cover" src="../../images/makale/mevduat-faizi-enflasyon-reel-getiri-kart.png" width="800" height="500" loading="lazy" decoding="async" alt="Net dönem getirisi %3,2548 iken, aynı dönem enflasyonu %2, %3 ve %4 olduğunda reel getiri sırasıyla +%1,23, +%0,25 ve −%0,72 olur.">
-          <figcaption>Varsayımsal 32 günlük senaryolar. Çubuklar nominal faizi değil, enflasyondan arındırılmış getiri oranını gösterir.</figcaption>
+        <figure class="deposit-chart" aria-labelledby="return-chart-title">
+          <div class="deposit-chart-heading">
+            <span class="ed-kicker">32 gün / Üç senaryo</span>
+            <h3 id="return-chart-title">Paranız artarken alım gücü azalabilir.</h3>
+            <p>Net dönem getirisi <strong>%3,2548</strong> sabit. Değişen, aynı dönemdeki enflasyon.</p>
+          </div>
+          <div class="deposit-chart-key" aria-hidden="true"><span>Alım gücü kaybı</span><span>Alım gücü artışı</span></div>
+          <ul class="deposit-chart-rows">
+            <li><span class="deposit-scenario-label"><strong>%2</strong> enflasyon</span><span class="deposit-track" aria-hidden="true"><span class="deposit-bar" style="--bar:41.0065%"></span></span><strong class="deposit-chart-value deposit-gain">+%1,23</strong></li>
+            <li><span class="deposit-scenario-label"><strong>%3</strong> enflasyon</span><span class="deposit-track" aria-hidden="true"><span class="deposit-bar" style="--bar:8.2458%"></span></span><strong class="deposit-chart-value deposit-gain">+%0,25</strong></li>
+            <li><span class="deposit-scenario-label"><strong>%4</strong> enflasyon</span><span class="deposit-track" aria-hidden="true"><span class="deposit-bar deposit-bar-loss" style="--bar:23.8847%"></span></span><strong class="deposit-chart-value deposit-loss">−%0,72</strong></li>
+          </ul>
+          <div class="deposit-chart-scale" aria-hidden="true"><span>−%1,5</span><span>0</span><span>+%1,5</span></div>
+          <figcaption>Çubuklar reel getiri oranını gösterir. Sıfır çizgisinin sağı artış, solu kayıptır. Enflasyon oranları aynı 32 gün için varsayımsal senaryolardır.</figcaption>
         </figure>
 
         <h2 id="donem">32 günlük mevduatı hangi enflasyonla karşılaştırmalısınız?</h2>
