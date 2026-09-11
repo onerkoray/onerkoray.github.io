@@ -1,9 +1,8 @@
 /* =========================================================================
    Editoryal katman — yalnızca /makaleler/ bölümü
    -------------------------------------------------------------------------
-   Makaleler bölümü araçlardan ayrı bir kimlik taşımalı. Araç kartları koyu
-   yeşil karolar ve ✓ rozetleriyle "uygulama" dili konuşuyor; buradaki dil
-   yazı dili: serif başlık, kicker etiketi, kural çizgileri, geniş boşluk.
+   Page and card headings share the site's UI typography. Serif headings
+   remain inside long-form articles, where they support the reading hierarchy.
 
    Serif için Georgia kullanılıyor — her işletim sisteminde bulunan, ekran
    için tasarlanmış bir editoryal serif. Web fontu YÜKLENMİYOR: sitenin
@@ -17,29 +16,29 @@
 /* ---- bölüm başlığı ---- */
 .ed-hero { padding: 2.5rem 0 1.75rem; }
 .ed-hero .kicker {
-  font-size: .78rem; font-weight: 800; letter-spacing: .16em;
+  font-family: var(--font-mono); font-size: var(--type-label); font-weight: 500; letter-spacing: .1em;
   text-transform: uppercase; color: var(--brand-strong); margin: 0 0 .9rem;
 }
 .ed-hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(2.1rem, 1.5rem + 2.6vw, 3.4rem);
-  line-height: 1.08; letter-spacing: -.015em; margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: var(--type-page-title);
+  line-height: var(--leading-title); letter-spacing: var(--tracking-title); margin: 0 0 1rem;
   max-width: 20ch;
 }
 .ed-hero .ed-standfirst {
-  font-size: var(--step-1); line-height: 1.55; color: var(--text-muted);
+  font-size: var(--type-page-description); line-height: var(--leading-body); color: var(--text-muted);
   max-width: 62ch; margin: 0;
 }
 
 /* Article directory: a compact guide to evidence, method and scope. */
 .ed-intro-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(2rem, 4vw, 3rem); align-items: center; }
 .ed-knowledge {
-  position: relative; padding: clamp(1.25rem, 2.3vw, 1.75rem);
+  position: relative; padding: clamp(var(--space-card), 2.3vw, 1.75rem);
   border: 1px solid var(--border); border-top: 3px solid var(--brand);
-  border-radius: 18px; background: linear-gradient(150deg, var(--surface), color-mix(in srgb, var(--brand) 4%, var(--surface)));
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--text) 4%, transparent);
+  border-radius: var(--radius-card); background: linear-gradient(150deg, var(--surface), var(--surface-note));
+  box-shadow: var(--shadow-card);
 }
-.ed-knowledge h2 { font-family: var(--serif); font-size: clamp(1.3rem, 1.8vw, 1.6rem); line-height: 1.25; letter-spacing: -.02em; margin: .25rem 0 1.25rem; }
+.ed-knowledge h2 { font-family: var(--font-display); font-size: var(--type-card-title); line-height: 1.4; letter-spacing: var(--tracking-title); margin: .25rem 0 1.25rem; }
 .ed-knowledge .ed-kicker { font-size: .65rem; letter-spacing: .09em; }
 .ed-evidence { margin: 0; }
 .ed-evidence > div + div { margin-top: .9rem; padding-top: .9rem; border-top: 1px solid var(--border); }
@@ -56,17 +55,17 @@
 /* ---- ortak: kicker + serif başlık ---- */
 .ed-kicker {
   display: inline-block;
-  font-size: .72rem; font-weight: 800; letter-spacing: .14em;
+  font-family: var(--font-mono); font-size: var(--type-label); font-weight: 500; letter-spacing: .1em;
   text-transform: uppercase; color: var(--brand-strong);
   margin: 0 0 .5rem;
 }
-.ed-title { font-family: var(--serif); letter-spacing: -.015em; line-height: 1.15; }
+.ed-title { font-family: var(--font-display); letter-spacing: var(--tracking-title); line-height: 1.4; }
 .ed-title a { color: var(--text); text-decoration: none; }
 .ed-title a:hover, .ed-title a:focus-visible { color: var(--brand-strong); }
 
 .ed-meta {
   display: flex; flex-wrap: wrap; align-items: center; gap: .5rem;
-  margin: .75rem 0 0; font-size: .82rem; color: var(--text-muted);
+  margin: .75rem 0 0; font-size: var(--type-metadata); line-height: var(--leading-body); color: var(--text-muted);
 }
 .ed-meta .ed-author { display: inline-flex; align-items: center; gap: .45rem; font-weight: 650; color: var(--text); }
 .ed-meta img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; filter: grayscale(1); }
@@ -78,12 +77,18 @@
 /* ---- kapak görseli ---- */
 .ed-cover {
   display: block; width: 100%; height: auto;
-  border-radius: var(--radius); border: 1px solid var(--border);
+  border-radius: var(--radius-inset); border: 1px solid var(--border);
   background: var(--surface-2);
   transition: transform .4s cubic-bezier(.22,.61,.36,1);
 }
-.ed-figure { overflow: hidden; border-radius: var(--radius); margin: 0; }
-a:hover .ed-cover, .ed-item:hover .ed-cover { transform: scale(1.02); }
+.ed-figure { overflow: hidden; border-radius: var(--radius-inset); margin: 0; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  a:hover .ed-cover, .ed-item:hover .ed-cover { transform: scale(1.02); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ed-cover, .ed-tumu a, .ed-tumu a::after { transition: none; transform: none; }
+  .ed-tumu a:hover::after { transform: none; }
+}
 
 /* ---- manşet (ilk yazı) ---- */
 .ed-lead {
@@ -105,14 +110,14 @@ a:hover .ed-cover, .ed-item:hover .ed-cover { transform: scale(1.02); }
 .ed-list { list-style: none; margin: 0; padding: 0; }
 .ed-item {
   display: grid; grid-template-columns: 260px 1fr;
-  gap: clamp(1.1rem, 3vw, 2rem); align-items: start;
+  gap: var(--space-grid); align-items: start;
   padding: 2rem 0; border-bottom: 1px solid var(--border);
 }
 .ed-item:last-child { border-bottom: 0; }
-.ed-item .ed-title { font-size: var(--step-1); margin: 0; }
-.ed-item .ed-dek { margin: .6rem 0 0; color: var(--text-muted); font-size: var(--step--1); line-height: 1.6; }
+.ed-item .ed-title { font-size: var(--type-card-title); margin: 0; }
+.ed-item .ed-dek { margin: .6rem 0 0; color: var(--text-muted); font-size: var(--type-card-description); line-height: var(--leading-body); }
 @media (max-width: 700px) {
-  .ed-item { grid-template-columns: 1fr; gap: .9rem; }
+  .ed-item { grid-template-columns: 1fr; gap: var(--space-grid-compact); }
   .ed-item .ed-figure { order: -1; }
 }
 
@@ -122,7 +127,7 @@ a:hover .ed-cover, .ed-item:hover .ed-cover { transform: scale(1.02); }
   margin: 2.75rem 0 .5rem;
 }
 .ed-rule h2 {
-  font-family: var(--serif); font-size: var(--step-1); margin: 0; white-space: nowrap;
+  font-family: var(--font-display); font-size: var(--step-1); margin: 0; white-space: nowrap;
 }
 .ed-rule::after {
   content: ""; flex: 1; height: 1px; background: var(--border);
@@ -130,21 +135,23 @@ a:hover .ed-cover, .ed-item:hover .ed-cover { transform: scale(1.02); }
 
 /* ---- yazı sayfası: editoryal okuma ---- */
 .ed-article-hero { padding: 2rem 0 0; }
-.ed-article-hero .ed-kicker { font-size: .76rem; }
+.ed-article-hero .ed-kicker { font-size: var(--type-label); }
 .ed-article-hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 1.3rem + 2.8vw, 3.1rem);
-  line-height: 1.1; letter-spacing: -.018em; margin: 0 0 1.1rem;
+  font-family: var(--font-display);
+  font-size: var(--type-page-title);
+  line-height: var(--leading-title); letter-spacing: var(--tracking-title); margin: 0 0 1.1rem;
   max-width: 22ch;
 }
 .ed-article-hero .ed-standfirst {
-  font-size: var(--step-1); line-height: 1.55; color: var(--text-muted);
+  font-size: var(--type-page-description); line-height: var(--leading-body); color: var(--text-muted);
   max-width: 60ch; margin: 0 0 1.25rem;
 }
 .ed-article-hero .ed-figure { margin-top: 1.75rem; }
 
 /* Gövde başlıkları da serif — yazı ile araç sayfası ayrışsın */
 .ed-body h2, .ed-body h3 { font-family: var(--serif); letter-spacing: -.012em; }
+.ed-body h2 { line-height: 1.25; }
+.ed-body .verdict h2 { font-family: var(--font-display); font-size: var(--type-card-title); line-height: 1.4; letter-spacing: var(--tracking-title); }
 .ed-body > p:first-of-type { font-size: 1.06em; }
 
 @media print {

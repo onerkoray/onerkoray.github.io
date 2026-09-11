@@ -40,6 +40,15 @@
     else navList.appendChild(li);
   })();
 
+  /* Mark the actual page, without treating in-page anchors as page links. */
+  document.querySelectorAll(".site-nav a").forEach(function (link) {
+    var url = new URL(link.href, document.baseURI);
+    if (!url.hash && url.origin === location.origin &&
+        url.pathname.replace(/index\.html$/, "") === location.pathname.replace(/index\.html$/, "")) {
+      link.setAttribute("aria-current", "page");
+    }
+  });
+
   /* ---- Renk paleti seçici (header'a otomatik eklenir) ---- */
   var ACCENT_KEY = "onerkoray.accent";
   var ACCENTS = [
