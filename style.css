@@ -68,7 +68,8 @@
 
 /* ---- Seçilebilir renk paletleri ---- */
 :root[data-accent="mavi"]      { --accent:#2160b4; --accent-strong:#194e94; --accent-bright:#5b9be6; --accent-bright-2:#3f87d9; --accent-glow:#8ec1f2; }
-:root[data-accent="camgobegi"] { --accent:#0c7f93; --accent-strong:#0a6273; --accent-bright:#3fb9cf; --accent-bright-2:#2aa3ba; --accent-glow:#7fd6e6; }
+/* Keep the stored palette key so returning visitors retain their third choice. */
+:root[data-accent="camgobegi"] { --accent:#7652ad; --accent-strong:#5e3e90; --accent-bright:#b89ce5; --accent-bright-2:#a58ace; --accent-glow:#d2baf3; }
 :root[data-accent="turuncu"] { --accent:#bb5714; --accent-strong:#9a4610; --accent-bright:#e8905a; --accent-bright-2:#d97b3f; --accent-glow:#f3b98e; }
 :root[data-accent="gul"]     { --accent:#b0345c; --accent-strong:#92294b; --accent-bright:#e07399; --accent-bright-2:#d15a85; --accent-glow:#eda6c0; }
 

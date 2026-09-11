@@ -45,7 +45,7 @@
   var ACCENTS = [
     ["yesil", "#0e7c66", "Yeşil"],
     ["mavi", "#2160b4", "Mavi"],
-    ["camgobegi", "#0c7f93", "Camgöbeği"],
+    ["camgobegi", "#7652ad", "Mor"],
     ["turuncu", "#bb5714", "Turuncu"],
     ["gul", "#b0345c", "Gül"]
   ];
