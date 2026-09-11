@@ -614,6 +614,19 @@ html { scroll-behavior: smooth; }
   .hero-latest .hq-yeni a { padding: .8rem; }
 }
 
+/* Supporting copy is a note, visually distinct from the directory controls. */
+.home-page .hero-note {
+  display: flex; align-items: flex-start; gap: .85rem;
+  margin: 2rem 0 0; padding: 0; max-width: 42rem;
+  color: var(--text-muted); font-size: .9rem; line-height: 1.65;
+}
+.home-page .hero-note-icon {
+  flex: none; width: 26px; height: 26px; margin-top: .15rem;
+  color: var(--brand-strong);
+}
+.home-page .hero-note strong { display: block; font-weight: 600; color: var(--text); }
+.home-page .hero-note small { display: block; margin-top: .2rem; font-size: .85rem; }
+
 /* Directory details: preserve the grid and filtering, refine its visual surfaces. */
 @media screen {
   .home-page .chips {
