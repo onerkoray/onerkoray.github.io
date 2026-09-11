@@ -1,0 +1,57 @@
+/* Article-specific data presentation; values and financial assumptions stay in HTML. */
+.deposit-article { --deposit-loss: #9a4610; }
+:root[data-theme="dark"] .deposit-article { --deposit-loss: #f3b98e; }
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .deposit-article { --deposit-loss: #f3b98e; }
+}
+.deposit-table-wrap {
+  margin: 1.5rem 0; overflow-x: auto; border: 1px solid var(--border);
+  border-radius: var(--radius-card); background: var(--surface);
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.deposit-table { width: 100%; border-collapse: collapse; font-size: .85rem; line-height: 1.55; }
+.deposit-table caption { padding: 1.2rem; text-align: left; font-size: 1.05rem; font-weight: 700; color: var(--text); }
+.deposit-table caption > span { display: block; margin-bottom: .4rem; font: 500 .68rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--brand-strong); }
+.deposit-table caption small { display: block; margin-top: .35rem; font-size: .78rem; font-weight: 400; color: var(--text-muted); }
+.deposit-table th, .deposit-table td { padding: .9rem 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.deposit-table thead th { background: var(--surface-2); color: var(--text-muted); font-size: .72rem; font-weight: 600; text-align: left; }
+.deposit-table tbody th { text-align: left; font-weight: 600; color: var(--text); }
+.deposit-table tbody td { color: var(--text-muted); }
+.deposit-table tbody tr:last-child > * { border-bottom: 0; }
+.deposit-table td:last-child, .deposit-table th:last-child,
+.deposit-scenarios td, .deposit-scenarios thead th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.deposit-table td:last-child { color: var(--text); font-weight: 650; }
+.deposit-table .deposit-highlight { background: var(--surface-note); }
+.deposit-table .deposit-total > * { border-top: 2px solid var(--brand); font-weight: 750; }
+.deposit-table .deposit-total td:last-child { color: var(--brand-strong); }
+.deposit-article .deposit-gain, .deposit-table td.deposit-gain { color: var(--brand-strong); font-weight: 700; }
+.deposit-article .deposit-loss, .deposit-table td.deposit-loss { color: var(--deposit-loss); font-weight: 700; }
+.deposit-chart { --label-width: 5.25rem; --value-width: 4.5rem; --chart-gap: .65rem; margin: 1.75rem 0; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); }
+.deposit-chart-heading h3 { font: 750 1.2rem/1.35 var(--font-display); letter-spacing: var(--tracking-title); margin: .3rem 0 .6rem; }
+.deposit-chart-heading p { font-size: .85rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 1.5rem; }
+.deposit-chart-heading p strong { color: var(--brand-strong); }
+.deposit-chart-key, .deposit-chart-scale { display: flex; justify-content: space-between; margin-left: calc(var(--label-width) + var(--chart-gap)); margin-right: calc(var(--value-width) + var(--chart-gap)); font-size: .68rem; color: var(--text-muted); }
+.deposit-chart-key { margin-bottom: .5rem; gap: 1rem; }
+.deposit-chart-key span:last-child { text-align: right; }
+.deposit-chart-rows { list-style: none; padding: 0; margin: 0; }
+.deposit-chart-rows li { display: grid; grid-template-columns: var(--label-width) minmax(0, 1fr) var(--value-width); align-items: center; gap: var(--chart-gap); margin: 0; min-height: 4.25rem; border-top: 1px solid var(--border); }
+.deposit-scenario-label { font-size: .7rem; color: var(--text-muted); }
+.deposit-scenario-label strong { display: block; font-size: .95rem; color: var(--text); }
+.deposit-track { display: block; position: relative; height: 4.25rem; background: linear-gradient(90deg, transparent calc(50% - .5px), var(--text-muted) 50%, transparent calc(50% + .5px)); }
+.deposit-bar { position: absolute; top: 50%; left: 50%; width: var(--bar); height: 1.05rem; transform: translateY(-50%); border-radius: 0 4px 4px 0; background: var(--brand); }
+.deposit-bar-loss { left: auto; right: 50%; background: var(--deposit-loss); border-radius: 4px 0 0 4px; }
+.deposit-chart-value { text-align: right; font-size: .95rem; font-variant-numeric: tabular-nums; }
+.deposit-chart-scale { padding-top: .4rem; }
+.deposit-chart figcaption { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: .76rem; line-height: 1.65; color: var(--text-muted); }
+@media (max-width: 540px) {
+  .deposit-table { min-width: 530px; }
+  .deposit-chart { --label-width: 3.75rem; --value-width: 3.5rem; --chart-gap: .4rem; padding: 1rem; }
+  .deposit-chart-heading h3 { font-size: 1.08rem; }
+  .deposit-chart-value { font-size: .83rem; }
+  .deposit-chart-key { font-size: .6rem; gap: .4rem; }
+}
+@media print {
+  .deposit-table-wrap { overflow: visible; }
+  .deposit-table { min-width: 0; }
+  .deposit-chart { break-inside: avoid; }
+}
