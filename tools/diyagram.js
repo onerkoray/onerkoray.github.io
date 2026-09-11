@@ -97,7 +97,7 @@ function ikonHTML(ic) {
 function agac(baslik, aciklama, merkez, merkezAlt, dallar) {
   var kimlik = ["parametreler", "hesaplar", "araclar", "denetim"];
   var aciklamalar = ["Hesabın yasal girdileri", "Kuralları sonuca dönüştürür", "Aynı çekirdeği kullanır", "Tutarlılığı doğrular"];
-  var links = ["#parametreler", "#metodoloji", null, "https://github.com/onerkoray/onerkoray.github.io/actions"];
+  var links = ["#parametreler", "#metodoloji", null, "#dogrulama"];
   var yollar = [125, 375, 625, 875].map(function (x, i) {
     var d = 'M500 0 V16 Q500 30 ' + (x < 500 ? 480 : 520) + ' 30 H' + (x < 500 ? x + 16 : x - 16) + ' Q' + x + ' 30 ' + x + ' 46 V64';
     return '<g data-wire="' + kimlik[i] + '"><path class="bm-wire" d="' + d + '"/>' +
