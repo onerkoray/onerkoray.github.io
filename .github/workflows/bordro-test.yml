@@ -140,6 +140,9 @@ jobs:
       - name: Kart karoları ikon kaynağıyla aynı mı
         run: python tools/kart-karo.py --check
 
+      - name: Araç başlık simgeleri güncel mi
+        run: python tools/arac-simgesi.py --check
+
       - name: Faviconlar ikon kaynağıyla aynı mı
         run: python tools/favikon.py --check
 
