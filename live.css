@@ -613,3 +613,98 @@ html { scroll-behavior: smooth; }
   .home-page .topic-index { gap: .65rem; }
   .hero-latest .hq-yeni a { padding: .8rem; }
 }
+
+/* Directory details: preserve the grid and filtering, refine its visual surfaces. */
+@media screen {
+  .home-page .chips {
+    width: fit-content; max-width: 100%; padding: .35rem; gap: .3rem;
+    border: 1px solid var(--border); border-radius: 18px;
+    background: color-mix(in srgb, var(--surface-2) 65%, var(--surface));
+  }
+  .home-page .chip {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    border: 1px solid transparent; border-radius: 12px; padding: .55rem .85rem;
+    background: transparent; color: var(--text-muted); letter-spacing: .035em;
+    transition: background .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+  .home-page .chip::before {
+    content: ""; flex: none; width: 5px; height: 5px; border-radius: 50%;
+    background: currentColor; opacity: 0; transition: opacity .3s ease;
+  }
+  .home-page .chip:hover { background: var(--surface); color: var(--brand-strong); }
+  .home-page .chip[aria-pressed="true"] {
+    color: var(--brand-strong); background: var(--surface);
+    border-color: color-mix(in srgb, var(--brand) 30%, var(--border));
+    box-shadow: 0 2px 6px color-mix(in srgb, var(--text) 6%, transparent);
+  }
+  .home-page .chip[aria-pressed="true"]::before { opacity: 1; }
+  .home-page .project-card {
+    border-radius: 18px;
+    box-shadow: 0 2px 5px color-mix(in srgb, var(--text) 2%, transparent);
+    transition: transform .45s cubic-bezier(.22,1,.36,1), border-color .35s ease, box-shadow .45s ease;
+  }
+  .home-page .project-card:hover, .home-page .project-card:focus-within {
+    border-color: color-mix(in srgb, var(--brand) 40%, var(--border));
+    box-shadow: 0 12px 28px color-mix(in srgb, var(--text) 7%, transparent);
+  }
+  :root .home-page .project-card .karo {
+    margin: 12px 12px 0; border-radius: 12px;
+    background:
+      radial-gradient(ellipse at 85% 15%, color-mix(in srgb, var(--brand) 8%, transparent), transparent 70%),
+      linear-gradient(125deg, color-mix(in srgb, var(--brand) 9%, var(--surface)), color-mix(in srgb, var(--brand) 3%, var(--surface)));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand) 10%, transparent);
+  }
+  :root .home-page .project-card .karo-ikon {
+    --icon-size: clamp(38px, 15cqw, 52px);
+    inline-size: var(--icon-size); block-size: var(--icon-size);
+    margin-block-start: calc(var(--icon-size) / -2); padding: 10px;
+    color: var(--brand-strong); opacity: 1; border-radius: 13px;
+    background: var(--surface); border: 1px solid color-mix(in srgb, var(--brand) 16%, var(--border));
+    box-shadow: 0 4px 10px color-mix(in srgb, var(--brand) 6%, transparent);
+    transition: transform .6s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
+  }
+  :root .home-page .project-card .karo-ikon svg { stroke-width: 1.7; }
+  :root .home-page .project-card .karo::after {
+    width: 2px; height: 26%; opacity: .65;
+    background: linear-gradient(var(--brand), color-mix(in srgb, var(--brand) 12%, transparent));
+    transition: height .6s ease, opacity .4s ease;
+  }
+  :root .home-page .project-card .karo::before {
+    background-image: none; background-color: var(--brand); opacity: .14;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='80' viewBox='0 0 240 80'%3E%3Cpath d='M0 46C35 46 42 24 78 24S130 55 167 55S210 46 240 46M0 60C35 60 42 40 78 40S130 69 167 69S210 60 240 60' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E");
+    mask-size: 240px 100%; mask-repeat: repeat-x;
+    animation: directory-trace 20s linear infinite; animation-play-state: paused;
+  }
+  .home-page .project-body { padding: 1.15rem 1.2rem; }
+  .home-page .project-body h3 { font-size: 1.16rem; line-height: 1.4; letter-spacing: -.02em; }
+  .home-page .project-body h3 a { color: var(--text); transition: color .3s ease; }
+  .home-page .project-card:is(:hover,:focus-within) .project-body h3 a { color: var(--brand-strong); }
+  .home-page .project-body > p:not(.card-badges):not(.project-links) { font-size: .93rem; line-height: 1.7; }
+  .home-page .project-links { padding-top: .9rem; }
+  .home-page .project-links a:first-child { gap: .65rem; letter-spacing: .035em; }
+  .home-page .project-links a:first-child::after {
+    display: inline-grid; place-items: center; width: 1.55rem; height: 1.55rem;
+    border-radius: 50%; background: color-mix(in srgb, var(--brand) 9%, var(--surface));
+    transition: transform .4s ease, background .3s ease;
+  }
+  .home-page .hero-latest .hq-yeni a, .home-page .topic-index a {
+    transition: transform .4s cubic-bezier(.22,1,.36,1), border-color .35s ease, background .35s ease;
+  }
+}
+@keyframes directory-trace { to { mask-position: 240px 0; } }
+@media screen and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :root .home-page .project-card:is(:hover,:focus-within) .karo-ikon { transform: translateY(-2px) rotate(-3deg); }
+  :root .home-page .project-card:is(:hover,:focus-within) .karo::before { animation-play-state: running; }
+  :root .home-page .project-card:is(:hover,:focus-within) .karo::after { height: 42%; opacity: .9; }
+}
+@media screen and (max-width: 560px) {
+  .home-page .chips { width: 100%; border-radius: 14px; }
+  .home-page .chip { flex: 1 1 auto; font-size: .75rem; padding-inline: .6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root .home-page .project-card .karo::before { animation: none; }
+  :root .home-page .project-card .karo-ikon,
+  :root .home-page .project-card .karo::after,
+  .home-page .project-card, .home-page .chip, .home-page .chip::before,
+  .home-page .project-links a:first-child::after { transition: none; transform: none; }
+}
