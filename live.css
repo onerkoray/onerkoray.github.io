@@ -652,8 +652,8 @@ html { scroll-behavior: smooth; }
   }
   .home-page .chip[aria-pressed="true"]::before { opacity: 1; }
   .home-page .project-card {
-    border-radius: 18px;
-    box-shadow: 0 2px 5px color-mix(in srgb, var(--text) 2%, transparent);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
     transition: transform .45s cubic-bezier(.22,1,.36,1), border-color .35s ease, box-shadow .45s ease;
   }
   .home-page .project-card:hover, .home-page .project-card:focus-within {
@@ -688,11 +688,11 @@ html { scroll-behavior: smooth; }
     mask-size: 240px 100%; mask-repeat: repeat-x;
     animation: directory-trace 20s linear infinite; animation-play-state: paused;
   }
-  .home-page .project-body { padding: 1.15rem 1.2rem; }
-  .home-page .project-body h3 { font-size: 1.16rem; line-height: 1.4; letter-spacing: -.02em; }
+  .home-page .project-body { padding: var(--space-card); }
+  .home-page .project-body h3 { font-size: var(--type-card-title); line-height: 1.4; letter-spacing: var(--tracking-title); }
   .home-page .project-body h3 a { color: var(--text); transition: color .3s ease; }
   .home-page .project-card:is(:hover,:focus-within) .project-body h3 a { color: var(--brand-strong); }
-  .home-page .project-body > p:not(.card-badges):not(.project-links) { font-size: .93rem; line-height: 1.7; }
+  .home-page .project-body > p:not(.card-badges):not(.project-links) { font-size: var(--type-card-description); line-height: var(--leading-body); }
   .home-page .project-links { padding-top: .9rem; }
   .home-page .project-links a:first-child { gap: .65rem; letter-spacing: .035em; }
   .home-page .project-links a:first-child::after {

@@ -50,6 +50,28 @@
      çalışan iki sütunlu düzenini etkilerdi. Editoryal his genişlikten değil,
      tipografi + hairline + boşluktan geliyor. */
   --wrap: 1080px;
+  /* Shared semantic roles. Keep compact UI and long-form reading distinct. */
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --type-page-title: clamp(1.85rem, 3.6vw, 3rem);
+  --type-page-description: 1.05rem;
+  --type-card-title: 1.16rem;
+  --type-card-description: .93rem;
+  --type-metadata: .82rem;
+  --type-label: .72rem;
+  --leading-title: 1.15;
+  --leading-body: 1.65;
+  --tracking-title: -.02em;
+  --radius-control: 10px;
+  --radius-card: 18px;
+  --radius-inset: 12px;
+  --space-card: 1.25rem;
+  --space-grid: 1.25rem;
+  --space-grid-compact: .875rem;
+  --page-gutter: 2.5rem;
+  --shadow-card: 0 2px 5px color-mix(in srgb, var(--text) 2%, transparent);
+  --surface-note: color-mix(in srgb, var(--brand) 4%, var(--surface));
+  --motion-color: .3s ease;
+  --motion-shift: .45s cubic-bezier(.22,1,.36,1);
 }
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
@@ -77,17 +99,17 @@
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: var(--step-0); line-height: 1.65; -webkit-font-smoothing: antialiased;
+  font-family: var(--font-body);
+  font-size: var(--step-0); line-height: var(--leading-body); -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3 { line-height: 1.15; letter-spacing: -.02em; margin: 0 0 .5em; }
-h1 { font-size: var(--step-4); }
-h2 { font-size: var(--step-3); }
+h1 { font-size: var(--type-page-title); }
+h2 { font-size: var(--step-2); }
 h3 { font-size: var(--step-1); }
 p { margin: 0 0 1rem; }
 a { color: var(--brand-strong); text-underline-offset: 2px; }
 a:hover { color: var(--brand); }
-.wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
+.wrap { width: min(100% - var(--page-gutter), var(--wrap)); margin-inline: auto; }
 
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
 .skip-link {
@@ -278,15 +300,16 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .hero-bg { display: none; }
 }
-/* Mobilde menuyu gizlemek yerine ikinci satira alip yatay kaydirilabilir yap:
-   680px altinda header'da hicbir gezinme baglantisi kalmiyordu. */
-@media (max-width: 680px) {
+/* Use the existing second navigation row on tablets too; preserve all links. */
+@media (max-width: 980px) {
   .header-inner { flex-wrap: wrap; gap: .6rem 1rem; padding-bottom: .45rem; }
   .site-nav { order: 3; flex-basis: 100%; margin-left: 0; overflow-x: auto; scrollbar-width: none; }
   .site-nav::-webkit-scrollbar { display: none; }
   .site-nav ul { gap: 1rem; padding-bottom: .3rem; }
   .site-nav a { white-space: nowrap; }
   .theme-toggle { margin-left: auto; }
+}
+@media (max-width: 680px) {
   .theme-toggle-label { display: none; }
 }
 
@@ -951,7 +974,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 800; }
    Eskiden her boyutta sabit -.02em vardı; 64 piksellik başlık 16 piksellik
    gövdeyle aynı aralığı kullanıyordu ve büyütülmüş arayüz yazısı gibi
    duruyordu. */
-h1 { letter-spacing: -.035em; line-height: 1; text-wrap: balance; }
+h1 { letter-spacing: var(--tracking-title); line-height: var(--leading-title); text-wrap: balance; }
 h2 { letter-spacing: -.03em; line-height: 1.06; text-wrap: balance; }
 h3 { letter-spacing: -.015em; line-height: 1.25; }
 .hero-copy h1 {
@@ -968,7 +991,7 @@ h3 { letter-spacing: -.015em; line-height: 1.25; }
   font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: .1em;
-  font-size: .72rem;
+  font-size: var(--type-label);
   font-weight: 500;
 }
 .eyebrow { color: var(--text-muted); margin-bottom: 1.4rem; }
@@ -1323,16 +1346,26 @@ section { padding: var(--bolum) 0; }
 .topic-index span { color: var(--text-muted); font-size: .88rem; line-height: 1.5; }
 .home-page .projects { padding-block: 2rem; }
 .home-page .project-card { border-radius: 14px; overflow: hidden; }
-.home-page .project-grid { gap: 18px; }
+.home-page .project-grid { gap: var(--space-grid); }
 .directory-status { color: var(--text-muted); font-size: .9rem; margin: .75rem 0 1.25rem; }
 .home-page .tool-search { border-radius: 12px; }
 .home-page .chips { flex-wrap: wrap; }
 .home-page .chip { min-height: 44px; border-radius: 999px; }
 .calculator-page .hero { padding-block: 1.5rem; }
-.calculator-page .hero h1 { font-size: clamp(1.85rem, 3.6vw, 3rem); line-height: 1.15; margin-block: .5rem .75rem; }
-.calculator-page .hero .lede { font-size: 1rem; line-height: 1.6; max-width: 52rem; }
+.calculator-page .hero h1 { font-size: var(--type-page-title); line-height: var(--leading-title); letter-spacing: var(--tracking-title); margin-block: .5rem .75rem; }
+.calculator-page .hero .lede { font-size: var(--type-page-description); line-height: var(--leading-body); max-width: 52rem; }
 .calculator-page .calc { padding-top: 1rem; }
-.calculator-page input, .calculator-page select { min-height: 44px; }
+:root .calculator-page :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="hidden"], [type="color"], [type="submit"], [type="button"], [type="reset"]), select, textarea) {
+  min-height: 44px; border-radius: var(--radius-control);
+  border-color: var(--border); background-color: var(--surface); color: var(--text);
+}
+:root :is(input, select, textarea):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+:root .calculator-page :is(.tab, .sekme)[aria-selected="true"] {
+  background: var(--accent-strong); border-color: var(--accent-strong); color: #fff;
+}
+:root :is(button, input, select, textarea):disabled {
+  cursor: not-allowed; opacity: .6; box-shadow: none; transform: none;
+}
 .site-nav a { display: inline-flex; align-items: center; min-height: 44px; }
 .legal-note a { text-underline-offset: .2em; }
 @media (max-width: 640px) {
@@ -1365,7 +1398,7 @@ section { padding: var(--bolum) 0; }
   content: ""; position: absolute; inset: 0 0 auto; height: 3px;
   background: linear-gradient(90deg, var(--brand), color-mix(in srgb, var(--brand) 20%, transparent));
 }
-.home-page .section-head h2 { text-wrap: balance; }
+.home-page .section-head h2, .home-page .about > .wrap > h2, .home-page .contact > .wrap > h2 { font-size: var(--step-3); text-wrap: balance; }
 .home-page .section-head h2::before {
   content: ""; display: inline-block; width: 2.6rem; height: .18rem;
   margin: 0 .7rem .25rem 0; vertical-align: middle; background: var(--brand);
@@ -1376,6 +1409,7 @@ section { padding: var(--bolum) 0; }
   font: 600 .78rem var(--font-mono); padding: .55rem .4rem; white-space: nowrap;
 }
 .tool-search-clear:hover, .tool-search-clear:focus-visible { color: var(--brand-strong); }
+:root .tool-search input:focus-visible { outline: none; box-shadow: none; }
 .home-page .directory-status {
   display: inline-flex; align-items: center; min-height: 1.8rem;
   padding: .2rem .65rem; border: 1px solid var(--border); border-radius: 999px;
@@ -1395,14 +1429,13 @@ section { padding: var(--bolum) 0; }
 .home-page .project-links a:hover::after, .home-page .project-links a:focus-visible::after { transform: translate(2px, -2px); }
 .calc .panel, .calc .year-row { transition: border-color .2s ease, box-shadow .2s ease; }
 .calc .panel:focus-within { border-color: color-mix(in srgb, var(--brand) 48%, var(--border)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 10%, transparent); }
-.calc .panel input, .calc .panel select { border-radius: 10px; }
 .sum-grid .sum-card { min-height: 6.5rem; justify-content: center; transition: transform .18s ease, border-color .18s ease; }
 .sum-grid .sum-card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--brand) 38%, var(--border)); }
 .sum-value { font-variant-numeric: tabular-nums; }
 @media (max-width: 640px) {
   .home-page .hero { background: linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 48%, transparent), transparent 70%); }
   .home-page .section-head h2::before { width: 1.8rem; margin-right: .5rem; }
-  .home-page .project-grid { gap: 14px; }
+  .home-page .project-grid { gap: var(--space-grid-compact); }
   .home-page .project-card:hover { transform: none; }
   .home-page .directory-status { margin-top: .1rem; }
   .sum-grid .sum-card:hover { transform: none; }
@@ -1458,7 +1491,7 @@ section { padding: var(--bolum) 0; }
 @media screen {
   :root .site-nav a {
     position: relative;
-    transition: color .3s ease, transform .45s cubic-bezier(.22,1,.36,1);
+    transition: color var(--motion-color), transform var(--motion-shift);
   }
   :root .site-nav a::after {
     content: ""; position: absolute; inset-inline: 0; bottom: -2px; height: 2px;
@@ -1467,7 +1500,8 @@ section { padding: var(--bolum) 0; }
     transition: transform .5s cubic-bezier(.22,1,.36,1);
   }
   :root .site-nav a.nav-featured { border-bottom-color: transparent; }
-  :root .site-nav a.nav-featured::after { transform: scaleX(1); }
+  :root .site-nav a[aria-current="page"] { color: var(--brand-strong); font-weight: 600; }
+  :root .site-nav a.nav-featured::after, :root .site-nav a[aria-current="page"]::after { transform: scaleX(1); }
   :root .site-nav a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
 }
 @media screen and (hover: hover) and (pointer: fine) {
@@ -1490,14 +1524,13 @@ section { padding: var(--bolum) 0; }
     box-shadow: 0 2px 16px color-mix(in srgb, var(--text) 3%, transparent);
   }
   :root .site-header .theme-toggle,
-  :root .site-header .palette > button { border-radius: 10px; }
+  :root .site-header .palette > button { border-radius: var(--radius-control); }
   :root .site-header .palette-pop {
     border-radius: 14px;
     box-shadow: 0 12px 32px color-mix(in srgb, var(--text) 12%, transparent);
   }
-  .site-nav a { transition: color .18s ease; }
   .site-nav a:hover { color: var(--brand-strong); }
-  .btn { border-radius: 10px; }
+  .btn { border-radius: var(--radius-control); }
   .btn-primary {
     background: linear-gradient(135deg, var(--accent), var(--accent-strong));
     color: #fff;
@@ -1506,11 +1539,11 @@ section { padding: var(--bolum) 0; }
   }
   .btn-primary:hover { background: var(--accent-strong); color: #fff; }
   .calc .panel, .calc form.panel {
-    border-radius: 16px;
-    box-shadow: 0 4px 18px color-mix(in srgb, var(--text) 3%, transparent);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
   }
   .sum-grid .sum-card {
-    border-radius: 12px;
+    border-radius: var(--radius-inset);
     background: linear-gradient(145deg, var(--surface), color-mix(in srgb, var(--brand) 5%, var(--surface)));
   }
   .ed-article-hero {
@@ -1520,9 +1553,9 @@ section { padding: var(--bolum) 0; }
   .ed-body .verdict {
     border: 1px solid color-mix(in srgb, var(--brand) 25%, var(--border));
     border-inline-start: 3px solid var(--brand);
-    border-radius: 12px;
-    background: color-mix(in srgb, var(--brand) 4%, var(--surface));
+    border-radius: var(--radius-inset);
+    background: var(--surface-note);
   }
-  .faq details { border-radius: 12px; }
+  .faq details { border-radius: var(--radius-inset); }
   .faq details[open] { border-color: color-mix(in srgb, var(--brand) 40%, var(--border)); }
 }
