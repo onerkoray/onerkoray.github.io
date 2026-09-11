@@ -1411,6 +1411,34 @@ section { padding: var(--bolum) 0; }
   .home-page .project-links a::after, .sum-grid .sum-card { transition: none; }
 }
 
+/* Navigation responds without shifting the surrounding header layout. */
+@media screen {
+  :root .site-nav a {
+    position: relative;
+    transition: color .3s ease, transform .45s cubic-bezier(.22,1,.36,1);
+  }
+  :root .site-nav a::after {
+    content: ""; position: absolute; inset-inline: 0; bottom: -2px; height: 2px;
+    pointer-events: none; background: linear-gradient(90deg, var(--brand), var(--accent-glow));
+    transform: scaleX(0); transform-origin: right;
+    transition: transform .5s cubic-bezier(.22,1,.36,1);
+  }
+  :root .site-nav a.nav-featured { border-bottom-color: transparent; }
+  :root .site-nav a.nav-featured::after { transform: scaleX(1); }
+  :root .site-nav a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+}
+@media screen and (hover: hover) and (pointer: fine) {
+  :root .site-nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+}
+@media screen and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :root .site-nav a:hover { transform: translateY(-2px); }
+  :root .site-nav a.nav-featured:hover::after { animation: nav-trace .65s cubic-bezier(.22,1,.36,1); }
+}
+@keyframes nav-trace { from { transform: scaleX(.35); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+  :root .site-nav a, :root .site-nav a::after { transition: none; animation: none; }
+}
+
 /* Shared surface styling. Brand assets and palette choices stay independent. */
 @media screen {
   .site-header {
