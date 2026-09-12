@@ -1,8 +1,34 @@
 /* Article-specific data presentation; values and financial assumptions stay in HTML. */
-.deposit-article { --deposit-loss: #9a4610; }
-:root[data-theme="dark"] .deposit-article { --deposit-loss: #f3b98e; }
+/* Veri isaretleri tema vurgusundan BAGIMSIZ. Kazanc/kayip bir polarite
+   kodlamasidir; kullanicinin sectigi arayuz rengiyle degisemez. Onceki surumde
+   cubuklar var(--brand) kullaniyordu ve bes paletin ucu olculebilir bicimde
+   kiriliyordu: turuncuda kazanc #bb5714 ile kayip #9a4610 normal gorus DeltaE
+   8,0; gulde 11,2 (15 tabaninin altinda, tam renk gorende bile ayirt edilemez).
+   Varsayilan yesilde ise marka rengi kroma tabaninin altinda kalip veri
+   isareti olarak gri okunuyordu. Asagidaki cift dataviz dogrulayicisindan
+   acik (#fff) ve koyu (#14181d) zeminde AYRI AYRI tam PASS aldi:
+   CVD DeltaE 13,4 / normal gorus 26,2. Isaretler 3:1, murekkep adimlari
+   metin icin 4,5:1 esigine gore secildi.
+   Bilincli takas: yesilin kromasi (0,100) turuncununkinin (0,190) altinda,
+   yani turuncu biraz daha "yuksek sesli" duruyor. Kromayi esitleyen ciftler
+   tarandi; hepsi CVD ayrismasini 13,4'ten ~11,7'ye dusuruyor. Olculebilir
+   erisilebilirlik, estetik dengenin onunde tutuldu.
+   Degistirirken dogrulayiciyi yeniden calistir, goze guvenme. */
+.deposit-article {
+  --dv-gain: #44a386;      /* isaret */
+  --dv-loss: #ec6100;      /* isaret */
+  --dv-gain-ink: #157056;  /* metin - beyaz zeminde 6,03:1 */
+  --dv-loss-ink: #b34806;  /* metin - beyaz zeminde 5,46:1 */
+}
+:root[data-theme="dark"] .deposit-article {
+  --dv-gain-ink: #5cbb9d;  /* #14181d uzerinde 7,68:1 */
+  --dv-loss-ink: #f5843c;  /* #14181d uzerinde 7,00:1 */
+}
 @media (prefers-color-scheme: dark) {
-  :root[data-theme="auto"] .deposit-article { --deposit-loss: #f3b98e; }
+  :root[data-theme="auto"] .deposit-article {
+    --dv-gain-ink: #5cbb9d;
+    --dv-loss-ink: #f5843c;
+  }
 }
 .deposit-table-wrap {
   margin: 1.5rem 0; overflow-x: auto; border: 1px solid var(--border);
@@ -24,8 +50,8 @@
 .deposit-table .deposit-highlight { background: var(--surface-note); }
 .deposit-table .deposit-total > * { border-top: 2px solid var(--brand); font-weight: 750; }
 .deposit-table .deposit-total td:last-child { color: var(--brand-strong); }
-.deposit-article .deposit-gain, .deposit-table td.deposit-gain { color: var(--brand-strong); font-weight: 700; }
-.deposit-article .deposit-loss, .deposit-table td.deposit-loss { color: var(--deposit-loss); font-weight: 700; }
+.deposit-article .deposit-gain, .deposit-table td.deposit-gain { color: var(--dv-gain-ink); font-weight: 700; }
+.deposit-article .deposit-loss, .deposit-table td.deposit-loss { color: var(--dv-loss-ink); font-weight: 700; }
 .deposit-chart { --label-width: 5.25rem; --value-width: 4.5rem; --chart-gap: .65rem; margin: 1.75rem 0; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); }
 .deposit-chart-heading h3 { font: 750 1.2rem/1.35 var(--font-display); letter-spacing: var(--tracking-title); margin: .3rem 0 .6rem; }
 .deposit-chart-heading p { font-size: .85rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 1.5rem; }
@@ -33,15 +59,46 @@
 .deposit-chart-key, .deposit-chart-scale { display: flex; justify-content: space-between; margin-left: calc(var(--label-width) + var(--chart-gap)); margin-right: calc(var(--value-width) + var(--chart-gap)); font-size: .68rem; color: var(--text-muted); }
 .deposit-chart-key { margin-bottom: .5rem; gap: 1rem; }
 .deposit-chart-key span:last-child { text-align: right; }
+/* Lejant: rengi anlama bagliyor. Onceki surumde anahtar aria-hidden idi ve
+   renk-anlam iliskisi yalnizca konumdan cikariliyordu. */
+.deposit-chart-key span { display: inline-flex; align-items: center; gap: .4rem; }
+.dv-swatch { width: .6rem; height: .6rem; border-radius: 2px; flex: none; }
+.dv-swatch-gain { background: var(--dv-gain); }
+.dv-swatch-loss { background: var(--dv-loss); }
 .deposit-chart-rows { list-style: none; padding: 0; margin: 0; }
 .deposit-chart-rows li { display: grid; grid-template-columns: var(--label-width) minmax(0, 1fr) var(--value-width); align-items: center; gap: var(--chart-gap); margin: 0; min-height: 4.25rem; border-top: 1px solid var(--border); }
 .deposit-scenario-label { font-size: .7rem; color: var(--text-muted); }
 .deposit-scenario-label strong { display: block; font-size: .95rem; color: var(--text); }
 .deposit-track { display: block; position: relative; height: 4.25rem; background: linear-gradient(90deg, transparent calc(50% - .5px), var(--text-muted) 50%, transparent calc(50% + .5px)); }
-.deposit-bar { position: absolute; top: 50%; left: 50%; width: var(--bar); height: 1.05rem; transform: translateY(-50%); border-radius: 0 4px 4px 0; background: var(--brand); }
-.deposit-bar-loss { left: auto; right: 50%; background: var(--deposit-loss); border-radius: 4px 0 0 4px; }
+.deposit-bar { position: absolute; top: 50%; left: 50%; width: var(--bar); height: 1.05rem; transform: translateY(-50%); border-radius: 0 4px 4px 0; background: var(--dv-gain); }
+.deposit-bar-loss { left: auto; right: 50%; background: var(--dv-loss); border-radius: 4px 0 0 4px; }
 .deposit-chart-value { text-align: right; font-size: .95rem; font-variant-numeric: tabular-nums; }
 .deposit-chart-scale { padding-top: .4rem; }
+/* Esik sayilari. Bunlar grafik DEGIL: tek bir esik degeri ve ondan turetilen
+   tek bir oran. Ikisini de cubuga cevirmek ayni diverging grafigi ikinci kez
+   cizmek olurdu; sayfada zaten o var. Deger sans ve ORANTILI rakamla yaziliyor
+   (tabular-nums buyuk puntoda 121 gibi sayilari gevsek gosteriyor; tabular
+   yalnizca hizalanmasi gereken sutunlarda). Renk tasimiyorlar: kazanc/kayip
+   kodlamasi degiller, yonu olmayan birer olcu. */
+.deposit-figures {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px;
+  margin: 1.75rem 0; padding: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden;
+}
+.deposit-figure { padding: 1.35rem 1.4rem; background: var(--surface); }
+.deposit-figures dt {
+  font: 500 .68rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--brand-strong);
+}
+.deposit-figures dd { margin: .55rem 0 0; }
+.deposit-figures dd strong {
+  display: block; font: 700 2rem/1.1 var(--font-display);
+  letter-spacing: -.02em; color: var(--text); font-variant-numeric: normal;
+}
+.deposit-figures dd span {
+  display: block; margin-top: .5rem;
+  font-size: .78rem; line-height: 1.6; color: var(--text-muted);
+}
 .deposit-chart figcaption { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: .76rem; line-height: 1.65; color: var(--text-muted); }
 @media (max-width: 540px) {
   .deposit-table { min-width: 530px; }
@@ -49,9 +106,12 @@
   .deposit-chart-heading h3 { font-size: 1.08rem; }
   .deposit-chart-value { font-size: .83rem; }
   .deposit-chart-key { font-size: .6rem; gap: .4rem; }
+  .deposit-figures { grid-template-columns: minmax(0, 1fr); }
+  .deposit-figures dd strong { font-size: 1.7rem; }
 }
 @media print {
   .deposit-table-wrap { overflow: visible; }
   .deposit-table { min-width: 0; }
   .deposit-chart { break-inside: avoid; }
+  .deposit-figures { break-inside: avoid; }
 }
