@@ -1,0 +1,106 @@
+/* Kademeli emeklilik yazısına özgü katman: içindekiler, senaryo tablosu,
+   alt gezinme. Değerler ve iddialar HTML'de kalır. */
+
+/* İçindekiler — uzun yazıda okuyucu nereye gireceğini seçebilsin.
+   Sticky YAPILMADI: mobilde ekranın üçte birini yiyor ve editoryal
+   sayfada okuma akışını bölüyor. Bir kez görünür, işini görür. */
+.ke-icindekiler {
+  margin: 1.75rem 0;
+  padding: 1.25rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+}
+.ke-toc-baslik {
+  margin: 0 0 .7rem;
+  font: 500 .68rem var(--font-mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--brand-strong);
+}
+.ke-icindekiler ol {
+  margin: 0; padding: 0; list-style: none;
+  columns: 2; column-gap: 1.75rem;
+}
+.ke-icindekiler li {
+  margin: 0 0 .45rem;
+  break-inside: avoid;
+  font-size: .86rem;
+  line-height: 1.5;
+}
+.ke-icindekiler a { color: var(--text); text-decoration: none; border-bottom: 1px solid transparent; }
+.ke-icindekiler a:hover, .ke-icindekiler a:focus-visible {
+  color: var(--brand-strong); border-bottom-color: currentColor;
+}
+
+/* Senaryo tablosu. Yürürlükteki satır vurgulu: okuyucunun kafasında
+   "öneri" ile "kural" birbirine karışmasın diye. */
+.ke-tablo-sarmal {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+.ke-tablo { width: 100%; border-collapse: collapse; font-size: .85rem; line-height: 1.55; }
+.ke-tablo caption {
+  padding: 1.1rem 1.2rem;
+  text-align: left;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.ke-tablo caption small {
+  display: block; margin-top: .35rem;
+  font-size: .78rem; font-weight: 400; color: var(--text-muted);
+}
+.ke-tablo th, .ke-tablo td {
+  padding: .85rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  text-align: left;
+}
+.ke-tablo thead th {
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: .72rem;
+  font-weight: 600;
+}
+.ke-tablo tbody th { font-weight: 650; color: var(--text); }
+.ke-tablo tbody td { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.ke-tablo tbody tr:last-child > * { border-bottom: 0; }
+.ke-tablo .ke-yururlukte > * {
+  background: var(--surface-note);
+  border-top: 2px solid var(--brand);
+}
+.ke-tablo .ke-yururlukte th, .ke-tablo .ke-yururlukte td { color: var(--text); }
+
+/* Alt gezinme — yazının sonunda okuyucuyu boşlukta bırakmamak için. */
+.ke-alt-menu {
+  margin: 2.25rem 0 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+}
+.ke-alt-menu ul {
+  margin: 0; padding: 0; list-style: none;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .9rem;
+}
+.ke-alt-menu li {
+  margin: 0;
+  padding: .9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.ke-alt-menu a { font-weight: 650; font-size: .9rem; color: var(--text); text-decoration: none; }
+.ke-alt-menu a:hover, .ke-alt-menu a:focus-visible { color: var(--brand-strong); }
+.ke-alt-menu span { display: block; margin-top: .3rem; font-size: .78rem; line-height: 1.55; color: var(--text-muted); }
+
+@media (max-width: 560px) {
+  .ke-icindekiler ol { columns: 1; }
+  .ke-tablo { min-width: 480px; }
+}
+@media print {
+  .ke-icindekiler, .ke-alt-menu { display: none; }
+  .ke-tablo-sarmal { overflow: visible; break-inside: avoid; }
+}

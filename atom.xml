@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-10T00:00:00+03:00</updated>
+  <updated>2026-09-12T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Emekli Aylığı Hesaplama 2026</title>
+    <link href="https://korayoner.dev/emekli-ayligi-hesaplama/"/>
+    <id>https://korayoner.dev/emekli-ayligi-hesaplama/</id>
+    <updated>2026-09-12T00:00:00+03:00</updated>
+    <summary>Emekli aylığı hesaplama: prim gününüze ve kazancınıza göre aylık bağlama oranını (ABO), üç dönemin kısmi aylıklarını ve alt sınır aylığı hesaplayın.</summary>
+  </entry>
 
   <entry>
     <title>Mevduat Faizi ve Enflasyon: Reel Getiri</title>
