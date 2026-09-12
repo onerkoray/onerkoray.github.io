@@ -149,6 +149,11 @@ jobs:
       - name: Stil damgaları güncel mi
         run: python tools/stil-damgasi.py --check
 
+      # Kart tarihleri git gecmisinden uretiliyor; checkout zaten
+      # fetch-depth: 0 ile tam gecmisi cekiyor (hizli-panel icin).
+      - name: Araç kartlarındaki güncelleme tarihleri güncel mi
+        run: python tools/arac-guncelleme.py --check
+
       - name: Marka ikonları favicon.svg ile uyumlu mu
         run: |
           pip install --quiet pillow
