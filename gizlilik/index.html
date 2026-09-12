@@ -40,7 +40,7 @@
   <meta name="twitter:description" content="Bu sitede hangi veriler işleniyor, hangi çerezler kullanılıyor ve haklarınız neler?">
   <meta name="twitter:image" content="https://korayoner.dev/images/gizlilik-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=3332183b">
+  <link rel="stylesheet" href="../style.css?v=5d18176d">
 
   <script type="application/ld+json">
   {
@@ -63,7 +63,7 @@
         "description": "Bu sitede hangi veriler işleniyor, hangi çerezler kullanılıyor ve ziyaretçilerin KVKK kapsamındaki hakları neler?",
         "inLanguage": "tr",
         "datePublished": "2026-09-04",
-        "dateModified": "2026-09-04",
+        "dateModified": "2026-09-12",
         "isPartOf": { "@id": "https://korayoner.dev/#website" },
         "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
         "breadcrumb": { "@id": "https://korayoner.dev/gizlilik/#breadcrumb" }
@@ -125,7 +125,7 @@
           Maaşınız, kredi tutarınız, aracınızın değeri veya doğum tarihiniz sunucuya gönderilmez,
           kaydedilmez ve üçüncü taraflarla paylaşılmaz — bütün hesaplama tarayıcınızın içinde yapılır.
         </p>
-        <p class="muted">Son güncelleme: 4 Eylül 2026 · Yürürlük tarihi: 4 Eylül 2026</p>
+        <p class="muted">Son güncelleme: 12 Eylül 2026 · Yürürlük tarihi: 4 Eylül 2026</p>
       </div>
     </section>
 
@@ -156,7 +156,9 @@
         <ul>
           <li>Girdiğiniz tutarlar ve tarihler <strong>hiçbir sunucuya gönderilmez</strong>.</li>
           <li>Bu veriler <strong>kaydedilmez, saklanmaz ve loglanmaz</strong>.</li>
-          <li>Sayfayı kapattığınızda girdileriniz kaybolur.</li>
+          <li>Sayfayı kapattığınızda girdileriniz kaybolur — belgelerinizi
+          bilerek tarayıcınızda saklayan araçlar bunun istisnasıdır ve
+          <a href="#cerezler">3.1</a>'de tek tek sayılmıştır.</li>
           <li>Bu nedenle söz konusu veriler bakımından KVKK anlamında bir <em>veri işleme</em> faaliyeti gerçekleşmez.</li>
         </ul>
         <p>
@@ -169,19 +171,39 @@
         <h2 id="cerezler">3. Çerezler ve yerel depolama</h2>
         <p>Bu sitede iki tür teknoloji kullanılır:</p>
 
-        <h3>3.1. Tercih kayıtları (localStorage — çerez değildir)</h3>
+        <h3>3.1. Yerel depolama (localStorage — çerez değildir)</h3>
         <p>
-          Tarayıcınızın yerel depolama alanında (<code>localStorage</code>) yalnızca sizin
-          tercihleriniz tutulur. Bu veriler cihazınızdan çıkmaz ve tarafımıza iletilmez:
+          Tarayıcınızın yerel depolama alanında (<code>localStorage</code>) tutulan veriler
+          <strong>cihazınızdan çıkmaz ve tarafımıza iletilmez</strong>. İki tür kayıt vardır.
         </p>
+        <p><strong>Site geneli tercihler:</strong></p>
         <ul>
           <li><strong>Tema tercihi</strong> — açık / koyu / otomatik görünüm.</li>
           <li><strong>Vurgu rengi tercihi</strong> — seçtiğiniz renk paleti.</li>
           <li><strong>Son kullandığınız araçlar</strong> — yalnızca ana sayfada kısayol göstermek için, en fazla 5 kayıt.</li>
         </ul>
         <p>
-          Tarayıcınızın ayarlarından site verilerini temizleyerek bu kayıtları istediğiniz an
-          silebilirsiniz.
+          <strong>Araç içeriği (yalnızca ilgili araçlarda):</strong> Bazı araçlar, işlerine
+          yarayabilmek için girdiğiniz içeriği aynı tarayıcıda saklar. Bu içerik yine
+          sunucuya gönderilmez, ama sayfayı kapattığınızda <em>silinmez</em>:
+        </p>
+        <ul>
+          <li>
+            <strong><a href="../fatura-olusturma/">Fatura Oluşturma</a></strong> — üzerinde
+            çalıştığınız belge ve kayıtlı belgeleriniz: firma bilgileriniz, yüklediğiniz logo,
+            fatura kalemleri ve <strong>müşteri defteriniz</strong>. Müşteri kayıtları
+            üçüncü kişilere ait ad/unvan, vergi veya kimlik numarası ve adres içerebilir;
+            bu verilerin sorumluluğu sizdedir. Araç içindeki <strong>“Temizle”</strong>
+            düğmesiyle hepsini silebilirsiniz. Ortak kullanılan bir bilgisayarda bu adımı
+            atlamayın.
+          </li>
+          <li>
+            <strong>DecorPalette</strong> — kaydettiğiniz renk paletleri.
+          </li>
+        </ul>
+        <p>
+          Tarayıcınızın ayarlarından site verilerini temizleyerek bu kayıtların tamamını
+          istediğiniz an silebilirsiniz.
         </p>
 
         <h3>3.2. Analitik çerezler (Google Analytics 4)</h3>
@@ -223,6 +245,14 @@
           <li>
             <strong>Open-Meteo</strong> (<code>api.open-meteo.com</code>) — ana sayfadaki hava durumu
             verisi. Kişisel veri gönderilmez, yalnızca koordinat sorgulanır.
+          </li>
+          <li>
+            <strong>Serbest piyasa altın verisi</strong> (<code>finans.truncgil.com</code>) —
+            yalnızca <a href="../doviz-kurlari/">TCMB Döviz Kurları</a> sayfasındaki altın ve
+            gümüş bölümünde, gün içi fiyatları tazelemek için kullanılır. Merkez Bankası altın
+            fiyatı yayımlamadığı için bu veri <strong>bağımsız bir servisten</strong> gelir ve
+            istek tarayıcınızdan gönderildiği için IP adresiniz o servise ulaşır. Sayfadaki
+            fiyatlar bu istek gitmese de görünür; istek yalnızca değerleri tazeler.
           </li>
           <li>
             <strong>Kandilli verisi</strong> (<code>api.orhanaydogdu.com.tr</code>) — yalnızca
