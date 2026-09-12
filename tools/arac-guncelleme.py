@@ -19,6 +19,13 @@ tahmin degil, olculmus bir bosluga oturuyor.
 Tarih kaynagi git; dosya sisteminin mtime'i degil. Bir dosyaya dokunmak onu
 "guncel" yapmamali.
 
+IKI ADIMLI AKIS: tarihler commit edilmis gecmisten okunuyor, dolayisiyla bir
+araci degistiren commit kendi kartini bayatlatir - commit atilmadan o
+commit'in tarihi bilinemez. Bir aracta ozlu degisiklik yaptiktan sonra
+commit'le, sonra bu scripti calistirip index.html'i ayri bir commit'le
+ekle. Ikinci commit yalnizca index.html'e dokundugu icin hicbir aracin
+tarihini degistirmez; akis tek adimda kapanir.
+
 Kullanim:
     python tools/arac-guncelleme.py           # kartlari tazele
     python tools/arac-guncelleme.py --check   # kartlar guncel mi (CI)
