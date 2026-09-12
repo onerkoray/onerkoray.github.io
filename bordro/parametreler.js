@@ -77,6 +77,19 @@
       // Ücret dışı gelirler (serbest meslek, ticari, kira) için ayrı tarife:
       // üçüncü dilimin üst sınırı ücret tarifesinden farklıdır (1.000.000 / 1.500.000).
       dilimlerUcretDisi: [[190000, 0.15], [400000, 0.20], [1000000, 0.27], [5300000, 0.35], [null, 0.40]],
+      /* Gayrimenkul sermaye iradi (kira geliri) beyan parametreleri.
+         Dayanak: GVK m.21 (mesken istisnasi), m.74 (giderler), m.86 (beyan
+         sinirlari), m.94 (tevkifat). Tutarlar her yil yeniden degerleme ile
+         guncelleniyor; yeni yil eklerken burayi da tazele. */
+      gmsi: {
+        meskenIstisnasi: 58000,      // GVK m.21 — konut kira geliri istisnasi
+        istisnaUstSinir: 1900000,    // ucret+MSI+GMSI+diger toplami bunu asarsa istisna yok
+        goturuGiderOrani: 0.15,      // istisna dusuldukten SONRA kalan tutarin %15'i
+        isyeriBeyanSiniri: 400000,   // tevkifata tabi isyeri kirasi beyan siniri
+        isyeriStopaji: 0.20,         // GVK m.94 — isyeri kira odemelerinde tevkifat
+        tevkifatsizHad: 22000,       // tevkifata/istisnaya tabi olmayan MSI-GMSI haddi
+        kredFaiziIndirimi: false     // 7566 s.K.: konut kredisi faizi indirimi kaldirildi
+      },
       donemler: [
         { ay: 1, asgariBrut: 33030.00, asgariNet: 28075.50, sgkTavan: 297270.00 }
       ],

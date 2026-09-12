@@ -140,6 +140,10 @@ SPEC = {
    "Son 4 aylık brüt kazanca ve prim gün sayısına göre ödenek, tavan ve süre.",
    ["2026 parametreleri", "Süre hesabı"], "bordro"),
 
+ "kira-geliri-vergisi-hesaplama": ("kira-geliri-vergisi-hesaplama", "Kira Geliri", "Vergisi 2026",
+   "Mesken istisnasi, goturu ve gercek gider karsilastirmasi, stopaj mahsubu.",
+   ["GVK m.21 / m.74", "Iki yontem"], "vergi"),
+
  "emekli-ayligi-hesaplama": ("emekli-ayligi-hesaplama", "Emekli Aylığı", "Hesaplama 2026",
    "Aylık bağlama oranı, üç dönemin kısmi aylıkları ve alt sınır aylık.",
    ["5510 s.K. m.29", "Üç dönem"], "bordro"),

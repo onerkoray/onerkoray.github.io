@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kira Geliri Vergisi Hesaplama 2026">
+  <defs>
+    <linearGradient id="fv-bg" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14b28e"/>
+      <stop offset="1" stop-color="#0a5f4e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#fv-bg)"/>
+  <g transform="translate(8 8) scale(2)" fill="none" stroke="#ffffff"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 11 4l8 6.5"/><path d="M5.5 12.5V20h11v-7.5"/><path d="M9.5 17.5 14 13"/><circle cx="9.7" cy="13.3" r=".9"/><circle cx="13.8" cy="17.2" r=".9"/></g>
+</svg>
