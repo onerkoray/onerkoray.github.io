@@ -140,6 +140,10 @@ SPEC = {
    "Son 4 aylık brüt kazanca ve prim gün sayısına göre ödenek, tavan ve süre.",
    ["2026 parametreleri", "Süre hesabı"], "bordro"),
 
+ "emekli-ayligi-hesaplama": ("emekli-ayligi-hesaplama", "Emekli Aylığı", "Hesaplama 2026",
+   "Aylık bağlama oranı, üç dönemin kısmi aylıkları ve alt sınır aylık.",
+   ["5510 s.K. m.29", "Üç dönem"], "bordro"),
+
  "serbest-meslek-makbuzu-hesaplama": ("serbest-meslek-makbuzu-hesaplama", "Serbest Meslek", "Makbuzu Hesaplama",
    "Brütten nete veya netten brüte; stopaj, KDV ve KDV tevkifatı dahil.",
    ["Stopaj + KDV", "Tevkifat"], "bordro"),
