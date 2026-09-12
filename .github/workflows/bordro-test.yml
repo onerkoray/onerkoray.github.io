@@ -45,6 +45,11 @@ jobs:
       - name: Emeklilik motoru regresyonları
         run: node bordro/emeklilik-test.js
 
+      # Kira geliri: istisna, beyan siniri ve iki gider yontemi ic ice
+      # kurallar; biri kayarsa sonuc makul gorunup yanlis olur.
+      - name: Kira geliri motoru regresyonları
+        run: node bordro/gmsi-test.js
+
       - name: Motor testleri
         run: node bordro/test.js
 
