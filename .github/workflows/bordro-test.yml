@@ -38,6 +38,13 @@ jobs:
       - name: Finans kuralları regresyonları
         run: node finans/test.js
 
+      # Emeklilik motoru: ABO kademeleri yanlis girilirse sayfa calismaya
+      # devam eder, yalnizca sonuclar sessizce yanlis olur. Kanundaki
+      # kademeler bilinen referans degerlerle (9.000 gun -> %65 ve %50)
+      # her push'ta yeniden dogrulaniyor.
+      - name: Emeklilik motoru regresyonları
+        run: node bordro/emeklilik-test.js
+
       - name: Motor testleri
         run: node bordro/test.js
 

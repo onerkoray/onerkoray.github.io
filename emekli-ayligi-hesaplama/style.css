@@ -1,0 +1,108 @@
+/* Emekli Aylığı Hesaplama — araca özgü stiller */
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 4px 20px;
+}
+.panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
+#emeklilik-form input[type="text"], #emeklilik-form input[type="date"] {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--border, rgba(127,127,127,.3));
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  min-height: 44px;
+  max-width: 100%;
+}
+
+/* Ozet kartlari. Bu temel tanimlar site genelinde DEGIL, her aracin kendi
+   stil dosyasinda duruyor (style.css yalnizca .sum-grid .sum-card gibi
+   niteleyicileri tasiyor). Tanimlamayi atlarsak kartlar duz metin olarak
+   akiyor - ilk render'da tam olarak bu oldu. */
+.sum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 20px 0 8px;
+}
+.sum-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--border, rgba(127,127,127,.25));
+  border-radius: 12px;
+  background: var(--surface, rgba(127,127,127,.06));
+}
+.sum-label { font-size: .8rem; opacity: .75; }
+.sum-value { font-size: 1.25rem; letter-spacing: -0.01em; }
+.sum-note { font-size: .75rem; opacity: .72; }
+
+/* Dönem serisi renkleri.
+   Kategorik iki seri; kazanç/kayıp çiftinden AYRI tutuldu çünkü burada
+   polarite yok - iki dönem birbirinin iyisi/kötüsü değil, yalnızca farklı.
+   Çift, dataviz doğrulayıcısından açık (#fff) ve koyu (#14181d) zeminde
+   ayrı ayrı tam PASS aldı: CVD ΔE 24,7 / normal görüş 33,6.
+   Marka yeşili kullanılmadı: kategorik seri olarak kroma tabanının altında
+   kalıyor ve veri işareti olarak gri okunuyor. */
+.ea-serit-kutu { --seri-1: #2a78d6; --seri-2: #e06a2a; }
+
+.ea-serit-kutu {
+  margin: 1.5rem 0 0;
+  padding: 1.25rem 1.35rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+}
+.ea-serit-kutu figcaption {
+  font-size: .78rem; font-weight: 650; color: var(--text); margin-bottom: .8rem;
+}
+.ea-serit {
+  display: flex; width: 100%; height: 1.6rem;
+  border-radius: 6px; overflow: hidden; background: var(--surface-2);
+}
+/* Dilimler arasında 2px zemin boşluğu: bitişik dolgular birbirine akmasın. */
+.ea-dilim { flex: 0 0 auto; width: var(--pay); min-width: 2px; }
+.ea-dilim + .ea-dilim { box-shadow: inset 2px 0 0 var(--surface); }
+.ea-dilim-1 { background: var(--seri-1); }
+.ea-dilim-2 { background: var(--seri-2); }
+
+.ea-lejant {
+  display: flex; flex-wrap: wrap; gap: .4rem 1.1rem;
+  margin-top: .75rem; font-size: .75rem; color: var(--text-muted);
+}
+.ea-lejant-oge { display: inline-flex; align-items: center; gap: .4rem; }
+.ea-nokta { width: .6rem; height: .6rem; border-radius: 2px; flex: none; }
+
+.ea-tablo tbody th small {
+  display: block; margin-top: .2rem;
+  font-size: .7rem; font-weight: 400; color: var(--text-muted);
+}
+.ea-tablo td, .ea-tablo tfoot th { font-variant-numeric: tabular-nums; }
+.ea-tablo td { text-align: right; }
+.ea-tablo thead th:not(:first-child) { text-align: right; }
+.ea-tablo tfoot td { text-align: right; }
+.ea-tablo tfoot > * { border-top: 2px solid var(--brand); font-weight: 750; }
+
+.sum-card--lead { outline: 2px solid var(--brand); outline-offset: -2px; }
+
+.ea-uyari {
+  margin: 1.1rem 0 0; padding: .9rem 1.1rem;
+  border-inline-start: 3px solid var(--brand);
+  background: var(--surface-note);
+  border-radius: 0 8px 8px 0;
+  font-size: .82rem; line-height: 1.65;
+}
+.ea-not {
+  margin: 1rem 0 0; font-size: .78rem; line-height: 1.65; color: var(--text-muted);
+}
+
+@media (max-width: 560px) {
+  .ea-tablo { min-width: 520px; }
+  .ea-serit-kutu { padding: 1rem; }
+}
+@media print {
+  .ea-serit-kutu, .ea-tablo { break-inside: avoid; }
+}
