@@ -351,6 +351,10 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 }
 .badges li::before, .card-badges span::before { content: "✓"; font-weight: 800; }
 .card-badges { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .75rem; }
+/* Arac kartinin alt satiri: aracin en son ne zaman ozlu bicimde
+   guncellendigi. tools/arac-guncelleme.py yaziyor; elle duzenlenmez. */
+.card-updated { margin: .7rem 0 0; font-size: .72rem; color: var(--text-muted); }
+.card-updated time { font-variant-numeric: tabular-nums; }
 .card-badges span { padding: .15rem .6rem; font-size: .72rem; }
 
 /* =========================================================================
