@@ -56,6 +56,12 @@ jobs:
       - name: Borç kapatma motoru regresyonları
         run: node bordro/borc-test.js
 
+      # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
+      # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
+      # ve reel getiri aritmetigi burada sabitleniyor.
+      - name: Dağıtım motoru regresyonları
+        run: node finans/dagitim-test.js
+
       - name: Motor testleri
         run: node bordro/test.js
 

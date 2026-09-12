@@ -14,7 +14,15 @@
     <link href="https://korayoner.dev/borc-kapatma-plani/"/>
     <id>https://korayoner.dev/borc-kapatma-plani/</id>
     <updated>2026-09-12T00:00:00+03:00</updated>
-    <summary>Birden fazla borcu ay ay simüle eder; asgari ödeme, çığ ve kartopu stratejilerini aynı bütçeyle yarıştırır. Hangi borca önce saldıracağınızı ve ne kadar faiz kurtardığınızı gösterir.</summary>
+    <summary>Birden çok borcu ay ay simüle eder; çığ, kartopu ve asgari ödeme stratejilerini yarıştırır. Hangi borca önce saldıracağınızı ve kurtulan faizi gösterir.</summary>
+  </entry>
+
+  <entry>
+    <title>Borç mu Kapatmalı, Birikim mi Yapmalı?</title>
+    <link href="https://korayoner.dev/borc-mu-birikim-mi/"/>
+    <id>https://korayoner.dev/borc-mu-birikim-mi/</id>
+    <updated>2026-09-12T00:00:00+03:00</updated>
+    <summary>Fazladan paranız nereye gitmeli? Her hedefin vergi ve enflasyon sonrası gerçek getirisini hesaplar, acil durum fonu kısıtı altında aylık dağılımı çıkarır.</summary>
   </entry>
 
   <entry>

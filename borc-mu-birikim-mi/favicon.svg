@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Borç mu Kapatmalı, Birikim mi Yapmalı?">
+  <defs>
+    <linearGradient id="fv-bg" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14b28e"/>
+      <stop offset="1" stop-color="#0a5f4e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#fv-bg)"/>
+  <g transform="translate(8 8) scale(2)" fill="none" stroke="#ffffff"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 11 5 5"/><path d="M12 11l7-6"/><circle cx="4.5" cy="4" r="1.8"/><circle cx="19.5" cy="4" r="1.8"/></g>
+</svg>
