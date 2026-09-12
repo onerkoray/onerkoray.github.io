@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Borç Kapatma Planı ve Strateji Karşılaştırma | Koray Öner</title>
+  <meta name="description" content="Birden çok borcu ay ay simüle eder; çığ, kartopu ve asgari ödeme stratejilerini yarıştırır. Hangi borca önce saldıracağınızı ve kurtulan faizi gösterir.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/borc-kapatma-plani/">
+
+  <link rel="icon" href="../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Borç Kapatma Planı — Çığ mı, Kartopu mu?">
+  <meta property="og:description" content="Çoklu borç simülasyonu: hangi borca önce saldırmalı, ne kadar faiz kurtulur, ne zaman biter?">
+  <meta property="og:url" content="https://korayoner.dev/borc-kapatma-plani/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/borc-kapatma-plani-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz borç kapatma planı aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Borç Kapatma Planı ve Strateji Karşılaştırma">
+  <meta name="twitter:description" content="Çoklu borç simülasyonu — çığ, kartopu ve asgari ödeme yan yana.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/borc-kapatma-plani-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=5d18176d">
+  <link rel="stylesheet" href="style.css?v=e2dfe9d1">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "dateModified": "2026-09-12",
+        "@id": "https://korayoner.dev/borc-kapatma-plani/#app",
+        "name": "Borç Kapatma Planı Aracı",
+        "url": "https://korayoner.dev/borc-kapatma-plani/",
+        "image": "https://korayoner.dev/images/borc-kapatma-plani-koray-oner.png",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "description": "Birden fazla borcu ay ay simüle ederek asgari ödeme, çığ ve kartopu stratejilerini karşılaştıran, kapanma takvimi ve toplam faiz çıkaran ücretsiz araç."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://korayoner.dev/borc-kapatma-plani/#webpage",
+        "url": "https://korayoner.dev/borc-kapatma-plani/",
+        "name": "Borç Kapatma Planı ve Strateji Karşılaştırma",
+        "inLanguage": "tr",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "breadcrumb": { "@id": "https://korayoner.dev/borc-kapatma-plani/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://korayoner.dev/borc-kapatma-plani/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Borç Kapatma Planı", "item": "https://korayoner.dev/borc-kapatma-plani/" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "jobTitle": "Yazılım Geliştirici"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Çığ yöntemi nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Bütün borçlara asgari ödeme yapılır, artan para en yüksek faizli borca yatırılır. Toplam faizi matematiksel olarak en aza indiren sıralama budur. O borç kapanınca serbest kalan ödeme bir sonraki en yüksek faizliye kaydırılır." } },
+          { "@type": "Question", "name": "Kartopu yöntemi nedir, çığdan farkı ne?", "acceptedAnswer": { "@type": "Answer", "text": "Kartopunda artan para en küçük bakiyeli borca yatırılır. Faiz açısından çığdan kötüdür ama ilk kapanışı öne çektiği için sürdürmesi daha kolay bulunur. Bu araç iki yöntemin lira farkını gösterir; fark küçükse kartopunu seçmek makul olabilir." } },
+          { "@type": "Question", "name": "Sadece asgari ödeme yaparsam ne olur?", "acceptedAnswer": { "@type": "Answer", "text": "Borç kapanır ama çok uzun sürer ve ödediğiniz faiz katlanır. Daha kötüsü, asgari ödeme aylık faizi karşılamıyorsa bakiye her ay büyür ve borç hiç kapanmaz. Araç bu durumu ayrıca tespit edip uyarır." } },
+          { "@type": "Question", "name": "2026 kredi kartı faiz oranları ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "TCMB'nin belirlediği aylık azami akdi faiz oranı, dönem borcu 30.000 TL'nin altında %3,25; 30.000-180.000 TL arasında %3,75; 180.000 TL üzerinde %4,25'tir. Bunlar tavandır; bankanız daha düşük uygulayabilir, kendi ekstrenizdeki oranı kullanın." } },
+          { "@type": "Question", "name": "Kredi kartı asgari ödeme oranı kaç?", "acceptedAnswer": { "@type": "Answer", "text": "BDDK kararına göre asgari ödeme oranı kart limitine bağlıdır: limiti 50.000 TL ve altındaki kartlarda dönem borcunun %20'si, üzerindekilerde %40'ı." } },
+          { "@type": "Question", "name": "Verilerim bir yere gönderiliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bütün simülasyon tarayıcınızın içinde çalışır. Girdiğiniz borç tutarları hiçbir sunucuya gönderilmez, kaydedilmez ve sayfayı kapattığınızda kaybolur." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Planla</a></li>
+          <li><a href="#stratejiler">Stratejiler</a></li>
+          <li><a href="#tuzak">Asgari ödeme tuzağı</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> Borç Kapatma Planı
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Reklamsız · Veriniz tarayıcıdan çıkmaz</p>
+        <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h5v5"/><path d="M8 10h5v5"/><path d="M13 15h5v5"/><path d="M18 20h3"/></svg></div>
+        <h1 id="hero-title">Borç Kapatma Planı</h1>
+        <p class="lede">
+          Birden fazla borcunuz varsa asıl soru "ne kadar ödeyeceğim" değil,
+          <strong>hangisine önce saldıracağım</strong>. Bu araç borçlarınızı ay ay
+          ilerletir, üç stratejiyi aynı bütçeyle yarıştırır ve size bir sayı değil
+          <strong>bir plan</strong> verir: kapanma sırası, tarihler ve kurtardığınız faiz.
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">Borç kapatma planı aracı</h2>
+
+        <form id="borc-form" class="panel" novalidate>
+          <div class="bp-butce">
+            <p class="panel-q">
+              <label for="in-butce">Borçlara ayırabileceğiniz aylık toplam tutar</label>
+              <input type="text" id="in-butce" inputmode="decimal" value="20000"> TL
+              <span class="muted-note">Bütün borçların asgari ödemeleri dahil, elinizdeki toplam kapasite.</span>
+            </p>
+          </div>
+
+          <div class="bp-baslik-satir">
+            <h3 class="bp-alt-baslik">Borçlarınız</h3>
+            <button type="button" id="ekle" class="bp-ekle">+ Borç ekle</button>
+          </div>
+
+          <div class="bp-tablo-sarmal">
+            <table class="bp-girdi">
+              <thead>
+                <tr>
+                  <th scope="col">Borç adı</th>
+                  <th scope="col">Bakiye (TL)</th>
+                  <th scope="col">Aylık faiz (%)</th>
+                  <th scope="col">Türü</th>
+                  <th scope="col">Asgari / Taksit</th>
+                  <th scope="col"><span class="visually-hidden">Sil</span></th>
+                </tr>
+              </thead>
+              <tbody id="borc-govde"></tbody>
+            </table>
+          </div>
+          <p class="muted-note bp-ipucu">
+            Faiz oranını <strong>kendi ekstrenizden</strong> yazın. Boş bırakırsanız
+            TCMB'nin o bakiye dilimi için belirlediği azami oran varsayılır — bu bir
+            tavandır, bankanız daha düşük uygulayabilir.
+          </p>
+        </form>
+
+        <div id="results" aria-live="polite"></div>
+        <p id="msg" class="muted-note" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 12 Eylül 2026 · TCMB azami kart faizleri ve BDDK asgari ödeme oranları esas alınmıştır</p>
+
+        <h2 id="stratejiler">Çığ mı, kartopu mu?</h2>
+        <p>
+          Birden fazla borç varken her ay şu olur: hepsine asgari ödemeyi yaparsınız,
+          elinizde bir miktar para artar. <strong>O artan parayı nereye koyduğunuz,
+          toplam ne kadar faiz ödeyeceğinizi belirler.</strong> İki yerleşik yaklaşım var:
+        </p>
+        <ul>
+          <li><strong>Çığ (avalanche):</strong> artan para <em>en yüksek faizli</em> borca.
+            Toplam faizi matematiksel olarak en aza indiren sıralama budur.</li>
+          <li><strong>Kartopu (snowball):</strong> artan para <em>en küçük bakiyeli</em>
+            borca. Faiz açısından çığdan kötüdür, ama ilk kapanışı öne çeker.</li>
+        </ul>
+        <p>
+          Kartopunun savunması matematiksel değil davranışsaldır: erken bir kapanış
+          görmek planı sürdürmeyi kolaylaştırır. Bu araç ikisini de hesaplayıp
+          <strong>aradaki farkı lira olarak</strong> gösterir. Fark küçükse kartopunu
+          seçmek makul bir tercihtir; büyükse bilerek ödediğiniz bir bedeldir.
+        </p>
+        <p>
+          Her iki yöntemde de bir borç kapandığında onun asgari ödemesi serbest kalır
+          ve bir sonraki borca eklenir. Ödeme akışı böyle hızlanır — yöntemin adı
+          buradan gelir.
+        </p>
+
+        <h2 id="tuzak">Asgari ödeme tuzağı</h2>
+        <p>
+          Kredi kartında asgari ödeme, borcu <em>kapatan</em> bir ödeme değil, kartın
+          kapanmasını <em>önleyen</em> bir ödemedir. BDDK kararına göre asgari oran
+          kart limitine bağlıdır: limiti <strong>50.000 TL ve altındaki</strong>
+          kartlarda dönem borcunun <strong>%20'si</strong>, üzerindekilerde
+          <strong>%40'ı</strong>.
+        </p>
+        <p>
+          Asıl tehlike şurada: <strong>asgari ödeme aylık faizi karşılamıyorsa bakiye
+          her ay büyür ve borç hiçbir zaman kapanmaz.</strong> Ödeme yapıyor olmanız
+          borcun azaldığı anlamına gelmez. Araç bu durumu ayrıca tespit eder ve hangi
+          borcun büyüdüğünü söyler.
+        </p>
+        <p>
+          2026 için TCMB'nin belirlediği aylık <strong>azami akdi faiz</strong> oranları:
+          dönem borcu 30.000 TL altında <strong>%3,25</strong>, 30.000–180.000 TL arasında
+          <strong>%3,75</strong>, 180.000 TL üzerinde <strong>%4,25</strong>. Gecikme
+          faizi bunların yaklaşık 0,30 puan üzerindedir. Aylık %3,75, yıllık bileşikte
+          <strong>%55'in üzerine</strong> karşılık gelir — bu yüzden kart borcu neredeyse
+          her zaman ilk kapatılacak borçtur.
+        </p>
+
+        <h2 id="yontem">Simülasyon nasıl çalışıyor?</h2>
+        <p>
+          Çoklu borçta kapalı form bir formül yoktur; çünkü kapanan her borcun asgarisi
+          serbest kalır ve sonraki borca eklenir. Kapanma sırası ödeme akışını
+          değiştirdiği için tek dürüst yol <strong>ay ay yürütmektir</strong>. Her ayda
+          sırasıyla:
+        </p>
+        <ol>
+          <li>Her borca aylık faiz işletilir.</li>
+          <li>Her borcun asgari ödemesi yapılır.</li>
+          <li>Artan bütçe, stratejinin hedeflediği borca yatırılır.</li>
+          <li>Bakiyesi biten borçlar kapanma takvimine yazılır.</li>
+        </ol>
+        <p>
+          Faiz, ödemeden <em>önce</em> işletilir. Bu kredi kartı ekstresinin çalışma
+          biçimine yakındır ve karamsar taraftadır: aracın size gerçekte ödeyeceğinizden
+          <strong>az</strong> göstermemesi tercih edildi.
+        </p>
+        <p>
+          Hesabın tamamı tarayıcınızda çalışır. Girdiğiniz borç tutarları hiçbir
+          sunucuya gönderilmez; kod
+          <a href="https://github.com/onerkoray/onerkoray.github.io/blob/main/bordro/borc-motor.js" rel="noopener">açık</a>
+          ve testleriyle birlikte yayımlanıyor.
+        </p>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Veri kaynakları ve güncelleme</h2>
+          <p>
+            <span class="updated">Parametreler en son 12 Eylül 2026 tarihinde gözden geçirildi.</span>
+          </p>
+          <ul>
+            <li><strong>Kredi kartı azami akdi ve gecikme faiz oranları</strong> (dönem borcu dilimlerine göre) — <a href="https://www.tcmb.gov.tr/" rel="noopener">Türkiye Cumhuriyet Merkez Bankası</a></li>
+            <li><strong>Asgari ödeme oranının kart limitine bağlanması</strong> (26.09.2024 kararı) — <a href="https://www.bddk.org.tr/" rel="noopener">Bankacılık Düzenleme ve Denetleme Kurumu</a></li>
+            <li>Kredi kartı ve banka kartı uygulamalarının yasal çerçevesi: <strong>5464 sayılı Banka Kartları ve Kredi Kartları Kanunu</strong> — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+          </ul>
+          <p>
+            <strong>Kapsam sınırı:</strong> Araç, aylık nominal faizle sabit bir bütçe
+            altında ödeme akışını simüle eder. Yeni harcama yapılmadığı, faiz oranının
+            dönem boyunca sabit kaldığı ve ödemelerin aksamadığı varsayılır. Gecikme
+            faizi, kart aidatı, sigorta primi, yapılandırma ve erken kapama komisyonları
+            hesaba katılmaz — bunlar gerçek maliyeti <em>artırır</em>. Sonuç bir
+            projeksiyondur; bankanızın hesabı esastır.
+          </p>
+          <p>
+            Bir oran güncelliğini yitirdiyse lütfen <a href="../iletisim/">bana bildirin</a>.
+            Araçların kapsamı ve sınırları için <a href="../kullanim-kosullari/">Kullanım Koşulları</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Çığ yöntemi nedir?</summary><p>Bütün borçlara asgari ödeme yapılır, artan para en yüksek faizli borca yatırılır. Toplam faizi en aza indiren sıralama budur.</p></details>
+          <details><summary>Kartopu yöntemi nedir?</summary><p>Artan para en küçük bakiyeli borca yatırılır. Faiz açısından çığdan kötüdür ama ilk kapanışı öne çeker. Araç iki yöntemin lira farkını gösterir.</p></details>
+          <details><summary>Sadece asgari ödeme yaparsam ne olur?</summary><p>Borç çok uzun sürede kapanır ve faiz katlanır. Asgari ödeme aylık faizi karşılamıyorsa bakiye büyür ve borç hiç kapanmaz; araç bu durumu tespit edip uyarır.</p></details>
+          <details><summary>2026 kredi kartı faiz oranları ne kadar?</summary><p>Aylık azami akdi faiz: 30.000 TL altı %3,25; 30.000–180.000 TL arası %3,75; 180.000 TL üzeri %4,25. Bunlar tavandır, bankanız daha düşük uygulayabilir.</p></details>
+          <details><summary>Asgari ödeme oranı kaç?</summary><p>Kart limiti 50.000 TL ve altındaysa dönem borcunun %20'si, üzerindeyse %40'ı.</p></details>
+          <details><summary>Verilerim bir yere gönderiliyor mu?</summary><p>Hayır. Simülasyon tamamen tarayıcınızda çalışır; girdileriniz sunucuya gitmez ve kaydedilmez.</p></details>
+          <details><summary>Önce borç mu kapatmalı, birikim mi yapmalı?</summary><p>Kart faizi aylık %3,25–4,25 ise yıllık bileşikte %45–65 arasına karşılık gelir. Bu getiriyi veren risksiz bir yatırım yoktur; kart borcunu kapatmak matematiksel olarak öne çıkar. Acil durum fonu bunun istisnasıdır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <ul>
+          <li><a href="../kredi-hesaplama/">Kredi Hesaplama ve Gerçek Maliyet</a> — tek kredi için taksit ve ödeme planı.</li>
+          <li><a href="../makaleler/kredi-yillik-maliyet-orani/">Kredi yıllık maliyet oranı nedir?</a> — faiz ile gerçek maliyet arasındaki fark (makale).</li>
+          <li><a href="../finansal-emniyet-testi/">Finansal Emniyet Testi</a> — borç yükünüz gelirinize göre nerede duruyor?</li>
+          <li><a href="../birikim-hesaplama/">BES ve Birikim Hesaplama</a> — borç bittikten sonraki adım.</li>
+          <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama 2026</a> — bütçenizin giriş kalemi.</li>
+          <li><a href="../">Tüm projeler</a> — büyüyen açık kaynak araç koleksiyonu.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümü</dd></div>
+            <div><dt>Son gözden geçirme</dt><dd>12 Eylül 2026</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı tutar için bankanıza danışın.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/borc-parametreleri.js?v=9414aad6" defer></script>
+  <script src="../bordro/borc-motor.js?v=938ccb3d" defer></script>
+  <script src="script.js?v=eb4ee2ab" defer></script>
+  <script src="../script.js?v=d148f9ac" defer></script>
+</body>
+</html>

@@ -10,6 +10,14 @@
   <icon>https://korayoner.dev/favicon.svg</icon>
 
   <entry>
+    <title>Borç Kapatma Planı ve Strateji Karşılaştırma</title>
+    <link href="https://korayoner.dev/borc-kapatma-plani/"/>
+    <id>https://korayoner.dev/borc-kapatma-plani/</id>
+    <updated>2026-09-12T00:00:00+03:00</updated>
+    <summary>Birden fazla borcu ay ay simüle eder; asgari ödeme, çığ ve kartopu stratejilerini aynı bütçeyle yarıştırır. Hangi borca önce saldıracağınızı ve ne kadar faiz kurtardığınızı gösterir.</summary>
+  </entry>
+
+  <entry>
     <title>Emekli Aylığı Hesaplama 2026</title>
     <link href="https://korayoner.dev/emekli-ayligi-hesaplama/"/>
     <id>https://korayoner.dev/emekli-ayligi-hesaplama/</id>
