@@ -16,9 +16,12 @@ GitHub Actions bunu gunluk calistirir; icerik degistiyse commit atar.
 
 import argparse
 import datetime as dt
+import io
+import json
 import os
 import re
 import sys
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -100,6 +103,275 @@ def tcmb_kurlar():
     return tarih_iso, tarih_metin, kayitlar
 
 
+# ---------------------------------------------------------------- gecmis seri
+#
+# NEDEN ARSIV BULTENI, EVDS DEGIL: TCMB'nin EVDS servisi API anahtari ister;
+# anahtar derleme ortaminda bir sir olarak yasamak zorunda kalir ve anahtar
+# donerse/suresi biterse sayfa sessizce eskir. Gunluk arsiv bultenleri
+# (kurlar/YYYYMM/DDMMYYYY.xml) ayni resmi veriyi anahtarsiz veriyor.
+# Hafta sonu ve resmi tatillerde 404 doner; bu hata degil, o gun bulten
+# yayimlanmadigi anlamina gelir ve sessizce atlanir.
+#
+# Seri dosyaya YAZILIR ve commit edilir: boylece grafik derleme aninda
+# HTML'e gomulu uretilir, ziyaretcinin tarayicisi hicbir gecmis veri
+# cekmez ve arama motoru grafigi veriyle birlikte gorur.
+
+SERI_YOL = os.path.join(ROOT, "doviz-kurlari", "seri.json")
+SERI_GUN = 90          # kac takvim gunu geriye bakilir
+SERI_PARA = ["USD", "EUR"]   # grafigi cizilen para birimleri
+
+
+def _arsiv_gun(d):
+    """Tek bir gunun bultenini cozer. Bulten yoksa None doner (hata degil)."""
+    url = "https://www.tcmb.gov.tr/kurlar/%s/%s.xml" % (d.strftime("%Y%m"), d.strftime("%d%m%Y"))
+    try:
+        root = ET.fromstring(fetch(url, timeout=20))
+    except Exception:
+        return None
+    cikti = {}
+    for c in root.findall("Currency"):
+        kod = c.get("CurrencyCode")
+        if kod not in SERI_PARA:
+            continue
+        ham = (c.findtext("ForexSelling") or "").strip()
+        birim = (c.findtext("Unit") or "1").strip()
+        try:
+            deger = float(ham) / float(birim or 1)
+        except (TypeError, ValueError):
+            continue
+        cikti[kod] = round(deger, 4)
+    return cikti or None
+
+
+def seri_guncelle(bugun=None):
+    """Eksik gunleri tamamlar ve seriyi dosyaya yazar. Doner: kayit listesi."""
+    bugun = bugun or dt.date.today()
+    try:
+        with io.open(SERI_YOL, encoding="utf-8") as f:
+            kayitlar = json.load(f).get("kayitlar", [])
+    except (IOError, OSError, ValueError):
+        kayitlar = []
+
+    var_olan = set(k["tarih"] for k in kayitlar)
+    baslangic = bugun - dt.timedelta(days=SERI_GUN)
+    eklenen = 0
+    d = baslangic
+    while d <= bugun:
+        iso = d.isoformat()
+        # Hafta sonu bulten yok; bos istek atmayalim.
+        if d.weekday() >= 5 or iso in var_olan:
+            d += dt.timedelta(days=1)
+            continue
+        veri = _arsiv_gun(d)
+        if veri and all(k in veri for k in SERI_PARA):
+            kayitlar.append(dict(tarih=iso, **veri))
+            eklenen += 1
+            time.sleep(0.15)   # TCMB'ye karsi nazik ol
+        d += dt.timedelta(days=1)
+
+    # Pencere disina dusenleri at, sirala
+    kayitlar = [k for k in kayitlar if k["tarih"] >= baslangic.isoformat()]
+    kayitlar.sort(key=lambda k: k["tarih"])
+
+    with io.open(SERI_YOL, "w", encoding="utf-8") as f:
+        json.dump({"guncelleme": bugun.isoformat(), "kaynak": "TCMB gunluk bulten",
+                   "aciklama": "Doviz satis kuru, 1 birim karsiligi TL.",
+                   "kayitlar": kayitlar}, f, ensure_ascii=False, indent=1)
+    return kayitlar, eklenen
+
+
+# -------------------------------------------------------------------- altin
+#
+# TCMB altin YAYIMLAMIYOR: gunluk bultende yalnizca doviz var (22 para birimi
+# + XDR). Gram altin serbest piyasa fiyatidir, resmi bir kur degildir; bu
+# yuzden sayfada ayri bir bolumde ve "serbest piyasa" etiketiyle duruyor.
+#
+# Kaynak ucuncu taraf ve CORS'a acik (Access-Control-Allow-Origin: *), yani
+# ayni veri hem derlemede hem tarayicida kullanilabiliyor. Hibrit kurulum
+# bundan cikiyor: derlemede HTML'e gomuluyor (indekslenir), tarayicida
+# tazeleniyor (gun ici hareket gorunur).
+#
+# HATA TOLERANSI: bu kaynak bizim degil. Cekilemezse derleme KIRILMAZ; son
+# bilinen degerler dosyadan okunup kullanilir ve tazelik damgasi eski kalir.
+# Aksi halde ucuncu tarafin kesintisi bizim gunluk veri akisimizi durdururdu
+# - 9-11 Eylul'de yasanan sessiz durusun aynisi.
+
+ALTIN_URL = "https://finans.truncgil.com/v4/today.json"
+ALTIN_YOL = os.path.join(ROOT, "doviz-kurlari", "altin.json")
+ALTIN_GOSTER = [
+    ("GRA", "Gram altın"),
+    ("CEYREKALTIN", "Çeyrek altın"),
+    ("YARIMALTIN", "Yarım altın"),
+    ("TAMALTIN", "Tam altın"),
+    ("CUMHURIYETALTINI", "Cumhuriyet altını"),
+    ("GUMUS", "Gümüş (gram)"),
+]
+
+
+def altin_verisi():
+    """Serbest piyasa altin fiyatlarini ceker. Basarisiz olursa son bilinen
+    veriyi dosyadan doner. Doner: (sozluk, tazelik_metni, taze_mi)."""
+    try:
+        ham = json.loads(fetch(ALTIN_URL, timeout=20).decode("utf-8"))
+        cikti = {}
+        for kod, ad in ALTIN_GOSTER:
+            v = ham.get(kod) or {}
+            satis = v.get("Selling")
+            if not isinstance(satis, (int, float)) or satis <= 0:
+                continue
+            cikti[kod] = {
+                "ad": ad,
+                "alis": v.get("Buying") if isinstance(v.get("Buying"), (int, float)) else None,
+                "satis": float(satis),
+                "degisim": v.get("Change") if isinstance(v.get("Change"), (int, float)) else None,
+            }
+        if not cikti:
+            raise RuntimeError("altin kalemi cozulemedi")
+        paket = {"guncelleme": ham.get("Update_Date") or "",
+                 "cekildi": dt.datetime.now().strftime("%Y-%m-%d %H:%M"),
+                 "kaynak": ALTIN_URL, "kalemler": cikti}
+        with io.open(ALTIN_YOL, "w", encoding="utf-8") as f:
+            json.dump(paket, f, ensure_ascii=False, indent=1)
+        return cikti, paket["guncelleme"], True
+    except Exception as e:
+        print("UYARI: altin verisi cekilemedi (%s); son bilinen deger kullanilacak" % e,
+              file=sys.stderr)
+        try:
+            with io.open(ALTIN_YOL, encoding="utf-8") as f:
+                paket = json.load(f)
+            return paket.get("kalemler", {}), paket.get("guncelleme", ""), False
+        except (IOError, OSError, ValueError):
+            return {}, "", False
+
+
+# ------------------------------------------------------------------- grafik
+#
+# Satir ici SVG, renkleri CSS degiskeninden aliyor: tek dosyada iki tema.
+# Tek serili cizgi oldugu icin lejant yok - baslik zaten seriyi adlandiriyor
+# (dataviz: ">=2 seri icin lejant, tek seride yok"). Cizgi 2px, izgara
+# geri planda, etiketler SECICI: ilk, son, en dusuk ve en yuksek nokta.
+# Her noktaya sayi yazmak grafigi tabloya cevirir.
+#
+# Olcek sifirdan BASLAMIYOR ve bu bilincli: kur serisinde sifir anlamsiz bir
+# taban, %5'lik hareketi gorunmez yapardi. Bunu gizlememek icin y ekseninin
+# alt ve ust degeri her zaman yaziliyor ve altyazida belirtiliyor.
+
+CIZIM = dict(g=620, y=190, sol=52, sag=64, ust=18, alt=26)
+
+
+def _svg_kacis(t):
+    return (str(t).replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def cizgi_svg(kayitlar, kod, ad, ek_id):
+    """Tek serili cizgi grafik uretir. Doner: (svg_metni, ozet_sozluk)."""
+    C = CIZIM
+    nokta = [(k["tarih"], k[kod]) for k in kayitlar if kod in k]
+    if len(nokta) < 3:
+        return "", {}
+    degerler = [v for _, v in nokta]
+    dip, tepe = min(degerler), max(degerler)
+    pay = (tepe - dip) or (tepe * 0.01) or 1.0
+    lo, hi = dip - pay * 0.18, tepe + pay * 0.18
+    ic_g = C["g"] - C["sol"] - C["sag"]
+    ic_y = C["y"] - C["ust"] - C["alt"]
+
+    def X(i):
+        return C["sol"] + (ic_g * i / (len(nokta) - 1))
+
+    def Y(v):
+        return C["ust"] + ic_y * (1 - (v - lo) / (hi - lo))
+
+    d = " ".join(("M" if i == 0 else "L") + "%.1f %.1f" % (X(i), Y(v))
+                 for i, (_, v) in enumerate(nokta))
+    alan = d + " L%.1f %.1f L%.1f %.1f Z" % (X(len(nokta) - 1), C["ust"] + ic_y, C["sol"], C["ust"] + ic_y)
+
+    i_dip = degerler.index(dip)
+    i_tepe = degerler.index(tepe)
+    # Etiket cakismasi: iki isaretli nokta yatayda birbirine cok yakinsa
+    # etiketleri ust uste biner. Onem sirasina gore yerlestirilir ve sigmayan
+    # atlanir - nokta yine cizilir, yalnizca sayisi yazilmaz. Son deger en
+    # onemlisi; ardindan ilk, sonra uc degerler gelir.
+    ETIKET_ARALIK = 52.0
+    yerlesen = []
+    for i in (len(nokta) - 1, 0, i_tepe, i_dip):
+        if i in yerlesen:
+            continue
+        if any(abs(X(i) - X(j)) < ETIKET_ARALIK for j in yerlesen):
+            continue
+        yerlesen.append(i)
+    isaretli = sorted(set([0, len(nokta) - 1, i_dip, i_tepe]))
+
+    def gun_ay(iso):
+        y, m, g = iso.split("-")
+        return "%d %s" % (int(g), AYLAR[int(m) - 1][:3])
+
+    izgara = "".join(
+        '<line x1="%d" y1="%.1f" x2="%d" y2="%.1f"/>' % (C["sol"], Y(v), C["g"] - C["sag"], Y(v))
+        for v in (lo + (hi - lo) * f for f in (0.08, 0.5, 0.92)))
+
+    # Eksen ucuna SENTETIK sinir yazilmiyor: lo/hi yalnizca cizim payi icin
+    # uretilmis, veride karsiligi olmayan sayilar. Onceki surumde "45,67" gibi
+    # hic gerceklesmemis bir kur eksende duruyordu. Gercek uc degerler zaten
+    # dip/tepe noktalarinda dogrudan etiketli ve altyazida yaziyor.
+    eksen = ""
+
+    im = []
+    for i in isaretli:
+        iso, v = nokta[i]
+        x, y = X(i), Y(v)
+        ucta = i == len(nokta) - 1
+        im.append('<circle cx="%.1f" cy="%.1f" r="%s" class="dk-nokta%s"/>' % (
+            x, y, "4.5" if ucta else "3.5", " dk-son" if ucta else ""))
+        if i not in yerlesen:
+            continue
+        hiza = "end" if ucta else ("start" if i == 0 else "middle")
+        dx = -8 if ucta else (8 if i == 0 else 0)
+        # Etiket, cizginin gittigi yonun TERSINE konuyor. Sabit bir kural
+        # ("ustteyse yukari yaz") uc noktalarda etiketi cizginin uzerine
+        # bindiriyordu: EUR serisinde ilk nokta asagi iniyor ve altina
+        # yazilan sayi cizgiyle kesisiyordu.
+        if i == 0:
+            yukari = nokta[1][1] <= v
+        elif ucta:
+            yukari = nokta[-2][1] <= v
+        else:
+            yukari = i == i_tepe
+        dy = -11 if yukari else 17
+        im.append('<text x="%.1f" y="%.1f" text-anchor="%s" class="dk-etiket">%s</text>' % (
+            x + dx, y + dy, hiza, tr_sayi(v, 2)))
+    im = "".join(im)
+
+    tarihler = ('<text x="%d" y="%d" class="dk-eksen">%s</text>'
+                '<text x="%d" y="%d" text-anchor="end" class="dk-eksen">%s</text>') % (
+        C["sol"], C["y"] - 6, gun_ay(nokta[0][0]), C["g"] - C["sag"], C["y"] - 6, gun_ay(nokta[-1][0]))
+
+    ilk, son = degerler[0], degerler[-1]
+    yuzde = (son / ilk - 1) * 100 if ilk else 0
+    ozet = dict(ilk=ilk, son=son, dip=dip, tepe=tepe, yuzde=yuzde,
+                bas=nokta[0][0], bit=nokta[-1][0], adet=len(nokta))
+    yon = "yükseldi" if son >= ilk else "geriledi"
+    desc = ("%s satış kuru %s – %s arasında %s TL'den %s TL'ye %s; "
+            "dönem değişimi %%%s. En düşük %s TL, en yüksek %s TL. "
+            "Ölçek sıfırdan başlamaz." % (
+                ad, gun_ay(nokta[0][0]), gun_ay(nokta[-1][0]),
+                tr_sayi(ilk, 4), tr_sayi(son, 4), yon, tr_sayi(abs(yuzde), 2),
+                tr_sayi(dip, 4), tr_sayi(tepe, 4)))
+
+    svg = ('<svg class="dk-grafik" viewBox="0 0 %d %d" role="img" '
+           'aria-labelledby="%s-b %s-a">'
+           '<title id="%s-b">%s/TL son %d iş günü</title>'
+           '<desc id="%s-a">%s</desc>'
+           '<g class="dk-izgara">%s</g>'
+           '<path class="dk-alan" d="%s"/>'
+           '<path class="dk-cizgi" d="%s"/>'
+           '%s%s%s</svg>') % (
+        C["g"], C["y"], ek_id, ek_id, ek_id, kod, len(nokta), ek_id,
+        _svg_kacis(desc), izgara, alan, d, eksen, tarihler, im)
+    return svg, ozet
+
+
 PAGE = """<!DOCTYPE html>
 <html lang="tr" data-theme="auto">
 <head>
@@ -142,11 +414,21 @@ PAGE = """<!DOCTYPE html>
   <meta name="twitter:image" content="{site}/images/doviz-kurlari-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="grafik.css">
 
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
     "@graph": [
+      {{
+        "@type": "WebSite",
+        "@id": "{site}/#website",
+        "url": "{site}/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": {{ "@id": "{site}/#oner-koray" }}
+      }},
       {{
         "@type": "WebPage",
         "@id": "{site}/doviz-kurlari/#webpage",
@@ -266,6 +548,56 @@ PAGE = """<!DOCTYPE html>
       </div>
     </section>
 
+    <section id="seyir" class="calc" aria-labelledby="seyir-title">
+      <div class="wrap">
+        <h2 id="seyir-title">Son {seri_gun} iş gününün seyri</h2>
+        <p class="muted">
+          {seri_bas} – {seri_bit} arası TCMB satış kurları. Her grafik tek para birimini
+          gösterir; iki seri aynı eksene bindirilmemiştir.
+        </p>
+        <div class="dk-grafikler">
+{grafikler}
+        </div>
+        <details class="dk-veri">
+          <summary>Grafiklerin verisi (ay sonu değerleri)</summary>
+          <table>
+            <thead><tr><th scope="col">Tarih</th><th scope="col">USD</th><th scope="col">EUR</th></tr></thead>
+            <tbody>
+{seri_satirlari}
+            </tbody>
+          </table>
+          <p>Tam seri: <a href="seri.json">seri.json</a> · Kaynak: TCMB günlük bültenleri.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="altin" class="calc" aria-labelledby="altin-title">
+      <div class="wrap">
+        <h2 id="altin-title">Serbest piyasa altın ve gümüş</h2>
+        <p class="muted">
+          Bu değerler <strong>TCMB kuru değildir</strong>. Merkez Bankası altın fiyatı
+          yayımlamaz; aşağıdakiler serbest piyasa göstergesidir ve gün içinde değişir.
+        </p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Serbest piyasa altın ve gümüş fiyatları (TL)</caption>
+            <thead>
+              <tr><th scope="col">Kalem</th><th scope="col">Alış</th>
+                  <th scope="col">Satış</th><th scope="col">Günlük değişim</th></tr>
+            </thead>
+            <tbody data-altin-govde>
+{altin_satirlari}
+            </tbody>
+          </table>
+        </div>
+        <p class="dk-tazelik">
+          <span data-altin-damga>Kaynak güncellemesi: {altin_guncelleme}</span>
+          <span class="dk-tazelik-not">Sayfa açıldığında bu bölüm tazelenir; üstteki TCMB
+            tablosu resmî bültendir ve yalnızca iş günü bir kez değişir.</span>
+        </p>
+      </div>
+    </section>
+
     <article class="content">
       <div class="wrap prose">
         <h2>TCMB kuru nedir, nerede kullanılır?</h2>
@@ -352,15 +684,17 @@ PAGE = """<!DOCTYPE html>
       <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
         <li><a href="../iletisim/">İletişim</a></li>
         <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
         <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
-      </ul>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
     </div>
-  <p><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></p></footer>
+  </footer>
 
   <script src="../script.js" defer></script>
-  <script src="/bg-network.js" defer></script>
+  <script src="altin.js" defer></script>
 </body>
 </html>
 """
@@ -377,6 +711,59 @@ def doviz_sayfasi_uret():
             "<td>%s</td><td>%s</td></tr>" % (ad, kod, tr_sayi(v["alis"]), tr_sayi(v["satis"]))
         )
 
+    # --- gecmis seri + grafikler -------------------------------------------
+    seri, _ = seri_guncelle()
+    grafikler, ozetler = [], {}
+    for kod, ad in (("USD", "ABD Doları"), ("EUR", "Euro")):
+        svg, oz = cizgi_svg(seri, kod, ad, "g-" + kod.lower())
+        if not svg:
+            continue
+        ozetler[kod] = oz
+        ok = "▲" if oz["yuzde"] >= 0 else "▼"
+        grafikler.append(
+            '          <figure class="dk-kart">\n'
+            '            <div class="dk-kart-bas">\n'
+            '              <span class="dk-kart-ad">%s/TL<small>%s</small></span>\n'
+            '              <span class="dk-delta"><span aria-hidden="true">%s</span> %%%s'
+            ' <span>dönem</span></span>\n'
+            '            </div>\n'
+            '%s\n'
+            '            <figcaption>%s iş günü · en düşük %s TL, en yüksek %s TL.'
+            ' Ölçek sıfırdan başlamaz; dönem içi hareketi görünür kılmak için eksen'
+            ' veri aralığına daraltılmıştır.</figcaption>\n'
+            '          </figure>' % (
+                kod, ad, ok, tr_sayi(abs(oz["yuzde"]), 2), svg,
+                oz["adet"], tr_sayi(oz["dip"], 4), tr_sayi(oz["tepe"], 4)))
+
+    # Ay sonu ozeti: tam seriyi tabloya dokmek okunmaz olurdu.
+    ay_son = {}
+    for k in seri:
+        ay_son[k["tarih"][:7]] = k
+
+    def _uzun_tarih(iso):
+        return "%d %s %s" % (int(iso[8:]), AYLAR[int(iso[5:7]) - 1], iso[:4])
+
+    seri_satirlari = "\n".join(
+        '              <tr><th scope="row">%s</th><td>%s</td><td>%s</td></tr>' % (
+            _uzun_tarih(k["tarih"]), tr_sayi(k["USD"]), tr_sayi(k["EUR"]))
+        for _, k in sorted(ay_son.items()))
+
+    # --- serbest piyasa altin ----------------------------------------------
+    altin, altin_guncelleme, altin_taze = altin_verisi()
+    altin_satirlari = "\n".join(
+        '              <tr><th scope="row">%s</th><td>%s</td><td>%s</td><td>%s</td></tr>' % (
+            v["ad"],
+            tr_sayi(v["alis"], 2) if v["alis"] else "—",
+            tr_sayi(v["satis"], 2),
+            ("%s %%%s" % ("▲" if v["degisim"] >= 0 else "▼", tr_sayi(abs(v["degisim"]), 2)))
+            if v["degisim"] is not None else "—")
+        for _, v in sorted(altin.items(), key=lambda kv: [k for k, _ in ALTIN_GOSTER].index(kv[0])))
+    if not altin_satirlari:
+        altin_satirlari = ('              <tr><td colspan="4">Altın verisi şu anda '
+                           'alınamadı.</td></tr>')
+
+    oz = ozetler.get("USD") or {}
+
     html = PAGE.format(
         site=SITE,
         tarih_iso=tarih_iso,
@@ -384,6 +771,13 @@ def doviz_sayfasi_uret():
         usd_satis=tr_sayi(d["USD"]["satis"], 2),
         eur_satis=tr_sayi(d["EUR"]["satis"], 2),
         satirlar="\n".join(satirlar),
+        grafikler="\n".join(grafikler),
+        seri_satirlari=seri_satirlari,
+        seri_gun=oz.get("adet", 0),
+        seri_bas=_uzun_tarih(oz["bas"]) if oz else "",
+        seri_bit=_uzun_tarih(oz["bit"]) if oz else "",
+        altin_satirlari=altin_satirlari,
+        altin_guncelleme=altin_guncelleme or "bilinmiyor",
     )
 
     out_dir = os.path.join(ROOT, "doviz-kurlari")
