@@ -50,6 +50,12 @@ jobs:
       - name: Kira geliri motoru regresyonları
         run: node bordro/gmsi-test.js
 
+      # Borc simulasyonu: hatalari sessizdir. Faiz bir ay kayarsa ya da
+      # kapanan borcun asgarisi serbest birakilmazsa sonuc makul gorunup
+      # yanlis olur. Elle hesaplanmis vakalar + strateji degismezleri.
+      - name: Borç kapatma motoru regresyonları
+        run: node bordro/borc-test.js
+
       - name: Motor testleri
         run: node bordro/test.js
 
