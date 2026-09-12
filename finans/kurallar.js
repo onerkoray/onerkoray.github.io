@@ -27,6 +27,24 @@
     var end = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + months + 1, 0));
     return new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), Math.min(d.getUTCDate(), end.getUTCDate())));
   }
+  /* Mevduat stopaj orani (GVK gecici 67, 10041 sayili Karar).
+     Vadeye gore kademeli: uzun vade daha dusuk stopaj. Ayri fonksiyon
+     cunku yalnizca ORANI isteyen araclar var (marjinal getiri
+     karsilastirmasi gibi) ve tabloyu ikinci kez yazmak sessiz
+     ayrisma uretir. */
+  function stopajOrani(baslangic, bitis, type) {
+    if (type === "doviz") return 25;
+    if (bitis <= ayEkle(baslangic, 6)) return 17.5;
+    if (bitis <= ayEkle(baslangic, 12)) return 15;
+    return 10;
+  }
+
+  /* Gun cinsinden vade icin stopaj orani — tarih kurmadan. */
+  function stopajOraniGun(gun, type) {
+    var d = new Date(2026, 0, 1);
+    return stopajOrani(d, new Date(d.getTime() + gun * 86400000), type || "tl");
+  }
+
   function mevduat(p, rate, days, start, type) {
     pozitif(p); pozitif(rate, true); pozitif(days);
     if (!Number.isInteger(days) || days > 3650) throw new Error("Vade 1–3650 arasında tam gün olmalı.");
@@ -34,7 +52,7 @@
     if (start < "2025-07-09") throw new Error("Bu araç 9 Temmuz 2025 ve sonrasında açılan veya yenilenen hesapları kapsar.");
     if (type !== "tl" && type !== "doviz") throw new Error("Hesap türünü seçin.");
     var end = new Date(d.getTime() + days * 86400000);
-    var taxPct = type === "doviz" ? 25 : end <= ayEkle(d, 6) ? 17.5 : end <= ayEkle(d, 12) ? 15 : 10;
+    var taxPct = stopajOrani(d, end, type);
     var gross = p * rate / 100 * days / 365;
     var tax = gross * taxPct / 100;
     return { gross: gross, tax: tax, net: gross - tax, maturity: p + gross - tax, taxPct: taxPct, end: end.toISOString().slice(0, 10) };
@@ -49,7 +67,8 @@
     pozitif(price); pozitif(exchange); pozitif(shipping, true); pozitif(taxes, true); pozitif(fees, true);
     return price * exchange + shipping + taxes + fees;
   }
-  var api = { sayi: sayi, mevduat: mevduat, kira: kira, ithalat: ithalat };
+  var api = { sayi: sayi, mevduat: mevduat, kira: kira, ithalat: ithalat,
+    stopajOrani: stopajOrani, stopajOraniGun: stopajOraniGun };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.Finans = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

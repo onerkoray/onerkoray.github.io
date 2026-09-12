@@ -140,6 +140,10 @@ SPEC = {
    "Son 4 aylık brüt kazanca ve prim gün sayısına göre ödenek, tavan ve süre.",
    ["2026 parametreleri", "Süre hesabı"], "bordro"),
 
+ "borc-mu-birikim-mi": ("borc-mu-birikim-mi", "Borc mu,", "Birikim mi?",
+   "Her hedefin vergi ve enflasyon sonrasi gercek getirisi, aylik dagilim.",
+   ["Reel getiri", "Oncelik analizi"], "vergi"),
+
  "borc-kapatma-plani": ("borc-kapatma-plani", "Borc Kapatma", "Plani",
    "Cig, kartopu ve asgari odeme stratejileri ay ay karsilastirmali.",
    ["Simulasyon", "TCMB oranlari"], "vergi"),

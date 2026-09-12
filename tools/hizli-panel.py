@@ -40,6 +40,8 @@ HARIC_KOK = {"yayin-ilkeleri", "decorpalette", "keymint", "dither-studio", "imag
 # GEREKTİĞİNDE tool HATA VERİR ve adını söyler — sessizce kesilmesindense
 # insanın kısa bir ad yazması daha iyi.
 KISA = {
+    "borc-mu-birikim-mi": "Borç mu, Birikim mi?",
+
     "kira-geliri-vergisi-hesaplama": "Kira Geliri Vergisi",
     "borc-kapatma-plani": "Borç Kapatma Planı",
     "makaleler/mevduat-faizi-enflasyon-reel-getiri": "Mevduat ve reel getiri",
