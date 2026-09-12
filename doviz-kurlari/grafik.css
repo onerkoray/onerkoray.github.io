@@ -1,0 +1,61 @@
+/* TCMB kur seyri grafikleri.
+   Renkler site tokenlarindan geliyor; SVG satir ici oldugu icin iki tema da
+   tek dosyadan cikiyor, ayri koyu tema varyanti gerekmiyor.
+
+   TEK SERI: her grafik bir para birimi gosteriyor, bu yuzden lejant yok -
+   baslik zaten seriyi adlandiriyor. Iki para birimi tek eksene binmiyor;
+   yan yana iki kucuk grafik (small multiples) olarak duruyor. Cift y ekseni
+   kullanilmadi: ayni cizim alaninda iki farkli olcek kiyaslanamaz.
+
+   DEGISIM YUZDESI RENKSIZ: kurun yukselmesi "iyi" veya "kotu" degil -
+   dovizi olan ile TL'si olan icin ters anlama gelir. Yesil/kirmizi boyamak
+   sayfanin taraf tutmasi olurdu. Yon yalnizca ok isareti ve isaretle
+   belirtiliyor. */
+
+.dk-grafikler {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem; margin: 1.5rem 0 0;
+}
+.dk-kart {
+  margin: 0; padding: 1.25rem 1.35rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+}
+.dk-kart-bas { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; }
+.dk-kart-ad { font-weight: 650; font-size: .95rem; color: var(--text); }
+.dk-kart-ad small { display: block; margin-top: .15rem; font-size: .72rem; font-weight: 400; color: var(--text-muted); }
+.dk-delta { font-size: .85rem; font-weight: 650; color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dk-delta span { color: var(--text-muted); font-weight: 400; }
+
+.dk-grafik { display: block; width: 100%; height: auto; margin: .9rem 0 .2rem; overflow: visible; font-family: var(--font-body); }
+.dk-izgara line { stroke: var(--border); stroke-width: 1; }
+.dk-alan { fill: var(--brand); opacity: .07; stroke: none; }
+.dk-cizgi { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.dk-nokta { fill: var(--surface); stroke: var(--brand); stroke-width: 2; }
+.dk-nokta.dk-son { fill: var(--brand); }
+.dk-etiket { font-size: 11px; font-weight: 650; fill: var(--text); }
+.dk-eksen { font-size: 10px; fill: var(--text-muted); }
+.dk-eksen.dk-sag { text-anchor: end; }
+
+.dk-kart figcaption { margin-top: .5rem; font-size: .72rem; line-height: 1.6; color: var(--text-muted); }
+
+.dk-veri { margin: 1rem 0 0; font-size: .78rem; color: var(--text-muted); }
+.dk-veri summary { cursor: pointer; }
+.dk-veri table { width: 100%; margin-top: .7rem; border-collapse: collapse; font-size: .78rem; }
+.dk-veri th, .dk-veri td { padding: .45rem .6rem; border-bottom: 1px solid var(--border); text-align: right; }
+.dk-veri th:first-child, .dk-veri td:first-child { text-align: left; }
+.dk-veri thead th { color: var(--text-muted); font-weight: 600; }
+.dk-veri td { font-variant-numeric: tabular-nums; }
+
+@media (max-width: 640px) {
+  .dk-grafikler { grid-template-columns: minmax(0, 1fr); }
+}
+@media print {
+  .dk-kart { break-inside: avoid; }
+}
+
+/* Tazelik damgasi. Altin bolumu tarayicida guncellenebildigi icin "ne zaman"
+   sorusu burada gercek bir bilgi; TCMB tablosunda ayni soru bultene ait ve
+   zaten sayfanin ustunde yaziyor. */
+.dk-tazelik { margin: .9rem 0 0; font-size: .78rem; color: var(--text-muted); }
+.dk-tazelik-not { display: block; margin-top: .25rem; font-size: .74rem; }
