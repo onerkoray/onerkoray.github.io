@@ -208,6 +208,10 @@ SPEC = {
    "İşveren maliyeti ile net ücret arasındaki fark. Zirve 100.000 TL'de değil, SGK tavanında.",
    ["OECD tanımı", "Marjinal oran"], "bordro"),
 
+ "nakit-akisi-analizi": ("nakit-akisi-analizi", "Nakit Akışı", "Analizi",
+   "İşveren maliyetinden her gider kalemine kadar tüm akış tek diyagramda — ve her kalemin ömür bedeli.",
+   ["Sankey", "Ömür bedeli"], "finans"),
+
  "prim-ikramiye-vergisi": ("prim-ikramiye-vergisi", "Prim ve İkramiye", "Vergisi",
    "İkramiyeyi Aralık’ta almak vergiyi değiştirmez. Değiştiren şey SGK tavanı — ölçülüp gösteriliyor.",
    ["Marjinal oran", "SGK tavanı"], "bordro"),

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nakit Akışı Analizi: Paranız Nereye Gidiyor? | Koray Öner</title>
+  <meta name="description" content="İşveren maliyetinden her gider kalemine kadar paranızın tüm akışı tek diyagramda. Her giderin ömür bedeli, tasarruf oranınız ve vergi kaması.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/nakit-akisi-analizi/">
+
+  <link rel="icon" href="../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Nakit Akışı Analizi: Paranız Nereye Gidiyor?">
+  <meta property="og:description" content="İşveren maliyetinden gelecekteki servete kadar tüm akış, ve her giderin ömür bedeli.">
+  <meta property="og:url" content="https://korayoner.dev/nakit-akisi-analizi/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/nakit-akisi-analizi-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz nakit akışı analiz aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nakit Akışı Analizi: Paranız Nereye Gidiyor?">
+  <meta name="twitter:description" content="Tüm akış tek diyagramda ve her giderin ömür bedeli.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/nakit-akisi-analizi-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=00a2fec4">
+  <link rel="stylesheet" href="style.css?v=c28b0f12">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "dateModified": "2026-09-13",
+        "@id": "https://korayoner.dev/nakit-akisi-analizi/#app",
+        "name": "Nakit Akışı Analizi",
+        "url": "https://korayoner.dev/nakit-akisi-analizi/",
+        "image": "https://korayoner.dev/images/nakit-akisi-analizi-koray-oner.png",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "description": "İşveren maliyetinden gelecekteki reel servete kadar kişisel nakit akışını tek bir Sankey diyagramında gösteren, her giderin ömür bedelini hesaplayan ücretsiz araç."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://korayoner.dev/nakit-akisi-analizi/#webpage",
+        "url": "https://korayoner.dev/nakit-akisi-analizi/",
+        "name": "Nakit Akışı Analizi: Paranız Nereye Gidiyor?",
+        "inLanguage": "tr",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "breadcrumb": { "@id": "https://korayoner.dev/nakit-akisi-analizi/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://korayoner.dev/nakit-akisi-analizi/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Nakit Akışı Analizi", "item": "https://korayoner.dev/nakit-akisi-analizi/" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "jobTitle": "Yazılım Geliştirici"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Ömür bedeli ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "Aylık bir gideri ödemek yerine aynı parayı yatırsaydınız, seçtiğiniz ufkun sonunda bugünün parasıyla ne kadar biriktiğidir. Hesap reel yapılır: gider enflasyonla büyür, yatırım nominal getirir, ikisi reel getiri üzerinden buluşturulur. Nominal toplamak bedeli olduğundan büyük gösterirdi." } },
+          { "@type": "Question", "name": "Tasarruf oranı brüt üzerinden mi hesaplanmalı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır, net (harcanabilir) gelir üzerinden. Brüt üzerinden hesaplanan oran daha küçük görünür ama karar açısından anlamsızdır: vergiyi bir harcama kalemi gibi kısamazsınız. Finansal bağımsızlık literatüründeki oran da harcanabilir gelir üzerinedir." } },
+          { "@type": "Question", "name": "Diyagram neden işveren maliyetinden başlıyor?", "acceptedAnswer": { "@type": "Answer", "text": "Brütten başlamak ücretin üzerindeki yükün önemli bir kısmını görünmez kılar. İşveren SGK payı da sizin emeğinizin karşılığıdır; harcanabilir gelire dönüşmemesi onu yok saymayı gerektirmez. Aradaki toplam farka vergi kaması denir." } },
+          { "@type": "Question", "name": "Net maaşım neden yıl içinde değişiyor, hangi ay gösteriliyor?", "acceptedAnswer": { "@type": "Answer", "text": "Kümülatif vergi tarifesi nedeniyle net ücret yıl içinde düşer. Tek bir ayı göstermek, hangi ayı seçtiğinize göre farklı bir resim çizerdi. Bu araç 12 ayın tamamını hesaplayıp aylık ortalamayı kullanır; akışın tamamını temsil eden tek dürüst sayı budur." } },
+          { "@type": "Question", "name": "Bir gideri kısarsam ne kazanırım?", "acceptedAnswer": { "@type": "Answer", "text": "Tabloda her kalemin ömür bedeli yazılıdır; o kalemi tamamen kesmek o tutarı kazandırır, yarısını kesmek yarısını. Kısıntı doğrudan tasarruf oranınızı da yükseltir ve ısı haritası yeni oranın ufuk boyunca ne anlama geldiğini gösterir." } },
+          { "@type": "Question", "name": "Verilerim bir yere gönderiliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bütün hesap tarayıcınızın içinde çalışır; girdiğiniz gelir ve gider bilgileri hiçbir sunucuya gönderilmez ve kaydedilmez." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#omur">Ömür bedeli</a></li>
+          <li><a href="#oran">Tasarruf oranı</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> Nakit Akışı Analizi
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Reklamsız · Veriniz tarayıcıdan çıkmaz</p>
+        <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4"/><path d="M7 12c4 0 4-7 8-7h6"/><path d="M7 12h14"/><path d="M7 12c4 0 4 7 8 7h6"/></svg></div>
+        <h1 id="hero-title">Paranız Nereye Gidiyor?</h1>
+        <p class="lede">
+          Sitedeki diğer araçlar tek bir kararı inceliyor. Bu araç
+          <strong>sistemin tamamını</strong> tek resimde gösteriyor: işveren
+          maliyetinden başlayıp gelecekteki reel servetinize kadar. Ve her
+          gider kaleminin yanına asıl soruyu yazıyor — <strong>bu kalem size
+          ömür boyu neye mal oluyor?</strong>
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">Nakit akışı analiz aracı</h2>
+
+        <form id="na-form" class="panel" novalidate>
+          <div class="na-grid">
+            <p class="panel-q">
+              <label for="in-brut">Aylık brüt maaşınız</label>
+              <input type="text" id="in-brut" inputmode="decimal" value="100000"> TL
+              <span class="muted-note">Boş bırakırsanız yalnızca diğer gelir hesaplanır.</span>
+            </p>
+            <p class="panel-q">
+              <label for="in-diger">Diğer aylık geliriniz (net)</label>
+              <input type="text" id="in-diger" inputmode="decimal" value="0"> TL
+              <span class="muted-note">Kira, freelance, temettü… vergisi düşülmüş hâli.</span>
+            </p>
+            <p class="panel-q">
+              <label for="in-yil">Bordro yılı</label>
+              <select id="in-yil"></select>
+            </p>
+            <p class="panel-q">
+              <label for="in-getiri">Yatırımın net yıllık getirisi</label>
+              <input type="text" id="in-getiri" inputmode="decimal" value="35"> %
+            </p>
+            <p class="panel-q">
+              <label for="in-enf">Beklenen yıllık enflasyon</label>
+              <input type="text" id="in-enf" inputmode="decimal" value="30"> %
+            </p>
+            <p class="panel-q">
+              <label for="in-ufuk">Ömür bedeli ufku</label>
+              <input type="text" id="in-ufuk" inputmode="numeric" value="10"> yıl
+            </p>
+          </div>
+
+          <div class="na-baslik-satir">
+            <h3 class="na-alt-baslik">Aylık giderleriniz</h3>
+            <button type="button" id="ekle" class="na-ekle">+ Gider ekle</button>
+          </div>
+
+          <div class="na-tablo-sarmal">
+            <table class="na-girdi">
+              <thead>
+                <tr>
+                  <th scope="col">Kalem</th>
+                  <th scope="col">Aylık tutar (TL)</th>
+                  <th scope="col">Zorunlu mu?</th>
+                  <th scope="col"><span class="visually-hidden">Sil</span></th>
+                </tr>
+              </thead>
+              <tbody id="na-govde"></tbody>
+            </table>
+          </div>
+          <p class="muted-note na-ipucu">
+            <strong>Zorunlu</strong> işareti, gelirinizin kesilmesi hâlinde
+            durduramayacağınız kalemler için. Dayanma süresi hesabı bunlara bakar.
+          </p>
+        </form>
+
+        <div id="results" aria-live="polite"></div>
+        <p id="msg" class="muted-note" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 13 Eylül 2026 · GVK m.103 ve 5510 s.K. m.82 esas alınmıştır</p>
+
+        <h2 id="omur">Ömür bedeli: bir giderin gerçek fiyatı</h2>
+        <p>
+          Aylık 2.500 TL'lik abonelik yığını "ayda 2.500 TL" değildir. O parayı
+          ödemek yerine yatırsaydınız, on yıl sonra elinizde
+          <strong>bugünün parasıyla</strong> ne olurdu — giderin gerçek fiyatı
+          budur.
+        </p>
+        <p class="formula">ömür bedeli = aylık tutar × [(1 + r<sub>reel</sub>)<sup>n</sup> − 1] / r<sub>reel</sub></p>
+        <p>
+          Kritik ayrıntı <strong>reel</strong> kelimesinde. Aylık gideriniz
+          enflasyonla birlikte büyür; yatırımınız ise nominal getirir. İkisini
+          nominal olarak toplamak giderin bedelini <em>abartır</em> — ortaya
+          gerçekte olmayan bir servet çıkar. Bu araç reel getiriyi bölme
+          yöntemiyle bulur ve sonucu bugünün parasıyla verir.
+        </p>
+        <p>
+          Bir örnek: %35 nominal getiri ve %30 enflasyonda reel getiri %5 değil,
+          <strong>%3,85</strong>'tir. Aradaki fark on yılda küçük görünmez.
+        </p>
+
+        <h2 id="oran">Tasarruf oranı neden net gelir üzerinden?</h2>
+        <p>
+          Brüt üzerinden hesaplanan tasarruf oranı daha küçük, dolayısıyla daha
+          "kötü" görünür. Ama karar açısından anlamsızdır: <strong>vergiyi bir
+          harcama kalemi gibi kısamazsınız.</strong> Kısabileceğiniz şey
+          harcanabilir gelirinizden çıkan kalemlerdir; finansal bağımsızlık
+          literatüründeki oran da bu yüzden net gelir üzerinedir.
+        </p>
+        <p>
+          Bu, verginin görünmez olması gerektiği anlamına gelmiyor — diyagram
+          tam da o yüzden <strong>işveren maliyetinden</strong> başlıyor.
+          İşveren SGK payı da sizin emeğinizin karşılığıdır; harcanabilir
+          gelire dönüşmemesi onu yok saymayı gerektirmez. Aradaki toplam farkın
+          adı <a href="../vergi-kamasi-hesaplama/">vergi kaması</a>.
+        </p>
+
+        <h2 id="ortalama">Hangi ayın maaşı gösteriliyor?</h2>
+        <p>
+          Hiçbirinin. Kümülatif tarifede net ücret yıl içinde düşer; tek bir ayı
+          almak, hangi ayı seçtiğinize göre farklı bir resim çizerdi. Araç
+          <strong>12 ayın tamamını hesaplayıp aylık ortalamayı</strong> kullanıyor.
+          Ay ay dökümü görmek isterseniz
+          <a href="../maas-hesaplama/">maaş hesaplama</a> aracı onu veriyor.
+        </p>
+
+        <h2 id="sinir">Aracın söylemediği şeyler</h2>
+        <ul>
+          <li><strong>Bu bir bütçe uygulaması değil.</strong> Harcamalarınızı
+            takip etmiyor, kategorilere ayırmıyor, banka hesabınıza bağlanmıyor.
+            Girdiğiniz rakamlar sizin tahmininiz.</li>
+          <li><strong>Ömür bedeli bir kayıp değil.</strong> Kira ödemeseydiniz
+            sokakta kalırdınız; hesap, o kalemin <em>fırsat maliyetini</em>
+            gösteriyor, gereksiz olduğunu değil. Karar sizin.</li>
+          <li><strong>Getiri garantili değil.</strong> Ömür bedeli, girdiğiniz
+            getirinin her yıl aynen gerçekleşmesini varsayar. Belirsizliği
+            ölçmek için <a href="../finansal-ozgurluk-hesaplama/">FIRE
+            simülasyonu</a> binlerce yolu birlikte koşuyor.</li>
+          <li><strong>Tek seferlik büyük harcamalar</strong> bu akışta yok;
+            onlar için <a href="../finansal-emniyet-testi/">finansal emniyet
+            testi</a>.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Veri kaynakları ve güncelleme</h2>
+          <p><span class="updated">Parametreler en son 13 Eylül 2026 tarihinde gözden geçirildi.</span></p>
+          <ul>
+            <li><strong>Gelir vergisi tarifesi</strong> — GVK m.103, <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li><strong>Asgari ücret istisnası</strong> — GVK m.23/18 ve m.32</li>
+            <li><strong>SGK işçi ve işveren payları, prim tavanı</strong> — 5510 sayılı Kanun m.81 ve m.82, <a href="https://www.sgk.gov.tr/" rel="noopener">SGK</a></li>
+            <li><strong>Damga vergisi</strong> — 488 sayılı Kanun</li>
+          </ul>
+          <p>
+            <strong>Kapsam sınırı:</strong> Ücret tarafı 4/a kapsamında çalışan
+            varsayımıyla hesaplanır. Diğer gelirlerin vergisi kullanıcıdan net
+            olarak alınır; araç onlar için ayrı bir vergi hesabı yapmaz.
+            Getiri ve enflasyon sizin tahmininizdir, öngörü değildir.
+          </p>
+          <p>
+            Hesap yöntemi ve doğrulama testleri herkese açık:
+            <a href="https://github.com/onerkoray/hesap-cekirdegi/blob/main/finans/nakit-akisi-motoru.js" rel="noopener">motor</a> ·
+            <a href="https://github.com/onerkoray/hesap-cekirdegi/blob/main/finans/nakit-akisi-test.js" rel="noopener">66 test</a>.
+            Bir oran güncelliğini yitirdiyse <a href="../iletisim/">bana bildirin</a>.
+            Kapsam ve sınırlar için <a href="../kullanim-kosullari/">Kullanım Koşulları</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Ömür bedeli ne demek?</summary><p>O gideri ödemek yerine aynı parayı yatırsaydınız ufkun sonunda bugünün parasıyla ne birikirdi. Hesap reeldir: gider enflasyonla büyür, yatırım nominal getirir.</p></details>
+          <details><summary>Tasarruf oranı brüt üzerinden mi olmalı?</summary><p>Hayır, net üzerinden. Vergiyi bir harcama kalemi gibi kısamazsınız; kısabileceğiniz şey harcanabilir gelirden çıkanlardır.</p></details>
+          <details><summary>Diyagram neden işveren maliyetinden başlıyor?</summary><p>Brütten başlamak ücretin üzerindeki yükün bir kısmını görünmez kılar. Aradaki toplam farka vergi kaması denir.</p></details>
+          <details><summary>Hangi ayın maaşı gösteriliyor?</summary><p>Hiçbirinin: 12 ayın tamamı hesaplanıp aylık ortalama kullanılıyor. Kümülatif tarifede net ücret yıl içinde düştüğü için tek bir ay temsil edici olmazdı.</p></details>
+          <details><summary>Bir gideri kısarsam ne kazanırım?</summary><p>Tabloda her kalemin ömür bedeli yazılı; tamamını kesmek o tutarı, yarısını kesmek yarısını kazandırır.</p></details>
+          <details><summary>Verilerim gönderiliyor mu?</summary><p>Hayır, hesap tamamen tarayıcınızda çalışır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <ul>
+          <li><a href="../finansal-emniyet-testi/">Finansal Emniyet Testi</a> — büyük bir harcamadan sonra kaç ay dayanırsınız?</li>
+          <li><a href="../finansal-ozgurluk-hesaplama/">Finansal Özgürlük (FIRE)</a> — tasarruf oranınız sizi nereye götürüyor, belirsizlik dahil.</li>
+          <li><a href="../borc-mu-birikim-mi/">Borç mu Kapatmalı, Birikim mi?</a> — aylık artan paranın en iyi yeri.</li>
+          <li><a href="../vergi-kamasi-hesaplama/">Vergi Kaması</a> — işveren maliyeti ile net ücret arasındaki fark.</li>
+          <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — 12 aylık bordro dökümü.</li>
+          <li><a href="../">Tüm projeler</a> — büyüyen açık kaynak araç koleksiyonu.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümü</dd></div>
+            <div><dt>Son gözden geçirme</dt><dd>13 Eylül 2026</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=8e502553" defer></script>
+  <script src="../bordro/motor.js?v=5ef870ac" defer></script>
+  <script src="../finans/kurallar.js?v=da7bebf5" defer></script>
+  <script src="../finans/zaman-motoru.js?v=31f44fae" defer></script>
+  <script src="../finans/enflasyon-motoru.js?v=53474604" defer></script>
+  <script src="../finans/nakit-akisi-motoru.js?v=d89bac9d" defer></script>
+  <script src="../finans/sankey.js?v=079c998b" defer></script>
+  <script src="../finans/isi-haritasi.js?v=549ff8d9" defer></script>
+  <script src="script.js?v=6eb1bb4f" defer></script>
+  <script src="../script.js?v=d148f9ac" defer></script>
+</body>
+</html>

@@ -1698,3 +1698,53 @@ section { padding: var(--bolum) 0; }
 .eg-tablo th:first-child, .eg-tablo td:first-child { text-align: left; }
 
 @media print { .eg { break-inside: avoid; } .eg-tablo { display: none; } }
+
+/* --------------------------------------------------------------------- */
+/* Sankey — akış diyagramı (finans/sankey.js)                             */
+/* Isı haritası ve eğri ile AYNI dil: aynı figcaption ağırlığı, aynı      */
+/* altyazı tonu, aynı --dv-* renk uzayı.                                  */
+.sk { margin: 1.5rem 0 0; }
+.sk figcaption { font-size: .88rem; font-weight: 650; margin-bottom: .8rem; line-height: 1.5; }
+.sk-sarmal { overflow-x: auto; }
+.sk-sarmal svg { display: block; width: 100%; min-width: 680px; height: auto; }
+
+/* Renk ANLAM taşır: kesinti, gider, tasarruf ve açık ayrı sınıflar.
+   var(--brand) kullanılmaz — o kullanıcı tercihi. */
+.sk-serit { fill-opacity: .42; }
+.sk-serit:hover { fill-opacity: .68; }
+.sk-akis { fill: var(--dv-1); }
+.sk-kesinti { fill: var(--dv-2); }
+.sk-gider { fill: var(--dv-mute); fill-opacity: .55; }
+.sk-tasarruf { fill: var(--dv-3); }
+.sk-hedef { fill: var(--dv-3); fill-opacity: .26; }
+.sk-acik { fill: var(--dv-2); fill-opacity: .6; }
+
+.sk-dugum { fill: var(--text-muted); }
+.sk-d-kaynak { fill: var(--dv-1-ink); }
+.sk-d-ara { fill: var(--dv-1-ink); }
+.sk-d-kesinti { fill: var(--dv-2-ink); }
+.sk-d-zorunlu { fill: var(--text-muted); }
+.sk-d-istege-bagli { fill: var(--dv-mute); }
+.sk-d-tasarruf, .sk-d-hedef { fill: var(--dv-3-ink); }
+.sk-d-acik { fill: var(--dv-2-ink); }
+
+/* Yazılar METİN tokenı giyer, seri rengini değil. */
+/* Etiketler şeritlerin ÜSTÜNDE duruyor; hale olmadan okunmazlardı.
+   paint-order: stroke, konturu yazının arkasına atıyor. */
+.sk-ad {
+  font: 500 12px var(--font-body); fill: var(--text);
+  paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px;
+  stroke-linejoin: round;
+}
+.sk-deger { font-family: var(--font-mono); font-size: 11px; fill: var(--text-muted); }
+
+.sk-not { margin: .8rem 0 0; font-size: .78rem; line-height: 1.6; color: var(--text-muted); }
+.sk-tablo { margin: .7rem 0 0; font-size: .78rem; }
+.sk-tablo summary { cursor: pointer; color: var(--text-muted); }
+.sk-tablo summary:hover { color: var(--text); }
+.sk-tablo table { width: 100%; border-collapse: collapse; margin-top: .5rem; }
+.sk-tablo th, .sk-tablo td { padding: .3rem .5rem; border-bottom: 1px solid var(--border); text-align: left; }
+.sk-tablo th { color: var(--text-muted); font-weight: 600; }
+.sk-tablo td:last-child, .sk-tablo th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+
+@media print { .sk { break-inside: avoid; } .sk-tablo { display: none; } }
