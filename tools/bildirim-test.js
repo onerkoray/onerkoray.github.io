@@ -144,16 +144,45 @@ var ISLER = [{ steps: [
   dogru("mevcut issue'ya yorum dusuldu",
     o2.kayit.yorum.length === 1 && o2.kayit.yorum[0].issue_number === 7);
 
-  console.log("\nAdim adi okunamazsa bile bildirir");
+  console.log("\nSorgu izni yoksa bile bildirir");
   /* actions:read izni bir gun geri alinirsa alarm SUSMAMALI, yalnizca
-     daha az sey soylemeli. */
+     daha az sey soylemeli. Istisnada YENIDEN DENENMEZ: izin sorununu
+     beklemek duzeltmez. */
   var o3 = sahte([], ISLER);
+  var cagri = 0;
   o3.github.rest.actions.listJobsForWorkflowRun = function () {
-    return Promise.reject(new Error("403"));
+    cagri++;
+    return Promise.reject(new Error("403 Forbidden"));
   };
   await kos(bildir.kod, o3);
   dogru("issue yine aciliyor", o3.kayit.acilan.length === 1);
-  dogru("okunamadigini soyluyor", /okunamadı/.test(o3.kayit.acilan[0].body));
+  dogru("sebebi yaziyor", /sorgulanamad/.test(o3.kayit.acilan[0].body) &&
+    /403/.test(o3.kayit.acilan[0].body));
+  dogru("istisnada tekrar denenmiyor", cagri === 1);
+
+  console.log("\nYARIS: sonuc API'ye heniz islenmemisse yeniden denenir");
+  /* Ilk gercek atesleme (issue #1) tam bunu yasadi: sorgu basarili dondu
+     ama hicbir adim "failure" gorunmuyordu, cunku adim kendi calismasini
+     sorguluyor. Bos donduyse beklenip tekrar bakiliyor. */
+  var o4 = sahte([], [{ steps: [{ name: "Bir adim", conclusion: null }] }]);
+  var kez = 0;
+  o4.github.rest.actions.listJobsForWorkflowRun = function () {
+    kez++;
+    return Promise.resolve({ data: { jobs: kez === 1
+      ? [{ steps: [{ name: "Besleme kontrolu", conclusion: null }] }]
+      : [{ steps: [{ name: "Besleme kontrolu", conclusion: "failure" }] }] } });
+  };
+  await kos(bildir.kod, o4);
+  dogru("ikinci denemede adim bulundu", kez >= 2);
+  dogru("adim adi issue'ya yazildi",
+    /Besleme kontrolu/.test(o4.kayit.acilan[0].body));
+
+  console.log("\nHic bulunamazsa bunu SOYLER (sessiz kalmaz)");
+  var o7 = sahte([], [{ steps: [{ name: "Bir adim", conclusion: null }] }]);
+  await kos(bildir.kod, o7);
+  dogru("issue yine aciliyor", o7.kayit.acilan.length === 1);
+  dogru("henuz islenmedigini soyluyor",
+    /işlenmemiş/.test(o7.kayit.acilan[0].body));
 
   console.log("\nYesile donus — issue KAPANIR");
   var o4 = sahte([{ number: 7 }], ISLER);
