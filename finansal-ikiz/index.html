@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://korayoner.dev/images/finansal-ikiz-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=4254169d">
-  <link rel="stylesheet" href="style.css?v=ab23b856">
+  <link rel="stylesheet" href="style.css?v=da13ad07">
 
   <script type="application/ld+json">
   {
@@ -130,6 +130,7 @@
           <li><a href="#yontem">Yöntem</a></li>
           <li><a href="#olaylar">Olaylar</a></li>
           <li><a href="#hedefler">Hedefler</a></li>
+          <li><a href="#karar">Karar</a></li>
           <li><a href="#sss">S.S.S.</a></li>
         </ul>
       </nav>
@@ -368,6 +369,28 @@
       </div>
     </section>
 
+    <section id="karar" class="calc" aria-labelledby="karar-title">
+      <div class="wrap">
+        <h2 id="karar-title">Karar laboratuvarı</h2>
+        <p class="bolum-not">
+          Elinize toplu bir para geçti. Ne yapmalısınız? Her seçenek
+          <strong>profilinizin tamamına</strong> uygulanıp üç senaryoda
+          yirmi yıl koşuluyor — kısa dönem kazancı değil, yaşam boyu etkisi
+          karşılaştırılıyor.
+        </p>
+        <form id="kl-form" class="panel" novalidate>
+          <p class="panel-q">
+            <label for="in-tutar">Elinizdeki tutar</label>
+            <input type="text" id="in-tutar" inputmode="decimal" value="1000000"> TL
+            <span class="muted-note">
+              Miras, ikramiye, satıştan gelen para, birikmiş nakit…
+            </span>
+          </p>
+        </form>
+        <div id="karar-sonuc" aria-live="polite"></div>
+      </div>
+    </section>
+
     <article class="content">
       <div class="wrap prose">
         <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 13 Eylül 2026 · Model sürümü v1</p>
@@ -486,6 +509,47 @@
           doğru cevap daha çok biriktirmek değil, daha uzun beklemektir.
         </p>
 
+        <h2 id="karar-yontem">Karar laboratuvarı neden “optimum” demiyor?</h2>
+        <p>
+          Beklenen getiri varsayımını iki puan oynatmak sıralamayı tamamen
+          değiştirebiliyor. Bu yüzden araç bir <em>öneri</em> üretmiyor;
+          her seçeneğin <strong>bedelini</strong> ve sıralamanın döndüğü
+          <strong>başabaş noktasını</strong> veriyor.
+        </p>
+        <p>
+          “Yatırım önde” cümlesi tek başına eksiktir. Karar olan cümle
+          şudur: <em>“Yatırımınız yıllık net %45,9'un üzerinde getirirse
+          yatırım, altında kalırsa krediyi kapatmak önde.”</em> O eşik
+          ikiye bölmeyle, her adımda projeksiyonun tamamı yeniden
+          koşularak bulunuyor.
+        </p>
+        <p>
+          Bir doğrulama: başabaş eşiği, kredinizin <strong>efektif yıllık
+          faizine</strong> eşit çıkıyor. Bu bir tesadüf değil tanımdır —
+          krediyi kapatmak o faizi risksiz ve vergisiz kazanmaktır — ve
+          birbirinden bağımsız yazılmış iki motorun aynı sayıyı vermesi,
+          modelde paranın kaybolmadığının kanıtı.
+        </p>
+
+        <h3>En yüksek sonuç ile en dayanıklı sonuç ayrı</h3>
+        <p>
+          Baz senaryoda en çok biriktiren seçenek, kötümser senaryoda en
+          kötüsü olabilir. Araç ikisini <strong>ayrı ayrı</strong>
+          raporluyor; tek bir “kazanan” göstermek riski gizlemek olurdu.
+          Ayrıca borcu kapatmak serveti büyütürken <strong>dayanma
+          sürenizi kısaltır</strong> — o likidite bedeli de tabloda.
+        </p>
+
+        <h3>Nakit üçüncü bir sınıf</h3>
+        <p>
+          Modelde varlıkların üç getiri sınıfı var: yatırım (senaryo
+          getirisi), sabit değer (konut ve araç — reel değerini korur) ve
+          <strong>nakit</strong> (nominal olarak hiç büyümez). %30
+          enflasyonda on yıl nakitte duran 1.000.000 TL, bugünün parasıyla
+          <strong>72.500 TL</strong>'ye iner. Türkiye'de bu, gözden
+          kaçırılan en pahalı tercihlerden biri.
+        </p>
+
         <h2 id="sinir">Modelin söylemedikleri</h2>
         <ul>
           <li><strong>Bu bir tahmin değil.</strong> Girdiğiniz varsayımların
@@ -501,10 +565,11 @@
             hesaplamıyor; <a href="../emekli-ayligi-hesaplama/">emekli aylığı
             aracı</a> ABO kademelerinden hesaplıyor, sonucu buraya
             yazabilirsiniz.</li>
-          <li><strong>Portföy tek bir getiri oranıdır.</strong> Varlık
-            dağılımı, korelasyon ve çekim sıralaması riski modellenmiyor;
-            onlar için <a href="../finansal-ozgurluk-hesaplama/">FIRE
-            simülasyonu</a>.</li>
+          <li><strong>Portföy üç getiri sınıfına indirgenmiştir</strong>
+            (yatırım / sabit değer / nakit). Gerçek bir portföyde her
+            kalemin kendi getirisi ve oynaklığı vardır; varlık dağılımı,
+            korelasyon ve çekim sıralaması riski modellenmiyor. Onlar için
+            <a href="../finansal-ozgurluk-hesaplama/">FIRE simülasyonu</a>.</li>
           <li><strong>Vergi yalnızca ücret tarafında.</strong> Diğer gelirleri
             net olarak girersiniz; kira geliri beyanı için
             <a href="../kira-geliri-vergisi-hesaplama/">ayrı araç</a> var.</li>
@@ -614,10 +679,11 @@
   <script src="../finans/kurallar.js?v=da7bebf5" defer></script>
   <script src="../finans/enflasyon-motoru.js?v=53474604" defer></script>
   <script src="../finans/profil.js?v=6c4b3529" defer></script>
-  <script src="../finans/ikiz-motoru.js?v=819d9e6d" defer></script>
+  <script src="../finans/ikiz-motoru.js?v=efcbb079" defer></script>
   <script src="../finans/hedef-motoru.js?v=3105af8d" defer></script>
+  <script src="../finans/karar-motoru.js?v=3c566be5" defer></script>
   <script src="../finans/bant.js?v=562214ce" defer></script>
-  <script src="script.js?v=fcf958fd" defer></script>
+  <script src="script.js?v=d93ae6bf" defer></script>
   <script src="../script.js?v=d148f9ac" defer></script>
 </body>
 </html>
