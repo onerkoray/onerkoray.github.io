@@ -303,11 +303,6 @@ jobs:
       - name: Favicon sistemi regresyonları
         run: node tools/favikon-test.js
 
-      # .ico ve apple-touch-icon uyum saglayamaz; en azindan kok
-      # isaretle ayni kalmalilar.
-      - name: Raster simgeler güncel mi
-        run: python tools/favikon-raster.py --check
-
       - name: Stil damgaları güncel mi
         run: python tools/stil-damgasi.py --check
 

@@ -11,7 +11,7 @@ Rasterleme: Chrome bir kez 720px'te cizer, Pillow LANCZOS ile kucultur.
 Dogrudan 16px cizim ince cizgileri kirpiyordu; buyuk cizip kucultmek
 ayni cizgiyi gri tonlara yayarak daha okunur birakiyor.
 """
-import io, os, shutil, struct, subprocess, sys, tempfile
+import io, os, re, shutil, struct, subprocess, sys, tempfile
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,6 +53,16 @@ def ciz():
         sys.exit("Chrome bulunamadi.")
     gecici = tempfile.mkdtemp(prefix="ikon-")
     svg = io.open(KAYNAK, encoding="utf-8").read()
+    # KOYU TEMA SORGUSU RASTERLEMEDEN ONCE SILINIYOR.
+    # favicon.svg 2026-09-13'ten beri prefers-color-scheme ile murekkep ve
+    # kagidi yer degistiriyor. Bu iki ikili dosya ise uyum saglayamaz; tek
+    # bir varyant secmek zorundayiz ve o varyant ACIK olan.
+    #
+    # Silinmezse sonuc CHROME'UN VARSAYILANINA kaliyor: ayni SVG bu makinede
+    # murekkep kap, baska bir kosucuda ACIK kap uretebilir. Sayfa yine acilir,
+    # sekmede ters renkli bir simge durur ve kimse bildirmez.
+    svg = re.sub(r"@media[^{]*prefers-color-scheme[^{]*\{.*?\}\s*\}", "", svg,
+                 flags=re.S)
     sayfa = os.path.join(gecici, "i.html")
     io.open(sayfa, "w", encoding="utf-8", newline="").write(
         "<style>html,body{margin:0;padding:0;background:transparent}"
