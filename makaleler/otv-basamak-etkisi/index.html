@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ÖTV'nin Basamak Etkisi | Koray Öner</title>
+  <meta name="description" content="ÖTV kademeli değildir: eşik aşılınca üst oran matrahın tamamına uygulanır. Bu, araç fiyatlarında hiçbir aracın dolduramadığı boş aralıklar doğurur.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/otv-basamak-etkisi/">
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="ÖTV'nin basamak etkisi: araç fiyatlarındaki boş aralıklar">
+  <meta property="og:description" content="ÖTV kademeli değildir: eşik aşılınca üst oran matrahın tamamına uygulanır. Bu, araç fiyatlarında hiçbir aracın dolduramadığı boş aralıklar doğurur.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/otv-basamak-etkisi/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/otv-basamak-etkisi.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Anahtar teslim fiyat ekseni üzerinde ÖTV eşiklerinin doğurduğu boş aralıklar">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="ÖTV'nin basamak etkisi: araç fiyatlarındaki boş aralıklar">
+  <meta name="twitter:description" content="Eşiğin bir lira üstü, anahtar teslim fiyatı bir sıçrayışla yukarı taşır. Arada kalan aralığı hiçbir araç dolduramaz.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/otv-basamak-etkisi.png">
+
+  <link rel="stylesheet" href="../../style.css?v=6b09337f">
+  <link rel="stylesheet" href="../editoryal.css?v=ec476241">
+  <link rel="stylesheet" href="veri-gorselleri.css?v=21fecf9c">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/hakkimda/",
+      "sameAs": [
+        "https://github.com/onerkoray",
+        "https://x.com/koraonerdev",
+        "https://metu.academia.edu/KorayOner"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://korayoner.dev/makaleler/otv-basamak-etkisi/#article",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "headline": "ÖTV'nin basamak etkisi: araç fiyatlarındaki boş aralıklar",
+      "description": "ÖTV kademeli değildir: eşik aşılınca üst oran matrahın tamamına uygulanır. Bu, araç fiyatlarında hiçbir aracın dolduramadığı boş aralıklar doğurur.",
+      "inLanguage": "tr",
+      "datePublished": "2026-09-13",
+      "dateModified": "2026-09-13",
+      "author": { "@id": "https://korayoner.dev/#oner-koray" },
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+      "image": "https://korayoner.dev/images/makale/otv-basamak-etkisi.png",
+      "mainEntityOfPage": "https://korayoner.dev/makaleler/otv-basamak-etkisi/",
+      "about": [
+        { "@type": "Thing", "name": "Özel Tüketim Vergisi" },
+        { "@type": "Thing", "name": "Otomobil vergilendirmesi" }
+      ],
+      "citation": [
+        { "@type": "Legislation", "name": "4760 sayılı Özel Tüketim Vergisi Kanunu, (II) sayılı liste" },
+        { "@type": "Legislation", "name": "24/7/2025 tarihli ve 10115 sayılı Cumhurbaşkanı Kararı" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://korayoner.dev/makaleler/otv-basamak-etkisi/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "ÖTV kademeli mi hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Gelir vergisinde her dilime kendi oranı uygulanır; ÖTV de ise matrah bir eşiği aştığında üst oran matrahın TAMAMINA uygulanır. Bu yüzden eşiğin bir lira üstündeki araç, eşikteki araca göre on binlerce lira daha pahalı olur." } },
+        { "@type": "Question", "name": "Araç fiyatlarında neden boş aralıklar var?", "acceptedAnswer": { "@type": "Answer", "text": "Eşikteki aracın anahtar teslim fiyatı ile bir lira fazlasının fiyatı arasında bir boşluk oluşur. Bu aralığa fiyat veren bir satıcı olmaz, çünkü alıcı aynı parayla eşikteki aracı alır. 2026 tarifesinde en geniş boşluk, 160 kW a kadar elektrikli otomobillerde 594.000 TL dir." } },
+        { "@type": "Question", "name": "KDV ÖTV üzerinden mi alınır?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. KDV nin matrahı, ÖTV dahil tutardır. 2.000.000 TL matrahlı 2.5 litre bir otomobilde 1.280.000 TL KDV nin 880.000 TL si ÖTV üzerinden alınır; yani vergi, verginin üzerinden hesaplanır." } },
+        { "@type": "Question", "name": "Şarj edilebilir hibrit her zaman daha mı az vergi öder?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. 1601-1800 cm³ aralığında şarj edilebilir hibrit için oran %85 iken, aynı hacim ve aynı elektrik motor gücündeki şarj edilemeyen hibrit için %70 uygulanır. 1.200.000 TL matrahta şarj edilebilen araç 216.000 TL daha fazla öder." } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../otv-hesaplama/">ÖTV</a></li>
+          <li><a href="../../mtv-hesaplama/">MTV</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> ÖTV'nin basamak etkisi
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Vergi</p>
+        <h1 id="hero-title">ÖTV'nin basamak etkisi: araç fiyatlarındaki boş aralıklar</h1>
+        <p class="ed-standfirst">Anahtar teslim fiyatı 3.762.000 TL olan bir otomobil var.
+          3.960.000 TL olan da var. Arada, <strong>198.000 TL genişliğinde bir aralıkta,
+          hiçbir araç yok</strong> — ve olmamasının sebebi piyasa değil, verginin yazılış
+          biçimi. ÖTV kademeli bir vergi değildir; eşik aşılınca üst oran matrahın tamamına
+          uygulanır. Bu yazı o basamakların nerede olduğunu, ne kadar geniş olduklarını ve
+          bir yerde tarifenin nasıl <em>tersine</em> döndüğünü gösteriyor.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-13">13 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="wrap prose ed-body">
+
+        <div class="legal-note verdict">
+          <h2 id="kisa-cevap">Kısa cevap</h2>
+          <p>
+            Gelir vergisinde dilim atlarsanız yalnızca <em>aşan kısım</em> üst orandan
+            vergilenir. ÖTV'de böyle değil: matrah eşiği aşarsa üst oran
+            <strong>matrahın tamamına</strong> uygulanır. Sonuç, fiyat ekseni üzerinde
+            atlanan aralıklardır. 2026 tarifesinde bu aralıkların en dar olanı 39.000 TL,
+            en genişi 594.000 TL.
+          </p>
+        </div>
+
+        <h2 id="mekanizma">Kademeli vergi ile basamaklı vergi aynı şey değil</h2>
+        <p>
+          Ücret gelirinde vergi <strong>kademelidir</strong>: geliriniz bir dilimi aştığında
+          yalnızca aşan kısım üst orandan vergilenir, altta kalan kısım kendi oranını korur.
+          Bu yüzden gelir vergisinde "dilim atladım, zararlı çıktım" diye bir durum yoktur —
+          <a href="../vergi-kamasi-ucretin-gercek-yuku/">vergi kaması</a> yazısında bunun
+          ücret üzerindeki bileşik etkisini ayrıntılı ele almıştık.
+        </p>
+        <p>
+          ÖTV'de matrah dilimleri aynı şekilde yazılmamıştır. Kanuna ekli (II) sayılı
+          listede her satır bir <em>koşul</em> belirtir — "özel tüketim vergisi matrahı
+          850.000 TL'yi aşmayanlar", "…aşıp 1.100.000 TL'yi aşmayanlar" — ve her koşulun
+          karşısında tek bir oran durur. Araç hangi koşula uyuyorsa o oran matrahın
+          tamamına uygulanır. Kademe yoktur, <strong>basamak</strong> vardır.
+        </p>
+
+        <figure class="otv-fig">
+          <figcaption>1401–1600 cm³ otomobilde 1.650.000 TL eşiği</figcaption>
+          <div class="otv-basamak">
+            <div class="otv-yan">
+              <span class="otv-etiket">Matrah 1.650.000 TL</span>
+              <span class="otv-oran">ÖTV %90</span>
+              <strong class="otv-fiyat otv-fiyat--alt">3.762.000 TL</strong>
+              <span class="otv-not">anahtar teslim</span>
+            </div>
+            <div class="otv-bosluk" role="img" aria-label="Arada 198.000 TL genişliğinde boş aralık">
+              <span class="otv-bosluk-deger">198.000 TL</span>
+              <span class="otv-bosluk-not">bu aralıkta araç yok</span>
+            </div>
+            <div class="otv-yan">
+              <span class="otv-etiket">Matrah 1.650.001 TL</span>
+              <span class="otv-oran">ÖTV %100</span>
+              <strong class="otv-fiyat otv-fiyat--ust">3.960.000 TL</strong>
+              <span class="otv-not">anahtar teslim</span>
+            </div>
+          </div>
+        </figure>
+
+        <p>
+          Bir liralık matrah farkı, alıcının ödeyeceği tutarı 198.000 TL artırıyor. Üstelik
+          bu rakam ÖTV farkının kendisi değil: ÖTV artışı 165.000 TL, kalan 33.000 TL ise o
+          artışın <em>üzerinden alınan KDV</em>. Buna birazdan döneceğiz.
+        </p>
+
+        <h2 id="olu-araliklar">Fiyat ekseninde kimsenin duramadığı aralıklar</h2>
+        <p>
+          Basamağın doğrudan sonucu şudur: eşikteki aracın anahtar teslim fiyatı ile bir
+          lira fazlasının fiyatı arasında kalan bandı <strong>hiçbir araç dolduramaz</strong>.
+          Bir üretici o aralığa fiyat verse, alıcı aynı parayla eşikteki — yani daha donanımlı
+          olabilecek — aracı alır. Satıcı için o aralıkta fiyatlamak, hem daha az hasılat hem
+          daha az müşteri demektir.
+        </p>
+        <p>
+          Bu yüzden sıfır otomobil fiyatlarının eşiklerin hemen <em>altında</em> kümelenmesi
+          bir pazarlama tercihi değil, tarifenin zorunlu sonucudur. 2026 tarifesindeki bütün
+          boşluklar:
+        </p>
+
+        <div class="table-scroll">
+          <table class="payroll">
+            <caption>2026 ÖTV eşiklerinin doğurduğu boş fiyat aralıkları (anahtar teslim, KDV dahil)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Araç</th>
+                <th scope="col">Matrah eşiği</th>
+                <th scope="col">Oran</th>
+                <th scope="col">Boş aralık</th>
+                <th scope="col">Genişlik</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Elektrikli, ≤160 kW</th><td>1.650.000</td><td>%25 → %55</td><td>2.475.000 – 3.069.000</td><td>594.000</td></tr>
+              <tr><th scope="row">Şarj edilebilir hibrit, ≤1600 cm³</th><td>1.350.000</td><td>%45 → %75</td><td>2.349.000 – 2.835.000</td><td>486.000</td></tr>
+              <tr><th scope="row">Benzin/dizel, 1601–2000 cm³</th><td>1.650.000</td><td>%150 → %170</td><td>4.950.000 – 5.346.000</td><td>396.000</td></tr>
+              <tr><th scope="row">Elektrikli, &gt;160 kW</th><td>1.650.000</td><td>%65 → %75</td><td>3.267.000 – 3.465.000</td><td>198.000</td></tr>
+              <tr><th scope="row">Benzin/dizel, 1401–1600 cm³</th><td>1.650.000</td><td>%90 → %100</td><td>3.762.000 – 3.960.000</td><td>198.000</td></tr>
+              <tr><th scope="row">Hibrit, 1601–2000 cm³</th><td>1.250.000</td><td>%70 → %80</td><td>2.550.000 – 2.700.000</td><td>150.000</td></tr>
+              <tr><th scope="row">Benzin/dizel, ≤1400 cm³</th><td>1.100.000</td><td>%80 → %90</td><td>2.376.000 – 2.508.000</td><td>132.000</td></tr>
+              <tr><th scope="row">Benzin/dizel, ≤1400 cm³</th><td>900.000</td><td>%75 → %80</td><td>1.890.000 – 1.944.000</td><td>54.000</td></tr>
+              <tr><th scope="row">Benzin/dizel, 1401–1600 cm³</th><td>850.000</td><td>%75 → %80</td><td>1.785.000 – 1.836.000</td><td>51.000</td></tr>
+              <tr><th scope="row">Benzin/dizel, ≤1400 cm³</th><td>650.000</td><td>%70 → %75</td><td>1.326.000 – 1.365.000</td><td>39.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted-note">
+          Tutarlar TL. Boş aralık, eşikteki aracın anahtar teslim fiyatı ile eşiğin bir lira
+          üstündeki aracın anahtar teslim fiyatı arasında kalan bandı gösterir; ikisi de
+          <span class="nowrap">matrah × (1 + ÖTV) × 1,20</span> ile hesaplanmıştır.
+          1401–1600 cm³ ve ≤1400 cm³ bantlarının 1.100.000 TL eşiğinde aynı aralığı
+          üretmesi tesadüf değildir: iki bandın o eşikteki oranları da aynıdır.
+        </p>
+
+        <p>
+          Dikkat çeken şey, en geniş boşlukların <strong>düşük oranlı</strong> araçlarda
+          olması. Sezgi tersini söyler — oran ne kadar yüksekse sıçrama o kadar büyük
+          olmalıymış gibi gelir. Ama sıçramanın büyüklüğünü oranın kendisi değil,
+          <em>eşikteki oran farkı</em> belirler. Elektrikli otomobilde oran %25'ten %55'e
+          çıkıyor: 30 puanlık bir fark. 1401–1600 cm³ benzinlide %90'dan %100'e: 10 puan.
+          Bu yüzden en dik basamak, teşvik edilen araç sınıfındadır.
+        </p>
+
+        <h2 id="verginin-vergisi">Verginin üzerinden alınan vergi</h2>
+        <p>
+          KDV'nin matrahı aracın fiyatı değil, <strong>ÖTV dahil tutardır</strong>. Yani ÖTV
+          önce fiyata eklenir, sonra o toplamın üzerinden KDV hesaplanır. Oranlar yükseldikçe
+          bu bileşik etki ağırlaşır:
+        </p>
+
+        <div class="table-scroll">
+          <table class="payroll">
+            <caption>2.000.000 TL matrahlı, 2500 cm³ bir otomobilde verginin dağılımı</caption>
+            <tbody>
+              <tr><th scope="row">ÖTV matrahı (vergisiz fiyat)</th><td>2.000.000 TL</td></tr>
+              <tr><th scope="row">ÖTV (%220)</th><td>4.400.000 TL</td></tr>
+              <tr><th scope="row">KDV (%20, ÖTV dahil tutar üzerinden)</th><td>1.280.000 TL</td></tr>
+              <tr><th scope="row">— bunun aracın fiyatına isabet eden kısmı</th><td>400.000 TL</td></tr>
+              <tr><th scope="row">— bunun <strong>ÖTV'ye</strong> isabet eden kısmı</th><td>880.000 TL</td></tr>
+              <tr><th scope="row">Anahtar teslim fiyat</th><td>7.680.000 TL</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted-note">
+          Ödenen KDV'nin <strong>%68,75'i</strong> aracın bedeli üzerinden değil, ÖTV'nin
+          üzerinden alınmıştır. Toplam vergi 5.680.000 TL; anahtar teslim fiyatın %74'ü.
+        </p>
+
+        <p>
+          Aynı hesabı tarifenin farklı yerlerinde tekrarladığımızda etkin vergi yükü şöyle
+          çıkıyor — burada oran değil, <em>ödediğiniz paranın yüzde kaçının vergi olduğu</em>
+          gösteriliyor:
+        </p>
+
+        <div class="table-scroll">
+          <table class="payroll">
+            <caption>Anahtar teslim fiyatın ne kadarı vergi?</caption>
+            <thead>
+              <tr>
+                <th scope="col">Araç</th>
+                <th scope="col">Matrah</th>
+                <th scope="col">ÖTV</th>
+                <th scope="col">Anahtar teslim</th>
+                <th scope="col">Vergi payı</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Elektrikli, 150 kW</th><td>1.500.000</td><td>%25</td><td>2.250.000</td><td>%33,3</td></tr>
+              <tr><th scope="row">Şarj edilebilir hibrit, 1500 cm³</th><td>1.200.000</td><td>%45</td><td>2.088.000</td><td>%42,5</td></tr>
+              <tr><th scope="row">Benzinli, 1400 cm³</th><td>900.000</td><td>%75</td><td>1.890.000</td><td>%52,4</td></tr>
+              <tr><th scope="row">Benzinli, 1600 cm³</th><td>1.600.000</td><td>%90</td><td>3.648.000</td><td>%56,1</td></tr>
+              <tr><th scope="row">Benzinli, 1800 cm³</th><td>1.600.000</td><td>%150</td><td>4.800.000</td><td>%66,7</td></tr>
+              <tr><th scope="row">Benzinli, 2500 cm³</th><td>2.000.000</td><td>%220</td><td>7.680.000</td><td>%74,0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted-note">
+          1600 cm³ ile 1800 cm³ arasındaki 200 cm³'lük fark, aynı matrahta anahtar teslim
+          fiyatı 3.648.000 TL'den 4.800.000 TL'ye çıkarıyor. Motor hacmi eşiği, matrah
+          eşiğinden daha sert bir basamaktır.
+        </p>
+
+        <h2 id="ters-basamak">Tarifenin tersine döndüğü yer</h2>
+        <p>
+          Şimdiye kadarki bütün basamaklar yukarı doğruydu: matrah arttıkça vergi de arttı.
+          Tarifede bir yer var ki orada bu ilişki bozuluyor.
+        </p>
+        <p>
+          Şarj edilebilir hibritler için kanunda iki satır var: 1600 cm³'e kadar olanlar
+          (%45 veya %75) ve <strong>1601–1800 cm³ arasında olup matrahı 1.350.000 TL'yi
+          aşmayanlar (%85)</strong>. İkinci satırın bir özelliği var: <em>"diğerleri"
+          karşılığı yoktur.</em> Matrah eşiği aşarsa araç bu satıra hiç girmez ve hacmine
+          göre genel satıra döner. Elektrik motoru 50 kW'ı geçiyorsa o satır hibrit satırıdır
+          ve oranı <strong>%80</strong>'dir — yani daha düşük.
+        </p>
+
+        <figure class="otv-fig">
+          <figcaption>1700 cm³ şarj edilebilir hibrit, elektrik motoru 80 kW</figcaption>
+          <div class="otv-ters">
+            <div class="otv-ters-satir">
+              <span class="otv-ters-mat">Matrah 1.350.000 TL</span>
+              <span class="otv-ters-oran otv-ters-oran--yuksek">%85</span>
+              <strong class="otv-ters-fiyat">2.997.000 TL</strong>
+            </div>
+            <div class="otv-ters-satir">
+              <span class="otv-ters-mat">Matrah 1.350.001 TL</span>
+              <span class="otv-ters-oran otv-ters-oran--dusuk">%80</span>
+              <strong class="otv-ters-fiyat">2.916.002 TL</strong>
+            </div>
+            <p class="otv-ters-sonuc">Bir lira fazla matrah, alıcıya <strong>80.998 TL
+              ucuza</strong> geliyor.</p>
+          </div>
+        </figure>
+
+        <p>
+          Aynı yapının ikinci sonucu daha da ters: <strong>şarj edilebilen araç, şarj
+          edilemeyenden fazla vergi ödüyor.</strong> 1700 cm³, elektrik motoru 80 kW ve
+          matrahı 1.200.000 TL olan iki araç düşünün. Biri prizden şarj edilebiliyor,
+          emisyonu 25 g/km'nin altında, elektrikli menzili 80 km. Diğeri sıradan bir hibrit.
+        </p>
+        <ul>
+          <li>Şarj edilebilen: %85 → anahtar teslim <strong>2.664.000 TL</strong></li>
+          <li>Şarj edilemeyen: %70 → anahtar teslim <strong>2.448.000 TL</strong></li>
+        </ul>
+        <p>
+          Daha az yakıt yakan araç <strong>216.000 TL fazla</strong> ödüyor. Bunun bir teşvik
+          politikası tercihi olduğunu söylemek zor; daha çok, farklı tarihlerde eklenmiş
+          satırların birbiriyle kesişmesinden doğan bir sonuç gibi duruyor. Şarj edilebilir
+          hibrit satırları 2024'te (7521 sayılı Kanun), hibrit ve elektrik oranları ise
+          2025'te (10115 sayılı Cumhurbaşkanı Kararı) bugünkü halini aldı.
+        </p>
+        <p class="muted-note">
+          Bir aracın birden fazla satırın tanımına uyması hâlinde hangisinin uygulanacağı,
+          tarife sınıflandırmasının genel ilkesine göre belirlenir ve nihai değerlendirme
+          idareye aittir. Buradaki karşılaştırma, listenin yazılı yapısının ürettiği sonucu
+          göstermek içindir.
+        </p>
+
+        <h2 id="alici-icin">Alıcı için ne anlama geliyor?</h2>
+        <p>
+          Pratikte üç şey:
+        </p>
+        <ol>
+          <li>
+            <strong>Eşiğin hemen üstündeki araç kötü alışveriştir.</strong> Bütçeniz bir boş
+            aralığın içine düşüyorsa, o parayla alabileceğiniz en iyi araç eşiğin
+            altındakidir. Aradaki farkı donanıma değil, vergiye ödersiniz.
+          </li>
+          <li>
+            <strong>Küçük indirimler orantısız kazandırır.</strong> Matrahı eşiğin biraz
+            üstünde olan bir araçta satıcının vereceği küçük bir iskonto, aracı alt orana
+            taşıyabilir; o zaman alıcının kazancı iskontonun birkaç katı olur. Tersi de
+            doğrudur: eşiğin altındaki bir araca yapılan küçük bir donanım eklentisi,
+            fiyatı sıçratabilir.
+          </li>
+          <li>
+            <strong>Motor hacmi eşiği matrah eşiğinden serttir.</strong> 1600 cm³'ten
+            1601 cm³'e geçmek, oranı %90'dan %150'ye çıkarır. Kataloglardaki 1598 cm³ gibi
+            değerler bu yüzden vardır.
+          </li>
+        </ol>
+
+        <h2 id="mtv-baglantisi">Bir kez değil, her yıl</h2>
+        <p>
+          ÖTV bir defa ödenir. Ama aracın vergi hikâyesi orada bitmez: her yıl ocak ve
+          temmuz aylarında <a href="../../mtv-hesaplama/">motorlu taşıtlar vergisi</a>
+          ödenir ve onun da kendi basamakları vardır. MTV'de bir ek incelik daha var:
+          1 Ocak 2018 ve sonrasında tescil edilen otomobillerde <strong>ilk tescildeki
+          taşıt değerine isabet eden satır, sonraki yıllarda da esas alınır</strong>.
+          Yani ÖTV'de bir kerelik olan basamak, MTV'de aracın ömrü boyunca sabitlenir.
+        </p>
+        <p>
+          2018 öncesinde tescil edilmiş araçlar ise bambaşka bir tarifeye — (I/A) sayılı
+          tarifeye — tabidir ve orada değer kademesi hiç yoktur. İki tarifenin nerede
+          ayrıştığını ve elektrikli araçlarda MTV'nin motor gücüne göre nasıl belirlendiğini
+          <a href="../../mtv-hesaplama/">MTV hesaplama aracında</a> ayrıntılı anlattık.
+        </p>
+
+        <div class="sources">
+          <h2 id="kaynak-title">Kaynaklar</h2>
+          <ul>
+            <li>4760 sayılı Özel Tüketim Vergisi Kanunu, (II) sayılı liste, 87.03 G.T.İ.P. — <a href="https://www.mevzuat.gov.tr/" rel="noopener">mevzuat.gov.tr</a></li>
+            <li>24/7/2025 tarihli ve 10115 sayılı Cumhurbaşkanı Kararı — yürürlükteki matrah grupları ve oranlar</li>
+            <li>18/7/2024 tarihli ve 7521 sayılı Kanunun 11 inci maddesi — şarj edilebilir hibrit satırları</li>
+            <li>197 sayılı Motorlu Taşıtlar Vergisi Kanunu, md. 5 ve geçici md. 8 — <a href="https://www.mevzuat.gov.tr/" rel="noopener">mevzuat.gov.tr</a></li>
+            <li>Bu yazıdaki bütün tutarlar <a href="../../otv-hesaplama/">ÖTV hesaplama aracının</a> tarife modülünden hesaplanmış ve <a href="../../yayin-ilkeleri/">yayın ilkelerimize</a> uygun olarak testle sabitlenmiştir.</li>
+          </ul>
+          <p class="muted-note">
+            ÖTV oranları ve matrah eşikleri Cumhurbaşkanı Kararı ile yıl içinde değişebilir.
+            Bu yazı 13 Eylül 2026 itibarıyla yürürlükteki tarifeye dayanır; satın alma
+            öncesinde güncel oranı teyit edin. Yatırım veya satın alma tavsiyesi değildir.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss" aria-labelledby="sss-title">
+      <div class="wrap prose">
+        <h2 id="sss-title">Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>ÖTV kademeli mi hesaplanır?</summary><p>Hayır. Gelir vergisinde her dilime kendi oranı uygulanır; ÖTV'de ise matrah bir eşiği aştığında üst oran matrahın <strong>tamamına</strong> uygulanır. Bu yüzden eşiğin bir lira üstündeki araç, eşikteki araca göre on binlerce lira daha pahalı olur.</p></details>
+          <details><summary>Araç fiyatlarında neden boş aralıklar var?</summary><p>Eşikteki aracın anahtar teslim fiyatı ile bir lira fazlasının fiyatı arasında bir boşluk oluşur. Bu aralığa fiyat veren satıcı olmaz, çünkü alıcı aynı parayla eşikteki aracı alır. 2026 tarifesinde en geniş boşluk, 160 kW'a kadar elektrikli otomobillerde 594.000 TL'dir.</p></details>
+          <details><summary>KDV, ÖTV üzerinden mi alınır?</summary><p>Evet. KDV'nin matrahı ÖTV dahil tutardır. 2.000.000 TL matrahlı 2.5 litre bir otomobilde ödenen 1.280.000 TL KDV'nin 880.000 TL'si ÖTV üzerinden alınır.</p></details>
+          <details><summary>Şarj edilebilir hibrit her zaman daha az mı vergi öder?</summary><p>Hayır. 1601–1800 cm³ aralığında şarj edilebilir hibrit için oran %85 iken, aynı hacim ve aynı elektrik motor gücündeki şarj edilemeyen hibrit için %70 uygulanır. 1.200.000 TL matrahta şarj edilebilen araç 216.000 TL daha fazla öder.</p></details>
+          <details><summary>Kendi aracım için hesaplayabilir miyim?</summary><p>Evet. <a href="../../otv-hesaplama/">ÖTV hesaplama aracı</a> matrahı, motor hacmini ve hibritlerde elektrik motor gücünü sorarak aracın hangi satıra düştüğünü belirler; eşiğe yakınsanız bir alt dilimdeki farkı da gösterir.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../../otv-hesaplama/">Araç ÖTV hesaplama</a> — matrah, motor hacmi ve hibrit koşullarıyla ÖTV, KDV ve anahtar teslim fiyat.</li>
+          <li><a href="../../mtv-hesaplama/">MTV hesaplama</a> — her yıl ödenen vergi; elektrikli araçta kW bantları, 2018 öncesi tescilde (I/A) tarifesi.</li>
+          <li><a href="../vergi-kamasi-ucretin-gercek-yuku/">Vergi kaması: ücretin gerçek yükü</a> — kademeli bir vergide dilim atlamanın neden zararsız olduğu.</li>
+          <li><a href="../../kdv-hesaplama/">KDV hesaplama</a> — dahil/hariç ayrımı ve matrah.</li>
+          <li><a href="../">Tüm makaleler</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../script.js?v=5127b7a8" defer></script>
+</body>
+</html>

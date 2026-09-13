@@ -205,6 +205,18 @@ jobs:
       - name: ÖTV tarife ve satır çözümü
         run: node otv-hesaplama/tarife-test.js
 
+      # Yazi elle yazilmis onlarca tutar tasiyor ve hepsi OTV tarifesinden
+      # turuyor. Tarife bir Cumhurbaskani Karariyla degistiginde arac
+      # guncellenir, yazi ise sessizce eskir -- ve eskimis bir yazi bozuk
+      # gorunmez, tablo yine hizali durur.
+      #
+      # Test yazidaki hicbir sayiyi kendi icinde tasimaz: hepsini tarife
+      # modulunden yeniden hesaplar. Bos araliklar tablosu ayrica HTML'DEN
+      # AYRISTIRILIR, cunku ayni tutar kisa cevapta da geciyor ve "sayfada
+      # geciyor mu" kontrolu tablodaki bozuk hucreyi kaciriyordu.
+      - name: ÖTV basamak yazısının sayıları
+        run: node makaleler/otv-basamak-etkisi/sayi-testi.js
+
       # Bir PAROLA URETECINDE hatalar sessizdir: zayif rastgelelik,
       # yanli modulo, eksik sinif ya da sisirilmis entropi ekranda
       # gorunmez -- cikti yine rastgele bir dizi gibi durur ve kullanici

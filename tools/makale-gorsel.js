@@ -41,6 +41,10 @@ var CHROME = [
 ];
 
 /* --- renk rolleri --- */
+/* OTV kapagi tarifeyi DOGRUDAN araciN modulunden okur: kapaktaki
+   sicrama ile aracin hesabi ayrisamaz. */
+var OTV = require(path.join(__dirname, "..", "otv-hesaplama", "tarife.js"));
+
 var R = {
   zemin: "#f7f5f0",
   murekkep: "#17201d",
@@ -560,6 +564,12 @@ var KAPAKLAR = {
     alt: "Tavanı bile net asgari ücretin altında",
     cizim: sutunIssizlikTavani
   },
+  "otv-basamak-etkisi": {
+    kicker: "Vergi",
+    baslik: "ÖTV'nin basamak etkisi",
+    alt: "Eşiğin bir lira üstü, fiyatı bir sıçrayışla yukarı taşır",
+    cizim: basamakOtv
+  },
   "kredi-yillik-maliyet-orani": {
     kicker: "Finans",
     baslik: "Yıllık maliyet oranı nedir?",
@@ -992,6 +1002,97 @@ function cizgiKama() {
     '<text x="' + (W - P - 10) + '" y="' + (y(son.k) + 24) + '" text-anchor="end" ' +
       'font-size="13" fill="' + R.ikincil + '">600 bin TL · %' +
       son.k.toFixed(1).replace(".", ",") + "</text>" +
+    "</svg>";
+}
+
+/* OTV basamagi — "otv-basamak-etkisi" kapagi.
+   Iki sutun: esikteki arac ve esigin bir lira ustundeki arac. Aralarindaki
+   bosluk, hicbir aracin fiyatlanamayacagi olu aralik. Tutarlar tarife
+   modulunden hesaplaniyor. */
+function basamakOtv() {
+  var W = 600, H = 360, P = 34;
+
+  /* Tarifedeki her eşik bir ÖLÜ ARALIK doğurur: eşikteki aracın anahtar
+     teslim fiyatı ile bir lira fazlasının fiyatı arasında kalan bant.
+     O bandı hiçbir araç dolduramaz — satıcı oraya fiyat verse, alıcı
+     aynı parayla eşikteki aracı alır. */
+  function araliklar(s, ad) {
+    return s.esik.map(function (e, i) {
+      return {
+        ad: ad,
+        alt: e * (1 + s.oran[i] / 100) * (1 + OTV.KDV),
+        ust: e * (1 + s.oran[i + 1] / 100) * (1 + OTV.KDV)
+      };
+    });
+  }
+  var seriler = [
+    { ad: "Elektrikli, ≤160 kW", s: OTV.BEV_ALT, renk: R.marka },
+    { ad: "Şarj edilebilir hibrit", s: OTV.PHEV_1600, renk: R.s3 },
+    { ad: "Benzin/dizel 1401–1600 cm³", s: OTV.ICTEN_1600, renk: R.s1 },
+    { ad: "Benzin/dizel ≤1400 cm³", s: OTV.ICTEN_1400, renk: R.s2 }
+  ];
+
+  var enBuyuk = 0;
+  seriler.forEach(function (g) {
+    araliklar(g.s, g.ad).forEach(function (a) { if (a.ust > enBuyuk) enBuyuk = a.ust; });
+  });
+  var ustSinir = Math.ceil(enBuyuk / 500000) * 500000;
+
+  var solX = P + 158, sagX = W - P - 8;
+  function xOf(v) { return solX + (v / ustSinir) * (sagX - solX); }
+  function tl(n) { return Math.round(n).toLocaleString("tr-TR"); }
+
+  var y0 = 96, yH = 26, ara = 24;
+
+  /* Eksen çizgileri: her 1 milyon bir işaret. */
+  var izgara = "";
+  for (var v = 0; v <= ustSinir; v += 1000000) {
+    izgara += '<line x1="' + xOf(v) + '" y1="' + (y0 - 12) + '" x2="' + xOf(v) +
+      '" y2="' + (y0 + seriler.length * (yH + ara) - ara + 6) +
+      '" stroke="' + R.izgara + '" stroke-width="1"/>' +
+      '<text x="' + xOf(v) + '" y="' + (y0 - 20) + '" text-anchor="middle" ' +
+      'font-size="12" fill="' + R.ikincil + '">' + (v / 1000000) + (v ? " mn" : "") + "</text>";
+  }
+
+  var enGenis = null;
+  var ic = seriler.map(function (g, i) {
+    var yy = y0 + i * (yH + ara);
+    var blok = araliklar(g.s, g.ad).map(function (a) {
+      if (!enGenis || a.ust - a.alt > enGenis.ust - enGenis.alt) {
+        enGenis = { alt: a.alt, ust: a.ust, y: yy, renk: g.renk };
+      }
+      return '<rect x="' + xOf(a.alt) + '" y="' + yy + '" width="' +
+        Math.max(2, xOf(a.ust) - xOf(a.alt)) + '" height="' + yH +
+        '" fill="' + g.renk + '"/>';
+    }).join("");
+    return '<line x1="' + solX + '" y1="' + (yy + yH / 2) + '" x2="' + sagX +
+      '" y2="' + (yy + yH / 2) + '" stroke="' + R.murekkep +
+      '" stroke-width="1.5" stroke-opacity="0.30"/>' + blok +
+      '<text x="' + (solX - 12) + '" y="' + (yy + yH / 2 + 5) + '" text-anchor="end" ' +
+      'font-size="13" font-weight="700" fill="' + R.murekkep + '">' + esc(g.ad) + "</text>";
+  }).join("");
+
+  /* En geniş aralık ayrıca yazılıyor: rakam olmadan blok soyut kalır. */
+  var vurgu = "";
+  if (enGenis) {
+    var oy = enGenis.y + yH + 15;
+    var metin = tl(enGenis.ust - enGenis.alt) + " TL genişliğinde";
+    var tahminiEn = metin.length * 7.2;          // 13px yarı-kalın için kaba genişlik
+    var ox = Math.min(xOf(enGenis.alt), sagX - tahminiEn);
+    vurgu = '<text x="' + ox + '" y="' + oy + '" font-size="13" ' +
+      'font-weight="800" fill="' + enGenis.renk + '">' + esc(metin) + "</text>";
+  }
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Anahtar teslim ' +
+    'fiyat ekseni üzerinde ÖTV eşiklerinin doğurduğu boş aralıklar; en genişi ' +
+    (enGenis ? tl(enGenis.ust - enGenis.alt) : "") + ' lira">' +
+    '<text x="' + P + '" y="38" font-size="18" font-weight="700" fill="' + R.murekkep +
+      '">Anahtar teslim fiyatta boş kalan aralıklar</text>' +
+    '<text x="' + P + '" y="60" font-size="14" fill="' + R.ikincil +
+      '">ÖTV kademeli değil; eşik aşılınca üst oran matrahın tamamına uygulanır</text>' +
+    izgara + ic + vurgu +
+    '<text x="' + P + '" y="' + (H - 22) + '" font-size="13" fill="' + R.ikincil +
+      '">Renkli bantlarda satılan sıfır otomobil yoktur: aynı parayla bir alttaki araç alınır.</text>' +
     "</svg>";
 }
 
