@@ -30,24 +30,24 @@
  */
 (function (root, factory) {
   "use strict";
-  var F = (typeof module === "object" && module.exports)
-    ? require("./kurallar.js")
-    : root.Finans;
-  var v = factory(F);
-  if (typeof module === "object" && module.exports) module.exports = v;
+  var nodeMi = (typeof module === "object" && module.exports);
+  var F = nodeMi ? require("./kurallar.js") : root.Finans;
+  var Z = nodeMi ? require("./zaman-motoru.js") : root.ZamanMotoru;
+  var E = nodeMi ? require("./enflasyon-motoru.js") : root.EnflasyonMotoru;
+  var v = factory(F, Z, E);
+  if (nodeMi) module.exports = v;
   else root.DagitimMotor = v;
-})(typeof globalThis !== "undefined" ? globalThis : this, function (F) {
+})(typeof globalThis !== "undefined" ? globalThis : this, function (F, Z, E) {
   "use strict";
 
   function r2(n) { return Math.round(n * 100) / 100; }
 
-  /* Aylık nominal oranı yıllık bileşiğe çevirir. Kart borcunda doğru
-     karşılaştırma budur: her ay faiz bakiyeye ekleniyor. */
-  function yillikBilesik(aylik) { return Math.pow(1 + aylik, 12) - 1; }
-
-  /* Reel getiri: nominal getirinin enflasyondan arındırılmış hâli.
-     Toplama/çıkarma değil bölme — yüksek enflasyonda fark büyük. */
-  function reel(nominal, enflasyon) { return (1 + nominal) / (1 + enflasyon) - 1; }
+  /* Bu iki dönüşümün kendi kopyası BURADA TUTULMUYOR: aylık→yıllık bileşik
+     zaman motorunda, nominal→reel enflasyon motorunda. Aynı matematiğin
+     ikinci bir uygulaması sessizce ayrışır; sitede tam olarak bu olmuştu
+     (reel getiri iki ayrı yerde ayrı ayrı yazılmıştı). */
+  var yillikBilesik = Z.efektifYillik;
+  var reel = E.reel;
 
   /**
    * @param {Object} g
