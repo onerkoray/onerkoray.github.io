@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Krediyi Erken Kapatmak mı, Yatırım mı? | Koray Öner</title>
+  <meta name="description" content="Elinizdeki parayla krediyi kapatmak mı, yatırım yapmak mı? Kararın tersine döndüğü getiri eşiğini ve erken ödeme tazminatının yasal sınırını hesaplar.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/erken-kapatma-analizi/">
+
+  <link rel="icon" href="../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Krediyi Erken Kapatmak mı, Yatırım mı?">
+  <meta property="og:description" content="Kararın tersine döndüğü getiri eşiği, erken ödeme tazminatının yasal sınırı ve iki parametreli karar yüzeyi.">
+  <meta property="og:url" content="https://korayoner.dev/erken-kapatma-analizi/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/erken-kapatma-analizi-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz erken kredi kapatma analiz aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Krediyi Erken Kapatmak mı, Yatırım mı?">
+  <meta name="twitter:description" content="Kararın döndüğü getiri eşiği ve erken ödeme tazminatının yasal sınırı.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/erken-kapatma-analizi-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=c558b831">
+  <link rel="stylesheet" href="style.css?v=b29cd033">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "dateModified": "2026-09-13",
+        "@id": "https://korayoner.dev/erken-kapatma-analizi/#app",
+        "name": "Erken Kapatma vs Yatırım Analizi",
+        "url": "https://korayoner.dev/erken-kapatma-analizi/",
+        "image": "https://korayoner.dev/images/erken-kapatma-analizi-koray-oner.png",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "description": "Elde bulunan parayla krediyi erken kapatmak ile aynı parayı yatırıma yönlendirmeyi karşılaştıran, kararın döndüğü getiri eşiğini ve erken ödeme tazminatının yasal sınırını hesaplayan ücretsiz araç."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://korayoner.dev/erken-kapatma-analizi/#webpage",
+        "url": "https://korayoner.dev/erken-kapatma-analizi/",
+        "name": "Krediyi Erken Kapatmak mı, Yatırım mı?",
+        "inLanguage": "tr",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "breadcrumb": { "@id": "https://korayoner.dev/erken-kapatma-analizi/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://korayoner.dev/erken-kapatma-analizi/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Erken Kapatma Analizi", "item": "https://korayoner.dev/erken-kapatma-analizi/" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "jobTitle": "Yazılım Geliştirici"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "İhtiyaç kredisinde erken ödeme cezası var mı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. 6502 sayılı Tüketici Kanunu'nun 27. maddesi uyarınca tüketici kredilerinde erken ödeme tazminatı alınamaz; banka gerekli faiz indirimini yapmak zorundadır. Piyasadaki pek çok hesaplayıcı ihtiyaç kredisine de %2 tazminat uyguluyor; bu yanlıştır." } },
+          { "@type": "Question", "name": "Konut kredisinde erken ödeme tazminatı ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "Yalnızca sabit faizli sözleşmelerde istenebilir (TKHK m.37). Kredinin kapanmasına 36 aydan fazla süre varsa erken ödenen anaparanın en çok %2'si, 36 ay ve altındaysa en çok %1'i. Değişken faizli konut kredisinde tazminat istenemez. Ayrıca tazminat, sağlanan faiz indirimini aşamaz." } },
+          { "@type": "Question", "name": "Krediyi kapatmak mı, yatırım yapmak mı daha kârlı?", "acceptedAnswer": { "@type": "Answer", "text": "Krediyi kapatmak, o kredinin faiz oranını risksiz ve vergisiz kazanmak demektir. Yatırımın vergi sonrası net getirisi bu oranın üzerindeyse yatırım, altındaysa kapatma kazanır. Araç bu eşiği tam olarak hesaplar; erken ödeme tazminatı varsa eşik kapatma aleyhine kayar." } },
+          { "@type": "Question", "name": "Kısmi ödeme mi, tamamını kapatmak mı?", "acceptedAnswer": { "@type": "Answer", "text": "Araç bunu ısı haritasında gösterir: erken ödenen tutar ile yatırım getirisinin her bileşimi için hangi tarafın kazandığını hesaplar. Tazminat oranı sabit olduğu için kısmi ödemede de aynı oranda uygulanır." } },
+          { "@type": "Question", "name": "Serbest kalan taksit ne oluyor?", "acceptedAnswer": { "@type": "Answer", "text": "Kredi erken bittiğinde her ay ödediğiniz taksit serbest kalır. Bu aracın hesabında o para yatırıma yönlendirilir. Serbest kalan taksidi hesaba katmayan bir karşılaştırma, erken kapatmayı haksız yere kaybettirir." } },
+          { "@type": "Question", "name": "Verilerim bir yere gönderiliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bütün hesap tarayıcınızın içinde çalışır; girdiğiniz tutarlar hiçbir sunucuya gönderilmez ve kaydedilmez." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#tazminat">Tazminat kuralı</a></li>
+          <li><a href="#yontem">Yöntem</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> Erken Kapatma Analizi
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Reklamsız · Veriniz tarayıcıdan çıkmaz</p>
+        <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13"/><path d="M3 12h8"/><path d="M3 17h4"/><path d="M16 14l5 5"/><path d="M21 14l-5 5"/></svg></div>
+        <h1 id="hero-title">Krediyi Erken Kapatmak mı, Yatırım mı?</h1>
+        <p class="lede">
+          Elinizde toplu para var. Doğru cevap size değil, <strong>piyasanın ne
+          getireceğine</strong> bağlı — ve o eşik hesaplanabilir. Araç kararın
+          tersine döndüğü getiri oranını bulur, erken ödeme tazminatının yasal
+          sınırını uygular ve iki parametreli karar yüzeyini çıkarır.
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">Erken kapatma analiz aracı</h2>
+
+        <form id="ek-form" class="panel" novalidate>
+          <div class="ek-grid">
+            <p class="panel-q">
+              <label for="in-anapara">Kalan kredi anaparası</label>
+              <input type="text" id="in-anapara" inputmode="decimal" value="500000"> TL
+              <span class="muted-note">Bugün kapatsanız ödeyeceğiniz anapara (ekstredeki kalan borç).</span>
+            </p>
+            <p class="panel-q">
+              <label for="in-faiz">Aylık kredi faizi</label>
+              <input type="text" id="in-faiz" inputmode="decimal" value="2,5"> %
+            </p>
+            <p class="panel-q">
+              <label for="in-vade">Kalan vade</label>
+              <input type="text" id="in-vade" inputmode="numeric" value="60"> ay
+            </p>
+            <p class="panel-q">
+              <label for="in-tur">Kredi türü</label>
+              <select id="in-tur">
+                <option value="ihtiyac" selected>İhtiyaç / taşıt (tüketici kredisi)</option>
+                <option value="konut-sabit">Konut — sabit faizli</option>
+                <option value="konut-degisken">Konut — değişken faizli</option>
+              </select>
+              <span class="muted-note">Tazminat kuralı türe göre değişiyor; aşağıda açıklanıyor.</span>
+            </p>
+            <p class="panel-q">
+              <label for="in-tutar">Elinizdeki tutar</label>
+              <input type="text" id="in-tutar" inputmode="decimal" value="200000"> TL
+              <span class="muted-note">Anaparadan fazlasını girerseniz artan kısım yatırıma sayılır.</span>
+            </p>
+            <p class="panel-q">
+              <label for="in-getiri">Yatırımın net yıllık getirisi</label>
+              <input type="text" id="in-getiri" inputmode="decimal" value="35"> %
+              <span class="muted-note">Vergi sonrası. Mevduat için stopaj düşülmüş oranı yazın.</span>
+            </p>
+            <p class="panel-q">
+              <label for="in-enf">Beklenen yıllık enflasyon</label>
+              <input type="text" id="in-enf" inputmode="decimal" value="30"> %
+              <span class="muted-note">Reel karşılaştırma için. Tahmin sizin.</span>
+            </p>
+          </div>
+        </form>
+
+        <div id="results" aria-live="polite"></div>
+        <p id="msg" class="muted-note" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 13 Eylül 2026 · 6502 sayılı Tüketici Kanunu m.27 ve m.37 esas alınmıştır</p>
+
+        <h2 id="tazminat">Erken ödeme tazminatı: çoğu hesaplayıcının yanlış bildiği kural</h2>
+        <p>
+          Piyasadaki araçların büyük kısmı erken kapatmaya otomatik olarak %2 ceza
+          uyguluyor. Kanun böyle demiyor. Üç ayrı kural var:
+        </p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Kredi türüne göre erken ödeme tazminatı</caption>
+            <thead>
+              <tr><th scope="col">Kredi türü</th><th scope="col">Tazminat</th><th scope="col">Dayanak</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">İhtiyaç / taşıt (tüketici kredisi)</th>
+                <td><strong>Yok.</strong> Banka faiz indirimini yapmak zorunda.</td>
+                <td>TKHK m.27</td>
+              </tr>
+              <tr>
+                <th scope="row">Konut — sabit faizli</th>
+                <td>Kalan vade <strong>36 aydan fazlaysa en çok %2</strong>,
+                  <strong>36 ay ve altındaysa en çok %1</strong> (erken ödenen anapara üzerinden)</td>
+                <td>TKHK m.37</td>
+              </tr>
+              <tr>
+                <th scope="row">Konut — değişken faizli</th>
+                <td><strong>Yok.</strong></td>
+                <td>TKHK m.37</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Dördüncü ve en çok atlanan kural: <strong>tazminat, sağlanan faiz indirimini
+          aşamaz.</strong> Kısa kalan vadelerde ham tazminat hesabı indirimin üstüne
+          çıkabiliyor; o zaman tavan devreye giriyor. Araç bu sınırı ayrıca uyguluyor
+          ve devreye girdiğinde size söylüyor.
+        </p>
+
+        <h2 id="yontem">Karşılaştırma nasıl kuruluyor?</h2>
+        <p>
+          İki yol ancak <strong>aynı parayı harcadıklarında</strong> karşılaştırılabilir:
+        </p>
+        <ul>
+          <li><strong>Erken kapatma:</strong> bugün anaparayı (+ varsa tazminatı) ödersiniz.
+            Kredi kısalır. Kredi bittikten sonra <strong>serbest kalan taksit yatırıma
+            gider</strong>.</li>
+          <li><strong>Yatırım:</strong> bugün aynı parayı yatırıma koyarsınız, kredi olduğu
+            gibi devam eder.</li>
+        </ul>
+        <p>
+          İkisinin serveti, orijinal kalan vadenin sonunda karşılaştırılır. Serbest kalan
+          taksidi hesaba katmayan bir karşılaştırma, erken kapatmayı haksız yere
+          kaybettirir — bu, <a href="../ev-almak-mi-kiralamak-mi/">ev al/kirala</a>
+          hesabındaki "fark yatırılır" kuralının aynısıdır.
+        </p>
+        <p class="formula">Başabaş: yatırımın net getirisi = kredinin efektif yıllık faizi</p>
+        <p>
+          Tazminat yoksa eşik tam olarak kredinin <strong>efektif yıllık faiz oranıdır</strong>.
+          Bu bir tesadüf değil, tanımdır: krediyi kapatmak o kredinin faizini
+          <em>risksiz ve vergisiz</em> kazanmak demektir. Aracın motoru bu sayıyı bağımsız
+          bir yoldan (ay ay nakit akışı + kök bulma) üretiyor ve özdeşlik tutuyor.
+          Tazminat varsa eşik kapatma aleyhine kayar.
+        </p>
+
+        <h2 id="risk">Matematiğin söylemediği şey</h2>
+        <p>
+          Eşik karşılaştırması, yatırımın getirisini <em>kesinmiş gibi</em> ele alır.
+          Oysa krediyi kapatmanın getirisi garantilidir, yatırımınki değildir. Eşiğin
+          hemen üstünde kalan bir beklenti, riski üstlenmeye değmeyebilir.
+        </p>
+        <p>
+          İkinci bir nokta: erken kapatma <strong>likiditeyi tüketir</strong>. Parayı
+          krediye yatırdıktan sonra acil bir ihtiyaç çıkarsa, geri almanın yolu genellikle
+          daha pahalı bir borçlanmadır. Acil durum fonunuz yoksa önce
+          <a href="../borc-mu-birikim-mi/">oraya bakın</a>.
+        </p>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Veri kaynakları ve güncelleme</h2>
+          <p><span class="updated">Parametreler en son 13 Eylül 2026 tarihinde gözden geçirildi.</span></p>
+          <ul>
+            <li><strong>6502 sayılı Tüketici Kanunu</strong> m.27 (tüketici kredisinde erken ödeme) ve m.37 (konut finansmanında erken ödeme tazminatı) — <a href="https://www.mevzuat.gov.tr/" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>Erken ödeme hakkı ve faiz indirimi uygulaması — <a href="https://finansalokuryazarlik.gov.tr/" rel="noopener">Finansal Okuryazarlık Platformu</a></li>
+            <li>Mevduat stopaj oranları (yatırım tarafını net hesaplamak için) — GVK geçici m.67, <a href="https://www.gib.gov.tr/" rel="noopener">GİB</a></li>
+          </ul>
+          <p>
+            <strong>Kapsam sınırı:</strong> Kredi faizinin dönem boyunca sabit kaldığı,
+            yeni borçlanma olmadığı ve ödemelerin aksamadığı varsayılır. Dosya masrafı,
+            sigorta primi ve yapılandırma ücretleri hesaba katılmaz; bunlar erken
+            kapatmanın gerçek maliyetini <em>artırır</em>. Bankanızın hesabı esastır.
+          </p>
+          <p>
+            Bir oran veya kural güncelliğini yitirdiyse <a href="../iletisim/">bana bildirin</a>.
+            Kapsam ve sınırlar için <a href="../kullanim-kosullari/">Kullanım Koşulları</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>İhtiyaç kredisinde erken ödeme cezası var mı?</summary><p>Hayır. TKHK m.27 uyarınca tüketici kredilerinde tazminat alınamaz; banka faiz indirimini yapmak zorundadır.</p></details>
+          <details><summary>Konut kredisinde tazminat ne kadar?</summary><p>Yalnızca sabit faizlide: kalan vade 36 aydan fazlaysa en çok %2, 36 ay ve altındaysa en çok %1. Değişken faizlide yok. Tazminat faiz indirimini de aşamaz.</p></details>
+          <details><summary>Kapatmak mı, yatırım mı daha kârlı?</summary><p>Krediyi kapatmak, o kredinin faizini risksiz ve vergisiz kazanmaktır. Yatırımın net getirisi bu oranın üstündeyse yatırım, altındaysa kapatma kazanır.</p></details>
+          <details><summary>Kısmi ödeme mi, tamamı mı?</summary><p>Isı haritası her tutar ve getiri bileşimi için hangi tarafın kazandığını gösterir.</p></details>
+          <details><summary>Serbest kalan taksit ne oluyor?</summary><p>Kredi erken bittiğinde taksit serbest kalır ve bu hesapta yatırıma yönlendirilir. Bunu atlayan karşılaştırmalar erken kapatmayı haksız yere kaybettirir.</p></details>
+          <details><summary>Verilerim gönderiliyor mu?</summary><p>Hayır, hesap tamamen tarayıcınızda çalışır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <ul>
+          <li><a href="../kredi-hesaplama/">Kredi Hesaplama ve Gerçek Maliyet</a> — taksit, ödeme planı ve toplam maliyet.</li>
+          <li><a href="../borc-mu-birikim-mi/">Borç mu Kapatmalı, Birikim mi?</a> — aylık artan para için aynı soru.</li>
+          <li><a href="../borc-kapatma-plani/">Borç Kapatma Planı</a> — birden çok borçta hangi sırayla ödeme yapmalı.</li>
+          <li><a href="../ev-almak-mi-kiralamak-mi/">Ev Almak mı Kiralamak mı?</a> — "fark yatırılır" kuralının diğer uygulaması.</li>
+          <li><a href="../vadeli-mevduat-hesaplama/">Vadeli Mevduat Hesaplama</a> — yatırım tarafının net getirisi.</li>
+          <li><a href="../">Tüm projeler</a> — büyüyen açık kaynak araç koleksiyonu.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümü</dd></div>
+            <div><dt>Son gözden geçirme</dt><dd>13 Eylül 2026</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı tutar için bankanıza danışın.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../finans/kurallar.js?v=26449f12" defer></script>
+  <script src="../finans/zaman-motoru.js?v=31f44fae" defer></script>
+  <script src="../finans/enflasyon-motoru.js?v=53474604" defer></script>
+  <script src="../finans/erken-kapatma-motoru.js?v=ca844245" defer></script>
+  <script src="../finans/isi-haritasi.js?v=f22de20d" defer></script>
+  <script src="script.js?v=d0e59723" defer></script>
+  <script src="../script.js?v=d148f9ac" defer></script>
+</body>
+</html>

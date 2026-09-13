@@ -260,6 +260,10 @@ SPEC = {
    "Merkez Bankası gösterge kurları, her iş günü otomatik güncellenir.",
    ["Resmî veri", "Her iş günü"], "finans"),
 
+ "erken-kapatma-analizi": ("erken-kapatma-analizi", "Erken Kapatmak mı,", "Yatırım mı?",
+   "Kararın tersine döndüğü getiri eşiği ve erken ödeme tazminatının yasal sınırı (TKHK m.27, m.37).",
+   ["Başabaş eşiği", "TKHK m.27/37"], "finans"),
+
  "yuzde-hesaplama": ("yuzde-hesaplama", "Yüzde", "Hesaplama",
    "Bir sayının yüzdesi, iki sayı arasındaki yüzde, artış ve azalış.",
    ["Formüllerle", "Örneklerle"], "gunluk"),

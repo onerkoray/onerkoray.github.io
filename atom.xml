@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-12T00:00:00+03:00</updated>
+  <updated>2026-09-13T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Krediyi Erken Kapatmak mı, Yatırım mı?</title>
+    <link href="https://korayoner.dev/erken-kapatma-analizi/"/>
+    <id>https://korayoner.dev/erken-kapatma-analizi/</id>
+    <updated>2026-09-13T00:00:00+03:00</updated>
+    <summary>Elinizdeki parayla krediyi kapatmak mı, yatırım yapmak mı? Kararın tersine döndüğü getiri eşiğini ve erken ödeme tazminatının yasal sınırını hesaplar.</summary>
+  </entry>
 
   <entry>
     <title>Borç Kapatma Planı ve Strateji Karşılaştırma</title>

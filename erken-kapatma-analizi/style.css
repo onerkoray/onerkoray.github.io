@@ -1,0 +1,97 @@
+/* Erken Kapatma vs Yatırım — araca özgü stiller.
+   Kart/tablo dili borç ve kredi araçlarıyla AYNI: kullanıcı aynı sitede
+   öğrendiğini yeniden öğrenmek zorunda kalmamalı. Isı haritası bileşeninin
+   stilleri global style.css'te (.ih-*) duruyor, burada tekrarlanmıyor. */
+
+/* --------------------------------- form ---------------------------------- */
+.ek-grid {
+  display: grid; gap: 1rem 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.ek-grid .panel-q { margin: 0; }
+.panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
+.panel-q label { display: block; font-weight: 600; font-size: .82rem; margin-bottom: .3rem; }
+#ek-form input[type="text"], #ek-form select {
+  font: inherit; padding: 8px 10px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--surface); color: var(--text);
+  min-height: 44px; max-width: 100%;
+}
+#ek-form input[type="text"] { width: 9.5rem; }
+#ek-form select { width: 100%; }
+#ek-form input:focus-visible, #ek-form select:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 2px;
+}
+
+/* ------------------------------ karar kartı ------------------------------ */
+/* Aracın tek cümlesi burada duruyor: eşik. Rakam değil, EŞİK öne çıkıyor —
+   çünkü kullanıcının girdiği getiri bir tahmin, eşik ise bir olgu. */
+.ek-karar {
+  margin: 1.5rem 0 0; padding: 1.35rem 1.5rem;
+  border: 1px solid var(--brand); border-radius: var(--radius-card);
+  background: var(--surface-note);
+}
+.ek-etiket {
+  margin: 0 0 .3rem; font: 500 .66rem var(--font-mono);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--brand-strong);
+}
+.ek-esik {
+  margin: 0; font: 700 2.3rem/1.05 var(--font-display);
+  letter-spacing: -.02em; color: var(--text);
+}
+.ek-cumle { margin: .55rem 0 0; font-size: .95rem; line-height: 1.55; }
+.ek-cumle strong { font-weight: 650; }
+.ek-not { margin: .45rem 0 0; font-size: .82rem; color: var(--text-muted); }
+
+/* -------------------------- iki yolun karşılaştırması -------------------- */
+.ek-yollar {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem; margin: 1.25rem 0 0;
+}
+.ek-yol {
+  padding: 1.15rem 1.25rem; border: 1px solid var(--border);
+  border-radius: var(--radius-card); background: var(--surface);
+}
+/* Kazanan yol yalnızca çerçeveyle işaretleniyor; kaybeden kırmızıya
+   boyanmıyor çünkü ikisi de geçerli bir seçim, biri "hata" değil. */
+.ek-yol.onde { border-color: var(--brand); box-shadow: inset 0 0 0 1px var(--brand); }
+.ek-yol-ad {
+  margin: 0 0 .5rem; font-weight: 650; font-size: .88rem;
+  display: flex; align-items: center; gap: .45rem; flex-wrap: wrap;
+}
+.ek-rozet {
+  font: 500 .6rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase;
+  padding: .12rem .45rem; border-radius: 999px;
+  background: var(--brand); color: var(--brand-contrast, #fff);
+}
+.ek-tutar { margin: 0; font: 700 1.45rem/1.1 var(--font-display); letter-spacing: -.02em; }
+.ek-yol dl { margin: .75rem 0 0; display: grid; grid-template-columns: 1fr auto; gap: .3rem .8rem; }
+.ek-yol dt { font-size: .78rem; color: var(--text-muted); }
+.ek-yol dd { margin: 0; font-size: .82rem; font-weight: 600; text-align: right;
+  font-variant-numeric: tabular-nums; }
+
+/* ------------------------------- tazminat -------------------------------- */
+/* Aracın ayırt edici bilgisi: kanunun ne dediği. Kutu, bilginin kaynağını
+   gösterdiği için nötr; uyarı rengi taşımıyor. */
+.ek-tazminat {
+  margin: 1.25rem 0 0; padding: 1rem 1.15rem;
+  border: 1px solid var(--border); border-left: 3px solid var(--brand);
+  border-radius: var(--radius-card); background: var(--surface-note);
+}
+.ek-tazminat p { margin: 0; font-size: .88rem; line-height: 1.6; }
+.ek-tazminat p + p { margin-top: .5rem; }
+.ek-tazminat .ek-madde { font: 500 .7rem var(--font-mono); color: var(--text-muted); }
+
+/* --------------------------------- ısı ----------------------------------- */
+.ek-isi { margin: 1.75rem 0 0; }
+
+/* --------------------------------- tablo --------------------------------- */
+.ek-ozet { margin: 1.5rem 0 0; }
+.ek-ozet table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.ek-ozet th, .ek-ozet td { padding: .45rem .55rem; border-bottom: 1px solid var(--border); }
+.ek-ozet th { text-align: left; font-weight: 600; color: var(--text-muted); }
+.ek-ozet td { text-align: right; font-variant-numeric: tabular-nums; }
+
+@media print {
+  .ek-isi { break-inside: avoid; }
+}

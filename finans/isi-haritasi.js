@@ -75,7 +75,13 @@
    *   xEtiket     x ekseni adı
    *   yEtiket     y ekseni adı
    *   bicim       (deger) => string — hücre değeri biçimlendirici
-   *   eksenBicim  (v) => string — eksen değeri biçimlendirici
+   *   eksenBicim  (v) => string — her iki eksen için ortak biçimlendirici
+   *   xBicim      (v) => string — yalnızca x ekseni (verilirse eksenBicim'i ezer)
+   *   yBicim      (v) => string — yalnızca y ekseni
+   *
+   * İki eksen AYNI birimde olmak zorunda değil: ilk tüketicide ikisi de
+   * yüzdeydi, ikincide (erken kapatma) x yüzde, y tutar. Tek biçimlendirici
+   * varsayımı orada kırıldığı için ayrıştırıldı.
    *   artiAd      pozitif tarafın adı (lejant)
    *   eksiAd      negatif tarafın adı
    *   not         altyazı
@@ -85,9 +91,11 @@
     if (!g || !g.hucreler || !g.hucreler.length) return "";
     var bicim = o.bicim || function (v) { return String(Math.round(v)); };
     var eb = o.eksenBicim || function (v) { return "%" + v; };
+    var xb = o.xBicim || eb;
+    var yb = o.yBicim || eb;
 
     var basliklar = g.x.map(function (v) {
-      return '<th scope="col">' + esc(eb(v)) + "</th>";
+      return '<th scope="col">' + esc(xb(v)) + "</th>";
     }).join("");
 
     var satirlar = g.hucreler.map(function (satir, j) {
@@ -101,7 +109,7 @@
         return '<td class="ih-h ih-' + b + sinir + '" title="' + esc(ad) + '">' +
           '<span class="ih-deger">' + esc(bicim(c.deger)) + "</span></td>";
       }).join("");
-      return '<tr><th scope="row">' + esc(eb(g.y[j])) + "</th>" + hucreler + "</tr>";
+      return '<tr><th scope="row">' + esc(yb(g.y[j])) + "</th>" + hucreler + "</tr>";
     }).join("");
 
     var lejant =

@@ -71,6 +71,28 @@ DOSYALAR = [
     ("fatura-olusturma/arsiv.js",         "fatura/arsiv.js"),
     ("fatura-olusturma/test.js",          "fatura/test.js"),
     ("fatura-olusturma/arsiv-test.js",    "fatura/arsiv-test.js"),
+
+    # Faz 1 ortak finans motorlari. Ayri araclarin ustune bindikleri icin
+    # bunlarin acik olmasi, uzerlerindeki her aracin acik olmasi demek.
+    ("finans/kurallar.js",                "finans/kurallar.js"),
+    ("finans/test.js",                    "finans/test.js"),
+    ("finans/zaman-motoru.js",            "finans/zaman-motoru.js"),
+    ("finans/zaman-test.js",              "finans/zaman-test.js"),
+    ("finans/enflasyon-motoru.js",        "finans/enflasyon-motoru.js"),
+    ("finans/enflasyon-test.js",          "finans/enflasyon-test.js"),
+    ("finans/dagitim-motor.js",           "finans/dagitim-motor.js"),
+    ("finans/dagitim-test.js",            "finans/dagitim-test.js"),
+    ("finans/erken-kapatma-motoru.js",    "finans/erken-kapatma-motoru.js"),
+    ("finans/erken-kapatma-test.js",      "finans/erken-kapatma-test.js"),
+
+    ("bordro/emeklilik-parametreleri.js", "bordro/emeklilik-parametreleri.js"),
+    ("bordro/emeklilik-motor.js",         "bordro/emeklilik-motor.js"),
+    ("bordro/emeklilik-test.js",          "bordro/emeklilik-test.js"),
+    ("bordro/gmsi-motor.js",              "bordro/gmsi-motor.js"),
+    ("bordro/gmsi-test.js",               "bordro/gmsi-test.js"),
+    ("bordro/borc-parametreleri.js",      "bordro/borc-parametreleri.js"),
+    ("bordro/borc-motor.js",              "bordro/borc-motor.js"),
+    ("bordro/borc-test.js",               "bordro/borc-test.js"),
 ]
 
 # Cekirdekteki dosyalar birbirini goreli yolla cagiriyor; klasor yapisi
@@ -134,7 +156,15 @@ def test_sayilari():
                     ("zam", "zam-hesaplama/test.js"),
                     ("birikim", "birikim-hesaplama/test.js"),
                     ("fatura", "fatura-olusturma/test.js"),
-                    ("arsiv", "fatura-olusturma/arsiv-test.js")):
+                    ("arsiv", "fatura-olusturma/arsiv-test.js"),
+                    ("finans", "finans/test.js"),
+                    ("zaman", "finans/zaman-test.js"),
+                    ("enflasyon", "finans/enflasyon-test.js"),
+                    ("dagitim", "finans/dagitim-test.js"),
+                    ("erken-kapatma", "finans/erken-kapatma-test.js"),
+                    ("emeklilik", "bordro/emeklilik-test.js"),
+                    ("gmsi", "bordro/gmsi-test.js"),
+                    ("borc", "bordro/borc-test.js")):
         try:
             r = subprocess.run(["node", yol], capture_output=True, timeout=120)
             m = re.search(r"(\d+) geçti", r.stdout.decode("utf-8", "replace"))
@@ -181,6 +211,13 @@ Eşit taksitli (annüite) kredi, KKDF ve BSMV ile brütleşmiş aylık maliyet o
 kuruş tamsayısı üzerinde amortisman, yıllık maliyet oranı (YMO), erken kapama,
 ek ödeme senaryosu ve iki teklifin karşılaştırılması.
 
+### `finans/` — ortak finans motorlari
+Paranin zaman degeri (NPV, IRR, XNPV, XIRR, CAGR, annuite, amortisman),
+enflasyon donusumleri (reel/nominal bolme yontemiyle, satin alma gucu),
+marjinal nakit dagitimi ve kredi erken kapatma karari (TKHK m.27 ve m.37
+tazminat kurallariyla). Ustlerindeki araclar bu motorlari paylasiyor;
+ikinci bir uygulama yazilmiyor.
+
 ### `fatura/` — fatura ve teklif
 Tam sayı kuruş aritmetiği, satır ve genel iskonto (en büyük artık yöntemiyle
 dağıtım), KDV tevkifatı, tutar yazıyla, VKN/TCKN ve IBAN sağlaması, belge
@@ -195,6 +232,14 @@ node bordro/calisma-bicimi-test.js  # %(calisma)d test
 node kredi/test.js                  # %(kredi)d test
 node fatura/test.js                 # %(fatura)d test
 node fatura/arsiv-test.js           # %(arsiv)d test
+node finans/test.js                 # %(finans)d test
+node finans/zaman-test.js           # %(zaman)d test
+node finans/enflasyon-test.js       # %(enflasyon)d test
+node finans/dagitim-test.js         # %(dagitim)d test
+node finans/erken-kapatma-test.js   # %(erken_kapatma)d test
+node bordro/emeklilik-test.js       # %(emeklilik)d test
+node bordro/gmsi-test.js            # %(gmsi)d test
+node bordro/borc-test.js            # %(borc)d test
 ```
 
 Toplam **%(toplam)d test**. Bordro tarafındaki en güçlü referans şudur: brüt
@@ -225,6 +270,11 @@ kurum görüşü yerine geçmez.
         "calisma": sayilar["calisma"], "fatura": sayilar["fatura"],
         "kredi": sayilar["kredi"],
         "arsiv": sayilar["arsiv"], "toplam": toplam, "surum": surum(),
+        "finans": sayilar["finans"], "zaman": sayilar["zaman"],
+        "enflasyon": sayilar["enflasyon"], "dagitim": sayilar["dagitim"],
+        "erken_kapatma": sayilar["erken-kapatma"],
+        "emeklilik": sayilar["emeklilik"], "gmsi": sayilar["gmsi"],
+        "borc": sayilar["borc"],
         "yil_ilk": min(yillar) if yillar else "?",
         "yil_son": max(yillar) if yillar else "?",
     }
