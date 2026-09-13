@@ -1,10 +1,10 @@
 /*!
- * Gizlilik sayfasindaki olcum karari denetimi.
+ * Gizlilik sayfasindaki olcum tercihi denetimi.
  *
- * GERI ALMAK VERMEK KADAR KOLAY OLMALI. Onay veren biri icin tek tik
- * yeten bir islem, geri almak isteyen biri icin tarayici ayarlarina
- * gomulu bir gorev haline gelirse, alinan onay hukuken de gecerli
- * sayilmaz. Bu yuzden karar burada tek dugmeyle her iki yone cevriliyor.
+ * CIKIS SITENIN ICINDE OLMALI. Eskiden bu sayfa "Google'in devre disi
+ * birakma eklentisini kurun" diyordu; yani cikisi sitenin disina havale
+ * ediyordu. Olcum varsayilan olarak acik oldugu icin cikisin tek dugme
+ * uzaklikta olmasi daha da onemli.
  *
  * Betik ayri bir dosyada, cunku satir ici betik CSP hash'i gerektiriyor
  * ve o hash'teki tek bosluk degisikligi betigi SESSIZCE devre disi
@@ -22,18 +22,19 @@
   kap.appendChild(dugme);
 
   function tazele() {
-    var d = window.Onay.durum();
-    if (d === "kabul") {
-      yazi.textContent = "Şu anda ölçüme izin veriyorsunuz.";
-      dugme.textContent = "Onayı geri al";
-    } else if (d === "ret") {
+    var acik = window.Onay.durum() === "kabul";
+    if (acik) {
+      /* Varsayilan ACIK oldugu icin "izin verdiniz" demek yanlis olurdu:
+         cogu ziyaretci hicbir sey secmemis durumda. */
+      yazi.textContent = window.Onay.secimYapildi()
+        ? "Ölçümü açık bırakmayı seçtiniz."
+        : "Ölçüm şu anda açık (varsayılan ayar).";
+      dugme.textContent = "Ölçümü kapat";
+    } else {
       yazi.textContent = window.Onay.tarayiciRetDiyor()
         ? "Tarayıcınız izleme karşıtı bir sinyal gönderiyor; ölçüm kapalı."
-        : "Şu anda ölçüme izin vermiyorsunuz.";
-      dugme.textContent = "Ölçüme izin ver";
-    } else {
-      yazi.textContent = "Henüz karar vermediniz; ölçüm kapalı.";
-      dugme.textContent = "Ölçüme izin ver";
+        : "Ölçümü kapattınız.";
+      dugme.textContent = "Ölçümü aç";
     }
   }
 

@@ -2,7 +2,7 @@
 <html lang="tr" data-theme="auto">
 <head>
   <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
-  <script src="../onay.js?v=9695e203" defer></script>
+  <script src="../onay.js?v=0e361dc9" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gizlilik Politikası ve KVKK Aydınlatma Metni — Koray Öner</title>
@@ -30,11 +30,13 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Gizlilik Politikası ve KVKK Aydınlatma Metni">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
   <meta name="twitter:title" content="Gizlilik Politikası ve KVKK Aydınlatma Metni">
   <meta name="twitter:description" content="Bu sitede hangi veriler işleniyor, hangi çerezler kullanılıyor ve haklarınız neler?">
   <meta name="twitter:image" content="https://korayoner.dev/images/gizlilik-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=85626b5e">
+  <link rel="stylesheet" href="../style.css?v=1fe3ec2d">
 
   <script type="application/ld+json">
   {
@@ -219,28 +221,22 @@
           bu, KVKK m.9 anlamında yurt dışına aktarım niteliği taşır.
         </p>
         <p>
-          <strong>Ölçüm yalnızca siz izin verirseniz başlar.</strong> Siteye ilk
-          geldiğinizde alt tarafta bir şerit çıkar ve size sorar. Siz karar verene
-          kadar Google Analytics betiği <strong>hiç yüklenmez</strong> ve Google'a
-          hiçbir istek gitmez — &ldquo;izin verilmedi&rdquo; sinyali bile
-          gönderilmez. Reddetmek, kabul etmek kadar kolaydır: iki düğme aynı
-          boyutta, yan yana durur ve kapatma çarpısı yoktur.
+          <strong>Ölçümü tek düğmeyle kapatabilirsiniz.</strong> Aşağıdaki denetim
+          Google Analytics'i bu tarayıcı için kapatır ve kapattığınızda Google'ın
+          bıraktığı <code>_ga</code> ve <code>_gid</code> çerezleri de silinir.
+          Kararınız cihazınızda saklanır; istediğiniz an geri açabilirsiniz.
         </p>
         <p>
           Tarayıcınız <strong>Global Privacy Control</strong> ya da
-          <strong>Do Not Track</strong> sinyali gönderiyorsa hiç sorulmaz; bu
-          sinyaller doğrudan &ldquo;ölçme&rdquo; olarak kabul edilir.
-        </p>
-        <p>
-          Kararınızı istediğiniz an değiştirebilirsiniz. Onayı geri aldığınızda
-          Google'ın bıraktığı <code>_ga</code> ve <code>_gid</code> çerezleri de
-          silinir.
+          <strong>Do Not Track</strong> sinyali gönderiyorsa ölçüm zaten yapılmaz;
+          bu sinyaller açık bir ret beyanı sayılır ve ayrıca bir şey yapmanız
+          gerekmez.
         </p>
 
         <div class="onay-denetim" id="onay-denetim">
           <p class="onay-durum" id="onay-durum">
-            Bu bölüm, tarayıcınızda JavaScript çalıştığında kararınızı gösterir ve
-            değiştirmenize izin verir.
+            Bu bölüm, tarayıcınızda JavaScript çalıştığında ölçüm durumunuzu gösterir
+            ve değiştirmenize izin verir.
           </p>
         </div>
 
@@ -389,7 +385,7 @@
     </div>
   </footer>
 
-  <script src="onay-denetim.js?v=d5e995ed" defer></script>
+  <script src="onay-denetim.js?v=c7ef594d" defer></script>
   <script src="../script.js?v=d148f9ac" defer></script>
 </body>
 </html>
