@@ -102,13 +102,44 @@ def uret():
     return ico, tampon2.getvalue()
 
 
+def ayni_mi(yol, yeni_baytlar, tolerans=20):
+    """Iki goruntu AYNI SIMGEYI mi gosteriyor?
+
+    BAYT KARSILASTIRMASI YANLIS BIR DEGISMEZ. Ilk surum bunu yapiyordu ve
+    CI'da kirmizi verdi: Pillow'un PNG/ICO kodlayicisi surumler arasinda
+    bayt bazinda ayni ciktiyi uretmiyor, yerelde uretilen dosya Ubuntu'da
+    "bayat" gorunuyordu. Oysa goruntunun kendisi aynıydi.
+
+    Bu yuzden PIKSEL karsilastiriliyor. Tolerans, kenar yumusatmadaki
+    surum farklarini yutacak kadar genis; yesil bir kabi mürekkep kaptan
+    ayiracak kadar dar (o fark kanal basina 100'un ustunde).
+    """
+    if not os.path.exists(yol):
+        return False
+    try:
+        a = Image.open(yol).convert("RGBA")
+        b = Image.open(io.BytesIO(yeni_baytlar)).convert("RGBA")
+    except Exception:
+        return False
+    if a.size != b.size:
+        return False
+    ap, bp = a.load(), b.load()
+    g, y_ = a.size
+    adim = max(1, g // 24)          # her pikseli okumak gereksiz
+    for x in range(0, g, adim):
+        for yy in range(0, y_, adim):
+            for k in range(4):
+                if abs(ap[x, yy][k] - bp[x, yy][k]) > tolerans:
+                    return False
+    return True
+
+
 def main():
     kontrol = "--check" in sys.argv
     ico, apple = uret()
     bayat = []
     for yol, yeni in ((ICO, ico), (APPLE, apple)):
-        var = open(yol, "rb").read() if os.path.exists(yol) else None
-        if var != yeni:
+        if not ayni_mi(yol, yeni):
             bayat.append(os.path.basename(yol))
             if not kontrol:
                 open(yol, "wb").write(yeni)
