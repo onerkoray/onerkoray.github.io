@@ -156,6 +156,14 @@ jobs:
       - name: Profil köprüsü regresyonları
         run: node finans/profil-kopru-test.js
 
+      # Kopru araclara HTML id'leriyle baglaniyor. Bir alan yeniden
+      # adlandirildiginda hicbir sey patlamiyor: buton yine cikiyor,
+      # kullanici yine tikliyor, yalnizca alanlarin bir kismi sessizce
+      # bos kaliyor. Denetim id listesini ELLE TUTMUYOR, kopru kodundan
+      # cikariyor -- elle tutulan bir liste korudugu kodla eskir.
+      - name: Profil köprüsü alan denetimi
+        run: node tools/kopru-denetimi.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.

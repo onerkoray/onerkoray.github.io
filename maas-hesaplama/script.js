@@ -146,6 +146,32 @@
   agiGorunurlugu();
 
   var elGross = el("in-gross"), elNet = el("in-net");
+  /* PROFİL KÖPRÜSÜ. Bu sayfada bordro motoru zaten yüklü, o yüzden
+     tembel yüklemeye gerek yok: tek alan, tek atama. */
+  if (window.ProfilKopru) {
+    window.ProfilKopru.bagla({
+      hedef: document.getElementById("pk-alan"),
+      alanlar: ["gelir"],
+      yol: "../finansal-ikiz/",
+      uygunMu: function (p) {
+        return p.gelirler.some(function (g) {
+          return g.tur === "ucret" && g.aylikBrut > 0;
+        });
+      },
+      doldur: function (p) {
+        var en = null;
+        p.gelirler.forEach(function (g) {
+          if (g.tur === "ucret" && g.aylikBrut > 0 &&
+              (!en || g.aylikBrut > en.aylikBrut)) en = g;
+        });
+        if (!en || !elGross) return [];
+        elGross.value = Math.round(en.aylikBrut);
+        brutHesapla();
+        return ["aylık brüt maaş"];
+      }
+    });
+  }
+
   if (elGross) elGross.addEventListener("input", brutHesapla);
   if (elNet) elNet.addEventListener("input", netHesapla);
   if (elYear) elYear.addEventListener("change", yenile);

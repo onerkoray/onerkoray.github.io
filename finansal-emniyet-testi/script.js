@@ -34,6 +34,103 @@
   }
   function puanYaz(p) { return Math.round(p).toString(); }
   function deger(id) { return E.sayi($(id).value); }
+
+  /* PROFİL KÖPRÜSÜ — sitedeki en zengin eşleşme: bu aracın sorduğu
+     alanların neredeyse tamamının profilde karşılığı var.
+
+     İki tanesinin YOK ve o ikisi bilerek boş bırakılıyor:
+     - Kıdem tazminatı hakkı (kaç aylık maaş) — profil çalışma süresini
+       tutmuyor.
+     - Dövizli borç payı — profil borcun para birimini tutmuyor.
+     Bunlara varsayılan bir sayı yazmak, kullanıcının kendi girdiği bir
+     değer sanmasına yol açardı. */
+  function kopruKur() {
+    if (!window.ProfilKopru) return;
+    var PK = window.ProfilKopru;
+    var NAKIT = { nakit: true, mevduat: true };
+    var ALTIN = { altin: true, doviz: true };
+    var ILLIKIT = { konut: true, arac: true, bes: true, diger: true };
+
+    PK.bagla({
+      hedef: $("pk-alan"),
+      alanlar: ["gelir", "gider", "varlik", "borc"],
+      yol: "../finansal-ikiz/",
+      doldur: function (p) {
+        var yapilan = [];
+
+        /* ---- giderler */
+        var zorunlu = 0, istege = 0;
+        p.giderler.forEach(function (k) {
+          if (k.zorunlu) zorunlu += k.aylik; else istege += k.aylik;
+        });
+        if (zorunlu > 0) { $("e-zorunlu").value = Math.round(zorunlu); }
+        if (istege > 0) { $("e-istege").value = Math.round(istege); }
+        if (zorunlu > 0 || istege > 0) yapilan.push("zorunlu ve isteğe bağlı gider");
+
+        /* ---- varliklar */
+        var nakit = 0, yatirim = 0, altin = 0, illikit = 0, enBuyuk = 0, toplam = 0;
+        p.varliklar.forEach(function (v) {
+          if (NAKIT[v.tur]) nakit += v.deger;
+          else if (ALTIN[v.tur]) altin += v.deger;
+          else if (ILLIKIT[v.tur]) illikit += v.deger;
+          else yatirim += v.deger;
+          toplam += v.deger;
+          if (v.deger > enBuyuk) enBuyuk = v.deger;
+        });
+        if (toplam > 0) {
+          $("e-nakit").value = Math.round(nakit);
+          $("e-yatirim").value = Math.round(yatirim);
+          $("e-altin").value = Math.round(altin);
+          $("e-illikit").value = Math.round(illikit);
+          yapilan.push("nakit, yatırım, altın/döviz ve likit olmayan varlıklar");
+          /* Yogunlasma profilde alan olarak yok ama HESAPLANABILIYOR:
+             en buyuk tek varligin toplam icindeki payi. */
+          $("e-yogunlasma").value =
+            (enBuyuk / toplam * 100).toFixed(0);
+          yapilan.push("en büyük tek varlığın payı (profilden hesaplandı)");
+        }
+
+        /* ---- borclar */
+        if (p.borclar.length) {
+          var bakiye = 0, servis = 0, faizAgirlik = 0, degisken = 0;
+          p.borclar.forEach(function (b) {
+            bakiye += b.kalanAnapara;
+            servis += b.aylikOdeme;
+            faizAgirlik += b.aylikFaiz * b.kalanAnapara;
+            if (b.tur === "konut-degisken") degisken += b.kalanAnapara;
+          });
+          $("e-borc-bakiye").value = Math.round(bakiye);
+          $("e-borc-servisi").value = Math.round(servis);
+          yapilan.push("borç bakiyesi ve aylık ödeme");
+          if (bakiye > 0) {
+            /* Faiz BAKIYEYE GORE agirliklandiriliyor: 5.000 TL'lik bir
+               kartla 500.000 TL'lik konut kredisinin oranini esit
+               saymak, ortalamayi anlamsiz yapardi. */
+            $("e-faiz").value = (faizAgirlik / bakiye * 100)
+              .toFixed(2).replace(".", ",");
+            $("e-degisken-pay").value = (degisken / bakiye * 100).toFixed(0);
+            yapilan.push("bakiyeye göre ağırlıklı ortalama faiz");
+          }
+        }
+
+        return PK.ucretNeti(p).then(function (net) {
+          if (net > 0) { $("e-gelir").value = Math.round(net); }
+          var diger = p.gelirler.reduce(function (a, g) {
+            return a + (g.tur === "ucret" ? 0 : g.aylikNet);
+          }, 0);
+          if (diger > 0) { $("e-diger").value = Math.round(diger); }
+          if (net > 0 || diger > 0) yapilan.push("net gelir");
+          yapilan.push("kıdem hakkı ve dövizli borç payı profilde yok, dokunulmadı");
+          hesapla();
+          return yapilan;
+        }, function () {
+          hesapla();
+          yapilan.push("net gelir hesaplanamadı (bordro motoru yüklenemedi)");
+          return yapilan;
+        });
+      }
+    });
+  }
   function isaretli(id) { return $(id).checked; }
 
   function durumTopla() {
@@ -376,6 +473,7 @@
   });
 
   hesapla();
+  kopruKur();
 
   var y = document.getElementById("year");
   if (y) y.textContent = String(new Date().getFullYear());
