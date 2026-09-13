@@ -28,6 +28,18 @@ ATLA = {".git", "_cekirdek", "node_modules", "__pycache__"}
 # duzenli ifade metin islemleri sirasinda bozulmuyor.
 KALIP = re.compile('(href|src)="([^"?]+[.](?:css|js))(?:[?]v=[0-9a-f]+)?"')
 
+# SIMGELER DE DAMGALANIYOR (2026-09-13'ten beri).
+# Favicon baglantilari ELLE "?v=3", "?v=4" tasiyordu ve bump etmek
+# unutulabilir bir adimdi. Favicon sistemi yeniden cizildiginde tam da bu
+# tuzaga dusuluyordu: dosyalar degisir, ziyaretcilerin sekmesinde eski
+# simge kalirdi -- ve hata sessizdir, kimse bildirmez.
+#
+# Bu kalip yalnizca UC dosya adini taniyor; butun gorselleri damgalamak
+# ayri ve cok daha buyuk bir karar olurdu.
+SIMGE_KALIP = re.compile(
+    '(href)="((?:[^"?]*/)?(?:favicon[.]svg|favicon[.]ico|apple-touch-icon[.]png))'
+    '(?:[?]v=[0-9a-z]+)?"')
+
 _ozet = {}
 
 
@@ -64,6 +76,7 @@ def isle(kontrol):
             return '%s="%s?v=%s"' % (m.group(1), bagil, ozet(hedef))
 
         yeni, _ = KALIP.subn(degistir, s)
+        yeni, _ = SIMGE_KALIP.subn(degistir, yeni)
         if yeni != s:
             if kontrol:
                 bayat.append(os.path.relpath(hy, KOK).replace("\\", "/"))

@@ -1,37 +1,55 @@
 # -*- coding: utf-8 -*-
-"""Araç faviconlarını tools/card-icons.json'dan üretir ve doğrular.
+"""Favicon'ları tools/card-icons.json'dan üretir ve doğrular.
 
-NEDEN VAR
----------
-Araç faviconları elle çizilmişti ve zamanla dağıldı. Sekme şeridinde yan yana
-duran iki korayoner.dev sayfası birbirine benzemiyordu:
+NEDEN YENİDEN YAZILDI (2026-09-13)
+----------------------------------
+Önceki sürüm her favicon'u "gradyanlı yeşil, rx=14 yuvarlak kare + beyaz
+çizgi sembol" olarak üretiyordu. Üç sorun ölçüldü:
 
-    kök marka   : gradyan kare + BEYAZ tek renk </> işareti
-    araç sayfası: DÜZ yeşil kare + SARI vurgulu çok renkli çizim
+1. 16 PİKSELDE KAP SEMBOLÜ YUTUYORDU. Sekme şeridi favicon'u 16 pikselde
+   çiziyor. Kap o 256 pikselin tamamını kaplarken sembol ortadaki 48x48'e
+   sıkışıyordu; KDV, maaş ve kredi sekmede birbirinden ayırt edilemiyordu.
+   Araca özgü çizim, tam da görünmesi gereken boyutta kayboluyordu.
 
-Faviconun işi "bu sekme hangi SİTE" sorusunu cevaplamaktır; ikinci soru
-"hangi sayfa"dır. Eski hâlde birinci soru cevapsız kalıyordu. Üstelik bir
-araç (finansal-emniyet-testi) yanlışlıkla başka bir aracın ikonunu
-taşıyordu — aria-label hâlâ "Finansal özgürlük hesaplama" diyordu.
+2. YEŞİL, BEŞ PALETİN DÖRDÜYLE ÇELİŞİYORDU. Site vurgu rengi kullanıcı
+   tarafından seçiliyor (data-accent: yeşil, mavi, mor, turuncu, gül).
+   "Gül" seçen biri pembe bir sitede yeşil sekme simgesi görüyordu.
 
-ÇÖZÜM: ÇERÇEVE SABİT, SEMBOL DEĞİŞKEN
--------------------------------------
-Her favicon aynı marka kabını kullanır — kök favicon.svg ile birebir aynı
-gradyan, aynı köşe yarıçapı, aynı beyaz tek renk çizgi. İçindeki sembol ise
-o aracın ANA SAYFADAKİ KART SEMBOLÜNÜN AYNISI. Böylece:
+3. GRADYAN VE rx=14, style.css sonundaki editoryal katmanın siteden
+   bilerek söktüğü "arkadaş canlısı SaaS" diliydi.
 
-  - sekme şeridinde bütün sayfalar tek bir siteye ait görünür,
-  - kart ile sekme aynı sembolü gösterir (görsel süreklilik),
-  - sembol tek yerde tanımlıdır: tools/card-icons.json.
+YENİ ÇÖZÜM: NÖTR MÜREKKEP KAP, OYULMUŞ SEMBOL
+---------------------------------------------
+  - Kap mürekkep rengi: hiçbir paletle çatışmaz, her ikisinde de nötr.
+  - Köşe 2px — editoryal katmanla aynı yarıçap.
+  - Sembol çizgi değil OYUK: 16 pikselde kütle olarak okunur, çizgi gibi
+    dağılmaz.
+  - prefers-color-scheme ile mürekkep ve kâğıt yer değiştirir; koyu sekme
+    şeridinde de görünür kalır. (Eski sürüm iki temada da aynı yeşildi.)
+  - Alt kenardaki ince çubuk vurgu rengini taşır. Statik dosyada varsayılan
+    yeşil; script.js sayfa açılırken kullanıcının seçtiği palete göre
+    favicon'u değiştirir.
 
-ÇİZGİ KALINLIĞI HESAPLANDI, GÖZE BAKILMADI
-------------------------------------------
-Kart ikonları 24x24 kutuda stroke-width 2 ile çizilir. scale(2) ile 64x64
-kutuya taşındığında efektif kalınlık 4 olur; kök markanın çizgileri 4,0-4,2.
-Yani sembol markayla aynı ağırlıkta okunur. Ölçek 2'den başka bir değer
-seçilseydi araç ikonları markadan ince ya da kalın görünürdü.
+VURGU ÇUBUĞU SEMBOLLE ÇAKIŞMIYOR
+--------------------------------
+İlk denemede vurgu sağ alt köşeye kare olarak konmuştu ve bazı sembollerin
+(kredi, finansal ikiz) üstüne biniyordu. Sembol translate(4 3) ile 3..27
+aralığına, çubuk ise 27.5'ten sonrasına yerleştirildi; ikisi komşu, üst üste
+değil.
 
-    python tools/favikon.py           # faviconları üret
+ÇİZGİ KALINLIĞI
+---------------
+Kart ikonları 24x24 kutuda stroke-width 2 ile çizilir. Burada kutu yine 24
+ama kalınlık 2.4'e çıkarıldı: oyuk sembol koyu zeminde ince görünür ve 16
+piksele indiğinde kaybolur. 2.4, 16 pikselde 1.2 efektif kalınlık demek.
+
+ALT PROJELER BU SİSTEME GİRMEZ
+------------------------------
+decorpalette ve keymint sitenin hesaplama araçları değil, altında yayımlanan
+ayrı ürünler. Kendi işaretleri var ve olmalı: decorpalette'in paleti üç
+renkli noktayla ANLAM taşıyor, onu tek renge indirmek bilgiyi silmek olurdu.
+
+    python tools/favikon.py           # favicon'ları üret
     python tools/favikon.py --check   # kaynakla aynı mı
 """
 import io
@@ -43,63 +61,82 @@ import sys
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KAYNAK = os.path.join(KOK, "tools", "card-icons.json")
 
-# Kök favicon.svg ile AYNI değerler. Burada değişirse marka ikisi arasında
-# ayrışır; bu yüzden değiştirmeden önce kök dosyaya da bakın.
-GRADYAN_UST = "#14b28e"
-GRADYAN_ALT = "#0a5f4e"
-YARICAP = 14
+# style.css'teki --text / --bg değerleri. Burada değişirse favicon sitenin
+# geri kalanından ayrışır.
+MUREKKEP = "#17201d"
+KAGIT = "#f5f7f6"
+KOYU_MUREKKEP = "#e8eceb"
+KOYU_KAGIT = "#14181d"
+VARSAYILAN_VURGU = "#0e7c66"      # style.css --accent (yeşil)
+YARICAP = 2                        # editoryal katmanla aynı
 
-# ALT PROJELER BU SİSTEME GİRMEZ.
-# decorpalette ve keymint sitenin hesaplama araçları değil, altında yayımlanan
-# ayrı ürünler. Kendi işaretleri var ve olmalı: decorpalette'in paleti üç
-# renkli noktayla ANLAM taşıyor (renk paleti aracının konusu renktir), onu
-# tek renk beyaza indirmek bilgiyi silmek olurdu. Marka çerçevesini onlara
-# dayatmak, ayrı ürün olmalarını görsel olarak inkâr etmek demekti.
 ALT_PROJELER = {"decorpalette", "keymint"}
 
-SABLON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="%(ad)s">
-  <defs>
-    <linearGradient id="fv-bg" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="%(ust)s"/>
-      <stop offset="1" stop-color="%(alt)s"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="%(r)d" fill="url(#fv-bg)"/>
-  <g transform="translate(8 8) scale(2)" fill="none" stroke="#ffffff"
-     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">%(sembol)s</g>
+# card-icons.json'da olmayan ama kendi simgesini hak eden bölümler.
+# Semboller 24x24 kutuda, stroke ile çizilir (kart ikonlarıyla aynı dil).
+EK_BOLUMLER = {
+    # Makaleler: tek tek yazıların değil BÖLÜMÜN işareti. Yazılar araç
+    # değil; her birine ayrı sembol uydurmak, aralarında olmayan bir
+    # ayrımı varmış gibi gösterirdi.
+    "makaleler": {
+        "ad": "Makaleler",
+        "svg": '<path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/>',
+    },
+    # Bordro: metodoloji merkezi. Açık çekirdeği temsilen katmanlar.
+    "bordro": {
+        "ad": "Bordro Motoru metodolojisi",
+        "svg": '<path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M2 14l10 5 10-5"/>',
+    },
+}
+
+SABLON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="%(ad)s">
+  <style>
+    .fv-kap { fill: %(murekkep)s }
+    .fv-sem { stroke: %(kagit)s }
+    @media (prefers-color-scheme: dark) {
+      .fv-kap { fill: %(kmurekkep)s }
+      .fv-sem { stroke: %(kkagit)s }
+    }
+  </style>
+  <rect class="fv-kap" width="32" height="32" rx="%(r)d"/>
+  <g class="fv-sem" transform="translate(4 3)" fill="none" stroke-width="2.4"
+     stroke-linecap="round" stroke-linejoin="round">%(sembol)s</g>
+  <rect class="fv-vurgu" x="4" y="27.5" width="24" height="3" rx="1.5" fill="%(vurgu)s"/>
 </svg>
 """
 
 
 def sembol(svg):
-    """Kart ikonunun İÇİNİ alır; dış <svg> etiketi atılır.
-
-    Renk ve çizgi nitelikleri dıştaki <g> tarafından verildiği için iç
-    öğelerde bulunmaz — bu, card-icons.json'daki 32 ikonun tamamı için
-    doğrulanmış bir değişmezdir (hepsinin svg başlığı birebir aynı).
-    """
+    """Kart ikonunun İÇİNİ alır; dış <svg> etiketi atılır."""
     i = svg.index(">") + 1
     j = svg.rindex("</svg>")
     return svg[i:j].strip()
 
 
 def baslik(slug):
-    """Aracın kendi sayfa başlığı — aria-label için."""
+    """Bölümün kendi sayfa başlığı — aria-label için."""
     yol = os.path.join(KOK, slug, "index.html")
+    if not os.path.exists(yol):
+        return slug
     s = io.open(yol, encoding="utf-8").read()
     m = re.search(r"<title>(.*?)</title>", s, re.S)
     if not m:
         return slug
-    t = re.sub(r"\s*\|\s*Koray Öner\s*$", "", m.group(1).strip())
-    return t
+    return re.sub(r"\s*\|\s*Koray Öner\s*$", "", m.group(1).strip())
+
+
+def ciz(ad, ic, vurgu=VARSAYILAN_VURGU):
+    return SABLON % {
+        "ad": ad, "sembol": ic, "r": YARICAP, "vurgu": vurgu,
+        "murekkep": MUREKKEP, "kagit": KAGIT,
+        "kmurekkep": KOYU_MUREKKEP, "kkagit": KOYU_KAGIT,
+    }
 
 
 def yerel_favicon_kullaniyor(slug):
     """Sayfa gerçekten yerel favicon.svg'ye bağlanıyor mu.
 
-    Bağlanmayan bir dizine dosya üretmek ölü dosya bırakırdı; alt projeler
-    (decorpalette, keymint) kendi markalarını korusun diye zaten
-    card-icons.json'da yoklar.
+    Bağlanmayan bir dizine dosya üretmek ölü dosya bırakırdı.
     """
     yol = os.path.join(KOK, slug, "index.html")
     if not os.path.exists(yol):
@@ -113,52 +150,59 @@ def uret():
     for slug in sorted(ikon):
         if slug in ALT_PROJELER or not yerel_favicon_kullaniyor(slug):
             continue
-        cikti[slug] = SABLON % {
-            "ad": baslik(slug),
-            "ust": GRADYAN_UST,
-            "alt": GRADYAN_ALT,
-            "r": YARICAP,
-            "sembol": sembol(ikon[slug]["svg"]),
-        }
+        cikti[slug] = ciz(baslik(slug), sembol(ikon[slug]["svg"]))
+    for slug, tanim in EK_BOLUMLER.items():
+        if not yerel_favicon_kullaniyor(slug):
+            continue
+        cikti[slug] = ciz(baslik(slug) or tanim["ad"], tanim["svg"])
+    # Kök marka: </> işareti. Aynı kabı kullanır ki hakkımda, iletişim ve
+    # yasal sayfalar da aynı aileden görünsün.
+    cikti[""] = ciz("Koray Öner",
+                    '<path d="M8 6 3 12l5 6"/><path d="M16 6l5 6-5 6"/>'
+                    '<path d="M14.5 4 9.5 20"/>')
     return cikti
 
 
 def main():
     kontrol = "--check" in sys.argv
     cikti = uret()
-    if not cikti:
-        print("Hiçbir sayfa yerel favicon.svg kullanmıyor — kaynak mı değişti?",
+    if len(cikti) < 10:
+        print("Beklenenden az favicon (%d) — kaynak mı değişti?" % len(cikti),
               file=sys.stderr)
         return 1
 
-    eskik, farkli, yazilan = [], [], []
-    for slug, yeni in cikti.items():
-        yol = os.path.join(KOK, slug, "favicon.svg")
+    eksik, farkli, yazilan = [], [], []
+    for slug, yeni in sorted(cikti.items()):
+        yol = os.path.join(KOK, slug, "favicon.svg") if slug else os.path.join(KOK, "favicon.svg")
         var = io.open(yol, encoding="utf-8").read() if os.path.exists(yol) else None
+        ad = slug or "(kök)"
         if var is None:
-            eskik.append(slug)
+            eksik.append(ad)
         elif var != yeni:
-            farkli.append(slug)
+            farkli.append(ad)
         if not kontrol and var != yeni:
             io.open(yol, "w", encoding="utf-8", newline="").write(yeni)
-            yazilan.append(slug)
+            yazilan.append(ad)
 
     if kontrol:
-        if eskik or farkli:
-            if eskik:
-                print("Favicon eksik: " + ", ".join(eskik))
+        if eksik or farkli:
+            if eksik:
+                print("Favicon eksik: " + ", ".join(eksik))
             if farkli:
                 print("Favicon kaynakla uyuşmuyor: " + ", ".join(farkli))
             print("Düzeltmek için: python tools/favikon.py")
             return 1
-        print("Favicon'lar güncel (%d araç)." % len(cikti))
+        print("Favicon'lar güncel (%d bölüm)." % len(cikti))
         return 0
 
     if yazilan:
-        print("Favicon üretildi (%d/%d): %s"
-              % (len(yazilan), len(cikti), ", ".join(yazilan)))
+        print("Favicon üretildi (%d/%d)." % (len(yazilan), len(cikti)))
+        for a in yazilan[:8]:
+            print("  - " + a)
+        if len(yazilan) > 8:
+            print("  ... +%d" % (len(yazilan) - 8))
     else:
-        print("Favicon'lar zaten güncel (%d araç)." % len(cikti))
+        print("Favicon'lar zaten güncel (%d bölüm)." % len(cikti))
     return 0
 
 
