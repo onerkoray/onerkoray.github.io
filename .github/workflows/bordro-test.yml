@@ -173,6 +173,12 @@ jobs:
       - name: Stil damgaları güncel mi
         run: python tools/stil-damgasi.py --check
 
+      # Vurgu rengi kullanici tercihi (bes palet). Bir grafik serisi
+      # var(--brand) kullanirsa verinin ANLAMI temayla degisiyor —
+      # olculdu: emniyet testinde yesil temada CVD DeltaE 5,0.
+      - name: Veri görselleştirme renkleri kurallara uygun mu
+        run: node tools/veri-renkleri.js --check
+
       # Kart tarihleri git gecmisinden uretiliyor; checkout zaten
       # fetch-depth: 0 ile tam gecmisi cekiyor (hizli-panel icin).
       - name: Araç kartlarındaki güncelleme tarihleri güncel mi

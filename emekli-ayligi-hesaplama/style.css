@@ -47,7 +47,6 @@
    ayrı ayrı tam PASS aldı: CVD ΔE 24,7 / normal görüş 33,6.
    Marka yeşili kullanılmadı: kategorik seri olarak kroma tabanının altında
    kalıyor ve veri işareti olarak gri okunuyor. */
-.ea-serit-kutu { --seri-1: #2a78d6; --seri-2: #e06a2a; }
 
 .ea-serit-kutu {
   margin: 1.5rem 0 0;
@@ -66,8 +65,8 @@
 /* Dilimler arasında 2px zemin boşluğu: bitişik dolgular birbirine akmasın. */
 .ea-dilim { flex: 0 0 auto; width: var(--pay); min-width: 2px; }
 .ea-dilim + .ea-dilim { box-shadow: inset 2px 0 0 var(--surface); }
-.ea-dilim-1 { background: var(--seri-1); }
-.ea-dilim-2 { background: var(--seri-2); }
+.ea-dilim-1 { background: var(--dv-1); }
+.ea-dilim-2 { background: var(--dv-2); }
 
 .ea-lejant {
   display: flex; flex-wrap: wrap; gap: .4rem 1.1rem;

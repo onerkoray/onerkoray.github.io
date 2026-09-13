@@ -176,10 +176,17 @@
 .grafik-kap { overflow-x: auto; }
 #e-grafik { inline-size: 100%; block-size: auto; min-inline-size: 460px; display: block; }
 .yol-soluk { stroke: color-mix(in srgb, var(--text) 22%, transparent); stroke-width: 1.3; fill: none; }
-.yol-secili { stroke: var(--brand-strong); stroke-width: 2.6; fill: none; stroke-linejoin: round; }
-.yol-batik  { stroke: #c0392b; stroke-width: 2.6; fill: none; stroke-linejoin: round; }
+/* Yol durumlari bir POLARITE: secilen senaryo ayakta mi, batiyor mu.
+   Onceki surumde secili yol var(--brand-strong) kullaniyordu ve olcum
+   soyle cikiyordu: yesil temada batik yola karsi CVD DeltaE 5,0 (taban 6)
+   — renk koru kullanici ikisini ayirt edemiyordu; turuncuda normal gorus
+   DeltaE 8,1, gulde 11,7 (taban 15). Araci anlamsiz kilan bir hataydi.
+   Artik style.css'teki temadan bagimsiz diverging cift kullaniliyor. */
+.yol-secili { stroke: var(--dv-gain); stroke-width: 2.6; fill: none; stroke-linejoin: round; }
+.yol-batik  { stroke: var(--dv-loss); stroke-width: 2.6; fill: none; stroke-linejoin: round;
+              stroke-dasharray: 7 4; }
 .cizgi-sifir { stroke: var(--text); stroke-width: 1.2; }
-.cizgi-taban { stroke: var(--brand); stroke-width: 1.2; stroke-dasharray: 5 4; }
+.cizgi-taban { stroke: var(--dv-axis); stroke-width: 1.2; stroke-dasharray: 5 4; }
 .bolge-eksi { fill: color-mix(in srgb, #c0392b 10%, transparent); }
 .eksen { fill: var(--text-muted); font-size: 11px; }
 

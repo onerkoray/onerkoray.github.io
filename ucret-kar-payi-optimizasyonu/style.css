@@ -81,11 +81,13 @@
 
 .grafik-kap { margin-block: 1rem 0; overflow-x: auto; }
 #o-grafik { inline-size: 100%; block-size: auto; min-inline-size: 520px; display: block; }
-.seri-net { stroke: var(--brand-strong); stroke-width: 2.6; fill: none; stroke-linejoin: round; }
-.cizgi-esik { stroke: #b8860b; stroke-width: 1.4; stroke-dasharray: 5 4; }
+/* Tek seri + esik cizgisi. Seri sabit kategorik uzaydan; esik
+   notr eksen renginde ki seriyle yarismasin. */
+.seri-net { stroke: var(--dv-1); stroke-width: 2.6; fill: none; stroke-linejoin: round; }
+.cizgi-esik { stroke: var(--dv-axis); stroke-width: 1.4; stroke-dasharray: 5 4; }
 .eksen-cizgi { stroke: var(--border); stroke-width: 1; }
 .eksen { fill: var(--text-muted); font-size: 11px; }
-.opt-nokta { fill: var(--brand-strong); stroke: var(--bg); stroke-width: 2.5; }
+.opt-nokta { fill: var(--dv-1); stroke: var(--bg); stroke-width: 2.5; }
 
 .table-scroll { overflow-x: auto; margin-block-start: 1.2rem; max-height: 460px; overflow-y: auto; }
 .veri-tablo { width: 100%; border-collapse: collapse; font-size: .88rem; }

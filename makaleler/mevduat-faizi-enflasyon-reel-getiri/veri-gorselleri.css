@@ -1,35 +1,7 @@
 /* Article-specific data presentation; values and financial assumptions stay in HTML. */
-/* Veri isaretleri tema vurgusundan BAGIMSIZ. Kazanc/kayip bir polarite
-   kodlamasidir; kullanicinin sectigi arayuz rengiyle degisemez. Onceki surumde
-   cubuklar var(--brand) kullaniyordu ve bes paletin ucu olculebilir bicimde
-   kiriliyordu: turuncuda kazanc #bb5714 ile kayip #9a4610 normal gorus DeltaE
-   8,0; gulde 11,2 (15 tabaninin altinda, tam renk gorende bile ayirt edilemez).
-   Varsayilan yesilde ise marka rengi kroma tabaninin altinda kalip veri
-   isareti olarak gri okunuyordu. Asagidaki cift dataviz dogrulayicisindan
-   acik (#fff) ve koyu (#14181d) zeminde AYRI AYRI tam PASS aldi:
-   CVD DeltaE 13,4 / normal gorus 26,2. Isaretler 3:1, murekkep adimlari
-   metin icin 4,5:1 esigine gore secildi.
-   Bilincli takas: yesilin kromasi (0,100) turuncununkinin (0,190) altinda,
-   yani turuncu biraz daha "yuksek sesli" duruyor. Kromayi esitleyen ciftler
-   tarandi; hepsi CVD ayrismasini 13,4'ten ~11,7'ye dusuruyor. Olculebilir
-   erisilebilirlik, estetik dengenin onunde tutuldu.
-   Degistirirken dogrulayiciyi yeniden calistir, goze guvenme. */
-.deposit-article {
-  --dv-gain: #44a386;      /* isaret */
-  --dv-loss: #ec6100;      /* isaret */
-  --dv-gain-ink: #157056;  /* metin - beyaz zeminde 6,03:1 */
-  --dv-loss-ink: #b34806;  /* metin - beyaz zeminde 5,46:1 */
-}
-:root[data-theme="dark"] .deposit-article {
-  --dv-gain-ink: #5cbb9d;  /* #14181d uzerinde 7,68:1 */
-  --dv-loss-ink: #f5843c;  /* #14181d uzerinde 7,00:1 */
-}
-@media (prefers-color-scheme: dark) {
-  :root[data-theme="auto"] .deposit-article {
-    --dv-gain-ink: #5cbb9d;
-    --dv-loss-ink: #f5843c;
-  }
-}
+/* Kazanc/kayip renkleri style.css'teki --dv-* uzayindan geliyor
+   (--dv-gain / --dv-loss ve murekkep adimlari). Gerekce, olcumler ve
+   degistirme yordami orada tek yerde duruyor. */
 .deposit-table-wrap {
   margin: 1.5rem 0; overflow-x: auto; border: 1px solid var(--border);
   border-radius: var(--radius-card); background: var(--surface);
