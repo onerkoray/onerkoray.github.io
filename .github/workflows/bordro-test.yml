@@ -65,6 +65,13 @@ jobs:
       - name: Borç kapatma motoru regresyonları
         run: node bordro/borc-test.js
 
+      # Erken kapatma: iddiasi bir OZDESLIK. Tazminat yokken basabas
+      # getiri, kredinin efektif yillik faizine esit olmali. Modelde
+      # serbest kalan nakit bir ay kayarsa bu esitlik bozulur; test tam
+      # olarak onu olcuyor (dort farkli kredi yapilandirmasinda).
+      - name: Erken kapatma motoru regresyonları
+        run: node finans/erken-kapatma-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.

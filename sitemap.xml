@@ -170,6 +170,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/erken-kapatma-analizi/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/erken-kapatma-analizi-koray-oner.png</image:loc>
+      <image:title>Krediyi Erken Kapatmak mı, Yatırım mı? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/borc-kapatma-plani/</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
