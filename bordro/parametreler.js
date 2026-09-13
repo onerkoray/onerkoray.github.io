@@ -54,7 +54,13 @@
     fazlaCalismaKat: 1.50,    // m.41: haftalık 45 saati aşan çalışma
     fazlaSureliKat: 1.25,     // m.41: sözleşmeyle 45'ten az belirlenmişse
     yillikUstSinirSaat: 270,  // m.41: yılda en çok 270 saat fazla çalışma
-    serbestZamanKat: 1.5      // m.41/4: her fazla saat için 1,5 saat izin
+    /* Serbest zaman, ücret zammının ZAMAN cinsinden aynasıdır ve kanunda
+       ikiye ayrılır: fazla çalışmada 1 saat 30 dakika, fazla sürelerle
+       çalışmada 1 saat 15 dakika. Tek katsayı tutulduğunda araç ikisine de
+       1,5 uyguluyor ve %25'lik çalışmada izni beşte bir fazla gösteriyordu. */
+    serbestZamanFazlaCalismaKat: 1.50,  // m.41/4: 1 saat 30 dakika
+    serbestZamanFazlaSureliKat: 1.25,   // m.41/4: 1 saat 15 dakika
+    serbestZamanAyPenceresi: 6          // m.41/5: altı ay içinde kullanılır
   };
 
   var ISSIZLIK_VARSAYILAN = {
