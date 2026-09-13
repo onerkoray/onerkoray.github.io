@@ -39,9 +39,16 @@
     return 10;
   }
 
-  /* Gun cinsinden vade icin stopaj orani — tarih kurmadan. */
+  /* Gun cinsinden vade icin stopaj orani — takvim tarihi kurmadan.
+   *
+   * REFERANS GUN UTC KURULUYOR. Ilk yazimda new Date(2026, 0, 1) yani YEREL
+   * gece yarisiydi; oysa ayEkle() ve karsilastirma UTC alanlariyla calisiyor.
+   * Ikisini karistirmak sonucu MAKINENIN SAAT DILIMINE bagli hale getirdi:
+   * UTC+3'te 365 gun %10, UTC'de %15 donuyordu. Ayni girdi, iki cevap —
+   * ve yanlis olan, gelistirme makinesinde dogru gorunen taraftı.
+   */
   function stopajOraniGun(gun, type) {
-    var d = new Date(2026, 0, 1);
+    var d = new Date(Date.UTC(2026, 0, 1));
     return stopajOrani(d, new Date(d.getTime() + gun * 86400000), type || "tl");
   }
 
