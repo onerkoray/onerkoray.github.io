@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 /*!
- * Ölçüm onayı regresyonları.
+ * Ölçüm tercihi regresyonları.
  *
- * NEDEN: bu dosyanın koruduğu şey bir özellik değil, bir SÖZ. Site
- * "hesap araçlarına girdiğiniz veriler cihazınızdan çıkmaz" diyor ve
- * Finansal İkiz'le birlikte bu söz çok ağırlaştı. Onay kapısı sessizce
- * bozulursa — bir yükleme yolu erken tetiklenirse, ret kaydedilmezse,
- * çerezler geri alma sonrası kalırsa — kimse fark etmez: sayfa açılır,
- * araçlar çalışır, yalnızca söz tutulmamıştır.
+ * Ölçüm VARSAYILAN OLARAK AÇIK; site sahibinin kararı bu. Geriye üç söz
+ * kalıyor ve üçü de sessizce bozulabilir:
+ *   - GPC/DNT gönderen tarayıcı ölçülmez,
+ *   - gizlilik sayfasından çıkış tek düğmedir ve çerezleri siler,
+ *   - kapatıldıktan sonra ölçüm geri gelmez.
+ * Üçü de bozulduğunda sayfa açılmaya devam eder, araçlar çalışır; fark
+ * eden olmaz. Bu yüzden testle sabitleniyorlar.
  *
  * Node'da DOM yok; kapının dokunduğu yüzey küçük olduğu için sahte bir
  * belge yetiyor: createElement, head.appendChild, body.appendChild,
@@ -126,145 +127,107 @@ function kapiYukle(ortam) {
 }
 
 /* ------------------------------------------------------------------ */
-console.log("KARAR VERILMEDEN GOOGLE'A HICBIR ISTEK GITMEZ");
-/* Consent Mode'un "denied" varsayilani bile Google'a cerezsiz bir sinyal
-   gonderir. Burada gtag betigi HIC yuklenmiyor; test tam olarak bunu
-   olcuyor. */
+console.log("VARSAYILAN: olcum ACIK, hicbir sey sorulmaz");
 var o1 = sahteOrtam();
 var K1 = kapiYukle(o1);
-esit("durum: henuz sorulmadi", K1.durum(), null);
-esit("hicbir betik yuklenmedi", o1.eklenenBetikler.length, 0);
-esit("dataLayer olusturulmadi", typeof o1.pencere.dataLayer, "undefined");
-esit("gtag tanimlanmadi", typeof o1.pencere.gtag, "undefined");
-dogru("serit gosterildi", o1.govde.length === 1);
-esit("serit sinifi", o1.govde[0].sinif, "onay-serit");
-
-console.log("\nREDDETMEK KABUL ETMEK KADAR KOLAY");
-/* Reddi soluk bir baglantiya indirmek teknik olarak "secenek sunmak" ama
-   pratikte yonlendirmedir; reddi zorlastiran bir onay hukuken de
-   alinmamis sayilir. Iki dugme ayni sinifta ve ayni katmanda. */
-var dugmeler = o1.govde[0].cocuklar.filter(function (c) { return c.sinif === "onay-dugmeler"; });
-esit("dugme kabi var", dugmeler.length, 1);
-var ikisi = dugmeler[0].cocuklar;
-esit("tam iki dugme", ikisi.length, 2);
-esit("ikisi de ayni sinifta", ikisi[0].sinif, ikisi[1].sinif);
-esit("once RET geliyor", ikisi[0].metin, "Ölçme");
-esit("sonra KABUL", ikisi[1].metin, "Ölçebilirsin");
-/* Kapatma carpisi YOK: carpi "sonra sorarim" mi "kabul" mu belli olmaz
-   ve bu belirsizlik hep sitenin lehine yorumlanir. Seritte TOPLAM iki
-   dugme olmali -- ucuncu bir dugme cikarsa bu kontrol kirilir. */
-function dugmeSay(e) {
-  var n = (e.metin === "Ölçme" || e.metin === "Ölçebilirsin") ? 1 : 0;
-  (e.cocuklar || []).forEach(function (c) { n += dugmeSay(c); });
-  return n;
-}
-esit("seritte TOPLAM iki dugme", dugmeSay(o1.govde[0]), 2);
-esit("seridin iki cocugu var (metin + dugmeler)", o1.govde[0].cocuklar.length, 2);
-
-console.log("\nRET: hicbir sey yuklenmez, karar SAKLANIR");
-ikisi[0].dinleyiciler.click();
-esit("durum ret", K1.durum(), "ret");
-esit("betik yok", o1.eklenenBetikler.length, 0);
-esit("serit kaldirildi", o1.govde.length, 0);
-esit("karar depoda", o1.kutu["korayoner.olcum-onayi"], "ret");
-
-console.log("\nKABUL: gtag YUKLENIR ve dogru kimlikle");
-var o2 = sahteOrtam();
-var K2 = kapiYukle(o2);
-var d2 = o2.govde[0].cocuklar.filter(function (c) { return c.sinif === "onay-dugmeler"; })[0];
-d2.cocuklar[1].dinleyiciler.click();
-esit("durum kabul", K2.durum(), "kabul");
-esit("tek betik yuklendi", o2.eklenenBetikler.length, 1);
-dogru("gtag betigi", /googletagmanager\.com\/gtag\/js\?id=G-/.test(o2.eklenenBetikler[0]));
-dogru("config cagrisi yapildi", (o2.pencere.dataLayer || []).some(function (a) {
+esit("durum kabul", K1.durum(), "kabul");
+esit("secim yapilmadi", K1.secimYapildi(), false);
+esit("serit YOK", o1.govde.length, 0);
+esit("gtag yuklendi", o1.eklenenBetikler.length, 1);
+dogru("gtag betigi", /googletagmanager\.com\/gtag\/js\?id=G-/.test(o1.eklenenBetikler[0]));
+dogru("config cagrisi", (o1.pencere.dataLayer || []).some(function (a) {
   return a[0] === "config";
 }));
 
-console.log("\nIkinci yuklemede karar HATIRLANIR, serit cikmaz");
-var o3 = sahteOrtam({ baslangic: { "korayoner.olcum-onayi": "kabul" } });
+console.log("\nTARAYICI RET DIYORSA OLCULMEZ");
+/* GPC bazi yargi alanlarinda baglayici; DNT degil ama acikca ifade
+   edilmis bir tercih. Ikisi de ziyaretcilerin cok kucuk bir azinligi --
+   yani bu kurala uymanin olcum hacmine bedeli yok. */
+var o2 = sahteOrtam({ navigator: { globalPrivacyControl: true } });
+var K2 = kapiYukle(o2);
+esit("GPC: durum ret", K2.durum(), "ret");
+esit("GPC: betik YOK", o2.eklenenBetikler.length, 0);
+esit("GPC: dataLayer yok", typeof o2.pencere.dataLayer, "undefined");
+
+var o3 = sahteOrtam({ navigator: { doNotTrack: "1" } });
 var K3 = kapiYukle(o3);
-esit("kabul hatirlandi", K3.durum(), "kabul");
-esit("serit YOK", o3.govde.length, 0);
-esit("gtag dogrudan yuklendi", o3.eklenenBetikler.length, 1);
+esit("DNT: durum ret", K3.durum(), "ret");
+esit("DNT: betik YOK", o3.eklenenBetikler.length, 0);
 
-var o4 = sahteOrtam({ baslangic: { "korayoner.olcum-onayi": "ret" } });
+/* ACIK kabul tarayici sinyalini yener: kullanicinin bu sitede verdigi
+   karar daha sonraki ve daha ozgul bir beyandir. */
+var o4 = sahteOrtam({
+  navigator: { doNotTrack: "1" },
+  baslangic: { "korayoner.olcum-onayi": "kabul" }
+});
 var K4 = kapiYukle(o4);
-esit("ret hatirlandi", K4.durum(), "ret");
-esit("ret sonrasi serit YOK", o4.govde.length, 0);
-esit("ret sonrasi betik YOK", o4.eklenenBetikler.length, 0);
+esit("acik kabul DNT'yi yener", K4.durum(), "kabul");
+esit("acik kabulde olcum basliyor", o4.eklenenBetikler.length, 1);
 
-console.log("\nGERI ALMAK VERMEK KADAR KOLAY — ve cerezler SILINIR");
+console.log("\nCIKIS: kapatilinca olcum baslamaz ve KALICI olur");
+var o5 = sahteOrtam({ baslangic: { "korayoner.olcum-onayi": "ret" } });
+var K5 = kapiYukle(o5);
+esit("ret durumu", K5.durum(), "ret");
+esit("secim yapildi", K5.secimYapildi(), true);
+esit("betik YOK", o5.eklenenBetikler.length, 0);
+
+console.log("\nCIKIS CEREZLERI DE SILER");
 /* Yalnizca "bir daha yukleme" demek, ORTADA DURAN veriyi birakmak olurdu. */
-var o5 = sahteOrtam({
-  baslangic: { "korayoner.olcum-onayi": "kabul" },
+var o6 = sahteOrtam({
   cerezler: ["_ga=GA1.1.123", "_ga_ABC=GS1.1.9", "_gid=GA1.2.7", "tema=koyu"]
 });
-var K5 = kapiYukle(o5);
-K5.ver(false);
-esit("durum ret", K5.durum(), "ret");
-var kalan = o5.cerezler();
+var K6 = kapiYukle(o6);
+K6.ver(false);
+esit("durum ret", K6.durum(), "ret");
+esit("karar depoda", o6.kutu["korayoner.olcum-onayi"], "ret");
+var kalan = o6.cerezler();
 dogru("_ga silindi", !kalan.some(function (c) { return /^_ga=/.test(c); }));
 dogru("_ga_ABC silindi", !kalan.some(function (c) { return /^_ga_ABC=/.test(c); }));
 dogru("_gid silindi", !kalan.some(function (c) { return /^_gid=/.test(c); }));
 dogru("ILGISIZ cerez korundu", kalan.some(function (c) { return /^tema=/.test(c); }));
 
-console.log("\nTARAYICI ZATEN HAYIR DIYORSA SORULMAZ");
-/* GPC bazi yargi alanlarinda baglayici; DNT degil ama acikca ifade
-   edilmis bir tercih. Ikisi de "sorma, cevap belli" demek -- ustune
-   banner gostermek verilen cevabi yok saymak olur. */
-var o6 = sahteOrtam({ navigator: { globalPrivacyControl: true } });
-var K6 = kapiYukle(o6);
-esit("GPC: durum ret", K6.durum(), "ret");
-esit("GPC: serit YOK", o6.govde.length, 0);
-esit("GPC: betik YOK", o6.eklenenBetikler.length, 0);
-
-var o7 = sahteOrtam({ navigator: { doNotTrack: "1" } });
-var K7 = kapiYukle(o7);
-esit("DNT: durum ret", K7.durum(), "ret");
-esit("DNT: betik YOK", o7.eklenenBetikler.length, 0);
-
-/* Ama ACIK bir kabul, tarayici sinyalini yener: kullanicinin kendi
-   sitede verdigi karar daha sonraki ve daha ozgul bir beyandir. */
-var o8 = sahteOrtam({
-  navigator: { doNotTrack: "1" },
-  baslangic: { "korayoner.olcum-onayi": "kabul" }
-});
-var K8 = kapiYukle(o8);
-esit("acik kabul DNT'yi yener", K8.durum(), "kabul");
-
 console.log("\nDEPO YOKKEN (gizli sekme) SAYFA PATLAMAZ");
-/* Onay sorgusu patlarsa sayfa hic acilmaz. Depo erisimi gizli sekmede
-   null donmez, ISTISNA ATAR. */
-var o9 = sahteOrtam({ depoVar: false });
-var K9 = null;
-try { K9 = kapiYukle(o9); } catch (e) { hata++; console.error("  BASARISIZ  kapi yuklenirken patladi: " + e.message); }
-if (K9) {
-  esit("durum: sorulmadi", K9.durum(), null);
-  esit("serit yine gosterildi", o9.govde.length, 1);
-  /* Karar saklanamasa bile o oturumda uygulanir: kabul edildiyse olcum
-     baslar, yalnizca sonraki ziyarette tekrar sorulur. */
-  K9.ver(true);
-  esit("depo olmasa da olcum basladi", o9.eklenenBetikler.length, 1);
+/* Depo erisimi gizli sekmede null donmez, ISTISNA ATAR. Tercih sorgusu
+   patlarsa sayfa hic acilmaz. */
+var o7 = sahteOrtam({ depoVar: false });
+var K7 = null;
+try { K7 = kapiYukle(o7); } catch (e) {
+  hata++; console.error("  BASARISIZ  yuklenirken patladi: " + e.message);
+}
+if (K7) {
+  esit("varsayilan yine calisti", K7.durum(), "kabul");
+  /* Karar saklanamasa bile O OTURUMDA uygulanir; aksi halde "kapat"
+     dugmesi hicbir sey yapmiyormus gibi gorunurdu. */
+  K7.ver(false);
+  esit("kapatma o oturumda gecerli", K7.durum(), "ret");
 }
 
 console.log("\nKarar duyurulur (live.js sehir tahminini buna bagliyor)");
-var o10 = sahteOrtam();
-var K10 = kapiYukle(o10);
+var o8 = sahteOrtam();
+var K8 = kapiYukle(o8);
 var duyurulan = [];
-K10.dinle(function (d) { duyurulan.push(d); });
-K10.dinle(function () { throw new Error("bozuk dinleyici"); });
+K8.dinle(function (d) { duyurulan.push(d); });
+K8.dinle(function () { throw new Error("bozuk dinleyici"); });
 var sonDuyuru = [];
-K10.dinle(function (d) { sonDuyuru.push(d); });
-K10.ver(true);
-esit("dinleyici cagrildi", duyurulan[0], "kabul");
-esit("bozuk dinleyici digerlerini engellemedi", sonDuyuru[0], "kabul");
+K8.dinle(function (d) { sonDuyuru.push(d); });
+K8.ver(false);
+esit("dinleyici cagrildi", duyurulan[0], "ret");
+esit("bozuk dinleyici digerlerini engellemedi", sonDuyuru[0], "ret");
 
 console.log("\nOlcum iki kez baslatilmaz");
-var o11 = sahteOrtam({ baslangic: { "korayoner.olcum-onayi": "kabul" } });
-var K11 = kapiYukle(o11);
-K11.ver(true);
-K11.ver(true);
-esit("betik tek", o11.eklenenBetikler.length, 1);
+var o9 = sahteOrtam();
+var K9 = kapiYukle(o9);
+K9.ver(true);
+K9.ver(true);
+esit("betik tek", o9.eklenenBetikler.length, 1);
+
+console.log("\nKapatip yeniden acmak olcumu geri getirir");
+var o10 = sahteOrtam({ baslangic: { "korayoner.olcum-onayi": "ret" } });
+var K10 = kapiYukle(o10);
+esit("once kapali", o10.eklenenBetikler.length, 0);
+K10.ver(true);
+esit("acinca basladi", o10.eklenenBetikler.length, 1);
+esit("durum kabul", K10.durum(), "kabul");
 
 if (hata) { console.error("\n" + hata + " kontrol basarisiz."); process.exit(1); }
-console.log("\n" + gecen + " gecti, 0 kaldi. (olcum onayi kontrolleri)");
+console.log("\n" + gecen + " gecti, 0 kaldi. (olcum tercihi kontrolleri)");

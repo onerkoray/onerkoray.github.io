@@ -301,6 +301,15 @@ jobs:
       - name: Araç kartlarındaki güncelleme tarihleri güncel mi
         run: python tools/arac-guncelleme.py --check
 
+      # lastmod bir IDDIADIR: "bu sayfanin icerigi bu tarihte degisti".
+      # Sisirilmis lastmod tazelik sinyalini guclendirmez, SUSTURUR --
+      # arama motoru bos yere gelir ve zamanla o alana guvenmemeyi
+      # ogrenir. Denetim, tarihleri arac kartlariyla AYNI olcute gore
+      # dogruluyor: tarama commit'leri ve yalnizca damga degisen
+      # commit'ler sayilmiyor.
+      - name: Sitemap lastmod tarihleri güncel mi
+        run: python tools/site-haritasi.py --check
+
       - name: Marka ikonları favicon.svg ile uyumlu mu
         run: |
           pip install --quiet pillow

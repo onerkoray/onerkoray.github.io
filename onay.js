@@ -1,34 +1,28 @@
 /*!
- * Ölçüm onayı — analitik ve konum isteği için rıza kapısı.
+ * Ölçüm tercihi — analitiğin tek giriş kapısı.
  *
- * NEDEN VAR: gizlilik sayfası ne toplandığını en baştan dürüstçe yazıyordu
- * (KVKK m.9 yurt dışı aktarımı dahil), ama BİLDİRİM RIZA DEĞİLDİR. Google
- * Analytics her sayfada, hiçbir şey sorulmadan yükleniyordu. Sitenin kendi
- * iddiası — "verileriniz cihazınızdan çıkmaz" — Finansal İkiz'le birlikte
- * çok daha ağır bir söz hâline geldi; o sözün altını, arka planda sessizce
- * çalışan bir ölçüm oyar.
+ * ÖLÇÜM VARSAYILAN OLARAK AÇIK. Site sahibinin kararı: arama görünürlüğü
+ * öncelikli ve ölçüm hacminden bedel ödenmeyecek. Bu yüzden onay şeridi
+ * yok; ziyaretçi hiçbir şeye tıklamadan ölçülür.
  *
- * KURALLAR
+ * Buna rağmen bu dosya duruyor, çünkü üç şeyi birden yapıyor ve üçü de
+ * ölçüm hacmine dokunmuyor:
  *
- * 1. ONAY GELENE KADAR HİÇBİR İSTEK GİTMEZ. Google Consent Mode'un
- *    "denied" varsayılanı bile Google'a çerezsiz bir sinyal gönderir;
- *    burada gtag betiği HİÇ yüklenmiyor. Karar verilmemişse ölçüm yok.
+ * 1. TARAYICININ RET BEYANINA UYAR. Global Privacy Control (bazı yargı
+ *    alanlarında bağlayıcı) ya da Do Not Track gönderen bir tarayıcı
+ *    ölçülmez. Bunlar ziyaretçilerin çok küçük bir azınlığı; karşılığında
+ *    açıkça ifade edilmiş bir tercih çiğnenmemiş oluyor.
  *
- * 2. REDDETMEK KABUL ETMEK KADAR KOLAY. İki düğme aynı boyutta, aynı
- *    ağırlıkta, yan yana. Kapatma çarpısı yok — çünkü çarpı "sonra
- *    sorarım" mı yoksa "kabul" mü belli olmaz ve bu belirsizlik hep
- *    sitenin lehine yorumlanır.
+ * 2. ÇIKIŞ TEK DÜĞME. Gizlilik sayfasındaki denetim ölçümü kapatır ve
+ *    Google'ın bıraktığı çerezleri siler. "Google'ın eklentisini kurun"
+ *    demek, çıkışı sitenin dışına havale etmekti.
  *
- * 3. GERİ ALMAK VERMEK KADAR KOLAY. Gizlilik sayfasındaki düğme kararı
- *    her iki yönde değiştirir; kabul geri alınınca Google'ın bıraktığı
- *    çerezler de silinir.
+ * 3. ANALİTİK TEK YERDEN YÜKLENİR. Ölçüm kimliği ve yükleme mantığı 118
+ *    sayfaya kopyalanmış satır içi bir blok değil, tek dosya. Satır içi
+ *    blok gittiği için CSP'de script hash'i de kalmadı: script-src artık
+ *    ne hash ne 'unsafe-inline' taşıyor.
  *
- * 4. TARAYICI ZATEN "HAYIR" DİYORSA SORULMAZ. Global Privacy Control
- *    (ve Do Not Track) hukuken geçerli bir ret beyanıdır; o sinyal varken
- *    banner göstermek, kullanıcının verdiği cevabı yok saymak olur.
- *
- * 5. KARAR VERİLMEDEN SAYFA TAM ÇALIŞIR. Banner engelleyici değil; alt
- *    şeritte durur, içeriği itmez (sabit konum, düzen kayması yok).
+ * Kararı geri çevirmek isteyen için tek yer: VARSAYILAN sabiti.
  *
  * Lisans: MIT — Koray Öner, https://korayoner.dev/gizlilik/
  */
@@ -39,6 +33,10 @@
   var OLCUM = "G-2GNZPW1LPT";
   var KABUL = "kabul";
   var RET = "ret";
+
+  /* Kullanıcı bir şey seçmediyse ve tarayıcı da ret sinyali göndermiyorsa
+     geçerli olan karar. "ret" yapmak ölçümü kapatır; tek değişiklik o. */
+  var VARSAYILAN = KABUL;
 
   /* Depo erişimi gizli sekmede ya da site verisi kapalıyken PATLAR.
      Onay sorgusu patlarsa sayfa açılmaz; bu yüzden her erişim sarmalı. */
@@ -73,8 +71,16 @@
   function durum() {
     if (oturumKarari) return oturumKarari;
     var d = oku();
-    if (d === KABUL || d === RET) return d;
-    return tarayiciRetDiyor() ? RET : null;   // null = henüz sorulmadı
+    if (d === KABUL || d === RET) return d;      // ziyaretçinin açık kararı
+    if (tarayiciRetDiyor()) return RET;          // tarayıcının ret beyanı
+    return VARSAYILAN;
+  }
+
+  /* Ziyaretçi KENDİSİ bir seçim yaptı mı? Gizlilik sayfasındaki denetim
+     "kapalı" ile "hiç dokunmadı"yı ayırt edebilsin diye ayrı duruyor. */
+  function secimYapildi() {
+    var d = oku();
+    return d === KABUL || d === RET || !!oturumKarari;
   }
 
   function kabulEdildi() { return durum() === KABUL; }
@@ -123,7 +129,6 @@
     yaz(oturumKarari);
     if (kabulMu) olcumuBaslat();
     else cerezleriSil();
-    seridiKaldir();
     duyur();
   }
 
@@ -135,60 +140,10 @@
     });
   }
 
-  /* ---------------------------------------------------------- şerit */
-
-  var serit = null;
-
-  function seridiKaldir() {
-    if (serit && serit.parentNode) serit.parentNode.removeChild(serit);
-    serit = null;
-  }
-
-  function seridiGoster() {
-    if (serit || durum() !== null) return;
-
-    serit = document.createElement("div");
-    serit.className = "onay-serit";
-    serit.setAttribute("role", "region");
-    serit.setAttribute("aria-label", "Ölçüm onayı");
-
-    var metin = document.createElement("p");
-    metin.className = "onay-metin";
-    metin.innerHTML = "Ziyaret istatistiklerini Google Analytics ile ölçmek " +
-      "istiyoruz. <strong>Hesap araçlarına girdiğiniz veriler buna dâhil " +
-      "değildir</strong> — onlar hiçbir zaman cihazınızdan çıkmaz. " +
-      '<a href="/gizlilik/">Ayrıntılar</a>';
-
-    var dugmeler = document.createElement("div");
-    dugmeler.className = "onay-dugmeler";
-
-    /* İKİ DÜĞME AYNI AĞIRLIKTA. Reddi soluk bir bağlantıya indirmek,
-       teknik olarak "seçenek sunmak" ama pratikte yönlendirmektir. */
-    var hayir = document.createElement("button");
-    hayir.type = "button";
-    hayir.className = "onay-dugme";
-    hayir.textContent = "Ölçme";
-
-    var evet = document.createElement("button");
-    evet.type = "button";
-    evet.className = "onay-dugme";
-    evet.textContent = "Ölçebilirsin";
-
-    hayir.addEventListener("click", function () { ver(false); });
-    evet.addEventListener("click", function () { ver(true); });
-
-    dugmeler.appendChild(hayir);
-    dugmeler.appendChild(evet);
-    serit.appendChild(metin);
-    serit.appendChild(dugmeler);
-    document.body.appendChild(serit);
-  }
-
   /* ------------------------------------------------------- başlangıç */
 
   function baslat() {
     if (kabulEdildi()) olcumuBaslat();
-    else seridiGoster();
   }
 
   if (document.readyState === "loading") {
@@ -200,9 +155,9 @@
   root.Onay = {
     durum: durum,
     kabulEdildi: kabulEdildi,
+    secimYapildi: secimYapildi,
     ver: ver,
     dinle: dinle,
-    sor: seridiGoster,
     tarayiciRetDiyor: tarayiciRetDiyor,
     ANAHTAR: ANAHTAR
   };
