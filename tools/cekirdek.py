@@ -106,6 +106,10 @@ DOSYALAR = [
     ("finans/profil-kopru.js",            "finans/profil-kopru.js"),
     ("finans/profil-kopru-test.js",       "finans/profil-kopru-test.js"),
 
+    # Sifre uretimi: kriptografik rastgelelik, entropi ve kirilma suresi.
+    ("keymint/sifre-motoru.js",           "keymint/sifre-motoru.js"),
+    ("keymint/sifre-test.js",             "keymint/sifre-test.js"),
+
     ("bordro/emeklilik-parametreleri.js", "bordro/emeklilik-parametreleri.js"),
     ("bordro/emeklilik-motor.js",         "bordro/emeklilik-motor.js"),
     ("bordro/emeklilik-test.js",          "bordro/emeklilik-test.js"),
@@ -195,7 +199,8 @@ def test_sayilari():
                     ("ikiz", "finans/ikiz-test.js"),
                     ("hedef", "finans/hedef-test.js"),
                     ("karar", "finans/karar-test.js"),
-                    ("kopru", "finans/profil-kopru-test.js")):
+                    ("kopru", "finans/profil-kopru-test.js"),
+                    ("sifre", "keymint/sifre-test.js")):
         try:
             r = subprocess.run(["node", yol], capture_output=True, timeout=120)
             cikti = r.stdout.decode("utf-8", "replace")
@@ -297,6 +302,7 @@ node finans/ikiz-test.js            # %(ikiz)d test
 node finans/hedef-test.js           # %(hedef)d test
 node finans/karar-test.js           # %(karar)d test
 node finans/profil-kopru-test.js    # %(kopru)d test
+node keymint/sifre-test.js          # %(sifre)d test
 ```
 
 Toplam **%(toplam)d test**. Bordro tarafındaki en güçlü referans şudur: brüt
@@ -337,6 +343,7 @@ kurum görüşü yerine geçmez.
         "profil": sayilar["profil"], "ikiz": sayilar["ikiz"],
         "hedef": sayilar["hedef"], "karar": sayilar["karar"],
         "kopru": sayilar["kopru"],
+        "sifre": sayilar["sifre"],
         "yil_ilk": min(yillar) if yillar else "?",
         "yil_son": max(yillar) if yillar else "?",
     }

@@ -5,7 +5,7 @@
  * NEDEN: bu kopru kullanicinin EN HASSAS verisini (maas, borc, varlik)
  * bir araca tasiyor. Iki kural sessizce bozulabilir ve ikisi de agir:
  *   - onay yokken veri okunursa, "verileriniz cihazinizdan cikmaz"
- *     iddiasinin dayandigi titizlik cokмis olur;
+ *     iddiasinin dayandigi titizlik cokmus olur;
  *   - araclara YAZAN bir kopru, "su hesabi bir deneyeyim" diyen birinin
  *     gercek profilini bozar.
  * Ikisi de burada sabitleniyor.

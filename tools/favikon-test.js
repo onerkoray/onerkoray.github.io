@@ -12,7 +12,7 @@
  *   1. Faviconun renkleri style.css'ten KOPMAZ (tek doğruluk kaynağı).
  *   2. Her sayfanın bağlandığı favicon dosyası GERÇEKTEN VARDIR.
  *   3. Eski yeşil gradyan geri gelmez.
- *   4. Alt projeler (decorpalette, keymint) bu sisteme çekilmez.
+ *   4. decorpalette kendi markasını korur (KeyMint 2026-09-13'te katıldı).
  */
 "use strict";
 var fs = require("fs");
@@ -48,7 +48,9 @@ function tara(dizin, out) {
   return out;
 }
 var hepsi = tara("", []);
-var ALT_PROJE = /^(decorpalette|keymint)\//;
+/* KeyMint 2026-09-13'te sisteme katildi; tek alt proje decorpalette
+   kaldi (paleti UC RENKLI NOKTAYLA anlam tasiyor). */
+var ALT_PROJE = /^decorpalette\//;
 var bizim = hepsi.filter(function (p) { return !ALT_PROJE.test(p); });
 
 /* ------------------------------------------------------------------ */
@@ -102,7 +104,7 @@ var gradyan = bizim.filter(function (p) {
 });
 dogru("gradyan/yuvarlak kap yok", gradyan.length === 0, gradyan.join(", "));
 
-console.log("\nAlt projeler kendi markasını koruyor");
+console.log("\nAlt proje kendi markasını koruyor (decorpalette)");
 var alt = hepsi.filter(function (p) { return ALT_PROJE.test(p); });
 dogru("alt proje faviconu var", alt.length > 0, "hiç bulunamadı");
 alt.forEach(function (p) {
@@ -111,6 +113,29 @@ alt.forEach(function (p) {
 });
 
 /* ------------------------------------------------------------------ */
+console.log("\nKeyMint alt araçlarının her biri kendi simgesini taşıyor");
+/* Once sekizi de ayni yesil kilidi tasiyordu; sekme seridinde hangi
+   aracin acik oldugu gorunmuyordu. Kullanicinin istedigi sey tam
+   olarak buydu: her araca ozgu bir simge. */
+var kmAraclar = ["keymint", "keymint/sifre-guc-testi", "keymint/pin-uretici",
+  "keymint/parola-cumlesi", "keymint/wifi-sifresi", "keymint/hash-uretici",
+  "keymint/base64", "keymint/uuid-uretici"];
+var kmSembol = {};
+kmAraclar.forEach(function (a) {
+  var p = a + "/favicon.svg";
+  if (!fs.existsSync(path.join(KOK, p))) {
+    hata++; console.error("  BASARISIZ  " + p + " yok");
+    return;
+  }
+  var ic = oku(p).match(/<g class="fv-sem"[^>]*>([\s\S]*?)<\/g>/);
+  kmSembol[a] = ic ? ic[1].trim() : "";
+});
+dogru("sekizinin de faviconu var", Object.keys(kmSembol).length === 8);
+var benzersiz = {};
+Object.keys(kmSembol).forEach(function (a) { benzersiz[kmSembol[a]] = 1; });
+dogru("sekiz AYRI sembol", Object.keys(benzersiz).length === 8,
+  Object.keys(benzersiz).length + " farklı sembol bulundu");
+
 console.log("\nHer sayfanın bağlandığı favicon GERÇEKTEN var");
 function sayfalar(dizin, out) {
   fs.readdirSync(path.join(KOK, dizin || "."), { withFileTypes: true })

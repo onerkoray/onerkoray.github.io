@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="logo"><rect width="32" height="32" rx="7" fill="#0e7c66"/><text x="16" y="17" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#ffffff">🔢</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="PIN Kodu Üreteci — Rastgele Güvenli PIN Oluştur">
+  <style>
+    .fv-kap { fill: #17201d }
+    .fv-sem { stroke: #f5f7f6 }
+    @media (prefers-color-scheme: dark) {
+      .fv-kap { fill: #e8eceb }
+      .fv-sem { stroke: #14181d }
+    }
+  </style>
+  <rect class="fv-kap" width="32" height="32" rx="2"/>
+  <g class="fv-sem" transform="translate(4 3)" fill="none" stroke-width="2.4"
+     stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h.01M12 9h.01M17 9h.01M7 14h.01M12 14h.01M17 14h.01"/></g>
+  <rect class="fv-vurgu" x="4" y="27.5" width="24" height="3" rx="1.5" fill="#0e7c66"/>
+</svg>

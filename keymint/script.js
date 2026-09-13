@@ -1,112 +1,159 @@
-/* KeyMint — güvenli şifre üreteci (crypto.getRandomValues), güç ölçer, tema */
+/* KeyMint şifre üreteci — arayüz.
+ *
+ * BU DOSYADA HESAP YOK. Rastgelelik, entropi ve kırılma süresi
+ * keymint/sifre-motoru.js'te; burada yalnızca alanların okunması ve
+ * sonucun yazılması var. Ayrım, motorun Node'da test edilebilmesi için:
+ * bir parola üretecinde hatalar sessizdir ve ekrana bakarak görülmez.
+ */
 (function () {
   "use strict";
+  var M = window.SifreMotoru;
+  if (!M) return;
 
-  var SETS = {
-    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    lowercase: "abcdefghijklmnopqrstuvwxyz",
-    numbers: "0123456789",
-    symbols: "!@#$%^&*()-_=+[]{};:,.?/"
-  };
-  var AMBIGUOUS = /[0O1lI|`]/g;
+  function el(id) { return document.getElementById(id); }
 
-  var el = function (id) { return document.getElementById(id); };
-
-  function randomInt(max) {
-    // Modulo bias'sız kriptografik rastgele tam sayı [0, max)
-    var arr = new Uint32Array(1);
-    var limit = Math.floor(0xFFFFFFFF / max) * max;
-    var x;
-    do { crypto.getRandomValues(arr); x = arr[0]; } while (x >= limit);
-    return x % max;
+  function secim() {
+    return {
+      uzunluk: parseInt(el("length").value, 10),
+      buyuk: el("uppercase").checked,
+      kucuk: el("lowercase").checked,
+      rakam: el("numbers").checked,
+      sembol: el("symbols").checked,
+      karisanlariCikar: el("noAmbiguous").checked,
+      herSiniftanBir: el("herSinif").checked
+    };
   }
 
-  function buildPool() {
-    var pool = "";
-    if (el("uppercase").checked) pool += SETS.uppercase;
-    if (el("lowercase").checked) pool += SETS.lowercase;
-    if (el("numbers").checked) pool += SETS.numbers;
-    if (el("symbols").checked) pool += SETS.symbols;
-    if (el("noAmbiguous").checked) pool = pool.replace(AMBIGUOUS, "");
-    return pool;
+  function sayi(x, basamak) {
+    return x.toLocaleString("tr-TR", {
+      minimumFractionDigits: basamak === undefined ? 1 : basamak,
+      maximumFractionDigits: basamak === undefined ? 1 : basamak
+    });
   }
 
-  function generate() {
-    var len = parseInt(el("length").value, 10);
-    var pool = buildPool();
-    if (!pool) {
+  function olcerYaz(bit) {
+    var s = M.seviye(bit);
+    var bar = el("meterBar"), etiket = el("strength");
+    bar.style.width = s.yuzde + "%";
+    bar.className = "meter-bar s-" + s.sinif;
+    /* Seviye HER ZAMAN yazıyla da söyleniyor: renk tek başına anlam
+       taşırsa renk körü bir ziyaretçi için gösterge boş kalır. */
+    etiket.textContent = s.ad + " · ~" + Math.round(bit) + " bit entropi";
+    etiket.className = "strength-label s-" + s.sinif;
+  }
+
+  function olcerSifirla(mesaj) {
+    el("meterBar").style.width = "0";
+    el("meterBar").className = "meter-bar";
+    el("strength").textContent = mesaj;
+    el("strength").className = "strength-label";
+    el("entropi").innerHTML = "";
+    el("sureler").innerHTML = "";
+  }
+
+  function entropiYaz(e, s) {
+    var kutu = el("entropi");
+    var parca = [
+      ["Havuz", e.havuz + " karakter",
+        "Seçili türlerin toplam karakter sayısı" +
+        (s.karisanlariCikar ? "; karışanlar çıkarıldı" : "")],
+      ["Uzunluk", s.uzunluk + " karakter", "Her karakter havuzdan bağımsız seçiliyor"],
+      ["Entropi", sayi(e.bit) + " bit",
+        "log₂(olası parola sayısı) — üretecin ölçüsü, parolanın değil"]
+    ];
+    if (e.duzeltme < 0) {
+      /* AÇIKÇA YAZILIYOR: sınıf garantisi entropiyi DÜŞÜRÜR. Çoğu araç bu
+         kuralı bir güvenlik artışı gibi sunar; aritmetik tersini söylüyor. */
+      parca.push(["Garantinin bedeli", sayi(e.duzeltme, 2) + " bit",
+        "“Her türden en az bir karakter” kuralı örnek uzayını daraltıyor, " +
+        "yani entropiyi artırmıyor — azaltıyor"]);
+    }
+    kutu.innerHTML = parca.map(function (p) {
+      return '<div><dt>' + esc(p[0]) + '</dt><dd><b>' + esc(p[1]) +
+        '</b><span>' + esc(p[2]) + '</span></dd></div>';
+    }).join("");
+  }
+
+  function sureYaz(bit) {
+    var satir = M.tumSureler(bit).map(function (s) {
+      return '<tr><th scope="row">' + esc(s.ad) +
+        '<small>' + esc(s.aciklama) + '</small></th>' +
+        '<td>' + esc(M.sureMetni(s.saniye)) + '</td></tr>';
+    }).join("");
+    el("sureler").innerHTML =
+      '<table class="sure-tablo">' +
+      '<caption>Ortalama kırılma süresi — varsayım, ölçüm değil</caption>' +
+      '<tbody>' + satir + '</tbody></table>';
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function durum(mesaj) {
+    var d = el("status");
+    if (d) d.textContent = mesaj || "";
+  }
+
+  function uret() {
+    var s = secim();
+    var r = M.uret(s);
+    if (r.hata) {
       el("password").value = "";
-      setStrength(0, "En az bir karakter türü seçin");
-      status("Lütfen en az bir karakter türü seçin.");
+      olcerSifirla("—");
+      durum(r.hata);
       return;
     }
-    var out = "";
-    for (var i = 0; i < len; i++) out += pool[randomInt(pool.length)];
-    el("password").value = out;
-    evaluate(out, pool.length);
-    status("");
+    el("password").value = r.parola;
+    olcerYaz(r.bit);
+    entropiYaz(r.entropi, s);
+    sureYaz(r.bit);
+    durum("");
   }
 
-  // Entropi = uzunluk × log2(havuz boyutu)
-  function evaluate(pw, poolSize) {
-    var entropy = pw.length * (Math.log(poolSize) / Math.log(2));
-    var pct, cls, label;
-    if (entropy < 40) { pct = 25; cls = "bad"; label = "Zayıf"; }
-    else if (entropy < 60) { pct = 55; cls = "warn"; label = "Orta"; }
-    else if (entropy < 80) { pct = 80; cls = "ok"; label = "Güçlü"; }
-    else { pct = 100; cls = "strong"; label = "Çok güçlü"; }
-    setStrength(pct, label + " · ~" + Math.round(entropy) + " bit entropi", cls);
-  }
-
-  function setStrength(pct, text, cls) {
-    var bar = el("meterBar"), s = el("strength");
-    bar.style.width = pct + "%";
-    bar.className = "meter-bar" + (cls ? " bar-" + cls : "");
-    s.textContent = "Güç: " + text;
-    s.className = "strength-label" + (cls ? " s-" + cls : "");
-  }
-
-  function status(msg) { var s = el("status"); if (s) s.textContent = msg; }
-
-  async function copy() {
-    var pw = el("password").value;
-    if (!pw) { status("Önce bir şifre üretin."); return; }
-    try {
-      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(pw);
-      else { var t = el("password"); t.removeAttribute("readonly"); t.select(); document.execCommand("copy"); t.setAttribute("readonly", ""); }
-      status("Şifre panoya kopyalandı.");
-    } catch (e) { status("Kopyalama başarısız oldu."); }
-  }
-
-  el("length").addEventListener("input", function () {
-    el("lengthValue").textContent = el("length").value;
-    generate();
-  });
-  ["uppercase", "lowercase", "numbers", "symbols", "noAmbiguous"].forEach(function (id) {
-    el(id).addEventListener("change", generate);
-  });
-  el("generateBtn").addEventListener("click", generate);
-  el("copyBtn").addEventListener("click", copy);
-
-  // Tema
-  (function () {
-    var KEY = "onerkoray.theme";
-    var order = ["auto", "light", "dark"];
-    var btn = el("themeToggle");
-    function apply(m) {
-      document.documentElement.setAttribute("data-theme", m);
-      var l = btn && btn.querySelector(".theme-toggle-label");
-      if (l) l.textContent = m.charAt(0).toUpperCase() + m.slice(1);
+  /* Ayar değişince parola ÜRETİLMİYOR, yalnızca ölçüler tazeleniyor:
+     kullanıcı kopyalamak üzereyken kutunun altından parolayı çekmek
+     sinir bozucu ve veri kaybettirici. */
+  function onizle() {
+    var s = secim();
+    var e = M.entropi(s);
+    if (!e.havuz) { olcerSifirla("En az bir karakter türü seçin"); return; }
+    if (s.herSiniftanBir && M.kumeler(s).length > s.uzunluk) {
+      olcerSifirla("Uzunluk, seçili tür sayısından küçük");
+      return;
     }
-    apply(localStorage.getItem(KEY) || "auto");
-    if (btn) btn.addEventListener("click", function () {
-      var cur = localStorage.getItem(KEY) || "auto";
-      var next = order[(order.indexOf(cur) + 1) % order.length];
-      localStorage.setItem(KEY, next); apply(next);
+    olcerYaz(e.bit);
+    entropiYaz(e, s);
+    sureYaz(e.bit);
+  }
+
+  /* ------------------------------------------------------------ bağlama */
+  var uzunluk = el("length");
+  uzunluk.addEventListener("input", function () {
+    el("lengthValue").textContent = uzunluk.value;
+    onizle();
+  });
+
+  ["uppercase", "lowercase", "numbers", "symbols", "noAmbiguous", "herSinif"]
+    .forEach(function (id) {
+      var k = el(id);
+      if (k) k.addEventListener("change", onizle);
     });
-  })();
 
-  var yr = el("year"); if (yr) yr.textContent = new Date().getFullYear();
+  el("generateBtn").addEventListener("click", uret);
 
-  generate();
+  el("copyBtn").addEventListener("click", function () {
+    var v = el("password").value;
+    if (!v) { durum("Önce bir şifre üretin."); return; }
+    if (!navigator.clipboard) { durum("Tarayıcı kopyalamayı desteklemiyor."); return; }
+    navigator.clipboard.writeText(v).then(function () {
+      durum("Kopyalandı. Pano geçmişini tutan araçlar varsa dikkat edin.");
+    }, function () {
+      durum("Kopyalanamadı; metni elle seçebilirsiniz.");
+    });
+  });
+
+  el("lengthValue").textContent = uzunluk.value;
+  uret();
 })();

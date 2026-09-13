@@ -3,6 +3,7 @@
 <head>
   <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
   <script src="../onay.js?v=0e361dc9" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KeyMint — Güçlü Şifre Üreteci | Koray Öner</title>
@@ -15,7 +16,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://korayoner.dev/keymint/">
 
-  <link rel="icon" href="favicon.svg?v=6663650e" type="image/svg+xml">
+  <link rel="icon" href="favicon.svg?v=ea6bf77b" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
   <link rel="manifest" href="manifest.json">
 
@@ -36,7 +37,8 @@
   <meta name="twitter:description" content="Güçlü ve rastgele şifreler oluşturun. Ücretsiz ve tamamen tarayıcıda.">
   <meta name="twitter:image" content="https://korayoner.dev/images/keymint-koray-oner.png">
 
-  <link rel="stylesheet" href="style.css?v=ee835a82">
+  <link rel="stylesheet" href="../style.css?v=6b09337f">
+  <link rel="stylesheet" href="arac.css?v=cc6934d8">
 
   <script type="application/ld+json">
   {
@@ -107,14 +109,14 @@
   }
   </script>
 </head>
-<body>
+<body class="calculator-page">
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
   <header class="site-header" role="banner">
     <div class="wrap header-inner">
-      <a class="brand" href="https://korayoner.dev/" aria-label="Koray Öner ana sayfa">
-        <span class="brand-mark" aria-hidden="true">🔐</span>
-        <span class="brand-name">KeyMint</span>
+      <a class="brand" href="../">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
       </a>
       <nav class="site-nav" aria-label="Birincil">
         <ul>
@@ -150,7 +152,7 @@
       </div>
     </section>
 
-    <section id="uret" aria-labelledby="uret-title">
+    <section id="uret" class="calc" data-rapor="yok" aria-labelledby="uret-title">
       <div class="wrap">
         <h2 id="uret-title" class="visually-hidden">Şifre üreteci</h2>
         <div class="tool">
@@ -174,7 +176,8 @@
               <label class="check"><input type="checkbox" id="lowercase" checked> Küçük harf (a-z)</label>
               <label class="check"><input type="checkbox" id="numbers" checked> Rakam (0-9)</label>
               <label class="check"><input type="checkbox" id="symbols" checked> Sembol (!@#$)</label>
-              <label class="check"><input type="checkbox" id="noAmbiguous"> Benzer karakterleri hariç tut (0/O, 1/l)</label>
+              <label class="check"><input type="checkbox" id="noAmbiguous"> <span>Benzer karakterleri hariç tut<small>0/O ve 1/l karışmasın; havuz küçüldüğü için entropi de düşer</small></span></label>
+              <label class="check"><input type="checkbox" id="herSinif" checked> <span>Her türden en az bir karakter<small>Birçok site bunu şart koşar; örnek uzayını daralttığı için entropiyi bir miktar düşürür</small></span></label>
             </div>
           </div>
 
@@ -182,6 +185,9 @@
             <button class="btn btn-primary" type="button" id="generateBtn">Yeni şifre üret</button>
           </div>
           <p class="status" id="status" role="status" aria-live="polite"></p>
+
+          <dl class="entropi-kutu" id="entropi"></dl>
+          <div id="sureler"></div>
         </div>
       </div>
     </section>
@@ -191,14 +197,14 @@
         <h2 id="araclar-title">KeyMint şifre &amp; güvenlik araçları</h2>
         <p class="muted">Tümü ücretsiz, reklamsız ve tamamen tarayıcıda çalışır. Koray Öner tarafından geliştirildi.</p>
         <ul class="tool-grid">
-          <li class="tool-card"><h3><span class="logo-badge" aria-hidden="true">🔐</span> <a href="./">Şifre Üreteci</a></h3><p>Güçlü, rastgele ve güvenli şifreler oluşturun.</p></li>
-          <li class="tool-card"><h3><span class="logo-badge" aria-hidden="true">🛡️</span> <a href="sifre-guc-testi/">Şifre Güç Testi</a></h3><p>Parolanızın gücünü ve tahmini kırılma süresini ölçün.</p></li>
-          <li class="tool-card"><h3><span class="logo-badge" aria-hidden="true">🔢</span> <a href="pin-uretici/">PIN Kodu Üreteci</a></h3><p>4-8 haneli rastgele ve güvenli PIN oluşturun.</p></li>
-          <li class="tool-card"><h3><span class="logo-badge" aria-hidden="true">📝</span> <a href="parola-cumlesi/">Parola Cümlesi Üreteci</a></h3><p>Kolay hatırlanan, kelimelerden oluşan güçlü parolalar.</p></li>
-          <li class="tool-card"><h3><span class="logo-badge" aria-hidden="true">📡</span> <a href="wifi-sifresi/">WiFi Şifresi Üreteci</a></h3><p>Kolay yazılan, güçlü WiFi parolaları.</p></li>
-          <li class="tool-card"><h3><span class="logo-badge" aria-hidden="true">#</span> <a href="hash-uretici/">Hash Üreteci</a></h3><p>Metnin SHA-256/512 özetini hesaplayın.</p></li>
-          <li class="tool-card"><h3><span class="logo-badge" aria-hidden="true">⇄</span> <a href="base64/">Base64 Kodlayıcı</a></h3><p>Metni Base64'e kodlayın veya çözün.</p></li>
-          <li class="tool-card"><h3><span class="logo-badge" aria-hidden="true">🆔</span> <a href="uuid-uretici/">UUID Üreteci</a></h3><p>Rastgele benzersiz kimlikler (UUID v4) üretin.</p></li>
+          <li class="tool-card"><h3><svg class="km-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> <a href="./">Şifre Üreteci</a></h3><p>Güçlü, rastgele ve güvenli şifreler oluşturun.</p></li>
+          <li class="tool-card"><h3><svg class="km-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 4.4 3.4 8.2 8 9 4.6-.8 8-4.6 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg> <a href="sifre-guc-testi/">Şifre Güç Testi</a></h3><p>Parolanızın gücünü ve tahmini kırılma süresini ölçün.</p></li>
+          <li class="tool-card"><h3><svg class="km-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h.01M12 9h.01M17 9h.01M7 14h.01M12 14h.01M17 14h.01"/></svg> <a href="pin-uretici/">PIN Kodu Üreteci</a></h3><p>4-8 haneli rastgele ve güvenli PIN oluşturun.</p></li>
+          <li class="tool-card"><h3><svg class="km-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h9"/></svg> <a href="parola-cumlesi/">Parola Cümlesi Üreteci</a></h3><p>Kolay hatırlanan, kelimelerden oluşan güçlü parolalar.</p></li>
+          <li class="tool-card"><h3><svg class="km-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><path d="M12 19.5h.01"/></svg> <a href="wifi-sifresi/">WiFi Şifresi Üreteci</a></h3><p>Kolay yazılan, güçlü WiFi parolaları.</p></li>
+          <li class="tool-card"><h3><svg class="km-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 4 7 20M17 4l-2 16M4 9h16M3 15h16"/></svg> <a href="hash-uretici/">Hash Üreteci</a></h3><p>Metnin SHA-256/512 özetini hesaplayın.</p></li>
+          <li class="tool-card"><h3><svg class="km-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 8 3 12l4 4"/><path d="m17 8 4 4-4 4"/><path d="M14 5 10 19"/></svg> <a href="base64/">Base64 Kodlayıcı</a></h3><p>Metni Base64'e kodlayın veya çözün.</p></li>
+          <li class="tool-card"><h3><svg class="km-ikon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10v4M11 10v4M15 10h2v4h-2z"/></svg> <a href="uuid-uretici/">UUID Üreteci</a></h3><p>Rastgele benzersiz kimlikler (UUID v4) üretin.</p></li>
         </ul>
       </div>
     </section>
@@ -313,6 +319,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=a5949f90" defer></script>
+  <script src="sifre-motoru.js?v=559a9200" defer></script>
+  <script src="script.js?v=022045d3" defer></script>
 </body>
 </html>
