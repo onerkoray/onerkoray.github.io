@@ -25,6 +25,8 @@
   function n0(id) { var v = say(el(id).value); return isFinite(v) ? v : 0; }
 
   /* ---------------------------------------------------------- satırlar */
+  /* Tablonun tasiyabilecegi en cok satir; kopru de bunu okuyor. */
+  var EN_COK = 6;
   var VARSAYILAN = [
     { ad: "Kredi kartı", bakiye: "40000", faiz: "3,75" },
     { ad: "Taşıt kredisi", bakiye: "150000", faiz: "1,9" }
@@ -172,9 +174,89 @@
   }
 
   /* --------------------------------------------------------------- bağla */
+  /* PROFİL KÖPRÜSÜ.
+     "Aylık artan para" profilde YOK; net gelirden toplam gideri
+     çıkarmak gerekiyor ve net, brütten bordro motoruyla hesaplanıyor.
+     Motor tembel iniyor: bu sayfanın açılışı değişmiyor.
+
+     "Mevcut acil durum fonu" için yalnızca NAKİT VE MEVDUAT sayılıyor.
+     Profil fonu, dövizi, altını da likit sayıyor ama onlar acil durum
+     rezervi değil yatırım; hepsini toplayıp "fonunuz bu kadar" demek,
+     kullanıcıya olduğundan güvenli bir tablo gösterirdi. */
+  if (window.ProfilKopru) {
+    var PK = window.ProfilKopru;
+    PK.bagla({
+      hedef: el("pk-alan"),
+      alanlar: ["gelir", "gider", "borc", "varlik"],
+      yol: "../finansal-ikiz/",
+      doldur: function (p) {
+        var yapilan = [];
+
+        var zorunlu = p.giderler.reduce(function (a, k) {
+          return a + (k.zorunlu ? k.aylik : 0);
+        }, 0);
+        if (zorunlu > 0) {
+          el("in-gider").value = Math.round(zorunlu);
+          yapilan.push("aylık zorunlu gider");
+        }
+
+        var rezerv = p.varliklar.reduce(function (a, v) {
+          return a + (v.tur === "nakit" || v.tur === "mevduat" ? v.deger : 0);
+        }, 0);
+        if (rezerv > 0) {
+          el("in-fon").value = Math.round(rezerv);
+          yapilan.push("acil durum fonu (yalnızca nakit ve mevduat)");
+        }
+
+        if (p.varsayimlar && p.varsayimlar.enflasyon > 0) {
+          el("in-enf").value = (p.varsayimlar.enflasyon * 100)
+            .toFixed(1).replace(".", ",");
+          yapilan.push("beklenen enflasyon");
+        }
+
+        if (p.borclar.length) {
+          el("borc-govde").innerHTML = "";
+          var alinan = p.borclar.slice(0, EN_COK);
+          alinan.forEach(function (b) {
+            satirEkle({ ad: b.ad, bakiye: String(Math.round(b.kalanAnapara)),
+              faiz: (b.aylikFaiz * 100).toFixed(2).replace(".", ",") });
+          });
+          yapilan.push(alinan.length + " borç kalemi");
+          if (p.borclar.length > alinan.length) {
+            yapilan.push("profildeki " + p.borclar.length +
+              " borçtan ilk " + alinan.length + " tanesi (araç daha fazlasını taşımıyor)");
+          }
+        }
+
+        /* Net gelir motoru gerektiriyor; bu yüzden SÖZ dönüyoruz. */
+        return PK.ucretNeti(p).then(function (net) {
+          var toplamGider = p.giderler.reduce(function (a, k) { return a + k.aylik; }, 0);
+          var digerGelir = p.gelirler.reduce(function (a, g) {
+            return a + (g.tur === "ucret" ? 0 : g.aylikNet);
+          }, 0);
+          var artan = net + digerGelir - toplamGider;
+          if (artan > 0) {
+            el("in-fazla").value = Math.round(artan);
+            yapilan.push("aylık artan para (net gelir − gider)");
+          } else if (net + digerGelir > 0) {
+            /* Artan negatifse alan DOLDURULMUYOR: sıfır yazmak, açığı
+               "artan yok" diye yumuşatmak olurdu. Durum söyleniyor. */
+            yapilan.push("aylık artan para çıkmadı — gideriniz gelirinizi aşıyor");
+          }
+          recalc();
+          return yapilan;
+        }, function () {
+          recalc();
+          yapilan.push("net gelir hesaplanamadı (bordro motoru yüklenemedi)");
+          return yapilan;
+        });
+      }
+    });
+  }
+
   VARSAYILAN.forEach(satirEkle);
   el("ekle").addEventListener("click", function () {
-    if (document.querySelectorAll(".dm-satir").length >= 6) return;
+    if (document.querySelectorAll(".dm-satir").length >= EN_COK) return;
     satirEkle(); recalc();
   });
   el("borc-govde").addEventListener("click", function (e) {

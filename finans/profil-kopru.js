@@ -52,6 +52,70 @@
     });
   }
 
+  /* TEMBEL YÜKLEME. Bazı araçlar profildeki BRÜT ücretten NET'i
+     hesaplamak zorunda — profil neti bilerek saklamıyor, çünkü net
+     yıla ve mevzuata bağlı ve saklanan bir net sessizce eskir. Neti
+     hesaplamak da bordro motorunu gerektiriyor (~20 KB).
+
+     O motoru sayfa açılışında yüklemek, butona hiç basmayacak
+     ziyaretçilerin de faturayı ödemesi demekti. Bunun yerine betikler
+     ilk tıklamada geliyor; sayfa açılışı hiç değişmiyor. */
+  var yuklenen = {};
+  function betikYukle(yollar) {
+    return Promise.all((yollar || []).map(function (yol) {
+      if (yuklenen[yol]) return yuklenen[yol];
+      yuklenen[yol] = new Promise(function (coz, at) {
+        var e = document.createElement("script");
+        e.src = yol;
+        e.onload = function () { coz(); };
+        e.onerror = function () {
+          /* Başarısız yükleme HATIRLANMAZ: ağ bir kez tökezlediyse
+             ikinci tıklama yeniden denemeli. */
+          delete yuklenen[yol];
+          at(new Error("yüklenemedi: " + yol));
+        };
+        document.head.appendChild(e);
+      });
+      return yuklenen[yol];
+    }));
+  }
+
+  /**
+   * Profildeki ÜCRET gelirinin aylık NETİ.
+   *
+   * Profil neti bilerek saklamıyor: net yıla ve mevzuata bağlı, saklanan
+   * bir net bir sonraki bordro yılında sessizce yanlışa döner. O yüzden
+   * net her seferinde bordro motorundan hesaplanıyor — ve motor burada
+   * TEMBEL yükleniyor, çünkü butona basmayan ziyaretçinin onu indirmesi
+   * için bir sebep yok.
+   *
+   * ON İKİ AYIN ORTALAMASI ALINIYOR, OCAK AYI DEĞİL. Kümülatif gelir
+   * vergisi tarifesi yüzünden net maaş yıl içinde DÜŞÜYOR; Ocak netini
+   * "aylık net" saymak, yıllık geliri sistematik olarak yukarı okumak
+   * olurdu. Aynı kural finans/nakit-akisi-motoru.js'te de geçerli.
+   *
+   * @returns {Promise<number>} aylık net (ücret geliri yoksa 0)
+   */
+  function ucretNeti(p, secenek) {
+    var o = secenek || {};
+    var kok = o.kok || "../";
+    var ucret = null;
+    (p && p.gelirler ? p.gelirler : []).forEach(function (g) {
+      if (g.tur === "ucret" && g.aylikBrut > 0 &&
+          (!ucret || g.aylikBrut > ucret.aylikBrut)) ucret = g;
+    });
+    if (!ucret) return Promise.resolve(0);
+
+    return betikYukle([kok + "bordro/parametreler.js",
+      kok + "bordro/motor.js"]).then(function () {
+      var B = (typeof window !== "undefined") ? window.Bordro : null;
+      if (!B || !B.hesaplaYil) throw new Error("bordro motoru yok");
+      var yil = o.yil || B.sonYil();
+      var r = B.hesaplaYil(ucret.aylikBrut, yil);
+      return r.toplam.net / 12;
+    });
+  }
+
   function esc(s) {
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
       .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -100,21 +164,40 @@
 
     var dugme = o.hedef.querySelector("#pk-doldur");
     var sonuc = o.hedef.querySelector("#pk-sonuc");
-    dugme.addEventListener("click", function () {
-      var doldurulan;
-      try {
-        doldurulan = o.doldur(p) || [];
-      } catch (e) {
-        sonuc.textContent = "Profil okunamadı; alanlar değiştirilmedi.";
-        return;
-      }
-      /* NE DOLDURULDUGU SOYLENIR. "Dolduruldu" deyip gecmek, kullanicinin
-         formuna ne oldugunu gormeden devam etmesine yol acardi. */
-      sonuc.textContent = doldurulan.length
+    /* NE DOLDURULDUGU SOYLENIR. "Dolduruldu" deyip gecmek, kullanicinin
+       formuna ne oldugunu gormeden devam etmesine yol acardi. */
+    function bildir(doldurulan) {
+      sonuc.textContent = doldurulan && doldurulan.length
         ? "Dolduruldu: " + doldurulan.join(", ") + ". Değerleri üzerine yazabilirsiniz."
         : "Bu araç için profilde kullanılabilir veri bulunamadı.";
+    }
+    function basarisiz() {
+      sonuc.textContent = "Profil okunamadı; alanlar değiştirilmedi.";
+    }
+
+    dugme.addEventListener("click", function () {
+      var sonucDeger;
+      try {
+        sonucDeger = o.doldur(p);
+      } catch (e) { basarisiz(); return; }
+
+      /* doldur() bir SÖZ döndürebilir: bazı araçlar önce kendi motorunu
+         indirmek zorunda. Bu sürede buton kilitli ve durum yazılı --
+         tıklayıp hiçbir şey olmadığını görmek, en kötü geri bildirim. */
+      if (sonucDeger && typeof sonucDeger.then === "function") {
+        dugme.disabled = true;
+        sonuc.textContent = "Profiliniz okunuyor…";
+        sonucDeger.then(function (d) {
+          dugme.disabled = false; bildir(d || []);
+        }, function () {
+          dugme.disabled = false; basarisiz();
+        });
+        return;
+      }
+      bildir(sonucDeger || []);
     });
   }
 
-  return { bagla: bagla, veriVar: veriVar };
+  return { bagla: bagla, veriVar: veriVar, betikYukle: betikYukle,
+    ucretNeti: ucretNeti };
 });

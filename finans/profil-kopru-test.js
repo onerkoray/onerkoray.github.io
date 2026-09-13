@@ -38,6 +38,8 @@ function sahteHedef() {
       if (kutu.innerHTML.indexOf(sec.replace("#", 'id="')) < 0) return null;
       var ad = sec.replace("#", "");
       return {
+        set disabled(v) { kutu[ad + "Kilit"] = !!v; },
+        get disabled() { return !!kutu[ad + "Kilit"]; },
         addEventListener: function (tip, f) { dinleyiciler[ad + ":" + tip] = f; },
         set textContent(v) { kutu[ad + "Metin"] = v; },
         get textContent() { return kutu[ad + "Metin"] || ""; }
@@ -204,5 +206,143 @@ K.bagla(null);
 K.bagla({});
 dogru("eksik girdide patlamiyor", true);
 
-if (hata) { console.error("\n" + hata + " kontrol basarisiz."); process.exit(1); }
-console.log("\n" + gecen + " gecti, 0 kaldi. (profil koprusu kontrolleri)");
+/* ------------------------------------------------------------------ */
+console.log("\nucretNeti — brutten net, TEMBEL yuklenen bordro motoruyla");
+/* Profil neti BILEREK saklamiyor: net yila ve mevzuata bagli, saklanan
+   bir net bir sonraki bordro yilinda sessizce yanlisa doner. Bu yuzden
+   net her seferinde motordan hesaplaniyor -- ve motor yalnizca butona
+   basilinca iniyor. Asagidaki sahte DOM tam da o inisi olculuyor. */
+var istenenBetikler = [];
+global.document = {
+  head: { appendChild: function (e) { istenenBetikler.push(e.src); e.onload(); } },
+  createElement: function () { return {}; }
+};
+global.window = {};
+
+console.log("  Ucret geliri yoksa motor HIC INDIRILMEZ");
+/* Indirilmemesi bir ayrinti degil: ucret geliri olmayan birinin 20 KB
+   bordro motorunu indirmesi icin hicbir sebep yok. */
+var ucretsiz = P.normalize({ gelirler: [{ tur: "kira", aylikNet: 15000 }] });
+var adim = [];
+K.ucretNeti(ucretsiz).then(function (net) {
+  esit("ucret yoksa net 0", net, 0);
+  esit("hic betik indirilmedi", istenenBetikler.length, 0);
+  adim.push("ucretsiz");
+
+  /* Motor indirildiginde: dogru dosyalar, dogru sirada. */
+  global.window.Bordro = {
+    sonYil: function () { return 2026; },
+    hesaplaYil: function (brut, yil) {
+      /* Gercek motor degil; burada olculen sey KOPRUNUN davranisi:
+         hangi tutari veriyor, sonucu nasil okuyor. */
+      sonCagri = { brut: brut, yil: yil };
+      return { toplam: { net: brut * 12 * 0.7 } };
+    }
+  };
+  var sonCagriYerel = null;
+  return K.ucretNeti(DOLU).then(function (net2) {
+    dogru("parametreler.js indirildi",
+      istenenBetikler.some(function (x) { return /bordro\/parametreler\.js$/.test(x); }));
+    dogru("motor.js indirildi",
+      istenenBetikler.some(function (x) { return /bordro\/motor\.js$/.test(x); }));
+    esit("motora AYLIK BRUT verildi", sonCagri.brut, 100000);
+    esit("yil motorun son yili", sonCagri.yil, 2026);
+    /* ON IKI AYIN ORTALAMASI, OCAK DEGIL: kumulatif tarife yuzunden net
+       yil icinde DUSUYOR; Ocak netini "aylik net" saymak yillik geliri
+       sistematik olarak yukari okumak olurdu. */
+    esit("yillik netin 12'ye bolumu", net2, 70000, 0.01);
+    adim.push("net");
+
+    var oncekiSayi = istenenBetikler.length;
+    return K.ucretNeti(DOLU).then(function () {
+      esit("ikinci cagri betikleri TEKRAR indirmiyor",
+        istenenBetikler.length, oncekiSayi);
+      adim.push("tekrar");
+
+      /* En yuksek brutlu ucret secilir: iki isi olan birinin kucuk
+         isini "maasi" saymak yanlis olurdu. */
+      var ikiIs = P.normalize({ gelirler: [
+        { ad: "Yan is", tur: "ucret", aylikBrut: 20000 },
+        { ad: "Asil is", tur: "ucret", aylikBrut: 90000 }] });
+      return K.ucretNeti(ikiIs).then(function () {
+        esit("en yuksek brutlu ucret secildi", sonCagri.brut, 90000);
+        adim.push("enYuksek");
+        netBitti();
+      });
+    });
+  });
+}).catch(function (e) {
+  hata++;
+  console.error("  BASARISIZ  ucretNeti zinciri patladi: " + e.message);
+  netBitti();
+});
+
+var sonCagri = null;
+function netBitti() {
+  netTamam = true;
+  esit("zincirin dort adimi da calisti", adim.length, 4);
+}
+/* ------------------------------------------------------------------ */
+console.log("\ndoldur() SOZ dondurebilir (arac kendi motorunu indirirken)");
+/* Tiklayip hicbir sey olmadigini gormek en kotu geri bildirim: bekleme
+   suresince buton KILITLI ve durum YAZILI olmali. */
+/* Bu blok buton gerektiriyor: profili yeniden sahteliyoruz. */
+P.yukle = function () { return DOLU; };
+var cozucu = null;
+var h11 = sahteHedef();
+K.bagla({ hedef: h11, alanlar: ["gelir"], doldur: function () {
+  return new Promise(function (c) { cozucu = c; });
+} });
+h11.tikla();
+dogru("beklerken buton kilitli", h11["pk-doldurKilit"] === true);
+dogru("beklerken durum yaziliyor", /okunuyor/.test(h11["pk-sonucMetin"]));
+
+/* SESSIZ YESIL TUZAGI — iki kez isirdi, ikisi de burada kapali:
+
+   1. Asenkron blok hic calismazsa Node cikis kodu 0 verir ve test
+      "gecti" gorunur.
+   2. Iki bagimsiz asenkron zincir varken, kisa olani biterken ozeti
+      basip "gecti" derse, uzun zincirin SONRADAN bulacagi hata hicbir
+      yere yansimaz.
+
+   Bu yuzden GECTI/KALDI karari tek bir yerde, cikista veriliyor; hicbir
+   zincir kendi basina "gecti" diyemiyor. */
+var bitisGeldi = false;
+var netTamam = false;
+function bitir() { bitisGeldi = true; }
+
+process.on("exit", function () {
+  if (!bitisGeldi || !netTamam) {
+    console.error("\nAsenkron kontroller HIC CALISMADI — bu bir gecis degil.");
+    process.exitCode = 1;
+    return;
+  }
+  if (hata) {
+    console.error("\n" + hata + " kontrol basarisiz.");
+    process.exitCode = 1;
+    return;
+  }
+  console.log("\n" + gecen + " gecti, 0 kaldi. (profil koprusu kontrolleri)");
+});
+
+cozucu(["brüt maaş"]);
+Promise.resolve().then(function () {}).then(function () {
+  esit("soz cozulunce kilit kalkti", h11["pk-doldurKilit"] ? 1 : 0, 0);
+  dogru("soz cozulunce alanlar bildirildi", /brüt maaş/.test(h11["pk-sonucMetin"]));
+
+  /* Reddedilen soz: arac cokmemeli, kilit acilmali, alanlarin
+     degistirilmedigi soylenmeli. */
+  var red = null;
+  var h12 = sahteHedef();
+  K.bagla({ hedef: h12, alanlar: ["gelir"], doldur: function () {
+    return new Promise(function (c, r) { red = r; });
+  } });
+  h12.tikla();
+  red(new Error("motor inmedi"));
+  Promise.resolve().then(function () {}).then(function () {
+    esit("soz reddedilince kilit kalkti", h12["pk-doldurKilit"] ? 1 : 0, 0);
+    dogru("soz reddedilince degistirilmedigi soyleniyor",
+      /degistirilmedi|değiştirilmedi/i.test(h12["pk-sonucMetin"]));
+    bitir();
+  });
+});

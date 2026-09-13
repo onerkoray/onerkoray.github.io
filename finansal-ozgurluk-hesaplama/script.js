@@ -25,6 +25,74 @@
     minimumFractionDigits: 1, maximumFractionDigits: 1
   });
   function para(n) { return para0.format(n || 0); }
+  /* PROFİL KÖPRÜSÜ.
+     Bu araç bir DAĞILIM varsayıyor (oynaklık, korelasyon); profil ise
+     üç isimli senaryo tutuyor. İkisi aynı dil değil, o yüzden oynaklık
+     ve korelasyon alanlarına DOKUNULMUYOR — profilde karşılığı olmayan
+     bir sayıyı "profilinizden geldi" diye yazmak yanlış olurdu.
+     Aktarılanlar yalnızca profilde birebir karşılığı olanlar. */
+  function kopruKur() {
+    if (!window.ProfilKopru) return;
+    var PK = window.ProfilKopru;
+    PK.bagla({
+      hedef: document.getElementById("pk-alan"),
+      alanlar: ["gelir", "gider", "varlik", "varsayim"],
+      yol: "../finansal-ikiz/",
+      doldur: function (p) {
+        var yapilan = [];
+
+        /* Bugünkü birikim = YATIRILABİLİR varlıklar. Ev ve araç dışarıda:
+           "emekli olunca evimi satarım" bir plan değil. */
+        var DISARIDA = { konut: true, arac: true };
+        var birikim = p.varliklar.reduce(function (a, v) {
+          return a + (DISARIDA[v.tur] ? 0 : v.deger);
+        }, 0);
+        if (birikim > 0) {
+          document.getElementById("f-baslangic").value = Math.round(birikim);
+          yapilan.push("bugünkü birikim (ev ve araç hariç)");
+        }
+
+        var gider = p.giderler.reduce(function (a, k) { return a + k.aylik; }, 0);
+        if (gider > 0) {
+          document.getElementById("f-cekim").value = Math.round(gider);
+          yapilan.push("aylık çekim (bugünkü gideriniz)");
+        }
+
+        var v = p.varsayimlar || {};
+        if (v.enflasyon > 0) {
+          document.getElementById("f-enflasyon").value =
+            (v.enflasyon * 100).toFixed(1).replace(".", ",");
+          yapilan.push("beklenen enflasyon");
+        }
+        if (v.yatirimGetirisi > 0) {
+          document.getElementById("f-getiri").value =
+            (v.yatirimGetirisi * 100).toFixed(1).replace(".", ",");
+          yapilan.push("beklenen getiri");
+        }
+
+        return PK.ucretNeti(p).then(function (net) {
+          var digerGelir = p.gelirler.reduce(function (a, g) {
+            return a + (g.tur === "ucret" ? 0 : g.aylikNet);
+          }, 0);
+          var katki = net + digerGelir - gider;
+          if (katki > 0) {
+            document.getElementById("f-katki").value = Math.round(katki);
+            yapilan.push("aylık katkı (net gelir − gider)");
+          } else if (net + digerGelir > 0) {
+            yapilan.push("aylık katkı çıkmadı — gideriniz gelirinizi aşıyor");
+          }
+          yapilan.push("oynaklık ve korelasyon profilde yok, dokunulmadı");
+          hesapla();
+          return yapilan;
+        }, function () {
+          hesapla();
+          yapilan.push("net gelir hesaplanamadı (bordro motoru yüklenemedi)");
+          return yapilan;
+        });
+      }
+    });
+  }
+
   function deger(id) { return F.sayi($(id).value); }
 
   function girdiTopla() {
@@ -233,6 +301,7 @@
     el.addEventListener("change", hesapla);
   });
   hesapla();
+  kopruKur();
 
   var y = document.getElementById("year");
   if (y) y.textContent = String(new Date().getFullYear());
