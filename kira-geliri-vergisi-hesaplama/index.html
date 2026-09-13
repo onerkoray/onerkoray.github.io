@@ -37,7 +37,7 @@
   <meta name="twitter:image" content="https://korayoner.dev/images/kira-geliri-vergisi-hesaplama-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=6b09337f">
-  <link rel="stylesheet" href="style.css?v=6a78c898">
+  <link rel="stylesheet" href="style.css?v=26f411eb">
 
   <script type="application/ld+json">
   {
@@ -98,7 +98,7 @@
           { "@type": "Question", "name": "2026'da kira geliri istisnası ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "Konut (mesken) kira geliri istisnası 2026 yılı için 58.000 TL'dir. Yıllık konut kira geliriniz bu tutarın altındaysa beyanname vermeniz gerekmez. İstisna yalnızca konut kirasına uygulanır; işyeri kirasına uygulanmaz." } },
           { "@type": "Question", "name": "Götürü gider mi, gerçek gider mi avantajlı?", "acceptedAnswer": { "@type": "Answer", "text": "Belgelenebilir giderleriniz, istisna sonrası kalan tutarın %15'inden fazlaysa gerçek gider avantajlıdır; azsa götürü gider. Bu araç iki yöntemi aynı anda hesaplayıp aradaki farkı gösterir. Götürü gideri seçen iki yıl geçmeden gerçek gider yöntemine dönemez." } },
           { "@type": "Question", "name": "İşyeri kira gelirinde beyan sınırı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Üzerinden %20 stopaj yapılan işyeri kira gelirlerinde 2026 beyan sınırı 400.000 TL'dir. Bu sınırın altında kalırsanız beyan etmezsiniz ve kesilen stopaj nihai vergi olur. Sınır aşılırsa gelirin tamamı beyan edilir; kesilen stopaj hesaplanan vergiden mahsup edilir." } },
-          { "@type": "Question", "name": "Mesken istisnasından kimler yararlanamaz?", "acceptedAnswer": { "@type": "Answer", "text": "Ticari, zirai veya mesleki kazancından dolayı beyanname verenler ile ücret, menkul sermaye iradı, gayrimenkul sermaye iradı ve diğer kazançları toplamı 2026 için 1.900.000 TL'yi aşanlar istisnadan yararlanamaz. Ayrıca kira gelirini süresinde beyan etmeyenler de istisnayı kaybeder." } },
+          { "@type": "Question", "name": "Mesken istisnasından kimler yararlanamaz?", "acceptedAnswer": { "@type": "Answer", "text": "Ticari, zirai veya mesleki kazancından dolayı yıllık beyanname vermek mecburiyetinde olanlar istisnadan hiç yararlanamaz; bu hâlde gelirin tutarına bakılmaz. Ayrıca hasılatı istisna haddini aşanlardan, ücret, menkul sermaye iradı, gayrimenkul sermaye iradı ve diğer kazanç ve iratlarının gayri safi tutarları toplamı 2026 için 1.500.000 TL'yi aşanlar da yararlanamaz. Bu sınır gelir vergisi tarifesinin üçüncü diliminde ücret gelirleri için yer alan tutardır. Kira gelirini süresinde beyan etmeyenler de istisnayı kaybeder." } },
           { "@type": "Question", "name": "Konut kredisi faizini gider yazabilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Banka kredisiyle alınan konutun kira gelirinden kredi faizinin gider olarak indirilmesi 7566 sayılı Kanun ile kaldırılmıştır. Mesken istisnası uygulaması ise devam etmektedir." } },
           { "@type": "Question", "name": "Kira geliri vergisi ne zaman ödenir?", "acceptedAnswer": { "@type": "Answer", "text": "Yıllık gelir vergisi beyannamesi izleyen yılın Mart ayında verilir. Tahakkuk eden vergi iki eşit taksitte ödenir: birinci taksit Mart, ikinci taksit Temmuz ayı sonuna kadar." } }
         ]
@@ -177,6 +177,19 @@
               <input type="text" id="in-diger" inputmode="decimal" value="0"> TL
               <span class="muted-note">Serbest meslek, ticari kazanç, beyana tabi ücret… Tarife kümülatif olduğu için kira bunun üzerine biner.</span>
             </p>
+            <p class="panel-q">
+              <label for="in-brut">Beyan edilmeyenler dahil brüt gelir toplamınız</label>
+              <input type="text" id="in-brut" inputmode="decimal" value="0"> TL
+              <span class="muted-note">Yalnızca istisna sınırı testi için. Kanun “beyanı gerekip gerekmediğine bakılmaksızın” dediği için, <strong>stopajla vergilenip beyan etmediğiniz ücretiniz de buraya girer</strong>. Kira gelirinizi yazmayın; o ayrıca ekleniyor. Boş bırakırsanız üstteki tutar kullanılır.</span>
+            </p>
+            <p class="panel-q">
+              <label for="in-ticari">Ticari/zirai/mesleki kazanç beyannameniz var mı?</label>
+              <select id="in-ticari">
+                <option value="hayir" selected>Hayır</option>
+                <option value="evet">Evet</option>
+              </select>
+              <span class="muted-note">Evet ise mesken istisnası hiç uygulanmaz (GVK m.21); gelirinizin tutarına bakılmaz.</span>
+            </p>
           </div>
         </form>
 
@@ -226,7 +239,7 @@
         <ul>
           <li>Ticari, zirai veya mesleki kazanç nedeniyle zaten beyanname veriyorsanız.</li>
           <li>Ücret, menkul sermaye iradı, gayrimenkul sermaye iradı ve diğer kazançların
-            toplamı <strong>1.900.000 TL</strong>'yi (2026) aşıyorsa.</li>
+            toplamı <strong>1.500.000 TL</strong>'yi (2026) aşıyorsa. Bu sınır ayrı bir rakam değildir: gelir vergisi tarifesinin üçüncü diliminde ücret gelirleri için yer alan tutardır, yani tarife her yıl güncellendiğinde birlikte değişir. Kanun bu toplamı <strong>“beyanı gerekip gerekmediğine bakılmaksızın”</strong> ister: stopajla vergilenip beyan etmediğiniz ücretiniz de sayılır.</li>
           <li>Kira gelirini süresinde beyan etmezseniz.</li>
         </ul>
         <p>
@@ -310,7 +323,7 @@
           <details><summary>2026'da kira geliri istisnası ne kadar?</summary><p>Konut kira geliri istisnası 58.000 TL'dir. Yıllık konut kira geliriniz bu tutarın altındaysa beyanname vermeniz gerekmez. İstisna işyeri kirasına uygulanmaz.</p></details>
           <details><summary>Götürü gider mi, gerçek gider mi avantajlı?</summary><p>Belgelenebilir giderleriniz, istisna sonrası kalan tutarın %15'inden fazlaysa gerçek gider avantajlıdır. Araç iki yöntemi de hesaplayıp farkı gösterir. Götürüyü seçen iki yıl geçmeden gerçeğe dönemez.</p></details>
           <details><summary>İşyeri kirasında beyan sınırı nedir?</summary><p>2026 için 400.000 TL. Altında kalırsanız beyan etmezsiniz, kesilen %20 stopaj nihai vergidir. Aşarsanız gelirin tamamı beyana girer ve stopaj mahsup edilir.</p></details>
-          <details><summary>Mesken istisnasından kimler yararlanamaz?</summary><p>Ticari/zirai/mesleki kazancı nedeniyle beyanname verenler; ücret, menkul ve gayrimenkul sermaye iradı ile diğer kazançları toplamı 1.900.000 TL'yi aşanlar; ve kira gelirini süresinde beyan etmeyenler.</p></details>
+          <details><summary>Mesken istisnasından kimler yararlanamaz?</summary><p>Üç grup. <strong>Bir:</strong> ticari, zirai veya mesleki kazancı nedeniyle yıllık beyanname vermek mecburiyetinde olanlar — burada gelirin tutarına bakılmaz. <strong>İki:</strong> hasılatı istisna haddini (58.000 TL) aşanlardan, ücret, menkul ve gayrimenkul sermaye iradı ile diğer kazanç ve iratlarının gayri safi toplamı <strong>1.500.000 TL</strong>'yi aşanlar. Bu toplam, beyan edilmesi gerekmeyen ücreti de içerir. <strong>Üç:</strong> kira gelirini süresinde beyan etmeyenler ya da eksik beyan edenler.</p></details>
           <details><summary>Konut kredisi faizini gider yazabilir miyim?</summary><p>Hayır. Bu indirim 7566 sayılı Kanun ile kaldırıldı. Mesken istisnası ise devam ediyor.</p></details>
           <details><summary>Vergi ne zaman ödenir?</summary><p>Beyanname izleyen yılın Mart ayında verilir; vergi iki eşit taksitte, Mart ve Temmuz sonuna kadar ödenir.</p></details>
           <details><summary>Hiç kira geliri beyan etmezsem ne olur?</summary><p>İstisna hakkınızı kaybedersiniz ve gelirin tamamı vergilendirilir; ayrıca vergi ziyaı cezası ve gecikme faizi uygulanır.</p></details>
@@ -373,10 +386,10 @@
     </div>
   </footer>
 
-  <script src="../bordro/parametreler.js?v=8e502553" defer></script>
+  <script src="../bordro/parametreler.js?v=960e0884" defer></script>
   <script src="../bordro/motor.js?v=5ef870ac" defer></script>
-  <script src="../bordro/gmsi-motor.js?v=8f9db94a" defer></script>
-  <script src="script.js?v=49c65cc5" defer></script>
+  <script src="../bordro/gmsi-motor.js?v=4f01e932" defer></script>
+  <script src="script.js?v=4f855910" defer></script>
   <script src="../script.js?v=5127b7a8" defer></script>
 </body>
 </html>

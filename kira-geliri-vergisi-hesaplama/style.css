@@ -6,12 +6,20 @@
   gap: 4px 20px;
 }
 .panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
-#gmsi-form input[type="text"] {
+/* Metin girdisi ve acilir kutu AYNI kurali paylasiyor: select icin ayri
+   kural olmadiginda tarayici varsayilaniyla ciziliyor ve uzun etiketin
+   yanina satir ici akiyordu -- ayni izgarada iki farkli hizalama. */
+#gmsi-form input[type="text"],
+#gmsi-form select {
   font: inherit; padding: 8px 10px;
   border: 1px solid var(--border, rgba(127,127,127,.3));
   border-radius: 10px; background: var(--surface); color: var(--text);
   min-height: 44px; max-width: 100%;
 }
+#gmsi-form select { width: 100%; }
+/* Etiket kendi satirinda: diger alanlarda girdi etiketin ALTINDA duruyor,
+   acilir kutu da oyle durmali. */
+#gmsi-form .panel-q label { display: block; }
 
 /* Özet kartları — temel tanımlar site genelinde değil, araç dosyasında. */
 .sum-grid {

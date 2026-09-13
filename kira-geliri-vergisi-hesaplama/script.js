@@ -61,7 +61,12 @@
       konutKira: num("in-konut"),
       isyeriKira: num("in-isyeri"),
       gercekGider: num("in-gercek"),
-      digerGelir: num("in-diger")
+      digerGelir: num("in-diger"),
+      /* Ust sinir testinin tabani beyan edilen gelir DEGIL (GVK m.21:
+         "beyani gerekip gerekmedigine bakilmaksizin"). Bos birakilirsa
+         motor digerGelir'e duser. */
+      brutGelirToplami: num("in-brut") > 0 ? num("in-brut") : undefined,
+      ticariBeyan: document.getElementById("in-ticari").value === "evet"
     });
     if (r.hata) { results.innerHTML = ""; msg.hidden = false; msg.textContent = r.hata; return; }
     msg.hidden = true;

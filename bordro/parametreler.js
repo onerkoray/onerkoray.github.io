@@ -81,9 +81,14 @@
          Dayanak: GVK m.21 (mesken istisnasi), m.74 (giderler), m.86 (beyan
          sinirlari), m.94 (tevkifat). Tutarlar her yil yeniden degerleme ile
          guncelleniyor; yeni yil eklerken burayi da tazele. */
+      /* Istisna ust siniri BURADA TANIMLANMAZ. GVK m.21 onu "103 uncu
+         maddede yazili tarifenin ucuncu diliminde UCRET GELIRLERI icin yer
+         alan tutar" olarak tanimlar, yani dilimler[2][0]. Elle yazildiginda
+         bayatladi: 2023'un 1.900.000'i 2026'da da duruyordu ve toplam geliri
+         1.500.000-1.900.000 arasinda olan herkese istisna hakki gosteriyordu.
+         Beyan haddinde de ayni yol izleniyor (asagida, dilimler[1][0]). */
       gmsi: {
         meskenIstisnasi: 58000,      // GVK m.21 — konut kira geliri istisnasi
-        istisnaUstSinir: 1900000,    // ucret+MSI+GMSI+diger toplami bunu asarsa istisna yok
         goturuGiderOrani: 0.15,      // istisna dusuldukten SONRA kalan tutarin %15'i
         isyeriBeyanSiniri: 400000,   // tevkifata tabi isyeri kirasi beyan siniri
         isyeriStopaji: 0.20,         // GVK m.94 — isyeri kira odemelerinde tevkifat
