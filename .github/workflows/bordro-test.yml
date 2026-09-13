@@ -19,6 +19,13 @@ on:
 jobs:
   dogrula:
     runs-on: ubuntu-latest
+    # Bildirim adiminin issue acabilmesi icin. Varsayilan salt-okunur token
+    # yeterli degil; actions:read da gerekiyor cunku DUSEN ADIMIN ADINI
+    # calisma API'sinden okuyoruz.
+    permissions:
+      contents: read
+      issues: write
+      actions: read
     steps:
       # hizli-panel.py "son eklenenler" listesini sayfaların İLK COMMIT
       # tarihinden üretiyor. checkout varsayılan olarak sığ klon (depth 1)
@@ -209,3 +216,106 @@ jobs:
         # Kart renkleri elle seçilirse sessizce AA altına düşüyor (eski tek
         # şablonun yeşili beyaz metinde 3.28:1 idi). Tarayıcı gerektirmez.
         run: python tools/make-og.py --kontrast
+
+      # ----------------------------------------------------------------
+      # BILDIRIM
+      #
+      # Bu depodaki muhafizlarin TAMAMI burada duruyor. Basarisizlik haber
+      # vermiyorsa "testler var" guvencesi gercekte yok: bozulan bir muhafiz
+      # haftalarca bozuk kalabilir ve o sure boyunca sessizce yanlis sonuc
+      # ureten bir degisiklik gecebilir.
+      #
+      # Bu bos bir korku degil, olcum: workflow 2026-09-12 12:28'den
+      # 2026-09-13 09:30'a kadar DOKUZ push boyunca kirmizi kaldi ve kimse
+      # gormedi. Ancak elle API'ye bakinca ortaya cikti.
+      #
+      # TASARIM: her basarisizlikta YENI issue acilmiyor. Tek bir takip
+      # issue'su aciliyor, sonraki dususlar oraya yorum dusuyor ve yesile
+      # donunce issue KAPANIYOR. Kendini temizlemeyen bir bildirim kisa
+      # surede gurultuye donusur; gurultu de okunmaz, yani bildirim yokmus
+      # gibi olur. Acik issue sayisi bu yuzden en fazla bir.
+      # ----------------------------------------------------------------
+      - name: Başarısızlığı bildir
+        if: failure() && github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const etiket = "ci-kirmizi";
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            // Issue'nun ise yaramasi icin HANGI ADIMIN dustugunu yazmasi
+            // sart; yalnizca "bir sey bozuldu" demek, elle bakmaktan
+            // kurtarmiyor.
+            let dusen = [];
+            try {
+              const { data: isler } = await github.rest.actions.listJobsForWorkflowRun({
+                owner, repo, run_id: context.runId, per_page: 100
+              });
+              for (const is of isler.jobs) {
+                for (const adim of is.steps || []) {
+                  if (adim.conclusion === "failure") dusen.push(adim.name);
+                }
+              }
+            } catch (e) {
+              core.warning("Düşen adım okunamadı: " + e.message);
+            }
+
+            const url = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const govde = [
+              `**Düşen adım:** ${dusen.length ? dusen.join(", ") : "okunamadı"}`,
+              `**Commit:** ${context.sha.slice(0, 7)} — ${context.payload.head_commit?.message?.split("\n")[0] || ""}`,
+              `**Çalışma:** ${url}`,
+              "",
+              "Yeşile dönen ilk push'ta bu issue otomatik kapanır."
+            ].join("\n");
+
+            let acik = [];
+            try {
+              const r = await github.rest.issues.listForRepo({
+                owner, repo, state: "open", labels: etiket
+              });
+              acik = r.data;
+            } catch (e) {
+              core.warning("Açık issue aranamadı: " + e.message);
+            }
+
+            if (acik.length) {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number: acik[0].number, body: govde
+              });
+            } else {
+              await github.rest.issues.create({
+                owner, repo,
+                title: "CI kırmızı: site doğrulamaları düşüyor",
+                body: govde,
+                labels: [etiket]
+              });
+            }
+
+      - name: Yeşile dönünce takip issue'sunu kapat
+        if: success() && github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const etiket = "ci-kirmizi";
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            let acik = [];
+            try {
+              const r = await github.rest.issues.listForRepo({
+                owner, repo, state: "open", labels: etiket
+              });
+              acik = r.data;
+            } catch (e) {
+              return;   // etiket hic olusmamissa yapacak is yok
+            }
+            for (const issue of acik) {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number: issue.number,
+                body: `Yeşile döndü: ${context.sha.slice(0, 7)}.`
+              });
+              await github.rest.issues.update({
+                owner, repo, issue_number: issue.number, state: "closed"
+              });
+            }
