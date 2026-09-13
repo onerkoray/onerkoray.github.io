@@ -48,7 +48,13 @@
      ne yaptığı ilk bakışta görünsün. Kullanıcı üzerine yazıyor. */
   var ORNEK = {
     kisi: { dogumYili: 1990 },
-    gelirler: [{ ad: "Maaş", tur: "ucret", aylikBrut: 100000 }],
+    /* 140.000 brüt seçildi: 100.000'de örnek profil, çocuk gideri
+       eklenince baz senaryoda EKSİYE düşüyordu ve araç başarısız bir
+       planla açılıyordu (band oranı 18). Aritmetik doğruydu ama varsayılan
+       olarak kötü: araç ne yaptığını gösteren çalışır bir durumda
+       açılmalı. 140.000'de baz senaryo pozitif, band oranı 4,0 ve kötümser
+       senaryodaki tükenme uyarısı hâlâ görünüyor. */
+    gelirler: [{ ad: "Maaş", tur: "ucret", aylikBrut: 140000 }],
     giderler: [
       { ad: "Kira / konut", aylik: 22000, zorunlu: true, enflasyonaEndeksli: true },
       { ad: "Market ve mutfak", aylik: 14000, zorunlu: true, enflasyonaEndeksli: true },
@@ -69,6 +75,14 @@
     olaylar: [
       { ad: "Çocuk", tur: "cocuk", yil: new Date().getFullYear() + 3,
         aylikGiderEtkisi: 12000, sureYil: 22 }
+    ],
+    /* Örnekte iki hedef: biri tutan, biri tutmayan. Böylece hem "3/3"
+       hem de "ne yapmalıyım" çıktısı ilk bakışta görünüyor. */
+    hedefler: [
+      { ad: "Borçsuz olmak", tur: "borcsuzluk",
+        yil: new Date().getFullYear() + 5, tutar: 0 },
+      { ad: "Ev peşinatı", tur: "harcama",
+        yil: new Date().getFullYear() + 6, tutar: 2000000 }
     ]
   };
 
@@ -183,6 +197,27 @@
     $("fi-olaylar").appendChild(baglan(tr));
   }
 
+  var HEDEF_ADLARI = { servet: "Servet", harcama: "Harcama", borcsuzluk: "Borçsuz" };
+
+  function hedefSatiri(h) {
+    var secenekler = P.HEDEF_TURLERI.map(function (t) {
+      return '<option value="' + t + '"' + (t === h.tur ? " selected" : "") + ">" +
+        (HEDEF_ADLARI[t] || t) + "</option>";
+    }).join("");
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      '<td class="fi-ad"><input type="text" value="' + esc(h.ad || "") +
+      '" aria-label="Hedef adı"></td>' +
+      '<td class="fi-tur"><select aria-label="Hedef türü">' + secenekler + "</select></td>" +
+      '<td class="fi-sayi"><input type="text" inputmode="numeric" value="' +
+      (h.yil || "") + '" aria-label="Hedef yılı"></td>' +
+      '<td class="fi-sayi"><input type="text" inputmode="decimal" value="' +
+      (h.tutar || 0) + '" aria-label="Hedef tutarı"></td>' +
+      '<td><button type="button" class="fi-sil" aria-label="Satırı sil">×</button></td>';
+    if (h.id) tr.dataset.id = h.id;
+    $("fi-hedefler").appendChild(baglan(tr));
+  }
+
   /* ------------------------------ okuma ---------------------------------- */
   function profiliOku() {
     var giderler = Array.prototype.map.call(
@@ -234,6 +269,18 @@
         return o;
       });
 
+    var hedefler = Array.prototype.map.call(
+      $("fi-hedefler").querySelectorAll("tr"), function (tr) {
+        var g = tr.querySelectorAll("input");
+        return {
+          id: tr.dataset.id,
+          ad: g[0].value.trim() || "Hedef",
+          tur: tr.querySelector("select").value,
+          yil: F.sayi(g[1].value),
+          tutar: F.sayi(g[2].value)
+        };
+      });
+
     var brut = deger("in-brut");
     var diger = deger("in-diger");
     var gelirler = [];
@@ -244,6 +291,7 @@
       kisi: { dogumYili: deger("in-dogum") },
       gelirler: gelirler, giderler: giderler,
       varliklar: varliklar, borclar: borclar, olaylar: olaylar,
+      hedefler: hedefler,
       varsayimlar: {
         enflasyon: deger("in-enf") / 100,
         ucretArtisi: deger("in-zam") / 100,
@@ -267,10 +315,12 @@
     $("fi-varliklar").innerHTML = "";
     $("fi-borclar").innerHTML = "";
     $("fi-olaylar").innerHTML = "";
+    $("fi-hedefler").innerHTML = "";
     p.giderler.forEach(giderSatiri);
     p.varliklar.forEach(varlikSatiri);
     p.borclar.forEach(borcSatiri);
     p.olaylar.forEach(olaySatiri);
+    p.hedefler.forEach(hedefSatiri);
   }
 
   /* ------------------------------ çıktılar ------------------------------- */
@@ -414,6 +464,70 @@
       "</tr></thead><tbody>" + satir + "</tbody></table></div>";
   }
 
+  /* ------------------------------ hedefler ------------------------------- */
+  /* SAYIM, OLASILIK DEĞİL. Rozet bilerek kesirli ("2/3") yazılıyor;
+     yüzdeye çevirmek, elimizde olmayan bir dağılımı varmış gibi
+     göstermek olurdu. */
+  function hedefListesi(p, proj) {
+    if (!window.HedefMotoru || !p.hedefler.length) return "";
+    var k = window.HedefMotoru.kontrol(p, proj);
+
+    var satirlar = k.hedefler.map(function (h) {
+      var sinif = h.ufukDisi ? "fi-sayim-ufuk"
+        : h.tutanSenaryoSayisi === 3 ? "fi-sayim-3"
+        : h.tutanSenaryoSayisi === 0 ? "fi-sayim-0" : "";
+      var rozet = h.ufukDisi ? "ufuk dışı"
+        : h.tutanSenaryoSayisi + "/" + h.toplamSenaryo +
+          "<small>senaryo</small>";
+
+      var alt;
+      if (h.ufukDisi) {
+        alt = "Hedef yılı projeksiyon ufkunuzun dışında. Ufku uzatın ya da " +
+          "hedef yılını yakınlaştırın.";
+      } else if (h.tutanSenaryoSayisi === 3) {
+        alt = "Üç senaryoda da tutuyor" +
+          (h.bazIlkTutanYil && h.bazIlkTutanYil < h.yil
+            ? "; baz senaryoda zaten " + h.bazIlkTutanYil + " yılında ulaşılıyor." : ".");
+      } else {
+        var parcalar = [];
+        if (h.bazTuttu) {
+          parcalar.push("Baz senaryoda tutuyor ama kötümserde tutmuyor.");
+        } else {
+          parcalar.push("Baz senaryoda <strong>" + para(h.bazAcik) +
+            "</strong> eksik kalıyor (bugünün parasıyla).");
+        }
+        var ek = window.HedefMotoru.gerekenEkTasarruf(p, h);
+        if (ek.bulundu && ek.aylik > 0) {
+          parcalar.push("Ayda <strong>" + para(ek.aylik) +
+            "</strong> fazladan biriktirmek yeterli olurdu.");
+        } else if (!ek.bulundu) {
+          parcalar.push("Makul bir ek tasarrufla ulaşılamıyor; hedefin " +
+            "kendisini ya da yılını gözden geçirin.");
+        }
+        var ert = window.HedefMotoru.gerekenErteleme(p, h);
+        if (ert.gerekli && ert.yil) {
+          parcalar.push("Ya da hedefi <strong>" + ert.yil +
+            " yıl</strong> ertelemek (" + ert.hedefYili + ").");
+        }
+        alt = parcalar.join(" ");
+      }
+
+      var turAd = h.tur === "borcsuzluk" ? "Borçsuz olmak"
+        : h.tur === "harcama" ? "Yatırım varlığı" : "Net değer";
+      return '<div class="fi-hedef">' +
+        '<p class="fi-hedef-ad">' + esc(h.ad) + " — " + h.yil +
+        (h.tur === "borcsuzluk" ? "" : " · " + para(h.tutar)) +
+        ' <span class="fi-kutu-alt" style="display:inline">(' + turAd + ")</span></p>" +
+        '<p class="fi-sayim ' + sinif + '">' + rozet + "</p>" +
+        '<p class="fi-hedef-alt">' + alt + "</p></div>";
+    }).join("");
+
+    return '<div class="fi-hedef-liste">' +
+      '<p class="fi-hedef-baslik">Hedefleriniz — her biri üç senaryoda ayrı ' +
+      "ayrı sınandı. <strong>“2/3” bir sayımdır, olasılık değil.</strong></p>" +
+      satirlar + "</div>";
+  }
+
   /* -------------------------------- akış --------------------------------- */
   var zamanlayici = null;
   function hesapla() {
@@ -433,8 +547,11 @@
 
     var o = P.ozet(p);
     var u = I.ucSenaryo(p);
+    /* Projeksiyonlar hedef motoruna ÖNBELLEK olarak veriliyor: üç senaryo
+       x 240 ay zaten pahalı, ikinci kez koşmaya gerek yok. */
     $("sonuc").innerHTML =
       kararKarti(u, p) + bugun(p, o) + uyarilar(u, o) +
+      hedefListesi(p, { kotumser: u.kotumser, baz: u.baz, iyimser: u.iyimser }) +
       bandGrafigi(u, p) + duyarlilikTablosu(p);
 
     if ($("in-sakla").checked) P.sakla(p);
@@ -497,6 +614,16 @@
       if (t === "gider") giderSatiri({ ad: "", aylik: 0, zorunlu: false });
       if (t === "varlik") varlikSatiri({ ad: "", tur: "mevduat", deger: 0 });
       if (t === "borc") borcSatiri({ ad: "", kalanAnapara: 0, aylikFaiz: 0.02, aylikOdeme: 0 });
+      if (t === "hedef") {
+        var ht = $("hedef-tur").value;
+        hedefSatiri({
+          ad: ht === "borcsuzluk" ? "Borçsuz olmak"
+            : ht === "harcama" ? "Ev peşinatı" : "Servet hedefi",
+          tur: ht,
+          yil: new Date().getFullYear() + 10,
+          tutar: ht === "borcsuzluk" ? 0 : (ht === "harcama" ? 2000000 : 5000000)
+        });
+      }
       if (t === "olay") {
         var tur = $("olay-tur").value;
         var sb = OLAY_SABLONLARI[tur] || OLAY_SABLONLARI.ozel;

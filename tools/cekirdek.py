@@ -96,6 +96,8 @@ DOSYALAR = [
     ("finans/profil-test.js",             "finans/profil-test.js"),
     ("finans/ikiz-motoru.js",             "finans/ikiz-motoru.js"),
     ("finans/ikiz-test.js",               "finans/ikiz-test.js"),
+    ("finans/hedef-motoru.js",            "finans/hedef-motoru.js"),
+    ("finans/hedef-test.js",              "finans/hedef-test.js"),
     ("finans/bant.js",                    "finans/bant.js"),
 
     ("bordro/emeklilik-parametreleri.js", "bordro/emeklilik-parametreleri.js"),
@@ -184,7 +186,8 @@ def test_sayilari():
                     ("nakit-akisi", "finans/nakit-akisi-test.js"),
                     ("kisisel-enflasyon", "finans/kisisel-enflasyon-test.js"),
                     ("profil", "finans/profil-test.js"),
-                    ("ikiz", "finans/ikiz-test.js")):
+                    ("ikiz", "finans/ikiz-test.js"),
+                    ("hedef", "finans/hedef-test.js")):
         try:
             r = subprocess.run(["node", yol], capture_output=True, timeout=120)
             cikti = r.stdout.decode("utf-8", "replace")
@@ -283,6 +286,7 @@ node finans/nakit-akisi-test.js     # %(nakit_akisi)d test
 node finans/kisisel-enflasyon-test.js # %(kisisel)d test
 node finans/profil-test.js          # %(profil)d test
 node finans/ikiz-test.js            # %(ikiz)d test
+node finans/hedef-test.js           # %(hedef)d test
 ```
 
 Toplam **%(toplam)d test**. Bordro tarafındaki en güçlü referans şudur: brüt
@@ -321,6 +325,7 @@ kurum görüşü yerine geçmez.
         "nakit_akisi": sayilar["nakit-akisi"],
         "kisisel": sayilar["kisisel-enflasyon"],
         "profil": sayilar["profil"], "ikiz": sayilar["ikiz"],
+        "hedef": sayilar["hedef"],
         "yil_ilk": min(yillar) if yillar else "?",
         "yil_son": max(yillar) if yillar else "?",
     }

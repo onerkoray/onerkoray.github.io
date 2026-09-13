@@ -157,6 +157,36 @@
 }
 .fi-eksik { border-left-color: var(--dv-axis); }
 
+/* ------------------------------- hedefler -------------------------------- */
+.fi-hedef-liste { margin: 1.75rem 0 0; display: grid; gap: .8rem; }
+.fi-hedef-baslik { margin: 0 0 .2rem; font-size: .88rem; font-weight: 650; }
+.fi-hedef {
+  display: grid; gap: .3rem .9rem; padding: .95rem 1.1rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  border: 1px solid var(--border); border-radius: var(--radius-card);
+  background: var(--surface);
+}
+.fi-hedef-ad { margin: 0; font-weight: 650; font-size: .9rem; grid-column: 1; grid-row: 1; }
+.fi-hedef-alt { margin: 0; font-size: .82rem; color: var(--text-muted); line-height: 1.6;
+  grid-column: 1; grid-row: 2; }
+/* SAYIM rozeti: "2/3". Yuzdeye benzememesi icin bilerek kesirli. */
+.fi-sayim {
+  grid-column: 2; grid-row: 1 / span 2; align-self: center;
+  font: 700 1.15rem/1 var(--font-mono); white-space: nowrap;
+  padding: .4rem .6rem; border-radius: 8px; text-align: center;
+  border: 1px solid var(--border);
+}
+.fi-sayim-3 { color: var(--dv-3-ink); border-color: var(--dv-3); }
+.fi-sayim-0 { color: var(--dv-2-ink); border-color: var(--dv-2); }
+.fi-sayim-ufuk { font-size: .8rem; font-weight: 600; color: var(--text-muted); }
+.fi-sayim small { display: block; font: 500 .58rem var(--font-mono);
+  letter-spacing: .06em; text-transform: uppercase; opacity: .75; margin-top: .15rem; }
+
+@media (max-width: 560px) {
+  .fi-hedef { grid-template-columns: 1fr; }
+  .fi-sayim { grid-column: 1; grid-row: auto; justify-self: start; }
+}
+
 /* ----------------------------- duyarlılık -------------------------------- */
 .fi-duyarlilik { margin: 1.75rem 0 0; overflow-x: auto; }
 .fi-duyarlilik table { width: 100%; border-collapse: collapse; font-size: .85rem; }

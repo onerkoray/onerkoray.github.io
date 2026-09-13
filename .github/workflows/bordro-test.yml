@@ -129,6 +129,15 @@ jobs:
       - name: Finansal İkiz projeksiyon regresyonları
         run: node finans/ikiz-test.js
 
+      # Hedef motoru kullaniciya "hedefine ulasiyorsun" diyor. Yanlis bir
+      # "ulasiyorsun", plan yapan birini yillar sonra odeyemeyecegi bir
+      # yukumlulugun onunde birakir -- ve hata sessizdir: cikti yine bir
+      # yesil tik, yalnizca yanlis. Testler ayrica bir SUNUM kuralini
+      # koruyor: "3 senaryodan 2'si" bir OLASILIK DEGILDIR ve motor
+      # hicbir yerde yuzde uretmez.
+      - name: Hedef motoru regresyonları
+        run: node finans/hedef-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.

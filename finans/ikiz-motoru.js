@@ -293,6 +293,7 @@
          olayla alınanlar AYNI kuralda. Ay SONU düzeyiyle taşınıyor ki
          yanındaki likit varlıkla ve deflatörle aynı ana denk gelsin. */
       oYil.sonVarlik = varlik + (likitOlmayan0 + likitOlmayan) * enfKatSon;
+      oYil.sonYatirim = varlik;
       oYil.sonBorc = borclar.reduce(function (a, x) { return a + Math.max(0, x.kalan); }, 0);
       oYil.enfKat = enfKatSon;
     }
@@ -322,7 +323,11 @@
         /* Reel değer, o yılın sonundaki enflasyon katsayısıyla bugüne
            indirgeniyor. Nominal tek başına 20 yıllık grafikte anlamsız. */
         reelNetDeger: r2(net / y.enfKat),
-        reelVarlik: r2(y.sonVarlik / y.enfKat)
+        reelVarlik: r2(y.sonVarlik / y.enfKat),
+        /* YATIRIM VARLIĞI: konut ve araç HARİÇ, nakde çevrilebilen havuz.
+           Bir harcama hedefi (ev peşinatı) net değerle değil bununla
+           karşılanır — oturduğunuz evin değeri peşinat ödemez. */
+        reelYatirimVarligi: r2(y.sonYatirim / y.enfKat)
       };
     }
 
