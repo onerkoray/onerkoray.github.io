@@ -55,6 +55,10 @@
 
   function r2(n) { return Math.round(n * 100) / 100; }
 
+  /* Bu türler yatırım getirisi KAZANMAZ: bir ev, bir yatırım fonu gibi
+     bileşik büyümez. Reel değerini koruduğu varsayılıyor. */
+  var LIKIT_OLMAYAN = { konut: true, arac: true };
+
   /**
    * Ücretin net/brüt oranı, BUGÜNKÜ tarifeyle ve REEL maaş seviyesinde.
    * (Tarifenin enflasyonla endekslendiği varsayımının uygulaması.)
@@ -104,7 +108,18 @@
     function ucretKati(yilIdx) { return Math.pow(1 + v.ucretArtisi, yilIdx); }
 
     /* Başlangıç durumu */
-    var varlik = p.varliklar.reduce(function (a, x) { return a + x.deger; }, 0);
+    /* Getiri ÜRETEN varlıklar ile üretmeyenler ayrı tutuluyor.
+       Satın alınan bir ev net değere girer ama yatırım getirisi kazanmaz;
+       ikisini karıştırmak, konutu bir yatırım fonu gibi büyütür ve
+       projeksiyonu sistematik olarak şişirirdi. Konut reel değerini
+       koruyor varsayılıyor (nominal olarak enflasyonla büyür). */
+    var varlik = p.varliklar.reduce(function (a, x) {
+      return a + (LIKIT_OLMAYAN[x.tur] ? 0 : x.deger);
+    }, 0);
+    var likitOlmayan0 = p.varliklar.reduce(function (a, x) {
+      return a + (LIKIT_OLMAYAN[x.tur] ? x.deger : 0);
+    }, 0);
+    var likitOlmayan = 0;
     var borclar = p.borclar.map(function (b) {
       return {
         ad: b.ad, kalan: b.kalanAnapara, faiz: b.aylikFaiz,
@@ -119,10 +134,34 @@
       return a + (g.tur === "ucret" ? 0 : g.aylikNet);
     }, 0);
 
+    /* YAŞAM OLAYLARI
+     *
+     * Tutarlar BUGÜNÜN PARASIYLA girilir ve olayın yılına taşınır.
+     * Kullanıcı "2032'de peşinat 2.000.000" derken bugünün alım gücünü
+     * kastediyor; nominal kabul etmek, yüksek enflasyonda olayı yıllar
+     * geçtikçe görünmez kılardı.
+     *
+     * Olaylar ay ay değil, OLAYIN YILININ İLK AYINDA uygulanıyor: bir
+     * yaşam olayının ayını tahmin etmek sahte bir hassasiyet olurdu. */
+    var bugunYil = new Date().getFullYear();
+
+    var olaylar = p.olaylar.map(function (o) {
+      var yilIdx = o.yil - bugunYil;
+      return { o: o, yilIdx: yilIdx, ay: yilIdx * 12, uygulandi: false };
+    }).filter(function (x) { return x.yilIdx >= 0 && x.yilIdx < yilSayisi; });
+
+    /* Ev alınca kira biter: duran gider kalemlerinin id'leri. */
+    var duranGiderler = {};
+    /* Emeklilikte 0, iş değişikliğinde 1,25 gibi. Olaylar biriktiği için
+       çarpan ÇARPILARAK uygulanıyor, atanarak değil. */
+    var ucretCarpani = 1;
+    /* Olaylardan gelen aylık delta'lar: {baslangicAy, bitisAy, tutar}. */
+    var ekGiderler = [];
+    var ekGelirler = [];
+
     var yillar = [];
     var tukenmeAyi = null;
     var oYil = null;
-    var bugunYil = new Date().getFullYear();
 
     for (var ay = 0; ay < N; ay++) {
       var yilIdx = Math.floor(ay / 12);
@@ -135,10 +174,56 @@
         };
       }
 
+      /* İKİ FİYAT DÜZEYİ, VE HANGİSİNİN NEREDE KULLANILDIĞI ÖNEMLİ.
+         enfKat    : ayın BAŞINDAKİ düzey — o ay içinde gerçekleşen akışlar
+                     (gelir, gider, olay tutarları) buradan taşınır.
+         enfKatSon : ayın SONUNDAKİ düzey — ay sonundaki STOK değerleri
+                     (varlık, net değer) buradan bugüne indirgenir.
+         İkisini karıştırmak bütün reel değerleri tam olarak bir aylık
+         enflasyon kadar kaydırıyordu. Test yakaladı. */
       var enfKat = Math.pow(1 + enfAy, ay);
+      var enfKatSon = enfKat * (1 + enfAy);
+
+      /* --- olaylar: yılın ilk ayında uygulanır --- */
+      for (var oi = 0; oi < olaylar.length; oi++) {
+        var x = olaylar[oi];
+        if (x.uygulandi || x.ay !== ay) continue;
+        x.uygulandi = true;
+        var e = x.o;
+        /* Bugünün parasıyla girilen tutarlar o yılın parasına taşınıyor. */
+        var kat = enfKat;
+
+        if (e.pesinat > 0) varlik -= e.pesinat * kat;
+        if (e.tekSeferlikGelir > 0) varlik += e.tekSeferlikGelir * kat;
+        /* Likit OLMAYAN varlık (satın alınan ev/araç) toplam varlığa
+           giriyor ama dayanma süresi hesabına değil; projeksiyonda da
+           getiri üretmemesi gerekir — bu yüzden ayrı tutuluyor.
+           BUGÜNÜN PARASIYLA saklanıyor: ilk sürümde satın alma anındaki
+           nominal değer yazılıyordu ve o değer sabit kalıyordu, yani
+           evin REEL değeri yıllar içinde eriyordu. Başlangıçtaki konutla
+           aynı kurala tabi olmalı. */
+        if (e.varlikEklemesi > 0) likitOlmayan += e.varlikEklemesi;
+
+        if (e.borc) {
+          borclar.push({
+            ad: e.ad, kalan: e.borc.anapara * kat, faiz: e.borc.aylikFaiz,
+            odeme: e.borc.aylikOdeme * kat, kalanVade: 360, bittiAy: null
+          });
+        }
+        if (e.aylikGiderEtkisi !== 0) {
+          ekGiderler.push({ bas: ay, bitis: e.sureYil ? ay + e.sureYil * 12 : Infinity,
+            tutar: e.aylikGiderEtkisi });
+        }
+        if (e.aylikGelirEtkisi !== 0) {
+          ekGelirler.push({ bas: ay, bitis: e.sureYil ? ay + e.sureYil * 12 : Infinity,
+            tutar: e.aylikGelirEtkisi });
+        }
+        if (e.ucretCarpani !== null) ucretCarpani *= e.ucretCarpani;
+        if (e.durdurulanGiderId) duranGiderler[e.durdurulanGiderId] = true;
+      }
 
       /* --- gelir --- */
-      var brut = ucretBrut0 * ucretKati(yilIdx);
+      var brut = ucretBrut0 * ucretKati(yilIdx) * ucretCarpani;
       /* Reel seviye, ücretin ZAMMI ALDIĞI AN'a göre ölçülüyor: tarifenin
          enflasyonla endekslendiği varsayımı yıl başında uygulanır, ay ay
          değil. Aksi halde aynı maaş yıl içinde farklı reel seviyelere
@@ -149,14 +234,27 @@
          kira artışı sözleşmeyle yıllıktır (TBK m.344), serbest meslek
          fiyatı da sürekli değil dönemsel yenilenir. */
       var diger = digerNet0 * Math.pow(1 + v.enflasyon, yilIdx);
-      var gelir = ucretNet + diger;
+      /* Olay gelirleri (emekli aylığı, kira geliri) de bugünün parasıyla
+         girilip o ayın parasına taşınıyor. */
+      var olayGeliri = 0;
+      for (var gi = 0; gi < ekGelirler.length; gi++) {
+        var eg = ekGelirler[gi];
+        if (ay >= eg.bas && ay < eg.bitis) olayGeliri += eg.tutar * enfKat;
+      }
+      var gelir = ucretNet + diger + olayGeliri;
 
       /* --- gider --- */
       var gider = 0;
       for (var i = 0; i < p.giderler.length; i++) {
         var k = p.giderler[i];
         if (k.bitisYili && bugunYil + yilIdx > k.bitisYili) continue;
+        /* Ev alındıysa kira kalemi durur. */
+        if (duranGiderler[k.id]) continue;
         gider += k.enflasyonaEndeksli ? k.aylik * enfKat : k.aylik;
+      }
+      for (var xi = 0; xi < ekGiderler.length; xi++) {
+        var eg2 = ekGiderler[xi];
+        if (ay >= eg2.bas && ay < eg2.bitis) gider += eg2.tutar * enfKat;
       }
 
       /* --- borçlar --- */
@@ -190,9 +288,13 @@
       oYil.faiz += aylikFaiz;
       oYil.tasarruf += artan;
       oYil.getiri += getiri;
-      oYil.sonVarlik = varlik;
+      /* Konut/araç nominal olarak enflasyonla taşınır (reel değeri sabit
+         varsayılıyor); yatırım getirisi kazanmaz. Başlangıçtakiler ve
+         olayla alınanlar AYNI kuralda. Ay SONU düzeyiyle taşınıyor ki
+         yanındaki likit varlıkla ve deflatörle aynı ana denk gelsin. */
+      oYil.sonVarlik = varlik + (likitOlmayan0 + likitOlmayan) * enfKatSon;
       oYil.sonBorc = borclar.reduce(function (a, x) { return a + Math.max(0, x.kalan); }, 0);
-      oYil.enfKat = enfKat;
+      oYil.enfKat = enfKatSon;
     }
     if (oYil) yillar.push(kapat(oYil));
 

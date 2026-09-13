@@ -90,6 +90,10 @@
       giderler: [],
       varliklar: [],
       borclar: [],
+      /* YAŞAM OLAYLARI — projeksiyonun düz bir ekstrapolasyon olmaktan
+         çıktığı yer. Ev alma, çocuk, emeklilik gibi kırılmalar olmadan
+         yirmi yıllık bir eğri, bugünün fotoğrafının uzatılmasından ibaret. */
+      olaylar: [],
       varsayimlar: {
         enflasyon: 0.30,
         ucretArtisi: 0.30,
@@ -182,6 +186,49 @@
     };
   }
 
+  var OLAY_TURLERI = ["ev-alma", "cocuk", "emeklilik", "is-degisikligi",
+    "buyuk-gelir", "buyuk-harcama", "ozel"];
+
+  /* OLAY TUTARLARI BUGÜNÜN PARASIYLA GİRİLİR VE ENFLASYONLA TAŞINIR.
+   *
+   * Kullanıcı "2032'de ev peşinatı 2.000.000" dediğinde kastettiği şey
+   * neredeyse her zaman BUGÜNÜN alım gücüdür; 2032'nin nominal lirası
+   * değil. Motor tutarları o yılın parasına taşıyor ve arayüz bunu
+   * söylüyor. Tersini yapmak — nominal kabul etmek — yüksek enflasyonda
+   * olayı yıllar geçtikçe görünmez kılardı. */
+  function olayNormalize(o) {
+    var tur = secim(o && o.tur, OLAY_TURLERI, "ozel");
+    var borc = (o && o.borc) || null;
+    return {
+      id: id(o && o.id),
+      ad: metin(o && o.ad, "Olay"),
+      tur: tur,
+      yil: o && o.yil ? tamsayi(o.yil, null) : null,
+      /* Tek seferlik nakit çıkışı (peşinat, büyük harcama). */
+      pesinat: sayi(o && o.pesinat, 0),
+      /* Tek seferlik nakit girişi (miras, prim, satış). */
+      tekSeferlikGelir: sayi(o && o.tekSeferlikGelir, 0),
+      /* Aylık gider/gelir deltası — süre boyunca. */
+      aylikGiderEtkisi: sayi(o && o.aylikGiderEtkisi, 0, true),
+      aylikGelirEtkisi: sayi(o && o.aylikGelirEtkisi, 0, true),
+      /* null = süresiz. Çocuk için 22, eğitim için 4 gibi. */
+      sureYil: (o && o.sureYil) ? Math.max(1, tamsayi(o.sureYil, 1)) : null,
+      /* Ücret geliri çarpanı: emeklilikte 0, iş değişikliğinde 1,25 gibi. */
+      ucretCarpani: (o && o.ucretCarpani !== undefined && o.ucretCarpani !== null &&
+        isFinite(Number(o.ucretCarpani))) ? Math.max(0, Number(o.ucretCarpani)) : null,
+      /* Likit OLMAYAN varlık eklemesi (satın alınan ev/araç). */
+      varlikEklemesi: sayi(o && o.varlikEklemesi, 0),
+      /* Yeni borç (mortgage, taşıt kredisi). */
+      borc: borc ? {
+        anapara: sayi(borc.anapara, 0),
+        aylikFaiz: sayi(borc.aylikFaiz, 0),
+        aylikOdeme: sayi(borc.aylikOdeme, 0)
+      } : null,
+      /* Duran gider: ev alınca kira biter. Kalemin id'si. */
+      durdurulanGiderId: metin(o && o.durdurulanGiderId, null, 24)
+    };
+  }
+
   function borcNormalize(b) {
     return {
       id: id(b && b.id),
@@ -211,6 +258,13 @@
     if (Array.isArray(ham.giderler)) p.giderler = ham.giderler.map(giderNormalize);
     if (Array.isArray(ham.varliklar)) p.varliklar = ham.varliklar.map(varlikNormalize);
     if (Array.isArray(ham.borclar)) p.borclar = ham.borclar.map(borcNormalize);
+    if (Array.isArray(ham.olaylar)) {
+      /* Yılı olmayan olay projeksiyona giremez; sessizce yok sayılır
+         yerine AYIKLANIR ki arayüz eksik olanı gösterebilsin. */
+      p.olaylar = ham.olaylar.map(olayNormalize)
+        .filter(function (o) { return o.yil !== null; })
+        .sort(function (a, b) { return a.yil - b.yil; });
+    }
 
     var v = ham.varsayimlar || {};
     p.varsayimlar.enflasyon = sayi(v.enflasyon, p.varsayimlar.enflasyon, true);
@@ -314,6 +368,7 @@
       giderler: p.giderler,
       varliklar: p.varliklar,
       borclar: p.borclar,
+      olaylar: p.olaylar,
       varsayimlar: p.varsayimlar,
       senaryolar: p.senaryolar
     }, null, 2);
@@ -409,6 +464,7 @@
     GELIR_TURLERI: GELIR_TURLERI,
     VARLIK_TURLERI: VARLIK_TURLERI,
     BORC_TURLERI: BORC_TURLERI,
+    OLAY_TURLERI: OLAY_TURLERI,
     LIKIT_TURLER: LIKIT_TURLER,
     bos: bosProfil,
     normalize: normalize,
