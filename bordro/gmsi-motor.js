@@ -44,6 +44,16 @@
    *   gercekGider      belgelenebilir gerçek gider toplamı (TL)
    *   digerGelir       aynı yıl beyan edilen/edilecek diğer gelirler (TL)
    *                    — tarife kümülatif olduğu için kira bunun ÜZERİNE biner
+   *   brutGelirToplami GVK m.21 üst sınır testine giren, BU KİRA DIŞINDAKİ
+   *                    ücret + MSİ + GMSİ + diğer kazançların GAYRİ SAFİ
+   *                    toplamı. Kanun "beyanı gerekip gerekmediğine
+   *                    bakılmaksızın" dediği için stopajla vergilenip beyan
+   *                    edilmeyen ücret de buraya girer — digerGelir'den farkı
+   *                    budur. Hesaplanan konut+işyeri kirası motor tarafından
+   *                    AYRICA eklenir; buraya yazılmaz. Verilmezse digerGelir
+   *                    kullanılır (eski davranış)
+   *   ticariBeyan      ticari/zirai/mesleki kazanç nedeniyle yıllık beyanname
+   *                    verme mecburiyeti var mı (true ise istisna uygulanmaz)
    *   digerStopaj      diğer gelirlerden kesilmiş, mahsup edilebilir stopaj
    */
   function hesapla(g) {
@@ -62,16 +72,49 @@
     var notlar = [];
 
     /* --- mesken istisnası ------------------------------------------------
-       İstisna, yalnızca konut kirasına uygulanır ve iki hâlde düşer:
-       (a) toplam gelir üst sınırı aşıyorsa,
-       (b) konut kirası zaten istisna tutarının altındaysa beyan gerekmez. */
-    var istisnaTabani = konut + isyeri + diger;
-    var istisnaHakki = konut > 0 && istisnaTabani <= K.istisnaUstSinir;
+       GVK m.21 istisnayı İKİ AYRI GRUBA kapatır ve ikisi bağımsızdır:
+
+         (a) "Ticari, zirai veya mesleki kazancını yıllık beyanname ile
+             bildirmek mecburiyetinde olanlar" — tutara bakılmaz, beyan
+             MECBURİYETİ yeter.
+         (b) Hasılatı istisna haddini aşanlardan, ücret + MSİ + GMSİ +
+             diğer kazanç ve iratların GAYRİ SAFİ toplamı üst sınırı
+             aşanlar.
+
+       (a) uzun süre hiç uygulanmıyordu: sayfada yazıyordu ama form
+       sormuyordu, dolayısıyla serbest meslek erbabı da istisnayı alıyordu.
+
+       ÜST SINIR PARAMETRE DEĞİL, TARİFEDEN TÜRETİLİR: kanun onu
+       "tarifenin üçüncü diliminde ücret gelirleri için yer alan tutar"
+       diye tanımlıyor. Elle yazılan kopya 2023'ten kalmıştı. */
+    var istisnaUstSinir = P.dilimler[2][0];
+
+    /* (b)'nin tabanı BEYAN EDİLEN gelir değil: kanun "beyanı gerekip
+       gerekmediğine bakılmaksızın" der. Stopajla vergilenip beyan
+       edilmeyen ücret de bu toplama girer; bu yüzden ayrı sorulur ve
+       verilmediğinde beyana giren gelire düşülür.
+
+       Kira gelirinin kendisi de GMSİ olarak bu toplama dahildir; o
+       yüzden konut+işyeri BURADA ekleniyor, girdide değil. */
+    var brutToplam = (g.brutGelirToplami === undefined || g.brutGelirToplami === null)
+      ? diger
+      : Math.max(0, Number(g.brutGelirToplami) || 0);
+    var istisnaTabani = konut + isyeri + brutToplam;
+
+    var ticariBeyan = g.ticariBeyan === true;
+    var sinirAsildi = konut > K.meskenIstisnasi && istisnaTabani > istisnaUstSinir;
+    var istisnaHakki = konut > 0 && !ticariBeyan && !sinirAsildi;
     var istisna = istisnaHakki ? Math.min(konut, K.meskenIstisnasi) : 0;
 
-    if (konut > 0 && !istisnaHakki) {
-      notlar.push("Toplam geliriniz " + K.istisnaUstSinir.toLocaleString("tr-TR") +
-        " TL sınırını aştığı için mesken istisnasından yararlanamıyorsunuz (GVK m.21).");
+    if (konut > 0 && ticariBeyan) {
+      notlar.push("Ticari, zirai veya mesleki kazancınız nedeniyle yıllık " +
+        "beyanname verdiğiniz için mesken istisnasından yararlanamazsınız " +
+        "(GVK m.21). Bu hâlde gelir tutarınızın bir önemi yoktur.");
+    } else if (konut > 0 && sinirAsildi) {
+      notlar.push("Gelir toplamınız " + istisnaUstSinir.toLocaleString("tr-TR") +
+        " TL sınırını aştığı için mesken istisnasından yararlanamıyorsunuz " +
+        "(GVK m.21). Bu sınır, gelir vergisi tarifesinin üçüncü diliminde " +
+        "ücret gelirleri için yer alan tutardır.");
     }
 
     var konutKalan = Math.max(0, konut - istisna);

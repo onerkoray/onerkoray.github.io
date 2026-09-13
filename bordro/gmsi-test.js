@@ -17,7 +17,12 @@ var gecen = 0;
 
 function esit(ad, bulunan, beklenen, tol) {
   var t = tol === undefined ? 0.005 : tol;
-  if (Math.abs(bulunan - beklenen) > t) {
+  /* NaN KORUMASI: bulunan undefined ise fark NaN olur ve NaN > t her
+     zaman false dondugu icin iddia SESSIZCE GECERDI. Parametre
+     silindiginde test bunu fark etmedi; testin en temel isi olan
+     "deger yerinde mi" sorusu calismiyordu. */
+  if (!isFinite(bulunan) || !isFinite(beklenen) ||
+      Math.abs(bulunan - beklenen) > t) {
     hata++;
     console.error("  BASARISIZ  " + ad + "\n      beklenen " + beklenen + ", bulunan " + bulunan);
   } else {
@@ -31,7 +36,13 @@ var K = P[2026].gmsi;
 
 console.log("Parametreler yerinde");
 esit("mesken istisnasi 58.000", K.meskenIstisnasi, 58000);
-esit("istisna ust siniri 1.900.000", K.istisnaUstSinir, 1900000);
+/* Ust sinir ARTIK PARAMETRE DEGIL: GVK m.21 onu tarifenin ucuncu
+   diliminde ucret gelirleri icin yer alan tutar olarak tanimliyor.
+   Elle yazilan kopya 2023'ten kalmis ve 1.900.000 diyordu; dogrusu
+   2026 icin 1.500.000. Test her iki tarafi da bagliyor: parametre
+   geri gelmemeli VE turetilen deger tarifeyle ayni olmali. */
+dogru("ust sinir elle yazilmiyor", K.istisnaUstSinir === undefined);
+esit("ucret tarifesi ucuncu dilim 1.500.000", P[2026].dilimler[2][0], 1500000);
 esit("goturu gider orani %15", K.goturuGiderOrani, 0.15, 1e-12);
 esit("isyeri beyan siniri 400.000", K.isyeriBeyanSiniri, 400000);
 esit("isyeri stopaji %20", K.isyeriStopaji, 0.20, 1e-12);
@@ -85,7 +96,47 @@ var f = M.hesapla({ yil: 2026, konutKira: 200000, digerGelir: 2000000 });
 dogru("ust sinir asildi, istisna yok", f.istisnaHakki === false);
 esit("istisna 0", f.istisna, 0);
 dogru("kullaniciya nedeni soyleniyor",
-  f.notlar.some(function (n) { return n.indexOf("1.900.000") > -1; }));
+  f.notlar.some(function (n) { return n.indexOf("1.500.000") > -1; }));
+
+/* SINIRIN TAM USTU VE TAM KENDISI. Kanun "asanlar" der: sinirin
+   KENDISI istisnayi kaybettirmez. */
+var s1 = M.hesapla({ yil: 2026, konutKira: 200000, brutGelirToplami: 1300000 });
+esit("toplam tam 1.500.000 — istisna duruyor", s1.istisna, 58000);
+var s2 = M.hesapla({ yil: 2026, konutKira: 200000, brutGelirToplami: 1300001 });
+esit("bir lira ustu — istisna dusuyor", s2.istisna, 0);
+
+/* Kanun (b) bendini yalnizca "istisna haddinin uzerinde hasilat elde
+   edenler" icin isletir: hasilati 58.000'in altinda olan yuksek gelirli
+   biri istisnayi KAYBETMEZ. */
+var s3 = M.hesapla({ yil: 2026, konutKira: 50000, brutGelirToplami: 5000000 });
+esit("hasilat istisna haddinin altinda — sinir isletilmez", s3.istisna, 50000);
+
+console.log("\nTicari/zirai/mesleki beyan mecburiyeti (GVK m.21)");
+/* Bu kosul sayfada UC YERDE yaziyordu ama form hic sormuyordu; yani
+   serbest meslek erbabi da istisnayi aliyordu. */
+var t1 = M.hesapla({ yil: 2026, konutKira: 200000, ticariBeyan: true });
+esit("ticari beyan varsa istisna 0", t1.istisna, 0);
+dogru("tutara bakilmadigi soyleniyor",
+  t1.notlar.some(function (n) { return n.indexOf("bir onemi yoktur") > -1 ||
+    n.indexOf("bir önemi yoktur") > -1; }));
+var t2 = M.hesapla({ yil: 2026, konutKira: 200000, ticariBeyan: false });
+esit("ticari beyan yoksa istisna duruyor", t2.istisna, 58000);
+dogru("ticari beyan, gelir sinirindan BAGIMSIZ",
+  M.hesapla({ yil: 2026, konutKira: 200000, brutGelirToplami: 0,
+    ticariBeyan: true }).istisna === 0);
+
+console.log("\nUst sinir tabani: beyan edilen degil, GAYRI SAFI toplam");
+/* GVK m.21 "beyani gerekip gerekmedigine bakilmaksizin" der. Stopajla
+   vergilenip beyan edilmeyen ucret de bu toplama girer. */
+var b1 = M.hesapla({ yil: 2026, konutKira: 200000, digerGelir: 0,
+  brutGelirToplami: 1400000 });
+esit("beyan edilen 0 ama brut 1,4 mn — istisna dusuyor", b1.istisna, 0);
+var b2 = M.hesapla({ yil: 2026, konutKira: 200000, digerGelir: 0 });
+esit("brut verilmezse eski davranis (digerGelir)", b2.istisna, 58000);
+dogru("brut, vergi matrahini DEGISTIRMEZ (yalniz sinir testi)",
+  M.hesapla({ yil: 2026, konutKira: 200000, digerGelir: 0 }).goturu.kiraVergisi ===
+  M.hesapla({ yil: 2026, konutKira: 200000, digerGelir: 0,
+    brutGelirToplami: 0 }).goturu.kiraVergisi);
 
 console.log("\nKumulatif tarife — kira, diger gelirin USTUNE biniyor");
 var g1 = M.hesapla({ yil: 2026, konutKira: 200000 });
