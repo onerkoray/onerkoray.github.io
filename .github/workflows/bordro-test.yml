@@ -188,6 +188,9 @@ jobs:
       # yanlis bir guvenlik duygusu tasir. Testler ozdeslikleri
       # (entropi duzeltmesi = log2(kabul olasiligi)), dagilimi ve
       # 'Password123! artik guclu sayilmaz' kuralini sabitliyor.
+      - name: Yatırım fizibilitesi regresyonları
+        run: node yatirim-fizibilite-hesaplama/test.js
+
       - name: Şifre motoru regresyonları
         run: node keymint/sifre-test.js
 

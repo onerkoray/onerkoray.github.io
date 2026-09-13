@@ -1,0 +1,16 @@
+'use strict';
+const assert = require('node:assert/strict');
+const {analyse, npv} = require('./hesap.js');
+const near = (a,b) => assert.ok(Math.abs(a-b) < 1e-6, `${a} != ${b}`);
+let r = analyse(100,[110],.1,.1,0);
+near(r.npv,0); near(r.irr,.1); near(r.mirr,.1); assert.equal(r.discountedPayback,1);
+r = analyse(100,[60,60],0,0,0); near(r.npv,20); near(r.mirr,Math.sqrt(1.2)-1); assert.equal(r.payback,2);
+r = analyse(100,[0],0,0,120); near(r.npv,20); near(r.irr,.2);
+r = analyse(100,[90],0,0,0); near(r.irr,-.1); assert.equal(r.payback,null);
+r = analyse(100,[230,-132],.1,.1,0); assert.equal(r.irr,null); assert.equal(r.conventional,false); assert.ok(Number.isFinite(r.mirr));
+r = analyse(100,[0,0],.1,.1,0); assert.equal(r.irr,null); assert.equal(r.mirr,null); near(r.npv,-100);
+r = analyse(1000,[300,400,500],.12,.08,100); near(r.rows.at(-1).cumulative,r.npv); near(npv([-1000,300,400,600],r.irr),0);
+const doubled=analyse(2000,[600,800,1000],.12,.08,200); near(doubled.npv,2*r.npv); near(doubled.irr,r.irr);
+assert.ok(analyse(1000,[300,400,500],.2,.08,100).npv < r.npv);
+for (const args of [[0,[1],0,0,0],[100,[NaN],0,0,0],[100,[],0,0,0],[100,[1],-.1,0,0],[100,[1],0,0,-1],[100,Array(31).fill(1),0,0,0]]) assert.throws(()=>analyse(...args));
+console.log('Fizibilite: referans hesaplar, IRR belirsizliği, MIRR, ölçek ve sınır kontrolleri geçti.');
