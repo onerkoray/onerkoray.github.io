@@ -112,6 +112,23 @@ jobs:
       - name: Kişisel enflasyon motoru regresyonları
         run: node finans/kisisel-enflasyon-test.js
 
+      # FINANSAL IKIZ OMURGASI.
+      # profil.js VERI KATMANI: bozulursa tek bir sayfa degil, uzerine
+      # binen her motor birden yanlisa doner -- ve bozulma sessizdir.
+      # Ayrica kullanicinin en hassas verisi burada duruyor; saklama
+      # kurallari (onaysiz YAZMAZ, onay kalkinca SILER) testle sabit.
+      - name: Profil (veri katmanı) regresyonları
+        run: node finans/profil-test.js
+
+      # ikiz-motoru: 20 yillik bir projeksiyonun hatalari GORUNMEZ.
+      # Grafik yine cizilir, sayilar yine makuldur, yalnizca yanlistir.
+      # Testler once muhasebe ozdesliklerini (her yilda giren = cikan),
+      # sonra modelin yazili varsayimlarini sabitliyor -- ilk yilin
+      # gelirinin bordro motorunun yillik netine BIREBIR esit olmasi
+      # dahil.
+      - name: Finansal İkiz projeksiyon regresyonları
+        run: node finans/ikiz-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.
