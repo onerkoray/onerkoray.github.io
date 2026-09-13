@@ -58,12 +58,51 @@
     ["turuncu", "#bb5714", "Turuncu"],
     ["gul", "#b0345c", "Gül"]
   ];
+  /* FAVICON VURGUSU SEÇİLEN PALETE UYAR.
+     Faviconlar sayfanın CSS'ini göremez: ayrı bir belge olarak çizilirler,
+     dolayısıyla --accent değişkeni oraya ulaşmaz. Tek yol, sayfa açılırken
+     favicon'u değiştirmek. Değişen tek şey alt kenardaki vurgu çubuğu;
+     mürekkep kap ve sembol olduğu gibi kalıyor.
+
+     Statik dosya varsayılan yeşille yayımlanıyor, yani JS çalışmasa da
+     favicon doğru görünür — bu yalnızca bir uyum katmanı, bağımlılık değil.
+     Varsayılan paletteyken dosyaya geri dönülüyor ki data URI'ye gerek
+     kalmasın ve tarayıcı önbelleği kullanılabilsin. */
+  var FV_VARSAYILAN = "#0e7c66";
+  var fvKaynak = null;                     // asıl SVG metni; bir kez indirilir
+
+  function faviconVurgusu(renk) {
+    var bag = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+    if (!bag || typeof fetch !== "function") return;
+    /* href data URI'ye dönüştükten sonra tekrar okunamaz; asıl yolu sakla. */
+    if (!bag.getAttribute("data-fv-asil")) {
+      bag.setAttribute("data-fv-asil", bag.getAttribute("href"));
+    }
+    var asil = bag.getAttribute("data-fv-asil");
+    if (renk === FV_VARSAYILAN) { bag.setAttribute("href", asil); return; }
+
+    function uygula(svg) {
+      var yeni = svg.replace(/(class="fv-vurgu"[^>]*fill=")[^"]*"/, "$1" + renk + '"');
+      /* Beklenen kalıp yoksa DOKUNMA: alt proje faviconları (decorpalette,
+         keymint) bu sistemin dışında ve kendi markalarını taşıyor. */
+      if (yeni === svg) return;
+      bag.setAttribute("href", "data:image/svg+xml," + encodeURIComponent(yeni));
+    }
+
+    if (fvKaynak) { uygula(fvKaynak); return; }
+    fetch(asil).then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (t) { if (t) { fvKaynak = t; uygula(t); } })
+      .catch(function () { /* favicon olduğu gibi kalsın; sayfa etkilenmesin */ });
+  }
+
   function applyAccent(name) {
     if (name && name !== "yesil") document.documentElement.setAttribute("data-accent", name);
     else document.documentElement.removeAttribute("data-accent");
     document.querySelectorAll(".palette-pop button").forEach(function (b) {
       b.setAttribute("aria-pressed", String((b.getAttribute("data-accent") || "yesil") === (name || "yesil")));
     });
+    var secili = ACCENTS.filter(function (a) { return a[0] === (name || "yesil"); })[0];
+    faviconVurgusu((secili || ACCENTS[0])[1]);
   }
   applyAccent(localStorage.getItem(ACCENT_KEY) || "yesil");
 

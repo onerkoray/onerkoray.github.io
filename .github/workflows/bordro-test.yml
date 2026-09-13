@@ -296,6 +296,18 @@ jobs:
       - name: Faviconlar ikon kaynağıyla aynı mı
         run: python tools/favikon.py --check
 
+      # Favicon SESSIZ bozulur: sayfa acilir, arac calisir, yalnizca
+      # sekmede yanlis simge durur. Test renklerin style.css'ten
+      # kopmadigini, her sayfanin bagli oldugu dosyanin GERCEKTEN var
+      # oldugunu ve eski yesil gradyanin geri gelmedigini sabitliyor.
+      - name: Favicon sistemi regresyonları
+        run: node tools/favikon-test.js
+
+      # .ico ve apple-touch-icon uyum saglayamaz; en azindan kok
+      # isaretle ayni kalmalilar.
+      - name: Raster simgeler güncel mi
+        run: python tools/favikon-raster.py --check
+
       - name: Stil damgaları güncel mi
         run: python tools/stil-damgasi.py --check
 
