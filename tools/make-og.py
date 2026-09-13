@@ -208,6 +208,10 @@ SPEC = {
    "İşveren maliyeti ile net ücret arasındaki fark. Zirve 100.000 TL'de değil, SGK tavanında.",
    ["OECD tanımı", "Marjinal oran"], "bordro"),
 
+ "kisisel-enflasyon": ("kisisel-enflasyon", "Kişisel", "Enflasyon",
+   "Resmî oran bir sepet ortalaması. Kendi sepetiniz ne kadar pahalandı, hangi kalem kaç puan ekledi?",
+   ["Kendi sepetiniz", "Katkı ayrıştırması"], "finans"),
+
  "nakit-akisi-analizi": ("nakit-akisi-analizi", "Nakit Akışı", "Analizi",
    "İşveren maliyetinden her gider kalemine kadar tüm akış tek diyagramda — ve her kalemin ömür bedeli.",
    ["Sankey", "Ömür bedeli"], "finans"),

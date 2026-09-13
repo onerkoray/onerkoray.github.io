@@ -155,6 +155,10 @@
     "cat": "vergi",
     "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12h4\"/><path d=\"M7 12c4 0 4-7 8-7h6\"/><path d=\"M7 12h14\"/><path d=\"M7 12c4 0 4 7 8 7h6\"/></svg>"
   },
+  "kisisel-enflasyon": {
+    "cat": "vergi",
+    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 20h18\"/><path d=\"M6 20V9\"/><path d=\"M12 20V5\"/><path d=\"M18 20v-9\"/><path d=\"M4.5 12h3\"/></svg>"
+  },
   "vergi-kamasi-hesaplama": {
     "cat": "maas",
     "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 20h16V4z\"/><path d=\"M11 20v-5.5\"/></svg>"

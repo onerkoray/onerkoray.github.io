@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2GNZPW1LPT');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kişisel Enflasyon Hesaplama | Koray Öner</title>
+  <meta name="description" content="Kendi harcamanızdan kişisel enflasyonunuzu hesaplayın: hangi kalem kaç puan ekledi, zammınız yetti mi? Resmî oran bir sepet ortalamasıdır, sizinki değil.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/kisisel-enflasyon/">
+
+  <link rel="icon" href="../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Kişisel Enflasyon: Sizin Sepetiniz Ne Kadar Pahalandı?">
+  <meta property="og:description" content="Kendi harcamanızdan kişisel enflasyonunuz, kalem kalem katkı ayrıştırması ve zammınızın reel karşılığı.">
+  <meta property="og:url" content="https://korayoner.dev/kisisel-enflasyon/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/kisisel-enflasyon-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz kişisel enflasyon hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kişisel Enflasyon: Sizin Sepetiniz Ne Kadar Pahalandı?">
+  <meta name="twitter:description" content="Kendi harcamanızdan kişisel enflasyonunuz ve zammınızın reel karşılığı.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/kisisel-enflasyon-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=00a2fec4">
+  <link rel="stylesheet" href="style.css?v=382680a3">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "dateModified": "2026-09-13",
+        "@id": "https://korayoner.dev/kisisel-enflasyon/#app",
+        "name": "Kişisel Enflasyon Hesaplama",
+        "url": "https://korayoner.dev/kisisel-enflasyon/",
+        "image": "https://korayoner.dev/images/kisisel-enflasyon-koray-oner.png",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any (web browser)",
+        "inLanguage": "tr",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "description": "Kullanıcının kendi harcama kalemlerinden Laspeyres yöntemiyle kişisel enflasyon oranını, kalem bazlı katkı ayrıştırmasını ve gelir artışının reel karşılığını hesaplayan ücretsiz araç."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://korayoner.dev/kisisel-enflasyon/#webpage",
+        "url": "https://korayoner.dev/kisisel-enflasyon/",
+        "name": "Kişisel Enflasyon: Sizin Sepetiniz Ne Kadar Pahalandı?",
+        "inLanguage": "tr",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "breadcrumb": { "@id": "https://korayoner.dev/kisisel-enflasyon/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://korayoner.dev/kisisel-enflasyon/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Kişisel Enflasyon", "item": "https://korayoner.dev/kisisel-enflasyon/" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "jobTitle": "Yazılım Geliştirici"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Kişisel enflasyon nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Resmî enflasyon, ülke genelini temsil eden bir sepetin ortalama fiyat artışıdır. Sizin sepetiniz o ortalama değildir: gelirinin yarısını kiraya veren biriyle kendi evinde oturan birinin enflasyonu aynı olamaz. Kişisel enflasyon, kendi harcama paylarınızla ağırlıklandırılmış fiyat artışıdır." } },
+          { "@type": "Question", "name": "Bu araç resmî TÜFE verisi kullanıyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır ve bu bilinçli. Araç hiçbir enflasyon serisi taşımaz; tüm veri sizin kendi harcamanızdır. Resmî oranı karşılaştırma için kendiniz girersiniz. Yayımlanan her parametrenin doğrulanabilir bir kaynağı olması gerektiği için, doğrulanmamış bir endeks tablosu siteye konmaz." } },
+          { "@type": "Question", "name": "Harcamam arttıysa enflasyonum bu mudur?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Harcamanızdaki artış hem fiyat hem de miktar değişimini içerir: daha ucuz eve taşınmak harcamanızı düşürür ama kiralar yine de artmıştır. Araç ikisini ayırır — miktarı değişen kalemleri işaretlersiniz, fiyat endeksi yalnızca sabit kalanlardan kurulur, aradaki fark 'sepet etkisi' olarak raporlanır." } },
+          { "@type": "Question", "name": "Neden geçen yılın ağırlıkları kullanılıyor?", "acceptedAnswer": { "@type": "Answer", "text": "Laspeyres yöntemi taban dönem ağırlıklarını kullanır; resmî endekslerin de yaptığı budur. Bugünün paylarıyla ağırlıklandırmak (Paasche), hızlı pahalanan kalemin payı büyüdüğü için bu tür sepetlerde daha yüksek bir oran verir. İki yöntem farklı sorulara cevap verir; araç hangisini kullandığını açıkça yazar." } },
+          { "@type": "Question", "name": "Zammım enflasyonu karşıladı mı?", "acceptedAnswer": { "@type": "Answer", "text": "Araç bunu bölme yöntemiyle hesaplar: reel değişim = (1+zam)/(1+enflasyon)−1. Çıkarma yüksek oranlarda puanlarca sapar. Ayrıca zammın kişisel enflasyonunuzu tam karşılaması için gereken tutarı ve aradaki açığı da verir." } },
+          { "@type": "Question", "name": "Verilerim bir yere gönderiliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bütün hesap tarayıcınızın içinde çalışır; girdiğiniz harcama ve gelir bilgileri hiçbir sunucuya gönderilmez ve kaydedilmez." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#yontem">Yöntem</a></li>
+          <li><a href="#fark">Fiyat mı, tercih mi?</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> Kişisel Enflasyon
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Ücretsiz · Reklamsız · Veriniz tarayıcıdan çıkmaz</p>
+        <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 20V9"/><path d="M12 20V5"/><path d="M18 20v-9"/><path d="M4.5 12h3"/></svg></div>
+        <h1 id="hero-title">Sizin Sepetiniz Ne Kadar Pahalandı?</h1>
+        <p class="lede">
+          Resmî enflasyon bir <strong>sepet ortalamasıdır</strong>. Gelirinin
+          yarısını kiraya veren biriyle kendi evinde oturan birinin enflasyonu
+          aynı olamaz. Bu araç hiçbir resmî seri taşımıyor — hesabı
+          <strong>sizin kendi harcamanızdan</strong> kuruyor ve en önemli soruyu
+          cevaplıyor: <strong>bu oranın kaç puanı hangi kalemden geliyor?</strong>
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">Kişisel enflasyon hesaplama aracı</h2>
+
+        <form id="ke-form" class="panel" novalidate>
+          <div class="ke-grid">
+            <p class="panel-q">
+              <label for="in-gelir-once">Geçen yılki aylık net geliriniz</label>
+              <input type="text" id="in-gelir-once" inputmode="decimal" value="50000"> TL
+            </p>
+            <p class="panel-q">
+              <label for="in-gelir-simdi">Bugünkü aylık net geliriniz</label>
+              <input type="text" id="in-gelir-simdi" inputmode="decimal" value="65000"> TL
+            </p>
+            <p class="panel-q">
+              <label for="in-resmi">Karşılaştırma için resmî oran</label>
+              <input type="text" id="in-resmi" inputmode="decimal" value="32"> %
+              <span class="muted-note">
+                Kaynağı siz seçin: <a href="https://data.tuik.gov.tr/" rel="noopener">TÜİK</a>
+                yıllık TÜFE ya da başka bir ölçüt. Araç kendi verisi olmadığı için
+                bu alanı doldurmazsanız karşılaştırma yapılmaz.
+              </span>
+            </p>
+          </div>
+
+          <div class="ke-baslik-satir">
+            <h3 class="ke-alt-baslik">Harcama kalemleriniz</h3>
+            <button type="button" id="ekle" class="ke-ekle">+ Kalem ekle</button>
+          </div>
+
+          <div class="ke-tablo-sarmal">
+            <table class="ke-girdi">
+              <thead>
+                <tr>
+                  <th scope="col">Kalem</th>
+                  <th scope="col">Geçen yıl (TL/ay)</th>
+                  <th scope="col">Bugün (TL/ay)</th>
+                  <th scope="col">Miktarım değişti</th>
+                  <th scope="col"><span class="visually-hidden">Sil</span></th>
+                </tr>
+              </thead>
+              <tbody id="ke-govde"></tbody>
+            </table>
+          </div>
+          <p class="muted-note ke-ipucu">
+            <strong>“Miktarım değişti”</strong> kutusunu, o kalemde <em>ne kadar
+            tükettiğiniz</em> değiştiyse işaretleyin (taşındınız, arabayı sattınız,
+            dışarıda yemeyi azalttınız). İşaretli kalemler fiyat endeksine
+            girmez — çünkü oradaki değişim fiyat değil, tercih.
+          </p>
+        </form>
+
+        <div id="results" aria-live="polite"></div>
+        <p id="msg" class="muted-note" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> · Güncelleme: 13 Eylül 2026 · Araç hiçbir resmî enflasyon serisi taşımaz</p>
+
+        <h2 id="yontem">Yöntem: Laspeyres, taban yıl ağırlıklarıyla</h2>
+        <p class="formula">kişisel enflasyon = Σ ( w<sub>i</sub><sup>0</sup> × (p<sub>i</sub><sup>1</sup>/p<sub>i</sub><sup>0</sup> − 1) )</p>
+        <p>
+          Her kalemin fiyat değişimi, o kalemin <strong>geçen yılki harcama
+          payıyla</strong> ağırlıklandırılıp toplanıyor. Resmî endekslerin de
+          kullandığı taban dönem ağırlığı budur.
+        </p>
+        <p>
+          Bugünün paylarıyla ağırlıklandırmak (Paasche) farklı bir sayı verir:
+          hızlı pahalanan kalemin bugünkü payı büyüdüğü için — miktarlar sabitken —
+          <strong>daha yüksek</strong> bir oran çıkar. İki yöntem farklı sorulara
+          cevap verir; bu araç hangisini kullandığını söylüyor.
+        </p>
+
+        <h3>Asıl çıktı: katkı ayrıştırması</h3>
+        <p>
+          “Enflasyonunuz %40” bir sayıdır. <strong>“Bunun 30 puanı kiradan
+          geliyor”</strong> bir karardır. Her kalemin toplam orana kaç puan
+          eklediği ayrı ayrı veriliyor, ve bu katkıların toplamı tam olarak
+          orana eşit — tablo bunu her hesapta gösteriyor.
+        </p>
+        <p>
+          Dikkat edilmesi gereken bir ayrım: <strong>en büyük kalem, enflasyonunuza
+          en çok katkı yapan kalem olmak zorunda değil.</strong> Sepetinizin
+          %90'ını tutan bir kalem %5 arttıysa katkısı 4,5 puan; %10'unu tutan bir
+          kalem %200 arttıysa katkısı 20 puan.
+        </p>
+
+        <h2 id="fark">Fiyat mı arttı, siz mi değiştiniz?</h2>
+        <p>
+          Bu ayrım aracın kendisi. Harcamanızdaki artış iki şeyi birden içerir:
+        </p>
+        <ul>
+          <li><strong>Fiyat endeksi</strong> — sabit sepet üzerinden saf fiyat
+            artışı. Yalnızca “miktarım değişti” işareti olmayan kalemlerden
+            kuruluyor.</li>
+          <li><strong>Harcama değişimi</strong> — cüzdanınıza gerçekte ne olduğu.
+            Miktar değişimleri, yeni kalemler, bırakılan alışkanlıklar dahil.</li>
+          <li><strong>Sepet etkisi</strong> — ikisinin farkı. “Harcamanız %70
+            arttı; bunun 50 puanı fiyat, 20 puanı sizin tercihleriniz.”</li>
+        </ul>
+        <p>
+          Bu ayrım olmadan ikisi karışır. Nitekim bu aracın ilk sürümünde
+          karışıyordu: harcama paylarıyla kurulan “enflasyon”, cebirsel olarak
+          toplam harcama değişimine <em>özdeş</em> çıkıyor. Test bunu yakaladı
+          ve model yeniden kuruldu — <a href="https://github.com/onerkoray/hesap-cekirdegi/blob/main/finans/kisisel-enflasyon-motoru.js" rel="noopener">motorun
+          başındaki not</a> o hatayı olduğu gibi anlatıyor.
+        </p>
+
+        <h2 id="zam">Zammınız yetti mi?</h2>
+        <p class="formula">reel değişim = (1 + zam) / (1 + enflasyon) − 1</p>
+        <p>
+          Çıkarma değil <strong>bölme</strong>. %30 zam ve %40 enflasyonda kaybınız
+          10 puan değil, <strong>%7,14</strong>'tür. Yüksek oranlarda iki yöntem
+          puanlarca ayrışır.
+        </p>
+        <p>
+          Araç ayrıca, aynı zammın <em>resmî orana göre</em> ne yaptığını da
+          gösteriyor. Çoğu zaman manzara şudur: zam resmî oranın üstünde —
+          yani “enflasyonun üzerinde zam aldınız” — ama <strong>sizin</strong>
+          oranınızın altında. İkisi aynı anda doğru olabilir ve cebinizdeki
+          sonucu belirleyen ikincisidir.
+        </p>
+
+        <h2 id="sinir">Aracın söylemediği şeyler</h2>
+        <ul>
+          <li><strong>Resmî enflasyonun doğru ya da yanlış olduğunu iddia
+            etmiyor.</strong> Resmî oran bir ortalamadır; bu araç sizin
+            ortalamadan ne kadar saptığınızı gösterir. İkisi farklı sorular.</li>
+          <li><strong>Tek kalemlik sepetler yanıltır.</strong> İki-üç kalem
+            girerseniz oran o kalemlerin oynaklığını taşır. Sepet ne kadar
+            eksiksizse sonuç o kadar anlamlı.</li>
+          <li><strong>Hafızadan girilen tutarlar</strong> hesabı hafızanız kadar
+            doğru yapar. Eski ekstreler ve faturalar varsa onlardan bakın.</li>
+          <li><strong>Gelecek için bir tahmin değil.</strong> Geçmiş bir dönemi
+            ölçüyor. İleriye dönük alım gücü için aşağıdaki tablo bu oranın
+            sürmesi <em>varsayımıyla</em> hesaplanır.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Veri kaynakları ve yöntem</h2>
+          <p><span class="updated">Yöntem en son 13 Eylül 2026 tarihinde gözden geçirildi.</span></p>
+          <p>
+            <strong>Bu araç hiçbir enflasyon verisi taşımaz.</strong> Hesabın
+            tamamı sizin girdiğiniz tutarlardan kurulur; karşılaştırma için
+            kullanılan resmî oranı da siz girersiniz. Sebebi sitenin kuralı:
+            yayımlanan her parametrenin doğrulanabilir bir kaynağı olmalı, ve
+            doğrulanmamış bir endeks tablosu buraya konmaz.
+          </p>
+          <ul>
+            <li><strong>Resmî TÜFE oranları</strong> — <a href="https://data.tuik.gov.tr/" rel="noopener">TÜİK Veri Portalı</a> (aracın karşılaştırma alanına kendiniz girersiniz)</li>
+            <li><strong>Laspeyres endeksi</strong> — taban dönem ağırlıklı fiyat endeksi; resmî tüketici fiyat endekslerinin temel yöntemi</li>
+            <li><strong>Reel dönüşüm</strong> — Fisher denklemi, bölme yöntemiyle</li>
+          </ul>
+          <p>
+            Hesap yöntemi ve doğrulama testleri herkese açık:
+            <a href="https://github.com/onerkoray/hesap-cekirdegi/blob/main/finans/kisisel-enflasyon-motoru.js" rel="noopener">motor</a> ·
+            <a href="https://github.com/onerkoray/hesap-cekirdegi/blob/main/finans/kisisel-enflasyon-test.js" rel="noopener">53 test</a>.
+            Yöntemle ilgili bir itirazınız varsa <a href="../iletisim/">yazın</a>.
+            Kapsam ve sınırlar için <a href="../kullanim-kosullari/">Kullanım Koşulları</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Kişisel enflasyon nedir?</summary><p>Resmî oran bir sepet ortalamasıdır. Kişisel enflasyon, kendi harcama paylarınızla ağırlıklandırılmış fiyat artışıdır; gelirinin yarısını kiraya veren biriyle kendi evinde oturan birinin oranı aynı olamaz.</p></details>
+          <details><summary>Araç resmî TÜFE verisi kullanıyor mu?</summary><p>Hayır, bilinçli olarak. Hiçbir seri taşımaz; tüm veri sizindir. Resmî oranı karşılaştırma için kendiniz girersiniz.</p></details>
+          <details><summary>Harcamam arttıysa enflasyonum bu mudur?</summary><p>Hayır. Harcama değişimi hem fiyatı hem miktarı içerir. Araç ikisini ayırır: fiyat endeksi, harcama değişimi ve aradaki sepet etkisi.</p></details>
+          <details><summary>Neden geçen yılın ağırlıkları?</summary><p>Laspeyres yöntemi taban dönem ağırlığı kullanır; resmî endekslerin yaptığı da budur. Bugünün paylarıyla (Paasche) hesaplamak farklı bir soruyu cevaplar.</p></details>
+          <details><summary>Zammım enflasyonu karşıladı mı?</summary><p>Bölmeyle hesaplanır: (1+zam)/(1+enflasyon)−1. %30 zam ve %40 enflasyonda kayıp 10 puan değil %7,14'tür.</p></details>
+          <details><summary>Verilerim gönderiliyor mu?</summary><p>Hayır, hesap tamamen tarayıcınızda çalışır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <ul>
+          <li><a href="../nakit-akisi-analizi/">Nakit Akışı Analizi</a> — aynı gider kalemleri, bu kez ömür bedeliyle.</li>
+          <li><a href="../zam-hesaplama/">Zam Hesaplama</a> — brüt zam nete ne kadar yansır?</li>
+          <li><a href="../kira-artisi-hesaplama/">Kira Artışı Hesaplama</a> — yasal azami oran (TBK m.344).</li>
+          <li><a href="../makaleler/mevduat-faizi-enflasyon-reel-getiri/">Mevduat faizi ve enflasyon</a> — reel getirinin arkasındaki matematik.</li>
+          <li><a href="../finansal-ozgurluk-hesaplama/">Finansal Özgürlük (FIRE)</a> — enflasyonun uzun vadede ne yaptığı.</li>
+          <li><a href="../">Tüm projeler</a> — büyüyen açık kaynak araç koleksiyonu.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Veri kaynakları ve yöntem</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Veri kaynakları ve yöntem</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; resmî istatistik yerine geçmez.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../finans/kurallar.js?v=da7bebf5" defer></script>
+  <script src="../finans/enflasyon-motoru.js?v=53474604" defer></script>
+  <script src="../finans/kisisel-enflasyon-motoru.js?v=d5b919a6" defer></script>
+  <script src="../finans/egri.js?v=0a407c66" defer></script>
+  <script src="script.js?v=0f654b7a" defer></script>
+  <script src="../script.js?v=d148f9ac" defer></script>
+</body>
+</html>

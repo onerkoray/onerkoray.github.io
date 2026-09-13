@@ -71,6 +71,7 @@
    *   baslik     figcaption; grafiğin tek mesajı
    *   xEtiket / yEtiket
    *   xBicim / yBicim   (v) => string
+ *   xTikler    [sayı] — x ekseni etiket noktaları (verilmezse otomatik)
    *   tepe       {x, y} — işaretlenecek tepe (isteğe bağlı)
    *   tepeAd     tepe etiketi
    *   secilen    {x, y} — kullanıcının kendi noktası (isteğe bağlı)
@@ -110,12 +111,23 @@
         '" text-anchor="end" class="eg-tik">' + esc(yb(v)) + "</text>";
     }
 
-    var xAdim = adim(xMax - xMin, 4);
+    /* Tikler acikca verilebilir. Otomatik 1-2-5 secimi bazi eksenlerde
+       anlamsiz ara degerler uretiyor: yil ekseninde "2,5. yil" gibi.
+       Tuketici, ekseni anlamli olan noktalarda etiketleyebilmeli. */
+    var xTikler = o.xTikler;
+    if (!xTikler || !xTikler.length) {
+      xTikler = [];
+      var xAdim = adim(xMax - xMin, 4);
+      for (var u = Math.ceil(xMin / xAdim) * xAdim; u <= xMax + 1e-9; u += xAdim) {
+        xTikler.push(u);
+      }
+    }
     var xEtiketleri = "";
-    for (var u = Math.ceil(xMin / xAdim) * xAdim; u <= xMax; u += xAdim) {
+    xTikler.forEach(function (u) {
+      if (u < xMin - 1e-9 || u > xMax + 1e-9) return;
       xEtiketleri += '<text x="' + r0(X(u)) + '" y="' + (G.boy - G.alt + 18) +
         '" text-anchor="middle" class="eg-tik">' + esc(xb(u)) + "</text>";
-    }
+    });
 
     /* --- çizgi --- */
     var d = n.map(function (p, i) {
