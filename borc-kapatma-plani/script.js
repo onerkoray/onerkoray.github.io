@@ -38,6 +38,9 @@
     { ad: "İhtiyaç kredisi", bakiye: "80000", faiz: "2,9", tur: "taksit", ek: "3500" }
   ];
   var sayac = 0;
+  /* Tablonun taşıyabileceği en çok satır. Köprü de bu sınırı okuyor ki
+     ikisi ayrışmasın. */
+  var EN_COK = 8;
 
   function satirEkle(v) {
     v = v || { ad: "Yeni borç", bakiye: "", faiz: "", tur: "kart", ek: "20" };
@@ -250,10 +253,61 @@
 
   /* -------------------------------------------------------------------- bağla */
   var govde = el("borc-govde");
+
+  /* PROFIL KOPRUSU. Profildeki borc turleri (ihtiyac, konut, tasit, kart,
+     kmh) bu aracin iki turune indirgeniyor: KART ve TAKSITLI. Ayrim
+     onemli cunku besinci sutunun ANLAMI degisiyor -- kartta asgari
+     ODEME ORANI (%), taksitlide TAKSIT TUTARI (TL). Yanlis tarafa
+     yazmak sessizce sacma bir plan uretirdi. */
+  if (window.ProfilKopru) {
+    window.ProfilKopru.bagla({
+      hedef: el("pk-alan"),
+      alanlar: ["borc"],
+      yol: "../finansal-ikiz/",
+      doldur: function (pr) {
+        if (!pr.borclar.length) return [];
+        var alinan = pr.borclar.slice(0, EN_COK);
+        var kartVar = false;
+        el("borc-govde").innerHTML = "";
+        alinan.forEach(function (b) {
+          var kartMi = (b.tur === "kart" || b.tur === "kmh");
+          if (kartMi) kartVar = true;
+          satirEkle({
+            ad: b.ad,
+            bakiye: String(Math.round(b.kalanAnapara)),
+            faiz: (b.aylikFaiz * 100).toFixed(2).replace(".", ","),
+            tur: kartMi ? "kart" : "taksit",
+            /* Beşinci sütunun ANLAMI türe göre değişiyor: kartta asgari
+               ödeme ORANI (%), taksitlide TAKSİT TUTARI (TL). */
+            ek: kartMi ? "20" : String(Math.round(b.aylikOdeme))
+          });
+        });
+        recalc();
+        /* NE DOLDURULDUĞU DOĞRU SÖYLENİR. İki incelik var ve ikisi de
+           sessizce yanlış bilgi verirdi:
+           - Araç en çok EN_COK satır taşıyor; profilde daha fazla borç
+             varsa "hepsi geldi" demek, eksik bir planı tam göstermek olur.
+           - Asgari ödeme oranı profilde TUTULMUYOR; %20 BDDK'nın alt
+             sınırı, kullanıcının verisi değil. Nereden geldiği yazılmazsa
+             kullanıcı kendi girdiği bir sayı sanır. */
+        var rapor = [alinan.length + " borç kalemi"];
+        if (pr.borclar.length > alinan.length) {
+          rapor.push("profildeki " + pr.borclar.length + " borçtan en üstteki " +
+            alinan.length + " tanesi (araç daha fazlasını taşımıyor)");
+        }
+        if (kartVar) {
+          rapor.push("kartlarda asgari ödeme oranı %20 varsayıldı " +
+            "(BDDK alt sınırı — profilinizden gelmiyor, kontrol edin)");
+        }
+        return rapor;
+      }
+    });
+  }
+
   VARSAYILAN.forEach(satirEkle);
 
   el("ekle").addEventListener("click", function () {
-    if (document.querySelectorAll(".bp-satir").length >= 8) return;
+    if (document.querySelectorAll(".bp-satir").length >= EN_COK) return;
     satirEkle(); recalc();
   });
   govde.addEventListener("click", function (e) {

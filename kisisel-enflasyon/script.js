@@ -274,6 +274,33 @@
       kararKarti(r) + ucluk(r) + katkiTablosu(r) + alimGucuEgrisi(r);
   }
 
+  /* PROFİL KÖPRÜSÜ. Burada bir incelik var: profil BUGÜNÜN gider
+     tutarlarını tutuyor, bu araç ise GEÇEN YIL ile BUGÜNÜ karşılaştırıyor.
+     Bu yüzden profilden gelen tutarlar "bugün" sütununa yazılıyor ve
+     "geçen yıl" sütunu BOŞ bırakılıyor — uydurma bir geçmiş tutar
+     üretmek, hesabın tamamını yanlış yapardı. */
+  if (window.ProfilKopru) {
+    window.ProfilKopru.bagla({
+      hedef: $("pk-alan"),
+      alanlar: ["gider"],
+      yol: "../finansal-ikiz/",
+      doldur: function (p) {
+        var yapilan = [];
+        if (p.giderler.length) {
+          $("ke-govde").innerHTML = "";
+          p.giderler.forEach(function (k) {
+            satirEkle({ ad: k.ad, once: 0, simdi: Math.round(k.aylik),
+              miktarDegisti: false });
+          });
+          yapilan.push(p.giderler.length + " kalemin BUGÜNKÜ tutarı " +
+            "(geçen yıl sütununu siz doldurun)");
+        }
+        hesapla();
+        return yapilan;
+      }
+    });
+  }
+
   VARSAYILAN.forEach(satirEkle);
   $("ekle").addEventListener("click", function () {
     satirEkle({ ad: "", once: 0, simdi: 0, miktarDegisti: false });

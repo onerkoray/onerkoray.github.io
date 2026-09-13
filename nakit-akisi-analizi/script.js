@@ -247,6 +247,37 @@
       ozet(r) + diyagram(r) + omurTablosu(r) + isi(g, r);
   }
 
+  /* PROFİL KÖPRÜSÜ — bu araç kullanıcıyı sıfırdan başlatmak zorunda
+     değil. Yalnızca OKUR; profili değiştirmez. */
+  if (window.ProfilKopru) {
+    window.ProfilKopru.bagla({
+      hedef: $("pk-alan"),
+      alanlar: ["gelir", "gider"],
+      yol: "../finansal-ikiz/",
+      doldur: function (p) {
+        var yapilan = [];
+        var ucret = p.gelirler.filter(function (g) { return g.tur === "ucret"; })[0];
+        if (ucret && ucret.aylikBrut > 0) {
+          $("in-brut").value = Math.round(ucret.aylikBrut);
+          yapilan.push("brüt maaş");
+        }
+        var diger = p.gelirler.reduce(function (a, g) {
+          return a + (g.tur === "ucret" ? 0 : g.aylikNet);
+        }, 0);
+        if (diger > 0) { $("in-diger").value = Math.round(diger); yapilan.push("diğer gelir"); }
+        if (p.giderler.length) {
+          $("na-govde").innerHTML = "";
+          p.giderler.forEach(function (k) {
+            satirEkle({ ad: k.ad, tutar: Math.round(k.aylik), zorunlu: k.zorunlu });
+          });
+          yapilan.push(p.giderler.length + " gider kalemi");
+        }
+        hesapla();
+        return yapilan;
+      }
+    });
+  }
+
   VARSAYILAN.forEach(satirEkle);
   $("ekle").addEventListener("click", function () {
     satirEkle({ ad: "", tutar: 0, zorunlu: false });
