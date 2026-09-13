@@ -116,10 +116,18 @@
              iyimser   +%7,9
          Üçü de yirmi yıl boyunca sürdürülebilir büyüklükler.
 
+         ÜCRET KAYMASI KÖTÜMSERDE SIFIR — ÇİFTE SAYIM OLMASIN DİYE.
+         Reel ücret artışı (1+ücret)/(1+enflasyon)−1 olduğu için,
+         enflasyon kayması TEK BAŞINA reel ücreti zaten eritiyor: %36
+         enflasyon ve %30 nominal zam, yılda −%4,4 reel demek. Üstüne bir
+         de nominal ücret kayması eklemek aynı şeyi iki kez saymaktı ve
+         reel ücreti yılda −%7,4'e indiriyordu — yirmi yılda bugünkünün
+         %22'sine. Bir kötümser senaryo değil, bir çöküş senaryosuydu.
+
          Bunlar BAŞLANGIÇ NOKTASI; kullanıcı hepsini değiştirebilir ve
          arayüz bunların kendi varsayımı olduğunu söylüyor. */
       senaryolar: {
-        kotumser: { enflasyonKaymasi: 0.06, getiriKaymasi: -0.03, ucretKaymasi: -0.04 },
+        kotumser: { enflasyonKaymasi: 0.06, getiriKaymasi: -0.03, ucretKaymasi: 0 },
         baz: { enflasyonKaymasi: 0, getiriKaymasi: 0, ucretKaymasi: 0 },
         iyimser: { enflasyonKaymasi: -0.03, getiriKaymasi: 0.02, ucretKaymasi: 0.02 }
       }

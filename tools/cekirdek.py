@@ -96,6 +96,7 @@ DOSYALAR = [
     ("finans/profil-test.js",             "finans/profil-test.js"),
     ("finans/ikiz-motoru.js",             "finans/ikiz-motoru.js"),
     ("finans/ikiz-test.js",               "finans/ikiz-test.js"),
+    ("finans/bant.js",                    "finans/bant.js"),
 
     ("bordro/emeklilik-parametreleri.js", "bordro/emeklilik-parametreleri.js"),
     ("bordro/emeklilik-motor.js",         "bordro/emeklilik-motor.js"),
