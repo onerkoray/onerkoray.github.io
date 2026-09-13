@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yatırım Fizibilitesi: NBD ve İç Verim Oranı | Koray Öner</title><meta name="description" content="Yatırımın net bugünkü değerini, iç verim oranını ve geri ödeme süresini hesaplayın. Yıllık nakit akışları, üç senaryo, grafik ve CSV raporuyla analiz edin.">
+<meta name="author" content="Koray Öner"><meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://korayoner.dev/yatirim-fizibilite-hesaplama/">
+<link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32"><link rel="icon" href="../favicon.svg?v=752069d8" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+<meta property="og:type" content="website"><meta property="og:title" content="Yatırım Fizibilitesi: NBD ve İç Verim Oranı"><meta property="og:description" content="Yatırımın net bugünkü değerini, iç verim oranını ve geri ödeme süresini hesaplayın. Yıllık nakit akışları, üç senaryo, grafik ve CSV raporuyla analiz edin."><meta property="og:url" content="https://korayoner.dev/yatirim-fizibilite-hesaplama/"><meta property="og:site_name" content="Koray Öner"><meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://korayoner.dev/images/koray-oner-kapak.png"><meta property="og:image:alt" content="Koray Öner finansal hesaplama araçları"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Yatırım Fizibilitesi: NBD ve İç Verim Oranı"><meta name="twitter:description" content="Yatırımın net bugünkü değerini, iç verim oranını ve geri ödeme süresini hesaplayın. Yıllık nakit akışları, üç senaryo, grafik ve CSV raporuyla analiz edin."><meta name="twitter:image" content="https://korayoner.dev/images/koray-oner-kapak.png">
+<link rel="stylesheet" href="../style.css?v=6b09337f"><link rel="stylesheet" href="style.css?v=8be356a5"><script src="../onay.js?v=0e361dc9" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Yatırım Fizibilitesi: NBD ve İç Verim Oranı", "url": "https://korayoner.dev/yatirim-fizibilite-hesaplama/", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "inLanguage": "tr", "description": "Yatırımın net bugünkü değerini, iç verim oranını ve geri ödeme süresini hesaplayın. Yıllık nakit akışları, üç senaryo, grafik ve CSV raporuyla analiz edin.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "author": {"@type": "Person", "name": "Koray Öner", "url": "https://korayoner.dev/hakkimda/"}}</script>
+</head><body class="calculator-page investment-page"><a class="skip-link" href="#main">İçeriğe geç</a>
+<header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header><main id="main">
+<nav class="breadcrumb wrap" aria-label="Site haritası"><a href="../">Ana Sayfa</a> › Yatırım Fizibilitesi</nav>
+<section class="hero"><div class="wrap hero-inner"><p class="eyebrow">Yatırım kararı · Nakit akışı · Risk senaryoları</p><h1>Yatırım Fizibilitesi Analizi</h1><p class="lede">Bir projenin gelir üretmesi, sermayenizin karşılığını verdiği anlamına gelmez. <strong>Paranın zaman değerini</strong> hesaba katın; yatırımın ne kadar değer ürettiğini ve hangi varsayımlara duyarlı olduğunu birlikte görün.</p></div></section>
+<div class="wrap investment-layout" id="hesapla">
+<form class="investment-panel" id="investment-form"><h2>Yatırımın varsayımları</h2><p class="investment-note">Örnek tutarlar piyasa tahmini değildir. Tüm akışlar yıllık, yıl sonu ve nominal TL cinsindedir.</p>
+<label for="investment">Başlangıç yatırımı (TL)</label><input id="investment" type="number" min="0.01" max="1000000000000" step="any" value="1000000" required>
+<label for="discount">Yıllık iskonto / beklenen getiri (%)</label><input id="discount" type="number" min="0" max="200" step="any" value="25" required><small>Sermayenizin alternatif maliyeti ve risk için seçtiğiniz yıllık eşik.</small>
+<label for="reinvest">Yeniden yatırım getirisi (%)</label><input id="reinvest" type="number" min="0" max="200" step="any" value="20" required><small>Ara dönem gelirlerinin değerlendirilme oranı; düzeltilmiş iç verim hesabında kullanılır.</small>
+<label for="cash">Yıl sonu net nakit akışları (TL)</label><textarea id="cash" required spellcheck="false">350000
+450000
+550000
+650000
+750000</textarea><small>Her satır bir yıl; 1–30 yıl. Binlik ayırıcı kullanmayın. Giderler ve vergiler sonrası net tutarı yazın; ek yatırım için negatif değer girebilirsiniz.</small>
+<label for="terminal">Son yıl ek satış / hurda değeri (TL)</label><input id="terminal" type="number" min="0" max="1000000000000" step="any" value="200000" required><small>Son nakit akışına ayrıca eklenir. Akışa zaten dahil ettiyseniz 0 yazın.</small>
+<div class="investment-actions"><button type="submit">Analiz et →</button><button id="example" type="button">Örneğe dön</button></div><p id="error" class="investment-error" role="alert" hidden></p><p class="investment-note">Girdiler bu sayfada işlenir; kaydedilmez veya paylaşılmaz.</p>
+<p id="status" role="status" aria-live="polite" class="investment-note"></p></form>
+<div><section id="result" class="investment-panel" aria-labelledby="result-title" hidden><h2 id="result-title">Yatırımın finansal görünümü</h2>
+<div class="investment-summary"><span>Net bugünkü değer (NBD)</span><strong id="npv"></strong><p id="verdict"></p></div>
+<dl class="investment-metrics"><div><dt>İç verim oranı (IRR)</dt><dd id="irr"></dd></div><div><dt>Düzeltilmiş iç verim (MIRR)</dt><dd id="mirr"></dd></div><div><dt>Basit geri ödeme</dt><dd id="payback"></dd></div><div><dt>İndirgenmiş geri ödeme</dt><dd id="d-payback"></dd></div></dl><p id="irr-note" class="investment-note"></p>
+<h3>Birikimli bugünkü değer</h3><svg id="npv-chart" class="investment-chart" viewBox="0 0 600 265" role="img" aria-label="Yıllara göre birikimli indirgenmiş nakit akışı; aynı değerler aşağıdaki tabloda"></svg>
+<h3>Varsayımlar değişirse</h3><div class="investment-scroll" role="region" aria-label="Senaryo karşılaştırması" tabindex="0"><table class="investment-table"><thead><tr><th scope="col">Senaryo</th><th scope="col">İskonto</th><th scope="col">NBD</th></tr></thead><tbody id="scenario-rows"></tbody></table></div>
+<p class="investment-note">Zorlayıcı senaryoda pozitif akışlar %20 azalır, negatif akışların tutarı %20 artar ve iskonto 5 puan yükselir. Olumlu senaryoda tersi uygulanır. İskonto %0–200 sınırında tutulur. Başlangıç yatırımı ve son yıl ek değeri sabittir. Bunlar olasılık veya tahmin değildir.</p>
+<h3>Yıllık hesap dökümü</h3><p class="investment-note">Dar ekranda tabloyu yatay kaydırabilirsiniz. Son yıl akışı, ek satış değerini içerir.</p><div class="investment-scroll" role="region" aria-label="Yıllık nakit akışları" tabindex="0"><table class="investment-table"><thead><tr><th scope="col">Dönem</th><th scope="col">Net akış</th><th scope="col">Bugünkü değer</th><th scope="col">Birikimli değer</th></tr></thead><tbody id="cash-rows"></tbody></table></div><div class="investment-actions"><button id="export" type="button">CSV raporunu indir</button></div>
+</section><noscript><p>Hesaplama için JavaScript gerekir. Yöntem ve kapsam aşağıda açıklanmıştır.</p></noscript></div></div>
+<section class="wrap investment-method" id="nasil"><h2>Dayanaklar ve kapsam</h2><p><strong>NBD = −başlangıç yatırımı + Σ [net nakit akışı / (1 + iskonto oranı)<sup>yıl</sup>].</strong> İç verim oranı bu değeri sıfırlayan orandır. Pozitif NBD, seçtiğiniz getiri eşiğine göre değer artışı anlamına gelir; garanti edilmiş kazanç değildir.</p>
+<p>MIRR için negatif akışlar iskonto oranıyla bugüne, pozitif akışlar yeniden yatırım oranıyla son yıla taşınır: <strong>MIRR = (pozitif akışların son değeri / negatif akışların bugünkü değeri)<sup>1/yıl sayısı</sup> − 1.</strong> Finansman oranı olarak iskonto oranınız kullanılır.</p>
+<p>Sonraki yıllarda negatif akış varsa birden fazla IRR oluşabileceğinden tek oran sunulmaz. Geri ödeme, birikimli bakiyenin ilk kez sıfıra ulaştığı <strong>yıl sonudur</strong>; yıl içi tahmin yapılmaz. Daha sonraki giderler bakiyeyi yeniden negatife düşürebilir. Bu nedenle geri ödeme süresini NBD'den bağımsız bir karar ölçütü olarak kullanmayın.</p>
+<p>Vergi, işletme sermayesi, bakım ve ilave yatırım ihtiyaçlarını net akışlara siz dahil etmelisiniz. Kredi finansmanı ayrıca modellenmez. Nominal akışlar nominal iskonto oranıyla eşleştirilmelidir; enflasyonu ikinci kez düşmeyin. Tarihleri düzensiz ödemeler ve 30 yılı aşan projeler kapsam dışıdır. Ekran tutarları TL'ye, CSV tutarları kuruşa yuvarlanır; hesap ara adımları yuvarlanmaz.</p>
+<p>Yöntem kaynakları: <a href="https://www.accaglobal.com/gb/en/student/exam-support-resources/fundamentals-exams-study-resources/f9/technical-articles/advanced-investment-appraisal.html" rel="noopener">ACCA — yatırım değerlendirmesi</a> ve <a href="https://openstax.org/books/principles-managerial-accounting/pages/11-4-use-discounted-cash-flow-models-to-make-capital-investment-decisions" rel="noopener">OpenStax — indirgenmiş nakit akışı modelleri</a>. Yöntem kontrolü: <time datetime="2026-09-13">13 Eylül 2026</time>.</p>
+<p>Hazırlayan: <a href="../hakkimda/" rel="author">Koray Öner</a> · <a href="../yayin-ilkeleri/">Yayın ilkeleri ve düzeltmeler</a>. Bu araç senaryo analizidir; kişiye özel yatırım önerisi değildir.</p>
+<p>Bu aracın <a href="hesap.js?v=fe7c330c">hesap motoru</a> ve <a href="test.js?v=689c58d0">doğrulama testleri</a> doğrudan incelenebilir.</p><h2>İlgili hesaplama araçları</h2><p><a href="../kredi-hesaplama/">Kredi ve gerçek maliyet</a> · <a href="../birikim-hesaplama/">Birikim hesabı</a> · <a href="../finansal-ikiz/">Finansal İkiz</a></p></section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main><footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; sonuçlar girdiğiniz varsayımlara bağlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer><script src="hesap.js?v=fe7c330c" defer></script><script src="script.js?v=121eebc1" defer></script><script src="../script.js?v=5127b7a8" defer></script></body></html>

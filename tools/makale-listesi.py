@@ -102,7 +102,7 @@ def yazi_bilgisi(kayit):
         "ozet": ozet,
         "guncelleme": guncelleme,
         "dakika": dakika,
-        "gorsel": "images/makale/%s-kart.png" % slug,
+        "gorsel": kayit.get("gorsel", "images/makale/%s-kart.png" % slug),
         "alt": kayit["alt"],
     }
 
