@@ -227,6 +227,72 @@
       ozetTablo(r, g) + isiHaritasi(r, g);
   }
 
+  /* PROFİL KÖPRÜSÜ — profildeki EN PAHALI borç seçiliyor, çünkü erken
+     kapatma kararı önce onun için anlamlı. Kredi türü profilde tutuluyor
+     ve tazminat kuralı ona bağlı olduğu için birebir aktarılıyor. */
+  /* Profil borç türü -> aracın açılır listesi. Listede olmayan tür
+     (kart, KMH, diğer) bu araca hiç girmiyor. */
+  var UYGUN_TUR = { ihtiyac: "ihtiyac", tasit: "ihtiyac",
+    "konut-sabit": "konut-sabit", "konut-degisken": "konut-degisken" };
+  if (window.ProfilKopru) {
+    window.ProfilKopru.bagla({
+      hedef: $("pk-alan"),
+      alanlar: ["borc"],
+      yol: "../finansal-ikiz/",
+      /* Profilde borç VAR ama hiçbiri sabit vadeli kredi değilse buton
+         çıkmıyor: tutamayacağı bir söz vermemiş oluyor. */
+      uygunMu: function (p) {
+        return p.borclar.some(function (b) {
+          return UYGUN_TUR[b.tur] && b.kalanAnapara > 0;
+        });
+      },
+      doldur: function (p) {
+        if (!p.borclar.length) return [];
+
+        /* BU ARAÇ HER BORCU MODELLEYEMEZ. Erken kapatma tazminatı
+           TKHK m.27/m.37 ile SABİT VADELİ tüketici ve konut kredilerine
+           bağlı; kredi kartında ve KMH'de böyle bir tazminat da, kapanacak
+           bir vade de yok. Kartı "ihtiyaç kredisi" diye aktarmak, aracın
+           tazminat hesabını olmayan bir borca uygulamak olurdu — sayı
+           yine çıkardı, yalnızca anlamsız.
+           Taşıt kredisi ihtiyaç kredisiyle aynı hükme tabi; aracın
+           açılır listesi de ikisini tek seçenekte topluyor. */
+        var uygun = p.borclar.filter(function (b) {
+          return UYGUN_TUR[b.tur] && b.kalanAnapara > 0;
+        });
+        if (!uygun.length) return [];
+
+        /* Önce EN PAHALI olanı: erken kapatma kararı önce onun için
+           anlamlı. */
+        var b = uygun.slice().sort(function (x, y) {
+          return y.aylikFaiz - x.aylikFaiz;
+        })[0];
+        $("in-anapara").value = Math.round(b.kalanAnapara);
+        $("in-faiz").value = (b.aylikFaiz * 100).toFixed(2).replace(".", ",");
+        if (b.kalanVadeAy > 0) $("in-vade").value = b.kalanVadeAy;
+        $("in-tur").value = UYGUN_TUR[b.tur];
+        hesapla();
+
+        /* Hangi borcun seçildiği ve NEDEN — profilde üç kredi varken
+           hangisine baktığını bilmeden sonucu okumak yanlış olurdu. */
+        var rapor = ["“" + b.ad + "” kredisinin anaparası, faizi, vadesi ve türü"];
+        if (uygun.length > 1) {
+          rapor.push("profildeki " + uygun.length +
+            " krediden en yüksek faizli olanı seçildi");
+        }
+        var disarida = p.borclar.length - uygun.length;
+        if (disarida > 0) {
+          rapor.push(disarida + " borç (kart/KMH gibi sabit vadesi olmayanlar) " +
+            "bu araca uygun değil, aktarılmadı");
+        }
+        if (!(b.kalanVadeAy > 0)) {
+          rapor.push("kalan vade profilde yok — vadeyi siz girin");
+        }
+        return rapor;
+      }
+    });
+  }
+
   document.querySelectorAll("#ek-form input, #ek-form select").forEach(function (el) {
     el.addEventListener("input", hesapla);
     el.addEventListener("change", hesapla);

@@ -148,6 +148,14 @@ jobs:
       - name: Karar laboratuvarı regresyonları
         run: node finans/karar-test.js
 
+      # Kopru araclara kullanicinin EN HASSAS verisini tasiyor. Iki
+      # kural sessizce bozulabilir ve ikisi de agir: onay yokken veri
+      # okunursa "cihazinizdan cikmaz" iddiasinin dayandigi titizlik
+      # coker; araclara YAZAN bir kopru ise "su hesabi bir deneyeyim"
+      # diyen birinin gercek profilini bozar.
+      - name: Profil köprüsü regresyonları
+        run: node finans/profil-kopru-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.

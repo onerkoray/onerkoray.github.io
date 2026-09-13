@@ -1800,3 +1800,32 @@ section { padding: var(--bolum) 0; }
 .bt-tablo th:first-child, .bt-tablo td:first-child { text-align: left; }
 
 @media print { .bt { break-inside: avoid; } .bt-tablo { display: none; } }
+
+/* --------------------------------------------------------------------- */
+/* Profil köprüsü — araçların Finansal İkiz profilinden okuması           */
+/* (finans/profil-kopru.js). Şerit formun ÜSTÜNDE durur; alanları        */
+/* değiştiren bir eylem, değiştireceği şeyin yanında olmalı.              */
+.pk-serit {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem;
+  margin: 0 0 1rem; padding: .8rem 1rem;
+  border: 1px solid var(--border); border-left: 3px solid var(--dv-1);
+  border-radius: var(--radius-card); background: var(--surface-note);
+}
+.pk-metin { margin: 0; font-size: .85rem; line-height: 1.55; flex: 1 1 16rem; }
+.pk-dugme {
+  font: 600 .8rem var(--font-body); padding: .5rem .95rem; min-height: 40px;
+  border: 1px solid var(--brand); border-radius: 999px; cursor: pointer;
+  background: var(--brand); color: var(--brand-contrast, #fff);
+}
+.pk-dugme:hover { filter: brightness(1.05); }
+.pk-dugme:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.pk-sonuc {
+  flex: 1 1 100%; margin: 0; font-size: .8rem; color: var(--text-muted);
+  line-height: 1.55;
+}
+.pk-sonuc:empty { display: none; }
+
+/* Profil yokken: nagging değil, tek satırlık keşfedilebilirlik. */
+.pk-sessiz {
+  margin: 0 0 1rem; font-size: .8rem; color: var(--text-muted); line-height: 1.6;
+}
