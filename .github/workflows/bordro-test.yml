@@ -182,6 +182,19 @@ jobs:
       - name: Emeklilik makalesi sayı doğrulaması
         run: node tools/makale-emeklilik-test.js
 
+      # MTV'de UC TARIFE var ve ucu de farkli davraniyor: (I) deger
+      # kademeli (2018 sonrasi tescil), (I/A) kademesiz (2018 oncesi) ve
+      # motosiklet. Arac uzun sure 2018 oncesi araclari (I)'in ilk
+      # kademesiyle hesapliyordu; 1601 cm3 ve uzerinde bu ~%10 fazla vergi
+      # demekti. Ayrica elektrikli araca cm3 soruluyordu -- kanun onlari
+      # kW'a gore satira yerlestirir.
+      #
+      # Test, yayimlanan 2026 tutarlarini tebligden degil KANUNUN HAM
+      # TUTARLARINDAN capraz dogruluyor: 145 hucrenin her biri icin
+      # ham x K ile arasindaki fark yillik yuvarlama payi kadar olmali.
+      - name: MTV tarife ve hesap kuralları
+        run: node mtv-hesaplama/tarife-test.js
+
       # Bir PAROLA URETECINDE hatalar sessizdir: zayif rastgelelik,
       # yanli modulo, eksik sinif ya da sisirilmis entropi ekranda
       # gorunmez -- cikti yine rastgele bir dizi gibi durur ve kullanici

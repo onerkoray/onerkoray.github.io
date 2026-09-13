@@ -16,3 +16,32 @@
 .proj-bar-wrap { background: var(--surface-2); border-radius: 999px; height: .8rem; overflow: hidden; }
 .proj-bar { display: block; height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand-strong)); border-radius: 999px; transition: width .3s ease; }
 .proj-val { font-size: var(--step--1); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* .panel-q display:flex tasidigi icin UA'nin [hidden] kurali eziliyordu;
+   elektrikli arac secilince gizlenmesi gereken alan gorunur kaliyordu.
+   Ayni tuzagin bir baska ornegi style.css icindeki .palette-pop. */
+.fld-grid .panel-q[hidden] { display: none; }
+
+/* Alan altindaki tek satirlik ipucu: kullanicinin kW'i nereden
+   okuyacagini bilmemesi, yanlis sayi girmesinin en yaygin sebebi. */
+.fld-ipucu {
+  /* .panel-q sutun yonunde flex: flex-basis ANA EKSENE, yani yukseklige
+     denk gelir. Genislik icin width gerekiyor; yoksa ipucu metni kendi
+     icerigi kadar yer kaplayip izgaranin yan sutununa tasiyor. */
+  width: 100%;
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Hesabin kendisi degil, hesap hakkinda bir uyari: kasko istisnasinin
+   uygulanamadigi ya da hangi kuralin kapsam disi kaldigi durumlar. */
+.bd-uyari {
+  margin: .75rem 0 0;
+  padding: .6rem .8rem;
+  border-left: 2px solid var(--dv-mute);
+  background: var(--surface-2);
+  font-size: var(--step-0);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
