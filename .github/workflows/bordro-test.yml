@@ -42,6 +42,13 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Alarmin kendisi de bir muhafiz. Bildirim sessizce bozulursa geriye
+      # dogrulanmamis bir guvence kalir -- tam olarak duzeltmeye calistigimiz
+      # hatanin sekli. Test, script'leri bu dosyadan OKUYOR; ayri bir kopya
+      # tutmak, workflow degisince testin eskiyi dogrulamasi demekti.
+      - name: CI bildirimi çalışıyor mu
+        run: node tools/bildirim-test.js
+
       - name: Finans kuralları regresyonları
         run: node finans/test.js
 
