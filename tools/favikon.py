@@ -43,11 +43,11 @@ Kart ikonları 24x24 kutuda stroke-width 2 ile çizilir. Burada kutu yine 24
 ama kalınlık 2.4'e çıkarıldı: oyuk sembol koyu zeminde ince görünür ve 16
 piksele indiğinde kaybolur. 2.4, 16 pikselde 1.2 efektif kalınlık demek.
 
-ALT PROJELER BU SİSTEME GİRMEZ
-------------------------------
-decorpalette ve keymint sitenin hesaplama araçları değil, altında yayımlanan
-ayrı ürünler. Kendi işaretleri var ve olmalı: decorpalette'in paleti üç
-renkli noktayla ANLAM taşıyor, onu tek renge indirmek bilgiyi silmek olurdu.
+ALT PROJE: ARTIK YALNIZCA decorpalette
+--------------------------------------
+decorpalette'in paleti üç renkli noktayla ANLAM taşıyor; onu tek renge
+indirmek bilgiyi silmek olurdu. KeyMint 2026-09-13'te sisteme katıldı —
+gerekçesi ALT_PROJELER tanımının yanında.
 
     python tools/favikon.py           # favicon'ları üret
     python tools/favikon.py --check   # kaynakla aynı mı
@@ -70,7 +70,13 @@ KOYU_KAGIT = "#14181d"
 VARSAYILAN_VURGU = "#0e7c66"      # style.css --accent (yeşil)
 YARICAP = 2                        # editoryal katmanla aynı
 
-ALT_PROJELER = {"decorpalette", "keymint"}
+# KeyMint 2026-09-13'te bu listeden CIKARILDI. Ayri urun muamelesi
+# goruyordu ama pratikte "eski kalmis bir site" gibi duruyordu: kendi stil
+# dosyasi siteden ayrismis, palet secici yok, emoji ikonlar, yesil kilit
+# logosu. Site sahibinin karariyla tasarim sistemine tamamen katildi.
+# decorpalette kaliyor: paleti UC RENKLI NOKTAYLA anlam tasiyor ve tek
+# renge indirmek bilgiyi silmek olurdu.
+ALT_PROJELER = {"decorpalette"}
 
 # card-icons.json'da olmayan ama kendi simgesini hak eden bölümler.
 # Semboller 24x24 kutuda, stroke ile çizilir (kart ikonlarıyla aynı dil).
@@ -86,6 +92,42 @@ EK_BOLUMLER = {
     "bordro": {
         "ad": "Bordro Motoru metodolojisi",
         "svg": '<path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M2 14l10 5 10-5"/>',
+    },
+
+    # KeyMint alt araçları. Bunlar card-icons.json'da yok çünkü ana araç
+    # dizininde listelenmiyorlar; ama her biri ayrı bir araç ve sekmede
+    # kendi simgesini hak ediyor.
+    "keymint/sifre-guc-testi": {
+        "ad": "Şifre Güç Testi",
+        "svg": '<path d="M12 3 4 6v6c0 4.4 3.4 8.2 8 9 4.6-.8 8-4.6 8-9V6l-8-3Z"/>'
+               '<path d="m9 12 2 2 4-4"/>',
+    },
+    "keymint/pin-uretici": {
+        "ad": "PIN Kodu Üreteci",
+        "svg": '<rect x="3" y="4" width="18" height="16" rx="2"/>'
+               '<path d="M7 9h.01M12 9h.01M17 9h.01M7 14h.01M12 14h.01M17 14h.01"/>',
+    },
+    "keymint/parola-cumlesi": {
+        "ad": "Parola Cümlesi Üreteci",
+        "svg": '<path d="M4 7h16M4 12h16M4 17h9"/>',
+    },
+    "keymint/wifi-sifresi": {
+        "ad": "WiFi Şifresi Üreteci",
+        "svg": '<path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/>'
+               '<path d="M12 19.5h.01"/>',
+    },
+    "keymint/hash-uretici": {
+        "ad": "Hash Üreteci",
+        "svg": '<path d="M9 4 7 20M17 4l-2 16M4 9h16M3 15h16"/>',
+    },
+    "keymint/base64": {
+        "ad": "Base64 Kodlayıcı",
+        "svg": '<path d="M7 8 3 12l4 4"/><path d="m17 8 4 4-4 4"/><path d="M14 5 10 19"/>',
+    },
+    "keymint/uuid-uretici": {
+        "ad": "UUID Üreteci",
+        "svg": '<rect x="3" y="5" width="18" height="14" rx="2"/>'
+               '<path d="M7 10v4M11 10v4M15 10h2v4h-2z"/>',
     },
 }
 

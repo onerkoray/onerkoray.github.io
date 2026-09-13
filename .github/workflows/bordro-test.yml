@@ -182,6 +182,15 @@ jobs:
       - name: Emeklilik makalesi sayı doğrulaması
         run: node tools/makale-emeklilik-test.js
 
+      # Bir PAROLA URETECINDE hatalar sessizdir: zayif rastgelelik,
+      # yanli modulo, eksik sinif ya da sisirilmis entropi ekranda
+      # gorunmez -- cikti yine rastgele bir dizi gibi durur ve kullanici
+      # yanlis bir guvenlik duygusu tasir. Testler ozdeslikleri
+      # (entropi duzeltmesi = log2(kabul olasiligi)), dagilimi ve
+      # 'Password123! artik guclu sayilmaz' kuralini sabitliyor.
+      - name: Şifre motoru regresyonları
+        run: node keymint/sifre-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.

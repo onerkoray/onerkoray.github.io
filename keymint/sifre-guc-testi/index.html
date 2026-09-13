@@ -3,6 +3,7 @@
 <head>
   <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
   <script src="../../onay.js?v=0e361dc9" defer></script>
+  <script src="../../script.js?v=5127b7a8" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Şifre Güç Testi — Parola Güvenlik Kontrolü | Koray Öner</title>
@@ -15,7 +16,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://korayoner.dev/keymint/sifre-guc-testi/">
 
-  <link rel="icon" href="favicon.svg?v=7beb143c" type="image/svg+xml">
+  <link rel="icon" href="favicon.svg?v=f3744b2f" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
 
   <meta property="og:type" content="website">
@@ -35,7 +36,8 @@
   <meta name="twitter:description" content="Parolanızın gücünü anında ölçün. Tamamen tarayıcıda, gizli.">
   <meta name="twitter:image" content="https://korayoner.dev/images/sifre-guc-testi-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=ee835a82">
+  <link rel="stylesheet" href="../../style.css?v=6b09337f">
+  <link rel="stylesheet" href="../arac.css?v=cc6934d8">
 
   <script type="application/ld+json">
   {
@@ -96,14 +98,14 @@
   }
   </script>
 </head>
-<body>
+<body class="calculator-page">
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
   <header class="site-header" role="banner">
     <div class="wrap header-inner">
-      <a class="brand" href="../" aria-label="KeyMint ana sayfa">
-        <span class="brand-mark" aria-hidden="true">🔐</span>
-        <span class="brand-name">KeyMint</span>
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
       </a>
       <nav class="site-nav" aria-label="Birincil">
         <ul>
@@ -139,20 +141,32 @@
       </div>
     </section>
 
-    <section id="test" aria-labelledby="test-title">
+    <section id="test" class="calc" data-rapor="yok" aria-labelledby="test-title">
       <div class="wrap">
         <h2 id="test-title" class="visually-hidden">Şifre güç testi</h2>
         <div class="tool">
           <label for="pw" style="font-weight:600; display:block; margin-bottom:.5rem;">Şifrenizi yazın</label>
           <input type="password" id="pw" class="pw-check-input" autocomplete="off" autocapitalize="off"
                  spellcheck="false" placeholder="Denemek için bir şifre yazın">
-          <label class="check" style="margin-top:.75rem;"><input type="checkbox" id="reveal"> Şifreyi göster</label>
+          <label class="check" style="margin-top:.75rem;"><input type="checkbox" id="showPw"> Şifreyi göster</label>
 
           <div class="meter" aria-hidden="true" style="margin-top:1.25rem;"><div class="meter-bar" id="meterBar"></div></div>
           <p class="strength-label" id="strength" aria-live="polite">Bir şifre yazın</p>
 
-          <output class="result" id="out" aria-live="polite" style="margin-top:1rem;"></output>
+          <dl class="entropi-kutu" id="entropi"></dl>
+          <div id="sureler"></div>
           <ul class="feedback" id="feedback"></ul>
+
+          <p class="ornek-satir">Denemek için: 
+            <button type="button" class="btn btn-ghost" data-ornek="Password123!">Password123!</button>
+            <button type="button" class="btn btn-ghost" data-ornek="P@ssw0rd">P@ssw0rd</button>
+            <button type="button" class="btn btn-ghost" data-ornek="qwerty1234">qwerty1234</button>
+            <button type="button" class="btn btn-ghost" data-ornek="k7$Wm2qZ.Lx9Rb">rastgele üretilmiş</button>
+          </p>
+          <p class="disclaimer">Yazdığınız şifre cihazınızdan çıkmaz: analiz tarayıcıda yapılır,
+            hiçbir yere gönderilmez ve kaydedilmez. Yine de <strong>gerçekten
+            kullandığınız bir parolayı herhangi bir siteye yazmamak</strong> genel bir
+            alışkanlık olarak daha iyidir.</p>
         </div>
       </div>
     </section>
@@ -261,6 +275,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=77e62073" defer></script>
+  <script src="../sifre-motoru.js?v=559a9200" defer></script>
+  <script src="script.js?v=987969ed" defer></script>
 </body>
 </html>
