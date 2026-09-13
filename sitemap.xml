@@ -830,6 +830,16 @@
   </url>
   <url><loc>https://korayoner.dev/yayin-ilkeleri/</loc><lastmod>2026-09-10</lastmod></url>
   <url>
+    <loc>https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/emekliligin-finansal-matematigi.png</image:loc>
+      <image:title>Türkiye'de emekliliğin finansal matematiği — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/makaleler/mevduat-faizi-enflasyon-reel-getiri/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>

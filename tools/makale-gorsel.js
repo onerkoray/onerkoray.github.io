@@ -427,7 +427,62 @@ function sutunIssizlikTavani() {
 
 /* ---------- kapaklar ---------- */
 
+/* Emeklilik makalesi: OECD tanimiyla 100 calisma cagindaki kisiye dusen 65+.
+   Kapak icin bu seri secildi cunku yazinin demografik omurgasi ve tek bir
+   GECIS anlatiyor: Turkiye bugun OECD'nin yarisinda, 2084 projeksiyonunda
+   ustunde. Iki kategorik seri oldugu icin marka yesili KULLANILMIYOR. */
+function sutunBagimlilik() {
+  var veri = [
+    { yil: "2024", not: "gözlem", tr: 16.8, oecd: 32.6 },
+    { yil: "2054", not: "projeksiyon", tr: 42.5, oecd: 55.2 },
+    { yil: "2084", not: "projeksiyon", tr: 75.4, oecd: 67.7 }
+  ];
+  var enCok = 80;
+  var W = 620, H = 400, TY = 300, SOL = 54;
+  var gen = (W - SOL - 24) / veri.length;
+
+  var govde = veri.map(function (v, i) {
+    var x0 = SOL + i * gen;
+    var w = (gen - 34) / 2;
+    var htr = v.tr / enCok * 190;
+    var ho = v.oecd / enCok * 190;
+    function cubuk(x, h, renk, deger) {
+      return '<rect x="' + x.toFixed(1) + '" y="' + (TY - h).toFixed(1) +
+        '" width="' + w.toFixed(1) + '" height="' + h.toFixed(1) +
+        '" rx="3" fill="' + renk + '"/>' +
+        '<text x="' + (x + w / 2).toFixed(1) + '" y="' + (TY - h - 9).toFixed(1) +
+        '" text-anchor="middle" font-size="17" font-weight="700" fill="' + renk + '">' +
+        deger.toFixed(1).replace(".", ",") + '</text>';
+    }
+    return cubuk(x0, htr, R.s1, v.tr) + cubuk(x0 + w + 10, ho, R.s2, v.oecd) +
+      '<text x="' + (x0 + w + 5).toFixed(1) + '" y="' + (TY + 24) +
+      '" text-anchor="middle" font-size="18" font-weight="600" fill="' + R.murekkep + '">' + v.yil + '</text>' +
+      '<text x="' + (x0 + w + 5).toFixed(1) + '" y="' + (TY + 44) +
+      '" text-anchor="middle" font-size="14" fill="' + R.ikincil + '">' + v.not + '</text>';
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="100 calisma cagindaki kisiye dusen 65 yas ustu nufus: Turkiye ve OECD ortalamasi">' +
+    '<text x="24" y="30" font-size="22" font-weight="800" fill="' + R.murekkep + '">100 çalışma çağındaki kişiye düşen 65+</text>' +
+    '<text x="24" y="56" font-size="16" fill="' + R.ikincil + '">OECD tanımı: payda 20-64 yaş</text>' +
+    '<rect x="24" y="70" width="11" height="11" rx="2" fill="' + R.s1 + '"/>' +
+    '<text x="42" y="80" font-size="15" fill="' + R.ikincil + '">Türkiye</text>' +
+    '<rect x="120" y="70" width="11" height="11" rx="2" fill="' + R.s2 + '"/>' +
+    '<text x="138" y="80" font-size="15" fill="' + R.ikincil + '">OECD ortalaması</text>' +
+    '<line x1="' + SOL + '" y1="' + TY + '" x2="' + (W - 24) + '" y2="' + TY + '" stroke="' + R.izgara + '" stroke-width="1"/>' +
+    '<text x="24" y="' + (TY + 5) + '" font-size="14" fill="' + R.ikincil + '">0</text>' +
+    '<text x="24" y="' + (TY - 190 + 5) + '" font-size="14" fill="' + R.ikincil + '">80</text>' +
+    govde +
+    '<text x="24" y="' + (H - 12) + '" font-size="15" fill="' + R.ikincil + '">Kaynak: OECD (2025, Tablo 6.2) · 2054 ve 2084 BM orta varyantı</text></svg>';
+}
+
 var KAPAKLAR = {
+  "emekliligin-finansal-matematigi": {
+    kicker: "Akademik",
+    baslik: "Emekliliğin finansal matematiği",
+    alt: "Türkiye bugün OECD'nin yarısında; 2084'te üstünde",
+    cizim: sutunBagimlilik
+  },
   "mevduat-faizi-enflasyon-reel-getiri": {
     kicker: "Finans",
     baslik: "Mevduat faizi enflasyonu geçiyor mu?",

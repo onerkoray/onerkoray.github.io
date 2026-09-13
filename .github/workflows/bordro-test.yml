@@ -173,6 +173,15 @@ jobs:
       - name: Ölçüm onayı regresyonları
         run: node tools/onay-test.js
 
+      # Emeklilik makalesi AKADEMIK bir iddia yayimliyor ve sayilarin
+      # cogu elle yazilmis HTML tablolarinda duruyor. Bir rakam yanlis
+      # girilirse sayfa acilmaya devam eder, tablo hizali gorunur, kimse
+      # uyari almaz -- yalnizca yanlistir. Test anuite hesaplarini yeniden
+      # yapiyor ve cubuk genisliklerini SAYFADAN okuyup olcek tutarliligini
+      # dogruluyor.
+      - name: Emeklilik makalesi sayı doğrulaması
+        run: node tools/makale-emeklilik-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.
@@ -309,6 +318,11 @@ jobs:
       # commit'ler sayilmiyor.
       - name: Sitemap lastmod tarihleri güncel mi
         run: python tools/site-haritasi.py --check
+
+      # Ana sayfadaki "N arac" cumlesi elle yazilmisti ve eskimisti:
+      # sayfada 43 kart dururken iki yerde birden "34 arac" yaziyordu.
+      - name: Ana sayfadaki araç sayısı doğru mu
+        run: python tools/arac-sayisi.py --check
 
       - name: Marka ikonları favicon.svg ile uyumlu mu
         run: |

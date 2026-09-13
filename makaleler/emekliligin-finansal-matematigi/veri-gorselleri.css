@@ -1,0 +1,148 @@
+/* Bu yazıya özgü veri sunumu; sayılar ve varsayımlar HTML'de kalır.
+
+   NEDEN AYRI BİR GÖRSEL DİL: yazının tezi "aynı görünen sayılar aynı şeyi
+   ölçmüyor". Görseller de bunu taşımalı — bu yüzden buradaki grafiklerin
+   çoğu tek bir seriyi büyütmüyor, İKİ ÖLÇÜYÜ YAN YANA koyup neyi ölçtüklerini
+   yazıyor. Mevduat yazısındaki diverging çubuk sistemi burada tekrarlanmadı;
+   o yazının sorusu "artı mı eksi mi", bununki "hangi payda".
+
+   RENK: kategorik seriler --dv-1 (mavi) ve --dv-2 (turuncu). Marka yeşili
+   veri işareti olarak KULLANILMAZ; kroma tabanının altında kalıp gri okunur
+   ve zaten kullanıcının seçtiği aksana bağlı. Kural tools/veri-renkleri.js
+   ile denetleniyor. */
+
+.em-sekil {
+  margin: 1.75rem 0; padding: 1.5rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+}
+.em-sekil-baslik .ed-kicker { margin: 0; }
+.em-sekil-baslik h3 {
+  font: 750 1.2rem/1.35 var(--font-display);
+  letter-spacing: var(--tracking-title); margin: .3rem 0 .6rem;
+}
+.em-sekil-baslik p {
+  font-size: .85rem; line-height: 1.65; color: var(--text-muted); margin: 0 0 1.25rem;
+}
+.em-sekil figcaption {
+  margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--border);
+  font-size: .76rem; line-height: 1.65; color: var(--text-muted);
+}
+
+/* Lejant: rengin ne anlama geldiği YAZIYLA da söyleniyor. */
+.em-lejant { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; margin-bottom: 1rem; font-size: .72rem; color: var(--text-muted); }
+.em-lejant span { display: inline-flex; align-items: center; gap: .4rem; }
+.em-nokta { width: .6rem; height: .6rem; border-radius: 2px; flex: none; }
+.em-n1 { background: var(--dv-1); }
+.em-n2 { background: var(--dv-2); }
+
+/* ---- Gruplu çubuk: aynı dönemde iki ölçü (Türkiye / OECD) ---- */
+.em-grup { list-style: none; margin: 0; padding: 0; }
+.em-grup > li { padding: .85rem 0; border-top: 1px solid var(--border); }
+.em-grup > li:first-child { border-top: 0; }
+.em-donem { display: block; font: 600 .82rem var(--font-body); color: var(--text); margin-bottom: .5rem; }
+.em-donem small { font-weight: 400; color: var(--text-muted); }
+.em-cubuklar { display: flex; flex-direction: column; gap: .35rem; }
+.em-cubuk-satir {
+  display: grid; grid-template-columns: 4.5rem minmax(0, 1fr) 3rem;
+  align-items: center; gap: .6rem;
+}
+.em-cubuk-ad { font-size: .72rem; color: var(--text-muted); }
+.em-cubuk-yol { display: block; position: relative; height: .85rem; background: var(--surface-2); border-radius: 2px; }
+.em-cubuk { display: block; height: 100%; border-radius: 2px; width: var(--w); }
+.em-c1 { background: var(--dv-1); }
+.em-c2 { background: var(--dv-2); }
+.em-cubuk-deger { font-size: .82rem; font-weight: 650; text-align: right; font-variant-numeric: tabular-nums; color: var(--text); }
+.em-eksen { display: flex; justify-content: space-between; margin: .6rem 0 0 5.1rem; padding-right: 3.6rem; font-size: .68rem; color: var(--text-muted); }
+
+/* ---- İki ölçü: neyi ölçtüğü yazılı karşılaştırma ---- */
+.em-olcu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-inset); overflow: hidden; }
+.em-olcu > div { padding: 1.2rem 1.25rem; background: var(--surface); }
+.em-olcu dt { font: 500 .66rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+.em-olcu dd { margin: .5rem 0 0; }
+.em-olcu .em-sayi { display: block; font: 700 2.1rem/1.05 var(--font-display); letter-spacing: -.02em; }
+.em-olcu .em-s1 { color: var(--dv-1-ink); }
+.em-olcu .em-s2 { color: var(--dv-2-ink); }
+.em-olcu .em-pay { display: block; margin-top: .6rem; font-size: .78rem; line-height: 1.6; color: var(--text-muted); }
+.em-olcu .em-pay b { color: var(--text); font-weight: 650; }
+
+/* ---- Matris: süre x reel getiri ---- */
+.em-matris-sar { overflow-x: auto; scrollbar-width: thin; }
+.em-matris { width: 100%; border-collapse: collapse; font-size: .82rem; }
+.em-matris th, .em-matris td { padding: .55rem .7rem; border-bottom: 1px solid var(--border); }
+.em-matris thead th { font: 500 .66rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); text-align: right; }
+.em-matris thead th:first-child { text-align: left; }
+.em-matris tbody th { text-align: left; font-weight: 650; color: var(--text); white-space: nowrap; }
+.em-matris tbody tr:last-child > * { border-bottom: 0; }
+.em-hucre { display: flex; flex-direction: column; align-items: flex-end; gap: .3rem; }
+.em-hucre b { font-weight: 650; font-variant-numeric: tabular-nums; color: var(--text); }
+.em-hucre i {
+  display: block; block-size: .4rem; inline-size: var(--w); min-inline-size: 2px;
+  border-radius: 2px; background: var(--dv-1);
+}
+.em-matris td { text-align: right; }
+
+/* ---- İki yol: getiri sırası ---- */
+.em-yollar { display: grid; gap: .75rem; }
+.em-yol { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .5rem 1rem; align-items: center; padding: .9rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-inset); }
+.em-yol-ad { font-size: .8rem; color: var(--text-muted); }
+.em-yol-ad b { display: block; color: var(--text); font-size: .88rem; font-weight: 650; }
+.em-yol-son { font: 700 1.4rem/1 var(--font-display); font-variant-numeric: tabular-nums; }
+.em-yol-a .em-yol-son { color: var(--dv-loss-ink); }
+.em-yol-b .em-yol-son { color: var(--dv-gain-ink); }
+.em-adimlar { grid-column: 1 / -1; margin: 0; font-size: .74rem; line-height: 1.6; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+/* ---- Akademik künye ---- */
+.em-kunye {
+  margin: 2rem 0; padding: 1.35rem 1.5rem;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--radius-inset);
+}
+.em-kunye h2 { font-size: 1.05rem; margin: 0 0 .6rem; }
+.em-kunye p { font-size: .85rem; line-height: 1.7; margin: 0 0 .7rem; }
+.em-kunye p:last-child { margin-bottom: 0; }
+.em-kunye dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .3rem .9rem; margin: .9rem 0 0; font-size: .8rem; }
+.em-kunye dt { font: 500 .66rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); padding-top: .15rem; }
+.em-kunye dd { margin: 0; color: var(--text); }
+
+/* ---- Formül ---- */
+.em-formul {
+  margin: 1.25rem 0; padding: .9rem 1.1rem;
+  background: var(--surface-2); border-left: 3px solid var(--rule);
+  font-family: var(--font-mono); font-size: .82rem; line-height: 1.75;
+  overflow-x: auto;
+}
+.em-formul span { display: block; margin-top: .4rem; font-family: var(--font-body); font-size: .78rem; color: var(--text-muted); }
+
+/* ---- Tablo ---- */
+.em-tablo-sar {
+  margin: 1.5rem 0; overflow-x: auto; border: 1px solid var(--border);
+  border-radius: var(--radius-card); background: var(--surface);
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.em-tablo { width: 100%; border-collapse: collapse; font-size: .84rem; line-height: 1.55; }
+.em-tablo caption { padding: 1.2rem; text-align: left; font-size: 1.02rem; font-weight: 700; color: var(--text); }
+.em-tablo caption > span { display: block; margin-bottom: .4rem; font: 500 .66rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+.em-tablo caption small { display: block; margin-top: .35rem; font-size: .78rem; font-weight: 400; color: var(--text-muted); }
+.em-tablo th, .em-tablo td { padding: .8rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+.em-tablo thead th { background: var(--surface-2); color: var(--text-muted); font-size: .7rem; font-weight: 600; text-align: left; }
+.em-tablo tbody th { text-align: left; font-weight: 650; color: var(--text); }
+.em-tablo tbody td { color: var(--text-muted); }
+.em-tablo tbody tr:last-child > * { border-bottom: 0; }
+.em-tablo .em-sag, .em-tablo thead th.em-sag { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+@media (max-width: 640px) {
+  .em-olcu { grid-template-columns: minmax(0, 1fr); }
+  .em-cubuk-satir { grid-template-columns: 3.6rem minmax(0, 1fr) 2.7rem; gap: .4rem; }
+  .em-eksen { margin-left: 4rem; padding-right: 3.1rem; }
+  .em-sekil { padding: 1.1rem; }
+  .em-tablo { min-width: 520px; }
+  .em-matris { min-width: 420px; }
+  .em-olcu .em-sayi { font-size: 1.8rem; }
+}
+
+@media print {
+  .em-sekil, .em-olcu, .em-yol, .em-kunye { break-inside: avoid; }
+  .em-tablo-sar, .em-matris-sar { overflow: visible; }
+  .em-tablo, .em-matris { min-width: 0; }
+}
