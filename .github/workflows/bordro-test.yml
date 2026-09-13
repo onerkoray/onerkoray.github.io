@@ -329,6 +329,12 @@ jobs:
       - name: Araç kartlarındaki güncelleme tarihleri güncel mi
         run: python tools/arac-guncelleme.py --check
 
+      # Gecmis yillarin issizlik odenegi tablosu bordro/parametreler.js'ten
+      # turetiliyor. Elle yazilsaydi asgari ucret her degistiginde sessizce
+      # eskirdi: sayfa acilir, tablo hizali gorunur, yalnizca yanlistir.
+      - name: İşsizlik ödeneği tablosu güncel mi
+        run: node tools/issizlik-tablosu.js --check
+
       # lastmod bir IDDIADIR: "bu sayfanin icerigi bu tarihte degisti".
       # Sisirilmis lastmod tazelik sinyalini guclendirmez, SUSTURUR --
       # arama motoru bos yere gelir ve zamanla o alana guvenmemeyi
