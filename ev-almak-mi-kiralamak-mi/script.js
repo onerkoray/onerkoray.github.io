@@ -107,6 +107,35 @@
     }, 180);
 
 
+    /* Karar yüzeyi. Başabaş YILI ve başabaş KİRASI tek boyutlu cevaplar;
+       asıl soru iki boyutlu: ev değer artışı ile yatırım getirisi birbirini
+       götürüyor. Izgara her hücrede TAM hesabı yeniden koşuyor (49 koşum),
+       yaklaşık formül kullanılmıyor — masraflar ve kira tavanı doğrusal
+       değil, enterpolasyon yanlış sınır çizdirirdi. */
+    if (window.IsiHaritasi) {
+      var izgara = E.duyarlilik(g, {
+        x: [0, 10, 20, 30, 40, 50, 60],
+        y: [0, 10, 20, 30, 40, 50, 60]
+      });
+      $("ev-isi").innerHTML = window.IsiHaritasi.ciz({
+        izgara: izgara,
+        baslik: "Karar hangi noktada tersine döner?",
+        xEtiket: "Ev değeri yıllık artışı",
+        yEtiket: "Yatırım getirisi (yıllık)",
+        artiAd: "Satın alma önde",
+        eksiAd: "Kiralama önde",
+        bicim: function (v) {
+          var m = Math.round(Math.abs(v) / 1000);
+          return (v < 0 ? "−" : "") + (m >= 1000
+            ? (m / 1000).toFixed(1).replace(".", ",") + "M"
+            : m + "k");
+        },
+        not: "Hücre değerleri " + g.yilSayisi + ". yıl sonundaki reel servet farkı " +
+             "(bugünün parasıyla, bin TL). Diğer bütün girdiler formdaki " +
+             "değerlerinde sabit tutulur."
+      });
+    }
+
     $("ev-tablo").innerHTML = s.yillar.map(function (y) {
       var fr = y.aliciServetReel - y.kiraciServetReel;
       return "<tr><th scope=\"row\">" + y.yil + "</th><td>" + para(y.evDegeri) +

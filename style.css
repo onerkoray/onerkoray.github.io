@@ -1606,3 +1606,65 @@ section { padding: var(--bolum) 0; }
   .faq details { border-radius: var(--radius-inset); }
   .faq details[open] { border-color: color-mix(in srgb, var(--brand) 40%, var(--border)); }
 }
+
+/* ===================== ISI HARİTASI (ortak bileşen) =====================
+   finans/isi-haritasi.js'in stil katmanı. Site genelinde duruyor çünkü
+   birden çok araç kullanacak (ev al/kirala, erken kapatma vs yatırım,
+   şirket mi ücretli mi).
+
+   Renkler --dv-1 (mavi) ve --dv-2 (turuncu) üzerinden color-mix ile
+   üretiliyor; ayrı sabit listesi tutulmuyor ki token değişince ramp de
+   değişsin. Yeşil/kırmızı bilinçli kullanılmadı: bu bir iyi/kötü ölçeği
+   değil, iki seçenek arasında bir fark ölçeği. */
+.ih { margin: 1.5rem 0 0; }
+.ih figcaption { font-size: .88rem; font-weight: 650; margin-bottom: .8rem; line-height: 1.5; }
+.ih-sarmal { overflow-x: auto; }
+.ih-tablo { border-collapse: separate; border-spacing: 2px; font-size: .78rem; }
+.ih-tablo caption {
+  text-align: left; padding-bottom: .6rem; font: 500 .68rem var(--font-mono);
+  letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted);
+}
+.ih-tablo th {
+  font: 500 .7rem var(--font-mono); color: var(--text-muted); font-weight: 500;
+  padding: .3rem .45rem; white-space: nowrap; background: none;
+}
+.ih-tablo thead th { text-align: center; }
+.ih-tablo tbody th { text-align: right; }
+.ih-h {
+  padding: .5rem .45rem; text-align: center; min-width: 3.9rem;
+  font-variant-numeric: tabular-nums; color: var(--text);
+  border-radius: 2px;
+}
+.ih-deger { font-size: .74rem; }
+.ih-bos { color: var(--text-muted); background: var(--surface-2); }
+
+/* Diverging ramp: eksi tarafı --dv-1, artı tarafı --dv-2, ortası nötr. */
+.ih-n0 { background: var(--surface-2); }
+.ih-e1 { background: color-mix(in srgb, var(--dv-1) 14%, var(--surface)); }
+.ih-e2 { background: color-mix(in srgb, var(--dv-1) 34%, var(--surface)); }
+.ih-e3 { background: color-mix(in srgb, var(--dv-1) 58%, var(--surface)); }
+.ih-p1 { background: color-mix(in srgb, var(--dv-2) 14%, var(--surface)); }
+.ih-p2 { background: color-mix(in srgb, var(--dv-2) 34%, var(--surface)); }
+.ih-p3 { background: color-mix(in srgb, var(--dv-2) 58%, var(--surface)); }
+
+/* Sınır: kararın döndüğü şerit. Grafiğin tek mesajı bu olduğu için
+   rengin tonundan okunmaya bırakılmıyor, ayrıca çiziliyor. */
+.ih-sinir { outline: 2px solid var(--text); outline-offset: -2px; }
+
+.ih-lejant {
+  display: flex; flex-wrap: wrap; gap: .4rem 1.3rem;
+  margin-top: .8rem; font-size: .75rem; color: var(--text-muted);
+}
+.ih-l { display: inline-flex; align-items: center; gap: .4rem; }
+.ih-ornek { width: .75rem; height: .75rem; border-radius: 2px; flex: none; }
+.ih-sinir-ornek { background: var(--surface-2); outline: 2px solid var(--text); outline-offset: -2px; }
+.ih-uyari, .ih-not {
+  margin: .8rem 0 0; font-size: .78rem; line-height: 1.6; color: var(--text-muted);
+}
+.ih-uyari { color: var(--text); }
+
+@media (max-width: 560px) {
+  .ih-h { min-width: 3.2rem; padding: .42rem .3rem; }
+  .ih-deger { font-size: .68rem; }
+}
+@media print { .ih { break-inside: avoid; } }

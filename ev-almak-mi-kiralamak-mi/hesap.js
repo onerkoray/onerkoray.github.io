@@ -263,11 +263,64 @@
     return { kira: kurus(Math.round(ust * 100)), bulundu: true };
   }
 
+  /* ------------------------------------------------------ duyarlılık ızgarası
+   *
+   * NEDEN: başabaş YILI ve başabaş KİRASI tek boyutlu cevaplar. Gerçek soru
+   * iki boyutlu: "ev şu kadar değerlenir VE yatırım bu kadar getirirse hangi
+   * taraf kazanır?" Bu iki parametre birbirini götürebiliyor — yüksek değer
+   * artışı, yüksek yatırım getirisiyle nötrleşiyor. Tek bir senaryo bunu
+   * gösteremez; karar YÜZEYİ gerekiyor.
+   *
+   * Izgara, her hücrede TAM hesabı yeniden koşuyor. Yaklaşık bir formül
+   * kullanmıyoruz: masraflar, kira tavanı ve amortisman doğrusal değil,
+   * enterpolasyon yanlış sınır çizdirirdi.
+   *
+   * Doner: { x, y, hucreler, sinirVar } — hücre değeri REEL fark (alıcı −
+   * kiracı, bugünün parasıyla). Pozitif: satın alma önde.
+   */
+  function duyarlilik(girdi, secenek) {
+    secenek = secenek || {};
+    var xAlan = secenek.xAlan || "evDegerArtisYuzde";
+    var yAlan = secenek.yAlan || "yatirimGetiriYuzde";
+    var xler = secenek.x || [0, 10, 20, 30, 40, 50, 60];
+    var yler = secenek.y || [0, 10, 20, 30, 40, 50, 60];
+
+    var hucreler = [], enBuyuk = 0, artiVar = false, eksiVar = false;
+
+    for (var j = 0; j < yler.length; j++) {
+      var satir = [];
+      for (var i = 0; i < xler.length; i++) {
+        var g = {};
+        for (var k in girdi) if (Object.prototype.hasOwnProperty.call(girdi, k)) g[k] = girdi[k];
+        g[xAlan] = xler[i];
+        g[yAlan] = yler[j];
+        var r = karsilastir(g);
+        var d = (r && r.gecerli) ? r.farkReel : null;
+        if (d !== null) {
+          if (d > 0) artiVar = true; else if (d < 0) eksiVar = true;
+          if (Math.abs(d) > enBuyuk) enBuyuk = Math.abs(d);
+        }
+        satir.push({ x: xler[i], y: yler[j], deger: d, kazanan: d === null ? null : (d >= 0 ? "alici" : "kiraci") });
+      }
+      hucreler.push(satir);
+    }
+
+    return {
+      xAlan: xAlan, yAlan: yAlan, x: xler, y: yler,
+      hucreler: hucreler,
+      enBuyukMutlak: enBuyuk,
+      /* Sınır YOKSA karar bu aralıkta hiç dönmüyor demektir; arayüz bunu
+         söylemeli, yoksa kullanıcı "sınır nerede" diye boşuna arar. */
+      sinirVar: artiVar && eksiVar
+    };
+  }
+
   return {
     VARSAYILAN: VARSAYILAN,
     sayi: sayi,
     aylikOran: aylikOran,
     karsilastir: karsilastir,
-    basabasKira: basabasKira
+    basabasKira: basabasKira,
+    duyarlilik: duyarlilik
   };
 });
