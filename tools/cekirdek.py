@@ -87,6 +87,8 @@ DOSYALAR = [
     ("finans/nakit-akisi-motoru.js",      "finans/nakit-akisi-motoru.js"),
     ("finans/nakit-akisi-test.js",        "finans/nakit-akisi-test.js"),
     ("finans/sankey.js",                  "finans/sankey.js"),
+    ("finans/kisisel-enflasyon-motoru.js", "finans/kisisel-enflasyon-motoru.js"),
+    ("finans/kisisel-enflasyon-test.js",  "finans/kisisel-enflasyon-test.js"),
 
     ("bordro/emeklilik-parametreleri.js", "bordro/emeklilik-parametreleri.js"),
     ("bordro/emeklilik-motor.js",         "bordro/emeklilik-motor.js"),
@@ -171,7 +173,8 @@ def test_sayilari():
                     ("gmsi", "bordro/gmsi-test.js"),
                     ("borc", "bordro/borc-test.js"),
                     ("ek-odeme", "bordro/ek-odeme-test.js"),
-                    ("nakit-akisi", "finans/nakit-akisi-test.js")):
+                    ("nakit-akisi", "finans/nakit-akisi-test.js"),
+                    ("kisisel-enflasyon", "finans/kisisel-enflasyon-test.js")):
         try:
             r = subprocess.run(["node", yol], capture_output=True, timeout=120)
             cikti = r.stdout.decode("utf-8", "replace")
@@ -259,6 +262,7 @@ node bordro/gmsi-test.js            # %(gmsi)d test
 node bordro/borc-test.js            # %(borc)d test
 node bordro/ek-odeme-test.js        # %(ek_odeme)d test
 node finans/nakit-akisi-test.js     # %(nakit_akisi)d test
+node finans/kisisel-enflasyon-test.js # %(kisisel)d test
 ```
 
 Toplam **%(toplam)d test**. Bordro tarafındaki en güçlü referans şudur: brüt
@@ -295,6 +299,7 @@ kurum görüşü yerine geçmez.
         "emeklilik": sayilar["emeklilik"], "gmsi": sayilar["gmsi"],
         "borc": sayilar["borc"], "ek_odeme": sayilar["ek-odeme"],
         "nakit_akisi": sayilar["nakit-akisi"],
+        "kisisel": sayilar["kisisel-enflasyon"],
         "yil_ilk": min(yillar) if yillar else "?",
         "yil_son": max(yillar) if yillar else "?",
     }

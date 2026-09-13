@@ -102,6 +102,16 @@ jobs:
       - name: Nakit akışı motoru regresyonları
         run: node finans/nakit-akisi-test.js
 
+      # Kisisel enflasyon bir ENDEKS uretiyor ve endekslerin hatalari
+      # sessizdir: agirlik yanlis tarafa konursa sonuc makul gorunur,
+      # yalnizca sistematik olarak yanlis olur. Ilk surumde harcama
+      # paylariyla kurulan "enflasyon" cebirsel olarak toplam harcama
+      # degisimine OZDESTI -- yani bir fiyat endeksi degildi. Testler
+      # Laspeyres'i, katki ayristirmasinin toplamini ve fiyat/harcama
+      # ayrimini sabitliyor.
+      - name: Kişisel enflasyon motoru regresyonları
+        run: node finans/kisisel-enflasyon-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.

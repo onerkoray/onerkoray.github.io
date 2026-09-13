@@ -1,0 +1,135 @@
+/* Kişisel Enflasyon — araca özgü stiller.
+   Form ve tablo dili nakit akışı aracıyla AYNI; ikisi aynı gider
+   kalemlerini konuşuyor. Eğri bileşeninin stilleri global style.css'te. */
+
+/* --------------------------------- form ---------------------------------- */
+.ke-grid {
+  display: grid; gap: 1rem 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.ke-grid .panel-q { margin: 0; }
+.panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
+.panel-q label { display: block; font-weight: 600; font-size: .82rem; margin-bottom: .3rem; }
+#ke-form input[type="text"] {
+  font: inherit; padding: 8px 10px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--surface); color: var(--text);
+  min-height: 44px; max-width: 100%; width: 9rem;
+}
+#ke-form input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.ke-baslik-satir {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin: 1.6rem 0 .7rem; flex-wrap: wrap;
+}
+.ke-alt-baslik { margin: 0; font-size: 1rem; font-weight: 650; }
+.ke-ekle {
+  font: 600 .8rem var(--font-body); padding: .5rem .95rem; min-height: 40px;
+  border: 1px solid var(--brand); border-radius: 999px;
+  background: transparent; color: var(--brand-strong); cursor: pointer;
+}
+.ke-ekle:hover { background: var(--surface-note); }
+
+.ke-tablo-sarmal { overflow-x: auto; }
+.ke-girdi { width: 100%; border-collapse: collapse; }
+.ke-girdi thead th {
+  text-align: left; padding: .4rem .5rem; font-size: .72rem; font-weight: 600;
+  color: var(--text-muted); white-space: nowrap;
+}
+.ke-girdi td { padding: .3rem .5rem; vertical-align: middle; }
+.ke-girdi .ke-ad { min-width: 190px; }
+.ke-girdi .ke-ad input { width: 100%; }
+.ke-girdi .ke-tutar { width: 130px; }
+.ke-onay { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; }
+.ke-onay input { width: 18px; height: 18px; accent-color: var(--brand); }
+.ke-sil {
+  width: 34px; height: 34px; line-height: 1; font-size: 1.1rem;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: transparent; color: var(--text-muted); cursor: pointer;
+}
+.ke-sil:hover { color: var(--text); border-color: var(--text-muted); }
+.ke-ipucu { margin-top: .8rem; }
+
+/* ------------------------------ karar kartı ------------------------------ */
+.ke-karar {
+  margin: 1.5rem 0 0; padding: 1.35rem 1.5rem;
+  border: 1px solid var(--brand); border-radius: var(--radius-card);
+  background: var(--surface-note);
+}
+.ke-etiket {
+  margin: 0 0 .3rem; font: 500 .66rem var(--font-mono);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--brand-strong);
+}
+.ke-oran {
+  margin: 0; font: 700 2.3rem/1.05 var(--font-display);
+  letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+}
+.ke-cumle { margin: .55rem 0 0; font-size: .95rem; line-height: 1.55; }
+.ke-not { margin: .45rem 0 0; font-size: .82rem; color: var(--text-muted); line-height: 1.6; }
+
+/* --------------------------- üç sayı, üç soru ---------------------------- */
+/* Fiyat / harcama / sepet ayrımı aracın tezi; bu yüzden yan yana ve eşit. */
+.ke-ucluk {
+  display: grid; gap: 1rem; margin: 1.25rem 0 0;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+.ke-kutu {
+  padding: 1rem 1.15rem; border: 1px solid var(--border);
+  border-radius: var(--radius-card); background: var(--surface);
+}
+.ke-kutu-ad { margin: 0 0 .25rem; font-size: .78rem; font-weight: 650; }
+.ke-kutu-deger {
+  margin: 0; font: 700 1.45rem/1.1 var(--font-display);
+  letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+}
+.ke-kutu-alt { margin: .4rem 0 0; font-size: .78rem; color: var(--text-muted); line-height: 1.55; }
+
+/* ------------------------------ katkı tablosu ---------------------------- */
+.ke-katki { margin: 1.75rem 0 0; overflow-x: auto; }
+.ke-katki table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.ke-katki caption {
+  text-align: left; font-size: .88rem; font-weight: 650;
+  padding-bottom: .7rem; line-height: 1.5;
+}
+.ke-katki th, .ke-katki td {
+  padding: .5rem .55rem; border-bottom: 1px solid var(--border);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.ke-katki thead th { color: var(--text-muted); font-weight: 600; font-size: .75rem; }
+.ke-katki thead th:first-child, .ke-katki tbody th,
+.ke-katki tfoot th { text-align: left; }
+.ke-katki tbody th { font-weight: 600; }
+.ke-katki tfoot td, .ke-katki tfoot th {
+  border-top: 2px solid var(--border); border-bottom: 0;
+  font-weight: 700; padding-top: .6rem;
+}
+/* Katkı çubuğu: sıfırdan iki yöne. Renk değil YÖN ve GENİŞLİK taşıyor. */
+.ke-cubuk-hucre { width: 120px; min-width: 120px; }
+/* display:block SART: inline bir span'in genisligi yok, icindeki mutlak
+   konumlu cubuklar da hicbir seye gore konumlanmiyordu. Cubuklar
+   render'da gorunmedigi icin yakalandi. */
+.ke-cubuk-yol {
+  display: block; position: relative; width: 100%;
+  height: 10px; border-radius: 2px;
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+}
+.ke-cubuk-sifir {
+  position: absolute; inset-block: -2px; width: 1px;
+  background: var(--dv-axis); opacity: .55;
+}
+.ke-cubuk { position: absolute; top: 0; height: 10px; border-radius: 2px; }
+.ke-arti { background: var(--dv-2); }
+.ke-eksi { background: var(--dv-1); }
+.ke-disarida { opacity: .45; }
+.ke-rozet {
+  font: 500 .6rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase;
+  padding: .1rem .4rem; border-radius: 999px; margin-inline-start: .4rem;
+  border: 1px solid var(--border); color: var(--text-muted);
+}
+
+@media (max-width: 560px) {
+  .ke-oran { font-size: 1.9rem; }
+  .ke-katki table { font-size: .78rem; }
+  .ke-cubuk-hucre { width: 80px; }
+}
+@media print { .ke-karar, .ke-ucluk, .ke-katki { break-inside: avoid; } }
