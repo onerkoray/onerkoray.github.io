@@ -90,6 +90,13 @@ DOSYALAR = [
     ("finans/kisisel-enflasyon-motoru.js", "finans/kisisel-enflasyon-motoru.js"),
     ("finans/kisisel-enflasyon-test.js",  "finans/kisisel-enflasyon-test.js"),
 
+    # Finansal Ikiz omurgasi: profil (veri katmani) ve yasam boyu
+    # projeksiyon. Uzerlerine binen her sey bunlara bagli.
+    ("finans/profil.js",                  "finans/profil.js"),
+    ("finans/profil-test.js",             "finans/profil-test.js"),
+    ("finans/ikiz-motoru.js",             "finans/ikiz-motoru.js"),
+    ("finans/ikiz-test.js",               "finans/ikiz-test.js"),
+
     ("bordro/emeklilik-parametreleri.js", "bordro/emeklilik-parametreleri.js"),
     ("bordro/emeklilik-motor.js",         "bordro/emeklilik-motor.js"),
     ("bordro/emeklilik-test.js",          "bordro/emeklilik-test.js"),
@@ -174,7 +181,9 @@ def test_sayilari():
                     ("borc", "bordro/borc-test.js"),
                     ("ek-odeme", "bordro/ek-odeme-test.js"),
                     ("nakit-akisi", "finans/nakit-akisi-test.js"),
-                    ("kisisel-enflasyon", "finans/kisisel-enflasyon-test.js")):
+                    ("kisisel-enflasyon", "finans/kisisel-enflasyon-test.js"),
+                    ("profil", "finans/profil-test.js"),
+                    ("ikiz", "finans/ikiz-test.js")):
         try:
             r = subprocess.run(["node", yol], capture_output=True, timeout=120)
             cikti = r.stdout.decode("utf-8", "replace")
@@ -238,6 +247,14 @@ marjinal nakit dagitimi ve kredi erken kapatma karari (TKHK m.27 ve m.37
 tazminat kurallariyla). Ustlerindeki araclar bu motorlari paylasiyor;
 ikinci bir uygulama yazilmiyor.
 
+### `finansal-ikiz/` — yasam boyu projeksiyon
+Finansal profilin sema ve dogrulama katmani (profil.js) ile ay ay yurutup
+yil yil raporlayan projeksiyon motoru (ikiz-motoru.js). Belirsizlik
+dagilim varsayilarak degil, UC ISIMLI SENARYOYLA temsil ediliyor;
+varsayimlarin sahibi model degil kullanici. Ucret vergisi icin tarifenin
+enflasyonla endekslendigi varsayiliyor ve bu varsayim motorun basinda
+acikca yazili.
+
 ### `fatura/` — fatura ve teklif
 Tam sayı kuruş aritmetiği, satır ve genel iskonto (en büyük artık yöntemiyle
 dağıtım), KDV tevkifatı, tutar yazıyla, VKN/TCKN ve IBAN sağlaması, belge
@@ -263,6 +280,8 @@ node bordro/borc-test.js            # %(borc)d test
 node bordro/ek-odeme-test.js        # %(ek_odeme)d test
 node finans/nakit-akisi-test.js     # %(nakit_akisi)d test
 node finans/kisisel-enflasyon-test.js # %(kisisel)d test
+node finans/profil-test.js          # %(profil)d test
+node finans/ikiz-test.js            # %(ikiz)d test
 ```
 
 Toplam **%(toplam)d test**. Bordro tarafındaki en güçlü referans şudur: brüt
@@ -300,6 +319,7 @@ kurum görüşü yerine geçmez.
         "borc": sayilar["borc"], "ek_odeme": sayilar["ek-odeme"],
         "nakit_akisi": sayilar["nakit-akisi"],
         "kisisel": sayilar["kisisel-enflasyon"],
+        "profil": sayilar["profil"], "ikiz": sayilar["ikiz"],
         "yil_ilk": min(yillar) if yillar else "?",
         "yil_son": max(yillar) if yillar else "?",
     }
