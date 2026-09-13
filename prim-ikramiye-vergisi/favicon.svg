@@ -9,6 +9,6 @@
   </style>
   <rect class="fv-kap" width="32" height="32" rx="2"/>
   <g class="fv-sem" transform="translate(4 3)" fill="none" stroke-width="2.4"
-     stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M3 9h18"/><path d="M7 20v-6"/><path d="M11 20v-9"/><path d="M15 20V5"/><path d="M19 20v-7"/></g>
+     stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 6h14"/><path d="M8 21v-7"/><path d="M12 21v-11"/><path d="M16 21v-4"/></g>
   <rect class="fv-vurgu" x="4" y="27.5" width="24" height="3" rx="1.5" fill="#0e7c66"/>
 </svg>

@@ -13,7 +13,7 @@
   },
   "prim-ikramiye-vergisi": {
     "cat": "maas",
-    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 20h18\"/><path d=\"M3 9h18\"/><path d=\"M7 20v-6\"/><path d=\"M11 20v-9\"/><path d=\"M15 20V5\"/><path d=\"M19 20v-7\"/></svg>"
+    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 21h18\"/><path d=\"M5 6h14\"/><path d=\"M8 21v-7\"/><path d=\"M12 21v-11\"/><path d=\"M16 21v-4\"/></svg>"
   },
   "kidem-tazminati-hesaplama": {
     "cat": "maas",
