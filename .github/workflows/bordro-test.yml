@@ -94,6 +94,14 @@ jobs:
       - name: Ek ödeme (prim/ikramiye) motoru regresyonları
         run: node bordro/ek-odeme-test.js
 
+      # Nakit akisi: bir akis diyagraminin TEK iddiasi mutabakattir.
+      # Giren ile cikan tutmuyorsa diyagram guzel gorunup yalan soyler ve
+      # kimse fark etmez. Testler her dugumde mutabakati, omur bedelinin
+      # REEL oldugunu ve tasarruf oraninin NET gelir uzerinden
+      # hesaplandigini sabitliyor.
+      - name: Nakit akışı motoru regresyonları
+        run: node finans/nakit-akisi-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.
