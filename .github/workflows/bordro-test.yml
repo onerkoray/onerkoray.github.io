@@ -164,6 +164,15 @@ jobs:
       - name: Profil köprüsü alan denetimi
         run: node tools/kopru-denetimi.js
 
+      # OLCUM ONAY KAPISI. Bu testin korudugu sey bir ozellik degil bir
+      # SOZ: "hesap araclarina girdiginiz veriler cihazinizdan cikmaz".
+      # Kapi sessizce bozulursa -- bir yukleme yolu erken tetiklenirse,
+      # ret kaydedilmezse, geri alma sonrasi cerezler kalirsa -- kimse
+      # fark etmez: sayfa acilir, araclar calisir, yalnizca soz
+      # tutulmamistir.
+      - name: Ölçüm onayı regresyonları
+        run: node tools/onay-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.
