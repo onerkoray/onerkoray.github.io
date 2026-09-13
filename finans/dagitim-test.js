@@ -27,7 +27,13 @@ dogru("reel, cikarmadan FARKLI olmali", Math.abs(D.reel(0.346, 0.30) - 0.046) > 
 
 console.log("\nStopaj kademesi kurallar.js'ten geliyor");
 esit("92 gun -> %17,5", F.stopajOraniGun(92, "tl"), 17.5);
-esit("365 gun -> %10", F.stopajOraniGun(365, "tl"), 10);
+/* SINIR: tarife "1 yila kadar %15, 1 yildan UZUN %10" diyor. Tam 365 gun
+   yildonumune denk geliyor, yani "1 yila kadar" — %15. Eski test burada
+   %10 bekliyordu ve yalnizca UTC+3'te geciyordu: saat dilimi hatasi,
+   sinirin yanlis tarafini dogruymus gibi gosteriyordu. Iki kontrol birden
+   yaziliyor ki sinir bir daha sessizce kaymasin. */
+esit("365 gun (tam bir yil) -> %15", F.stopajOraniGun(365, "tl"), 15);
+esit("366 gun (bir yildan uzun) -> %10", F.stopajOraniGun(366, "tl"), 10);
 
 var TABAN = {
   aylikFazla: 10000, acilFonMevcut: 0, aylikZorunluGider: 20000, acilFonAy: 3,
