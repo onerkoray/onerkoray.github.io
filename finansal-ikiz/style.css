@@ -31,7 +31,11 @@
 #fi-form button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
 .fi-bolumler { margin-top: 1.5rem; display: grid; gap: 1.5rem; }
+/* min-width: 0 ŞART. Grid çocuklarının varsayılanı min-width:auto'dur ve
+   içerideki geniş tablo bölümü panelden taşırıyordu — "+ Ekle" düğmeleri
+   beyaz panelin dışına düşüyordu. Render'da yakalandı. */
 .fi-bolum {
+  min-width: 0;
   padding-top: 1.25rem; border-top: 1px solid var(--border);
 }
 .fi-baslik-satir {
@@ -45,6 +49,13 @@
   background: transparent; color: var(--brand-strong); cursor: pointer;
 }
 .fi-ekle:hover { background: var(--surface-note); }
+
+.fi-olay-ekle { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+.fi-olay-ekle select {
+  font: inherit; padding: 6px 10px; min-height: 40px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--surface); color: var(--text);
+}
 
 .fi-tablo-sarmal { overflow-x: auto; }
 .fi-girdi { width: 100%; border-collapse: collapse; }

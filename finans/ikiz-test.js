@@ -83,6 +83,46 @@ dogru("enflasyon sifirken reel = nominal", sifirEnf.yillar.every(function (y) {
 }));
 
 /* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+console.log("\nDEFLATOR OZDESLIGI — reel deger kaymaz");
+/* Reel getiri sifirken ve hic nakit akisi yokken, bir varligin REEL
+   degeri yillar boyunca TAM OLARAK sabit kalmali. Bu bir yaklasiklik
+   degil, ozdeslik.
+
+   Ilk surumde kalmiyordu: ay SONUNDAKI stok degeri, ayin BASINDAKI fiyat
+   duzeyine bolunuyordu ve butun reel degerler tam olarak BIR AYLIK
+   ENFLASYON kadar sisiyordu (%30 enflasyonda %2,2 sabit sapma). Kucuk
+   ama sistematik ve her satirda ayni yonde -- yani gozle fark edilmesi
+   imkansiz. Yasam olayi testleri yakaladi. */
+[[0.30, 0.30], [0.60, 0.60], [0, 0], [0.05, 0.05]].forEach(function (par) {
+  var d = P.normalize({
+    gelirler: [], giderler: [], borclar: [], olaylar: [],
+    varliklar: [{ ad: "Mevduat", tur: "mevduat", deger: 1000000 }],
+    varsayimlar: { enflasyon: par[0], ucretArtisi: 0,
+      yatirimGetirisi: par[1], ufukYil: 15 }
+  });
+  var pr = I.projeksiyon(d, "baz");
+  var sapma = pr.yillar.reduce(function (a, y) {
+    return Math.max(a, Math.abs(y.reelNetDeger - 1000000));
+  }, 0);
+  esit("enf %" + Math.round(par[0] * 100) + ": 15 yil boyunca reel deger sabit",
+    sapma, 0, 2);
+});
+
+/* Konut da ayni ozdeslige tabi: getiri uretmez, reel degerini korur.
+   Burada enflasyon ve getiri BILEREK farkli secildi ki konutun
+   getiriden etkilenmedigi de dogrulansin. */
+var konutPr = I.projeksiyon(P.normalize({
+  gelirler: [], giderler: [], borclar: [], olaylar: [],
+  varliklar: [{ ad: "Ev", tur: "konut", deger: 5000000 }],
+  varsayimlar: { enflasyon: 0.45, ucretArtisi: 0, yatirimGetirisi: 0.35, ufukYil: 15 }
+}), "baz");
+esit("konutun reel degeri 15 yil sabit",
+  konutPr.yillar.reduce(function (a, y) {
+    return Math.max(a, Math.abs(y.reelNetDeger - 5000000));
+  }, 0), 0, 5);
+
+/* ------------------------------------------------------------------ */
 console.log("\nUCRET VERGISI — tarife enflasyonla endeksli varsayimi");
 /* Varsayimin gozlemlenebilir sonucu: ucret artisi enflasyona ESITSE
    REEL net ucret sabit kalmali. Tarife endekslenmeseydi kullanici her
@@ -200,6 +240,126 @@ dogru("tukenmeden onceki yillar isaretsiz",
 dogru("saglikli profilde tukenme yok", I.projeksiyon(profil(), "baz").tukenmeYili === null);
 dogru("saglikli profilde hicbir yil isaretsiz",
   I.projeksiyon(profil(), "baz").yillar.every(function (y) { return !y.tukenmisSonrasi; }));
+
+/* ------------------------------------------------------------------ */
+console.log("\nYASAM OLAYLARI");
+var Y = new Date().getFullYear();
+function olayli(olaylar, varlik) {
+  return profil({
+    giderler: [{ id: "kira", ad: "Kira", aylik: 22000, zorunlu: true },
+               { ad: "Diger", aylik: 14000, zorunlu: true }],
+    varliklar: [{ ad: "Mevduat", tur: "mevduat", deger: varlik || 3500000 }],
+    olaylar: olaylar
+  });
+}
+
+console.log("  Tek seferlik gelir (miras)");
+var olaysiz = I.projeksiyon(olayli([]), "baz");
+var miras = I.projeksiyon(olayli([{ ad: "Miras", tur: "buyuk-gelir",
+  yil: Y + 5, tekSeferlikGelir: 1000000 }]), "baz");
+dogru("miras serveti buyutuyor", miras.sonReelNetDeger > olaysiz.sonReelNetDeger);
+/* TUTARLAR BUGUNUN PARASIYLA girilir. Nominal kabul edilseydi 5 yil
+   sonra gelen 1.000.000'in reel degeri 1.000.000/1,30^5 = 269.000'e
+   duserdi -- yani olay yillar gectikce gorunmez olurdu.
+
+   Iddia REEL GETIRI SIFIRKEN izole olcülüyor: olay yilin BASINDA
+   uygulaniyor, olcum yil SONUNDA yapiliyor, arada bir yillik getiri
+   var. Ilk yazimda bu hesaba katilmamisti ve test %6 sapmayla dustu;
+   kod dogruydu, beklenti eksikti. */
+function notrGetiri(olaylar) {
+  return profil({
+    giderler: [], borclar: [], gelirler: [],
+    varliklar: [{ ad: "Mevduat", tur: "mevduat", deger: 1000000 }],
+    olaylar: olaylar,
+    varsayimlar: { enflasyon: 0.30, ucretArtisi: 0.30,
+      yatirimGetirisi: 0.30, ufukYil: 10 }
+  });
+}
+var notrYok = I.projeksiyon(notrGetiri([]), "baz");
+var notrMiras = I.projeksiyon(notrGetiri([{ ad: "Miras", tur: "buyuk-gelir",
+  yil: Y + 5, tekSeferlikGelir: 1000000 }]), "baz");
+esit("reel getiri sifirken miras TAM degerinde duruyor",
+  notrMiras.yillar[5].reelNetDeger - notrYok.yillar[5].reelNetDeger, 1000000, 1000);
+esit("10. yilda da ayni reel degerde",
+  notrMiras.yillar[9].reelNetDeger - notrYok.yillar[9].reelNetDeger, 1000000, 1000);
+/* Getiri varken ise olay, girdigi yilin sonuna kadar getiri kazanmali. */
+dogru("getiri varken olay yil sonunda bir miktar buyumus",
+  miras.yillar[5].reelNetDeger - olaysiz.yillar[5].reelNetDeger > 1000000);
+
+console.log("  Tek seferlik gider");
+var harcama = I.projeksiyon(olayli([{ ad: "Harcama", tur: "buyuk-harcama",
+  yil: Y + 3, pesinat: 500000 }]), "baz");
+dogru("harcama serveti kucultuyor", harcama.sonReelNetDeger < olaysiz.sonReelNetDeger);
+var notrHarcama = I.projeksiyon(notrGetiri([{ ad: "Harcama",
+  tur: "buyuk-harcama", yil: Y + 3, pesinat: 500000 }]), "baz");
+esit("reel getiri sifirken harcama TAM degerinde",
+  notrYok.yillar[3].reelNetDeger - notrHarcama.yillar[3].reelNetDeger, 500000, 1000);
+
+console.log("  Suresi olan gider (cocuk)");
+var cocuk = I.projeksiyon(olayli([{ ad: "Cocuk", tur: "cocuk",
+  yil: Y + 2, aylikGiderEtkisi: 10000, sureYil: 5 }]), "baz");
+dogru("gider basladi", cocuk.yillar[3].gider > olaysiz.yillar[3].gider);
+dogru("gider SURE BITINCE duruyor",
+  Math.abs(cocuk.yillar[9].gider - olaysiz.yillar[9].gider) < 1);
+var suresiz = I.projeksiyon(olayli([{ ad: "Surekli", tur: "ozel",
+  yil: Y + 2, aylikGiderEtkisi: 10000 }]), "baz");
+dogru("suresiz gider surüyor", suresiz.yillar[19].gider > olaysiz.yillar[19].gider);
+
+console.log("  Ucret carpani (emeklilik)");
+var emekli = I.projeksiyon(olayli([{ ad: "Emeklilik", tur: "emeklilik",
+  yil: Y + 10, ucretCarpani: 0, aylikGelirEtkisi: 30000 }]), "baz");
+dogru("emeklilik oncesi gelir yuksek", emekli.yillar[9].gelir > emekli.yillar[10].gelir);
+/* Ucret sifirlandi ama emekli ayligi var: gelir SIFIR OLMAMALI. */
+dogru("emeklilikte gelir sifir degil", emekli.yillar[12].gelir > 0);
+/* Emekli ayligi da bugunun parasiyla girildi. */
+esit("emekli ayligi reel olarak 30.000",
+  emekli.yillar[12].gelir / 12 / Math.pow(1.30, 12.5), 30000, 2500);
+
+console.log("  Duran gider (ev alinca kira biter)");
+var ev = I.projeksiyon(olayli([{ ad: "Ev", tur: "ev-alma", yil: Y + 4,
+  pesinat: 1500000, varlikEklemesi: 5000000, durdurulanGiderId: "kira",
+  borc: { anapara: 3500000, aylikFaiz: 0.021, aylikOdeme: 85000 } }]), "baz");
+dogru("kira kalemi durdu", ev.yillar[6].gider < olaysiz.yillar[6].gider);
+dogru("mortgage borcu olustu", ev.yillar[4].borc > 0);
+dogru("alimdan onceki yilda borc yok", ev.yillar[3].borc < 1);
+
+console.log("  KONUT GETIRI URETMEZ, reel degerini korur");
+/* Bir ev yatirim fonu gibi bilesik buyumez. Ikisini karistirmak
+   projeksiyonu sistematik olarak sisirirdi. */
+function tekVarlik(tur) {
+  return P.normalize({
+    gelirler: [], giderler: [], borclar: [], olaylar: [],
+    varliklar: [{ ad: "X", tur: tur, deger: 5000000 }],
+    varsayimlar: { enflasyon: 0.30, ucretArtisi: 0, yatirimGetirisi: 0.35, ufukYil: 10 }
+  });
+}
+esit("konutun reel degeri 10 yil sonra da ayni",
+  I.projeksiyon(tekVarlik("konut"), "baz").yillar[9].reelNetDeger, 5000000, 5000);
+dogru("ayni tutar mevduatta olsa buyurdu",
+  I.projeksiyon(tekVarlik("mevduat"), "baz").yillar[9].reelNetDeger > 5000000 * 1.3);
+
+console.log("  Ufuk disindaki olay yok sayiliyor");
+esit("50 yil sonraki olay 20 yillik ufka girmiyor",
+  I.projeksiyon(olayli([{ ad: "Uzak", tur: "ozel", yil: Y + 50,
+    pesinat: 9999999 }]), "baz").sonReelNetDeger, olaysiz.sonReelNetDeger, 1);
+esit("gecmisteki olay da girmiyor",
+  I.projeksiyon(olayli([{ ad: "Gecmis", tur: "ozel", yil: Y - 5,
+    pesinat: 9999999 }]), "baz").sonReelNetDeger, olaysiz.sonReelNetDeger, 1);
+
+console.log("  Olaylar BIRIKIYOR, birbirini EZMIYOR");
+var ikiTerfi = I.projeksiyon(olayli([
+  { ad: "Terfi", tur: "is-degisikligi", yil: Y + 2, ucretCarpani: 1.2 },
+  { ad: "Terfi 2", tur: "is-degisikligi", yil: Y + 5, ucretCarpani: 1.2 }
+]), "baz");
+var tekTerfi = I.projeksiyon(olayli([
+  { ad: "Terfi", tur: "is-degisikligi", yil: Y + 2, ucretCarpani: 1.2 }
+]), "baz");
+dogru("ikinci carpan birincinin uzerine biniyor",
+  ikiTerfi.yillar[6].gelir > tekTerfi.yillar[6].gelir * 1.15);
+
+console.log("  Olaysiz profil, olay alani bos olanla ayni");
+esit("bos olay dizisi sonucu degistirmiyor",
+  I.projeksiyon(olayli([]), "baz").sonReelNetDeger, olaysiz.sonReelNetDeger, 0);
 
 /* ------------------------------------------------------------------ */
 console.log("\nUC SENARYO — siralama ve band");

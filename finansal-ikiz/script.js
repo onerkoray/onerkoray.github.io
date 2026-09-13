@@ -63,6 +63,12 @@
     borclar: [
       { ad: "İhtiyaç kredisi", tur: "ihtiyac", kalanAnapara: 120000,
         aylikFaiz: 0.032, kalanVadeAy: 24, aylikOdeme: 7000 }
+    ],
+    /* Örnekte bir olay var ki özellik kapalı değil ÇALIŞIR hâlde görünsün;
+       band üzerindeki işaret ve gelirdeki kırılma ilk bakışta anlaşılsın. */
+    olaylar: [
+      { ad: "Çocuk", tur: "cocuk", yil: new Date().getFullYear() + 3,
+        aylikGiderEtkisi: 12000, sureYil: 22 }
     ]
   };
 
@@ -94,6 +100,9 @@
       '<td><label class="fi-onay-h"><input type="checkbox"' + (k.zorunlu ? " checked" : "") + ' aria-label="Zorunlu gider"></label></td>' +
       '<td><label class="fi-onay-h"><input type="checkbox"' + (k.enflasyonaEndeksli === false ? "" : " checked") + ' aria-label="Enflasyona endeksli"></label></td>' +
       '<td><button type="button" class="fi-sil" aria-label="Satırı sil">×</button></td>';
+    /* Kimlik satırda saklanıyor: olayların "bu gideri durdur" bağlantısı
+       kaleme id ile bağlanıyor, ada değil. Ad değişince bağlantı kopmasın. */
+    if (k.id) tr.dataset.id = k.id;
     $("fi-giderler").appendChild(baglan(tr));
   }
 
@@ -108,6 +117,7 @@
       '<td class="fi-tur"><select aria-label="Varlık türü">' + secenekler + "</select></td>" +
       '<td class="fi-sayi"><input type="text" inputmode="decimal" value="' + (v.deger || 0) + '" aria-label="Değer"></td>' +
       '<td><button type="button" class="fi-sil" aria-label="Satırı sil">×</button></td>';
+    if (v.id) tr.dataset.id = v.id;
     $("fi-varliklar").appendChild(baglan(tr));
   }
 
@@ -122,17 +132,70 @@
     $("fi-borclar").appendChild(baglan(tr));
   }
 
+  /* OLAY ŞABLONLARI — kullanıcıya makul bir başlangıç veriyor, karar
+     vermiyor. Her alan düzenlenebilir; şablon yalnızca "bu olay tipik
+     olarak neleri değiştirir" sorusunu cevaplıyor.
+
+     Tutarlar BUGÜNÜN PARASIYLA. Motor olayın yılına taşıyor. */
+  var OLAY_SABLONLARI = {
+    "ev-alma": { ad: "Ev alma", tekSeferlik: -2000000, aylik: -4000, sure: null,
+      ipucu: "Peşinat tek seferlik çıkış; aylık etki aidat/bakım/vergi. " +
+        "Kredi ve konut değeri için aşağıdaki alanları kullanın." },
+    "cocuk": { ad: "Çocuk", tekSeferlik: 0, aylik: -12000, sure: 22 },
+    "emeklilik": { ad: "Emeklilik", tekSeferlik: 0, aylik: 30000, sure: null,
+      ucretCarpani: 0 },
+    "is-degisikligi": { ad: "Terfi / iş değişikliği", tekSeferlik: 0, aylik: 0,
+      sure: null, ucretCarpani: 1.25 },
+    "buyuk-gelir": { ad: "Miras / büyük gelir", tekSeferlik: 1500000, aylik: 0, sure: null },
+    "buyuk-harcama": { ad: "Büyük harcama", tekSeferlik: -500000, aylik: 0, sure: null },
+    "ozel": { ad: "Özel olay", tekSeferlik: 0, aylik: 0, sure: null }
+  };
+
+  function olaySatiri(o) {
+    var tr = document.createElement("tr");
+    /* Tek alanda iki yön: eksi çıkış, artı giriş. İki ayrı sütun
+       (peşinat / gelir) formu şişiriyordu ve kullanıcı hangisine
+       yazacağını düşünmek zorunda kalıyordu. */
+    var tekSeferlik = (o.tekSeferlikGelir || 0) - (o.pesinat || 0);
+    var aylik = (o.aylikGelirEtkisi || 0) - Math.abs(o.aylikGiderEtkisi || 0);
+    if (o.aylikGiderEtkisi > 0) aylik = -o.aylikGiderEtkisi;
+    tr.innerHTML =
+      '<td class="fi-ad"><input type="text" value="' + esc(o.ad || "") +
+      '" aria-label="Olay adı"></td>' +
+      '<td class="fi-sayi"><input type="text" inputmode="numeric" value="' +
+      (o.yil || "") + '" aria-label="Olay yılı"></td>' +
+      '<td class="fi-sayi"><input type="text" inputmode="decimal" value="' +
+      tekSeferlik + '" aria-label="Tek seferlik tutar"></td>' +
+      '<td class="fi-sayi"><input type="text" inputmode="decimal" value="' +
+      aylik + '" aria-label="Aylık etki"></td>' +
+      '<td class="fi-sayi"><input type="text" inputmode="numeric" value="' +
+      (o.sureYil || "") + '" aria-label="Süre yıl"></td>' +
+      '<td><button type="button" class="fi-sil" aria-label="Satırı sil">×</button></td>';
+    /* Şablondan gelen ama tabloda sütunu olmayan alanlar satırda saklanıyor:
+       ücret çarpanı, konut değeri, kredi. Formu şişirmeden korunuyorlar. */
+    tr.dataset.tur = o.tur || "ozel";
+    if (o.ucretCarpani !== null && o.ucretCarpani !== undefined) {
+      tr.dataset.ucretCarpani = o.ucretCarpani;
+    }
+    if (o.varlikEklemesi) tr.dataset.varlikEklemesi = o.varlikEklemesi;
+    if (o.durdurulanGiderId) tr.dataset.durdurulanGiderId = o.durdurulanGiderId;
+    if (o.borc) tr.dataset.borc = JSON.stringify(o.borc);
+    $("fi-olaylar").appendChild(baglan(tr));
+  }
+
   /* ------------------------------ okuma ---------------------------------- */
   function profiliOku() {
     var giderler = Array.prototype.map.call(
       $("fi-giderler").querySelectorAll("tr"), function (tr) {
         var g = tr.querySelectorAll("input");
-        return { ad: g[0].value.trim() || "Gider", aylik: F.sayi(g[1].value),
+        return { id: tr.dataset.id, ad: g[0].value.trim() || "Gider",
+          aylik: F.sayi(g[1].value),
           zorunlu: g[2].checked, enflasyonaEndeksli: g[3].checked };
       });
     var varliklar = Array.prototype.map.call(
       $("fi-varliklar").querySelectorAll("tr"), function (tr) {
-        return { ad: tr.querySelectorAll("input")[0].value.trim() || "Varlık",
+        return { id: tr.dataset.id,
+          ad: tr.querySelectorAll("input")[0].value.trim() || "Varlık",
           tur: tr.querySelector("select").value,
           deger: F.sayi(tr.querySelectorAll("input")[1].value) };
       });
@@ -144,6 +207,33 @@
           kalanVadeAy: 360 };
       });
 
+    var olaylar = Array.prototype.map.call(
+      $("fi-olaylar").querySelectorAll("tr"), function (tr) {
+        var g = tr.querySelectorAll("input");
+        var tekSeferlik = F.sayi(g[2].value);
+        var aylik = F.sayi(g[3].value);
+        var sure = F.sayi(g[4].value);
+        var o = {
+          ad: g[0].value.trim() || "Olay",
+          tur: tr.dataset.tur || "ozel",
+          yil: F.sayi(g[1].value),
+          pesinat: tekSeferlik < 0 ? -tekSeferlik : 0,
+          tekSeferlikGelir: tekSeferlik > 0 ? tekSeferlik : 0,
+          aylikGiderEtkisi: aylik < 0 ? -aylik : 0,
+          aylikGelirEtkisi: aylik > 0 ? aylik : 0,
+          sureYil: isFinite(sure) && sure > 0 ? sure : null
+        };
+        if (tr.dataset.ucretCarpani !== undefined) {
+          o.ucretCarpani = Number(tr.dataset.ucretCarpani);
+        }
+        if (tr.dataset.varlikEklemesi) o.varlikEklemesi = Number(tr.dataset.varlikEklemesi);
+        if (tr.dataset.durdurulanGiderId) o.durdurulanGiderId = tr.dataset.durdurulanGiderId;
+        if (tr.dataset.borc) {
+          try { o.borc = JSON.parse(tr.dataset.borc); } catch (e) { /* yok say */ }
+        }
+        return o;
+      });
+
     var brut = deger("in-brut");
     var diger = deger("in-diger");
     var gelirler = [];
@@ -153,7 +243,7 @@
     return P.normalize({
       kisi: { dogumYili: deger("in-dogum") },
       gelirler: gelirler, giderler: giderler,
-      varliklar: varliklar, borclar: borclar,
+      varliklar: varliklar, borclar: borclar, olaylar: olaylar,
       varsayimlar: {
         enflasyon: deger("in-enf") / 100,
         ucretArtisi: deger("in-zam") / 100,
@@ -176,9 +266,11 @@
     $("fi-giderler").innerHTML = "";
     $("fi-varliklar").innerHTML = "";
     $("fi-borclar").innerHTML = "";
+    $("fi-olaylar").innerHTML = "";
     p.giderler.forEach(giderSatiri);
     p.varliklar.forEach(varlikSatiri);
     p.borclar.forEach(borcSatiri);
+    p.olaylar.forEach(olaySatiri);
   }
 
   /* ------------------------------ çıktılar ------------------------------- */
@@ -405,6 +497,32 @@
       if (t === "gider") giderSatiri({ ad: "", aylik: 0, zorunlu: false });
       if (t === "varlik") varlikSatiri({ ad: "", tur: "mevduat", deger: 0 });
       if (t === "borc") borcSatiri({ ad: "", kalanAnapara: 0, aylikFaiz: 0.02, aylikOdeme: 0 });
+      if (t === "olay") {
+        var tur = $("olay-tur").value;
+        var sb = OLAY_SABLONLARI[tur] || OLAY_SABLONLARI.ozel;
+        var o = {
+          ad: sb.ad, tur: tur,
+          yil: new Date().getFullYear() + 3,
+          pesinat: sb.tekSeferlik < 0 ? -sb.tekSeferlik : 0,
+          tekSeferlikGelir: sb.tekSeferlik > 0 ? sb.tekSeferlik : 0,
+          aylikGiderEtkisi: sb.aylik < 0 ? -sb.aylik : 0,
+          aylikGelirEtkisi: sb.aylik > 0 ? sb.aylik : 0,
+          sureYil: sb.sure
+        };
+        if (sb.ucretCarpani !== undefined) o.ucretCarpani = sb.ucretCarpani;
+        /* Ev alma: kira kalemini durdurmayı ve konut değerini şablon
+           öneriyor ama kullanıcı silebilsin diye veri olarak tutuluyor. */
+        if (tur === "ev-alma") {
+          o.varlikEklemesi = 6000000;
+          o.borc = { anapara: 4000000, aylikFaiz: 0.021, aylikOdeme: 95000 };
+          var kira = Array.prototype.filter.call(
+            $("fi-giderler").querySelectorAll("tr"), function (tr) {
+              return /kira|konut/i.test(tr.querySelectorAll("input")[0].value);
+            })[0];
+          if (kira) o.durdurulanGiderId = kira.dataset.id || "";
+        }
+        olaySatiri(o);
+      }
       hesapla();
     });
   });

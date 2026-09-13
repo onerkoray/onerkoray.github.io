@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://korayoner.dev/images/finansal-ikiz-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=4254169d">
-  <link rel="stylesheet" href="style.css?v=ea92b0a3">
+  <link rel="stylesheet" href="style.css?v=d9fad99b">
 
   <script type="application/ld+json">
   {
@@ -104,6 +104,7 @@
           { "@type": "Question", "name": "Verilerim nereye gidiyor?", "acceptedAnswer": { "@type": "Answer", "text": "Hiçbir yere. Bütün hesap tarayıcınızda çalışır. Profilinizi cihazınızda saklamak isterseniz bunu açıkça onaylamanız gerekir; onay vermezseniz veri yalnızca sekme açık kaldığı sürece yaşar. Onayı geri aldığınızda saklanan veri de silinir. Ad, e-posta, TCKN, IBAN gibi alanlar modelde hiç yok." } },
           { "@type": "Question", "name": "Gelecek yılların vergi tarifesi nereden geliyor?", "acceptedAnswer": { "@type": "Answer", "text": "Uydurulmuyor. Tarifenin enflasyonla endekslendiği varsayılıyor — Türkiye'de fiilen olan budur. Gelecekteki nominal maaş bugünün parasına indirgenir, net/brüt oranı bugünkü tarifeyle o reel seviyede hesaplanıp nominale uygulanır. Tarife enflasyonun altında endekslenirse gerçek net buradakinden düşük çıkar; yani model bu tarafta iyimserdir." } },
           { "@type": "Question", "name": "Band neden bu kadar geniş?", "acceptedAnswer": { "@type": "Answer", "text": "Çünkü 20 yıllık bir projeksiyon gerçekten o kadar belirsizdir. Bandın genişliği bir kusur değil, sonucun varsayımlara ne kadar duyarlı olduğunun ölçüsüdür. Dar bir band gösteren herhangi bir araç, sahip olmadığı bir kesinliği satıyordur." } },
+          { "@type": "Question", "name": "Olay tutarlarını hangi yılın parasıyla girmeliyim?", "acceptedAnswer": { "@type": "Answer", "text": "Bugünün parasıyla. Model tutarı olayın yılına taşır. Girilen rakamı nominal kabul etmek, yüksek enflasyonda olayı yıllar geçtikçe görünmez kılardı: %30 enflasyonda beş yıl sonraki 1.000.000 TL bugünün parasıyla 269.000 TL'ye iner ve grafikte neredeyse iz bırakmazdı." } },
           { "@type": "Question", "name": "Tükenme çizgisi ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "Bir senaryoda varlıklarınız bittiğinde model açığı biriktirmeye devam eder. Gerçek hayatta kimse eksi bakiyeyle yaşamaz; harcamasını keser ya da borçlanır. O yüzden tükenmeden sonraki çizgi kesikli çiziliyor ve servet değil, kapatmanız gereken açığın büyüklüğü anlamına geliyor." } }
         ]
       }
@@ -126,6 +127,7 @@
           <li><a href="#profil">Profil</a></li>
           <li><a href="#gelecek">Gelecek</a></li>
           <li><a href="#yontem">Yöntem</a></li>
+          <li><a href="#olaylar">Olaylar</a></li>
           <li><a href="#sss">S.S.S.</a></li>
         </ul>
       </nav>
@@ -155,8 +157,8 @@
         </p>
         <p class="hero-not">
           <strong>v0 · Faz 2.</strong> Şu an çalışan: profil, üç senaryolu
-          projeksiyon, tükenme uyarısı ve duyarlılık sıralaması. Sırada:
-          yaşam olayları, hedefler ve karar laboratuvarı.
+          projeksiyon, yaşam olayları, tükenme uyarısı ve duyarlılık
+          sıralaması. Sırada: hedefler ve karar laboratuvarı.
         </p>
       </div>
     </section>
@@ -240,6 +242,43 @@
                   <tbody id="fi-borclar"></tbody>
                 </table>
               </div>
+            </div>
+            <div class="fi-bolum">
+              <div class="fi-baslik-satir">
+                <h3>Yaşam olayları</h3>
+                <div class="fi-olay-ekle">
+                  <label class="visually-hidden" for="olay-tur">Eklenecek olay türü</label>
+                  <select id="olay-tur">
+                    <option value="ev-alma">Ev alma</option>
+                    <option value="cocuk">Çocuk</option>
+                    <option value="emeklilik">Emeklilik</option>
+                    <option value="is-degisikligi">İş değişikliği / terfi</option>
+                    <option value="buyuk-gelir">Büyük gelir (miras, satış)</option>
+                    <option value="buyuk-harcama">Büyük harcama</option>
+                    <option value="ozel">Özel</option>
+                  </select>
+                  <button type="button" class="fi-ekle" data-ekle="olay">+ Ekle</button>
+                </div>
+              </div>
+              <div class="fi-tablo-sarmal">
+                <table class="fi-girdi">
+                  <thead><tr><th scope="col">Olay</th><th scope="col">Yıl</th>
+                    <th scope="col">Tek seferlik (TL)</th>
+                    <th scope="col">Aylık etki (TL)</th>
+                    <th scope="col">Süre (yıl)</th>
+                    <th scope="col"><span class="visually-hidden">Sil</span></th></tr></thead>
+                  <tbody id="fi-olaylar"></tbody>
+                </table>
+              </div>
+              <p class="muted-note">
+                Tutarları <strong>bugünün parasıyla</strong> girin; model
+                olayın yılına taşır. “2032'de peşinat 2.000.000” dediğinizde
+                kastettiğiniz bugünün alım gücüdür — nominal kabul etmek,
+                yüksek enflasyonda olayı yıllar geçtikçe görünmez kılardı.
+                <br>Tek seferlik sütununda <strong>eksi</strong> değer çıkış
+                (peşinat, harcama), <strong>artı</strong> giriş (miras) demek.
+                Aylık etki sütununda eksi gider, artı gelirdir.
+              </p>
             </div>
           </div>
 
@@ -362,14 +401,47 @@
           yanlıştır.
         </p>
 
+        <h2 id="olaylar">Yaşam olayları: tutarlar bugünün parasıyla</h2>
+        <p>
+          “2032'de ev peşinatı 2.000.000 TL” dediğinizde kastettiğiniz şey
+          neredeyse her zaman <strong>bugünün alım gücüdür</strong>, 2032'nin
+          nominal lirası değil. Model tutarları olayın yılına taşıyor.
+        </p>
+        <p>
+          Tersini yapmak — girilen rakamı nominal kabul etmek — yüksek
+          enflasyonda olayı yıllar geçtikçe <em>görünmez</em> kılardı: %30
+          enflasyonda beş yıl sonraki 1.000.000 TL, bugünün parasıyla
+          269.000 TL'ye iner ve grafikte neredeyse hiçbir iz bırakmazdı.
+        </p>
+        <p>
+          Olaylar ay ay değil, <strong>yılın ilk ayında</strong> uygulanıyor.
+          Bir yaşam olayının hangi aya denk geleceğini tahmin etmek sahte bir
+          hassasiyet olurdu.
+        </p>
+
+        <h3>Satın alınan konut getiri üretmez</h3>
+        <p>
+          Bir ev yatırım fonu gibi bileşik büyümez. Model konutun
+          <strong>reel değerini koruduğunu</strong> varsayıyor: nominal olarak
+          enflasyonla taşınır, yatırım getirisi kazanmaz. İkisini karıştırmak
+          projeksiyonu sistematik olarak şişirirdi.
+        </p>
+
         <h2 id="sinir">Modelin söylemedikleri</h2>
         <ul>
           <li><strong>Bu bir tahmin değil.</strong> Girdiğiniz varsayımların
             aynen gerçekleşmesi hâlinde ne olacağını gösterir. Varsayımlar
             değişirse sonuç değişir — bandın genişliği tam da bunu ölçüyor.</li>
-          <li><strong>Yaşam olayları henüz yok.</strong> Ev alma, çocuk,
-            emeklilik geçişi, miras gibi olaylar v1'de gelecek. Şimdilik
-            gideri ve gelirini elle girerek yaklaşabilirsiniz.</li>
+          <li><strong>Yaşam olayları basitleştirilmiştir.</strong> Ev alma,
+            çocuk, emeklilik ve miras modellenebiliyor; ama her olay tek bir
+            yılda, tek bir tutarla giriyor. Bir evin gerçek maliyeti (tapu
+            harcı, satış komisyonu, kira tavanı asimetrisi) için
+            <a href="../ev-almak-mi-kiralamak-mi/">ev al/kirala aracı</a>
+            çok daha ayrıntılı.</li>
+          <li><strong>Emekli aylığını siz girersiniz.</strong> Model onu
+            hesaplamıyor; <a href="../emekli-ayligi-hesaplama/">emekli aylığı
+            aracı</a> ABO kademelerinden hesaplıyor, sonucu buraya
+            yazabilirsiniz.</li>
           <li><strong>Portföy tek bir getiri oranıdır.</strong> Varlık
             dağılımı, korelasyon ve çekim sıralaması riski modellenmiyor;
             onlar için <a href="../finansal-ozgurluk-hesaplama/">FIRE
@@ -420,6 +492,7 @@
           <details><summary>Verilerim nereye gidiyor?</summary><p>Hiçbir yere. Saklama açıkça onay ister; onay geri alınınca veri silinir. Ad, e-posta, TCKN, IBAN modelde hiç yok.</p></details>
           <details><summary>Gelecek yılların vergisi nereden geliyor?</summary><p>Uydurulmuyor: tarifenin enflasyonla endekslendiği varsayılıyor. Tarife enflasyonun altında endekslenirse gerçek net buradakinden düşük çıkar.</p></details>
           <details><summary>Band neden bu kadar geniş?</summary><p>Çünkü 20 yıllık projeksiyon gerçekten o kadar belirsizdir. Dar bir band gösteren araç, sahip olmadığı bir kesinliği satıyordur.</p></details>
+          <details><summary>Olay tutarlarını hangi yılın parasıyla gireyim?</summary><p>Bugünün parasıyla. Model olayın yılına taşır. Nominal kabul etmek, yüksek enflasyonda olayı yıllar geçtikçe görünmez kılardı.</p></details>
           <details><summary>Tükenme çizgisi ne demek?</summary><p>Varlık bittikten sonraki kesikli çizgi servet değil, kapatmanız gereken açığın büyüklüğüdür.</p></details>
         </div>
       </div>
@@ -480,10 +553,10 @@
   <script src="../bordro/motor.js?v=5ef870ac" defer></script>
   <script src="../finans/kurallar.js?v=da7bebf5" defer></script>
   <script src="../finans/enflasyon-motoru.js?v=53474604" defer></script>
-  <script src="../finans/profil.js?v=fcd82ea7" defer></script>
-  <script src="../finans/ikiz-motoru.js?v=de0c16bf" defer></script>
+  <script src="../finans/profil.js?v=e46d02f8" defer></script>
+  <script src="../finans/ikiz-motoru.js?v=060c2081" defer></script>
   <script src="../finans/bant.js?v=562214ce" defer></script>
-  <script src="script.js?v=1d92e55b" defer></script>
+  <script src="script.js?v=bc66525e" defer></script>
   <script src="../script.js?v=d148f9ac" defer></script>
 </body>
 </html>
