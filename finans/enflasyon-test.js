@@ -9,11 +9,12 @@
 "use strict";
 var E = require("./enflasyon-motoru.js");
 var hata = 0;
+var gecen = 0;
 function esit(ad, b, bek, tol) {
   var t = tol === undefined ? 1e-9 : tol;
   if (!isFinite(b) || Math.abs(b - bek) > t) {
     hata++; console.error("  BASARISIZ  " + ad + "\n      beklenen " + bek + ", bulunan " + b);
-  } else console.log("  tamam      " + ad);
+  } else { gecen++; console.log("  tamam      " + ad); }
 }
 function dogru(ad, k) { esit(ad, k ? 1 : 0, 1, 0); }
 
@@ -88,4 +89,4 @@ for (var y = 0; y <= 30; y++) {
 dogru("alim gucu yilla azaliyor", !bozuk);
 
 if (hata) { console.error("\n" + hata + " kontrol basarisiz."); process.exit(1); }
-console.log("\nButun enflasyon motoru kontrolleri gecti.");
+console.log("\n" + gecen + " gecti, 0 kaldi. (enflasyon motoru kontrolleri)");

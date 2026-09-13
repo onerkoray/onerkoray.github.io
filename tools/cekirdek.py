@@ -93,6 +93,8 @@ DOSYALAR = [
     ("bordro/borc-parametreleri.js",      "bordro/borc-parametreleri.js"),
     ("bordro/borc-motor.js",              "bordro/borc-motor.js"),
     ("bordro/borc-test.js",               "bordro/borc-test.js"),
+    ("bordro/ek-odeme-motoru.js",         "bordro/ek-odeme-motoru.js"),
+    ("bordro/ek-odeme-test.js",           "bordro/ek-odeme-test.js"),
 ]
 
 # Cekirdekteki dosyalar birbirini goreli yolla cagiriyor; klasor yapisi
@@ -164,11 +166,22 @@ def test_sayilari():
                     ("erken-kapatma", "finans/erken-kapatma-test.js"),
                     ("emeklilik", "bordro/emeklilik-test.js"),
                     ("gmsi", "bordro/gmsi-test.js"),
-                    ("borc", "bordro/borc-test.js")):
+                    ("borc", "bordro/borc-test.js"),
+                    ("ek-odeme", "bordro/ek-odeme-test.js")):
         try:
             r = subprocess.run(["node", yol], capture_output=True, timeout=120)
-            m = re.search(r"(\d+) geçti", r.stdout.decode("utf-8", "replace"))
-            sonuc[ad] = int(m.group(1)) if m else 0
+            cikti = r.stdout.decode("utf-8", "replace")
+            # Desen GENISLETILDI. Eskisi tam olarak "N gecti" ariyordu ve
+            # dokuz test dosyasi sessizce 0 sayiliyordu: bazilari hic sayi
+            # yazmiyordu, finans/test.js ise "N finans regresyon senaryosu
+            # gecti" yaziyordu. README "toplam X test" diye bir IDDIA kurdugu
+            # icin bu, dogrulanmamis bir sayi demekti.
+            # Simdi araya soz giren bicimler ve ASCII "gecti" de kabul
+            # ediliyor; son eslesme alininiyor (ozet satiri en sonda).
+            m = re.findall(r"(\d+)[^\n]{0,60}?ge[çc]ti", cikti)
+            sonuc[ad] = int(m[-1]) if m else 0
+            if not m:
+                print("UYARI: %s test sayisi okunamadi." % yol, file=sys.stderr)
         except Exception:
             sonuc[ad] = 0
     return sonuc
@@ -240,6 +253,7 @@ node finans/erken-kapatma-test.js   # %(erken_kapatma)d test
 node bordro/emeklilik-test.js       # %(emeklilik)d test
 node bordro/gmsi-test.js            # %(gmsi)d test
 node bordro/borc-test.js            # %(borc)d test
+node bordro/ek-odeme-test.js        # %(ek_odeme)d test
 ```
 
 Toplam **%(toplam)d test**. Bordro tarafındaki en güçlü referans şudur: brüt
@@ -274,7 +288,7 @@ kurum görüşü yerine geçmez.
         "enflasyon": sayilar["enflasyon"], "dagitim": sayilar["dagitim"],
         "erken_kapatma": sayilar["erken-kapatma"],
         "emeklilik": sayilar["emeklilik"], "gmsi": sayilar["gmsi"],
-        "borc": sayilar["borc"],
+        "borc": sayilar["borc"], "ek_odeme": sayilar["ek-odeme"],
         "yil_ilk": min(yillar) if yillar else "?",
         "yil_son": max(yillar) if yillar else "?",
     }

@@ -13,6 +13,7 @@
 var M = require("./gmsi-motor.js");
 var P = require("./parametreler.js");
 var hata = 0;
+var gecen = 0;
 
 function esit(ad, bulunan, beklenen, tol) {
   var t = tol === undefined ? 0.005 : tol;
@@ -20,6 +21,7 @@ function esit(ad, bulunan, beklenen, tol) {
     hata++;
     console.error("  BASARISIZ  " + ad + "\n      beklenen " + beklenen + ", bulunan " + bulunan);
   } else {
+    gecen++;
     console.log("  tamam      " + ad);
   }
 }
@@ -112,4 +114,4 @@ for (var k = 0; k <= 2000000; k += 50000) {
 if (!hata) console.log("  tamam      vergi kira ile birlikte artiyor");
 
 if (hata) { console.error("\n" + hata + " kontrol basarisiz."); process.exit(1); }
-console.log("\nButun kira geliri kontrolleri gecti.");
+console.log("\n" + gecen + " gecti, 0 kaldi. (kira geliri kontrolleri)");

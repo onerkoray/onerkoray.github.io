@@ -10,11 +10,12 @@
 var D = require("./dagitim-motor.js");
 var F = require("./kurallar.js");
 var hata = 0;
+var gecen = 0;
 
 function esit(ad, b, bek, tol) {
   var t = tol === undefined ? 0.02 : tol;
   if (Math.abs(b - bek) > t) { hata++; console.error("  BASARISIZ  " + ad + "\n      beklenen " + bek + ", bulunan " + b); }
-  else console.log("  tamam      " + ad);
+  else { gecen++; console.log("  tamam      " + ad); }
 }
 function dogru(ad, k) { esit(ad, k ? 1 : 0, 1, 0); }
 
@@ -108,4 +109,4 @@ var k = ile({ acilFonMevcut: 60000, borclar: [{ ad: "Kart", bakiye: 100000, ayli
 dogru("plan, hepsini mevduata koymaktan iyi", k.kiyas.fark > 0);
 
 if (hata) { console.error("\n" + hata + " kontrol basarisiz."); process.exit(1); }
-console.log("\nButun dagitim kontrolleri gecti.");
+console.log("\n" + gecen + " gecti, 0 kaldi. (dagitim kontrolleri)");

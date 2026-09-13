@@ -86,6 +86,14 @@ jobs:
       - name: Erken kapatma motoru regresyonları
         run: node finans/erken-kapatma-test.js
 
+      # Ek odeme motoru YAYGIN BIR INANISI yanlisliyor ("ikramiyeni
+      # Aralik'ta al, vergiden kac"). Boyle bir iddiada bulunan bir
+      # sayfanin iddiasini her push'ta yeniden OLCMESI gerekir: uc
+      # degismez (ayin gelir vergisini degistirmemesi, SGK tavani etkisi,
+      # tek seferde almanin ustunlugu) testlerde sabitli.
+      - name: Ek ödeme (prim/ikramiye) motoru regresyonları
+        run: node bordro/ek-odeme-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.

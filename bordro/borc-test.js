@@ -11,11 +11,12 @@
 var M = require("./borc-motor.js");
 var P = require("./borc-parametreleri.js");
 var hata = 0;
+var gecen = 0;
 
 function esit(ad, b, bek, tol) {
   var t = tol === undefined ? 0.02 : tol;
   if (Math.abs(b - bek) > t) { hata++; console.error("  BASARISIZ  " + ad + "\n      beklenen " + bek + ", bulunan " + b); }
-  else console.log("  tamam      " + ad);
+  else { gecen++; console.log("  tamam      " + ad); }
 }
 function dogru(ad, k) { esit(ad, k ? 1 : 0, 1, 0); }
 
@@ -103,4 +104,4 @@ dogru("borc yoksa hata", !!M.planla([], 5000).hata);
 dogru("butce sifirsa hata", !!M.planla(borclar, 0).hata);
 
 if (hata) { console.error("\n" + hata + " kontrol basarisiz."); process.exit(1); }
-console.log("\nButun borc plani kontrolleri gecti.");
+console.log("\n" + gecen + " gecti, 0 kaldi. (borc plani kontrolleri)");

@@ -1,0 +1,129 @@
+/* Prim ve İkramiye Vergisi — araca özgü stiller.
+   Kart ve tablo dili diğer bordro araçlarıyla AYNI; ısı haritası ve eğri
+   bileşenlerinin stilleri global style.css'te (.ih-*, .eg-*) duruyor. */
+
+/* --------------------------------- form ---------------------------------- */
+.pi-grid {
+  display: grid; gap: 1rem 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.pi-grid .panel-q { margin: 0; }
+.panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
+.panel-q label { display: block; font-weight: 600; font-size: .82rem; margin-bottom: .3rem; }
+#pi-form input[type="text"], #pi-form select {
+  font: inherit; padding: 8px 10px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--surface); color: var(--text);
+  min-height: 44px; max-width: 100%;
+}
+#pi-form input[type="text"] { width: 9.5rem; }
+#pi-form select { width: 100%; }
+#pi-form input:disabled, #pi-form select:disabled { opacity: .5; }
+#pi-form input:focus-visible, #pi-form select:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 2px;
+}
+
+.pi-zam {
+  margin: 1.4rem 0 0; padding: 1rem 1.15rem;
+  border: 1px solid var(--border); border-radius: var(--radius-card);
+  background: var(--surface-note);
+}
+.pi-zam legend { padding: 0 .4rem; font-weight: 650; font-size: .85rem; }
+.pi-zam-not { margin: 0 0 .9rem; }
+.pi-zam-alanlar {
+  display: grid; gap: 1rem 1.25rem; align-items: end;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.pi-zam-alanlar .panel-q { margin: 0; }
+.pi-onay {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-weight: 600; font-size: .82rem; min-height: 44px;
+}
+.pi-onay input { width: 18px; height: 18px; accent-color: var(--brand); }
+
+/* ------------------------------ karar kartı ------------------------------ */
+.pi-karar {
+  margin: 1.5rem 0 0; padding: 1.35rem 1.5rem;
+  border: 1px solid var(--brand); border-radius: var(--radius-card);
+  background: var(--surface-note);
+}
+.pi-etiket {
+  margin: 0 0 .3rem; font: 500 .66rem var(--font-mono);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--brand-strong);
+}
+.pi-tutar {
+  margin: 0; font: 700 2.3rem/1.05 var(--font-display);
+  letter-spacing: -.02em; color: var(--text);
+}
+.pi-cumle { margin: .55rem 0 0; font-size: .95rem; line-height: 1.55; }
+.pi-not { margin: .45rem 0 0; font-size: .82rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ------------------------------ kesinti dökümü --------------------------- */
+/* Dört kalem toplamı ödemeye eşit; bu bir muhasebe özdeşliği ve görünmesi
+   güven veriyor. Şerit, payları GENİŞLİKLE gösteriyor — renk ikinci kanal. */
+.pi-serit {
+  display: flex; margin: 1.25rem 0 0; height: 14px;
+  border-radius: 7px; overflow: hidden; border: 1px solid var(--border);
+}
+.pi-serit span { display: block; height: 100%; }
+.pi-p-net { background: var(--dv-1); }
+.pi-p-gv { background: color-mix(in srgb, var(--dv-2) 82%, var(--surface)); }
+.pi-p-sgk { background: color-mix(in srgb, var(--dv-2) 48%, var(--surface)); }
+.pi-p-damga { background: color-mix(in srgb, var(--dv-2) 22%, var(--surface)); }
+
+.pi-dokum {
+  display: grid; gap: .5rem 1.25rem; margin: .8rem 0 0;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.pi-kalem { display: flex; align-items: baseline; gap: .45rem; font-size: .82rem; }
+.pi-kutu { width: .7rem; height: .7rem; border-radius: 2px; flex: none; align-self: center; }
+.pi-kalem-ad { color: var(--text-muted); }
+.pi-kalem-deger { margin-inline-start: auto; font-weight: 650; font-variant-numeric: tabular-nums; }
+
+/* -------------------------------- bulgular ------------------------------- */
+/* Her bulgu tek cümlelik bir cevap + ölçülmüş bir sayı. Kart değil, satır:
+   bunlar ayrı nesneler değil, aynı sorunun üç yüzü. */
+.pi-bulgular { margin: 1.5rem 0 0; border-top: 1px solid var(--border); }
+.pi-bulgu {
+  display: grid; gap: .2rem .9rem; padding: .95rem 0;
+  grid-template-columns: minmax(0, 1fr) auto;
+  border-bottom: 1px solid var(--border);
+}
+/* Üçünün de yeri AÇIKÇA veriliyor. Yalnızca sayıya grid-row vermek
+   otomatik yerleşimi bozuyor ve soru ile sayı yer değiştiriyordu. */
+.pi-bulgu-soru { margin: 0; font-weight: 650; font-size: .88rem; grid-column: 1; grid-row: 1; }
+.pi-bulgu-cevap {
+  margin: 0; font-size: .82rem; color: var(--text-muted); line-height: 1.6;
+  grid-column: 1; grid-row: 2;
+}
+.pi-bulgu-sayi {
+  grid-column: 2; grid-row: 1 / span 3; align-self: center; text-align: right;
+  font: 700 1.25rem/1 var(--font-display); letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.pi-bulgu-sayi.pi-yok { font-size: .9rem; font-weight: 600; color: var(--text-muted); }
+
+/* --------------------------------- tablo --------------------------------- */
+.pi-tablo { margin: 1.25rem 0 0; overflow-x: auto; }
+.pi-tablo table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+.pi-tablo th, .pi-tablo td {
+  padding: .4rem .55rem; border-bottom: 1px solid var(--border);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.pi-tablo th { color: var(--text-muted); font-weight: 600; }
+.pi-tablo thead th, .pi-tablo tbody th { text-align: left; }
+.pi-tablo tr.pi-en-iyi td, .pi-tablo tr.pi-en-iyi th {
+  background: color-mix(in srgb, var(--brand) 9%, transparent); font-weight: 650;
+}
+
+.pi-ipucu {
+  margin: 1.1rem 0 0; padding: .85rem 1rem;
+  border: 1px dashed var(--border); border-radius: var(--radius-card);
+  font-size: .82rem; color: var(--text-muted); line-height: 1.6;
+}
+
+@media (max-width: 560px) {
+  .pi-bulgu { grid-template-columns: 1fr; }
+  .pi-bulgu-sayi { grid-row: auto; grid-column: 1; text-align: left; }
+}
+@media print { .pi-karar, .pi-bulgu { break-inside: avoid; } }

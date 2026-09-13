@@ -16,11 +16,12 @@
 var M = require("./erken-kapatma-motoru.js");
 var Z = require("./zaman-motoru.js");
 var hata = 0;
+var gecen = 0;
 function esit(ad, b, bek, tol) {
   var t = tol === undefined ? 1e-6 : tol;
   if (!isFinite(b) || Math.abs(b - bek) > t) {
     hata++; console.error("  BASARISIZ  " + ad + "\n      beklenen " + bek + ", bulunan " + b);
-  } else console.log("  tamam      " + ad);
+  } else { gecen++; console.log("  tamam      " + ad); }
 }
 function dogru(ad, k) { esit(ad, k ? 1 : 0, 1, 0); }
 
@@ -119,4 +120,4 @@ dogru("anapara sifirsa hata", !!M.analiz({ kalanAnapara: 0, tutar: 100 }).hata);
 dogru("tutar sifirsa hata", !!M.analiz({ kalanAnapara: 100000, tutar: 0 }).hata);
 
 if (hata) { console.error("\n" + hata + " kontrol basarisiz."); process.exit(1); }
-console.log("\nButun erken kapatma kontrolleri gecti.");
+console.log("\n" + gecen + " gecti, 0 kaldi. (erken kapatma kontrolleri)");
