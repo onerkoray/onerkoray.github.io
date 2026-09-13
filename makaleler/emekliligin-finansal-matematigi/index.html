@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emekliliğin Finansal Matematiği | Koray Öner</title>
+  <meta name="description" content="Nüfus yaşlanması, çalışma hayatı, emekli aylığı ve tasarruf göstergeleri hangi tanımlarla karşılaştırılabilir? OECD, TÜİK, SGK ve EGM verileriyle akademik inceleme.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/">
+
+  <link rel="icon" href="../../favicon.ico?v=3" sizes="32x32">
+  <link rel="icon" href="../../favicon.svg?v=4" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Türkiye'de emekliliğin finansal matematiği">
+  <meta property="og:description" content="Nüfus yaşlanması, çalışma hayatı, emekli aylığı ve tasarruf göstergeleri hangi tanımlarla karşılaştırılabilir? OECD, TÜİK, SGK ve EGM verileriyle akademik inceleme.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/emekliligin-finansal-matematigi.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Türkiye'de emekliliğin finansal matematiği">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="Türkiye'de emekliliğin finansal matematiği">
+  <meta name="twitter:description" content="Nüfus yaşlanması, çalışma hayatı, emekli aylığı ve tasarruf göstergeleri hangi tanımlarla karşılaştırılabilir? OECD, TÜİK, SGK ve EGM verileriyle akademik inceleme.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/emekliligin-finansal-matematigi.png">
+
+  <link rel="stylesheet" href="../../style.css?v=6b09337f">
+  <link rel="stylesheet" href="../editoryal.css?v=ec476241">
+  <link rel="stylesheet" href="veri-gorselleri.css?v=e05eb430">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": {
+        "@id": "https://korayoner.dev/#oner-koray"
+      }
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/#article",
+      "headline": "Türkiye'de emekliliğin finansal matematiği",
+      "alternativeHeadline": "The Financial Mathematics of Retirement in Türkiye",
+      "description": "Nüfus yaşlanması, çalışma hayatı, emekli aylığı ve tasarruf göstergeleri hangi tanımlarla karşılaştırılabilir? OECD, TÜİK, SGK ve EGM verileriyle akademik inceleme.",
+      "url": "https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/",
+      "inLanguage": "tr",
+      "datePublished": "2026-09-13",
+      "dateModified": "2026-09-13",
+      "author": {
+        "@id": "https://korayoner.dev/#oner-koray"
+      },
+      "publisher": {
+        "@id": "https://korayoner.dev/#oner-koray"
+      },
+      "image": "https://korayoner.dev/images/makale/emekliligin-finansal-matematigi.png",
+      "keywords": "nüfus yaşlanması, emeklilik finansmanı, gelir ikame oranı, hanehalkı tasarrufu, reel getiri",
+      "about": [
+        "Emeklilik finansmanı",
+        "Nüfus yaşlanması",
+        "Gelir ikame oranı",
+        "Hanehalkı tasarrufu",
+        "Reel getiri"
+      ],
+      "sameAs": "https://www.academia.edu/175459708/",
+      "citation": [
+        "https://doi.org/10.1787/e40274c1-en",
+        "https://www.sgk.gov.tr/",
+        "https://veriportali.tuik.gov.tr/tr/press/58231",
+        "https://veriportali.tuik.gov.tr/tr/press/53993",
+        "https://www.egm.org.tr/?sid=21"
+      ],
+      "mainEntityOfPage": {
+        "@id": "https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/",
+      "url": "https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/",
+      "name": "Türkiye'de emekliliğin finansal matematiği",
+      "isPartOf": {
+        "@id": "https://korayoner.dev/#website"
+      },
+      "primaryImageOfPage": "https://korayoner.dev/images/makale/emekliligin-finansal-matematigi.png",
+      "inLanguage": "tr"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://korayoner.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Makaleler",
+          "item": "https://korayoner.dev/makaleler/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Türkiye'de emekliliğin finansal matematiği",
+          "item": "https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/"
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../maas-hesaplama/">Maaş</a></li>
+          <li><a href="../../emekli-ayligi-hesaplama/">Emekli aylığı</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Site haritası">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> Emekliliğin finansal matematiği
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Akademik inceleme</p>
+        <h1 id="hero-title">Türkiye'de emekliliğin finansal matematiği</h1>
+        <p class="ed-standfirst">Emeklilik tartışmasında sık sık yan yana konan sayılar çoğu zaman
+          <strong>aynı şeyi ölçmez.</strong> Yaşlı bağımlılık oranı ile aktif/pasif oranı, teorik ikame
+          oranı ile gözlenen hane geliri, fon stoku ile yeni tasarruf — üç çift, altı ayrı ölçü.
+          Bu yazı OECD, TÜİK, SGK ve EGM verilerini ortak bir çerçeveye koyuyor ve
+          süre, getiri, kapsam ile fiyat düzeyinin hesabı nasıl değiştirdiğini gösteriyor.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-13">13 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="wrap prose ed-body">
+        <div class="legal-note verdict">
+          <h2 id="kisa-cevap">Kısa cevap</h2>
+          <p><strong>Emekliliğin finansal analizinde süre, gelir, kapsam ve fiyat düzeyi birlikte
+            tanımlanmadan karşılaştırma yapılamaz.</strong> Demografik bağımlılık oranı sigorta
+            sistemindeki aktif/pasif oranı değildir; teorik ikame oranı gözlenen hane geliri değildir;
+            tasarrufun GSYH'ye oranı ile hanehalkı tasarrufunun harcanabilir gelire oranı ayrı
+            ekonomik ilişkilerdir. Senaryolarda birikim süresinin uzaması sabit katkının dönem sonu
+            değerini artırır; ödeme süresinin uzaması aynı reel geliri karşılamak için gereken
+            başlangıç varlığını artırır. Çekiş yapılan dönemde getirilerin <em>sırası</em> da sonucu
+            değiştirir.</p>
+        </div>
+
+        <div class="em-kunye">
+          <h2 id="kunye">Akademik künye</h2>
+          <p>Bu yazı, aynı başlıklı akademik çalışmanın web sürümüdür. Metin kısaltılmamış;
+            tablolar ve şekiller ekranda okunacak biçimde yeniden çizilmiştir.
+            Çalışma <strong>nedensel politika değerlendirmesi veya kişiye özgü aylık tahmini
+            içermez.</strong></p>
+          <dl>
+            <dt>Alt başlık</dt>
+            <dd>Nüfus yaşlanması, çalışma hayatı, gelir ve tasarruf ilişkileri</dd>
+            <dt>İngilizce</dt>
+            <dd>The Financial Mathematics of Retirement in Türkiye</dd>
+            <dt>Anahtar kelimeler</dt>
+            <dd>Nüfus yaşlanması, emeklilik finansmanı, gelir ikame oranı, hanehalkı tasarrufu, reel getiri</dd>
+            <dt>Veri erişimi</dt>
+            <dd>13 Eylül 2026</dd>
+            <dt>Tam metin</dt>
+            <dd><a href="https://www.academia.edu/175459708/" rel="noopener">Academia.edu sayfası</a></dd>
+          </dl>
+        </div>
+
+        <nav aria-label="Yazının içindekiler">
+          <ul>
+            <li><a href="#uc-cift">Aynı görünen üç çift sayı</a></li>
+            <li><a href="#demografi">Demografik ufuk ve yaşam beklentisi</a></li>
+            <li><a href="#calisma">Çalışma süresi ve prim yoğunluğu</a></li>
+            <li><a href="#kapsam">Sigortalılık kapsamı: dosya mı, kişi mi?</a></li>
+            <li><a href="#ikame">İkame oranı ile gözlenen gelir</a></li>
+            <li><a href="#hane">Hane bütçesi ve gelir dağılımı</a></li>
+            <li><a href="#tasarruf">Üç tasarruf oranı, üç ayrı payda</a></li>
+            <li><a href="#reel">Nominal gelir ve satın alma gücü</a></li>
+            <li><a href="#ozdeslik">Sistemin dönemlik finansman özdeşliği</a></li>
+            <li><a href="#birikim">Birikim süresi ve reel getiri</a></li>
+            <li><a href="#odeme">Ödeme süresi ve gereken başlangıç varlığı</a></li>
+            <li><a href="#sira">Getirilerin sırası</a></li>
+            <li><a href="#sonuc">Sonuç</a></li>
+            <li><a href="#kaynakca">Kaynakça ve ek</a></li>
+          </ul>
+        </nav>
+
+        <h2 id="uc-cift">Aynı görünen üç çift sayı</h2>
+        <p>Emeklilik, çalışma döneminde elde edilen kazançlar ve biriken haklar ile çalışma
+          sonrasındaki tüketim gereksinimleri arasında <strong>zamanlar arası</strong> bir ilişki kurar.
+          Bu ilişki hem hanelerin bütçelerinde hem de emeklilik sistemlerinin gelir ve ödeme
+          akımlarında gözlenir. Nüfusun yaş bileşimi ödeme ufkunu etkilerken, istihdam ve kayıtlı
+          kazançlar finansmanın gelir tabanını belirler.</p>
+        <p>Bu boyutların aynı tanım ve zaman aralığında ele alınmaması, birbirinden farklı
+          göstergelerin aynı ekonomik büyüklük olarak yorumlanmasına yol açar. Yazı boyunca üç
+          ayrım korunuyor: <strong>gözlem</strong> (belirli dönem için yayımlanmış istatistik),
+          <strong>projeksiyon</strong> (varsayımlar altında ileri taşınan hesap) ve
+          <strong>senaryo</strong> (ilişkinin yönünü göstermek için burada seçilen sayısal örnek).
+          Bu üçü birbirinin yerine kullanılmıyor.</p>
+
+        <div class="em-tablo-sar" role="region" aria-labelledby="t1-caption" tabindex="0">
+          <table class="em-tablo">
+            <caption id="t1-caption"><span>Tablo 1</span>Gösterge tanımları ve yorum sınırları</caption>
+            <thead><tr><th scope="col">Gösterge</th><th scope="col">Ölçtüğü ilişki</th><th scope="col">Yorum sınırı</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Yaşlı nüfus payı</th><td>65+ nüfus / toplam nüfus</td><td>Emekli aylığı alanların oranı değildir.</td></tr>
+              <tr><th scope="row">Demografik bağımlılık</th><td>65+ nüfus / çalışma çağındaki nüfus</td><td>Çalışma çağındaki herkes çalışmaz.</td></tr>
+              <tr><th scope="row">Aktif/pasif oranı</th><td>İdari kayıttaki aktifler / pasif dosyalar</td><td>Prim tutarını ve ödeme düzeyini içermez.</td></tr>
+              <tr><th scope="row">Net gelir ikame oranı</th><td>Net emekli aylığı / net çalışma kazancı</td><td>Model sonucu ile gözlenen aylık ayrılır.</td></tr>
+              <tr><th scope="row">Hanehalkı tasarruf oranı</th><td>Tasarruf / harcanabilir gelir</td><td>Her hanenin tasarruf davranışını vermez.</td></tr>
+              <tr><th scope="row">Fon büyüklüğü</th><td>Belirli tarihte birikmiş varlık stoku</td><td>Bir dönemin tasarruf akımı değildir.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted-note">Yazarın kavramsal sınıflandırması. İşgücü göstergeleri anket tahmini,
+          SGK sayıları idari kayıt, hanehalkı tasarrufu ise ulusal hesap büyüklüğüdür; bu farklı üretim
+          yöntemleri aynı dönem için bile serilerin birbirine eşit olmasını gerektirmez.</p>
+
+        <h2 id="demografi">Demografik ufuk: Türkiye nerede, ne zaman geçiyor?</h2>
+        <p>TÜİK'e göre Türkiye'de 65 ve üzeri nüfus 2020'de 7,95 milyon iken 2025'te
+          <strong>9,58 milyona</strong> ulaşmıştır; toplam nüfustaki payı %9,5'ten %11,1'e çıkmıştır.
+          TÜİK ana senaryosu bu payı 2030 için %13,5, 2040 için %17,9 ve 2060 için %27,0 olarak verir.
+          Bunlar demografik varsayımlara bağlı <strong>projeksiyon</strong> değerleridir.</p>
+        <p>Uluslararası karşılaştırmada OECD, 65+ nüfusu <strong>20-64 yaş</strong> nüfusuna böler.
+          TÜİK'in yaşlı bağımlılık oranındaki payda ise 15-64 yaştır; bu iki oran doğrudan
+          eşitlenemez. Aşağıdaki şekil OECD tanımını kullanır.</p>
+
+        <figure class="em-sekil" aria-labelledby="s1-title">
+          <div class="em-sekil-baslik">
+            <p class="ed-kicker">Şekil 1 / OECD tanımı</p>
+            <h3 id="s1-title">Türkiye bugün OECD'nin yarısında; 2084'te üstünde.</h3>
+            <p>100 çalışma çağındaki kişiye (20-64 yaş) düşen 65+ nüfus. Yaşlanmanın hızı,
+              düzeyinden daha çarpıcı: Türkiye 60 yılda 4,5 kat artıyor.</p>
+          </div>
+          <div class="em-lejant">
+            <span><span class="em-nokta em-n1" aria-hidden="true"></span>Türkiye</span>
+            <span><span class="em-nokta em-n2" aria-hidden="true"></span>OECD ortalaması</span>
+          </div>
+          <ul class="em-grup">
+            <li>
+              <span class="em-donem">2024 <small>— gözlem</small></span>
+              <div class="em-cubuklar">
+                <span class="em-cubuk-satir"><span class="em-cubuk-ad">Türkiye</span><span class="em-cubuk-yol"><span class="em-cubuk em-c1" style="--w:21.0%"></span></span><span class="em-cubuk-deger">16,8</span></span>
+                <span class="em-cubuk-satir"><span class="em-cubuk-ad">OECD</span><span class="em-cubuk-yol"><span class="em-cubuk em-c2" style="--w:40.8%"></span></span><span class="em-cubuk-deger">32,6</span></span>
+              </div>
+            </li>
+            <li>
+              <span class="em-donem">2054 <small>— projeksiyon</small></span>
+              <div class="em-cubuklar">
+                <span class="em-cubuk-satir"><span class="em-cubuk-ad">Türkiye</span><span class="em-cubuk-yol"><span class="em-cubuk em-c1" style="--w:53.1%"></span></span><span class="em-cubuk-deger">42,5</span></span>
+                <span class="em-cubuk-satir"><span class="em-cubuk-ad">OECD</span><span class="em-cubuk-yol"><span class="em-cubuk em-c2" style="--w:69.0%"></span></span><span class="em-cubuk-deger">55,2</span></span>
+              </div>
+            </li>
+            <li>
+              <span class="em-donem">2084 <small>— projeksiyon</small></span>
+              <div class="em-cubuklar">
+                <span class="em-cubuk-satir"><span class="em-cubuk-ad">Türkiye</span><span class="em-cubuk-yol"><span class="em-cubuk em-c1" style="--w:94.3%"></span></span><span class="em-cubuk-deger">75,4</span></span>
+                <span class="em-cubuk-satir"><span class="em-cubuk-ad">OECD</span><span class="em-cubuk-yol"><span class="em-cubuk em-c2" style="--w:84.6%"></span></span><span class="em-cubuk-deger">67,7</span></span>
+              </div>
+            </li>
+          </ul>
+          <div class="em-eksen" aria-hidden="true"><span>0</span><span>40</span><span>80</span></div>
+          <figcaption>Çubuk uzunlukları 0-80 aralığına ölçeklenmiştir. 2054 ve 2084 değerleri
+            Birleşmiş Milletler orta varyantına dayalı projeksiyondur, gerçekleşme değildir.
+            Kaynak: OECD (2025, Tablo 6.2).</figcaption>
+        </figure>
+
+        <p>Demografik oran, kayıtlı çalışan başına aylık alan sayısına dönüşürken istihdam,
+          sigortalılık, yaşa göre aylık alma ve prim yoğunluğu gibi <strong>ara değişkenlerden</strong>
+          geçer. Dolayısıyla yaş yapısı tek başına emeklilik finansmanının sonucunu belirlemez.
+          Aynı nüfus bileşiminde istihdam edilenlerin ve prim bildirilen ayların farklı olması,
+          finansmanın gelir tarafını değiştirir.</p>
+
+        <h3 id="yasam-beklentisi">Yaşa koşullu yaşam beklentisi</h3>
+        <p>TÜİK'in 2023-2025 hayat tablolarında doğuşta yaşam beklentisi 78,5 yıl,
+          <strong>65 yaşında kalan yaşam beklentisi 18,4 yıldır</strong>; bu değer erkeklerde 16,7,
+          kadınlarda 20,0 yıldır. Emeklilikteki süre, doğuşta yaşam beklentisinden emeklilik yaşı
+          çıkarılarak bulunmaz — ilgili yaşa ulaşmış olma koşulu hesaba katılmalıdır. Dönem hayat
+          tablosu da tek bir kişinin ömrünü veya gelecekteki ölüm oranlarını kesin olarak belirlemez.</p>
+
+        <h2 id="calisma">Çalışma süresi: haftalık saat neyi ölçmez?</h2>
+        <p>TÜİK'in 2025 yıllık sonuçlarında 15+ nüfus için istihdam oranı %49,0; işgücüne katılma
+          oranı %53,5'tir. İstihdam oranı erkeklerde %66,4, kadınlarda %32,1; toplam istihdam
+          32,566 milyon kişidir.</p>
+
+        <div class="em-tablo-sar" role="region" aria-labelledby="t2-caption" tabindex="0">
+          <table class="em-tablo">
+            <caption id="t2-caption"><span>Tablo 2</span>Çalışma süresinin farklı boyutları</caption>
+            <thead><tr><th scope="col">Boyut</th><th scope="col">Gözlem</th><th scope="col">Matematiksel karşılığı</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Haftalık fiili süre</th><td>Aralık 2025: 43,1 saat</td><td>Çalışılan dönemdeki emek girdisi</td></tr>
+              <tr><th scope="row">Türkiye işgücünden çıkış yaşı</th><td>2024: erkek 60,8; kadın 60,5</td><td>Çalışma hayatının sonlanma zamanı</td></tr>
+              <tr><th scope="row">OECD işgücünden çıkış yaşı</th><td>2024: erkek 64,7; kadın 63,6</td><td>Aynı yöntemle ülke karşılaştırması</td></tr>
+              <tr><th scope="row">Prim yoğunluğu</th><td>Ödenen/bildirilen ay ÷ potansiyel ay</td><td>Hak birikiminin zaman kapsamı</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted-note">43,1 saatlik gösterge yalnızca referans döneminde işbaşında olanlara
+          ilişkindir ve mevsim etkilerinden arındırılmış aylık sonuçtur; yıllık ortalama olarak
+          kullanılamaz. OECD'nin fiili çıkış yaşı ise 40+ nüfusun katılma oranlarındaki değişimlerden
+          oluşturulan sentetik kohort ölçüsüdür; aylık bağlananların idari ortalama yaşıyla aynı
+          değildir.</p>
+
+        <p>Çalışma süresini yalnızca haftalık saatle ölçmek, bir yılda çalışılan ayları ve işsizlik
+          aralarını dışarıda bırakır. Varsayımsal olarak 30 yıllık gözlem aralığı 360 aydır. Bu
+          aralıkta %100 prim yoğunluğu 360, %80 yoğunluk 288 ay eder; <strong>fark 72 aydır.</strong>
+          Bu farkın aylığa etkisi hak kazanma ve aylık hesaplama kurallarına bağlıdır; buradan
+          doğrudan %20 daha düşük aylık sonucu çıkarılamaz. Örnek yalnızca sürenin hak hesabından
+          ayrılması gerektiğini gösterir.</p>
+        <p>Cinsiyete göre istihdam oranları da tek başına emekli aylığı farkını açıklamaz. Yaş
+          dağılımı, ücretler, bakım nedeniyle verilen aralar, kayıtlılık, çalışma statüsü ve hak
+          sahipliği birlikte değerlendirilmelidir. Toplam oranlar bu kanalların katkısını ayrı ayrı
+          ölçmez.</p>
+
+        <h2 id="kapsam">Sigortalılık kapsamı: dosya mı, kişi mi?</h2>
+        <p>SGK'nin 2025 Faaliyet Raporu, Aralık 2025 için 26.328.559 aktif sigortalı ve
+          16.204.425 pasif <strong>dosya</strong> kaydeder. Aylık alan <strong>kişi</strong> sayısı
+          ise 17.015.688'dir. Yayımlanan aktif/pasif oranı 1,62'dir; payda kişi sayısı olduğunda
+          aynı tablodan 1,55 çıkar.</p>
+
+        <div class="em-tablo-sar" role="region" aria-labelledby="t3-caption" tabindex="0">
+          <table class="em-tablo">
+            <caption id="t3-caption"><span>Tablo 3</span>SGK kayıtlarında dosya ve kişi ayrımı<small>Aralık 2025</small></caption>
+            <thead><tr><th scope="col">Gösterge</th><th scope="col" class="em-sag">Düzey</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Aktif sigortalı</th><td class="em-sag">26.328.559</td></tr>
+              <tr><th scope="row">Pasif: dosya</th><td class="em-sag">16.204.425</td></tr>
+              <tr><th scope="row">Pasif: aylık alan kişi</th><td class="em-sag">17.015.688</td></tr>
+              <tr><th scope="row">Yaşlılık aylığı alan kişi</th><td class="em-sag">12.254.719</td></tr>
+              <tr><th scope="row">Aktif / pasif dosya</th><td class="em-sag">1,62</td></tr>
+              <tr><th scope="row">Aktif / pasif kişi <em>(yazar hesabı)</em></th><td class="em-sag">1,55</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Ayrım, ölüm aylıklarında bir dosyanın birden fazla hak sahibini kapsayabilmesi gibi idari
+          ilişkiler nedeniyle önem taşır. Ayrıca pasif toplamı yalnız yaşlılık aylıklarından oluşmaz;
+          aktif toplamında da zorunlu sigortalılar yanında çırak, stajyer ve kursiyer gibi gruplar
+          vardır ve bu grupların sigorta kapsamı aynı kabul edilemez.</p>
+        <p>Oran, kapsanan birimlerin sayısal ilişkisini özetler. Ancak <strong>her aktifin aynı
+          kazançtan, aynı sayıda ay ve aynı sigorta kolları için prim ödediği; her dosyadan da aynı
+          tutarın çıktığı varsayımını içermez.</strong> Bu nedenle kişi veya dosya sayısından tek
+          başına gelir-gider dengesi hesaplanamaz. Bir yıl sonu stokunu yıllık ödeme akımıyla
+          birleştirmek de zaman uyumu gerektirir: yıl içinde yeni aylık bağlananlar, vefatlar ve işe
+          girişler varsa Aralık sayıları yıllık ortalamadan ayrılır.</p>
+        <p>TÜİK'in toplam istihdamı SGK aktif sayısına bölünerek otomatik bir kayıtlılık oranı da
+          elde edilmez. Araştırmanın nüfus kapsamı, ücretsiz aile işçileri, kendi hesabına
+          çalışanlar ve idari kaydın sigorta kapsamları önce eşleştirilmelidir.</p>
+
+        <h2 id="ikame">İkame oranı ile gözlenen gelir aynı şey değil</h2>
+        <p>OECD'nin net ikame oranı, <strong>modeldeki</strong> net emekli aylığını bireyin net
+          çalışma kazancına böler. Pensions at a Glance 2025, ortalama kazançlı tam kariyer için
+          Türkiye'de erkeklerde %94,4, kadınlarda %92,7; OECD ortalamasında sırasıyla %63,2 ve
+          %62,4 hesaplar. Gözlenen gelir ise başka bir şeyi ölçer.</p>
+
+        <figure class="em-sekil" aria-labelledby="s2-title">
+          <div class="em-sekil-baslik">
+            <p class="ed-kicker">Şekil 2 / İki ayrı ölçü</p>
+            <h3 id="s2-title">Aradaki 10 puan bir kayıp değil, bir tanım farkı.</h3>
+            <p>Soldaki bir <strong>kariyer senaryosunun</strong> sonucu, sağdaki farklı yaşam
+              öykülerine sahip hanelerin <strong>kesitsel gelir</strong> ortalaması. Payları,
+              paydaları ve yılları farklı.</p>
+          </div>
+          <dl class="em-olcu">
+            <div>
+              <dt>Model · gelecekteki hak</dt>
+              <dd>
+                <span class="em-sayi em-s1">%94,4</span>
+                <span class="em-pay"><b>Pay:</b> tam kariyer, ortalama kazançlı bir erkeğin net
+                  emekli aylığı.<br><b>Payda:</b> aynı kişinin net çalışma kazancı.<br>
+                  <b>Kapsam:</b> 2024'te 22 yaşında işe girip normal emeklilik yaşına kadar
+                  kesintisiz çalışma varsayımı.</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Gözlem · hane geliri</dt>
+              <dd>
+                <span class="em-sayi em-s2">%84,5</span>
+                <span class="em-pay"><b>Pay:</b> 65 yaş üzerindekilerin ortalama eşdeğer
+                  kullanılabilir geliri.<br><b>Payda:</b> toplam nüfusun aynı ortalaması.<br>
+                  <b>Kapsam:</b> 2022 gelir verisi; yalnız emekli aylığını değil hanenin tüm
+                  kullanılabilir gelirini içerir.</span>
+              </dd>
+            </div>
+          </dl>
+          <figcaption>OECD ortalaması karşılıkları: net ikame oranı erkeklerde %63,2, kadınlarda
+            %62,4; gözlenen göreli yaşlı geliri yaklaşık %87. Türkiye'de 66-75 yaş grubunda %86,9,
+            75 yaş üzerinde %79,6. Kaynak: OECD (2025, Tablo 4.4 ve Tablo 7.1).</figcaption>
+        </figure>
+
+        <p>Bu yüzden %94,4 ile %84,5 arasındaki fark bir tahmin hatası veya doğrudan gelir kaybı
+          olarak yorumlanamaz. Vergi ve primlerin çalışma geliri ile emekli aylığına farklı
+          uygulanması net oranı brüt orandan ayırır; kariyer kesintileri ve kazanç yolları
+          değiştiğinde sonuç da değişir.</p>
+        <p>Göreli oranların yanında <strong>mutlak satın alma gücü</strong> de gerekir. Varsayımsal
+          100 birim net kazancın %80'i 80 birim; 50 birim net kazancın %90'ı 45 birimdir.
+          Daha yüksek ikame oranı tek başına daha yüksek emeklilik geliri anlamına gelmez.
+          Kendi brüt-net dönüşümünüzü <a href="../../maas-hesaplama/">maaş hesaplama aracıyla</a>,
+          aylık bağlama mantığını <a href="../emekli-maasi-nasil-hesaplanir/">emekli maaşı nasıl
+          hesaplanır yazısıyla</a> inceleyebilirsiniz.</p>
+
+        <h2 id="hane">Hane bütçesi: aylık tek başına yetmez</h2>
+        <p>TÜİK Gelir Dağılımı İstatistikleri 2025, gelir bakımından 2024 takvim yılını referans alır.
+          Ortalama yıllık eşdeğer hanehalkı kullanılabilir fert geliri 332.882 TL, Gini katsayısı
+          0,410'dur. Toplam gelirde sosyal transferlerin payı %18,2; bu transferler içinde emekli ve
+          dul-yetim aylıklarının payı %89,3'tür.</p>
+        <div class="em-formul">0,182 × 0,893 = 0,1625
+          <span>Emekli ve dul-yetim aylıklarının toplam gelirdeki payı yaklaşık <strong>%16,3</strong>.
+            Yuvarlanmış bülten oranlarından yazar hesabıdır; aylıkların GSYH'deki payı değildir,
+            ilgili araştırmanın gelir bileşimini ifade eder.</span></div>
+
+        <p>Bir hanede emekli aylığı yanında ücret, kira, finansal gelir ve haneler arası transfer
+          bulunabilir; ortak konut ve bazı sabit giderler paylaşılabilir. Eşdeğer gelir ölçüleri hane
+          büyüklüğü ve bileşimini dikkate alır, kişi başına basit bölme ile aynı değildir.
+          Birikim ihtiyacını belirleyen de tek başına aylık değil, <strong>toplam net kaynaklar ile
+          harcama arasındaki farktır.</strong></p>
+
+        <div class="em-tablo-sar" role="region" aria-labelledby="t5-caption" tabindex="0">
+          <table class="em-tablo">
+            <caption id="t5-caption"><span>Tablo 5</span>Örnek hane bütçesi<small>Sayılar gerçek bir hane veya aylık düzeyini temsil etmez</small></caption>
+            <thead><tr><th scope="col">Varsayımsal yıllık bütçe</th><th scope="col" class="em-sag">Tutar (reel birim)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Emekli aylığı</th><td class="em-sag">240</td></tr>
+              <tr><th scope="row">Diğer düzenli net gelir</th><td class="em-sag">60</td></tr>
+              <tr><th scope="row">Tüketim ve planlanan gider</th><td class="em-sag">360</td></tr>
+              <tr><th scope="row">Yıllık finansman farkı</th><td class="em-sag">60</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Hane bütçesinin zaman içinde değişmesi de hesaba katılır. İki gelirli bir hanenin tek
+          gelire geçmesi, taşınma, bakım harcaması veya kredi geri ödemesinin sona ermesi aynı emekli
+          aylığı altında farklı nakit akışları yaratır. Ortalama gelir, gelirin kaç kişide
+          yoğunlaştığını da göstermez; buradaki 0,410 Gini toplam nüfusa ilişkindir, yaşlı nüfusun
+          gelir dağılımı değildir.</p>
+
+        <h2 id="tasarruf">Üç tasarruf oranı, üç ayrı payda</h2>
+        <p>TÜİK Kurumsal Sektör Hesapları 2024'te toplam gayrisafi tasarruf/GSYH oranı %30,1'dir.
+          Hanehalkının gayrisafi tasarrufunun GSYH'ye oranı %6,9; harcanabilir gelire oranı ise
+          %11,3'tür (2023'te %11,8). Üç oran farklı ekonomik sorulara yanıt verir.</p>
+
+        <div class="em-tablo-sar" role="region" aria-labelledby="t6-caption" tabindex="0">
+          <table class="em-tablo">
+            <caption id="t6-caption"><span>Tablo 6</span>Tasarruf göstergelerinin paydaları<small>2024</small></caption>
+            <thead><tr><th scope="col">Gösterge</th><th scope="col" class="em-sag">Oran</th><th scope="col">Payda</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Toplam ekonomi gayrisafi tasarrufu</th><td class="em-sag">%30,1</td><td>GSYH</td></tr>
+              <tr><th scope="row">Hanehalkı gayrisafi tasarrufu</th><td class="em-sag">%6,9</td><td>GSYH</td></tr>
+              <tr><th scope="row">Hanehalkı gayrisafi tasarrufu</th><td class="em-sag">%11,3</td><td>Hanehalkı harcanabilir geliri</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Gayrisafi tasarruf, sabit sermaye tüketimi düşülmeden ölçülür ve ulusal hesaplarda
+          tasarruf, mevduat hesabına yatırılan tutardan daha geniş bir kavramdır. Sektörün ortalama
+          oranı da her hanenin gelirinin %11,3'ünü ayırdığını veya bu tutarın emekliliğe yöneldiğini
+          göstermez.</p>
+        <p>EGM'nin 10 Eylül 2026 tarihli özetinde gönüllü BES fon büyüklüğü 2,46 trilyon TL ve
+          katılımcı sayısı 10,35 milyon; otomatik katılımda fon büyüklüğü 0,17 trilyon TL ve
+          katılımcı sayısı 7,91 milyondur. <strong>İki sistemin katılımcı sayıları benzersiz kişi
+          sayısı kabul edilerek toplanmamalıdır;</strong> aynı kişi iki sistemde birden bulunabilir.
+          Fon tutarları da belirli tarihteki nominal <strong>stoktur</strong>: stok değişimi net
+          katkılar, çıkışlar ve getirilerle oluşur, dolayısıyla fon büyümesi doğrudan yeni tasarruf
+          veya reel getiri değildir.</p>
+
+        <h2 id="reel">Nominal gelir ve satın alma gücü</h2>
+        <p>Emeklilik geliri yıllar boyunca ödendiği için nominal tutarların aynı fiyat düzeyine
+          getirilmesi gerekir. TÜİK Aralık 2025 bülteninde yıllık TÜFE değişimi %30,89, on iki aylık
+          ortalamalara göre değişim %34,88'dir; bu ikisi farklı dönemleri ölçer.</p>
+        <div class="em-formul">Reel değişim = (1 + nominal değişim) ÷ (1 + fiyat değişimi) − 1
+          <span>Varsayımsal %40 nominal artış, %30,89 fiyat artışıyla karşılaştırılırsa reel değişim
+            yaklaşık <strong>%6,96</strong>'dır. %40 − %30,89 = %9,11 işlemi bileşik ilişkiyi
+            içermez. Örnek herhangi bir aylığın fiili artışını temsil etmez.</span></div>
+        <p>Aylıklar yıl içinde farklı tarihlerde değişiyorsa, yıl sonu aylığı ile yılın toplam satın
+          alma gücü ayrı ölçülerdir. On iki aylık ödemenin her biri kendi ayının fiyat düzeyiyle
+          düzeltilip toplanabilir:</p>
+        <div class="em-formul">Yıllık reel ödeme = Σ<sub>t=1..12</sub> [ aylık nominal ödeme<sub>t</sub> × baz fiyat endeksi ÷ ayın fiyat endeksi<sub>t</sub> ]
+          <span>Yalnız Aralık tutarına bakmak, yılın önceki aylarında alınan ödemeleri temsil etmez.</span></div>
+        <p>Genel tüketici fiyat endeksi ortak bir karşılaştırma tabanı sunar; buna karşılık bir
+          hanenin konut, gıda, ulaştırma ve sağlık harcaması ağırlıkları genel sepetten farklı
+          olabilir. Burada yaşlılara özel ayrı bir fiyat endeksi hesaplanmamıştır. Kendi sepetinizin
+          resmî orandan ne kadar saptığını <a href="../../kisisel-enflasyon/">kişisel enflasyon
+          aracıyla</a> ölçebilirsiniz.</p>
+
+        <h2 id="ozdeslik">Sistemin dönemlik finansman özdeşliği</h2>
+        <p>Dağıtım esaslı emeklilik finansmanını incelemek için basitleştirilmiş bir dönem özdeşliği
+          kurulabilir. <em>A</em> prim ödeyen eşdeğer birim sayısı, <em>w</em> ortalama prime esas
+          kazanç, <em>τ</em> emekliliğe atfedilen etkin tahsilat oranı, <em>R</em> ödeme yapılan
+          eşdeğer dosya sayısı, <em>b</em> ortalama dönemlik ödeme; <em>T</em> dış transferler,
+          <em>O</em> diğer net kaynaklar, <em>M</em> idari giderler olsun.</p>
+        <div class="em-formul">Dönem farkı = τ·w·A + T + O − b·R − M
+          <span>Bu bir kurumun resmî muhasebe tablosu değildir; sağlık ve diğer sigorta kollarını
+            emeklilikten ayıran, zaman ve kapsam bakımından eşleştirilmiş analitik bir çerçevedir.
+            Yasal prim oranıyla etkin tahsilat oranı aynı olmayabilir.</span></div>
+        <p>Yalnız primle karşılanan, diğer kalemleri sıfır kabul edilen varsayımsal bir dengede
+          ilişki <strong>b ÷ w = τ × (A ÷ R)</strong> biçimini alır:</p>
+
+        <div class="em-tablo-sar" role="region" aria-labelledby="t7-caption" tabindex="0">
+          <table class="em-tablo">
+            <caption id="t7-caption"><span>Tablo 7</span>Varsayımsal prim-ödeme ilişkisi<small>Tüm değerler örnektir; SGK için prim oranı, hak kazanma kuralı veya aylık tahmini değildir</small></caption>
+            <thead><tr><th scope="col" class="em-sag">Varsayımsal A/R</th><th scope="col" class="em-sag">Etkin oran τ</th><th scope="col" class="em-sag">Finanse edilen b/w</th></tr></thead>
+            <tbody>
+              <tr><td class="em-sag">1,5</td><td class="em-sag">%20</td><td class="em-sag">%30</td></tr>
+              <tr><td class="em-sag">2,0</td><td class="em-sag">%20</td><td class="em-sag">%40</td></tr>
+              <tr><td class="em-sag">2,5</td><td class="em-sag">%20</td><td class="em-sag">%50</td></tr>
+              <tr><td class="em-sag">2,0</td><td class="em-sag">%25</td><td class="em-sag">%50</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>b/w sistemin ortalama ödemesini ortalama prim matrahına böler; OECD'nin bireysel net ikame
+          oranıyla <strong>aynı ölçü değildir.</strong> Aynı ödeme düzeyinde A/R yükselirse primle
+          karşılanabilen tutar artar. Ancak aylıklar da kazançlarla birlikte değişiyorsa gelir ve
+          gider tarafları eşzamanlı hareket edebilir; tek değişkenli karşılaştırma, diğerlerinin
+          sabit tutulduğu bir duyarlılık hesabıdır.</p>
+        <p>Ödemeleri toplam üretime oranlamak da benzer bir ayrıştırma verir:</p>
+        <div class="em-formul">Emeklilik ödemeleri ÷ Y = (R ÷ E) × (b ÷ y),&nbsp;&nbsp; y = Y ÷ E
+          <span>Özdeşlik, ödeme oranını yararlanıcı/çalışan oranı ile ortalama ödeme/çalışan başına
+            üretim oranına ayırır. Çalışan başına üretim bireyin ücreti değildir.</span></div>
+
+        <h2 id="birikim">Birikim süresi ve reel getiri</h2>
+        <p>Başlangıç varlığı sıfır, yıl sonunda yapılan reel katkı <em>C</em>, yıllık sabit reel net
+          getiri <em>r</em> ve birikim süresi <em>n</em> olsun:</p>
+        <div class="em-formul">V = C × [ (1 + r)<sup>n</sup> − 1 ] ÷ r&nbsp;&nbsp;(r ≠ 0);&nbsp;&nbsp; V = C × n&nbsp;&nbsp;(r = 0)
+          <span>Katkının yıl sonunda yapılması, ilk katkının n−1 yıl getiri kazanması anlamına gelir.
+            Yıl başı katkıda sonuç (1 + r) ile çarpılır; başlangıç birikimi B varsa
+            B × (1 + r)<sup>n</sup> eklenir.</span></div>
+
+        <figure class="em-sekil" aria-labelledby="s3-title">
+          <div class="em-sekil-baslik">
+            <p class="ed-kicker">Şekil 3 / Senaryo</p>
+            <h3 id="s3-title">Süre yalnız katkı sayısını değil, getiri kazanma süresini de uzatır.</h3>
+            <p>Her yıl sonunda <strong>60.000 TL</strong> sabit satın alma gücünde katkı.
+              Sonuçlar bin reel TL; başlangıç varlığı sıfır.</p>
+          </div>
+          <div class="em-matris-sar" role="region" aria-labelledby="s3-title" tabindex="0">
+            <table class="em-matris">
+              <thead><tr><th scope="col">Süre</th><th scope="col">%0 reel net</th><th scope="col">%2 reel net</th><th scope="col">%4 reel net</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">20 yıl</th>
+                  <td><span class="em-hucre"><b>1.200</b><i style="--w:21.0%"></i></span></td>
+                  <td><span class="em-hucre"><b>1.458</b><i style="--w:25.6%"></i></span></td>
+                  <td><span class="em-hucre"><b>1.787</b><i style="--w:31.3%"></i></span></td></tr>
+                <tr><th scope="row">30 yıl</th>
+                  <td><span class="em-hucre"><b>1.800</b><i style="--w:31.6%"></i></span></td>
+                  <td><span class="em-hucre"><b>2.434</b><i style="--w:42.7%"></i></span></td>
+                  <td><span class="em-hucre"><b>3.365</b><i style="--w:59.0%"></i></span></td></tr>
+                <tr><th scope="row">40 yıl</th>
+                  <td><span class="em-hucre"><b>2.400</b><i style="--w:42.1%"></i></span></td>
+                  <td><span class="em-hucre"><b>3.624</b><i style="--w:63.6%"></i></span></td>
+                  <td><span class="em-hucre"><b>5.702</b><i style="--w:100%"></i></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption>Çubuklar satır ve sütunlar arasında ortak ölçekte; en uzunu 5.702 bin reel TL.
+            Getiriler varsayımsal ve sabittir, vergi ve masraflar sonrası <strong>net</strong> oran
+            olarak tanımlanmıştır. Devlet katkısı veya ayrı bir ürün kuralı eklenmemiştir.
+            Yazar hesapları.</figcaption>
+        </figure>
+
+        <p>30 yılda %2 reel net getiri altında yaklaşık <strong>2,43 milyon reel TL</strong> birikir.
+          Aynı katkıyla 20 yıl yaklaşık 1,46 milyon, 40 yıl yaklaşık 3,62 milyon reel TL üretir.</p>
+        <p>Kesintinin <em>zamanı</em> da önemlidir. 30 yıllık dönemin başındaki beş katkı yapılmaz,
+          sonraki 25 yıl aynı katkı sürerse %2 reel getiride yaklaşık 1,92 milyon reel TL elde edilir;
+          tam senaryoya göre fark <strong>yaklaşık 512 bin reel TL</strong>'dir. Bu hesap kesintinin
+          zamanını açıkça tanımlar; herhangi beş yıllık kesintiyle aynı sonuç beklenmez.</p>
+        <p>Net oranın kendisi de belirleyicidir: 30 yıl boyunca reel net getirinin %3 yerine %2 olması,
+          aynı katkı altında birikimi yaklaşık 2,85 milyondan 2,43 milyon reel TL'ye indirir —
+          <strong>yaklaşık %14,7 fark.</strong> Bu, gider, vergi, portföy getirisi veya bunların
+          birleşiminden kaynaklanabilir; örnek belirli bir fonun maliyetini veya performansını ölçmez.</p>
+        <p class="muted-note">Sabit reel katkı, nominal katkının fiyat düzeyiyle birlikte artması
+          varsayımını içerir. Nominal katkı sabit tutulursa reel katkı yolu farklı olur ve yukarıdaki
+          tablo geçerli olmaz. Gerçek getiriler de her yıl sabit değildir; sonuçlar birikimin olasılık
+          dağılımını göstermeyen deterministik hesaplardır.</p>
+
+        <h2 id="odeme">Ödeme süresi ve gereken başlangıç varlığı</h2>
+        <p>Emeklilikte diğer net gelirler düşüldükten sonra her yıl sonunda karşılanacak sabit reel
+          finansman farkı <em>G</em>, ödeme süresi <em>m</em> ve reel net getiri <em>r</em> olsun:</p>
+        <div class="em-formul">V<sub>gerekli</sub> = G × [ 1 − (1 + r)<sup>−m</sup> ] ÷ r
+          <span>r = 0 ise V<sub>gerekli</sub> = G × m. Bu <strong>belirli süreli</strong> ödemedir,
+            yaşam boyu aylık garantisi değildir: m yıllık ufuk dolduğunda kişi yaşamaya devam
+            edebilir.</span></div>
+
+        <figure class="em-sekil" aria-labelledby="s4-title">
+          <div class="em-sekil-baslik">
+            <p class="ed-kicker">Şekil 4 / Senaryo</p>
+            <h3 id="s4-title">Aynı geliri beş yıl daha ödemek 345 bin TL daha fazla varlık ister.</h3>
+            <p>Yıllık <strong>120.000 TL</strong> reel finansman farkı için gereken başlangıç varlığı,
+              bin reel TL. Ödemeler yıl sonundadır.</p>
+          </div>
+          <div class="em-matris-sar" role="region" aria-labelledby="s4-title" tabindex="0">
+            <table class="em-matris">
+              <thead><tr><th scope="col">Ödeme süresi</th><th scope="col">%0 reel net</th><th scope="col">%2 reel net</th><th scope="col">%4 reel net</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">20 yıl</th>
+                  <td><span class="em-hucre"><b>2.400</b><i style="--w:66.7%"></i></span></td>
+                  <td><span class="em-hucre"><b>1.962</b><i style="--w:54.5%"></i></span></td>
+                  <td><span class="em-hucre"><b>1.631</b><i style="--w:45.3%"></i></span></td></tr>
+                <tr><th scope="row">25 yıl</th>
+                  <td><span class="em-hucre"><b>3.000</b><i style="--w:83.3%"></i></span></td>
+                  <td><span class="em-hucre"><b>2.343</b><i style="--w:65.1%"></i></span></td>
+                  <td><span class="em-hucre"><b>1.875</b><i style="--w:52.1%"></i></span></td></tr>
+                <tr><th scope="row">30 yıl</th>
+                  <td><span class="em-hucre"><b>3.600</b><i style="--w:100%"></i></span></td>
+                  <td><span class="em-hucre"><b>2.688</b><i style="--w:74.7%"></i></span></td>
+                  <td><span class="em-hucre"><b>2.075</b><i style="--w:57.6%"></i></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption>Başlıktaki 345 bin TL farkı, %2 reel net getiride 25 yıl (2.343) ile 30 yıl
+            (2.688) arasındaki farktır ve son beş yıldaki ödemelerin başlangıç tarihine indirgenmiş
+            değeridir. Aylık 10.000 TL ifadesi yalnız yıllık toplamın karşılığıdır; gerçek ödeme
+            zamanlaması ayrıca hesaplanmalıdır. Yazar hesapları.</figcaption>
+        </figure>
+
+        <p>İki aşama birleştirildiğinde tablo tamamlanır. 25 yıllık, yıllık 120.000 TL reel farkı %2
+          getiriyle karşılayacak 2,34 milyon reel TL'yi biriktirmek için birikim aşamasında da %2
+          getiri varsayılırsa, <strong>20 yıl boyunca yılda yaklaşık 96.400 TL; 30 yıl boyunca
+          57.800 TL; 40 yıl boyunca 38.800 TL</strong> reel katkı gerekir.</p>
+        <p>Aynı hedefe daha uzun sürede ulaşılması yıllık katkıyı azaltır. Ancak daha uzun birikim
+          dönemi varsayımı; işe giriş tarihi, gelir devamlılığı, sağlık, bakım sorumlulukları ve
+          istihdam olanaklarından bağımsız gerçekleşmiş sayılmaz. Formül ekonomik ilişkinin
+          büyüklüğünü verir, bireyin bu yolu izleyebileceğini varsaymaz. Kendi sayılarınızla denemek
+          için <a href="../../finansal-ozgurluk-hesaplama/">finansal özgürlük hesaplama</a> ve
+          <a href="../../birikim-hesaplama/">birikim hesaplama</a> araçlarını kullanabilirsiniz.</p>
+
+        <h2 id="sira">Getirilerin sırası: aynı ortalama, farklı sonuç</h2>
+        <p>Sabit oranlı formüller karşılaştırmayı kolaylaştırır; emeklilikte ise değişken getirilerin
+          <strong>sırası</strong> ayrıca önem taşır. Çekiş yapıldığı için aynı getiri dizisinin farklı
+          sıraya konması farklı dönem sonu varlık üretir.</p>
+
+        <figure class="em-sekil" aria-labelledby="s5-title">
+          <div class="em-sekil-baslik">
+            <p class="ed-kicker">Şekil 5 / İki yol</p>
+            <h3 id="s5-title">Aynı iki getiri, ters sırayla: 4,5 birim fark.</h3>
+            <p>Başlangıç 100 birim, her yıl sonunda 10 birim çekiş. Çekiş olmasaydı iki yol da
+              başlangıç değerine dönerdi: 0,80 × 1,25 = 1.</p>
+          </div>
+          <div class="em-yollar">
+            <div class="em-yol em-yol-a">
+              <span class="em-yol-ad"><b>Önce −%20, sonra +%25</b>Kötü yıl başta</span>
+              <span class="em-yol-son">77,5</span>
+              <p class="em-adimlar">100 × 0,80 − 10 = 70&nbsp;&nbsp;→&nbsp;&nbsp;70 × 1,25 − 10 = 77,5</p>
+            </div>
+            <div class="em-yol em-yol-b">
+              <span class="em-yol-ad"><b>Önce +%25, sonra −%20</b>İyi yıl başta</span>
+              <span class="em-yol-son">82,0</span>
+              <p class="em-adimlar">100 × 1,25 − 10 = 115&nbsp;&nbsp;→&nbsp;&nbsp;115 × 0,80 − 10 = 82,0</p>
+            </div>
+          </div>
+          <figcaption>Fark, getiri ortalamalarının değil <strong>nakit çıkışlarının varlık tabanıyla
+            etkileşiminin</strong> sonucudur. Çekişin başa alınması veya tutarının varlığa göre
+            değiştirilmesi hesabı değiştirir. Yazar tarafından oluşturulmuş örnek.</figcaption>
+        </figure>
+
+        <p>Ortalama kalan yaşam süresini tek bir son tarih olarak kullanmak da ortalamanın üzerinde
+          yaşayanları dışarıda bırakır. İki kişilik hanede son hayatta kalan kişinin ihtiyaçları tek
+          kişinin ortalama ömrüyle temsil edilmez; eşin vefatıyla gelirler ve giderler aynı oranda
+          değişmeyebilir.</p>
+        <p>Harcama yolunun sabit reel tutar olması da bir varsayımdır: çalışmayla bağlantılı bazı
+          giderler azalabilir, bakım ve destek hizmetleri farklı yaşlarda ortaya çıkabilir. Ayrıca
+          <strong>toplam varlık ile hemen kullanılabilir varlık</strong> ayrımı gerekir; ikamet edilen
+          konutun piyasa değeri doğrudan aylık harcamaya çevrilemez. Bu boyutlar, tek bir hedef
+          birikim tutarını evrensel ölçü haline getirmeyi sınırlar.</p>
+
+        <h2 id="sonuc">Sonuç</h2>
+        <p>Türkiye'de emekliliğin finansal matematiği, nüfus oranlarını çalışma gelirine, çalışma
+          gelirini prim ve tasarruf akımlarına, bu akımları da emeklilikteki tüketim süresine
+          bağlayarak açıklanabilir. Göstergelerin birlikte okunması için <strong>tarih ve tanım
+          uyumu</strong> gerekir.</p>
+
+        <div class="em-tablo-sar" role="region" aria-labelledby="t11-caption" tabindex="0">
+          <table class="em-tablo">
+            <caption id="t11-caption"><span>Tablo 11</span>Koşullu ekonomik ilişkiler<small>Bir değişkenin fiilen ne kadar değişeceğine ilişkin tahmin içermez</small></caption>
+            <thead><tr><th scope="col">Değişken değiştiğinde</th><th scope="col">Diğerleri sabitken mekanik ilişki</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Prim ödenen ay sayısı artar</th><td>Katkı tabanı ve birikim süresi genişler; aylık etkisi kurallara bağlıdır.</td></tr>
+              <tr><th scope="row">Prime esas reel kazanç artar</th><td>Prim geliri artar; ilerideki haklar da kazanca bağlı değişebilir.</td></tr>
+              <tr><th scope="row">Ödeme süresi uzar</th><td>Sabit reel ödeme için gereken başlangıç varlığı artar.</td></tr>
+              <tr><th scope="row">Reel net getiri artar</th><td>Sabit katkıyla birikim artar; aynı ödeme için gereken varlık azalır.</td></tr>
+              <tr><th scope="row">Emeklilikte diğer net gelir artar</th><td>Aynı harcama düzeyinde varlıktan karşılanacak fark azalır.</td></tr>
+              <tr><th scope="row">Harcamanın reel düzeyi artar</th><td>Aynı gelirler altında finansman farkı büyür.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Özellikle yaşlı/çalışma çağı oranı ile aktif/pasif oranı; teorik ikame oranı ile
+          gerçekleşmiş hane geliri; nominal fon stoku ile reel yeni tasarruf ayrı tutulmalıdır.
+          Sunulan veriler ve özdeşlikler tek bir kurumun veya politikanın performansını ölçmez.
+          Bu çerçevede emeklilik, bir yaş eşiğinin yanında <strong>yaşam boyunca oluşan sürelerin,
+          gelirlerin ve varlıkların ortak hesabıdır.</strong></p>
+
+        <h2 id="kaynakca">Kaynakça</h2>
+        <div class="sources" aria-labelledby="kaynak-title">
+          <h3 id="kaynak-title">Birincil kaynaklar</h3>
+          <ul>
+            <li>Emeklilik Gözetim Merkezi (2026). <em>Özet veriler (10 Eylül 2026)</em>. <a href="https://www.egm.org.tr/?sid=21" rel="noopener">egm.org.tr</a></li>
+            <li>OECD (2025). <em>Pensions at a Glance 2025: OECD and G20 Indicators</em>. OECD Publishing. <a href="https://doi.org/10.1787/e40274c1-en" rel="noopener">doi.org/10.1787/e40274c1-en</a></li>
+            <li>Sosyal Güvenlik Kurumu (2026). <em>2025 yılı faaliyet raporu</em>, Tablo 29, s. 72. <a href="https://www.sgk.gov.tr/" rel="noopener">sgk.gov.tr</a></li>
+            <li>TÜİK (2025a, 26 Aralık). <em>Gelir dağılımı istatistikleri, 2025 (Sayı 53993)</em>. <a href="https://veriportali.tuik.gov.tr/tr/press/53993" rel="noopener">veriportali.tuik.gov.tr</a></li>
+            <li>TÜİK (2025b, 9 Ekim). <em>Kurumsal sektör hesapları, 2024 (Sayı 57929)</em>. <a href="https://veriportali.tuik.gov.tr/Bulten/Index?p=Institutional-Sector-Accounts-2024-57929" rel="noopener">veriportali.tuik.gov.tr</a></li>
+            <li>TÜİK (2026a, 29 Temmuz). <em>Hayat tabloları, 2023-2025 (Sayı 58232)</em>. <a href="https://veriportali.tuik.gov.tr/tr/press/58232/metadata" rel="noopener">veriportali.tuik.gov.tr</a></li>
+            <li>TÜİK (2026b, 25 Mart). <em>İşgücü istatistikleri, 2025 (Sayı 57996)</em>. <a href="https://veriportali.tuik.gov.tr/" rel="noopener">veriportali.tuik.gov.tr</a></li>
+            <li>TÜİK (2026c, 29 Ocak). <em>İşgücü istatistikleri, Aralık 2025 (Sayı 57982)</em>. <a href="https://veriportali.tuik.gov.tr/" rel="noopener">veriportali.tuik.gov.tr</a></li>
+            <li>TÜİK (2026d, 12 Mart). <em>İstatistiklerle yaşlılar, 2025 (Sayı 58231)</em>. <a href="https://veriportali.tuik.gov.tr/tr/press/58231" rel="noopener">veriportali.tuik.gov.tr</a></li>
+            <li>TÜİK (2026e, 5 Ocak). <em>Tüketici fiyat endeksi, Aralık 2025 (Sayı 58294)</em>. <a href="https://veriportali.tuik.gov.tr/tr/press/58294" rel="noopener">veriportali.tuik.gov.tr</a></li>
+          </ul>
+          <p>Kaynak kontrolü: <time datetime="2026-09-13">13 Eylül 2026</time>. Mikro veri
+            kullanılmamıştır; dağılımlar ve bireysel geçişler toplam göstergelerden yeniden
+            kurulamaz. Yaş, eğitim, sektör ve kazanç bileşiminin etkisi istatistiksel olarak
+            ayrıştırılmamıştır, dolayısıyla gözlenen farklar nedensel etki olarak sunulmaz.
+            Hesapta ya da kaynakta hata bildirmek için <a href="../../iletisim/">iletişim sayfasını</a>,
+            güncelleme yaklaşımı için <a href="../../yayin-ilkeleri/">yayın ilkelerini</a>
+            kullanabilirsiniz.</p>
+        </div>
+
+        <h3 id="ek-a">Ek A — Hesaplama ayrıntıları</h3>
+        <p>Birikim tablolarında başlangıç varlığı sıfır; yıllık reel katkı 60.000 TL; süre 20, 30
+          veya 40 yıl; reel net getiri %0, %2 veya %4'tür. Ödeme tablolarında yıllık reel çekiş
+          120.000 TL; süre 20, 25 veya 30 yıldır. Her iki aşamada işlemler yıl sonundadır. Vergi ve
+          giderler net getiri tanımının içindedir; ayrı teşvik veya ürün kuralı kullanılmamıştır.
+          Tablolar bin TL'ye, yıllık katkı örnekleri yüz TL'ye yuvarlanmıştır.</p>
+        <div class="em-formul">V<sub>n</sub> = B × Π<sub>t=1..n</sub>(1 + r<sub>t</sub>) + Σ<sub>t=1..n</sub> [ C<sub>t</sub> × Π<sub>j=t+1..n</sub>(1 + r<sub>j</sub>) ]
+          <span>B başlangıç varlığı; C<sub>t</sub> t yılının sonunda yatırılan net katkı;
+            r<sub>t</sub> ilgili yılın reel net getirisidir. Sonraki yıl kalmadığında çarpım 1 kabul
+            edilir. Ödeme aşamasında dönem sonu varlık V<sub>t</sub> = V<sub>t−1</sub> × (1 + r<sub>t</sub>) − G<sub>t</sub>
+            ile izlenebilir. Bu iki ifade değişken katkı, değişken getiri ve değişken çekişe izin
+            verir.</span></div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Yaşlı bağımlılık oranı ile aktif/pasif oranı aynı şey mi?</summary><p>Hayır. Bağımlılık oranı nüfus sayımına dayanır ve 65+ nüfusu çalışma çağındaki nüfusa böler; çalışma çağındaki herkes çalışmaz. Aktif/pasif oranı ise idari kayıttaki prim ödeyenleri aylık dosyalarına böler. Biri demografik, diğeri sigorta kapsamına ilişkin bir ölçüdür ve aralarındaki geçiş istihdam, kayıtlılık ve prim yoğunluğundan geçer.</p></details>
+          <details><summary>Türkiye'nin ikame oranı %94 ise neden yaşlıların geliri ortalamanın altında?</summary><p>İki sayı aynı şeyi ölçmez. %94,4, tam kariyer varsayımıyla bir bireyin gelecekteki net aylığının net kazancına oranıdır. %84,5 ise 65 yaş üzerindekilerin gözlenen ortalama eşdeğer hane gelirinin toplam nüfus ortalamasına oranıdır; farklı yıla, farklı paydaya ve farklı yaşam öykülerine dayanır. Aradaki fark bir tahmin hatası değildir.</p></details>
+          <details><summary>Emeklilik için ne kadar biriktirmem gerekir?</summary><p>Tek bir evrensel tutar yoktur. Gereken varlık, emeklilikte diğer gelirler düşüldükten sonra kalan yıllık reel finansman farkına, ödeme süresine ve reel net getiriye bağlıdır. Yazıdaki örnekte yıllık 120.000 TL reel fark, 25 yıl ve %2 reel net getiri varsayımıyla yaklaşık 2,34 milyon reel TL gerektirir. Süre 30 yıla çıkarsa aynı gelir için yaklaşık 2,69 milyon gerekir.</p></details>
+          <details><summary>Fon büyüklüğünün artması tasarrufun arttığı anlamına gelir mi?</summary><p>Doğrudan hayır. Fon tutarı belirli bir tarihteki nominal stoktur; değişimi net katkılar, çıkışlar ve getirilerle birlikte oluşur. Yeni tasarruf akımını ölçmek için stok değişiminin bileşenlerine ayrılması ve tutarların aynı fiyat düzeyine getirilmesi gerekir.</p></details>
+          <details><summary>Ortalama getiri aynıysa sonuç da aynı olmaz mı?</summary><p>Çekiş yapılmadığı sürece evet; ancak emeklilikte para çekildiği için getirilerin sırası sonucu değiştirir. Yazıdaki örnekte aynı iki getiri ters sırayla uygulandığında dönem sonu varlık 77,5 ile 82,0 birim arasında ayrışır. Fark, nakit çıkışlarının küçülmüş veya büyümüş varlık tabanıyla etkileşiminden gelir.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../../emekli-ayligi-hesaplama/">Emekli aylığı hesaplama</a> — güncel parametrelerle aylık bağlama hesabı.</li>
+          <li><a href="../../finansal-ozgurluk-hesaplama/">Finansal özgürlük hesaplama</a> — birikim ve çekim aşamasını birlikte yürüten senaryolar.</li>
+          <li><a href="../../finansal-ikiz/">Finansal İkiz</a> — gelir, gider, varlık ve borçları tek profilde toplayıp yaşam boyu projeksiyon.</li>
+          <li><a href="../emekli-maasi-nasil-hesaplanir/">Emekli maaşı nasıl hesaplanır?</a> — aylık bağlama oranı ve güncelleme katsayısı.</li>
+          <li><a href="../kademeli-emeklilik-son-durum/">Kademeli emeklilik: son durum</a> — yürürlükteki kurallar ve dolaşan iddialar.</li>
+          <li><a href="../uzun-vadeli-yatirim-nasil-yapilir/">Uzun vadeli yatırım nasıl yapılır?</a> — reel getiri, bileşik etki ve sıra riski.</li>
+          <li><a href="../">Tüm makaleler</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../../script.js?v=d148f9ac" defer></script>
+</body>
+</html>
