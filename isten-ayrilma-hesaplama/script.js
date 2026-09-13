@@ -46,6 +46,10 @@
     el("fesih-note").textContent = t.aciklama + " (" + t.dayanak + ")";
     // İhbar süresi sorusu yalnızca ihbarın gündeme geldiği türlerde anlamlı.
     el("in-ihbar-calisildi").closest(".field-check").hidden = (t.ihbar === false);
+    /* Sigorta başlangıcı YALNIZCA yaş dışı emeklilikte sorulur: 1475 m.14/1-5'in
+       hangi şartı aradığı 8 Eylül 1999 kapısına bağlı. Diğer fesih türlerinde
+       bu tarihin hesaba hiçbir etkisi yok, sorulması gürültü olurdu. */
+    el("sigorta-alan").hidden = (t.kod !== "yasHaric");
   }
 
   /* ---------- çizim ---------- */
@@ -205,7 +209,10 @@
       ihbarSuresiCalisildi: el("in-ihbar-calisildi").checked,
       kullanilmayanIzinGunu: num("in-izin") || 0,
       son4AyBrutOrtalama: num("in-ortalama") || brut,
-      son3YilPrimGunu: num("in-prim") || 0
+      son3YilPrimGunu: num("in-prim") || 0,
+      /* Yaş dışı emeklilikte hangi şartın arandığını belirler; boş
+         bırakılırsa motor bunu uyarı olarak söyler, sessizce varsaymaz. */
+      sigortaBaslangici: el("in-sigorta").value || null
     });
 
     ozetCiz(r);
@@ -215,7 +222,8 @@
     el("results").hidden = false;
   }
 
-  ["in-giris", "in-cikis", "in-brut", "in-ekler", "in-izin", "in-ortalama", "in-prim"]
+  ["in-giris", "in-cikis", "in-brut", "in-ekler", "in-izin", "in-ortalama", "in-prim",
+   "in-sigorta"]
     .forEach(function (id) {
       var e = el(id);
       if (e) { e.addEventListener("input", hesapla); e.addEventListener("change", hesapla); }

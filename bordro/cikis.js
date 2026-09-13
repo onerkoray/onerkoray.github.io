@@ -76,10 +76,10 @@
     },
     {
       kod: "yasHaric",
-      ad: "15 yıl + 3600 gün şartını doldurdum (yaş hariç)",
-      kisa: "15 yıl + 3600 gün",
+      ad: "Yaş dışındaki emeklilik şartlarını tamamladım (SGK yazısı ile)",
+      kisa: "Yaş hariç emeklilik",
       kidem: true, ihbar: false, issizlik: false,
-      aciklama: "Yaş dışındaki emeklilik şartlarını tamamlayanlar SGK yazısıyla ayrılıp kıdem tazminatı alabilir. İşsizlik ödeneği doğmaz.",
+      aciklama: "Yaş dışındaki emeklilik şartlarını tamamlayanlar SGK yazısıyla ayrılıp kıdem tazminatı alabilir. Hangi şartların arandığı ilk sigorta tarihinize bağlıdır: 8 Eylül 1999 öncesi sigortalılarda 15 yıl + 3600 gün, sonrasında daha uzun süre ve daha çok prim günü. İşsizlik ödeneği doğmaz.",
       dayanak: "1475 m.14/1-5"
     },
     {
@@ -243,6 +243,36 @@
       if (tur.kidem === "sozlesme") {
         kidem.gerekce = "İkalede tutar sözleşmeye bağlıdır; aşağıdaki rakam yasal karşılıktır.";
         uyarilar.push("İkale sözleşmesinde kararlaştırılan tutar bu hesaptan farklı olabilir.");
+      }
+
+      /* 1475 m.14/1-5 yaş dışı emeklilik: kanun "15 yıl + 3600 gün" DEMEZ.
+         "506 sayılı Kanunun Geçici 81 inci maddesine göre ... sigortalılık
+         süresini ve prim ödeme gün sayısını tamamlayarak" der; o geçiş
+         hükmü de 8 Eylül 1999 öncesi sigortalılar içindir. Sonrasında
+         sigortalı olanların yaş dışı şartları daha ağırdır (7000 gün, ya
+         da 25 yıl + 4500 gün). Hak herkese açıktır; RAKAM herkese aynı
+         değildir — araç uzun süre bu ayrımı yapmıyordu. */
+      if (tur.kod === "yasHaric") {
+        var esik = new Date(Date.UTC(1999, 8, 8));            // 8 Eylül 1999
+        var bas = g.sigortaBaslangici ? new Date(g.sigortaBaslangici) : null;
+        if (!bas || isNaN(bas.getTime())) {
+          uyarilar.push("İlk sigorta başlangıç tarihinizi girmediniz. " +
+            "Yaş dışı şartlar bu tarihe göre değişir: 8 Eylül 1999 öncesi " +
+            "sigortalılarda 15 yıl + 3600 gün, sonrasında daha uzun süre ve " +
+            "daha çok prim günü aranır.");
+        } else if (bas >= esik) {
+          kidem.yasHaricSonraki = true;
+          uyarilar.push("İlk sigortanız 8 Eylül 1999 ve sonrasında başlamış. " +
+            "Yaygın olarak bilinen 15 yıl + 3600 gün şartı 506 sayılı Kanunun " +
+            "geçici 81 inci maddesinden gelir ve yalnızca bu tarihten ÖNCE " +
+            "sigortalı olanlara uygulanır. Sizin için daha uzun sigortalılık " +
+            "süresi ve daha çok prim günü aranır. Aşağıdaki tutar, şartları " +
+            "tamamladığınızı SGK yazısıyla belgelemeniz hâlinde geçerlidir.");
+        } else {
+          kidem.yasHaricSonraki = false;
+        }
+        uyarilar.push("Bu fesih türünde işverene SGK'dan alınacak " +
+          "\u201Cyaş dışındaki şartlar tamamlanmıştır\u201D yazısının verilmesi gerekir.");
       }
     }
 
