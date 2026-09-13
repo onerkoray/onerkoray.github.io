@@ -83,12 +83,16 @@
    uçlarda doğrudan etiket var ve sayılar tabloda tekrar ediyor. */
 .grafik-kap { margin-block: 1rem 0; overflow-x: auto; }
 #k-grafik { inline-size: 100%; block-size: auto; min-inline-size: 520px; display: block; }
-.seri-ort { stroke: var(--brand-strong); stroke-width: 2.6; fill: none; stroke-linejoin: round; }
-.seri-marj { stroke: #b8860b; stroke-width: 2.2; fill: none; stroke-dasharray: 6 4; stroke-linejoin: round; }
+/* Iki KATEGORIK seri (ortalama ve marjinal kama). Onceki surumde
+   ortalama serisi var(--brand-strong) kullaniyordu; varsayilan yesilde
+   kroma 0,079 ile taban 0,10'un altinda kaliyor ve veri isareti olarak
+   GRI okunuyordu. Artik sabit kategorik uzaydan geliyor. */
+.seri-ort { stroke: var(--dv-1); stroke-width: 2.6; fill: none; stroke-linejoin: round; }
+.seri-marj { stroke: var(--dv-2); stroke-width: 2.2; fill: none; stroke-dasharray: 6 4; stroke-linejoin: round; }
 .cizgi-tavan { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 4 4; }
 .eksen-cizgi { stroke: var(--border); stroke-width: 1; }
 .eksen { fill: var(--text-muted); font-size: 11px; }
-.zirve-nokta { fill: var(--brand-strong); stroke: var(--bg); stroke-width: 2.5; }
+.zirve-nokta { fill: var(--dv-1); stroke: var(--bg); stroke-width: 2.5; }
 
 .lejant { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; margin: .6rem 0 0;
   font-size: var(--step--1); color: var(--text-muted); }

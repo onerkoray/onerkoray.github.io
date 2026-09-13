@@ -96,15 +96,14 @@
   margin: 1.4rem 0 0; padding: 1.2rem 1.35rem;
   border: 1px solid var(--border); border-radius: var(--radius-card);
   background: var(--surface);
-  --seri-1: #2a78d6; --seri-2: #e06a2a; --seri-3: #1baf7a;
 }
 .bp-grafik-kutu figcaption { font-size: .78rem; font-weight: 650; margin-bottom: .7rem; }
 .bp-grafik { display: block; width: 100%; height: auto; font-family: var(--font-body); }
 .bp-izgara line { stroke: var(--border); stroke-width: 1; }
 .bp-cizgi { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
-.bp-seri-1 { stroke: var(--seri-1); background: var(--seri-1); }
-.bp-seri-2 { stroke: var(--seri-2); background: var(--seri-2); }
-.bp-seri-3 { stroke: var(--seri-3); background: var(--seri-3); }
+.bp-seri-1 { stroke: var(--dv-1); background: var(--dv-1); }
+.bp-seri-2 { stroke: var(--dv-2); background: var(--dv-2); }
+.bp-seri-3 { stroke: var(--dv-3); background: var(--dv-3); }
 .bp-eksen { font-size: 10px; fill: var(--text-muted); }
 .bp-lejant {
   display: flex; flex-wrap: wrap; gap: .35rem 1.1rem;
@@ -138,7 +137,7 @@
 
 .bp-uyari {
   margin: 1.2rem 0 0; padding: .95rem 1.2rem;
-  border: 1px solid var(--border); border-inline-start: 3px solid var(--seri-2, #e06a2a);
+  border: 1px solid var(--border); border-inline-start: 3px solid var(--dv-2);
   border-radius: 0 8px 8px 0; background: var(--surface);
   font-size: .82rem; line-height: 1.65;
 }
