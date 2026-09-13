@@ -200,5 +200,74 @@ baslik("Kıdem tazminatı tavanı — resmî tutarlar");
      kayit ? "bulunan: " + kayit.tutar : "dönem kaydı yok");
 });
 
+
+/* ------------------------------------------------------------------ *
+ * 1475 m.14/1-5 — yaş dışı emeklilikte 8 Eylül 1999 kapısı
+ *
+ * Kanun "15 yıl + 3600 gün" DEMEZ. 506 sayılı Kanunun geçici 81 inci
+ * maddesine atıf yapar ve o geçiş hükmü 8 Eylül 1999'dan ÖNCE ilk kez
+ * sigortalı olanlara uygulanır. Sonrasında sigortalı olanların yaş dışı
+ * şartları daha ağırdır.
+ *
+ * Araç uzun süre bu ayrımı yapmıyordu ve seçeneğin adı doğrudan
+ * "15 yıl + 3600 gün" idi; 2005'te sigortalı olmuş biri seçeneği
+ * işaretleyip "kıdem alırsınız" cevabını alıyordu.
+ * ------------------------------------------------------------------ */
+baslik("Yaş dışı emeklilik — 8 Eylül 1999 kapısı");
+
+function yasHaric(tarih) {
+  return ornek({ fesihTuru: "yasHaric", sigortaBaslangici: tarih });
+}
+function uyariVar(r, parca) {
+  return r.uyarilar.some(function (u) { return u.indexOf(parca) > -1; });
+}
+
+/* Seçeneğin adı tek bir vakayı değil HÜKMÜ tarif etmeli: rakamlar herkese
+   aynı değil, hak herkese açık. */
+var turYH = C.fesih("yasHaric");
+ok("seçenek adı tek bir rakam kümesini koşul gibi sunmuyor",
+  turYH.ad.indexOf("3600") === -1, turYH.ad);
+ok("açıklama 1999 kapısını söylüyor",
+  turYH.aciklama.indexOf("1999") > -1);
+
+/* Tarih verilmezse SESSİZCE VARSAYILMAZ. */
+var yhBos = yasHaric(null);
+ok("tarih verilmezse uyarı çıkar", uyariVar(yhBos, "başlangıç tarihinizi girmediniz"));
+
+/* 1999 ÖNCESİ: 15 yıl + 3600 gün yolu geçerli, ek uyarı yok. */
+var yhOnce = yasHaric("1995-03-01");
+ok("1999 öncesi — kıdem hakkı doğuyor", yhOnce.kidem.hak === true);
+ok("1999 öncesi — 'daha ağır şart' uyarısı YOK",
+  !uyariVar(yhOnce, "8 Eylül 1999 ve sonrasında"));
+ok("1999 öncesi işaretleniyor", yhOnce.kidem.yasHaricSonraki === false);
+
+/* 1999 SONRASI: hak var ama rakam farklı; kullanıcıya söyleniyor. */
+var yhSonra = yasHaric("2005-03-01");
+ok("1999 sonrası — kıdem hakkı yine doğuyor (hak herkese açık)",
+  yhSonra.kidem.hak === true);
+ok("1999 sonrası — rakamın farklı olduğu söyleniyor",
+  uyariVar(yhSonra, "8 Eylül 1999 ve sonrasında"));
+ok("1999 sonrası — geçici 81 kaynağı adlandırılıyor",
+  uyariVar(yhSonra, "geçici 81"));
+ok("1999 sonrası işaretleniyor", yhSonra.kidem.yasHaricSonraki === true);
+
+/* SINIR: geçiş hükmü 8 Eylül 1999'dan ÖNCE sigortalı olanlar içindir,
+   yani günün KENDİSİ sonraki gruptadır. */
+ok("7 Eylül 1999 → önceki grup", yasHaric("1999-09-07").kidem.yasHaricSonraki === false);
+ok("8 Eylül 1999 → sonraki grup", yasHaric("1999-09-08").kidem.yasHaricSonraki === true);
+
+/* SGK yazısı her iki grupta da işleyen belgedir. */
+ok("SGK yazısı uyarısı 1999 öncesinde de var", uyariVar(yhOnce, "SGK"));
+ok("SGK yazısı uyarısı 1999 sonrasında da var", uyariVar(yhSonra, "SGK"));
+
+/* Tarih YALNIZCA bu fesih türünde anlamlı: diğerlerinde sonucu
+   değiştirmemeli, yoksa alanı gizlemek yanlış olurdu. */
+var istifaBos = ornek({ fesihTuru: "istifa" });
+var istifaTarihli = ornek({ fesihTuru: "istifa", sigortaBaslangici: "2005-03-01" });
+ok("diğer fesih türünde sigorta tarihi sonucu değiştirmiyor",
+  istifaBos.toplam.genelToplam === istifaTarihli.toplam.genelToplam);
+ok("diğer fesih türünde 1999 uyarısı çıkmıyor",
+  !uyariVar(istifaTarihli, "1999"));
+
 console.log("\n" + gecen + " geçti, " + kalan + " kaldı.");
 process.exit(kalan ? 1 : 0);
