@@ -216,6 +216,32 @@ baslik("Fazla mesai parametreleri");
   ok("60.000 TL brütte saat ücreti 266,67", yakin(saatlik, 266.6667, 0.001));
   ok("10 saat %50 zamlı mesai 4.000 TL brüt",
      yakin(saatlik * f.fazlaCalismaKat * 10, 4000, 0.01));
+
+  /* SERBEST ZAMAN KANUNDA IKI KATSAYILIDIR. 4857 m.41/4: fazla calismada
+     "bir saat otuz dakika", fazla surelerle calismada "bir saat onbes
+     dakika". Parametrede tek katsayi (1,5) tutuluyordu ve arac ikisine de
+     onu uyguluyordu; %25'lik calismada izni beste bir fazla gosteriyordu.
+     Serbest zaman, ucret zamminin ZAMAN cinsinden aynasidir: katsayilar
+     ucret katsayilariyla ayni olmali. */
+  B.yillar().forEach(function (yil) {
+    var g = B.parametre(yil).fazlaMesai;
+    ok(yil + " serbest zaman iki katsayili",
+       g.serbestZamanFazlaCalismaKat === 1.5 &&
+       g.serbestZamanFazlaSureliKat === 1.25,
+       JSON.stringify(g));
+    ok(yil + " serbest zaman katsayilari ucret katsayilarinin aynasi",
+       g.serbestZamanFazlaCalismaKat === g.fazlaCalismaKat &&
+       g.serbestZamanFazlaSureliKat === g.fazlaSureliKat);
+    ok(yil + " serbest zaman penceresi 6 ay", g.serbestZamanAyPenceresi === 6);
+    ok(yil + " tek katsayili eski alan kaldirildi",
+       g.serbestZamanKat === undefined, String(g.serbestZamanKat));
+  });
+  /* Somut karsilik: 8 saat fazla calisma 12 saat izin, 8 saat fazla
+     surelerle calisma 10 saat izin. */
+  ok("8 saat fazla calisma -> 12 saat izin",
+     8 * f.serbestZamanFazlaCalismaKat === 12);
+  ok("8 saat fazla surelerle calisma -> 10 saat izin",
+     8 * f.serbestZamanFazlaSureliKat === 10);
 })();
 
 console.log("\n" + gecen + " geçti, " + kalan + " kaldı.");

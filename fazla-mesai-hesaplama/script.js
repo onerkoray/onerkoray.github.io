@@ -153,8 +153,14 @@
       "Zam oranı değişmiyor, verginiz değişiyor.</p>" +
       '<p class="muted-note table-note">' + yil + " yılı parametreleriyle hesaplandı. " +
       "Fazla çalışma yılda " + F.yillikUstSinirSaat + " saati aşamaz ve işçinin yazılı onayı gerekir. " +
-      "İşçi dilerse ücret yerine her fazla saat için " + F.serbestZamanKat +
-      " saat serbest zaman kullanabilir (4857 m.41).</p>" +
+      /* Serbest zaman kanunda İKİ katsayılıdır; tek sayı yazmak %25'lik
+         çalışmada izni fazla gösterir. */
+      "İşçi dilerse ücret yerine serbest zaman kullanabilir: fazla çalışmanın "
+      + "her saati için " + F.serbestZamanFazlaCalismaKat.toLocaleString("tr-TR") +
+      " saat, fazla sürelerle çalışmanın her saati için " +
+      F.serbestZamanFazlaSureliKat.toLocaleString("tr-TR") + " saat. Bu izin " +
+      F.serbestZamanAyPenceresi + " ay içinde, çalışma süreleri içinde ve ücrette " +
+      "kesinti olmadan kullanılır (4857 m.41).</p>" +
       '<p class="muted-note table-note">Hesaplama çekirdeği: <a href="../bordro/">açık kaynak bordro motoru</a>. ' +
       'Aylık bordronuzun tamamı için <a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a>, ' +
       'işveren tarafındaki karşılığı için <a href="../isveren-maliyeti-hesaplama/">İşveren Maliyeti</a> aracını kullanın.</p>';
