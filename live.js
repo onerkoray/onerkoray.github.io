@@ -160,11 +160,31 @@
     $("#lv-sun").textContent = "—";
     if (!reduced) setAtmosphere("clear");
   }
-  // IP'den şehir (başarısızsa İstanbul)
-  fetch("https://ipapi.co/json/").then(function (r) { return r.json(); }).then(function (g) {
-    if (g && g.latitude) loadWeather(g.latitude, g.longitude, g.city);
-    else loadWeather(41.01, 28.98, "İstanbul");
-  }).catch(function () { loadWeather(41.01, 28.98, "İstanbul"); });
+  /* ŞEHİR TAHMİNİ ONAYA BAĞLI.
+     Bu istek IP adresini üçüncü bir tarafa (ipapi.co) ulaştırıyor ve
+     karşılığında aldığımız şey dekoratif bir hava durumu göstergesi.
+     Ölçüm için onay isteyip bunu sessizce yapmak tutarsız olurdu.
+
+     Onay yoksa gösterge KAYBOLMUYOR, İstanbul'a düşüyor — zaten eskiden
+     de istek başarısız olunca yaptığı buydu. Yani onay vermemenin
+     bedeli, bir şehir adının varsayılan kalması. */
+  function sehirTahmini() {
+    fetch("https://ipapi.co/json/").then(function (r) { return r.json(); }).then(function (g) {
+      if (g && g.latitude) loadWeather(g.latitude, g.longitude, g.city);
+      else loadWeather(41.01, 28.98, "İstanbul");
+    }).catch(function () { loadWeather(41.01, 28.98, "İstanbul"); });
+  }
+
+  if (window.Onay && window.Onay.kabulEdildi()) {
+    sehirTahmini();
+  } else {
+    loadWeather(41.01, 28.98, "İstanbul");
+    /* Kullanıcı sonradan onay verirse şehir kendiliğinden düzelsin:
+       "kabul ettim ama hiçbir şey değişmedi" demek zorunda kalmasın. */
+    if (window.Onay) {
+      window.Onay.dinle(function (d) { if (d === "kabul") sehirTahmini(); });
+    }
+  }
 
   /* ---------- Header: canlı nokta + küçülme ---------- */
   var nav = $(".site-nav");

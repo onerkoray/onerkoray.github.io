@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr" data-theme="auto">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-2GNZPW1LPT');
-  </script>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=9695e203" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gizlilik Politikası ve KVKK Aydınlatma Metni — Koray Öner</title>
@@ -40,7 +34,7 @@
   <meta name="twitter:description" content="Bu sitede hangi veriler işleniyor, hangi çerezler kullanılıyor ve haklarınız neler?">
   <meta name="twitter:image" content="https://korayoner.dev/images/gizlilik-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=2add40de">
+  <link rel="stylesheet" href="../style.css?v=85626b5e">
 
   <script type="application/ld+json">
   {
@@ -225,7 +219,33 @@
           bu, KVKK m.9 anlamında yurt dışına aktarım niteliği taşır.
         </p>
         <p>
-          Analitik takibi tamamen devre dışı bırakmak isterseniz Google'ın resmî
+          <strong>Ölçüm yalnızca siz izin verirseniz başlar.</strong> Siteye ilk
+          geldiğinizde alt tarafta bir şerit çıkar ve size sorar. Siz karar verene
+          kadar Google Analytics betiği <strong>hiç yüklenmez</strong> ve Google'a
+          hiçbir istek gitmez — &ldquo;izin verilmedi&rdquo; sinyali bile
+          gönderilmez. Reddetmek, kabul etmek kadar kolaydır: iki düğme aynı
+          boyutta, yan yana durur ve kapatma çarpısı yoktur.
+        </p>
+        <p>
+          Tarayıcınız <strong>Global Privacy Control</strong> ya da
+          <strong>Do Not Track</strong> sinyali gönderiyorsa hiç sorulmaz; bu
+          sinyaller doğrudan &ldquo;ölçme&rdquo; olarak kabul edilir.
+        </p>
+        <p>
+          Kararınızı istediğiniz an değiştirebilirsiniz. Onayı geri aldığınızda
+          Google'ın bıraktığı <code>_ga</code> ve <code>_gid</code> çerezleri de
+          silinir.
+        </p>
+
+        <div class="onay-denetim" id="onay-denetim">
+          <p class="onay-durum" id="onay-durum">
+            Bu bölüm, tarayıcınızda JavaScript çalıştığında kararınızı gösterir ve
+            değiştirmenize izin verir.
+          </p>
+        </div>
+
+        <p>
+          Bunlardan bağımsız olarak Google'ın resmî
           <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Analytics Devre Dışı Bırakma eklentisini</a>
           kurabilir ya da tarayıcınızın izleme engelleme özelliğini kullanabilirsiniz. Site, analitik
           olmadan da eksiksiz çalışır.
@@ -369,6 +389,7 @@
     </div>
   </footer>
 
+  <script src="onay-denetim.js?v=d5e995ed" defer></script>
   <script src="../script.js?v=d148f9ac" defer></script>
 </body>
 </html>

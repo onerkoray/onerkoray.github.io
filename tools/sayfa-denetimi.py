@@ -93,7 +93,7 @@ def main():
     # Site geneli sema toplayicilari (bkz. 8)
     # Olcum kimligi toplayicisi (bkz. 10)
     olcum_kimlikleri = collections.defaultdict(list)
-    gtag_sayisi = {}
+    kapi_sayisi = {}
 
     sema_tekil = collections.defaultdict(list)
     sema_person = set()
@@ -143,11 +143,19 @@ def main():
                 if tur == "Person" and d.get("@id"):
                     sema_person.add(d["@id"])
 
-        # Analitik etiketi: eksikse o sayfanin trafigi hic gorunmez,
-        # fazlaysa sayfa goruntulemesi ikiye katlanir. Ikisi de sessiz.
-        bulunan = re.findall(r'gtag/js\?id=(G-[A-Z0-9]+)', s)
-        gtag_sayisi[p] = len(bulunan)
-        for g in set(bulunan):
+        # Olcum onay kapisi. Analitik artik SATIR ICI degil: gtag yalnizca
+        # kullanici onay verirse, onay.js tarafindan yukleniyor. Bu yuzden
+        # sayfada aranan sey gtag blogu degil KAPININ KENDISI.
+        #
+        # Kapi eksikse iki sey birden olur ve ikisi de sessizdir: o sayfanin
+        # trafigi hic gorunmez VE onay verilmis bir ziyaretci bile olculmez.
+        # Kapi iki kez baglandiysa olcum iki kez baslar.
+        kapi_sayisi[p] = len(re.findall(r'src="(?:\.\./)*onay\.js(?:\?v=[0-9a-f]+)?"', s))
+
+        # SATIR ICI gtag GERI GELMESIN. Bir sayfaya elle eklenen gtag blogu,
+        # onay kapisini tamamen atlar: kullanici "olcme" dese bile o sayfa
+        # olculur. Sayfa acilmaya devam ettigi icin kimse fark etmez.
+        for g in set(re.findall(r'gtag/js\?id=(G-[A-Z0-9]+)', s)):
             olcum_kimlikleri[g].append(p)
 
         kimlikler = re.findall(r'\sid="([^"]+)"', s)
@@ -306,22 +314,42 @@ def main():
         bulgu("SEMA KIMLIK COKLU", "site geneli",
               "Person @id tutarsiz: " + ", ".join(sorted(sema_person)))
 
-    # 10) analitik etiketi
+    # 10) olcum onay kapisi
     #
-    # Beklenen: her denetlenen sayfada TAM BIR gtag blogu ve site genelinde
-    # TEK bir olcum kimligi. Ucu de bir kez bozuldu; bu kural o gunu
-    # tekrar etmesin diye burada.
+    # Beklenen: her denetlenen sayfada TAM BIR onay.js baglantisi ve
+    # HICBIR yerde satir ici gtag.
+    #
+    # Kural 2026-09-13'te degisti. Onceden her sayfada satir ici bir gtag
+    # blogu araniyordu; analitik artik onay olmadan hic yuklenmiyor, o
+    # yuzden aranan sey kapinin kendisi. Satir ici bir gtag geri gelirse
+    # kapi ATLANMIS olur: kullanici "olcme" dese bile o sayfa olculur.
     beklenen = [x for x in sayfalar if not denetim_disi(x)]
-    if len(olcum_kimlikleri) > 1:
-        for g, ps in sorted(olcum_kimlikleri.items()):
-            bulgu("OLCUM KIMLIGI COKLU", ", ".join(sorted(ps)[:3]),
-                  "%s (%d sayfa)" % (g, len(ps)))
+    for g, ps in sorted(olcum_kimlikleri.items()):
+        bulgu("KAPIYI ATLAYAN GTAG", ", ".join(sorted(ps)[:3]),
+              "%s satir ici yuklenmis (%d sayfa) - onay sorulmadan olcum"
+              % (g, len(ps)))
     for p2 in beklenen:
-        adet = gtag_sayisi.get(p2, 0)
+        adet = kapi_sayisi.get(p2, 0)
         if adet == 0:
-            bulgu("ANALITIK YOK", p2, "sayfanin trafigi olculmuyor")
+            bulgu("ONAY KAPISI YOK", p2,
+                  "onay.js bagli degil: bu sayfa onay vermis ziyaretciyi bile olcmez")
         elif adet > 1:
-            bulgu("GTAG TEKRARI", p2, "%d kez yuklenmis" % adet)
+            bulgu("ONAY KAPISI TEKRARI", p2, "%d kez baglanmis" % adet)
+
+    # 10b) kapi, kendisine ihtiyaci olan betiklerden ONCE mi?
+    #
+    # Butun betikler "defer" ve defer BELGE SIRASINA gore calisir. onay.js
+    # sonda oldugunda live.js ondan once calisiyor ve window.Onay'i
+    # goremiyordu; yani onay vermis bir ziyaretci bile sehir tahmini
+    # alamiyordu. Hata sessiz: sayfa calisiyor, yalnizca yanlis.
+    for p2 in beklenen:
+        s2 = oku(p2)
+        i_onay = s2.find("onay.js")
+        for bagimli in ("live.js", "profil-kopru.js"):
+            i_b = s2.find(bagimli)
+            if i_b >= 0 and i_onay >= 0 and i_b < i_onay:
+                bulgu("ONAY KAPISI GEC", p2,
+                      bagimli + " onay.js'ten once yukleniyor")
 
     # 11) ana sayfa kategori filtresi
     #

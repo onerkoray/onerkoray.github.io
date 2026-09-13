@@ -1829,3 +1829,48 @@ section { padding: var(--bolum) 0; }
 .pk-sessiz {
   margin: 0 0 1rem; font-size: .8rem; color: var(--text-muted); line-height: 1.6;
 }
+
+/* ---------------------------------------------------------------- onay şeridi
+   Sabit alt şerit: içeriği İTMİYOR, dolayısıyla düzen kayması (CLS) üretmiyor.
+   Karar verilene kadar duruyor, verildikten sonra DOM'dan tamamen çıkıyor.
+
+   İKİ DÜĞME BİLEREK AYNI GÖRÜNÜYOR. Kabulü dolgulu, reddi soluk bir bağlantı
+   yapmak teknik olarak "seçenek sunmak" ama pratikte yönlendirmektir; ve
+   reddi zorlaştıran bir onay, hukuken de alınmamış sayılır. */
+.onay-serit {
+  position: fixed; inset: auto 0 0 0; z-index: 90;
+  display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem;
+  padding: .85rem clamp(1rem, 4vw, 2rem);
+  background: var(--surface); color: var(--text);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, .12);
+}
+.onay-metin {
+  flex: 1 1 22rem; margin: 0;
+  font-size: .82rem; line-height: 1.6; color: var(--text-muted);
+}
+.onay-metin strong { color: var(--text); font-weight: 600; }
+.onay-metin a { color: inherit; text-decoration: underline; }
+.onay-dugmeler { display: flex; gap: .5rem; flex: 0 0 auto; }
+.onay-dugme {
+  font: 600 .82rem var(--font-body);
+  padding: .55rem 1.1rem; min-height: 42px; min-width: 7.5rem;
+  border: 1px solid var(--border); border-radius: var(--radius-control);
+  background: var(--surface-2); color: var(--text); cursor: pointer;
+}
+.onay-dugme:hover { border-color: var(--brand); }
+.onay-dugme:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+@media (max-width: 34rem) {
+  .onay-dugmeler { width: 100%; }
+  .onay-dugme { flex: 1 1 0; min-width: 0; }
+}
+
+/* Gizlilik sayfasındaki karar denetimi: geri almak vermek kadar kolay. */
+.onay-denetim {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem;
+  margin: 1rem 0; padding: 1rem 1.15rem;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--radius-inset);
+}
+.onay-durum { margin: 0; flex: 1 1 16rem; font-size: .85rem; line-height: 1.6; }
