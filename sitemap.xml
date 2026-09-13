@@ -56,6 +56,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/prim-ikramiye-vergisi/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/prim-ikramiye-vergisi-koray-oner.png</image:loc>
+      <image:title>Prim ve İkramiye Vergisi — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/zam-hesaplama/</loc>
     <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>

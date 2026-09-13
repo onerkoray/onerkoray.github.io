@@ -17,6 +17,7 @@ var M = require("./emeklilik-motor.js");
 var P = require("./emeklilik-parametreleri.js");
 
 var hata = 0;
+var gecen = 0;
 
 function esit(ad, bulunan, beklenen, tolerans) {
   var t = tolerans === undefined ? 1e-9 : tolerans;
@@ -25,6 +26,7 @@ function esit(ad, bulunan, beklenen, tolerans) {
     hata++;
     console.error("  BASARISIZ  " + ad + "\n      beklenen " + beklenen + ", bulunan " + bulunan);
   } else {
+    gecen++;
     console.log("  tamam      " + ad);
   }
 }
@@ -94,4 +96,4 @@ if (hata) {
   console.error("\n" + hata + " kontrol basarisiz.");
   process.exit(1);
 }
-console.log("\nButun emeklilik kontrolleri gecti.");
+console.log("\n" + gecen + " gecti, 0 kaldi. (emeklilik kontrolleri)");

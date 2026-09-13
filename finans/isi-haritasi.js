@@ -52,18 +52,27 @@
     return (deger >= 0 ? "p" : "e") + k;
   }
 
-  /** Komşusu ters işaretliyse hücre sınırdadır. */
-  function sinirda(hucreler, j, i) {
+  /* Komşusu ters işaretliyse hücre sınırdadır.
+   *
+   * NÖTR BANT: sıfıra çok yakın değerler işaretsiz sayılır. Önceden
+   * deger >= 0 testi kullanılıyordu ve TAM SIFIR pozitif kabul ediliyordu;
+   * kararın hiç değişmediği bir satır (ör. ödeme tavanın altında kalıyorsa
+   * bütün aylar 0) altındaki negatif satırın komşusu olduğu için baştan
+   * sona "sınır" diye çerçeveleniyordu. Grafiğin tek mesajı sınır olduğu
+   * için bu, olmayan bir sınır göstermek demekti.
+   */
+  function sinirda(hucreler, j, i, enBuyuk) {
+    var bant = (enBuyuk > 0 ? enBuyuk : 0) * 0.02;
     var c = hucreler[j][i];
-    if (c.deger === null) return false;
-    var im = c.deger >= 0;
+    if (c.deger === null || Math.abs(c.deger) <= bant) return false;
+    var im = c.deger > 0;
     var komsu = [[j - 1, i], [j + 1, i], [j, i - 1], [j, i + 1]];
     for (var k = 0; k < komsu.length; k++) {
       var s = hucreler[komsu[k][0]];
       if (!s) continue;
       var d = s[komsu[k][1]];
-      if (!d || d.deger === null) continue;
-      if ((d.deger >= 0) !== im) return true;
+      if (!d || d.deger === null || Math.abs(d.deger) <= bant) continue;
+      if ((d.deger > 0) !== im) return true;
     }
     return false;
   }
@@ -101,7 +110,7 @@
     var satirlar = g.hucreler.map(function (satir, j) {
       var hucreler = satir.map(function (c, i) {
         var b = basamak(c.deger, g.enBuyukMutlak);
-        var sinir = sinirda(g.hucreler, j, i) ? " ih-sinir" : "";
+        var sinir = sinirda(g.hucreler, j, i, g.enBuyukMutlak) ? " ih-sinir" : "";
         if (c.deger === null) {
           return '<td class="ih-h ih-bos" aria-label="hesaplanamadı">—</td>';
         }

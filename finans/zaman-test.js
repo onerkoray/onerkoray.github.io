@@ -12,13 +12,14 @@
 "use strict";
 var Z = require("./zaman-motoru.js");
 var hata = 0;
+var gecen = 0;
 
 function esit(ad, bulunan, beklenen, tol) {
   var t = tol === undefined ? 1e-6 : tol;
   if (!isFinite(bulunan) || Math.abs(bulunan - beklenen) > t) {
     hata++;
     console.error("  BASARISIZ  " + ad + "\n      beklenen " + beklenen + ", bulunan " + bulunan);
-  } else console.log("  tamam      " + ad);
+  } else { gecen++; console.log("  tamam      " + ad); }
 }
 function dogru(ad, k) { esit(ad, k ? 1 : 0, 1, 0); }
 
@@ -139,4 +140,4 @@ for (var o = 0; o <= 1.0; o += 0.05) {
 dogru("NPV oranla azaliyor", !bozuk);
 
 if (hata) { console.error("\n" + hata + " kontrol basarisiz."); process.exit(1); }
-console.log("\nButun zaman motoru kontrolleri gecti.");
+console.log("\n" + gecen + " gecti, 0 kaldi. (zaman motoru kontrolleri)");

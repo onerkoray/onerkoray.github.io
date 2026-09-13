@@ -1668,3 +1668,33 @@ section { padding: var(--bolum) 0; }
   .ih-deger { font-size: .68rem; }
 }
 @media print { .ih { break-inside: avoid; } }
+
+/* --------------------------------------------------------------------- */
+/* Eğri — tek serili çizgi grafiği (finans/egri.js)                       */
+/* Isı haritasıyla AYNI dil: aynı figcaption ağırlığı, aynı altyazı tonu, */
+/* aynı --dv-* renk uzayı. İki görselleştirme bileşeni arasında farklı    */
+/* bir görsel dil kurmak, kullanıcıya öğrendiğini yeniden öğretmek olurdu.*/
+.eg { margin: 1.5rem 0 0; }
+.eg figcaption { font-size: .88rem; font-weight: 650; margin-bottom: .8rem; line-height: 1.5; }
+.eg-sarmal { overflow-x: auto; }
+.eg-sarmal svg { display: block; width: 100%; max-width: 100%; height: auto; min-width: 320px; }
+/* Eksen yazıları metin tokenlarını giyer, seri rengini DEĞİL. */
+.eg-tik { font: 500 11px var(--font-mono); fill: var(--text-muted); }
+.eg-not { font: 600 11px var(--font-body); fill: var(--text); }
+.eg-eksen {
+  display: flex; justify-content: space-between; gap: 1rem;
+  margin: .35rem 0 0; font-size: .72rem; color: var(--text-muted);
+}
+.eg-alt { margin: .8rem 0 0; font-size: .78rem; line-height: 1.6; color: var(--text-muted); }
+.eg-tablo { margin: .7rem 0 0; font-size: .78rem; }
+.eg-tablo summary { cursor: pointer; color: var(--text-muted); }
+.eg-tablo summary:hover { color: var(--text); }
+.eg-tablo table { width: 100%; border-collapse: collapse; margin-top: .5rem; }
+.eg-tablo th, .eg-tablo td {
+  padding: .3rem .5rem; border-bottom: 1px solid var(--border);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.eg-tablo th { text-align: right; color: var(--text-muted); font-weight: 600; }
+.eg-tablo th:first-child, .eg-tablo td:first-child { text-align: left; }
+
+@media print { .eg { break-inside: avoid; } .eg-tablo { display: none; } }
