@@ -262,23 +262,47 @@ jobs:
             // Issue'nun ise yaramasi icin HANGI ADIMIN dustugunu yazmasi
             // sart; yalnizca "bir sey bozuldu" demek, elle bakmaktan
             // kurtarmiyor.
+            //
+            // YARIS DURUMU: bu adim KENDI calismasini sorguluyor ve dusen
+            // adimin sonucu API'ye heniz islenmemis olabiliyor. Ilk gercek
+            // atesleme (issue #1) tam bunu yasadi: sorgu basarili dondu ama
+            // hicbir adim "failure" gorunmuyordu. Bos donduyse kisa araliklarla
+            // yeniden deneniyor.
+            //
+            // ISTISNA ise YENIDEN DENENMIYOR: o bir izin sorunudur (actions:read),
+            // beklemek duzeltmez. Iki durum mesajda da AYRI yaziliyor; ikisini
+            // "okunamadi" diye birlestirmek, hangi sorunu aradigini gizliyordu.
             let dusen = [];
-            try {
-              const { data: isler } = await github.rest.actions.listJobsForWorkflowRun({
-                owner, repo, run_id: context.runId, per_page: 100
-              });
-              for (const is of isler.jobs) {
-                for (const adim of is.steps || []) {
-                  if (adim.conclusion === "failure") dusen.push(adim.name);
+            let sorguHatasi = "";
+            for (let deneme = 0; deneme < 3; deneme++) {
+              try {
+                const { data: isler } = await github.rest.actions.listJobsForWorkflowRun({
+                  owner, repo, run_id: context.runId, per_page: 100
+                });
+                dusen = [];
+                for (const is of isler.jobs) {
+                  for (const adim of is.steps || []) {
+                    if (adim.conclusion === "failure") dusen.push(adim.name);
+                  }
                 }
+              } catch (e) {
+                sorguHatasi = e.message;
+                core.warning("Düşen adım sorgusu başarısız: " + e.message);
+                break;
               }
-            } catch (e) {
-              core.warning("Düşen adım okunamadı: " + e.message);
+              if (dusen.length) break;
+              if (deneme < 2) await new Promise(function (c) { setTimeout(c, 2000); });
             }
+
+            const adimSatiri = dusen.length
+              ? dusen.join(", ")
+              : (sorguHatasi
+                  ? "sorgulanamadı (" + sorguHatasi + ")"
+                  : "API'ye henüz işlenmemiş — çalışma bağlantısından bakın");
 
             const url = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
             const govde = [
-              `**Düşen adım:** ${dusen.length ? dusen.join(", ") : "okunamadı"}`,
+              `**Düşen adım:** ${adimSatiri}`,
               `**Commit:** ${context.sha.slice(0, 7)} — ${context.payload.head_commit?.message?.split("\n")[0] || ""}`,
               `**Çalışma:** ${url}`,
               "",
