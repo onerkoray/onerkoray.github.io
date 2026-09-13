@@ -52,7 +52,12 @@ KART = re.compile(
     r'(<li class="project-card(?![^"]*--soon)[^"]*"[^>]*>.*?</li>)', re.S)
 BAGLANTI = re.compile(r'<h3><a href="([^"#?]+)"')
 MEVCUT = re.compile(r'\s*<p class="card-updated">.*?</p>', re.S)
-GOVDE_SON = "</div>\n          </li>"
+# Kartin son paragrafi ile </div> arasindaki yer. SATIR SONU DESENLE
+# YAKALANIYOR: duz "</p>\n            </div>" karsilastirmasi, deponun CRLF
+# ile checkout edildigi bir Windows kopyasinda hicbir seye uymuyordu. Sonuc
+# sessiz veri kaybiydi: eski tarih siliniyor, yenisi yazilamiyordu ve hata
+# ancak CI'da (LF) goruluyordu. Satir sonu ve girinti artik dosyadan okunuyor.
+GOVDE_SON = re.compile(r"</p>(\r?\n)([ \t]*)</div>")
 
 
 def git(*a):
@@ -131,11 +136,22 @@ def sayfayi_uret(mevcut):
             return kart
         kayit.append((yol, iso))
         temiz = MEVCUT.sub("", kart)
-        satir = ('\n              <p class="card-updated">Güncellendi: '
-                 '<time datetime="%s">%s</time></p>' % (iso, uzun_tarih(iso)))
-        # Kart govdesinin sonuna, baglanti satirindan sonra.
-        return temiz.replace("</p>\n            </div>",
-                             "</p>" + satir + "\n            </div>", 1)
+
+        # Kart govdesinin sonuna, baglanti satirindan sonra. Satir sonu ve
+        # girinti eslesmeden aliniyor ki dosyanin kendi bicimi korunsun.
+        def yerlestir(m):
+            nl, girinti = m.group(1), m.group(2)
+            return ("</p>" + nl + girinti + "  "
+                    + '<p class="card-updated">Güncellendi: '
+                    + '<time datetime="%s">%s</time></p>' % (iso, uzun_tarih(iso))
+                    + nl + girinti + "</div>")
+
+        yeni_kart, adet = GOVDE_SON.subn(yerlestir, temiz, 1)
+        if not adet:
+            raise SystemExit(
+                "Kart govdesinin sonu bulunamadi: %s. index.html'in yapisi "
+                "degistiyse GOVDE_SON deseni guncellenmeli." % yol)
+        return yeni_kart
 
     return KART.sub(degistir, mevcut), kayit
 
