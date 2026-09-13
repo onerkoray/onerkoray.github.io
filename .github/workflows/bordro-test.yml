@@ -138,6 +138,16 @@ jobs:
       - name: Hedef motoru regresyonları
         run: node finans/hedef-test.js
 
+      # Karar laboratuvari secenekleri SIRALIYOR; yanlis bir siralama
+      # makul gorunen ama para kaybettiren bir tavsiye demek ve bu kod
+      # tabaninda bir kez yasandi. Testlerin basinda bir OZDESLIK duruyor:
+      # basabas getiri, kredinin efektif yillik faizine esit olmali --
+      # birbirinden bagimsiz yazilmis iki motorun ayni sayiyi vermesi,
+      # modelde paranin kaybolmadiginin kaniti. Uc farkli kredi oraninda
+      # dogrulaniyor.
+      - name: Karar laboratuvarı regresyonları
+        run: node finans/karar-test.js
+
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.

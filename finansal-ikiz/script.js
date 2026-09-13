@@ -528,6 +528,94 @@
       satirlar + "</div>";
   }
 
+  /* -------------------------- karar laboratuvarı ------------------------- */
+  /* HİÇBİR YERDE "OPTİMUM" DENMİYOR. Motor öneri değil ÖLÇÜM üretiyor;
+     arayüz de her sıralamayı başabaş noktasıyla birlikte sunuyor. */
+  function kararLab(p) {
+    var K = window.KararMotoru;
+    if (!K) return "";
+    var tutar = deger("in-tutar");
+    if (!isFinite(tutar) || tutar <= 0) {
+      return '<p class="fi-uyari fi-eksik">Karşılaştırma için sıfırdan ' +
+        "büyük bir tutar girin.</p>";
+    }
+
+    var r = K.karsilastir(p, tutar);
+    if (r.hata) return '<p class="fi-uyari fi-eksik">' + esc(r.hata) + "</p>";
+
+    /* Farklar en iyi baz sonucuna göre veriliyor: mutlak tutarlar
+       birbirine yakın olduğunda asıl bilgi FARKTIR. */
+    var enIyiBaz = r.secenekler.reduce(function (a, b) {
+      return Math.max(a, b.baz);
+    }, -Infinity);
+    var satirlar = r.secenekler.map(function (sc) {
+      var rozet = "";
+      if (sc.id === r.enIyiBaz) rozet += '<span class="kl-rozet kl-r-baz">baz senaryoda önde</span>';
+      if (sc.id === r.enIyiKotumser) rozet += '<span class="kl-rozet kl-r-kotumser">kötümserde önde</span>';
+      /* TAM TUTAR yazılıyor, kısaltma DEĞİL. Kısaltılmış biçimde
+         ("₺9,0 M") üç seçenek de aynı görünüyordu ve karşılaştırmanın
+         tek amacı olan FARK yuvarlamada kayboluyordu. */
+      var fark = sc.baz - enIyiBaz;
+      return "<tr><th scope=\"row\">" + esc(sc.ad) + rozet +
+        "<small>" + esc(sc.aciklama) + "</small></th>" +
+        "<td>" + para(sc.kotumser) + "</td>" +
+        "<td>" + para(sc.baz) + "</td>" +
+        "<td>" + (Math.abs(fark) < 1 ? "—"
+          : (fark >= 0 ? "+" : "−") + para(Math.abs(fark))) + "</td>" +
+        "<td>" + para(sc.iyimser) + "</td>" +
+        "<td>" + (sc.dayanmaAy === null ? "—"
+          : sc.dayanmaAy.toFixed(1).replace(".", ",") + " ay") + "</td></tr>";
+    }).join("");
+
+    var tablo = '<div class="kl-tablo"><table>' +
+      "<caption>" + para(r.tutar) + " için dört seçenek, üç senaryoda " +
+      "yirmi yıl sonundaki reel net değer (bugünün parasıyla). " +
+      "“Baz’da fark” sütunu en iyi seçeneğe göre; tutarlar birbirine " +
+      "yakın olduğunda asıl bilgi odur. Son sütun bugünkü dayanma sürenizi " +
+      "gösterir — seçeneğin likidite bedeli.</caption>" +
+      '<thead><tr><th scope="col">Seçenek</th><th scope="col">Kötümser</th>' +
+      '<th scope="col">Baz</th><th scope="col">Baz’da fark</th>' +
+      '<th scope="col">İyimser</th>' +
+      '<th scope="col">Dayanma süresi</th></tr></thead><tbody>' +
+      satirlar + "</tbody></table></div>";
+
+    /* İKİ AYRI KAZANAN. Aynıysa karar sağlam; farklıysa kullanıcı bir
+       TERCİH yapıyor ve bunu bilerek yapmalı. */
+    var ad = function (id) {
+      var x = K.secenekBul(id);
+      return x ? x.ad : id;
+    };
+    var kazanan = r.ayniKazanan
+      ? "<strong>" + esc(ad(r.enIyiBaz)) + "</strong> hem baz hem kötümser " +
+        "senaryoda önde — bu varsayımlar altında karar sağlam."
+      : "Baz senaryoda <strong>" + esc(ad(r.enIyiBaz)) + "</strong>, kötümser " +
+        "senaryoda <strong>" + esc(ad(r.enIyiKotumser)) + "</strong> önde. " +
+        "Yani bir tercih yapıyorsunuz: beklenen sonuç mu, dayanıklılık mı?";
+
+    /* BAŞABAŞ — sıralamanın döndüğü nokta. Borç yoksa anlamsız. */
+    var bb = K.basabas(p, tutar, "yatirim", "borc");
+    var basabas;
+    if (bb.bulundu) {
+      basabas = '<span class="kl-esik">' + yuzde(bb.getiri, 1) + "</span>" +
+        "<p>Yatırımınız yıllık net <strong>" + yuzde(bb.getiri, 1) +
+        "</strong>'in üzerinde getirirse <strong>" + esc(ad(bb.ustunde)) +
+        "</strong>, altında kalırsa <strong>" + esc(ad(bb.altinda)) +
+        "</strong> önde. Bu eşik kredinizin efektif yıllık faizine eşittir: " +
+        "krediyi kapatmak, o faizi <em>risksiz ve vergisiz</em> kazanmaktır.</p>";
+    } else if (bb.sebep === "donmuyor") {
+      basabas = "<p>Bu profilde sıralama makul getiri aralığının tamamında " +
+        "değişmiyor: <strong>" + esc(ad(bb.surekliOnde)) +
+        "</strong> her durumda önde. (Kapatılacak bir borç yoksa " +
+        "karşılaştırma da anlamını yitirir.)</p>";
+    } else {
+      basabas = "<p>Başabaş noktası hesaplanamadı.</p>";
+    }
+
+    return tablo +
+      '<div class="kl-basabas">' + basabas +
+      "<p>" + kazanan + "</p></div>";
+  }
+
   /* -------------------------------- akış --------------------------------- */
   var zamanlayici = null;
   function hesapla() {
@@ -553,6 +641,11 @@
       kararKarti(u, p) + bugun(p, o) + uyarilar(u, o) +
       hedefListesi(p, { kotumser: u.kotumser, baz: u.baz, iyimser: u.iyimser }) +
       bandGrafigi(u, p) + duyarlilikTablosu(p);
+
+    /* Karar laboratuvarı ayrı bir bölüm: dört seçenek x üç senaryo x
+       240 ay + başabaş araması pahalı, ve kullanıcı oraya bakmadan da
+       sayfayı kullanabilmeli. */
+    $("karar-sonuc").innerHTML = kararLab(p);
 
     if ($("in-sakla").checked) P.sakla(p);
   }
@@ -658,6 +751,8 @@
     el.addEventListener("input", hesapla);
     el.addEventListener("change", hesapla);
   });
+  $("in-tutar").addEventListener("input", hesapla);
+  $("in-tutar").addEventListener("change", hesapla);
 
   /* Açılış: saklanmış profil varsa o, yoksa örnek. */
   var saklanan = P.yukle();

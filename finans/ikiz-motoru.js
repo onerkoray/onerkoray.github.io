@@ -55,9 +55,25 @@
 
   function r2(n) { return Math.round(n * 100) / 100; }
 
-  /* Bu türler yatırım getirisi KAZANMAZ: bir ev, bir yatırım fonu gibi
-     bileşik büyümez. Reel değerini koruduğu varsayılıyor. */
-  var LIKIT_OLMAYAN = { konut: true, arac: true };
+  /* VARLIKLARIN ÜÇ GETİRİ SINIFI.
+   *
+   * İlk sürümde konut ve araç dışındaki HER ŞEY senaryo getirisini
+   * kazanıyordu — nakit dahil. Yastık altındaki paranın yılda %35
+   * kazanması saçma ve bu, "nakitte mi tutayım yatırayım mı" sorusunu
+   * sorulamaz hale getiriyordu: iki seçenek de aynı sonucu veriyordu.
+   *
+   *   yatirim  → senaryo getirisi (mevduat, fon, hisse, döviz, altın,
+   *              BES, kripto, tahvil, diğer)
+   *   sabit    → nominal olarak enflasyonla taşınır, reel değeri sabit
+   *              (konut, araç). Bir ev bileşik büyümez.
+   *   nakit    → nominal olarak HİÇ büyümez; reel değeri her yıl
+   *              enflasyon kadar erir. Türkiye'de bu, gözden kaçırılan
+   *              en pahalı tercihlerden biri ve model onu göstermeli.
+   *
+   * Bu hâlâ bir basitleştirme: gerçek bir portföyde her kalemin kendi
+   * getirisi ve oynaklığı var. Sayfa bunu söylüyor. */
+  var SABIT_DEGER = { konut: true, arac: true };
+  var GETIRISIZ = { nakit: true };
 
   /**
    * Ücretin net/brüt oranı, BUGÜNKÜ tarifeyle ve REEL maaş seviyesinde.
@@ -114,12 +130,16 @@
        projeksiyonu sistematik olarak şişirirdi. Konut reel değerini
        koruyor varsayılıyor (nominal olarak enflasyonla büyür). */
     var varlik = p.varliklar.reduce(function (a, x) {
-      return a + (LIKIT_OLMAYAN[x.tur] ? 0 : x.deger);
+      return a + (SABIT_DEGER[x.tur] || GETIRISIZ[x.tur] ? 0 : x.deger);
     }, 0);
     var likitOlmayan0 = p.varliklar.reduce(function (a, x) {
-      return a + (LIKIT_OLMAYAN[x.tur] ? x.deger : 0);
+      return a + (SABIT_DEGER[x.tur] ? x.deger : 0);
     }, 0);
     var likitOlmayan = 0;
+    /* Nakit nominal olarak sabit kalır; reel değeri enflasyonla erir. */
+    var nakit = p.varliklar.reduce(function (a, x) {
+      return a + (GETIRISIZ[x.tur] ? x.deger : 0);
+    }, 0);
     var borclar = p.borclar.map(function (b) {
       return {
         ad: b.ad, kalan: b.kalanAnapara, faiz: b.aylikFaiz,
@@ -280,7 +300,14 @@
       var artan = gelir - gider - borcOdemesi;
       var getiri = varlik * getiriAy;
       varlik = varlik + getiri + artan;
-      if (varlik < 0 && tukenmeAyi === null) tukenmeAyi = ay + 1;
+      /* Yatırım havuzu eksiye düşerse önce NAKİT kullanılır: gerçekte
+         kimse mevduatı bozdurmadan önce vadesiz hesabını harcamaz. */
+      if (varlik < 0 && nakit > 0) {
+        var cekilen = Math.min(nakit, -varlik);
+        nakit -= cekilen;
+        varlik += cekilen;
+      }
+      if (varlik + nakit < 0 && tukenmeAyi === null) tukenmeAyi = ay + 1;
 
       oYil.gelir += gelir;
       oYil.gider += gider;
@@ -292,8 +319,10 @@
          varsayılıyor); yatırım getirisi kazanmaz. Başlangıçtakiler ve
          olayla alınanlar AYNI kuralda. Ay SONU düzeyiyle taşınıyor ki
          yanındaki likit varlıkla ve deflatörle aynı ana denk gelsin. */
-      oYil.sonVarlik = varlik + (likitOlmayan0 + likitOlmayan) * enfKatSon;
-      oYil.sonYatirim = varlik;
+      oYil.sonVarlik = varlik + (likitOlmayan0 + likitOlmayan) * enfKatSon + nakit;
+      /* Yatırım varlığı: nakde çevrilebilen havuz. Nakit de buraya
+         girer — likittir, yalnızca getirisi yoktur. */
+      oYil.sonYatirim = varlik + nakit;
       oYil.sonBorc = borclar.reduce(function (a, x) { return a + Math.max(0, x.kalan); }, 0);
       oYil.enfKat = enfKatSon;
     }
