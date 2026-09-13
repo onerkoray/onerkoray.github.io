@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Araç ÖTV Hesaplama 2026 — Anahtar Teslim Fiyat | Koray Öner</title>
-  <meta name="description" content="2026 araç ÖTV hesaplama: motor hacmi ve matraha göre ÖTV, KDV ve anahtar teslim fiyat. Benzinli, dizel, hibrit ve elektrikli dilimleri.">
+  <meta name="description" content="Araç ÖTV hesaplama: matraha göre ÖTV, KDV ve anahtar teslim fiyat. Hibritte elektrik motor gücü, şarjlıda menzil ve emisyon koşullarıyla.">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
@@ -98,7 +98,7 @@
           { "@type": "Question", "name": "1600 cm³ altı araçlarda ÖTV oranı kaç?", "acceptedAnswer": { "@type": "Answer", "text": "1400 cm³ altı araçlarda matraha göre %70-%90; 1401-1600 cm³ araçlarda %75-%100 arasında değişir (Temmuz 2025'te güncellenen dilimlere göre)." } },
           { "@type": "Question", "name": "Elektrikli araçlarda ÖTV kaç?", "acceptedAnswer": { "@type": "Answer", "text": "Motor gücü 160 kW altındaki elektrikli araçlarda matraha göre %25 veya %55; 160 kW üzerinde %65 veya %75'tir." } },
           { "@type": "Question", "name": "ÖTV matrahı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Aracın ÖTV ve KDV hariç satış fiyatıdır. ÖTV bu tutar üzerinden, KDV ise ÖTV eklenmiş tutar üzerinden hesaplanır — yani vergiden de vergi alınır." } },
-          { "@type": "Question", "name": "Hibrit araçlarda ÖTV avantajı var mı?", "acceptedAnswer": { "@type": "Answer", "text": "Şarj edilebilir (PHEV) hibritlerde belirli menzil ve emisyon şartlarıyla %45'e kadar düşen oranlar uygulanır; standart hibritler büyük ölçüde içten yanmalı tarifeye tabidir." } }
+          { "@type": "Question", "name": "Hibrit araçlarda ÖTV avantajı var mı?", "acceptedAnswer": { "@type": "Answer", "text": "Koşullu olarak var. 1600 cm³ e kadar hibritler için kanunda ayrı satır yoktur; içten yanmalı tarifesinden vergilenirler. 1601-2000 cm³ arasında yalnızca elektrik motoru 50 kW ı geçen ve hacmi 1800 cm³ ü geçmeyen araçlar hibrit satırına girer (%70 veya %80); koşul sağlanmazsa %150 uygulanır. 2000 cm³ üstünde elektrik motoru 100 kW ı geçen ve hacmi 2500 cm³ ü geçmeyenler %150 veya %170, diğerleri %220 öder. Şarj edilebilir hibritlerde ise CO2 emisyonu 25 g/km nin altında ve menzil 70 km ve üzerinde olmak şartıyla 1600 cm³ e kadar %45, 1601-1800 cm³ için %85 uygulanır." } }
         ]
       }
     ]
@@ -157,27 +157,36 @@
             <p class="panel-q">
               <label for="otv-tip">Araç tipi</label>
               <select id="otv-tip" aria-label="Araç tipi">
-                <option value="icten" selected>Benzinli / Dizel / standart hibrit</option>
-                <option value="hev">Hibrit — HEV (&gt;50 kW e-motor, ≤1800 cm³)</option>
-                <option value="phev">Şarjlı hibrit — PHEV (menzil ≥70 km, ≤1600 cm³)</option>
-                <option value="ev">Tam elektrikli</option>
+                <option value="icten" selected>Benzinli / Dizel</option>
+                <option value="hibrit">Hibrit (şarj edilemeyen)</option>
+                <option value="phev">Şarj edilebilir hibrit</option>
+                <option value="elektrik">Tam elektrikli</option>
               </select>
             </p>
             <p class="panel-q" id="hacim-wrap">
-              <label for="otv-hacim">Motor silindir hacmi</label>
-              <select id="otv-hacim" aria-label="Motor silindir hacmi">
-                <option value="1400" selected>1400 cm³ ve altı</option>
-                <option value="1600">1401 – 1600 cm³</option>
-                <option value="2000">1601 – 2000 cm³</option>
-                <option value="9999">2001 cm³ ve üzeri</option>
-              </select>
+              <label for="otv-hacim">Motor silindir hacmi — cm³</label>
+              <input type="number" id="otv-hacim" inputmode="numeric" min="1" step="1" value="1400" aria-label="Motor silindir hacmi">
+              <span class="fld-ipucu">Kanunun eşikleri 1400, 1600, 1800, 2000 ve 2500 cm³'te; tam değeri girin.</span>
+            </p>
+            <p class="panel-q" id="ekw-wrap" hidden>
+              <label for="otv-ekw">Elektrik motorunun gücü — kW</label>
+              <input type="number" id="otv-ekw" inputmode="decimal" step="any" min="0" value="60" aria-label="Elektrik motor gücü">
+              <span class="fld-ipucu">Hibrit satırına girmek için 50 kW'ı (2000 cm³ üstünde 100 kW'ı) geçmesi gerekir.</span>
+            </p>
+            <p class="panel-q" id="co2-wrap" hidden>
+              <label for="otv-co2">CO₂ emisyonu — g/km</label>
+              <input type="number" id="otv-co2" inputmode="decimal" step="any" min="0" value="20" aria-label="Karbondioksit emisyonu">
+              <span class="fld-ipucu">Ağırlıklı birleşik değer; satır için 25 g/km'nin altında olmalı.</span>
+            </p>
+            <p class="panel-q" id="menzil-wrap" hidden>
+              <label for="otv-menzil">Elektrikli menzil — km</label>
+              <input type="number" id="otv-menzil" inputmode="decimal" step="any" min="0" value="80" aria-label="Elektrikli menzil">
+              <span class="fld-ipucu">Satır için 70 km ve üzeri olmalı.</span>
             </p>
             <p class="panel-q" id="kw-wrap" hidden>
-              <label for="otv-kw">Motor gücü</label>
-              <select id="otv-kw" aria-label="Motor gücü">
-                <option value="160" selected>160 kW ve altı</option>
-                <option value="999">160 kW üzeri</option>
-              </select>
+              <label for="otv-kw">Motor gücü — kW</label>
+              <input type="number" id="otv-kw" inputmode="decimal" step="any" min="1" value="150" aria-label="Motor gücü">
+              <span class="fld-ipucu">160 kW sınırı tarifeyi ikiye ayırır.</span>
             </p>
             <p class="panel-q">
               <label for="otv-matrah">Vergisiz fiyat — TL (ÖTV matrahı)</label>
@@ -222,17 +231,64 @@
           </table>
         </div>
 
-        <h3>Elektrikli ve hibrit dilimleri</h3>
+        <h3 id="elektrikli">Elektrikli araçlarda ÖTV</h3>
+        <p>
+          Elektrikli otomobilde hacim değil <strong>motor gücü</strong> sorulur ve tek bir sınır
+          tarifeyi ikiye ayırır:
+        </p>
         <ul>
-          <li><strong>Elektrikli, ≤160 kW:</strong> matrah ≤ 1.650.000 TL → %25; üzeri → %55</li>
-          <li><strong>Elektrikli, &gt;160 kW:</strong> matrah ≤ 1.650.000 TL → %65; üzeri → %75</li>
-          <li><strong>HEV</strong> (&gt;50 kW e-motor, ≤1800 cm³): ≤ 1.250.000 TL → %70; üzeri → %80</li>
-          <li><strong>PHEV</strong> (CO₂ &lt; 25 g/km, menzil ≥ 70 km, ≤1600 cm³): ≤ 1.350.000 TL → %45; üzeri → %75</li>
+          <li><strong>Motor gücü 160 kW'ı geçmeyenler:</strong> matrah ≤ 1.650.000 TL → %25; üzeri → %55</li>
+          <li><strong>Motor gücü 160 kW'ı geçenler:</strong> matrah ≤ 1.650.000 TL → %65; üzeri → %75</li>
         </ul>
+
+        <h3 id="hibrit">Hibritte oran değil, KOŞUL belirleyicidir</h3>
+        <p>
+          "Hibrit" tek bir vergi kategorisi değildir. Kanun hibrit satırlarını koşullara bağlar
+          ve koşul sağlanmazsa araç o satıra hiç girmez — düz içten yanmalı gibi vergilenir.
+          Aradaki fark %70 ile %150 arasında olabilir, yani araç fiyatının yarısı kadar.
+        </p>
+        <ul>
+          <li>
+            <strong>1600 cm³'e kadar hibritler için ayrı satır yoktur.</strong> Bu araçlar
+            hacimlerine göre içten yanmalı tarifesinden vergilenir. Küçük hibrit sahiplerinin
+            beklediği ayrı bir indirim kanunda bulunmaz.
+          </li>
+          <li>
+            <strong>1601–2000 cm³ hibrit:</strong> yalnızca elektrik motoru <strong>50 kW'ı
+            geçen</strong> ve hacmi <strong>1800 cm³'ü geçmeyen</strong> araçlar bu satıra girer —
+            matrah ≤ 1.250.000 TL → %70; üzeri → %80. Elektrik motoru 50 kW'ı geçmeyen bir
+            "mild hybrid" bu satıra girmez; %150'ye tabidir.
+          </li>
+          <li>
+            <strong>2000 cm³ üstü hibrit:</strong> elektrik motoru <strong>100 kW'ı geçen</strong>
+            ve hacmi <strong>2500 cm³'ü geçmeyen</strong> araçlar için matrah ≤ 1.650.000 TL → %150;
+            üzeri → %170. Koşul sağlanmazsa %220.
+          </li>
+        </ul>
+
+        <h3 id="phev">Şarj edilebilir hibritte üç koşul birden</h3>
+        <p>
+          Şarj edilebilir hibrit satırı üç şeyi birden ister: araç <strong>dışarıdan şarj
+          edilebilir</strong> olacak, ağırlıklı birleşik <strong>CO₂ emisyonu 25 g/km'nin
+          altında</strong> ve <strong>elektrikli menzili 70 km ve üzerinde</strong> olacak.
+          Üçünden biri eksikse satır uygulanmaz.
+        </p>
+        <ul>
+          <li><strong>1600 cm³'ü geçmeyenler:</strong> matrah ≤ 1.350.000 TL → %45; üzeri → %75</li>
+          <li><strong>1601–1800 cm³:</strong> matrah ≤ 1.350.000 TL → %85</li>
+        </ul>
+        <p>
+          İkinci satırın bir inceliği var ve hesabı en çok şaşırtan yer orasıdır:
+          <strong>bu satırın "diğerleri" karşılığı yoktur.</strong> 1601–1800 cm³ bir şarj
+          edilebilir hibritin matrahı 1.350.000 TL'yi aşarsa araç bu satırdan tamamen düşer ve
+          hacmine göre genel satıra döner — elektrik motoru 50 kW'ı geçiyorsa %80'e, geçmiyorsa
+          %170'e. Yani eşiğin bir lira üstü, oranı %85'ten %170'e çıkarabilir.
+        </p>
 
         <p class="disclaimer muted">
           <strong>Bilgilendirme:</strong> ÖTV matrah dilimleri ve oranları Cumhurbaşkanı Kararlarıyla yıl
-          içinde değişebilir (son büyük güncelleme: Temmuz 2025, 10115 sayılı Karar). Satın alma öncesi
+          içinde değişebilir; bu araçtaki oranlar 24 Temmuz 2025 tarihli 10115 sayılı Cumhurbaşkanı
+          Kararına, satır yapısı 4760 sayılı Kanuna ekli (II) sayılı listeye dayanır. Satın alma öncesi
           güncel oranı GİB'den veya yetkili bayiden teyit edin; bu araç resmî danışmanlık yerine geçmez.
         </p>
       </div>
@@ -329,7 +385,8 @@
     </div>
   </footer>
 
-  <script src="script.js?v=9a363d19" defer></script>
+  <script src="tarife.js?v=08e1f910" defer></script>
+  <script src="script.js?v=a543d0dc" defer></script>
   <script src="../script.js?v=5127b7a8" defer></script>
 </body>
 </html>

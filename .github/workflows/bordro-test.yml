@@ -195,6 +195,16 @@ jobs:
       - name: MTV tarife ve hesap kuralları
         run: node mtv-hesaplama/tarife-test.js
 
+      # OTV'de hata yanlis oran yazmakla degil, aracin YANLIS SATIRA
+      # dusmesiyle olur -- ve sonuc yine makul bir sayi gibi gorunur.
+      # Kanunun hibrit satirlari KOSULLU (elektrik motoru 50 kW'i gecen,
+      # sarjlida CO2 < 25 g/km ve menzil >= 70 km); eski form bu kosullari
+      # etikette yaziyor ama hic sormuyordu. Test kosullari tam sinirlarinda
+      # zorluyor: "gecen", "altinda" ve "ve uzerinde" kanunda farkli yazilmis
+      # ve kodda da farkli olmak zorunda.
+      - name: ÖTV tarife ve satır çözümü
+        run: node otv-hesaplama/tarife-test.js
+
       # Bir PAROLA URETECINDE hatalar sessizdir: zayif rastgelelik,
       # yanli modulo, eksik sinif ya da sisirilmis entropi ekranda
       # gorunmez -- cikti yine rastgele bir dizi gibi durur ve kullanici
