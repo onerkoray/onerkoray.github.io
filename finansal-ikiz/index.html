@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://korayoner.dev/images/finansal-ikiz-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=4254169d">
-  <link rel="stylesheet" href="style.css?v=d9fad99b">
+  <link rel="stylesheet" href="style.css?v=ab23b856">
 
   <script type="application/ld+json">
   {
@@ -104,6 +104,7 @@
           { "@type": "Question", "name": "Verilerim nereye gidiyor?", "acceptedAnswer": { "@type": "Answer", "text": "Hiçbir yere. Bütün hesap tarayıcınızda çalışır. Profilinizi cihazınızda saklamak isterseniz bunu açıkça onaylamanız gerekir; onay vermezseniz veri yalnızca sekme açık kaldığı sürece yaşar. Onayı geri aldığınızda saklanan veri de silinir. Ad, e-posta, TCKN, IBAN gibi alanlar modelde hiç yok." } },
           { "@type": "Question", "name": "Gelecek yılların vergi tarifesi nereden geliyor?", "acceptedAnswer": { "@type": "Answer", "text": "Uydurulmuyor. Tarifenin enflasyonla endekslendiği varsayılıyor — Türkiye'de fiilen olan budur. Gelecekteki nominal maaş bugünün parasına indirgenir, net/brüt oranı bugünkü tarifeyle o reel seviyede hesaplanıp nominale uygulanır. Tarife enflasyonun altında endekslenirse gerçek net buradakinden düşük çıkar; yani model bu tarafta iyimserdir." } },
           { "@type": "Question", "name": "Band neden bu kadar geniş?", "acceptedAnswer": { "@type": "Answer", "text": "Çünkü 20 yıllık bir projeksiyon gerçekten o kadar belirsizdir. Bandın genişliği bir kusur değil, sonucun varsayımlara ne kadar duyarlı olduğunun ölçüsüdür. Dar bir band gösteren herhangi bir araç, sahip olmadığı bir kesinliği satıyordur." } },
+          { "@type": "Question", "name": "Hedeflerde 2/3 tutuyor ne demek, olasılık mı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır, bir sayımdır. Hedef üç senaryoda ayrı ayrı sınanır ve kaçında tuttuğu yazılır. Bunu yüzdeye çevirmek, elimizde olmayan bir dağılımı varmış gibi göstermek olurdu; üç senaryo bir örneklem değil, kullanıcının seçtiği üç varsayım kümesidir. Bir Monte Carlo simülasyonu yüzde verebilir çünkü orada bir dağılım varsayılmıştır." } },
           { "@type": "Question", "name": "Olay tutarlarını hangi yılın parasıyla girmeliyim?", "acceptedAnswer": { "@type": "Answer", "text": "Bugünün parasıyla. Model tutarı olayın yılına taşır. Girilen rakamı nominal kabul etmek, yüksek enflasyonda olayı yıllar geçtikçe görünmez kılardı: %30 enflasyonda beş yıl sonraki 1.000.000 TL bugünün parasıyla 269.000 TL'ye iner ve grafikte neredeyse iz bırakmazdı." } },
           { "@type": "Question", "name": "Tükenme çizgisi ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "Bir senaryoda varlıklarınız bittiğinde model açığı biriktirmeye devam eder. Gerçek hayatta kimse eksi bakiyeyle yaşamaz; harcamasını keser ya da borçlanır. O yüzden tükenmeden sonraki çizgi kesikli çiziliyor ve servet değil, kapatmanız gereken açığın büyüklüğü anlamına geliyor." } }
         ]
@@ -128,6 +129,7 @@
           <li><a href="#gelecek">Gelecek</a></li>
           <li><a href="#yontem">Yöntem</a></li>
           <li><a href="#olaylar">Olaylar</a></li>
+          <li><a href="#hedefler">Hedefler</a></li>
           <li><a href="#sss">S.S.S.</a></li>
         </ul>
       </nav>
@@ -181,7 +183,7 @@
             </p>
             <p class="panel-q">
               <label for="in-brut">Aylık brüt maaşınız</label>
-              <input type="text" id="in-brut" inputmode="decimal" value="100000"> TL
+              <input type="text" id="in-brut" inputmode="decimal" value="140000"> TL
               <span class="muted-note">Net, bordro motorundan hesaplanır.</span>
             </p>
             <p class="panel-q">
@@ -278,6 +280,34 @@
                 <br>Tek seferlik sütununda <strong>eksi</strong> değer çıkış
                 (peşinat, harcama), <strong>artı</strong> giriş (miras) demek.
                 Aylık etki sütununda eksi gider, artı gelirdir.
+              </p>
+            </div>
+            <div class="fi-bolum">
+              <div class="fi-baslik-satir">
+                <h3>Hedefleriniz</h3>
+                <div class="fi-olay-ekle">
+                  <label class="visually-hidden" for="hedef-tur">Hedef türü</label>
+                  <select id="hedef-tur">
+                    <option value="servet">Servet hedefi</option>
+                    <option value="harcama">Harcama hedefi (peşinat vb.)</option>
+                    <option value="borcsuzluk">Borçsuz olmak</option>
+                  </select>
+                  <button type="button" class="fi-ekle" data-ekle="hedef">+ Ekle</button>
+                </div>
+              </div>
+              <div class="fi-tablo-sarmal">
+                <table class="fi-girdi">
+                  <thead><tr><th scope="col">Hedef</th><th scope="col">Tür</th>
+                    <th scope="col">Yıl</th><th scope="col">Tutar (TL, bugünün parasıyla)</th>
+                    <th scope="col"><span class="visually-hidden">Sil</span></th></tr></thead>
+                  <tbody id="fi-hedefler"></tbody>
+                </table>
+              </div>
+              <p class="muted-note">
+                <strong>Servet hedefi</strong> net değerinize bakar (varlık − borç).
+                <strong>Harcama hedefi</strong> ise yatırım varlığınıza — çünkü
+                oturduğunuz evin değeri peşinat ödemez. İkisini karıştırmak
+                “hedefe ulaştınız” deyip ödeyememeye yol açardı.
               </p>
             </div>
           </div>
@@ -427,6 +457,35 @@
           projeksiyonu sistematik olarak şişirirdi.
         </p>
 
+        <h2 id="hedefler">“3 senaryodan 2'si” bir olasılık değildir</h2>
+        <p>
+          Hedefleriniz üç senaryoda ayrı ayrı sınanıyor ve sonuç
+          <strong>2/3</strong> gibi bir <em>sayım</em> olarak veriliyor.
+          Bunu “%67 olasılıkla tutar” diye sunmak, bu ürünün baştan beri
+          reddettiği şeyi yapmak olurdu: <strong>elimizde olmayan bir
+          dağılımı varmış gibi göstermek.</strong>
+        </p>
+        <p>
+          Üç senaryo bir örneklem değil, sizin seçtiğiniz üç varsayım
+          kümesi. Sayım bir sayımdır; olasılık değildir.
+        </p>
+        <p>
+          Bir Monte Carlo simülasyonu “%84 başarı” diyebilir — çünkü orada
+          bir dağılım <em>varsayılmıştır</em> ve o varsayım yazılıdır.
+          Sitedeki <a href="../finansal-ozgurluk-hesaplama/">FIRE aracı</a>
+          tam da bunu yapıyor. Burada dağılım yok, dolayısıyla yüzde de yok.
+        </p>
+
+        <h3>Ulaşamıyorsanız iki yol var</h3>
+        <p>
+          Araç her tutmayan hedef için ikisini de hesaplıyor:
+          <strong>aylık ne kadar fazladan biriktirmeniz</strong> gerektiğini
+          (projeksiyonun tamamı ikiye bölmeyle defalarca yeniden koşularak —
+          yaklaşık formülle değil, çünkü vergi ve borç itfası araya giriyor),
+          ve <strong>hedefi kaç yıl ertelemeniz</strong> gerektiğini. Bazen
+          doğru cevap daha çok biriktirmek değil, daha uzun beklemektir.
+        </p>
+
         <h2 id="sinir">Modelin söylemedikleri</h2>
         <ul>
           <li><strong>Bu bir tahmin değil.</strong> Girdiğiniz varsayımların
@@ -492,6 +551,7 @@
           <details><summary>Verilerim nereye gidiyor?</summary><p>Hiçbir yere. Saklama açıkça onay ister; onay geri alınınca veri silinir. Ad, e-posta, TCKN, IBAN modelde hiç yok.</p></details>
           <details><summary>Gelecek yılların vergisi nereden geliyor?</summary><p>Uydurulmuyor: tarifenin enflasyonla endekslendiği varsayılıyor. Tarife enflasyonun altında endekslenirse gerçek net buradakinden düşük çıkar.</p></details>
           <details><summary>Band neden bu kadar geniş?</summary><p>Çünkü 20 yıllık projeksiyon gerçekten o kadar belirsizdir. Dar bir band gösteren araç, sahip olmadığı bir kesinliği satıyordur.</p></details>
+          <details><summary>“2/3 tutuyor” ne demek, olasılık mı?</summary><p>Hayır. Üç senaryonun ikisinde hedefin tuttuğu anlamına gelir — bir sayımdır, olasılık değil. Üç senaryo bir örneklem değil, sizin seçtiğiniz üç varsayım kümesi.</p></details>
           <details><summary>Olay tutarlarını hangi yılın parasıyla gireyim?</summary><p>Bugünün parasıyla. Model olayın yılına taşır. Nominal kabul etmek, yüksek enflasyonda olayı yıllar geçtikçe görünmez kılardı.</p></details>
           <details><summary>Tükenme çizgisi ne demek?</summary><p>Varlık bittikten sonraki kesikli çizgi servet değil, kapatmanız gereken açığın büyüklüğüdür.</p></details>
         </div>
@@ -553,10 +613,11 @@
   <script src="../bordro/motor.js?v=5ef870ac" defer></script>
   <script src="../finans/kurallar.js?v=da7bebf5" defer></script>
   <script src="../finans/enflasyon-motoru.js?v=53474604" defer></script>
-  <script src="../finans/profil.js?v=e46d02f8" defer></script>
-  <script src="../finans/ikiz-motoru.js?v=060c2081" defer></script>
+  <script src="../finans/profil.js?v=6c4b3529" defer></script>
+  <script src="../finans/ikiz-motoru.js?v=819d9e6d" defer></script>
+  <script src="../finans/hedef-motoru.js?v=3105af8d" defer></script>
   <script src="../finans/bant.js?v=562214ce" defer></script>
-  <script src="script.js?v=bc66525e" defer></script>
+  <script src="script.js?v=fcf958fd" defer></script>
   <script src="../script.js?v=d148f9ac" defer></script>
 </body>
 </html>

@@ -94,6 +94,9 @@
          çıktığı yer. Ev alma, çocuk, emeklilik gibi kırılmalar olmadan
          yirmi yıllık bir eğri, bugünün fotoğrafının uzatılmasından ibaret. */
       olaylar: [],
+      /* HEDEFLER — "ne olacak" sorusundan "istediğim oluyor mu" sorusuna
+         geçilen yer. Her hedef üç senaryoda ayrı ayrı sınanıyor. */
+      hedefler: [],
       varsayimlar: {
         enflasyon: 0.30,
         ucretArtisi: 0.30,
@@ -229,6 +232,28 @@
     };
   }
 
+  var HEDEF_TURLERI = ["servet", "harcama", "borcsuzluk"];
+
+  /* HEDEF TÜRLERİ AYRI, ÇÜNKÜ NEYE BAKTIKLARI AYRI.
+   *   servet      → reel NET DEĞER (varlık − borç). "50 yaşında 5 milyonum
+   *                 olsun" derken kastedilen budur.
+   *   harcama     → reel YATIRIM VARLIĞI. Ev peşinatı ödeyecekseniz net
+   *                 değeriniz değil, NAKDE ÇEVİREBİLECEĞİNİZ tutar önemli;
+   *                 oturduğunuz evin değeri peşinat ödemez.
+   *   borcsuzluk  → o yıl borç kalmamış olması.
+   * İkisini karıştırmak, "hedefe ulaştınız" deyip ödeyememeye yol açardı. */
+  function hedefNormalize(h) {
+    return {
+      id: id(h && h.id),
+      ad: metin(h && h.ad, "Hedef"),
+      tur: secim(h && h.tur, HEDEF_TURLERI, "servet"),
+      yil: h && h.yil ? tamsayi(h.yil, null) : null,
+      /* Tutar BUGÜNÜN PARASIYLA; projeksiyonun reel değerleriyle
+         doğrudan karşılaştırılıyor. */
+      tutar: sayi(h && h.tutar, 0)
+    };
+  }
+
   function borcNormalize(b) {
     return {
       id: id(b && b.id),
@@ -258,6 +283,11 @@
     if (Array.isArray(ham.giderler)) p.giderler = ham.giderler.map(giderNormalize);
     if (Array.isArray(ham.varliklar)) p.varliklar = ham.varliklar.map(varlikNormalize);
     if (Array.isArray(ham.borclar)) p.borclar = ham.borclar.map(borcNormalize);
+    if (Array.isArray(ham.hedefler)) {
+      p.hedefler = ham.hedefler.map(hedefNormalize)
+        .filter(function (h) { return h.yil !== null; })
+        .sort(function (a, b) { return a.yil - b.yil; });
+    }
     if (Array.isArray(ham.olaylar)) {
       /* Yılı olmayan olay projeksiyona giremez; sessizce yok sayılır
          yerine AYIKLANIR ki arayüz eksik olanı gösterebilsin. */
@@ -369,6 +399,7 @@
       varliklar: p.varliklar,
       borclar: p.borclar,
       olaylar: p.olaylar,
+      hedefler: p.hedefler,
       varsayimlar: p.varsayimlar,
       senaryolar: p.senaryolar
     }, null, 2);
@@ -465,6 +496,7 @@
     VARLIK_TURLERI: VARLIK_TURLERI,
     BORC_TURLERI: BORC_TURLERI,
     OLAY_TURLERI: OLAY_TURLERI,
+    HEDEF_TURLERI: HEDEF_TURLERI,
     LIKIT_TURLER: LIKIT_TURLER,
     bos: bosProfil,
     normalize: normalize,
