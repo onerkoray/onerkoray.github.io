@@ -38,6 +38,15 @@ jobs:
       - name: Finans kuralları regresyonları
         run: node finans/test.js
 
+      # Faz 1 temel motorlari. Uzerlerine binecek her arac bunlara
+      # bagli oldugu icin buradaki bir hata tek sayfayi degil butun
+      # zinciri sessizce yanlisa cevirir.
+      - name: Zaman ve nakit akışı motoru regresyonları
+        run: node finans/zaman-test.js
+
+      - name: Enflasyon motoru regresyonları
+        run: node finans/enflasyon-test.js
+
       # Emeklilik motoru: ABO kademeleri yanlis girilirse sayfa calismaya
       # devam eder, yalnizca sonuclar sessizce yanlis olur. Kanundaki
       # kademeler bilinen referans degerlerle (9.000 gun -> %65 ve %50)
