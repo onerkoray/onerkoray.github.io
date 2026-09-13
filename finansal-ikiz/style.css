@@ -1,0 +1,178 @@
+/* Finansal İkiz — araca özgü stiller.
+   Form ve tablo dili diğer finans araçlarıyla AYNI; band bileşeninin
+   stilleri global style.css'te (.bt-*). */
+
+.bolum-not {
+  max-width: 62ch; margin: 0 0 1.25rem; font-size: .9rem;
+  color: var(--text-muted); line-height: 1.6;
+}
+.hero-not {
+  margin: 1rem 0 0; padding: .7rem .95rem; max-width: 62ch;
+  border: 1px dashed var(--border); border-radius: var(--radius-card);
+  font-size: .82rem; color: var(--text-muted); line-height: 1.6;
+}
+
+/* --------------------------------- form ---------------------------------- */
+.fi-grid {
+  display: grid; gap: 1rem 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.fi-grid .panel-q { margin: 0; }
+.panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
+.panel-q label { display: block; font-weight: 600; font-size: .82rem; margin-bottom: .3rem; }
+#fi-form input[type="text"], #fi-form select {
+  font: inherit; padding: 8px 10px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--surface); color: var(--text);
+  min-height: 44px; max-width: 100%;
+}
+.fi-grid input[type="text"] { width: 9rem; }
+#fi-form input:focus-visible, #fi-form select:focus-visible,
+#fi-form button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.fi-bolumler { margin-top: 1.5rem; display: grid; gap: 1.5rem; }
+.fi-bolum {
+  padding-top: 1.25rem; border-top: 1px solid var(--border);
+}
+.fi-baslik-satir {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin: 0 0 .7rem; flex-wrap: wrap;
+}
+.fi-baslik-satir h3 { margin: 0; font-size: 1rem; font-weight: 650; }
+.fi-ekle {
+  font: 600 .8rem var(--font-body); padding: .45rem .9rem; min-height: 40px;
+  border: 1px solid var(--brand); border-radius: 999px;
+  background: transparent; color: var(--brand-strong); cursor: pointer;
+}
+.fi-ekle:hover { background: var(--surface-note); }
+
+.fi-tablo-sarmal { overflow-x: auto; }
+.fi-girdi { width: 100%; border-collapse: collapse; }
+.fi-girdi thead th {
+  text-align: left; padding: .4rem .5rem; font-size: .72rem; font-weight: 600;
+  color: var(--text-muted); white-space: nowrap;
+}
+.fi-girdi td { padding: .3rem .5rem; vertical-align: middle; }
+.fi-girdi .fi-ad { min-width: 170px; }
+.fi-girdi .fi-ad input { width: 100%; }
+.fi-girdi .fi-sayi { width: 130px; }
+.fi-girdi .fi-tur { min-width: 130px; }
+.fi-girdi .fi-tur select { width: 100%; }
+.fi-onay-h { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; }
+.fi-onay-h input { width: 18px; height: 18px; accent-color: var(--brand); }
+.fi-sil {
+  width: 34px; height: 34px; line-height: 1; font-size: 1.1rem;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: transparent; color: var(--text-muted); cursor: pointer;
+}
+.fi-sil:hover { color: var(--text); border-color: var(--text-muted); }
+
+.fi-varsayim {
+  margin: 1.6rem 0 0; padding: 1rem 1.15rem;
+  border: 1px solid var(--border); border-radius: var(--radius-card);
+  background: var(--surface-note);
+}
+.fi-varsayim legend { padding: 0 .4rem; font-weight: 650; font-size: .85rem; }
+.fi-varsayim .muted-note { margin: 0 0 .9rem; }
+/* Reel getiri, üç nominal girdinin ASIL SONUCU: uzun vadede serveti
+   belirleyen tek sayı bu. Girdilerin hemen altında ve canlı. */
+.fi-reel {
+  margin: .9rem 0 0; padding-top: .8rem; border-top: 1px solid var(--border);
+  font-size: .85rem; line-height: 1.6;
+}
+.fi-reel strong { font-variant-numeric: tabular-nums; }
+
+/* ------------------------------- saklama --------------------------------- */
+.fi-saklama {
+  margin: 1.6rem 0 0; padding: 1rem 1.15rem;
+  border: 1px solid var(--border); border-left: 3px solid var(--dv-2);
+  border-radius: var(--radius-card);
+}
+.fi-onay {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-size: .9rem; min-height: 44px; font-weight: 600;
+}
+.fi-onay input { width: 18px; height: 18px; accent-color: var(--brand); }
+.fi-saklama .muted-note { margin: .3rem 0 0; max-width: 62ch; }
+.fi-dosya { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .9rem; }
+.fi-dugme {
+  font: 600 .8rem var(--font-body); padding: .5rem .95rem; min-height: 40px;
+  display: inline-flex; align-items: center; cursor: pointer;
+  border: 1px solid var(--brand); border-radius: 999px;
+  background: var(--brand); color: var(--brand-contrast, #fff);
+}
+.fi-dugme--ikincil { background: transparent; color: var(--brand-strong); }
+.fi-dugme--sade { background: transparent; border-color: var(--border); color: var(--text-muted); }
+.fi-dugme:hover { filter: brightness(1.05); }
+
+/* ------------------------------ sonuç kartı ------------------------------ */
+.fi-karar {
+  margin: 0 0 1.25rem; padding: 1.35rem 1.5rem;
+  border: 1px solid var(--brand); border-radius: var(--radius-card);
+  background: var(--surface-note);
+}
+.fi-etiket {
+  margin: 0 0 .3rem; font: 500 .66rem var(--font-mono);
+  letter-spacing: .08em; text-transform: uppercase; color: var(--brand-strong);
+}
+.fi-buyuk {
+  margin: 0; font: 700 2.3rem/1.05 var(--font-display);
+  letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+}
+.fi-cumle { margin: .55rem 0 0; font-size: .95rem; line-height: 1.55; }
+.fi-not { margin: .45rem 0 0; font-size: .82rem; color: var(--text-muted); line-height: 1.6; }
+
+.fi-kutular {
+  display: grid; gap: 1rem; margin: 0 0 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.fi-kutu {
+  padding: 1rem 1.15rem; border: 1px solid var(--border);
+  border-radius: var(--radius-card); background: var(--surface);
+}
+.fi-kutu-ad { margin: 0 0 .25rem; font-size: .78rem; font-weight: 650; }
+.fi-kutu-deger {
+  margin: 0; font: 700 1.4rem/1.1 var(--font-display);
+  letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+}
+.fi-kutu-alt { margin: .35rem 0 0; font-size: .78rem; color: var(--text-muted); line-height: 1.55; }
+
+/* Uyarı kutusu: tükenme gibi gerçek bir bulgu için. Süs değil. */
+.fi-uyari {
+  margin: 1.25rem 0 0; padding: .95rem 1.1rem;
+  border: 1px solid var(--border); border-left: 3px solid var(--dv-2);
+  border-radius: var(--radius-card); background: var(--surface-note);
+  font-size: .9rem; line-height: 1.6;
+}
+.fi-eksik { border-left-color: var(--dv-axis); }
+
+/* ----------------------------- duyarlılık -------------------------------- */
+.fi-duyarlilik { margin: 1.75rem 0 0; overflow-x: auto; }
+.fi-duyarlilik table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.fi-duyarlilik caption {
+  text-align: left; font-size: .88rem; font-weight: 650;
+  padding-bottom: .7rem; line-height: 1.5;
+}
+.fi-duyarlilik th, .fi-duyarlilik td {
+  padding: .5rem .55rem; border-bottom: 1px solid var(--border);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.fi-duyarlilik thead th { color: var(--text-muted); font-weight: 600; font-size: .75rem; }
+.fi-duyarlilik thead th:first-child, .fi-duyarlilik tbody th { text-align: left; }
+.fi-duyarlilik tbody th { font-weight: 600; }
+.fi-cubuk-h { width: 130px; min-width: 130px; }
+.fi-cubuk-yol {
+  display: block; position: relative; width: 100%; height: 10px;
+  border-radius: 2px; background: color-mix(in srgb, var(--text) 7%, transparent);
+}
+.fi-cubuk-sifir { position: absolute; inset-block: -2px; left: 50%; width: 1px;
+  background: var(--dv-axis); opacity: .55; }
+.fi-cubuk { position: absolute; top: 0; height: 10px; border-radius: 2px; }
+.fi-arti { background: var(--dv-3); }
+.fi-eksi { background: var(--dv-2); }
+
+@media (max-width: 560px) {
+  .fi-buyuk { font-size: 1.9rem; }
+  .fi-cubuk-h { width: 80px; min-width: 80px; }
+}
+@media print { .fi-karar, .fi-kutular, .fi-duyarlilik { break-inside: avoid; } }

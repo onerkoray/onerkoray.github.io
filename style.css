@@ -1748,3 +1748,55 @@ section { padding: var(--bolum) 0; }
 .sk-tablo td:last-child, .sk-tablo th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
 
 @media print { .sk { break-inside: avoid; } .sk-tablo { display: none; } }
+
+/* --------------------------------------------------------------------- */
+/* Bant — üç senaryolu servet eğrisi (finans/bant.js)                     */
+/* Isı haritası, eğri ve Sankey ile AYNI dil: aynı figcaption ağırlığı,   */
+/* aynı altyazı tonu, aynı --dv-* renk uzayı.                             */
+.bt { margin: 1.5rem 0 0; }
+.bt figcaption { font-size: .88rem; font-weight: 650; margin-bottom: .8rem; line-height: 1.5; }
+.bt-sarmal { overflow-x: auto; }
+.bt-sarmal svg { display: block; width: 100%; min-width: 560px; height: auto; }
+
+/* Band önce, çizgi sonra: medyan bandın üstünde ama onu ezmiyor.
+   Tek çizgi çizip bandı silik bırakmak, kesinlik iddiası taşımayan bir
+   modeli kesin gösterirdi. */
+.bt-alan { fill: var(--dv-1); fill-opacity: .17; }
+.bt-orta { fill: none; stroke: var(--dv-1); stroke-width: 2.5; stroke-linejoin: round; }
+/* Tükenme sonrası servet değil AÇIK: kesikli ve farklı renk. */
+.bt-acik { stroke: var(--dv-2); stroke-dasharray: 5 4; }
+.bt-olay-cizgi { stroke: var(--dv-axis); stroke-width: 1; stroke-dasharray: 2 4; opacity: .5; }
+
+.bt-tik { font: 500 11px var(--font-mono); fill: var(--text-muted); }
+.bt-solgun { opacity: .7; }
+.bt-olay {
+  font: 600 10.5px var(--font-body); fill: var(--text);
+  paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px;
+  stroke-linejoin: round;
+}
+
+.bt-lejant {
+  display: flex; flex-wrap: wrap; gap: .4rem 1.3rem;
+  margin-top: .8rem; font-size: .75rem; color: var(--text-muted);
+}
+.bt-l { display: inline-flex; align-items: center; gap: .4rem; }
+.bt-ornek { width: 1.1rem; height: .7rem; border-radius: 2px; flex: none; }
+.bt-o-alan { background: color-mix(in srgb, var(--dv-1) 24%, transparent); }
+.bt-o-orta { height: 3px; border-radius: 2px; background: var(--dv-1); }
+.bt-o-acik {
+  height: 0; border-top: 3px dashed var(--dv-2); background: none; border-radius: 0;
+}
+
+.bt-not { margin: .8rem 0 0; font-size: .78rem; line-height: 1.6; color: var(--text-muted); }
+.bt-tablo { margin: .7rem 0 0; font-size: .78rem; }
+.bt-tablo summary { cursor: pointer; color: var(--text-muted); }
+.bt-tablo summary:hover { color: var(--text); }
+.bt-tablo table { width: 100%; border-collapse: collapse; margin-top: .5rem; }
+.bt-tablo th, .bt-tablo td {
+  padding: .3rem .5rem; border-bottom: 1px solid var(--border);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.bt-tablo th { color: var(--text-muted); font-weight: 600; }
+.bt-tablo th:first-child, .bt-tablo td:first-child { text-align: left; }
+
+@media print { .bt { break-inside: avoid; } .bt-tablo { display: none; } }

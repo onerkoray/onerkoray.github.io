@@ -208,6 +208,10 @@ SPEC = {
    "İşveren maliyeti ile net ücret arasındaki fark. Zirve 100.000 TL'de değil, SGK tavanında.",
    ["OECD tanımı", "Marjinal oran"], "bordro"),
 
+ "finansal-ikiz": ("finansal-ikiz", "Finansal", "İkiz",
+   "Finansal hayatınızın dijital ikizi: yirmi yıllık servet eğrisi, üç senaryo ve en etkili değişken.",
+   ["Üç senaryo", "20 yıl"], "finans"),
+
  "kisisel-enflasyon": ("kisisel-enflasyon", "Kişisel", "Enflasyon",
    "Resmî oran bir sepet ortalaması. Kendi sepetiniz ne kadar pahalandı, hangi kalem kaç puan ekledi?",
    ["Kendi sepetiniz", "Katkı ayrıştırması"], "finans"),

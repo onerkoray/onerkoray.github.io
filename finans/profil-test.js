@@ -196,6 +196,17 @@ dogru("siralama korunuyor: kotumser < baz < iyimser (getiri)",
 dogru("siralama korunuyor: kotumser > baz > iyimser (enflasyon)",
   kot.enflasyon > baz.enflasyon && baz.enflasyon > iyi.enflasyon);
 
+/* CIFTE SAYIM YOK: reel ucret = (1+ucret)/(1+enflasyon)-1 oldugu icin
+   enflasyon kaymasi TEK BASINA reel ucreti eritiyor. Kotumserde ustune
+   bir de nominal ucret kaymasi eklemek ayni seyi iki kez saymakti ve
+   reel ucreti yilda -%7,4'e indiriyordu (20 yilda bugunkunun %22'si).
+   Test reel ucret artisini makul bir bantta sabitliyor. */
+function reelUcret(v) { return (1 + v.ucretArtisi) / (1 + v.enflasyon) - 1; }
+esit("kotumser reel ucret ~-%4,4", reelUcret(kot), -0.0441, 0.003);
+esit("baz reel ucret sifir", reelUcret(baz), 0, 1e-9);
+esit("iyimser reel ucret ~+%3,9", reelUcret(iyi), 0.0394, 0.003);
+dogru("kotumserde reel ucret bir cokus degil (>-%6)", reelUcret(kot) > -0.06);
+
 /* Taban degisince UC SENARYO BIRLIKTE kayiyor; aralarindaki mesafe
    korunuyor. Mutlak sayi saklasaydik taban degisince kopariklardi. */
 var yuksek = P.normalize(ORNEK);
