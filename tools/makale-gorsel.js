@@ -44,6 +44,9 @@ var CHROME = [
 /* OTV kapagi tarifeyi DOGRUDAN araciN modulunden okur: kapaktaki
    sicrama ile aracin hesabi ayrisamaz. */
 var OTV = require(path.join(__dirname, "..", "otv-hesaplama", "tarife.js"));
+/* Fazla mesai kapagi zam katsayilarini ve saat bolenini bordro
+   parametrelerinden okur; yazidaki tabloyla ayrisamaz. */
+var BORDRO = require(path.join(__dirname, "..", "bordro", "parametreler.js"));
 
 var R = {
   zemin: "#f7f5f0",
@@ -563,6 +566,12 @@ var KAPAKLAR = {
     baslik: "İşsizlik maaşı ne kadar?",
     alt: "Tavanı bile net asgari ücretin altında",
     cizim: sutunIssizlikTavani
+  },
+  "fazla-mesai-zammi-yuzde-kac": {
+    kicker: "Çalışma hayatı",
+    baslik: "Fazla mesai zammı yüzde kaç?",
+    alt: "Oranı, ne kadar çalıştığınız değil sözleşmeniz belirler",
+    cizim: katmanliHafta
   },
   "otv-basamak-etkisi": {
     kicker: "Vergi",
@@ -1094,6 +1103,90 @@ function basamakOtv() {
     '<text x="' + P + '" y="' + (H - 22) + '" font-size="13" fill="' + R.ikincil +
       '">Renkli bantlarda satılan sıfır otomobil yoktur: aynı parayla bir alttaki araç alınır.</text>' +
     "</svg>";
+}
+
+/* Iki katmanli hafta — "fazla-mesai-zammi-yuzde-kac" kapagi.
+   40 saatlik sozlesmeyle 48 saat calisan birinin haftasi: 40'a kadar
+   normal, 40-45 arasi %25, 45 ustu %50. Ortadaki bolge yazinin konusu. */
+function katmanliHafta() {
+  var W = 600, H = 360, P = 34;
+  var P26 = (BORDRO.parametreler || BORDRO)["2026"];
+  var F = P26.fazlaMesai;
+  var brut = 60000, saatlik = brut / F.aylikSaat;
+
+  var SOZ = 40, YASAL = 45, CALISILAN = 48;
+  var bolge = [
+    { ad: "Normal çalışma", bas: 0, bit: SOZ, renk: R.izgara, ink: R.ikincil, oran: null },
+    { ad: "Fazla sürelerle", bas: SOZ, bit: YASAL, renk: R.s1, ink: R.s1,
+      oran: F.fazlaSureliKat },
+    { ad: "Fazla çalışma", bas: YASAL, bit: CALISILAN, renk: R.s2, ink: R.s2,
+      oran: F.fazlaCalismaKat }
+  ];
+
+  function tl(n) {
+    return n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  var solX = P, sagX = W - P, barY = 150, barH = 54;
+  function xOf(saat) { return solX + (saat / CALISILAN) * (sagX - solX); }
+
+  var cubuk = bolge.map(function (b) {
+    return '<rect x="' + xOf(b.bas) + '" y="' + barY + '" width="' +
+      (xOf(b.bit) - xOf(b.bas) - 2) + '" height="' + barH +
+      '" fill="' + b.renk + '"/>';
+  }).join("");
+
+  /* Saat isaretleri: sozlesme suresi ve yasal sinir. */
+  var isaret = [SOZ, YASAL, CALISILAN].map(function (saat) {
+    return '<line x1="' + xOf(saat) + '" y1="' + (barY - 10) + '" x2="' + xOf(saat) +
+      '" y2="' + (barY + barH + 10) + '" stroke="' + R.murekkep +
+      '" stroke-width="1" stroke-opacity="0.35"/>' +
+      '<text x="' + xOf(saat) + '" y="' + (barY - 16) + '" text-anchor="middle" ' +
+      'font-size="13" font-weight="700" fill="' + R.murekkep + '">' + saat + ' sa</text>';
+  }).join("");
+
+  /* Tutarlar cubugun ALTINDA LISTE olarak. Once bolgelerin altina
+     yazilmisti; zamli bolgeler haftanin 5/48 ve 3/48'i oldugu icin
+     etiketler cakisiyordu. Cubuk dogrusal kalmali -- saat gosteriyor --
+     o yuzden tasinan sey etiket. Lejant da kalkti: her satir kendi renk
+     kutusunu tasiyor. */
+  var satirY = barY + barH + 40;
+  var zamli = bolge.filter(function (b) { return b.oran; });
+  var etiket = zamli.map(function (b, i) {
+    var saat = b.bit - b.bas;
+    var tutar = saatlik * b.oran * saat;
+    var yy = satirY + i * 30;
+    return '<rect x="' + solX + '" y="' + (yy - 11) + '" width="12" height="12" fill="' +
+      b.renk + '"/>' +
+      '<text x="' + (solX + 20) + '" y="' + yy + '" font-size="14" fill="' + R.murekkep +
+      '">' + b.bas + '–' + b.bit + ' sa · ' + esc(b.ad) + ' · ' +
+      saat + ' saat</text>' +
+      '<text x="' + (solX + 300) + '" y="' + yy + '" font-size="15" font-weight="800" fill="' +
+      b.ink + '">%' + Math.round((b.oran - 1) * 100) + '</text>' +
+      '<text x="' + sagX + '" y="' + yy + '" text-anchor="end" font-size="15" ' +
+      'font-weight="700" fill="' + R.murekkep + '">' + tl(tutar) + ' TL</text>';
+  }).join("");
+
+  var toplam = zamli.reduce(function (a, b) {
+    return a + saatlik * b.oran * (b.bit - b.bas);
+  }, 0);
+  var toplamY = satirY + zamli.length * 30 + 10;
+  etiket += '<line x1="' + solX + '" y1="' + (toplamY - 21) + '" x2="' + sagX +
+    '" y2="' + (toplamY - 21) + '" stroke="' + R.izgara + '" stroke-width="1"/>' +
+    '<text x="' + (solX + 20) + '" y="' + toplamY + '" font-size="14" fill="' +
+    R.ikincil + '">8 saatin brüt karşılığı</text>' +
+    '<text x="' + sagX + '" y="' + toplamY + '" text-anchor="end" font-size="16" ' +
+    'font-weight="800" fill="' + R.marka + '">' + tl(toplam) + ' TL</text>';
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="40 saatlik ' +
+    'sözleşmeyle 48 saat çalışılan hafta üç bölgeye ayrılır: 40 saate kadar normal, ' +
+    '40-45 arası yüzde 25 zamlı, 45 saat üstü yüzde 50 zamlı">' +
+    '<text x="' + P + '" y="40" font-size="19" font-weight="700" fill="' + R.murekkep +
+      '">40 saatlik sözleşme, 48 saat çalışılan hafta</text>' +
+    '<text x="' + P + '" y="64" font-size="15" fill="' + R.ikincil +
+      '">Zam oranını ne kadar çalıştığınız değil, sözleşmedeki süre belirler</text>' +
+    '<text x="' + P + '" y="' + (barY - 44) + '" font-size="14" fill="' + R.ikincil +
+      '">60.000 TL brüt · saat ücreti ' + tl(saatlik) + ' TL</text>' +
+    cubuk + isaret + etiket + "</svg>";
 }
 
 function chromeBul() {
