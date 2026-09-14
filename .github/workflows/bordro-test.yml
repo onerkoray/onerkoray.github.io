@@ -238,6 +238,24 @@ jobs:
       - name: Görsel SEO regresyonları
         run: node tools/gorsel-seo-test.js
 
+      # TARIHE BAGLI IDDIALAR.
+      # Sitenin en cok tiklanan sayfasi bir TARIHE dayaniyor: "5 Eylul 2026
+      # itibariyla sunulmus teklif yok; TBMM 1 Ekim'de aciliyor". 1 Ekim
+      # geldiginde bu cumle sessizce yanlis olacak -- sayfa acilir, hicbir
+      # test patlamaz -- ve tam o gun sorgu hacmi zirveye cikiyor. Yani
+      # yazinin en yanlis oldugu an, en cok okundugu an.
+      #
+      # Yazi bunu zaten yazili olarak taahhut ediyordu. Arkasinda mekanizma
+      # olmayan bir taahhut niyettir; unutulur. Bu kontrol onu takvime baglar.
+      - name: Tarihe bağlı iddiaların süresi doldu mu
+        run: node tools/gecerlilik.js --check
+
+      # Muhafizin kendisi de bir muhafiz ister: bildirimin bicimi bozulursa
+      # kontrol sayfayi hic gormez ve CI yemyesil kalir. Kurulmus gorunup
+      # hicbir sey tutmayan bir kapi, hic olmamasindan kotudur.
+      - name: Geçerlilik kapısı gerçekten kapanıyor mu
+        run: node tools/gecerlilik-test.js
+
       # Bir PAROLA URETECINDE hatalar sessizdir: zayif rastgelelik,
       # yanli modulo, eksik sinif ya da sisirilmis entropi ekranda
       # gorunmez -- cikti yine rastgele bir dizi gibi durur ve kullanici
