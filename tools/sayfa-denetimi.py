@@ -141,7 +141,12 @@ def main():
                 if tur == "WebSite":
                     sema_website.add((d.get("@id"), d.get("url"), d.get("name")))
                 if tur == "Person" and d.get("@id"):
-                    sema_person.add(d["@id"])
+                    # @id VE url birlikte toplaniyor. Uzun sure yalnizca
+                    # @id bakiliyordu; 87 sayfada @id ayniyken url ikiye
+                    # ayrilmisti (84 ana sayfa, 3 /hakkimda/) ve kontrol
+                    # bunu gormedi. Ayni kimlige iki adres vermek, tek
+                    # kisiyi iki varliga bolme riski demek.
+                    sema_person.add((d["@id"], d.get("url")))
 
         # Olcum onay kapisi. Analitik artik SATIR ICI degil: gtag yalnizca
         # kullanici onay verirse, onay.js tarafindan yukleniyor. Bu yuzden
@@ -312,7 +317,8 @@ def main():
 
     if len(sema_person) > 1:
         bulgu("SEMA KIMLIK COKLU", "site geneli",
-              "Person @id tutarsiz: " + ", ".join(sorted(sema_person)))
+              "Person kimligi tutarsiz: " + ", ".join(
+                  "@id=%s url=%s" % (a, u) for a, u in sorted(sema_person)))
 
     # 10) olcum onay kapisi
     #
