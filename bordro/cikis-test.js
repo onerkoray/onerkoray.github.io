@@ -154,12 +154,30 @@ ok("Toplam gün sayısı doğru", h.toplamGun === 2756, String(h.toplamGun));
 var art = C.hizmetSuresi("2024-02-29", "2025-02-28");
 ok("Artık yıl sınırında ay/gün taşması yok", art.yil === 0 || art.yil === 1);
 
-/* 9 — Kıdem tavanı verisi olmayan yıl sessizce yanlış hesaplamamalı */
+/* 9 — Kıdem tavanı verisi olmayan yıl sessizce yanlış hesaplamamalı
+ *
+ * Bu bölüm bir zamanlar "2024 fesihinde veri yok" diyordu. Geçmiş yıl
+ * tavanları eklenince iddia geçersizleşti ve test kırmızıya döndü —
+ * doğrusu buydu: veri değiştiğinde onu anlatan test de değişmeli.
+ *
+ * Dal HÂLÂ gerekli, çünkü gerçek bir senaryosu var: yeni yılın vergi
+ * parametreleri Ocak'ta girilir ama kıdem tavanı genelgesi birkaç gün
+ * sonra çıkar. O aralıkta yıl TANIMLIDIR, tavanı YOKTUR. Test o durumu
+ * doğrudan kuruyor, çünkü artık bunu yaşayan gerçek bir yıl kalmadı. */
 baslik("Veri sınırları");
-var eski = ornek({ cikis: "2024-06-30", iseGiris: "2019-03-15" });
-ok("2024 fesihinde kıdem tavanı verisi yok → hak üretilmez", eski.kidem.hak === false);
+var yedekTavan = B.parametreler[2026].kidemTavanlari;
+delete B.parametreler[2026].kidemTavanlari;
+var eski = ornek({ cikis: "2026-06-30", iseGiris: "2019-03-15" });
+B.parametreler[2026].kidemTavanlari = yedekTavan;
+
+ok("tavan verisi olmayan yılda hak üretilmez", eski.kidem.hak === false);
 ok("Kullanıcıya gerekçe ve uyarı gösteriliyor",
   eski.kidem.gerekce.length > 0 && eski.uyarilar.length > 0);
+ok("Uyarı kapsanan yılları VERİDEN okuyor, metne gömmüyor",
+  eski.uyarilar.join(" ").indexOf("2020") !== -1,
+  eski.uyarilar.join(" "));
+ok("Yedek geri konduktan sonra hesap yine çalışıyor",
+  ornek({ cikis: "2026-06-30", iseGiris: "2019-03-15" }).kidem.hak === true);
 
 /* 10 — Fesih türü tablosunun bütünlüğü */
 baslik("Fesih türü tablosu");
@@ -188,6 +206,11 @@ baslik("Kıdem tazminatı tavanı — resmî tutarlar");
    Kaynak: Hazine ve Maliye Bakanlığı Mali ve Sosyal Haklar Genelgeleri
    (2026/II için 3.7.2026 tarih ve 27998389-010.06.02-4870801 sayılı). */
 [
+  [2020, 1,  6730.15], [2020, 7,  7117.17],
+  [2021, 1,  7638.96], [2021, 7,  8284.51],
+  [2022, 1, 10848.59], [2022, 7, 15371.40],
+  [2023, 1, 19982.83], [2023, 7, 23489.83],
+  [2024, 1, 35058.58], [2024, 7, 41828.42],
   [2025, 1, 46655.43], [2025, 7, 53919.68],
   [2026, 1, 64948.77], [2026, 7, 73729.87]
 ].forEach(function (t) {
@@ -199,6 +222,80 @@ baslik("Kıdem tazminatı tavanı — resmî tutarlar");
      !!kayit && kayit.tutar === beklenen,
      kayit ? "bulunan: " + kayit.tutar : "dönem kaydı yok");
 });
+
+/* Serinin YAPISAL butunlugu.
+ *
+ * Yukaridaki tablo tutarlari birebir sabitliyor ama tek basina yetmez:
+ * tabloya yanlis bir tutar yazilsaydi, test onu "dogru" kabul ederdi.
+ * Asagidakiler tutarlardan BAGIMSIZ ozellikler -- elle aktarilmis bir
+ * seride en olasi hata olan rakam yer degistirmesini yakalarlar. */
+(function () {
+  var yillar = [];
+  for (var y in B.parametreler) {
+    if (B.parametreler[y] && B.parametreler[y].kidemTavanlari) yillar.push(+y);
+  }
+  yillar.sort(function (a, b) { return a - b; });
+
+  ok("kıdem tavanı serisi kesintisiz", yillar.length > 0 &&
+     yillar[yillar.length - 1] - yillar[0] + 1 === yillar.length,
+     yillar.join(", "));
+
+  var oncekiTutar = 0, oncekiAd = "";
+  var sorun = [];
+  yillar.forEach(function (yil) {
+    var liste = B.parametreler[yil].kidemTavanlari;
+    if (liste.length !== 2 || liste[0].ay !== 1 || liste[1].ay !== 7) {
+      sorun.push(yil + ": dönem yapısı (1 ve 7 olmalı)");
+      return;
+    }
+    liste.forEach(function (k) {
+      var ad = yil + "/" + (k.ay === 1 ? "I" : "II");
+      /* 1) Tavan hicbir donemde DUSMEZ. Kanun geriye goturmuyor ve
+            yer degistiren bir rakamin yarisi bu kontrolu kirar. */
+      if (k.tutar <= oncekiTutar) {
+        sorun.push(ad + " bir onceki donemden dusuk/esit (" +
+                   oncekiTutar + " -> " + k.tutar + ")");
+      }
+      /* 2) Donemlik artis makul bantta. Olculen en buyuk sicrama
+            2022/II (%41,7, olaganustu memur zammi); %60 ustu bir artis
+            gercek degil, yazim hatasidir. */
+      if (oncekiTutar > 0) {
+        var artis = k.tutar / oncekiTutar - 1;
+        if (artis > 0.60) {
+          sorun.push(ad + " artışı gerçekçi değil: %" + (artis * 100).toFixed(1));
+        }
+      }
+      /* 3) Kurus hassasiyeti: genelgeler iki ondalikla yayimlaniyor. */
+      if (Math.abs(k.tutar * 100 - Math.round(k.tutar * 100)) > 1e-6) {
+        sorun.push(ad + " iki ondalıktan fazla: " + k.tutar);
+      }
+      oncekiTutar = k.tutar;
+      oncekiAd = ad;
+    });
+  });
+  ok("kıdem tavanı serisi yapısal olarak tutarlı", sorun.length === 0,
+     sorun.join(" | "));
+
+  /* 4) BAGIMSIZ ARITMETIK KONTROL.
+        Tavan, memur aylik katsayisiyla neredeyse dogru orantili: kanunun
+        formulu agirlikla o katsayidan turuyor, ikinci bir bilesen kucuk
+        bir kayma birakiyor. Iki ucta olculen oran 46.078 ve 46.797 --
+        alti yilda %1,56. Bant %6 tutuldu: gercek kaymayi rahat alir,
+        bir rakam yer degistirmesini (tipik olarak %5'ten buyuk sapma)
+        almaz. Katsayilar Hazine ve Maliye genelgelerinden. */
+  var KATSAYI = { "2020/1": 0.146061, "2026/7": 1.575512 };
+  var oranlar = [];
+  Object.keys(KATSAYI).forEach(function (anahtar) {
+    var p = anahtar.split("/");
+    var liste = B.parametreler[+p[0]].kidemTavanlari;
+    for (var i = 0; i < liste.length; i++) {
+      if (liste[i].ay === +p[1]) oranlar.push(liste[i].tutar / KATSAYI[anahtar]);
+    }
+  });
+  ok("iki uçta tavan/katsayı oranı aynı bantta", oranlar.length === 2 &&
+     Math.abs(oranlar[0] - oranlar[1]) / oranlar[0] < 0.06,
+     oranlar.map(function (x) { return x.toFixed(0); }).join(" vs "));
+})();
 
 
 /* ------------------------------------------------------------------ *

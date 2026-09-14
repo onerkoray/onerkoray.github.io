@@ -161,6 +161,15 @@
 
   /* ---------- yasal büyüklükler ---------- */
 
+  /* Kıdem tavanı verisi bulunan yıllar, artan sırada. */
+  function kapsananYillar() {
+    var out = [];
+    for (var y in B.parametreler) {
+      if (B.parametreler[y] && B.parametreler[y].kidemTavanlari) out.push(+y);
+    }
+    return out.sort(function (a, b) { return a - b; });
+  }
+
   /* Kıdem tavanı fesih tarihindeki altı aylık döneme göre belirlenir. */
   function kidemTavani(cikisTarihi) {
     var d = tarih(cikisTarihi);
@@ -231,7 +240,12 @@
       kidem.gerekce = "En az 1 yıl çalışma şartı sağlanmıyor (" + hizmet.toplamGun + " gün).";
     } else if (tavan === null) {
       kidem.gerekce = yil + " yılı için doğrulanmış kıdem tavanı verisi yok.";
-      uyarilar.push("Kıdem tavanı yalnızca 2025 ve 2026 fesihleri için tanımlı.");
+      /* Kapsanan yıllar VERİDEN okunuyor, metne gömülmüyor. Daha önce
+         "yalnızca 2025 ve 2026" diye yazılıydı; geçmiş yıllar eklenince
+         bu cümle sessizce yanlış oldu — kullanıcıya var olan veriyi yok
+         diye sunuyordu. */
+      uyarilar.push("Kıdem tavanı şu yıllar için tanımlı: " +
+        kapsananYillar().join(", ") + ".");
     } else {
       kidem.hak = true;
       kidem.tavan = tavan;
