@@ -50,6 +50,7 @@ KISA = {
 
     "kira-geliri-vergisi-hesaplama": "Kira Geliri Vergisi",
     "borc-kapatma-plani": "Borç Kapatma Planı",
+    "makaleler/serbest-meslek-makbuzu-stopaj-kdv": "Makbuzda ne kalıyor?",
     "makaleler/krediyi-erken-kapatmak-mantikli-mi": "Erken kapatmak mantıklı mı?",
     "makaleler/vergi-dilimleri-asgari-ucrete-yetisemiyor": "Dilimler ve asgari ücret",
     "makaleler/mtv-2026-ne-kadar": "2026 MTV ne kadar?",

@@ -134,5 +134,11 @@
     "kicker": "Vergi",
     "alt": "İlk ve ikinci vergi diliminin bittiği nokta, yıllık asgari ücretin katı olarak, 2020'den 2026'ya düşüyor",
     "altyazi": "Dilimler liraya göre büyüyor ama asgari ücrete göre küçülüyor: ilk dilim 0,62 kattan 0,48 kata, ikincisi 1,39'dan 1,01'e indi."
+  },
+  {
+    "slug": "serbest-meslek-makbuzu-stopaj-kdv",
+    "kicker": "Vergi",
+    "alt": "100.000 TL brüt makbuzda fatura toplamı 120.000, hesaba geçen 100.000, size kalan 80.000 TL",
+    "altyazi": "Hesabınıza geçen tutar brüt ücrete eşit çıkıyor; arada biri kesilen stopaj, diğeri devlete ait KDV olmak üzere iki ayrı 20.000 TL var."
   }
 ]

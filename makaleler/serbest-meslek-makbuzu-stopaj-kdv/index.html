@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serbest Meslek Makbuzunda Stopaj ve KDV | Koray Öner</title>
+  <meta name="gecerlilik" content="2027-01-10 | 2027 gelir vergisi tarifesi açıklandı. bordro/parametreler.js'e 2027 girildi mi? İade/ek ödeme eşiği ve tablo o tarifeden türüyor; yeni yıl girilmeden yazı tazelenmemeli. Stopaj (%20) ve KDV (%20) oranları da Cumhurbaşkanı Kararıyla değişebilir — değiştiyse tablodaki sabitler ve testteki oranlar birlikte güncellenmeli.">
+  <meta name="description" content="100.000 TL brüt makbuzda hesabınıza yine 100.000 TL geçiyor — ama iki ayrı 20.000 içeriden geçti. Stopaj nihai vergi değil: 535.714 TL'ye kadar iade alırsınız.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/serbest-meslek-makbuzu-stopaj-kdv/">
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Serbest meslek makbuzunda stopaj ve KDV: elinizde ne kalıyor?">
+  <meta property="og:description" content="100.000 TL brüt makbuzda hesabınıza yine 100.000 TL geçiyor — ama iki ayrı 20.000 içeriden geçti. Stopaj nihai vergi değil.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/serbest-meslek-makbuzu-stopaj-kdv/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/serbest-meslek-makbuzu-stopaj-kdv.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="100.000 TL brüt makbuzda faturadan hesaba giden yol: KDV eklenir, stopaj kesilir, geriye 80.000 TL kalır">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="Serbest meslek makbuzunda stopaj ve KDV: elinizde ne kalıyor?">
+  <meta name="twitter:description" content="Hesabınıza geçen para brüt ücrete eşit olduğu için hiçbir şey kesilmemiş gibi görünüyor. İki ayrı 20.000 TL içeriden geçti.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/serbest-meslek-makbuzu-stopaj-kdv.png">
+
+  <link rel="stylesheet" href="../../style.css?v=9ae079de">
+  <link rel="stylesheet" href="../editoryal.css?v=e82be149">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/",
+      "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/koraonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://dl.acm.org/profile/81100070426",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://korayoner.dev/makaleler/serbest-meslek-makbuzu-stopaj-kdv/",
+      "url": "https://korayoner.dev/makaleler/serbest-meslek-makbuzu-stopaj-kdv/",
+      "name": "Serbest meslek makbuzunda stopaj ve KDV: elinizde ne kalıyor?",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "inLanguage": "tr",
+      "primaryImageOfPage": "https://korayoner.dev/images/makale/serbest-meslek-makbuzu-stopaj-kdv.png"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://korayoner.dev/makaleler/serbest-meslek-makbuzu-stopaj-kdv/#article",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "headline": "Serbest meslek makbuzunda stopaj ve KDV: elinizde ne kalıyor?",
+      "description": "100.000 TL brüt makbuzda hesabınıza yine 100.000 TL geçiyor — ama iki ayrı 20.000 içeriden geçti. Stopaj nihai vergi değil.",
+      "inLanguage": "tr",
+      "datePublished": "2026-09-14",
+      "dateModified": "2026-09-14",
+      "author": { "@id": "https://korayoner.dev/#oner-koray" },
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+      "image": "https://korayoner.dev/images/makale/serbest-meslek-makbuzu-stopaj-kdv.png",
+      "mainEntityOfPage": "https://korayoner.dev/makaleler/serbest-meslek-makbuzu-stopaj-kdv/",
+      "about": [
+        { "@type": "Thing", "name": "Serbest meslek kazancı" },
+        { "@type": "Thing", "name": "Gelir vergisi stopajı" }
+      ],
+      "citation": [
+        { "@type": "Legislation", "name": "193 sayılı Gelir Vergisi Kanunu, madde 94/2-b — serbest meslek ödemelerinde stopaj" },
+        { "@type": "Legislation", "name": "193 sayılı Gelir Vergisi Kanunu, madde 103 — vergi tarifesi" },
+        { "@type": "Legislation", "name": "3065 sayılı Katma Değer Vergisi Kanunu, madde 9 — tevkifat" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://korayoner.dev/makaleler/serbest-meslek-makbuzu-stopaj-kdv/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "Serbest meslek makbuzunda stopaj oranı kaçtır?", "acceptedAnswer": { "@type": "Answer", "text": "Brüt ücret üzerinden %20. Kesintiyi siz değil, ödemeyi yapan taraf yapar ve vergi dairesine o yatırır; makbuzda gösterilir ama paranın o kısmı size hiç gelmez." } },
+        { "@type": "Question", "name": "Hesabıma geçen para neden brüt ücrete eşit çıkıyor?", "acceptedAnswer": { "@type": "Answer", "text": "Tesadüf değil, iki oranın eşit olmasının sonucu. 100.000 TL brüte %20 KDV eklenir (120.000), %20 stopaj kesilir (−20.000), geriye 100.000 TL kalır. Ama bunun 20.000 TL'si tahsil ettiğiniz KDV'dir ve devlete aittir; size kalan 80.000 TL'dir." } },
+        { "@type": "Question", "name": "KDV tevkifatı ne yapar?", "acceptedAnswer": { "@type": "Answer", "text": "KDV'nin bir kısmını alıcı size ödemek yerine doğrudan vergi dairesine yatırır. Hesabınıza geçen para azalır ama size kalan değişmez: zaten devlete ödeyeceğiniz parayı elinizden geçirmemiş olursunuz." } },
+        { "@type": "Question", "name": "Stopaj kesildiyse yıl sonunda vergi öder miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Stopaj nihai vergi değil, peşin ödemedir. Yıl sonunda kazancınız tarifeye göre vergilenir ve kesilen stopaj mahsup edilir. 2026 tarifesinde, gidersiz varsayımla, yıllık kazancınız 535.714 TL'nin altındaysa iade alırsınız; üstündeyse fark ödersiniz." } },
+        { "@type": "Question", "name": "Neden 190.000 ile 400.000 TL arasında iade hep aynı kalıyor?", "acceptedAnswer": { "@type": "Answer", "text": "Çünkü o aralıkta tarifenin marjinal oranı da %20 ve stopaj da %20. Her ek lira aynı oranda vergilenip aynı oranda kesildiği için fark büyümez; ilk dilimde (%15) fazladan kesilen 9.500 TL olduğu gibi durur." } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../otv-hesaplama/">ÖTV</a></li>
+          <li><a href="../../mtv-hesaplama/">MTV</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> Serbest meslek makbuzunda stopaj ve KDV
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Vergi</p>
+        <h1 id="hero-title">Serbest meslek makbuzunda stopaj ve KDV: elinizde ne kalıyor?</h1>
+        <p class="ed-standfirst">100.000 TL brüt bir makbuz kesiyorsunuz. Hesabınıza
+          geçen para: <strong>100.000 TL</strong>. Hiçbir şey kesilmemiş gibi görünüyor —
+          oysa içeriden <strong>iki ayrı 20.000 TL</strong> geçti ve size kalan
+          80.000 TL. Bu yazı makbuzun aritmetiğini, KDV tevkifatının ne değiştirdiğini
+          ve yıl sonunda iade mi alacağınızı ek mi ödeyeceğinizi gösteriyor.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-14">14 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="wrap prose ed-body">
+          <!-- LEAD-GORSEL:BASLANGIC -->
+          <figure class="ed-veri-gorseli">
+            <img src="../../images/makale/serbest-meslek-makbuzu-stopaj-kdv-kart.png"
+                 width="800" height="500" decoding="async"
+                 alt="100.000 TL brüt makbuzda fatura toplamı 120.000, hesaba geçen 100.000, size kalan 80.000 TL">
+            <figcaption>Hesabınıza geçen tutar brüt ücrete eşit çıkıyor; arada biri kesilen stopaj, diğeri devlete ait KDV olmak üzere iki ayrı 20.000 TL var.</figcaption>
+          </figure>
+          <!-- LEAD-GORSEL:BITIS -->
+
+        <div class="legal-note verdict">
+          <h2 id="kisa-cevap">Kısa cevap</h2>
+          <p>
+            Serbest meslek ödemelerinde brüt ücret üzerinden <strong>%20 stopaj</strong>
+            kesilir; kesintiyi siz değil, ödeyen taraf yapar ve vergi dairesine o yatırır.
+            Makbuza ayrıca <strong>%20 KDV</strong> eklenir. İki oran eşit olduğu için
+            hesabınıza geçen tutar brüt ücrete eşit çıkar ve bu, hiçbir şey kesilmemiş
+            gibi görünmesine yol açar.
+          </p>
+          <p>
+            Asıl mesele ikincisi: <strong>stopaj nihai vergi değil, peşin ödemedir.</strong>
+            Yıl sonunda kazancınız tarifeye göre vergilenir ve kesilen stopaj mahsup
+            edilir. 2026 tarifesinde, gidersiz varsayımla, yıllık kazancınız
+            <strong>535.714 TL</strong>'nin altındaysa iade alırsınız; üstündeyse fark
+            ödersiniz.
+          </p>
+        </div>
+
+        <h2 id="aritmetik">Makbuzun aritmetiği</h2>
+        <p>
+          Sırayı bozmadan izlemek gerekiyor, çünkü KDV brüte <em>eklenir</em>, stopaj ise
+          brütten <em>kesilir</em> — ikisi aynı tutar üzerinden ama zıt yönde işler.
+        </p>
+        <table class="payroll">
+          <caption>100.000 TL brüt ücretli bir makbuzda para nereye gidiyor</caption>
+          <tbody>
+            <tr><th scope="row">Brüt ücret (hizmet bedeli)</th><td>100.000 TL</td></tr>
+            <tr><th scope="row">+ KDV (%20)</th><td>20.000 TL</td></tr>
+            <tr><th scope="row">= Fatura toplamı</th><td>120.000 TL</td></tr>
+            <tr><th scope="row">− Gelir vergisi stopajı (%20)</th><td>20.000 TL</td></tr>
+            <tr><th scope="row">= Hesabınıza geçen</th><td>100.000 TL</td></tr>
+            <tr><th scope="row">— bunun devlete ait olan KDV kısmı</th><td>20.000 TL</td></tr>
+            <tr><th scope="row">Size kalan</th><td>80.000 TL</td></tr>
+          </tbody>
+        </table>
+        <p>
+          Tablodaki son iki satır, bu konudaki en yaygın karışıklığın kaynağı. Tahsil
+          ettiğiniz KDV sizin geliriniz değil; <strong>devletin parasını bir süre
+          taşıyorsunuz</strong> ve beyanname döneminde yatırıyorsunuz. Hesap bakiyesine
+          bakıp "bu ay iyi kazandım" demek, o parayı kendi paranız sanmak demek.
+        </p>
+
+        <h2 id="tevkifat">KDV tevkifatı ne değiştiriyor?</h2>
+        <p>
+          Bazı hizmetlerde ve bazı alıcılara (kamu kurumları, belirlenmiş mükellefler)
+          kesilen makbuzlarda KDV'nin bir kısmını alıcı size ödemez; <strong>doğrudan
+          vergi dairesine</strong> yatırır. Buna KDV tevkifatı denir.
+        </p>
+
+        <table class="payroll">
+            <caption>100.000 TL brüt makbuz — KDV tevkifat oranına göre (2026)</caption>
+            <thead><tr><th scope="col">KDV tevkifatı</th><th scope="col">Fatura toplamı</th><th scope="col">Kesilen stopaj</th><th scope="col">Alıcının doğrudan yatırdığı KDV</th><th scope="col">Hesabınıza geçen</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">yok</th><td>120.000</td><td>20.000</td><td>0</td><td>100.000</td></tr>
+              <tr><th scope="row">%50</th><td>120.000</td><td>20.000</td><td>10.000</td><td>90.000</td></tr>
+              <tr><th scope="row">%70</th><td>120.000</td><td>20.000</td><td>14.000</td><td>86.000</td></tr>
+              <tr><th scope="row">%90</th><td>120.000</td><td>20.000</td><td>18.000</td><td>82.000</td></tr>
+            </tbody>
+          </table>
+
+        <p>
+          Son sütun aşağı iniyor ama <strong>size kalan değişmiyor</strong>: her satırda
+          80.000 TL. Tevkifat, zaten devlete ödeyeceğiniz parayı elinizden geçirmiyor,
+          o kadar. Nakit akışınız etkilenir — beyanname döneminde ödeyeceğiniz KDV azalır
+          çünkü bir kısmı zaten yatırılmıştır.
+        </p>
+        <p>
+          Kendi oranlarınızla denemek için
+          <a href="../../serbest-meslek-makbuzu-hesaplama/">serbest meslek makbuzu
+          hesaplama aracını</a> kullanabilirsiniz; stopaj, KDV ve tevkifat oranlarını
+          ayrı ayrı seçebiliyor ve netten brüte de çeviriyor.
+        </p>
+
+        <h2 id="mahsup">Stopaj nihai vergi değil</h2>
+        <p>
+          Yıl içinde kesilen stopajların toplamı, yıl sonunda hesaplanan gelir
+          vergisinden düşülür. İkisi birbirini tutmak zorunda değil — ve genelde
+          tutmuyor.
+        </p>
+
+        <table class="payroll">
+            <caption>Yıl boyunca kesilen stopaj ile yıllık gelir vergisi (2026, gidersiz)</caption>
+            <thead><tr><th scope="col">Yıllık kazanç</th><th scope="col">Yıllık gelir vergisi</th><th scope="col">Kesilen stopaj (%20)</th><th scope="col">Fark</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">100.000</th><td>15.000</td><td>20.000</td><td>5.000 TL iade</td></tr>
+              <tr><th scope="row">190.000</th><td>28.500</td><td>38.000</td><td>9.500 TL iade</td></tr>
+              <tr><th scope="row">300.000</th><td>50.500</td><td>60.000</td><td>9.500 TL iade</td></tr>
+              <tr><th scope="row">400.000</th><td>70.500</td><td>80.000</td><td>9.500 TL iade</td></tr>
+              <tr><th scope="row">500.000</th><td>97.500</td><td>100.000</td><td>2.500 TL iade</td></tr>
+              <tr><th scope="row">600.000</th><td>124.500</td><td>120.000</td><td>4.500 TL ek ödeme</td></tr>
+              <tr><th scope="row">1.000.000</th><td>232.500</td><td>200.000</td><td>32.500 TL ek ödeme</td></tr>
+              <tr><th scope="row">2.000.000</th><td>582.500</td><td>400.000</td><td>182.500 TL ek ödeme</td></tr>
+            </tbody>
+          </table>
+
+        <p>
+          Tablonun ortasındaki donma dikkat çekici: <strong>190.000 ile 400.000 TL
+          arasında iade hep 9.500 TL.</strong> Sebebi şu — o aralıkta tarifenin marjinal
+          oranı da %20, stopaj da %20. Her ek lira aynı oranda vergilenip aynı oranda
+          kesildiği için fark büyümüyor; ilk dilimde (%15) fazladan kesilmiş olan
+          9.500 TL olduğu gibi duruyor.
+        </p>
+        <p>
+          Üçüncü dilim başlayınca (1.000.000 TL'ye kadar %27) tarife stopajı geçiyor ve
+          fark kapanıyor. Tam olarak <strong>535.714 TL</strong> kazançta ikisi eşitleniyor;
+          o noktadan sonra her yıl fark ödersiniz.
+        </p>
+        <div class="legal-note">
+          <p>
+            <strong>Giderler bu eşiği yukarı taşır.</strong> Stopaj brüt hasılat üzerinden
+            kesilir, vergi ise <em>kazanç</em> (hasılat − gider) üzerinden hesaplanır.
+            Gideriniz varsa vergi düşer, kesilen stopaj değişmez; yani iade büyür ve
+            eşik daha yüksek bir hasılata kayar. Yukarıdaki tablo gidersiz varsayımla
+            kurulu ve bu yüzden <em>en erken</em> eşiği gösteriyor.
+          </p>
+        </div>
+
+        <h2 id="kaynaklar">Kaynaklar ve güncelleme</h2>
+        <p>
+          Bu yazı en son <strong>14 Eylül 2026</strong> tarihinde gözden geçirildi.
+          Vergi tablosundaki hiçbir sayı elle yazılmadı: hepsi sitenin bordro
+          motorundaki <strong>ücret dışı</strong> gelir vergisi tarifesinden üretiliyor
+          ve her değişiklikte testlerle yeniden doğrulanıyor. Bu tarife ücret
+          tarifesinden farklıdır — üçüncü diliminin üst sınırı 1.000.000 TL, ücrette ise
+          1.500.000 TL.
+        </p>
+        <ul>
+          <li>193 sayılı Gelir Vergisi Kanunu m.94/2-b (stopaj) ve m.103 (tarife)
+            — <a href="https://www.mevzuat.gov.tr/" rel="nofollow noopener" target="_blank">Mevzuat Bilgi Sistemi</a></li>
+          <li>3065 sayılı Katma Değer Vergisi Kanunu m.9 — tevkifat</li>
+          <li>Yıllık parametreler ve metodoloji — <a href="../../bordro/">Bordro motoru</a></li>
+        </ul>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+
+        <h3>Serbest meslek makbuzunda stopaj oranı kaçtır?</h3>
+        <p>
+          Brüt ücret üzerinden %20. Kesintiyi ödemeyi yapan taraf yapar ve vergi
+          dairesine o yatırır; paranın o kısmı size hiç gelmez.
+        </p>
+
+        <h3>Hesabıma geçen para neden brüt ücrete eşit çıkıyor?</h3>
+        <p>
+          İki oranın eşit olmasının sonucu. %20 KDV eklenir, %20 stopaj kesilir, tutar
+          başladığı yere döner. Ama içindeki 20.000 TL tahsil ettiğiniz KDV'dir ve
+          devlete aittir.
+        </p>
+
+        <h3>KDV tevkifatı size kalanı azaltır mı?</h3>
+        <p>
+          Hayır. Hesabınıza geçen parayı azaltır, size kalanı değiştirmez — zaten
+          devlete ödeyeceğiniz KDV'nin bir kısmını alıcı doğrudan yatırmış olur.
+        </p>
+
+        <h3>Stopaj kesildiyse yıl sonunda vergi öder miyim?</h3>
+        <p>
+          Gidersiz varsayımla, 2026'da yıllık kazancınız 535.714 TL'nin altındaysa iade
+          alırsınız; üstündeyse fark ödersiniz. Gideriniz varsa eşik yukarı kayar.
+        </p>
+
+        <h2 id="ilgili">İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../../serbest-meslek-makbuzu-hesaplama/">Serbest Meslek Makbuzu Hesaplama</a> — brütten nete, netten brüte, tevkifatlı</li>
+          <li><a href="../stopaj-nasil-hesaplanir/">Stopaj nasıl hesaplanır?</a> — brütleştirme ve mahsup mantığı</li>
+          <li><a href="../sahis-mi-limited-mi/">Şahıs mı, limited mi?</a> — aynı kazanç hangi yapıda ne bırakıyor</li>
+          <li><a href="../../ucret-kar-payi-optimizasyonu/">Ücret–kâr payı optimizasyonu</a> — şirket ortağı için dağılım</li>
+        </ul>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
