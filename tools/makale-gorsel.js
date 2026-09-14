@@ -606,6 +606,26 @@ function sutunBagimlilik() {
 }
 
 var KAPAKLAR = {
+  "krediyi-erken-kapatmak-mantikli-mi": {
+    kicker: "Finans · Karar rehberi",
+    baslik: "Krediyi kapatmak mı, mevduat mı?",
+    alt: "Aynı para. Aynı bütçe. İki farklı yol.",
+    cizim: function () {
+      var son = 100000 * Math.pow(1.02, 12);
+      return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" role="img" aria-label="Varsayımsal karşılaştırmada aylık net yüzde 2 eşik noktası">' +
+        '<text x="24" y="30" font-size="16" fill="#56605c">100.000 TL · 12 ay · örnek senaryo</text>' +
+        '<text x="24" y="89" font-size="46" font-weight="800" fill="#17201d">Eşik: aylık net %2</text>' +
+        '<text x="24" y="120" font-size="17" fill="#56605c">İki yolun son birikimi: ' + nf0.format(son) + ' TL</text>' +
+        '<path d="M50 167 H550" stroke="#b9c9c2" stroke-width="3"/>' +
+        '<circle cx="70" cy="167" r="6" fill="#0e7c66"/><circle cx="300" cy="167" r="9" fill="#17201d"/><circle cx="530" cy="167" r="6" fill="#205dab"/>' +
+        '<rect x="24" y="196" width="171" height="96" rx="12" fill="#e3efe8"/>' +
+        '<rect x="214" y="196" width="171" height="96" rx="12" fill="#e8e7e1"/>' +
+        '<rect x="404" y="196" width="171" height="96" rx="12" fill="#e4ebf6"/>' +
+        '<g font-size="30" font-weight="800" text-anchor="middle"><text x="109" y="235" fill="#0e7c66">%1</text><text x="299" y="235" fill="#17201d">%2</text><text x="489" y="235" fill="#205dab">%3</text></g>' +
+        '<g font-size="17" font-weight="600" text-anchor="middle" fill="#17201d"><text x="109" y="268">Kapatma önde</text><text x="299" y="268">Eşit sonuç</text><text x="489" y="268">Mevduat önde</text></g>' +
+        '<text x="24" y="337" font-size="15" fill="#56605c">Serbest kalan taksitler biriktirilir. Getiriler varsayımsaldır.</text></svg>';
+    }
+  },
   "emekliligin-finansal-matematigi": {
     kicker: "Akademik",
     baslik: "Emekliliğin finansal matematiği",
