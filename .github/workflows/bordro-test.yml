@@ -425,6 +425,13 @@ jobs:
       - name: İşsizlik ödeneği tablosu güncel mi
         run: node tools/issizlik-tablosu.js --check
 
+      # Kidem tavani tablosu da ayni sekilde parametrelerden turuyor.
+      # Elle yazilsaydi her yeni genelgede sessizce eskirdi: sayfa acilir,
+      # tablo hizali gorunur, yalnizca yanlistir. Tavan yilda IKI KEZ
+      # degisiyor, yani eskime firsati yilda iki kez geliyor.
+      - name: Kıdem tavanı tablosu güncel mi
+        run: node tools/kidem-tavan-tablosu.js --check
+
       # lastmod bir IDDIADIR: "bu sayfanin icerigi bu tarihte degisti".
       # Sisirilmis lastmod tazelik sinyalini guclendirmez, SUSTURUR --
       # arama motoru bos yere gelir ve zamanla o alana guvenmemeyi
