@@ -228,6 +228,16 @@ jobs:
       - name: Fazla mesai yazısının sayıları
         run: node makaleler/fazla-mesai-zammi-yuzde-kac/sayi-testi.js
 
+      # Gorsel tarafindaki bozulmalar SESSIZDIR: sayfa acilir, grafik
+      # gorunur, yalniz Google onu bulamaz. 2026-09-14 denetimi 21
+      # makalenin 12'sinin govdesinde HIC <img> olmadigini buldu -- veri
+      # gorselleri CSS ile ciziliyordu ve gorsel aramaya gorunmezdi.
+      - name: Makale veri görselleri yerinde mi
+        run: python tools/makale-gorseli.py --check
+
+      - name: Görsel SEO regresyonları
+        run: node tools/gorsel-seo-test.js
+
       # Bir PAROLA URETECINDE hatalar sessizdir: zayif rastgelelik,
       # yanli modulo, eksik sinif ya da sisirilmis entropi ekranda
       # gorunmez -- cikti yine rastgele bir dizi gibi durur ve kullanici
