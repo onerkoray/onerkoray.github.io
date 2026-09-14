@@ -122,5 +122,11 @@
     "kicker": "Vergi",
     "alt": "Motor hacmine göre iki MTV tarifesi arasındaki fark: 1600 cm³ ve altında fark yok, 1601'den itibaren her satırda tam %10",
     "altyazi": "1600 cm³ ve altında iki tarife birebir aynı; 1601 cm³'ten itibaren 2018 sonrası tescilli araç her satırda tam %10 fazla ödüyor."
+  },
+  {
+    "slug": "vergi-dilimleri-asgari-ucrete-yetisemiyor",
+    "kicker": "Vergi",
+    "alt": "İlk ve ikinci vergi diliminin bittiği nokta, yıllık asgari ücretin katı olarak, 2020'den 2026'ya düşüyor",
+    "altyazi": "Dilimler liraya göre büyüyor ama asgari ücrete göre küçülüyor: ilk dilim 0,62 kattan 0,48 kata, ikincisi 1,39'dan 1,01'e indi."
   }
 ]

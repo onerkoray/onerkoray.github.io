@@ -488,6 +488,72 @@ function farkMtv() {
     "</svg>";
 }
 
+/* Dilim kaymasi — "vergi-dilimleri-asgari-ucrete-yetisemiyor" kapagi.
+   Yazinin argumani bir EGILIM: ilk iki vergi diliminin bittigi nokta, yillik
+   asgari ucretin kati olarak yedi yilda asagi iniyor. Liraya gore cizmek bu
+   egilimi tamamen gizlerdi -- lira tutarlari yukari gidiyor. Olcu birimi
+   asgari ucret oldugu icin okur "dilim buyudu ama yetismedi"yi gorebiliyor.
+   Iki kategorik seri oldugu icin marka yesili KULLANILMIYOR. */
+function dilimKaymasi() {
+  var W = 600, H = 360, P = 34, SOL = 52, ALT = 54;
+  var yillar = [2020, 2021, 2022, 2023, 2024, 2025, 2026];
+  var seriler = [
+    { ad: "1. dilimin sonu", renk: R.s1, i: 0 },
+    { ad: "2. dilimin sonu", renk: R.s2, i: 1 }
+  ];
+  var veri = yillar.map(function (y) {
+    var Pr = B.parametre(y), d = B.donem(Pr, 1), ya = d.asgariBrut * 12;
+    return { yil: y, k: [Pr.dilimler[0][0] / ya, Pr.dilimler[1][0] / ya] };
+  });
+
+  var enCok = 1.5, enAz = 0.4;
+  var x = function (i) { return SOL + i * (W - SOL - P) / (yillar.length - 1); };
+  var yy = function (v) {
+    return (H - ALT) - (v - enAz) / (enCok - enAz) * (H - ALT - 74);
+  };
+
+  var izgara = [0.5, 1.0, 1.5].map(function (v) {
+    return '<line x1="' + SOL + '" y1="' + yy(v).toFixed(1) + '" x2="' + (W - P) +
+      '" y2="' + yy(v).toFixed(1) + '" stroke="' + R.izgara + '" stroke-width="1"/>' +
+      '<text x="' + (SOL - 8) + '" y="' + (yy(v) + 4).toFixed(1) +
+      '" text-anchor="end" font-size="12" fill="' + R.ikincil + '">' +
+      v.toFixed(1).replace(".", ",") + "</text>";
+  }).join("");
+
+  var cizgiler = seriler.map(function (s) {
+    var d = veri.map(function (v, i) {
+      return (i ? "L" : "M") + x(i).toFixed(1) + " " + yy(v.k[s.i]).toFixed(1);
+    }).join(" ");
+    var noktalar = veri.map(function (v, i) {
+      return '<circle cx="' + x(i).toFixed(1) + '" cy="' + yy(v.k[s.i]).toFixed(1) +
+        '" r="4" fill="' + s.renk + '" stroke="' + R.zemin + '" stroke-width="2"/>';
+    }).join("");
+    var son = veri[veri.length - 1].k[s.i];
+    return '<path d="' + d + '" fill="none" stroke="' + s.renk + '" stroke-width="2"/>' +
+      noktalar +
+      '<text x="' + (x(veri.length - 1) - 6) + '" y="' + (yy(son) - 12).toFixed(1) +
+      '" text-anchor="end" font-size="14" font-weight="700" fill="' + s.renk + '">' +
+      son.toFixed(2).replace(".", ",") + "</text>";
+  }).join("");
+
+  var eksen = yillar.map(function (y, i) {
+    return '<text x="' + x(i).toFixed(1) + '" y="' + (H - ALT + 20) +
+      '" text-anchor="middle" font-size="12" fill="' + R.ikincil + '">' + y + '</text>';
+  }).join("");
+
+  var gosterge = seriler.map(function (s, i) {
+    return '<g transform="translate(' + (SOL + i * 168) + ',' + (H - 16) + ')">' +
+      '<circle cx="5" cy="-4" r="4" fill="' + s.renk + '"/>' +
+      '<text x="16" y="0" font-size="13" fill="' + R.ikincil + '">' + esc(s.ad) + "</text></g>";
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Ilk ve ikinci vergi diliminin bittigi nokta, yillik asgari ucretin kati olarak, 2020 den 2026 ya azaliyor">' +
+    '<text x="' + P + '" y="' + (P - 6) + '" font-size="15" fill="' + R.ikincil +
+    '">Dilimin bittiği nokta, yıllık asgari ücretin katı olarak</text>' +
+    izgara + cizgiler + eksen + gosterge + "</svg>";
+}
+
 /* ---------- kapaklar ---------- */
 
 /* Emeklilik makalesi: OECD tanimiyla 100 calisma cagindaki kisiye dusen 65+.
@@ -628,6 +694,12 @@ var KAPAKLAR = {
     baslik: "Fazla mesai zammı yüzde kaç?",
     alt: "Oranı, ne kadar çalıştığınız değil sözleşmeniz belirler",
     cizim: katmanliHafta
+  },
+  "vergi-dilimleri-asgari-ucrete-yetisemiyor": {
+    kicker: "Vergi",
+    baslik: "Dilimler asgari ücrete yetişemiyor",
+    alt: "Aynı katta maaş alan biri her yıl daha hızlı tırmanıyor",
+    cizim: dilimKaymasi
   },
   "mtv-2026-ne-kadar": {
     kicker: "Vergi",

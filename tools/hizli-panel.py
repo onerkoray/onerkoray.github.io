@@ -50,6 +50,7 @@ KISA = {
 
     "kira-geliri-vergisi-hesaplama": "Kira Geliri Vergisi",
     "borc-kapatma-plani": "Borç Kapatma Planı",
+    "makaleler/vergi-dilimleri-asgari-ucrete-yetisemiyor": "Dilimler ve asgari ücret",
     "makaleler/mtv-2026-ne-kadar": "2026 MTV ne kadar?",
     "makaleler/emekliligin-finansal-matematigi": "Emekliliğin matematiği",
     "makaleler/mevduat-faizi-enflasyon-reel-getiri": "Mevduat ve reel getiri",
