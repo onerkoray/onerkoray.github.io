@@ -228,6 +228,14 @@ jobs:
       - name: Fazla mesai yazısının sayıları
         run: node makaleler/fazla-mesai-zammi-yuzde-kac/sayi-testi.js
 
+      # MTV yazisi 150'den fazla tutar tasiyor ve hepsi tarifeden turuyor.
+      # Tarife her Ocak yeniden degerleme oraniyla degisiyor: arac
+      # guncellenir, yazi sessizce eskir. Test yazidaki hicbir sayiyi kendi
+      # icinde tasimaz; UC tarife tablosu da HTML'DEN AYRISTIRILIP hucre
+      # hucre karsilastirilir.
+      - name: MTV yazısının sayıları
+        run: node makaleler/mtv-2026-ne-kadar/sayi-testi.js
+
       # Gorsel tarafindaki bozulmalar SESSIZDIR: sayfa acilir, grafik
       # gorunur, yalniz Google onu bulamaz. 2026-09-14 denetimi 21
       # makalenin 12'sinin govdesinde HIC <img> olmadigini buldu -- veri

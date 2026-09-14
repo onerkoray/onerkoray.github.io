@@ -116,5 +116,11 @@
     "slug": "kademeli-emeklilik-son-durum",
     "kicker": "Mevzuat",
     "alt": "Kademeli emeklilik teklifinin Meclis'teki durumunu gösteren işaret listesi"
+  },
+  {
+    "slug": "mtv-2026-ne-kadar",
+    "kicker": "Vergi",
+    "alt": "Motor hacmine göre iki MTV tarifesi arasındaki fark: 1600 cm³ ve altında fark yok, 1601'den itibaren her satırda tam %10",
+    "altyazi": "1600 cm³ ve altında iki tarife birebir aynı; 1601 cm³'ten itibaren 2018 sonrası tescilli araç her satırda tam %10 fazla ödüyor."
   }
 ]
