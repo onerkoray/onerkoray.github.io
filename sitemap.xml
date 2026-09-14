@@ -390,6 +390,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/cikis-takvimi/</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/cikis-takvimi-koray-oner.png</image:loc>
+      <image:title>Çıkış Takvimi — işten ayrılma tarihinin bedeli</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/isten-ayrilma-hesaplama/</loc>
     <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
