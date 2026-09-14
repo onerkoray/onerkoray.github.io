@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-13T00:00:00+03:00</updated>
+  <updated>2026-09-14T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Fazla Mesai Zammı Yüzde Kaç?</title>
+    <link href="https://korayoner.dev/makaleler/fazla-mesai-zammi-yuzde-kac/"/>
+    <id>https://korayoner.dev/makaleler/fazla-mesai-zammi-yuzde-kac/</id>
+    <updated>2026-09-14T00:00:00+03:00</updated>
+    <summary>Fazla mesai zammı %50 mi %25 mi? Oranı çalıştığınız saat değil sözleşmeniz belirler. Üç durumda ise fazladan çalıştığınız saat hiç fazla mesai sayılmaz.</summary>
+  </entry>
 
   <entry>
     <title>Krediyi Erken Kapatmak mı, Yatırım mı?</title>
