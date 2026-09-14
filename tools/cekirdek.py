@@ -529,8 +529,16 @@ def main():
         print("Çekirdek tutarlı (%d dosya, hedef %s)." % (len(DOSYALAR), DEPO))
         return 0
 
+    # .git KORUNUR. Bu dizin artik gercek bir depo: uzak adresi, gecmisi
+    # ve npm surum etiketleri orada duruyor. Dizinin tamamini silmek o
+    # gecmisi sessizce yok ediyordu -- yeniden kurulan dizin tertemiz
+    # gorunur, yalnizca bir daha push edilemez. Icerik silinir, .git kalir.
     if os.path.exists(CIKTI):
-        shutil.rmtree(CIKTI)
+        for ad in os.listdir(CIKTI):
+            if ad == ".git":
+                continue
+            yol = os.path.join(CIKTI, ad)
+            shutil.rmtree(yol) if os.path.isdir(yol) else os.remove(yol)
     for kaynak, hedef in DOSYALAR:
         h = os.path.join(CIKTI, hedef)
         os.makedirs(os.path.dirname(h), exist_ok=True)
@@ -570,10 +578,11 @@ def main():
 
     print("Çekirdek paketlendi: %s/ (%d dosya, %d test)" % (
         CIKTI, len(DOSYALAR) + 4, sum(sayilar.values())))
-    print("Yükleme:")
-    print("  cd %s && git init -b main && git add -A" % CIKTI)
-    print("  git commit -m \"Hesap cekirdegi\"")
-    print("  git remote add origin %s.git && git push -u origin main --force" % DEPO)
+    # Depo ARTIK VAR; ilk kurulum talimati yaniltici olurdu (git init
+    # mevcut gecmisi gormezden gelir). Anlatilan sey senkron.
+    print("Yayımlamak için (%s):" % DEPO)
+    print("  cd %s && git add -A && git commit -m \"...\" && git push" % CIKTI)
+    print("  npm publish            # surum: package.json (motor.js'ten turer)")
     return 0
 
 
