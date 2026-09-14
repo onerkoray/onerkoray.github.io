@@ -249,7 +249,7 @@ hesaplar. Tarayıcıda ve Node.js'te aynı kodla çalışır.
 ## Kurulum
 
 ```bash
-npm install hesap-cekirdegi
+npm install github:onerkoray/hesap-cekirdegi
 ```
 
 Kurulum şart değil: dosyalar bağımlılıksız ve tek başına çalışır,
