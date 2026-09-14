@@ -220,6 +220,14 @@ jobs:
       - name: ÖTV basamak yazısının sayıları
         run: node makaleler/otv-basamak-etkisi/sayi-testi.js
 
+      # Fazla mesai yazisinin her tutari bordro/parametreler.js'teki zam
+      # katsayilarindan turuyor. Katsayilar degisirse arac guncellenir,
+      # yazi sessizce eskir. Test yazidaki hicbir sayiyi kendi icinde
+      # tasimaz; iki tablosu da HTML'DEN AYRISTIRILIR, cunku ayni ifade
+      # SSS'te de geciyor ve varlik kontrolu bozuk hucreyi kaciriyordu.
+      - name: Fazla mesai yazısının sayıları
+        run: node makaleler/fazla-mesai-zammi-yuzde-kac/sayi-testi.js
+
       # Bir PAROLA URETECINDE hatalar sessizdir: zayif rastgelelik,
       # yanli modulo, eksik sinif ya da sisirilmis entropi ekranda
       # gorunmez -- cikti yine rastgele bir dizi gibi durur ve kullanici

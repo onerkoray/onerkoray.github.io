@@ -1,0 +1,100 @@
+/* Fazla mesai yazısının tek şekli: haftanın iki katmanı.
+ *
+ * SVG değil CSS: sayılar yazının kendi HTML'inde duruyor, testin okuduğu
+ * tek kaynak orası kalıyor ve tema değiştiğinde şekil kendiliğinden uyuyor.
+ *
+ * Veri işaretleri --brand kullanmaz. Sitenin vurgu rengi kullanıcı tercihi
+ * (beş palet); bir oranın rengi kullanıcının tema seçimine bağlı olamaz.
+ * Bu yüzden --dv-* uzayı var ve tools/veri-renkleri.js CI'da zorluyor.
+ */
+
+.fm-fig {
+  margin: 2rem 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.fm-fig figcaption {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: var(--step--1);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: .7rem 0 .9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.fm-katman { padding: .4rem 0 .9rem; }
+
+/* Beş sütun: aralık, ad, oran, saat, tutar. Sayı sütunları sağa dayalı ve
+   tabular-nums — tutarlar alt alta hizalanmazsa karşılaştırma zorlaşır. */
+.fm-satir {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr 3.2rem 4rem 8rem;
+  align-items: baseline;
+  gap: .3rem .8rem;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.fm-satir:last-child { border-bottom: 0; }
+
+.fm-aralik {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.fm-ad { font-size: var(--step-0); color: var(--text); }
+
+.fm-oran {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: var(--step-0);
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.fm-oran--dusuk { color: var(--dv-1); }
+.fm-oran--yuksek { color: var(--dv-2); }
+
+.fm-saat {
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.fm-tutar {
+  font-size: var(--step-1);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Toplam satırı: üstüne kalın çizgi, iki katmandan ayrılsın. */
+.fm-satir--toplam {
+  border-top: 2px solid var(--text);
+  margin-top: .2rem;
+  padding-top: .8rem;
+}
+
+.fm-satir--toplam .fm-ad { color: var(--text-muted); }
+.fm-satir--toplam .fm-tutar { font-weight: 700; }
+
+.nowrap { white-space: nowrap; }
+
+/* Dar ekranda beş sütun sığmaz: aralık+ad üstte, oran/saat/tutar altta.
+   Tutar tek başına bir satır alıyor ki kırpılmasın. */
+@media (max-width: 620px) {
+  .fm-satir {
+    grid-template-columns: 1fr auto;
+    gap: .2rem .6rem;
+  }
+  .fm-aralik { grid-column: 1; }
+  .fm-oran { grid-column: 2; grid-row: 1; }
+  .fm-ad { grid-column: 1 / -1; }
+  .fm-saat { grid-column: 1; text-align: left; }
+  .fm-tutar { grid-column: 2; }
+}
