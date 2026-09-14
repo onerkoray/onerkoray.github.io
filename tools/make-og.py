@@ -5,44 +5,49 @@
 
 NEDEN BU HALDE
 --------------
-Ilk surum tek sablondu: her sayfa ayni yesil gradyan, ayni iki satir baslik,
-ayni "Ucretsiz / Reklamsiz" rozet dizisi. 74 sayfanin karti birbirinin ayniydi;
-akista ust uste iki link paylasildiginda ikisi tek gorsel gibi okunuyordu.
-Paylasim karti dikkat cekmek icindir; tekrar dikkati oldurur.
+Onceki surum koyu gradyanli kartlardi: her aile bir palet, aile icinde
+donen dort duzen ve dort doku. Sistem calisiyordu ama iki sorunu vardi.
 
-Cozum bir "kart sistemi": marka imzasi SABIT kalir (logo rozeti, alan adi
-satiri, Koray Oner kunyesi), geri kalan her sey DEGISIR.
+  1. KART BILGI TASIMIYORDU. Baslik ve rozetlerden ibaretti; paylasilan
+     bagi goren kisi sayfaya girmeden bir sey ogrenmiyordu.
+  2. AKISTA SESSIZ KALIYORDU. Telefonda bir paylasim karti ~440 px
+     genisliginde gorunur. O olcekte rozetler ve alt yazi okunmaz;
+     okunan tek sey en buyuk yazidir.
 
-  palet   -> sayfanin ailesine gore (renk bilgi tasir, rastgele degil)
-  duzen   -> aile icinde sirayla dagitilir (ayni renkte iki kart ayni durmaz)
-  doku    -> arka plan geometrisi, duzenle capraz esleneir
-  simge   -> araca ait ikon (tools/card-icons.json) filigran olarak
-  rakam   -> maas sayfalarinda kart GERCEK sonucu gosterir
+Yeni dil bu iki seyi duzeltiyor:
 
-KONTRAST HESAPLANDI, BAKILMADI
-------------------------------
-Eski sablonun en acik gradyan duragi #14957a idi; uzerindeki beyaz metin
-3.28:1 ile WCAG AA'nin altinda kaliyordu. Buradaki sekiz palet, beyaz metin
->= 5.0:1 ve vurgu rengi >= 4.5:1 gecene kadar en acik duraklari koyultularak
-turetildi (asagidaki tabloda olculen degerler yazili). Yeni renk eklerken
-`--kontrast` ile dogrula, goze guvenme.
+  CEVAP MANSETTIR. Sayfanin verdigi cevap sayiysa, kartin en buyuk yazisi
+  o sayidir. Soru ustte kucuk durur. Insani akista durduran sey soru
+  degil, sayidir — ve 28 maas sayfasinin karti boylece birbirinden
+  kendiliginde ayrisir, renk hilesine gerek kalmaz.
 
-Yontem: HTML sablonu headless Chrome ile ekran goruntusune cevrilir; boylece
-sitenin kendi yazi tipi ve renkleriyle birebir ayni sonuc alinir.
+  DEKORASYON YOK. Doku, rozet dizisi, gradyan, gölge, rozet logosu
+  kaldirildi. Sayfanin anlatmadigi hicbir sekil kartta yer almiyor.
+  Tek grafik, veri tasiyan cubuktur; o da yalnizca veri varsa cizilir.
+
+IKI KART TURU
+-------------
+  veri    — sayfanin tek bir sayisal cevabi varsa (maas sayfalari):
+            kunye, soru, dev cevap, brut-net cubugu, kesinti satiri
+  baslik  — cevabi tek sayiya inmeyen sayfalar (araclar, bolumler):
+            kunye, iki parcali dev baslik, tek satir aciklama
+
+Ikinci turde UYDURMA SAYI ya da temsili grafik YOKTUR. Verisi olmayan
+sayfaya veri gorunumlu bir sekil koymak, kartin tasidigi guveni bozar.
+
+Yontem: HTML sablonu headless Chrome ile ekran goruntusune cevrilir;
+boylece sitenin kendi yazi tipi ve renkleriyle birebir ayni sonuc alinir.
 
 Kullanim:
     python tools/make-og.py                 # hepsini uret
     python tools/make-og.py maas-hesaplama  # sadece belirtilenleri uret
-    python tools/make-og.py --list          # ne uretilecek, hangi tema ile
+    python tools/make-og.py --list          # ne uretilecek, hangi renkle
     python tools/make-og.py --kontrast      # palet kontrast raporu
 """
 
-import base64
 import glob
-import hashlib
 import html
 import io
-import json
 import os
 import re
 import shutil
@@ -64,41 +69,47 @@ CHROME_CANDIDATES = [
 ]
 
 # ---------------------------------------------------------------- paletler --
-# (koyu durak, orta durak, acik durak, vurgu)  — kontrastla dogrulandi
-PALETLER = {
-    "orman":    ("#063b32", "#0a5949", "#0f6a58", "#ffd479"),
-    "gece":     ("#101a4d", "#1e2f7a", "#2c44a8", "#7fd8ff"),
-    "murdum":   ("#3d1233", "#6a1f52", "#8e2a63", "#ffc2d8"),
-    "terminal": ("#0b1015", "#131c25", "#1b2836", "#4ee1a0"),
-    "kiremit":  ("#6b2413", "#90351b", "#a54121", "#ffd8a8"),
-    "celik":    ("#1f2c38", "#33475a", "#425c75", "#ffc857"),
-    "okyanus":  ("#0a3a52", "#0e5370", "#126787", "#7ff0d8"),
-    "bordo":    ("#4a0f1e", "#75182e", "#96203b", "#ffc9a3"),
+# Editoryal kart: ACIK zemin, koyu murekkep, aile basina TEK vurgu.
+# Onceki surum bunun tersiydi (koyu zemin, beyaz yazi, dort duraklı
+# gradyan). Acik zemin akista daha az yoruyor ve buyuk rakami one
+# cikariyor; ayrica gradyan olmadigi icin kart her boyutta ayni okunuyor.
+ZEMIN = "#F4F1E9"      # sicak kirik beyaz
+MUREKKEP = "#17201D"   # siyaha yakin fume — baslik ve rakam
+IKINCIL = "#5A625C"    # soru, aciklama, kunye
+SOLUK = "#727972"      # alan adi — zeminde 3,96 kontrast
+HAT = "#DDD6C6"        # ince kural
+NOTR = "#C6BFAE"       # cubuktaki kesinti dilimi (vurgu DEGIL: veri degil)
+
+# Aile -> vurgu. Renk bilgi tasisin diye sayfa turune bagli, hash'e degil.
+AILE_VURGU = {
+    "bordro":   "#0E6657",   # maas, tazminat, bordro motoru — turkuaz
+    "vergi":    "#7A1F2B",   # KDV, MTV, OTV, gumruk — bordo
+    "finans":   "#1B3A6B",   # kredi, mevduat, kira, doviz — lacivert
+    "guvenlik": "#1F6B8C",   # KeyMint ailesi — arduvaz mavisi
+    "gunluk":   "#A8521F",   # yuzde, birim, yas, final — sicak turuncu
+    "canli":    "#3F6E33",   # deprem, hiz testi — koyu yesil
+    "marka":    "#0E6657",   # kapak ve kurumsal sayfalar
+    "yazi":     "#5B3A66",   # makaleler bolumu — koyu mor
 }
 
-# Aile -> palet. Renk bilgi tasisin diye sayfa turune bagli, hash'e degil.
-AILE_PALET = {
-    "bordro":   "orman",      # maas, tazminat, bordro motoru
-    "vergi":    "gece",       # KDV, MTV, OTV, gumruk
-    "finans":   "murdum",     # kredi, mevduat, kira, doviz
-    "guvenlik": "terminal",   # KeyMint ailesi
-    "gunluk":   "kiremit",    # yuzde, birim, yas, final, hesap bolusme
-    "canli":    "celik",      # deprem, hiz testi
-    "marka":    "okyanus",    # kapak ve kurumsal sayfalar
-    "yazi":     "bordo",      # makaleler bolumu
+# Kartin ust satirindaki kunye. Aileyi okura anlatan tek kelime obegi.
+AILE_KUNYE = {
+    "bordro":   "MAAŞ VE BORDRO",
+    "vergi":    "VERGİ HESAPLAMA",
+    "finans":   "FİNANS HESAPLAMA",
+    "guvenlik": "GÜVENLİK ARAÇLARI",
+    "gunluk":   "GÜNLÜK ARAÇLAR",
+    "canli":    "CANLI VERİ",
+    "marka":    "KORAYONER.DEV",
+    "yazi":     "MAKALELER",
 }
 
-# maas-<tutar> sayfalari tek bir seri: 20'sinin de duzeni "rakam" (icerik
-# rakamin kendisi, duzeni degistirmek keyfi olurdu). Ama 20 kart tek renkte
-# olunca seri yine tek kart gibi okunuyor; tutar sirasina gore renk rampasina
-# yayiliyorlar. Dusuk brutler yesil, yukari dogru maviye ve bordoya kayiyor.
-MAAS_RAMPA = ["orman", "okyanus", "gece", "murdum", "bordo"]
-
-DUZENLER = ["afis", "bolunmus", "serit", "izgara"]
-DOKULAR = ["nokta", "cizgi", "capraz", "yay"]
 
 # ------------------------------------------------------------------- spec ---
-# dosya adi -> (url yolu, beyaz bolum, vurgulu bolum, alt yazi, rozetler, aile)
+# dosya adi -> (url yolu, ust baslik, alt baslik, aciklama, rozetler, aile)
+# Rozetler artik cizilmiyor (kart dekorasyonu kaldirildi) ama veri
+# yapisi korunuyor: eski kayitlar bozulmasin, ileride gerekirse
+# baska bir yerde kullanilabilsin.
 SPEC = {
  "koray-oner-kapak": ("", "Ücretsiz açık kaynak", "web araçları",
    "Hesaplayıcılar, dönüştürücüler, üreteçler ve günlük hayatı kolaylaştıran pratik araçlar.",
@@ -367,344 +378,212 @@ def _srgb(c):
 
 def _isik(h):
     h = h.lstrip("#")
-    r, g, b = [int(h[i:i + 2], 16) for i in (0, 2, 4)]
+    r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
     return 0.2126 * _srgb(r) + 0.7152 * _srgb(g) + 0.0722 * _srgb(b)
 
 
 def kontrast(a, b):
     la, lb = _isik(a), _isik(b)
-    hi, lo = max(la, lb), min(la, lb)
-    return (hi + 0.05) / (lo + 0.05)
+    if la < lb:
+        la, lb = lb, la
+    return (la + 0.05) / (lb + 0.05)
 
 
 def kontrast_raporu():
-    """Paletleri dogrular. Yeni renk eklendiginde once bunu calistir."""
-    beyaz = "#ffffff"
+    """Her vurgu rengini ZEMIN uzerinde dogrular.
+
+    Onceki surumde olcut beyaz yazinin koyu zemin uzerindeki kontrastiydi.
+    Kart tersine dondugu icin olcut de dondu: artik koyu murekkep ve
+    vurgu renginin ACIK zemin uzerindeki okunurlugu olculuyor.
+
+    Sinirlar: govde metni 4.5 (WCAG AA), buyuk baslik 3.0. Vurgu hem
+    kunye (kucuk) hem cubuk (buyuk alan) icin kullanildigindan kucuk
+    metin sinirina tabi.
+    """
     kotu = 0
-    print("%-9s  beyaz@orta beyaz@açık  vurgu@orta vurgu@açık" % "palet")
-    for ad, (d1, d2, d3, v) in PALETLER.items():
-        olcum = [kontrast(beyaz, d2), kontrast(beyaz, d3),
-                 kontrast(v, d2), kontrast(v, d3)]
-        sinir = [5.0, 5.0, 4.5, 4.5]
-        gecti = all(o >= s for o, s in zip(olcum, sinir))
-        if not gecti:
-            kotu += 1
-        print("%-9s  %9.2f %10.2f %11.2f %10.2f   %s"
-              % (ad, olcum[0], olcum[1], olcum[2], olcum[3],
-                 "geçti" if gecti else "KALDI"))
-    print("\n%d palet, %d kaldı." % (len(PALETLER), kotu))
+    print("%-10s %-9s  zemin@vurgu  durum" % ("aile", "renk"))
+    for aile in sorted(AILE_VURGU):
+        v = AILE_VURGU[aile]
+        o = kontrast(v, ZEMIN)
+        gecti = o >= 4.5
+        kotu += 0 if gecti else 1
+        print("%-10s %-9s  %11.2f  %s" % (aile, v, o, "geçti" if gecti else "KALDI"))
+
+    print()
+    for ad, renk, sinir in (("mürekkep", MUREKKEP, 7.0),
+                            ("ikincil", IKINCIL, 4.5),
+                            ("soluk", SOLUK, 3.0),
+                            ("nötr çubuk", NOTR, 1.3)):
+        o = kontrast(renk, ZEMIN)
+        gecti = o >= sinir
+        kotu += 0 if gecti else 1
+        print("%-10s %-9s  %11.2f  %s (alt sınır %.1f)"
+              % (ad, renk, o, "geçti" if gecti else "KALDI", sinir))
+
+    print("\n%d renk, %d kaldı." % (len(AILE_VURGU) + 4, kotu))
     return 1 if kotu else 0
 
 
-# ------------------------------------------------------------------ tema ----
-
-def tohum(ad):
-    """Ada bagli kararli sayi — her uretimde ayni kart cikar."""
-    return int(hashlib.md5(ad.encode("utf-8")).hexdigest()[:8], 16)
-
-
-def tema(ad, aile, sira):
-    """Palet aileden, duzen ve doku aile icindeki siradan gelir.
-
-    Sira kullanmanin sebebi: saf hash ayni ailede iki karta ayni duzeni
-    verebiliyor. Sirayla dagitinca ayni renkteki kartlar birbirinden
-    kesin olarak ayrisiyor.
-    """
-    if aile not in AILE_PALET:
-        raise SystemExit(
-            "Bilinmeyen kart ailesi: %r. Gecerli aileler: %s"
-            % (aile, ", ".join(sorted(AILE_PALET))))
-    palet = AILE_PALET[aile]
-    duzen = DUZENLER[sira % len(DUZENLER)]
-    doku = DOKULAR[(sira // len(DUZENLER) + sira) % len(DOKULAR)]
-    t = tohum(ad)
-    return {
-        "palet": palet,
-        "renkler": PALETLER[palet],
-        "duzen": duzen,
-        "doku": doku,
-        "aci": 108 + (t % 5) * 12,          # gradyan acisi 108-156
-        "isikX": 84 + (t >> 3) % 40,        # parlama odagi konumu
-        "isikY": 2 + (t >> 7) % 24,
-    }
-
-
-# card-icons.json arac kartlari icin yazilmisti; kimi sayfanin orada karsiligi
-# yok (KeyMint alt araclari, kurumsal sayfalar, bordro). Ikonsuz kalan kart
-# "bolunmus" duzenine dustugunde yan panel bombos kaliyordu — asagidakiler o
-# boslugu kapatiyor.
-OG_IKON = {
-    'bordro': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
-    'makaleler': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13a1 1 0 0 1 1 1v14a2 2 0 0 0 2-2V8h-3"/><path d="M4 4v15a2 2 0 0 0 2 2h12"/><path d="M7 8h7M7 12h7M7 16h4"/></svg>',
-    'iletisim': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>',
-    'gizlilik': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="M9 12l2 2 4-4"/></svg>',
-    'kullanim-kosullari': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>',
-    'koray-oner-kapak': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/><path d="M13 6l-2 12"/></svg>',
-    'sifre-guc-testi': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="M12 8v5"/><circle cx="12" cy="16" r="1"/></svg>',
-    'pin-uretici': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="10" r="1.4"/><circle cx="12" cy="10" r="1.4"/><circle cx="16" cy="10" r="1.4"/><path d="M8 15h8"/></svg>',
-    'parola-cumlesi': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg>',
-    'wifi-sifresi': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a16 16 0 0 1 20 0"/><path d="M5 12.3a11 11 0 0 1 14 0"/><path d="M8.5 15.8a6 6 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></svg>',
-    'hash-uretici': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 7 21M17 3l-2 18M4 8h17M3 16h17"/></svg>',
-    'uuid-uretici': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M5 16c.6-1.6 1.7-2.4 3-2.4s2.4.8 3 2.4"/><path d="M15 10h4M15 14h4"/></svg>',
-    'base64': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6-5 6 5 6"/><path d="m15 6 5 6-5 6"/></svg>',
-}
-
-
-def ikonlar():
-    p = os.path.join(ROOT, "tools", "card-icons.json")
-    try:
-        ham = json.load(io.open(p, encoding="utf-8"))
-    except Exception:
-        return {}
-    out = {}
-    for slug, kayit in ham.items():
-        svg = kayit["svg"]
-        svg = re.sub(r'stroke-width="[^"]*"', 'stroke-width="1.35"', svg)
-        svg = svg.replace('stroke="currentColor"', 'stroke="currentColor"')
-        out[slug] = svg
-    for slug, svg in OG_IKON.items():
-        out.setdefault(slug, svg)
-    return out
-
-
-def logo_b64():
-    # Animasyonlu <style> blogu cikarilir: ekran goruntusunde ilk kare alinir,
-    # sabit hali daha guvenilir.
-    s = io.open(os.path.join(ROOT, "logo.svg"), encoding="utf-8").read()
-    s = re.sub(r"<style>.*?</style>", "", s, flags=re.S)
-    return base64.b64encode(s.encode("utf-8")).decode("ascii")
-
-
 # --------------------------------------------------------------- sablonlar --
-# string.Template kullaniliyor: CSS'te { } ve % bol, .format/% ile kacis
-# yazmak sablonu okunmaz hale getiriyordu. CSS'te $ isareti gecmiyor.
+# Tek sablon, iki govde. Dokuya, gradyana, rozete, logoya yer yok:
+# kartin tasidigi her isaret bir seyi SOYLEMEK zorunda.
 
-ORTAK_CSS = string.Template("""
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html,body { width:1200px; height:630px; overflow:hidden; }
-  body {
-    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
-    color:#fff; position:relative; background:$koyu;
-    background-image:
-      radial-gradient(980px 640px at ${isikX}% ${isikY}%, rgba(255,255,255,.13), transparent 62%),
-      linear-gradient(${aci}deg, $koyu 0%, $orta 52%, $acik 100%);
-  }
-  .doku { position:absolute; inset:0; pointer-events:none; }
-  .halka { position:absolute; border:2px solid rgba(255,255,255,.13); border-radius:50%; }
-  .pad { position:absolute; inset:70px 74px 58px; display:flex; flex-direction:column; }
-  .brow { display:flex; align-items:center; gap:20px; }
-  .badge { width:62px; height:62px; border-radius:16px; background:rgba(255,255,255,.17);
-           display:flex; align-items:center; justify-content:center; flex:none; }
-  .badge img { width:48px; height:48px; display:block; }
-  .url { font-size:26px; font-weight:700; letter-spacing:-.01em; }
-  .vurgu { color:$vurgu; }
-  .sub { font-size:29px; line-height:1.36; color:rgba(255,255,255,.93); font-weight:400; }
-  .pills { display:flex; gap:13px; flex-wrap:wrap; }
-  .pill { border:2px solid rgba(255,255,255,.72); border-radius:999px; padding:10px 21px;
-          font-size:21px; font-weight:700; white-space:nowrap; }
-  .by { font-size:21px; color:rgba(255,255,255,.82); }
-  .by b { color:#fff; font-weight:700; }
-  .fil { position:absolute; color:$vurgu; opacity:.15; }
-  .fil svg { width:100%; height:100%; display:block; fill:none; }
-""")
-
-DOKU_CSS = {
-    "nokta": """.doku { background-image:radial-gradient(rgba(255,255,255,.17) 1.7px, transparent 1.8px);
-                        background-size:28px 28px; }""",
-    "cizgi": """.doku { background-image:repeating-linear-gradient(0deg,
-                        rgba(255,255,255,.09) 0 1px, transparent 1px 15px); }""",
-    "capraz": """.doku { background-image:repeating-linear-gradient(45deg,
-                         rgba(255,255,255,.075) 0 3px, transparent 3px 18px); }""",
-    "yay": ".doku { background:none; }",
-}
-
-DOKU_HTML = {
-    "yay": ('<div class="doku">'
-            '<div class="halka" style="width:520px;height:520px;right:-130px;top:-150px"></div>'
-            '<div class="halka" style="width:760px;height:760px;right:-250px;top:-270px"></div>'
-            '<div class="halka" style="width:1020px;height:1020px;right:-380px;top:-400px"></div>'
-            "</div>"),
-}
-
-
-def doku_blogu(ad):
-    return DOKU_HTML.get(ad, '<div class="doku"></div>')
-
-
-# Her duzen kendi CSS'ini ve govdesini tasir. Ortak kisim yukarida.
-DUZEN_CSS = {
- "afis": """
-  h1 { margin-top:32px; font-size:${fs}px; font-weight:800; line-height:1.05; letter-spacing:-.028em; }
-  .sub { margin-top:20px; max-width:960px; }
-  .pills { margin-top:auto; }
-  .by { margin-top:19px; }
-  .fil { width:300px; height:300px; right:-26px; bottom:-30px; }
- """,
- "bolunmus": """
-  body { display:block; }
-  .yan { position:absolute; right:0; top:0; bottom:0; width:396px; background:$koyu;
-         border-left:3px solid $vurgu; display:flex; align-items:center; justify-content:center; }
-  .yan .fil { position:static; width:236px; height:236px; opacity:.85; }
-  .pad { right:470px; }
-  h1 { margin-top:30px; font-size:${fs}px; font-weight:800; line-height:1.06; letter-spacing:-.028em; }
-  .sub { margin-top:18px; font-size:26px; }
-  .pills { margin-top:auto; }
-  .by { margin-top:17px; }
- """,
- "serit": """
-  /* Sol kenar seridi kimligi tasir; vurgulu satirin arkasina kutu koymak
-     tasma uretiyordu (metin kutudan sarkiyordu) — kaldirildi. */
-  body::before { content:""; position:absolute; left:0; top:0; bottom:0; width:14px;
-                 background:$vurgu; }
-  .pad { inset:70px 74px 58px 92px; }
-  h1 { margin-top:auto; font-size:${fsb}px; font-weight:800; line-height:1.02;
-       letter-spacing:-.034em; }
-  h1 .vurgu { display:inline-block; margin-top:6px; }
-  .sub { margin-top:24px; max-width:900px; font-size:27px; }
-  .satirlar { margin-top:26px; display:flex; align-items:center; gap:16px; font-size:22px;
-              font-weight:700; color:rgba(255,255,255,.9); }
-  .satirlar .nk { color:$vurgu; }
-  .by { margin-top:18px; }
-  .fil { width:250px; height:250px; right:52px; top:56px; opacity:.2; }
- """,
- "izgara": """
-  .kutu { margin-top:26px; background:rgba(0,0,0,.26); border:2px solid rgba(255,255,255,.24);
-          border-left:6px solid $vurgu; border-radius:20px; padding:34px 38px 32px;
-          display:flex; flex-direction:column; flex:1; }
-  h1 { font-size:${fs}px; font-weight:800; line-height:1.05; letter-spacing:-.028em; }
-  .sub { margin-top:18px; max-width:820px; font-size:27px; }
-  .pills { margin-top:auto; }
-  .by { margin-top:16px; }
-  .fil { width:190px; height:190px; right:66px; top:150px; opacity:.28; }
- """,
- "rakam": """
-  h1 { margin-top:26px; font-size:52px; font-weight:800; line-height:1.06; letter-spacing:-.028em;
-       max-width:660px; }
-  .tablo { margin-top:auto; display:flex; align-items:flex-end; gap:38px; }
-  .hane .et { font-size:22px; font-weight:700; color:rgba(255,255,255,.8);
-              text-transform:uppercase; letter-spacing:.08em; }
-  .hane .dg { font-size:88px; font-weight:800; letter-spacing:-.035em; line-height:1.02;
-              margin-top:4px; }
-  .hane .dg small { font-size:34px; font-weight:700; margin-left:6px; }
-  .ok { font-size:60px; font-weight:800; color:$vurgu; padding-bottom:18px; }
-  .fark { padding-bottom:14px; font-size:29px; font-weight:800; color:$vurgu; max-width:270px;
-          line-height:1.2; letter-spacing:-.01em; white-space:nowrap; }
-  .by { margin-top:22px; }
-  .fil { width:270px; height:270px; right:-16px; top:64px; opacity:.13; }
- """,
-}
-
-SAYFA = string.Template("""<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><style>
-$ortak
-$doku
-$duzen
+SAYFA = string.Template("""<!DOCTYPE html>
+<html lang="tr"><head><meta charset="UTF-8"><style>
+  html,body{margin:0;padding:0;background:$zemin}
+  body{width:1200px;height:630px;overflow:hidden}
+  svg{display:block}
+  /* TEK AILE, IKI AGIRLIK. Sistem grotesk yigini — site de ayni
+     yigini kullaniyor, kart ile sayfa ayni yazi tipinde okunuyor. */
+  text{font-family:"Segoe UI Variable Display","Segoe UI",Inter,
+       "Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:500;fill:$murekkep}
+  .kunye{font-size:15px;font-weight:700;letter-spacing:.18em;fill:$vurgu}
+  .soru{font-size:32px;fill:$ikincil}
+  .cevap{font-size:$punto;font-weight:800;letter-spacing:-.035em}
+  .birim{font-size:52px;font-weight:700;fill:$ikincil;letter-spacing:-.02em}
+  .satir{font-size:20px;fill:$ikincil;font-variant-numeric:tabular-nums}
+  .baslik{font-size:${bpunto}px;font-weight:800;letter-spacing:-.03em;line-height:1}
+  .vurgulu{fill:$vurgu}
+  .aciklama{font-size:24px;fill:$ikincil}
+  .imza{font-size:15px;font-weight:700;letter-spacing:.2em;fill:$ikincil}
+  .alan{font-size:15px;font-weight:500;letter-spacing:.06em;fill:$soluk}
 </style></head><body>
-$dokuHtml
+<svg width="1200" height="630" viewBox="0 0 1200 630"
+     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="$alt">
+  <rect width="1200" height="630" fill="$zemin"/>
 $govde
+  <line x1="64" y1="556" x2="1136" y2="556" stroke="$hat" stroke-width="1"/>
+  <text class="imza" x="64" y="588">KORAY ÖNER</text>
+  <text class="alan" x="1136" y="588" text-anchor="end">$url</text>
+</svg>
 </body></html>""")
 
-BROW = string.Template("""    <div class="brow">
-      <div class="badge"><img src="data:image/svg+xml;base64,$logo" alt=""></div>
-      <div class="url">$url</div>
-    </div>""")
+
+def _e(s):
+    return html.escape(s or "", quote=True)
 
 
-def pill_html(rozetler):
-    return "".join('<span class="pill">%s</span>' % html.escape(p) for p in rozetler)
+def veri_govdesi(kunye, soru, cevap, birimX, cubuk, satirlar):
+    """Cevabi sayi olan sayfa: rakam mansettir."""
+    ic = ['  <text class="kunye" x="64" y="104">%s</text>' % _e(kunye),
+          '  <text class="soru" x="64" y="182">%s</text>' % _e(soru),
+          '  <text class="cevap" x="64" y="318">%s</text>' % _e(cevap),
+          '  <text class="birim" x="%d" y="318">TL</text>' % birimX]
+    # Cubuk TAM GENISLIK (1072 px): dar cubukta kucuk dilim goze
+    # gorunmuyordu. Dilimler arasi bosluk yok; 2 px ayirici kucuk dilimi
+    # tamamen yok edebiliyor, ayrim ton farkiyla saglaniyor.
+    x = 64
+    for genislik, renk in cubuk:
+        ic.append('  <rect x="%.1f" y="392" width="%.1f" height="40" fill="%s"/>'
+                  % (x, genislik, renk))
+        x += genislik
+    y = 472
+    for s in satirlar:
+        ic.append('  <text class="satir" x="64" y="%d">%s</text>' % (y, _e(s)))
+        y += 30
+    return "\n".join(ic)
 
 
-def by_html():
-    return '<div class="by">Geliştiren: <b>Koray Öner</b> · Ücretsiz, reklamsız</div>'
+def baslik_govdesi(kunye, ust, alt, aciklama):
+    """Cevabi tek sayiya inmeyen sayfa: baslik mansettir.
+
+    Iki parcali baslik SPEC'ten olduğu gibi geliyor; ikinci parca vurgu
+    renginde. Uydurma sayi ya da temsili grafik YOK.
+    """
+    ic = ['  <text class="kunye" x="64" y="104">%s</text>' % _e(kunye)]
+    y = 236 if alt else 210
+    ic.append('  <text class="baslik" x="64" y="%d">%s</text>' % (y, _e(ust)))
+    if alt:
+        ic.append('  <text class="baslik vurgulu" x="64" y="%d">%s</text>'
+                  % (y + 92, _e(alt)))
+    if aciklama:
+        ay = y + (170 if alt else 78)
+        for i, satir in enumerate(_sar(aciklama, 62)[:2]):
+            ic.append('  <text class="aciklama" x="64" y="%d">%s</text>'
+                      % (ay + i * 34, _e(satir)))
+    return "\n".join(ic)
 
 
-def govde_yap(duzen, ctx):
-    b = BROW.substitute(logo=ctx["logo"], url=html.escape(ctx["url"]))
-    baslik = ('<h1>%s<br><span class="vurgu">%s</span></h1>'
-              % (html.escape(ctx["beyaz"]), html.escape(ctx["vurgulu"])))
-    sub = '<p class="sub">%s</p>' % html.escape(ctx["sub"])
-    pills = '<div class="pills">%s</div>' % pill_html(ctx["rozetler"])
-    fil = '<div class="fil">%s</div>' % ctx["ikon"] if ctx["ikon"] else ""
-
-    if duzen == "afis":
-        return ('  <div class="pad">%s%s%s%s%s</div>%s'
-                % (b, baslik, sub, pills, by_html(), fil))
-
-    if duzen == "bolunmus":
-        yan = '  <div class="yan">%s</div>' % (
-            '<div class="fil">%s</div>' % ctx["ikon"] if ctx["ikon"] else "")
-        return ('  <div class="pad">%s%s%s%s%s</div>\n%s'
-                % (b, baslik, sub, pills, by_html(), yan))
-
-    if duzen == "serit":
-        satir = ('<div class="satirlar">%s</div>'
-                 % ('<span class="nk">•</span>'.join(
-                     "<span>%s</span>" % html.escape(p) for p in ctx["rozetler"])))
-        return ('  <div class="pad">%s%s%s%s%s</div>%s'
-                % (b, baslik, sub, satir, by_html(), fil))
-
-    if duzen == "izgara":
-        return ('  <div class="pad">%s<div class="kutu">%s%s%s</div>%s</div>%s'
-                % (b, baslik, sub, pills, by_html(), fil))
-
-    if duzen == "rakam":
-        r = ctx["rakam"]
-        tablo = (
-            '<div class="tablo">'
-            '<div class="hane"><div class="et">Ocak neti</div>'
-            '<div class="dg">%s<small>TL</small></div></div>'
-            '<div class="ok">&#8594;</div>'
-            '<div class="hane"><div class="et">Aralık neti</div>'
-            '<div class="dg">%s<small>TL</small></div></div>'
-            '<div class="fark">%s TL erir</div>'
-            "</div>" % (html.escape(r["ocak"]), html.escape(r["aralik"]),
-                        html.escape(r["fark"])))
-        return ('  <div class="pad">%s<h1>%s</h1>%s%s</div>%s'
-                % (b, html.escape(ctx["beyaz"]), tablo, by_html(), fil))
-
-    raise ValueError("bilinmeyen duzen: " + duzen)
+def _sar(metin, en):
+    """Aciklamayi kelime sinirinda sarar; kirpma yok, tasma yok."""
+    kelimeler = metin.split()
+    satirlar, cur = [], ""
+    for k in kelimeler:
+        if len(cur) + len(k) + 1 > en and cur:
+            satirlar.append(cur)
+            cur = k
+        else:
+            cur = (cur + " " + k).strip()
+    if cur:
+        satirlar.append(cur)
+    return satirlar
 
 
-def punto(beyaz, vurgulu, duzen):
-    uzun = max(len(beyaz), len(vurgulu))
-    if duzen == "bolunmus":
-        return 62 if uzun <= 18 else (54 if uzun <= 24 else 46)
-    if duzen == "izgara":
-        return 66 if uzun <= 18 else (58 if uzun <= 24 else 50)
-    return 84 if uzun <= 18 else (74 if uzun <= 24 else 64)
+def _sayi(s):
+    return float(str(s).replace(".", "").replace(",", "."))
 
 
-def belge(ad, spec, t, logo, ikon, rakam=None):
-    yol, beyaz, vurgulu, sub, rozetler, _aile = spec
-    koyu, orta, acik, vurgu = t["renkler"]
-    duzen = "rakam" if rakam else t["duzen"]
-    fs = punto(beyaz, vurgulu, duzen)
+def _tl(n):
+    return "{:,.2f}".format(n).replace(",", "\x00").replace(".", ",").replace("\x00", ".")
 
-    ortak = ORTAK_CSS.substitute(koyu=koyu, orta=orta, acik=acik, vurgu=vurgu,
-                                 aci=t["aci"], isikX=t["isikX"], isikY=t["isikY"])
-    duzen_css = string.Template(DUZEN_CSS[duzen]).substitute(
-        koyu=koyu, orta=orta, acik=acik, vurgu=vurgu, fs=fs, fsb=fs + 14)
 
-    ctx = {
-        "logo": logo, "url": DOMAIN + ("/" + yol if yol else ""),
-        "beyaz": beyaz, "vurgulu": vurgulu, "sub": sub, "rozetler": rozetler,
-        "ikon": ikon or "", "rakam": rakam,
-    }
-    return SAYFA.substitute(ortak=ortak, doku=DOKU_CSS[t["doku"]], duzen=duzen_css,
-                            dokuHtml=doku_blogu(t["doku"]), govde=govde_yap(duzen, ctx))
+def belge(ad, spec, vurgu, rakam=None):
+    yol, ust, alt, aciklama, _rozet, aile = spec
+    kunye = AILE_KUNYE.get(aile, aile.upper())
+    # Kartta yalniz alan adi: tam yol paylasim platformunun kendi
+    # kunyesinde zaten yaziyor, kartta tekrar olur ve imza satirini
+    # sikistirir.
+    url = DOMAIN
+
+    if rakam:
+        # Kesintiler brut ile netin FARKI: bordro yeniden hesaplanmiyor,
+        # sayfanin kendi iki sayisindan cikiyor.
+        brut = _sayi(rakam["brut"])
+        net = _sayi(rakam["ocakTam"])
+        kesinti = brut - net
+        tam = 1072.0
+        kesintiEn = tam * kesinti / brut
+        cubuk = [(kesintiEn, NOTR), (tam - kesintiEn, vurgu)]
+        cevap = rakam["ocakTam"]
+        # "TL" rakamin hemen sagina: karakter basina ~0.56 em (800 agirlik).
+        punto = 112 if len(cevap) <= 10 else 96
+        birimX = 64 + int(len(cevap) * punto * 0.555) + 28
+        govde = veri_govdesi(
+            kunye, ust, cevap, birimX, cubuk,
+            ["Kesintiler %s TL" % _tl(kesinti),
+             "Aralık ayında net %s TL" % rakam["aralikTam"]])
+        alt_metin = "%s: %s TL net" % (ust, cevap)
+    else:
+        govde = baslik_govdesi(kunye, ust, alt, aciklama)
+        punto = 112
+        alt_metin = " ".join(x for x in (ust, alt) if x)
+
+    return SAYFA.substitute(
+        zemin=ZEMIN, murekkep=MUREKKEP, ikincil=IKINCIL, soluk=SOLUK,
+        hat=HAT, vurgu=vurgu, punto="%dpx" % punto, bpunto=_bpunto(ust, alt),
+        govde=govde, url=url, alt=_e(alt_metin))
+
+
+def _bpunto(ust, alt):
+    """Baslik puntosu en uzun satira gore: tasma olmasin, kucuk de kalmasin."""
+    en = max(len(ust or ""), len(alt or ""))
+    if en <= 14:
+        return 88
+    if en <= 20:
+        return 72
+    if en <= 26:
+        return 60
+    return 50
 
 
 # ------------------------------------------------------- maas sayfa kartlari -
 
-def _sayi(s):
-    return float(s.replace(".", "").replace(",", "."))
-
-
 def maas_spec():
     """maas-hesaplama/<tutar>-tl-brut-ne-kadar-net/ sayfalarindan kart uretir.
 
-    Rakamlar sayfanin og:description'indan okunur; boylece kart ile sayfa
-    ayrisamaz. Kart, sitenin imza bulgusunu gosteriyor: ayni brut ucret
-    Ocak'ta ve Aralik'ta ayni neti vermiyor.
+    Rakamlar SAYFANIN KENDI og:description'indan okunur; kart ile sayfa
+    ayrisamaz. Bordro burada yeniden hesaplanmiyor — kesinti, brut ile
+    netin farkidir.
     """
     out = {}
     kok = os.path.join(ROOT, "maas-hesaplama")
@@ -718,22 +597,14 @@ def maas_spec():
         m = re.search(r"Ocak ([\d.,]+) TL, Aralık ([\d.,]+) TL", d.group(1))
         if not m:
             continue
-        ocak, aralik = m.group(1), m.group(2)
-        fark = _sayi(ocak) - _sayi(aralik)
         brut = re.sub(r"\s*Brüt.*", "", re.sub(r"<[^>]+>", "", h.group(1))).strip()
+        brutSayi = re.sub(r"[^\d.]", "", brut)
         out["maas-" + klasor] = (
             "maas-hesaplama/" + klasor,
-            brut + " brüt maaş, yıl içinde ne kadar net bırakıyor?",
-            "",
-            "",
-            [],
-            "bordro",
+            "%s brüt maaşın neti" % brut,
+            "", "", [], "bordro",
+            {"brut": brutSayi, "ocakTam": m.group(1), "aralikTam": m.group(2)},
         )
-        out["maas-" + klasor] += ({
-            "ocak": ocak.rsplit(",", 1)[0],
-            "aralik": aralik.rsplit(",", 1)[0],
-            "fark": "{:,.0f}".format(fark).replace(",", "."),
-        },)
     return out
 
 
@@ -776,43 +647,18 @@ def tum_spec():
     return hepsi
 
 
-def maas_tutar(ad):
-    m = re.match(r"maas-(\d+)-tl-", ad)
-    return int(m.group(1)) if m else None
-
-
-def temalar(hepsi):
-    """Aile icinde sirali dagitim — ayni renkteki kartlar farkli duzen alsin."""
-    sayac = {}
-    out = {}
-    seri = sorted([a for a in hepsi if maas_tutar(a) is not None], key=maas_tutar)
-    for ad in sorted(hepsi):
-        aile = hepsi[ad][5]
-        i = sayac.get(aile, 0)
-        sayac[aile] = i + 1
-        t = tema(ad, aile, i)
-        if ad in seri:
-            j = seri.index(ad) * len(MAAS_RAMPA) // len(seri)
-            t["palet"] = MAAS_RAMPA[j]
-            t["renkler"] = PALETLER[t["palet"]]
-        out[ad] = t
-    return out
-
-
 def main():
     if "--kontrast" in sys.argv:
         return kontrast_raporu()
 
     hepsi = tum_spec()
-    tm = temalar(hepsi)
 
     if "--list" in sys.argv:
         for ad in sorted(hepsi):
             v = hepsi[ad]
-            t = tm[ad]
-            rk = " rakam" if len(v) > 6 else ""
-            print("%-46s %-9s %-9s %-7s%s  -> %s/%s"
-                  % (ad, v[5], t["palet"], t["duzen"] + rk, "", DOMAIN, v[0]))
+            tur = "veri" if len(v) > 6 else "başlık"
+            print("%-46s %-9s %-7s -> %s/%s"
+                  % (ad, v[5], tur, DOMAIN, v[0]))
         return 0
 
     chrome = find_chrome()
@@ -821,8 +667,6 @@ def main():
         return 1
     print("Tarayici:", chrome)
 
-    logo = logo_b64()
-    ikon = ikonlar()
     args = [a for a in sys.argv[1:] if not a.startswith("-")]
     todo = args or sorted(hepsi)
     ok = 0
@@ -832,10 +676,11 @@ def main():
             continue
         spec = hepsi[ad]
         rakam = spec[6] if len(spec) > 6 else None
-        # ikon slug'i: maas-* kartlari maas-hesaplama ikonunu kullanir
-        slug = "maas-hesaplama" if ad.startswith("maas-") and rakam else ad
+        aile = spec[5]
+        if aile not in AILE_VURGU:
+            raise SystemExit("Bilinmeyen kart ailesi: %r" % aile)
         print("-", ad)
-        doc = belge(ad, spec[:6], tm[ad], logo, ikon.get(slug), rakam)
+        doc = belge(ad, spec[:6], AILE_VURGU[aile], rakam)
         if render(chrome, ad, doc):
             ok += 1
     print("\nÜretilen: %d / %d" % (ok, len(todo)))
