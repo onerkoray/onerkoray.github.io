@@ -97,6 +97,7 @@ def main():
 
     sema_tekil = collections.defaultdict(list)
     sema_person = set()
+    sema_sameas = set()
     sema_website = set()
 
 
@@ -141,12 +142,23 @@ def main():
                 if tur == "WebSite":
                     sema_website.add((d.get("@id"), d.get("url"), d.get("name")))
                 if tur == "Person" and d.get("@id"):
-                    # @id VE url birlikte toplaniyor. Uzun sure yalnizca
-                    # @id bakiliyordu; 87 sayfada @id ayniyken url ikiye
-                    # ayrilmisti (84 ana sayfa, 3 /hakkimda/) ve kontrol
-                    # bunu gormedi. Ayni kimlige iki adres vermek, tek
-                    # kisiyi iki varliga bolme riski demek.
+                    # @id, url VE sameAs birlikte toplaniyor. Uc alan da
+                    # ayni varligi tarif ediyor ve ucu de ayri ayri kaydi.
+                    # Once url ikiye ayrildi (84 ana sayfa, 3 /hakkimda/);
+                    # sonra sameAs BES ayri kumeye dagildi (3, 8, 9, 10 ve
+                    # 11 baglantili varyantlar) ve icine bir de yazim hatasi
+                    # karisti. Arama motorlari varliklari tam olarak bu
+                    # baglantilarla birlestirdigi icin tutarsiz kume,
+                    # sinyali guclendirmek yerine zayiflatiyor.
+                    #
+                    # sameAs YOKSA bu bir tutarsizlik degildir: varlik bir
+                    # kez tam tanimlanir, diger sayfalar ayni @id ile ATIF
+                    # yapar. Bos kumeyi de karsilastirmaya katmak, dogru
+                    # olan bu deseni kirmizi gosteriyordu. Yalnizca sameAs
+                    # BILDIREN sayfalar birbiriyle karsilastiriliyor.
                     sema_person.add((d["@id"], d.get("url")))
+                    if d.get("sameAs"):
+                        sema_sameas.add(tuple(d["sameAs"]))
 
         # Olcum onay kapisi. Analitik artik SATIR ICI degil: gtag yalnizca
         # kullanici onay verirse, onay.js tarafindan yukleniyor. Bu yuzden
@@ -316,9 +328,16 @@ def main():
                   "%d adet %s - %s" % (len(yerler), tur, aciklama))
 
     if len(sema_person) > 1:
+        ayrinti = []
+        for a, u in sorted(sema_person):
+            ayrinti.append("@id=%s url=%s" % (a, u))
         bulgu("SEMA KIMLIK COKLU", "site geneli",
-              "Person kimligi tutarsiz: " + ", ".join(
-                  "@id=%s url=%s" % (a, u) for a, u in sorted(sema_person)))
+              "Person kimligi tutarsiz: " + ", ".join(ayrinti))
+
+    if len(sema_sameas) > 1:
+        bulgu("SEMA SAMEAS COKLU", "site geneli",
+              "Person sameAs kumesi tutarsiz: " + ", ".join(
+                  "%d baglanti" % len(x) for x in sorted(sema_sameas, key=len)))
 
     # 10) olcum onay kapisi
     #
