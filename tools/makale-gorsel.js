@@ -554,6 +554,57 @@ function dilimKaymasi() {
     izgara + cizgiler + eksen + gosterge + "</svg>";
 }
 
+/* Serbest meslek makbuzu — "serbest-meslek-makbuzu-stopaj-kdv" kapagi.
+   Yazinin cekirdegi bir YANILSAMA: 100.000 TL brut makbuzda hesaba gecen
+   para da 100.000 TL, cunku iki oran esit. Kapak bunu tek bir cubuk
+   dizisiyle anlatiyor: fatura toplami, kesilen stopaj, hesaba gecen ve
+   asil kalan. Sayilar yazininkiyle ayni sabitlerden hesaplaniyor. */
+function makbuzAkisi() {
+  var W = 600, H = 360, P = 34, SOL = 190;
+  var brut = 100000, s = 0.20, k = 0.20;
+  var kdv = brut * k, stopaj = brut * s;
+  var satirlar = [
+    { ad: "Fatura toplamı",     alt: "brüt + KDV",              v: brut + kdv, renk: R.s1 },
+    { ad: "Hesabınıza geçen",   alt: "stopaj kesildikten sonra", v: brut - stopaj + kdv, renk: R.s1 },
+    { ad: "Size kalan",         alt: "KDV devletin",            v: brut - stopaj, renk: R.marka }
+  ];
+  var enCok = brut + kdv;
+  var alan = W - SOL - P - 92;
+  var gen = function (v) { return v / enCok * alan; };
+
+  var y0 = 96, adim = 74;
+  var ic = satirlar.map(function (r, i) {
+    var y = y0 + i * adim;
+    return '<text x="' + (SOL - 12) + '" y="' + (y + 14) + '" text-anchor="end" ' +
+      'font-size="15" font-weight="700" fill="' + R.murekkep + '">' + esc(r.ad) + "</text>" +
+      '<text x="' + (SOL - 12) + '" y="' + (y + 32) + '" text-anchor="end" ' +
+      'font-size="12" fill="' + R.ikincil + '">' + esc(r.alt) + "</text>" +
+      '<rect x="' + SOL + '" y="' + y + '" width="' + gen(r.v).toFixed(1) +
+      '" height="30" rx="4" fill="' + r.renk + '"/>' +
+      '<text x="' + (SOL + gen(r.v) + 12) + '" y="' + (y + 21) +
+      '" font-size="17" font-weight="800" fill="' + R.murekkep + '">' +
+      nf0.format(r.v) + "</text>";
+  }).join("");
+
+  /* Ilk iki cubugun ucu ayni hizada DEGIL ama degerleri farkli; asil
+     carpici olan ilk ve ikinci satirin ARASINDAKI 20.000'lik stopaj.
+     Onu cubuklarin arasina yaziyoruz. */
+  var ax = SOL + gen(brut - stopaj + kdv);
+  var bx = SOL + gen(brut + kdv);
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="100 bin lira brut makbuzda fatura toplami, hesaba gecen tutar ve gercekte kalan">' +
+    '<text x="' + P + '" y="' + (P + 4) + '" font-size="15" fill="' + R.ikincil +
+    '">100.000 TL brüt serbest meslek makbuzu · 2026</text>' +
+    '<line x1="' + ax.toFixed(1) + '" y1="' + (y0 + 34) + '" x2="' + bx.toFixed(1) +
+    '" y2="' + (y0 + 34) + '" stroke="' + R.s2 + '" stroke-width="2"/>' +
+    '<text x="' + ((ax + bx) / 2) + '" y="' + (y0 + 52) + '" text-anchor="middle" ' +
+    'font-size="12" font-weight="700" fill="' + R.s2 + '">stopaj ' + nf0.format(stopaj) + "</text>" +
+    ic +
+    '<text x="' + P + '" y="' + (H - 20) + '" font-size="14" fill="' + R.ikincil +
+    '">Hesaba geçen tutar brüt ücrete eşit; arada iki ayrı ' + nf0.format(kdv) + ' TL var.</text>' +
+    "</svg>";
+}
+
 /* ---------- kapaklar ---------- */
 
 /* Emeklilik makalesi: OECD tanimiyla 100 calisma cagindaki kisiye dusen 65+.
@@ -720,6 +771,12 @@ var KAPAKLAR = {
     baslik: "Dilimler asgari ücrete yetişemiyor",
     alt: "Aynı katta maaş alan biri her yıl daha hızlı tırmanıyor",
     cizim: dilimKaymasi
+  },
+  "serbest-meslek-makbuzu-stopaj-kdv": {
+    kicker: "Vergi",
+    baslik: "Makbuzda elinizde ne kalıyor?",
+    alt: "Hesaba geçen para brüt ücrete eşit — ama sizin değil",
+    cizim: makbuzAkisi
   },
   "mtv-2026-ne-kadar": {
     kicker: "Vergi",

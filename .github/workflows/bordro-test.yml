@@ -246,6 +246,14 @@ jobs:
       - name: Vergi dilimi kayması yazısının sayıları
         run: node makaleler/vergi-dilimleri-asgari-ucrete-yetisemiyor/sayi-testi.js
 
+      # Serbest meslek makbuzu yazisi UCRET DISI tarifeden turuyor -- o
+      # tarife ucret tarifesinden farkli (ucuncu dilim 1.000.000, ucrette
+      # 1.500.000) ve her Ocak degisiyor. Test ayrica yazinin OZDESLIGINI
+      # sabitliyor: stopaj ve KDV oranlari esitken hesaba gecen tutar brut
+      # ucrete esit cikar. Oranlardan biri degisirse ozdeslik bozulur.
+      - name: Serbest meslek makbuzu yazısının sayıları
+        run: node makaleler/serbest-meslek-makbuzu-stopaj-kdv/sayi-testi.js
+
       # Gorsel tarafindaki bozulmalar SESSIZDIR: sayfa acilir, grafik
       # gorunur, yalniz Google onu bulamaz. 2026-09-14 denetimi 21
       # makalenin 12'sinin govdesinde HIC <img> olmadigini buldu -- veri
