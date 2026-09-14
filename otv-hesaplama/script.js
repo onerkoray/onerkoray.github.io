@@ -12,68 +12,24 @@
 (function () {
   "use strict";
 
-  var T = window.OtvTarife;
+  var T = window.OtvTarife, R = window.SonucYuzeyi;
   if (!T) return;
 
   var nf = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   function fmt(n) { return isFinite(n) ? nf.format(Math.round(n * 100) / 100) : "—"; }
   function el(id) { return document.getElementById(id); }
-  function num(id) {
-    var e = el(id);
-    if (!e) return NaN;
-    return parseFloat(String(e.value).replace(/\./g, "").replace(",", "."));
-  }
+  function num(id) { return R.read(el(id)); }
   function set(id, html) { var e = el(id); if (e) e.innerHTML = html; }
   function goster(id, acik) { var e = el(id); if (e) e.hidden = !acik; }
 
-  function tablo(satirlar) {
-    var html = '<table class="bd-table"><tbody>';
-    satirlar.forEach(function (p) {
-      var cls = p[2] ? ' class="' + p[2] + '"' : "";
-      html += "<tr" + cls + '><th scope="row">' + p[0] + "</th><td>" + p[1] + "</td></tr>";
-    });
-    return html + "</tbody></table>";
-  }
-
-  /* Yığılmış çubuk: matrah / ÖTV / KDV. Parça-bütün ilişkisi olduğu için
-     pasta değil yığılmış tek çubuk. */
-  function serit(matrah, otv, kdv) {
-    var toplam = matrah + otv + kdv;
-    if (!(toplam > 0)) return "";
-    function parca(v, cls, ad) {
-      return '<span class="seg ' + cls + '" style="width:' + ((v / toplam) * 100).toFixed(2) +
-        '%" title="' + ad + ": " + fmt(v) + " TL"+'"></span>';
-    }
-    function pay(v) { return ((v / toplam) * 100).toFixed(1); }
-    return '<h3 class="proj-title">Fiyatın bileşimi <span class="muted-inline">— vergi yükü %' +
-      pay(otv + kdv) + "</span></h3>" +
-      '<div class="stack">' + parca(matrah, "seg-matrah", "Araç bedeli") +
-      parca(otv, "seg-otv", "ÖTV") + parca(kdv, "seg-kdv", "KDV") + "</div>" +
-      '<div class="stack-legend">' +
-      '<span><i class="dot seg-matrah"></i>Araç bedeli %' + pay(matrah) + "</span>" +
-      '<span><i class="dot seg-otv"></i>ÖTV %' + pay(otv) + "</span>" +
-      '<span><i class="dot seg-kdv"></i>KDV %' + pay(kdv) + "</span></div>";
-  }
-
-  /* ÖTV kademeli olmadığı için eşiğin hemen üstü bir "uçurum"dur:
-     1 TL fazla matrah, anahtar teslim fiyatı on binlerce lira artırır. */
   function esikNotu(r) {
-    if (!r.satirNesnesi) return "";
-    var f = T.esikFarki(r.satirNesnesi, r.matrah);
-    if (!f) return "";
-    if (r.matrah > f.esik * 1.10) return "";   // sınıra uzaksa gösterme
-    return '<p class="edge-hint">Matrah ' + fmt(f.esik) +
-      " TL'ye (bir alt dilime) inseydi anahtar teslim fiyat " + fmt(f.esikteToplam) +
-      " TL olurdu — <strong>" + fmt(f.fark) +
-      " TL fark</strong>. ÖTV kademeli değildir: eşik aşılınca üst oran " +
-      "matrahın tamamına uygulanır.</p>";
+    var f=T.esikFarki(r.satirNesnesi,r.matrah);
+    if(!f||r.matrah>f.esik*1.10)return '';
+    return '<aside class="rs-threshold" aria-label="ÖTV eşik etkisi"><h3>Bir alt dilimin üzerindesiniz</h3>'+R.facts([
+      ['Mevcut matrah',fmt(r.matrah)+' TL'],['Bir alt dilimin üst sınırı',fmt(f.esik)+' TL'],['Matrahın sınırı aşan kısmı',fmt(r.matrah-f.esik)+' TL']])+
+      '<dl class="rs-compare"><div><dt>Mevcut matrahta anahtar teslim</dt><dd>'+fmt(r.toplam)+' TL</dd></div><div><dt>Eşikteki matrahta anahtar teslim</dt><dd>'+fmt(f.esikteToplam)+' TL</dd></div></dl><p class="rs-note"><strong>'+fmt(f.fark)+' TL toplam fiyat farkı.</strong> Bu fark matrah değişimini ve vergi etkisini birlikte içerir. ÖTV kademeli değildir: eşik aşılınca üst oran matrahın tamamına uygulanır.</p></aside>';
   }
-
-  function notlar(liste) {
-    return liste.map(function (n) {
-      return '<p class="bd-uyari" role="status">' + n + "</p>";
-    }).join("");
-  }
+  function hata(metin){set('otv-out',R.notice(metin));el('otv-status').textContent='Hesaplanamadı. '+metin;}
 
   function hesapla() {
     var tip = el("otv-tip").value;
@@ -86,6 +42,7 @@
     goster("menzil-wrap", tip === "phev");
     goster("kw-wrap", tip === "elektrik");
 
+    var sorun=R.validate(el('otv-form'),[]); if(sorun){hata(sorun);return;}
     var r = T.hesapla({
       tur: tip,
       hacim: num("otv-hacim"),
@@ -96,20 +53,14 @@
       matrah: num("otv-matrah")
     });
 
-    if (r.hata) { set("otv-out", ""); return; }
+    if (r.hata) { hata('Vergisiz fiyatı ve araç özelliklerini kontrol edin; tutarlar sıfırdan büyük olmalı.'); return; }
 
-    var satirlar = [
-      ["ÖTV matrahı (vergisiz fiyat)", fmt(r.matrah) + " TL"],
-      ["Uygulanan satır", r.satir],
-      ["ÖTV oranı", "%" + r.oran],
-      ["ÖTV tutarı", fmt(r.otv) + " TL"],
-      ["KDV (%20, ÖTV dahil tutar üzerinden)", fmt(r.kdv) + " TL"],
-      ["Anahtar teslim fiyat", fmt(r.toplam) + " TL", "bd-total"],
-      ["Toplam vergi (ÖTV + KDV)", fmt(r.vergi) + " TL"]
-    ];
-
-    set("otv-out", tablo(satirlar) + notlar(r.notlar) +
-      serit(r.matrah, r.otv, r.kdv) + esikNotu(r));
+    set('otv-out', R.answer('Anahtar teslim fiyat',r.toplam,'Vergisiz bedel + ÖTV + KDV')+
+      '<h3>Fiyatın bileşimi</h3>'+R.stack([['Araç bedeli',r.matrah],['ÖTV',r.otv],['KDV',r.kdv]])+
+      R.facts([['Vergisiz araç bedeli',fmt(r.matrah)+' TL'],['ÖTV · %'+r.oran,fmt(r.otv)+' TL'],['KDV · ÖTV dahil tutar üzerinden',fmt(r.kdv)+' TL'],['Toplam vergi',fmt(r.vergi)+' TL']])+
+      esikNotu(r)+r.notlar.map(R.notice).join('')+
+      '<details class="rs-details"><summary>Uygulanan tarife satırı</summary>'+R.facts([['Satır',r.satir],['ÖTV oranı','%'+r.oran],['KDV oranı','%'+(T.KDV*100)]])+'</details>');
+    el('otv-status').textContent='Hesap güncellendi. Anahtar teslim fiyat: '+fmt(r.toplam)+' TL.';
   }
 
   ["otv-tip", "otv-hacim", "otv-ekw", "otv-co2", "otv-menzil", "otv-kw", "otv-matrah"]
@@ -118,5 +69,6 @@
       if (e) { e.addEventListener("input", hesapla); e.addEventListener("change", hesapla); }
     });
 
+  el('otv-form').addEventListener('submit',function(e){e.preventDefault();hesapla();});
   hesapla();
 })();

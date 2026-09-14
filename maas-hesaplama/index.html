@@ -37,8 +37,6 @@
   <meta name="twitter:image" content="https://korayoner.dev/images/maas-hesaplama-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=6b09337f">
-  <link rel="stylesheet" href="../yuzde-hesaplama/style.css?v=bbc75928">
-  <link rel="stylesheet" href="style.css?v=17dc2fea">
 
   <script type="application/ld+json">
   {
@@ -121,8 +119,9 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="../arac-bilesenleri.css?v=93a5b568">
 </head>
-<body class="calculator-page">
+<body class="rs-tool calculator-page">
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
   <header class="site-header" role="banner">
@@ -207,11 +206,13 @@
             <label for="in-net">Hedef aylık net maaş (Ocak)</label>
             <input type="text" id="in-net" inputmode="decimal" placeholder="örn. 60000" aria-label="Hedef aylık net maaş"> TL
           </p>
-          <output class="result" id="net-out" aria-live="polite"></output>
+          <output class="rs-note" id="net-out" aria-live="polite"></output>
         </form>
 
-        <div id="results" hidden>
-          <div id="summary" aria-live="polite"></div>
+        <p id="rs-status" class="rs-note" role="status" aria-live="polite"></p>
+        <div id="results" class="rs-surface" hidden>
+          <div class="year-row"><label for="rs-month">Kırılımını görmek istediğiniz ay</label><select id="rs-month"></select></div>
+          <div id="summary"></div>
           <div id="table"></div>
         </div>
       </div>
@@ -408,7 +409,8 @@
   <script src="../bordro/motor.js?v=5ef870ac" defer></script>
   <script src="../finans/profil.js?v=6c4b3529" defer></script>
   <script src="../finans/profil-kopru.js?v=b7e6ab34" defer></script>
-  <script src="script.js?v=8755352b" defer></script>
+  <script src="../sonuc-yuzeyi.js?v=85e4b0fb" defer></script>
+  <script src="script.js?v=be591cf1" defer></script>
   <script src="../script.js?v=5127b7a8" defer></script>
 </body>
 </html>

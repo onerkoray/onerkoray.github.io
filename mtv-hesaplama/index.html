@@ -37,9 +37,6 @@
   <meta name="twitter:image" content="https://korayoner.dev/images/mtv-hesaplama-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=6b09337f">
-  <link rel="stylesheet" href="../yuzde-hesaplama/style.css?v=bbc75928">
-  <link rel="stylesheet" href="../serbest-meslek-makbuzu-hesaplama/style.css?v=c24dfa40">
-  <link rel="stylesheet" href="style.css?v=b66e341a">
 
   <script type="application/ld+json">
   {
@@ -104,8 +101,9 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="../arac-bilesenleri.css?v=93a5b568">
 </head>
-<body class="calculator-page">
+<body class="rs-tool calculator-page">
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
   <header class="site-header" role="banner">
@@ -197,7 +195,7 @@
               <span class="fld-ipucu">Vergi bu değerin %5'ini aşarsa bir alt satır uygulanır.</span>
             </p>
           </div>
-          <div class="breakdown" id="oto-out" aria-live="polite"></div>
+          <p id="oto-status" class="rs-note" role="status" aria-live="polite"></p><div class="rs-surface" id="oto-out"></div>
         </form>
 
         <form id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="panel" hidden>
@@ -223,7 +221,7 @@
               <input type="number" id="moto-model" inputmode="numeric" min="1950" max="2026" value="2023" aria-label="Model yılı">
             </p>
           </div>
-          <div class="breakdown" id="moto-out" aria-live="polite"></div>
+          <p id="moto-status" class="rs-note" role="status" aria-live="polite"></p><div class="rs-surface" id="moto-out"></div>
         </form>
       </div>
     </section>
@@ -444,7 +442,8 @@
   </footer>
 
   <script src="tarife.js?v=872b4882" defer></script>
-  <script src="script.js?v=7ebb67c7" defer></script>
+  <script src="../sonuc-yuzeyi.js?v=85e4b0fb" defer></script>
+  <script src="script.js?v=4763e5ad" defer></script>
   <script src="../script.js?v=5127b7a8" defer></script>
 </body>
 </html>

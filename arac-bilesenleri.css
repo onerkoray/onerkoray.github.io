@@ -1,0 +1,103 @@
+/* Sonuç yüzeyi v1: yalnız opt-in pilotlar. Eski araçların genel sınıflarını
+   yeniden tanımlamak, taşıma tamamlanmadan onların görünümünü değiştirirdi. */
+:root {
+  --rs-radius: 2px;
+  --rs-value-size: clamp(2rem, 4vw, 3rem);
+  --rs-secondary-size: clamp(1.25rem, 2vw, 1.5rem);
+  --rs-label-size: .75rem;
+  --rs-gap: clamp(1rem, 2vw, 1.5rem);
+}
+/* Eski tema anahtarı "auto" yazar. Damga henüz yokken de yalnız pilotlar
+   sistem tercihini izler; diğer sayfalara tema değişikliği yayılmaz. */
+@media(prefers-color-scheme:dark) {
+  :root:not([data-theme]):has(body.rs-tool) {
+    color-scheme:dark;
+    --bg:#0b0d10; --surface:#14181d; --surface-2:#1b2027;
+    --border:#2a313a; --text:#eef1f4; --text-muted:#a4adb6;
+  }
+}
+.rs-tool .calc { padding-top:1rem; }
+.rs-tool .tabs { display:flex; flex-wrap:wrap; gap:.5rem 1.25rem; margin-bottom:1.25rem; }
+.rs-tool .tab { font:600 .95rem var(--font-body); padding:.7rem .1rem; border:0; border-bottom:2px solid transparent; border-radius:0; background:none; color:var(--text-muted); cursor:pointer; }
+:root .rs-tool .tab[aria-selected="true"] { background:none; color:var(--text); border-bottom-color:var(--text); }
+.rs-tool .calc .panel { padding:var(--rs-gap); background:var(--surface); border:1px solid var(--border); border-radius:var(--rs-radius); box-shadow:none; }
+.rs-tool .panel-q { display:flex; flex-wrap:wrap; align-items:center; gap:.6rem; margin:0 0 1rem; }
+.rs-tool .panel-q label { font-size:1rem; color:var(--text-muted); }
+.rs-tool .panel-q input { width:10rem; max-width:100%; }
+:root .rs-tool .calc :is(input,select) { box-sizing:border-box; min-height:44px; padding:.6rem .75rem; font:600 1rem var(--font-body); color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:var(--rs-radius); }
+.rs-tool .fld-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:.5rem 1.25rem; }
+.rs-tool .fld-grid .panel-q { flex-direction:column; align-items:stretch; }
+.rs-tool .fld-grid :is(input,select) { width:100%; max-width:100%; }
+.rs-tool .fld-ipucu,.rs-tool .year-note { font-size:.85rem; line-height:1.5; color:var(--text-muted); }
+.rs-tool .year-row { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; margin-bottom:1rem; }
+.rs-tool [hidden] { display:none !important; }
+.rs-tool .byline { margin-bottom:2rem; }
+.rs-tool .faq-list { display:grid; gap:.75rem; }
+.rs-tool .faq details { border:1px solid var(--border); padding:.5rem 1rem; border-radius:2px; }
+.rs-tool .faq summary { cursor:pointer; padding:.5rem 0; font-weight:650; }
+.rs-tool .disclaimer,.rs-tool .formula { padding:1rem; background:var(--surface-2); border-left:2px solid var(--border); }
+.rs-tool .tax-table,.rs-tool .brackets { border-collapse:collapse; width:100%; }
+.rs-tool .tax-table :is(th,td),.rs-tool .brackets :is(th,td) { padding:.6rem; text-align:left; border-bottom:1px solid var(--border); }
+.rs-tool .table-wrap { overflow-x:auto; }
+/* Sonuç sabit kalır: tutar bir düğme değildir. */
+.rs-tool .rs-surface { margin-top:1.5rem; padding:var(--rs-gap); background:var(--surface); border:1px solid var(--border); border-radius:var(--rs-radius); box-shadow:none; transform:none; }
+.rs-tool .rs-surface h3 { font-size:1.1rem; line-height:1.4; margin:1.5rem 0 .75rem; }
+.rs-tool .rs-eyebrow { font:500 var(--rs-label-size)/1.5 var(--font-mono); text-transform:uppercase; letter-spacing:.08em; margin:0 0 .5rem; color:var(--text-muted); }
+.rs-tool .rs-answer { padding-bottom:1.25rem; border-bottom:1px solid var(--border); }
+.rs-tool .rs-number { display:block; font:750 var(--rs-value-size)/1.15 var(--font-display); letter-spacing:-.025em; color:var(--text); overflow-wrap:anywhere; }
+.rs-tool .rs-unit { font-size:1rem; letter-spacing:0; white-space:nowrap; }
+.rs-tool .rs-note { font-size:.875rem; line-height:1.6; color:var(--text-muted); margin:.65rem 0; }
+.rs-tool .muted-note { display:block; font-size:.875rem; line-height:1.6; color:var(--text-muted); margin-top:.4rem; }
+.rs-tool :is(.rs-number,.rs-facts dd,.rs-table,.rs-time-value,.rs-metrics dd) { font-variant-numeric:tabular-nums; }
+.rs-tool .rs-facts { margin:1rem 0; }
+.rs-tool .rs-facts > div { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.75rem; border-bottom:1px solid var(--border); padding:.7rem 0; }
+.rs-tool .rs-facts dt { color:var(--text-muted); font-size:.95rem; }
+.rs-tool .rs-facts dd { text-align:right; margin:0; font-weight:650; overflow-wrap:anywhere; }
+.rs-tool .rs-metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr)); margin:1.25rem 0; gap:var(--rs-gap); }
+.rs-tool .rs-metrics > div { min-width:0; padding-top:.75rem; border-top:1px solid var(--border); }
+.rs-tool .rs-metrics dt { font-size:.8rem; color:var(--text-muted); }
+.rs-tool .rs-metrics dd { font-size:var(--rs-secondary-size); font-weight:700; margin:.35rem 0; overflow-wrap:anywhere; }
+.rs-tool .rs-stack { display:flex; height:18px; width:100%; overflow:hidden; border-radius:2px; }
+/* No minimum segment width: a tiny share must not be visually inflated. */
+.rs-tool .rs-segment { display:block; width:var(--rs-share); background:var(--dv-1); }
+.rs-tool .rs-series-2 { background:var(--dv-2); }
+.rs-tool .rs-series-3 { background:var(--dv-3); }
+.rs-tool .rs-legend { display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; padding:0; list-style:none; margin:.75rem 0; font-size:.85rem; }
+.rs-tool .rs-key { display:inline-block; width:.6rem; height:.6rem; background:var(--dv-1); margin-right:.4rem; }
+.rs-tool .rs-key.rs-series-2 { background:var(--dv-2); }
+.rs-tool .rs-key.rs-series-3 { background:var(--dv-3); }
+.rs-tool .rs-threshold { border-left:2px solid var(--dv-2); background:var(--surface-2); padding:1rem; margin:1.25rem 0; }
+.rs-tool .rs-threshold h3 { margin:0 0 .6rem; }
+.rs-tool .rs-compare { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.rs-tool .rs-compare > div { min-width:0; }
+.rs-tool .rs-compare dt { font-size:.8rem; color:var(--text-muted); }
+.rs-tool .rs-compare dd { margin:.35rem 0; font-size:var(--rs-secondary-size); font-weight:700; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.rs-tool .rs-state { padding:1rem; margin:1rem 0; border-left:2px solid var(--dv-axis); background:var(--surface-2); line-height:1.6; }
+.rs-tool .rs-state:empty { display:none; }
+.rs-tool .rs-scroll { overflow:auto; margin:1rem 0; border-block:1px solid var(--border); }
+.rs-tool .rs-table { width:100%; border-collapse:collapse; font-size:.875rem; }
+.rs-tool .rs-table caption { text-align:left; padding:.75rem 0; font-weight:650; color:var(--text); }
+.rs-tool .rs-table :is(th,td) { padding:.75rem .6rem; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap; }
+.rs-tool .rs-table th:first-child { text-align:left; }
+.rs-tool .rs-table thead th { font:500 .75rem var(--font-mono); color:var(--text-muted); }
+.rs-tool .rs-table .rs-event { background:color-mix(in srgb,var(--dv-2) 10%,var(--surface)); }
+.rs-tool .rs-event-label { display:block; font-size:.7rem; font-weight:500; color:var(--text-muted); }
+.rs-tool .rs-time { list-style:none; padding:0; margin:1rem 0; }
+.rs-tool .rs-time li { display:grid; grid-template-columns:3.5rem minmax(0,1fr) minmax(8rem,auto); align-items:center; gap:1rem; padding:.65rem 0; border-bottom:1px solid var(--border); }
+.rs-tool .rs-time-year { font:500 .875rem var(--font-mono); }
+.rs-tool .rs-time-track { border-left:1px solid var(--dv-axis); }
+.rs-tool .rs-time-bar { display:block; height:12px; width:var(--rs-share); background:var(--dv-1); }
+.rs-tool .rs-time-value { text-align:right; font-weight:650; }
+.rs-tool .rs-details { margin-top:1.25rem; border-top:1px solid var(--border); padding-top:1rem; }
+.rs-tool .rs-details summary { cursor:pointer; font-weight:650; }
+@media(max-width:600px) {
+  .rs-tool .rs-metrics { grid-template-columns:1fr; gap:.6rem; }
+  .rs-tool .rs-compare { grid-template-columns:1fr; }
+  .rs-tool .rs-facts > div { grid-template-columns:1fr; gap:.3rem; }
+  .rs-tool .rs-facts dd { text-align:left; }
+  .rs-tool .rs-time li { grid-template-columns:3rem minmax(0,1fr); gap:.4rem 1rem; }
+  .rs-tool .rs-time-track { grid-column:2; grid-row:auto; }
+  .rs-tool .rs-time-value { grid-column:2; text-align:left; }
+  .rs-tool .rs-legend { display:grid; }
+}
+@media print { .rs-tool .rs-scroll { overflow:visible; } .rs-tool .rs-surface { break-inside:avoid; } }
