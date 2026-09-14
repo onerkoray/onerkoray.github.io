@@ -26,6 +26,7 @@ Kullanim:
 """
 
 import io
+import json
 import os
 import re
 import sys
@@ -238,6 +239,53 @@ hesaplar. Tarayıcıda ve Node.js'te aynı kodla çalışır.
 `tools/cekirdek.py` ile üretilir. Katkı ve hata bildirimi için
 [iletişim](https://korayoner.dev/iletisim/) sayfasını kullanın.
 
+> **In English** — Payroll and tax calculation core for Turkish
+> legislation: gross-to-net salary, severance and notice pay, pension,
+> rental income tax, credit cost and more. No dependencies, no build
+> step; the same code runs in the browser and in Node.js. Legal
+> parameters are kept in one place per year and pinned by %(toplam)s
+> tests. MIT licensed.
+
+## Kurulum
+
+```bash
+npm install hesap-cekirdegi
+```
+
+Kurulum şart değil: dosyalar bağımlılıksız ve tek başına çalışır,
+doğrudan indirip `<script>` ile de kullanabilirsiniz.
+
+## Kullanım
+
+```js
+const Bordro = require("hesap-cekirdegi/bordro/motor.js");
+
+const yil = Bordro.hesaplaYil(60000, 2026);   // 60.000 TL brüt, 2026
+yil.aylar[0].net;        // Ocak neti
+yil.aylar[11].net;       // Aralık neti — kümülatif vergi yüzünden daha düşük
+yil.aylar[0].isverenMaliyeti;
+```
+
+Diğer alanlar aynı biçimde çağrılır:
+
+```js
+const Cikis = require("hesap-cekirdegi/bordro/cikis.js");      // kıdem, ihbar
+const Gmsi  = require("hesap-cekirdegi/bordro/gmsi-motor.js"); // kira geliri
+const Kredi = require("hesap-cekirdegi/kredi/hesap.js");       // kredi maliyeti
+```
+
+Tarayıcıda `<script>` ile yüklendiğinde aynı modüller `window` üzerinde
+durur (`window.Bordro`, `window.BordroCikis`, ...).
+
+## Testler
+
+```bash
+npm test          # paketteki bütün testler
+node bordro/test.js   # tek bir paket
+```
+
+Testler bir bağımlılık kullanmaz; çıplak `node` ile koşar.
+
 ## Neden ayrı bir depo?
 
 Site 80'den fazla sayfada "hesap yöntemi ve doğrulama testleri herkese açıktır"
@@ -349,6 +397,90 @@ kurum görüşü yerine geçmez.
     }
 
 
+def paket_json(sayilar):
+    """npm paketi tanimi.
+
+    SURUM ELLE YAZILMAZ: bordro/motor.js'teki surum alanindan okunur. Iki
+    yerde tutulan bir surum numarasi sessizce ayrisir ve npm'deki paket ile
+    depodaki kod farkli seyler soylemeye baslar.
+
+    `exports` joker: moduller birbirini "./motor.js" gibi UZANTIYLA
+    cagiriyor; tuketici de ayni yolu yazabilsin diye yol oldugu gibi
+    aciliyor.
+    """
+    klasorler = sorted(set(os.path.dirname(h) for _, h in DOSYALAR))
+    d = {
+        "name": "hesap-cekirdegi",
+        "version": surum(),
+        "description": (
+            "Turkiye mevzuatina gore bordro, tazminat, emeklilik, kira geliri, "
+            "vergi ve kredi hesaplari. Bagimliliksiz; tarayicida ve Node.js'te "
+            "ayni kodla calisir. Payroll and tax calculation core for Turkish "
+            "legislation - dependency-free and test-pinned."
+        ),
+        "keywords": [
+            "turkey", "turkiye", "payroll", "bordro", "maas", "salary",
+            "tax", "vergi", "sgk", "kidem-tazminati", "severance",
+            "gelir-vergisi", "income-tax", "kredi", "finance", "turkish",
+        ],
+        "license": "MIT",
+        "author": "Koray Oner (https://korayoner.dev/)",
+        "homepage": "https://korayoner.dev/bordro/",
+        "repository": {"type": "git", "url": "git+%s.git" % DEPO},
+        "bugs": {"url": "%s/issues" % DEPO},
+        "type": "commonjs",
+        "exports": {"./package.json": "./package.json", "./*": "./*"},
+        "files": klasorler + ["README.md", "LICENSE", "test-all.js"],
+        "scripts": {"test": "node test-all.js"},
+        "engines": {"node": ">=12"},
+    }
+    return json.dumps(d, ensure_ascii=False, indent=2) + "\n"
+
+
+KOSUCU = r'''#!/usr/bin/env node
+/*!
+ * Pakette bulunan BUTUN testleri kosar.   node test-all.js
+ *
+ * Tek komut olmasinin sebebi: bu paket bir AYNA, site deposundan
+ * uretiliyor. Uretim sirasinda bir yol duzeltmesi atlanirsa paket
+ * sessizce bozuk cikabiliyor. Tuketici de katkici da tek komutla
+ * butunun saglam oldugunu gorebilmeli.
+ */
+"use strict";
+var fs = require("fs");
+var path = require("path");
+var cp = require("child_process");
+
+function bul(dizin, out) {
+  fs.readdirSync(dizin, { withFileTypes: true }).forEach(function (d) {
+    var p = path.join(dizin, d.name);
+    if (d.isDirectory()) { if (d.name !== "node_modules") bul(p, out); }
+    else if (/test\.js$/.test(d.name)) out.push(p);
+  });
+  return out;
+}
+
+var dosyalar = bul(__dirname, []).sort();
+var kalan = 0;
+dosyalar.forEach(function (p) {
+  var ad = path.relative(__dirname, p).split(path.sep).join("/");
+  var r = cp.spawnSync(process.execPath, [p], { encoding: "utf8" });
+  var son = (r.stdout || "").trim().split("\n").pop() || "";
+  if (r.status !== 0) {
+    kalan++;
+    console.log("  BASARISIZ  " + ad);
+    console.log((r.stderr || r.stdout || "").trim().split("\n").slice(-6)
+      .map(function (x) { return "      " + x; }).join("\n"));
+  } else {
+    while (ad.length < 42) { ad += " "; }
+    console.log("  tamam      " + ad + son);
+  }
+});
+console.log("\n" + dosyalar.length + " test dosyasi, " + kalan + " basarisiz.");
+process.exit(kalan ? 1 : 0);
+'''
+
+
 def eksikler():
     """Cekirdekte olmasi gerekip de olmayan dosyalar."""
     yok = [k for k, _ in DOSYALAR if not os.path.exists(k)]
@@ -428,9 +560,16 @@ def main():
     io.open(os.path.join(CIKTI, "README.md"), "w", encoding="utf-8", newline="").write(
         benioku(sayilar))
     io.open(os.path.join(CIKTI, "LICENSE"), "w", encoding="utf-8", newline="").write(LISANS)
+    # package.json ve test kosucusu da URETILIYOR, elle konmuyor: bu
+    # dizin her kosuda silinip yeniden kuruluyor, elle konan dosya
+    # ilk senkronda kaybolurdu.
+    io.open(os.path.join(CIKTI, "package.json"), "w", encoding="utf-8",
+            newline="").write(paket_json(sayilar))
+    io.open(os.path.join(CIKTI, "test-all.js"), "w", encoding="utf-8",
+            newline="").write(KOSUCU)
 
     print("Çekirdek paketlendi: %s/ (%d dosya, %d test)" % (
-        CIKTI, len(DOSYALAR) + 2, sum(sayilar.values())))
+        CIKTI, len(DOSYALAR) + 4, sum(sayilar.values())))
     print("Yükleme:")
     print("  cd %s && git init -b main && git add -A" % CIKTI)
     print("  git commit -m \"Hesap cekirdegi\"")
