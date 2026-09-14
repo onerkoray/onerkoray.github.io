@@ -8,6 +8,17 @@
       "has": [
         {
           "type": "host",
+          "value": "korayoner-dev.vercel.app"
+        }
+      ],
+      "destination": "https://korayoner.dev/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
           "value": "www.korayoner.dev"
         }
       ],
