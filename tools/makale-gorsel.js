@@ -31,6 +31,7 @@ var CIKTI = path.join(KOK, "images", "makale");
 var B = require(path.join(KOK, "bordro", "motor.js"));
 var CB = require(path.join(KOK, "bordro", "calisma-bicimi.js"));
 var CK = require(path.join(KOK, "bordro", "cikis.js"));
+var MTV = require(path.join(KOK, "mtv-hesaplama", "tarife.js"));
 
 var CHROME = [
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
@@ -432,6 +433,61 @@ function sutunIssizlikTavani() {
     "</svg>";
 }
 
+/* MTV iki tarife farki — "mtv-2026-ne-kadar" kapagi.
+   Yazinin argumani tek bir cumle: iki tarife 1600 cm3'e kadar AYNI, 1601'den
+   itibaren (I) tam %10 yukarida. Bunu gostermenin en durust yolu tutarlari
+   yan yana koymak degil -- 5.750 ile 251.554 arasinda 44 kat var, yan yana
+   cizimde kucuk satirlar goze gorunmez olurdu. Bu yuzden cizilen sey FARKIN
+   KENDISI: ilk iki satirda sifir, sonra sabit oranla buyuyen bir seri.
+   Sifir cubuklar da bilgi tasiyor -- tarifelerin ortustugu yeri gosteriyor.
+   Tek seri oldugu icin marka yesili kullanilabilir. */
+function farkMtv() {
+  var W = 600, H = 360, P = 28, SOL = 138;
+  var satirlar = MTV.HACIM_ETIKET.map(function (e, i) {
+    return {
+      ad: e,
+      fark: MTV.TARIFE_I[i].satir[0][0] - MTV.TARIFE_IA[i][0]
+    };
+  });
+  var enCok = Math.max.apply(null, satirlar.map(function (s) { return s.fark; }));
+  var alan = W - SOL - P - 86;
+  var gen = function (v) { return v <= 0 ? 0 : Math.max(2, v / enCok * alan); };
+
+  var y0 = 84, adim = 27;
+  var ic = satirlar.map(function (s, i) {
+    var y = y0 + i * adim;
+    var sifir = s.fark === 0;
+    var etiket = sifir ? "fark yok" : "+" + nf0.format(s.fark) + " TL";
+    return '<text x="' + (SOL - 10) + '" y="' + (y + 12) +
+      '" text-anchor="end" font-size="13" fill="' +
+      (sifir ? R.ikincil : R.murekkep) + '">' + esc(s.ad) + "</text>" +
+      (sifir
+        ? '<line x1="' + SOL + '" y1="' + (y + 8) + '" x2="' + (SOL + 16) + '" y2="' + (y + 8) +
+          '" stroke="' + R.ikincil + '" stroke-width="2"/>'
+        : '<rect x="' + SOL + '" y="' + y + '" width="' + gen(s.fark).toFixed(1) +
+          '" height="16" rx="3" fill="' + R.marka + '"/>') +
+      '<text x="' + (SOL + (sifir ? 26 : gen(s.fark) + 10)) + '" y="' + (y + 13) +
+      '" font-size="13" font-weight="' + (sifir ? "400" : "700") + '" fill="' +
+      (sifir ? R.ikincil : R.murekkep) + '">' + esc(etiket) + "</text>";
+  }).join("");
+
+  /* Ayrisma cizgisi: ilk iki satirin altina, tam olarak tarifelerin
+     ayrildigi yere. */
+  var ay = y0 + 2 * adim - 6;
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Motor hacmine gore iki MTV tarifesi arasindaki fark; 1600 santimetrekupe kadar fark yok, sonra yuzde on">' +
+    '<text x="' + P + '" y="' + (P + 2) + '" font-size="15" fill="' + R.ikincil +
+    '">2018 sonrası tescil, aynı araç için ne kadar fazla? · 2026, 1–3 yaş</text>' +
+    '<line x1="' + P + '" y1="' + ay + '" x2="' + (W - P) + '" y2="' + ay +
+    '" stroke="' + R.s2 + '" stroke-width="1.5" stroke-dasharray="4 4"/>' +
+    '<text x="' + (W - P) + '" y="' + (ay - 7) + '" text-anchor="end" font-size="12" fill="' +
+    R.s2 + '">buradan sonra her satırda tam %10</text>' +
+    ic +
+    '<text x="' + P + '" y="' + (H - 18) + '" font-size="14" fill="' + R.ikincil +
+    '">1600 cm³ ve altında iki tarife birebir aynıdır.</text>' +
+    "</svg>";
+}
+
 /* ---------- kapaklar ---------- */
 
 /* Emeklilik makalesi: OECD tanimiyla 100 calisma cagindaki kisiye dusen 65+.
@@ -572,6 +628,12 @@ var KAPAKLAR = {
     baslik: "Fazla mesai zammı yüzde kaç?",
     alt: "Oranı, ne kadar çalıştığınız değil sözleşmeniz belirler",
     cizim: katmanliHafta
+  },
+  "mtv-2026-ne-kadar": {
+    kicker: "Vergi",
+    baslik: "2026 MTV ne kadar?",
+    alt: "Aynı araca tescil tarihine göre iki farklı tarife",
+    cizim: farkMtv
   },
   "otv-basamak-etkisi": {
     kicker: "Vergi",
