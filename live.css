@@ -520,7 +520,6 @@ html { scroll-behavior: smooth; }
 .home-page .project-links a:not(:first-child)::after { content: none; }
 .home-page .project-links a:first-child::after { content: "\2192"; }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .home-page .topic-index a:hover { transform: translateY(-3px); }
   .home-page .project-card:hover { transform: translateY(-3px); }
 }
 @media (max-width: 900px) {
@@ -577,10 +576,22 @@ html { scroll-behavior: smooth; }
   .home-page .topic-index a {
     border-radius: 14px;
     border-top: 2px solid color-mix(in srgb, var(--brand) 35%, var(--border));
-    background: linear-gradient(155deg, var(--surface), color-mix(in srgb, var(--brand) 3%, var(--surface)));
+    background: var(--surface);
   }
-  .home-page .topic-index a:hover { border-color: var(--brand); }
-  .home-page .topic-index strong { letter-spacing: -.015em; }
+  /* Aynı zemin dili hızlı erişimle bağ kurar; gradyan hover rengini örtmez.
+     Kart yer değiştirmez: renk ve çizgi, tıklanabilirliği birlikte anlatır. */
+  .home-page .topic-index a:is(:hover, :focus-visible) {
+    border-color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 8%, var(--surface));
+  }
+  .home-page .topic-index strong { letter-spacing: -.015em; transition: color var(--motion-color); }
+  .home-page .topic-index a:is(:hover, :focus-visible) strong { color: var(--brand-strong); }
+  .home-page .topic-index a::after {
+    content: ""; position: absolute; bottom: 0; left: 1.2rem; right: 1.2rem;
+    height: 2px; background: var(--brand); transform: scaleX(0); transform-origin: left;
+    transition: transform .5s cubic-bezier(.22,1,.36,1);
+  }
+  .home-page .topic-index a:is(:hover, :focus-visible)::after { transform: scaleX(1); }
   .home-page .topic-index span { text-wrap: pretty; }
   .home-page .tool-search {
     background: var(--surface);
