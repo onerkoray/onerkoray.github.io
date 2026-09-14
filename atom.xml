@@ -10,6 +10,14 @@
   <icon>https://korayoner.dev/favicon.svg</icon>
 
   <entry>
+    <title>Çıkış Takvimi — İşten Ayrılma Tarihinin Bedeli</title>
+    <link href="https://korayoner.dev/cikis-takvimi/"/>
+    <id>https://korayoner.dev/cikis-takvimi/</id>
+    <updated>2026-09-14T00:00:00+03:00</updated>
+    <summary>İşten ne zaman ayrılmalı? Kıdem tavanı, ihbar kademesi ve ödenek süresi eşiklerini kendi tarihlerinize göre tarar; hangi günün kaç lira değiştirdiğini söyler.</summary>
+  </entry>
+
+  <entry>
     <title>Fazla Mesai Zammı Yüzde Kaç?</title>
     <link href="https://korayoner.dev/makaleler/fazla-mesai-zammi-yuzde-kac/"/>
     <id>https://korayoner.dev/makaleler/fazla-mesai-zammi-yuzde-kac/</id>

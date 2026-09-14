@@ -1,0 +1,131 @@
+/* Çıkış takvimi — eşik listesi.
+   Renk tokenları style.css'ten geliyor; burada yalnızca bu araca özgü
+   yerleşim var. Veri işaretlerinde var(--brand)/var(--accent) KULLANILMAZ:
+   vurgu rengi kullanıcı tercihidir (beş palet) ve bir tutarın anlamı
+   temayla değişemez. */
+
+.ct-ozet {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+}
+
+.ct-liste {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: grid;
+  gap: .75rem;
+}
+
+.ct-esik {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: .85rem 1rem;
+  background: var(--card);
+  display: grid;
+  gap: .2rem;
+}
+
+.ct-tarih {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .5rem;
+  font-weight: 700;
+}
+
+.ct-kalan {
+  font-weight: 400;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.ct-kazanc {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--dv-gain-ink, #157056);
+}
+
+.ct-ad {
+  margin: .1rem 0 0;
+  font-weight: 600;
+}
+
+.ct-aciklama {
+  margin: 0;
+  font-size: .92rem;
+  color: var(--muted);
+}
+
+.ct-toplam {
+  margin: 0 0 1rem;
+  padding-top: .6rem;
+  border-top: 1px solid var(--line);
+}
+
+.ct-yok {
+  margin: 0 0 1rem;
+  padding: .85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--muted);
+}
+
+.ct-uyari {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: .92rem;
+  color: var(--muted);
+}
+
+.ct-uyari li + li { margin-top: .4rem; }
+
+@media (max-width: 480px) {
+  .ct-kazanc { font-size: 1.25rem; }
+}
+
+/* Form yerleşimi.
+   Sınıf adları isten-ayrilma-hesaplama ile aynı çünkü aynı desen; ama o
+   dosyanın stilleri kendi klasöründe duruyor ve buradan yüklenmiyor.
+   Sınıf adını kopyalayıp stili kopyalamamak, formu kutusuz ve satır içi
+   bırakıyordu — ekran görüntüsüyle görüldü. */
+.exit-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.field-group {
+  border: 1px solid var(--border, rgba(127, 127, 127, .22));
+  border-radius: 12px;
+  padding: 16px 18px 6px;
+  margin: 0;
+  min-width: 0;
+}
+.field-group legend {
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  opacity: .7;
+  padding: 0 6px;
+}
+.field { margin: 0 0 14px; display: flex; flex-direction: column; gap: 6px; }
+.field label { font-weight: 600; font-size: var(--step--1); }
+.field input[type="text"],
+.field input[type="date"] {
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border, rgba(127, 127, 127, .3));
+  background: var(--surface, transparent);
+  color: inherit;
+  font: inherit;
+  width: 100%;
+  max-width: 100%;
+}
+.field-note { font-size: .82rem; opacity: .7; line-height: 1.45; }
+.field-wide { grid-column: 1 / -1; }

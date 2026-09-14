@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Çıkış Takvimi — İşten Ayrılma Tarihinin Bedeli | Koray Öner</title>
+  <meta name="description" content="İşten ne zaman ayrılmalı? Kıdem tavanı, ihbar kademesi ve ödenek süresi eşiklerini kendi tarihlerinize göre tarar; hangi günün kaç lira değiştirdiğini söyler.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/cikis-takvimi/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=fc0ee9e6" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Çıkış Takvimi — işten ayrılma tarihinin bedeli">
+  <meta property="og:description" content="Çoğu gün tarih fark etmez. Ama yılda birkaç gün vardır ki tek bir gün on binlerce lira değiştirir. Bu araç hangilerinin size denk geldiğini bulur.">
+  <meta property="og:url" content="https://korayoner.dev/cikis-takvimi/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/cikis-takvimi-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Çıkış takvimi aracı: ayrılma tarihindeki eşik günleri ve her birinin lira karşılığı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="Çıkış Takvimi — işten ayrılma tarihinin bedeli">
+  <meta name="twitter:description" content="Kıdem tavanı dönemi, ihbar kademesi, ödenek süresi: hangi eşiğin size denk geldiği kendi tarihlerinize bağlı ve elle çıkarılamaz.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/cikis-takvimi-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=9ae079de">
+  <link rel="stylesheet" href="../maas-hesaplama/style.css?v=17dc2fea">
+  <link rel="stylesheet" href="style.css?v=f93acb8f">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/",
+      "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/koraonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://dl.acm.org/profile/81100070426",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://korayoner.dev/cikis-takvimi/#app",
+      "name": "Çıkış Takvimi",
+      "url": "https://korayoner.dev/cikis-takvimi/",
+      "image": "https://korayoner.dev/images/cikis-takvimi-koray-oner.png",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "tr",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "author": { "@id": "https://korayoner.dev/#oner-koray" },
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+      "description": "İşten ayrılma tarihindeki eşikleri kişinin kendi tarihlerine göre tarar: kıdem tavanı dönemi, ihbar süresi kademesi, kıdem hakkının doğduğu gün ve işsizlik ödeneği süresi.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://korayoner.dev/cikis-takvimi/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "İşten ayrılma tarihi gerçekten fark eder mi?", "acceptedAnswer": { "@type": "Answer", "text": "Çoğu gün etmez: bir gün daha çalışmak kıdemi bir günlük artırır, o kadar. Ama yılda birkaç gün vardır ki tek bir gün on binlerce lira değiştirir — kıdem tavanının değiştiği 1 Ocak ve 1 Temmuz, ihbar süresinin kademe atladığı 6, 18 ve 36 ay, kıdem hakkının doğduğu 1 yıl, işsizlik ödeneği süresinin arttığı 600, 900 ve 1080 prim günü. Hangilerinin size denk geldiği kendi tarihlerinize bağlı." } },
+        { "@type": "Question", "name": "Araç neden çıkış paketini değil toplam nakdi karşılaştırıyor?", "acceptedAnswer": { "@type": "Answer", "text": "Çünkü paketi tek başına karşılaştırmak yanıltıcı sonuç verir. Ayın 1'inde ayrılan kişi son ay ücretinin bir gününü, ayın 30'unda ayrılan otuz gününü alır; paket bu yüzden her ay başında düşer ve araç 'ayın sonunda ayrıl' der. Oysa ayın 1'inde ayrılan o ayın maaşını zaten almıştır. Doğru ölçüt, ortak bir başlangıçtan itibaren ele geçen toplam nakittir: çalışılarak kazanılan net maaşlar artı çıkış paketi." } },
+        { "@type": "Question", "name": "Tarama neden yılın sonunda bitiyor?", "acceptedAnswer": { "@type": "Answer", "text": "Sonraki yılın gelir vergisi tarifesi ve kıdem tavanı açıklanmadan o günler için tutar üretmek uydurmak olur. Araç yalnızca doğrulanmış parametrelerin bulunduğu aralığı tarar. Sınırın ötesinde bilinen bir değişiklik varsa — 1 Ocak'ta kıdem tavanı mutlaka değişir — tutar verilmeden uyarı olarak bildirilir." } },
+        { "@type": "Question", "name": "Bu bir tavsiye mi?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Çıkış tarihi çoğu zaman çalışanın seçimi değildir ve seçim olduğunda bile birkaç gün beklemek işsizlik ödeneği başvuru süresinden yıllık izin hesabına kadar başka şeyleri oynatır. Aracın işi tarih önermek değil, hangi kuralın hangi günde devreye girdiğini görünür kılmak." } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#arac-title">Tara</a></li>
+          <li><a href="#neden">Neden fark eder</a></li>
+          <li><a href="#olcut">Yöntem</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Çıkış Takvimi
+    </nav>
+
+    <section class="hero">
+      <div class="wrap prose">
+        <h1>Çıkış Takvimi: ayrılma tarihinin bedeli</h1>
+        <p class="lead">
+          Çoğu gün tarih fark etmez — bir gün daha çalışmak kıdeminizi bir günlük
+          artırır, o kadar. Ama yılda birkaç gün vardır ki <strong>tek bir gün on
+          binlerce lira değiştirir</strong>. Hangilerinin size denk geldiği tamamen
+          kendi tarihlerinize bağlı ve elle çıkarılamaz. Bu araç onları arar.
+        </p>
+      </div>
+    </section>
+
+    <section class="content" aria-labelledby="arac-title">
+      <div class="wrap">
+        <h2 id="arac-title" class="sr-only">Çıkış takvimi tarama aracı</h2>
+        <section id="hesapla" class="calc" aria-labelledby="arac-title">
+          <form class="exit-form" novalidate>
+            <fieldset class="field-group">
+              <legend>Durumunuz</legend>
+              <p class="field field-wide">
+                <label for="in-giris">İşe giriş tarihiniz</label>
+                <input type="date" id="in-giris" value="2025-10-15">
+              </p>
+              <p class="field">
+                <label for="in-brut">Aylık çıplak brüt ücret (TL)</label>
+                <input type="text" id="in-brut" inputmode="decimal" value="90.000">
+              </p>
+              <p class="field">
+                <label for="in-ekler">Aylık ek menfaatler (TL)</label>
+                <input type="text" id="in-ekler" inputmode="decimal" value="0">
+                <span class="field-note">Yol, yemek, düzenli prim — kıdeme giren giydirilmiş kalemler.</span>
+              </p>
+              <p class="field field-wide">
+                <label for="in-prim">Son 3 yıldaki prim gün sayısı</label>
+                <input type="text" id="in-prim" inputmode="numeric" value="650">
+                <span class="field-note">İşsizlik ödeneğinin süresi bu sayıya göre kademeleniyor: 600, 900 ve 1080 günde uzuyor.</span>
+              </p>
+            </fieldset>
+            <fieldset class="field-group">
+              <legend>Tarama aralığı</legend>
+              <p class="field">
+                <label for="in-bas">Tarama başlangıcı</label>
+                <input type="date" id="in-bas">
+              </p>
+              <p class="field">
+                <label for="in-gun">Kaç gün ileriye bakılsın?</label>
+                <input type="text" id="in-gun" inputmode="numeric" value="365">
+              </p>
+            </fieldset>
+          </form>
+          <div class="calc-out" id="ct-out" aria-live="polite"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="wrap prose">
+        <h2 id="neden">Tarih neden fark ediyor?</h2>
+        <p>
+          Kıdem tazminatı her gün biraz büyür; orada sürpriz yok. Sürpriz, hesabın
+          <strong>kademeli</strong> olan parçalarında:
+        </p>
+        <ul>
+          <li><strong>Kıdem tavanı</strong> yılda iki kez değişir (1 Ocak ve 1 Temmuz) ve
+            uygulanan tavanı fesih tarihi belirler. Ücreti tavanın üzerinde olan biri için
+            bir günlük fark, on yıllık kıdemde altı haneli olabiliyor —
+            <a href="../makaleler/kidem-tazminati-tavani/#yillara-gore">yıllara göre tablo</a>.</li>
+          <li><strong>İhbar süresi</strong> 6, 18 ve 36 aylık kıdemde kademe atlar
+            (4857 m.17): 2 → 4 → 6 → 8 hafta.</li>
+          <li><strong>Kıdem hakkı</strong> bir yıl dolmadan doğmaz; 364. günle 365. gün
+            arasındaki fark, tazminatın tamamıdır.</li>
+          <li><strong>İşsizlik ödeneği süresi</strong> 600, 900 ve 1080 prim gününde
+            uzar (4447 m.50): 180 → 240 → 300 gün.</li>
+        </ul>
+        <p>
+          Bu dört kuralın eşikleri farklı takvimlere bakıyor — biri yılın sabit
+          günlerine, ikisi işe giriş tarihinize, biri prim gününüze. Kesişimlerini
+          kâğıt üstünde çıkarmak pratikte mümkün değil.
+        </p>
+
+        <h2 id="olcut">Ölçüt: neden "paket" değil, toplam nakit</h2>
+        <p>
+          Bu aracı yazarken ilk denenen ölçüt yanlıştı ve yanlışlığı sessizdi. Her
+          çıkış tarihi için çıkış paketini hesaplayıp en büyüğünü aramak makul
+          görünüyor — ama ayın 1'inde ayrılan kişi son ay ücretinin yalnızca bir
+          gününü alır, ayın 30'unda ayrılan otuz gününü. Paket bu yüzden her ay
+          başında bir aylık maaş kadar <em>düşüyor</em> ve araç "ayın sonunda ayrıl"
+          diyordu. Oysa ayın 1'inde ayrılan kişi o ayın maaşını zaten almıştır.
+        </p>
+        <p>
+          Doğru ölçüt, <strong>ortak bir başlangıçtan itibaren ele geçen toplam
+          nakit</strong>: çıkışa kadar çalışılarak kazanılan net maaşlar artı çıkış
+          paketi. Bu ölçütte değer gün geçtikçe düzgün artar ve gerçek eşikler sivri
+          sıçramalar olarak ayrışır. Çıkış ayının ücreti pakete zaten dahil olduğu için
+          ara maaşlara ikinci kez katılmaz; katılsaydı geç tarihler haksız yere öne
+          çıkardı.
+        </p>
+
+        <h2 id="kapsam">Kapsam ve sınırlar</h2>
+        <ul>
+          <li>Tarama yalnızca <strong>doğrulanmış parametrelerin</strong> bulunduğu
+            yıllar içinde yapılır. Sonraki yılın tarifesi ve kıdem tavanı açıklanmadan
+            o günler için tutar üretmek uydurmak olurdu; araç bunun yerine ufku kısaltır
+            ve sebebini söyler.</li>
+          <li>1 Ocak'ta kıdem tavanı mutlaka değişir ve bugüne kadar hep yukarı gitti.
+            Araç bunu tutar vermeden uyarı olarak bildirir.</li>
+          <li>Hesap <strong>işveren feshi</strong> varsayımıyla kurulur; istifa gibi
+            hakların doğmadığı fesih türleri için
+            <a href="../isten-ayrilma-hesaplama/">işten ayrılma paketi aracını</a>
+            kullanın.</li>
+          <li><strong>Bu bir tavsiye değildir.</strong> Çıkış tarihi çoğu zaman
+            çalışanın seçimi değildir; seçim olduğunda bile birkaç gün beklemek
+            işsizlik ödeneği başvuru süresinden yıllık izin hesabına kadar başka
+            şeyleri oynatır. Aracın işi tarih önermek değil, hangi kuralın hangi günde
+            devreye girdiğini görünür kılmak.</li>
+        </ul>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+
+        <h3>İşten ayrılma tarihi gerçekten fark eder mi?</h3>
+        <p>
+          Çoğu gün etmez. Ama kıdem tavanının değiştiği 1 Ocak ve 1 Temmuz, ihbar
+          süresinin kademe atladığı 6/18/36 ay, kıdem hakkının doğduğu 1 yıl ve
+          ödenek süresinin uzadığı 600/900/1080 prim günü tek bir günde büyük fark
+          yaratır.
+        </p>
+
+        <h3>Neden çıkış paketi değil de toplam nakit karşılaştırılıyor?</h3>
+        <p>
+          Paketi tek başına karşılaştırmak, hâlâ çalışırken kazandığınız maaşı yok
+          sayar ve her ay başında sahte bir düşüş üretir. Ölçüt bölümünde ayrıntısı var.
+        </p>
+
+        <h3>Tarama neden yılın sonunda bitiyor?</h3>
+        <p>
+          Sonraki yılın vergi tarifesi ve kıdem tavanı henüz açıklanmadığı için. Araç
+          doğrulanmamış bir yıl için sayı üretmez.
+        </p>
+
+        <h2 id="ilgili">İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../isten-ayrilma-hesaplama/">İşten Ayrılma Paketi Hesaplama</a> — belirli bir tarih için tam döküm</li>
+          <li><a href="../kidem-tazminati-hesaplama/">Kıdem ve İhbar Tazminatı</a></li>
+          <li><a href="../issizlik-maasi-hesaplama/">İşsizlik Maaşı Hesaplama</a></li>
+          <li><a href="../makaleler/kidem-tazminati-tavani/">Kıdem tazminatı tavanı</a> — yıllara göre tablo ve bir günün bedeli</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=7f4d2711"></script>
+  <script src="../bordro/motor.js?v=5ef870ac"></script>
+  <script src="../bordro/cikis.js?v=8f58aabf"></script>
+  <script src="tarama.js?v=f1e9c185"></script>
+  <script src="script.js?v=a54e50c3"></script>
+  <script src="../script.js?v=5127b7a8"></script>
+</body>
+</html>

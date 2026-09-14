@@ -341,6 +341,14 @@ jobs:
       - name: Çıkış paketi testleri
         run: node bordro/cikis-test.js
 
+      # Cikis takvimi bir KARAR araci: kullaniciya "su tarihte ayrilmak su
+      # kadar fark ettirir" diyor. Olcut yanlis kurulursa cikti yine makul
+      # gorunur, yalnizca yanlis tarihi isaret eder. Testin ilk bolumu tam
+      # olarak olcutu sabitliyor: naif olcutun her ay basinda urettigi sahte
+      # esigin duzeltilmis olcutte CIKMADIGINI dogruluyor.
+      - name: Çıkış takvimi tarama testleri
+        run: node cikis-takvimi/test.js
+
       - name: Çalışma biçimi testleri
         run: node bordro/calisma-bicimi-test.js
 

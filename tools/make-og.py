@@ -131,6 +131,10 @@ SPEC = {
    "Aynı maliyet dört çalışma biçiminde ne kadarını size bırakıyor? Vergi, prim ve gider dahil.",
    ["4 senaryo", "Kesişim tablosu"], "bordro"),
 
+ "cikis-takvimi": ("cikis-takvimi", "Çıkış", "Takvimi",
+   "Ayrılma tarihindeki eşikler: bir gün on binlerce lira değiştirebiliyor.",
+   ["Eşik taraması", "Kendi tarihlerinize göre"], "bordro"),
+
  "isten-ayrilma-hesaplama": ("isten-ayrilma-hesaplama", "İşten Ayrılma", "Paketi 2026",
    "Kıdem, ihbar, izin, son ücret ve işsizlik maaşı tek hesapta — ödeme takvimiyle.",
    ["Hak matrisi", "Ödeme takvimi"], "bordro"),
