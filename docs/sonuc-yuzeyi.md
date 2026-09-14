@@ -6,7 +6,7 @@
 
 `arac-bilesenleri.css` kökte yaşar; yalnız `body.rs-tool` taşıyan sayfalarda etkindir. `rs-*` adları tek bir ortak sahip belirler. Ana `style.css` site kimliğini, gezinmeyi ve mevcut tema/veri tokenlarını yönetmeye devam eder. Yeni ortak dosya, bir aracın CSS'inin başka araçların görünümünü değiştirmesini önler; geçişi henüz yapılmamış araçlara yeni kuralları zorla uygulamaz.
 
-Üç pilot artık yalnız ana CSS ile bu ortak dosyayı yükler. Önceden ödünç alınan `yuzde-hesaplama/style.css`, `fazla-mesai-hesaplama/style.css`, `serbest-meslek-makbuzu-hesaplama/style.css` ve pilotların eski stil dosyaları silinmedi: başka sayfaların bunlara bağımlılığı sürüyor. Bu sürüm o sayfaları taşımış sayılmaz.
+Üç pilot artık yalnız ana CSS ile bu ortak dosyayı yükler. Önceden ödünç alınan `yuzde-hesaplama/style.css`, `serbest-meslek-makbuzu-hesaplama/style.css` ve pilotların eski stil dosyaları silinmedi: başka sayfaların bunlara bağımlılığı sürüyor. Bu sürüm o sayfaları taşımış sayılmaz.
 
 `sonuc-yuzeyi.js` yalnız sayı okuma, güvenli metin üretimi, biçimleme ve sunum yardımcıları içerir; tarife veya bordro hesabı içermez. Yerel `script.js` dosyaları kendi motorlarını çağırır ve gereken sunum türlerini birleştirir. Yeni bağımlılık, derleyici, font veya CDN yoktur; davranış harici JS'dedir. Veri genişlikleri yalnız CSS özel değişkenleriyle aktarılır.
 
@@ -66,7 +66,7 @@ Karşılaştırmanın çalışan iki seçenekli örneği ÖTV eşik bölümünde
 - Tarayıcı: 400px ve 1280px × light/dark/damgasız sistem × yeşil/turuncu × üç pilot = 36 düzen kontrolü; yatay sayfa taşması yok, veri renkleri aynı, sonuç yüzeyleri 2px/gölgesiz/transform'suz.
 - Mobilde altı tema/palet durumunda her pilotun sonuçları, masaüstünde üç pilot ve mobil ÖTV eşik karşılaştırması/MTV seri ayrıntısı görsel olarak incelendi. Sistem tercihli test bu oturumun açık sistem görünümündeydi; açık/koyu temalar ayrıca zorlandı.
 - Klavyeyle sekme ve ay seçimi, boş alanı silme, hatadan geri dönüş ve bordronun odaklanabilir yatay kaydırma alanı kontrol edildi.
-- Mevcut bordro/ÖTV/MTV motor testleri ve istenen CSS, veri rengi, sayfa, stil damgası, kart ve favicon doğrulamaları çalıştırılır; CI bunlara ek site regresyonlarını korur.
+- Mevcut motor testleri: bordro 126, ÖTV 65, MTV 94 kontrol geçti. CSS, veri rengi, sayfa (122 sayfada sıfır bulgu), stil damgası, kart ve favicon (20 kontrol) doğrulamaları geçti; CI bunlara ek site regresyonlarını korur.
 
 ## Sonraki taşıma sırası
 
