@@ -196,3 +196,26 @@
   .ed-body table.payroll td.yes { color: #4fd1ae; }
   .ed-body table.payroll td.maybe { color: #f0b429; }
 }
+
+/* Lead veri görseli — tools/makale-gorseli.py ile yerleştirilir.
+   NEDEN VAR: bu makalelerin veri şekilleri CSS ile çiziliyor ve Google
+   Images bir CSS düzenini indeksleyemez. Zaten üretilmiş <slug>-kart.png
+   burada gerçek bir <img> olarak sunuluyor; yeni asset üretilmiyor.
+   width/height verildiği için yer kayması olmaz, lazy YOK çünkü LCP adayı. */
+.ed-veri-gorseli {
+  margin: 0 0 2rem;
+  padding: 0;
+}
+.ed-veri-gorseli img {
+  display: block;
+  width: 100%;
+  height: auto;                /* oran korunur; width/height CLS'i önler */
+  border: 1px solid var(--border);
+  border-radius: 2px;          /* editoryal katman: 2px, gölge yok */
+}
+.ed-veri-gorseli figcaption {
+  margin-top: .6rem;
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: var(--text-muted);
+}

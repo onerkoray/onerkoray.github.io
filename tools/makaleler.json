@@ -2,63 +2,75 @@
   {
     "slug": "fazla-mesai-zammi-yuzde-kac",
     "kicker": "Çalışma hayatı",
-    "alt": "40 saatlik sözleşmeyle 48 saat çalışılan hafta üç bölgeye ayrılır: 40'a kadar normal, 40–45 arası %25, 45 üstü %50"
+    "alt": "40 saatlik sözleşmeyle 48 saat çalışılan hafta üç bölgeye ayrılır: 40'a kadar normal, 40–45 arası %25, 45 üstü %50",
+    "altyazi": "40 saatlik sözleşmeyle 48 saat çalışılan hafta üç bölgeye ayrılır; ortadaki beş saat %25, üstteki üç saat %50 zamlıdır."
   },
   {
     "slug": "otv-basamak-etkisi",
     "kicker": "Vergi",
-    "alt": "Anahtar teslim fiyat ekseni üzerinde ÖTV eşiklerinin doğurduğu boş aralıklar; en genişi 594.000 TL"
+    "alt": "Anahtar teslim fiyat ekseni üzerinde ÖTV eşiklerinin doğurduğu boş aralıklar; en genişi 594.000 TL",
+    "altyazi": "Anahtar teslim fiyat ekseni üzerinde ÖTV eşiklerinin doğurduğu boş aralıklar; renkli bantlarda satılan sıfır otomobil yoktur."
   },
   {
     "slug": "emekliligin-finansal-matematigi",
     "kicker": "Akademik",
-    "alt": "Aynı görünen üç çift sayı: bağımlılık oranı ile aktif/pasif, model ikame oranı ile gözlenen gelir, fon stoku ile yeni tasarruf"
+    "alt": "Aynı görünen üç çift sayı: bağımlılık oranı ile aktif/pasif, model ikame oranı ile gözlenen gelir, fon stoku ile yeni tasarruf",
+    "altyazi": "Birbirinin yerine kullanılan üç çift gösterge, aynı şeyi ölçmüyor: bağımlılık oranı ile aktif/pasif, model ikame oranı ile gözlenen gelir, fon stoku ile yeni tasarruf."
   },
   {
     "slug": "mevduat-faizi-enflasyon-reel-getiri",
     "gorsel": "images/makale/mevduat-reel-getiri-yatay.svg",
     "kicker": "Finans",
-    "alt": "Net dönem getirisi %3,2548; enflasyon %2, %3 ve %4 olduğunda reel getiri +%1,23, +%0,25 ve −%0,72"
+    "alt": "Net dönem getirisi %3,2548; enflasyon %2, %3 ve %4 olduğunda reel getiri +%1,23, +%0,25 ve −%0,72",
+    "altyazi": "Stopaj sonrası net getiri ile aynı dönemin enflasyonu yan yana konduğunda reel getirinin nerede eksiye döndüğü."
   },
   {
     "slug": "vergi-kamasi-ucretin-gercek-yuku",
     "kicker": "Kamu maliyesi",
-    "alt": "İşveren maliyetinin ne kadarı çalışana ulaşıyor? Kama tavanda %51,0 ile zirve yapıp düşüyor"
+    "alt": "İşveren maliyetinin ne kadarı çalışana ulaşıyor? Kama tavanda %51,0 ile zirve yapıp düşüyor",
+    "altyazi": "İşverenin ödediği toplam maliyet ile çalışanın eline geçen net arasındaki kama, gelir düzeyi yükseldikçe nasıl değişiyor."
   },
   {
     "slug": "zam-net-maasa-ne-kadar-yansir",
     "kicker": "Maaş",
-    "alt": "%30 brüt zam nete %26,5 yansıyor — ama 300 bin TL brütte %31,8, yani brütten fazla"
+    "alt": "%30 brüt zam nete %26,5 yansıyor — ama 300 bin TL brütte %31,8, yani brütten fazla",
+    "altyazi": "Aynı zam oranı, vergi dilimi geçişleri yüzünden yıl içinde nete farklı yansıyor."
   },
   {
     "slug": "stopaj-nasil-hesaplanir",
     "kicker": "Vergi",
-    "alt": "Brütten kesilir, nete eklenmez: net 10.000 TL için brüt 12.000 değil 12.500 TL"
+    "alt": "Brütten kesilir, nete eklenmez: net 10.000 TL için brüt 12.000 değil 12.500 TL",
+    "altyazi": "Stopajın matrahı ile brüt tutar arasındaki fark ve brütleştirmenin hesabı nasıl çevirdiği."
   },
   {
     "slug": "uzun-vadeli-yatirim-nasil-yapilir",
     "kicker": "Yatırım",
-    "alt": "Getiriyi doğru ölçmek, enstrüman seçmekten önemli: reel getiri, verginin bileşik etkisi ve sıra riski"
+    "alt": "Getiriyi doğru ölçmek, enstrüman seçmekten önemli: reel getiri, verginin bileşik etkisi ve sıra riski",
+    "altyazi": "Sanılan getiriden vergi ve enflasyon sonrası reel getiriye üç basamak."
   },
   {
     "slug": "emekli-maasi-nasil-hesaplanir",
     "kicker": "Emeklilik",
-    "alt": "“Yeni sistem” haberini kontrol ettik: aynı içerik üç başlıkla dolaşıyor, yürürlükte değişen bir şey yok"
+    "alt": "“Yeni sistem” haberini kontrol ettik: aynı içerik üç başlıkla dolaşıyor, yürürlükte değişen bir şey yok",
+    "altyazi": "Aynı içerik üç ayrı başlıkla dolaşıyor; yürürlükte değişen bir şey yok."
   },
   {
     "slug": "kredi-yillik-maliyet-orani",
     "kicker": "Finans",
-    "alt": "Bankanın söylediği %34,68; ödeyeceğiniz %56,31 — aradaki 21,63 puanı üreten üç şey"
+    "alt": "Bankanın söylediği %34,68; ödeyeceğiniz %56,31 — aradaki 21,63 puanı üreten üç şey",
+    "altyazi": "Vitrindeki aylık faizden ödenen gerçek yıllık maliyete dört adım: KKDF ve BSMV, bileşik etki ve vade."
   },
   {
     "slug": "kdv-tevkifati-nedir",
     "kicker": "Vergi",
-    "alt": "Tevkifat fatura toplamını değiştirmez; 100.000 TL matrahta 5/10 ile tahsil edilecek tutar 110.000 TL olur"
+    "alt": "Tevkifat fatura toplamını değiştirmez; 100.000 TL matrahta 5/10 ile tahsil edilecek tutar 110.000 TL olur",
+    "altyazi": "Tevkifat fatura toplamını değiştirmez, yalnızca KDV'nin kimin ödeyeceğini böler."
   },
   {
     "slug": "proforma-fatura-nedir",
     "kicker": "Fatura ve Belge",
-    "alt": "Proforma muhasebe kaydı doğurmaz ama kabul edilince sözleşme kurar; dört belgenin farkı tek tabloda"
+    "alt": "Proforma muhasebe kaydı doğurmaz ama kabul edilince sözleşme kurar; dört belgenin farkı tek tabloda",
+    "altyazi": "Proforma fatura ile ticari faturanın hangi alanlarda ayrıldığı."
   },
   {
     "slug": "issizlik-maasi-ne-kadar",
