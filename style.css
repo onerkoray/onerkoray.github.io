@@ -188,39 +188,41 @@ a:hover { color: var(--brand); }
 }
 .brand:hover .brand-mark { transform: rotate(-8deg) scale(1.08); }
 .brand-name {
+  position: relative;
   font-size: 1.35rem; font-weight: 800; letter-spacing: -.03em; white-space: nowrap;
 
-  /* Marka yazısında sürekli dolaşan bir renk dalgası.
-     Değişen şey PARLAKLIK değil RENK: mürekkepten markaya geçip geri dönüyor.
-     Dalganın uğradığı üç rengin de zeminle kontrastı ölçüldü; en düşüğü açık
-     temada 4,71:1, koyu temada 5,68:1 — yani hiçbir karede okunabilirlik
-     düşmüyor. Boyut ve konum değişmediği için başlıkta düzen kayması da yok.
-
-     DİKKAT: background-clip:text ile arka plan kutuyu tam kaplamazsa o
-     harfler saydam kalır, yani GÖRÜNMEZ olur. Bu yüzden gradyan yatay
-     (90deg), iki ucu aynı renkte ve repeat-x ile döşeniyor: hangi konuma
-     kayarsa kaysın kutu daima boyalı ve ek yeri belli olmuyor. */
+  /* Geniş renk bandı adı birlikte tarar; mürekkep renkleri yazıyı korur.
+     Karo ve hareket mesafesi eşittir: döngü başında renk sıçraması olmaz. */
   background-image: linear-gradient(90deg,
       var(--text) 0%,
-      var(--text) 30%,
-      var(--brand-strong) 42%,
-      var(--brand) 50%,
-      var(--brand-strong) 58%,
-      var(--text) 70%,
+      var(--text) 15%,
+      var(--brand-strong) 30%,
+      var(--brand) 45%,
+      var(--brand-strong) 60%,
+      var(--text) 75%,
       var(--text) 100%);
-  /* Karo boyutu SUREKLILIGI belirliyor: iki renkli bant arasindaki düz
-     boşluk kutudan genişse yazı bir süre tamamen sönük kalıyor ve hareket
-     kesiliyor. 200%'de boşluk 1,20 kutu genişliğindeydi — döngünün yaklaşık
-     üçte birinde hiç renk yoktu. 150%'de boşluk 0,90 kutu: her an yazının
-     bir yerinde dalga var. */
-  background-size: 150% 100%;
+  background-size: 200% 100%;
   background-repeat: repeat-x;
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: markaDalga 5s linear infinite;
+  animation: markaDalga 6.5s linear infinite;
 }
 @keyframes markaDalga {
-  from { background-position: 100% 0; }
-  to { background-position: -100% 0; }
+  from { background-position: 200% 0; }
+  to { background-position: 0% 0; }
+}
+.brand-name::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -.12em; height: 2px;
+  background: linear-gradient(90deg, var(--brand-strong), var(--brand), transparent);
+  transform: scaleX(.15); transform-origin: left; opacity: 0;
+  transition: transform .65s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+}
+.brand:focus-visible .brand-name::after { transform: scaleX(1); opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .brand:hover .brand-name::after { transform: scaleX(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-name { animation: none; background-image: none; color: var(--text); }
+  .brand-name::after { transition: none; }
 }
 /* background-clip:text desteklenmiyorsa yazı saydam kalırdı; o durumda
    düz mürekkep rengine dönülüyor. Marka adının görünmemesi, hareketin
