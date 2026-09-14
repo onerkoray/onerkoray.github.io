@@ -157,9 +157,13 @@
       donemler: [
         { ay: 1, asgariBrut: 20002.50, asgariNet: 17002.12, sgkTavan: 150018.75 }
       ],
+      kidemTavanlari: [
+        { ay: 1, tutar: 35058.58 },
+        { ay: 7, tutar: 41828.42 }
+      ],
       issizlik: ISSIZLIK_VARSAYILAN,
       fazlaMesai: FAZLA_MESAI_VARSAYILAN,
-      dayanak: "GVK m.103 (2024 tarifesi), GVK m.23/18, 5510/82"
+      dayanak: "GVK m.103 (2024 tarifesi), GVK m.23/18, 5510/82; kıdem tavanı: Hazine ve Maliye Bakanlığı Mali ve Sosyal Haklar Genelgeleri"
     },
 
     2023: {
@@ -174,10 +178,14 @@
         { ay: 1, asgariBrut: 10008.00, asgariNet: 8506.80, sgkTavan: 75060.00 },
         { ay: 7, asgariBrut: 13414.50, asgariNet: 11402.32, sgkTavan: 100608.75 }
       ],
+      kidemTavanlari: [
+        { ay: 1, tutar: 19982.83 },
+        { ay: 7, tutar: 23489.83 }
+      ],
       issizlik: ISSIZLIK_VARSAYILAN,
       fazlaMesai: FAZLA_MESAI_VARSAYILAN,
       notlar: "Asgari ücret 1 Temmuz 2023'te yeniden belirlendi; istisna, damga ve SGK tavanı Temmuz'dan itibaren yeni tutar üzerinden uygulanır.",
-      dayanak: "GVK m.103 (2023 tarifesi), GVK m.23/18, 5510/82"
+      dayanak: "GVK m.103 (2023 tarifesi), GVK m.23/18, 5510/82; kıdem tavanı: Hazine ve Maliye Bakanlığı Mali ve Sosyal Haklar Genelgeleri"
     },
 
     2022: {
@@ -191,6 +199,10 @@
       donemler: [
         { ay: 1, asgariBrut: 5004.00, asgariNet: 4253.40, sgkTavan: 37530.00 },
         { ay: 7, asgariBrut: 6471.00, asgariNet: 5500.35, sgkTavan: 48532.50 }
+      ],
+      kidemTavanlari: [
+        { ay: 1, tutar: 10848.59 },
+        { ay: 7, tutar: 15371.40 }
       ],
       issizlik: ISSIZLIK_VARSAYILAN,
       fazlaMesai: FAZLA_MESAI_VARSAYILAN,
@@ -210,6 +222,10 @@
       donemler: [
         { ay: 1, asgariBrut: 3577.50, asgariNet: 2825.90, sgkTavan: 26831.25 }
       ],
+      kidemTavanlari: [
+        { ay: 1, tutar: 7638.96 },
+        { ay: 7, tutar: 8284.51 }
+      ],
       issizlik: ISSIZLIK_VARSAYILAN,
       fazlaMesai: FAZLA_MESAI_VARSAYILAN,
       netAsgariTaban: 2825.90,
@@ -228,6 +244,10 @@
       dilimler: [[22000, 0.15], [49000, 0.20], [180000, 0.27], [600000, 0.35], [null, 0.40]],
       donemler: [
         { ay: 1, asgariBrut: 2943.00, asgariNet: 2324.71, sgkTavan: 22072.50 }
+      ],
+      kidemTavanlari: [
+        { ay: 1, tutar: 6730.15 },
+        { ay: 7, tutar: 7117.17 }
       ],
       issizlik: ISSIZLIK_VARSAYILAN,
       fazlaMesai: FAZLA_MESAI_VARSAYILAN,
