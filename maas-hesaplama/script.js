@@ -3,17 +3,15 @@
    formu okur, motoru çağırır ve sonucu çizer. */
 (function () {
   "use strict";
-  var B = window.Bordro;
+  var B = window.Bordro, R = window.SonucYuzeyi;
+  var sonSonuc = null, seciliAy = 0;
   if (!B) return;
 
   var nf = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   function fmt(n) { return isFinite(n) ? nf.format(Math.round(n * 100) / 100) : "—"; }
   function yuzde(o) { return "%" + String(Math.round(o * 100)); }
   function el(id) { return document.getElementById(id); }
-  function num(id) {
-    var e = el(id);
-    return e ? parseFloat(String(e.value).replace(/\./g, "").replace(",", ".")) : NaN;
-  }
+  function num(id) { return R.read(el(id)); }
 
   /* ---------- yıl ve seçenekler ---------- */
 
@@ -47,38 +45,31 @@
 
   /* ---------- çizim ---------- */
 
-  function ozetKart(etiket, deger, not) {
-    return '<div class="sum-card"><span class="sum-label">' + etiket +
-      '</span><strong class="sum-value">' + deger +
-      '</strong><span class="sum-note">' + not + "</span></div>";
-  }
-
   function ozetCiz(hedef, sonuc) {
-    var t = sonuc.toplam, P = sonuc.parametre;
-    var d = P.donemler[P.donemler.length - 1];
-    hedef.innerHTML = '<div class="sum-grid">' +
-      ozetKart("Ocak net maaş", fmt(t.ilkAyNet) + " TL", "Yılın ilk ayı") +
-      ozetKart("Aralık net maaş", fmt(t.sonAyNet) + " TL", "Kümülatif vergi ilerledikten sonra") +
-      ozetKart("Aylık ortalama net", fmt(t.ortalamaNet) + " TL", "12 aylık ortalama") +
-      ozetKart("Yıllık toplam net", fmt(t.net) + " TL", "12 ay toplamı") +
-      ozetKart("Yıllık vergi + damga", fmt(t.gelirVergisi + t.damga) + " TL", "İstisna sonrası ödenen") +
-      ozetKart("Yıllık istisna kazancı", fmt(t.istisna) + " TL",
-        P.istisnaRejimi === "agi" ? "AGİ ile düşen vergi" : "Asgari ücret istisnası") +
-      ozetKart("İşverene aylık maliyet", fmt(sonuc.aylar[0].isverenMaliyeti) + " TL", "Teşviksiz toplam") +
-      ozetKart("Asgari ücret (" + sonuc.yil + ")", fmt(d.asgariBrut) + " TL", "brüt · net " + fmt(d.asgariNet) + " TL") +
-      "</div>";
+    var a=sonuc.aylar[seciliAy], t=sonuc.toplam, P=sonuc.parametre;
+    var d=P.donemler[P.donemler.length-1];
+    hedef.innerHTML=R.answer(a.ayAdi+' '+sonuc.yil+' · Net maaş',a.net,'Bu ayın brütü: '+fmt(a.brut)+' TL')+
+      '<h3>Brütten elinize geçen tutara</h3>'+R.stack([['Net maaş',a.net],['SGK + işsizlik',a.sgk+a.issizlik],['Gelir vergisi + damga',a.gelirVergisi+a.damga]])+
+      R.facts([['Brüt maaş',fmt(a.brut)+' TL'],['SGK işçi payı',fmt(a.sgk)+' TL'],['İşsizlik sigortası',fmt(a.issizlik)+' TL'],['Gelir vergisi · istisna sonrası',fmt(a.gelirVergisi)+' TL'],['Damga vergisi',fmt(a.damga)+' TL']])+
+      (a.dilimGecisi?R.notice(a.ayAdi+' ayında üst vergi dilimine geçiliyor. Aşağıdaki bordroda bu ay ayrıca işaretlendi.'):'')+
+      '<h3>Yılın bütünü</h3>'+R.metrics([['Yıllık toplam net',fmt(t.net)+' TL'],['Aylık ortalama net',fmt(t.ortalamaNet)+' TL'],['Aralık net maaşı',fmt(t.sonAyNet)+' TL']])+
+      '<details class="rs-details"><summary>Vergi, istisna ve işveren maliyeti</summary>'+R.facts([
+        ['Yıllık vergi + damga',fmt(t.gelirVergisi+t.damga)+' TL'],
+        [P.istisnaRejimi==='agi'?'Yıllık AGİ ile düşen vergi':'Yıllık asgari ücret istisnası',fmt(t.istisna)+' TL'],
+        [a.ayAdi+' · İşveren maliyeti, teşviksiz',fmt(a.isverenMaliyeti)+' TL'],
+        ['Asgari brüt · yılın son dönemi',fmt(d.asgariBrut)+' TL'],['Asgari net · yılın son dönemi',fmt(d.asgariNet)+' TL']])+'</details>';
   }
 
   function tabloCiz(hedef, sonuc) {
     var P = sonuc.parametre;
-    var html = '<div class="table-scroll"><table class="payroll">' +
-      '<caption class="visually-hidden">' + sonuc.yil + " yılı 12 aylık bordro dökümü</caption>" +
-      "<thead><tr><th>Ay</th><th>Brüt</th><th>SGK %14</th><th>İşsizlik %1</th>" +
-      "<th>Gelir vergisi</th><th>İstisna</th><th>Damga</th><th>Dilim</th><th>Net maaş</th></tr></thead><tbody>";
+    var html = '<h3>12 aylık bordro</h3><p class="rs-note">Tutarlar TL. Dar ekranda tabloyu yatay kaydırabilirsiniz.</p><div class="rs-scroll" tabindex="0" role="region" aria-label="12 aylık bordro tablosu"><table class="rs-table">' +
+      '<caption>' + sonuc.yil + " yılı 12 aylık bordro dökümü</caption>" +
+      "<thead><tr><th scope='col'>Ay</th><th scope='col'>Brüt</th><th scope='col'>SGK %14</th><th scope='col'>İşsizlik %1</th>" +
+      "<th scope='col'>Gelir vergisi</th><th scope='col'>İstisna</th><th scope='col'>Damga</th><th scope='col'>Dilim</th><th scope='col'>Net maaş</th></tr></thead><tbody>";
 
     sonuc.aylar.forEach(function (a) {
-      html += '<tr' + (a.dilimGecisi ? ' class="bracket-jump"' : "") + "><th>" + a.ayAdi +
-        (a.dilimGecisi ? ' <span class="jump-flag" title="Bu ay üst vergi dilimine geçildi">▲</span>' : "") +
+      html += '<tr' + (a.dilimGecisi ? ' class="rs-event"' : "") + "><th scope='row'>" + a.ayAdi +
+        (a.dilimGecisi ? ' <span class="rs-event-label">Üst dilime geçiş</span>' : "") +
         "</th><td>" + fmt(a.brut) + "</td><td>" + fmt(a.sgk) + "</td><td>" + fmt(a.issizlik) +
         "</td><td>" + fmt(a.gelirVergisi) + "</td><td>" + fmt(a.istisna) + "</td><td>" + fmt(a.damga) +
         '</td><td class="rate">' + yuzde(a.dilim) + "</td><td><strong>" + fmt(a.net) + "</strong></td></tr>";
@@ -95,39 +86,47 @@
     }
     var gecis = sonuc.aylar.filter(function (a) { return a.dilimGecisi; });
     if (gecis.length) {
-      notlar.push("▲ işaretli ay(lar) — " + gecis.map(function (a) { return a.ayAdi; }).join(", ") +
+      notlar.push("Üst dilime geçiş olarak işaretlenen ay(lar) — " + gecis.map(function (a) { return a.ayAdi; }).join(", ") +
         " — kümülatif matrahın üst vergi dilimine geçtiği aylardır.");
     }
     if (P.notlar) notlar.push(P.notlar);
 
-    html += '<p class="muted-note table-note">' + notlar.join(" ") + " Tutarlar TL cinsindendir.</p>" +
-      '<p class="muted-note table-note">Hesaplama çekirdeği: <a href="../bordro/">açık kaynak bordro motoru</a> ' +
+    html += '<p class="rs-note">' + notlar.join(" ") + " Tutarlar TL cinsindendir.</p>" +
+      '<p class="rs-note">Hesaplama çekirdeği: <a href="../bordro/">açık kaynak bordro motoru</a> ' +
       "· " + sonuc.yil + " dayanağı: " + P.dayanak + "</p>";
 
     hedef.innerHTML = html;
   }
 
   function sonucGoster(sonuc) {
+    sonSonuc=sonuc;
+    if(!el('rs-month').options.length) el('rs-month').innerHTML=sonuc.aylar.map(function(a,i){return '<option value="'+i+'">'+R.esc(a.ayAdi)+'</option>';}).join('');
     ozetCiz(el("summary"), sonuc);
     tabloCiz(el("table"), sonuc);
     el("results").hidden = false;
   }
 
+  el('rs-month').addEventListener('change',function(){seciliAy=Number(this.value);if(sonSonuc){ozetCiz(el('summary'),sonSonuc);el('rs-status').textContent=sonSonuc.aylar[seciliAy].ayAdi+' net maaşı: '+fmt(sonSonuc.aylar[seciliAy].net)+' TL';}});
+  function gecersiz(id) { sonSonuc=null; el('results').hidden=true; el('summary').innerHTML=''; el('table').innerHTML=''; el('net-out').innerHTML=''; el(id).setAttribute('aria-invalid','true'); el('rs-status').textContent='Hesaplanamadı. Sıfırdan büyük, geçerli bir maaş tutarı girin.'; }
   /* ---------- girişler ---------- */
 
   function brutHesapla() {
     var yil = seciliYil(), g = num("in-gross");
-    if (isNaN(g) || g <= 0) return;
+    if (!isFinite(g) || g <= 0) { gecersiz("in-gross"); return; }
+    el("in-gross").removeAttribute("aria-invalid");
     var asgari = B.parametre(yil).donemler[0].asgariBrut;
+    el("rs-status").textContent=g<asgari?"Girdi asgari ücretin altında; hesapta "+fmt(asgari)+" TL brüt kullanıldı.":"Bordro güncellendi.";
     if (g < asgari) g = asgari;
     sonucGoster(B.hesaplaYil(g, yil, secenekler()));
   }
 
   function netHesapla() {
     var yil = seciliYil(), n = num("in-net"), cikti = el("net-out");
-    if (isNaN(n) || n <= 0) { cikti.innerHTML = ""; return; }
+    if (!isFinite(n) || n <= 0) { gecersiz("in-net"); return; }
+    el("in-net").removeAttribute("aria-invalid");
     var asgariBrut = B.parametre(yil).donemler[0].asgariBrut;
     var asgariNet = B.hesaplaYil(asgariBrut, yil, secenekler()).aylar[0].net;
+    el("rs-status").textContent=n<asgariNet?"Hedef asgari netin altında; hesapta "+fmt(asgariNet)+" TL net kullanıldı.":"Ocak hedef netine göre bordro güncellendi.";
     if (n < asgariNet) n = asgariNet;
     var brut = B.nettenBrute(n, yil, 0, secenekler());
     cikti.innerHTML = "Gereken brüt maaş: " + fmt(brut) + " TL" +
@@ -201,5 +200,6 @@
     });
   });
 
+  document.querySelectorAll("form.panel").forEach(function(f){f.addEventListener("submit",function(e){e.preventDefault();aktifSekme()();});});
   brutHesapla();
 })();

@@ -13,7 +13,7 @@
 (function () {
   "use strict";
 
-  var T = window.MtvTarife;
+  var T = window.MtvTarife, R = window.SonucYuzeyi;
   if (!T) return;
 
   var nf = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -21,10 +21,7 @@
   function fmt(n) { return isFinite(n) ? nf.format(Math.round(n * 100) / 100) : "—"; }
   function tam(n) { return isFinite(n) ? nf0.format(Math.round(n)) : "—"; }
   function el(id) { return document.getElementById(id); }
-  function num(id) {
-    var e = el(id);
-    return e ? parseFloat(String(e.value).replace(/\./g, "").replace(",", ".")) : NaN;
-  }
+  function num(id) { return R.read(el(id)); }
   function set(id, html) { var e = el(id); if (e) e.innerHTML = html; }
   function goster(id, acik) { var e = el(id); if (e) e.hidden = !acik; }
 
@@ -41,17 +38,14 @@
   secenekler("moto-hacim", T.MOTO_ETIKET);
   var oh = el("oto-hacim"); if (oh) oh.value = "1";   // en yaygın dilim: 1301–1600
 
-  function tablo(satirlar) {
-    var html = '<table class="bd-table"><tbody>';
-    satirlar.forEach(function (s) {
-      var cls = s[2] ? ' class="' + s[2] + '"' : "";
-      html += "<tr" + cls + '><th scope="row">' + s[0] + "</th><td>" + s[1] + "</td></tr>";
-    });
-    return html + "</tbody></table>";
-  }
-
-  function uyari(metin) {
-    return '<p class="bd-uyari" role="status">' + metin + "</p>";
+  function tablo(rows) { return R.facts(rows.filter(function(r){return r[2]!=='bd-total'&&r[0].indexOf('taksit')<0;})); }
+  function uyari(metin) {return R.notice(metin);}
+  function hata(prefix,metin){set(prefix+'-out',R.notice(metin));el(prefix+'-status').textContent='Hesaplanamadı. '+metin;}
+  function sonuc(prefix,s,rows,ek,girdi){
+    set(prefix+'-out',R.answer(YIL+' · Yıllık MTV',s.vergi,'Seçilen taşıt bilgileri için yıllık toplam')+
+      R.metrics([['1. taksit · Ocak',fmt(s.taksit)+' TL'],['2. taksit · Temmuz',fmt(s.taksit)+' TL']])+
+      ek+projeksiyon(girdi)+'<details class="rs-details"><summary>Tarife ve hesap ayrıntıları</summary>'+tablo(rows)+'</details>');
+    el(prefix+'-status').textContent='Hesap güncellendi. Yıllık MTV: '+fmt(s.vergi)+' TL.';
   }
 
   /* Projeksiyon: tarife sabit kalırsa yaş grubu değiştikçe vergi nasıl
@@ -64,20 +58,17 @@
       for (var k in girdi) if (Object.prototype.hasOwnProperty.call(girdi, k)) g[k] = girdi[k];
       g.yil = y;
       var s = T.hesapla(g);
-      if (s.hata || !isFinite(s.vergi)) continue;
+      if (s.hata || !isFinite(s.vergi)) {kalemler.push([y,null]);continue;}
       kalemler.push([y, s.vergi]);
       if (s.vergi > enBuyuk) enBuyuk = s.vergi;
     }
     if (!kalemler.length) return "";
-    var out = '<h3 class="proj-title">Gelecek yıllar projeksiyonu ' +
-      '<span class="muted-inline">(' + YIL + ' tarifesi sabit varsayımıyla)</span></h3><div class="proj">';
-    kalemler.forEach(function (it) {
-      var pct = enBuyuk > 0 ? Math.max(4, (it[1] / enBuyuk) * 100) : 0;
-      out += '<div class="proj-row"><span class="proj-year">' + it[0] + "</span>" +
-        '<span class="proj-bar-wrap"><span class="proj-bar" style="width:' + pct.toFixed(1) + '%"></span></span>' +
-        '<span class="proj-val">' + tam(it[1]) + " TL</span></div>";
+    var out='<h3>Yaş değiştikçe yıllık MTV</h3><p class="rs-note"><strong>'+YIL+' tarifesi sabit tutulmuştur.</strong> Gelecekteki zamları tahmin etmez; yalnız araç yaşı değişiminin etkisini gösterir. Çubukların başlangıcı sıfır, ölçeği ortaktır.</p><ol class="rs-time">';
+    kalemler.forEach(function(it){
+      var pct=it[1]!==null&&enBuyuk>0?it[1]/enBuyuk*100:0;
+      out+='<li><span class="rs-time-year">'+it[0]+'</span><span class="rs-time-track" aria-hidden="true"><span class="rs-time-bar" style="--rs-share:'+pct+'%"></span></span><span class="rs-time-value">'+(it[1]===null?'Hesaplanamadı':fmt(it[1])+' TL')+'</span></li>';
     });
-    return out + "</div>";
+    return out+'</ol>';
   }
 
   /* ---------------------------------------------------------------- *
@@ -93,6 +84,7 @@
     goster("oto-deger-alan", !eski);     // değer kademesi yalnızca (I)'de
     goster("oto-kasko-alan", eski);      // kasko istisnası yalnızca (I/A)'da
 
+    var sorun=R.validate(el('panel-1'),['oto-kasko']);if(sorun){hata('oto',sorun);return;}
     var girdi = {
       tur: "otomobil",
       tescil: eski ? "eski" : "yeni",
@@ -106,11 +98,11 @@
 
     var s = T.hesapla(girdi);
     if (s.hata === "kw") {
-      set("oto-out", uyari("Elektrikli araçta vergi motor gücüne göre belirlenir. " +
-        "Aracınızın kW değerini girin — ruhsatın “motor gücü” satırında yazar."));
+      hata("oto", "Elektrikli araçta vergi motor gücüne göre belirlenir. " +
+        "Aracınızın kW değerini girin — ruhsatın “motor gücü” satırında yazar.");
       return;
     }
-    if (s.hata) { set("oto-out", ""); return; }
+    if (s.hata) { hata('oto','Model yılını ve taşıt bilgilerini kontrol edin. Geçerli bir tarife sonucu üretilemedi.'); return; }
 
     var r = [
       ["Uygulanan tarife", s.tarife],
@@ -148,7 +140,7 @@
         "Bu yüzden hesaba katılmadı.");
     }
 
-    set("oto-out", tablo(r) + ek + projeksiyon(girdi));
+    sonuc('oto',s,r,ek,girdi);
   }
 
   /* ---------------------------------------------------------------- *
@@ -159,6 +151,7 @@
     goster("moto-hacim-alan", !elektrik);
     goster("moto-kw-alan", elektrik);
 
+    var sorun=R.validate(el('panel-2'),[]);if(sorun){hata('moto',sorun);return;}
     var girdi = {
       tur: "motosiklet",
       yakit: elektrik ? "elektrik" : "icten",
@@ -169,12 +162,12 @@
 
     var s = T.hesapla(girdi);
     if (s.hata === "moto-kw-disi") {
-      set("moto-out", uyari("Kanunun motosiklet tarifesi " + T.MOTO_KW_ALT +
+      hata("moto", "Kanunun motosiklet tarifesi " + T.MOTO_KW_ALT +
         " kW'ın üzerinde başlar. Bu güçteki elektrikli taşıtlar tarifede yer almaz; " +
-        "vergi durumunu tescil kaydınızdan teyit edin."));
+        "vergi durumunu tescil kaydınızdan teyit edin.");
       return;
     }
-    if (s.hata) { set("moto-out", ""); return; }
+    if (s.hata) { hata('moto','Model yılını ve motor bilgilerini kontrol edin. Geçerli bir tarife sonucu üretilemedi.'); return; }
 
     var r = [
       ["Uygulanan tarife", s.tarife],
@@ -189,7 +182,7 @@
     r.push(["1. taksit (Ocak)", fmt(s.taksit) + " TL"]);
     r.push(["2. taksit (Temmuz)", fmt(s.taksit) + " TL"]);
 
-    set("moto-out", tablo(r) + projeksiyon(girdi));
+    sonuc('moto',s,r,'',girdi);
   }
 
   function hesapla() { hesapOto(); hesapMoto(); }
@@ -211,6 +204,7 @@
       var p = el(t.getAttribute("aria-controls"));
       if (p) p.hidden = !sec;
     });
+    hesapla();
   }
   tabs.forEach(function (tab, i) {
     tab.addEventListener("click", function () { sekmeSec(tab); });
@@ -224,5 +218,6 @@
     });
   });
 
+  document.querySelectorAll('form.panel').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();hesapla();});});
   hesapla();
 })();

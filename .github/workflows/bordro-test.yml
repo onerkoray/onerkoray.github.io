@@ -52,6 +52,9 @@ jobs:
       - name: Finans kuralları regresyonları
         run: node finans/test.js
 
+      - name: Sonuç yüzeyi ve pilot araç regresyonları
+        run: node tools/sonuc-yuzeyi-test.js
+
       # Faz 1 temel motorlari. Uzerlerine binecek her arac bunlara
       # bagli oldugu icin buradaki bir hata tek sayfayi degil butun
       # zinciri sessizce yanlisa cevirir.
