@@ -235,6 +235,8 @@ jobs:
       # hucre karsilastirilir.
       - name: MTV yazısının sayıları
         run: node makaleler/mtv-2026-ne-kadar/sayi-testi.js
+      - name: Erken kapatma makalesi sayısal örneği
+        run: node makaleler/krediyi-erken-kapatmak-mantikli-mi/sayi-testi.js
 
       # Dilim kaymasi yazisi YEDI YILLIK parametreden turuyor. Gecmis bir yil
       # duzeltilir ya da 2027 eklenirse yazi sessizce eskir: tablolar hizali
