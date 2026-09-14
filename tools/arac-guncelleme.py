@@ -79,6 +79,12 @@ def commit_boyutlari():
 
 DAMGA = re.compile(r"[?]v=[0-9a-f]+")
 
+# Gecerlilik bildirimi (tools/gecerlilik.js) okuyucuya GORUNMEZ: sayfanin
+# ne zaman gozden gecirilmesi gerektigini soyler, iceriginde ne yazdigini
+# degil. Eklenmesini "sayfa guncellendi" diye sunmak lastmod'u sisirir --
+# ve sisirilmis lastmod tazelik sinyalini guclendirmez, susturur.
+GECERLILIK = re.compile(r'<meta\s+name="gecerlilik"')
+
 
 def ozlu_degisim(h, yol):
     """Commit bu araca GERCEK bir degisiklik getirdi mi?
@@ -87,12 +93,15 @@ def ozlu_degisim(h, yol):
     commit'i 19 dosyaya dokunup esigi geciyor ama yaptigi tek sey ?v=
     damgalarini tazelemek; bunu "arac guncellendi" diye sunmak yalan olur.
     Burada damgalar normalize edilip once/sonra satirlari karsilastiriliyor:
-    geriye bir sey kalmiyorsa degisiklik ozlu degildir.
+    geriye bir sey kalmiyorsa degisiklik ozlu degildir. Gecerlilik bildirimi
+    satirlari da ayni sebeple elenir: okuyucunun gordugu hicbir sey degismez.
     """
     diff = git("show", "--format=", "--unified=0", h, "--", yol)
     ekli, silik = [], []
     for satir in diff.split("\n"):
         if satir.startswith("+++") or satir.startswith("---"):
+            continue
+        if GECERLILIK.search(satir):
             continue
         if satir.startswith("+"):
             ekli.append(DAMGA.sub("?v=", satir[1:]))
