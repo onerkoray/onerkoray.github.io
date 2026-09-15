@@ -1,0 +1,116 @@
+/* Ana sayfaya özel yüzeyler; ortak araç ve makale şablonlarından bağımsız. */
+.home-page .hero-copy .lede { max-width: 55ch; line-height: 1.75; }
+.home-page .hero-note { padding-top: .5rem; }
+.home-page .hero-latest { margin-top: .5rem; }
+.home-page .hero-latest h2 { font: 650 .78rem var(--font-mono); color: var(--text-muted); }
+.home-page .hero-latest .hq-yeni a {
+  height: 100%; min-height: 5rem; padding: 1rem 1.15rem;
+  transition: background-color .35s ease, border-color .35s ease;
+}
+.home-page .hero-latest .hq-yeni li:first-child a {
+  border-color: color-mix(in srgb, var(--brand) 30%, var(--border));
+  background: color-mix(in srgb, var(--brand) 5%, var(--surface));
+}
+.home-page .hero-latest .hq-yeni a:is(:hover,:focus-visible) {
+  background: color-mix(in srgb, var(--brand) 10%, var(--surface));
+  border-color: var(--brand);
+}
+.home-page .hero-latest .hq-yeni span { line-height: 1.4; }
+.home-page .topic-index { margin-bottom: 2rem; }
+.home-page .topic-index a { padding: 1.35rem; gap: .7rem; }
+.home-page .topic-index strong { font-size: 1rem; line-height: 1.4; }
+.home-page .topic-index span { max-width: 28ch; }
+
+/* Etiket, arama ve filtreler tek bir araç bulma panelidir. */
+.home-page .directory-panel {
+  display: grid; grid-template-columns: minmax(0,1fr) auto;
+  gap: 1rem; padding: 1.4rem; margin: 1.75rem 0 1.5rem;
+  border: 1px solid var(--border); border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 6px 24px color-mix(in srgb, var(--text) 3%, transparent);
+}
+.home-page .directory-label {
+  grid-column: 1/-1; font-size: 1.05rem; font-weight: 700;
+  letter-spacing: -.015em; color: var(--text);
+}
+.home-page .directory-panel .tool-search {
+  grid-column: 1/-1; width: 100%; margin: 0;
+  min-height: 3.5rem; border-radius: 10px; background: var(--bg);
+  box-shadow: none; transition: border-color .25s ease, background-color .25s ease;
+}
+.home-page .directory-panel .tool-search:focus-within {
+  border-color: var(--brand); background: var(--surface);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 12%, transparent);
+}
+.home-page .directory-panel .chips {
+  display: flex; flex-wrap: wrap; gap: .35rem; align-items: center;
+  border: 0; padding: 0; margin: 0; background: transparent;
+}
+.home-page .directory-panel .chip {
+  display: inline-flex; align-items: center; gap: .55rem;
+  min-height: 42px; padding: .65rem .8rem; border-radius: 8px;
+  border: 1px solid transparent; background: transparent;
+  color: var(--text-muted); box-shadow: none; transform: none;
+  transition: color .25s ease, background-color .25s ease, border-color .25s ease;
+}
+.home-page .directory-panel .chip::before { display: none; }
+.home-page .directory-panel .chip[aria-pressed=true] {
+  color: var(--brand-strong); border-color: color-mix(in srgb, var(--brand) 25%, var(--border));
+  background: color-mix(in srgb, var(--brand) 8%, var(--surface));
+  box-shadow: none;
+}
+.home-page .directory-panel .chip:hover { color: var(--brand-strong); background: var(--surface-2); }
+.home-page .chip-count {
+  font: 500 .7rem var(--font-mono); font-variant-numeric: tabular-nums;
+  opacity: .8; border-left: 1px solid var(--border); padding-left: .5rem;
+}
+.home-page .directory-panel .directory-status {
+  align-self: center; margin: 0; padding: 0; border: 0;
+  border-radius: 0; background: transparent; font-size: .78rem;
+  color: var(--text-muted); white-space: nowrap;
+}
+
+/* Kartların iç ritmi: açıklama rahat okunur, eylem tutarlı yerde durur. */
+.home-page .project-grid { align-items: stretch; }
+.home-page .project-card { background: var(--surface); }
+.home-page .project-body { padding: 1.25rem; gap: .15rem; }
+.home-page .project-body h3 { font-size: 1.12rem; line-height: 1.4; letter-spacing: -.02em; }
+.home-page .project-body h3 a { transition: color .3s ease; }
+.home-page .project-card:is(:hover,:focus-within) h3 a { color: var(--brand-strong); }
+.home-page .project-body > p:not(.card-badges):not(.project-links):not(.card-updated) {
+  font-size: .9rem; line-height: 1.7; margin-top: .75rem; margin-bottom: 1.25rem;
+}
+.home-page .project-body .project-links {
+  padding-top: .85rem; margin-top: auto;
+  border-top: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+}
+.home-page .project-body .card-updated { font-size: .7rem; margin: .65rem 0 0; }
+.home-page .ed-list { display: grid; gap: 1rem; }
+.home-page .ed-item, .home-page .ed-item:last-child {
+  padding: 1.35rem; border: 1px solid var(--border); border-radius: 16px;
+  background: var(--surface); align-items: center;
+  transition: border-color .35s ease, background-color .35s ease;
+}
+.home-page .ed-item:is(:hover,:focus-within) {
+  border-color: color-mix(in srgb, var(--brand) 40%, var(--border));
+  background: color-mix(in srgb, var(--brand) 3%, var(--surface));
+}
+.home-page .ed-item .ed-dek { line-height: 1.7; }
+@media (max-width: 900px) {
+  .home-page .directory-panel { grid-template-columns: 1fr; }
+  .home-page .directory-panel .directory-status { white-space: normal; }
+}
+@media (max-width: 600px) {
+  .home-page .directory-panel { padding: 1rem; gap: .85rem; border-radius: 12px; }
+  .home-page .directory-panel .chips { display: grid; grid-template-columns: 1fr 1fr; }
+  .home-page .directory-panel .chip { justify-content: space-between; font-size: .66rem; padding: .6rem; }
+  .home-page .directory-label { font-size: .95rem; }
+  .home-page .hero-latest .hq-yeni a { min-height: 3.5rem; padding: .85rem 1rem; }
+  .home-page .topic-index a { padding: 1rem; }
+  .home-page .topic-index strong { font-size: .92rem; }
+  .home-page .project-body { padding: 1.15rem; }
+  .home-page .ed-item { padding: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page :is(.hq-yeni a,.tool-search,.chip,.project-body h3 a,.ed-item) { transition: none; }
+}
