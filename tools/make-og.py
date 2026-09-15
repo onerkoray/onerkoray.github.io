@@ -131,6 +131,10 @@ SPEC = {
    "Aynı maliyet dört çalışma biçiminde ne kadarını size bırakıyor? Vergi, prim ve gider dahil.",
    ["4 senaryo", "Kesişim tablosu"], "bordro"),
 
+ "pesin-mi-taksit-mi": ("pesin-mi-taksit-mi", "Peşin mi,", "Taksit mi?",
+   "Üç teklif, net getiri ve bütçe: ödemeleri aynı tarihin parasıyla karşılaştırın.",
+   ["Bugünkü maliyet", "Başa baş getiri", "Ödeme planı"], "vergi"),
+
  "cikis-takvimi": ("cikis-takvimi", "Çıkış", "Takvimi",
    "Ayrılma tarihindeki eşikler: bir gün on binlerce lira değiştirebiliyor.",
    ["Eşik taraması", "Kendi tarihlerinize göre"], "bordro"),

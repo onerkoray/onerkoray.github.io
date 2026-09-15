@@ -106,6 +106,18 @@ def blok(html, kok, motorlu):
         ]
     # Bölüm kimliğine bakılır, metnine değil: bloğun kendisi de "Veri kaynakları"
     # ifadesini içerdiğinden metin araması ikinci çalıştırmada kendini kirletir.
+    elif 'href="https://korayoner.dev/pesin-mi-taksit-mi/"' in html:
+        metin = (
+            'Bu aracı <a href="%shakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. '
+            'Kullanıcının girdiği teklifleri aylık nakit akışlarına çevirir. Bugünkü değer formülü, '
+            'varsayımlar ve kapsam bu sayfadaki <a href="#yontem">hesap yönteminde</a> açıklanır. '
+            'Hesaplar tarayıcıda yapılır; oranlar piyasa verisi değil, kullanıcı varsayımıdır.'
+        ) % kok
+        satirlar = [
+            satir("Geliştiren", '<a href="%shakkimda/" rel="author">Koray Öner</a>' % kok),
+            satir("Yöntem", '<a href="#yontem">Aylık nakit akışlarının bugünkü değeri</a>'),
+            satir("Kaynak kod ve testler", '<a href="https://github.com/onerkoray/onerkoray.github.io/tree/main/pesin-mi-taksit-mi" rel="noopener">GitHub</a>'),
+        ]
     elif 'id="kaynak-title"' in html:
         metin = (
             "Bu aracı <a href=\"%(k)shakkimda/\" rel=\"author\"><strong>Koray Öner</strong></a> geliştirdi ve "

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Peşin mi Taksit mi Hesaplama | Koray Öner</title>
+  <meta name="description" content="Peşin fiyatı üç taksit teklifiyle karşılaştırın. Peşinat, ücret, net getiri, enflasyon ve bütçeyle bugünkü maliyeti ve başa baş getiri oranını hesaplayın.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/pesin-mi-taksit-mi/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=c4512491" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Peşin mi, Taksit mi? Gerçek Maliyet Karşılaştırması">
+  <meta property="og:description" content="Peşin fiyatı üç taksit teklifiyle karşılaştırın. Peşinat, ücret, net getiri, enflasyon ve bütçeyle bugünkü maliyeti ve başa baş getiri oranını hesaplayın.">
+  <meta property="og:url" content="https://korayoner.dev/pesin-mi-taksit-mi/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/pesin-mi-taksit-mi-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Peşin ve üç taksit teklifinin bugünkü maliyetini karşılaştıran finansal karar aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="Peşin mi, Taksit mi? Gerçek Maliyet Karşılaştırması">
+  <meta name="twitter:description" content="Peşin fiyatı üç taksit teklifiyle karşılaştırın. Peşinat, ücret, net getiri, enflasyon ve bütçeyle bugünkü maliyeti ve başa baş getiri oranını hesaplayın.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/pesin-mi-taksit-mi-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=9ae079de">
+  <link rel="stylesheet" href="../arac-bilesenleri.css?v=93a5b568">
+  <link rel="stylesheet" href="style.css?v=f7450220">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": {
+        "@id": "https://korayoner.dev/#oner-koray"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/",
+      "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/koraonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://dl.acm.org/profile/81100070426",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://korayoner.dev/pesin-mi-taksit-mi/#app",
+      "url": "https://korayoner.dev/pesin-mi-taksit-mi/",
+      "name": "Peşin mi, Taksit mi? Gerçek Maliyet Karşılaştırması",
+      "image": "https://korayoner.dev/images/pesin-mi-taksit-mi-koray-oner.png",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "tr",
+      "author": {
+        "@id": "https://korayoner.dev/#oner-koray"
+      },
+      "publisher": {
+        "@id": "https://korayoner.dev/#oner-koray"
+      },
+      "isPartOf": {
+        "@id": "https://korayoner.dev/#website"
+      },
+      "description": "Peşin fiyatı üç taksit teklifiyle karşılaştırın. Peşinat, ücret, net getiri, enflasyon ve bütçeyle bugünkü maliyeti ve başa baş getiri oranını hesaplayın.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TRY"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://korayoner.dev/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Peşin mi, taksit mi?",
+          "item": "https://korayoner.dev/pesin-mi-taksit-mi/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="rs-tool calculator-page"><a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#yontem">Hesap yöntemi</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+<nav class="breadcrumb wrap" aria-label="Konum"><a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> Peşin mi, taksit mi?</nav>
+<section class="hero" aria-labelledby="hero-title"><div class="wrap hero-inner"><p class="eyebrow">FİNANSAL KARAR · AYNI ÜRÜN, FARKLI ÖDEME</p><div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 7h6M15 7h6M3 17h6M15 17h6"/><rect x="3" y="10" width="6" height="4" rx="1"/><path d="M16 11l2 2 3-3"/></svg></div><h1 id="hero-title">Peşin mi, taksit mi?</h1><p class="pt-intro lead">Peşin indirim gerçek bir avantaj mı, yoksa paranız sizde kaldığında daha mı değerli? <strong>Üç teklifi, paranın zaman değerini ve aylık bütçenizi birlikte karşılaştırın.</strong></p></div></section>
+<section class="content calc" id="hesapla"><div class="wrap"><h2>Teklifleri aynı ölçüyle karşılaştırın</h2><p class="pt-muted">Başlangıç değerleri örnektir. Gerçek teklifinizi girin; sonuçlar tarayıcınızda hesaplanır.</p>
+<form id="pt-form" class="pt-form" novalidate><div class="pt-common"><label class="pt-field" for="pt-cash">Peşin fiyat (TL)<input id="pt-cash" type="number" inputmode="decimal" aria-label="Peşin fiyat (TL)" value="90000" min="0.01" max="1000000000.0" step=".01" required><small>Peşin indiriminden sonraki nihai fiyat.</small></label><label class="pt-field" for="pt-return">Yıllık net getiri (%)<input id="pt-return" type="number" inputmode="decimal" aria-label="Yıllık net getiri (%)" value="30" min="0" max="200" step="any" required><small>Vergi ve ücret sonrası efektif yıllık getiri varsayımı. Bankanın yıllık brüt faiz oranı değildir.</small></label><label class="pt-field" for="pt-inflation">Yıllık enflasyon (%)<input id="pt-inflation" type="number" inputmode="decimal" aria-label="Yıllık enflasyon (%)" value="25" min="0" max="200" step="any" required><small>Alım gücü hesabı içindir; maliyet sıralamasını değiştirmez.</small></label><label class="pt-field" for="pt-budget">Aylık taksit bütçesi (TL)<input id="pt-budget" type="number" inputmode="decimal" aria-label="Aylık taksit bütçesi (TL)" value="" min="0.01" max="1000000000.0" step=".01"><small>İsteğe bağlı. Boş bırakırsanız bütçe kontrolü yapılmaz; başlangıç nakdini kapsamaz.</small></label></div><div class="pt-offers"><fieldset class="pt-offer" data-offer="A"><legend><label><input type="checkbox" id="use-A" checked> Teklif A</label></legend><div class="pt-offer-fields"><label class="pt-field" for="A-total">Taksitli toplam fiyat (TL)<input id="A-total" type="number" inputmode="decimal" aria-label="Taksitli toplam fiyat (TL)" value="100000" min="0.01" max="1000000000.0" step=".01" required><small>Peşinat dahil, aşağıdaki ek ücret hariç.</small></label><label class="pt-field" for="A-months">Taksit sayısı<input id="A-months" type="number" inputmode="decimal" aria-label="Taksit sayısı" value="12" min="1" max="60" step="1" required></label><label class="pt-field" for="A-down">Peşinat (TL)<input id="A-down" type="number" inputmode="decimal" aria-label="Peşinat (TL)" value="0" min="0" max="1000000000.0" step=".01" required></label><label class="pt-field" for="A-fee">Peşin ek ücret (TL)<input id="A-fee" type="number" inputmode="decimal" aria-label="Peşin ek ücret (TL)" value="0" min="0" max="100000000.0" step=".01" required></label><label class="pt-field" for="A-first">İlk taksit kaç ay sonra?<input id="A-first" type="number" inputmode="decimal" aria-label="İlk taksit kaç ay sonra?" value="1" min="0" max="12" step="1" required><small>0: bugün · 1: bir ay sonra. Sonraki taksitler her ay.</small></label></div></fieldset><fieldset class="pt-offer" data-offer="B"><legend><label><input type="checkbox" id="use-B" checked> Teklif B</label></legend><div class="pt-offer-fields"><label class="pt-field" for="B-total">Taksitli toplam fiyat (TL)<input id="B-total" type="number" inputmode="decimal" aria-label="Taksitli toplam fiyat (TL)" value="95000" min="0.01" max="1000000000.0" step=".01" required><small>Peşinat dahil, aşağıdaki ek ücret hariç.</small></label><label class="pt-field" for="B-months">Taksit sayısı<input id="B-months" type="number" inputmode="decimal" aria-label="Taksit sayısı" value="6" min="1" max="60" step="1" required></label><label class="pt-field" for="B-down">Peşinat (TL)<input id="B-down" type="number" inputmode="decimal" aria-label="Peşinat (TL)" value="0" min="0" max="1000000000.0" step=".01" required></label><label class="pt-field" for="B-fee">Peşin ek ücret (TL)<input id="B-fee" type="number" inputmode="decimal" aria-label="Peşin ek ücret (TL)" value="0" min="0" max="100000000.0" step=".01" required></label><label class="pt-field" for="B-first">İlk taksit kaç ay sonra?<input id="B-first" type="number" inputmode="decimal" aria-label="İlk taksit kaç ay sonra?" value="1" min="0" max="12" step="1" required><small>0: bugün · 1: bir ay sonra. Sonraki taksitler her ay.</small></label></div></fieldset><fieldset class="pt-offer" data-offer="C"><legend><label><input type="checkbox" id="use-C"> Teklif C</label></legend><div class="pt-offer-fields"><label class="pt-field" for="C-total">Taksitli toplam fiyat (TL)<input id="C-total" type="number" inputmode="decimal" aria-label="Taksitli toplam fiyat (TL)" value="108000" min="0.01" max="1000000000.0" step=".01" required><small>Peşinat dahil, aşağıdaki ek ücret hariç.</small></label><label class="pt-field" for="C-months">Taksit sayısı<input id="C-months" type="number" inputmode="decimal" aria-label="Taksit sayısı" value="18" min="1" max="60" step="1" required></label><label class="pt-field" for="C-down">Peşinat (TL)<input id="C-down" type="number" inputmode="decimal" aria-label="Peşinat (TL)" value="0" min="0" max="1000000000.0" step=".01" required></label><label class="pt-field" for="C-fee">Peşin ek ücret (TL)<input id="C-fee" type="number" inputmode="decimal" aria-label="Peşin ek ücret (TL)" value="0" min="0" max="100000000.0" step=".01" required></label><label class="pt-field" for="C-first">İlk taksit kaç ay sonra?<input id="C-first" type="number" inputmode="decimal" aria-label="İlk taksit kaç ay sonra?" value="1" min="0" max="12" step="1" required><small>0: bugün · 1: bir ay sonra. Sonraki taksitler her ay.</small></label></div></fieldset></div><div class="pt-actions"><button class="btn primary" type="submit">Teklifleri karşılaştır →</button><button class="btn" type="button" id="pt-reset">Örneğe dön</button></div></form>
+<p id="pt-status" class="pt-status" role="status" aria-live="polite" aria-atomic="true"></p>
+<noscript><p>Hesaplama için JavaScript'i etkinleştirin. Hesap yöntemi ve örnek aşağıda okunabilir.</p></noscript>
+<section id="pt-results" class="pt-results" aria-label="Karşılaştırma sonuçları" hidden><div id="pt-summary" class="pt-summary"></div><div id="pt-cards" class="pt-comparison"></div><h2>Bugünkü maliyet karşılaştırması</h2><p class="pt-muted">Daha kısa çubuk, seçtiğiniz getiriyle daha düşük bugünkü maliyet demektir.</p><div id="pt-chart" class="pt-chart"></div><div id="pt-sensitivity" class="table-wrap" role="region" tabindex="0" aria-label="Net getiri duyarlılık tablosu"></div>
+<details><summary>Aylık ödeme planı ve hesap dökümü</summary><label class="pt-plan-label" for="pt-select">İncelenecek teklif <select id="pt-select"></select></label><div id="pt-plan" class="table-wrap" role="region" tabindex="0" aria-label="Ödeme planı"></div><div class="pt-actions"><button class="btn" type="button" id="pt-csv">Bu planı CSV indir</button></div></details><div class="pt-actions"><button class="btn" type="button" id="printBtn">Sonucu yazdır / PDF</button></div></section>
+</div></section>
+<section class="content"><div class="wrap prose pt-guide"><h2 id="yontem">Peşin ve taksit nasıl karşılaştırılır?</h2>
+<p>100.000 TL'yi bugün ödemek ile aynı tutarı 12 ayda ödemek aynı nakit akışı değildir. Bu araç gelecekteki her ödemeyi seçtiğiniz <strong>net getiri oranıyla bugüne indirger</strong>. Böylece farklı vadeler aynı tarihin TL'siyle karşılaştırılır. Daha düşük bugünkü maliyet, varsayımlar altında daha avantajlı fiyatlamayı gösterir; ödeme gücünüzü tek başına kanıtlamaz.</p>
+<p><code>aylık getiri = (1 + yıllık net getiri / 100)^(1/12) − 1</code><br><code>bugünkü maliyet = Σ [ödeme / (1 + aylık getiri)^ödeme ayı]</code></p>
+<p>Peşinat ve ek ücret bugün ödenir. İlk taksit için 0 seçilirse ilk taksit de bugüne eklenir. Kalan taksitler birer ay arayla devam eder. Taksitli fiyatın içindeki peşinat ikinci kez sayılmaz. Taksitler kuruşlara bölünür; bölünemeyen kuruşlar son takside eklenir. En yüksek taksit bütçe kontrolünde bu nedenle esas alınır.</p>
+<h3>Basit kontrol örneği</h3><p>Peşin fiyat 90.000 TL, taksitli toplam 100.000 TL, 12 taksit ve sıfır getiri olduğunda bugünkü maliyet tam 100.000 TL'dir: peşin seçenek 10.000 TL ucuzdur. Pozitif net getiri, gelecekteki taksitlerin bugünkü değerini düşürür. Peşinat veya bugün alınan ücret bu indirimden yararlanmaz. İlk taksidi ertelemek, toplam değişmese bile bugünkü maliyeti azaltır.</p>
+<h2>Başa baş getiri neyi anlatır?</h2><p>Her teklif için, taksitlerin bugünkü maliyetini peşin fiyata eşitleyen <strong>efektif yıllık net getiri</strong> hesaplanır. Getiriniz bu eşiğin üzerinde kalırsa o taksit teklifi peşine göre daha düşük bugünkü maliyet taşır. Oran brüt banka faizi, kredi yıllık maliyet oranı veya gerçekleşmesi beklenen getiri değildir; sizin teklifinizden türetilen matematiksel bir eşiktir.</p>
+<p>Taksitli toplam zaten peşin fiyatı aşmıyorsa, sıfır getiride de pahalı değildir. Bugünkü zorunlu ödeme peşin fiyatı karşılıyor ve gelecekte ek ödemeler kalıyorsa, sonlu pozitif getiride başa baş noktası oluşmaz. Araç bu durumlarda yanıltıcı bir faiz yüzdesi göstermez.</p>
+<h2>Getiri, enflasyon ve bütçe birbirinden farklıdır</h2><p><strong>Net getiri</strong> paranızın alternatif kullanımını temsil eder ve maliyet karşılaştırmasında kullanılır. Kısa vadeli mevduat yenilenirken oran değişebilir; bu nedenle tablo sıfır, düşük ve yüksek getiri senaryolarını da gösterir. Bugünkü oranı bütün vadeye taşımak bir varsayımdır.</p>
+<p><strong>Enflasyona göre alım gücü</strong>, aynı ödemeleri enflasyonla bugüne çeker. Net getirinin üzerine bir kez daha uygulanmaz. Enflasyon ile getiri aynı oran olmadıkça bu iki sütunun eşit olması beklenmez. <strong>Bütçe uyarısı</strong> ise en yüksek aylık taksidi sizin belirttiğiniz sınırla karşılaştırır; peşinat, mevcut borçlar, kredi kartı limiti ve gelir güvencesini içermez.</p>
+<h2 id="sss">Sık sorulan sorular</h2><h3>“Vade farksız” taksit her zaman daha mı ucuz?</h3><p>Peşin indirim yoksa ve ücretler aynıysa, pozitif net getiri altında geleceğe yayılan ödeme daha düşük bugünkü değer taşır. Ancak peşin indirimi, ek ücret veya taksitleri aksatma riski bu değerlendirmeyi değiştirir. Önce nihai fiyatları karşılaştırın.</p>
+<h3>Bankanın yıllık mevduat faizini doğrudan girebilir miyim?</h3><p>Bu alan efektif yıllık <strong>net</strong> getiri ister. Brüt yıllık faiz ile aynı değildir. Stopaj, vade ve yeniden yatırım koşullarını dikkate alın. <a href="../vadeli-mevduat-hesaplama/">Vadeli mevduat aracı</a> ile net dönem getirisini inceleyebilir, <a href="../makaleler/mevduat-faizi-enflasyon-reel-getiri/">net ve reel getiri rehberinden</a> tanımları kontrol edebilirsiniz.</p>
+<h3>Gerçek ödeme tarihlerini gün gün hesaplıyor mu?</h3><p>Hayır. Model eşit aylık aralıklar kullanır; ilk taksit 0–12 ay sonrasına alınabilir. Ay uzunlukları, günlük faiz, değişken oran, ara taksit, balon ödeme, kampanya iadesi ve kredi kartının asgari ödeme faizi modellenmez. Bankanın veya satıcının gerçek ödeme planı esas alınmalıdır.</p>
+<h3>Verilerim kaydediliyor mu?</h3><p>Girdiğiniz tutarlar bu araç tarafından sunucuya gönderilmez veya kalıcı kayda alınmaz. CSV dosyası cihazınızda oluşturulur. Sayfayı yenilediğinizde örnek değerler geri gelir.</p>
+<h2 id="kaynak-title">Hesap yöntemi ve kaynaklar</h2><p>Model, dönemsel nakit akışlarının bugünkü değeri ve bileşik faiz eşitliklerini kullanır. Oranlar kullanıcı varsayımıdır; banka teklifi veya güncel piyasa verisi otomatik çekilmez.</p><ul><li><a href="https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator" rel="noopener" target="_blank">Investor.gov — Compound Interest Calculator</a>: bileşik büyüme ve dönemsel katkı yaklaşımı.</li><li><a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-buy-now-pay-later-bnpl-loan-en-2119/" rel="noopener" target="_blank">CFPB — Taksitli ödeme ürünlerini anlamak</a>: genel ürün açıklaması; Türkiye mevzuatı olarak kullanılmaz.</li><li><a href="https://github.com/onerkoray/onerkoray.github.io/tree/main/pesin-mi-taksit-mi" rel="noopener" target="_blank">Açık hesap motoru ve testleri</a>.</li></ul>
+<p class="updated">Hesap yöntemi son kontrol: <time datetime="2026-09-15">15 Eylül 2026</time>. Genel karşılaştırma aracıdır; kişiye özel yatırım tavsiyesi değildir.</p><p>Mevcut bir krediyi kapatma kararı için <a href="../erken-kapatma-analizi/">erken kapatma analizi</a>, yeni kredi maliyeti için <a href="../kredi-hesaplama/">kredi hesaplama</a> aracını kullanın.</p>
+</div></section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanıcının girdiği teklifleri aylık nakit akışlarına çevirir. Bugünkü değer formülü, varsayımlar ve kapsam bu sayfadaki <a href="#yontem">hesap yönteminde</a> açıklanır. Hesaplar tarayıcıda yapılır; oranlar piyasa verisi değil, kullanıcı varsayımıdır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd><a href="#yontem">Aylık nakit akışlarının bugünkü değeri</a></dd></div>
+            <div><dt>Kaynak kod ve testler</dt><dd><a href="https://github.com/onerkoray/onerkoray.github.io/tree/main/pesin-mi-taksit-mi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main><footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer><script src="../script.js?v=5127b7a8" defer></script><script src="../sonuc-yuzeyi.js?v=85e4b0fb" defer></script><script src="motor.js?v=7865ce21" defer></script><script src="script.js?v=b3a2a7a2" defer></script></body></html>

@@ -237,6 +237,8 @@ jobs:
         run: node makaleler/mtv-2026-ne-kadar/sayi-testi.js
       - name: Erken kapatma makalesi sayısal örneği
         run: node makaleler/krediyi-erken-kapatmak-mantikli-mi/sayi-testi.js
+      - name: Peşin taksit karşılaştırması ve geçersiz girişler
+        run: node pesin-mi-taksit-mi/test.js && node pesin-mi-taksit-mi/ui-test.js
 
       # Dilim kaymasi yazisi YEDI YILLIK parametreden turuyor. Gecmis bir yil
       # duzeltilir ya da 2027 eklenirse yazi sessizce eskir: tablolar hizali

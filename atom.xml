@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-14T00:00:00+03:00</updated>
+  <updated>2026-09-15T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Peşin mi Taksit mi Hesaplama</title>
+    <link href="https://korayoner.dev/pesin-mi-taksit-mi/"/>
+    <id>https://korayoner.dev/pesin-mi-taksit-mi/</id>
+    <updated>2026-09-15T00:00:00+03:00</updated>
+    <summary>Peşin fiyatı üç taksit teklifiyle karşılaştırın. Peşinat, ücret, net getiri, enflasyon ve bütçeyle bugünkü maliyeti ve başa baş getiri oranını hesaplayın.</summary>
+  </entry>
 
   <entry>
     <title>Çıkış Takvimi — İşten Ayrılma Tarihinin Bedeli</title>
