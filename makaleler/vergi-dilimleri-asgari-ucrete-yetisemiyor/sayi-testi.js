@@ -173,7 +173,8 @@ gecer("asgari ücret dilimlerden hızlı büyüdü",
   katAsgari > katDilim1 && katAsgari > katDilim2,
   "asgari " + iki(katAsgari) + " / dilim1 " + iki(katDilim1) + " / dilim2 " + iki(katDilim2));
 gecsin("asgari ücret katı", iki(katAsgari) + " katına");
-gecsin("1. dilim katı", iki(katDilim1) + " katına");
+/* Standfirst artik IKINCI dilimi one cikariyor: ilk esik notr. */
+gecsin("2. dilim katı", iki(katDilim2) + " katına");
 gecsin("SSS'te üç kat birlikte", "asgari ücret " + iki(katAsgari) +
   " katına çıkarken ilk dilim " + iki(katDilim1) + ", ikinci dilim " + iki(katDilim2));
 
@@ -209,6 +210,54 @@ YILLAR.forEach(function (y) {
 
 /* ------------------------------------------------------------------ 6 */
 /* Yapısal. */
+/* ------------------------------------------------------------------ */
+/* NOTRLESTIRME — yazinin duzeltilen cercevesi burada SABITLENIYOR.
+ *
+ * Yazinin ilk hali ilk dilim esigiyle aciliyordu; say ilar dogruydu ama
+ * anlam yanlisti. Asgari ucret istisnasi ayni tarifeyle hesaplanip
+ * hesaplanan vergiden dusuldugu icin, asgari ucret matrahinin ALTINDAKI
+ * bir esikteki degisiklik asgari ucret ustu hicbir calisanin vergisini
+ * degistirmiyor. Burada motorda fiilen olculuyor; cerceve geri kayarsa
+ * bu kontrol duser. */
+(function () {
+  var P = B.parametre(2026);
+  var Ma = 0, d = P.donemler || [];
+  d.forEach(function (dn, i) {
+    var ay = (i + 1 < d.length ? d[i + 1].ay : 13) - dn.ay;
+    Ma += dn.asgariBrut * ay;
+  });
+  Ma *= 0.85;
+  gecer("ilk eşik asgari ücret matrahının altında (nötr bölge)",
+    P.dilimler[0][0] < Ma, P.dilimler[0][0] + " vs " + Math.round(Ma));
+  gecer("ikinci eşik asgari ücret matrahının üstünde (bağlayıcı)",
+    P.dilimler[1][0] > Ma, P.dilimler[1][0] + " vs " + Math.round(Ma));
+
+  function yillikGV(brut) {
+    return B.hesaplaYil(brut, 2026).aylar
+      .reduce(function (t, a) { return t + (a.gelirVergisi || a.vergi || 0); }, 0);
+  }
+  var brut = B.donem(P, 1).asgariBrut * 3;
+  var once = yillikGV(brut);
+  var eski = P.dilimler[0][0];
+  P.dilimler[0][0] = Math.round(eski * 1.3089);
+  var sonra = yillikGV(brut);
+  P.dilimler[0][0] = eski;
+  gecer("ilk eşiği değiştirmek vergiyi DEĞİŞTİRMİYOR",
+    Math.abs(sonra - once) < 0.005, (sonra - once).toFixed(4) + " TL");
+
+  /* KONTROL: yukaridaki sifir, olcum bozuk oldugu icin de cikabilirdi.
+     Ayni islem IKINCI esikte yapilinca fark buyuk olmali. */
+  var eski2 = P.dilimler[1][0];
+  P.dilimler[1][0] = Math.round(eski2 * 1.3089);
+  var sonra2 = yillikGV(brut);
+  P.dilimler[1][0] = eski2;
+  gecer("kontrol: ikinci eşik DEĞİŞTİRİYOR",
+    once - sonra2 > 1000, (sonra2 - once).toFixed(2) + " TL");
+
+  gecsin("düzeltme notu yerinde", "Düzeltme (15 Eylül 2026)");
+  gecsin("kanıta bağlantı var", "../dilim-kaymasi-2022-2026/#notrlestirme");
+})();
+
 gecer("geçerlilik bildirimi var",
   /<meta\s+name="gecerlilik"\s+content="\d{4}-\d{2}-\d{2}\s*\|/.test(HTML));
 gecsin("kapsanan aralık yazıda geçiyor", YILLAR[0] + "–" + YILLAR[YILLAR.length - 1]);
