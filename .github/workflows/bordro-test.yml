@@ -264,6 +264,16 @@ jobs:
       - name: Serbest meslek makbuzu yazısının sayıları
         run: node makaleler/serbest-meslek-makbuzu-stopaj-kdv/sayi-testi.js
 
+      # Dilim kaymasi yazisi bes tablo ve IKI BICIMSEL ONERME tasiyor.
+      # En kritik kontrol, "ilk dilim esigini degistirmek asgari ucret ustu
+      # hicbir ucretlinin vergisini degistirmez" iddiasinin SAYISAL
+      # sinamasi: esik motorda fiilen degistirilip farkin sifir oldugu
+      # olculuyor. Ayrica kontrol olarak ikinci esikte ayni islem yapilip
+      # etkinin sifir OLMADIGI dogrulanıyor -- yoksa motor esikleri hic
+      # okumasa da test gecerdi.
+      - name: Dilim kayması yazısının sayıları
+        run: node makaleler/dilim-kaymasi-2022-2026/sayi-testi.js
+
       # Gorsel tarafindaki bozulmalar SESSIZDIR: sayfa acilir, grafik
       # gorunur, yalniz Google onu bulamaz. 2026-09-14 denetimi 21
       # makalenin 12'sinin govdesinde HIC <img> olmadigini buldu -- veri

@@ -140,5 +140,11 @@
     "kicker": "Vergi",
     "alt": "100.000 TL brüt makbuzda fatura toplamı 120.000, hesaba geçen 100.000, size kalan 80.000 TL",
     "altyazi": "Hesabınıza geçen tutar brüt ücrete eşit çıkıyor; arada biri kesilen stopaj, diğeri devlete ait KDV olmak üzere iki ayrı 20.000 TL var."
+  },
+  {
+    "slug": "dilim-kaymasi-2022-2026",
+    "kicker": "Vergi",
+    "alt": "Tarife eşiklerinin reel değeri 2022=100: 2023'te zirve, sonra üç yıl eriyor, 2026'da 116,1 ve 111,7",
+    "altyazi": "Üç eşik de 2023'te zirve yaptı ve o tarihten beri tekdüze biçimde eridi; 2026'da hiçbiri 2022 düzeyinin altına inmedi."
   }
 ]

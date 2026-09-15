@@ -605,6 +605,85 @@ function makbuzAkisi() {
     "</svg>";
 }
 
+/* Dilim kaymasi — "dilim-kaymasi-2022-2026" kapagi.
+   Yazinin bulgusu tek yonlu DEGIL ve kapagin bunu gostermesi gerekiyor:
+   esikler 2023'te zirve yapip sonra uc yil ust uste eriyor, ama 2026'da
+   hala 2022'nin ustunde. Duz bir "eriyor" grafigi yaniltici olurdu; o
+   yuzden 2022 duzeyi referans cizgisi olarak duruyor ve egriler onun
+   ustunde kaliyor. Iki kategorik seri oldugu icin marka yesili
+   KULLANILMIYOR. */
+function dilimKaymasi() {
+  var W = 600, H = 360, P = 34, SOL = 52, ALT = 58;
+  var SERI = require(path.join(KOK, "makaleler", "dilim-kaymasi-2022-2026",
+    "seriler.js"));
+  var yillar = SERI.YILLAR;
+  var taban = B.parametre(yillar[0]).dilimler;
+  var seriler = [
+    { ad: "1. eşik", i: 0, renk: R.s1 },
+    { ad: "2. eşik", i: 1, renk: R.s2 }
+  ];
+  var veri = yillar.map(function (y) {
+    var d = B.parametre(y).dilimler;
+    return {
+      yil: y,
+      e: seriler.map(function (s) {
+        return 100 * SERI.reellestir(d[s.i][0], y, yillar[0]) / taban[s.i][0];
+      })
+    };
+  });
+
+  var enAz = 95, enCok = 140;
+  var x = function (i) { return SOL + i * (W - SOL - P) / (yillar.length - 1); };
+  var yy = function (v) {
+    return (H - ALT) - (v - enAz) / (enCok - enAz) * (H - ALT - 76);
+  };
+
+  var izgara = [100, 110, 120, 130, 140].map(function (v) {
+    var ana = v === 100;
+    return '<line x1="' + SOL + '" y1="' + yy(v).toFixed(1) + '" x2="' + (W - P) +
+      '" y2="' + yy(v).toFixed(1) + '" stroke="' + (ana ? R.ikincil : R.izgara) +
+      '" stroke-width="' + (ana ? 1.5 : 1) + '"' +
+      (ana ? ' stroke-dasharray="4 4"' : "") + "/>" +
+      '<text x="' + (SOL - 8) + '" y="' + (yy(v) + 4).toFixed(1) +
+      '" text-anchor="end" font-size="12" fill="' + R.ikincil + '">' + v + "</text>";
+  }).join("");
+
+  var cizgiler = seriler.map(function (s, k) {
+    var d = veri.map(function (v, i) {
+      return (i ? "L" : "M") + x(i).toFixed(1) + " " + yy(v.e[k]).toFixed(1);
+    }).join(" ");
+    var nokta = veri.map(function (v, i) {
+      return '<circle cx="' + x(i).toFixed(1) + '" cy="' + yy(v.e[k]).toFixed(1) +
+        '" r="4" fill="' + s.renk + '" stroke="' + R.zemin + '" stroke-width="2"/>';
+    }).join("");
+    var son = veri[veri.length - 1].e[k];
+    return '<path d="' + d + '" fill="none" stroke="' + s.renk + '" stroke-width="2"/>' +
+      nokta + '<text x="' + (x(veri.length - 1) - 8) + '" y="' + (yy(son) + 20).toFixed(1) +
+      '" text-anchor="end" font-size="14" font-weight="700" fill="' + s.renk + '">' +
+      son.toFixed(1).replace(".", ",") + "</text>";
+  }).join("");
+
+  var eksen = yillar.map(function (y, i) {
+    return '<text x="' + x(i).toFixed(1) + '" y="' + (H - ALT + 20) +
+      '" text-anchor="middle" font-size="12" fill="' + R.ikincil + '">' + y + "</text>";
+  }).join("");
+
+  var gosterge = seriler.map(function (s, i) {
+    return '<g transform="translate(' + (SOL + i * 120) + ',' + (H - 18) + ')">' +
+      '<circle cx="5" cy="-4" r="4" fill="' + s.renk + '"/>' +
+      '<text x="16" y="0" font-size="13" fill="' + R.ikincil + '">' + esc(s.ad) + "</text></g>";
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Tarife esiklerinin reel degeri 2022 esittir 100: 2023 te zirve, sonra uc yil erime, 2026 da hala 100 un ustunde">' +
+    '<text x="' + P + '" y="' + (P - 8) + '" font-size="15" fill="' + R.ikincil +
+    '">Eşiklerin reel değeri (2022 = 100)</text>' +
+    izgara + cizgiler + eksen + gosterge +
+    '<text x="' + (W - P) + '" y="' + (yy(100) - 8).toFixed(1) +
+    '" text-anchor="end" font-size="12" fill="' + R.ikincil + '">2022 düzeyi</text>' +
+    "</svg>";
+}
+
 /* ---------- kapaklar ---------- */
 
 /* Emeklilik makalesi: OECD tanimiyla 100 calisma cagindaki kisiye dusen 65+.
@@ -770,6 +849,12 @@ var KAPAKLAR = {
     kicker: "Vergi",
     baslik: "Dilimler asgari ücrete yetişemiyor",
     alt: "Aynı katta maaş alan biri her yıl daha hızlı tırmanıyor",
+    cizim: dilimKaymasi
+  },
+  "dilim-kaymasi-2022-2026": {
+    kicker: "Vergi",
+    baslik: "Dilim kayması gerçekten oluyor mu?",
+    alt: "2023’te zirve, sonra üç yıl erime — ama hâlâ 2022’nin üstünde",
     cizim: dilimKaymasi
   },
   "serbest-meslek-makbuzu-stopaj-kdv": {
