@@ -1,0 +1,77 @@
+name: Siteyi yayınla
+
+on:
+  workflow_run:
+    workflows: ["Site doğrulamaları", "Günlük veri güncelleme"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  yayinla:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # Günlük veri işi bot commit'i üretir; GITHUB_TOKEN push'u başka
+      # workflow başlatmaz. workflow_run bu yayını da kapsar.
+      # Daha yeni bir main commit'i varsa onun doğrulamasını bekle.
+      - name: Yayın sırasını kontrol et
+        id: sira
+        env:
+          EVENT: ${{ github.event_name }}
+          WORKFLOW: ${{ github.event.workflow_run.name }}
+          CHECKED_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          if [ "$EVENT" = "workflow_dispatch" ] || [ "$(git rev-parse HEAD)" = "$CHECKED_SHA" ]; then
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          elif [ "$WORKFLOW" = "Günlük veri güncelleme" ] && [ "$(git rev-parse HEAD^)" = "$CHECKED_SHA" ] && [ "$(git log -1 --format=%an)" = "korayoner-bot" ]; then
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.sira.outputs.publish == 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Yayın dosyalarını hazırla
+        if: steps.sira.outputs.publish == 'true'
+        run: |
+          python tools/hizli-panel.py
+          python tools/hizli-panel.py --check
+          python tools/sayfa-denetimi.py --check
+          mkdir "$RUNNER_TEMP/site"
+          git archive HEAD | tar -x -C "$RUNNER_TEMP/site"
+          cp index.html "$RUNNER_TEMP/site/index.html"
+          rm -rf "$RUNNER_TEMP/site/.github"
+
+      - uses: actions/configure-pages@v5
+        if: steps.sira.outputs.publish == 'true'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.sira.outputs.publish == 'true'
+        with:
+          path: ${{ runner.temp }}/site
+
+      - uses: actions/deploy-pages@v4
+        if: steps.sira.outputs.publish == 'true'
+        id: deployment

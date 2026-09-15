@@ -42,6 +42,14 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Türetilmiş panel her commit'in tam geçmişinden üretilir. Yeni bir
+      # sayfanın ilk commit'i, önceden elle ikinci commit gerektirmemeli.
+      - name: Son eklenenler otomasyon testleri
+        run: python tools/hizli-panel-test.py
+
+      - name: Son eklenenleri üret
+        run: python tools/hizli-panel.py
+
       # Alarmin kendisi de bir muhafiz. Bildirim sessizce bozulursa geriye
       # dogrulanmamis bir guvence kalir -- tam olarak duzeltmeye calistigimiz
       # hatanin sekli. Test, script'leri bu dosyadan OKUYOR; ayri bir kopya
