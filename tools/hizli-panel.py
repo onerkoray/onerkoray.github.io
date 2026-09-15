@@ -8,6 +8,10 @@ dosya o listeyi VERİDEN üretiyor.
 
 Tarih kaynağı: sayfanın index.html dosyasının ilk commit'i (git). Dosya
 sisteminin mtime'ı güvenilmez — bir dosyaya dokunmak onu "yeni" yapardı.
+Yayın: .github/workflows/pages.yml, doğrulama tamamlandıktan sonra paneli
+tam Git geçmişinden yeniden üretir ve üretilen index.html'i Pages'e yollar.
+Kaynak index.html'deki liste yalnızca yerel önizleme kopyasıdır; canlı liste
+için ikinci bir commit veya günlük veri güncellemesini beklemek gerekmez.
 
   python tools/hizli-panel.py           # paneli tazele
   python tools/hizli-panel.py --check   # panel güncel mi
@@ -20,7 +24,8 @@ bu dosyanın oradaki tek işi bağlantıların gerçekten var olduğunu
 doğrulamak. Panelin başlığı da bu yüzden dürüst: "en çok kullanılanlar"
 bir iddia değil, seçilmiş bir liste.
 """
-import io
+import html
+from pathlib import Path
 import os
 import re
 import subprocess
@@ -29,16 +34,15 @@ import sys
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SAYFA = os.path.join(KOK, "index.html")
 ADET = 3            # panelde kaç "son eklenen" gösterilecek
-ETIKET_SINIR = 30   # bundan uzun etiket panelde kesilir; kısası istenir
 
 # Sitenin kendi bölümleri dışındaki alt projeler panele girmez: onlar ayrı
 # ürünler, "yeni araç eklendi" anlamına gelmiyorlar.
 HARIC_KOK = {"yayin-ilkeleri", "decorpalette", "keymint", "dither-studio", "images", "tools",
-             "node_modules", "_cekirdek", "bordro"}
+             "node_modules", "_cekirdek", "bordro", "makaleler", "hakkimda",
+             "iletisim", "gizlilik", "kullanim-kosullari"}
 
-# Başlığı panele sığmayan sayfalar için kısa etiket. Bir sayfa buraya
-# GEREKTİĞİNDE tool HATA VERİR ve adını söyler — sessizce kesilmesindense
-# insanın kısa bir ad yazması daha iyi.
+# İsteğe bağlı editoryal kısa başlıklar. Yeni sayfalar bu listeye kayıt
+# gerektirmez; HTML başlıkları doğrudan kullanılır ve kartta satıra sarılır.
 KISA = {
     "pesin-mi-taksit-mi": "Peşin mi, Taksit mi?",
     "yatirim-fizibilite-hesaplama": "Yatırım Fizibilitesi",
@@ -107,7 +111,7 @@ def adaylar():
 
 
 def noindex_mi(slug):
-    s = io.open(os.path.join(KOK, slug, "index.html"), encoding="utf-8").read()
+    s = Path(KOK, slug, "index.html").read_text(encoding="utf-8")
     return "noindex" in s
 
 
@@ -119,7 +123,7 @@ def tarih(slug):
     birden fazla sayfa yayimlaninca sonuc sessizce yanlis oldu: yeni eklenen
     arac, adi alfabetik olarak asagida kaldigi icin "Son eklenenler"e hic
     girmedi. Panel dogru gorunuyordu ama en yeni sayfayi gizliyordu.
-    Sig klonda bos doner (bkz. main).
+    Sığ klon, kök commit'teki dosyaları yeni sanabilir; main bunu reddeder.
     """
     yol = os.path.join(slug, "index.html").replace("\\", "/")
     r = subprocess.run(["git", "log", "--diff-filter=A", "--format=%at|%ad",
@@ -135,11 +139,11 @@ def tarih(slug):
 def etiket(slug):
     if slug in KISA:
         return KISA[slug]
-    s = io.open(os.path.join(KOK, slug, "index.html"), encoding="utf-8").read()
+    s = Path(KOK, slug, "index.html").read_text(encoding="utf-8")
     m = re.search(r"<title>(.*?)</title>", s, re.S)
     if not m:
         return None
-    t = m.group(1).strip()
+    t = html.unescape(m.group(1)).strip()
     t = re.sub(r"\s*\|\s*Koray Öner\s*$", "", t)
     t = re.split(r"\s+[—–]\s+", t)[0].strip()
     return t
@@ -154,17 +158,7 @@ def tur(slug):
 
 
 def toplam():
-    """Panele girecek sayfalar, yeniden eskiye.
-
-    İki eleme var ve ikisi de ilk çalıştırmadan sonra eklendi, çünkü ham
-    "en yeni üç sayfa" listesi işe yaramaz bir panel üretti:
-
-      - METODOLOJİ SAYFALARI ELENİR. Metodoloji yeni bir şey değil, mevcut
-        bir aracın belgesi. Ham liste ilk üçün ikisini metodolojiyle
-        doldurmuştu; "son eklenenler"e bakan kişi yeni ARAÇ ve YAZI arıyor.
-      - BÖLÜM BAŞINA TEK GİRDİ. Aynı gün üç makale yayımlandığında üçü
-        birden paneli kaplıyor ve yeni araçları dışarı itiyordu.
-    """
+    """Yeni araç ve makaleler, tür kotası olmadan yayın sırasına göre."""
     kayit = []
     for slug in adaylar():
         if slug.endswith("/metodoloji") or noindex_mi(slug):
@@ -176,14 +170,7 @@ def toplam():
     # icin ad yalnizca KARARLILIK saglar, sirayi belirlemez.
     kayit.sort(key=lambda x: (x[0][0], x[1]), reverse=True)
 
-    gorulen, sonuc = set(), []
-    for t, slug in kayit:
-        bolum = slug.split("/")[0]
-        if bolum in gorulen:
-            continue
-        gorulen.add(bolum)
-        sonuc.append((t, slug))
-    return sonuc
+    return kayit
 
 
 def blok(kayit):
@@ -194,14 +181,10 @@ def blok(kayit):
         if not e:
             eksik.append(slug + " (başlık okunamadı)")
             continue
-        if len(e) > ETIKET_SINIR:
-            eksik.append('%s → "%s" (%d karakter, sınır %d)' % (slug, e, len(e), ETIKET_SINIR))
-            continue
         satir.append('            <li><a href="%s/"><span>%s</span><em>%s</em></a></li>'
-                     % (slug, e, tur(slug)))
+                     % (html.escape(slug, quote=True), html.escape(e), tur(slug)))
     if eksik:
-        print("Panele girecek sayfa için kısa etiket gerekiyor "
-              "(tools/hizli-panel.py içindeki KISA):", file=sys.stderr)
+        print("Panele girecek sayfanın başlığı okunamadı:", file=sys.stderr)
         for x in eksik:
             print("  - " + x, file=sys.stderr)
         return None
@@ -223,13 +206,16 @@ def hizli_baglantilar(s):
 
 def main():
     kontrol = "--check" in sys.argv
-    s = io.open(SAYFA, encoding="utf-8").read()
+    gecmis = subprocess.run(["git", "rev-parse", "--is-shallow-repository"],
+                             cwd=KOK, capture_output=True, text=True)
+    if gecmis.returncode != 0 or gecmis.stdout.strip() != "false":
+        print("Tam Git geçmişi gerekli (checkout fetch-depth: 0).", file=sys.stderr)
+        return 1
+    s = Path(SAYFA).read_text(encoding="utf-8")
 
     kayit = toplam()
     if not kayit:
-        # Sığ klonda (fetch-depth: 1) git geçmişi yok. Sessizce "hepsi
-        # güncel" demek yanlış olurdu; açıkça söyleyip duruyoruz.
-        print("git geçmişi okunamadı — sığ klon mu? (checkout fetch-depth: 0 gerekir)",
+        print("Git geçmişinde yayımlanmış araç veya makale bulunamadı.",
               file=sys.stderr)
         return 1
 
@@ -259,7 +245,7 @@ def main():
         return 0
 
     if guncel != s:
-        io.open(SAYFA, "w", encoding="utf-8", newline="").write(guncel)
+        Path(SAYFA).write_text(guncel, encoding="utf-8", newline="")
         print("Panel güncellendi: " + ", ".join(k[1] for k in kayit[:ADET]))
     else:
         print("Panel zaten güncel.")
