@@ -43,6 +43,7 @@
   <link rel="stylesheet" href="style.css?v=9ae079de">
   <link rel="stylesheet" href="live.css?v=5fbfed7f">
   <link rel="stylesheet" href="makaleler/editoryal.css?v=e82be149">
+  <link rel="stylesheet" href="home.css?v=96fc6b4d">
 
   <script type="application/ld+json">
 {
@@ -1026,18 +1027,21 @@
           <h2 id="projects-title">Hesaplama araçları</h2>
           <p>Tüm araçlar ücretsizdir ve üyelik gerektirmez. Aradığınız aracı yazın ya da kategori seçin.</p>
         </div>
-        <div class="tool-search reveal" role="search">
+        <div class="directory-panel">
+        <label class="directory-label" for="tool-search-input">Hangi hesabı yapmak istiyorsunuz?</label>
+        <div class="tool-search" role="search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           <input type="search" id="tool-search-input" placeholder="Araç ara: maaş, kıdem, KDV, şifre…" aria-label="Araçlarda ara">
           <button type="button" class="tool-search-clear" id="tool-search-clear" aria-label="Aramayı temizle" hidden>Temizle</button>
         </div>
-        <div class="chips reveal" role="group" aria-label="Kategori filtresi">
+        <div class="chips" role="group" aria-label="Kategori filtresi">
           <button type="button" class="chip" data-filter="hepsi" aria-pressed="true">Tümü</button>
           <button type="button" class="chip" data-filter="maas" aria-pressed="false">Maaş &amp; Tazminat</button>
           <button type="button" class="chip" data-filter="vergi" aria-pressed="false">Vergi &amp; Finans</button>
           <button type="button" class="chip" data-filter="genel" aria-pressed="false">Genel</button>
         </div>
         <p id="directory-status" class="directory-status" role="status" aria-live="polite" aria-atomic="true">46 araç · kategori seçin veya arayın</p>
+        </div>
         <ul class="project-grid">
 <li class="project-card reveal" data-cat="vergi" data-tags="döviz kuru dolar euro tcmb merkez bankasi guncel kur sterlin efektif">
             <div class="karo karo--vergi" data-karo="doviz-kurlari" aria-hidden="true"><span class="karo-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9.5A3.5 3.5 0 0 0 9 12a3.5 3.5 0 0 0 6 2.5"/></svg></span></div>
@@ -1803,5 +1807,6 @@
 
   <script src="script.js?v=5127b7a8" defer></script>
   <script src="live.js?v=57d38638" defer></script>
+  <script src="home.js?v=47927e55" defer></script>
 </body>
 </html>
