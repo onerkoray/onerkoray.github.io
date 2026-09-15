@@ -116,7 +116,7 @@ def blok(html, kok, motorlu):
         satirlar = [
             satir("Geliştiren", '<a href="%shakkimda/" rel="author">Koray Öner</a>' % kok),
             satir("Yöntem", '<a href="#yontem">Aylık nakit akışlarının bugünkü değeri</a>'),
-            satir("Kaynak kod ve testler", '<a href="https://github.com/onerkoray/onerkoray.github.io/tree/main/pesin-mi-taksit-mi" rel="noopener">GitHub</a>'),
+            satir("Kaynak kod ve testler", '<a href="https://korayoner.dev/pesin-mi-taksit-mi/motor.js">Hesap motoru</a> · <a href="https://korayoner.dev/pesin-mi-taksit-mi/test.js">Sayısal testler</a>'),
         ]
     elif 'id="kaynak-title"' in html:
         metin = (
