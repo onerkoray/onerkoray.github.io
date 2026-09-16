@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asgari Ödersem Borcum Ne Zaman Biter? | Koray Öner</title>
+  <meta name="gecerlilik" content="2026-12-01 | TCMB kredi kartı azami faiz oranları aylık güncellenebiliyor. tcmb.gov.tr'deki güncel tabloyla kart.js'teki BANTLAR karşılaştırılsın; değiştiyse oranlar ve ORAN_TARIHI güncellenip node tools/kart-tablosu.js çalıştırılsın. BDDK'nın asgari ödeme oranı (%20/%40) ve 50.000 TL limit eşiği de ayrıca kontrol edilsin — Kurul kararıyla değişebilir.">
+  <meta name="description" content="Asgari ödersem kart borcum hiç bitmez mi? Türkiye'de bitiyor: asgari oran, borcun büyüme eşiğinin üç katından fazla. Faturası ise anaparanın beşte biri.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://orcid.org/0009-0005-8730-3577">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/kredi-karti-asgari-odeme/">
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Asgari ödersem borcum ne zaman biter?">
+  <meta property="og:description" content="&quot;Asgari ödersen borç hiç bitmez&quot; cümlesi Türkiye için yanlış. Asgari oran, borcun büyümeye başlayacağı eşiğin üç katından fazla — ama maliyeti var.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/kredi-karti-asgari-odeme/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/kredi-karti-asgari-odeme.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Yalnızca asgari ödenen kart borcunun bir yıl içindeki erime eğrisi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="Asgari ödersem borcum ne zaman biter?">
+  <meta name="twitter:description" content="Asgari ödeme borcu gerçekten eritiyor. Borcun büyümesi için aylık faizin %19'u aşması gerekirdi — azami oran %4,25.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/kredi-karti-asgari-odeme.png">
+
+  <link rel="stylesheet" href="../../style.css?v=9ae079de">
+  <link rel="stylesheet" href="../editoryal.css?v=3bb6a509">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "ORCID",
+        "value": "https://orcid.org/0009-0005-8730-3577"
+      },
+      "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/koraonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://dl.acm.org/profile/81100070426",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://korayoner.dev/makaleler/kredi-karti-asgari-odeme/",
+      "url": "https://korayoner.dev/makaleler/kredi-karti-asgari-odeme/",
+      "name": "Asgari ödersem borcum ne zaman biter?",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "inLanguage": "tr",
+      "primaryImageOfPage": "https://korayoner.dev/images/makale/kredi-karti-asgari-odeme.png"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://korayoner.dev/makaleler/kredi-karti-asgari-odeme/#article",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "headline": "Asgari ödersem kredi kartı borcum ne zaman biter?",
+      "description": "Kredi kartında yalnızca asgari ödenmesi durumunda borcun seyri, toplam faiz yükü ve borcu büyüten gerçek eşiğin TCMB azami oranları ile BDDK asgari ödeme kuralından türetilmiş hesabı.",
+      "inLanguage": "tr",
+      "datePublished": "2026-09-16",
+      "dateModified": "2026-09-16",
+      "author": { "@id": "https://korayoner.dev/#oner-koray" },
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+      "image": "https://korayoner.dev/images/makale/kredi-karti-asgari-odeme.png",
+      "mainEntityOfPage": "https://korayoner.dev/makaleler/kredi-karti-asgari-odeme/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "keywords": "kredi kartı asgari ödeme, dönem borcu, akdi faiz, gecikme faizi, KKDF, BSMV, kart borcu",
+      "about": [
+        { "@type": "Thing", "name": "Kredi kartı asgari ödeme tutarı" },
+        { "@type": "Thing", "name": "Kredi kartı faiz oranları" },
+        { "@type": "Thing", "name": "Borç yönetimi" }
+      ],
+      "citation": [
+        { "@type": "Legislation", "name": "Banka Kartları ve Kredi Kartları Hakkında Yönetmelik, m.22 — asgari ödeme tutarı" },
+        { "@type": "CreativeWork", "name": "TCMB, Kredi Kartı İşlemlerinde Uygulanacak Azami Faiz Oranları" },
+        { "@type": "CreativeWork", "name": "BDDK Kurul Kararı, 26.09.2024 tarih ve 10970 sayılı — asgari ödeme oranı" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://korayoner.dev/makaleler/kredi-karti-asgari-odeme/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "Asgari ödersem kredi kartı borcum hiç bitmez mi?", "acceptedAnswer": { "@type": "Answer", "text": "Biter. Türkiye'de asgari ödeme, dönem borcunun yüzde 20'si ya da yüzde 40'ı olarak belirlendiği için borç her ay kendiliğinden küçülür. Borcun büyümeye başlaması için aylık akdi faizin yüzde 19'u aşması gerekirdi; bugünkü azami oran yüzde 4,25. Yeni harcama yapılmadığı sürece borç her ay erir." } },
+        { "@type": "Question", "name": "Asgari ödeme oranı kaç?", "acceptedAnswer": { "@type": "Answer", "text": "Kartın limitine bağlı. Limiti 50.000 TL'ye kadar olan kartlarda dönem borcunun yüzde 20'si, limiti bunun üzerindeki kartlarda yüzde 40'ı. Yönetmelik Kurul'a bu oranı yüzde 20 ile yüzde 40 arasında belirleme yetkisi veriyor. Oran borca değil limite bağlı olduğu için, 50.000 TL'den büyük bir borç zaten yüzde 40'lık gruptadır." } },
+        { "@type": "Question", "name": "Asgari ödemenin maliyeti ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "Yüzde 20 asgariyle borcunu kapatan biri, yeni harcama yapmasa bile anaparanın yaklaşık beşte biri kadar faiz ve vergi öder. Yüzde 40 asgariyle bu yük yaklaşık yüzde 8'e iniyor, çünkü borç çok daha hızlı eriyor. Faizin üzerine ayrıca yüzde 15 KKDF ve yüzde 15 BSMV biniyor; yani 100 TL faiz 130 TL olarak ödeniyor." } },
+        { "@type": "Question", "name": "Asıl tehlike nerede?", "acceptedAnswer": { "@type": "Answer", "text": "Asgari ödemede değil, ertesi ay yapılan harcamada. Ödenen asgari ile o ayın faizi arasındaki fark, borcu sabit tutan harcama tutarını verir. Bu tutarın üzerine çıkan her harcama borcu büyütür — ve borç büyüdükçe faiz bandı da yükselebilir." } },
+        { "@type": "Question", "name": "Asgariden az ödersem ne olur?", "acceptedAnswer": { "@type": "Answer", "text": "Bu yazının hesabı asgarinin tam olarak ödendiğini varsayıyor. Asgari tutar ödenmezse kart gecikmeye düşer ve akdi faiz yerine daha yüksek olan gecikme faizi işler; kartın kullanıma kapatılması ve yasal takip gibi sonuçlar da doğabilir. Asgariyi ödemek ile ödememek arasındaki fark, asgari ile tamamını ödemek arasındaki farktan çok daha büyüktür." } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../otv-hesaplama/">ÖTV</a></li>
+          <li><a href="../../mtv-hesaplama/">MTV</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> Kredi kartında asgari ödeme
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Finans</p>
+        <h1 id="hero-title">Asgari ödersem borcum ne zaman biter?</h1>
+        <p class="ed-standfirst">"Asgari ödersen borç hiç bitmez" cümlesi Türkçe finans
+          içeriğinin en çok tekrarlanan uyarılarından biri. <strong>Türkiye için doğru
+          değil</strong> — ve bu bir görüş değil, tarifenin kendisinden çıkan bir sonuç.
+          Ama borcun bitmesi, ucuza bitmesi anlamına gelmiyor.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-16">16 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <article>
+        <figure class="ed-veri-gorseli">
+          <img src="../../images/makale/kredi-karti-asgari-odeme.png"
+               width="1200" height="630" loading="lazy" decoding="async"
+               alt="Yalnızca asgari ödenen kart borcunun on iki ay içindeki erime eğrisi, iki asgari oranı için">
+          <figcaption>Yalnızca asgari ödendiğinde borç her ay aynı oranda eriyor. Eğrinin
+            yönü faiz oranına değil, asgari oranın faizden ne kadar yüksek olduğuna bağlı.</figcaption>
+        </figure>
+
+        <div class="legal-note verdict">
+          <h2 id="kisa-cevap">Kısa cevap</h2>
+          <p><strong>Biter.</strong> Türkiye'de asgari ödeme, dönem borcunun sabit bir
+            yüzdesi olarak belirleniyor — %20 ya da %40. Bu oran aylık faizin çok üzerinde
+            olduğu için borç, yeni harcama yapılmadığı sürece <strong>her ay küçülmek
+            zorunda</strong>.</p>
+          <p>Borcun büyümeye başlaması için aylık akdi faizin <strong>%19,23'ü</strong>
+            aşması gerekirdi. TCMB'nin izin verdiği en yüksek oran ise %4,25 — yani
+            eşiğin <strong>dörtte birinden az</strong>.</p>
+          <p>Bunun bedeli var: %20 asgariyle ilerleyen biri, hiç yeni harcama yapmasa bile
+            anaparanın yaklaşık <strong>beşte biri kadar</strong> faiz ve vergi ödüyor.</p>
+        </div>
+
+        <h2 id="neden">Neden "hiç bitmez" değil?</h2>
+        <p>Bu uyarı yabancı kaynaklardan olduğu gibi çevrilmiş. Çevrildiği yerlerde
+          doğru: birçok ülkede asgari ödeme, bakiyenin %1–2'si gibi çok küçük bir oran ya
+          da sabit bir tutar. Faiz bunun üzerindeyse borç gerçekten hiç bitmez.</p>
+        <p>Türkiye'de asgari ödeme oranını BDDK belirliyor ve yönetmelik oranın
+          <strong>dönem borcunun %20'si ile %40'ı arasında</strong> olmasını şart koşuyor.
+          Yani asgari, bakiyeye oranlı ve yüksek. Mekanizma şöyle işliyor: ay sonunda
+          borcun %20'si ödeniyor, kalan %80'e faiz biniyor ve ertesi ayın borcu ortaya
+          çıkıyor.</p>
+        <p class="ed-formul"><strong>ertesi ayın borcu = (1 − asgari oran) × borç × (1 + aylık faiz)</strong></p>
+        <p>Bu çarpımın 1'in altında kalması, yani borcun küçülmesi için asgari oranın
+          faizden büyük olması yetiyor — daha doğrusu faizin bir gömlek altındaki
+          <em>faiz ÷ (1 + faiz)</em> değerini aşması. Aşağıdaki tabloda her faiz bandı
+          için bu eşik ve yasal asgarinin eşiğe oranı var.</p>
+
+<!-- KART-BANTLAR:BASLANGIC -->
+          <table class="payroll">
+            <caption>Faiz bantları ve borcun büyümeye başlayacağı asgari ödeme eşiği</caption>
+            <thead>
+              <tr>
+                <th scope="col">Dönem borcu</th>
+                <th scope="col">Aylık azami akdi faiz</th>
+                <th scope="col">KKDF ve BSMV dahil</th>
+                <th scope="col">Borcun büyüme eşiği</th>
+                <th scope="col">Yasal asgari (%20) eşiğin kaç katı</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">30.000 TL'ye kadar</th><td>%3,25</td><td>%4,22</td><td>%4,05</td><td>4,9 kat</td></tr>
+            <tr><th scope="row">30.000 – 180.000 TL</th><td>%3,75</td><td>%4,87</td><td>%4,65</td><td>4,3 kat</td></tr>
+            <tr><th scope="row">180.000 TL üzeri</th><td>%4,25</td><td>%5,52</td><td>%5,24</td><td>3,8 kat</td></tr>
+            </tbody>
+          </table>
+<!-- KART-BANTLAR:BITIS -->
+
+        <p>En kötü durumda bile — en yüksek faiz bandında, KKDF ve BSMV dahil — yasal
+          asgari, eşiğin <strong>üç katından fazlası</strong>. Bu, oranların bugünkü
+          seviyesine bağlı bir tesadüf değil: faizler <strong>ikiye katlansa</strong> bile
+          %20'lik asgari borcu eritmeye devam ederdi. Mekanizmanın bozulması için aylık
+          akdi faizin %19,23'e çıkması, yani bugünkü azami oranın 4,5 katına ulaşması
+          gerekirdi.</p>
+
+        <h2 id="seyir">Peki ne kadar sürer, ne kadara mal olur?</h2>
+        <p>Borcun eridiği kesin; hızı ise asgari orana bağlı ve aradaki fark büyük.
+          Aşağıdaki tablo, yeni hiç harcama yapılmadığı varsayımıyla bir yılın sonunda
+          ne kaldığını ve kapanana kadar ödenen toplam faiz ile vergiyi gösteriyor.</p>
+
+<!-- KART-SEYIR:BASLANGIC -->
+          <table class="payroll">
+            <caption>Yalnızca asgari ödenirse borcun seyri (yeni harcama yok)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Borç</th>
+                <th scope="col">Kart limiti</th>
+                <th scope="col">Asgari oran</th>
+                <th scope="col">12 ay sonra kalan</th>
+                <th scope="col">Eriyen kısım</th>
+                <th scope="col">Toplam faiz ve vergi</th>
+                <th scope="col">Anaparaya oranı</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">30.000 TL</th><td>50.000 TL</td><td>%20,00</td><td>3.387 TL</td><td>%88,71</td><td>6.101 TL</td><td>%20,34</td></tr>
+            <tr><th scope="row">50.000 TL</th><td>50.000 TL</td><td>%20,00</td><td>5.752 TL</td><td>%88,50</td><td>10.964 TL</td><td>%21,93</td></tr>
+            <tr><th scope="row">80.000 TL</th><td>150.000 TL</td><td>%40,00</td><td>292 TL</td><td>%99,64</td><td>6.088 TL</td><td>%7,61</td></tr>
+            <tr><th scope="row">150.000 TL</th><td>200.000 TL</td><td>%40,00</td><td>550 TL</td><td>%99,63</td><td>11.570 TL</td><td>%7,71</td></tr>
+            </tbody>
+          </table>
+<!-- KART-SEYIR:BITIS -->
+
+        <p>Asgari oranın kartın <strong>limitine</strong> bağlı olduğuna dikkat edin —
+          borcuna değil. Bunun pratik bir sonucu var: 50.000 TL'den büyük bir borç ancak
+          yüksek limitli bir kartta olabileceği için, o borç zaten %40'lık gruptadır.
+          "150.000 TL borcum var, asgari %20 ödüyorum" diye bir durum yok.</p>
+        <p>Tabloda görünen asıl fark bu: <strong>%40 asgari, borcu bir yılda neredeyse
+          tamamen bitiriyor</strong> ve toplam faiz yükünü üçte birine indiriyor. %20'lik
+          grupta ise borcun küçülmesi yıllara yayılıyor; bakiye birkaç ay içinde küçük
+          rakamlara inse de son kuruşuna kadar kapanması beş yıla yaklaşabiliyor.</p>
+
+        <h2 id="tuzak">Asıl tuzak: ertesi ay yapılan harcama</h2>
+        <p>Buraya kadarki hesabın tek bir varsayımı vardı: <em>yeni harcama yok.</em>
+          Gerçek hayatta borcun bitmemesinin sebebi neredeyse her zaman bu varsayımın
+          bozulması. Kart kapatılmadığı sürece her ay yeni harcama ekleniyor ve borç,
+          eriyenin yerine konanla ayakta kalıyor.</p>
+        <p>Eşiği hesaplamak kolay: ödediğiniz asgari ile o ayın faizi arasındaki fark,
+          borcu <strong>olduğu yerde tutan</strong> harcama tutarıdır.</p>
+
+<!-- KART-BASABAS:BASLANGIC -->
+          <table class="payroll">
+            <caption>Borcu olduğu yerde tutan aylık harcama</caption>
+            <thead>
+              <tr>
+                <th scope="col">Borç</th>
+                <th scope="col">Asgari oran</th>
+                <th scope="col">Ayda ödenen asgari</th>
+                <th scope="col">O ayın faizi</th>
+                <th scope="col">Borcu sabit tutan harcama</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">30.000 TL</th><td>%20,00</td><td>6.000 TL</td><td>1.014 TL</td><td>4.986 TL</td></tr>
+            <tr><th scope="row">50.000 TL</th><td>%20,00</td><td>10.000 TL</td><td>1.950 TL</td><td>8.050 TL</td></tr>
+            <tr><th scope="row">80.000 TL</th><td>%40,00</td><td>32.000 TL</td><td>2.340 TL</td><td>29.660 TL</td></tr>
+            <tr><th scope="row">150.000 TL</th><td>%40,00</td><td>60.000 TL</td><td>4.387 TL</td><td>55.613 TL</td></tr>
+            </tbody>
+          </table>
+<!-- KART-BASABAS:BITIS -->
+
+        <p>Bu tutarın altında kaldığınız her ay borç küçülür, üzerine çıktığınız her ay
+          büyür. Yani soru "asgari mi ödesem, fazlası mı" değil; <strong>"bu ay karta ne
+          kadar dokunacağım"</strong>. Asgari ödeme borcu eritir, alışkanlık onu geri
+          getirir.</p>
+
+        <h2 id="yontem">Yöntem, sınırlar ve varsayımlar</h2>
+        <p>Faiz oranları TCMB'nin <strong>azami</strong> oranlarıdır; bankalar bunları
+          aşamaz ama altında kalabilir, dolayısıyla buradaki sayılar en kötü hâli
+          gösterir. Oranlar dönem borcunun büyüklüğüne göre üç banda ayrılıyor ve hesap,
+          borç eridikçe bandın değişmesini de hesaba katıyor.</p>
+        <p>Faizin üzerine %15 KKDF ve %15 BSMV biniyor: 100 TL faiz, 130 TL olarak
+          ödeniyor. Aynı oranlar sitedeki <a href="../../kredi-hesaplama/">kredi
+          hesaplayıcısında</a> ihtiyaç kredisi için de kullanılıyor; iki kaynağın
+          ayrışmadığı testle ayrıca doğrulanıyor.</p>
+        <p>Hesap, asgari tutarın <strong>tam olarak ve zamanında</strong> ödendiğini
+          varsayar. Asgari ödenmezse akdi faiz yerine daha yüksek olan gecikme faizi işler
+          ve tablo tamamen değişir — bu yazı o durumu kapsamıyor. Nakit çekim de
+          kapsam dışı: dönem borcu ne olursa olsun en üst banttan faiz işler ve faiz
+          işlem gününde başlar.</p>
+        <p>Yazı finansal danışmanlık değildir. Kart sözleşmenizdeki oranlar TCMB
+          azamisinin altında olabilir; kesin tutarlar için kendi ekstrenizi esas alın.</p>
+
+        <h2 id="kaynaklar">Kaynaklar</h2>
+        <ul>
+          <li><a href="https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Bankacilik+Verileri/Kredi_Karti_Islemlerinde_Uygulanacak_Azami_Faiz_Oranlari"
+                 rel="noopener">TCMB — Kredi Kartı İşlemlerinde Uygulanacak Azami Faiz
+            Oranları</a>. Yazıdaki oranlar 1 Eylül 2026'dan geçerli tablodan alındı.</li>
+          <li><a href="https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=7&amp;MevzuatNo=11180&amp;MevzuatTertip=5"
+                 rel="noopener">Banka Kartları ve Kredi Kartları Hakkında Yönetmelik</a>,
+            m.22/7 — Kurul'un asgari tutarı dönem borcunun %20'si ile %40'ı arasında
+            belirleme yetkisi.</li>
+          <li>BDDK Kurul Kararı, 26.09.2024 tarih ve 10970 sayılı — asgari ödeme oranının
+            kart limitine göre %20 ve %40 olarak belirlenmesi.</li>
+        </ul>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+
+        <h3>Asgari ödersem kredi kartı borcum hiç bitmez mi?</h3>
+        <p>Biter. Asgari ödeme dönem borcunun %20'si ya da %40'ı olduğu için borç her ay
+          kendiliğinden küçülür. Borcun büyümeye başlaması için aylık akdi faizin
+          %19,23'ü aşması gerekirdi; bugünkü azami oran %4,25.</p>
+
+        <h3>Asgari ödeme oranı kaç?</h3>
+        <p>Kartın limitine bağlı: limiti 50.000 TL'ye kadar olan kartlarda dönem borcunun
+          %20'si, üzerindekilerde %40'ı. Oran borca değil limite bağlı olduğu için
+          50.000 TL'den büyük bir borç zaten %40'lık gruptadır.</p>
+
+        <h3>Asgari ödemenin maliyeti ne kadar?</h3>
+        <p>%20 asgariyle ilerleyen biri, yeni harcama yapmasa bile anaparanın yaklaşık
+          beşte biri kadar faiz ve vergi öder. %40 asgaride bu yük yaklaşık %8'e iner.</p>
+
+        <h3>Asgariden az ödersem ne olur?</h3>
+        <p>Kart gecikmeye düşer ve akdi faiz yerine daha yüksek olan gecikme faizi işler.
+          Asgariyi ödemek ile ödememek arasındaki fark, asgari ile tamamını ödemek
+          arasındaki farktan çok daha büyüktür.</p>
+
+        <h2 id="ilgili">İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../../borc-kapatma-plani/">Borç kapatma planı</a> — birden fazla
+            borcu hangi sırayla kapatmak daha ucuz.</li>
+          <li><a href="../../kredi-hesaplama/">Kredi hesaplama</a> — KKDF ve BSMV dahil
+            gerçek aylık maliyet.</li>
+          <li><a href="../kredi-yillik-maliyet-orani/">Kredinin yıllık maliyet oranı</a>
+            — aylık faiz neden yıllıkta göründüğünden büyük.</li>
+          <li><a href="../krediyi-erken-kapatmak-mantikli-mi/">Krediyi erken kapatmak
+            mantıklı mı?</a></li>
+        </ul>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

@@ -274,6 +274,16 @@ jobs:
       # Beyan siniri yazisinin TABLOLARI uretiliyor; once uretecin ciktisi
       # guncel mi diye bakiliyor, sonra sayilar dogrulaniyor. Ikisi ayri
       # adim, cunku "tablo bayat" ile "sayi yanlis" bambaska iki ariza.
+      # Kart yazisinin oranlari TCMB'den geliyor ve AYLIK degisebiliyor;
+      # BDDK'nin asgari odeme kurali da Kurul karariyla degisir. Tablolar
+      # bu ikisinden turedigi icin once uretecin ciktisi, sonra sayilar
+      # denetleniyor.
+      - name: Kart tablolarının güncelliği
+        run: node tools/kart-tablosu.js --check
+
+      - name: Kredi kartı asgari ödeme yazısının sayıları
+        run: node makaleler/kredi-karti-asgari-odeme/sayi-testi.js
+
       - name: Beyan sınırı tablolarının güncelliği
         run: node tools/beyan-tablosu.js --check
 

@@ -605,6 +605,85 @@ function makbuzAkisi() {
     "</svg>";
 }
 
+/* Asgari odeme — "kredi-karti-asgari-odeme" kapagi.
+   Yazinin bulgusu bir YON: borc her ay eriyor, ve erime hizi asgari orana
+   bagli. Tek bir egri cizmek "eriyor"u gosterirdi ama asil anlatilan sey
+   IKI ORANIN ARASINDAKI FARK; o yuzden iki seri yan yana duruyor ve ikisi
+   de ayni baslangic noktasindan cikiyor.
+
+   Eksen 12 ay: borcun son kurusuna kadar kapanmasi yillar alabiliyor ama
+   o kuyruk anlatiyi tasimiyor; ilk yil tasiyor. Sifira inisi abartmamak
+   icin eksen tabanda kesilmiyor, gercek deger etiketleniyor.
+
+   Iki kategorik seri oldugu icin marka yesili KULLANILMIYOR. */
+function kartErimesi() {
+  var W = 600, H = 360, SOL = 58, SAG = 92, UST = 62, ALT = 52;
+  var K = require(path.join(KOK, "makaleler", "kredi-karti-asgari-odeme",
+    "kart.js"));
+
+  var AY = 12;
+  var seriler = [
+    { ad: "asgari %20", borc: 50000, limit: 50000, renk: R.s2 },
+    { ad: "asgari %40", borc: 50000, limit: 150000, renk: R.s1 }
+  ];
+
+  seriler.forEach(function (o) {
+    var r = K.simule(o.borc, o.limit, { enCokAy: AY, bitisEsigi: 0.005 });
+    o.nokta = [o.borc].concat(r.seyir.map(function (a) { return a.kalan; }));
+    o.son = o.nokta[o.nokta.length - 1];
+  });
+
+  var enCok = seriler[0].borc;
+  var x = function (i) { return SOL + i * (W - SOL - SAG) / AY; };
+  var y = function (v) { return H - ALT - (v / enCok) * (H - UST - ALT); };
+
+  var izgara = "", etiket = "";
+  [0, 0.25, 0.5, 0.75, 1].forEach(function (t) {
+    var yy = y(enCok * t);
+    izgara += '<line x1="' + SOL + '" y1="' + yy.toFixed(1) + '" x2="' + (W - SAG) +
+      '" y2="' + yy.toFixed(1) + '" stroke="' + R.izgara + '" stroke-width="1"/>';
+    etiket += '<text x="' + (SOL - 8) + '" y="' + (yy + 4).toFixed(1) +
+      '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">' +
+      nf0.format(Math.round(enCok * t / 1000)) + 'B</text>';
+  });
+
+  var aylar = "";
+  [0, 3, 6, 9, 12].forEach(function (i) {
+    aylar += '<text x="' + x(i).toFixed(1) + '" y="' + (H - ALT + 20) +
+      '" font-size="12" fill="' + R.ikincil + '" text-anchor="middle">' +
+      (i === 0 ? "başlangıç" : i + ". ay") + '</text>';
+  });
+
+  var egri = seriler.map(function (o) {
+    var d = o.nokta.map(function (v, i) {
+      return (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1);
+    }).join(" ");
+    return '<path d="' + d + '" fill="none" stroke="' + o.renk +
+      '" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<circle cx="' + x(AY).toFixed(1) + '" cy="' + y(o.son).toFixed(1) +
+      '" r="5" fill="' + o.renk + '" stroke="' + R.zemin + '" stroke-width="2"/>' +
+      '<text x="' + (x(AY) + 10).toFixed(1) + '" y="' + (y(o.son) + 4).toFixed(1) +
+      '" font-size="13" fill="' + R.murekkep + '">' + nf0.format(Math.round(o.son)) +
+      ' TL</text>';
+  }).join("");
+
+  var lejant = seriler.map(function (o, i) {
+    var lx = SOL + i * 150;
+    return '<rect x="' + lx + '" y="42" width="11" height="11" rx="2" fill="' +
+      o.renk + '"/>' +
+      '<text x="' + (lx + 18) + '" y="52" font-size="13" fill="' + R.murekkep +
+      '">' + o.ad + '</text>';
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="50.000 TL kart borcunun yalnizca asgari odenerek ' +
+    'on iki ayda erimesi, yuzde 20 ve yuzde 40 asgari oranlari icin">' +
+    izgara + etiket + aylar + egri + lejant +
+    '<text x="' + SOL + '" y="26" font-size="15" fill="' + R.murekkep + '">' +
+    '50.000 TL borç, yalnızca asgari ödenirse</text>' +
+    '</svg>';
+}
+
 /* Beyan penceresi — "iki-isten-maas-beyanname-siniri" kapagi.
    Yazinin bulgusu bir EGILIM DEGIL, bir DARLIK: ikinci isin beyanname
    dogurmadan kalabildigi aralik her yil asgari ucretin hemen ustunde
@@ -935,6 +1014,12 @@ var KAPAKLAR = {
     baslik: "Dilimler asgari ücrete yetişemiyor",
     alt: "Aynı katta maaş alan biri her yıl daha hızlı tırmanıyor",
     cizim: dilimKaymasi
+  },
+  "kredi-karti-asgari-odeme": {
+    kicker: "Finans",
+    baslik: "Asgari ödersem borcum ne zaman biter?",
+    alt: "Borç her ay eriyor — hızı asgari orana bağlı",
+    cizim: kartErimesi
   },
   "iki-isten-maas-beyanname-siniri": {
     kicker: "Vergi",
