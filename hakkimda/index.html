@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Koray Öner Kimdir? — Yazılım Geliştirici | Hakkımda</title>
-  <meta name="description" content="Koray Öner kimdir? Serbest çalışan yazılım geliştirici. Çalışma yaklaşımı, uzmanlık alanları ve tüm profil bağlantıları.">
+  <meta name="description" content="Koray Öner kimdir? Serbest çalışan yazılım geliştirici. Bordro ve vergi araçlarındaki her sayıyı yasal parametreden türetip her değişiklikte yeniden doğruluyor.">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
@@ -23,7 +23,7 @@
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="Koray Öner">
   <meta property="og:title" content="Koray Öner Kimdir? — Yazılım Geliştirici">
-  <meta property="og:description" content="Ücretsiz, reklamsız ve açık kaynak web araçları geliştiren yazılım geliştirici. Çalışma yaklaşımı, uzmanlık alanları ve profil bağlantıları.">
+  <meta property="og:description" content="Bir hesabın doğru olduğunu nasıl bilirsiniz? 46 ücretsiz araç ve 27 makale; her sayı yasal parametreden türüyor ve doğrulanmadan yayına çıkmıyor.">
   <meta property="og:url" content="https://korayoner.dev/hakkimda/">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:image" content="https://korayoner.dev/images/hakkimda-koray-oner.jpg">
@@ -36,7 +36,7 @@
   <meta name="twitter:site" content="@koraonerdev">
   <meta name="twitter:creator" content="@koraonerdev">
   <meta name="twitter:title" content="Koray Öner Kimdir? — Yazılım Geliştirici">
-  <meta name="twitter:description" content="Ücretsiz, reklamsız ve açık kaynak web araçları geliştiren yazılım geliştirici.">
+  <meta name="twitter:description" content="Bir hesabın doğru olduğunu nasıl bilirsiniz? Araçların hesap çekirdeği ve doğrulama testleri açık kaynak.">
   <meta name="twitter:image" content="https://korayoner.dev/images/hakkimda-koray-oner.jpg">
 
   <link rel="stylesheet" href="../style.css?v=9ae079de">
@@ -156,9 +156,10 @@
         <p class="eyebrow">Hakkımda</p>
         <h1>Koray Öner kimdir?</h1>
         <p class="lede">
-          Serbest çalışan bir yazılım geliştiriciyim. Freelance projeler geliştiriyor; bunun yanında
-          günlük hayatta insanların karşısına çıkan hesap karmaşasını azaltan, ücretsiz ve açık
-          kaynak web araçları yayınlıyorum.
+          Serbest çalışan bir yazılım geliştiriciyim. İşimin büyük bölümü tek bir soruya
+          bağlanıyor: <strong>bir hesabın doğru olduğunu nasıl bilirsiniz?</strong> Bu sitede
+          yayınladığım araç ve makalelerdeki her sayı yasal parametrelerden türetiliyor,
+          her değişiklikte yeniden hesaplanıyor ve doğrulanmadan yayına çıkmıyor.
         </p>
       </div>
     </section>
@@ -187,23 +188,77 @@
         </p>
         <p>
           Kariyerim boyunca <strong>profesyonel kurumsal araçların geliştirilmesinde Türkiye'de ve
-          yurt dışında birçok projede</strong> yer aldım. Bu deneyim bugün yayınladığım araçlara da
-          yansıyor: gerçek kullanım senaryolarını önemsiyor, veri doğruluğunu kaynağından
-          doğruluyor ve uzun ömürlü, sürdürülebilir kod yazmaya öncelik veriyorum.
+          yurt dışında birçok projede</strong> yer aldım. Kurumsal yazılımda bir hesabın yanlış
+          olmasının bedeli yüksektir ve hata çoğu zaman sessizdir: ekran açılır, tablo hizalı
+          görünür, yalnızca sonuç yanlıştır. Bu sitede kurduğum doğrulama düzeni o alışkanlıktan
+          geliyor.
         </p>
+      </div>
+    </section>
+
+    <section id="dogrulama" class="about" aria-labelledby="dogrulama-title">
+      <div class="wrap prose">
+        <h2 id="dogrulama-title">Bir hesabın doğru olduğunu nasıl biliyorum?</h2>
         <p>
-          Ürettiğim işlerin ortak noktası şu: bir ihtiyacı mümkün olan en az sürtünmeyle karşılamak.
-          Kullanıcıdan üyelik istemeyen, reklam göstermeyen, veri toplamayan ve açıp saniyeler
-          içinde sonuç veren araçlar.
+          İnternetteki hesaplama araçlarının çoğu size bir sayı verir ve o sayının nereden
+          geldiğini söylemez. Mevzuat değiştiğinde de kimse haber vermez — araç çalışmaya
+          devam eder, yalnızca yanlış cevap verir. Bu sitedeki araçları, bu iki sorunu
+          yapısal olarak engelleyecek şekilde kuruyorum.
         </p>
+        <ul>
+          <li>
+            <strong>Yasal parametreler tek bir yerde.</strong> Vergi dilimleri, asgari ücret,
+            SGK tavanı ve kıdem tavanı gibi değerler tek bir dosyada tutuluyor. Bir aracın ya
+            da makalenin bu sayılardan kendi kopyasını taşıması bir denetimle engelleniyor:
+            kopya, güncellenmeyi unutulan şeydir.
+          </li>
+          <li>
+            <strong>Makalelerdeki sayılar da test ediliyor.</strong> Bir yazıda geçen her tutar,
+            testte yeniden hesaplanıp sayfadaki değerle karşılaştırılıyor. Tablolar HTML'den
+            ayrıştırılıp hücre hücre denetleniyor; bir hücrenin bozulması testi düşürüyor.
+          </li>
+          <li>
+            <strong>Tarihe bağlı iddiaların son kullanma tarihi var.</strong> "Şu an yürürlükte
+            değil" gibi bir cümle, ne zaman yeniden kontrol edilmesi gerektiğini sayfanın
+            kendisine yazıyor. Tarih geldiğinde derleme kırmızıya dönüyor ve yazı ben fark
+            edeyim diye beklemiyor.
+          </li>
+          <li>
+            <strong>Testlerin kendisi de sınanıyor.</strong> Yeni bir test yazdığımda, koda
+            kasıtlı hatalar yerleştirip testin bunları gerçekten yakaladığını ölçüyorum.
+            Yakalamıyorsa test değil, dekordur.
+          </li>
+          <li>
+            <strong>Hesap çekirdeği açık.</strong> Bordro ve vergi hesaplarının çekirdeği
+            <a href="https://www.npmjs.com/package/hesap-cekirdegi" rel="noopener">npm'de
+            <code>hesap-cekirdegi</code></a> adıyla ve
+            <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub'da</a>
+            yayında. Hangi yasal parametreyle, hangi adımlarla hesaplandığı incelenebilir ve
+            testler kendi bilgisayarınızda çalıştırılabilir.
+          </li>
+        </ul>
         <p>
-          Sürekli öğrenmeyi seviyorum ve her projeyi bir öğrenme alanı olarak görüyorum.
-          Araçların <strong>hesap çekirdeği ve doğrulama testleri</strong>
-          <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub'da
-          herkese açık</a>: hangi yasal parametreyle, hangi adımlarla hesaplandığı
-          incelenebilir ve testler çalıştırılabilir. Bir hesabın doğruluğunu iddia
-          ediyorsanız, o iddianın denetlenebilir olması gerektiğini düşünüyorum.
+          Özetle: bir hesabın doğruluğunu iddia ediyorsanız, o iddianın <strong>denetlenebilir
+          olması</strong> gerektiğini düşünüyorum. Bu sayfadaki hiçbir cümle de bunun istisnası
+          değil — aşağıdaki sayılar elle yazılmıyor, depodan sayılıyor.
         </p>
+      </div>
+    </section>
+
+    <section id="rakamlar" class="about" aria-labelledby="rakamlar-title">
+      <div class="wrap prose">
+        <h2 id="rakamlar-title">Sayılarla</h2>
+<!-- HAKKIMDA-RAKAMLAR:BASLANGIC -->
+        <ul>
+          <li><strong>46</strong> ücretsiz hesaplama aracı</li>
+          <li><strong>27</strong> makale — her sayısı testle sabitlenmiş</li>
+          <li><strong>81</strong> otomatik kontrol, her değişiklikte</li>
+          <li><strong>2020–2026</strong> yılları için doğrulanmış bordro parametreleri</li>
+          <li><strong>8</strong> sayfa, yeniden kontrol tarihini kendi taşıyor</li>
+        </ul>
+        <p class="legal-note">Bu sayılar elle yazılmıyor; her derlemede
+          depodan sayılıp bu bloğa yazılıyor ve bayatladığında derleme kırılıyor.</p>
+<!-- HAKKIMDA-RAKAMLAR:BITIS -->
       </div>
     </section>
 
@@ -213,17 +268,13 @@
         <p>
           Projelerimde ağırlıklı olarak <strong>saf HTML, CSS ve JavaScript</strong> kullanıyorum —
           hiçbir çatıya veya sunucuya bağımlı olmadan. Bu bilinçli bir tercih: bağımlılığı olmayan
-          bir araç yıllar sonra da açılır, hızlı yüklenir ve bakımı kolaydır.
-        </p>
-        <p>
-          Performans, sade tasarım ve temiz kod prensiplerini ön planda tutuyorum. Amacım yalnızca
-          çalışan uygulamalar geliştirmek değil; uzun yıllar sürdürülebilecek, kolay anlaşılır ve
-          modern web standartlarına uygun projeler ortaya koymak.
+          bir araç yıllar sonra da açılır, hızlı yüklenir ve bakımı kolaydır. Hesaplar tarayıcıda
+          çalıştığı için girdiğiniz tutarlar cihazınızdan çıkmıyor.
         </p>
         <p>
           Erişilebilirliği sonradan eklenen bir özellik değil, baştan gelen bir gereklilik olarak
           ele alıyorum. Klavyeyle kullanım, ekran okuyucu uyumu ve yeterli renk kontrastı (WCAG)
-          her araçta gözetiliyor.
+          her araçta gözetiliyor; bunlar da elle değil, derlemedeki denetimlerle kontrol ediliyor.
         </p>
         <ul class="skills">
           <li>Frontend Geliştirme</li>
@@ -242,44 +293,23 @@
 
     <section id="araclar" class="about" aria-labelledby="araclar-title">
       <div class="wrap prose">
-        <h2 id="araclar-title">Ne geliştiriyorum</h2>
+        <h2 id="araclar-title">Ne yayınlıyorum</h2>
         <p>
-          Yayınladığım araçların önemli bir bölümü, Türkiye'deki güncel mevzuat parametreleriyle
-          çalışan <strong>muhasebe, vergi ve finans hesaplayıcılarıdır</strong>. Her araçta ilgili
-          yılın resmî tarife ve oranları — vergi dilimleri, SGK tavanı, yeniden değerleme oranları —
-          kaynaklardan doğrulanarak koda işlenir ve mevzuat değiştikçe güncellenir.
+          Araçların önemli bir bölümü Türkiye'deki güncel mevzuat parametreleriyle çalışan
+          <strong>bordro, vergi ve finans hesaplayıcıları</strong>. Yanlarında, hesabın
+          arkasındaki kuralı anlatan ve her sayısı sınanan makaleler var — bazıları
+          <a href="../makaleler/dilim-kaymasi-2022-2026/">akademik ölçüde</a>, kaynakçasıyla
+          birlikte.
         </p>
-        <p>Öne çıkan araçlar:</p>
-        <ul>
-          <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — 12 aylık bordro dökümü</li>
-          <li><a href="../kidem-tazminati-hesaplama/">Kıdem ve İhbar Tazminatı Hesaplama</a></li>
-          <li><a href="../serbest-meslek-makbuzu-hesaplama/">Serbest Meslek Makbuzu</a> — stopaj + KDV</li>
-          <li><a href="../mtv-hesaplama/">MTV</a>, <a href="../otv-hesaplama/">Araç ÖTV</a>,
-              <a href="../gumruk-vergisi-hesaplama/">Gümrük Vergisi</a> ve
-              <a href="../kdv-hesaplama/">KDV</a> hesaplama</li>
-          <li><a href="../kredi-hesaplama/">Kredi</a>,
-              <a href="../vadeli-mevduat-hesaplama/">Vadeli Mevduat</a>,
-              <a href="../kira-artisi-hesaplama/">Kira Artışı</a> ve
-              <a href="../issizlik-maasi-hesaplama/">İşsizlik Maaşı</a> hesaplama</li>
-        </ul>
+        <p>
+          Araçlar ve makaleler <strong>ücretsiz, reklamsız ve üyeliksiz</strong>; kaynak kodları
+          MIT lisansıyla açık. Nasıl çalıştıklarını ve hangi kaynaklara dayandıklarını
+          <a href="../yayin-ilkeleri/">yayın ilkelerinde</a>, veriye dair tercihleri
+          <a href="../gizlilik/">gizlilik sayfasında</a> ayrıntılı yazdım.
+        </p>
         <p class="hero-actions">
           <a class="btn btn-primary" href="../#projects">Tüm araçları gör</a>
-        </p>
-      </div>
-    </section>
-
-    <section class="about" aria-labelledby="ilke-title">
-      <div class="wrap prose">
-        <h2 id="ilke-title">Gizlilik ve ücretsizlik ilkem</h2>
-        <p>
-          Hesaplamaların tamamı <strong>tarayıcınızda</strong> çalışır. Girdiğiniz maaş, vergi veya
-          kredi tutarları hiçbir sunucuya gönderilmez, kaydedilmez ve üçüncü taraflarla paylaşılmaz.
-        </p>
-        <p>
-          Bütün araçları <strong>ücretsiz, reklamsız ve üyeliksiz</strong> sunuyorum — ve öyle
-          kalacaklar. Bir maaş hesabı ya da vergi sorgusu için kimsenin reklam izlemek, e-posta
-          bırakmak veya ücret ödemek zorunda olmaması gerektiğine inanıyorum. Bu site ticari bir
-          ürün değil; günlük hayattaki hesap karmaşasını herkes için biraz olsun azaltma çabasıdır.
+          <a class="btn btn-ghost" href="../makaleler/">Makaleleri oku</a>
         </p>
         <p class="legal-note">
           Araçlar yalnızca genel bilgilendirme amaçlıdır; mali müşavirlik, hukuki danışmanlık veya
