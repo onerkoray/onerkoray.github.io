@@ -605,14 +605,99 @@ function makbuzAkisi() {
     "</svg>";
 }
 
+/* Beyan penceresi — "iki-isten-maas-beyanname-siniri" kapagi.
+   Yazinin bulgusu bir EGILIM DEGIL, bir DARLIK: ikinci isin beyanname
+   dogurmadan kalabildigi aralik her yil asgari ucretin hemen ustunde
+   bitiyor. Lira ile cizmek bunu tamamen gizlerdi -- tutarlar bes yilda
+   alti katina cikiyor ve erken yillar ezilirdi. Olcu birimi asgari ucret
+   oldugu icin bes yil ayni eksende karsilastirilabiliyor ve okur
+   "aralik dar" ifadesini olcerek gorebiliyor.
+
+   Esigin OTESI de ciziliyor: yalnizca guvenli bandi gostermek, sinirin
+   bir tarafi oldugunu unutturur. Otesi soluk bir alan olarak duruyor,
+   veri degil zemin oldugu icin doygunlugu dusuk. */
+function beyanPenceresi() {
+  var W = 600, H = 360, SOL = 56, SAG = 30, UST = 64, ALT = 52;
+  var Beyan = require(path.join(KOK, "makaleler",
+    "iki-isten-maas-beyanname-siniri", "beyan.js"));
+
+  var yillar = Beyan.kapsananYillar().slice().sort(function (a, b) { return a - b; });
+  var veri = yillar.map(function (y) {
+    var p = Beyan.pencere(y);
+    return { yil: y, oran: p.oran, tavan: p.guvenli, asgari: p.alt };
+  });
+
+  var enCok = veri.reduce(function (e, v) { return Math.max(e, v.oran); }, 1);
+  var xMax = Math.ceil((enCok + 0.08) * 10) / 10;
+  var x = function (o) { return SOL + (o - 1) / (xMax - 1) * (W - SOL - SAG); };
+
+  var n = veri.length;
+  var bandH = (H - UST - ALT) / n;
+  var cubukH = Math.min(26, bandH * 0.56);
+
+  /* Esigin otesi SATIR SATIR ciziliyor. Ilk hali butun cizim alanini
+     kapliyordu ve "sagindaki alan" neyin sagi belirsiz kaliyordu; beyan
+     bolgesi her yil icin O YILIN esiginde basladigi icin bant bant
+     dogru olan bu. */
+  var otesi = "";
+
+  /* Dikey izgara: 1,0 / 1,1 / 1,2 / 1,3 ... */
+  var izgara = "", etiketler = "";
+  for (var t = 1; t <= xMax + 1e-9; t += 0.1) {
+    var xx = x(t);
+    izgara += '<line x1="' + xx.toFixed(1) + '" y1="' + UST + '" x2="' + xx.toFixed(1) +
+      '" y2="' + (H - ALT) + '" stroke="' + R.zemin + '" stroke-width="1"/>';
+    etiketler += '<text x="' + xx.toFixed(1) + '" y="' + (H - ALT + 20) +
+      '" font-size="13" fill="' + R.ikincil + '" text-anchor="middle">' +
+      t.toFixed(1).replace(".", ",") + '×</text>';
+  }
+
+  var cubuklar = veri.map(function (v, i) {
+    var yy = UST + i * bandH + (bandH - cubukH) / 2;
+    var x0 = x(1), x1 = x(v.oran);
+    /* Bu yilin beyan bolgesi: esikten sag kenara. Veri degil zemin. */
+    otesi += '<rect x="' + x1.toFixed(1) + '" y="' + yy.toFixed(1) +
+      '" width="' + Math.max(0, W - SAG - x1).toFixed(1) +
+      '" height="' + cubukH.toFixed(1) + '" rx="4" fill="' + R.izgara + '"/>';
+    return '<rect x="' + x0.toFixed(1) + '" y="' + yy.toFixed(1) +
+      '" width="' + Math.max(2, x1 - x0).toFixed(1) + '" height="' + cubukH.toFixed(1) +
+      '" rx="4" fill="' + R.s1 + '"/>' +
+      '<text x="' + (SOL - 10) + '" y="' + (yy + cubukH / 2 + 5).toFixed(1) +
+      '" font-size="15" fill="' + R.murekkep + '" text-anchor="end">' + v.yil + '</text>' +
+      '<text x="' + (x1 + 9).toFixed(1) + '" y="' + (yy + cubukH / 2 + 5).toFixed(1) +
+      '" font-size="14" fill="' + R.murekkep + '">' +
+      v.oran.toFixed(2).replace(".", ",") + '× · ' + nf0.format(v.tavan) + ' TL</text>';
+  }).join("");
+
+  /* Asgari ucret cizgisi: bandin sol ucu. */
+  var taban = '<line x1="' + x(1).toFixed(1) + '" y1="' + (UST - 8) +
+    '" x2="' + x(1).toFixed(1) + '" y2="' + (H - ALT + 4) +
+    '" stroke="' + R.murekkep + '" stroke-width="2"/>';
+
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Ikinci isin beyanname dogurmadan kalabildigi aralik, ' +
+    'asgari ucretin kati olarak, ' + yillar[0] + '-' + yillar[yillar.length - 1] + '">' +
+    izgara + otesi + taban + cubuklar + etiketler +
+    '<text x="' + SOL + '" y="30" font-size="15" fill="' + R.murekkep + '">' +
+    'Beyansız kalabilen ikinci iş (aylık brüt)</text>' +
+    '<text x="' + SOL + '" y="50" font-size="13" fill="' + R.ikincil + '">' +
+    'asgari ücretin katı — her çubuğun sağındaki soluk alanda beyanname zorunlu</text>' +
+    '</svg>';
+}
+
 /* Dilim kaymasi — "dilim-kaymasi-2022-2026" kapagi.
    Yazinin bulgusu tek yonlu DEGIL ve kapagin bunu gostermesi gerekiyor:
    esikler 2023'te zirve yapip sonra uc yil ust uste eriyor, ama 2026'da
    hala 2022'nin ustunde. Duz bir "eriyor" grafigi yaniltici olurdu; o
    yuzden 2022 duzeyi referans cizgisi olarak duruyor ve egriler onun
    ustunde kaliyor. Iki kategorik seri oldugu icin marka yesili
-   KULLANILMIYOR. */
-function dilimKaymasi() {
+   KULLANILMIYOR.
+
+   ADLANDIRMA: bu fonksiyon once "dilimKaymasi" adiyla eklendi ve ayni
+   dosyadaki bir onceki yazinin ayni adli cizimini SESSIZCE golgeledi --
+   iki kayit da buna baglanmis, eski yazinin kapagi yanlis grafikle
+   uretilecek durumdaydi. Ad artik ayrisik. */
+function dilimKaymasiReel() {
   var W = 600, H = 360, P = 34, SOL = 52, ALT = 58;
   var SERI = require(path.join(KOK, "makaleler", "dilim-kaymasi-2022-2026",
     "seriler.js"));
@@ -851,11 +936,17 @@ var KAPAKLAR = {
     alt: "Aynı katta maaş alan biri her yıl daha hızlı tırmanıyor",
     cizim: dilimKaymasi
   },
+  "iki-isten-maas-beyanname-siniri": {
+    kicker: "Vergi",
+    baslik: "İki işten maaş alan beyanname verir mi?",
+    alt: "Beyansız kalabilen aralık asgari ücretin hemen üstünde bitiyor",
+    cizim: beyanPenceresi
+  },
   "dilim-kaymasi-2022-2026": {
     kicker: "Vergi",
     baslik: "Dilim kayması gerçekten oluyor mu?",
     alt: "2023’te zirve, sonra üç yıl erime — ama hâlâ 2022’nin üstünde",
-    cizim: dilimKaymasi
+    cizim: dilimKaymasiReel
   },
   "serbest-meslek-makbuzu-stopaj-kdv": {
     kicker: "Vergi",

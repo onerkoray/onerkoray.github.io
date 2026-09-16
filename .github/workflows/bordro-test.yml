@@ -271,6 +271,18 @@ jobs:
       # olculuyor. Ayrica kontrol olarak ikinci esikte ayni islem yapilip
       # etkinin sifir OLMADIGI dogrulanıyor -- yoksa motor esikleri hic
       # okumasa da test gecerdi.
+      # Beyan siniri yazisinin TABLOLARI uretiliyor; once uretecin ciktisi
+      # guncel mi diye bakiliyor, sonra sayilar dogrulaniyor. Ikisi ayri
+      # adim, cunku "tablo bayat" ile "sayi yanlis" bambaska iki ariza.
+      - name: Beyan sınırı tablolarının güncelliği
+        run: node tools/beyan-tablosu.js --check
+
+      # Bu yazinin sinirlari dogrudan tarifenin dilim tutarlari. 2027
+      # tarifesi girildiginde 400.000 ve 5.300.000 eskir ve yaziyi
+      # yukumluluk doguran bir esik konusunda yanlis hale getirir.
+      - name: İki işten maaş yazısının sayıları
+        run: node makaleler/iki-isten-maas-beyanname-siniri/sayi-testi.js
+
       - name: Dilim kayması yazısının sayıları
         run: node makaleler/dilim-kaymasi-2022-2026/sayi-testi.js
 

@@ -202,6 +202,25 @@
    Images bir CSS düzenini indeksleyemez. Zaten üretilmiş <slug>-kart.png
    burada gerçek bir <img> olarak sunuluyor; yeni asset üretilmiyor.
    width/height verildiği için yer kayması olmaz, lazy YOK çünkü LCP adayı. */
+/* Ortalanmis formul satiri. Ayri bir sinif, cunku formul bir vurgu
+   paragrafi degil: tek satirda durmali, rakamlari tabuler hizalanmali ve
+   tablolarla ayni sayisal dokuyu tasimali. Yaziya eklendiginde stili
+   yoktu ve ham paragraf olarak akiyordu -- bu depoda ayni tuzaga daha
+   once de dusuldu (sinif adi kardes sayfadan alinip stili getirilmemisti). */
+.ed-formul {
+  margin: 1.25rem 0 1.5rem;
+  padding: .85rem 1rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--type-metadata);
+  line-height: 1.7;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  background: var(--surface-note);
+  border-left: 3px solid var(--brand);
+  border-radius: 2px;
+}
+
 .ed-veri-gorseli {
   margin: 0 0 2rem;
   padding: 0;

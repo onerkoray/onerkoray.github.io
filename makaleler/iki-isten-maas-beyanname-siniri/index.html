@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İki İşten Maaş Alan Beyanname Verir mi? | Koray Öner</title>
+  <meta name="gecerlilik" content="2027-01-10 | 2027 gelir vergisi tarifesi açıklandı. bordro/parametreler.js'e 2027 girildi mi? Beyan sınırlarının ikisi de tarifenin dilim tutarları (ikinci ve dördüncü dilim); tarife girilmeden bu yazıdaki hiçbir sınır güncellenmez. Pencere tablosuna 2027 satırı kendiliğinden gelir, ama yazıdaki 2026 sayıları elle değil üreteçle tazelenmeli: node tools/beyan-tablosu.js">
+  <meta name="description" content="2026 beyan sınırı 400.000 TL — brüt değil safi. İkinci iş aylık 39.215 TL'ye kadar beyansız; bir lira fazlası 37.500 TL vergi doğuruyor.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://orcid.org/0009-0005-8730-3577">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/iki-isten-maas-beyanname-siniri/">
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="İki işten maaş alan beyanname verir mi?">
+  <meta property="og:description" content="2026 sınırı 400.000 TL ve brüt değil safi tutarla ölçülüyor. İkinci iş aylık 39.215 TL brüte kadar beyansız; bir lira fazlası 37.500 TL vergi doğuruyor.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/iki-isten-maas-beyanname-siniri/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/iki-isten-maas-beyanname-siniri.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="İkinci işin beyansız kalabildiği aylık brüt aralığı asgari ücretin hemen üstünde bitiyor">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="İki işten maaş alan beyanname verir mi?">
+  <meta name="twitter:description" content="İkinci işin beyanname doğurmadan kalabildiği aralık asgari ücretin yalnızca 1,19 katında bitiyor. Sınırı bir lira aşmak 37.500 TL vergi doğuruyor.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/iki-isten-maas-beyanname-siniri.png">
+
+  <link rel="stylesheet" href="../../style.css?v=9ae079de">
+  <link rel="stylesheet" href="../editoryal.css?v=3bb6a509">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "ORCID",
+        "value": "https://orcid.org/0009-0005-8730-3577"
+      },
+      "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/koraonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://dl.acm.org/profile/81100070426",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://korayoner.dev/makaleler/iki-isten-maas-beyanname-siniri/",
+      "url": "https://korayoner.dev/makaleler/iki-isten-maas-beyanname-siniri/",
+      "name": "İki işten maaş alan beyanname verir mi?",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "inLanguage": "tr",
+      "primaryImageOfPage": "https://korayoner.dev/images/makale/iki-isten-maas-beyanname-siniri.png"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://korayoner.dev/makaleler/iki-isten-maas-beyanname-siniri/#article",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "headline": "İki işten maaş alan beyanname verir mi? 2026 sınırı ve eşiğin maliyeti",
+      "description": "Birden fazla işverenden ücret alanların yıllık beyanname yükümlülüğünü doğuran iki sınır, sınırın safi tutarla ölçülmesi ve sınırı bir lira aşmanın tam bordro benzetimiyle ölçülen maliyeti.",
+      "inLanguage": "tr",
+      "datePublished": "2026-09-16",
+      "dateModified": "2026-09-16",
+      "author": { "@id": "https://korayoner.dev/#oner-koray" },
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+      "image": "https://korayoner.dev/images/makale/iki-isten-maas-beyanname-siniri.png",
+      "mainEntityOfPage": "https://korayoner.dev/makaleler/iki-isten-maas-beyanname-siniri/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "keywords": "birden fazla işverenden ücret, ücret beyannamesi, beyan sınırı, ikinci işveren, asgari ücret istisnası, gelir vergisi tarifesi",
+      "about": [
+        { "@type": "Thing", "name": "Ücret gelirinin beyanı" },
+        { "@type": "Thing", "name": "Birden fazla işveren" },
+        { "@type": "Thing", "name": "Gelir vergisi tarifesi" }
+      ],
+      "citation": [
+        { "@type": "Legislation", "name": "193 sayılı Gelir Vergisi Kanunu, m.86/1-b — ücretlerde beyan sınırı" },
+        { "@type": "Legislation", "name": "193 sayılı Gelir Vergisi Kanunu, m.23/1-(18) — asgari ücret istisnası" },
+        { "@type": "Legislation", "name": "193 sayılı Gelir Vergisi Kanunu, m.63 — ücretin safi tutarı" },
+        { "@type": "Legislation", "name": "319 seri no.lu Gelir Vergisi Genel Tebliği, m.7 ve m.9" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://korayoner.dev/makaleler/iki-isten-maas-beyanname-siniri/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "İki işverenden maaş alan beyanname vermek zorunda mı?", "acceptedAnswer": { "@type": "Answer", "text": "Şart değil. Birinci saydığınız işveren dışındaki ücretlerin safi toplamı 2026 için 400.000 TL'yi aşmıyorsa ve bütün ücretlerin safi toplamı 5.300.000 TL'yi aşmıyorsa beyanname verilmez; yıl içinde kesilen vergi nihai olur. İkisinden biri aşılırsa birinci işverenden alınan dahil ücretlerin tamamı beyan edilir." } },
+        { "@type": "Question", "name": "400.000 TL brüt ücret mi?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır, safi tutar. Gayrisafi ücretten SGK ve işsizlik sigortası primi işçi payı düşüldükten sonra kalan tutar karşılaştırılıyor. 2026'da bu kesinti %15 olduğu için 400.000 TL safi sınırı, aylık 39.215 TL brüt ücrete denk geliyor." } },
+        { "@type": "Question", "name": "Sınırı biraz aşmak ne kadara mal olur?", "acceptedAnswer": { "@type": "Answer", "text": "Çok. Sınır bir kez aşıldığında ücretlerin tamamı beyan edildiği için, yıl boyunca iki ayrı tarifeden yararlanarak eksik ödenen verginin hepsi birden doğar. 2026'da birleşik marjinal oranı %27 olan bir ücretli için bu 37.500 TL, %35 için 69.500 TL. Tarifenin en üst bandında uçurum yoktur: oraya ulaşan ücret toplamı dördüncü dilimi de aşar ve beyanname zaten zorunlu hale gelir." } },
+        { "@type": "Question", "name": "İkinci iş asgari ücretliyse sorun olur mu?", "acceptedAnswer": { "@type": "Answer", "text": "Tek başına hayır: 2026'da asgari ücretin yıllık safi tutarı 336.906 TL ve 400.000 TL'nin altında kalıyor. Ama iki tane asgari ücretli ek iş 673.812 TL eder ve sınırı aşar. Asgari ücretin altına düşmeyen üç işi olan herkes, 2022'den bu yana her yıl beyanname vermek zorunda." } },
+        { "@type": "Question", "name": "Hangi işveren birinci sayılır?", "acceptedAnswer": { "@type": "Answer", "text": "Seçim size ait. Toplamı küçültmek için hariç tutulması gereken en yüksek ücrettir. İki işi olan biri için bu seçim belirleyici olabiliyor; üç veya daha fazla işi olan biri için pratikte fark etmiyor, çünkü geri kalanların toplamı zaten sınırı aşıyor." } },
+        { "@type": "Question", "name": "Asgari ücret istisnası iki işverende birden uygulanır mı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. İstisnayı yalnızca en yüksek ücretin ödendiği işveren uygular. İkinci işveren ne gelir vergisi istisnasını ne damga vergisi istisnasını uygular; iki bordroda birden uygulanması hatalı kesintidir. Beyanname verilirse istisnaya beyannamede yer verilmez, bunun yerine hesaplanan vergiden yıl içinde istisna öncesi hesaplanan vergiler mahsup edilir." } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../otv-hesaplama/">ÖTV</a></li>
+          <li><a href="../../mtv-hesaplama/">MTV</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> İki işten maaş ve beyanname
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Vergi</p>
+        <h1 id="hero-title">İki işten maaş alan beyanname verir mi?</h1>
+        <p class="ed-standfirst">Ücretten vergi zaten kesiliyor; çoğu çalışan için mesele
+          orada biter. Birden fazla işverenden ücret alındığında bitmiyor. İki sınır var,
+          ikisi de tarifenin kendi dilim tutarları, ikisi de <strong>brüt değil safi</strong>
+          ücretle ölçülüyor — ve sınırın hemen üstünde <strong>bir liralık gelir artışı
+          beş haneli bir vergi borcu doğurabiliyor.</strong></p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-16">16 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <article>
+        <figure class="ed-veri-gorseli">
+          <img src="../../images/makale/iki-isten-maas-beyanname-siniri.png"
+               width="1200" height="630" loading="lazy" decoding="async"
+               alt="İkinci işin beyanname doğurmadan kalabildiği aylık brüt aralığı, asgari ücretin hemen üstünde kapanıyor">
+          <figcaption>İkinci işin beyansız kalabildiği aralık, asgari ücretin yalnızca
+            1,19 katında bitiyor. Üstünde kalan her ücret, birinci işverenden alınan
+            dahil bütün ücretleri beyannameye taşıyor.</figcaption>
+        </figure>
+
+        <div class="legal-note verdict">
+          <h2 id="kisa-cevap">Kısa cevap</h2>
+          <p><strong>Tevkif yoluyla vergilendirilmiş ücretler kural olarak beyan
+            edilmez.</strong> İki durumda bu kural bozulur (GVK m.86/1-b):</p>
+          <ul>
+            <li>Birinci saydığınız işveren <strong>dışındaki</strong> ücretlerin safi
+              toplamı, tarifenin <strong>ikinci</strong> dilim tutarını aşarsa —
+              2026'da <strong>400.000 TL</strong>;</li>
+            <li>ya da bütün ücretlerin safi toplamı, tarifenin <strong>dördüncü</strong>
+              dilim tutarını aşarsa — 2026'da <strong>5.300.000 TL</strong>.</li>
+          </ul>
+          <p>Aşılırsa ücretlerin <strong>tamamı</strong> beyan edilir. Aşılmazsa yıl
+            içinde kesilen vergi nihaidir ve beyanname verilmez — asıl fark buradan
+            çıkıyor.</p>
+        </div>
+
+        <h2 id="safi">Sınır brüt ücret değil</h2>
+        <p>En sık yapılan hata, sınırı bordrodaki brüt ücretle karşılaştırmak. Kanun
+          ücretin <strong>safi</strong> tutarını esas alıyor: gayrisafi ücretten GVK
+          m.63'teki indirimler — SGK ve işsizlik sigortası primi işçi payı —
+          düşüldükten sonra kalan tutar. Gelir İdaresi'nin kendi rehberindeki örnek
+          bunu açıkça yapıyor: 480.000 TL'lik ikinci işveren ücretinden %15 düşülüp
+          <strong>408.000 TL</strong> ile karşılaştırılıyor, 480.000 TL ile değil.</p>
+        <p>2026'da kesinti oranı %15 olduğu için 400.000 TL'lik safi sınır, aylık
+          <strong>39.215 TL brüt</strong> ücrete denk geliyor. Bir lira fazlası —
+          aylık 39.216 TL — yıllık safi tutarı 400.003 TL'ye çıkarıyor ve sınır
+          aşılıyor.</p>
+
+        <h2 id="pencere">Beyansız kalınabilen aralık ne kadar geniş?</h2>
+        <p>Dar. İkinci işin beyanname doğurmaması için iki koşulu birden sağlaması
+          gerekiyor: asgari ücretin altına düşmemesi (aşağıda kalırsa bu yazının
+          kapsamı dışında, kısmi süreli çalışma hesabı gerekir) ve safi tutarının
+          sınırı aşmaması. Bu iki koşul arasındaki aralık, mevcut istisna rejiminin
+          yürürlükte olduğu beş yılın hepsinde asgari ücretin bir ilâ bir buçuk katı
+          arasında kaldı.</p>
+
+<!-- BEYAN-PENCERE:BASLANGIC -->
+          <table class="payroll">
+            <caption>İkinci işin beyanname doğurmadan kalabildiği aralık (aylık brüt, TL)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Yıl</th>
+                <th scope="col">Asgari ücret</th>
+                <th scope="col">Beyansız kalan en yüksek ikinci iş</th>
+                <th scope="col">Asgari ücretin katı</th>
+                <th scope="col">Sınır (safi, yıllık)</th>
+                <th scope="col">Toplam sınırı (safi, yıllık)</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">2022</th><td>5.738</td><td>6.862</td><td>1,20</td><td>70.000</td><td>880.000</td></tr>
+            <tr><th scope="row">2023</th><td>11.711</td><td>14.705</td><td>1,26</td><td>150.000</td><td>1.900.000</td></tr>
+            <tr><th scope="row">2024</th><td>20.003</td><td>22.549</td><td>1,13</td><td>230.000</td><td>3.000.000</td></tr>
+            <tr><th scope="row">2025</th><td>26.006</td><td>32.352</td><td>1,24</td><td>330.000</td><td>4.300.000</td></tr>
+            <tr><th scope="row">2026</th><td>33.030</td><td>39.215</td><td>1,19</td><td>400.000</td><td>5.300.000</td></tr>
+            </tbody>
+          </table>
+<!-- BEYAN-PENCERE:BITIS -->
+
+        <p>Tablonun söylediği şey şu: ikinci iş asgari ücretliyse sorun yok, ama
+          asgari ücretin yaklaşık beşte bir üstüne çıktığı anda beyanname yükümlülüğü
+          doğuyor. Ve bu bir daralma eğilimi değil — 2022'den bu yana oran 1,13 ile
+          1,26 arasında gidip geliyor, yönü yok. Aralık dar <em>kaldı</em>.</p>
+        <p>Bir sonuç daha çıkıyor: 2026'da asgari ücretin yıllık safi tutarı
+          <strong>336.906 TL</strong>. İki tane asgari ücretli ek iş
+          <strong>673.812 TL</strong> eder ve 400.000 TL'lik sınırı rahatça aşar.
+          Yani <strong>asgari ücretin altına düşmeyen üç işi olan herkes beyanname
+          vermek zorunda</strong> — ve bu, tablodaki beş yılın hepsinde böyle.</p>
+
+        <h2 id="ucurum">Bir lira ve 37.500 lira</h2>
+        <p>Sınırın hemen altıyla hemen üstü arasındaki fark, gelirdeki farkla orantılı
+          değil. Altında kalırsanız yıl içinde kesilen vergi nihai olur. Üstüne
+          çıkarsanız ücretlerin tamamı beyan edilir ve yıl boyunca iki ayrı bordroda
+          ayrı ayrı uygulanan tarifeden doğan bütün eksik vergi <strong>bir anda</strong>
+          ödenir.</p>
+
+<!-- BEYAN-UCURUM:BASLANGIC -->
+          <table class="payroll">
+            <caption>Sınırı bir kuruş aşmanın 2026 yılındaki maliyeti</caption>
+            <thead>
+              <tr>
+                <th scope="col">Birinci işin aylık brütü</th>
+                <th scope="col">Birleşik marjinal oran</th>
+                <th scope="col">Doğan vergi borcu</th>
+                <th scope="col">Formül birebir tutuyor mu?</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">33.030</th><td>%27</td><td>33.083 TL</td><td>Hayır, iki banda yayılıyor</td></tr>
+            <tr><th scope="row">60.000</th><td>%27</td><td>37.500 TL</td><td>Evet</td></tr>
+            <tr><th scope="row">150.000</th><td>%35</td><td>69.500 TL</td><td>Evet</td></tr>
+            <tr><th scope="row">250.000</th><td>%35</td><td>69.500 TL</td><td>Evet</td></tr>
+            </tbody>
+          </table>
+<!-- BEYAN-UCURUM:BITIS -->
+
+        <p>Tablodaki tutarlar tam bordro benzetimiyle hesaplandı, ama kapalı bir
+          biçimleri de var:</p>
+        <p class="ed-formul"><strong>borç = sınır × birleşik marjinal oran −
+          tarifenin sınıra kadar olan vergisi</strong></p>
+        <p>2026'da tarifenin 400.000 TL'ye kadar olan vergisi 70.500 TL. Birleşik
+          marjinal oranı %27 olan biri için borç 400.000 × 0,27 − 70.500 = 37.500 TL
+          oluyor. Bu, ikinci işin tarifeyi <em>sıfırdan</em> başlatarak kazandığı
+          avantajın tam olarak geri alınması.</p>
+        <p>Formül, sınır kadarlık dilim <strong>tek bir banda</strong> düştüğünde
+          kuruşuna kadar tutuyor. Tablonun ilk satırında tutmuyor: birinci iş asgari
+          ücretliyken 400.000 TL'lik dilim %20 ile %27 bandına yayılıyor ve borç
+          33.083 TL'de kalıyor. Uçurum orada da var, yalnızca daha sığ.</p>
+
+        <div class="legal-note">
+          <p><strong>Uçurumun bir üst sınırı var ve bu iki eşiğin birbirine
+            girmesinden çıkıyor.</strong> Tarifenin en üst bandı (%40) dördüncü
+            dilimin — yani 5.300.000 TL'nin — üstünde başlıyor. Birleşik matrahı o
+            banda ulaşan bir ücretlinin ücret toplamı zaten 5.300.000 TL'yi aşmış
+            olur ve <em>ikinci ölçüt</em> devreye girer: beyanname her hâlükârda
+            zorunludur.</p>
+          <p>Yani %40 bandında uçurum diye bir şey yok; o ücretli seçim yapmıyor,
+            zaten beyan ediyor. Uçurum yalnızca %27 ve %35 bantlarında var.</p>
+        </div>
+
+        <h2 id="neden">Neden böyle: tarife her işverende sıfırdan başlıyor</h2>
+        <p>Her işveren kümülatif matrahı kendi bordrosunda tutar ve tarifeyi sıfırdan
+          uygular. İki işten toplam aynı parayı kazanan biri, yıl içinde tek işten
+          kazanandan <strong>daha az</strong> vergi ödemiş olur — çünkü ikinci ücret,
+          birincinin üstüne binmek yerine tarifenin en alt basamağından başlar.
+          Beyanname bu farkı geri alır.</p>
+
+<!-- BEYAN-KARSILASTIRMA:BASLANGIC -->
+          <table class="payroll">
+            <caption>Aynı toplam brüt: iki işveren ve tek işveren (2026, TL)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Aylık brütler</th>
+                <th scope="col">İkinci işin safi tutarı</th>
+                <th scope="col">Beyan</th>
+                <th scope="col">Yıl içinde kesilen</th>
+                <th scope="col">Beyannamede ödenecek</th>
+                <th scope="col">Toplam vergi</th>
+                <th scope="col">Tek işverende olsaydı</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">100.000 + 35.000</th><td>357.000</td><td>Yok</td><td>241.919</td><td>0</td><td>241.919</td><td>276.409</td></tr>
+            <tr><th scope="row">100.000 + 39.000</th><td>397.800</td><td>Yok</td><td>250.079</td><td>0</td><td>250.079</td><td>287.425</td></tr>
+            <tr><th scope="row">100.000 + 45.000</th><td>459.000</td><td>Var</td><td>266.449</td><td>37.500</td><td>303.949</td><td>303.949</td></tr>
+            <tr><th scope="row">60.000 + 40.000</th><td>408.000</td><td>Var</td><td>142.519</td><td>37.500</td><td>180.019</td><td>180.019</td></tr>
+            </tbody>
+          </table>
+<!-- BEYAN-KARSILASTIRMA:BITIS -->
+
+        <p>Tablonun son iki sütunu karşılaştırıldığında görünen şey şu:
+          <strong>beyanname verildiğinde iki işverenli çalışanın toplam vergisi,
+          aynı parayı tek işverenden alan çalışanınkine tam olarak eşitleniyor.</strong>
+          Fark sıfır. Yani beyannamenin kendisi bir ceza değil, bir düzeltme; avantajın
+          tamamı <em>beyanname vermemekten</em> geliyor. Sınırın bu kadar keskin
+          olmasının sebebi de bu.</p>
+
+        <h2 id="istisna">İstisna bir kez uygulanıyor</h2>
+        <p>Asgari ücret istisnasını yalnızca <strong>en yüksek ücretin ödendiği
+          işveren</strong> uygular (GVK m.23/1-18; 319 seri no.lu Tebliğ m.7). İkinci
+          işveren ne gelir vergisi istisnasını ne de damga vergisi istisnasını
+          uygular. İki bordroda birden uygulanması hatalı kesintidir ve farkın geri
+          istenmesine yol açar.</p>
+        <div class="legal-note">
+          <p>Beyanname verilirse istisna <strong>beyannameye dahil edilmez</strong>.
+            Bunun yerine, ücretlerin toplamı üzerinden hesaplanan vergiden
+            <em>"yıl içinde istisna öncesi hesaplanan vergiler"</em> mahsup edilir
+            (319 seri no.lu Tebliğ m.9). Kesilen vergi değil, kesilmeden önce
+            hesaplanan vergi.</p>
+          <p>Bu ayrım istisnayı korur: sonuç, toplam matraha tarifenin bir kez
+            uygulanıp asgari ücret istisnasının bir kez düşülmesine denk gelir. Yazının
+            hesap modülü bunu her örnek için ayrıca doğruluyor.</p>
+        </div>
+
+        <h2 id="secim">"Birinci işvereni siz seçersiniz" — ne zaman işe yarıyor?</h2>
+        <p>Hangi işverenin birinci sayılacağını ücretli serbestçe belirler. Toplamı
+          küçültmek için hariç tutulması gereken, doğal olarak <strong>en yüksek</strong>
+          ücrettir. Bu tavsiye doğru, ama kapsamı çoğu yerde yazıldığından dar:</p>
+        <ul>
+          <li><strong>İki işi olan için belirleyici.</strong> Aylık 100.000 ve 35.000 TL
+            brüt alan biri, büyük olanı hariç tutarsa 357.000 TL ile sınırın altında
+            kalır ve beyanname vermez; küçük olanı hariç tutarsa 1.020.000 TL ile
+            sınırı aşar ve bütün ücretleri beyan eder.</li>
+          <li><strong>Üç veya daha fazla işi olan için pratikte etkisiz.</strong>
+            Hepsi asgari ücretin üstündeyse, hariç tutulmayan ikisinin toplamı zaten
+            sınırı aşıyor. Hangi işverenin birinci sayıldığı sonucu değiştirmiyor.</li>
+        </ul>
+
+        <h2 id="yontem">Yöntem ve sınırlar</h2>
+        <p>Bütün tutarlar sitenin bordro motoruyla, ay ay kümülatif matrah takip
+          edilerek hesaplandı; hiçbiri elle yazılmadı. Beyan sınırları da elle
+          yazılmıyor — kanun "tarifenin ikinci/dördüncü gelir diliminde yer alan
+          tutar" dediği için modül tarifeden <em>o dilimi</em> okuyor. 2027 tarifesi
+          girildiğinde tablolar kendiliğinden doğru sınırı gösterecek.</p>
+        <p>Kapsam kasıtlı olarak dar tutuldu. Her işin ayın tamamında ve asgari
+          ücretin altına düşmeyen bir brütle çalışıldığı varsayılıyor. Asgari ücretin
+          altındaki brütlerde prime esas kazanç tabana çekildiği için bu hesap kısmi
+          süreli çalışmayı temsil etmez; modül böyle bir girdiyi kabul etmek yerine
+          hata veriyor. Tek işverenle karşılaştırmalarda toplam brütün SGK tavanını
+          aşmadığı ayrıca denetleniyor: aşarsa fark artık tarifeden değil primden
+          gelir ve karşılaştırma yanıltır.</p>
+        <p>Yazı vergi danışmanlığı değil. Beyanname yükümlülüğü, burada ele
+          alınmayan gelir unsurlarından (kira, menkul sermaye iradi, diğer kazançlar)
+          da doğabilir.</p>
+
+        <h2 id="kaynaklar">Kaynaklar</h2>
+        <ul>
+          <li>193 sayılı Gelir Vergisi Kanunu, m.86/1-b (beyan sınırı), m.63 (safi
+            tutar), m.23/1-18 (asgari ücret istisnası), m.103 (tarife).</li>
+          <li><a href="https://www.resmigazete.gov.tr/eskiler/2022/01/20220127-5.htm"
+                 rel="noopener">319 seri no.lu Gelir Vergisi Genel Tebliği</a>, m.7
+            (istisnayı en yüksek ücretin işvereni uygular) ve m.9 (beyannamede istisna
+            öncesi hesaplanan vergilerin mahsubu).</li>
+          <li>Gelir İdaresi Başkanlığı, <em>Ücret Geliri Elde Edenler İçin Vergi
+            Rehberi</em> — safi tutar üzerinden karşılaştırma örneği ve yıllara göre
+            sınır tutarları.</li>
+        </ul>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+
+        <h3>İki işverenden maaş alan beyanname vermek zorunda mı?</h3>
+        <p>Şart değil. Birinci saydığınız işveren dışındaki ücretlerin safi toplamı
+          2026 için 400.000 TL'yi aşmıyorsa ve bütün ücretlerin safi toplamı
+          5.300.000 TL'yi aşmıyorsa beyanname verilmez. İkisinden biri aşılırsa
+          birinci işverenden alınan dahil ücretlerin tamamı beyan edilir.</p>
+
+        <h3>400.000 TL brüt ücret mi?</h3>
+        <p>Hayır, safi tutar. Gayrisafi ücretten SGK ve işsizlik sigortası primi işçi
+          payı düşüldükten sonra kalan tutar karşılaştırılıyor. 2026'da bu kesinti %15
+          olduğu için sınır, aylık 39.215 TL brüt ücrete denk geliyor.</p>
+
+        <h3>Sınırı biraz aşmak ne kadara mal olur?</h3>
+        <p>Çok. Birleşik marjinal oranı %27 olan bir ücretli için 37.500 TL, %35 için
+          69.500 TL. Gelirdeki artış bir lira olabilir; vergideki artış beş haneli.
+          Tarifenin en üst bandında uçurum yoktur, çünkü oraya ulaşan ücret toplamı
+          dördüncü dilimi de aşar ve beyanname zaten zorunlu hale gelir.</p>
+
+        <h3>İkinci iş asgari ücretliyse sorun olur mu?</h3>
+        <p>Tek başına hayır: 2026'da asgari ücretin yıllık safi tutarı 336.906 TL ve
+          sınırın altında. Ama iki tane asgari ücretli ek iş 673.812 TL eder ve sınırı
+          aşar. Asgari ücretin altına düşmeyen üç işi olan herkes beyanname vermek
+          zorunda.</p>
+
+        <h3>Asgari ücret istisnası iki işverende birden uygulanır mı?</h3>
+        <p>Hayır. İstisnayı yalnızca en yüksek ücretin ödendiği işveren uygular.
+          İkinci işveren ne gelir vergisi ne damga vergisi istisnasını uygular.</p>
+
+        <h2 id="ilgili">İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../../maas-hesaplama/">Maaş hesaplama</a> — brütten nete, ay ay
+            kümülatif matrahla.</li>
+          <li><a href="../dilim-kaymasi-2022-2026/">Dilim kayması gerçekten oluyor mu?</a>
+            — beyan sınırı olan ikinci dilim, ücretliler için bağlayıcı olan eşiğin
+            ta kendisi.</li>
+          <li><a href="../vergi-dilimleri-asgari-ucrete-yetisemiyor/">Vergi dilimleri ve
+            asgari ücret</a> — eşiklerin asgari ücret karşısındaki seyri.</li>
+          <li><a href="../stopaj-nasil-hesaplanir/">Stopaj nasıl hesaplanır?</a></li>
+        </ul>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

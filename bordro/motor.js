@@ -95,9 +95,21 @@
     var kumulOnce = birikim.matrah;
     var vergiTarife = tarifeVergisi(kumulOnce + matrah, P.dilimler) - tarifeVergisi(kumulOnce, P.dilimler);
 
+    /* secenekler.istisnasiz: ikinci (ve sonraki) isverenin bordrosu.
+       GVK 23/18 ve 488 sayili Kanuna ekli (2) sayili tablo, asgari ucret
+       istisnasini "birden fazla isverenden ucret alinmasi halinde
+       yalnizca EN YUKSEK olan ucrete" bagliyor. Yani ikinci isveren ne
+       gelir vergisi istisnasini ne de damga istisnasini uygular; iki
+       bordroda birden uygulanmasi hatali bir kesintidir.
+       Tarife yine SIFIRDAN baslar -- kumulatif matrah isverene ozeldir --
+       istisna uygulanmaz. */
+    var istisnasiz = !!(secenekler && secenekler.istisnasiz);
+
     // İstisna / indirim
     var istisna = 0, agi = 0, asgariMatrah = 0;
-    if (P.istisnaRejimi === "asgari-ucret") {
+    if (istisnasiz) {
+      /* asgariMatrah 0 kalir: birikim kirlenmesin. */
+    } else if (P.istisnaRejimi === "asgari-ucret") {
       asgariMatrah = d.asgariBrut * (1 - o.sgkIsci - o.issizlikIsci);
       istisna = tarifeVergisi(birikim.asgariMatrah + asgariMatrah, P.dilimler)
               - tarifeVergisi(birikim.asgariMatrah, P.dilimler);
@@ -109,7 +121,7 @@
     }
     var gelirVergisi = Math.max(0, vergiTarife - istisna);
 
-    var damga = P.damgaIstisnasi
+    var damga = (P.damgaIstisnasi && !istisnasiz)
       ? Math.max(0, brut - d.asgariBrut) * o.damga
       : brut * o.damga;
 
