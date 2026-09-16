@@ -1,0 +1,32 @@
+# Dagitima girmeyecek dosyalar.
+#
+# NEDEN VAR
+# ---------
+# Vercel her push icin sitenin TAM bir kopyasini kalici olarak sakliyor;
+# "Deployment Storage" trafikle degil, push sayisi x dagitim boyutu ile
+# buyuyor. 2026-09-16'da ucretsiz katmanin 10 GB'inin %75'i dolmustu,
+# oysa ayni gun 6 saatte 192 edge istegi ve 0 fonksiyon cagrisi vardi:
+# yer tutan sey ziyaretci degil, dagitim gecmisi.
+#
+# Asagidakiler tarayiciya HIC gonderilmiyor -- hicbir HTML, CSS veya JS
+# bunlara baglanmiyor; uretec ve gelistirme dosyalari. Site uretildikten
+# SONRA calisan seylerin dagitimda bulunmasi gerekmiyor.
+#
+# DIKKAT: bordro/ BURADA DEGIL ve olmamali -- sayfalar motor.js ve
+# parametreler.js'i tarayicida yukluyor. Ayni sekilde doviz-kurlari/
+# icindeki seri.json ve altin.json da calisma zamaninda okunuyor.
+
+# Uretecler ve testler: sayfalar bunlardan TURUYOR, bunlari YUKLEMIYOR.
+tools/
+
+# npm paketinin ayna kopyasi (kendi .git'iyle birlikte ~920 KB).
+# Paket registry'den dagitiliyor, siteden degil.
+_cekirdek/
+
+# CI tanimlari.
+.github/
+
+# Depo belgeleri ve Python artiklari.
+README.md
+__pycache__/
+*.pyc
