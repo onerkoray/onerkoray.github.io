@@ -372,17 +372,24 @@ def cizgi_svg(kayitlar, kod, ad, ek_id):
     return svg, ozet
 
 
+# SABLON OLCUM KURULUMUNU DA TASIYOR -- 2026-09-16'da ogrenildi.
+#
+# Site butun sayfalarda gomulu gtag'den onay.js kapisina gecirilmisti ama
+# BU SABLON atlandi. Sablon doviz sayfasini her gece bastan yazdigi icin
+# sayfa her seferinde eski haline donuyordu; "Uretilen sayfalari denetle"
+# adimi uc bulguyla (kapiyi atlayan gtag / onay kapisi yok / CSP hash
+# tutmuyor) kiriliyor ve is commit asamasina hic gelmiyordu. Koruma
+# calisti -- main'e bozuk sayfa girmedi -- ama kur verisi de 9 Eylul'den
+# 16 Eylul'e kadar guncellenmedi ve her gece hata e-postasi gitti.
+#
+# Sayfayi ELLE duzeltmek ise yaramaz: ertesi gece sablon geri alir.
+# Olcum kurulumu, CSP'ye giren satir ici betikler veya ortak head
+# etiketleri degisirse BURASI da degismeli.
 PAGE = """<!DOCTYPE html>
 <html lang="tr" data-theme="auto">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GNZPW1LPT"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){{dataLayer.push(arguments);}}
-    gtag('js', new Date());
-    gtag('config', 'G-2GNZPW1LPT');
-  </script>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TCMB Döviz Kurları — {tarih_metin} | Koray Öner</title>
@@ -396,7 +403,9 @@ PAGE = """<!DOCTYPE html>
   <link rel="canonical" href="{site}/doviz-kurlari/">
 
   <link rel="icon" href="../favicon.ico?v=2" sizes="32x32">
-  <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+  <!-- Bu sayfanin KENDI favicon'u var (doviz-kurlari/favicon.svg);
+       kok markaya dusmuyor. favikon-test bunu denetliyor. -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
   <link rel="alternate" type="application/atom+xml" title="Koray Öner — Yeni Araçlar" href="../atom.xml">
 
@@ -431,6 +440,7 @@ PAGE = """<!DOCTYPE html>
       }},
       {{
         "@type": "WebPage",
+        "primaryImageOfPage": "{site}/images/doviz-kurlari-koray-oner.png",
         "@id": "{site}/doviz-kurlari/#webpage",
         "url": "{site}/doviz-kurlari/",
         "name": "TCMB Döviz Kurları — {tarih_metin}",

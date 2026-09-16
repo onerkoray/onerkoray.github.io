@@ -37,10 +37,16 @@ jobs:
       # sonradan ekleyen uretecler burada calismazsa her veri
       # guncellemesinde siliniyorlar ve site dogrulamalari kiriliyor.
       # 2026-09-07'de tam olarak bu oldu.
+      # SIRA ONEMLI: favikon.py sayfanin <title>'ini okuyup favicon'un
+      # aria-label'ina koyuyor, doviz sayfasinin basligi da BULTEN TARIHINI
+      # tasiyor. Yani kur her degistiginde favicon.svg de yeniden uretilmeli.
+      # update_data.py'den SONRA, stil-damgasi'ndan ONCE calismali: damga
+      # dosyanin iceriginden turuyor, once damgalanirsa damga bayat kalir.
       - name: Ortak etiket ve künyeleri tamamla
         run: |
           python tools/paylasim-meta.py
           python tools/metodoloji-blogu.py
+          python tools/favikon.py
           python tools/stil-damgasi.py
 
       # Bot'un urettigi commit push edilmeden once kendi kurallarindan
