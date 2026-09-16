@@ -496,6 +496,12 @@ jobs:
       - name: Ana sayfadaki araç sayısı doğru mu
         run: python tools/arac-sayisi.py --check
 
+      # Hakkimda sayfasi artik "bir iddia denetlenebilir olmali" diyor;
+      # kendi sayilarini elle tasimasi tam da o cumleyi curuturdu. Blok
+      # depodan uretiliyor ve bayatladiginda burasi kiriliyor.
+      - name: Hakkımda sayfasının sayıları güncel mi
+        run: python tools/hakkimda-rakamlar.py --check
+
       - name: Marka ikonları favicon.svg ile uyumlu mu
         run: |
           pip install --quiet pillow
