@@ -1,5 +1,11 @@
 [
   {
+    "slug": "ikramiye-hangi-ay-odenmeli",
+    "kicker": "Vergi",
+    "alt": "Aynı ikramiye kaç ödemeye bölünürse yıllık net düşüyor; 6 ödemeden sonra değişmiyor çünkü her taksit prim tavanının altına iniyor.",
+    "altyazi": "Ay seçimi kümülatif tarife yüzünden nötr; fark eden şey ödeme sayısı ve yalnızca SGK tavanı aşılırsa."
+  },
+  {
     "slug": "kredi-karti-asgari-odeme",
     "kicker": "Finans",
     "alt": "50.000 TL kart borcunun yalnızca asgari ödenerek on iki ayda erimesi; %20 asgaride 5.752 TL, %40 asgaride 181 TL kalıyor.",
