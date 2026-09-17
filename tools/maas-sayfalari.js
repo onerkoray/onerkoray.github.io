@@ -39,6 +39,14 @@ var KALICI = [40000, 50000, 60000, 75000, 100000, 150000, 200000, 300000];
 
 var BAS = "<!-- MAAS-DETAY:BASLANGIC -->";
 var BIT = "<!-- MAAS-DETAY:BITIS -->";
+/* Sayfanin dizine girip girmeyecegi TEK bir satirdan okunmali.
+   Onceden noindex, standart etiketin YANINA ekleniyordu ve sayfada
+   birbiriyle celisen iki robots direktifi duruyordu; Google en
+   kisitlayici olani uyguladigi icin sonuc dogruydu ama kural baska
+   tarayicilar icin garanti degil ve iddia iki yere dagilmisti.
+   Artik iki etiket arasinda gecis yapiliyor. */
+var INDEKS = '<meta name="robots" content="index, follow, ' +
+  'max-image-preview:large, max-snippet:-1">';
 var NOINDEX = '<meta name="robots" content="noindex, follow">';
 
 /* ------------------------------------------------------------- yardimcilar */
@@ -406,15 +414,22 @@ function guncelle(icerik, yeniBlok, indexlensin) {
     s = s.slice(0, yer) + yeniBlok + "\n" + s.slice(yer);
   }
 
-  /* noindex: yalnizca dizine girmeyecek sayfalarda bulunmali */
-  var varMi = s.indexOf(NOINDEX) > -1;
-  if (!indexlensin && !varMi) {
-    var mCapa = '<link rel="canonical"';
-    var y = s.indexOf(mCapa);
-    if (y === -1) throw new Error("canonical bulunamadi");
-    s = s.slice(0, y) + NOINDEX + "\n  " + s.slice(y);
-  } else if (indexlensin && varMi) {
-    s = s.replace(NOINDEX + "\n  ", "").replace(NOINDEX, "");
+  /* noindex: yalnizca dizine girmeyecek sayfalarda bulunmali.
+     Etiket EKLENMIYOR, DEGISTIRILIYOR -- sayfada tek robots satiri kalir. */
+  var noindexVar = s.indexOf(NOINDEX) > -1;
+  var indeksVar = s.indexOf(INDEKS) > -1;
+  if (!noindexVar && !indeksVar) {
+    throw new Error("robots etiketi bulunamadi: " + (s.match(
+      /<meta name="robots"[^>]*>/) || ["(hic yok)"])[0]);
+  }
+  if (!indexlensin && !noindexVar) {
+    s = s.replace(INDEKS, NOINDEX);
+  } else if (indexlensin && !indeksVar) {
+    s = s.replace(NOINDEX, INDEKS);
+  }
+  /* Eski surumun biraktigi ikinci etiket varsa temizlensin. */
+  if (s.indexOf(NOINDEX) > -1 && s.indexOf(INDEKS) > -1) {
+    s = s.replace(INDEKS + "\n  ", "").replace(INDEKS, "");
   }
   return s;
 }
