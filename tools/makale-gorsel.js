@@ -605,6 +605,70 @@ function makbuzAkisi() {
     "</svg>";
 }
 
+/* Ikramiyenin zamanlamasi — "ikramiye-hangi-ay-odenmeli" kapagi.
+   Anlatilan sey bir EGILIM degil, bir BASAMAK: odeme sayisi arttikca
+   yillik net dusuyor ama bir yerde DURUYOR -- her taksit prim tavaninin
+   altina indigi anda etki bitiyor. Duz bir azalan cizgi bu doyumu
+   gizlerdi; cubuk ve uzerindeki fark etiketi gosteriyor.
+
+   Referans cizgisi tek odemenin neti: dususlerin neye gore olculdugu
+   belirsiz kalmasin. Tek seri oldugu icin marka disi tek renk yetiyor. */
+function ikramiyeParcalari() {
+  var W = 600, H = 360, SOL = 60, SAG = 26, UST = 74, ALT = 56;
+  var I = require(path.join(KOK, "makaleler", "ikramiye-hangi-ay-odenmeli",
+    "ikramiye.js"));
+  var P = B.parametre(B.sonYil());
+  var asgari = B.donem(P, 1).asgariBrut;
+  var brut = asgari * 5, ik = asgari * 20;
+  var liste = I.parcaKarsilastirmasi(brut, ik, B.sonYil(), [1, 2, 3, 4, 6, 12]);
+
+  var netler = liste.map(function (x) { return x.net; });
+  var enCok = Math.max.apply(null, netler);
+  var enAz = Math.min.apply(null, netler);
+  var alt = enAz - (enCok - enAz) * 0.55;   /* taban sifir degil: fark okunsun */
+
+  var n = liste.length;
+  var alan = W - SOL - SAG;
+  var gen = alan / n * 0.58;
+  var x = function (i) { return SOL + (i + 0.5) * alan / n; };
+  var y = function (v) { return H - ALT - (v - alt) / (enCok - alt) * (H - UST - ALT); };
+
+  var izgara = "";
+  [0, 0.5, 1].forEach(function (t) {
+    var yy = UST + t * (H - UST - ALT);
+    izgara += '<line x1="' + SOL + '" y1="' + yy.toFixed(1) + '" x2="' + (W - SAG) +
+      '" y2="' + yy.toFixed(1) + '" stroke="' + R.izgara + '" stroke-width="1"/>';
+  });
+
+  /* Tek odemenin duzeyi: kesikli referans. */
+  var ref = '<line x1="' + SOL + '" y1="' + y(netler[0]).toFixed(1) +
+    '" x2="' + (W - SAG) + '" y2="' + y(netler[0]).toFixed(1) +
+    '" stroke="' + R.murekkep + '" stroke-width="1.5" stroke-dasharray="4 4"/>';
+
+  var cubuk = liste.map(function (o, i) {
+    var yy = y(o.net), h = H - ALT - yy;
+    var etiket = i === 0 ? "referans" : nf0.format(Math.round(o.netFark));
+    return '<rect x="' + (x(i) - gen / 2).toFixed(1) + '" y="' + yy.toFixed(1) +
+      '" width="' + gen.toFixed(1) + '" height="' + Math.max(2, h).toFixed(1) +
+      '" rx="3" fill="' + R.s1 + '"/>' +
+      '<text x="' + x(i).toFixed(1) + '" y="' + (yy - 8).toFixed(1) +
+      '" font-size="12" fill="' + R.murekkep + '" text-anchor="middle">' + etiket + '</text>' +
+      '<text x="' + x(i).toFixed(1) + '" y="' + (H - ALT + 19) +
+      '" font-size="13" fill="' + R.ikincil + '" text-anchor="middle">' + o.parca + '</text>';
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Ayni ikramiye kac odemeye bolunurse yillik netin nasil dustugu">' +
+    izgara + ref + cubuk +
+    '<text x="' + SOL + '" y="30" font-size="15" fill="' + R.murekkep + '">' +
+    'Aynı ikramiye, farklı sayıda ödemede</text>' +
+    '<text x="' + SOL + '" y="50" font-size="13" fill="' + R.ikincil + '">' +
+    'tek ödemeye göre yıllık net farkı (TL) — 6’dan sonra değişmiyor</text>' +
+    '<text x="' + (W - SAG) + '" y="' + (H - ALT + 38) +
+    '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">ödeme sayısı</text>' +
+    '</svg>';
+}
+
 /* Asgari odeme — "kredi-karti-asgari-odeme" kapagi.
    Yazinin bulgusu bir YON: borc her ay eriyor, ve erime hizi asgari orana
    bagli. Tek bir egri cizmek "eriyor"u gosterirdi ama asil anlatilan sey
@@ -1014,6 +1078,12 @@ var KAPAKLAR = {
     baslik: "Dilimler asgari ücrete yetişemiyor",
     alt: "Aynı katta maaş alan biri her yıl daha hızlı tırmanıyor",
     cizim: dilimKaymasi
+  },
+  "ikramiye-hangi-ay-odenmeli": {
+    kicker: "Vergi",
+    baslik: "İkramiye hangi ay ödenirse daha az kesilir?",
+    alt: "Ay fark etmiyor — kaç ödemeye bölündüğü ediyor",
+    cizim: ikramiyeParcalari
   },
   "kredi-karti-asgari-odeme": {
     kicker: "Finans",

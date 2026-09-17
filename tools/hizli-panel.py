@@ -55,6 +55,7 @@ KISA = {
 
     "kira-geliri-vergisi-hesaplama": "Kira Geliri Vergisi",
     "borc-kapatma-plani": "Borç Kapatma Planı",
+    "makaleler/ikramiye-hangi-ay-odenmeli": "İkramiye hangi ay?",
     "makaleler/kredi-karti-asgari-odeme": "Asgari ödersem ne olur?",
     "makaleler/iki-isten-maas-beyanname-siniri": "İki işten maaş, beyanname?",
     "makaleler/dilim-kaymasi-2022-2026": "Dilim kayması var mı?",

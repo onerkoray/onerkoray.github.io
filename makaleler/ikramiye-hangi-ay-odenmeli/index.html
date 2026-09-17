@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İkramiye Hangi Ay Ödenirse Daha Az Kesilir? | Koray Öner</title>
+  <meta name="gecerlilik" content="2027-01-10 | 2027 gelir vergisi tarifesi, asgari ücreti ve SGK tavanı açıklandı. bordro/parametreler.js'e 2027 girildi mi? Bütün tablolar tavandan ve tarifeden türüyor. Ayrıca 2027'de asgari ücret yıl ortasında zamlanırsa SGK tavanı da değişir ve 'ay seçimi nötr' önermesi o yıl için kırılır — ay tablosu bunu kendiliğinden gösterir ama yazının metni de gözden geçirilmeli.">
+  <meta name="description" content="İkramiye hangi ay ödenirse daha az kesilir? 2026'da hiçbiri — net her ayda aynı. Fark eden şey ödeme sayısı, o da yalnızca SGK tavanı aşılırsa.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://orcid.org/0009-0005-8730-3577">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/">
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="İkramiye hangi ay ödenirse daha az kesilir?">
+  <meta property="og:description" content="2026'da hiçbiri — on iki ayın hepsinde yıllık net kuruşu kuruşuna aynı. Fark eden şey ay değil, ikramiyenin kaç ödemeye bölündüğü; o da yalnızca SGK tavanı aşılırsa.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/ikramiye-hangi-ay-odenmeli.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="İkramiyenin kaç ödemeye bölündüğüne göre yıllık net ücret">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="İkramiye hangi ay ödenirse daha az kesilir?">
+  <meta name="twitter:description" content="Ay seçimi nötr — kümülatif tarife yüzünden. Kıran şey aylık SGK tavanı: ikramiyeyi bölmek prim yükünü artırıyor.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/ikramiye-hangi-ay-odenmeli.png">
+
+  <link rel="stylesheet" href="../../style.css?v=9ae079de">
+  <link rel="stylesheet" href="../editoryal.css?v=3bb6a509">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "ORCID",
+        "value": "https://orcid.org/0009-0005-8730-3577"
+      },
+      "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/koraonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://dl.acm.org/profile/81100070426",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/",
+      "url": "https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/",
+      "name": "İkramiye hangi ay ödenirse daha az kesilir?",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "inLanguage": "tr",
+      "primaryImageOfPage": "https://korayoner.dev/images/makale/ikramiye-hangi-ay-odenmeli.png"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/#article",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "headline": "Ücret ödemelerinin zamanlaması: kümülatif tarife ile aylık prim tavanının etkileşimi",
+      "alternativeHeadline": "The Timing of Wage Payments: Interaction of a Cumulative Tax Schedule with a Monthly Contribution Ceiling",
+      "description": "Kümülatif gelir vergisi tarifesi altında ücret ödemelerinin yıl içi dağılımının vergi yükünü değiştirmediğini, aylık sosyal güvenlik prim tavanının bu nötrlüğü kırdığını ve kırılmanın yönünü tam bordro benzetimiyle ölçer.",
+      "inLanguage": "tr",
+      "datePublished": "2026-09-18",
+      "dateModified": "2026-09-18",
+      "author": { "@id": "https://korayoner.dev/#oner-koray" },
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+      "image": "https://korayoner.dev/images/makale/ikramiye-hangi-ay-odenmeli.png",
+      "mainEntityOfPage": "https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "keywords": "ikramiye vergisi, prim, kümülatif vergi matrahı, SGK tavanı, ödeme zamanlaması, işveren maliyeti",
+      "about": [
+        { "@type": "Thing", "name": "Ücret ödemelerinin zamanlaması" },
+        { "@type": "Thing", "name": "Sosyal güvenlik prim tavanı" },
+        { "@type": "Thing", "name": "Kümülatif gelir vergisi matrahı" }
+      ],
+      "citation": [
+        { "@type": "Legislation", "name": "193 sayılı Gelir Vergisi Kanunu, m.103 ve m.63 — tarife ve safi ücret" },
+        { "@type": "Legislation", "name": "193 sayılı Gelir Vergisi Kanunu, m.23/1-(18) — asgari ücret istisnası" },
+        { "@type": "Legislation", "name": "5510 sayılı Kanun, m.82 — prime esas kazancın alt ve üst sınırı" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "İkramiye hangi ay ödenirse daha az vergi kesilir?", "acceptedAnswer": { "@type": "Answer", "text": "2026 için hiçbiri. Gelir vergisi kümülatif matrah üzerinden hesaplandığı için on iki ayın hangisinde ödendiğinden bağımsız olarak yıllık vergi aynı çıkar. Asgari ücret istisnası da her ay aynı tutarda uygulandığı için değişmez. Ay seçimi yalnızca asgari ücretin yıl ortasında zamlandığı yıllarda fark eder, çünkü SGK tavanı o zaman değişir." } },
+        { "@type": "Question", "name": "O hâlde ne fark ediyor?", "acceptedAnswer": { "@type": "Answer", "text": "İkramiyenin kaç ödemeye bölündüğü. Sosyal güvenlik primi aylık bir tavanla sınırlı olduğu için, ödeme tek ayda toplandığında o ayın prime esas kazancı tavana dayanır ve aşan kısımdan prim alınmaz. Bölündüğünde her ödeme tavanın altında kalır ve tam prim alınır. Bu yalnızca aylık brüt ile ikramiyenin toplamı tavanı aştığında ortaya çıkar." } },
+        { "@type": "Question", "name": "Prim azalınca vergi de azalır mı?", "acceptedAnswer": { "@type": "Answer", "text": "Tam tersi. Sosyal güvenlik primi gelir vergisi matrahından düşülüyor; prim azalınca matrah büyür ve gelir vergisi artar. İki etki ters yönlü çalışır. Net sonuç yine de çalışan lehine kalır, çünkü prim tasarrufu vergi artışından büyüktür." } },
+        { "@type": "Question", "name": "İşveren için de aynı mı?", "acceptedAnswer": { "@type": "Answer", "text": "İşverenin kazancı daha büyük. İşveren prim payı işçi payından yüksek olduğu için tavanın kestiği tutar da daha fazla. Yani tek ödemede toplamak iki tarafın da lehine ve teşvikler aynı yönde. Tavanın bu tasarımı, ödemeleri tek aya yığmayı teşvik eden bir yapı üretiyor." } },
+        { "@type": "Question", "name": "Asgari ücretli için de geçerli mi?", "acceptedAnswer": { "@type": "Answer", "text": "Aylık brüt ile ikramiyenin toplamı SGK tavanını aşmadığı sürece hiçbir fark oluşmaz — asgari ücretli için bu, çok büyük bir ikramiye gerektirir. Tavanın altında kalan bütün ücretlerde zamanlama tam olarak nötrdür." } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../otv-hesaplama/">ÖTV</a></li>
+          <li><a href="../../mtv-hesaplama/">MTV</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> İkramiyenin zamanlaması
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Vergi · Araştırma</p>
+        <h1 id="hero-title">İkramiye hangi ay ödenirse daha az kesilir?</h1>
+        <p class="ed-standfirst">Yılın hangi ayında ödendiğine göre ikramiyeden farklı kesinti
+          yapıldığı yaygın bir kanı. <strong>2026 için doğru değil:</strong> on iki ayın
+          hepsinde yıllık net kuruşu kuruşuna aynı. Fark eden şey ay değil, ikramiyenin
+          <strong>kaç ödemeye bölündüğü</strong> — ve o da yalnızca tek bir koşulda.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-18">18 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <article>
+        <figure class="ed-veri-gorseli">
+          <img src="../../images/makale/ikramiye-hangi-ay-odenmeli.png"
+               width="1200" height="630" loading="lazy" decoding="async"
+               alt="Aynı ikramiye kaç ödemeye bölünürse yıllık netin nasıl düştüğünü gösteren basamaklı grafik">
+          <figcaption>Aynı toplam ikramiye, farklı sayıda ödemeye bölündüğünde. Düşüş
+            gelir vergisinden değil, aylık prim tavanının devre dışı kalmasından geliyor —
+            ve her taksit tavanın altına indiğinde duruyor.</figcaption>
+        </figure>
+
+        <div class="legal-note verdict">
+          <h2 id="kisa-cevap">Kısa cevap</h2>
+          <p><strong>Ay seçimi fark etmiyor.</strong> Gelir vergisi kümülatif matrah
+            üzerinden hesaplandığı için, ikramiyeyi Ocak'ta da Aralık'ta da alsanız yıllık
+            vergi aynı çıkıyor. Asgari ücret istisnası da her ay aynı tutarda uygulandığı
+            için değişmiyor.</p>
+          <p><strong>Fark eden şey, ikramiyenin kaç ödemeye bölündüğü</strong> — ve bu
+            yalnızca aylık brüt ile ikramiyenin toplamı <strong>SGK tavanını</strong>
+            aştığında ortaya çıkıyor. Tavanın altındaki bütün ücretlerde zamanlama tam
+            olarak nötr.</p>
+          <p>Tek istisna: asgari ücretin yıl ortasında zamlandığı yıllarda SGK tavanı da
+            değiştiği için ay seçimi fark etmeye başlıyor. 2026'da tek dönem var, bu yüzden
+            bu yıl için nötrlük tam.</p>
+        </div>
+
+        <h2 id="neden">Neden ay seçimi nötr?</h2>
+        <p>Ücretten kesilen gelir vergisi aylık değil, <strong>kümülatif</strong> hesaplanıyor.
+          Bir ayın vergisi şu farktan ibaret: yıl başından o aya kadar biriken matrahın
+          vergisi, eksi bir önceki aya kadar birikenin vergisi.</p>
+        <p class="ed-formul"><strong>o ayın vergisi = tarife(birikim + matrah) − tarife(birikim)</strong></p>
+        <p>On iki ay boyunca toplandığında ortadaki terimler birbirini götürüyor ve geriye
+          yalnızca <em>tarife(yıllık matrah)</em> kalıyor. Yıl içi dağılım denklemden
+          düşüyor. İkramiyeyi hangi ay aldığınız, yıllık matrahı değiştirmediği sürece
+          vergiyi de değiştirmiyor.</p>
+        <p>Asgari ücret istisnası da bu sonucu bozmuyor, çünkü fiili ücretten bağımsız:
+          her ay asgari ücretin matrahı üzerinden hesaplanıp hesaplanan vergiden
+          düşülüyor. Aylık tutarı ikramiyeye göre değişmiyor.</p>
+
+<!-- IKRAMIYE-AY:BASLANGIC -->
+          <table class="payroll">
+            <caption>Ay seçimi yıllık neti değiştiriyor mu?</caption>
+            <thead>
+              <tr>
+                <th scope="col">Yıl</th>
+                <th scope="col">Aylık SGK tavanı (TL)</th>
+                <th scope="col">Tavan yıl boyunca sabit mi?</th>
+                <th scope="col">En iyi ve en kötü ay arasındaki fark</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">2020</th><td>22.073</td><td>Evet</td><td>Fark yok</td></tr>
+            <tr><th scope="row">2021</th><td>26.831</td><td>Evet</td><td>Fark yok</td></tr>
+            <tr><th scope="row">2022</th><td>37.530 → 48.533</td><td>Hayır, Temmuz'da değişiyor</td><td>1.073 TL</td></tr>
+            <tr><th scope="row">2023</th><td>75.060 → 100.609</td><td>Hayır, Temmuz'da değişiyor</td><td>2.491 TL</td></tr>
+            <tr><th scope="row">2024</th><td>150.019</td><td>Evet</td><td>Fark yok</td></tr>
+            <tr><th scope="row">2025</th><td>195.041</td><td>Evet</td><td>Fark yok</td></tr>
+            <tr><th scope="row">2026</th><td>297.270</td><td>Evet</td><td>Fark yok</td></tr>
+            </tbody>
+          </table>
+<!-- IKRAMIYE-AY:BITIS -->
+
+        <p>Tablonun son sütunu asıl anlatıyı taşıyor. <strong>2022 ve 2023 dışındaki
+          bütün yıllarda fark yok</strong> — ay seçimi tam olarak nötr. O iki yılda ise var,
+          çünkü asgari ücret
+          Temmuz'da zamlandı ve <strong>SGK tavanı da onunla birlikte yükseldi</strong>.
+          Tavan yükselince tavanın kestiği prim azalıyor, yani daha çok prim ödeniyor.
+          Sonuç sezgiye aykırı: o yıllarda ikramiyeyi <em>zamdan önce</em> ödemek çalışan
+          lehine.</p>
+
+        <h2 id="tavan">Nötrlüğü kıran şey: aylık prim tavanı</h2>
+        <p>Sosyal güvenlik primi, gelir vergisinden farklı olarak <strong>aylık</strong>
+          hesaplanıyor ve bir tavanı var. Prime esas kazanç o tavanı aştığında aşan kısımdan
+          prim alınmıyor.</p>
+        <p>Buradan şu çıkıyor: ikramiye tek ayda ödenirse o ayın kazancı tavana dayanıyor ve
+          ikramiyenin tavanı aşan kısmı primsiz kalıyor. Aynı ikramiye on iki aya
+          bölündüğünde her ödeme tavanın altında kalıyor ve tamamından prim alınıyor.</p>
+
+<!-- IKRAMIYE-ESIK:BASLANGIC -->
+          <table class="payroll">
+            <caption>Zamanlamanın fark etmeye başladığı ikramiye tutarı (2026)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Aylık brüt ücret</th>
+                <th scope="col">Asgari ücretin katı</th>
+                <th scope="col">Bu tutara kadar fark yok</th>
+                <th scope="col">Aylık SGK tavanı</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">66.060 TL</th><td>2× asgari ücret</td><td>231.210 TL</td><td>297.270 TL</td></tr>
+            <tr><th scope="row">132.120 TL</th><td>4× asgari ücret</td><td>165.150 TL</td><td>297.270 TL</td></tr>
+            <tr><th scope="row">198.180 TL</th><td>6× asgari ücret</td><td>99.090 TL</td><td>297.270 TL</td></tr>
+            <tr><th scope="row">264.240 TL</th><td>8× asgari ücret</td><td>33.030 TL</td><td>297.270 TL</td></tr>
+            </tbody>
+          </table>
+<!-- IKRAMIYE-ESIK:BITIS -->
+
+        <p>Tablo, zamanlamanın ne zaman önem kazandığını veriyor: ikramiye bu tutarların
+          altında kaldığı sürece nasıl ödendiğinin hiçbir etkisi yok. Aylık ücret yükseldikçe
+          tavana kalan mesafe daraldığı için eşik de düşüyor — yani zamanlama, yüksek
+          ücretlilerde daha küçük ikramiyelerde bile fark etmeye başlıyor.</p>
+
+        <h2 id="parca">Kaç ödemeye bölünmeli?</h2>
+        <p>Eşik aşıldığında yön tek: <strong>az sayıda ödeme, çalışanın da işverenin de
+          lehine.</strong></p>
+
+<!-- IKRAMIYE-PARCA:BASLANGIC -->
+          <table class="payroll">
+            <caption>Aynı ikramiye kaç ödemeye bölünürse (2026, aylık brüt 165.150 TL, ikramiye 660.600 TL)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Ödeme sayısı</th>
+                <th scope="col">Yıllık SGK ve işsizlik</th>
+                <th scope="col">Yıllık gelir vergisi</th>
+                <th scope="col">Yıllık net</th>
+                <th scope="col">Tek ödemeye göre net</th>
+                <th scope="col">Tek ödemeye göre işveren maliyeti</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">1 ödemede</th><td>317.088 TL</td><td>598.478 TL</td><td>1.709.787 TL</td><td>—</td><td>—</td></tr>
+            <tr><th scope="row">2 ödemede</th><td>336.906 TL</td><td>591.542 TL</td><td>1.696.905 TL</td><td>-12.882 TL</td><td>31.379 TL</td></tr>
+            <tr><th scope="row">3 ödemede</th><td>356.724 TL</td><td>584.605 TL</td><td>1.684.023 TL</td><td>-25.763 TL</td><td>62.757 TL</td></tr>
+            <tr><th scope="row">4 ödemede</th><td>376.542 TL</td><td>577.669 TL</td><td>1.671.141 TL</td><td>-38.645 TL</td><td>94.136 TL</td></tr>
+            <tr><th scope="row">6 ödemede</th><td>396.360 TL</td><td>570.733 TL</td><td>1.658.260 TL</td><td>-51.527 TL</td><td>125.514 TL</td></tr>
+            <tr><th scope="row">12 ödemede</th><td>396.360 TL</td><td>570.733 TL</td><td>1.658.260 TL</td><td>-51.527 TL</td><td>125.514 TL</td></tr>
+            </tbody>
+          </table>
+<!-- IKRAMIYE-PARCA:BITIS -->
+
+        <p>Tabloda dikkat edilecek üç şey var.</p>
+        <p><strong>Birincisi, gelir vergisi ters yönde hareket ediyor.</strong> Ödeme
+          sayısı arttıkça prim artıyor, ama gelir vergisi <em>azalıyor</em>. Sebebi
+          basit: prim, gelir vergisi matrahından düşülüyor. Daha çok prim ödeyen daha az
+          vergi matrahı gösteriyor. İki etki ters çalışıyor ve prim tarafı ağır basıyor.</p>
+        <p><strong>İkincisi, etki bir yerde duruyor.</strong> Bölme sayısı arttıkça fark
+          büyümeye devam etmiyor; her taksit tavanın altına indiği anda doyuma ulaşıyor.
+          Ondan sonra daha fazla bölmenin hiçbir etkisi yok.</p>
+        <p><strong>Üçüncüsü, işveren çalışandan daha çok kazanıyor.</strong> İşveren prim
+          payı işçi payından yüksek olduğu için tavanın kestiği tutar da daha büyük. Yani
+          tek ödemede toplamak iki tarafın da işine geliyor; teşvikler çatışmıyor.</p>
+        <p>Bunun bir politika sonucu var ve yazının kapsamının ötesinde: aylık tavan, ücret
+          ödemelerini tek aya yığmayı teşvik eden bir yapı üretiyor. Prim tabanını aşındıran
+          bu davranışın ölçeği burada ölçülmedi.</p>
+
+        <h2 id="yontem">Yöntem, sınırlar ve varsayımlar</h2>
+        <p>Bütün tutarlar sitenin bordro motoruyla, ay ay kümülatif matrah takip edilerek
+          hesaplandı; hiçbiri elle yazılmadı. Tavan, tarife ve asgari ücret tek bir parametre
+          dosyasından geliyor ve testler bu yazıdaki her hücreyi o dosyadan yeniden
+          hesaplayıp karşılaştırıyor.</p>
+        <p>Ücretin ayın tamamında ve asgari ücretin altına düşmeyen bir brütle çalışıldığı
+          varsayılıyor; modül bunun dışındaki girdiyi kabul etmiyor. İkramiye brüt tutar
+          olarak veriliyor ve ücretle aynı ayda, aynı işverence ödeniyor. Birden fazla
+          işverenden ücret alınması hâlinde tablo değişir — o durumu
+          <a href="../iki-isten-maas-beyanname-siniri/">ayrı bir yazıda</a> ele aldım.</p>
+        <p>Hesaba katılmayanlar: SGK teşvikleri, engellilik indirimi, özel sigorta ve sendika
+          aidatı gibi matrahı azaltan ödemeler, ve ikramiyenin ödendiği ayda eksik gün
+          bulunması. Bunların her biri eşiği kaydırır ama önermelerin yönünü değiştirmez.</p>
+        <p>Yazı vergi danışmanlığı değildir. Ödeme takvimi iş sözleşmesi ve toplu iş
+          sözleşmesi hükümlerine tabidir; buradaki hesap yalnızca yükün nasıl değiştiğini
+          gösterir.</p>
+
+        <h2 id="kaynaklar">Kaynaklar</h2>
+        <ul>
+          <li>193 sayılı Gelir Vergisi Kanunu, m.103 (tarife), m.63 (safi ücret ve primin
+            indirimi), m.23/1-18 (asgari ücret istisnası).</li>
+          <li>5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu, m.82 —
+            prime esas kazancın günlük alt sınırı ve üst sınırı.</li>
+          <li>Hesaplar <a href="https://www.npmjs.com/package/hesap-cekirdegi" rel="noopener">hesap-cekirdegi</a>
+            paketiyle yeniden üretilebilir; parametreler ve testler açık kaynak.</li>
+        </ul>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+
+        <h3>İkramiye hangi ay ödenirse daha az vergi kesilir?</h3>
+        <p>2026 için hiçbiri. Gelir vergisi kümülatif hesaplandığı için on iki ayın
+          hangisinde ödendiğinden bağımsız olarak yıllık vergi aynı çıkar. Ay seçimi
+          yalnızca asgari ücretin yıl ortasında zamlandığı yıllarda fark eder.</p>
+
+        <h3>O hâlde ne fark ediyor?</h3>
+        <p>İkramiyenin kaç ödemeye bölündüğü — ve yalnızca aylık brüt ile ikramiyenin
+          toplamı SGK tavanını aşarsa. Tavanın altında zamanlama tam olarak nötrdür.</p>
+
+        <h3>Prim azalınca vergi de azalır mı?</h3>
+        <p>Tam tersi. Prim, gelir vergisi matrahından düşülüyor; prim azalınca matrah büyür
+          ve vergi artar. Net sonuç yine de çalışan lehine kalır, çünkü prim tasarrufu
+          vergi artışından büyüktür.</p>
+
+        <h3>İşveren için de aynı mı?</h3>
+        <p>İşverenin kazancı daha büyük, çünkü işveren prim payı işçi payından yüksek.
+          Tek ödemede toplamak iki tarafın da lehine.</p>
+
+        <h2 id="ilgili">İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../../prim-ikramiye-vergisi/">Prim ve ikramiye vergisi hesaplama</a>
+            — kendi tutarınızla deneyin.</li>
+          <li><a href="../../maas-hesaplama/">Maaş hesaplama</a> — 12 aylık bordro dökümü.</li>
+          <li><a href="../maasim-neden-dustu/">Maaşım neden düştü?</a> — aynı kümülatif
+            matrahın yıl içindeki etkisi.</li>
+          <li><a href="../dilim-kaymasi-2022-2026/">Dilim kayması gerçekten oluyor mu?</a></li>
+        </ul>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

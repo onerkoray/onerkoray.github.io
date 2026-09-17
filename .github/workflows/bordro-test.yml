@@ -278,6 +278,16 @@ jobs:
       # BDDK'nin asgari odeme kurali da Kurul karariyla degisir. Tablolar
       # bu ikisinden turedigi icin once uretecin ciktisi, sonra sayilar
       # denetleniyor.
+      # Ikramiye yazisinin tablolari SGK tavanindan ve tarifeden turuyor;
+      # 2027 girildiginde ikisi de degisir. Ayrica asgari ucret yil ortasinda
+      # zamlanirsa tavan da degisir ve "ay secimi notr" onermesi o yil icin
+      # kirilir -- test bunu iki yonlu olcuyor.
+      - name: İkramiye tablolarının güncelliği
+        run: node tools/ikramiye-tablosu.js --check
+
+      - name: İkramiye zamanlaması yazısının sayıları
+        run: node makaleler/ikramiye-hangi-ay-odenmeli/sayi-testi.js
+
       - name: Kart tablolarının güncelliği
         run: node tools/kart-tablosu.js --check
 
