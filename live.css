@@ -1,4 +1,4 @@
-/* Canlılık katmanı — hero canlı bar, atmosfer, komut paleti, mikro dokunuşlar */
+/* Canlılık katmanı — hero canlı bar, komut paleti, mikro dokunuşlar */
 
 /* ---- Zaman paletine göre hero tonu (çok hafif) ---- */
 .hero { position: relative; }
@@ -44,36 +44,6 @@
 .site-header .header-inner { transition: padding .22s ease; }
 .site-header.is-shrunk .header-inner { padding-block: .35rem; }
 
-/* ---- Atmosfer efektleri (havaya/saate bağlı, çok hafif) ---- */
-.atmo { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0; transition: opacity 1.5s ease; }
-body.w-rain .atmo-rain, body.w-snow .atmo-snow, body.w-stars .atmo-stars { opacity: 1; }
-.atmo-rain {
-  background-image: repeating-linear-gradient(102deg, transparent 0 9px, rgba(96,140,180,.10) 9px 10px, transparent 10px 26px);
-  background-size: 120% 200%; animation: rainFall .9s linear infinite;
-}
-@keyframes rainFall { to { background-position: -60px 240px; } }
-.atmo-snow {
-  background-image:
-    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.55), transparent 60%),
-    radial-gradient(1.6px 1.6px at 60% 70%, rgba(255,255,255,.45), transparent 60%),
-    radial-gradient(2.2px 2.2px at 80% 20%, rgba(255,255,255,.5), transparent 60%),
-    radial-gradient(1.4px 1.4px at 40% 85%, rgba(255,255,255,.4), transparent 60%);
-  background-size: 260px 260px, 200px 200px, 320px 320px, 180px 180px;
-  animation: snowFall 16s linear infinite;
-}
-@keyframes snowFall { to { background-position: 40px 260px, -30px 200px, 60px 320px, -20px 180px; } }
-.atmo-stars {
-  background-image:
-    radial-gradient(1.6px 1.6px at 12% 16%, rgba(255,255,255,.7), transparent 60%),
-    radial-gradient(1.2px 1.2px at 38% 7%, rgba(255,255,255,.5), transparent 60%),
-    radial-gradient(1.8px 1.8px at 64% 20%, rgba(255,255,255,.6), transparent 60%),
-    radial-gradient(1.2px 1.2px at 85% 11%, rgba(255,255,255,.5), transparent 60%),
-    radial-gradient(1.4px 1.4px at 50% 14%, rgba(255,255,255,.4), transparent 60%);
-  background-repeat: no-repeat; background-size: 100% 38%;
-  animation: starTwinkle 4.5s ease-in-out infinite alternate;
-}
-@keyframes starTwinkle { from { opacity: .5; } to { opacity: 1; } }
-
 /* ---- Cursor glow + hero parallax ---- */
 .cursor-glow {
   position: fixed; left: 0; top: 0; width: 340px; height: 340px; border-radius: 50%;
@@ -116,7 +86,6 @@ body.has-pointer .cursor-glow { opacity: 1; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .atmo { display: none; }
   .live-dot::before, .lc-skeleton .lc-value { animation: none; }
   .cursor-glow { display: none; }
 }

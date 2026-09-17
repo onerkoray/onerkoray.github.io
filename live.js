@@ -1,4 +1,4 @@
-/* Canlılık katmanı — saat, hava, atmosfer, komut paleti (bağımlılıksız, yalnız ana sayfa) */
+/* Canlılık katmanı — saat, hava, komut paleti (bağımlılıksız, yalnız ana sayfa) */
 (function () {
   "use strict";
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -108,34 +108,17 @@
   tick();
   setInterval(tick, 1000);
 
-  /* ---------- Atmosfer katmanları ---------- */
-  ["atmo-rain", "atmo-snow", "atmo-stars"].forEach(function (c) {
-    document.body.appendChild(el("div", "atmo " + c));
-  });
-  function isDarkNow() {
-    var t = document.documentElement.getAttribute("data-theme");
-    if (t === "dark") return true;
-    if (t === "light") return false;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  }
-  function setAtmosphere(kind) {
-    document.body.classList.remove("w-rain", "w-snow", "w-stars");
-    var h = new Date().getHours();
-    var night = h >= 21 || h < 6;
-    if (kind === "rain") document.body.classList.add("w-rain");
-    else if (kind === "snow") document.body.classList.add("w-snow");
-    else if (night && isDarkNow()) document.body.classList.add("w-stars");
-  }
-
   /* ---------- Hava durumu (Open-Meteo, anahtar gerektirmez) ---------- */
+  /* [ad, simge]. Ucuncu bir eleman daha vardi -- atmosfer katmaninin
+     turunu secerdi; katman kaldirilinca olu veri haline geldi. */
   function wxInfo(code) {
-    if (code === 0) return ["Açık", "☀️", "clear"];
-    if (code <= 2) return ["Az bulutlu", "🌤️", "clear"];
-    if (code === 3) return ["Bulutlu", "☁️", "cloud"];
-    if (code <= 48) return ["Sisli", "🌫️", "cloud"];
-    if (code <= 67 || (code >= 80 && code <= 82)) return ["Yağmurlu", "🌧️", "rain"];
-    if (code <= 77 || code === 85 || code === 86) return ["Kar yağışlı", "🌨️", "snow"];
-    return ["Sağanak/Fırtına", "⛈️", "rain"];
+    if (code === 0) return ["Açık", "☀️"];
+    if (code <= 2) return ["Az bulutlu", "🌤️"];
+    if (code === 3) return ["Bulutlu", "☁️"];
+    if (code <= 48) return ["Sisli", "🌫️"];
+    if (code <= 67 || (code >= 80 && code <= 82)) return ["Yağmurlu", "🌧️"];
+    if (code <= 77 || code === 85 || code === 86) return ["Kar yağışlı", "🌨️"];
+    return ["Sağanak/Fırtına", "⛈️"];
   }
   function loadWeather(lat, lon, city) {
     var u = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon +
@@ -148,7 +131,6 @@
       $("#lv-wx-sub").textContent = w[0];
       $("#lv-wx-card").classList.remove("lc-skeleton");
       sunTimes = { sunrise: new Date(d.daily.sunrise[0]), sunset: new Date(d.daily.sunset[0]) };
-      if (!reduced) setAtmosphere(w[2]);
       tick();
     }).catch(function () { fallbackWx(); });
   }
@@ -158,7 +140,6 @@
     $("#lv-wx-card").classList.remove("lc-skeleton");
     $("#lv-sun-card").classList.remove("lc-skeleton");
     $("#lv-sun").textContent = "—";
-    if (!reduced) setAtmosphere("clear");
   }
   /* ŞEHİR TAHMİNİ ONAYA BAĞLI.
      Bu istek IP adresini üçüncü bir tarafa (ipapi.co) ulaştırıyor ve
