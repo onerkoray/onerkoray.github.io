@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-16T00:00:00+03:00</updated>
+  <updated>2026-09-18T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>İkramiye Hangi Ay Ödenirse Daha Az Kesilir?</title>
+    <link href="https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/"/>
+    <id>https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/</id>
+    <updated>2026-09-18T00:00:00+03:00</updated>
+    <summary>İkramiye hangi ay ödenirse daha az kesilir? 2026'da hiçbiri — net her ayda aynı. Fark eden şey ödeme sayısı, o da yalnızca SGK tavanı aşılırsa.</summary>
+  </entry>
 
   <entry>
     <title>İki İşten Maaş Alan Beyanname Verir mi?</title>
