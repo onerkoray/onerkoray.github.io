@@ -87,6 +87,111 @@ var d = M.hesapla({ yil: 2026, isyeriKira: 350000 });
 dogru("sinir altinda beyana girmiyor", d.isyeriBeyanaGirer === false);
 esit("beyana girmeyince vergi yok", d.goturu.odenecek, 0);
 
+/* --- Olcut: kiranin kendisi DEGIL, iki okumanin birlesimi -------------
+   Eskiden karar yalnizca brut kiraya bakiyordu ve diger geliri TAMAMEN
+   yok sayiyordu: 350.000 TL isyeri kirasi + 5.000.000 TL diger gelirde
+   motor "beyan edilmez" diyordu. Hata guvensiz yondeydi.
+
+   Motor artik iki okumayi birlikte uyguluyor -- lafiz (safi toplam) ve
+   yerlesik uygulama (brut kira) -- ve hangisi tetiklerse beyan diyor.
+   Testler ikisini AYRI AYRI bagliyor ki biri sessizce dusmesin. */
+console.log("\nBeyan olcutu — brut okuma ile toplam okumasi");
+
+var t1 = M.hesapla({ yil: 2026, isyeriKira: 350000, digerGelir: 5000000 });
+dogru("diger gelir haddi asiriyorsa beyana girer", t1.isyeriBeyanaGirer === true);
+dogru("bunu tetikleyen TOPLAM okumasi", t1.goturu.beyanToplamdan === true);
+dogru("brut okumasi tetiklemiyor", t1.goturu.beyanBrutten === false);
+
+var t2 = M.hesapla({ yil: 2026, isyeriKira: 350000 });
+dogru("diger gelir yoksa ayni kira beyana girmiyor", t2.isyeriBeyanaGirer === false);
+/* KONTROL: iki sonucu ayiran tek sey diger gelir. Olcut diger geliri
+   yok sayarsa bu iki satir birbirine esitlenir ve test duser. */
+dogru("farki yaratan yalnizca diger gelir",
+  t1.isyeriBeyanaGirer !== t2.isyeriBeyanaGirer);
+
+/* Brut okuma korunuyor: 450.000 TL brut haddi asiyor, ama goturu gider
+   sonrasi safi 382.500 TL ile ALTINDA kaliyor. Yalnizca lafza baksaydik
+   bu kisi beyandan cikardi. */
+var t3 = M.hesapla({ yil: 2026, isyeriKira: 450000 });
+dogru("brut haddi asiyorsa beyana girer", t3.isyeriBeyanaGirer === true);
+dogru("bunu tetikleyen BRUT okumasi", t3.goturu.beyanBrutten === true);
+dogru("safi toplam ise sinirin altinda", t3.goturu.beyanToplamdan === false);
+esit("safi toplam 382.500", t3.goturu.vergiyeTabiToplam, 382500);
+
+/* Esik "asan" diyor: tam tutar yetmiyor, bir lira yetiyor. */
+dogru("tam had beyana girmiyor",
+  M.hesapla({ yil: 2026, isyeriKira: 400000 }).isyeriBeyanaGirer === false);
+dogru("haddi bir lira asmak yetiyor",
+  M.hesapla({ yil: 2026, isyeriKira: 400001 }).isyeriBeyanaGirer === true);
+
+/* Had tarifeden turedigi icin yila bagli; 2026'da ikinci dilim 400.000. */
+esit("olcutun haddi tarifenin ikinci dilimi", P[2026].dilimler[1][0], 400000);
+
+/* KONTROL: parametrenin dosyadan silinmis olmasi YETMEZ -- motorun
+   turetilmis degeri gercekten OKUDUGUNU da olcmek gerekiyor. Motor
+   iceride 400.000'i elle tasisaydi yukaridaki satirlarin hepsi yine
+   gecerdi, cunku 2026'da iki sayi ayni. Tarifeyi gecici olarak kaydirip
+   kararin onunla birlikte kaydigini olcuyoruz: 2027'de olacak sey budur. */
+(function () {
+  var eski = P[2026].dilimler;
+  var girdi = { yil: 2026, isyeriKira: 450000 };
+  var once = M.hesapla(girdi).isyeriBeyanaGirer;
+  var sonra;
+  try {
+    P[2026].dilimler = eski.map(function (d, i) {
+      return i === 1 ? [500000, d[1]] : d.slice();
+    });
+    sonra = M.hesapla(girdi).isyeriBeyanaGirer;
+  } finally {
+    P[2026].dilimler = eski;
+  }
+  dogru("tarife kaymadan once beyana giriyor", once === true);
+  dogru("ikinci dilim 500.000'e kayinca girmiyor", sonra === false);
+  dogru("tarife geri konuldu", P[2026].dilimler === eski);
+})();
+
+/* Beyana GIRMEYEN kiranin stopaji mahsup EDILMEZ: o stopaj nihai
+   vergidir, iade dogurmaz. Mahsup edilseydi baska gelirin vergisini
+   dusurur ve motor olmayan bir alacak uretirdi. */
+(function () {
+  /* Dava AYRISMA BOLGESININ DISINDA secildi: 300.000 brut kira, gerçek
+     gider sifir olsa bile toplam 350.000 ile haddin altinda kaliyor,
+     dolayisiyla iki yontem de "beyan edilmez" diyor. */
+  var r = M.hesapla({ yil: 2026, isyeriKira: 300000, digerGelir: 50000,
+                      digerStopaj: 5000 });
+  dogru("bu kira beyana girmiyor", r.isyeriBeyanaGirer === false);
+  dogru("iki yontem de ayni diyor",
+    r.goturu.isyeriBeyanaGirer === false && r.gercek.isyeriBeyanaGirer === false);
+  esit("girmeyen kiranin stopaji sifir", r.isyeriStopaj, 0);
+  esit("mahsupta yalnizca diger stopaj var", r.goturu.mahsup, 5000);
+})();
+
+/* --- Gider yontemi kararin KENDISINI degistirebiliyor ------------------
+   Sinir safi tutara gore de olculdugu icin, daha yuksek gider toplami
+   haddin altinda tutabiliyor. 350.000 brut kira + 100.000 diger gelirde:
+     goturu  -> 297.500 + 100.000 = 397.500  (altinda, beyan yok)
+     gercek  -> 350.000 + 100.000 = 450.000  (ustunde, beyan var)
+   Motor bunu gizlemiyor: her yontem kendi kararini tasiyor, ust seviye
+   avantajli olanin karariyla konusuyor ve notlarda durum soyleniyor.
+   Burada beyan AVANTAJLI cikiyor cunku %20 stopaj, ilk dilimin %15'inden
+   yuksek -- beyan iade doguruyor. */
+(function () {
+  var r = M.hesapla({ yil: 2026, isyeriKira: 350000, digerGelir: 100000 });
+  dogru("goturu yontemi beyan gerektirmiyor", r.goturu.isyeriBeyanaGirer === false);
+  dogru("gercek yontemi beyan gerektiriyor", r.gercek.isyeriBeyanaGirer === true);
+  dogru("ust seviye avantajli yontemi tasiyor",
+    r.isyeriBeyanaGirer === (r.avantajli === "gercek"
+      ? r.gercek.isyeriBeyanaGirer : r.goturu.isyeriBeyanaGirer));
+  dogru("ayrisma kullaniciya soyleniyor",
+    r.notlar.some(function (n) { return n.indexOf("gider yöntemi") >= 0; }));
+  /* KONTROL: ayrismanin kaynagi gider farki. Gercek gideri goturuyle
+     ayni seviyeye getirirsek ayrisma KAPANMALI. */
+  var k = M.hesapla({ yil: 2026, isyeriKira: 350000, digerGelir: 100000,
+                      gercekGider: 52500 });
+  dogru("gider esitlenince ayrisma kapaniyor",
+    k.goturu.isyeriBeyanaGirer === k.gercek.isyeriBeyanaGirer);
+})();
+
 var e = M.hesapla({ yil: 2026, isyeriKira: 600000 });
 dogru("sinir asilinca beyana giriyor", e.isyeriBeyanaGirer === true);
 esit("stopaj mahsubu 600.000 x %20", e.isyeriStopaj, 120000);
@@ -154,6 +259,36 @@ dogru("efektif oran da yukseliyor",
 console.log("\nKredi faizi indirimi kaldirildi uyarisi");
 dogru("uyari her sonucta var",
   a.notlar.some(function (n) { return n.indexOf("7566") > -1; }));
+
+/* --- Sayfadaki iddia motorla ayni seyi mi soyluyor? --------------------
+   Sayfa artik somut bir ornek veriyor: 350.000 TL isyeri kirasi tek
+   basina beyan gerektirmez, yaninda 2.000.000 TL baska gelir varsa
+   gerektirir. Metin ile motor ayri yerlerde durdugu icin sessizce
+   ayrisabilirler; iddia burada motora baglaniyor.
+
+   HTML yoksa atlaniyor: bu test _cekirdek paketinde sayfasiz kosuyor. */
+(function () {
+  var fs = require("fs"), path = require("path");
+  var yol = path.join(__dirname, "..", "kira-geliri-vergisi-hesaplama", "index.html");
+  if (!fs.existsSync(yol)) return;
+  var html = fs.readFileSync(yol, "utf8");
+
+  console.log("\nSayfadaki iddia motorla uyusuyor mu");
+
+  /* Ornegin iki sayisi sayfada duruyor mu -- metin degisirse test
+     dusmeli, yoksa asagidaki motor olcumu bosa doner. */
+  dogru("sayfa 350.000 TL ornegini veriyor", html.indexOf("350.000 TL i\u015fyeri kiras\u0131") >= 0);
+  dogru("sayfa 2.000.000 TL karsi ornegini veriyor",
+    html.indexOf("2.000.000 TL ba\u015fka gelir") >= 0);
+  dogru("sayfa haddi m.86/1-c'ye dayandiriyor", html.indexOf("m.86/1-c") >= 0);
+
+  var tek = M.hesapla({ yil: 2026, isyeriKira: 350000 });
+  var yanli = M.hesapla({ yil: 2026, isyeriKira: 350000, digerGelir: 2000000 });
+  dogru("motor: 350.000 tek basina beyan gerektirmiyor",
+    tek.isyeriBeyanaGirer === false);
+  dogru("motor: yaninda 2.000.000 varsa gerektiriyor",
+    yanli.isyeriBeyanaGirer === true);
+})();
 
 console.log("\nGecersiz girdi");
 dogru("kira girilmezse hata", !!M.hesapla({ yil: 2026 }).hata);
