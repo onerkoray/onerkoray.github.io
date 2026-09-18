@@ -271,13 +271,43 @@ dogru("yalnız rakam yakalandı",
 
 console.log("\nGerçekten rastgele bir parolada kalıp UYDURULMUYOR");
 /* Yanlis pozitif de bir hata: her paroladaki bir seyi "kalip" ilan eden
-   bir arac, guclu parolalari da zayif gosterir ve guvenilmez olur. */
-var temiz = M.uret(secim({ uzunluk: 20, herSiniftanBir: true })).parola;
-var at = M.analiz(temiz);
-dogru("kalıp bulunmadı", at.kaliplar.length === 0, temiz + " -> " +
-  JSON.stringify(at.kaliplar));
-dogru("değerlendirme üst sınırı kullanıyor", at.degerlendirmeBit === at.ustSinirBit);
-dogru("çok güçlü sayıldı", M.seviye(at.degerlendirmeBit).sinif === "cok-guclu");
+   bir arac, guclu parolalari da zayif gosterir ve guvenilmez olur.
+
+   BU KONTROL ONCE TEK PAROLAYLA YAPILIYORDU VE KIRILGANDI. Rastgele 20
+   karakterde tesadufen tekrar ya da klavye sirasi olusabiliyor; olculdu:
+   %0,245, yani ~400 kosumda bir. CI 2026-09-18'de tam buna dustu.
+
+   Iddia zaten bir ORAN iddiasi -- "arac kalip uydurmuyor" demek, rastgele
+   parolalarin ezici cogunlugunda kalip bulunmamasi demek. Oyle olculuyor.
+   Esik gercek orandan uzak: gercek %0,25 iken sinir %2, yani arac
+   gercekten fazla isaretlemeye baslamadikca dusmez.
+
+   Ustelik onceki surumden daha guclu: kalipsiz cikan HER parolada
+   degerlendirme ve seviye de dogrulaniyor, yalnizca birinde degil. */
+var ORNEK = 2000, kalipli = 0, ilkKalipli = null;
+var degerlendirmeSapan = 0, seviyeSapan = 0, kalipsiz = 0;
+for (var pi = 0; pi < ORNEK; pi++) {
+  var p = M.uret(secim({ uzunluk: 20, herSiniftanBir: true })).parola;
+  var an = M.analiz(p);
+  if (an.kaliplar.length) {
+    kalipli++;
+    if (!ilkKalipli) ilkKalipli = p + " -> " +
+      JSON.stringify(an.kaliplar.map(function (k) { return k.tur; }));
+    continue;
+  }
+  kalipsiz++;
+  if (an.degerlendirmeBit !== an.ustSinirBit) degerlendirmeSapan++;
+  if (M.seviye(an.degerlendirmeBit).sinif !== "cok-guclu") seviyeSapan++;
+}
+var oran = kalipli / ORNEK;
+dogru("kalıp oranı çok düşük", oran < 0.02,
+  "oran: %" + (oran * 100).toFixed(2) + " (" + kalipli + "/" + ORNEK + ")" +
+  (ilkKalipli ? "  ilk örnek: " + ilkKalipli : ""));
+dogru("kalıpsız örnek bol", kalipsiz > ORNEK * 0.9, kalipsiz + "/" + ORNEK);
+dogru("kalıpsız parolalarda değerlendirme üst sınırı kullanıyor",
+  degerlendirmeSapan === 0, degerlendirmeSapan + " parolada sapma");
+dogru("kalıpsız parolalar çok güçlü sayıldı",
+  seviyeSapan === 0, seviyeSapan + " parolada sapma");
 
 console.log("\nBoş girdi");
 dogru("boş işaretlendi", M.analiz("").bos === true);
