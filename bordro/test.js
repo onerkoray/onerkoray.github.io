@@ -141,21 +141,109 @@ ok("Ücret tarifesinde 500.000'de de %27", B.dilimOrani(500000, B.parametre(2026
 ok("1.200.000'de tarifeler ayrışır: ücret dışı %35, ücret %27",
   B.dilimOrani(1200000, ud) === 0.35 && B.dilimOrani(1200000, B.parametre(2026).dilimler) === 0.27);
 
-/* 10 — Her yıl için parametre bütünlüğü */
+/* 10 — Her yıl için parametre bütünlüğü
+
+   NEDEN BU KADAR AYRINTILI
+   ------------------------
+   Bu blok bir yıl eklenirken açılan kapıdır. Yeni yılın rakamları elle
+   giriliyor ve yanlış girilen bir parametre SESSİZ: site hesaplamaya devam
+   eder, yalnızca yanlış hesaplar. Buradaki denetimler "şu sayı şudur"
+   demiyor — sayıları bilmiyoruz. Yapının kanunla tutarlı olduğunu söylüyor.
+
+   Somut olay: 2026'da SGK tavanı asgari ücretin 9 katına çıktı (önceki
+   bütün yıllarda 7,5). Doğru girilmişti, ama bunu anlamak parametre
+   dosyasını okumayı gerektirdi; hiçbir test ilişkiyi bağlamıyordu. Aynı
+   alan bir sonraki yıl eski katsayıyla yazılsaydı test yeşil kalırdı. */
 baslik("Parametre bütünlüğü");
+
+/* Sayısal alanların hepsi sonlu olmalı: undefined/NaN karşılaştırmaları
+   sessizce false döner ve denetimi kandırır. */
+function sayi(v) { return typeof v === "number" && isFinite(v); }
+
 B.yillar().forEach(function (yil) {
   var P = B.parametre(yil), sorun = [];
+
+  /* --- tarife ---------------------------------------------------------- */
   if (!P.dilimler || P.dilimler.length < 2) sorun.push("dilimler");
-  if (P.dilimler[P.dilimler.length - 1][0] !== null) sorun.push("son dilim açık uçlu değil");
+  else {
+    if (P.dilimler[P.dilimler.length - 1][0] !== null) sorun.push("son dilim açık uçlu değil");
+    P.dilimler.forEach(function (d, i) {
+      var son = i === P.dilimler.length - 1;
+      if (!son && !(sayi(d[0]) && d[0] > 0)) sorun.push((i + 1) + ". dilim eşiği sayı değil");
+      if (!(sayi(d[1]) && d[1] > 0 && d[1] < 1)) sorun.push((i + 1) + ". dilim oranı geçersiz");
+      if (i > 0) {
+        var onc = P.dilimler[i - 1];
+        /* Eşikler ve oranlar artan olmalı: tarife kümülatif okunuyor,
+           sırası bozuk bir tarife yanlış dilim seçtirir. */
+        if (!son && !(d[0] > onc[0])) sorun.push((i + 1) + ". eşik artmıyor");
+        if (!(d[1] > onc[1])) sorun.push((i + 1) + ". oran artmıyor");
+      }
+    });
+  }
+
+  /* Ücret dışı tarife: aynı uzunluk, aynı oranlar, eşikleri ücret
+     tarifesini AŞAMAZ (2026'da üçüncü dilim 1.000.000 / 1.500.000). */
+  if (P.dilimlerUcretDisi) {
+    var ud = P.dilimlerUcretDisi;
+    if (ud.length !== P.dilimler.length) sorun.push("ücret dışı tarife uzunluğu");
+    else ud.forEach(function (d, i) {
+      var u = P.dilimler[i];
+      if (d[1] !== u[1]) sorun.push((i + 1) + ". ücret dışı oran farklı");
+      if ((d[0] === null) !== (u[0] === null)) sorun.push((i + 1) + ". ücret dışı açık uç");
+      else if (d[0] !== null && d[0] > u[0]) sorun.push((i + 1) + ". ücret dışı eşik ücreti aşıyor");
+    });
+  }
+
+  /* --- asgari ücret ve prim sınırları ----------------------------------- */
   if (!P.donemler || !P.donemler.length || P.donemler[0].ay !== 1) sorun.push("donemler");
-  P.donemler.forEach(function (d) {
-    if (!(d.sgkTavan > d.asgariBrut)) sorun.push("tavan ≤ taban");
-    if (!(d.asgariNet > 0 && d.asgariNet < d.asgariBrut)) sorun.push("asgariNet");
-  });
+  else {
+    P.donemler.forEach(function (d, i) {
+      if (!(d.ay >= 1 && d.ay <= 12)) sorun.push("dönem ayı " + d.ay);
+      if (i > 0 && !(d.ay > P.donemler[i - 1].ay)) sorun.push("dönemler ay sırasında değil");
+      if (!(sayi(d.asgariBrut) && d.asgariBrut > 0)) sorun.push("asgariBrut");
+      if (!(sayi(d.asgariNet) && d.asgariNet > 0 && d.asgariNet < d.asgariBrut)) sorun.push("asgariNet");
+
+      /* İŞTE ASIL KAPI. 5510 m.82 üst sınırı alt sınırın KATI olarak
+         tanımlıyor; katsayı kanunla değişir, ilişki değişmez. Tavanı
+         katsayıdan bağımsız yazmak, ikisinin sessizce ayrışmasına izin
+         verirdi — tek doğruluk kaynağı kuralının prim tarafındaki hâli. */
+      if (!sayi(P.tavanKatsayisi) || P.tavanKatsayisi <= 0) sorun.push("tavanKatsayisi");
+      else if (!(sayi(d.sgkTavan) &&
+                 Math.abs(d.sgkTavan - d.asgariBrut * P.tavanKatsayisi) < 0.005)) {
+        sorun.push(d.ay + ". ay tavanı katsayıyla uyuşmuyor (" + d.sgkTavan +
+          " ≠ " + d.asgariBrut + " × " + P.tavanKatsayisi + ")");
+      }
+    });
+  }
+
+  /* --- kıdem tavanı ----------------------------------------------------- */
+  if (P.kidemTavanlari) {
+    P.kidemTavanlari.forEach(function (k, i) {
+      if (!(sayi(k.tutar) && k.tutar > 0)) sorun.push("kıdem tavanı tutarı");
+      if (i > 0 && !(k.ay > P.kidemTavanlari[i - 1].ay)) sorun.push("kıdem tavanları ay sırasında değil");
+    });
+  }
+
   if (P.istisnaRejimi === "agi" && !P.agiOranlari) sorun.push("agiOranlari");
   if (!P.dayanak) sorun.push("dayanak");
   ok(yil + " parametre bloğu tutarlı", sorun.length === 0, sorun.join(", "));
 });
+
+/* Yıllar arası tek yönlülük. Yeniden değerleme oranı negatif olmadığı
+   sürece ne asgari ücret ne de dilim eşikleri nominal olarak geriler;
+   gerilemişse yanlış yıla yazılmış bir rakam vardır. */
+(function () {
+  var sirali = B.yillar().slice().sort(function (a, b) { return a - b; });
+  for (var i = 1; i < sirali.length; i++) {
+    var onc = B.parametre(sirali[i - 1]), sim = B.parametre(sirali[i]), sorun = [];
+    if (!(sim.donemler[0].asgariBrut > onc.donemler[0].asgariBrut)) sorun.push("asgari ücret gerilemiş");
+    for (var j = 0; j < Math.min(onc.dilimler.length, sim.dilimler.length); j++) {
+      if (onc.dilimler[j][0] === null || sim.dilimler[j][0] === null) continue;
+      if (sim.dilimler[j][0] < onc.dilimler[j][0]) sorun.push((j + 1) + ". eşik gerilemiş");
+    }
+    ok(sirali[i] + " bir önceki yıla göre tutarlı", sorun.length === 0, sorun.join(", "));
+  }
+})();
 
 baslik("İşveren maliyeti ve 5 puanlık indirim");
 (function () {
