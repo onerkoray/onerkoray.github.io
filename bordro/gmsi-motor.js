@@ -122,13 +122,21 @@
     /* --- işyeri kirası beyan sınırı -------------------------------------
        Tevkifata tabi işyeri kirası, beyan sınırının altındaysa beyan
        edilmez ve kesilen stopaj nihai vergi olur. Sınır aşılırsa TAMAMI
-       beyana girer; sınır bir muafiyet değil, eşiktir. */
-    var isyeriBeyanaGirer = isyeri > K.isyeriBeyanSiniri;
+       beyana girer; sınır bir muafiyet değil, eşiktir.
+
+       SINIR DA PARAMETRE DEĞİL. GVK m.86/1-c onu "103 üncü maddede yazılı
+       tarifenin ikinci gelir diliminde yer alan tutar" diye tanımlıyor,
+       yani dilimler[1][0]. Bir süre 400.000 olarak elle yazılıydı: 2026
+       için doğru, ama tarife her yıl yeniden değerlemeyle kaydığı için
+       2027'de yerinde donacaktı — üst sınırın 2023'te yaşadığı bayatlamanın
+       aynısı, üstelik onu anlatan yorumun on satır altında. */
+    var isyeriBeyanSiniri = P.dilimler[1][0];
+    var isyeriBeyanaGirer = isyeri > isyeriBeyanSiniri;
     var isyeriMatrah = isyeriBeyanaGirer ? isyeri : 0;
     var isyeriStopaj = isyeriBeyanaGirer ? isyeri * K.isyeriStopaji : 0;
 
     if (isyeri > 0 && !isyeriBeyanaGirer) {
-      notlar.push("İşyeri kiranız " + K.isyeriBeyanSiniri.toLocaleString("tr-TR") +
+      notlar.push("İşyeri kiranız " + isyeriBeyanSiniri.toLocaleString("tr-TR") +
         " TL beyan sınırının altında; beyan edilmez, kesilen stopaj nihai vergidir.");
     }
 
