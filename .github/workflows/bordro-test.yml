@@ -333,6 +333,16 @@ jobs:
       - name: Görsel SEO regresyonları
         run: node tools/gorsel-seo-test.js
 
+      # Atif etiketleri DOI'li makalelerin kendi semasindan turuyor.
+      # Semada baslik/tarih/DOI degisirse etiket bayatlar; --check bunu
+      # yakalar. Ayri bicim testi etiketin KENDI kurallarina bakiyor --
+      # ozellikle DOI'siz sayfada etiket BULUNMAMASINA.
+      - name: Atıf etiketlerinin güncelliği
+        run: python tools/atif-etiketleri.py --check
+
+      - name: Atıf etiketlerinin biçimi
+        run: node tools/atif-test.js
+
       # TARIHE BAGLI IDDIALAR.
       # Sitenin en cok tiklanan sayfasi bir TARIHE dayaniyor: "5 Eylul 2026
       # itibariyla sunulmus teklif yok; TBMM 1 Ekim'de aciliyor". 1 Ekim
