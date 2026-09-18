@@ -98,7 +98,7 @@
         "mainEntity": [
           { "@type": "Question", "name": "2026'da kira geliri istisnası ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "Konut (mesken) kira geliri istisnası 2026 yılı için 58.000 TL'dir. Yıllık konut kira geliriniz bu tutarın altındaysa beyanname vermeniz gerekmez. İstisna yalnızca konut kirasına uygulanır; işyeri kirasına uygulanmaz." } },
           { "@type": "Question", "name": "Götürü gider mi, gerçek gider mi avantajlı?", "acceptedAnswer": { "@type": "Answer", "text": "Belgelenebilir giderleriniz, istisna sonrası kalan tutarın %15'inden fazlaysa gerçek gider avantajlıdır; azsa götürü gider. Bu araç iki yöntemi aynı anda hesaplayıp aradaki farkı gösterir. Götürü gideri seçen iki yıl geçmeden gerçek gider yöntemine dönemez." } },
-          { "@type": "Question", "name": "İşyeri kira gelirinde beyan sınırı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Üzerinden %20 stopaj yapılan işyeri kira gelirlerinde 2026 beyan sınırı 400.000 TL'dir. Bu sınırın altında kalırsanız beyan etmezsiniz ve kesilen stopaj nihai vergi olur. Sınır aşılırsa gelirin tamamı beyan edilir; kesilen stopaj hesaplanan vergiden mahsup edilir." } },
+          { "@type": "Question", "name": "İşyeri kira gelirinde beyan sınırı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Üzerinden %20 stopaj yapılan işyeri kira gelirlerinde 2026 beyan sınırı 400.000 TL'dir. Bu sınırın altında kalırsanız beyan etmezsiniz ve kesilen stopaj nihai vergi olur. Sınır aşılırsa gelirin tamamı beyan edilir; kesilen stopaj hesaplanan vergiden mahsup edilir. Sınır yalnızca kiraya değil, vergiye tâbi gelir toplamına bakılır: kiranız haddin altında olsa da diğer gelirlerinizle birlikte toplam haddi aşıyorsa işyeri kirası beyana girer." } },
           { "@type": "Question", "name": "Mesken istisnasından kimler yararlanamaz?", "acceptedAnswer": { "@type": "Answer", "text": "Ticari, zirai veya mesleki kazancından dolayı yıllık beyanname vermek mecburiyetinde olanlar istisnadan hiç yararlanamaz; bu hâlde gelirin tutarına bakılmaz. Ayrıca hasılatı istisna haddini aşanlardan, ücret, menkul sermaye iradı, gayrimenkul sermaye iradı ve diğer kazanç ve iratlarının gayri safi tutarları toplamı 2026 için 1.500.000 TL'yi aşanlar da yararlanamaz. Bu sınır gelir vergisi tarifesinin üçüncü diliminde ücret gelirleri için yer alan tutardır. Kira gelirini süresinde beyan etmeyenler de istisnayı kaybeder." } },
           { "@type": "Question", "name": "Konut kredisi faizini gider yazabilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Banka kredisiyle alınan konutun kira gelirinden kredi faizinin gider olarak indirilmesi 7566 sayılı Kanun ile kaldırılmıştır. Mesken istisnası uygulaması ise devam etmektedir." } },
           { "@type": "Question", "name": "Kira geliri vergisi ne zaman ödenir?", "acceptedAnswer": { "@type": "Answer", "text": "Yıllık gelir vergisi beyannamesi izleyen yılın Mart ayında verilir. Tahakkuk eden vergi iki eşit taksitte ödenir: birinci taksit Mart, ikinci taksit Temmuz ayı sonuna kadar." } }
@@ -260,6 +260,15 @@
           Buna karşılık yıl içinde kesilen stopajın tamamı hesaplanan vergiden mahsup
           edilir; çoğu durumda ödenecek vergi stopajdan küçük kalır, hatta sıfırlanır.
         </p>
+        <p>
+          İkinci ve daha az bilinen hata: <strong>sınır yalnızca kiraya
+          bakmıyor.</strong> GVK m.86/1-c haddi “vergiye tâbi gelir toplamı”
+          için koyuyor. Kiranız haddin altında olsa bile, aynı yıl başka
+          vergiye tâbi geliriniz varsa toplam haddi aşabilir ve işyeri kirası
+          beyana girer. 350.000 TL işyeri kirası tek başına beyan gerektirmez;
+          yanında 2.000.000 TL başka gelir varsa gerektirir. Hesaplayıcıdaki
+          <em>diğer gelir</em> alanı bu yüzden kararı değiştirir.
+        </p>
 
         <h2 id="kumulatif">Kira, diğer gelirinizin üzerine biner</h2>
         <p>
@@ -323,7 +332,7 @@
         <div class="faq-list">
           <details><summary>2026'da kira geliri istisnası ne kadar?</summary><p>Konut kira geliri istisnası 58.000 TL'dir. Yıllık konut kira geliriniz bu tutarın altındaysa beyanname vermeniz gerekmez. İstisna işyeri kirasına uygulanmaz.</p></details>
           <details><summary>Götürü gider mi, gerçek gider mi avantajlı?</summary><p>Belgelenebilir giderleriniz, istisna sonrası kalan tutarın %15'inden fazlaysa gerçek gider avantajlıdır. Araç iki yöntemi de hesaplayıp farkı gösterir. Götürüyü seçen iki yıl geçmeden gerçeğe dönemez.</p></details>
-          <details><summary>İşyeri kirasında beyan sınırı nedir?</summary><p>2026 için 400.000 TL. Altında kalırsanız beyan etmezsiniz, kesilen %20 stopaj nihai vergidir. Aşarsanız gelirin tamamı beyana girer ve stopaj mahsup edilir.</p></details>
+          <details><summary>İşyeri kirasında beyan sınırı nedir?</summary><p>2026 için 400.000 TL. Altında kalırsanız beyan etmezsiniz, kesilen %20 stopaj nihai vergidir. Aşarsanız gelirin tamamı beyana girer ve stopaj mahsup edilir. Had yalnızca kiraya değil vergiye tâbi gelir toplamına bakılır; diğer gelirleriniz varsa kiranız haddin altında olsa bile beyana girebilir.</p></details>
           <details><summary>Mesken istisnasından kimler yararlanamaz?</summary><p>Üç grup. <strong>Bir:</strong> ticari, zirai veya mesleki kazancı nedeniyle yıllık beyanname vermek mecburiyetinde olanlar — burada gelirin tutarına bakılmaz. <strong>İki:</strong> hasılatı istisna haddini (58.000 TL) aşanlardan, ücret, menkul ve gayrimenkul sermaye iradı ile diğer kazanç ve iratlarının gayri safi toplamı <strong>1.500.000 TL</strong>'yi aşanlar. Bu toplam, beyan edilmesi gerekmeyen ücreti de içerir. <strong>Üç:</strong> kira gelirini süresinde beyan etmeyenler ya da eksik beyan edenler.</p></details>
           <details><summary>Konut kredisi faizini gider yazabilir miyim?</summary><p>Hayır. Bu indirim 7566 sayılı Kanun ile kaldırıldı. Mesken istisnası ise devam ediyor.</p></details>
           <details><summary>Vergi ne zaman ödenir?</summary><p>Beyanname izleyen yılın Mart ayında verilir; vergi iki eşit taksitte, Mart ve Temmuz sonuna kadar ödenir.</p></details>

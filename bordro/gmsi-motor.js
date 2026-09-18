@@ -131,18 +131,57 @@
        2027'de yerinde donacaktı — üst sınırın 2023'te yaşadığı bayatlamanın
        aynısı, üstelik onu anlatan yorumun on satır altında. */
     var isyeriBeyanSiniri = P.dilimler[1][0];
-    var isyeriBeyanaGirer = isyeri > isyeriBeyanSiniri;
-    var isyeriMatrah = isyeriBeyanaGirer ? isyeri : 0;
-    var isyeriStopaj = isyeriBeyanaGirer ? isyeri * K.isyeriStopaji : 0;
 
-    if (isyeri > 0 && !isyeriBeyanaGirer) {
-      notlar.push("İşyeri kiranız " + isyeriBeyanSiniri.toLocaleString("tr-TR") +
-        " TL beyan sınırının altında; beyan edilmez, kesilen stopaj nihai vergidir.");
-    }
+    /* ÖLÇÜT KİRANIN KENDİSİ DEĞİL, VERGİYE TÂBİ GELİR TOPLAMI.
+       Madde "vergiye tâbi gelir toplamının ... aşmaması koşuluyla" diyor;
+       kirayı tek başına ölçmek, yanında başka geliri olanı yanlış tarafa
+       koyuyordu: 350.000 TL işyeri kirası + 5.000.000 TL diğer gelirde
+       motor "beyan edilmez" diyordu, oysa toplam sınırın on katı üstünde.
+       Hata güvensiz yöndeydi: beyan etmesi gerekene etme demek.
 
-    /* --- iki gider yöntemi ---------------------------------------------- */
-    function yontem(ad, gider, uygulanabilir, aciklama) {
-      var safi = Math.max(0, (konutKalan + isyeriMatrah) - gider);
+       TABANDA İKİ OKUMA VAR ve burada seçim YAPILMIYOR:
+         (1) Lafzı: "gelir" GVK m.1'de "kazanç ve iratların safi tutarı"dır,
+             yani giderler düşüldükten sonrası.
+         (2) Yerleşik uygulama: işyeri kirasında had, kiranın BRÜT tutarıyla
+             karşılaştırılır.
+       İkisi ayrı sonuç verebiliyor: 450.000 TL brüt işyeri kirası haddi
+       aşıyor, ama götürü gider sonrası safi 382.500 TL ile altında kalıyor.
+       Motor İKİSİNİN BİRLEŞİMİNİ alıyor: hangi okumaya göre beyan
+       gerekiyorsa beyan diyor. Böylece hata payi her zaman GÜVENLİ yönde
+       kalıyor -- kimseye "beyan etme" denmiyor ki bir okumaya göre
+       etmesi gereksin. Hangisinin doğru olduğu kaynakla çözülene kadar
+       burada karar verilmez.
+
+       m.21'in üst sınır testi bambaska: o kanunun kendi sözüyle GAYRİ
+       SAFİ'dir ve yukarıda öyle uygulanıyor. İki test aynı değildir.
+
+       Ücret tarafı başka çalışır: maddenin parantezi çok işverenli ücret
+       için ayrı bir ölçüt koyuyor (birinciden sonrakilerin toplamı), o da
+       makaleler/iki-isten-maas-beyanname-siniri/beyan.js içinde.
+
+       KARAR GİDER YÖNTEMİNE BAĞLI. Safi tutar götürü ile gerçekte
+       farklı çıktığı için toplam da farklı çıkıyor; eşiğin yakınında iki
+       yöntem ayrı karar verebilir. Bu yüzden karar yöntemin İÇİNDE
+       veriliyor, dışında bir kez değil. */
+
+    /* --- iki gider yöntemi ----------------------------------------------
+       giderHesapla(taban) -> o tabana düşen gider. Taban karara, karar
+       gidere bağlı olduğu için önce "işyeri dahil olsaydı" varsayımıyla
+       karar veriliyor, sonra taban kesinleşiyor. Salınım olmaz: işyeri
+       dışarda kalırsa toplam yalnızca küçülür, karar dönmez. */
+    function yontem(ad, giderHesapla, uygulanabilir, aciklama) {
+      var tamTaban = konutKalan + isyeri;
+      var tamSafi = Math.max(0, tamTaban - giderHesapla(tamTaban));
+      /* (1) lafiz: safi toplam  (2) uygulama: brüt kira. Birleşim. */
+      var toplamAsti = (tamSafi + diger) > isyeriBeyanSiniri;
+      var brutAsti = isyeri > isyeriBeyanSiniri;
+      var girer = isyeri > 0 && (brutAsti || toplamAsti);
+
+      var taban = konutKalan + (girer ? isyeri : 0);
+      var gider = giderHesapla(taban);
+      var safi = Math.max(0, taban - gider);
+      var isyeriStopaj = girer ? isyeri * K.isyeriStopaji : 0;
+
       var matrah = safi + diger;
       var vergiToplam = B.tarifeVergisi(matrah, P.dilimlerUcretDisi);
       var vergiDiger = B.tarifeVergisi(diger, P.dilimlerUcretDisi);
@@ -157,19 +196,34 @@
         gider: yuvarla(gider), safiIrat: yuvarla(safi), matrah: yuvarla(matrah),
         vergiToplam: yuvarla(vergiToplam), kiraVergisi: yuvarla(kiraVergisi),
         mahsup: yuvarla(mahsup), odenecek: yuvarla(odenecek),
+        isyeriBeyanaGirer: girer, isyeriStopaj: yuvarla(isyeriStopaj),
+        beyanBrutten: brutAsti, beyanToplamdan: toplamAsti,
+        vergiyeTabiToplam: yuvarla(safi + diger),
         efektifOran: (konut + isyeri) > 0 ? kiraVergisi / (konut + isyeri) : 0
       };
     }
 
-    var goturuGider = (konutKalan + isyeriMatrah) * K.goturuGiderOrani;
-    var goturu = yontem("Götürü gider", goturuGider, true,
-      "İstisna sonrası kalan tutarın %" +
+    var goturu = yontem("Götürü gider", function (taban) {
+      return taban * K.goturuGiderOrani;
+    }, true, "İstisna sonrası kalan tutarın %" +
       String(K.goturuGiderOrani * 100).replace(".", ",") + "'i belgesiz indirilir.");
-    var gercekY = yontem("Gerçek gider", Math.min(gercek, konutKalan + isyeriMatrah), true,
-      "Belgelendirilen giderler indirilir (GVK m.74).");
+    var gercekY = yontem("Gerçek gider", function (taban) {
+      return Math.min(gercek, taban);
+    }, true, "Belgelendirilen giderler indirilir (GVK m.74).");
+
+    if (isyeri > 0 && !goturu.isyeriBeyanaGirer && !gercekY.isyeriBeyanaGirer) {
+      notlar.push("Vergiye tâbi gelir toplamınız " +
+        isyeriBeyanSiniri.toLocaleString("tr-TR") + " TL beyan sınırının altında; " +
+        "işyeri kirası beyan edilmez, kesilen stopaj nihai vergidir (GVK m.86/1-c).");
+    } else if (isyeri > 0 && goturu.isyeriBeyanaGirer !== gercekY.isyeriBeyanaGirer) {
+      notlar.push("Beyan sınırı tam eşikte: gider yöntemi seçiminiz işyeri " +
+        "kirasının beyana girip girmeyeceğini de değiştiriyor. Daha yüksek " +
+        "gider, vergiye tâbi toplamı sınırın altında tutabiliyor.");
+    }
 
     var avantajli = gercekY.odenecek < goturu.odenecek ? "gercek"
       : (goturu.odenecek < gercekY.odenecek ? "goturu" : "esit");
+    var secilen = avantajli === "gercek" ? gercekY : goturu;
     var fark = Math.abs(goturu.odenecek - gercekY.odenecek);
 
     if (!K.kredFaiziIndirimi) {
@@ -183,8 +237,10 @@
       konut: konut, isyeri: isyeri, diger: diger,
       istisnaHakki: istisnaHakki, istisna: yuvarla(istisna),
       konutKalan: yuvarla(konutKalan),
-      isyeriBeyanaGirer: isyeriBeyanaGirer,
-      isyeriStopaj: yuvarla(isyeriStopaj),
+      /* Üst seviyedeki özet, avantajlı yöntemin kararını taşır; yöntemler
+         ayrışıyorsa her ikisinin kendi alanı da sonuçta duruyor. */
+      isyeriBeyanaGirer: secilen.isyeriBeyanaGirer,
+      isyeriStopaj: secilen.isyeriStopaj,
       digerStopaj: yuvarla(digerStopaj),
       goturu: goturu, gercek: gercekY,
       avantajli: avantajli, fark: yuvarla(fark),
