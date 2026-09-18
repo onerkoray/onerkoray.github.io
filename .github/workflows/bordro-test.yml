@@ -282,6 +282,14 @@ jobs:
       # 2027 girildiginde ikisi de degisir. Ayrica asgari ucret yil ortasinda
       # zamlanirsa tavan da degisir ve "ay secimi notr" onermesi o yil icin
       # kirilir -- test bunu iki yonlu olcuyor.
+      # Sitenin en cok okunan iki yazisi hareketli bir yasama durumunu
+      # anlatiyor ve bugune kadar hic testi yoktu. Bu adim tarihe bagli
+      # ifadeleri, iki yazinin birbiriyle celismedigini ve takvim
+      # satirlarinin yaslanmasini denetliyor. 1 Ekim'de kirmiziya donmesi
+      # BEKLENEN davranis: duzeltilecek cumleleri adiyla soyluyor.
+      - name: Mevzuat takvimi yazılarının iddiaları
+        run: node tools/mevzuat-testi.js
+
       - name: İkramiye tablolarının güncelliği
         run: node tools/ikramiye-tablosu.js --check
 
