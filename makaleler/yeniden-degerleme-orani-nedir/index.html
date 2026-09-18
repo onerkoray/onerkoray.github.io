@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yeniden Değerleme Oranı Nedir, Neyi Belirler? | Koray Öner</title>
+  <meta name="gecerlilik" content="2026-11-30 | 2026 yılı yeniden değerleme oranı Kasım'da VUK Genel Tebliği ile Resmî Gazete'de ilan edilir; bu oran 2027 tarifesine esas alınır. İlan edilince makaleler/dilim-kaymasi-2022-2026/seriler.js'e 2027 satırı eklensin (ydo = ilan edilen oran, tufe = 2026 Aralık TÜFE'si açıklanınca). 2027 tarifesi bordro/parametreler.js'e girildikten sonra node tools/ydo-tablosu.js çalıştırılsın — kural denetimi 2027'yi kendiliğinden kapsar.">
+  <meta name="description" content="Yeniden değerleme oranı nedir? TÜFE değil, Yİ-ÜFE'nin ekim ortalaması. Ve hiçbir tutar tam olarak o oranla artmıyor: kanun kesirlerin atılmasına izin veriyor.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://orcid.org/0009-0005-8730-3577">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/">
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Yeniden değerleme oranı nedir, neyi belirler?">
+  <meta property="og:description" content="Enflasyon değil: Yİ-ÜFE'nin ekim ayı ortalaması. Ve hiçbir tutar tam olarak o oranla artmıyor — kanunun izin verdiği yuvarlama her yıl aşağı çalışıyor.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/yeniden-degerleme-orani-nedir.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Gelir vergisi dilimlerinin yeniden değerleme oranına göre ne kadar geride kaldığı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="Yeniden değerleme oranı nedir, neyi belirler?">
+  <meta name="twitter:description" content="2022–2026 arasındaki yirmi dilimin yirmisi de aynı kuralın çıktısı: orana göre hesapla, kesri at. Kesir hep aşağı atılıyor.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/yeniden-degerleme-orani-nedir.png">
+
+  <link rel="stylesheet" href="../../style.css?v=9ae079de">
+  <link rel="stylesheet" href="../editoryal.css?v=3bb6a509">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "ORCID",
+        "value": "https://orcid.org/0009-0005-8730-3577"
+      },
+      "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/koraonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://dl.acm.org/profile/81100070426",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/",
+      "url": "https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/",
+      "name": "Yeniden değerleme oranı nedir, neyi belirler?",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "inLanguage": "tr",
+      "primaryImageOfPage": "https://korayoner.dev/images/makale/yeniden-degerleme-orani-nedir.png"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/#article",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "headline": "Eksik endekslemenin kaynağı: yeniden değerleme oranı ve kesir atma kuralı",
+      "alternativeHeadline": "The Source of Under-Indexation: The Revaluation Rate and the Rounding-Down Rule",
+      "description": "Türk gelir vergisi tarifesinin yeniden değerleme oranı ve GVK mükerrer 123'teki kesir atma kuralıyla nasıl belirlendiğini 2022–2026 için birebir yeniden üretir ve tek yönlü yuvarlamanın birikmiş bedelini ölçer.",
+      "inLanguage": "tr",
+      "datePublished": "2026-09-18",
+      "dateModified": "2026-09-18",
+      "author": { "@id": "https://korayoner.dev/#oner-koray" },
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+      "image": "https://korayoner.dev/images/makale/yeniden-degerleme-orani-nedir.png",
+      "mainEntityOfPage": "https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "keywords": "yeniden değerleme oranı, Yİ-ÜFE, gelir vergisi tarifesi, endeksleme, kesir atma, mali sürüklenme, MTV",
+      "about": [
+        { "@type": "Thing", "name": "Yeniden değerleme oranı" },
+        { "@type": "Thing", "name": "Gelir vergisi tarifesi" },
+        { "@type": "Thing", "name": "Vergi endekslemesi" }
+      ],
+      "citation": [
+        { "@type": "Legislation", "name": "213 sayılı Vergi Usul Kanunu, mükerrer m.298/B — yeniden değerleme oranının tanımı" },
+        { "@type": "Legislation", "name": "193 sayılı Gelir Vergisi Kanunu, mükerrer m.123 — had ve tutarların artırılması ve kesirlerin dikkate alınmaması" },
+        { "@type": "Legislation", "name": "193 sayılı Gelir Vergisi Kanunu, m.103 — vergi tarifesi" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "Yeniden değerleme oranı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Vergi Usul Kanunu'nun mükerrer 298. maddesinin (B) fıkrasına göre, yeniden değerleme yapılacak yılın ekim ayında, bir önceki yılın aynı dönemine göre Yurt İçi Üretici Fiyat Endeksinde meydana gelen ortalama fiyat artış oranıdır. Hazine ve Maliye Bakanlığı tarafından Resmî Gazete'de ilan edilir." } },
+        { "@type": "Question", "name": "Yeniden değerleme oranı enflasyon mu?", "acceptedAnswer": { "@type": "Answer", "text": "Değil. Üç yerde ayrışır: tüketici fiyatlarına değil üretici fiyatlarına (Yİ-ÜFE) bakar, aralık ayına değil ekim ayına çıpalanır, ve nokta karşılaştırması değil on iki aylık ortalamaların karşılaştırmasıdır. 2026 tarifesine esas alınan oran yüzde 25,49 iken önceki yılın tüketici enflasyonu yüzde 30,89'du." } },
+        { "@type": "Question", "name": "Vergi dilimleri yeniden değerleme oranı kadar mı artıyor?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır, her zaman daha az. Gelir Vergisi Kanunu'nun mükerrer 123. maddesi, orana göre hesaplanan tutarların yüzde 5'ini aşmayan kesirlerinin dikkate alınmayacağını söylüyor. Kesir atıldığı için ilan edilen tutar hesaplanandan küçük çıkıyor ve bu her yıl tekrarlanıyor." } },
+        { "@type": "Question", "name": "Bu kural tarifeyi gerçekten açıklıyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, birebir. 2022'den 2026'ya kadar ilan edilen yirmi dilim tutarının yirmisi de, bir önceki yılın tutarına yeniden değerleme oranı uygulanıp sonucun yüzde 5'lik pencere içinde aşağı yuvarlanmasıyla elde ediliyor. Yazının testi bunu dilim dilim ölçüyor." } },
+        { "@type": "Question", "name": "MTV de aynı oranla mı artıyor?", "acceptedAnswer": { "@type": "Answer", "text": "2026 için hayır. Motorlu taşıtlar vergisi tutarları yüzde 18,95 ile belirlendi; aynı yıl tarifeye esas alınan yeniden değerleme oranı ise yüzde 25,49'du. Kanunlar Cumhurbaşkanına bu oranları belirli sınırlar içinde değiştirme yetkisi veriyor, dolayısıyla ilan edilen oran bir tavan ya da başlangıç noktası işlevi görüyor." } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../otv-hesaplama/">ÖTV</a></li>
+          <li><a href="../../mtv-hesaplama/">MTV</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> Yeniden değerleme oranı
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Vergi · Araştırma</p>
+        <h1 id="hero-title">Yeniden değerleme oranı nedir, neyi belirler?</h1>
+        <p class="ed-standfirst">Her kasım ayında bir oran açıklanıyor ve ertesi günün manşeti
+          hazır oluyor: "vergiler bu kadar artacak". <strong>Hiçbir tutar tam olarak o oranla
+          artmıyor</strong> — ve bunun sebebi bir uygulama tercihi değil, kanunun kendi
+          içindeki bir cümle.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-18">18 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <article>
+        <figure class="ed-veri-gorseli">
+          <img src="../../images/makale/yeniden-degerleme-orani-nedir.png"
+               width="1200" height="630" loading="lazy" decoding="async"
+               alt="Gelir vergisi dilimlerinin, her yıl tam yeniden değerleme uygulansaydı olacakları düzeyin ne kadar gerisinde kaldığı">
+          <figcaption>Beş yıl boyunca her dilim, tam endekslemenin biraz altında ilan edildi.
+            Tek tek küçük olan farklar bileşik olarak birikiyor.</figcaption>
+        </figure>
+
+        <div class="legal-note verdict">
+          <h2 id="kisa-cevap">Kısa cevap</h2>
+          <p><strong>Yeniden değerleme oranı enflasyon değildir.</strong> Vergi Usul Kanunu
+            mükerrer 298/B'ye göre, <em>yeniden değerleme yapılacak yılın ekim ayında, bir
+            önceki yılın aynı dönemine göre Yurt İçi Üretici Fiyat Endeksinde meydana gelen
+            ortalama fiyat artış oranıdır.</em> Üç yerde tüketici enflasyonundan ayrılır:
+            üretici fiyatlarına bakar, <strong>ekim</strong> ayına çıpalanır ve <strong>nokta
+            değil ortalama</strong> karşılaştırmasıdır.</p>
+          <p><strong>Ve tutarlar o oranla artmıyor.</strong> Gelir Vergisi Kanunu mükerrer
+            123, orana göre hesaplanan tutarların <em>"yüzde 5'ini aşmayan kesirlerinin
+            dikkate alınmayacağını"</em> söylüyor. Kesir atılıyor — yani yuvarlama
+            <strong>tek yönlü, hep aşağı.</strong></p>
+          <p>Bu kural tarifeyi birebir açıklıyor: 2022'den 2026'ya ilan edilen <strong>yirmi
+            dilim tutarının yirmisi de</strong> bu aritmetiğin çıktısı.</p>
+        </div>
+
+        <h2 id="enflasyon-degil">Neden "enflasyon" demek yanlış?</h2>
+        <p>İki ölçüt farklı şeyleri ölçüyor ve farkları küçük değil. Aşağıdaki tabloda her
+          tarife yılına esas alınan yeniden değerleme oranı ile, o tarifenin karşılaması
+          beklenen önceki yıl tüketici enflasyonu yan yana duruyor.</p>
+
+<!-- YDO-ORAN:BASLANGIC -->
+          <table class="payroll">
+            <caption>Yeniden değerleme oranı ile tüketici enflasyonu aynı şey değil</caption>
+            <thead>
+              <tr>
+                <th scope="col">Tarife yılı</th>
+                <th scope="col">Yeniden değerleme oranı</th>
+                <th scope="col">Önceki yıl TÜFE</th>
+                <th scope="col">Fark</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">2022</th><td>%36,20</td><td>%36,08</td><td>+0,12 puan</td></tr>
+            <tr><th scope="row">2023</th><td>%122,93</td><td>%64,27</td><td>+58,66 puan</td></tr>
+            <tr><th scope="row">2024</th><td>%58,46</td><td>%64,77</td><td>−6,31 puan</td></tr>
+            <tr><th scope="row">2025</th><td>%43,93</td><td>%44,38</td><td>−0,45 puan</td></tr>
+            <tr><th scope="row">2026</th><td>%25,49</td><td>%30,89</td><td>−5,40 puan</td></tr>
+            </tbody>
+          </table>
+<!-- YDO-ORAN:BITIS -->
+
+        <p>İki taraf da öne geçebiliyor. Üretici fiyatları tüketici fiyatlarından hızlı
+          arttığında oran yukarıda kalıyor; yavaşladığında aşağıda. Ayrıca ortalama
+          karşılaştırması olduğu için oran, dönüm noktalarını geç yakalıyor: enflasyon
+          düşerken ortalama hâlâ eski yüksek ayları taşıyor, yükselirken de tersi.</p>
+
+        <h2 id="kural">Tarife nasıl belirleniyor?</h2>
+        <p>Gelir Vergisi Kanunu'nun mükerrer 123. maddesi iki adım tanımlıyor. Önce
+          103. maddedeki dilim tutarları, bir önceki yıl için belirlenen yeniden değerleme
+          oranında artırılıyor. Sonra <strong>bu şekilde hesaplanan tutarların yüzde 5'ini
+          aşmayan kesirleri dikkate alınmıyor.</strong></p>
+        <p>İkinci adım, tutarların neden hep yuvarlak sayılar olduğunu açıklıyor — ve
+          bedelinin kimde kaldığını da.</p>
+
+<!-- YDO-KURAL:BASLANGIC -->
+          <table class="payroll">
+            <caption>2026 tarifesi adım adım (oran %25,49, tutarlar TL)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Dilim</th>
+                <th scope="col">2025 tutarı</th>
+                <th scope="col">Oran uygulanınca</th>
+                <th scope="col">İlan edilen</th>
+                <th scope="col">Atılan kesir</th>
+                <th scope="col">Atılan oranı</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">1. dilim</th><td>158.000</td><td>198.274</td><td>190.000</td><td>8.274</td><td>%4,17</td></tr>
+            <tr><th scope="row">2. dilim</th><td>330.000</td><td>414.117</td><td>400.000</td><td>14.117</td><td>%3,41</td></tr>
+            <tr><th scope="row">3. dilim</th><td>1.200.000</td><td>1.505.880</td><td>1.500.000</td><td>5.880</td><td>%0,39</td></tr>
+            <tr><th scope="row">4. dilim</th><td>4.300.000</td><td>5.396.070</td><td>5.300.000</td><td>96.070</td><td>%1,78</td></tr>
+            </tbody>
+          </table>
+<!-- YDO-KURAL:BITIS -->
+
+        <p>Tablodaki "atılan kesir" sütunu kanunun izin verdiği pencerenin içinde kalıyor,
+          ama önemli olan şu: <strong>hepsi aynı yöne bakıyor.</strong> Kanun kesirlerin
+          <em>dikkate alınmayacağını</em> söylüyor; tutarın yukarı tamamlanmasına dair bir
+          hüküm yok. Dolayısıyla ilan edilen tarife, oranın gerektirdiğinin sistematik olarak
+          altında kalıyor.</p>
+        <p>Bu bir yorum değil. Aynı denetimi bütün yıllara uyguladığımızda kural tarifeyi
+          tek tek üretiyor:</p>
+
+<!-- YDO-OZET:BASLANGIC -->
+          <table class="payroll">
+            <caption>Kural her yıl tarifeyi birebir üretiyor mu?</caption>
+            <thead>
+              <tr>
+                <th scope="col">Tarife yılı</th>
+                <th scope="col">Yeniden değerleme oranı</th>
+                <th scope="col">Kurala uyan dilim</th>
+                <th scope="col">En büyük atılan kesir</th>
+                <th scope="col">Toplam atılan</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">2022</th><td>%36,20</td><td>4 / 4</td><td>%3,39</td><td>16.954 TL</td></tr>
+            <tr><th scope="row">2023</th><td>%122,93</td><td>4 / 4</td><td>%3,88</td><td>76.498 TL</td></tr>
+            <tr><th scope="row">2024</th><td>%58,46</td><td>4 / 4</td><td>%3,24</td><td>20.882 TL</td></tr>
+            <tr><th scope="row">2025</th><td>%43,93</td><td>4 / 4</td><td>%4,17</td><td>71.453 TL</td></tr>
+            <tr><th scope="row">2026</th><td>%25,49</td><td>4 / 4</td><td>%4,17</td><td>124.341 TL</td></tr>
+            </tbody>
+          </table>
+<!-- YDO-OZET:BITIS -->
+
+        <h2 id="bedel">Tek yönlü yuvarlamanın bedeli</h2>
+        <p>Bir yılda atılan kesir küçük görünüyor. Ama her yıl tekrarlandığı ve bileşik
+          işlediği için fark birikiyor. 2021 tarifesinden başlayıp her yıl <em>tam</em>
+          yeniden değerleme uygulansaydı, 2026 dilimleri bugünkünden belirgin biçimde
+          yukarıda olurdu — birinci dilim %8,90, ikinci dilim %13,15 daha yüksek.</p>
+        <p>Bunun bordrodaki karşılığı şu:</p>
+
+<!-- YDO-BEDEL:BASLANGIC -->
+          <table class="payroll">
+            <caption>Yuvarlama olmasaydı: 2026 yılında ödenen fazla gelir vergisi (TL/yıl)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Ücret düzeyi</th>
+                <th scope="col">Aylık brüt</th>
+                <th scope="col">Ödenen yıllık vergi</th>
+                <th scope="col">Yuvarlamasız tarifeyle</th>
+                <th scope="col">Fazla ödenen</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">1× asgari ücret</th><td>33.030</td><td>0</td><td>0</td><td>—</td></tr>
+            <tr><th scope="row">2× asgari ücret</th><td>66.060</td><td>86.548</td><td>82.308</td><td>4.240 TL</td></tr>
+            <tr><th scope="row">3× asgari ücret</th><td>99.090</td><td>177.513</td><td>173.272</td><td>4.240 TL</td></tr>
+            <tr><th scope="row">5× asgari ücret</th><td>165.150</td><td>374.204</td><td>357.874</td><td>16.330 TL</td></tr>
+            <tr><th scope="row">8× asgari ücret</th><td>264.240</td><td>727.956</td><td>711.625</td><td>16.330 TL</td></tr>
+            </tbody>
+          </table>
+<!-- YDO-BEDEL:BITIS -->
+
+        <p>Tablodaki iki şey dikkat çekiyor. <strong>Asgari ücretlide fark sıfır</strong> —
+          çünkü asgari ücret istisnası aynı tarifeyle hesaplanıp hesaplanan vergiden
+          düşüldüğü için, asgari ücret matrahının altındaki eşiklerdeki değişiklik kimsenin
+          vergisini değiştirmiyor. Bunu <a href="../dilim-kaymasi-2022-2026/#notrlestirme">ayrı
+          bir yazıda</a> ölçmüştüm.</p>
+        <p>İkincisi, <strong>fazla ödenen tutar bir dilim bandı içindeki herkes için
+          aynı.</strong> Mutlak olarak eşit olan bu tutar, düşük ücretlinin gelirinin daha
+          büyük bir oranına denk geliyor.</p>
+
+        <h2 id="mtv">Her tutar aynı oranla artmıyor</h2>
+        <p>Şimdiye kadarki her şey gelir vergisi tarifesi içindi. Başka tutarlarda durum daha
+          da ayrışıyor, çünkü kanunlar Cumhurbaşkanına oranları belirli sınırlar içinde
+          değiştirme yetkisi veriyor.</p>
+        <p>Somut örnek: <strong>2026 motorlu taşıtlar vergisi tutarları %18,95 ile
+          belirlendi</strong>, aynı yıl tarifeye esas alınan yeniden değerleme oranı ise
+          %25,49'du. Aradaki 6,54 puan bir hesap hatası değil, bir tercih.</p>
+        <p>Dolayısıyla kasımda açıklanan oran, "bütün vergiler bu kadar artacak" demek
+          değil. Bir <strong>başlangıç noktası</strong>: her kalem kendi kanunundaki kural ve
+          yetkiye göre buradan sapıyor.</p>
+
+        <h2 id="ne-zaman">2027 için ne zaman belli olur?</h2>
+        <p>Oran, ekim ayı verisiyle belirleniyor ve kasım ayında Vergi Usul Kanunu Genel
+          Tebliği ile Resmî Gazete'de ilan ediliyor. Yani veri ekimde tamamlanıyor, ilan
+          kasımda yapılıyor; ilan yeni bir bilgi üretmiyor, hesaplanmış olanı duyuruyor.</p>
+        <p>Tarife tutarları ise aralık sonunda, Gelir Vergisi Genel Tebliği ile yayımlanıyor.
+          Aradaki bir buçuk ayda dolaşan dilim tablolarının resmî bir dayanağı olmuyor —
+          oran bilindiği için hesaplanabiliyorlar, ama kesirlerin ne kadarının atılacağı ve
+          Cumhurbaşkanı yetkisinin kullanılıp kullanılmayacağı belli değil.</p>
+
+        <h2 id="yontem">Yöntem, sınırlar ve varsayımlar</h2>
+        <p>Tarife tutarları sitenin tek parametre dosyasından, yeniden değerleme oranları ise
+          dilim kayması yazısının serisinden okunuyor; ikisi de testlerle sabitlenmiş durumda
+          ve bu yazı hiçbirini kopyalamıyor. Tablolardaki her hücre testte yeniden hesaplanıp
+          sayfadakiyle karşılaştırılıyor.</p>
+        <p>Yazı oranın <em>kendisini</em> hesaplamıyor. Bunun için Yİ-ÜFE'nin aylık endeks
+          serisi gerekir; o veri sitede yok ve tahmin etmek bu sitenin ilkelerine aykırı
+          olurdu. Burada yapılan, ilan edilen orandan tarifenin nasıl türediğini
+          doğrulamak.</p>
+        <p>"Yuvarlamasız tarife" karşılaştırması bir politika önerisi değil, bir ölçüm
+          aracıdır: kesir atma kuralının birikmiş etkisini görünür kılmak için kurulmuş bir
+          karşı-olgudur. Cumhurbaşkanı yetkisinin kullanıldığı yıllarda gerçek tarife bu
+          karşı-olgudan ayrıca sapabilir.</p>
+        <p>Yazı vergi danışmanlığı değildir.</p>
+
+        <h2 id="kaynaklar">Kaynaklar</h2>
+        <ul>
+          <li>213 sayılı Vergi Usul Kanunu, mükerrer m.298/B — yeniden değerleme oranının
+            tanımı ve Hazine ve Maliye Bakanlığınca ilanı.</li>
+          <li>193 sayılı Gelir Vergisi Kanunu, mükerrer m.123 — had ve tutarların yeniden
+            değerleme oranında artırılması, <em>"yüzde 5'ini aşmayan kesirlerin dikkate
+            alınmaması"</em> ve tutarları yarısına kadar artırma veya indirme yetkisi;
+            aynı maddenin (3) numaralı fıkrası hükmü 103. maddedeki tarifeye de uyguluyor.</li>
+          <li>193 sayılı Gelir Vergisi Kanunu, m.103 — vergi tarifesi.</li>
+          <li>Tarife tutarları her yıl Gelir Vergisi Genel Tebliği ile, yeniden değerleme
+            oranı Vergi Usul Kanunu Genel Tebliği ile Resmî Gazete'de yayımlanır.</li>
+        </ul>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+
+        <h3>Yeniden değerleme oranı enflasyon mu?</h3>
+        <p>Değil. Üretici fiyatlarına bakar, ekim ayına çıpalanır ve nokta değil ortalama
+          karşılaştırmasıdır. 2026 tarifesine esas alınan oran %25,49 iken önceki yılın
+          tüketici enflasyonu %30,89'du.</p>
+
+        <h3>Vergi dilimleri bu oran kadar mı artıyor?</h3>
+        <p>Hayır, her zaman daha az. Kanun, hesaplanan tutarların %5'ini aşmayan kesirlerinin
+          dikkate alınmamasına izin veriyor ve kesir yalnızca aşağı atılıyor.</p>
+
+        <h3>Bu kural tarifeyi gerçekten açıklıyor mu?</h3>
+        <p>Birebir. 2022–2026 arasında ilan edilen yirmi dilim tutarının yirmisi de bu
+          aritmetiğin çıktısı; yazının testi bunu dilim dilim ölçüyor.</p>
+
+        <h3>MTV de aynı oranla mı artıyor?</h3>
+        <p>2026 için hayır: MTV tutarları %18,95 ile belirlendi, tarifeye esas alınan oran
+          ise %25,49'du.</p>
+
+        <h2 id="ilgili">İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../dilim-kaymasi-2022-2026/">Dilim kayması gerçekten oluyor mu?</a>
+            — bu yazı mekanizmayı anlatıyor, o yazı sonucu ölçüyor.</li>
+          <li><a href="../../mtv-hesaplama/">MTV hesaplama</a> — 2026 tutarları.</li>
+          <li><a href="../mtv-2026-ne-kadar/">MTV 2026 ne kadar?</a></li>
+          <li><a href="../../maas-hesaplama/">Maaş hesaplama</a> — tarifenin bordroya etkisi.</li>
+        </ul>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

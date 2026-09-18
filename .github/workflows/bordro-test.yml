@@ -290,6 +290,15 @@ jobs:
       - name: Mevzuat takvimi yazılarının iddiaları
         run: node tools/mevzuat-testi.js
 
+      # YDO yazisinin tablolari hem tarifeden hem oran serisinden turuyor.
+      # 2027 tarifesi girildiginde kural denetimi yeni yili kendiliginden
+      # kapsar; oran serisine 2027 satiri eklenmemisse test bunu soyler.
+      - name: Yeniden değerleme tablolarının güncelliği
+        run: node tools/ydo-tablosu.js --check
+
+      - name: Yeniden değerleme yazısının sayıları
+        run: node makaleler/yeniden-degerleme-orani-nedir/sayi-testi.js
+
       - name: İkramiye tablolarının güncelliği
         run: node tools/ikramiye-tablosu.js --check
 
