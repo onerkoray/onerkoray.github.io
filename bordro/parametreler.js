@@ -77,6 +77,9 @@
       guncelleme: "2026-07-16",
       istisnaRejimi: "asgari-ucret",   // ücretin asgari ücrete isabet eden kısmı istisna
       damgaIstisnasi: true,
+      // 7566 s.K. ile 7,5'ten 9'a cikarildi (1 Ocak 2026'dan gecerli).
+      // Motor bu alani OKUMUYOR; sgkTavan ile iliskisini bordro/test.js
+      // bagliyor (tavan = asgariBrut x tavanKatsayisi).
       tavanKatsayisi: 9,
       oranlar: VARSAYILAN_ORANLAR,
       dilimler: [[190000, 0.15], [400000, 0.20], [1500000, 0.27], [5300000, 0.35], [null, 0.40]],
@@ -122,7 +125,7 @@
         bagkurIndirimliOran: 0.2975,    // borcu olmayan düzenli ödeyende 5 puanlık indirim
         dayanak: "KVK m.32, GVK m.22, m.86, m.89/13, m.94; 5510 m.80-81"
       },
-      dayanak: "GVK m.103 (2026 tarifesi), GVK m.23/18 asgari ücret istisnası, 5510/82 (tavan = taban x 9)"
+      dayanak: "GVK m.103 (2026 tarifesi), GVK m.23/18 asgari ücret istisnası, 5510/82 + 7566 s.K. (tavan = taban x 9)"
     },
 
     2025: {
