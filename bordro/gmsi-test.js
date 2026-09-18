@@ -44,7 +44,12 @@ esit("mesken istisnasi 58.000", K.meskenIstisnasi, 58000);
 dogru("ust sinir elle yazilmiyor", K.istisnaUstSinir === undefined);
 esit("ucret tarifesi ucuncu dilim 1.500.000", P[2026].dilimler[2][0], 1500000);
 esit("goturu gider orani %15", K.goturuGiderOrani, 0.15, 1e-12);
-esit("isyeri beyan siniri 400.000", K.isyeriBeyanSiniri, 400000);
+/* Beyan haddi de ARTIK PARAMETRE DEGIL: GVK m.86/1-c onu tarifenin
+   ikinci gelir diliminde yer alan tutar olarak tanimliyor. Ust sinirda
+   oldugu gibi test iki tarafi birden bagliyor: parametre geri gelmemeli
+   VE turetilen deger tarifenin ikinci dilimiyle ayni olmali. */
+dogru("beyan haddi elle yazilmiyor", K.isyeriBeyanSiniri === undefined);
+esit("tarifenin ikinci dilimi 400.000", P[2026].dilimler[1][0], 400000);
 esit("isyeri stopaji %20", K.isyeriStopaji, 0.20, 1e-12);
 
 console.log("\nKonut kirasi — istisna ve iki yontem");

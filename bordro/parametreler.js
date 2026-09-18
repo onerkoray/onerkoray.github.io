@@ -96,7 +96,6 @@
       gmsi: {
         meskenIstisnasi: 58000,      // GVK m.21 — konut kira geliri istisnasi
         goturuGiderOrani: 0.15,      // istisna dusuldukten SONRA kalan tutarin %15'i
-        isyeriBeyanSiniri: 400000,   // tevkifata tabi isyeri kirasi beyan siniri
         isyeriStopaji: 0.20,         // GVK m.94 — isyeri kira odemelerinde tevkifat
         tevkifatsizHad: 22000,       // tevkifata/istisnaya tabi olmayan MSI-GMSI haddi
         kredFaiziIndirimi: false     // 7566 s.K.: konut kredisi faizi indirimi kaldirildi
