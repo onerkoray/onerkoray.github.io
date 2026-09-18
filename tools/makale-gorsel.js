@@ -605,6 +605,68 @@ function makbuzAkisi() {
     "</svg>";
 }
 
+/* Yeniden degerleme — "yeniden-degerleme-orani-nedir" kapagi.
+   Anlatilan sey tek bir yilin yuvarlamasi degil, BES YILDA BIRIKEN fark.
+   O yuzden cizim yillik kesirleri degil, 2026 dilimlerinin tam
+   endekslemeye gore ne kadar geride kaldigini gosteriyor.
+
+   Iki cubuk yerine TEK cubuk ve referans cizgisi kullanildi: "gercek" ile
+   "olurdu" yan yana konsaydi fark gozle okunamazdi (%6-13 araligi, mutlak
+   degerler 190 bin ile 5,6 milyon arasinda). Yuzde olcegi dort dilimi
+   karsilastirilabilir kiliyor.
+
+   Tek seri oldugu icin marka disi tek renk yetiyor. */
+function ydoBirikmisFark() {
+  var W = 600, H = 360, SOL = 74, SAG = 96, UST = 72, ALT = 54;
+  var Y = require(path.join(KOK, "makaleler", "yeniden-degerleme-orani-nedir",
+    "ydo.js"));
+  var son = B.sonYil();
+  var liste = Y.birikmisFark(2021, son);
+
+  var enCok = liste.reduce(function (e, x) { return Math.max(e, x.eksikOran); }, 0);
+  var xMax = Math.ceil(enCok * 100 + 2) / 100;
+  var x = function (o) { return SOL + (o / xMax) * (W - SOL - SAG); };
+
+  var n = liste.length;
+  var bandH = (H - UST - ALT) / n;
+  var cubukH = Math.min(30, bandH * 0.56);
+
+  var izgara = "", eksen = "";
+  for (var t = 0; t <= xMax + 1e-9; t += 0.05) {
+    var xx = x(t);
+    izgara += '<line x1="' + xx.toFixed(1) + '" y1="' + UST + '" x2="' + xx.toFixed(1) +
+      '" y2="' + (H - ALT) + '" stroke="' + R.izgara + '" stroke-width="1"/>';
+    eksen += '<text x="' + xx.toFixed(1) + '" y="' + (H - ALT + 20) +
+      '" font-size="12" fill="' + R.ikincil + '" text-anchor="middle">%' +
+      Math.round(t * 100) + '</text>';
+  }
+
+  var cubuk = liste.map(function (o, i) {
+    var yy = UST + i * bandH + (bandH - cubukH) / 2;
+    var gen = Math.max(2, x(o.eksikOran) - x(0));
+    return '<rect x="' + x(0).toFixed(1) + '" y="' + yy.toFixed(1) +
+      '" width="' + gen.toFixed(1) + '" height="' + cubukH.toFixed(1) +
+      '" rx="4" fill="' + R.s2 + '"/>' +
+      '<text x="' + (SOL - 10) + '" y="' + (yy + cubukH / 2 + 5).toFixed(1) +
+      '" font-size="14" fill="' + R.murekkep + '" text-anchor="end">' +
+      o.sira + '. dilim</text>' +
+      '<text x="' + (x(o.eksikOran) + 9).toFixed(1) + '" y="' +
+      (yy + cubukH / 2 + 5).toFixed(1) +
+      '" font-size="13" fill="' + R.murekkep + '">%' +
+      (o.eksikOran * 100).toFixed(2).replace(".", ",") + '</text>';
+  }).join("");
+
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="' + son + ' gelir vergisi dilimlerinin tam ' +
+    'endekslemeye gore ne kadar geride kaldigi">' +
+    izgara + cubuk + eksen +
+    '<text x="' + SOL + '" y="32" font-size="15" fill="' + R.murekkep + '">' +
+    son + ' dilimleri tam endekslemenin ne kadar gerisinde?</text>' +
+    '<text x="' + SOL + '" y="52" font-size="13" fill="' + R.ikincil + '">' +
+    '2021’den beri her yıl kesir atıldı — fark bileşik olarak birikti</text>' +
+    '</svg>';
+}
+
 /* Ikramiyenin zamanlamasi — "ikramiye-hangi-ay-odenmeli" kapagi.
    Anlatilan sey bir EGILIM degil, bir BASAMAK: odeme sayisi arttikca
    yillik net dusuyor ama bir yerde DURUYOR -- her taksit prim tavaninin
@@ -1078,6 +1140,12 @@ var KAPAKLAR = {
     baslik: "Dilimler asgari ücrete yetişemiyor",
     alt: "Aynı katta maaş alan biri her yıl daha hızlı tırmanıyor",
     cizim: dilimKaymasi
+  },
+  "yeniden-degerleme-orani-nedir": {
+    kicker: "Vergi",
+    baslik: "Yeniden değerleme oranı nedir?",
+    alt: "Kesir hep aşağı atılıyor — fark beş yılda birikti",
+    cizim: ydoBirikmisFark
   },
   "ikramiye-hangi-ay-odenmeli": {
     kicker: "Vergi",
