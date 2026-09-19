@@ -53,6 +53,7 @@ KISA = {
     "erken-kapatma-analizi": "Erken kapatma mı, yatırım mı?",
     "borc-mu-birikim-mi": "Borç mu, Birikim mi?",
 
+    "beyanname-hesaplama": "Beyanname gerekir mi?",
     "kira-geliri-vergisi-hesaplama": "Kira Geliri Vergisi",
     "borc-kapatma-plani": "Borç Kapatma Planı",
     "makaleler/sgk-prim-tavani-9-kat": "SGK tavanı 9 kat",
