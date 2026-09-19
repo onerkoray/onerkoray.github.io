@@ -167,6 +167,10 @@ SPEC = {
    "Cig, kartopu ve asgari odeme stratejileri ay ay karsilastirmali.",
    ["Simulasyon", "TCMB oranlari"], "vergi"),
 
+ "beyanname-hesaplama": ("beyanname-hesaplama", "Beyanname", "Gerekir mi?",
+   "Bütün gelirleri birlikte değerlendirir: sınır gelirin kendisine değil toplama bakar.",
+   ["GVK m.86", "Bütün gelirler"], "vergi"),
+
  "kira-geliri-vergisi-hesaplama": ("kira-geliri-vergisi-hesaplama", "Kira Geliri", "Vergisi 2026",
    "Mesken istisnasi, goturu ve gercek gider karsilastirmasi, stopaj mahsubu.",
    ["GVK m.21 / m.74", "Iki yontem"], "vergi"),

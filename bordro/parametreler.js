@@ -115,6 +115,31 @@
       /* Şirketleşme ve bağımsız çalışma parametreleri.
          Beyan haddi ayrıca tanımlanmaz: GVK m.86 uyarınca tarifenin ikinci
          diliminin üst sınırıdır, yani dilimler[1][0]. */
+      /* Yillik beyanname indirimleri (GVK m.89) ve beyan esiklerinin
+         hangi dilimden turedigi.
+
+         BURADA TUTAR YOK, ORAN VAR. m.89 indirimleri "beyan edilen
+         gelirin yuzde su kadari" diye tanimli; yeniden degerlemeyle
+         bayatlayacak bir rakam icermiyorlar. Tek istisna sahis sigortasi
+         primindeki asgari ucret tavani -- o da donemler[].asgariBrut'tan
+         TURETILIYOR, buraya yazilmiyor. */
+      beyan: {
+        egitimSaglikOrani: 0.10,     // m.89/2 — beyan edilen gelirin %10'u
+        bagisOrani: 0.05,            // m.89/4 — beyan edilen gelirin %5'i
+        sahisSigortaOrani: 0.15,     // m.89/1 — beyan edilen gelirin %15'i
+                                     // ve yillik asgari ucreti asamaz
+        sponsorlukAmator: 1.00,      // m.89/8 — amator spor dallarinda tamami
+        sponsorlukProfesyonel: 0.50, // m.89/8 — profesyonel dallarda yarisi
+        /* Esikler DILIM SIRASI olarak duruyor, tutar olarak degil:
+           kanun onlari "tarifenin ikinci/dorduncu gelir diliminde yer
+           alan tutar" diye tanimliyor. */
+        sonrakiIsverenDilimi: 1,     // m.86/1-b parantezi
+        ucretToplamiDilimi: 3,       // m.86/1-b, 7194 s.K. ile eklenen sinir
+        tevkifatliDilimi: 1,         // m.86/1-c — MSI, GMSI, cok isverenli ucret
+        taksitAylari: [3, 7],        // Mart ve Temmuz
+        dayanak: "GVK m.85, m.86, m.89, m.92, m.117"
+      },
+
       sirket: {
         kurumlarVergisi: 0.25,          // KVK m.32 genel oran
         karPayiStopaji: 0.15,           // GVK 94/6-b, 9286 sayılı CB Kararı (Ara. 2024)
