@@ -300,6 +300,11 @@ jobs:
       # Test YILA CIVILI (2026) -- sayfa, atif verilen surumden ayrismasin
       # diye tablolar ureteci degil testle korunuyor. 2026 parametreleri
       # degisirse kirmizi doner ve bu dogru davranistir.
+      # Zam yansimasi yazisi da yila civili: tablolari "2026:" diye
+      # etiketli ve kirk hesaplanmis deger tasiyor.
+      - name: Zam yansıması yazısının sayıları
+        run: node makaleler/zam-net-maasa-ne-kadar-yansir/sayi-testi.js
+
       - name: Vergi kaması yazısının sayıları
         run: node makaleler/vergi-kamasi-ucretin-gercek-yuku/sayi-testi.js
 
