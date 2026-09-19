@@ -605,6 +605,87 @@ function makbuzAkisi() {
     "</svg>";
 }
 
+/* Prim tavani — "sgk-prim-tavani-9-kat" kapagi.
+   Yazinin tezi tek bir SEKIL: yuk dar bir bantta toplaniyor ve en tepede
+   GERI CEKILIYOR. Cizgi grafigi secildi cunku anlatilan sey bir siralama
+   degil, bir egrinin bicimi -- nerede basladigi, nerede doydugu, nerede
+   dustugu.
+
+   Cubuk kullanilsaydi ucuncu kirilim (479.270 TL'deki dusus) birkac
+   cubugun yukseklik farkina indirgenirdi ve egrinin "plato sonra dusus"
+   bicimi kaybolurdu.
+
+   Tek seri oldugu icin marka disi tek renk yetiyor; iki dikey referans
+   cizgisi esikleri isaretliyor. */
+function sgkTavanEtkisi() {
+  var W = 600, H = 360, SOL = 74, SAG = 28, UST = 76, ALT = 58;
+  var T = require(path.join(KOK, "makaleler", "sgk-prim-tavani-9-kat",
+    "tavan.js"));
+  var yil = B.sonYil();
+  var e = T.esikler(yil);
+
+  /* Ornekleme araligi: esigin biraz altindan, doyumun besbucuk katina.
+     Elle secilmis sinirlar degil -- esiklerden tureniyor. */
+  var x0 = e.baslar * 0.82, x1 = e.doyar * 2.6, adim = (x1 - x0) / 120;
+  var nokta = [];
+  for (var v = x0; v <= x1 + 1e-6; v += adim) {
+    nokta.push({ brut: v, kayip: T.etki(Math.round(v), yil).netKayip });
+  }
+  var enCok = nokta.reduce(function (m, p) { return Math.max(m, p.kayip); }, 0);
+  var yMax = Math.ceil(enCok / 10000) * 10000;
+
+  var px = function (v) { return SOL + (v - x0) / (x1 - x0) * (W - SOL - SAG); };
+  var py = function (v) { return H - ALT - (v / yMax) * (H - UST - ALT); };
+
+  var izgara = "", eksenY = "";
+  for (var t = 0; t <= yMax + 1e-9; t += yMax / 4) {
+    var yy = py(t);
+    izgara += '<line x1="' + SOL + '" y1="' + yy.toFixed(1) + '" x2="' + (W - SAG) +
+      '" y2="' + yy.toFixed(1) + '" stroke="' + R.izgara + '" stroke-width="1"/>';
+    eksenY += '<text x="' + (SOL - 9) + '" y="' + (yy + 4).toFixed(1) +
+      '" font-size="11" fill="' + R.ikincil + '" text-anchor="end">' +
+      (t === 0 ? "0" : nf0.format(Math.round(t / 1000)) + "b") + '</text>';
+  }
+
+  /* Esik cizgileri: etkinin basladigi ve doydugu yerler. */
+  function esik(v, etiket, kaydir) {
+    var xx = px(v);
+    return '<line x1="' + xx.toFixed(1) + '" y1="' + UST + '" x2="' + xx.toFixed(1) +
+      '" y2="' + (H - ALT) + '" stroke="' + R.ikincil +
+      '" stroke-width="1" stroke-dasharray="3 3" opacity="0.55"/>' +
+      '<text x="' + (xx + kaydir).toFixed(1) + '" y="' + (UST - 8) +
+      '" font-size="11" fill="' + R.ikincil + '" text-anchor="middle">' +
+      etiket + '</text>';
+  }
+
+  var d = nokta.map(function (p, i) {
+    return (i ? "L" : "M") + px(p.brut).toFixed(1) + " " + py(p.kayip).toFixed(1);
+  }).join(" ");
+
+  var eksenX = "";
+  [e.baslar, e.doyar, e.doyar * 2].forEach(function (v) {
+    eksenX += '<text x="' + px(v).toFixed(1) + '" y="' + (H - ALT + 20) +
+      '" font-size="11" fill="' + R.ikincil + '" text-anchor="middle">' +
+      nf0.format(Math.round(v / 1000)) + 'b</text>';
+  });
+
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Prim tavanının yükselmesinin aylık brüt ücrete ' +
+    'göre yıllık net etkisi">' +
+    izgara +
+    esik(e.baslar, "eski tavan", -2) + esik(e.doyar, "yeni tavan", 26) +
+    '<path d="' + d + '" fill="none" stroke="' + R.s2 +
+    '" stroke-width="2.5" stroke-linejoin="round"/>' +
+    eksenY + eksenX +
+    '<text x="' + SOL + '" y="30" font-size="15" fill="' + R.murekkep + '">' +
+    'Tavan yükselmesinin yıllık net maliyeti</text>' +
+    '<text x="' + SOL + '" y="50" font-size="13" fill="' + R.ikincil + '">' +
+    'Dar bir bantta yükseliyor, doyuyor — ve en üst gelirlerde geri çekiliyor</text>' +
+    '<text x="' + (W - SAG) + '" y="' + (H - 12) + '" font-size="11" fill="' +
+    R.ikincil + '" text-anchor="end">aylık brüt ücret (TL)</text>' +
+    '</svg>';
+}
+
 /* Yeniden degerleme — "yeniden-degerleme-orani-nedir" kapagi.
    Anlatilan sey tek bir yilin yuvarlamasi degil, BES YILDA BIRIKEN fark.
    O yuzden cizim yillik kesirleri degil, 2026 dilimlerinin tam
@@ -1140,6 +1221,12 @@ var KAPAKLAR = {
     baslik: "Dilimler asgari ücrete yetişemiyor",
     alt: "Aynı katta maaş alan biri her yıl daha hızlı tırmanıyor",
     cizim: dilimKaymasi
+  },
+  "sgk-prim-tavani-9-kat": {
+    kicker: "Sosyal güvenlik",
+    baslik: "SGK prim tavanı 9 kata çıktı",
+    alt: "Yük dar bir bantta — ve en tepede geri çekiliyor",
+    cizim: sgkTavanEtkisi
   },
   "yeniden-degerleme-orani-nedir": {
     kicker: "Vergi",

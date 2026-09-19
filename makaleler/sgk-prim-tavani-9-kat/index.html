@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SGK Prim Tavanı Neden 9 Kata Çıktı? 2026 | Koray Öner</title>
+  <meta name="gecerlilik" content="2027-01-10 | 2027 asgari ücreti açıklandığında tavan ve buradaki bütün tutarlar değişir. Katsayı 9'da kalsa bile rakamların tazelenmesi gerekir.">
+  <meta name="description" content="SGK prim tavanı 2026'da 7,5 kattan 9 kata çıktı: 297.270 TL. Kimi etkiliyor, ne kadara mal oluyor ve neden en yüksek ücretliler daha az kaybediyor?">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://orcid.org/0009-0005-8730-3577">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/">
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="SGK prim tavanı 9 kata çıktı: kimin cebinden ne çıkıyor?">
+  <meta property="og:description" content="Yedi yıl 7,5 katta duran katsayı 2026'da 9'a çıktı. Etki keskin bir aralıkta ve şaşırtıcı yönde: tavandaki kişi, tavanın üç katını kazanandan daha çok kaybediyor.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/sgk-prim-tavani-9-kat.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SGK prim tavanının yükselmesinin aylık brüt ücrete göre yıllık net etkisi: eski tavanın altında sıfır, yeni tavanda doyuyor, en üst gelirlerde geri çekiliyor">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="SGK prim tavanı 9 kata çıktı: kimin cebinden ne çıkıyor?">
+  <meta name="twitter:description" content="Ek prim yılda 89.181 TL, net kayıp 57.968 TL. Ama bu bir vergi değil: fazla prim emekli aylığını büyütüyor ve 4,5–5,8 yılda geri geliyor.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/sgk-prim-tavani-9-kat.png">
+
+  <link rel="stylesheet" href="../../style.css?v=9ae079de">
+  <link rel="stylesheet" href="../editoryal.css?v=3bb6a509">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "ORCID",
+        "value": "https://orcid.org/0009-0005-8730-3577"
+      },
+      "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/koraonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://dl.acm.org/profile/81100070426",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/",
+      "url": "https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/",
+      "name": "SGK prim tavanı 9 kata çıktı: kimin cebinden ne çıkıyor?",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "inLanguage": "tr",
+      "primaryImageOfPage": "https://korayoner.dev/images/makale/sgk-prim-tavani-9-kat.png"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/#article",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "headline": "Prim tavanının yükseltilmesi: dar bir bantta yük, tersine dönen bir dağılım",
+      "alternativeHeadline": "Raising the Social Security Contribution Ceiling: A Narrow Band of Burden and an Inverted Distribution",
+      "description": "Türkiye'de sosyal güvenlik prim tavanının 2026'da asgari ücretin 7,5 katından 9 katına çıkarılmasının ücretli ve işveren üzerindeki etkisini tam bordro benzetimiyle ölçer; vergi kalkanı nedeniyle net yükün en yüksek ücretlilerde azaldığını ve fazla primin emekli aylığı üzerinden geri dönüş süresini gösterir.",
+      "inLanguage": "tr",
+      "datePublished": "2026-09-19",
+      "dateModified": "2026-09-19",
+      "author": { "@id": "https://korayoner.dev/#oner-koray" },
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+      "image": "https://korayoner.dev/images/makale/sgk-prim-tavani-9-kat.png",
+      "mainEntityOfPage": "https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "keywords": "SGK prim tavanı, prime esas kazanç, tavan katsayısı, 7566 sayılı Kanun, vergi kalkanı, emekli aylığı, aylık bağlama oranı, vergi kaması",
+      "about": [
+        { "@type": "Thing", "name": "Sosyal güvenlik primi" },
+        { "@type": "Thing", "name": "Prime esas kazanç" },
+        { "@type": "Thing", "name": "Emeklilik" }
+      ],
+      "citation": [
+        { "@type": "Legislation", "name": "5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu m.82 — prime esas kazancın alt ve üst sınırı" },
+        { "@type": "Legislation", "name": "7566 sayılı Kanun — prime esas kazanç üst sınırının asgari ücretin 9 katına çıkarılması" },
+        { "@type": "Legislation", "name": "193 sayılı Gelir Vergisi Kanunu m.63 — sigorta primlerinin matrahtan indirimi" },
+        { "@type": "Legislation", "name": "5510 sayılı Kanun m.29 ve Geçici m.2; 506 sayılı Kanun Geçici m.82 — aylık bağlama oranı" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "2026 SGK prim tavanı ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "Aylık 297.270 TL. Bu tutar brüt asgari ücretin (33.030 TL) 9 katıdır. 7566 sayılı Kanun ile üst sınır 1 Ocak 2026'dan geçerli olmak üzere 7,5 kattan 9 kata çıkarıldı." } },
+        { "@type": "Question", "name": "SGK tavanının yükselmesi kimi etkiliyor?", "acceptedAnswer": { "@type": "Answer", "text": "Yalnızca aylık brüt ücreti 247.725 TL'nin üzerinde olanları. Bu tutar eski tavandır; altında kalan hiç kimsenin bordrosunda tek kuruş değişiklik olmaz. Etki 297.270 TL'de doyar; o noktadan sonra ek prim artmaz." } },
+        { "@type": "Question", "name": "Tavanın yükselmesi ne kadara mal oluyor?", "acceptedAnswer": { "@type": "Answer", "text": "Tavanda ve üzerinde çalışan bir ücretli için ek işçi primi yılda 89.181 TL. Ancak prim gelir vergisi matrahından düşüldüğü için net kayıp bundan az: yüzde 35 bandında 57.968 TL, yüzde 40 bandında 53.509 TL. İşveren tarafında artış yılda 141.203 TL ve bunun vergi kalkanı karşılığı yoktur." } },
+        { "@type": "Question", "name": "Neden en yüksek ücretliler daha az kaybediyor?", "acceptedAnswer": { "@type": "Answer", "text": "Ek prim herkes için aynı: yılda 89.181 TL. Ama prim vergi matrahından düşüldüğü için geri gelen kısım kişinin marjinal vergi oranına bağlı. Yüzde 35 bandındaki biri primin yüzde 35'ini geri alırken yüzde 40 bandındaki biri yüzde 40'ını alıyor. Sonuçta tavandaki kişi yılda 57.968 TL, aylık brütü 479.270 TL'yi aşan biri 53.509 TL kaybediyor — yani tavandaki kişi yüzde 8,3 daha fazla." } },
+        { "@type": "Question", "name": "Bu fazla prim geri geliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, emekli aylığı üzerinden. Prime esas kazanç yükseldiği için ortalama kazanç ve dolayısıyla bağlanacak aylık da yükseliyor. Bugünün kurallarıyla ve bugünün parasıyla ölçüldüğünde, fazla ödenen primin geri dönüşü 4,5 ile 5,8 yıl arasında bir emeklilik süresine denk geliyor ve bu aralık kariyer biçiminden neredeyse bağımsız." } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../otv-hesaplama/">ÖTV</a></li>
+          <li><a href="../../mtv-hesaplama/">MTV</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> SGK prim tavanı
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Sosyal güvenlik · Araştırma</p>
+        <h1 id="hero-title">SGK prim tavanı 9 kata çıktı: kimin cebinden ne çıkıyor?</h1>
+        <p class="ed-standfirst">Prim tavanı yıllardır asgari ücretin 7,5 katıydı ve kimse
+          katsayıyı konuşmuyordu. 2026'da 9 oldu. Etki <strong>çok dar bir ücret bandında</strong>
+          ve şaşırtıcı bir yönde: tavandaki kişi, tavanın üç katını kazanandan
+          <strong>daha çok</strong> kaybediyor.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-19">19 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <article>
+        <figure class="ed-veri-gorseli">
+          <img src="../../images/makale/sgk-prim-tavani-9-kat.png"
+               width="1200" height="630" loading="lazy" decoding="async"
+               alt="Prim tavanının yükselmesinin aylık brüt ücrete göre yıllık net etkisi: eski tavanın altında sıfır, yeni tavanda doyuyor, en üst gelirlerde geri çekiliyor">
+          <figcaption>Yük dar bir bantta toplanıyor ve en tepede geri çekiliyor —
+            prim tabanı tavanla sınırlı, vergi kalkanı değil.</figcaption>
+        </figure>
+
+        <div class="legal-note verdict">
+          <h2 id="kisa-cevap">Kısa cevap</h2>
+          <p><strong>7566 sayılı Kanun</strong>, prime esas kazancın üst sınırını 1 Ocak
+            2026'dan geçerli olmak üzere brüt asgari ücretin <strong>7,5 katından 9 katına</strong>
+            çıkardı. 33.030 × 9 = <strong>297.270 TL</strong>. Katsayı, elimizdeki bütün
+            yıllarda 7,5'ti; bu onun ilk değişimi.</p>
+          <p><strong>Etkilenen kitle dar.</strong> Aylık brütü <strong>247.725 TL</strong>
+            (eski tavan) altında olan hiç kimsenin bordrosunda tek kuruş değişmiyor. Etki
+            297.270 TL'de doyuyor — ötesinde ek prim artmıyor.</p>
+          <p><strong>Tavandaki ücretli için:</strong> ek işçi primi yılda
+            <strong>89.181 TL</strong>. Prim gelir vergisi matrahından düşüldüğü için net
+            kayıp bundan az: <strong>57.968 TL</strong>. İşveren tarafında artış yılda
+            <strong>141.203 TL</strong> ve bunun vergi kalkanı karşılığı yok.</p>
+          <p><strong>Ama bu bir vergi değil.</strong> Yüksek prime esas kazanç emekli
+            aylığını doğru orantılı büyütüyor. Bugünün kurallarıyla ölçüldüğünde fazla prim
+            <strong>4,5–5,8 yıllık</strong> emeklilik süresinde geri geliyor — ve bu aralık
+            kariyer biçiminden neredeyse bağımsız.</p>
+        </div>
+
+        <h2 id="ne-degisti">Ne değişti?</h2>
+        <p>Prim tavanı bir tutar olarak değil, <strong>asgari ücretin katı</strong> olarak
+          tanımlı. 5510 sayılı Kanun m.82 üst sınırı alt sınıra bağlıyor; değişen şey katsayı.
+          Tavanın her yıl büyümesi bu yüzden haber olmuyordu: asgari ücret artınca tavan da
+          artıyordu, ama <em>oran</em> sabitti.</p>
+
+        <!-- TAVAN-DEGISIM:BASLANGIC -->
+          <table class="payroll">
+            <caption>Asgari ücret, tavan katsayısı ve aylık prim tavanı</caption>
+            <thead><tr><th scope="col">Yıl</th><th scope="col">Asgari ücret (brüt)</th><th scope="col">Tavan katsayısı</th><th scope="col">Aylık prim tavanı</th><th scope="col">Not</th></tr></thead>
+            <tbody>
+            <tr><th scope="row">2020</th><td>2.943 TL</td><td>7,5 kat</td><td>22.073 TL</td><td>—</td></tr>
+            <tr><th scope="row">2021</th><td>3.578 TL</td><td>7,5 kat</td><td>26.831 TL</td><td>—</td></tr>
+            <tr><th scope="row">2022</th><td>5.004 TL</td><td>7,5 kat</td><td>37.530 TL</td><td>—</td></tr>
+            <tr><th scope="row">2023</th><td>10.008 TL</td><td>7,5 kat</td><td>75.060 TL</td><td>—</td></tr>
+            <tr><th scope="row">2024</th><td>20.003 TL</td><td>7,5 kat</td><td>150.019 TL</td><td>—</td></tr>
+            <tr><th scope="row">2025</th><td>26.006 TL</td><td>7,5 kat</td><td>195.041 TL</td><td>—</td></tr>
+            <tr class="vurgu"><th scope="row">2026</th><td>33.030 TL</td><td>9 kat</td><td>297.270 TL</td><td>katsayı değişti</td></tr>
+            </tbody>
+          </table>
+<!-- TAVAN-DEGISIM:BITIS -->
+
+        <p>Tablodaki son satır, altı yılın tek istisnası. Katsayı değiştiği için 2026'da tavan
+          asgari ücretten <strong>daha hızlı</strong> arttı: asgari ücret %27,01 yükselirken
+          tavan %52,41 yükseldi. Aradaki fark tam olarak 9/7,5 = 1,20 oranı.</p>
+
+        <h2 id="kim">Kim etkileniyor: keskin bir aralık</h2>
+        <p>Tavan, primin hesaplandığı kazancın üst sınırı. Yükselmesi yalnızca
+          <strong>eski tavanın üstünde</strong> kazananları ilgilendiriyor, çünkü altında
+          kalanların prime esas kazancı zaten gerçek brütleri.</p>
+        <p>Prime esas kazancın genişleyen kısmı aylık <strong>49.545 TL</strong>
+          (297.270 − 247.725). İşçi payı bu tutarın %15'i (%14 SGK + %1 işsizlik), işveren payı
+          %23,75'i (%21,75 + %2). Yıllığa çevrildiğinde ek yük
+          <strong>89.181 TL</strong> ve <strong>141.203 TL</strong>.</p>
+
+        <!-- TAVAN-ETKI:BASLANGIC -->
+          <table class="payroll">
+            <caption>2026 — aylık brüte göre yıllık etki</caption>
+            <thead><tr><th scope="col">Aylık brüt</th><th scope="col">Ek işçi primi (yıllık)</th><th scope="col">Vergi kalkanı</th><th scope="col">Net kayıp (yıllık)</th><th scope="col">İşveren artışı (yıllık)</th></tr></thead>
+            <tbody>
+            <tr><th scope="row">227.907 TL</th><td>0 TL</td><td>—</td><td>0 TL</td><td>0 TL</td></tr>
+            <tr><th scope="row">247.725 TL</th><td>0 TL</td><td>—</td><td>0 TL</td><td>0 TL</td></tr>
+            <tr><th scope="row">270.020 TL</th><td>40.131 TL</td><td>%35,0</td><td>26.085 TL</td><td>63.541 TL</td></tr>
+            <tr><th scope="row">297.270 TL</th><td>89.181 TL</td><td>%35,0</td><td>57.968 TL</td><td>141.203 TL</td></tr>
+            <tr><th scope="row">401.315 TL</th><td>89.181 TL</td><td>%35,0</td><td>57.968 TL</td><td>141.203 TL</td></tr>
+            <tr><th scope="row">891.810 TL</th><td>89.181 TL</td><td>%40,0</td><td>53.509 TL</td><td>141.203 TL</td></tr>
+            </tbody>
+          </table>
+<!-- TAVAN-ETKI:BITIS -->
+
+        <h2 id="kalkan">Asıl bulgu: en çok kaybeden, en çok kazanan değil</h2>
+        <p>Tablodaki <em>vergi kalkanı</em> sütunu yazının asıl bulgusunu taşıyor. Sigorta
+          primi gelir vergisi matrahından düşülüyor (GVK m.63). Yani ek prim ödeyen kişi, aynı
+          anda daha az gelir vergisi ödüyor. Geri gelen kısım kişinin
+          <strong>marjinal vergi oranı</strong> kadar:</p>
+        <p class="ed-formul"><strong>net kayıp = ek prim × (1 − marjinal vergi oranı)</strong></p>
+        <p>Ek prim herkes için aynı — 89.181 TL. Ama kalkan değil. %35 bandındaki biri primin
+          %35'ini geri alıyor, %40 bandındaki biri %40'ını. Aylık brütü
+          <strong>479.270 TL</strong>'yi aşan biri yıl boyunca %40 bandında kaldığı için
+          kaybı <strong>53.509 TL</strong>'ye iniyor.</p>
+        <p>Sonuç ters duruyor ama aritmetiği basit: <strong>tavandaki ücretli, tavanın üç
+          katını kazanandan yılda 4.459 TL daha fazla kaybediyor</strong> — oransal olarak
+          %8,3 daha fazla. Prim tabanı tavanla sınırlanmış, vergi kalkanı sınırlanmamış.</p>
+        <p>Bu, sitedeki <a href="../vergi-kamasi-ucretin-gercek-yuku/">vergi kaması
+          yazısının</a> ölçtüğü kırılmanın yer değiştirmesi: zorunlu yükün marjinal oranı prim
+          tavanında düşüyordu, o düşüş noktası artık 247.725 TL değil 297.270 TL.</p>
+
+        <h2 id="isveren">İşveren tarafında kalkan yok</h2>
+        <p>İşveren için aynı genişleme yılda <strong>141.203 TL</strong> ek maliyet demek ve
+          burada ücretlininkine benzer bir geri dönüş yok — prim işveren açısından gider, ama
+          gider yazmak kurumlar vergisi matrahını ilgilendirir, bordronun kendisini değil.
+          Tavanın üstünde çalışan her kişi başına işveren maliyeti, ücrete tek kuruş zam
+          yapılmadan bu kadar arttı.</p>
+        <p>Bu, ücret pazarlığına da giren bir sayı: aynı brütü korumak işverene yıllık
+          141.203 TL daha pahalıya geliyor. <a href="../../isveren-maliyeti-hesaplama/">İşveren
+          maliyeti hesaplayıcısı</a> bu farkı kendi ücretinizle gösterir.</p>
+
+        <h2 id="emeklilik">Vergi mi, zorunlu emeklilik alımı mı?</h2>
+        <p>Buraya kadar olan her şey maliyet tarafı. Ama prim vergi değil: karşılığında bir
+          hak doğuyor. Emekli aylığı, <strong>güncellenmiş ortalama prime esas kazanç</strong>
+          ile <strong>aylık bağlama oranının</strong> çarpımı. Prime esas kazanç yükselince
+          aylık da yükseliyor — üstelik doğru orantılı olarak.</p>
+        <p>Soru şu hâlde şöyle kuruluyor: fazla ödenen prim, emekli aylığındaki artışla
+          <strong>kaç yılda</strong> geri gelir? Aşağıdaki tablo, hem eski hem yeni tavanın
+          üstünde kazanan biri için bunu kariyerin farklı noktalarında ölçüyor. Geçmiş günler
+          eski tavandan, kalan günler yeni tavandan sayılıyor.</p>
+
+        <!-- TAVAN-GERI:BASLANGIC -->
+          <table class="payroll">
+            <caption>Fazla primin emekli aylığı üzerinden geri dönüşü</caption>
+            <thead><tr><th scope="col">Geçmiş + kalan hizmet</th><th scope="col">Ortalama PEK</th><th scope="col">Aylık artışı</th><th scope="col">Toplam net maliyet</th><th scope="col">Başabaş</th></tr></thead>
+            <tbody>
+            <tr><th scope="row">20 + 5 yıl</th><td>257.634 TL</td><td>5.114 TL</td><td>289.838 TL</td><td>4,7 yıl</td></tr>
+            <tr><th scope="row">20 + 10 yıl</th><td>264.240 TL</td><td>10.130 TL</td><td>579.677 TL</td><td>4,8 yıl</td></tr>
+            <tr><th scope="row">20 + 15 yıl</th><td>268.959 TL</td><td>15.091 TL</td><td>869.515 TL</td><td>4,8 yıl</td></tr>
+            <tr><th scope="row">10 + 20 yıl</th><td>280.755 TL</td><td>20.260 TL</td><td>1.159.353 TL</td><td>4,8 yıl</td></tr>
+            <tr><th scope="row">5 + 25 yıl</th><td>289.013 TL</td><td>25.325 TL</td><td>1.449.191 TL</td><td>4,8 yıl</td></tr>
+            </tbody>
+          </table>
+<!-- TAVAN-GERI:BITIS -->
+
+        <p>Başabaş süresinin kariyer biçiminden bu kadar bağımsız çıkması ilk bakışta
+          tuhaf. Maliyet kalan hizmet süresiyle doğru orantılı büyüyor, ama kazanç toplam
+          hizmet süresine bölünüyor; ikisinin oranının sabit kalmaması gerekirdi. Dengeyi
+          kuran şey <strong>aylık bağlama oranının prim günüyle birlikte yükselmesi</strong>:
+          uzun kariyerde ortalama daha çok seyreliyor, ama seyrelen ortalama daha yüksek bir
+          oranla çarpılıyor. Çok uzun kariyerlerde oran tavana dayandığı için başabaş
+          uzuyor — ölçtüğümüz en geniş aralık 4,5 ile 5,8 yıl arasında kaldı.</p>
+        <p>Emeklilikte geçirilen ortalama sürenin bunun katbekat üstünde olduğu düşünülürse,
+          bugünün kuralları altında bu değişim ücretli için <strong>kötü bir alım değil</strong>.
+          Yükü asıl taşıyan taraf, karşılığında hiçbir hak doğmayan işveren.</p>
+
+        <h2 id="yontem">Yöntem, sınırlar ve varsayımlar</h2>
+        <p>Bordro tarafındaki bütün sayılar sitenin
+          <a href="../../bordro/">bordro motoruyla</a> tam yıl benzetimi yapılarak üretildi;
+          tavan dışındaki hiçbir parametre değiştirilmedi. "Tavan 7,5 katta kalsaydı" karşı
+          olgusu, 7,5 sayısı elle yazılarak değil <strong>bir önceki yılın katsayısı
+          okunarak</strong> kuruluyor — bu yüzden katsayı bir daha değiştiğinde yazı
+          kendiliğinden doğru karşı olguyu kullanır.</p>
+        <p>Emeklilik tarafı <strong>bugünün kurallarıyla ve bugünün parasıyla</strong>
+          ölçüldü. Şunlar modellenmedi: iskonto, ölüm riski, aylık bağlama oranının ileride
+          değişme ihtimali ve kişinin bütün kariyeri boyunca tavanın üstünde kalıp
+          kalmayacağı. Bunlar önemsiz oldukları için değil, <strong>tahmin edilmeleri
+          gerektiği</strong> için dışarıda — bu yazı ölçebildiğini yazıyor.</p>
+        <p>Vergi kalkanı hesabı kişinin yıl boyunca hangi dilimde kaldığına duyarlı; tablodaki
+          oranlar tam yıl benzetiminin çıktısı, kabaca alınmış dilim oranları değil.</p>
+
+        <h2 id="kaynaklar">Kaynaklar</h2>
+        <ul>
+          <li><strong>5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu m.82</strong>
+            — prime esas günlük kazancın alt ve üst sınırı; üst sınırın alt sınırın katı
+            olarak tanımlanması.</li>
+          <li><strong>7566 sayılı Kanun</strong> — prime esas kazanç üst sınırının 1 Ocak
+            2026'dan geçerli olmak üzere asgari ücretin 9 katına çıkarılması.</li>
+          <li><strong>193 sayılı Gelir Vergisi Kanunu m.63</strong> — sigorta primlerinin
+            ücretin gerçek safi değerinin tespitinde indirilmesi (vergi kalkanının dayanağı).</li>
+          <li><strong>5510 sayılı Kanun m.29 ve Geçici m.2; 506 sayılı Kanun Geçici m.82</strong>
+            — aylık bağlama oranı kademeleri.</li>
+          <li>Hesaplamalar: <a href="../../bordro/">bordro motoru</a> ve emeklilik motoru,
+            parametreler <code>bordro/parametreler.js</code>.</li>
+        </ul>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+        <details><summary>2026 SGK prim tavanı ne kadar?</summary><p>Aylık 297.270 TL. Brüt asgari ücretin (33.030 TL) 9 katı. Günlük üst sınır 9.909 TL.</p></details>
+        <details><summary>Maaşım tavanın altındaysa ne değişir?</summary><p>Hiçbir şey. Aylık brütünüz 247.725 TL'nin altındaysa prime esas kazancınız zaten gerçek brütünüzdü; tavanın yükselmesi sizi ilgilendirmiyor.</p></details>
+        <details><summary>Neden tavandaki kişi daha çok kaybediyor?</summary><p>Ek prim herkes için aynı (89.181 TL/yıl) ama prim vergi matrahından düşüldüğü için geri gelen kısım marjinal vergi oranına bağlı. Üst dilimdeki kişi aynı primi daha ucuza ödüyor.</p></details>
+        <details><summary>Bu para boşa mı gidiyor?</summary><p>Hayır. Prime esas kazanç emekli aylığını doğru orantılı büyütüyor. Bugünün kurallarıyla fazla prim 4,5–5,8 yıllık emeklilik süresinde geri geliyor.</p></details>
+        <details><summary>İşveren de aynı şekilde geri alıyor mu?</summary><p>Hayır. İşveren payındaki yıllık 141.203 TL artışın bordro içinde bir karşılığı yok; işveren için bu doğrudan maliyet artışı.</p></details>
+
+        <h2 id="ilgili">İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../../maas-hesaplama/">Brüt–net maaş hesaplama</a> — kendi ücretinizle ay ay bordro.</li>
+          <li><a href="../../isveren-maliyeti-hesaplama/">İşveren maliyeti hesaplama</a> — aynı brütün işverene maliyeti.</li>
+          <li><a href="../vergi-kamasi-ucretin-gercek-yuku/">Vergi kaması: ücretin gerçek yükü</a> — zorunlu yükün prim tavanında kırılması.</li>
+          <li><a href="../emekliligin-finansal-matematigi/">Emekliliğin finansal matematiği</a> — aylık bağlama oranı ve ortalama kazancın aylığa dönüşümü.</li>
+          <li><a href="../zam-net-maasa-ne-kadar-yansir/">Zam net maaşa ne kadar yansır?</a> — tavanın işareti döndürdüğü yer.</li>
+        </ul>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
