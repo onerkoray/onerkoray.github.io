@@ -390,6 +390,12 @@ var r = B.hesaplaYil(100000, 2026);
 var kama = (r.toplam.isverenMaliyeti - r.toplam.net) / r.toplam.isverenMaliyeti;
 // -&gt; 0.438...</code></pre>
         <p>
+          <p>Bu iddia artık denetleniyor: yazıdaki tabloların her hücresi ve
+          metindeki her oran, her değişiklikte
+          <code>makaleler/vergi-kamasi-ucretin-gercek-yuku/sayi-testi.js</code>
+          tarafından motorla karşılaştırılıyor. Test 2026 parametrelerine
+          çivilidir — yazı bir 2026 analizidir ve sonraki yılların
+          parametreleri girildiğinde buradaki sayılar değişmemelidir.</p>
           Motorun parametreleri ve doğrulama testleri
           <a href="../../bordro/">Bordro Motoru</a> sayfasında; kaynak kod
           <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">açık depoda</a>.
