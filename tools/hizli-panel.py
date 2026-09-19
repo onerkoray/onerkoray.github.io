@@ -55,6 +55,7 @@ KISA = {
 
     "kira-geliri-vergisi-hesaplama": "Kira Geliri Vergisi",
     "borc-kapatma-plani": "Borç Kapatma Planı",
+    "makaleler/sgk-prim-tavani-9-kat": "SGK tavanı 9 kat",
     "makaleler/yeniden-degerleme-orani-nedir": "Yeniden değerleme nedir?",
     "makaleler/ikramiye-hangi-ay-odenmeli": "İkramiye hangi ay?",
     "makaleler/kredi-karti-asgari-odeme": "Asgari ödersem ne olur?",

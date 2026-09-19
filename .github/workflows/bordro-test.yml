@@ -293,6 +293,15 @@ jobs:
       # YDO yazisinin tablolari hem tarifeden hem oran serisinden turuyor.
       # 2027 tarifesi girildiginde kural denetimi yeni yili kendiliginden
       # kapsar; oran serisine 2027 satiri eklenmemisse test bunu soyler.
+      # Tavan tablolari hem parametrelerden hem emeklilik motorundan
+      # turuyor. Katsayi bir daha degisirse karsi olgu sutunu kendiliginden
+      # yeni katsayiyi kullanir; tablo bayatlarsa --check soyler.
+      - name: Tavan tablolarının güncelliği
+        run: node tools/tavan-tablosu.js --check
+
+      - name: SGK tavanı yazısının sayıları
+        run: node makaleler/sgk-prim-tavani-9-kat/sayi-testi.js
+
       - name: Yeniden değerleme tablolarının güncelliği
         run: node tools/ydo-tablosu.js --check
 
