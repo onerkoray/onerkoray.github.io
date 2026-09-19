@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yıllık Gelir Vergisi Beyannamesi Hesaplama 2026 | Koray Öner</title>
+  <meta name="description" content="Beyanname vermem gerekir mi? Ücret, kira, menkul sermaye iradı ve serbest meslek gelirini birlikte değerlendirir, GVK m.86 sınırını uygular.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/beyanname-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=847e1d2f" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Yıllık Gelir Vergisi Beyannamesi Hesaplama 2026">
+  <meta property="og:description" content="Beyanname vermem gerekir mi, verirsem ne öderim? Bütün gelir türlerini birlikte değerlendiren, GVK m.86 sınırlarını doğru uygulayan hesaplayıcı.">
+  <meta property="og:url" content="https://korayoner.dev/beyanname-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/beyanname-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Yıllık gelir vergisi beyannamesi hesaplama aracı: bütün gelir türlerini birlikte değerlendirir">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="Yıllık Gelir Vergisi Beyannamesi Hesaplama 2026">
+  <meta name="twitter:description" content="Beyan sınırı kiranın kendisine değil, vergiye tâbi gelir toplamına bakar. Çoğu hesaplayıcı bunu atlıyor.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/beyanname-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=9ae079de">
+  <link rel="stylesheet" href="style.css?v=226ca93f">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://korayoner.dev/beyanname-hesaplama/#app",
+      "name": "Yıllık Gelir Vergisi Beyannamesi Hesaplama",
+      "url": "https://korayoner.dev/beyanname-hesaplama/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "tr",
+      "description": "Ücret, kira, menkul sermaye iradı, serbest meslek ve ticari kazancı birlikte değerlendirir; GVK m.86 beyan sınırlarını uygular, GVK m.89 indirimlerini sınırlarıyla hesaplar ve ödenecek vergiyi taksitlere böler.",
+      "image": "https://korayoner.dev/images/beyanname-hesaplama-koray-oner.png",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+      "author": { "@id": "https://korayoner.dev/#oner-koray" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "ORCID",
+        "value": "https://orcid.org/0009-0005-8730-3577"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://korayoner.dev/beyanname-hesaplama/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "Yıllık gelir vergisi beyannamesi vermem gerekir mi?", "acceptedAnswer": { "@type": "Answer", "text": "Ticari kazanç ve serbest meslek kazancı her hâlde beyan edilir; tutarın önemi yoktur. Tek işverenden alınan ve tamamı stopajla vergilenmiş ücret beyan edilmez. Tevkifata tâbi kira ve menkul sermaye iradı ise vergiye tâbi gelir toplamınız tarifenin ikinci gelir dilimini (2026 için 400.000 TL) aşmıyorsa beyan edilmez." } },
+        { "@type": "Question", "name": "Kira gelirim sınırın altında, yine de beyan eder miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Edebilirsiniz. GVK m.86/1-c sınırı kiranın kendisine değil vergiye tâbi gelir toplamınıza koyuyor. 350.000 TL işyeri kirası tek başına beyan gerektirmez; yanında 2.000.000 TL serbest meslek kazancı varsa gerektirir. Bu, en sık yapılan hatadır." } },
+        { "@type": "Question", "name": "İki işverenden ücret aldım, beyanname verecek miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Birinci işveren dışındaki ücretlerinizin toplamı tarifenin ikinci gelir dilimini aşıyorsa ücretlerinizin tamamı beyana girer. Ayrıca ücret toplamınız dördüncü gelir dilimini aşarsa tek işveren olsa bile beyan edilir." } },
+        { "@type": "Question", "name": "Beyanname ne zaman verilir, vergi ne zaman ödenir?", "acceptedAnswer": { "@type": "Answer", "text": "Beyanname izleyen yılın mart ayında verilir. Hesaplanan vergi iki eşit taksitte, mart ve temmuz aylarında ödenir." } },
+        { "@type": "Question", "name": "Beyan etmediğim gelirin stopajını mahsup edebilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Beyannameye girmeyen gelirin stopajı nihai vergidir; iade veya mahsup doğurmaz. Bu araç mahsubu yalnızca beyana giren gelirler için uygular." } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
+          <li><a href="../otv-hesaplama/">ÖTV</a></li>
+          <li><a href="../mtv-hesaplama/">MTV</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Beyanname hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap">
+        <h1>Yıllık Gelir Vergisi Beyannamesi Hesaplama 2026</h1>
+        <p class="lede">Tek soru yerine iki soruya birden cevap verir: <strong>beyanname
+          vermem gerekiyor mu</strong>, gerekiyorsa <strong>ne ödeyeceğim</strong>?
+          Gelir türlerini ayrı ayrı değil <em>birlikte</em> değerlendirir — çünkü kanun
+          da öyle yapıyor.</p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">Beyanname hesaplama aracı</h2>
+
+        <form id="bey-form" class="panel">
+          <fieldset class="bey-grup">
+            <legend>Ücret gelirleri</legend>
+            <div class="field-grid">
+              <p class="panel-q">
+                <label for="in-ucret1">1. işveren — aylık brüt</label>
+                <input type="text" id="in-ucret1" inputmode="decimal" value="0"> TL
+                <span class="muted-note">En yüksek ücretiniz. Asgari ücret istisnası buna uygulanır.</span>
+              </p>
+              <p class="panel-q">
+                <label for="in-ucret2">2. işveren — aylık brüt</label>
+                <input type="text" id="in-ucret2" inputmode="decimal" value="0"> TL
+                <span class="muted-note">İkinci ve sonraki işverenlerde istisna uygulanmaz.</span>
+              </p>
+              <p class="panel-q">
+                <label for="in-ucret3">3. işveren — aylık brüt</label>
+                <input type="text" id="in-ucret3" inputmode="decimal" value="0"> TL
+                <span class="muted-note">Yoksa boş bırakın.</span>
+              </p>
+            </div>
+          </fieldset>
+
+          <fieldset class="bey-grup">
+            <legend>Kira gelirleri (GMSİ)</legend>
+            <div class="field-grid">
+              <p class="panel-q">
+                <label for="in-konut">Yıllık konut kirası</label>
+                <input type="text" id="in-konut" inputmode="decimal" value="0"> TL
+                <span class="muted-note">Mesken istisnası otomatik uygulanır.</span>
+              </p>
+              <p class="panel-q">
+                <label for="in-isyeri">Yıllık işyeri kirası (brüt)</label>
+                <input type="text" id="in-isyeri" inputmode="decimal" value="0"> TL
+                <span class="muted-note">Stopaj kesilmeden önceki tutar.</span>
+              </p>
+              <p class="panel-q">
+                <label for="in-gercek">Belgelenebilir gerçek giderler</label>
+                <input type="text" id="in-gercek" inputmode="decimal" value="0"> TL
+                <span class="muted-note">Boş bırakırsanız götürü gider uygulanır; araç ikisini karşılaştırır.</span>
+              </p>
+            </div>
+          </fieldset>
+
+          <fieldset class="bey-grup">
+            <legend>Diğer gelirler</legend>
+            <div class="field-grid">
+              <p class="panel-q">
+                <label for="in-msi">Tevkifatlı menkul sermaye iradı</label>
+                <input type="text" id="in-msi" inputmode="decimal" value="0"> TL
+                <span class="muted-note">Kâr payı, repo, bazı faiz gelirleri.</span>
+              </p>
+              <p class="panel-q">
+                <label for="in-msi-stopaj">Bu iratlardan kesilen stopaj</label>
+                <input type="text" id="in-msi-stopaj" inputmode="decimal" value="0"> TL
+              </p>
+              <p class="panel-q">
+                <label for="in-serbest">Serbest meslek kazancı (safi)</label>
+                <input type="text" id="in-serbest" inputmode="decimal" value="0"> TL
+                <span class="muted-note">Giderler düşüldükten sonrası. Tutarı ne olursa olsun beyan edilir.</span>
+              </p>
+              <p class="panel-q">
+                <label for="in-serbest-stopaj">Serbest meslekten kesilen stopaj</label>
+                <input type="text" id="in-serbest-stopaj" inputmode="decimal" value="0"> TL
+              </p>
+              <p class="panel-q">
+                <label for="in-ticari">Ticari kazanç (safi)</label>
+                <input type="text" id="in-ticari" inputmode="decimal" value="0"> TL
+              </p>
+              <p class="panel-q">
+                <label for="in-gecici">Ödenen geçici vergi</label>
+                <input type="text" id="in-gecici" inputmode="decimal" value="0"> TL
+              </p>
+            </div>
+          </fieldset>
+
+          <fieldset class="bey-grup">
+            <legend>İndirimler (GVK m.89)</legend>
+            <div class="field-grid">
+              <p class="panel-q">
+                <label for="in-egitim">Eğitim ve sağlık harcamaları</label>
+                <input type="text" id="in-egitim" inputmode="decimal" value="0"> TL
+                <span class="muted-note">Beyan edilen gelirin %10'u ile sınırlı.</span>
+              </p>
+              <p class="panel-q">
+                <label for="in-bagis">Bağış ve yardımlar</label>
+                <input type="text" id="in-bagis" inputmode="decimal" value="0"> TL
+                <span class="muted-note">Beyan edilen gelirin %5'i ile sınırlı.</span>
+              </p>
+              <p class="panel-q">
+                <label for="in-sigorta">Şahıs sigortası primleri</label>
+                <input type="text" id="in-sigorta" inputmode="decimal" value="0"> TL
+                <span class="muted-note">Gelirin %15'i ve yıllık asgari ücretin küçüğü.</span>
+              </p>
+            </div>
+          </fieldset>
+        </form>
+
+        <div id="results" aria-live="polite"></div>
+        <p id="msg" class="muted-note" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <p class="byline muted">Hazırlayan <a href="../#about" rel="author">Koray Öner</a> ·
+          2026 hadleri esas alınmıştır</p>
+
+        <h2 id="asil-soru">Asıl soru hangi gelirin beyannameye girdiği</h2>
+        <p>Tarifeyi uygulamak kolay. Zor olan kısım, gelirlerinizden hangisinin
+          beyannameye <em>girdiği</em>. GVK m.86 bunu gelir türüne göre ayrı ölçütlerle
+          belirliyor ve ölçütler birbirine giriyor:</p>
+        <ul>
+          <li><strong>Ticari kazanç ve serbest meslek kazancı</strong> her hâlde beyan
+            edilir. Tutarın bir önemi yoktur (GVK m.85).</li>
+          <li><strong>Tek işverenden alınan ücret</strong>, tamamı stopajla vergilendiyse
+            beyan edilmez. Birden fazla işveren varsa ölçüt, <em>birinciden sonrakilerin
+            toplamı</em>: tarifenin ikinci gelir dilimini aşarsa ücretlerin tamamı beyana
+            girer. Ayrıca ücret toplamı dördüncü gelir dilimini aşarsa tek işveren olsa
+            bile beyan edilir (GVK m.86/1-b).</li>
+          <li><strong>Tevkifatlı kira ve menkul sermaye iradı</strong>, vergiye tâbi gelir
+            toplamınız ikinci gelir dilimini aşmıyorsa beyan edilmez (GVK m.86/1-c).</li>
+        </ul>
+
+        <h2 id="sik-hata">En sık yapılan hata</h2>
+        <p>Üçüncü kuraldaki sınır, <strong>o gelirin kendisine değil, vergiye tâbi gelir
+          toplamına</strong> konuluyor. Kira gelirinizi tek başına sınırla karşılaştırmak
+          yanlış cevap verir.</p>
+        <p>350.000 TL işyeri kirası tek başına beyanname gerektirmez. Yanında 2.000.000 TL
+          serbest meslek kazancınız varsa <strong>gerektirir</strong> — kira değişmedi,
+          toplam değişti. Bu araç gelir türlerini bu yüzden tek formda topluyor.</p>
+        <p>Bu sitenin kira hesaplayıcısı da uzun süre aynı hatayı yapıyordu; 19 Eylül
+          2026'da düzeltildi. Hatanın yönü tehlikeliydi: beyan etmesi gerekene
+          “etme” diyordu.</p>
+
+        <h2 id="mahsup">Beyan edilmeyenin stopajı geri gelmez</h2>
+        <p>Beyannameye girmeyen gelirden kesilen vergi <strong>nihai vergidir</strong>;
+          iade ya da mahsup doğurmaz. Araç mahsubu yalnızca beyana giren gelirler için
+          uygular — bu yüzden bazı durumlarda beyan etmek <em>lehinize</em> olabilir,
+          çünkü kesilen stopaj hesaplanan vergiden yüksek çıkabilir.</p>
+
+        <h2 id="takvim">Beyan ve ödeme takvimi</h2>
+        <p>Beyanname izleyen yılın <strong>mart</strong> ayında verilir. Hesaplanan vergi
+          <strong>iki eşit taksitte</strong>, mart ve temmuz aylarında ödenir (GVK m.117).</p>
+
+        <h2 id="kapsam">Kapsam ve sınırlar</h2>
+        <p>Bu araç şunları hesaplar: ücret (çok işverenli), konut ve işyeri kirası,
+          tevkifatlı menkul sermaye iradı, serbest meslek ve ticari kazanç, GVK m.89
+          indirimleri, stopaj ve geçici vergi mahsubu, taksitler.</p>
+        <p>Şunları <strong>hesaplamaz</strong>: değer artışı ve arızi kazançlar, yurt dışı
+          gelirler, zirai kazanç, basit usul, geçmiş yıl zararları, engellilik indirimi,
+          yabancı ülkede ödenen vergilerin mahsubu. Bunlar yok sayıldıkları için değil,
+          doğru modellenmeleri ayrı birer araç gerektirdiği için dışarıda.</p>
+        <p>Sonuç bilgilendirme amaçlıdır; beyan yükümlülüğünüz için mali müşavirinize
+          danışın.</p>
+
+        <h2 id="kaynak">Veri kaynakları</h2>
+        <ul>
+          <li><strong>193 sayılı Gelir Vergisi Kanunu</strong> m.85 (beyan esası),
+            m.86 (toplama yapılmayan hâller), m.89 (diğer indirimler),
+            m.103 (tarife), m.117 (ödeme süresi).</li>
+          <li>Hesap motoru: <a href="../bordro/">bordro motoru</a>,
+            parametreler <code>bordro/parametreler.js</code>. Tutarlar burada
+            tutulmaz; tarifeden türetilir.</li>
+        </ul>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+        <details><summary>Beyanname vermem gerekir mi?</summary><p>Ticari veya serbest meslek kazancınız varsa evet, tutarı ne olursa olsun. Yalnızca tek işverenden ücret alıyorsanız hayır. Kira veya menkul sermaye iradınız varsa cevap toplam gelirinize bağlı — yukarıdaki forma girin.</p></details>
+        <details><summary>Kiram sınırın altında, neden beyan çıkıyor?</summary><p>Sınır kiranın kendisine değil, vergiye tâbi gelir toplamınıza bakıyor (GVK m.86/1-c). Başka geliriniz toplamı sınırın üstüne taşıyorsa kira da beyana girer.</p></details>
+        <details><summary>İki işverenden ücret aldım.</summary><p>Birinci işveren dışındaki ücretlerinizin toplamı tarifenin ikinci gelir dilimini aşıyorsa ücretlerinizin tamamı beyana girer.</p></details>
+        <details><summary>Beyan edersem iade alabilir miyim?</summary><p>Beyana giren gelirlerden kesilen stopaj hesaplanan vergiden yüksekse evet. Beyana girmeyen gelirin stopajı ise iade doğurmaz.</p></details>
+        <details><summary>Ne zaman öderim?</summary><p>Mart ve temmuz aylarında iki eşit taksitte.</p></details>
+
+        <h2 id="ilgili">İlgili araçlar</h2>
+        <ul>
+          <li><a href="../kira-geliri-vergisi-hesaplama/">Kira geliri vergisi hesaplama</a> — yalnızca kira için ayrıntılı döküm.</li>
+          <li><a href="../maas-hesaplama/">Brüt–net maaş hesaplama</a> — ücretinizin ay ay bordrosu.</li>
+          <li><a href="../serbest-meslek-makbuzu-hesaplama/">Serbest meslek makbuzu</a> — tek makbuzda stopaj ve KDV.</li>
+          <li><a href="../makaleler/iki-isten-maas-beyanname-siniri/">İki işten maaş: beyanname sınırı</a> — ücret tarafının ölçümü.</li>
+        </ul>
+      </div>
+    </article>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=e6b0344e" defer></script>
+  <script src="../bordro/motor.js?v=89d92ff6" defer></script>
+  <script src="../bordro/gmsi-motor.js?v=0c4d4846" defer></script>
+  <script src="../bordro/beyanname-motoru.js?v=5618eb75" defer></script>
+  <script src="script.js?v=b958906b" defer></script>
+</body>
+</html>

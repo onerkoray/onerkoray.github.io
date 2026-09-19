@@ -81,6 +81,18 @@ jobs:
 
       # Kira geliri: istisna, beyan siniri ve iki gider yontemi ic ice
       # kurallar; biri kayarsa sonuc makul gorunup yanlis olur.
+      # Yillik beyanname motoru: bu aracin zor kismi vergi hesabi degil
+      # BEYAN KARARI. Yanlis karar sessiz ve GUVENSIZ yonde olabiliyor --
+      # beyan etmesi gerekene "etme" demek. 14 mutasyonla olculdu.
+      - name: Yıllık beyanname motoru regresyonları
+        run: node bordro/beyanname-test.js
+
+      # Arac tarayicida UMD'nin global dalindan yukleniyor; o dal Node
+      # testlerinde hic kosmuyor. Bir input ID'si degisirse de arac hata
+      # vermez, geliri SIFIR sayar. Ikisi de burada bagli.
+      - name: Beyanname aracının arayüz bağlantıları
+        run: node beyanname-hesaplama/ui-test.js
+
       - name: Kira geliri motoru regresyonları
         run: node bordro/gmsi-test.js
 

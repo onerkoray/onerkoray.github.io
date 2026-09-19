@@ -1,0 +1,44 @@
+/* Yıllık beyanname aracı — sayfaya özgü düzen.
+   Renk ve tipografi ../style.css'ten geliyor; burada yalnızca bu aracın
+   ihtiyacı olan gruplama ve karar kutusu var. */
+
+/* Gelir türleri gruplanıyor: form uzun ve gruplamadan okunmuyor. */
+.bey-grup {
+  border: 1px solid var(--cizgi, #e2ddd2);
+  border-radius: 10px;
+  padding: 0.9rem 1rem 0.4rem;
+  margin: 0 0 1rem;
+}
+.bey-grup > legend {
+  padding: 0 0.45rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ikincil, #56605c);
+}
+
+/* Karar kutusu: aracın cevabı önce bu, sayılar sonra. */
+.verdict {
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  margin: 1.2rem 0 1rem;
+  border-left: 4px solid var(--marka, #0e7c66);
+  background: var(--yumusak, rgba(14, 124, 102, 0.06));
+}
+.verdict h3 { margin: 0 0 0.3rem; font-size: 1.15rem; }
+.verdict p { margin: 0; }
+.verdict--warn { border-left-color: #b4571f; background: rgba(180, 87, 31, 0.07); }
+
+/* Beyana giren ve girmeyen satırlar gözle ayrılsın; ayrım YALNIZCA
+   renkle yapılmıyor, "Durum" sütunu da yazıyor. */
+.bey-kalem .bey-out th,
+.bey-kalem .bey-out td { opacity: 0.62; }
+.bey-kalem .bey-in th { font-weight: 600; }
+.bey-kalem .bey-alt th,
+.bey-kalem .bey-alt td {
+  font-size: 0.92em;
+  color: var(--ikincil, #56605c);
+}
+
+@media (max-width: 640px) {
+  .bey-grup { padding: 0.7rem 0.7rem 0.2rem; }
+}
