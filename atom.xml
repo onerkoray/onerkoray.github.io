@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-18T00:00:00+03:00</updated>
+  <updated>2026-09-19T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>SGK Prim Tavanı Neden 9 Kata Çıktı? 2026</title>
+    <link href="https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/"/>
+    <id>https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/</id>
+    <updated>2026-09-19T00:00:00+03:00</updated>
+    <summary>SGK prim tavanı 2026'da 7,5 kattan 9 kata çıktı: 297.270 TL. Kimi etkiliyor, ne kadara mal oluyor ve neden en yüksek ücretliler daha az kaybediyor?</summary>
+  </entry>
 
   <entry>
     <title>İkramiye Hangi Ay Ödenirse Daha Az Kesilir?</title>
