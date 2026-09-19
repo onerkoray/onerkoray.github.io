@@ -161,6 +161,55 @@ baslik("O2 — tevkifatli gelirde olcut TOPLAM (m.86/1-c)");
   dogru("tarife geri konuldu", P[YIL].dilimler === eskiD);
 })();
 
+baslik("O2b — tevkifatsiz irat AYRI bir hadde tabi (m.86/1-d)");
+(function () {
+  /* Bu alan eklenmeden once, yalnizca tevkifatsiz iradi olan birine arac
+     "beyanname gerekmiyor" diyordu: 22.000 TL'lik had hic uygulanmiyordu. */
+  var alt = M.hesapla({ yil: YIL, tevkifatsizIrat: E.tevkifatsiz });
+  dogru("had tam tutarda beyana girmiyor",
+    alt.tevkifatsizIrat.beyanaGirer === false);
+  esit("beyan geliri sifir", alt.beyanGeliri, 0);
+
+  var ust = M.hesapla({ yil: YIL, tevkifatsizIrat: E.tevkifatsiz + 1 });
+  dogru("bir lira asinca beyana giriyor", ust.tevkifatsizIrat.beyanaGirer === true);
+  /* Had bir MUAFIYET degil ESIK: asilinca tamami girer. */
+  esit("asilinca TAMAMI beyana giriyor", ust.beyanGeliri, E.tevkifatsiz + 1);
+
+  /* KONTROL: bu had (c) toplamindan AYRI degerlendirilmeli. Buyuk bir
+     ticari kazanc, kucuk tevkifatsiz iradi beyana SOKMAMALI. */
+  var ayri = M.hesapla({ yil: YIL, tevkifatsizIrat: 10000,
+                         ticariKazanc: 5000000 });
+  dogru("buyuk ticari kazanc tevkifatsiz iradi beyana sokmuyor",
+    ayri.tevkifatsizIrat.beyanaGirer === false);
+  esit("beyan geliri yalnizca ticari kazanc", ayri.beyanGeliri, 5000000);
+  /* Ve tersi: tevkifatsiz irat (c) toplamina karismamali. */
+  var tersi = M.hesapla({ yil: YIL, tevkifatsizIrat: 5000000,
+                          msiTevkifatli: 100000, msiStopaj: 15000 });
+  dogru("tevkifatsiz irat MSI olcutune karismiyor",
+    tersi.msi.beyanaGirer === false);
+
+  /* KONTROL: had PARAMETREDEN mi okunuyor? Motora 22.000 elle yazilsaydi
+     yukaridaki her iddia yine gecerdi -- parametre de 22.000. Parametreyi
+     oynatip kararin onunla birlikte kaydigini olcuyoruz. */
+  esit("had parametredeki tevkifatsizHad", E.tevkifatsiz,
+    P[YIL].gmsi.tevkifatsizHad);
+  (function () {
+    var onceki = P[YIL].gmsi.tevkifatsizHad;
+    var kaymis;
+    try {
+      P[YIL].gmsi.tevkifatsizHad = onceki * 10;
+      kaymis = M.hesapla({ yil: YIL, tevkifatsizIrat: onceki + 1 });
+    } finally {
+      P[YIL].gmsi.tevkifatsizHad = onceki;
+    }
+    dogru("had on katina cikinca ayni irat beyana girmiyor",
+      kaymis.tevkifatsizIrat.beyanaGirer === false);
+    esit("parametre geri konuldu", P[YIL].gmsi.tevkifatsizHad, onceki);
+  })();
+  /* Tevkifatsiz iradin stopaji YOKTUR; mahsup dogurmamali. */
+  esit("tevkifatsiz iratta mahsup yok", ust.mahsup, 0);
+})();
+
 baslik("O3 — beyana girmeyen gelirin stopaji mahsup edilmez");
 (function () {
   var disarda = M.hesapla({ yil: YIL, msiTevkifatli: 300000, msiStopaj: 45000 });
