@@ -244,10 +244,22 @@
     var ind = indirimler(beyanGeliri, g, yil);
     var matrah = Math.max(0, beyanGeliri - ind.toplam);
 
-    /* 6) Vergi. Ücret dışı tarife kullanılıyor: ücret beyana girmişse
-          bile yıllık beyannamede tek tarife uygulanır ve ücret dışı
-          tarife üçüncü dilimde ayrışır. */
-    var tarife = ucretMatrah > 0 ? P.dilimler : P.dilimlerUcretDisi;
+    /* 6) Hangi tarife?
+          GVK m.103 ücret gelirleri için üçüncü dilimi daha geniş tutuyor
+          (2026: 1.500.000 / 1.000.000). Matrah TEK TÜRDEN ibaretse cevap
+          açık. Karma beyannamede hangi tarifenin uygulanacağını kaynakla
+          doğrulayamadık.
+
+          Bu yüzden karma durumda İHTİYATLI taraf seçiliyor: ücret dışı
+          tarife. Ölçüldü — iki tarife arasındaki fark en çok 40.000 TL ve
+          yalnızca matrah 1.000.000'in üstündeyken doğuyor. Ters seçim
+          vergiyi EKSİK gösterirdi, yani mükellefi az ödemeye iterdi;
+          hatanın güvenli yönü fazla göstermektir.
+
+          Kaynak bulunduğunda burası tek okumaya indirilecek. */
+    var ucretDisiVar = (beyanGeliri - ucretMatrah) > 0;
+    var tarife = (ucretMatrah > 0 && !ucretDisiVar)
+      ? P.dilimler : P.dilimlerUcretDisi;
     var hesaplanan = B.tarifeVergisi(matrah, tarife);
 
     /* 7) Mahsup. Beyana GİRMEYEN gelirin stopajı mahsup EDİLMEZ. */
@@ -274,6 +286,7 @@
       beyanGeliri: yuvarla(beyanGeliri),
       indirimler: ind,
       matrah: yuvarla(matrah),
+      tarifeTuru: tarife === P.dilimler ? "ucret" : "ucret-disi",
       hesaplananVergi: yuvarla(hesaplanan),
       mahsup: yuvarla(mahsup),
       odenecek: yuvarla(Math.max(0, fark)),

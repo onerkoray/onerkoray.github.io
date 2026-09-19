@@ -61,6 +61,11 @@ function dogru(ad, k, detay) {
   if (k) { gecen++; console.log("  tamam      " + ad); }
   else { hata++; console.error("  BASARISIZ  " + ad + (detay ? "  — " + detay : "")); }
 }
+/* esit() sayisal: isFinite korumasi yuzunden metinleri DAIMA dusurur.
+   Metin iddialari icin ayri yardimci. */
+function esitMetin(ad, bulunan, beklenen) {
+  dogru(ad, bulunan === beklenen, '"' + bulunan + '" != "' + beklenen + '"');
+}
 function baslik(s) { console.log("\n" + s); }
 
 var E = M.esikler(YIL);
@@ -277,6 +282,34 @@ baslik("O5 — ticari ve serbest meslek her halde beyana girer");
   esit("beyan geliri serbest meslek kadar", kucuk.beyanGeliri, 1000);
   var t = M.hesapla({ yil: YIL, ticariKazanc: 500 });
   dogru("500 TL ticari kazanc bile beyana giriyor", t.beyannameVar === true);
+})();
+
+baslik("Tarife secimi — karma beyannamede IHTIYATLI taraf");
+(function () {
+  var yalnizUcret = M.hesapla({ yil: YIL,
+    ucretler: [{ safi: 2000000, kesilen: 0 }, { safi: 1000000, kesilen: 0 }] });
+  esitMetin("yalniz ucrette ucret tarifesi", yalnizUcret.tarifeTuru, "ucret");
+
+  var yalnizTicari = M.hesapla({ yil: YIL, ticariKazanc: 1500000 });
+  esitMetin("yalniz ticaride ucret disi tarife", yalnizTicari.tarifeTuru, "ucret-disi");
+
+  /* Karma: kaynakla cozulmedigi icin ihtiyatli taraf secilir. Ters secim
+     vergiyi EKSIK gosterirdi. */
+  var karma = M.hesapla({ yil: YIL,
+    ucretler: [{ safi: 2000000, kesilen: 0 }, { safi: 1000000, kesilen: 0 }],
+    ticariKazanc: 500000 });
+  esitMetin("karma beyannamede ucret disi tarife", karma.tarifeTuru, "ucret-disi");
+
+  /* KONTROL: secim gercekten SONUCU degistiriyor mu? Iki tarife ayni
+     sonucu verseydi yukaridaki iddialar bos olurdu. */
+  var m = 1500000;
+  dogru("iki tarife bu matrahta farkli sonuc veriyor",
+    B.tarifeVergisi(m, P[YIL].dilimlerUcretDisi) >
+    B.tarifeVergisi(m, P[YIL].dilimler));
+  /* Ve secilen taraf DAHA YUKSEK olmali. */
+  dogru("ihtiyatli taraf daha yuksek vergi veriyor",
+    B.tarifeVergisi(m, P[YIL].dilimlerUcretDisi) -
+    B.tarifeVergisi(m, P[YIL].dilimler) > 0);
 })();
 
 baslik("O6 — taksitler");
