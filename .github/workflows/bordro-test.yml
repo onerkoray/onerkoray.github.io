@@ -296,6 +296,13 @@ jobs:
       # Tavan tablolari hem parametrelerden hem emeklilik motorundan
       # turuyor. Katsayi bir daha degisirse karsi olgu sutunu kendiliginden
       # yeni katsayiyi kullanir; tablo bayatlarsa --check soyler.
+      # Vergi kamasi yazisinin DOI'si var: sayilari alintilanabilir.
+      # Test YILA CIVILI (2026) -- sayfa, atif verilen surumden ayrismasin
+      # diye tablolar ureteci degil testle korunuyor. 2026 parametreleri
+      # degisirse kirmizi doner ve bu dogru davranistir.
+      - name: Vergi kaması yazısının sayıları
+        run: node makaleler/vergi-kamasi-ucretin-gercek-yuku/sayi-testi.js
+
       - name: Tavan tablolarının güncelliği
         run: node tools/tavan-tablosu.js --check
 
