@@ -28,7 +28,8 @@
  *  (c) Tevkifata tâbi menkul ve gayrimenkul sermaye iratları, VERGİYE
  *      TÂBİ GELİR TOPLAMI ikinci gelir dilimini aşmıyorsa beyan edilmez.
  *  (d) Tevkifata ve istisnaya konu OLMAYAN menkul ve gayrimenkul sermaye
- *      iratları, toplamı tevkifatsız haddi aşmıyorsa beyan edilmez.
+ *      iratları, toplamı tevkifatsız haddi aşmıyorsa beyan edilmez. Bu,
+ *      (c)'den AYRI bir testtir; iki bendin toplamları birleştirilmez.
  *
  * Ticari kazanç ve serbest meslek kazancı m.85 uyarınca her hâlde beyan
  * edilir; tutarın bir önemi yoktur.
@@ -213,10 +214,33 @@
     }
     var msiMatrah = msiBeyanaGirer ? msi : 0;
 
+    /* 4b) Tevkifatsiz MSI/GMSI (m.86/1-d).
+          BU AYRI BIR TESTTIR. (c) ile ortak toplam kullanilmaz: tevkifatli
+          ve tevkifatsiz iratlar iki ayri bent uyarinca AYRI AYRI
+          degerlendirilir. Haddi asarsa TAMAMI beyana girer; had bir
+          muafiyet degil esiktir.
+
+          Bu alan olmadan, yalnizca tevkifatsiz iradi olan birine arac
+          "beyanname gerekmiyor" diyordu -- 22.000 TL'lik had hic
+          uygulanmiyordu. Hata guvensiz yondeydi. */
+    var tevkifatsiz = sayi(g.tevkifatsizIrat);
+    var tevkifatsizBeyanaGirer = tevkifatsiz > E.tevkifatsiz;
+    var tevkifatsizMatrah = tevkifatsizBeyanaGirer ? tevkifatsiz : 0;
+    if (tevkifatsiz > 0 && !tevkifatsizBeyanaGirer) {
+      notlar.push("Tevkifata ve istisnaya konu olmayan irat toplamınız " +
+        E.tevkifatsiz.toLocaleString("tr-TR") + " TL haddini aşmadığı için " +
+        "beyan edilmez (GVK m.86/1-d). Bu had, tevkifatlı gelirlerin " +
+        "sınırından AYRI değerlendirilir.");
+    } else if (tevkifatsizBeyanaGirer) {
+      notlar.push("Tevkifatsız iradınız " + E.tevkifatsiz.toLocaleString("tr-TR") +
+        " TL haddini aştığı için TAMAMI beyana giriyor (GVK m.86/1-d).");
+    }
+
     /* 5) Matrah ve m.89 indirimleri.
           İndirimler "beyan edilen gelirin" yüzdesi olarak sınırlı,
           dolayısıyla önce beyana giren gelir toplanır. */
-    var beyanGeliri = ucretMatrah + herHalde + kiraSafi + msiMatrah;
+    var beyanGeliri = ucretMatrah + herHalde + kiraSafi + msiMatrah +
+                      tevkifatsizMatrah;
     var ind = indirimler(beyanGeliri, g, yil);
     var matrah = Math.max(0, beyanGeliri - ind.toplam);
 
@@ -242,6 +266,8 @@
       ucret: ucret,
       kira: kira,
       msi: { tutar: msi, beyanaGirer: msiBeyanaGirer, stopaj: msiStopaj },
+      tevkifatsizIrat: { tutar: tevkifatsiz, beyanaGirer: tevkifatsizBeyanaGirer,
+                         had: E.tevkifatsiz },
       serbestMeslek: serbest,
       ticariKazanc: ticari,
       vergiyeTabiToplam: yuvarla(tabiToplam),

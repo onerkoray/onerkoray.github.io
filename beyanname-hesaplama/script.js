@@ -59,6 +59,7 @@
       gercekGider: num("in-gercek"),
       msiTevkifatli: num("in-msi"),
       msiStopaj: num("in-msi-stopaj"),
+      tevkifatsizIrat: num("in-tevkifatsiz"),
       serbestMeslek: num("in-serbest"),
       serbestStopaj: num("in-serbest-stopaj"),
       ticariKazanc: num("in-ticari"),
@@ -105,6 +106,12 @@
     if (r.msi && r.msi.tutar > 0) {
       satir("Menkul sermaye iradı", r.msi.tutar, r.msi.beyanaGirer,
         r.msi.beyanaGirer ? "gelir toplamı sınırı aştı" : "gelir toplamı sınırın altında");
+    }
+    if (r.tevkifatsizIrat && r.tevkifatsizIrat.tutar > 0) {
+      satir("Tevkifatsız irat", r.tevkifatsizIrat.tutar,
+        r.tevkifatsizIrat.beyanaGirer,
+        r.tevkifatsizIrat.beyanaGirer
+          ? "ayrı haddi aştı (m.86/1-d)" : "ayrı haddin altında (m.86/1-d)");
     }
     if (r.serbestMeslek > 0) {
       satir("Serbest meslek kazancı", r.serbestMeslek, true, "her hâlde beyan (m.85)");

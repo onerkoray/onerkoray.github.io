@@ -80,7 +80,7 @@ dogru("Bordro.parametreler erisilebilir",
   });
   /* KONTROL: yukaridaki iddia, HIC id okunmasa da gecerdi (bos dongu).
      Beklenen alan sayisi ayrica cakiliyor. */
-  esit("okunan alan sayisi", idler.length, 15);
+  esit("okunan alan sayisi", idler.length, 16);
   /* Ucret alanlarinin ucu de okunuyor olmali. */
   ["in-ucret1", "in-ucret2", "in-ucret3"].forEach(function (id) {
     dogru(id + " script.js tarafindan okunuyor", idler.indexOf(id) >= 0);

@@ -181,6 +181,11 @@
                 <input type="text" id="in-msi-stopaj" inputmode="decimal" value="0"> TL
               </p>
               <p class="panel-q">
+                <label for="in-tevkifatsiz">Tevkifatsız menkul/gayrimenkul iradı (safi)</label>
+                <input type="text" id="in-tevkifatsiz" inputmode="decimal" value="0"> TL
+                <span class="muted-note">Stopaj kesilmeyen iratlar. Ayrı ve daha düşük bir hadde tabidir (GVK m.86/1-d); tevkifatlı gelirlerin sınırıyla birleştirilmez.</span>
+              </p>
+              <p class="panel-q">
                 <label for="in-serbest">Serbest meslek kazancı (safi)</label>
                 <input type="text" id="in-serbest" inputmode="decimal" value="0"> TL
                 <span class="muted-note">Giderler düşüldükten sonrası. Tutarı ne olursa olsun beyan edilir.</span>
@@ -246,6 +251,10 @@
             bile beyan edilir (GVK m.86/1-b).</li>
           <li><strong>Tevkifatlı kira ve menkul sermaye iradı</strong>, vergiye tâbi gelir
             toplamınız ikinci gelir dilimini aşmıyorsa beyan edilmez (GVK m.86/1-c).</li>
+          <li><strong>Tevkifatsız iratlar</strong> ise bambaşka bir hadde tabi ve
+            çok daha düşük: 2026 için 22.000 TL. Bu had tevkifatlı gelirlerin
+            sınırıyla <em>birleştirilmez</em>; iki bent ayrı ayrı değerlendirilir
+            (GVK m.86/1-d).</li>
         </ul>
 
         <h2 id="sik-hata">En sık yapılan hata</h2>
@@ -271,8 +280,9 @@
 
         <h2 id="kapsam">Kapsam ve sınırlar</h2>
         <p>Bu araç şunları hesaplar: ücret (çok işverenli), konut ve işyeri kirası,
-          tevkifatlı menkul sermaye iradı, serbest meslek ve ticari kazanç, GVK m.89
-          indirimleri, stopaj ve geçici vergi mahsubu, taksitler.</p>
+          tevkifatlı menkul sermaye iradı, <strong>tevkifatsız menkul ve gayrimenkul
+          iratları</strong> (ayrı ve daha düşük hadle), serbest meslek ve ticari
+          kazanç, GVK m.89 indirimleri, stopaj ve geçici vergi mahsubu, taksitler.</p>
         <p>Şunları <strong>hesaplamaz</strong>: değer artışı ve arızi kazançlar, yurt dışı
           gelirler, zirai kazanç, basit usul, geçmiş yıl zararları, engellilik indirimi,
           yabancı ülkede ödenen vergilerin mahsubu. Bunlar yok sayıldıkları için değil,
@@ -347,7 +357,7 @@
   <script src="../bordro/parametreler.js?v=e6b0344e" defer></script>
   <script src="../bordro/motor.js?v=89d92ff6" defer></script>
   <script src="../bordro/gmsi-motor.js?v=0c4d4846" defer></script>
-  <script src="../bordro/beyanname-motoru.js?v=5618eb75" defer></script>
-  <script src="script.js?v=b958906b" defer></script>
+  <script src="../bordro/beyanname-motoru.js?v=803dfbc6" defer></script>
+  <script src="script.js?v=8aec8be8" defer></script>
 </body>
 </html>
