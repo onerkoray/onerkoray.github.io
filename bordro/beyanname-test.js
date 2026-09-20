@@ -109,6 +109,43 @@ baslik("O1 — ucret (m.86/1-b)");
     buyuk.ucret.beyanaGirer === true && buyuk.ucret.toplamAsti === true);
 })();
 
+baslik("O1b — asgari ucret istisnasi beyannamede KAYBOLMAZ");
+(function () {
+  /* Motorda istisna MATRAHTAN DEGIL VERGIDEN dusuluyor: matrah tam
+     tutardir, gelirVergisi = vergiTarife - istisna. Bu ayrim kacirilirsa
+     beyanname, yil icinde taninan istisnayi GERI ALIR.
+
+     Olculebilir sonucu: TEK isverenli bir ucretli, ayni gelir ve ayni
+     tarifeyle, olmayan bir vergi oder. Hata bulundugunda 600.000 TL
+     aylik brutte 57.881 TL cikiyordu. */
+  var tek = M.hesapla({ yil: YIL, ucretler: [{ aylikBrut: 600000 }] });
+  dogru("bu ucret beyana giriyor", tek.ucret.beyanaGirer === true);
+  esit("tek isverende EK VERGI CIKMIYOR", tek.odenecek, 0);
+  esit("iade de cikmiyor", tek.iade, 0);
+  dogru("istisna sifirdan buyuk", tek.ucretIstisnasi > 0,
+    String(tek.ucretIstisnasi));
+  esit("hesaplanan = tarife - istisna",
+    tek.hesaplananVergi, tek.tarifeVergisi - tek.ucretIstisnasi);
+  /* KONTROL: "odenecek sifir" iddiasi, hem tarife hem mahsup sifir
+     olsaydi da gecerdi. Ikisinin de buyuk oldugu ayrica olculuyor. */
+  dogru("tarife vergisi gercekten buyuk", tek.tarifeVergisi > 1000000,
+    String(tek.tarifeVergisi));
+  dogru("mahsup gercekten buyuk", tek.mahsup > 1000000, String(tek.mahsup));
+
+  /* Istisna YALNIZCA birinci isverene uygulanir (GVK m.23/18). */
+  var iki = M.hesapla({ yil: YIL,
+    ucretler: [{ aylikBrut: 90000 }, { aylikBrut: 45000 }] });
+  esit("iki isverende de istisna tek kez", iki.ucretIstisnasi, tek.ucretIstisnasi);
+  esit("ikinci isverende istisna yok", iki.ucret.isverenler[1].istisna, 0);
+
+  /* Cok isverenlilikte EK VERGI DOGMALI: beyannamenin sebebi bu. */
+  dogru("iki isverende ek vergi doguyor", iki.odenecek > 0, String(iki.odenecek));
+
+  /* Beyana GIRMEYEN ucrette istisna uygulanmaz -- zaten vergi de yok. */
+  var girmez = M.hesapla({ yil: YIL, ucretler: [{ aylikBrut: 60000 }] });
+  esit("beyana girmeyen ucrette istisna uygulanmiyor", girmez.ucretIstisnasi, 0);
+})();
+
 baslik("O2 — tevkifatli gelirde olcut TOPLAM (m.86/1-c)");
 (function () {
   var yalniz = M.hesapla({ yil: YIL, isyeriKira: 350000 });

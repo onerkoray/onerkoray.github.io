@@ -111,14 +111,26 @@
     cozulmus.forEach(function (u, i) {
       if (!u.benzetim) return;
       var r = B.hesaplaYil(u.aylikBrut, yil, { istisnasiz: i > 0 });
-      var safi = 0, kesilen = 0;
-      r.aylar.forEach(function (a) { safi += a.matrah; kesilen += a.gelirVergisi; });
+      var safi = 0, kesilen = 0, istisna = 0;
+      r.aylar.forEach(function (a) {
+        safi += a.matrah;
+        kesilen += a.gelirVergisi;
+        istisna += a.istisna;
+      });
       u.safi = safi;
       u.kesilen = kesilen;
+      /* ASGARI UCRET ISTISNASI MATRAHTAN DEGIL VERGIDEN DUSULUYOR.
+         Motorda matrah TAM tutardir; gelirVergisi = vergiTarife - istisna.
+         Bu ayrimi kacirmak, beyannamede istisnayi GERI ALIR. */
+      u.istisna = istisna;
     });
 
-    var safiToplam = 0, kesilen = 0;
-    cozulmus.forEach(function (u) { safiToplam += u.safi; kesilen += u.kesilen; });
+    var safiToplam = 0, kesilen = 0, istisnaToplam = 0;
+    cozulmus.forEach(function (u) {
+      safiToplam += u.safi;
+      kesilen += u.kesilen;
+      istisnaToplam += (u.istisna || 0);
+    });
     var sonrakiler = safiToplam - cozulmus[0].safi;
 
     var E = esikler(yil);
@@ -130,6 +142,11 @@
       isverenSayisi: cozulmus.length,
       safiToplam: safiToplam,
       kesilen: kesilen,
+      /* Vergiden dusulecek istisna. Dogrudan {safi, kesilen} girilen
+         isverenler icin bilinemez ve sifir kalir; o durumda kullanici
+         kendi bordrosundaki kesilen vergiyi zaten istisna dusulmus
+         olarak giriyor demektir. */
+      istisna: istisnaToplam,
       sonrakilerToplami: sonrakiler,
       sonrakiAsti: sonrakiAsti,
       toplamAsti: toplamAsti,
@@ -260,7 +277,15 @@
     var ucretDisiVar = (beyanGeliri - ucretMatrah) > 0;
     var tarife = (ucretMatrah > 0 && !ucretDisiVar)
       ? P.dilimler : P.dilimlerUcretDisi;
-    var hesaplanan = B.tarifeVergisi(matrah, tarife);
+    var tarifeVergisi = B.tarifeVergisi(matrah, tarife);
+    /* Ucret beyana giriyorsa asgari ucret istisnasi BEYANNAMEDE DE
+       gecerlidir: istisna beyan edildi diye kaybolmaz. Motorda istisna
+       vergiden dusulen bir tutar oldugu icin burada da oyle uygulaniyor.
+       Uygulanmazsa beyanname, yil icinde taninan istisnayi geri alir --
+       tek isverenli bir ucretliye, ayni gelir ve ayni tarifeyle, olmayan
+       bir vergi cikardi. */
+    var ucretIstisnasi = ucret.beyanaGirer ? (ucret.istisna || 0) : 0;
+    var hesaplanan = Math.max(0, tarifeVergisi - ucretIstisnasi);
 
     /* 7) Mahsup. Beyana GİRMEYEN gelirin stopajı mahsup EDİLMEZ. */
     var mahsup = (ucret.beyanaGirer ? ucret.kesilen : 0) +
@@ -287,6 +312,8 @@
       indirimler: ind,
       matrah: yuvarla(matrah),
       tarifeTuru: tarife === P.dilimler ? "ucret" : "ucret-disi",
+      tarifeVergisi: yuvarla(tarifeVergisi),
+      ucretIstisnasi: yuvarla(ucretIstisnasi),
       hesaplananVergi: yuvarla(hesaplanan),
       mahsup: yuvarla(mahsup),
       odenecek: yuvarla(Math.max(0, fark)),

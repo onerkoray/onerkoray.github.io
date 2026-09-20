@@ -116,5 +116,122 @@ dogru("Bordro.parametreler erisilebilir",
   });
 })();
 
+/* --- 6) CSS jetonlari GERCEKTEN var mi? --------------------------------
+   Ilk surumde --cizgi, --ikincil, --marka ve --yumusak diye degiskenler
+   UYDURULMUSTU. Sitede boyle isimler yok, dolayisiyla hepsi yazili
+   yedeklere dusuyordu; yedekler acik tema renkleri oldugu icin KARANLIK
+   TEMADA kutular kiriliyordu. Sessiz bir hata: tarayici uyarmaz. */
+var SAYFA_CSS = fs.readFileSync(path.join(__dirname, "style.css"), "utf8");
+var GENEL_CSS = fs.readFileSync(path.join(KOK, "style.css"), "utf8");
+(function () {
+  var kullanilan = [], m, re = /var\((--[a-z0-9-]+)/g;
+  while ((m = re.exec(SAYFA_CSS))) {
+    if (kullanilan.indexOf(m[1]) < 0) kullanilan.push(m[1]);
+  }
+  dogru("sayfa CSS jetonu kullaniyor", kullanilan.length > 0,
+    "bulunan: " + kullanilan.length);
+  kullanilan.forEach(function (t) {
+    dogru(t + " genel style.css'te tanimli", GENEL_CSS.indexOf(t + ":") >= 0);
+  });
+})();
+
+/* --- 7) Kullanilan her sinif bir yerde TANIMLI mi? ---------------------
+   Arac sayfalarinin form ve sonuc siniflari genel style.css'te DEGIL,
+   her aracin kendi dosyasinda duruyor. Isaretleme baska bir aractan
+   kopyalanip stiller kopyalanmazsa sayfa stilsiz acilir -- ilk surumde
+   tam bu oldu. */
+(function () {
+  var SINIFLAR = ["field-grid", "panel-q", "muted-note", "sum-grid",
+                  "sum-card", "sum-label", "sum-value", "sum-note",
+                  "verdict", "bey-grup", "bey-kalem", "payroll", "panel"];
+  /* YORUMLAR ELENIYOR: sinif adi kendi aciklama blogunda da geciyor,
+     dolayisiyla duz metin aramasi silinen bir tanimi "var" sanardi.
+     Mutasyon testi tam bunu gosterdi. */
+  function yorumsuz(css) { return css.replace(/\/\*[\s\S]*?\*\//g, ""); }
+  var SCSS = yorumsuz(SAYFA_CSS), GCSS = yorumsuz(GENEL_CSS);
+  /* Ve secici olarak aranıyor: ".ad" ardindan { , : . veya bosluk. */
+  function seciciVar(css, c) {
+    return new RegExp("\\." + c + "(?=[\\s{,:.>])").test(css);
+  }
+  SINIFLAR.forEach(function (c) {
+    dogru("." + c + " tanimli",
+      seciciVar(SCSS, c) || seciciVar(GCSS, c));
+    /* Ve gercekten kullaniliyor olmali -- olu sinif tanimi da bir kusur. */
+    dogru("." + c + " sayfada veya betikte kullaniliyor",
+      HTML.indexOf(c) >= 0 || SCRIPT.indexOf(c) >= 0);
+  });
+})();
+
+/* --- 8) Bos formda HUKUM verilmiyor ------------------------------------
+   Ilk surum, hicbir alan doldurulmamisken dogrudan "beyanname vermeniz
+   gerekmiyor" diyordu: veriye dayanmayan bir karar. */
+(function () {
+  /* DIZGI ARAMASI YETMIYOR. "girdiVar" adinin betikte gecmesi, o dalin
+     GERCEKTEN calistigini soylemez: kosul `if (false)` yapilsa arama yine
+     gecerdi -- mutasyon testi bunu gosterdi. Bu yuzden script.js sahte bir
+     DOM'da gercekten kosturuluyor ve CIKTIYA bakiliyor. */
+  function sahteDom(degerler) {
+    var kutular = {};
+    function elyap(id) {
+      return { id: id, value: (degerler && degerler[id]) || "0",
+               innerHTML: "", textContent: "", hidden: false,
+               addEventListener: function () {} };
+    }
+    var d = {
+      getElementById: function (id) {
+        if (!kutular[id]) kutular[id] = elyap(id);
+        return kutular[id];
+      }
+    };
+    return { document: d, kutular: kutular };
+  }
+
+  function calistir(degerler) {
+    var s = sahteDom(degerler);
+    var ctx = { console: { log: function () {}, error: function () {} } };
+    ctx.self = ctx; ctx.window = ctx; ctx.globalThis = ctx;
+    ctx.document = s.document;
+    ctx.Intl = Intl; ctx.Date = Date; ctx.Math = Math;
+    vm.createContext(ctx);
+    ["bordro/parametreler.js", "bordro/motor.js", "bordro/gmsi-motor.js",
+     "bordro/beyanname-motoru.js"].forEach(function (f) {
+      vm.runInContext(fs.readFileSync(path.join(KOK, f), "utf8"), ctx,
+        { filename: f });
+    });
+    vm.runInContext(SCRIPT, ctx, { filename: "script.js" });
+    return s.kutular.results ? s.kutular.results.innerHTML : "";
+  }
+
+  var bos = calistir({});
+  dogru("bos formda HUKUM verilmiyor",
+    bos.indexOf("Beyanname vermeniz gerekmiyor") < 0 &&
+    bos.indexOf("Beyanname vermeniz gerekiyor") < 0,
+    bos.slice(0, 120));
+  dogru("bos formda gelir isteniyor",
+    bos.indexOf("Gelirlerinizi girin") >= 0, bos.slice(0, 120));
+
+  /* KONTROL: bos dal gercek kararlari GOLGELEMEMELI. Iki gercek durum da
+     uretilebiliyor olmali. */
+  var girmez = calistir({ "in-ucret1": "60000" });
+  dogru("tek ucrette 'gerekmiyor' karari uretiliyor",
+    girmez.indexOf("Beyanname vermeniz gerekmiyor") >= 0, girmez.slice(0, 120));
+
+  var girer = calistir({ "in-ticari": "1500000" });
+  dogru("ticari kazancta 'gerekiyor' karari uretiliyor",
+    girer.indexOf("Beyanname vermeniz gerekiyor") >= 0, girer.slice(0, 120));
+  dogru("gerekiyor halinde odenecek tutar yaziliyor",
+    girer.indexOf("Ödenecek gelir vergisi") >= 0);
+  dogru("gerekiyor halinde taksitler yaziliyor",
+    girer.indexOf("Ödeme takvimi") >= 0);
+
+  /* Motorun duzeltilen istisna kusuru ARAYUZDE de gorunmeli:
+     tek isverenli yuksek ucrette ek vergi cikmamali. */
+  var tekYuksek = calistir({ "in-ucret1": "600000" });
+  dogru("tek isverenli yuksek ucrette iade/odenecek satiri var",
+    tekYuksek.indexOf("Beyanname vermeniz gerekiyor") >= 0);
+  dogru("tek isverenli yuksek ucrette odenecek 0,00",
+    tekYuksek.indexOf("0,00 TL") >= 0, tekYuksek.slice(0, 200));
+})();
+
 console.log("\n" + gecen + " gecti, " + hata + " kaldi. (beyanname arayuzu)");
 process.exit(hata ? 1 : 0);

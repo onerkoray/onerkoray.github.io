@@ -70,6 +70,16 @@
     };
   }
 
+  /* Kullanici herhangi bir GELIR girdi mi? Indirim ve stopaj alanlari
+     tek basina gelir sayilmaz: onlar bir gelirin yaninda anlamli. */
+  function girdiVar(g) {
+    if (g.ucretler && g.ucretler.length) return true;
+    return ["konutKira", "isyeriKira", "msiTevkifatli", "tevkifatsizIrat",
+            "serbestMeslek", "ticariKazanc"].some(function (k) {
+      return g[k] > 0;
+    });
+  }
+
   /* Hangi gelir beyana girdi, hangisi girmedi — aracın asıl cevabı. */
   function kalemler(r) {
     var s = [];
@@ -156,9 +166,21 @@
     }
     if (mesaj) mesaj.hidden = true;
 
+    /* HIC GELIR GIRILMEMISSE KARAR VERILMEZ. Ilk surum bos formda
+       dogrudan "beyanname vermeniz gerekmiyor" diyordu: hicbir veriye
+       dayanmayan bir hukum. Once girdi istenir. */
+    if (!girdiVar(g)) {
+      kutu.innerHTML =
+        '<div class="verdict verdict--bos"><h3>Gelirlerinizi girin</h3>' +
+        "<p>Yukarıdaki alanlara yıl içinde elde ettiğiniz gelirleri yazın; " +
+        "araç hangilerinin beyannameye girdiğini ve ne ödeyeceğinizi " +
+        "söylesin.</p></div>";
+      return;
+    }
+
     if (!r.beyannameVar) {
       kutu.innerHTML =
-        '<div class="verdict verdict--ok"><h3>Beyanname vermeniz gerekmiyor</h3>' +
+        '<div class="verdict"><h3>Beyanname vermeniz gerekmiyor</h3>' +
         "<p>Girdiğiniz gelirlerin hiçbiri yıllık beyannameye girmiyor. " +
         "Kesilen vergiler nihai vergidir.</p></div>" +
         kalemler(r) + notlar(r) + kapsam(r);
@@ -189,7 +211,10 @@
       sonuc +
       card("Beyan edilen gelir", fmt(r.beyanGeliri) + " TL", "indirimlerden önce") +
       card("Vergi matrahı", fmt(r.matrah) + " TL", "indirimler düşülmüş") +
-      card("Hesaplanan vergi", fmt(r.hesaplananVergi) + " TL", "tarifeye göre") +
+      card("Hesaplanan vergi", fmt(r.hesaplananVergi) + " TL",
+        r.ucretIstisnasi > 0
+          ? "tarife " + fmt(r.tarifeVergisi) + " − istisna " + fmt(r.ucretIstisnasi)
+          : "tarifeye göre") +
       card("Mahsup edilen", fmt(r.mahsup) + " TL", "stopaj ve geçici vergi") +
       "</div>" +
       kalemler(r) + indirimTablosu(r.indirimler) + taksit +
