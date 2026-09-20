@@ -320,6 +320,14 @@ jobs:
       - name: Vergi kaması yazısının sayıları
         run: node makaleler/vergi-kamasi-ucretin-gercek-yuku/sayi-testi.js
 
+      # Banka tablolari yayimlanmis bir calismanin verilerinden turuyor;
+      # turetilen sutunlar (reel faiz, yillik tavan) BURADA hesaplaniyor.
+      - name: Banka tablolarının güncelliği
+        run: node tools/banka-tablosu.js --check
+
+      - name: Kredi tavanı yazısının sayıları
+        run: node makaleler/kredi-tavani-ve-banka-karliligi/sayi-testi.js
+
       - name: Tavan tablolarının güncelliği
         run: node tools/tavan-tablosu.js --check
 

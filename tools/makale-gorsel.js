@@ -605,6 +605,90 @@ function makbuzAkisi() {
     "</svg>";
 }
 
+/* Kredi tavani — "kredi-tavani-ve-banka-karliligi" kapagi.
+   Tez tek bir karsilastirmada: her tavan, gerceklesen buyumenin ALTINDA.
+   Bu yuzden yatay cubuklar (tavanlar) ve onlari kesen tek bir dikey
+   referans cizgisi (gerceklesme) kullanildi.
+
+   Cizgi grafigi olmazdi: burada bir zaman serisi yok, bes ayri esigin
+   ayni olcekte siralanmasi var. Cubuklar siralamayi, referans cizgisi de
+   "hicbiri yetismiyor" iddiasini tek bakista veriyor.
+
+   Tek seri oldugu icin marka disi tek renk; gerceklesme cizgisi ikinci
+   kategorik renkle ayriliyor cunku o bir TAVAN degil, GOZLEM. */
+function krediTavaniTakoz() {
+  var W = 600, H = 360, SOL = 150, SAG = 34, UST = 74, ALT = 56;
+  var B = require(path.join(KOK, "makaleler", "kredi-tavani-ve-banka-karliligi",
+    "banka.js"));
+  var t = B.takoz();
+
+  var satir = B.SINIRLAR.map(function (x) {
+    return { ad: x.tur, oran: B.yillikTavan(x.sonra) };
+  }).sort(function (a, b) { return a.oran - b.oran; });
+
+  var xMax = Math.ceil(Math.max(t.gerceklesen, satir[satir.length - 1].oran)
+    * 100 / 5 + 1) * 5 / 100;
+  var x = function (o) { return SOL + (o / xMax) * (W - SOL - SAG); };
+
+  var n = satir.length;
+  var bandH = (H - UST - ALT) / n;
+  var cubukH = Math.min(26, bandH * 0.56);
+
+  var izgara = "", eksen = "";
+  for (var v = 0; v <= xMax + 1e-9; v += 0.10) {
+    var xx = x(v);
+    izgara += '<line x1="' + xx.toFixed(1) + '" y1="' + UST + '" x2="' + xx.toFixed(1) +
+      '" y2="' + (H - ALT) + '" stroke="' + R.izgara + '" stroke-width="1"/>';
+    eksen += '<text x="' + xx.toFixed(1) + '" y="' + (H - ALT + 20) +
+      '" font-size="12" fill="' + R.ikincil + '" text-anchor="middle">%' +
+      Math.round(v * 100) + '</text>';
+  }
+
+  var cubuk = satir.map(function (o, i) {
+    var yy = UST + i * bandH + (bandH - cubukH) / 2;
+    var gen = Math.max(2, x(o.oran) - x(0));
+    return '<rect x="' + x(0).toFixed(1) + '" y="' + yy.toFixed(1) +
+      '" width="' + gen.toFixed(1) + '" height="' + cubukH.toFixed(1) +
+      '" rx="4" fill="' + R.s2 + '"/>' +
+      '<text x="' + (SOL - 10) + '" y="' + (yy + cubukH / 2 + 5).toFixed(1) +
+      '" font-size="12" fill="' + R.murekkep + '" text-anchor="end">' +
+      esc(o.ad) + '</text>' +
+      degerEtiketi(o.oran, yy + cubukH / 2 + 5);
+  }).join("");
+
+  /* Deger etiketi, gerceklesme cizgisine YAKINSA cubugun ICINE aliniyor.
+     Disarida birakilinca en uzun cubugun etiketi kesikli cizgiye degiyor
+     ve iki sayi birbirine karisiyor. */
+  function degerEtiketi(oran, ty) {
+    var bitis = x(oran), cizgi = x(t.gerceklesen);
+    var metin = "%" + (oran * 100).toFixed(1).replace(".", ",");
+    var icerde = (cizgi - bitis) < 44;
+    return '<text x="' + (icerde ? bitis - 8 : bitis + 8).toFixed(1) +
+      '" y="' + ty.toFixed(1) + '" font-size="12" fill="' +
+      (icerde ? R.zemin : R.murekkep) + '" text-anchor="' +
+      (icerde ? "end" : "start") + '">' + metin + '</text>';
+  }
+
+  /* Gerceklesme: butun cubuklarin sagindan gecen dikey cizgi. */
+  var gx = x(t.gerceklesen);
+  var gercek = '<line x1="' + gx.toFixed(1) + '" y1="' + (UST - 12) +
+    '" x2="' + gx.toFixed(1) + '" y2="' + (H - ALT) +
+    '" stroke="' + R.s1 + '" stroke-width="2.5" stroke-dasharray="5 3"/>' +
+    '<text x="' + gx.toFixed(1) + '" y="' + (UST - 18) +
+    '" font-size="12" fill="' + R.s1 + '" text-anchor="middle">gerçekleşen %' +
+    (t.gerceklesen * 100).toFixed(1).replace(".", ",") + '</text>';
+
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Kredi buyume tavanlarinin yillik karsiliklari ve ' +
+    'gerceklesen kredi buyumesi">' +
+    izgara + cubuk + gercek + eksen +
+    '<text x="' + SOL + '" y="30" font-size="15" fill="' + R.murekkep + '">' +
+    'Tavanlar ve gerçekleşme, yıllık</text>' +
+    '<text x="' + SOL + '" y="50" font-size="13" fill="' + R.ikincil + '">' +
+    'En gevşek tavan bile gerçekleşmenin altında kalıyor</text>' +
+    '</svg>';
+}
+
 /* Prim tavani — "sgk-prim-tavani-9-kat" kapagi.
    Yazinin tezi tek bir SEKIL: yuk dar bir bantta toplaniyor ve en tepede
    GERI CEKILIYOR. Cizgi grafigi secildi cunku anlatilan sey bir siralama
@@ -1221,6 +1305,12 @@ var KAPAKLAR = {
     baslik: "Dilimler asgari ücrete yetişemiyor",
     alt: "Aynı katta maaş alan biri her yıl daha hızlı tırmanıyor",
     cizim: dilimKaymasi
+  },
+  "kredi-tavani-ve-banka-karliligi": {
+    kicker: "Para politikası",
+    baslik: "Kredi tavanı tutuyor mu?",
+    alt: "En gevşek tavan bile gerçekleşmenin altında",
+    cizim: krediTavaniTakoz
   },
   "sgk-prim-tavani-9-kat": {
     kicker: "Sosyal güvenlik",
