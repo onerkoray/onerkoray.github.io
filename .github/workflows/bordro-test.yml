@@ -322,6 +322,12 @@ jobs:
 
       # Banka tablolari yayimlanmis bir calismanin verilerinden turuyor;
       # turetilen sutunlar (reel faiz, yillik tavan) BURADA hesaplaniyor.
+      - name: Harita tablolarının güncelliği
+        run: node tools/harita-tablosu.js --check
+
+      - name: Tasarruf-finansman yazısının sayıları
+        run: node makaleler/tasarruf-kimde-finansman-kimde/sayi-testi.js
+
       - name: Banka tablolarının güncelliği
         run: node tools/banka-tablosu.js --check
 
