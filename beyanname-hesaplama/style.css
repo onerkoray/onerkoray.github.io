@@ -1,44 +1,117 @@
 /* Yıllık beyanname aracı — sayfaya özgü düzen.
-   Renk ve tipografi ../style.css'ten geliyor; burada yalnızca bu aracın
-   ihtiyacı olan gruplama ve karar kutusu var. */
+
+   NEDEN BU DOSYA BU KADAR DOLU
+   ----------------------------
+   Araç sayfalarının form ve sonuç sınıfları (.field-grid, .panel-q,
+   .sum-*) GENEL style.css'te DEĞİL, her aracın kendi dosyasında duruyor.
+   İlk sürümde işaretleme kira aracından kopyalanmış ama stilleri
+   kopyalanmamıştı: form ve sonuç kartları stilsiz açılıyordu.
+
+   İkinci hata renk jetonlarındaydı. --cizgi, --ikincil, --marka ve
+   --yumusak diye değişkenler UYDURULMUŞTU; sitede böyle isimler yok.
+   Hepsi yazılı yedeklere düşüyor, yedekler de açık tema renkleri olduğu
+   için KARANLIK TEMADA kenarlıklar ve karar kutusu kırılıyordu.
+   Doğru isimler: --border, --text-muted, --brand, --surface-2,
+   --surface-note. */
+
+/* ---------------------------------------------------------- form ---- */
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.9rem 1.4rem;
+}
+.panel-q { margin: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+.panel-q label { font-weight: 600; font-size: 0.92rem; }
+.panel-q input,
+.panel-q select {
+  font: inherit;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control, 8px);
+  background: var(--surface);
+  color: var(--text);
+  max-width: 14rem;
+}
+.muted-note {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
 
 /* Gelir türleri gruplanıyor: form uzun ve gruplamadan okunmuyor. */
 .bey-grup {
-  border: 1px solid var(--cizgi, #e2ddd2);
-  border-radius: 10px;
-  padding: 0.9rem 1rem 0.4rem;
-  margin: 0 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card, 18px);
+  padding: 1rem 1.1rem 0.9rem;
+  margin: 0 0 1.1rem;
+  background: var(--surface);
 }
 .bey-grup > legend {
   padding: 0 0.45rem;
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--ikincil, #56605c);
+  color: var(--text-muted);
 }
 
-/* Karar kutusu: aracın cevabı önce bu, sayılar sonra. */
+/* -------------------------------------------------------- sonuçlar -- */
+.sum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.8rem;
+  margin: 1.1rem 0;
+}
+.sum-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card, 18px);
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+/* Öne çıkan kart: cevabın kendisi. Ayrım renkle değil, sol şerit ve
+   yazı boyuyla yapılıyor — sitenin vurgu geleneği bu. */
+.sum-card--lead {
+  border-inline-start: 3px solid var(--brand);
+  background: var(--surface-note);
+}
+.sum-label { font-size: 0.78rem; color: var(--text-muted); }
+.sum-value { font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.sum-card--lead .sum-value { font-size: 1.5rem; }
+.sum-note { font-size: 0.75rem; color: var(--text-muted); }
+
+/* Karar kutusu: aracın cevabı önce bu, sayılar sonra.
+   .legal-note ile AYNI dili konuşuyor; ayrı bir kutu dili icat edilmedi. */
 .verdict {
-  border-radius: 10px;
-  padding: 0.9rem 1.1rem;
   margin: 1.2rem 0 1rem;
-  border-left: 4px solid var(--marka, #0e7c66);
-  background: var(--yumusak, rgba(14, 124, 102, 0.06));
+  padding: 1rem 1.25rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-inline-start: 4px solid var(--brand);
+  border-radius: var(--radius-sm, 2px);
 }
-.verdict h3 { margin: 0 0 0.3rem; font-size: 1.15rem; }
-.verdict p { margin: 0; }
-.verdict--warn { border-left-color: #b4571f; background: rgba(180, 87, 31, 0.07); }
+.verdict h3 { margin: 0 0 0.35rem; font-size: 1.15rem; }
+.verdict p { margin: 0; color: var(--text-muted); font-size: 0.93rem; }
+/* Beyan gerekiyorsa kutu markanın tonuna geçiyor: aynı aile, daha yüksek
+   ses. Karanlık temada da çalışır, çünkü --surface-note zemin renginden
+   türetiliyor. */
+.verdict--warn { background: var(--surface-note); }
+/* Henüz veri girilmemişken bir HÜKÜM verilmez. */
+.verdict--bos { border-inline-start-color: var(--border); }
 
+.bey-kalem { margin-top: 1rem; }
 /* Beyana giren ve girmeyen satırlar gözle ayrılsın; ayrım YALNIZCA
    renkle yapılmıyor, "Durum" sütunu da yazıyor. */
 .bey-kalem .bey-out th,
-.bey-kalem .bey-out td { opacity: 0.62; }
+.bey-kalem .bey-out td { color: var(--text-muted); }
 .bey-kalem .bey-in th { font-weight: 600; }
 .bey-kalem .bey-alt th,
 .bey-kalem .bey-alt td {
   font-size: 0.92em;
-  color: var(--ikincil, #56605c);
+  color: var(--text-muted);
 }
 
 @media (max-width: 640px) {
-  .bey-grup { padding: 0.7rem 0.7rem 0.2rem; }
+  .bey-grup { padding: 0.8rem 0.75rem 0.6rem; }
+  .panel-q input, .panel-q select { max-width: none; }
 }
