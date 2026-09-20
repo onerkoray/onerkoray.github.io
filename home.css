@@ -87,6 +87,11 @@
 }
 
 /* Kartların iç ritmi: açıklama rahat okunur, eylem tutarlı yerde durur. */
+.home-page .no-results {
+  padding: 1.25rem; line-height: 1.7;
+  border: 1px dashed var(--border); border-radius: 12px;
+  background: var(--surface); text-align: center;
+}
 .home-page .project-grid {
   align-items: stretch;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
