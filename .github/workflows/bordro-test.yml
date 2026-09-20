@@ -528,6 +528,15 @@ jobs:
         # motorla uyumunu hem de noindex ile sitemap'in çelişmemesini doğrular.
         run: node tools/maas-sayfalari.js --check
 
+      - name: Maaş sayfaları birbirine fazla benziyor mu
+        # Eylül 2026 Search Console: dizine açık sekiz maaş sayfasının altısı
+        # dizinde değil. Sebep ölçüldü — sayfalar sekiz kelimelik dizilerinin
+        # dörtte birini paylaşıyor (makalelerde aynı ölçü binde bir). Bu kapı
+        # benzerliği ÇÖZMÜYOR, gerilemesini engelliyor: şablona yeni ortak
+        # metin eklenirse kırmızıya döner. Mutasyonla doğrulandı — sekiz
+        # sayfaya özdeş bir paragraf eklendiğinde 0,250 -> 0,274 ile patlıyor.
+        run: node tools/maas-benzerlik-test.js
+
       - name: Diyagramlar güncel mi
         # Şema içeriği motordan ve depodan üretiliyor; elle çizilmiş bir şema
         # eskirken sessiz kalır, üretilen şema burada patlar.

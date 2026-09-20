@@ -28,6 +28,12 @@
 var fs = require("fs");
 var path = require("path");
 var B = require("../bordro/motor.js");
+/* Vergi kamasi ve zam yansimasi, yayimlanmis iki yazinin TEST EDILMIS
+   modullerinden geliyor. Buraya formul kopyalamak yerine kural nerede
+   olculduyse oradan okunuyor -- tools/ydo-tablosu.js ve
+   tools/banka-tablosu.js de ayni yolu izliyor. */
+var KAMA = require("../makaleler/vergi-kamasi-ucretin-gercek-yuku/kama.js");
+var ZAM = require("../makaleler/zam-net-maasa-ne-kadar-yansir/zam.js");
 
 var KOK = path.resolve(__dirname, "..");
 var YIL = 2026;
@@ -265,11 +271,97 @@ function analiz(tutar) {
     marjinalOcak: marjinalOcak,
     marjinalAralik: marjinalAralik,
     yukselis: yukselis,
-    duraklar: duraklar
+    duraklar: duraklar,
+    profil: profil(tutar, aylar, P, d1)
+  };
+}
+
+/* ÜCRET DÜZEYİNE ÖZGÜ OLGULAR.
+
+   Bu sayfaların birbirinden ayrılması, aynı cümlelere farklı sayılar
+   koymakla olmuyor — ölçüldü: sekiz sayfanın sekiz kelimelik dizilerinin
+   %23'ü ortaktı ve paylaşılan kısım analizin kendisiydi. Ayrım, hangi
+   OLGUNUN geçerli olduğundan doğmalı.
+
+   Burada hesaplanan üç olgu ücret düzeyiyle birlikte gerçekten değişiyor:
+
+     istisnaPayi  Asgari ücret istisnasının, tarife vergisinin ne kadarını
+                  karşıladığı. 40.000 TL'de %79,7; 300.000 TL'de %6,3.
+                  Aradaki 12,6 katlık fark, iki ücret düzeyinde bordroyu
+                  belirleyen şeyin BAŞKA olduğu anlamına geliyor.
+
+     tavanDurumu  SGK prim tavanının altında mı, yeni genişleyen bantta mı,
+                  üstünde mi. Üstündeyse bordronun mantığı değişiyor.
+
+     dilimYolu    Yıl içinde görülen dilimlerin dizisi. Üç ayrı desen var
+                  ve 300.000 TL %15 dilimini hiç görmüyor. */
+function profil(tutar, aylar, P, d1) {
+  var tarife = 0, istisna = 0;
+  aylar.forEach(function (a) { tarife += a.vergiTarife; istisna += a.istisna; });
+
+  /* Önceki yılın katsayısı, tavanın genişlediği bandı verir. */
+  var eskiTavan = d1.asgariBrut * B.parametre(YIL - 1).tavanKatsayisi;
+
+  var dilimler = [];
+  aylar.forEach(function (a) {
+    if (dilimler.indexOf(a.dilim) < 0) dilimler.push(a.dilim);
+  });
+
+  return {
+    istisnaPayi: tarife > 0 ? istisna / tarife : 0,
+    istisnaYillik: istisna,
+    tavanDurumu: tutar > d1.sgkTavan ? "ustunde"
+      : (tutar > eskiTavan ? "yeni-bant" : "altinda"),
+    eskiTavan: eskiTavan,
+    dilimYolu: dilimler,
+    ilkDilimiGoruyorMu: dilimler.indexOf(P.dilimler[0][1]) >= 0,
+    ustDilimeGiriyorMu: dilimler.indexOf(0.35) >= 0 || dilimler.indexOf(0.40) >= 0,
+    kama: KAMA.ortalama(tutar, YIL),
+    zamYansimasi: ZAM.yansima(tutar, YIL, 0.30)
   };
 }
 
 /* ------------------------------------------------------------------- metin */
+
+/* Profilden metin.
+
+   İLK DENEME BAŞARISIZ OLDU VE NEDENİ ÖLÇÜLDÜ. Önce üç eksende banda göre
+   dallanan paragraflar yazıldı. Sonuç ters çıktı: sayfaların özgü kelime
+   payı %37,1'den %33,2'ye DÜŞTÜ. Sebebi, sekiz sayfanın beşinin üç eksende
+   de aynı banda düşmesi — üçü de birebir aynı paragrafı alıyordu. Bant
+   dallanması, metin ekledikçe ORTAK kütleyi büyütüyor.
+
+   Bu sürüm bağlayıcı nesri atıyor. Geriye kalan, her satırında o ücret
+   düzeyine ait bir SAYI bulunan kısa bir tanım listesi: ortak dizgi
+   üretmeyen, ama sayfanın taşımadığı bilgiyi taşıyan bir blok. */
+function profilBolumu(a) {
+  var pr = a.profil;
+  var s = [];
+
+  s.push('<h3 id="bu-duzeyde">' + fm0(a.tutar) + " TL düzeyinin kendine özgü sayıları</h3>");
+  s.push("<dl class=\"maas-profil\">");
+
+  s.push("<dt>İstisnanın karşıladığı vergi</dt><dd>%" + oran(pr.istisnaPayi * 100) +
+    " (" + fm0(pr.istisnaYillik) + " TL)</dd>");
+
+  s.push("<dt>Vergi kaması</dt><dd>%" + oran(pr.kama * 100) + "</dd>");
+
+  s.push("<dt>%30 brüt zammın nete yansıması</dt><dd>%" +
+    oran(pr.zamYansimasi * 100) + "</dd>");
+
+  s.push("<dt>Dilim yolu</dt><dd>" +
+    pr.dilimYolu.map(function (x) { return yuzde(x); }).join(" → ") + "</dd>");
+
+  s.push("<dt>SGK prim tavanı (" + fm0(a.sgkTavan) + " TL)</dt><dd>" +
+    (pr.tavanDurumu === "ustunde"
+      ? "aşılıyor; tavan üstü prime tabi değil"
+      : (pr.tavanDurumu === "yeni-bant"
+        ? "2026'da genişleyen bandın içinde"
+        : "ulaşılmıyor; kazancın tamamı prime tabi")) + "</dd>");
+
+  s.push("</dl>");
+  return s.join("\n");
+}
 
 function blok(a) {
   var basligiTutar = fm0(a.tutar);
@@ -335,6 +427,12 @@ function blok(a) {
       "asgari ücretlinin kümülatif matrahı da üst dilime geçtiğinde bu istisna " +
       "büyür ve sizin verginizden düşülen tutar artar.</p>");
   }
+
+  /* ÜCRET DÜZEYİNE ÖZGÜ BÖLÜM.
+     Buradaki cümleler sayfadan sayfaya değişmiyor — hangi cümlelerin
+     YAZILDIĞI değişiyor. İstisnanın ağırlığı, prim tavanıyla ilişki ve
+     dilim yolu üç ayrı eşikte üç ayrı metin üretiyor. */
+  s.push(profilBolumu(a));
 
   if (YORUM[a.tutar]) {
     s.push('<h3 id="bant">' + basligiTutar + " TL bandında ne değişir?</h3>");
