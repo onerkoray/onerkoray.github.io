@@ -605,6 +605,95 @@ function makbuzAkisi() {
     "</svg>";
 }
 
+/* Tasarruf-finansman — "tasarruf-kimde-finansman-kimde" kapagi.
+   Tez: AYNI kredi stoku, iki olcuyle iki ayri yone gidiyor. Bu yuzden
+   sifir cizgisinden iki yana acilan cubuklar kullanildi; nominal yukari,
+   reel asagi.
+
+   Yan yana iki cubuk olsaydi ikisi de pozitif eksende durur ve "iki ayri
+   yon" iddiasi gorunmezdi. Isaretin kendisi burada bilginin ta kendisi.
+
+   Iki cubuk ayri KATEGORI oldugu icin iki kategorik renk kullaniliyor;
+   kazanc/kayip renkleri degil, cunku bunlar bir sonucun iki olcumu. */
+function tasarrufNominalReel() {
+  var W = 600, H = 360, SOL = 96, SAG = 40, UST = 78, ALT = 60;
+  var H2 = require(path.join(KOK, "makaleler", "tasarruf-kimde-finansman-kimde",
+    "harita.js"));
+
+  var seri = [
+    { ad: "KOBİ kredisi", nominal: H2.nominalBuyume(2024, "kobi"),
+      reel: H2.reelBuyume(2024, "kobi") },
+    { ad: "Toplam işletme", nominal: H2.nominalBuyume(2024, "toplam"),
+      reel: H2.reelBuyume(2024, "toplam") }
+  ];
+
+  var enCok = 0;
+  seri.forEach(function (o) {
+    enCok = Math.max(enCok, Math.abs(o.nominal), Math.abs(o.reel));
+  });
+  var yMax = Math.ceil(enCok * 100 / 10) * 10 / 100;
+
+  var sifir = (UST + (H - ALT)) / 2;
+  var yarim = (H - ALT - UST) / 2;
+  var yy = function (v) { return sifir - (v / yMax) * yarim; };
+
+  var izgara = "", eksen = "";
+  for (var t = -yMax; t <= yMax + 1e-9; t += yMax / 2) {
+    var y = yy(t);
+    izgara += '<line x1="' + SOL + '" y1="' + y.toFixed(1) + '" x2="' + (W - SAG) +
+      '" y2="' + y.toFixed(1) + '" stroke="' +
+      (Math.abs(t) < 1e-9 ? R.ikincil : R.izgara) + '" stroke-width="1"/>';
+    eksen += '<text x="' + (SOL - 10) + '" y="' + (y + 4).toFixed(1) +
+      '" font-size="11" fill="' + R.ikincil + '" text-anchor="end">' +
+      (t > 0 ? "+" : "") + Math.round(t * 100) + '%</text>';
+  }
+
+  var grupGen = (W - SOL - SAG) / seri.length;
+  var cubukGen = Math.min(58, grupGen * 0.3);
+  var cubuk = seri.map(function (o, i) {
+    var merkez = SOL + grupGen * (i + 0.5);
+    function ciz(v, dx, renk, etiket) {
+      var x0 = merkez + dx - cubukGen / 2;
+      var ust = v >= 0 ? yy(v) : sifir;
+      var yuk = Math.abs(yy(v) - sifir);
+      var ty = v >= 0 ? yy(v) - 8 : yy(v) + 16;
+      return '<rect x="' + x0.toFixed(1) + '" y="' + ust.toFixed(1) +
+        '" width="' + cubukGen.toFixed(1) + '" height="' + Math.max(2, yuk).toFixed(1) +
+        '" rx="3" fill="' + renk + '"/>' +
+        '<text x="' + (x0 + cubukGen / 2).toFixed(1) + '" y="' + ty.toFixed(1) +
+        '" font-size="12" fill="' + R.murekkep + '" text-anchor="middle">' +
+        (v >= 0 ? "+" : "−") + '%' +
+        Math.abs(v * 100).toFixed(2).replace(".", ",") + '</text>';
+    }
+    return ciz(o.nominal, -cubukGen * 0.58, R.s1) +
+      ciz(o.reel, cubukGen * 0.58, R.s2) +
+      '<text x="' + merkez.toFixed(1) + '" y="' + (H - ALT + 22) +
+      '" font-size="12" fill="' + R.murekkep + '" text-anchor="middle">' +
+      esc(o.ad) + '</text>';
+  }).join("");
+
+  /* Gosterge, alt basligin ALTINA konuyor. UST-34'te iken alt basligin
+     temel cizgisiyle cakisiyordu; iki metin ust uste biniyordu. */
+  var gy = UST - 14;
+  var gosterge =
+    '<rect x="' + SOL + '" y="' + (gy - 9) + '" width="11" height="11" rx="2" fill="' +
+    R.s1 + '"/><text x="' + (SOL + 17) + '" y="' + gy +
+    '" font-size="12" fill="' + R.ikincil + '">nominal</text>' +
+    '<rect x="' + (SOL + 88) + '" y="' + (gy - 9) + '" width="11" height="11" rx="2" fill="' +
+    R.s2 + '"/><text x="' + (SOL + 105) + '" y="' + gy +
+    '" font-size="12" fill="' + R.ikincil + '">reel (TÜFE ile)</text>';
+
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="2024 KOBI ve toplam isletme kredisinin nominal ve ' +
+    'reel degisimi">' +
+    izgara + cubuk + eksen + gosterge +
+    '<text x="' + SOL + '" y="30" font-size="15" fill="' + R.murekkep + '">' +
+    'Aynı kredi stoku, iki ölçü (2024)</text>' +
+    '<text x="' + SOL + '" y="50" font-size="13" fill="' + R.ikincil + '">' +
+    'Nominal büyüyor, enflasyondan arındırılınca küçülüyor</text>' +
+    '</svg>';
+}
+
 /* Kredi tavani — "kredi-tavani-ve-banka-karliligi" kapagi.
    Tez tek bir karsilastirmada: her tavan, gerceklesen buyumenin ALTINDA.
    Bu yuzden yatay cubuklar (tavanlar) ve onlari kesen tek bir dikey
@@ -1305,6 +1394,12 @@ var KAPAKLAR = {
     baslik: "Dilimler asgari ücrete yetişemiyor",
     alt: "Aynı katta maaş alan biri her yıl daha hızlı tırmanıyor",
     cizim: dilimKaymasi
+  },
+  "tasarruf-kimde-finansman-kimde": {
+    kicker: "Makro",
+    baslik: "Tasarruf kimde, finansman kimde?",
+    alt: "Nominal büyüyen kredi, reel olarak küçülüyor",
+    cizim: tasarrufNominalReel
   },
   "kredi-tavani-ve-banka-karliligi": {
     kicker: "Para politikası",
