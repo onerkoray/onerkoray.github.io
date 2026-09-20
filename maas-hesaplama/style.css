@@ -92,3 +92,39 @@ table.makale-kirilim { min-width: 620px; }
 table.makale-kirilim td:first-of-type,
 table.makale-kirilim td:nth-of-type(2) { white-space: normal; text-align: left; }
 table.makale-istisna, table.makale-istisna-yillar { min-width: 0; }
+
+/* Ücret düzeyine özgü sayılar — tools/maas-sayfalari.js üretiyor.
+
+   NEDEN TANIM LİSTESİ: bu blok sekiz sayfada da aynı satır başlıklarını
+   taşıyor ama her değeri farklı. Nesir yazılsaydı başlıklar arasındaki
+   bağlayıcı cümleler sayfalar arasında birebir tekrar ederdi -- ölçüldü,
+   nesirli ilk sürüm sayfaların özgü kelime payını %37,1'den %33,2'ye
+   düşürmüştü. Liste, ortak dizgi üretmeden bilgi taşıyor.
+
+   Renkler genel style.css'in jetonlarından; burada yeni jeton
+   UYDURULMUYOR. */
+.maas-profil {
+  display: grid;
+  grid-template-columns: minmax(11rem, auto) 1fr;
+  gap: 0.35rem 1.1rem;
+  margin: 1rem 0 1.4rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--border);
+  border-inline-start: 3px solid var(--brand);
+  border-radius: var(--radius-sm, 2px);
+  background: var(--surface-2);
+}
+.maas-profil dt {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+.maas-profil dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 560px) {
+  .maas-profil { grid-template-columns: 1fr; gap: 0.1rem 0; }
+  .maas-profil dd { margin-bottom: 0.5rem; }
+}
