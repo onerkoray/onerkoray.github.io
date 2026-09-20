@@ -1,6 +1,11 @@
 /* Ana sayfaya özel yüzeyler; ortak araç ve makale şablonlarından bağımsız. */
 .home-page .hero-copy .lede { max-width: 55ch; line-height: 1.75; }
 .home-page .hero-note { padding-top: .75rem; margin-top: 1.5rem; }
+.home-page .hero-actions .btn:not(.btn-primary):is(:hover, :focus-visible) {
+  background: color-mix(in srgb, var(--brand) 9%, var(--surface));
+  border-color: var(--brand);
+  color: var(--brand-strong);
+}
 .home-page .hero-latest { margin-top: .5rem; }
 .home-page .hero-latest h2 { font: 650 .78rem var(--font-mono); color: var(--text-muted); }
 .home-page .hero-latest .hq-yeni a {
