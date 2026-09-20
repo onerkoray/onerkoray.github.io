@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-19T00:00:00+03:00</updated>
+  <updated>2026-09-20T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Kredi Tavanı Tutuyor mu? Banka Kârlılığı</title>
+    <link href="https://korayoner.dev/makaleler/kredi-tavani-ve-banka-karliligi/"/>
+    <id>https://korayoner.dev/makaleler/kredi-tavani-ve-banka-karliligi/</id>
+    <updated>2026-09-20T00:00:00+03:00</updated>
+    <summary>Kredi büyümesine konan tavanlar yıllığa çevrildiğinde %6,7–33,1 aralığında; gerçekleşen büyüme %34,2. Aradaki farkın adı regülasyon takozu.</summary>
+  </entry>
 
   <entry>
     <title>Yıllık Gelir Vergisi Beyannamesi Hesaplama 2026</title>
