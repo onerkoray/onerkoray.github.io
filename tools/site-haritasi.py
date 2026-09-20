@@ -54,7 +54,6 @@ def dosya_yolu(loc):
 def main():
     kontrol = "--check" in sys.argv
     A = _arac_modulu()
-    boyut = A.commit_boyutlari()
 
     s = io.open(HARITA, encoding="utf-8").read()
     ham = s
@@ -67,7 +66,7 @@ def main():
         if not os.path.exists(os.path.join(KOK, p)):
             bulunamayan.append(loc)
             continue
-        iso, _h = A.anlamli_tarih(p, boyut)
+        iso, _h = A.anlamli_tarih(p)
         if not iso:
             continue
 
