@@ -50,6 +50,14 @@
   border-color: var(--brand); background: var(--surface);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 12%, transparent);
 }
+.home-page .tool-search-clear {
+  min-width: 44px; min-height: 44px; flex-shrink: 0;
+  padding-inline: .65rem; border-radius: 8px;
+}
+.home-page .tool-search-clear:is(:hover, :focus-visible) {
+  background: color-mix(in srgb, var(--brand) 9%, var(--surface));
+  color: var(--brand-strong);
+}
 .home-page .directory-panel .chips {
   display: flex; flex-wrap: wrap; gap: .35rem; align-items: center;
   border: 0; padding: 0; margin: 0; background: transparent;
