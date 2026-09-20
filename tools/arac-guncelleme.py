@@ -70,6 +70,10 @@ DAMGA = re.compile(r"[?]v=[0-9a-f]+")
 # ve sisirilmis lastmod tazelik sinyalini guclendirmez, susturur.
 GECERLILIK = re.compile(r'<meta\s+name="gecerlilik"')
 
+# Arama motoru sahiplik dogrulama etiketi de okuyucuya GORUNMEZ. Ayni
+# gerekce: eklenmesini "sayfa guncellendi" diye sunmak lastmod'u sisirir.
+DOGRULAMA = re.compile(r'<meta\s+name="google-site-verification"')
+
 
 # Ayni degisiklik kac dosyada tekrarlarsa "site geneli tarama" sayilir.
 # Uc sayfayi ayni sekilde duzenlemek esgudumlu gercek bir istir; kirk sayfaya
@@ -104,7 +108,7 @@ def _imzalar(h):
             continue
         if satir.startswith("+++") or satir.startswith("---"):
             continue
-        if GECERLILIK.search(satir):
+        if GECERLILIK.search(satir) or DOGRULAMA.search(satir):
             continue
         if satir.startswith("+"):
             ekli.append(DAMGA.sub("?v=", satir[1:]))

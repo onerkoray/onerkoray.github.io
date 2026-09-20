@@ -92,6 +92,22 @@ dogru("gecerlilik bildirimi eklemek ozlu sayilmaz",
           ("+", '  <meta name="gecerlilik" content="2027-01-01">')]},
           "x/index.html"))
 
+# --- 2b) Sahiplik dogrulama etiketi de okuyucuya gorunmez -----------------
+# 20 Eylul 2026'da ana sayfaya eski GSC mulku icin bir dogrulama etiketi
+# eklendi. Arama motoruna soylenen bir sey degisti, okuyucuya gosterilen
+# hicbir sey degismedi -- "ana sayfa guncellendi" demek lastmod'u sisirirdi.
+dogru("dogrulama etiketi eklemek ozlu sayilmaz",
+      not degisti({"index.html": [
+          ("+", '  <meta name="google-site-verification" content="abc123">')]},
+          "index.html"))
+
+# KONTROL: elemenin yalnizca O SATIRI attigini, butun commit'i degil.
+# Bu olmadan yukaridaki iddia, eleme fazla genis olsa da gecerdi.
+dogru("KONTROL: ayni commit'te gercek icerik varsa ozlu sayilir",
+      degisti({"index.html": [
+          ("+", '  <meta name="google-site-verification" content="abc123">'),
+          ("+", "  <p>yeni bir olcum</p>")]}, "index.html"))
+
 # --- 3) Ayni degisiklik cok sayfada: tarama --------------------------------
 SUPURGE = [("-", '          "https://500px.com/p/korayoner"'),
            ("+", '          "https://500px.com/p/korayoner",'),
