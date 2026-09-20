@@ -1,6 +1,6 @@
 /* Ana sayfaya özel yüzeyler; ortak araç ve makale şablonlarından bağımsız. */
 .home-page .hero-copy .lede { max-width: 55ch; line-height: 1.75; }
-.home-page .hero-note { padding-top: .5rem; }
+.home-page .hero-note { padding-top: .75rem; margin-top: 1.5rem; }
 .home-page .hero-latest { margin-top: .5rem; }
 .home-page .hero-latest h2 { font: 650 .78rem var(--font-mono); color: var(--text-muted); }
 .home-page .hero-latest .hq-yeni a {
@@ -17,9 +17,12 @@
 }
 .home-page .hero-latest .hq-yeni span { line-height: 1.4; }
 .home-page .topic-index { margin-bottom: 2rem; }
-.home-page .topic-index a { padding: 1.35rem; gap: .7rem; }
+.home-page .topic-index a {
+  padding: 1.35rem; gap: .7rem;
+  transition: border-color .2s ease, background-color .2s ease;
+}
 .home-page .topic-index strong { font-size: 1rem; line-height: 1.4; }
-.home-page .topic-index span { max-width: 28ch; }
+.home-page .topic-index span { max-width: 28ch; margin-top: auto; }
 
 /* Etiket, arama ve filtreler tek bir araç bulma panelidir. */
 .home-page .directory-panel {
@@ -48,7 +51,7 @@
 }
 .home-page .directory-panel .chip {
   display: inline-flex; align-items: center; gap: .55rem;
-  min-height: 42px; padding: .65rem .8rem; border-radius: 8px;
+  min-height: 44px; padding: .65rem .8rem; border-radius: 8px;
   border: 1px solid transparent; background: transparent;
   color: var(--text-muted); box-shadow: none; transform: none;
   transition: color .25s ease, background-color .25s ease, border-color .25s ease;
@@ -71,7 +74,10 @@
 }
 
 /* Kartların iç ritmi: açıklama rahat okunur, eylem tutarlı yerde durur. */
-.home-page .project-grid { align-items: stretch; }
+.home-page .project-grid {
+  align-items: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
 .home-page .project-card { background: var(--surface); }
 .home-page .project-body { padding: 1.25rem; gap: .15rem; }
 .home-page .project-body h3 { font-size: 1.12rem; line-height: 1.4; letter-spacing: -.02em; }
@@ -84,6 +90,7 @@
   padding-top: .85rem; margin-top: auto;
   border-top: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
 }
+.home-page .project-body .project-links a { min-height: 44px; }
 .home-page .project-body .card-updated { font-size: .7rem; margin: .65rem 0 0; }
 .home-page .ed-list { display: grid; gap: 1rem; }
 .home-page .ed-item, .home-page .ed-item:last-child {
@@ -103,7 +110,7 @@
 @media (max-width: 600px) {
   .home-page .directory-panel { padding: 1rem; gap: .85rem; border-radius: 12px; }
   .home-page .directory-panel .chips { display: grid; grid-template-columns: 1fr 1fr; }
-  .home-page .directory-panel .chip { justify-content: space-between; font-size: .66rem; padding: .6rem; }
+  .home-page .directory-panel .chip { justify-content: space-between; font-size: .75rem; padding: .6rem; }
   .home-page .directory-label { font-size: .95rem; }
   .home-page .hero-latest .hq-yeni a { min-height: 3.5rem; padding: .85rem 1rem; }
   .home-page .topic-index a { padding: 1rem; }
@@ -111,6 +118,9 @@
   .home-page .project-body { padding: 1.15rem; }
   .home-page .ed-item { padding: 1rem; }
 }
+@media (max-width: 380px) {
+  .home-page .directory-panel .chips { grid-template-columns: 1fr; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .home-page :is(.hq-yeni a,.tool-search,.chip,.project-body h3 a,.ed-item) { transition: none; }
+  .home-page :is(.hq-yeni a,.topic-index a,.tool-search,.chip,.project-body h3 a,.ed-item) { transition: none; }
 }
