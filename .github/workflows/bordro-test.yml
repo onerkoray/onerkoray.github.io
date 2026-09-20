@@ -572,6 +572,14 @@ jobs:
       - name: Araç kartlarındaki güncelleme tarihleri güncel mi
         run: python tools/arac-guncelleme.py --check
 
+      - name: Tarama commit'i ayirt etme kuralı
+        # Bu kural sitedeki her lastmod ve her kart tarihini belirliyor ama
+        # çıktısı bir tarih olduğu için yanlışlığı sessiz kalır. Kural
+        # doğrudan sınanıyor: damga tazelemesi ve aynı satırın kırk sayfaya
+        # basılması "güncellendi" sayılmamalı, karışık bir commit'in içinde
+        # içeriği gerçekten değişen sayfa sayılmalı.
+        run: python tools/tarama-testi.py
+
       # Gecmis yillarin issizlik odenegi tablosu bordro/parametreler.js'ten
       # turetiliyor. Elle yazilsaydi asgari ucret her degistiginde sessizce
       # eskirdi: sayfa acilir, tablo hizali gorunur, yalnizca yanlistir.

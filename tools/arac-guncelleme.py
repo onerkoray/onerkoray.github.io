@@ -41,10 +41,6 @@ import sys
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SAYFA = os.path.join(KOK, "index.html")
 
-# Site geneli tarama esigi. Olculen dagilim: gercek arac calismasi 1-26
-# dosya, tipografi/renk taramalari 97-124 dosya. Arada genis bir bosluk var.
-TARAMA_ESIGI = 40
-
 AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
          "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
 
@@ -66,17 +62,6 @@ def git(*a):
     return r.stdout
 
 
-def commit_boyutlari():
-    """Her commit'in dokundugu dosya sayisi. Tek gecis; log basina bir cagri
-    yapmak 34 arac x yuzlerce commit'te dakikalar suruyordu."""
-    boyut = {}
-    for blok in git("log", "--format=@@%H", "--name-only").split("@@"):
-        satir = [s for s in blok.strip().split("\n") if s.strip()]
-        if satir:
-            boyut[satir[0]] = len(satir) - 1
-    return boyut
-
-
 DAMGA = re.compile(r"[?]v=[0-9a-f]+")
 
 # Gecerlilik bildirimi (tools/gecerlilik.js) okuyucuya GORUNMEZ: sayfanin
@@ -86,19 +71,37 @@ DAMGA = re.compile(r"[?]v=[0-9a-f]+")
 GECERLILIK = re.compile(r'<meta\s+name="gecerlilik"')
 
 
-def ozlu_degisim(h, yol):
-    """Commit bu araca GERCEK bir degisiklik getirdi mi?
+# Ayni degisiklik kac dosyada tekrarlarsa "site geneli tarama" sayilir.
+# Uc sayfayi ayni sekilde duzenlemek esgudumlu gercek bir istir; kirk sayfaya
+# ayni satiri basmak taramadir. Eldeki dagilim bu araligi bos birakiyor.
+TARAMA_TEKRARI = 10
 
-    Dosya sayisi tek basina yetmiyor. "Keep asset cache stamps consistent"
-    commit'i 19 dosyaya dokunup esigi geciyor ama yaptigi tek sey ?v=
-    damgalarini tazelemek; bunu "arac guncellendi" diye sunmak yalan olur.
-    Burada damgalar normalize edilip once/sonra satirlari karsilastiriliyor:
-    geriye bir sey kalmiyorsa degisiklik ozlu degildir. Gecerlilik bildirimi
-    satirlari da ayni sebeple elenir: okuyucunun gordugu hicbir sey degismez.
+_IMZA = {}
+
+
+def _imzalar(h):
+    """Commit'teki her dosyanin normalize edilmis diff imzasi.
+
+    Tek 'git show' ile butun commit okunuyor; ayni commit birden cok sayfa
+    icin sorulduguda tekrar cagrilmasin diye sonuc saklaniyor.
     """
-    diff = git("show", "--format=", "--unified=0", h, "--", yol)
-    ekli, silik = [], []
-    for satir in diff.split("\n"):
+    if h in _IMZA:
+        return _IMZA[h]
+    tablo, yol, ekli, silik = {}, None, [], []
+
+    def kapat():
+        if yol is not None:
+            tablo[yol] = (tuple(sorted(ekli)), tuple(sorted(silik)))
+
+    for satir in git("show", "--format=", "--unified=0", h).split("\n"):
+        if satir.startswith("diff --git "):
+            kapat()
+            parca = satir.split(" b/", 1)
+            yol = parca[1].strip() if len(parca) == 2 else None
+            ekli, silik = [], []
+            continue
+        if yol is None:
+            continue
         if satir.startswith("+++") or satir.startswith("---"):
             continue
         if GECERLILIK.search(satir):
@@ -107,14 +110,55 @@ def ozlu_degisim(h, yol):
             ekli.append(DAMGA.sub("?v=", satir[1:]))
         elif satir.startswith("-"):
             silik.append(DAMGA.sub("?v=", satir[1:]))
-    return sorted(ekli) != sorted(silik)
+    kapat()
+    _IMZA[h] = tablo
+    return tablo
 
 
-def anlamli_tarih(yol, boyut):
-    """Aracin klasorune dokunan, tarama olmayan ve ozlu en son commit."""
-    for h in git("log", "--format=%H", "--", yol).split():
-        if boyut.get(h, 10 ** 6) > TARAMA_ESIGI:
+def ozlu_degisim(h, yol):
+    """Commit bu sayfaya GERCEK bir degisiklik getirdi mi?
+
+    Iki elek var, ikisi de ayni soruyu soruyor: okuyucunun gordugu bir sey
+    degisti mi?
+
+    1. DAMGA VE BILDIRIM. "Keep asset cache stamps consistent" commit'i
+       ondokuz dosyaya dokunuyor ama yaptigi tek sey ?v= damgalarini
+       tazelemek. Damgalar normalize edilip once/sonra satirlari
+       karsilastiriliyor; geriye bir sey kalmiyorsa degisiklik ozlu degildir.
+       Gecerlilik bildirimi satirlari da ayni sebeple elenir.
+
+    2. TEKRAR. Bir menu ogesini yuz on bes sayfaya eklemek her sayfada ozlu
+       gorunur ama hicbirinin icerigi guncellenmemistir. Burada bakilan sey
+       commit'in BOYUTU degil, bu sayfaya gelen degisikligin AYNISININ kac
+       dosyada daha bulundugu.
+
+       Onceki surum boyuta bakiyordu: kirk dosyadan buyuk commit toptan
+       elenirdi. 20 Eylul 2026'da kirk bes dosyalik bir commit bu kurali
+       curuttu -- sekiz maas sayfasi gercek icerik aldi, kirk kadar sayfa
+       yalnizca stil damgasi. Sayiya bakan kural karisik commit'i ayirt
+       edemez ve icerigi degisen sayfalari da eledi; lastmod eski tarihte
+       kalinca sayfalarin yeniden taranmasi icin hicbir sinyal kalmadi.
+       Sekle bakan kural ayni commit'in icinde ikisini ayirabiliyor.
+    """
+    tablo = _imzalar(h)
+    # Cagiranlardan biri dosya yolu ("x/index.html"), digeri klasor ("x")
+    # veriyor; ikisi de karsilanmali.
+    kendi = [v for k, v in tablo.items()
+             if k == yol or k.startswith(yol.rstrip("/") + "/")]
+    if not kendi:
+        return False
+    for imza in kendi:
+        if imza[0] == imza[1]:      # normalize sonrasi geriye bir sey yok
             continue
+        tekrar = sum(1 for v in tablo.values() if v == imza)
+        if tekrar < TARAMA_TEKRARI:
+            return True
+    return False
+
+
+def anlamli_tarih(yol):
+    """Aracin klasorune dokunan, ozlu en son commit."""
+    for h in git("log", "--format=%H", "--", yol).split():
         if not ozlu_degisim(h, yol):
             continue
         iso = git("log", "-1", "--format=%ad", "--date=short", h).strip()
@@ -129,7 +173,6 @@ def uzun_tarih(iso):
 
 
 def sayfayi_uret(mevcut):
-    boyut = commit_boyutlari()
     kayit = []
 
     def degistir(m):
@@ -140,7 +183,7 @@ def sayfayi_uret(mevcut):
         yol = b.group(1).strip("/")
         if not os.path.isdir(os.path.join(KOK, yol)):
             return kart
-        iso, _ = anlamli_tarih(yol, boyut)
+        iso, _ = anlamli_tarih(yol)
         if not iso:
             return kart
         kayit.append((yol, iso))
