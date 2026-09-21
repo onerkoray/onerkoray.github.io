@@ -49,7 +49,7 @@ function tarih(iso) {
 function oranTablosu() {
   var s = ["<!-- BES-ORAN:BASLANGIC -->",
     "        <div class=\"table-scroll\">",
-    "          <table class=\"ed-tablo\">",
+    "          <table class=\"data-table\">",
     "            <caption>Devlet katkısı oranının seyri ve 2026 parametreleriyle azami yıllık katkı</caption>",
     "            <thead>",
     "              <tr><th scope=\"col\">Dönem</th><th scope=\"col\">Oran</th>" +
@@ -79,7 +79,7 @@ function efektifTablosu() {
 
   var s = ["<!-- BES-EFEKTIF:BASLANGIC -->",
     "        <div class=\"table-scroll\">",
-    "          <table class=\"ed-tablo\">",
+    "          <table class=\"data-table\">",
     "            <caption>Yıllık katkı arttıkça efektif eşleşme oranı nasıl eriyor (2026, yasal oran " +
     yuzde(B.guncelOran()) + ")</caption>",
     "            <thead>",
@@ -114,7 +114,7 @@ function efektifTablosu() {
 function ufukTablosu() {
   var s = ["<!-- BES-UFUK:BASLANGIC -->",
     "        <div class=\"table-scroll\">",
-    "          <table class=\"ed-tablo\">",
+    "          <table class=\"data-table data-table--text\">",
     "            <caption>Sistemde geçirilen süreye göre teşvikin durumu</caption>",
     "            <thead>",
     "              <tr><th scope=\"col\">Süre</th><th scope=\"col\">Hak edilen katkı</th>" +
