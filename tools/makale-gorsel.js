@@ -1429,7 +1429,87 @@ function besEfektifOran() {
     '</svg>';
 }
 
+/* Dip ayinin brute gore yurumesi -- "yilin-en-dusuk-maasi-hangi-ay" kapagi.
+   Bulgu bir BASAMAK: brut yukseldikce netin dibe vurdugu ay geriye
+   yuruyor, uc yerde Aralik'a siciriyor. Cubuk da cizgi de bunu
+   anlatamaz; basamak fonksiyonu bilginin kendi seklidir.
+
+   Tek seri oldugu icin marka rengi kullanilabilir. Yatay eksen brut,
+   dikey eksen ay: Aralik ustte, Mayis altta -- boylece "geriye yurume"
+   asagi dogru inis olarak okunuyor. */
+function dipAyBasamagi() {
+  var W = 600, H = 360, SOL = 96, SAG = 572, UST = 118, ALT = 286;
+  var D = require(path.join(KOK, "makaleler", "yilin-en-dusuk-maasi-hangi-ay", "dip-ay.js"));
+  var AY_KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz",
+    "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+
+  var bantlar = D.bantlar();
+  var x0 = D.baslangic(), x1 = D.ADIM_SON;
+  /* Dikey eksende yalnizca gorulen aylar var: Mayis(4) - Aralik(11). */
+  var AY_UST = 11, AY_ALT = 4;
+
+  function x(b) { return SOL + (SAG - SOL) * ((b - x0) / (x1 - x0)); }
+  function y(ay) { return UST + (ALT - UST) * ((AY_UST - ay) / (AY_UST - AY_ALT)); }
+
+  /* Basamak yolu: her bant icin yatay parca, aralarinda dikey sicrama. */
+  var yol = [], onceki = null;
+  bantlar.forEach(function (b) {
+    var yy = y(b.dipAy).toFixed(1);
+    if (onceki === null) yol.push("M" + x(b.bas).toFixed(1) + " " + yy);
+    else yol.push("L" + x(b.bas).toFixed(1) + " " + yy);
+    yol.push("L" + x(b.son).toFixed(1) + " " + yy);
+    onceki = b;
+  });
+
+  /* Yatay izgara: her ay icin ince bir cizgi ve sol etiket. */
+  var izgara = "";
+  for (var a = AY_ALT; a <= AY_UST; a++) {
+    izgara += '<path d="M' + SOL + " " + y(a).toFixed(1) + " H" + SAG +
+      '" stroke="' + R.izgara + '" stroke-width="1"/>' +
+      '<text x="' + (SOL - 10) + '" y="' + (y(a) + 5).toFixed(1) +
+      '" font-size="14" fill="' + R.ikincil + '" text-anchor="end">' +
+      AY_KISA[a] + "</text>";
+  }
+
+  /* Sicrama noktalari: dip ayinin Aralik'a geri dondugu brutler. */
+  var isaret = "";
+  D.sifirlamalar().forEach(function (b) {
+    isaret += '<circle cx="' + x(b).toFixed(1) + '" cy="' + y(11).toFixed(1) +
+      '" r="5" fill="' + R.s2 + '"/>';
+  });
+
+  function eksenEtiketi(b) {
+    return '<text x="' + x(b).toFixed(1) + '" y="' + (ALT + 24) +
+      '" font-size="14" fill="' + R.ikincil + '" text-anchor="middle">' +
+      Math.round(b / 1000) + "b</text>";
+  }
+
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + " " + H +
+    '" role="img" aria-label="Brüt ücret yükseldikçe netin dibe ' +
+    'vurduğu ayın geriye yürümesi ve üç noktada Aralık’a sıçraması">' +
+    '<text x="24" y="34" font-size="16" fill="' + R.ikincil +
+    '">' + D.YIL + " · " + new Intl.NumberFormat("tr-TR").format(D.tarama().length) +
+    ' brüt ücret taranmıştır</text>' +
+    '<text x="24" y="84" font-size="34" font-weight="800" fill="' + R.murekkep +
+    '">Dip ayı geriye yürüyor</text>' +
+    izgara +
+    '<path d="' + yol.join(" ") + '" fill="none" stroke="' + R.marka +
+    '" stroke-width="3" stroke-linejoin="round"/>' +
+    isaret +
+    eksenEtiketi(x0) + eksenEtiketi(150000) + eksenEtiketi(300000) +
+    eksenEtiketi(450000) + eksenEtiketi(x1) +
+    '<text x="24" y="' + (H - 18) + '" font-size="15" fill="' + R.ikincil +
+    '">Yatay eksen: aylık brüt ücret (bin TL) · nokta: dibin Aralık’a döndüğü eşik</text>' +
+    "</svg>";
+}
+
 var KAPAKLAR = {
+  "yilin-en-dusuk-maasi-hangi-ay": {
+    kicker: "Bordro · Ölçüm",
+    baslik: "Yılın en düşük maaşı hangi ay?",
+    alt: "Aralık değil — dip ayı brüt yükseldikçe geriye yürüyor",
+    cizim: dipAyBasamagi
+  },
   "bes-devlet-katkisi-ne-kadar-degerli": {
     kicker: "Emeklilik \u00b7 \u00d6l\u00e7\u00fcm",
     baslik: "Devlet katk\u0131s\u0131 ne kadar de\u011ferli?",

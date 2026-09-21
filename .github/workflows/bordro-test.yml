@@ -580,6 +580,20 @@ jobs:
         # motorla uyumunu hem de noindex ile sitemap'in çelişmemesini doğrular.
         run: node tools/maas-sayfalari.js --check
 
+      - name: Dip ayı tabloları güncel mi
+        # Tablonun her satırı 5.670 brüt değerinin taranmasından çıkıyor ve
+        # eşikler tarifeye ve asgari ücrete bağlı. 2027 parametreleri
+        # girildiğinde bütün satırlar kayar; elle yazılsaydı sessizce yanlış
+        # kalırdı.
+        run: node tools/dip-ay-tablosu.js --check
+
+      - name: Dip ayı yazısının sayıları
+        # Nesirdeki yüzdeler elle yazıldı; bu test onları taramaya bağlıyor.
+        # Ayrıca yazının iki OLUMSUZLAMASINI da yeniden hesaplıyor: dip
+        # ayını açıkladığı iddia edilen iki kapalı kuralın hâlâ çürük olduğunu
+        # doğruluyor. Biri bir gün doğru çıkarsa cümle düzeltilmeli.
+        run: node makaleler/yilin-en-dusuk-maasi-hangi-ay/sayi-testi.js
+
       - name: Maaş sayfaları netin yönünü doğru anlatıyor mu
         # 28 sayfa üç ayrı yerde (giriş paragrafı, görünür SSS, FAQ JSON-LD)
         # netin yıl boyunca TEKDÜZE düştüğünü söylüyordu; sayfaların kendi
