@@ -97,6 +97,7 @@ def main():
 
     sema_tekil = collections.defaultdict(list)
     sema_person = set()
+    sema_kisi_sayfasi = set()
     sema_sameas = set()
     sema_website = set()
 
@@ -130,7 +131,28 @@ def main():
                 bulgu("JSON-LD BOZUK", p, str(e)[:60])
                 continue
             # Site geneli sema kimligi: asagida (8) toplu degerlendiriliyor.
-            dugumler = veri.get("@graph", [veri]) if isinstance(veri, dict) else veri
+            # GOMULU dugumler de sayilir. Yurutucu once yalnizca @graph'in
+            # dogrudan ogelerine bakiyordu; author/publisher/creator icine
+            # gomulu Person dugumleri hic gorulmuyordu. Arama motoru onlari
+            # okur, dolayisiyla denetim de okumali.
+            def _ac(v, derinlik=0):
+                if derinlik > 4:
+                    return
+                if isinstance(v, list):
+                    for x in v:
+                        for y in _ac(x, derinlik + 1):
+                            yield y
+                    return
+                if not isinstance(v, dict):
+                    return
+                yield v
+                for anahtar in ("@graph", "author", "publisher", "creator",
+                                "mainEntity"):
+                    if anahtar in v:
+                        for y in _ac(v[anahtar], derinlik + 1):
+                            yield y
+
+            dugumler = list(_ac(veri))
             for d in dugumler:
                 if not isinstance(d, dict):
                     continue
@@ -141,6 +163,13 @@ def main():
                     sema_tekil[tur].append(p)
                 if tur == "WebSite":
                     sema_website.add((d.get("@id"), d.get("url"), d.get("name")))
+                if tur == "Person" and not d.get("@id"):
+                    # @id'siz Person varlikla BIRLESEMEZ: ayni kisi
+                    # ayri bir varlik gibi gorunur. Sitede bir tane vardi
+                    # ve denetim onu hic gormemisti, cunku asagidaki
+                    # kosul @id yoksa dugumu tumden atliyordu.
+                    bulgu("SEMA KISI KIMLIKSIZ", p,
+                          "Person dugumunde @id yok: " + str(d.get("name")))
                 if tur == "Person" and d.get("@id"):
                     # @id, url VE sameAs birlikte toplaniyor. Uc alan da
                     # ayni varligi tarif ediyor ve ucu de ayri ayri kaydi.
@@ -156,7 +185,27 @@ def main():
                     # yapar. Bos kumeyi de karsilastirmaya katmak, dogru
                     # olan bu deseni kirmizi gosteriyordu. Yalnizca sameAs
                     # BILDIREN sayfalar birbiriyle karsilastiriliyor.
+                    # mainEntityOfPage da ayni varligi tarif eder:
+                    # "bu kisinin ASIL sayfasi sudur". Bir varligin bir
+                    # tane asil sayfasi olur, dolayisiyla ayni @id icin
+                    # farkli degerler celiskidir. Site bunu yasadi: uc
+                    # sayfa /hakkimda/#profilepage diyordu, bir sayfa
+                    # kisinin asil sayfasinin bir ARAC sayfasi oldugunu
+                    # soyluyordu, 102 sayfa da hic soylemiyordu.
+                    # Sozluk oldugu icin karsilastirilabilir olsun diye
+                    # metne cevriliyor.
                     sema_person.add((d["@id"], d.get("url")))
+                    # Alani yalnizca BILDIREN dugumler karsilastirilir.
+                    # decorpalette/docs altindaki Person dugumleri
+                    # author/publisher ATIFLARI; atif varligi yeniden
+                    # tanimlamaz, ayni @id ile ona isaret eder. Ondan
+                    # mainEntityOfPage beklemek, dogru olan deseni
+                    # kirmizi gosterirdi -- sameAs icin de ayni kural.
+                    mep = d.get("mainEntityOfPage")
+                    if isinstance(mep, dict):
+                        mep = mep.get("@id")
+                    if mep:
+                        sema_kisi_sayfasi.add(mep)
                     if d.get("sameAs"):
                         sema_sameas.add(tuple(d["sameAs"]))
 
@@ -333,6 +382,11 @@ def main():
             ayrinti.append("@id=%s url=%s" % (a, u))
         bulgu("SEMA KIMLIK COKLU", "site geneli",
               "Person kimligi tutarsiz: " + ", ".join(ayrinti))
+
+    if len(sema_kisi_sayfasi) > 1:
+        bulgu("SEMA KISI SAYFASI COKLU", "site geneli",
+              "Person.mainEntityOfPage tutarsiz: " +
+              ", ".join(sorted(sema_kisi_sayfasi)))
 
     if len(sema_sameas) > 1:
         bulgu("SEMA SAMEAS COKLU", "site geneli",
