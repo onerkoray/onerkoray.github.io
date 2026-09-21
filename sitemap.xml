@@ -531,7 +531,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/iletisim/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   
@@ -542,7 +542,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/gizlilik/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   
@@ -553,7 +553,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/kullanim-kosullari/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   
@@ -628,7 +628,7 @@
       <image:title>DecorPalette Gizlilik Bildirimi — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/dither-studio/</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/dither-studio/</loc><lastmod>2026-09-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/dither-studio/og-image.png</image:loc>
       <image:title>Dither Studio — Dithering Görsel Aracı — Koray Öner</image:title>
@@ -944,7 +944,7 @@
       <image:title>Yıllık maliyet oranı nedir? — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/yayin-ilkeleri/</loc><lastmod>2026-09-14</lastmod></url>
+  <url><loc>https://korayoner.dev/yayin-ilkeleri/</loc><lastmod>2026-09-21</lastmod></url>
   <url>
     <loc>https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/</loc>
     <lastmod>2026-09-19</lastmod>
