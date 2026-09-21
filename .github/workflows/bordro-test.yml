@@ -533,6 +533,17 @@ jobs:
         # başka kanunların yürürlükteki maddeleri; kapı onlara dokunmaz.
         run: python tools/mulga-madde.py --check
 
+      - name: Yayın künyeleri doğru mu
+        # Bir künye yanlışsa hiçbir şey bozulmaz: sayfa açılır, bağlantı
+        # çalışır, yalnızca atıf yanlış olur. Sayfanın tek işi o.
+        run: node yayinlar/sayi-testi.js
+
+      - name: Yayın listesi güncel mi
+        # Aynı künye iki yerde: okunan liste ve JSON-LD. Biri güncellenip
+        # diğeri unutulursa insan doğru künyeyi görür, arama motoru eskisini
+        # alır. İkisi de tek modülden türüyor.
+        run: node tools/yayin-listesi.js --check
+
       - name: Parametre tablosu güncel mi
         run: node tools/bordro-tablo.js --check
 

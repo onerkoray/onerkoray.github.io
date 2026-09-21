@@ -84,6 +84,14 @@ EK_BOLUMLER = {
     # Makaleler: tek tek yazıların değil BÖLÜMÜN işareti. Yazılar araç
     # değil; her birine ayrı sembol uydurmak, aralarında olmayan bir
     # ayrımı varmış gibi gösterirdi.
+    # Yayimlanmis calismalar: DOI ile kalici kaydi olan metinler.
+    # Makaleler'in duz cizgilerinden AYRI bir sembol -- ikisi ayni sekme
+    # dilinde ama ayni sey degil.
+    "yayinlar": {
+        "ad": "Yayımlanmış çalışmalar",
+        "svg": '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/>'
+               '<path d="M14 3v5h5"/><path d="M9 14h6"/>',
+    },
     "makaleler": {
         "ad": "Makaleler",
         "svg": '<path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/>',
