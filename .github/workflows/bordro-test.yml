@@ -533,6 +533,15 @@ jobs:
         # başka kanunların yürürlükteki maddeleri; kapı onlara dokunmaz.
         run: python tools/mulga-madde.py --check
 
+      - name: BES devlet katkısı oranı motorla aynı mı
+        # Oran 1 Ocak 2026'da %30'tan %20'ye indi (10811 s.K., RG 7 Ocak
+        # 2026, s.33130). Site bunu DOKUZ AY fark etmedi: motor %30
+        # hesaplıyordu ve aynı sayı yedi yerde daha yazılıydı. Hiçbir şey
+        # bozulmadı — grafik yükseliyor, tablo doluyordu, yalnızca sonuç
+        # fazla iyimserdi. Bu kapı motoru tek kaynak alıp sayfaların ona
+        # uyduğunu doğruluyor.
+        run: node tools/bes-orani-test.js
+
       - name: Yayın künyeleri doğru mu
         # Bir künye yanlışsa hiçbir şey bozulmaz: sayfa açılır, bağlantı
         # çalışır, yalnızca atıf yanlış olur. Sayfanın tek işi o.

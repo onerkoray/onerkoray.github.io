@@ -23,6 +23,42 @@ function ok(ad, kosul, ek) {
 function yakin(a, b, t) { return Math.abs(a - b) <= (t || 0.01); }
 function baslik(s) { console.log("\n" + s); }
 
+/* ------------------------------------------------------------------ 0 */
+baslik("Yasal parametreler — mevzuat değişince kırılsın");
+(function () {
+  /* BES devlet katkısı oranı bir CUMHURBAŞKANI KARARIYLA değişiyor, yani
+     kanun değişikliği beklemeden ve habersiz değişebiliyor. Bu değer
+     1 Ocak 2026'da %30'tan %20'ye indi (10811 sayılı Karar, RG 7 Ocak
+     2026, sayı 33130) ve araçta dokuz ay boyunca %30 kaldı: grafik
+     yükseliyordu, tablo doluyordu, yalnızca sayı fazla iyimserdi.
+
+     Hiçbir test oranı çivilemediği için hata sessizdi. Artık çiviliyor:
+     oran değişince bu satır kırılacak ve değiştiren kişi dayanağı
+     yazmak zorunda kalacak. */
+  ok("devlet katkısı oranı %20 (10811 s.K., RG 7.1.2026)",
+     B.VARSAYILAN.devletKatkiYuzde === 20,
+     "şu an %" + B.VARSAYILAN.devletKatkiYuzde);
+
+  /* Tavan: bir takvim yılında brüt asgari ücretin YILLIK tutarı. */
+  ok("devlet katkısı tavanı 12 aylık brüt asgari ücret",
+     B.VARSAYILAN.devletKatkiTavanAy === 12);
+
+  /* Hak ediş kademeleri — 4632 ek m.1. */
+  var h = B.VARSAYILAN.hakKazanma;
+  ok("hak ediş kademeleri 3/6/10 yıl → %15/%35/%60",
+     h.length === 3 &&
+     h[0].yil === 3 && Math.abs(h[0].oran - 0.15) < 1e-9 &&
+     h[1].yil === 6 && Math.abs(h[1].oran - 0.35) < 1e-9 &&
+     h[2].yil === 10 && Math.abs(h[2].oran - 0.60) < 1e-9,
+     JSON.stringify(h));
+
+  /* KONTROL: yukarıdaki üç iddia, VARSAYILAN okunamıyor olsa da
+     "geçmiş" görünebilirdi. Nesnenin gerçekten okunduğu ayrıca
+     sınanıyor. */
+  ok("KONTROL: VARSAYILAN okunabiliyor",
+     B.VARSAYILAN && typeof B.VARSAYILAN.devletKatkiYuzde === "number");
+})();
+
 /* ------------------------------------------------------------------ 1 */
 baslik("Reel getiri — Fisher, çıkarma değil");
 (function () {
@@ -112,12 +148,19 @@ baslik("BES — devlet katkısı, tavan, hak kazanma");
   var P = require("../bordro/parametreler.js");
   var asgari = P[2026].donemler[0].asgariBrut;
 
-  /* Tavanın altında: devlet katkısı katkının tam %30'u. */
+  /* Tavanın altında: devlet katkısı katkının tam oranı kadar.
+     ORAN SABİT YAZILMIYOR: 1 Ocak 2026'da %30'tan %20'ye inince bu test
+     kırılmıştı, oysa hesap doğruydu — beklenti eskiydi. Oran artık
+     parametreden okunuyor; oranın kendisi ayrı bir çivi testiyle
+     korunuyor (bkz. "Yasal parametreler" bölümü). */
+  var oran = B.VARSAYILAN.devletKatkiYuzde / 100;
   var a = B.bes({ aylikKatki: 1000, yilSayisi: 1, yillikGetiriYuzde: 0,
                   fonKesintiYuzde: 0, brutAsgariAylik: asgari, yas: 30,
                   katkiArtisYuzde: 0, asgariArtisYuzde: 0, yillikEnflasyonYuzde: 0 });
-  ok("tavan altında → devlet katkısı = katkı × %30",
-     yakin(a.toplamDevletKatkisi, 12000 * 0.30, 0.02), a.toplamDevletKatkisi.toFixed(2));
+  ok("tavan altında → devlet katkısı = katkı × oran",
+     yakin(a.toplamDevletKatkisi, 12000 * oran, 0.02),
+     a.toplamDevletKatkisi.toFixed(2) + " (oran %" +
+     B.VARSAYILAN.devletKatkiYuzde + ")");
   ok("tavan kesintisi yok", a.tavanNedeniyleAlinamayan === 0);
 
   /* Tavanın üstünde: aşan kısma katkı verilmez. */
@@ -126,7 +169,14 @@ baslik("BES — devlet katkısı, tavan, hak kazanma");
                   fonKesintiYuzde: 0, brutAsgariAylik: asgari, yas: 30,
                   katkiArtisYuzde: 0, asgariArtisYuzde: 0, yillikEnflasyonYuzde: 0 });
   ok("tavan üstünde → katkı tavana göre hesaplanıyor",
-     yakin(b.toplamDevletKatkisi, tavan * 0.30, 0.02), b.toplamDevletKatkisi.toFixed(2));
+     yakin(b.toplamDevletKatkisi, tavan * oran, 0.02),
+     b.toplamDevletKatkisi.toFixed(2));
+
+  /* Azami yıllık devlet katkısı: 2026 için 396.360 × %20 = 79.272 TL.
+     Bu sayı çalışmanın künyesindeki değerle birebir aynı olmalı. */
+  ok("azami yıllık devlet katkısı 79.272 TL (2026)",
+     yakin(b.toplamDevletKatkisi, 79272, 0.02),
+     b.toplamDevletKatkisi.toFixed(2));
   ok("tavan nedeniyle alınamayan doğru",
      yakin(b.tavanNedeniyleAlinamayan, 600000 - tavan, 0.02),
      b.tavanNedeniyleAlinamayan.toFixed(2));
