@@ -580,6 +580,17 @@ jobs:
         # motorla uyumunu hem de noindex ile sitemap'in çelişmemesini doğrular.
         run: node tools/maas-sayfalari.js --check
 
+      - name: Maaş sayfaları netin yönünü doğru anlatıyor mu
+        # 28 sayfa üç ayrı yerde (giriş paragrafı, görünür SSS, FAQ JSON-LD)
+        # netin yıl boyunca TEKDÜZE düştüğünü söylüyordu; sayfaların kendi
+        # tablosu bunu yalanlıyordu. Asgari ücret istisnası, asgari ücretlinin
+        # o ay ödeyeceği vergi kadardır; asgari ücretlinin kümülatif matrahı
+        # 2026'da yedinci ayda ilk dilimi aşıyor, istisna büyüyor ve net
+        # yükseliyor. 28 sayfanın 14'ünde Aralık yılın en düşük ayı bile değildi.
+        # Metin artık motordan türetiliyor; tarife ya da asgari ücret
+        # değiştiğinde bu kapı kırmızıya döner.
+        run: node tools/maas-net-yonu.js --kontrol
+
       - name: Maaş sayfaları birbirine fazla benziyor mu
         # Eylül 2026 Search Console: dizine açık sekiz maaş sayfasının altısı
         # dizinde değil. Sebep ölçüldü — sayfalar sekiz kelimelik dizilerinin
