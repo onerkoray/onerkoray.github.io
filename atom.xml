@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-20T00:00:00+03:00</updated>
+  <updated>2026-09-21T00:00:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Torba Yasa Beklentileri Tuttu mu? (2023–2026)</title>
+    <link href="https://korayoner.dev/makaleler/torba-yasa-beklenti-tutuyor-mu/"/>
+    <id>https://korayoner.dev/makaleler/torba-yasa-beklenti-tutuyor-mu/</id>
+    <updated>2026-09-21T00:00:00+03:00</updated>
+    <summary>Tekrarlayan torba yasa beklentilerinin kaçı yasalaştı? Sekiz torba kanun Resmî Gazete künyeleriyle tarandı: gelen maddelerin tamamı tek bir yıla düşüyor.</summary>
+  </entry>
 
   <entry>
     <title>Kredi Tavanı Tutuyor mu? Banka Kârlılığı</title>

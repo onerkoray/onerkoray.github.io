@@ -1279,7 +1279,96 @@ function sutunBagimlilik() {
     '<text x="24" y="' + (H - 12) + '" font-size="15" fill="' + R.ikincil + '">Kaynak: OECD (2025, Tablo 6.2) · 2054 ve 2084 BM orta varyantı</text></svg>';
 }
 
+/* Torba yasa beklentileri — "torba-yasa-beklenti-tutuyor-mu" kapagi.
+
+   Yazinin bulgusu TEK SERILI anlatilamiyor: kanunlar cikmaya devam etti,
+   beklentiden gelen madde ise durdu. Yalnizca "gelen madde" cizilse dort
+   cubuktan ucu sifir olurdu ve okuyucu "o yil kanun da cikmadi" sanardi.
+   Yan yana iki seri bu yanlis okumayi kapatiyor.
+
+   Iki KATEGORIK seri oldugu icin marka yesili kullanilmiyor; s1/s2 var.
+   Sifir degerler cubuk uretmiyor, o yuzden taban uzerinde ince bir kutuk
+   ve acik "0" etiketi var -- yoksa o yillar cizimden dusup gorunmez olur. */
+function torbaBeklentiCubuk() {
+  var W = 600, H = 360, TABAN = 278, TAVAN = 128;
+  var B = require(path.join(KOK, "makaleler",
+    "torba-yasa-beklenti-tutuyor-mu", "beklenti.js"));
+
+  var yillar = B.yillar();
+  var seri = yillar.map(function (y) {
+    return { yil: y, kanun: B.kanunlarYil(y).length, getiri: B.getiriYil(y) };
+  });
+  var enBuyuk = 0;
+  seri.forEach(function (d) {
+    if (d.kanun > enBuyuk) enBuyuk = d.kanun;
+    if (d.getiri > enBuyuk) enBuyuk = d.getiri;
+  });
+
+  var SOL = 56, SAG = 572;
+  var grupG = (SAG - SOL) / seri.length;
+  var cubukG = 46, ARA = 2;
+  function yuk(v) { return enBuyuk ? (TABAN - TAVAN) * (v / enBuyuk) : 0; }
+
+  var parca = [];
+  seri.forEach(function (d, i) {
+    var merkez = SOL + grupG * i + grupG / 2;
+    var x1 = merkez - cubukG - ARA / 2;
+    var x2 = merkez + ARA / 2;
+
+    [[x1, d.kanun, R.s1], [x2, d.getiri, R.s2]].forEach(function (c) {
+      var x = c[0], v = c[1], renk = c[2];
+      var h = yuk(v);
+      if (h > 0) {
+        parca.push('<rect x="' + x.toFixed(1) + '" y="' + (TABAN - h).toFixed(1) +
+          '" width="' + cubukG + '" height="' + h.toFixed(1) +
+          '" rx="4" fill="' + renk + '"/>');
+        parca.push('<text x="' + (x + cubukG / 2).toFixed(1) + '" y="' +
+          (TABAN - h - 9).toFixed(1) + '" text-anchor="middle" font-size="19" ' +
+          'font-weight="800" fill="' + renk + '">' + v + '</text>');
+      } else {
+        /* Sifir cubuk cizmiyor; kutuk ve etiket olmazsa yil yok olur. */
+        parca.push('<rect x="' + x.toFixed(1) + '" y="' + (TABAN - 3) +
+          '" width="' + cubukG + '" height="3" rx="1.5" fill="' + renk +
+          '" fill-opacity="0.3"/>');
+        parca.push('<text x="' + (x + cubukG / 2).toFixed(1) + '" y="' +
+          (TABAN - 11) + '" text-anchor="middle" font-size="19" ' +
+          'font-weight="800" fill="' + R.ikincil + '">0</text>');
+      }
+    });
+
+    parca.push('<text x="' + merkez.toFixed(1) + '" y="' + (TABAN + 24) +
+      '" text-anchor="middle" font-size="17" font-weight="700" fill="' +
+      R.murekkep + '">' + d.yil + '</text>');
+  });
+
+  function lejant(x, renk, metin) {
+    return '<rect x="' + x + '" y="326" width="13" height="13" rx="3" fill="' +
+      renk + '"/><text x="' + (x + 20) + '" y="337" font-size="15" fill="' +
+      R.ikincil + '">' + esc(metin) + '</text>';
+  }
+
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H +
+    '" role="img" aria-label="Yillara gore cikan torba kanun sayisi ile ' +
+    'beklenti listesinden gelen madde sayisinin karsilastirmasi">' +
+    '<text x="24" y="34" font-size="16" fill="' + R.ikincil +
+    '">' + B.ILK_YIL + '\u2013' + B.SON_YIL + ' \u00b7 b\u00fcy\u00fck torba kanunlar</text>' +
+    '<text x="24" y="84" font-size="34" font-weight="800" fill="' + R.murekkep +
+    '">Kanunlar \u00e7\u0131kt\u0131, beklenti durdu</text>' +
+    '<path d="M' + SOL + ' ' + TABAN + ' H' + SAG + '" stroke="' + R.izgara +
+    '" stroke-width="2"/>' +
+    parca.join("") +
+    lejant(24, R.s1, "\u00c7\u0131kan torba kanun") +
+    lejant(210, R.s2, "Beklenti listesinden gelen madde") +
+    '</svg>';
+}
+
 var KAPAKLAR = {
+  "torba-yasa-beklenti-tutuyor-mu": {
+    kicker: "Mevzuat \u00b7 \u00d6l\u00e7\u00fcm",
+    baslik: "Beklentiler tuttu mu?",
+    alt: "D\u00f6rt yasama y\u0131l\u0131, sekiz torba kanun, tek dolu y\u0131l",
+    cizim: torbaBeklentiCubuk
+  },
   "krediyi-erken-kapatmak-mantikli-mi": {
     kicker: "Finans · Karar rehberi",
     baslik: "Krediyi kapatmak mı, mevduat mı?",
