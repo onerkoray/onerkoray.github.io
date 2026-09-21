@@ -212,7 +212,11 @@
       card("Beyan edilen gelir", fmt(r.beyanGeliri) + " TL", "indirimlerden önce") +
       card("Vergi matrahı", fmt(r.matrah) + " TL", "indirimler düşülmüş") +
       card("Hesaplanan vergi", fmt(r.hesaplananVergi) + " TL",
-        r.ucretIstisnasi > 0
+        r.ucretTarifeFarki > 0
+          ? "ücret tarife farkı " + fmt(r.ucretTarifeFarki) +
+            " TL düşülmüş" + (r.ucretIstisnasi > 0
+              ? "; asgari ücret istisnası " + fmt(r.ucretIstisnasi) + " TL düşülmüş" : "")
+          : r.ucretIstisnasi > 0
           ? "tarife " + fmt(r.tarifeVergisi) + " − istisna " + fmt(r.ucretIstisnasi)
           : "tarifeye göre") +
       card("Mahsup edilen", fmt(r.mahsup) + " TL", "stopaj ve geçici vergi") +

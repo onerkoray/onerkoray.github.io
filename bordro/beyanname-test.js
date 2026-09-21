@@ -321,7 +321,7 @@ baslik("O5 — ticari ve serbest meslek her halde beyana girer");
   dogru("500 TL ticari kazanc bile beyana giriyor", t.beyannameVar === true);
 })();
 
-baslik("Tarife secimi — karma beyannamede IHTIYATLI taraf");
+baslik("Karma tarife — GIB rehberi 4.7.1 / 75 sayili sirküler");
 (function () {
   var yalnizUcret = M.hesapla({ yil: YIL,
     ucretler: [{ safi: 2000000, kesilen: 0 }, { safi: 1000000, kesilen: 0 }] });
@@ -330,23 +330,48 @@ baslik("Tarife secimi — karma beyannamede IHTIYATLI taraf");
   var yalnizTicari = M.hesapla({ yil: YIL, ticariKazanc: 1500000 });
   esitMetin("yalniz ticaride ucret disi tarife", yalnizTicari.tarifeTuru, "ucret-disi");
 
-  /* Karma: kaynakla cozulmedigi icin ihtiyatli taraf secilir. Ters secim
-     vergiyi EKSIK gosterirdi. */
+  /* 2026: ucret disi vergi = 232.500 + 2.500.000 * %35.
+     Ucret payi 3/3,5; ust dilime isabet eden tutar 500.000 tavanini
+     asar. Dusulecek fark 500.000 * (%35 - %27) = 40.000 TL. */
   var karma = M.hesapla({ yil: YIL,
     ucretler: [{ safi: 2000000, kesilen: 0 }, { safi: 1000000, kesilen: 0 }],
     ticariKazanc: 500000 });
-  esitMetin("karma beyannamede ucret disi tarife", karma.tarifeTuru, "ucret-disi");
+  esitMetin("karma beyan ayri tanimli", karma.tarifeTuru, "karma");
+  esit("karma tarifede ust sinir 40.000", karma.ucretTarifeFarki, 40000);
+  esit("karma tarife vergisi", karma.tarifeVergisi, 1067500);
 
-  /* KONTROL: secim gercekten SONUCU degistiriyor mu? Iki tarife ayni
-     sonucu verseydi yukaridaki iddialar bos olurdu. */
-  var m = 1500000;
-  dogru("iki tarife bu matrahta farkli sonuc veriyor",
-    B.tarifeVergisi(m, P[YIL].dilimlerUcretDisi) >
-    B.tarifeVergisi(m, P[YIL].dilimler));
-  /* Ve secilen taraf DAHA YUKSEK olmali. */
-  dogru("ihtiyatli taraf daha yuksek vergi veriyor",
-    B.tarifeVergisi(m, P[YIL].dilimlerUcretDisi) -
-    B.tarifeVergisi(m, P[YIL].dilimler) > 0);
+  /* Tavanin altinda: 1.100.000 / 1.500.000 ucret payi.
+     407.500 - (500.000 * 11/15 * %8) = 378.166,67.
+     Payi, tutari veya iki tarife farkini yanlis sirada sinirlamak
+     ayni sonucu vermez. Oran ara adimda yuzdeye yuvarlanmamali. */
+  var kismiGirdi = { yil: YIL,
+    ucretler: [{ safi: 600000, kesilen: 100000 }, { safi: 500000, kesilen: 80000 }],
+    ticariKazanc: 400000 };
+  var kismi = M.hesapla(kismiGirdi);
+  esit("kismi ucret payinin tarife farki", kismi.ucretTarifeFarki, 29333.33);
+  esit("kismi payda vergi", kismi.hesaplananVergi, 378166.67);
+  esit("tarife farkindan sonra stopaj mahsubu", kismi.odenecek, 198166.67);
+  esit("taksitler duzeltilen vergiyi izliyor",
+    kismi.taksitler[0].tutar + kismi.taksitler[1].tutar, 198166.67);
+
+  /* m.89 indirimi matrahi 1,4 milyona indirir; gelir dagilimi 11/15
+     olarak kalir: 372.500 - (400.000 * 11/15 * %8). */
+  kismiGirdi.egitimSaglik = 100000;
+  var indirimli = M.hesapla(kismiGirdi);
+  esit("m89 sonrasi karma matrah", indirimli.matrah, 1400000);
+  esit("m89 sonrasi tarife farki", indirimli.ucretTarifeFarki, 23466.67);
+  esit("m89 sonrasi karma vergi", indirimli.hesaplananVergi, 349033.33);
+
+  var esikte = M.hesapla({ yil: YIL,
+    ucretler: [{ safi: 450000 }, { safi: 450000 }], ticariKazanc: 100000 });
+  esit("esikte fark yok", esikte.ucretTarifeFarki, 0);
+  esit("esikte vergi", esikte.hesaplananVergi, 232500);
+  var ucretGirmez = M.hesapla({ yil: YIL,
+    ucretler: [{ safi: 1100000 }], ticariKazanc: 1500000 });
+  esit("beyana girmeyen ucret fark yaratmaz", ucretGirmez.ucretTarifeFarki, 0);
+  esit("beyana girmeyen ucret gelir oranina katilmaz", ucretGirmez.hesaplananVergi, 407500);
+  esit("yalniz ucretin vergisi korunur", yalnizUcret.tarifeVergisi, 892500);
+  esit("yalniz diger gelirde fark yok", yalnizTicari.ucretTarifeFarki, 0);
 })();
 
 baslik("O6 — taksitler");
