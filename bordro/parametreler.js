@@ -1,6 +1,6 @@
 /*!
  * Türkiye Bordro Parametreleri — 2020-2026
- * Kaynak: GVK m.103 / m.23/18 (2022+), m.32 (2020–2021 AGİ), 5510 sayılı Kanun m.82, 488 sayılı DVK,
+ * Kaynak: GVK m.103 / m.23/18 (2022+), m.32 (2020–2021 AGİ, mülga), 5510 sayılı Kanun m.82, 488 sayılı DVK,
  *         Asgari Ücret Tespit Komisyonu kararları (Resmî Gazete).
  *
  * Bu dosya motorun tek doğruluk kaynağıdır (single source of truth).

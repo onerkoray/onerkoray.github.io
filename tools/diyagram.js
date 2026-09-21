@@ -146,7 +146,7 @@ function motorEkosistemi() {
       glif: "bordro",
       yapraklar: [
         { ad: "Gelir vergisi tarifesi", alt: "GVK m.103 · ücret ve ücret dışı", ikon: GLIF.tarife },
-        { ad: "Asgari ücret ve istisna", alt: "GVK m.32 · yıl içi dönemler dahil", ikon: GLIF.asgari },
+        { ad: "Asgari ücret ve istisna", alt: "GVK m.23/1-(18) · yıl içi dönemler dahil", ikon: GLIF.asgari },
         { ad: "Prime esas kazanç", alt: "5510 m.82 · alt ve üst sınır", ikon: GLIF.sgk },
         { ad: "Kıdem tazminatı tavanı", alt: "1475 m.14 · altı aylık dönem", ikon: GLIF.kidem },
         { ad: "İşsizlik ve fazla mesai", alt: "4447 m.50 · 4857 m.41", ikon: GLIF.issizlik }

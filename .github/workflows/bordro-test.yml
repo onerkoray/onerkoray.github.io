@@ -328,6 +328,15 @@ jobs:
       - name: Tasarruf-finansman yazısının sayıları
         run: node makaleler/tasarruf-kimde-finansman-kimde/sayi-testi.js
 
+      - name: Torba yasa beklenti sayıları
+        # Yazının tek iddiası bir sayım: beklenti listesinden kaç madde
+        # yasalaştı. Sayım yanlışsa yazı tamamen yanlış olur ama ekranda
+        # hiçbir şey bozulmaz — yalnızca bir rakam başka yazar.
+        run: node makaleler/torba-yasa-beklenti-tutuyor-mu/sayi-testi.js
+
+      - name: Torba yasa beklenti tabloları güncel mi
+        run: node tools/beklenti-tablosu.js --check
+
       - name: Banka tablolarının güncelliği
         run: node tools/banka-tablosu.js --check
 
@@ -514,6 +523,15 @@ jobs:
 
       - name: Parametre kopyası var mı
         run: node tools/parametre-kopyasi.js --check
+
+      - name: Mülga maddeye atıf var mı
+        # 193 sayılı GVK m.32 (asgari geçim indirimi) 7349 s.K. ile
+        # 1.1.2022'den itibaren mülga; asgari ücret istisnası m.23/1-(18).
+        # Site on yedi ayrı yerde mülga maddeyi dayanak gösteriyordu.
+        # Hesaplar doğruydu, dayanak yanlıştı — ve hiçbir test dayanağa
+        # bakmadığı için sessiz kalıyordu. KVK m.32 ve İş Kanunu m.32
+        # başka kanunların yürürlükteki maddeleri; kapı onlara dokunmaz.
+        run: python tools/mulga-madde.py --check
 
       - name: Parametre tablosu güncel mi
         run: node tools/bordro-tablo.js --check
