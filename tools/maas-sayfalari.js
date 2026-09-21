@@ -4,9 +4,9 @@
  * NEDEN VAR:
  * Bu 28 sayfa sablondan uretilmisti ve aralarindaki tek fark rakamlardi.
  * Olculdugunde gorunur metinlerinin kelime ortusmesi 0,813 cikti; komsu iki
- * sayfa arasindaki 34 farkli kelimenin 34'u de rakamdi. Google bu kumeyi
- * "Kesfedildi - su anda dizine eklenmis degil" kovasina koydu: URL'leri
- * biliyor ama taramaya degmedigine karar veriyor.
+ * sayfa arasindaki 34 farkli kelimenin 34'u de rakamdi. Bazi URL'ler GSC'de
+ * "Kesfedildi - su anda dizine eklenmis degil" durumundaydi. Bu durum
+ * tek basina benzerligin dizine alinmamaya neden oldugunu kanitlamaz.
  *
  * COZUM iki parcali:
  *   1) SECILI tutarlar (KALICI) o tutara OZGU, motordan uretilen bir bolum
@@ -539,12 +539,12 @@ function main() {
   var degisen = [];
 
   if (listele) {
-    console.log("tutar     durum      dilim yolculugu        kirilma aylari");
+    console.log("tutar      robots politikasi  dilim yolculugu        kirilma aylari");
     liste.forEach(function (p) {
       var a = analiz(p.tutar);
       var yol = [yuzde(a.ilkDilim)].concat(a.kirilmalar.map(function (k) { return yuzde(k.yeni); }));
       console.log(String(fm0(p.tutar)).padStart(9) + "  " +
-        (KALICI.indexOf(p.tutar) > -1 ? "dizinde " : "noindex ").padEnd(10) +
+        (KALICI.indexOf(p.tutar) > -1 ? "dizine acik" : "noindex").padEnd(19) +
         yol.join(" -> ").padEnd(23) +
         a.kirilmalar.map(function (k) { return k.ay; }).join(", "));
     });
@@ -593,12 +593,12 @@ function main() {
       console.error("Duzeltmek icin: node tools/maas-sayfalari.js");
       return 1;
     }
-    console.log("Maas sayfalari guncel (" + KALICI.length + " dizinde, " +
+    console.log("Maas sayfalari guncel (" + KALICI.length + " dizine acik, " +
       (liste.length - KALICI.length) + " noindex).");
     return 0;
   }
 
-  console.log(degisen.length + " sayfa guncellendi (" + KALICI.length + " dizinde, " +
+  console.log(degisen.length + " sayfa guncellendi (" + KALICI.length + " dizine acik, " +
     (liste.length - KALICI.length) + " noindex).");
   if (sitemapSorun.length) {
     console.log("\nSitemap elle duzeltilmeli:");
