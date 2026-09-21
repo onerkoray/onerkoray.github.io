@@ -261,23 +261,30 @@
     var ind = indirimler(beyanGeliri, g, yil);
     var matrah = Math.max(0, beyanGeliri - ind.toplam);
 
-    /* 6) Hangi tarife?
-          GVK m.103 ücret gelirleri için üçüncü dilimi daha geniş tutuyor
-          (2026: 1.500.000 / 1.000.000). Matrah TEK TÜRDEN ibaretse cevap
-          açık. Karma beyannamede hangi tarifenin uygulanacağını kaynakla
-          doğrulayamadık.
-
-          Bu yüzden karma durumda İHTİYATLI taraf seçiliyor: ücret dışı
-          tarife. Ölçüldü — iki tarife arasındaki fark en çok 40.000 TL ve
-          yalnızca matrah 1.000.000'in üstündeyken doğuyor. Ters seçim
-          vergiyi EKSİK gösterirdi, yani mükellefi az ödemeye iterdi;
-          hatanın güvenli yönü fazla göstermektir.
-
-          Kaynak bulunduğunda burası tek okumaya indirilecek. */
+    /* 6) GVK m.103 / 75 sayili Gelir Vergisi Sirkuleri.
+       GIB 2026 Ucret Geliri Rehberi 4.7.1 ve 4.10:
+       https://intvrg.gib.gov.tr/hazirbeyan/assets/pdf/DUYURU_UNIVERSAL_2026_2026_Ucret_Geliri.pdf
+       Karma beyanda once ucret disi tarife uygulanir. Ucretin BEYAN
+       EDILEN GELIRDEKI payi, indirimler sonrasi matrahin ucret disi
+       ucuncu dilim sinirini asan kismina uygulanir. Bu tutar iki
+       ucuncu dilim siniri farkiyla sinirlanir; oran farkiyla carpilan
+       vergi toplamdan dusulur. Gelir payini ara adimda yuvarlama. */
     var ucretDisiVar = (beyanGeliri - ucretMatrah) > 0;
+    var karma = ucretMatrah > 0 && ucretDisiVar;
     var tarife = (ucretMatrah > 0 && !ucretDisiVar)
       ? P.dilimler : P.dilimlerUcretDisi;
     var tarifeVergisi = B.tarifeVergisi(matrah, tarife);
+    var ucretTarifeFarki = 0;
+    if (karma) {
+      var altSinir = P.dilimlerUcretDisi[2][0];
+      var farkTavani = Math.max(0, P.dilimler[2][0] - altSinir);
+      var oranFarki = P.dilimlerUcretDisi[3][1] - P.dilimler[2][1];
+      var ucretPayi = ucretMatrah / beyanGeliri;
+      var farkMatrahi = Math.min(farkTavani,
+        Math.max(0, matrah - altSinir) * ucretPayi);
+      ucretTarifeFarki = yuvarla(farkMatrahi * oranFarki);
+      tarifeVergisi = Math.max(0, tarifeVergisi - ucretTarifeFarki);
+    }
     /* Ucret beyana giriyorsa asgari ucret istisnasi BEYANNAMEDE DE
        gecerlidir: istisna beyan edildi diye kaybolmaz. Motorda istisna
        vergiden dusulen bir tutar oldugu icin burada da oyle uygulaniyor.
@@ -311,7 +318,8 @@
       beyanGeliri: yuvarla(beyanGeliri),
       indirimler: ind,
       matrah: yuvarla(matrah),
-      tarifeTuru: tarife === P.dilimler ? "ucret" : "ucret-disi",
+      tarifeTuru: karma ? "karma" : (tarife === P.dilimler ? "ucret" : "ucret-disi"),
+      ucretTarifeFarki: ucretTarifeFarki,
       tarifeVergisi: yuvarla(tarifeVergisi),
       ucretIstisnasi: yuvarla(ucretIstisnasi),
       hesaplananVergi: yuvarla(hesaplanan),

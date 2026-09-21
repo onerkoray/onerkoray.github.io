@@ -231,6 +231,15 @@ var GENEL_CSS = fs.readFileSync(path.join(KOK, "style.css"), "utf8");
     tekYuksek.indexOf("Beyanname vermeniz gerekiyor") >= 0);
   dogru("tek isverenli yuksek ucrette odenecek 0,00",
     tekYuksek.indexOf("0,00 TL") >= 0, tekYuksek.slice(0, 200));
+
+  var karma = calistir({ "in-ucret1": "200000", "in-ucret2": "100000",
+                        "in-ticari": "500000" });
+  dogru("karma gelirde tarife farki sonuc aciklamasinda gorunuyor",
+    karma.indexOf("ücret tarife farkı 40.000,00 TL düşülmüş") >= 0);
+  dogru("karma gelirde asgari ucret istisnasi da aciklanmis",
+    karma.indexOf("asgari ücret istisnası") >= 0);
+  dogru("yalniz diger gelirde ucret farki gosterilmiyor",
+    girer.indexOf("ücret tarife farkı") < 0);
 })();
 
 console.log("\n" + gecen + " gecti, " + hata + " kaldi. (beyanname arayuzu)");
