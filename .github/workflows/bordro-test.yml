@@ -580,6 +580,21 @@ jobs:
         # motorla uyumunu hem de noindex ile sitemap'in çelişmemesini doğrular.
         run: node tools/maas-sayfalari.js --check
 
+      - name: Makale kabuğu ve sınıfları
+        # Bir makalenin gövdesini şablona bakmadan kurdum ve sarmal
+        # olarak .wrap kullanmadım; genişliği sınırlayan sınıf o.
+        # Sayfa tam genişliğe yayıldı, yatay kaydırma çıktı ve yazı
+        # sitedeki hiçbir makaleye benzemedi. Bunu KULLANICI gördü,
+        # 113 kontrolun hepsi yeşildi — hiçbiri "bu sayfa makale gibi
+        # duruyor mu" diye sormuyordu.
+        #
+        # Kapı iki şey soruyor: prose/breadcrumb/footer-legal asla
+        # .wrap'sız geçmemeli (36 makalede istisnasız), ve kullanılan
+        # her ed- sınıfının bir CSS kuralı olmalı — uydurma sınıf
+        # sessizdir, .ed-tablo-sarmal yüzünden iki yazının tabloları
+        # dar ekranda taşıyordu.
+        run: node tools/makale-kabugu-test.js
+
       - name: Dip ayı tabloları güncel mi
         # Tablonun her satırı 5.670 brüt değerinin taranmasından çıkıyor ve
         # eşikler tarifeye ve asgari ücrete bağlı. 2027 parametreleri
