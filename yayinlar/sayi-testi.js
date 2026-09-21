@@ -158,10 +158,26 @@ gecer("özet dili uyuşmayan 2 kayıt", Y.ozetDiliFarkli().length === 2,
   String(Y.ozetDiliFarkli().length));
 gecsin("dil notu açıklanmış", "dili Türkçe diyor ama özet İngilizce");
 
-/* Sayfasi olmayan calisma sessizce atlanmiyor, soyleniyor. */
-gecer("sayfası olmayan 1 çalışma",
-  Y.CALISMALAR.filter(function (c) { return !c.sayfa; }).length === 1);
-gecsin("sayfasızlık söylenmiş", "site yazısı henüz yok");
+/* SAYFASIZLIK: sabit sayı değil ilişki.
+   Önce "sayfası olmayan 1 çalışma" yazıyordu; BES yazısı çıkınca
+   geçersizleşti. Sabit sayıyı 0 yapmak aynı tuzağı tekrarlardı. İddia
+   artık şu: modülde sayfası olmayan kaç çalışma varsa, sayfada o kadar
+   "henüz yok" notu olmalı. Bugün ikisi de sıfır. */
+(function () {
+  var sayfasiz = Y.CALISMALAR.filter(function (c) { return !c.sayfa; }).length;
+  var not = kacKez("site yazısı henüz yok");
+  gecer("sayfasız çalışma sayısı ile not sayısı aynı",
+    sayfasiz === not, sayfasiz + " çalışma vs " + not + " not");
+
+  /* KONTROL: bugün altısının da sayfası var; yukarıdaki eşitlik
+     ikisi de sıfır olduğu için de geçerdi. Sayfaların gerçekten
+     bağlandığı ayrıca ölçülüyor. */
+  gecer("KONTROL: altı çalışmanın da sayfası var", sayfasiz === 0,
+    String(sayfasiz));
+  gecer("KONTROL: altı bağlantı da sayfada",
+    kacKez("ed-yayin-baglanti") === Y.CALISMALAR.length,
+    String(kacKez("ed-yayin-baglanti")));
+})();
 
 /* ---------------------------------------------------------------- 5
    Sayfa iddiaları */
