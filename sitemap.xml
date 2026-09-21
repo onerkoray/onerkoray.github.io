@@ -26,6 +26,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/yayinlar/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
+      <image:title>Koray Öner — Yayımlanmış Çalışmalar</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/kira-artisi-hesaplama/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
