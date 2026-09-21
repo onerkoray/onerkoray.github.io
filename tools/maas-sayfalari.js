@@ -454,8 +454,8 @@ function blok(a) {
     "</strong> — yıl boyunca ödenen " + fm(a.yillikVergi) +
     " TL gelir ve damga vergisinin, " + fm0(a.tutar * 12) +
     " TL yıllık brüte oranı. Tarifedeki " + yuzde(a.sonDilim) +
-    " oranından düşüktür; çünkü tarife kademelidir ve asgari ücret istisnası " +
-    "her ay matrahtan düşülür.</li>");
+    " oranından düşüktür; çünkü tarife kademelidir ve asgari ücrete isabet eden " +
+    "vergi her ay hesaplanan vergiden düşülür.</li>");
 
   if (a.tavandaMi) {
     s.push("<li><strong>SGK tavanı bu maaşta devreye girer.</strong> 2026 prime esas " +
