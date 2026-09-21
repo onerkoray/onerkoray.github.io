@@ -4,12 +4,11 @@
  *
  * NEDEN VAR
  * ---------
- * Search Console verisi (Eylül 2026): dizine girmesi amaçlanan sekiz maaş
- * sayfasının ALTISI dizinde değil — dördü hiç taranmamış, ikisi taranıp
- * alınmamış. Sebep ölçüldü: bu sekiz sayfa, sekiz kelimelik dizilerinin
- * yaklaşık dörtte birini birbiriyle paylaşıyor. Makalelerde aynı ölçü
- * binde bir. Yani maaş sayfaları makalelerden yüzlerce kat daha benzer ve
- * Google bunlardan birkaçını temsilci alıp gerisini elemiş durumda.
+ * Eylül 2026 incelemesinde bazı maaş sayfaları dizinde değildi. Bu test,
+ * sekiz kelimelik dizilerin örtüşmesini ölçer; Google'ın dizine almama
+ * nedenini belirlemez. Maaş sayfaları makalelerden daha benzer çıkıyor,
+ * ancak taşıma ve tarama tarihleri de URL bazında değerlendirilmelidir.
+ * Güncel dizin durumu yalnızca Search Console'dan kontrol edilebilir.
  *
  * BU TEST BENZERLİĞİ ÇÖZMÜYOR, GERİLEMESİNİ ENGELLİYOR
  * ---------------------------------------------------
@@ -19,10 +18,10 @@
  *      paragraf alıyorlardı. Metin eklemek ortak kütleyi büyütüyor.
  *   2. Nesirsiz, yalnızca sayı taşıyan tanım listesi — nötr (%36,9).
  *
- * Çıkarılan sonuç: "X TL brüt ne kadar net" sorusuna cevap veren sekiz
- * sayfa, yapı olarak aynı sayfadır ve üretimle ayrıştırılamaz. Ayrışma
- * ancak sayfa sayısını azaltıp elle yazılan analizi artırmakla olur; bu
- * editoryal bir karardır, üreteç işi değildir.
+ * Bu iki deneme benzerliği azaltmadı; bu, üretimle farklılaştırmanın
+ * imkânsız olduğunu kanıtlamaz. İçerik ve sayfa sayısı kararları, sorgu
+ * ihtiyacı ve URL bazındaki tarama/performans verileriyle verilmelidir.
+ * Test eşikleri Google'ın kalite veya dizine alma eşikleri değildir.
  *
  * Testin işi bu yüzden koruma: eşikler BUGÜNKÜ ölçümün biraz gerisine
  * konuyor. Şablona yeni ortak metin eklenirse test kırmızıya döner ve
