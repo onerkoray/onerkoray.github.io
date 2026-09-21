@@ -44,7 +44,7 @@ HARIC_KOK = {"yayin-ilkeleri", "decorpalette", "keymint", "dither-studio", "imag
 # İsteğe bağlı editoryal kısa başlıklar. Yeni sayfalar bu listeye kayıt
 # gerektirmez; HTML başlıkları doğrudan kullanılır ve kartta satıra sarılır.
 KISA = {
-    "torba-yasa-beklenti-tutuyor-mu": "Beklentiler Tuttu mu?",
+    "makaleler/torba-yasa-beklenti-tutuyor-mu": "Beklentiler Tuttu mu?",
     "pesin-mi-taksit-mi": "Peşin mi, Taksit mi?",
     "yatirim-fizibilite-hesaplama": "Yatırım Fizibilitesi",
     "finansal-ikiz": "Finansal İkiz",
