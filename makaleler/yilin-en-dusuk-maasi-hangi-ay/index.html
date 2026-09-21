@@ -106,49 +106,77 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
 
-  <main id="icerik" class="ed-body">
-    <article>
-      <header class="ed-article-hero">
-        <p class="ed-kicker">Bordro · 2026 taraması</p>
-        <h1 class="ed-title">Yılın en düşük maaşı hangi ay?</h1>
-        <p class="ed-lead">
-          Yaygın cevap “aralık”. 2026 parametreleriyle asgari ücretten
-          600.000 TL’ye kadar 5.670 brüt ücret tarandığında bu cevap
-          brütlerin yalnızca beşte birinde doğru çıkıyor. Kalanında net,
-          yılın dibini aralıktan önce görüyor — bir kısmında da dipten
-          sonra geri çıkıyor.
-        </p>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../otv-hesaplama/">ÖTV</a></li>
+          <li><a href="../../mtv-hesaplama/">MTV</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> Yılın en düşük maaşı
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Bordro · Ölçüm</p>
+        <h1 id="hero-title">Yılın en düşük maaşı hangi ay?</h1>
+        <p class="ed-standfirst">Yaygın cevap <strong>“aralık”</strong>. 2026
+          parametreleriyle asgari ücretten 600.000 TL’ye kadar 5.670 brüt ücret
+          tarandığında bu cevap brütlerin yalnızca <strong>beşte birinde</strong>
+          doğru çıkıyor. Kalanında net, yılın dibini aralıktan önce görüyor.</p>
         <p class="ed-meta">
-          <time datetime="2026-09-21">21 Eylül 2026</time> ·
-          Koray Öner
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-21">21 Eylül 2026</time>
         </p>
-      </header>
+      </div>
+    </section>
 
-      <figure class="ed-cover">
-        <img src="../../images/makale/yilin-en-dusuk-maasi-hangi-ay.png"
-             alt="Brüt ücret yükseldikçe netin dibe vurduğu ayın geriye doğru yürüdüğünü, üç noktada aralığa sıçradığını gösteren basamak çizimi"
-             width="1200" height="630" loading="eager" decoding="async">
-      </figure>
+    <div class="wrap prose">
+      <article>
+        <figure class="ed-veri-gorseli">
+          <img src="../../images/makale/yilin-en-dusuk-maasi-hangi-ay.png"
+               width="1200" height="630" loading="lazy" decoding="async"
+               alt="Brüt ücret yükseldikçe netin dibe vurduğu ayın geriye yürüdüğünü, üç noktada aralığa sıçradığını gösteren basamak çizimi">
+          <figcaption>Dip ayı brüt yükseldikçe geriye yürüyor; üç eşikte aralığa dönüyor.</figcaption>
+        </figure>
 
-      <div class="prose">
-
-        <h2>Kısa cevap</h2>
-        <p>
-          Brütünüze bağlı. Netin dibe vurduğu ay, brüt ücret yükseldikçe
-          <strong>geriye doğru yürüyor</strong>: aralıktan kasıma, ekime,
-          eylüle, ağustosa, temmuza, hazirana ve mayısa kadar. Sonra
-          başa dönüyor ve yürüyüş yeniden başlıyor. Taranan brüt
-          değerlerinin <strong>%78,8’inde</strong> dip aralıktan önce,
-          <strong>%49,0’ında</strong> ise net yıl sonuna kadar dipten bir
-          miktar geri çıkıyor.
-        </p>
-        <p>
-          Bu yazı <em>neden</em> düştüğünü değil, <em>ne zaman</em> dibe
-          vurduğunu konu alıyor. Mekanizmanın kendisi ayrı bir yazıda:
-          <a href="../maasim-neden-dustu/">maaşım neden düştü?</a>
-        </p>
+<div class="legal-note verdict">
+          <h2>Kısa cevap</h2>
+          <p>
+            Brütünüze bağlı. Netin dibe vurduğu ay, brüt ücret yükseldikçe
+            <strong>geriye doğru yürüyor</strong>: aralıktan kasıma, ekime,
+            eylüle, ağustosa, temmuza, hazirana ve mayısa kadar. Sonra
+            başa dönüyor ve yürüyüş yeniden başlıyor. Taranan brüt
+            değerlerinin <strong>%78,8’inde</strong> dip aralıktan önce,
+            <strong>%49,0’ında</strong> ise net yıl sonuna kadar dipten bir
+            miktar geri çıkıyor.
+          </p>
+          <p>
+            Bu yazı <em>neden</em> düştüğünü değil, <em>ne zaman</em> dibe
+            vurduğunu konu alıyor. Mekanizmanın kendisi ayrı bir yazıda:
+            <a href="../maasim-neden-dustu/">maaşım neden düştü?</a>
+          </p>
+        </div>
 
         <h2>Neti iki kuvvet hareket ettiriyor</h2>
         <p>
@@ -170,7 +198,7 @@
           dilimden hesaplanıp büyüyor.
         </p>
 
-<!-- DIP-ISTISNA:BASLANGIC -->
+        <!-- DIP-ISTISNA:BASLANGIC -->
         <div class="table-scroll">
           <table class="ed-tablo">
             <caption>Asgari ücret istisnasının 2026 içinde büyüdüğü aylar — tutarlar brüt ücretten bağımsızdır, yalnızca asgari ücrete bağlıdır</caption>
@@ -203,7 +231,7 @@
           kaldığı bitişik brüt aralıklarıdır.
         </p>
 
-<!-- DIP-BANT:BASLANGIC -->
+        <!-- DIP-BANT:BASLANGIC -->
         <div class="table-scroll">
           <table class="ed-tablo">
             <caption>Brüt ücrete göre netin yılın dibini gördüğü ay — 2026 parametreleriyle, 33.100 TL ile 600.000 TL arası 100 TL adımlarla taranmıştır</caption>
@@ -306,30 +334,29 @@
           <li>Asgari Ücret Tespit Komisyonu kararı (Resmî Gazete).</li>
         </ul>
 
-        <h3>Sık sorulan sorular</h3>
-        <div class="faq-list">
+        <h2>Sık sorulan sorular</h2>
           <details><summary>Yılın en düşük maaşı hep aralıkta mı olur?</summary><p>Hayır. 2026 parametreleriyle taranan 5.670 brüt değerinin %78,8’inde net, yılın dibini aralıktan önce görüyor. Dip ayı brüt yükseldikçe geriye doğru yürüyor ve mayısa kadar inebiliyor.</p></details>
           <details><summary>Net maaş neden bazı aylarda yükseliyor?</summary><p>Asgari ücret istisnası, asgari ücretlinin o ay ödeyeceği vergi kadardır. Asgari ücretlinin kümülatif matrahı 2026’da yedinci ayda tarifenin ilk dilimini aşıyor; o aydan itibaren istisna büyüyor. Kendi dilim geçişiniz bu büyümeden küçükse o ay netiniz yükselir.</p></details>
           <details><summary>Ocak netime göre bütçe yapabilir miyim?</summary><p>Ocak yılın en yüksek netidir ve on iki ayı temsil etmez. Bütçe ve maaş pazarlığı için on iki aylık ortalama net daha doğru bir ölçüdür.</p></details>
           <details><summary>Düşüş her brütte kesintili mi?</summary><p>Hayır. Taranan brütlerin %8,1’inde net yıl boyunca hiç yükselmiyor; bu bantlarda kendi dilim geçişiniz istisnanın büyümesinden her ay daha ağır basıyor ve düşüş gerçekten tekdüzedir.</p></details>
-        </div>
-
-      </div>
-    </article>
-
-    <nav class="ed-tumu"><a href="../">← Tüm makaleler</a></nav>
+        
+      </article>
+    </div>
   </main>
 
-  <footer class="site-footer">
-    <ul class="footer-links">
-      <li><a href="../../">Ana sayfa</a></li>
-      <li><a href="../../hakkimda/">Hakkımda</a></li>
-      <li><a href="../">Makaleler</a></li>
-      <li><a href="../../yayinlar/">Yayımlanmış çalışmalar</a></li>
-      <li><a href="../../iletisim/">İletişim</a></li>
-      <li><a href="../../gizlilik/">Gizlilik</a></li>
-    </ul>
-    <p class="footer-note">© 2026 Koray Öner</p>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
   </footer>
 </body>
 </html>
