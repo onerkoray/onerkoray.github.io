@@ -542,6 +542,14 @@ jobs:
         # uyduğunu doğruluyor.
         run: node tools/bes-orani-test.js
 
+      - name: Altbilgi bağlantıları her sayfada var mı
+        # Sitede ortak bir ÜST MENÜ yok: 140 sayfada 63 farklı menü var ve
+        # çoğu sayfa içi bölüm atlama menüsü. "Her sayfadan erişilebilir
+        # olsun" isteğinin tek gerçek adresi altbilgi. Elle yazılıyor ve
+        # üreteci yok; biri atlanırsa hiçbir şey bozulmaz, yalnızca o
+        # sayfadan o bölüme gidilemez.
+        run: node tools/altbilgi-test.js
+
       - name: BES yazısının sayıları
         run: node makaleler/bes-devlet-katkisi-ne-kadar-degerli/sayi-testi.js
 

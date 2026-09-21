@@ -102,10 +102,9 @@
         "2026 İndiriminin Ufuk Etkisi (Eşleşme, Hak Ediş ve Fon " +
         "Giderlerinin Birleşik Bir Ölçümü)",
       zenodoBaslik: null,
-      /* Bu çalışmanın sitede sunan bir yazısı YOK. Altı çalışma
-         içinde tek boşluk bu; site taramasıyla DOI arayan bir yöntemin
-         onu bulamamasının sebebi de buydu. */
-      sayfa: null,
+      /* 21 Eylül 2026'da yazısı yayımlandı. Altı çalışmanın altısının da
+         artık sitede bir sayfası var. */
+      sayfa: "makaleler/bes-devlet-katkisi-ne-kadar-degerli",
       kendiDoi: false,
       ozetSorunlu: false,
       ozetDiliFarkli: true
