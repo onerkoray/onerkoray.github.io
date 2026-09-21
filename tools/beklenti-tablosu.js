@@ -49,7 +49,7 @@ function kunye(k) {
 function kanunTablosu() {
   var s = ["<!-- BEKLENTI-KANUN:BASLANGIC -->",
     "        <div class=\"table-scroll\">",
-    "          <table class=\"ed-tablo\">",
+    "          <table class=\"data-table data-table--text\">",
     "            <caption>Gözlem penceresindeki büyük torba kanunlar ve beklenti listesinden getirdikleri</caption>",
     "            <thead>",
     "              <tr><th scope=\"col\">Yıl</th><th scope=\"col\">Kanun</th>" +
@@ -88,7 +88,7 @@ function kanunTablosu() {
 function durumTablosu() {
   var s = ["<!-- BEKLENTI-DURUM:BASLANGIC -->",
     "        <div class=\"table-scroll\">",
-    "          <table class=\"ed-tablo\">",
+    "          <table class=\"data-table data-table--text\">",
     "            <caption>Tekrarlayan beklentilerin " + B.ILK_YIL + "–" +
     B.SON_YIL + " penceresindeki durumu</caption>",
     "            <thead>",
@@ -126,7 +126,7 @@ function durumTablosu() {
 function aracTablosu() {
   var s = ["<!-- BEKLENTI-ARAC:BASLANGIC -->",
     "        <div class=\"table-scroll\">",
-    "          <table class=\"ed-tablo\">",
+    "          <table class=\"data-table data-table--text\">",
     "            <caption>Hangi başlık hangi araçla karara bağlanıyor</caption>",
     "            <thead>",
     "              <tr><th scope=\"col\">Başlık</th><th scope=\"col\">Karar aracı</th>" +

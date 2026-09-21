@@ -42,24 +42,21 @@ var AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
 function bantTablosu() {
   var s = ["<!-- DIP-BANT:BASLANGIC -->",
     "        <div class=\"table-scroll\">",
-    "          <table class=\"ed-tablo\">",
-    "            <caption>Brüt ücrete göre netin yılın dibini gördüğü ay — " +
-      D.YIL + " parametreleriyle, " + tl0(D.baslangic()) + " ile " +
-      tl0(D.ADIM_SON) + " arası " + nf0.format(D.ADIM) + " TL adımlarla taranmıştır</caption>",
+    "          <table class=\"data-table\">",
+    "            <caption>Br\u00fct \u00fccrete g\u00f6re netin y\u0131l\u0131n dibini g\u00f6rd\u00fc\u011f\u00fc ay. " +
+      "Son s\u00fctun, dipten Aral\u0131k\u2019a kadar geri kazan\u0131lan tutard\u0131r; " +
+      "tire, netin y\u0131l sonuna kadar dipte kald\u0131\u011f\u0131n\u0131 g\u00f6sterir. " +
+      D.YIL + " parametreleri.</caption>",
     "            <thead>",
-    "              <tr><th scope=\"col\">Aylık brüt ücret</th>" +
-      "<th scope=\"col\">Netin dibe vurduğu ay</th>" +
-      "<th scope=\"col\">Yıl sonuna kadar geri kazanılan</th></tr>",
+    "              <tr><th scope=\"col\">Ayl\u0131k br\u00fct \u00fccret</th>" +
+      "<th scope=\"col\">Dip ay\u0131</th>" +
+      "<th scope=\"col\">Geri kazan\u0131lan</th></tr>",
     "            </thead>",
     "            <tbody>"];
 
   D.bantlar().forEach(function (b) {
-    var aralik = tl0(b.bas) + " – " + tl0(b.son);
-    /* Geri çıkış yoksa "yok" yazmak yanıltıcı olurdu: net dipte kalıyor,
-       yani dip ayı aynı zamanda Aralık netidir. */
-    var geri = b.geriCikis > 0.005
-      ? tl2(b.geriCikis)
-      : "yıl sonuna kadar dipte kalır";
+    var aralik = tl0(b.bas) + " \u2013 " + tl0(b.son);
+    var geri = b.geriCikis > 0.005 ? tl2(b.geriCikis) : "\u2014";
     s.push("              <tr><th scope=\"row\">" + aralik + "</th>" +
       "<td>" + AYLAR[b.dipAy] + "</td>" +
       "<td>" + geri + "</td></tr>");
@@ -74,24 +71,21 @@ function bantTablosu() {
 
 /* ------------------------------------------------------------------ */
 function istisnaTablosu() {
-  var artis = D.istisnaArtislari();
   var s = ["<!-- DIP-ISTISNA:BASLANGIC -->",
     "        <div class=\"table-scroll\">",
-    "          <table class=\"ed-tablo\">",
-    "            <caption>Asgari ücret istisnasının " + D.YIL +
-      " içinde büyüdüğü aylar — tutarlar brüt ücretten bağımsızdır, " +
-      "yalnızca asgari ücrete bağlıdır</caption>",
+    "          <table class=\"data-table\">",
+    "            <caption>Asgari \u00fccret istisnas\u0131n\u0131n " + D.YIL +
+      " i\u00e7inde b\u00fcy\u00fcd\u00fc\u011f\u00fc aylar. Tutarlar br\u00fct \u00fccretten ba\u011f\u0131ms\u0131zd\u0131r; " +
+      "yaln\u0131zca asgari \u00fccrete ba\u011fl\u0131 olduklar\u0131 i\u00e7in her maa\u015f d\u00fczeyinde ayn\u0131d\u0131r.</caption>",
     "            <thead>",
     "              <tr><th scope=\"col\">Ay</th>" +
-      "<th scope=\"col\">İstisnanın büyümesi</th>" +
-      "<th scope=\"col\">Bu ayda netin yönü</th></tr>",
+      "<th scope=\"col\">\u0130stisnan\u0131n b\u00fcy\u00fcmesi</th></tr>",
     "            </thead>",
     "            <tbody>"];
 
-  artis.forEach(function (a) {
+  D.istisnaArtislari().forEach(function (a) {
     s.push("              <tr><th scope=\"row\">" + AYLAR[a.ay] + "</th>" +
-      "<td>" + tl2(a.tutar) + "</td>" +
-      "<td>kendi dilim geçişiniz daha küçükse net yükselir</td></tr>");
+      "<td>" + tl2(a.tutar) + "</td></tr>");
   });
 
   s.push("            </tbody>",

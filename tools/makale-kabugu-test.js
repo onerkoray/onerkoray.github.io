@@ -48,7 +48,7 @@ var KABUK = {
    kapıdan önce de öyleydi ve ne yapılacağı editoryal bir karar, o
    yüzden burada MUAF olarak duruyorlar -- gizlenmiyorlar, sayılıyorlar.
    Birine CSS yazıldığında listeden çıkarılmalı. */
-var KURALSIZ_MUAF = ["ed-note", "ed-kaynak-notu", "ed-tablo"];
+var KURALSIZ_MUAF = ["ed-note", "ed-kaynak-notu"];
 
 var gecen = 0, hata = 0;
 function dogru(ad, kosul, detay) {
