@@ -198,8 +198,11 @@ hepsi.filter(function (p) {
         var t = n["@type"];
         if ((t === "WebApplication" || t === "SoftwareApplication" ||
              t === "TechArticle") && n.image) bulundu = true;
-        if ((t === "WebPage" || t === "ProfilePage" || t === "ContactPage") &&
-            n.primaryImageOfPage) bulundu = true;
+        /* CollectionPage da WebPage'in alt tipidir ve primaryImageOfPage
+           orada gecerlidir; /yayinlar/ bu tipi kullaniyor. Liste eksikti,
+           sayfa degil. */
+        if ((t === "WebPage" || t === "ProfilePage" || t === "ContactPage" ||
+             t === "CollectionPage") && n.primaryImageOfPage) bulundu = true;
       });
     } catch (e) { /* sozdizimi ayri kontrol ediliyor */ }
   });
