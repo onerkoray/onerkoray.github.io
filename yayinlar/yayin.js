@@ -44,7 +44,8 @@
      sayfa       : çalışmayı sunan site yazısı (yoksa null)
      kendiDoi    : site yazısı çalışmanın KENDİSİ mi (kendi DOI'sini
                    taşıyor mu), yoksa onu anlatan ayrı bir yazı mı
-     ozetSorunlu : Zenodo özeti bu çalışmayı anlatmıyor */
+     ozetSorunlu : Zenodo özeti bu çalışmayı anlatmıyor
+     ozetDiliFarkli : kayıt dili türçe diyor ama özet İngilizce */
   var CALISMALAR = [
     {
       doi: "10.5281/zenodo.22819021",
@@ -55,7 +56,8 @@
       zenodoBaslik: null,
       sayfa: "makaleler/vergi-kamasi-ucretin-gercek-yuku",
       kendiDoi: false,
-      ozetSorunlu: false
+      ozetSorunlu: false,
+      ozetDiliFarkli: false
     },
     {
       doi: "10.5281/zenodo.22819842",
@@ -66,7 +68,8 @@
         "Haritası Tasarruf, Yatırım, Borçluluk ve Sermaye Akımları",
       sayfa: "makaleler/tasarruf-kimde-finansman-kimde",
       kendiDoi: false,
-      ozetSorunlu: false
+      ozetSorunlu: false,
+      ozetDiliFarkli: false
     },
     {
       doi: "10.5281/zenodo.22819909",
@@ -77,7 +80,8 @@
         "yaşlanması, çalışma hayatı, gelir ve tasarruf ilişkileri",
       sayfa: "makaleler/emekliligin-finansal-matematigi",
       kendiDoi: true,
-      ozetSorunlu: false
+      ozetSorunlu: false,
+      ozetDiliFarkli: false
     },
     {
       doi: "10.5281/zenodo.22818390",
@@ -88,7 +92,23 @@
       zenodoBaslik: null,
       sayfa: "makaleler/dilim-kaymasi-2022-2026",
       kendiDoi: true,
-      ozetSorunlu: true
+      ozetSorunlu: true,
+      ozetDiliFarkli: false
+    },
+    {
+      doi: "10.5281/zenodo.22852165",
+      tarih: "2026-09-20",
+      baslik: "Akış ve Stok: BES Devlet Katkısının Efektif Getirisi ve " +
+        "2026 İndiriminin Ufuk Etkisi (Eşleşme, Hak Ediş ve Fon " +
+        "Giderlerinin Birleşik Bir Ölçümü)",
+      zenodoBaslik: null,
+      /* Bu çalışmanın sitede sunan bir yazısı YOK. Altı çalışma
+         içinde tek boşluk bu; site taramasıyla DOI arayan bir yöntemin
+         onu bulamamasının sebebi de buydu. */
+      sayfa: null,
+      kendiDoi: false,
+      ozetSorunlu: false,
+      ozetDiliFarkli: true
     },
     {
       doi: "10.5281/zenodo.22852342",
@@ -99,7 +119,8 @@
       zenodoBaslik: null,
       sayfa: "makaleler/kredi-tavani-ve-banka-karliligi",
       kendiDoi: false,
-      ozetSorunlu: false
+      ozetSorunlu: false,
+      ozetDiliFarkli: true
     }
   ];
 
@@ -117,7 +138,10 @@
      çevriliyor ki çağıran diziyi bozmasın. */
   function yeniden() {
     return CALISMALAR.slice().sort(function (a, b) {
-      return a.tarih < b.tarih ? 1 : (a.tarih > b.tarih ? -1 : 0);
+      if (a.tarih !== b.tarih) return a.tarih < b.tarih ? 1 : -1;
+      /* Aynı gün yüklenen iki kayıtta sıra tesadüfe bırakılmaz:
+         DOI numarası büyük olan (sonra oluşturulan) önce gelir. */
+      return a.doi < b.doi ? 1 : (a.doi > b.doi ? -1 : 0);
     });
   }
 
@@ -144,6 +168,12 @@
     return CALISMALAR.filter(function (c) { return c.zenodoBaslik !== null; });
   }
 
+  /* Kayıt dili türçe diyor ama özet İngilizce. Dil alanı altısında da
+     dolu; eksik olan alan değil, özetin beyan edilen dilde olması. */
+  function ozetDiliFarkli() {
+    return CALISMALAR.filter(function (c) { return c.ozetDiliFarkli; });
+  }
+
   function ozetiSorunlu() {
     return CALISMALAR.filter(function (c) { return c.ozetSorunlu; });
   }
@@ -166,6 +196,7 @@
     kendiDoiTasiyan: kendiDoiTasiyan,
     baslikFarki: baslikFarki,
     ozetiSorunlu: ozetiSorunlu,
+    ozetDiliFarkli: ozetDiliFarkli,
     calisma: calisma
   };
 });

@@ -18,10 +18,12 @@
  *     motoru sayfanın BÜTÜN işaretlemesini sessizce atıyor. Bu yüzden
  *     ayrıştırma testi burada zorunlu.
  *
- * Ö3. Kayıt tarafındaki bilinen sorunlar sayfada YAZILI.
- *     Zenodo'daki iki başlık ayraçsız, bir özet başka çalışmayı
- *     anlatıyor. Site düzeltilmiş biçimi gösteriyor; farkı saklamak,
- *     Zenodo'da olmayan bir şeyi varmış gibi sunmak olurdu.
+ * Ö3. Kayıt tarafındaki bilinen sorunlar sayfada YAZILI. Üç tür var:
+ *     iki başlıkta ayraç eksik, bir özet başka çalışmayı anlatıyor, iki
+ *     kayıtta dil türçe beyan edilmiş ama özet İngilizce. Ayrıca bir
+ *     çalışmanın sitede sunan yazısı yok. Site düzeltilmiş biçimi
+ *     gösteriyor ama farkı saklamıyor — saklamak, Zenodo'da olmayan bir
+ *     şeyi varmış gibi sunmak olurdu.
  *
  * Ö4. Site başlığı ile Zenodo başlığı YALNIZCA ayraçla ayrılıyor.
  *     KONTROL: harfleri ve boşlukları atınca iki dizge aynı olmalı —
@@ -50,7 +52,7 @@ console.log("Yayın listesi — künye denetimi\n");
 
 /* ---------------------------------------------------------------- 1
    Ö1: iki yönlü kapsama */
-gecer("modülde 5 çalışma", Y.CALISMALAR.length === 5,
+gecer("modülde 6 çalışma", Y.CALISMALAR.length === 6,
   String(Y.CALISMALAR.length));
 
 Y.CALISMALAR.forEach(function (c) {
@@ -64,7 +66,7 @@ var benzersiz = sayfaDoi.filter(function (d, i) {
 gecer("sayfadaki her DOI modülde var",
   benzersiz.every(function (d) { return Y.calisma(d) !== null; }),
   benzersiz.filter(function (d) { return !Y.calisma(d); }).join(", "));
-gecer("sayfada tam 5 farklı DOI", benzersiz.length === 5,
+gecer("sayfada tam 6 farklı DOI", benzersiz.length === 6,
   String(benzersiz.length));
 
 /* KONTROL: arama gerçekten yapılıyor mu? Olmayan bir DOI bulunmamalı. */
@@ -149,6 +151,17 @@ Y.baslikFarki().forEach(function (c) {
 /* KONTROL: karşılaştırıcı gerçekten ayırt ediyor mu? */
 gecer("KONTROL: farklı metinler eşit sayılmıyor",
   harfler("Abc def") !== harfler("Abc xyz"));
+
+/* Ozet dili uyusmazligi: iki kayitta beyan turkce, ozet ingilizce.
+   Dil ALANI altisinda da dolu -- eksik olan alan degil, ozetin dili. */
+gecer("özet dili uyuşmayan 2 kayıt", Y.ozetDiliFarkli().length === 2,
+  String(Y.ozetDiliFarkli().length));
+gecsin("dil notu açıklanmış", "dili Türkçe diyor ama özet İngilizce");
+
+/* Sayfasi olmayan calisma sessizce atlanmiyor, soyleniyor. */
+gecer("sayfası olmayan 1 çalışma",
+  Y.CALISMALAR.filter(function (c) { return !c.sayfa; }).length === 1);
+gecsin("sayfasızlık söylenmiş", "site yazısı henüz yok");
 
 /* ---------------------------------------------------------------- 5
    Sayfa iddiaları */
