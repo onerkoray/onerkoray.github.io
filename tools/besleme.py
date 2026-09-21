@@ -11,8 +11,15 @@ kaybetmesi demek. Hicbir yerde hata vermeyen, yalnizca eksik kalan bir hata.
 TASARIM KARARI:
 Var olan girdilerin TARIHLERI KORUNUR. Besleme "yeni ne var" listesidir;
 her uretimde bugunun tarihini basmak butun arsivi bugun yayinlanmis gibi
-gosterirdi. Yalnizca eksik sayfalar bugunun tarihiyle eklenir, silinen
-sayfalar cikarilir, baslik ve ozet sayfadan tazelenir.
+gosterirdi. Yalnizca eksik sayfalar EKLENDIKLERI ANIN damgasiyla girer,
+silinen sayfalar cikarilir, baslik ve ozet sayfadan tazelenir.
+
+Damga saat iceriyor. Gun hassasiyeti ayni gun yayinlanan girdileri
+esitliyordu ve aralarindaki sira keyfi kaliyordu; besleme okuyucusu
+en yeni yaziyi ustte gostermiyordu. Eski girdilerin saatleri bir
+kereye mahsus git gecmisinden dolduruldu (sayfayi EKLEYEN commit'in
+yazar saati); beslemedeki tarih ile commit tarihi tutmayan 6 girdi
+T00:00:00 kaldi, cunku baska bir gunun saatini yazmak anlamsiz olur.
 
 Kullanim:
     python tools/besleme.py           # beslemeyi guncelle
@@ -75,6 +82,20 @@ def oku(p):
 
 def bugun():
     return datetime.date.today().isoformat()
+
+
+def simdi():
+    """Yeni girdinin damgasi -- tarih DEGIL, an.
+
+    Onceki surum her yeni girdiye T00:00:00 basiyordu. Ayni gun
+    yayinlanan girdiler boylece esitleniyor ve aralarindaki sira
+    keyfi kaliyordu: 21 Eylul 2026'da dort girdi vardi ve besleme
+    okuyucusu en yeni yaziyi ucuncu sirada gosteriyordu.
+
+    Saat dilimi +03:00 sabit; Turkiye 2016'dan beri yaz saati
+    uygulamiyor, tek dilimde kalici.
+    """
+    return datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S") + "+03:00"
 
 
 def kacis(s):
@@ -173,14 +194,14 @@ def uret():
         baslik, ozet = sayfa_bilgisi(yol)
         tarih = tarihler.get(url)
         if not tarih:
-            tarih = bugun() + "T00:00:00+03:00"
+            tarih = simdi()
             yeni_eklenen.append(url)
         kayitlar.append({"url": url, "baslik": baslik, "ozet": ozet, "tarih": tarih})
 
     # en yeni ustte
     kayitlar.sort(key=lambda k: k["tarih"], reverse=True)
 
-    en_yeni = kayitlar[0]["tarih"] if kayitlar else bugun() + "T00:00:00+03:00"
+    en_yeni = kayitlar[0]["tarih"] if kayitlar else simdi()
     satir = []
     satir.append('<?xml version="1.0" encoding="UTF-8"?>')
     satir.append('<feed xmlns="http://www.w3.org/2005/Atom">')
