@@ -43,8 +43,20 @@
    * ------------------------------------------------------------------ */
   var VARSAYILAN = {
     /* BES devlet katkısı — 4632 sayılı Kanun ek m.1.
-       Oran 1 Ocak 2025'ten itibaren %25'ten %30'a çıkarıldı. */
-    devletKatkiYuzde: 30,
+
+       ORAN 1 OCAK 2026'DAN İTİBAREN %20. Değişiklik 10811 sayılı
+       Cumhurbaşkanı Kararı ile yapıldı (Resmî Gazete, 7 Ocak 2026,
+       sayı 33130) ve geriye dönük işlemiyor.
+
+       Oranın seyri:
+         01.01.2013 – 21.01.2022 : %25
+         22.01.2022 – 31.12.2025 : %30
+         01.01.2026 –            : %20
+
+       Bu değer dokuz ay boyunca %30 kaldı ve araç fazla iyimser
+       hesapladı. Hiçbir test oranı çivilemediği için sessiz kaldı;
+       test.js artık çiviliyor. */
+    devletKatkiYuzde: 20,
 
     /* Devlet katkısı tavanı: bir takvim yılında ödenen katkı paylarının
        BRÜT ASGARİ ÜCRETİN YILLIK TUTARINI aşan kısmına devlet katkısı
