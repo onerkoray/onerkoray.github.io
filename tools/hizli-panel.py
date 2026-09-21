@@ -44,6 +44,7 @@ HARIC_KOK = {"yayin-ilkeleri", "decorpalette", "keymint", "dither-studio", "imag
 # İsteğe bağlı editoryal kısa başlıklar. Yeni sayfalar bu listeye kayıt
 # gerektirmez; HTML başlıkları doğrudan kullanılır ve kartta satıra sarılır.
 KISA = {
+    "yayinlar": "Yayımlanmış çalışmalarım",
     "makaleler/bes-devlet-katkisi-ne-kadar-degerli": "Devlet Katkısı Değerli mi?",
     "makaleler/torba-yasa-beklenti-tutuyor-mu": "Beklentiler Tuttu mu?",
     "pesin-mi-taksit-mi": "Peşin mi, Taksit mi?",
@@ -161,6 +162,8 @@ def etiket(slug):
 
 
 def tur(slug):
+    if slug == "yayinlar":
+        return "Yayınlar"
     if slug.endswith("/metodoloji"):
         return "Metodoloji"
     if slug.startswith("makaleler/"):
