@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BES Devlet Katkısı Ne Kadar Değerli? | Koray Öner</title>
+  <meta name="gecerlilik" content="2027-01-31 | Devlet katkısı oranı Cumhurbaşkanı Kararıyla değişebiliyor; 2027 asgari ücreti açıklanınca tavan ve azami katkı değişir. bes.js içindeki ORANLAR ve ASGARI_BRUT_AY güncellenmeli, tablolar yeniden üretilmeli.">
+  <meta name="description" content="Devlet katkısı 2026'da %30'dan %20'ye indi. Katkı akışla, fon gideri stokla orantılı olduğu için bir kesişim yılı var — indirim onu 25'ten 18'e çekti.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://orcid.org/0009-0005-8730-3577">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/">
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="BES devlet katkısı ne kadar değerli?">
+  <meta property="og:description" content="Devlet katkısı katkı akışıyla, fon gideri birikim stokuyla orantılı. Stok zamanla akıştan hızlı büyüdüğü için bir kesişim yılı var.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/bes-devlet-katkisi-ne-kadar-degerli.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Yıllık katkı arttıkça efektif eşleşme oranının tavandan sonra hiperbolik biçimde erimesi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="BES devlet katkısı ne kadar değerli?">
+  <meta name="twitter:description" content="2026'da oran %20'ye indi ve kesişim yılı 25'ten 18'e geldi. Tavanı aşan katkıda yasal %20 fiilen %10 oluyor.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/bes-devlet-katkisi-ne-kadar-degerli.png">
+
+  <link rel="stylesheet" href="../../style.css?v=9ae079de">
+  <link rel="stylesheet" href="../editoryal.css?v=7a73aefb">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://korayoner.dev/#website",
+      "url": "https://korayoner.dev/",
+      "name": "Koray Öner",
+      "alternateName": "korayoner.dev",
+      "inLanguage": "tr",
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://korayoner.dev/#oner-koray",
+      "name": "Koray Öner",
+      "url": "https://korayoner.dev/",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "ORCID",
+        "value": "https://orcid.org/0009-0005-8730-3577"
+      },
+      "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/koraonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://dl.acm.org/profile/81100070426",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/",
+      "url": "https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/",
+      "name": "BES devlet katkısı ne kadar değerli?",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "inLanguage": "tr",
+      "primaryImageOfPage": "https://korayoner.dev/images/makale/bes-devlet-katkisi-ne-kadar-degerli.png"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/#article",
+      "isPartOf": { "@id": "https://korayoner.dev/#website" },
+      "headline": "BES devlet katkısı ne kadar değerli?",
+      "description": "Devlet katkısı katkı payı akışıyla, fon gider kesintisi birikim stokuyla orantılıdır. Stok zamanla akıştan hızlı büyüdüğü için kesintinin katkıyı aştığı bir kesişim yılı vardır; 2026 indirimi o yılı yediye yakın öne çekti.",
+      "inLanguage": "tr",
+      "datePublished": "2026-09-21",
+      "dateModified": "2026-09-21",
+      "author": { "@id": "https://korayoner.dev/#oner-koray" },
+      "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+      "image": "https://korayoner.dev/images/makale/bes-devlet-katkisi-ne-kadar-degerli.png",
+      "mainEntityOfPage": "https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "keywords": "BES, bireysel emeklilik, devlet katkısı, eşleşmeli katkı, hak ediş, fon gider kesintisi, emeklilik teşviki",
+      "about": [
+        { "@type": "Thing", "name": "Bireysel Emeklilik Sistemi" },
+        { "@type": "Thing", "name": "Devlet katkısı" },
+        { "@type": "Thing", "name": "Emeklilik teşviki" }
+      ],
+      "citation": [
+        { "@type": "ScholarlyArticle",
+          "name": "Öner, K. (2026). Akış ve Stok: BES Devlet Katkısının Efektif Getirisi ve 2026 İndiriminin Ufuk Etkisi. Zenodo.",
+          "identifier": "https://doi.org/10.5281/zenodo.22852165" },
+        { "@type": "Legislation", "name": "4632 sayılı Bireysel Emeklilik Tasarruf ve Yatırım Sistemi Kanunu, ek m.1" },
+        { "@type": "Legislation", "name": "10811 sayılı Cumhurbaşkanı Kararı, Resmî Gazete 7 Ocak 2026, sayı 33130" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "BES devlet katkısı 2026'da ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "Ödenen katkı payının yüzde 20'si. Oran 1 Ocak 2026'dan itibaren geçerli olmak üzere yüzde 30'dan yüzde 20'ye indirildi (10811 sayılı Cumhurbaşkanı Kararı, Resmî Gazete 7 Ocak 2026). Bir takvim yılında devlet katkısına esas katkı payları yıllık brüt asgari ücreti aşamaz; 2026 için bu tavan 396.360 TL, azami yıllık devlet katkısı 79.272 TL'dir." } },
+        { "@type": "Question", "name": "Devlet katkısı neden zamanla değerini kaybediyor?", "acceptedAnswer": { "@type": "Answer", "text": "Devlet katkısı her yıl yatırdığınız katkı payıyla, yani akışla orantılıdır. Fon gider kesintisi ise o güne kadar birikmiş paranızla, yani stokla orantılıdır. Stok zamanla akıştan hızlı büyüdüğü için yeterince uzun bir ufukta kesinti katkıyı aşar. Bu bir görüş değil aritmetik bir zorunluluktur; tartışılabilir olan yalnızca hangi yılda olduğudur." } },
+        { "@type": "Question", "name": "Kesişim hangi yılda oluyor?", "acceptedAnswer": { "@type": "Answer", "text": "Tam hak ediş ve yüzde 5 stopaj altında, yıllık fon gider kesintisi yüzde 1,91 olan borçlanma ve endeks fon grubunda on sekizinci yılda. Eşleşme yüzde 30 iken aynı kesişim yirmi beşinci yıldaydı; indirim kesişimi yedi yıl öne çekti. Fon grubuna göre kesişim 15 ile 28 yıl arasında değişiyor." } },
+        { "@type": "Question", "name": "Erken çıkarsam devlet katkısını alabilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Üç yıldan önce çıkarsanız hiçbirini alamazsınız. Üç yılda yüzde 15'ine, altı yılda yüzde 35'ine, on yılda yüzde 60'ına hak kazanırsınız. Emeklilik hakkını kullanırsanız (56 yaş ve en az on yıl) tamamına hak kazanırsınız. İlk beş yılda kesintiler hak edilen katkıdan büyüktür: üçüncü yılda kesintiler katkının yüzde 108'i, beşinci yılda yüzde 142'sidir." } },
+        { "@type": "Question", "name": "Tavanın üstünde katkı yaparsam ne olur?", "acceptedAnswer": { "@type": "Answer", "text": "Devlet katkısı yalnızca tavana kadar hesaplanır, dolayısıyla efektif oranınız erir. Efektif oran, yasal oran çarpı tavan bölü katkınızdır. Tavanın iki katı katkı yapan biri için yasal yüzde 20 fiilen yüzde 10 olur. Tavanı aşan katkı payları yanmaz; izleyen takvim yıllarına devreder — ancak sözleşme sonlanırsa devreden tutarlar için katkı hesaplanmaz." } }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../otv-hesaplama/">ÖTV</a></li>
+          <li><a href="../../mtv-hesaplama/">MTV</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> BES devlet katkısı
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Emeklilik · Ölçüm</p>
+        <h1 id="hero-title">BES devlet katkısı ne kadar değerli?</h1>
+        <p class="ed-standfirst">Devlet katkısı her yıl <strong>yatırdığınızla</strong>
+          orantılı. Fon gideri ise <strong>biriktirdiğinizle</strong>. İkisi aynı hızda
+          büyümediği için teşvikin değeri zamanla erir — ve eridiği yıl hesaplanabilir.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-21">21 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <article>
+        <figure class="ed-veri-gorseli">
+          <img src="../../images/makale/bes-devlet-katkisi-ne-kadar-degerli.png"
+               width="1200" height="630" loading="lazy" decoding="async"
+               alt="Yıllık katkı arttıkça efektif eşleşme oranının tavandan sonra hiperbolik biçimde erimesi">
+          <figcaption>Tavana kadar yasal oran; sonrasında erime başlıyor.</figcaption>
+        </figure>
+
+        <div class="legal-note verdict">
+          <h2 id="kisa-cevap">Kısa cevap</h2>
+          <p><strong>Oran 2026'da %30'tan %20'ye indi.</strong> 10811 sayılı
+            Cumhurbaşkanı Kararı, 1 Ocak 2026'dan geçerli (Resmî Gazete, 7 Ocak 2026,
+            sayı 33130). Geriye dönük işlemiyor.</p>
+          <p><strong>Teşvikin bir son kullanma tarihi var.</strong> Devlet katkısı katkı
+            payı <em>akışıyla</em>, fon gider kesintisi birikim <em>stokuyla</em>
+            orantılı. Stok zamanla akıştan hızlı büyüdüğü için yeterince uzun bir ufukta
+            kesinti katkıyı aşar. Bu bir görüş değil, aritmetik bir zorunluluk.</p>
+          <p><strong>İndirim o tarihi yedi yıl öne çekti.</strong> Kesişim %30 eşleşmede
+            25. yıldaydı; %20'de 18. yıla indi.</p>
+          <p><strong>İlk beş yıl zaten net kayıp.</strong> Üçüncü yılda kesintiler hak
+            edilen katkının %108'i, beşinci yılda %142'si. Teşvik ancak altıncı yılda
+            pozitife dönüyor.</p>
+        </div>
+
+        <h2 id="oran">Oran ne oldu?</h2>
+        <p>Devlet katkısının dayanağı 4632 sayılı Kanun'un ek 1. maddesi. Oranı
+          Cumhurbaşkanı Kararı belirliyor — yani kanun değişikliği beklenmeden
+          değişebiliyor ve 2026'da öyle oldu.</p>
+<!-- BES-ORAN:BASLANGIC -->
+        <div class="ed-tablo-sarmal">
+          <table class="ed-tablo">
+            <caption>Devlet katkısı oranının seyri ve 2026 parametreleriyle azami yıllık katkı</caption>
+            <thead>
+              <tr><th scope="col">Dönem</th><th scope="col">Oran</th><th scope="col">2026 tavanıyla azami yıllık katkı</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">1 Ocak 2013 – 21 Ocak 2022</th><td>%25</td><td>99.090 TL</td></tr>
+              <tr><th scope="row">22 Ocak 2022 – 31 Aralık 2025</th><td>%30</td><td>118.908 TL</td></tr>
+              <tr><th scope="row">1 Ocak 2026 – bugün</th><td>%20</td><td>79.272 TL</td></tr>
+            </tbody>
+          </table>
+        </div>
+<!-- BES-ORAN:BITIS -->
+        <p>Tavan, bir takvim yılında ödenen katkı paylarının <strong>yıllık brüt asgari
+          ücreti</strong> aşamayacağı kuralından geliyor. Tavanı aşan katkılar yanmıyor;
+          izleyen yıllara devrediyor. Ama sözleşme sonlanırsa devreden tutarlar için
+          katkı hesaplanmıyor — yani devir, sistemde kalmaya bağlı bir vaat.</p>
+
+        <h2 id="tavan">Yasal oran ile aldığınız oran aynı değil</h2>
+        <p>Tavan yüzünden, yüksek katkı yapan biri için yasal oran ile <em>fiilen
+          aldığı</em> oran ayrışıyor. Efektif oranın kapalı formu şu:</p>
+        <p class="legal-note"><strong>m<sub>ef</sub>(C) = m · min(C, A) / C</strong><br>
+          C: yıllık katkı payı &middot; A: tavan &middot; m: yasal oran</p>
+        <p>Tavanın altında bu, yasal oranın kendisi. Tavanın üstünde ise
+          <strong>m·A/C</strong> hiperbolü: katkı büyüdükçe oran düşer.</p>
+<!-- BES-EFEKTIF:BASLANGIC -->
+        <div class="ed-tablo-sarmal">
+          <table class="ed-tablo">
+            <caption>Yıllık katkı arttıkça efektif eşleşme oranı nasıl eriyor (2026, yasal oran %20)</caption>
+            <thead>
+              <tr><th scope="col">Yıllık katkı payı</th><th scope="col">Aylık karşılığı</th><th scope="col">Devlet katkısı</th><th scope="col">Efektif oran</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">198.180 TL</th><td>16.515 TL</td><td>39.636 TL</td><td>%20</td></tr>
+              <tr><th scope="row">396.360 TL</th><td>33.030 TL</td><td>79.272 TL</td><td>%20</td></tr>
+              <tr><th scope="row">594.540 TL</th><td>49.545 TL</td><td>79.272 TL</td><td>%13,3</td></tr>
+              <tr><th scope="row">792.720 TL</th><td>66.060 TL</td><td>79.272 TL</td><td>%10</td></tr>
+              <tr><th scope="row">1.189.080 TL</th><td>99.090 TL</td><td>79.272 TL</td><td>%6,7</td></tr>
+              <tr><th scope="row">1.585.440 TL</th><td>132.120 TL</td><td>79.272 TL</td><td>%5</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><th scope="row" colspan="3">Tavan</th><td>396.360 TL</td></tr>
+            </tfoot>
+          </table>
+        </div>
+<!-- BES-EFEKTIF:BITIS -->
+        <p>Tablodaki düzen tesadüf değil: <strong>tavanın k katı katkı yapan, yasal
+          oranın 1/k'sini alır.</strong> İki katı katkıda %20 yasal oran fiilen %10,
+          dört katında %5 oluyor.</p>
+
+        <h2 id="akis-stok">Asıl mesele: akış ile stok</h2>
+        <p>Buraya kadarki her şey tek bir yılın hesabıydı. Asıl soru zamanla ne olduğu.</p>
+        <p><strong>Devlet katkısı akışla orantılıdır.</strong> Her yıl yatırdığınızın
+          %20'si. Yılda 100.000 TL yatırıyorsanız katkı 20.000 TL — birikiminiz ne olursa
+          olsun.</p>
+        <p><strong>Fon gider kesintisi stokla orantılıdır.</strong> O güne kadar
+          birikmiş paranızın yıllık belli bir yüzdesi. Birinci yılda küçük bir tutardan,
+          yirminci yılda çok daha büyük bir tutardan alınır.</p>
+        <p>Birikim, yıllık katkıdan hızlı büyür. Dolayısıyla <strong>stok/akış oranı
+          sürekli artar</strong> ve bir noktada gider kesintisi katkıyı geçer. Bu nokta
+          kaçınılmazdır; tartışılabilir olan yalnızca <em>kaçıncı yılda</em> olduğudur.</p>
+<!-- BES-UFUK:BASLANGIC -->
+        <div class="ed-tablo-sarmal">
+          <table class="ed-tablo">
+            <caption>Sistemde geçirilen süreye göre teşvikin durumu</caption>
+            <thead>
+              <tr><th scope="col">Süre</th><th scope="col">Hak edilen katkı</th><th scope="col">Durum</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">3 yıl</th><td>%15</td><td>Kesintiler hak edilen katkının <strong>%108</strong>'i — teşvik net negatif</td></tr>
+              <tr><th scope="row">5 yıl</th><td>%15</td><td>Kesintiler hak edilen katkının <strong>%142</strong>'i — teşvik net negatif</td></tr>
+              <tr><th scope="row">6 yıl</th><td>%35</td><td>Teşvik net pozitife döner (hak ediş yükselir, gider iadesi başlar)</td></tr>
+              <tr><th scope="row">18. yıl</th><td>%60</td><td><strong>Kesişim:</strong> fon gider kesintisi katkıyı aşar (fon gideri %1,91)</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><th scope="row" colspan="2">Eşleşme %30 iken kesişim</th><td>25. yıl — indirim kesişimi <strong>7 yıl</strong> öne çekti</td></tr>
+            </tfoot>
+          </table>
+        </div>
+<!-- BES-UFUK:BITIS -->
+        <p>Kesişim fon grubuna göre değişiyor: %20 eşleşmede
+          <strong>15 ile 28 yıl</strong> arasında. Gider kesintisi düşük bir fondaysanız
+          teşvik daha uzun süre işinize yarıyor; yüksek giderli bir fondaysanız daha
+          erken tükeniyor. Sözleşmenizdeki gider kesintisi oranı bu yüzden önemli.</p>
+
+        <h2 id="indirim">İndirim kimi daha çok vurdu?</h2>
+        <p>Sezgi, uzun süre kalanın daha çok kaybettiğini söyler. Ölçüm tersini
+          gösteriyor: <strong>nihai birikimdeki oransal kayıp ufuktan neredeyse
+          bağımsız</strong> — on yılda %7,71, otuz yılda %7,70. Aradaki fark 0,01 puan.</p>
+        <p>Sebebi biçimsel: tam hak edişte devlet katkısı hesabının bütün bileşenleri
+          oranla doğrusal ölçekleniyor. Oran üçte bir azalınca katkıdan gelen birikim de
+          üçte bir azalıyor, ufuk ne olursa olsun.</p>
+        <p>Ama bu, indirimin herkesi eşit etkilediği anlamına gelmiyor. <strong>Düzey
+          etkisi düz, ufuk etkisi değil.</strong> Kayıp oranı sabit kalırken, teşvikin
+          gider kesintisini telafi edebildiği <em>pencere</em> yedi yıl daraldı. Uzun
+          vadeli tasarrufu teşvik etmeyi amaçlayan bir aracın penceresinin daralması,
+          aracın kendi amacıyla çelişiyor.</p>
+
+        <h2 id="ne-yapmali">Bu sayılar ne işe yarar?</h2>
+        <p>Üç pratik sonuç:</p>
+        <ul>
+          <li><strong>Kısa kalacaksanız girmeyin.</strong> Üç yıldan önce çıkışta devlet
+            katkısının hiçbirine hak kazanılmıyor, kesintiler ise baştan alınıyor.</li>
+          <li><strong>Tavanı aşan katkı, teşvik açısından verimsiz.</strong> Tavanın
+            üstündeki kısım yalnızca fon getirisi kazanıyor; devlet katkısı için o
+            paranın BES'te olması gerekmiyor.</li>
+          <li><strong>Fon gider kesintisi, oranın kendisi kadar belirleyici.</strong>
+            Kesişimi 15. yıla mı 28. yıla mı taşıdığını o belirliyor.</li>
+        </ul>
+        <p>Kendi sayılarınızla denemek için
+          <a href="../../birikim-hesaplama/">birikim hesaplama aracını</a> kullanabilirsiniz;
+          devlet katkısı, tavan, hak ediş ve stopaj orada uygulanıyor.</p>
+
+        <div class="legal-note">
+          <h2 id="sinirlar">Sınırlar</h2>
+          <p><strong>Kesişim yılı bir benzetim sonucudur.</strong> Aylık adımlı bir
+            benzetimden geliyor ve varsayımlara bağlı: tam hak ediş, %5 stopaj, sabit
+            katkı profili, sabit gider oranı. Farklı varsayımlarla farklı bir yıl çıkar.
+            Bu sayfadaki tablolar kesişim yılını <em>hesaplamıyor</em>, çalışmanın
+            ölçtüğü değeri taşıyor.</p>
+          <p><strong>Davranış modellenmedi.</strong> Buradaki soru teşvikin
+            <em>aritmetik</em> değeri: mevzuat sabitken katılımcıya ne veriyor. İnsanların
+            teşvike nasıl tepki verdiği ayrı bir soru ve burada cevaplanmıyor.</p>
+          <p><strong>Fon getirisi tahmin edilmiyor.</strong> Kesişim, katılımcının iç
+            verim oranının brüt fon getirisinin altına düştüğü nokta olarak tanımlı; bu
+            tanım getirinin ne olacağından bağımsız.</p>
+        </div>
+
+        <h2 id="kaynaklar">Kaynaklar</h2>
+        <ul>
+          <li><strong>Çalışma metni:</strong> Öner, K. (2026). <em>Akış ve Stok: BES
+            Devlet Katkısının Efektif Getirisi ve 2026 İndiriminin Ufuk Etkisi</em>. Zenodo.
+            <a href="https://doi.org/10.5281/zenodo.22852165" rel="noopener">doi.org/10.5281/zenodo.22852165</a>
+            (CC BY 4.0)</li>
+          <li><strong>4632 sayılı Kanun</strong> — Bireysel Emeklilik Tasarruf ve Yatırım
+            Sistemi Kanunu, ek m.1 (devlet katkısı, tavan, hak ediş).</li>
+          <li><strong>10811 sayılı Cumhurbaşkanı Kararı</strong> — oranın %20'ye
+            indirilmesi. Resmî Gazete, 7 Ocak 2026, sayı 33130.</li>
+          <li><strong>193 sayılı Gelir Vergisi Kanunu</strong> m.94 — çıkışta stopaj.</li>
+        </ul>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+        <details><summary>BES devlet katkısı 2026'da ne kadar?</summary><p>Katkı payının %20'si. 1 Ocak 2026'dan itibaren; öncesinde %30'du. 2026 tavanı 396.360 TL, azami yıllık katkı 79.272 TL.</p></details>
+        <details><summary>Devlet katkısı neden zamanla eriyor?</summary><p>Katkı akışla, fon gideri stokla orantılı. Stok zamanla akıştan hızlı büyüdüğü için kesinti bir noktada katkıyı aşıyor.</p></details>
+        <details><summary>Kesişim hangi yılda?</summary><p>Fon gideri %1,91 olan grupta 18. yılda. %30 eşleşmede 25. yıldaydı. Fon grubuna göre 15–28 yıl arasında değişiyor.</p></details>
+        <details><summary>Erken çıkarsam ne kadarını alırım?</summary><p>3 yıldan önce hiç. 3 yılda %15, 6 yılda %35, 10 yılda %60; emeklilikte tamamı.</p></details>
+        <details><summary>Tavanın üstünde katkı yapsam?</summary><p>Efektif oran erir: tavanın iki katında %20 fiilen %10 olur. Aşan katkı yanmaz, sonraki yıllara devreder.</p></details>
+
+        <h2 id="ilgili">İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../../birikim-hesaplama/">Birikim hesaplama</a> — devlet katkısı, tavan, hak ediş ve stopajla.</li>
+          <li><a href="../emekliligin-finansal-matematigi/">Emekliliğin finansal matematiği</a> — daha geniş çerçeve.</li>
+          <li><a href="../uzun-vadeli-yatirim-nasil-yapilir/">Uzun vadeli yatırım</a> — teşvikin diğer araçlarla karşılaştırması.</li>
+          <li><a href="../../yayinlar/">Yayımlanmış çalışmalar</a> — bu yazının dayandığı metin ve diğerleri.</li>
+        </ul>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

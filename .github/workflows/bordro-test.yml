@@ -542,6 +542,12 @@ jobs:
         # uyduğunu doğruluyor.
         run: node tools/bes-orani-test.js
 
+      - name: BES yazısının sayıları
+        run: node makaleler/bes-devlet-katkisi-ne-kadar-degerli/sayi-testi.js
+
+      - name: BES tabloları güncel mi
+        run: node tools/bes-tablosu.js --check
+
       - name: Yayın künyeleri doğru mu
         # Bir künye yanlışsa hiçbir şey bozulmaz: sayfa açılır, bağlantı
         # çalışır, yalnızca atıf yanlış olur. Sayfanın tek işi o.

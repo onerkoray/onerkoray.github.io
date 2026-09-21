@@ -194,5 +194,11 @@
     "kicker": "Mevzuat",
     "alt": "Yıllara göre çıkan torba kanun sayısı ile beklenti listesinden gelen madde sayısının karşılaştırması",
     "altyazi": "Dört yasama yılı, sekiz torba kanun; beklenti listesinden gelen maddelerin tamamı 2023'e düşüyor."
+  },
+  {
+    "slug": "bes-devlet-katkisi-ne-kadar-degerli",
+    "kicker": "Emeklilik",
+    "alt": "Yıllık katkı arttıkça efektif eşleşme oranının tavandan sonra hiperbolik biçimde erimesi",
+    "altyazi": "Devlet katkısı katkı akışıyla, fon gideri birikim stokuyla orantılı; ikisi aynı hızda büyümediği için bir kesişim yılı var."
   }
 ]

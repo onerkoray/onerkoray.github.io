@@ -1362,7 +1362,80 @@ function torbaBeklentiCubuk() {
     '</svg>';
 }
 
+/* BES efektif orani -- "bes-devlet-katkisi-ne-kadar-degerli" kapagi.
+
+   Yazinin bulgusu bir EGRI: tavana kadar oran sabit, sonra hiperbolik
+   olarak eriyor. Cubuk grafik bunu anlatamaz cunku kirilma noktasinin
+   YERI bilginin kendisi; cizgi kirilmayi gosterir.
+
+   Tek seri oldugu icin marka rengi kullanilabilir. Tavan cizgisi
+   ikincil renkte ve kesikli: veri degil, referans. */
+function besEfektifOran() {
+  var W = 600, H = 360, SOL = 64, SAG = 566, TABAN = 268, TAVAN_Y = 120;
+  var B = require(path.join(KOK, "makaleler", "bes-devlet-katkisi-ne-kadar-degerli", "bes.js"));
+
+  var A = B.tavan();
+  var enCok = A * 4;                       // yatay eksen sonu
+  var m = B.guncelOran();
+
+  function x(c) { return SOL + (SAG - SOL) * (c / enCok); }
+  function y(o) { return TABAN - (TABAN - TAVAN_Y) * (o / m); }
+
+  /* Egri: tavana kadar duz, sonra m*A/C hiperbolu. */
+  var nokta = [];
+  for (var i = 0; i <= 120; i++) {
+    var c = enCok * (i / 120);
+    if (c <= 0) continue;
+    nokta.push((nokta.length ? "L" : "M") + x(c).toFixed(1) + " " +
+               y(B.efektifOran(c)).toFixed(1));
+  }
+
+  function etiket(c, metin, kaydir) {
+    return '<circle cx="' + x(c).toFixed(1) + '" cy="' + y(B.efektifOran(c)).toFixed(1) +
+      '" r="6" fill="' + R.marka + '"/>' +
+      '<text x="' + (x(c) + (kaydir || 10)).toFixed(1) + '" y="' +
+      (y(B.efektifOran(c)) - 12).toFixed(1) + '" font-size="17" font-weight="800" fill="' +
+      R.marka + '">' + metin + '</text>';
+  }
+
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H +
+    '" role="img" aria-label="Yillik katki arttikca efektif esleisme oraninin ' +
+    'tavandan sonra hiperbolik bicimde erimesi">' +
+    '<text x="24" y="34" font-size="16" fill="' + R.ikincil +
+    '">2026 \u00b7 yasal oran %' + (m * 100) + '</text>' +
+    '<text x="24" y="84" font-size="34" font-weight="800" fill="' + R.murekkep +
+    '">Tavandan sonra oran eriyor</text>' +
+    /* taban ve tavan referansi */
+    '<path d="M' + SOL + ' ' + TABAN + ' H' + SAG + '" stroke="' + R.izgara +
+    '" stroke-width="2"/>' +
+    '<path d="M' + x(A).toFixed(1) + ' ' + TAVAN_Y + ' V' + TABAN +
+    '" stroke="' + R.s2 + '" stroke-width="2" stroke-dasharray="5 4"/>' +
+    '<text x="' + (x(A) + 8).toFixed(1) + '" y="' + (TAVAN_Y + 16) +
+    '" font-size="15" font-weight="700" fill="' + R.s2 + '">Tavan</text>' +
+    /* egri */
+    '<path d="' + nokta.join(" ") + '" fill="none" stroke="' + R.marka +
+    '" stroke-width="3"/>' +
+    etiket(A, "%" + (m * 100), -46) +
+    etiket(A * 2, "%" + (m * 100 / 2)) +
+    etiket(A * 4, "%" + (m * 100 / 4), -40) +
+    /* yatay eksen etiketleri */
+    '<g font-size="15" fill="' + R.ikincil + '" text-anchor="middle">' +
+    '<text x="' + x(A).toFixed(1) + '" y="' + (TABAN + 22) + '">1\u00d7</text>' +
+    '<text x="' + x(A * 2).toFixed(1) + '" y="' + (TABAN + 22) + '">2\u00d7</text>' +
+    '<text x="' + x(A * 4).toFixed(1) + '" y="' + (TABAN + 22) + '">4\u00d7</text>' +
+    '</g>' +
+    '<text x="24" y="' + (H - 18) + '" font-size="15" fill="' + R.ikincil +
+    '">Yatay eksen: y\u0131ll\u0131k katk\u0131 pay\u0131n\u0131n tavana oran\u0131</text>' +
+    '</svg>';
+}
+
 var KAPAKLAR = {
+  "bes-devlet-katkisi-ne-kadar-degerli": {
+    kicker: "Emeklilik \u00b7 \u00d6l\u00e7\u00fcm",
+    baslik: "Devlet katk\u0131s\u0131 ne kadar de\u011ferli?",
+    alt: "Tavandan sonra yasal oran ile ald\u0131\u011f\u0131n\u0131z oran ayr\u0131\u015f\u0131yor",
+    cizim: besEfektifOran
+  },
   "torba-yasa-beklenti-tutuyor-mu": {
     kicker: "Mevzuat \u00b7 \u00d6l\u00e7\u00fcm",
     baslik: "Beklentiler tuttu mu?",
