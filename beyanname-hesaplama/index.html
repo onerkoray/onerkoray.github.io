@@ -71,7 +71,7 @@
       "@type": "FAQPage",
       "@id": "https://korayoner.dev/beyanname-hesaplama/#faq",
       "mainEntity": [
-        { "@type": "Question", "name": "Yıllık gelir vergisi beyannamesi vermem gerekir mi?", "acceptedAnswer": { "@type": "Answer", "text": "Ticari kazanç ve serbest meslek kazancı her hâlde beyan edilir; tutarın önemi yoktur. Tek işverenden alınan ve tamamı stopajla vergilenmiş ücret beyan edilmez. Tevkifata tâbi kira ve menkul sermaye iradı ise vergiye tâbi gelir toplamınız tarifenin ikinci gelir dilimini (2026 için 400.000 TL) aşmıyorsa beyan edilmez." } },
+        { "@type": "Question", "name": "Beyanname vermem gerekir mi?", "acceptedAnswer": { "@type": "Answer", "text": "Aracın kapsadığı ticari veya serbest meslek kazançları tutarına bakılmaksızın beyan edilir. Tek işverenden alınan ve tamamı stopajla vergilendirilen ücrette ise yıllık safi ücret tutarı tarifenin dördüncü gelir dilimini (2026 gelirleri için 5.300.000 TL) aşarsa beyan gerekir; aşmıyorsa bu ücret beyan edilmez. Kira veya menkul sermaye iradında gelir türü ve ilgili beyan sınırları ayrıca değerlendirilir." } },
         { "@type": "Question", "name": "Kira gelirim sınırın altında, yine de beyan eder miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Edebilirsiniz. GVK m.86/1-c sınırı kiranın kendisine değil vergiye tâbi gelir toplamınıza koyuyor. 350.000 TL işyeri kirası tek başına beyan gerektirmez; yanında 2.000.000 TL serbest meslek kazancı varsa gerektirir. Bu, en sık yapılan hatadır." } },
         { "@type": "Question", "name": "İki işverenden ücret aldım, beyanname verecek miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Birinci işveren dışındaki ücretlerinizin toplamı tarifenin ikinci gelir dilimini aşıyorsa ücretlerinizin tamamı beyana girer. Ayrıca ücret toplamınız dördüncü gelir dilimini aşarsa tek işveren olsa bile beyan edilir." } },
         { "@type": "Question", "name": "Beyanname ne zaman verilir, vergi ne zaman ödenir?", "acceptedAnswer": { "@type": "Answer", "text": "Beyanname izleyen yılın mart ayında verilir. Hesaplanan vergi iki eşit taksitte, mart ve temmuz aylarında ödenir." } },
@@ -245,7 +245,9 @@
           <li><strong>Ticari kazanç ve serbest meslek kazancı</strong> her hâlde beyan
             edilir. Tutarın bir önemi yoktur (GVK m.85).</li>
           <li><strong>Tek işverenden alınan ücret</strong>, tamamı stopajla vergilendiyse
-            beyan edilmez. Birden fazla işveren varsa ölçüt, <em>birinciden sonrakilerin
+            ve yıllık safi ücret tutarı tarifenin dördüncü gelir dilimini
+            (2026 gelirleri için 5.300.000 TL) aşmıyorsa beyan edilmez.
+            Birden fazla işveren varsa ölçüt, <em>birinciden sonrakilerin
             toplamı</em>: tarifenin ikinci gelir dilimini aşarsa ücretlerin tamamı beyana
             girer. Ayrıca ücret toplamı dördüncü gelir dilimini aşarsa tek işveren olsa
             bile beyan edilir (GVK m.86/1-b).</li>
@@ -302,15 +304,17 @@
           <li><strong>193 sayılı Gelir Vergisi Kanunu</strong> m.85 (beyan esası),
             m.86 (toplama yapılmayan hâller), m.89 (diğer indirimler),
             m.103 (tarife), m.117 (ödeme süresi).</li>
+          <li><a href="https://intvrg.gib.gov.tr/hazirbeyan/assets/pdf/DUYURU_UNIVERSAL_2026_2026_Ucret_Geliri.pdf" rel="noopener">GİB — Ücret Geliri Elde Edenler İçin Vergi Rehberi (2026)</a>:
+            2025 gelirlerinin beyanı ve 2026 gelirleri için ücret beyan sınırları.</li>
           <li>Hesap motoru: <a href="../bordro/">bordro motoru</a>,
             parametreler <code>bordro/parametreler.js</code>. Tutarlar burada
             tutulmaz; tarifeden türetilir.</li>
         </ul>
 
         <h2 id="sss">Sık sorulan sorular</h2>
-        <details><summary>Beyanname vermem gerekir mi?</summary><p>Ticari veya serbest meslek kazancınız varsa evet, tutarı ne olursa olsun. Yalnızca tek işverenden ücret alıyorsanız hayır. Kira veya menkul sermaye iradınız varsa cevap toplam gelirinize bağlı — yukarıdaki forma girin.</p></details>
+        <details><summary>Beyanname vermem gerekir mi?</summary><p>Aracın kapsadığı ticari veya serbest meslek kazançları tutarına bakılmaksızın beyan edilir. Tek işverenden alınan ve tamamı stopajla vergilendirilen ücrette ise yıllık safi ücret tutarı tarifenin dördüncü gelir dilimini (2026 gelirleri için 5.300.000 TL) aşarsa beyan gerekir; aşmıyorsa bu ücret beyan edilmez. Kira veya menkul sermaye iradında gelir türü ve ilgili beyan sınırları ayrıca değerlendirilir.</p></details>
         <details><summary>Kiram sınırın altında, neden beyan çıkıyor?</summary><p>Sınır kiranın kendisine değil, vergiye tâbi gelir toplamınıza bakıyor (GVK m.86/1-c). Başka geliriniz toplamı sınırın üstüne taşıyorsa kira da beyana girer.</p></details>
-        <details><summary>İki işverenden ücret aldım.</summary><p>Birinci işveren dışındaki ücretlerinizin toplamı tarifenin ikinci gelir dilimini aşıyorsa ücretlerinizin tamamı beyana girer.</p></details>
+        <details><summary>İki işverenden ücret aldım.</summary><p>Birinci işveren dışındaki ücretlerinizin toplamı tarifenin ikinci gelir dilimini aşıyorsa ücretlerinizin tamamı beyana girer. Ayrıca ücret toplamınız dördüncü gelir dilimini aşarsa tek işveren olsa bile beyan edilir.</p></details>
         <details><summary>Beyan edersem iade alabilir miyim?</summary><p>Beyana giren gelirlerden kesilen stopaj hesaplanan vergiden yüksekse evet. Beyana girmeyen gelirin stopajı ise iade doğurmaz.</p></details>
         <details><summary>Ne zaman öderim?</summary><p>Mart ve temmuz aylarında iki eşit taksitte.</p></details>
 
