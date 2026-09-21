@@ -180,7 +180,7 @@ def main():
             if adet > 1:
                 bulgu("TEKRARLI ID", p, "id=%s (%d kez)" % (kimlik, adet))
 
-        for m in re.finditer(r'<a[^>]*target="_blank"[^>]*>', s):
+        for m in re.finditer(r'<a\b[^>]*target="_blank"[^>]*>', s):
             if "noopener" not in m.group(0):
                 bulgu("BLANK NOOPENER YOK", p, m.group(0)[:60])
 
