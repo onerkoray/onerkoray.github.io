@@ -74,6 +74,10 @@ function liste() {
         Y.LISANS.url + "\" rel=\"noopener license\">" + Y.LISANS.ad +
         "</a></p>");
 
+      if (!c.sayfa) {
+        satir.push("            <p class=\"ed-yayin-baglanti\">" +
+          "Bu çalışmayı anlatan bir site yazısı henüz yok.</p>");
+      }
       if (c.sayfa) {
         var yol = "../" + c.sayfa + "/";
         satir.push("            <p class=\"ed-yayin-baglanti\">" +
@@ -89,6 +93,11 @@ function liste() {
         satir.push("            <p class=\"ed-yayin-not\">" +
           "Zenodo kaydında alt başlık ayraçsız görünüyor " +
           "(&#8220;" + esc(c.zenodoBaslik) + "&#8221;); " +
+          "düzeltilecek.</p>");
+      }
+      if (c.ozetDiliFarkli) {
+        satir.push("            <p class=\"ed-yayin-not\">" +
+          "Zenodo kaydı dili Türkçe diyor ama özet İngilizce; " +
           "düzeltilecek.</p>");
       }
       if (c.ozetSorunlu) {
