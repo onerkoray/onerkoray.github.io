@@ -1375,6 +1375,8 @@ section { padding: var(--bolum) 0; }
                      --k2: var(--accent-bright-2); }
 :root .karo--genel { --k1: color-mix(in srgb, var(--accent-strong) 55%, black);
                      --k2: color-mix(in srgb, var(--accent) 78%, var(--accent-bright)); }
+:root .karo--finans { --k1: color-mix(in srgb, var(--accent-strong) 62%, black);
+                      --k2: var(--accent-bright); }
 
 /* 13.2 İKON: aynı aile, daha ince kalem.
    İkonlar zaten tek kaynaktan (card-icons.json) geliyor ve aynı geometrik
@@ -1433,11 +1435,16 @@ section { padding: var(--bolum) 0; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'%3E%3Cpath d='M0 40 C24 40 30 22 56 22 C82 22 88 42 116 42 C144 42 148 26 176 26 C204 26 212 40 240 40' fill='none' stroke='rgba(255,255,255,0.17)' stroke-width='1.5'/%3E%3Cpath d='M0 50 C24 50 30 34 56 34 C82 34 88 51 116 51 C144 51 148 38 176 38 C204 38 212 50 240 50' fill='none' stroke='rgba(255,255,255,0.09)' stroke-width='1'/%3E%3C/svg%3E");
   animation: karoSinyal 22s linear infinite;
 }
-/* Kategoriye göre üç iz ailesi — 31 kart tek şablon gibi durmasın diye.
-   Üçü de aynı çizim dilinde: ince, düşük kontrastlı, akışkan. */
+/* Kategoriye göre dört iz ailesi — 49 kart tek şablon gibi durmasın diye.
+   Dördü de aynı çizim dilinde: ince, düşük kontrastlı, akışkan.
+   finans, "Vergi & Finans" cop kutusu ikiye ayrilinca eklendi. */
 :root .karo--vergi::before {
   animation-duration: 26s;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'%3E%3Cpath d='M0 30 C34 30 40 46 76 46 C112 46 116 20 152 20 C188 20 196 34 214 34 C226 34 232 30 240 30' fill='none' stroke='rgba(255,255,255,0.17)' stroke-width='1.5'/%3E%3Ccircle cx='76' cy='46' r='2.2' fill='rgba(255,255,255,0.22)'/%3E%3Ccircle cx='152' cy='20' r='2.2' fill='rgba(255,255,255,0.22)'/%3E%3C/svg%3E");
+}
+:root .karo--finans::before {
+  animation-duration: 23s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'%3E%3Cpath d='M0 46h40v-8h40v-9h40v-8h40v-7h40v-6h40' fill='none' stroke='rgba(255,255,255,0.16)' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M0 54h240' stroke='rgba(255,255,255,0.08)' stroke-width='1'/%3E%3C/svg%3E");
 }
 :root .karo--genel::before {
   animation-duration: 19s;
