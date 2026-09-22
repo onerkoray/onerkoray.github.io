@@ -255,6 +255,9 @@ jobs:
       # hucre karsilastirilir.
       - name: MTV yazısının sayıları
         run: node makaleler/mtv-2026-ne-kadar/sayi-testi.js
+      - name: Güncel finans yazılarının sayısal örnekleri
+        run: node makaleler/enflasyon-duserken-fiyatlar-neden-dusmuyor/sayi-testi.js && node makaleler/ciro-artarken-nakit-neden-azalir/sayi-testi.js
+
       - name: Erken kapatma makalesi sayısal örneği
         run: node makaleler/krediyi-erken-kapatmak-mantikli-mi/sayi-testi.js
       - name: Peşin taksit karşılaştırması ve geçersiz girişler

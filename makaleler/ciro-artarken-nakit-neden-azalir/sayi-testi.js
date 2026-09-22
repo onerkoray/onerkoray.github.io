@@ -1,0 +1,15 @@
+'use strict';
+const assert=require('assert'),fs=require('fs');
+const html=fs.readFileSync(__dirname+'/index.html','utf8');
+const profit=1e6-700000-150000;
+assert.equal(profit,150000);assert.equal(800000*.3-150000,90000);
+const cash=profit-400000-100000+200000;
+assert.equal(cash,-150000);assert.equal(250000+cash,100000);
+assert.equal((1e6-400000)-(700000+100000-200000)-150000,cash);
+const workingCapital=1e6/30*45+700000/30*60-700000/30*30;
+assert.equal(workingCapital,2200000);assert(Math.abs(workingCapital*.1-220000)<1e-6);
+assert.equal(60+45-30,75);assert.equal(Math.round(1e6/30*10),333333);
+assert.equal((2000/98000*100).toFixed(2),'2.04');
+assert.equal(((Math.pow(100000/98000,365/30)-1)*100).toFixed(2),'27.86');
+for(const s of ['−150.000','2.200.000','2.420.000','220.000','333.333','%2,04','%27,86']) assert(html.includes(s),s);
+console.log('Ciro yazısındaki nakit köprüsü, vadeler ve iskonto hesabı doğrulandı.');
