@@ -594,6 +594,22 @@ jobs:
         # eklenene kadar göremezdi.
         run: node tools/besleme-sirasi-test.js
 
+      - name: Teklif karşılaştırma
+        # "net maaş mı brüt maaş mı" yazısı okura "iki teklifi ancak
+        # yıllık toplam nette adil karşılaştırırsınız" diyor ama
+        # karşılaştırmanın kendisini okura bırakıyordu. Bu araç o adımı
+        # kapatıyor; yeni yasal parametre tanımlamıyor.
+        #
+        # En kritik iddia: NET sözleşmede netin yıl boyunca sabit
+        # kalması. Kalmazsa araç hangi işi kabul edeceğine bakan birine
+        # yanlış cevap verir.
+        #
+        # İkinci iddia ölçümle kuruldu: ocakta önde olan teklif yılda
+        # geride kalabiliyor (taranan aralıkta 69 örnek). Test hem böyle
+        # bir çiftin varlığını hem de tersinmenin gereksiz yere
+        # bildirilmediğini sınıyor.
+        run: node teklif-karsilastirma/test.js
+
       - name: Bordro denetimi
         # Site elliden fazla HESAPLAYAN arac tasiyor, DENETLEYEN tek
         # arac bu. Yeni yasal parametre tanimlamiyor: butun beklenen

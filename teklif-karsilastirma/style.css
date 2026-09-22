@@ -1,0 +1,103 @@
+/*!
+ * İki teklif karşılaştırma — sayfaya özgü stiller.
+ *
+ * Site geneli style.css'in üstüne yalnızca bu sayfanın ihtiyacı olanlar.
+ * Renkler mevcut belirteçlerden alınır; yeni renk tanımlanmaz.
+ */
+
+.tk-ikili {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.tk-teklif {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.1rem 1.1rem;
+  margin: 0;
+}
+
+.tk-teklif legend {
+  padding: 0 .4rem;
+  font-weight: 650;
+  font-size: var(--step--1);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tk-yil { margin-top: 1.1rem; max-width: 220px; }
+
+.tk-manset {
+  margin: 1.8rem 0 .4rem;
+  font-size: var(--step-1);
+}
+.tk-manset p { margin: .2rem 0; }
+.tk-manset p + p { font-size: var(--step-0); color: var(--text-muted); }
+
+/* Tersinme uyarısı: rengin yanında BAŞLIK da var, çünkü renk tek
+   başına bilgi taşımamalı. */
+.tk-tersinme {
+  margin: 1.4rem 0;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--brand) 6%, transparent);
+}
+.tk-tersinme h3 { margin: 0 0 .4rem; font-size: var(--step-0); }
+.tk-tersinme p { margin: .35rem 0; }
+
+.tk-kartlar {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin: 1.6rem 0;
+}
+
+.tk-kart {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1.2rem 1.2rem;
+}
+/* Kazanan kartı: kenarlıkla ayrılıyor ve manşette ADIYLA da yazıyor. */
+.tk-kart.tk-kazanan { border-color: var(--brand); border-width: 2px; }
+.tk-kart h3 { margin: 0; font-size: var(--step-0); }
+.tk-kart-alt {
+  margin: .15rem 0 .9rem;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+}
+
+.tk-olcu { margin: 0; display: grid; gap: .1rem; }
+.tk-olcu > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: .4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.tk-olcu > div:last-child { border-bottom: 0; }
+.tk-olcu dt { color: var(--text-muted); font-size: var(--step--1); }
+.tk-olcu dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  text-align: right;
+}
+.tk-olcu dd.tk-buyuk { font-size: var(--step-1); }
+
+.data-table tr.tk-toplam th,
+.data-table tr.tk-toplam td {
+  font-weight: 700;
+  border-top: 2px solid var(--border);
+}
+
+.tk-kapsam { margin-top: 1rem; }
+
+@media (max-width: 520px) {
+  .tk-olcu > div { flex-direction: column; gap: .05rem; }
+  .tk-olcu dd { text-align: left; }
+}

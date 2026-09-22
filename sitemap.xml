@@ -831,6 +831,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/teklif-karsilastirma/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/teklif-karsilastirma-koray-oner.png</image:loc>
+      <image:title>İki İş Teklifi Karşılaştırma 2026 — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/bordro-denetim/</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
