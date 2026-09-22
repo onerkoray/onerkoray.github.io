@@ -97,6 +97,45 @@ dogru("prose/breadcrumb/footer-legal her yerde .wrap ile birlikte",
   sarmalsiz.slice(0, 8).join("\n      ") +
   (sarmalsiz.length > 8 ? "\n      ... +" + (sarmalsiz.length - 8) : ""));
 
+/* --- yazar satırı ismi /hakkimda/'ya bağlıyor mu ------------------
+   Ölçüldüğünde 36 makalenin 20'sinde yazar adı /hakkimda/'ya bağlıydı,
+   16'sında düz metindi. Aynı satır, iki ayrı uygulama. Araç
+   sayfalarında oran 52/56 idi; yani sitenin kuralı zaten "isim bağlı
+   olsun" ve makaleler o kuralın dışında kalmıştı.
+
+   Bu bir iç bağlantı SAYISI meselesi değil: yazının kime ait olduğunu
+   söyleyen satır, o kişinin sayfasına gitmeli.
+
+   Kalıp yerine düz dizge: ed-author kutusunun içinde hem hakkimda
+   bağlantısı hem isim geçiyor mu? */
+var yazarsiz = [];
+sayfalar.forEach(function (p) {
+  var s = fs.readFileSync(path.join(KOK, p), "utf8");
+  /* JSON-LD sayilmaz: orada isim zaten var ama okura görünen bir
+     bağlantı değil. Görünür gövdeye bakılıyor. */
+  var g = s.split("<script").map(function (par, i) {
+    return i === 0 ? par : par.slice(par.indexOf("</script>") + 9);
+  }).join("");
+  /* İki meşru kalıp var ve biri diğerinden güçlü (rel="author").
+     Değişmez, markup değil İLİŞKİ: isim /hakkimda/'ya bağlanıyor mu? */
+  var bagli = false;
+  var i = 0;
+  while (true) {
+    i = g.indexOf("hakkimda/", i);
+    if (i < 0) break;
+    var kapanis = g.indexOf("</a>", i);
+    if (kapanis > 0 && kapanis - i < 300 &&
+        g.slice(i, kapanis).indexOf("Koray Öner") >= 0) {
+      bagli = true;
+      break;
+    }
+    i += 9;
+  }
+  if (!bagli) yazarsiz.push(p);
+});
+dogru("her makalede yazar adı /hakkimda/'ya bağlı", yazarsiz.length === 0,
+  yazarsiz.slice(0, 8).join("\n      "));
+
 /* --- ed- sınıflarının CSS karşılığı ------------------------------- */
 var css = fs.readFileSync(path.join(KOK, "style.css"), "utf8") +
   fs.readFileSync(path.join(MAKALELER, "editoryal.css"), "utf8");
