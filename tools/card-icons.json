@@ -194,5 +194,9 @@
   "teklif-karsilastirma": {
     "cat": "maas",
     "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 20V10M5 20H3M5 20h2\"/><path d=\"M19 20V6M19 20h-2M19 20h2\"/><path d=\"M9 8h6\"/><path d=\"M12.5 5.5L15 8l-2.5 2.5\"/><path d=\"M15 15H9\"/><path d=\"M11.5 12.5L9 15l2.5 2.5\"/></svg>"
+  },
+  "basabas-hesaplama": {
+    "cat": "finans",
+    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 3v18h18M5 17 19 5M5 9l14 8\"/><circle cx=\"11\" cy=\"12\" r=\"2\"/></svg>"
   }
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Başabaş ve Hedef Kâr Hesaplama | Koray Öner</title><meta name="description" content="Kaç satışla giderlerinizi karşılıyorsunuz? Komisyon dahil başabaş adedi, hedef kâr, kapasite kontrolü ve gerekli satış fiyatını hesaplayın.">
+<meta name="author" content="Koray Öner"><meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://korayoner.dev/basabas-hesaplama/">
+<link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32"><link rel="icon" href="favicon.svg?v=87d95f73" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+<meta property="og:type" content="website"><meta property="og:title" content="Başabaş ve Hedef Kâr Hesaplama"><meta property="og:description" content="Kaç satışla giderlerinizi karşılıyorsunuz? Komisyon dahil başabaş adedi, hedef kâr, kapasite kontrolü ve gerekli satış fiyatını hesaplayın."><meta property="og:url" content="https://korayoner.dev/basabas-hesaplama/"><meta property="og:site_name" content="Koray Öner"><meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://korayoner.dev/images/basabas-hesaplama-koray-oner.png"><meta property="og:image:alt" content="Koray Öner finansal hesaplama araçları"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Başabaş ve Hedef Kâr Hesaplama"><meta name="twitter:description" content="Kaç satışla giderlerinizi karşılıyorsunuz? Komisyon dahil başabaş adedi, hedef kâr, kapasite kontrolü ve gerekli satış fiyatını hesaplayın."><meta name="twitter:image" content="https://korayoner.dev/images/basabas-hesaplama-koray-oner.png">
+<link rel="stylesheet" href="../style.css?v=9e119271"><link rel="stylesheet" href="style.css?v=244e840e"><script src="../onay.js?v=0e361dc9" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "image": "https://korayoner.dev/images/basabas-hesaplama-koray-oner.png", "name": "Başabaş ve Hedef Kâr Hesaplama", "url": "https://korayoner.dev/basabas-hesaplama/", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "inLanguage": "tr", "description": "Kaç satışla giderlerinizi karşılıyorsunuz? Komisyon dahil başabaş adedi, hedef kâr, kapasite kontrolü ve gerekli satış fiyatını hesaplayın.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "author": {"@type": "Person", "@id": "https://korayoner.dev/#oner-koray", "name": "Koray Öner", "url": "https://korayoner.dev/"}}</script>
+</head><body class="calculator-page basabas-page"><a class="skip-link" href="#main">İçeriğe geç</a>
+<header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header><main id="main">
+<nav class="breadcrumb wrap" aria-label="Site haritası"><a href="../">Ana Sayfa</a> › Başabaş ve Hedef Kâr</nav>
+<section class="hero"><div class="wrap hero-inner"><p class="eyebrow">İşletme hesabı · Maliyet · Fiyatlama</p><h1>Kaç satıştan sonra kârdasınız?</h1><p class="lede">Ciro tek başına yetmez. Sabit gideri, birim maliyeti ve komisyonu birlikte hesaplayın; <strong>başabaş noktanızı ve hedef kârın gerektirdiği satış adedini</strong> görün.</p><p class="muted">Başabaş ve Hedef Kâr Hesaplama · Aylık plan · KDV hariç tutarlar</p></div></section>
+<div class="wrap be-layout" id="hesapla">
+<form id="be-form" class="be-panel" novalidate><h2>Bir ayın satış planı</h2><p class="be-note">Tek ürün veya aynı birim ekonomisine sahip hizmet için. Tüm alanları aynı ay ve aynı satış birimiyle doldurun.</p>
+<div class="be-presets" aria-label="Örnek senaryolar"><button type="button" data-ornek="atolye">Atölye</button><button type="button" data-ornek="magaza">E-ticaret</button><button type="button" data-ornek="hizmet">Hizmet</button></div>
+<label for="sabit">Aylık sabit gider (TL)</label><input id="sabit" type="number" value="60000" min="0" max="1000000000" step="0.01" required><small>Kira, sabit maaşlar, yazılım vb. Satıştan bağımsız aylık toplam.</small>
+<div class="be-pair"><div><label for="fiyat">Birim satış fiyatı (TL)</label><input id="fiyat" type="number" value="500" min="0.01" max="1000000000" step="0.01" required></div><div><label for="degisken">Birim değişken gider (TL)</label><input id="degisken" type="number" value="250" min="0" max="1000000000" step="0.01" required></div></div><small>Malzeme, ambalaj, satıcıya kalan kargo gibi satış başına gider. Komisyonu burada tekrar eklemeyin.</small>
+<label for="komisyon">Satış üzerinden komisyon (%)</label><input id="komisyon" type="number" value="10" min="0" max="100" step="0.01" required><small>KDV hariç fiyat üzerinden etkili oran. Platform komisyonu farklı bir matraha uygulanıyorsa bu tutara göre dönüştürün.</small>
+<div class="be-pair"><div><label for="adet">Planlanan aylık satış (adet)</label><input id="adet" type="number" value="400" min="0" max="1000000000" step="1" required></div><div><label for="kapasite">Aylık satış kapasitesi (adet)</label><input id="kapasite" type="number" value="500" min="0" max="1000000000" step="1" required></div></div>
+<label for="hedef">Hedef aylık faaliyet kârı (TL)</label><input id="hedef" type="number" value="30000" min="0" max="1000000000" step="0.01" required><small>Vergi ve finansman giderlerinden önceki kâr hedefi.</small>
+<button class="be-primary" type="submit">Satış planını hesapla →</button><p id="be-error" role="alert" hidden></p><p class="be-note">Örnekler temsili varsayımlardır. Girdiler tarayıcıda işlenir; kaydedilmez.</p>
+</form>
+<div class="be-output"><section id="be-result" class="be-panel" aria-labelledby="be-result-title" hidden>
+<p class="eyebrow">Gideri karşılayan eşik</p><h2 id="be-result-title">Satış planınızın karşılığı</h2>
+<div class="be-highlight" role="status" aria-live="polite"><span>Aylık başabaş adedi</span><strong id="be-break"></strong><p id="be-verdict"></p></div>
+<dl class="be-metrics"><div><dt>Planlanan satıştaki faaliyet kârı</dt><dd id="be-profit"></dd></div><div><dt>Hedef kâr için gereken adet</dt><dd id="be-target"></dd></div><div><dt>Satış başına giderlere katkı</dt><dd id="be-margin"></dd></div><div><dt>Hedef için gereken birim fiyat</dt><dd id="be-price"></dd></div></dl>
+<p class="be-note">Gereken fiyat, planlanan satış adedi sabitken hedef kârı sağlayan en düşük kuruş değeridir. Fiyat değişince talebin sabit kalacağı garanti değildir.</p>
+<p id="be-capacity" class="be-callout"></p><p id="be-safety" class="be-note"></p>
+<h3>Satış arttıkça gelir ve gider</h3><p class="be-legend"><span>━━ Ciro</span><span>┄┄ Toplam gider</span></p><svg id="be-chart" viewBox="0 0 640 300" role="img" aria-label="Satış adedine göre ciro ve gider; sayısal karşılığı grafik tablosunda"></svg><p id="be-chart-note" class="be-note"></p>
+<details><summary>Grafikteki tutarları tablo olarak gör</summary><div class="be-scroll" tabindex="0" role="region" aria-label="Grafik verileri"><table><thead><tr><th scope="col">Satış adedi</th><th scope="col">Ciro</th><th scope="col">Toplam gider</th><th scope="col">Kâr / zarar</th></tr></thead><tbody id="be-chart-rows"></tbody></table></div></details>
+<h3>Fiyatı değiştirirseniz</h3><p class="be-note">Satış adedi, giderler ve komisyon oranı aynı kalır. Senaryolar talep tahmini değildir.</p><div class="be-scroll" tabindex="0" role="region" aria-label="Fiyat senaryoları"><table><thead><tr><th scope="col">Fiyat değişimi</th><th scope="col">Birim fiyat</th><th scope="col">Başabaş adedi</th><th scope="col">Planlanan kâr</th></tr></thead><tbody id="be-scenarios"></tbody></table></div>
+<h3>Planlanan ayın dökümü</h3><dl class="be-ledger" id="be-ledger"></dl><button type="button" id="be-export">CSV raporunu indir</button>
+</section><noscript><p>Hesaplama için JavaScript gerekir. Formüller ve örnek aşağıdadır.</p></noscript></div></div>
+<section class="content" id="nasil"><div class="wrap prose"><h2>Başabaş nasıl hesaplanır?</h2><p><strong>Birim katkı = satış fiyatı × (1 − komisyon oranı) − birim değişken gider.</strong> Bu tutar önce sabit gideri karşılar; geriye kalan faaliyet kârıdır.</p><p><strong>Başabaş adedi = sabit gider / birim katkı.</strong> Parçalı ürün satılmadığı varsayıldığı için gereken adet yukarı yuvarlanır. Hedef kâr için paya hedeflenen kâr da eklenir. Katkı sıfır veya negatifken pozitif gider ya da kâr hedefi satış artırılarak karşılanamaz.</p><p><strong>Gereken fiyat = [birim değişken gider + (sabit gider + hedef kâr) / planlanan adet] / (1 − komisyon oranı).</strong> Fiyat yukarı doğru kuruşa tamamlanır. Sıfır satış veya %100 komisyonla fiyat çözümü gösterilmez.</p><h3>Örnek: aylık 60.000 TL gider</h3><p>500 TL fiyat, 250 TL birim gider ve %10 komisyonla satış başına 200 TL katkı kalır. Başabaş için 300 adet; 30.000 TL hedef kâr için 450 adet satış gerekir. 400 adet satış 20.000 TL faaliyet kârı üretir.</p><h3>Güvenlik payı neyi gösterir?</h3><p>Planlanan adet ile kesirli başabaş adedi arasındaki farkın planlanan adede oranıdır. Örnekte %25: sabit varsayımlarla satışlar dörtte bir azalınca kâr sıfırlanır. Negatif değer, planın başabaşın altında olduğunu gösterir; satış veya katkı sıfırsa oran gösterilmez.</p><h3>Modelin sınırları</h3><p>Tüm tutarlar KDV hariç ve aynı aylık döneme aittir. Fiyat ile birim gider hacim boyunca sabit kabul edilir; kapasite aşımında sonuç yalnızca matematiksel plandır. Kademeli komisyon, iadeler, vadeler, stok finansmanı, gelir/kurumlar vergisi ve kredi giderleri ayrıca modellenmez. Birden fazla farklı ürün varsa tek ürün sonucunu toplam işinize uygulamayın. Sıfır sabit giderde sıfır satış başabaştır; negatif katkıda sonraki satışlar zarar üretir.</p><p>Para girişleri kuruşa, komisyon oranı baz puana çevrilir. Adet ve gerekli fiyat yukarı yuvarlanır; diğer ara hesaplar yuvarlanmaz. Tek tek komisyonların ödeme sırasında yuvarlandığı sistemlerde kuruş farkları oluşabilir.</p><h2 id="kaynak-title">Yöntem kaynakları</h2><p><a href="https://legacy.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs/break-even-point" rel="noopener">SBA — başabaş analizi</a> ve <a href="https://openstax.org/books/principles-managerial-accounting/pages/3-2-calculate-a-break-even-point-in-units-and-dollars" rel="noopener">OpenStax — maliyet, hacim ve kâr ilişkisi</a>. Bu araçtaki komisyon ve kapasite senaryoları bu temel modelin açıkça belirtilen uzantılarıdır.</p><p><a href="hesap.js?v=ab66b2e7">Hesap motoru</a> · <a href="test.js?v=a03d7d8f">Doğrulama testleri</a> · Hazırlayan <a href="../hakkimda/" rel="author">Koray Öner</a></p><h2>İlgili araçlar</h2><p><a href="../yatirim-fizibilite-hesaplama/">Yatırım fizibilitesi</a> · <a href="../kdv-hesaplama/">KDV hesabı</a> · <a href="../fatura-olusturma/">Fatura oluşturma</a></p></div></section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Yöntem kaynakları</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Yöntem kaynakları</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main><footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; sonuçlar girdiğiniz varsayımlara bağlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer><script src="hesap.js?v=ab66b2e7" defer></script><script src="script.js?v=49320dd5" defer></script><script src="../script.js?v=5127b7a8" defer></script></body></html>
