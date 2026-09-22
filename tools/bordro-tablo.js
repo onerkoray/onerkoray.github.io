@@ -124,8 +124,13 @@ function tarifeBasliklari() {
 function dayanaklar() {
   return B.yillar().map(function (yil) {
     var P = B.parametre(yil);
+    var notlar = P.istisnaRejimi === "agi"
+      ? "AGİ rejimi. Motorun ilave AGİ taban koruması " +
+        (P.netAsgariTaban ? "asgari ücretle sınırlı olarak modellenir." : "bu yıl için modellenmez.") +
+        " Tarihsel hesapların sınırları için kapsam bölümüne bakın."
+      : P.notlar;
     return "          <dt>" + yil + "</dt>\n          <dd>" + esc(P.dayanak) +
-      (P.notlar ? " — " + esc(P.notlar) : "") + "</dd>";
+      (notlar ? " — " + esc(notlar) : "") + "</dd>";
   }).join("\n");
 }
 
@@ -152,12 +157,13 @@ function uret() {
     "          </table>",
     "        </div>",
     '        <p class="muted-note">',
-    "          Tutarlar aylık ve TL cinsindendir. Tüm yıllarda kesinti oranları sabittir:",
+    "          Tutarlar aylık ve TL cinsindendir. Motorun en güncel yıl için kullandığı varsayılan oranlar:",
     "          SGK işçi payı %" + Math.round(o.sgkIsci * 100) +
       ", işsizlik sigortası işçi payı %" + Math.round(o.issizlikIsci * 100) + ",",
     "          damga vergisi binde " + (o.damga * 1000).toFixed(2).replace(".", ",") + ",",
     "          işveren SGK payı %" + (o.sgkIsveren * 100).toFixed(2).replace(".", ",") +
       " ve işveren işsizlik payı %" + Math.round(o.issizlikIsveren * 100) + " (teşviksiz).",
+    '          Tarihsel işveren oranları için <a href="#kapsam-title">modelin sınırlarını</a> inceleyin.',
     "        </p>",
     "",
     "        <h3>Gelir vergisi tarifesi (ücret gelirleri)</h3>",

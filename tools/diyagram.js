@@ -27,6 +27,9 @@ var path = require("path");
 var KOK = path.dirname(__dirname);
 var B = require(path.join(KOK, "bordro", "motor.js"));
 var C = require(path.join(KOK, "bordro", "cikis.js"));
+var E = require("./bordro-envanter.js");
+var ARACLAR = E.araclar();
+var TESTLER = E.testler();
 
 function oku(p) { return fs.readFileSync(path.join(KOK, p), "utf8"); }
 
@@ -37,23 +40,12 @@ function esc(s) {
 /* Test sayıları doğrudan test dosyalarındaki ok() çağrılarından değil,
    çalıştırılmadan sayılamaz; bu yüzden çıktıdaki toplam satırdan okunur. */
 function testSayisi() {
-  var cp = require("child_process");
-  var toplam = 0;
-  ["test.js", "cikis-test.js", "calisma-bicimi-test.js"].forEach(function (f) {
-    var cikti = cp.execFileSync(process.execPath, [path.join(KOK, "bordro", f)],
-      { encoding: "utf8" });
-    var m = cikti.match(/(\d+)\s+geçti/);
-    if (m) toplam += parseInt(m[1], 10);
-  });
-  return toplam;
+  return TESTLER.reduce(function (n, t) { return n + t.sayi; }, 0);
 }
 
 /* Motoru fiilen kullanan araçlar — metodoloji künyesiyle aynı kaynak. */
 function motorluAraclar() {
-  var s = oku("tools/metodoloji-blogu.py");
-  var blok = s.slice(s.indexOf("MOTORLU = {"), s.indexOf("}", s.indexOf("MOTORLU = {")));
-  var m = blok.match(/"([a-z0-9-]+)"/g) || [];
-  return m.map(function (x) { return x.replace(/"/g, ""); });
+  return ARACLAR.filter(function (a) { return a.cekirdek; }).map(function (a) { return a.slug; });
 }
 
 var ARAC_ADI = {
@@ -64,7 +56,16 @@ var ARAC_ADI = {
   "serbest-meslek-makbuzu-hesaplama": "Serbest meslek makbuzu",
   "calisma-bicimi-karsilastirma": "Çalışma biçimi",
   "isveren-maliyeti-hesaplama": "İşveren maliyeti",
-  "fazla-mesai-hesaplama": "Fazla mesai"
+  "fazla-mesai-hesaplama": "Fazla mesai",
+  "beyanname-hesaplama": "Yıllık beyanname",
+  "cikis-takvimi": "Çıkış takvimi",
+  "finansal-ikiz": "Finansal ikiz",
+  "kira-geliri-vergisi-hesaplama": "Kira geliri vergisi",
+  "nakit-akisi-analizi": "Nakit akışı",
+  "prim-ikramiye-vergisi": "Prim ve ikramiye",
+  "ucret-kar-payi-optimizasyonu": "Ücret / kâr payı",
+  "vergi-kamasi-hesaplama": "Vergi kaması",
+  "zam-hesaplama": "Zam hesabı"
 };
 
 /* card-icons.json'daki 24x24 ikonun iç içeriği. */
@@ -98,12 +99,15 @@ function agac(baslik, aciklama, merkez, merkezAlt, dallar) {
   var kimlik = ["parametreler", "hesaplar", "araclar", "denetim"];
   var aciklamalar = ["Hesabın yasal girdileri", "Kuralları sonuca dönüştürür", "Aynı çekirdeği kullanır", "Tutarlılığı doğrular"];
   var links = ["#parametreler", "#metodoloji", null, "#dogrulama"];
-  var yollar = [125, 375, 625, 875].map(function (x, i) {
-    var d = 'M500 0 V16 Q500 30 ' + (x < 500 ? 480 : 520) + ' 30 H' + (x < 500 ? x + 16 : x - 16) + ' Q' + x + ' 30 ' + x + ' 46 V64';
-    return '<g data-wire="' + kimlik[i] + '"><path class="bm-wire" d="' + d + '"/>' +
+  // İlk sıradaki üç kartın merkezleri; araçlar aşağıdaki ortak çıkışta yer alır.
+  var yollar = [166.667, 500, 833.333].map(function (x, i) {
+    var d = x === 500 ? 'M500 0 V64' :
+      'M500 0 V16 Q500 30 ' + (x < 500 ? 480 : 520) + ' 30 H' + (x < 500 ? x + 16 : x - 16) + ' Q' + x + ' 30 ' + x + ' 46 V64';
+    return '<g data-wire="' + kimlik[[0, 1, 3][i]] + '"><path class="bm-wire" d="' + d + '"/>' +
       '<path class="bm-signal" pathLength="100" d="' + d + '"/></g>';
   }).join('');
-  var kartlar = dallar.map(function (dal, i) {
+  var kartlar = [0, 1, 3, 2].map(function (i) {
+    var dal = dallar[i];
     var items = dal.yapraklar.map(function (yp) {
       var content = ikonHTML(yp.ikon || '') + '<span><strong>' + esc(yp.ad) + '</strong>' +
         (yp.alt ? '<small>' + esc(yp.alt) + '</small>' : '') + '</span>';
@@ -149,7 +153,9 @@ function motorEkosistemi() {
         { ad: "Asgari ücret ve istisna", alt: "GVK m.23/1-(18) · yıl içi dönemler dahil", ikon: GLIF.asgari },
         { ad: "Prime esas kazanç", alt: "5510 m.82 · alt ve üst sınır", ikon: GLIF.sgk },
         { ad: "Kıdem tazminatı tavanı", alt: "1475 m.14 · altı aylık dönem", ikon: GLIF.kidem },
-        { ad: "İşsizlik ve fazla mesai", alt: "4447 m.50 · 4857 m.41", ikon: GLIF.issizlik }
+        { ad: "İşsizlik ve fazla mesai", alt: "4447 m.50 · 4857 m.41", ikon: GLIF.issizlik },
+        { ad: "Kira ve beyanname", alt: "istisnalar, beyan hadleri ve indirimler", ikon: GLIF.tarife },
+        { ad: "Şirket ve serbest meslek", alt: "kurumlar vergisi, stopaj ve Bağ-Kur", ikon: GLIF.senaryo }
       ]
     },
     {
@@ -159,22 +165,25 @@ function motorEkosistemi() {
         { ad: "Aylık ve 12 aylık bordro", alt: "kümülatif matrah takibi", ikon: GLIF.bordro },
         { ad: "Netten brüte", alt: "tek ay ve net sözleşme için 12 ay", ikon: GLIF.nettenBrute },
         { ad: "Çıkış paketi", alt: C.FESIH_TURLERI.length + " fesih türü · hak matrisi", ikon: GLIF.cikis },
-        { ad: "Çalışma biçimi", alt: "aynı maliyette dört senaryo", ikon: GLIF.senaryo }
+        { ad: "Çalışma biçimi", alt: "aynı maliyette dört senaryo", ikon: GLIF.senaryo },
+        { ad: "Prim ve ikramiye", alt: "ek ödemenin yıllık nete etkisi", ikon: GLIF.asgari },
+        { ad: "Kira geliri vergisi", alt: "götürü ve gerçek gider karşılaştırması", ikon: GLIF.tarife },
+        { ad: "Yıllık beyanname", alt: "çoklu gelir, beyan kararı ve mahsup", ikon: GLIF.bordro }
       ]
     },
     {
       ad: "Araçlar",
       glif: "tablo",
       yapraklar: araclar.map(function (a) {
-        return { ad: ARAC_ADI[a] || a, ikon: aracIkon(a), href: "../" + a + "/" };
+        return { ad: ARAC_ADI[a] || ARACLAR.find(function (x) { return x.slug === a; }).ad, ikon: aracIkon(a), href: "../" + a + "/" };
       })
     },
     {
       ad: "Denetim",
       glif: "denetim",
       yapraklar: [
-        { ad: testler + " doğrulama testi", alt: "resmî tutarlara sabitlenmiş", ikon: GLIF.test },
-        { ad: "Parametre kopyası kontrolü", alt: "motor dışında yasal sayı yok", ikon: GLIF.kopya },
+        { ad: testler + " doğrulama", alt: TESTLER.length + " test dosyası · bağımsız modüller dahil", ikon: GLIF.test },
+        { ad: "Parametre kopyası kontrolü", alt: "yasal sayıların çoğaltılmasını denetler", ikon: GLIF.kopya },
         { ad: "Üretilen tablo ve şema", alt: "sayfa ile motor ayrışamaz", ikon: GLIF.tablo },
         { ad: "Sayfa, CSS ve kontrast", alt: "her push'ta çalışır", ikon: GLIF.denetim }
       ]
@@ -195,8 +204,42 @@ function motorEkosistemi() {
 
 /* ---------------- yerleştirme ---------------- */
 
+function dogrulamaOzeti() {
+  var adlar = {
+    "test.js": ["Ücret bordrosu", "motor.js"],
+    "cikis-test.js": ["İşten ayrılma", "cikis.js"],
+    "calisma-bicimi-test.js": ["Çalışma biçimi", "calisma-bicimi.js"],
+    "ek-odeme-test.js": ["Prim ve ikramiye", "ek-odeme-motoru.js"],
+    "gmsi-test.js": ["Kira geliri", "gmsi-motor.js"],
+    "beyanname-test.js": ["Yıllık beyanname", "beyanname-motoru.js"],
+    "emeklilik-test.js": ["Emeklilik · bağımsız modül", "emeklilik-motor.js"],
+    "borc-test.js": ["Borç planı · bağımsız modül", "borc-motor.js"]
+  };
+  return '<p><strong>' + testSayisi() + ' doğrulama, ' + TESTLER.length + ' test dosyası.</strong> Sayılar, aşağıdaki testler başarıyla çalıştırılarak üretilir; canlı bir CI durum göstergesi değildir.</p>\n' +
+    '<div class="table-scroll"><table class="payroll"><caption>Hesap modülleri ve doğrulamalar</caption>' +
+    '<thead><tr><th scope="col">Modül / kaynak</th><th scope="col">Doğrulama</th><th scope="col">Test dosyası</th></tr></thead><tbody>' +
+    TESTLER.map(function (t) {
+      var ad = adlar[t.dosya];
+      if (!ad) throw new Error("Yeni test modülünün açıklamasını ekleyin: " + t.dosya);
+      return '<tr><th scope="row"><a href="' + ad[1] + '">' + ad[0] + '</a></th><td>' + t.sayi +
+        '</td><td><a href="' + t.dosya + '">' + t.dosya + '</a></td></tr>';
+    }).join('\n') + '</tbody></table></div>\n' +
+    '<p>Çekirdeğin gelir vergisi tarifesini ve bordro hesabını kullanan <strong>' + motorluAraclar().length +
+    ' ana araç</strong> yukarıda listelenir. Maaş tutarı alt sayfaları ayrıca sayılmaz. Aynı klasördeki bağımsız motorlar: ' +
+    ARACLAR.filter(function (a) { return !a.cekirdek; }).map(function (a) {
+      return '<a href="../' + a.slug + '/">' + esc(a.ad) + '</a>';
+    }).join(' ve ') + '. Bağımsız motorlar kendi parametreleriyle çalışır.</p>';
+}
+
+function surumOzeti() {
+  return '<p class="muted">Hazırlayan <a href="../hakkimda/" rel="author">Koray Öner</a> · Çekirdek sürümü ' +
+    esc(B.surum) + ' · Belge güncellemesi: <time datetime="2026-09-22">22 Eylül 2026</time></p>';
+}
+
 var HEDEFLER = [
-  { dosya: "bordro/index.html", ad: "motor-ekosistem", uret: motorEkosistemi }
+  { dosya: "bordro/index.html", ad: "motor-ekosistem", uret: motorEkosistemi },
+  { dosya: "bordro/index.html", ad: "dogrulama-ozeti", uret: dogrulamaOzeti },
+  { dosya: "bordro/index.html", ad: "surum-ozeti", uret: surumOzeti }
 ];
 
 function main() {
@@ -213,7 +256,14 @@ function main() {
       console.error("İşaretçi yok: " + h.dosya + " → " + h.ad);
       process.exit(2);
     }
-    var yeni = s.slice(0, i) + bas + "\n" + h.uret() + "\n        " + s.slice(j);
+    // İçerik damgalarını stil-damgasi.py yönetir; --check içerik karşılaştırır.
+    var uretilen = h.uret().replace(/(href|src)="([^"?]+\.js)"/g, function (_, attr, url) {
+      var kaynak = fs.readFileSync(path.resolve(path.dirname(yol), url), "utf8").replace(/\r\n/g, "\n");
+      var damga = require("crypto").createHash("sha256").update(kaynak).digest("hex").slice(0, 8);
+      return attr + '="' + url + '?v=' + damga + '"';
+    });
+    var yeni = s.slice(0, i) + bas + "\n" + uretilen + "\n        " + s.slice(j);
+    yeni = yeni.replace(/"softwareVersion": "[^"]+"/, '"softwareVersion": "' + B.surum + '"');
     if (yeni !== s) {
       degisen.push(h.dosya + " (" + h.ad + ")");
       if (!kontrol) fs.writeFileSync(yol, yeni, "utf8");
