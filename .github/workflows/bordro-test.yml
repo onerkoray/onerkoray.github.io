@@ -594,6 +594,20 @@ jobs:
         # eklenene kadar göremezdi.
         run: node tools/besleme-sirasi-test.js
 
+      - name: Bordro denetimi
+        # Site elliden fazla HESAPLAYAN arac tasiyor, DENETLEYEN tek
+        # arac bu. Yeni yasal parametre tanimlamiyor: butun beklenen
+        # degerler bordro/motor.js'ten geliyor.
+        #
+        # En kritik iddia, dogru bir bordronun HIC fark uretmemesi.
+        # Modul motordan saparsa arac dogru bordroyu "hatali"
+        # gosterir; bu, hic arac olmamasindan kotudur.
+        #
+        # Ayrica tersine cozumun dayandigi ozellik de sinaniyor:
+        # vergi kumulatif matraha gore monoton olmazsa ikili arama
+        # yanlis cevap verir.
+        run: node bordro-denetim/test.js
+
       - name: Makale kabuğu ve sınıfları
         # Bir makalenin gövdesini şablona bakmadan kurdum ve sarmal
         # olarak .wrap kullanmadım; genişliği sınırlayan sınıf o.

@@ -186,5 +186,9 @@
   "zam-hesaplama": {
     "cat": "maas",
     "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 17l6-6 4 4 8-8\"/><path d=\"M15 7h6v6\"/></svg>"
+  },
+  "bordro-denetim": {
+    "cat": "maas",
+    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h8l4 4v8\"/><path d=\"M6 3v18h6\"/><path d=\"M14 3v4h4\"/><path d=\"M9 9h5M9 13h3\"/><circle cx=\"17.5\" cy=\"17.5\" r=\"3.5\"/><path d=\"M16 17.6l1.1 1.1 2-2.2\"/></svg>"
   }
 }

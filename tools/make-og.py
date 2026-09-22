@@ -243,6 +243,10 @@ SPEC = {
    "İşveren maliyetinden her gider kalemine kadar tüm akış tek diyagramda — ve her kalemin ömür bedeli.",
    ["Sankey", "Ömür bedeli"], "finans"),
 
+ "bordro-denetim": ("bordro-denetim", "Bordro", "Denetimi",
+   "Bordronuzdaki kesinti satırlarını beklenen tutarla karşılaştırır; fark varsa sebebini ölçerek gösterir.",
+   ["Kümülatif matrah", "Satır satır fark"], "bordro"),
+
  "prim-ikramiye-vergisi": ("prim-ikramiye-vergisi", "Prim ve İkramiye", "Vergisi",
    "İkramiyeyi Aralık’ta almak vergiyi değiştirmez. Değiştiren şey SGK tavanı — ölçülüp gösteriliyor.",
    ["Marjinal oran", "SGK tavanı"], "bordro"),

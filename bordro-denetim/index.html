@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bordro Denetimi 2026 — Maaş Bordronuz Doğru mu? | Koray Öner</title>
+  <meta name="description" content="Bordronuzdaki kesinti satırlarını beklenen tutarla karşılaştırın. Fark varsa o rakamı hangi kümülatif matrahın ürettiğini gösterir.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/bordro-denetim/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Bordro Denetimi — Maaş bordronuz doğru mu?">
+  <meta property="og:description" content="Bordronuzdaki kesinti satırlarını beklenen tutarla karşılaştırın. Fark varsa hangi kümülatif matrahın o rakamı ürettiğini gösterir.">
+  <meta property="og:url" content="https://korayoner.dev/bordro-denetim/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/bordro-denetim-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bordro denetimi aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koraonerdev">
+  <meta name="twitter:creator" content="@koraonerdev">
+  <meta name="twitter:title" content="Bordro Denetimi — Maaş bordronuz doğru mu?">
+  <meta name="twitter:description" content="Kesinti satırlarınızı beklenen tutarla karşılaştırın; fark varsa sebebini ölçerek gösterir.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/bordro-denetim-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=9ae079de">
+  <link rel="stylesheet" href="style.css?v=3c9bc779">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/bordro-denetim/#app",
+        "name": "Bordro Denetimi",
+        "url": "https://korayoner.dev/bordro-denetim/",
+        "description": "Maaş bordrosundaki kesinti satırlarını beklenen tutarla karşılaştıran, fark hâlinde sebebini ölçerek gösteren ücretsiz araç.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Tarayıcı",
+        "inLanguage": "tr",
+        "image": "https://korayoner.dev/images/bordro-denetim-koray-oner.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/koraonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Denetle</a></li>
+          <li><a href="#kumulatif">Kümülatif matrah</a></li>
+          <li><a href="#sinir">Neyi bilmiyor</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Bordro · Denetim</p>
+        <h1 id="hero-title">Maaş bordronuz doğru mu?</h1>
+        <p class="lede">Bordronuzdaki kesinti satırlarını girin. Araç aynı ayın
+          beklenen tutarlarını hesaplar ve satır satır karşılaştırır. Fark
+          çıkarsa “yanlış” demez — o rakamı hangi kümülatif matrahın üreteceğini
+          geri çözer, siz de bordronuzdaki kümülatif matrah satırıyla
+          karşılaştırırsınız.</p>
+      </div>
+    </section>
+
+    <section class="calc" id="hesapla" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="calc-title">Bordro denetimi</h2>
+        <form class="panel" id="bd-form" novalidate>
+          <div class="bd-grid">
+            <p class="panel-q">
+              <label for="bd-yil">Yıl</label>
+              <select id="bd-yil" name="yil"></select>
+            </p>
+            <p class="panel-q">
+              <label for="bd-ay">Bordronun ayı</label>
+              <select id="bd-ay" name="ay"></select>
+            </p>
+            <p class="panel-q">
+              <label for="bd-brut">Aylık brüt ücret (TL)</label>
+              <input id="bd-brut" name="brut" type="text" inputmode="decimal"
+                     autocomplete="off" placeholder="örn. 75.000">
+            </p>
+            <p class="panel-q">
+              <label for="bd-kumulatif">Önceki kümülatif matrah (TL)
+                <span class="bd-ops">isteğe bağlı</span></label>
+              <input id="bd-kumulatif" name="kumulatif" type="text" inputmode="decimal"
+                     autocomplete="off" placeholder="bordroda yazıyorsa girin">
+            </p>
+          </div>
+
+          <fieldset class="bd-bordro">
+            <legend>Bordronuzda yazan tutarlar</legend>
+            <p class="muted-note">Yalnızca doldurduğunuz satırlar karşılaştırılır.
+              Boş bıraktıklarınız için beklenen tutar yine de gösterilir.</p>
+            <div class="bd-grid">
+              <p class="panel-q">
+                <label for="bd-sgk">SGK işçi payı</label>
+                <input id="bd-sgk" type="text" inputmode="decimal" autocomplete="off">
+              </p>
+              <p class="panel-q">
+                <label for="bd-issizlik">İşsizlik sigortası</label>
+                <input id="bd-issizlik" type="text" inputmode="decimal" autocomplete="off">
+              </p>
+              <p class="panel-q">
+                <label for="bd-gv">Gelir vergisi</label>
+                <input id="bd-gv" type="text" inputmode="decimal" autocomplete="off">
+              </p>
+              <p class="panel-q">
+                <label for="bd-damga">Damga vergisi</label>
+                <input id="bd-damga" type="text" inputmode="decimal" autocomplete="off">
+              </p>
+              <p class="panel-q">
+                <label for="bd-net">Net ödenen</label>
+                <input id="bd-net" type="text" inputmode="decimal" autocomplete="off">
+              </p>
+            </div>
+          </fieldset>
+
+          <label class="bd-onay">
+            <input type="checkbox" id="bd-istisnasiz">
+            <span>Bu bordro <strong>ikinci işverene</strong> ait (asgari ücret
+              istisnası uygulanmaz)</span>
+          </label>
+        </form>
+
+        <div id="results" aria-live="polite"></div>
+        <p class="muted-note" id="msg">Brüt ücretinizi girin; denetim otomatik çalışır.</p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <p class="byline muted">Hazırlayan Koray Öner · Hesaplar
+        <a href="../bordro/">bordro motorundan</a> gelir; bu sayfada yasal
+        parametre kopyası yoktur.</p>
+
+      <h2 id="kumulatif">Bordronun “yanlış” görünmesinin en yaygın sebebi</h2>
+      <p>Gelir vergisi aylık kazanca değil, <strong>yıl başından beri biriken
+        matraha</strong> göre hesaplanır. Brütünüz hiç değişmese bile kesinti
+        yıl içinde artar; çünkü biriken matrah üst dilimlere girer. Ocaktaki
+        bordroyla ağustostakini kıyaslayıp “fazla kesilmiş” sonucuna varmak
+        bu yüzden yanılgıdır.</p>
+      <p>Bu araç farkı gördüğünde size “bordronuz hatalı” demez. Bunun yerine
+        tersine çözer: <em>yazdığınız gelir vergisini hangi kümülatif matrah
+        üretirdi?</em> Çıkan sayı, bordronuzdaki kümülatif matrah satırıyla
+        doğrudan karşılaştırılabilir. Tutuyorsa bordro doğru, sizin
+        varsayımınız eksikti. Tutmuyorsa sorulacak somut bir sorunuz var.</p>
+      <p>Netin yıl içinde nasıl hareket ettiğini
+        <a href="../makaleler/maasim-neden-dustu/">maaşım neden düştü</a> ve
+        <a href="../makaleler/yilin-en-dusuk-maasi-hangi-ay/">yılın en düşük
+        maaşı hangi ay</a> yazılarında ay ay anlattım.</p>
+
+      <h2 id="sinir">Bu araç neyi bilmiyor</h2>
+      <p>Bir bordroyu değiştiren her kalemi bilmesi mümkün değil. Aşağıdakiler
+        varsa fark çıkar ve bu <strong>hata anlamına gelmez</strong>:</p>
+      <ul>
+        <li>eksik gün — rapor, ücretsiz izin, ay içinde işe giriş veya çıkış</li>
+        <li>ek ödeme — prim, ikramiye, fazla mesai, yol ve yemek dışı ödemeler</li>
+        <li>icra kesintisi, sendika aidatı, özel sigorta, avans mahsubu</li>
+        <li>asgari geçim indirimi dönemine ait eski bordrolar</li>
+        <li>teşvikli prim uygulamaları ve özel sigorta kolu oranları</li>
+      </ul>
+      <p>Araç hangi varsayımlarla çalıştığını her sonucun altında listeler.
+        Varsayımı gizlemek yerine yazmak, sonucu doğru okumanın tek yolu.</p>
+    </div>
+
+    <section class="content">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanak</h2>
+          <ul>
+            <li>193 sayılı Gelir Vergisi Kanunu m.103 (tarife) ve m.23/1-18
+              (asgari ücret istisnası).</li>
+            <li>5510 sayılı Kanun m.82 (prime esas kazanç alt ve üst sınırı).</li>
+            <li>488 sayılı Damga Vergisi Kanunu ve ekli (1) sayılı tablo.</li>
+            <li>Asgari Ücret Tespit Komisyonu kararı (Resmî Gazete).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Fark çıktı, bordrom hatalı mı?</summary><p>Hayır, doğrudan böyle bir sonuç çıkarılamaz. En yaygın sebep kümülatif matrahtır: araç sizin girmediğiniz durumda yıl boyunca aynı brütle çalıştığınızı varsayar. Zam, prim veya ek ödeme aldıysanız bu varsayım gerçeği yansıtmaz. Bordronuzda kümülatif matrah satırı varsa onu girip tekrar deneyin.</p></details>
+          <details><summary>Kümülatif matrahı nereden bulurum?</summary><p>Çoğu bordroda “kümülatif vergi matrahı” ya da “kümülatif matrah” adıyla ayrı bir satır olarak yazar. Bu aydan önceki birikimi girin; içinde bulunduğunuz ayın matrahını eklemeyin.</p></details>
+          <details><summary>SGK satırı brütümle orantılı değil, neden?</summary><p>Prime esas kazancın alt sınırı asgari ücret, üst sınırı SGK prim tavanıdır. Brütünüz tavanın üstündeyse prim brütten değil tavandan kesilir; bu yüzden brüt arttıkça SGK kesintisi artmaz. Araç bu durumda tavanı ve prime esas kazancı gösterir.</p></details>
+          <details><summary>İki işverenden ücret alıyorum.</summary><p>Asgari ücret istisnası yalnızca bir işverende uygulanır. İkinci işverenin bordrosunu denetliyorsanız formdaki kutuyu işaretleyin; istisna ve damga istisnası uygulanmadan hesaplanır.</p></details>
+          <details><summary>Girdiğim rakamlar bir yere gönderiliyor mu?</summary><p>Hayır. Hesap tamamen tarayıcınızda yapılır; bordro tutarlarınız hiçbir sunucuya gitmez.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <ul>
+          <li><a href="../maas-hesaplama/">Brütten net maaş hesaplama</a> — 12 aylık dökümü görün.</li>
+          <li><a href="../isveren-maliyeti-hesaplama/">İşveren maliyeti hesaplama</a></li>
+          <li><a href="../prim-ikramiye-vergisi/">Prim ve ikramiye vergisi</a></li>
+          <li><a href="../fazla-mesai-hesaplama/">Fazla mesai hesaplama</a></li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanak</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanak</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı tutar için bordronuza ve mali müşavirinize danışın.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=86b81853" defer></script>
+  <script src="../bordro/motor.js?v=89d92ff6" defer></script>
+  <script src="denetim.js?v=ae7c1302" defer></script>
+  <script src="script.js?v=4b474ff5" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>

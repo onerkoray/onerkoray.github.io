@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/hakkimda/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -387,7 +387,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/bordro/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -634,7 +634,7 @@
       <image:title>Dither Studio — Dithering Görsel Aracı — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/doviz-kurlari/</loc><lastmod>2026-09-21</lastmod><changefreq>daily</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/doviz-kurlari/</loc><lastmod>2026-09-22</lastmod><changefreq>daily</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/doviz-kurlari-koray-oner.png</image:loc>
       <image:title>TCMB Döviz Kurları — 4 Eylül 2026 — Koray Öner</image:title>
@@ -828,6 +828,16 @@
     <image:image>
       <image:loc>https://korayoner.dev/images/makale/net-maas-mi-brut-maas-mi.png</image:loc>
       <image:title>Net maaşta mı, brüt maaşta mı anlaşmalı? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/bordro-denetim/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/bordro-denetim-koray-oner.png</image:loc>
+      <image:title>Bordro Denetimi 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
