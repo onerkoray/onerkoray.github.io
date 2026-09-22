@@ -998,4 +998,5 @@
     <image:image><image:loc>https://korayoner.dev/images/makale/krediyi-erken-kapatmak-mantikli-mi.png</image:loc><image:title>Krediyi erken kapatmak mı, mevduatta tutmak mı?</image:title></image:image>
   </url>
 <url><loc>https://korayoner.dev/pesin-mi-taksit-mi/</loc><lastmod>2026-09-15</lastmod><image:image><image:loc>https://korayoner.dev/images/pesin-mi-taksit-mi-koray-oner.png</image:loc><image:title>Peşin mi, taksit mi?</image:title></image:image></url>
+  <url><loc>https://korayoner.dev/basabas-hesaplama/</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

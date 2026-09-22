@@ -1,0 +1,51 @@
+.basabas-page .hero { padding: 2.5rem 0; }
+.basabas-page .hero-inner { display: block; }
+.basabas-page .hero h1 { max-width: 19ch; }
+.basabas-page .lede { max-width: 65ch; }
+.be-layout { display: grid; grid-template-columns: minmax(280px,.85fr) minmax(0,1.5fr); gap: 1.5rem; align-items: start; padding-bottom: 2rem; }
+.be-panel { min-width: 0; padding: clamp(1rem,2.5vw,1.8rem); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); }
+.be-output { min-width: 0; }
+.be-panel h2 { margin-top: 0; font-size: 1.3rem; }
+.be-panel h3 { margin-top: 1.75rem; font-size: 1.05rem; }
+.be-panel label { display: block; font-size: .85rem; font-weight: 650; margin: 1rem 0 .4rem; }
+.be-panel input { width: 100%; min-height: 46px; padding: .7rem; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface-2); color: var(--text); font: inherit; box-sizing: border-box; }
+.be-panel small, .be-note { display: block; font-size: .8rem; color: var(--text-muted); line-height: 1.65; }
+.be-panel small { margin-top: .45rem; }
+.be-panel button { min-height: 44px; padding: .65rem .9rem; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface); color: var(--text); font: 600 .85rem var(--font-body); cursor: pointer; }
+.be-panel button:hover { border-color: var(--brand); }
+.be-panel :is(button,input,summary):focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.be-panel .be-primary { width: 100%; margin-top: 1.4rem; background: var(--text); color: var(--surface); }
+.be-presets { display: flex; gap: .5rem; flex-wrap: wrap; }
+.be-pair { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.be-highlight { padding: 1.4rem; border-left: 3px solid var(--brand); background: var(--surface-note); }
+.be-highlight > span { color: var(--text-muted); font-size: .85rem; }
+.be-highlight strong { display: block; font-size: clamp(2rem,5vw,3.2rem); letter-spacing: -.04em; line-height: 1.2; margin: .5rem 0; overflow-wrap: anywhere; }
+.be-highlight p { margin-bottom: 0; font-size: .92rem; }
+.be-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.be-metrics div { padding: 1rem; border: 1px solid var(--border); }
+.be-metrics dt { font-size: .78rem; color: var(--text-muted); }
+.be-metrics dd { margin: .5rem 0 0; font-size: 1.2rem; font-weight: 700; overflow-wrap: anywhere; }
+.be-callout { padding: 1rem; border-block: 1px solid var(--border); font-size: .9rem; line-height: 1.65; }
+.be-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; font-size: .85rem; }
+.be-legend span:first-child { color: var(--dv-1); }
+.be-legend span:last-child { color: var(--dv-2); }
+#be-chart { display: block; width: 100%; height: auto; }
+#be-chart text { font: 12px sans-serif; fill: var(--text-muted); }
+#be-chart .axis { stroke: var(--dv-axis); stroke-width: 1; }
+#be-chart .revenue { fill: none; stroke: var(--dv-1); stroke-width: 3; }
+#be-chart .cost { fill: none; stroke: var(--dv-2); stroke-width: 3; stroke-dasharray: 7 4; }
+#be-chart .threshold { stroke: var(--text-muted); stroke-dasharray: 3 4; }
+.be-scroll { overflow-x: auto; margin-block: 1rem; border: 1px solid var(--border); }
+.be-scroll table { width: 100%; border-collapse: collapse; font-size: .8rem; font-variant-numeric: tabular-nums; }
+.be-scroll :is(td,th) { padding: .8rem; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--border); }
+.be-scroll th:first-child { text-align: left; }
+.be-scroll thead { background: var(--surface-2); }
+.be-scroll tr[data-base] { background: var(--surface-note); font-weight: 650; }
+.be-panel summary { min-height: 44px; cursor: pointer; padding-block: .7rem; font-size: .85rem; }
+.be-ledger div { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--border); padding: .75rem 0; font-size: .9rem; }
+.be-ledger dd { margin: 0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+#be-error { border-left: 3px solid var(--text); padding-left: 1rem; }
+[hidden] { display: none !important; }
+@media(max-width: 900px) { .be-layout { grid-template-columns: 1fr; } }
+@media(max-width: 440px) { .be-pair { grid-template-columns: 1fr; gap: 0; } .be-metrics { grid-template-columns: 1fr; } }
+@media print { #be-form, #be-export { display: none; } .be-layout { display: block; } .be-scroll { overflow: visible; } }
