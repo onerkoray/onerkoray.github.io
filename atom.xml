@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-22T10:40:14+03:00</updated>
+  <updated>2026-09-22T11:16:14+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>İki İş Teklifi Karşılaştırma 2026</title>
+    <link href="https://korayoner.dev/teklif-karsilastirma/"/>
+    <id>https://korayoner.dev/teklif-karsilastirma/</id>
+    <updated>2026-09-22T11:16:14+03:00</updated>
+    <summary>İki iş teklifini yıllık toplam net üzerinden karşılaştırın. Ocakta önde görünen teklif yılda geride kalabilir; araç bunu ölçüp söyler.</summary>
+  </entry>
 
   <entry>
     <title>Bordro Denetimi 2026 — Maaş Bordronuz Doğru mu?</title>

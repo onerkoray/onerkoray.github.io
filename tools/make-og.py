@@ -243,6 +243,10 @@ SPEC = {
    "İşveren maliyetinden her gider kalemine kadar tüm akış tek diyagramda — ve her kalemin ömür bedeli.",
    ["Sankey", "Ömür bedeli"], "finans"),
 
+ "teklif-karsilastirma": ("teklif-karsilastirma", "İki Teklif", "Karşılaştırma",
+   "Ocakta önde görünen teklif yılda geride kalabilir. İki teklifi yıllık toplam net üzerinden ölçer.",
+   ["Yıllık toplam net", "Tersinme uyarısı"], "bordro"),
+
  "bordro-denetim": ("bordro-denetim", "Bordro", "Denetimi",
    "Bordronuzdaki kesinti satırlarını beklenen tutarla karşılaştırır; fark varsa sebebini ölçerek gösterir.",
    ["Kümülatif matrah", "Satır satır fark"], "bordro"),

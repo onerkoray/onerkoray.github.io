@@ -190,5 +190,9 @@
   "bordro-denetim": {
     "cat": "maas",
     "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h8l4 4v8\"/><path d=\"M6 3v18h6\"/><path d=\"M14 3v4h4\"/><path d=\"M9 9h5M9 13h3\"/><circle cx=\"17.5\" cy=\"17.5\" r=\"3.5\"/><path d=\"M16 17.6l1.1 1.1 2-2.2\"/></svg>"
+  },
+  "teklif-karsilastirma": {
+    "cat": "maas",
+    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 20V10M5 20H3M5 20h2\"/><path d=\"M19 20V6M19 20h-2M19 20h2\"/><path d=\"M9 8h6\"/><path d=\"M12.5 5.5L15 8l-2.5 2.5\"/><path d=\"M15 15H9\"/><path d=\"M11.5 12.5L9 15l2.5 2.5\"/></svg>"
   }
 }
