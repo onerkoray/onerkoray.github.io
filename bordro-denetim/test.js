@@ -209,6 +209,54 @@ dogru("alakasiz damga farkinda istisna yorumu CIKMIYOR",
   !dSatir.sebepler.some(function (x) { return /istisna/i.test(x.metin); }),
   JSON.stringify(dSatir.sebepler));
 
+/* --- 9. Net farkı kesintilerin aynası mı ----------------------------
+   Net, diğer dört satırın türevi. Fark onların aynasıysa söylenmeli;
+   değilse SÖYLENMEMELİ -- ilişki ölçülüyor, varsayılmıyor. */
+(function () {
+  var h = D.ayHesapla(YIL, 8, 75000, 7 * D.ayMatrahi(YIL, 8, 75000));
+  /* Yalnızca gelir vergisi saptırılıyor; net de tam o kadar sapar. */
+  var sapma = 500;
+  var r = D.denetle({
+    yil: YIL, ay: 8, brut: 75000,
+    bordro: { sgk: h.sgk, issizlik: h.issizlik,
+              gelirVergisi: h.gelirVergisi - sapma, damga: h.damga,
+              net: h.net + sapma }
+  });
+  var n = r.satirlar.filter(function (s) { return s.anahtar === "net"; })[0];
+  dogru("net farkı kesintilerin aynasıysa söyleniyor",
+    n.tamam === false &&
+    n.sebepler.some(function (x) { return /aynas\u0131/.test(x.metin) || /aynası/.test(x.metin); }),
+    JSON.stringify(n.sebepler));
+
+  /* Kesinti satırı hiç girilmediyse ilişki ÖLÇÜLEMEZ: yorum çıkmamalı. */
+  var r2 = D.denetle({ yil: YIL, ay: 8, brut: 75000, bordro: { net: 1 } });
+  var n2 = r2.satirlar.filter(function (s) { return s.anahtar === "net"; })[0];
+  dogru("kesinti girilmediyse ayna yorumu ÇIKMIYOR",
+    n2.sebepler.length === 0, JSON.stringify(n2.sebepler));
+
+  /* DAR BANT: kesinti hiç girilmemişken net farkı tolerans ile 0,02
+     arasındaysa "kesintilerin aynası" demek saçma olurdu — karşılaştırılan
+     kesinti yok. girilen > 0 şartı bu bandı koruyor; şartı kaldıran
+     mutasyon başta buradan kaçmıştı. */
+  var dar = D.denetle({ yil: YIL, ay: 8, brut: 75000,
+    bordro: { net: h.net + 0.015 } });
+  var nd = dar.satirlar.filter(function (s) { return s.anahtar === "net"; })[0];
+  dogru("dar bantta kesinti girilmemişse ayna yorumu ÇIKMIYOR",
+    nd.tamam === false && nd.sebepler.length === 0,
+    "fark=" + nd.fark + " sebep=" + JSON.stringify(nd.sebepler));
+
+  /* Kesintiler doğru ama net yanlışsa ayna ilişkisi YOK: çıkmamalı. */
+  var r3 = D.denetle({
+    yil: YIL, ay: 8, brut: 75000,
+    bordro: { sgk: h.sgk, issizlik: h.issizlik, gelirVergisi: h.gelirVergisi,
+              damga: h.damga, net: h.net + 1234 }
+  });
+  var n3 = r3.satirlar.filter(function (s) { return s.anahtar === "net"; })[0];
+  dogru("kesintiler doğruyken ayna yorumu ÇIKMIYOR",
+    n3.tamam === false && n3.sebepler.length === 0,
+    JSON.stringify(n3.sebepler));
+})();
+
 /* --- KONTROLLER ---------------------------------------------------- */
 dogru("KONTROL: satır listesi beş kalem", D.SATIRLAR.length === 5);
 dogru("KONTROL: tolerans bir kuruş", D.TOLERANS === 0.01);
