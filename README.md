@@ -45,17 +45,24 @@ Bordro.yillar();                    // [2026, 2025, … 2020]
 | `bordro/parametreler.js` | 2020-2026 yasal parametreleri — tek doğruluk kaynağı |
 | `bordro/motor.js` | Hesaplama: kümülatif tarife, SGK taban/tavan, istisnalar, damga, netten brüte |
 | `bordro/cikis.js` | Çıkış paketi: fesih türü hak matrisi, kıdem, ihbar, izin, işsizlik ödeneği ve takvim |
-| `bordro/test.js` | 70 doğrulama; en güçlüsü resmî net asgari ücret karşılaştırması |
-| `bordro/cikis-test.js` | 98 doğrulama; en güçlüsü "hak yoksa tutar da yok" değişmezi |
+| `bordro/test.js` | Net asgari ücret, sınır değerler ve net sözleşme doğrulamaları |
+| `bordro/cikis-test.js` | Çıkış senaryoları; en güçlüsü "hak yoksa tutar da yok" değişmezi |
 | `bordro/calisma-bicimi.js` | Çalışan / şahıs / limited senaryolarını aynı toplam maliyet üzerinden karşılaştırır |
-| `bordro/calisma-bicimi-test.js` | 75 doğrulama; en güçlüsü "ortak payda gerçekten ortak mı" |
+| `bordro/calisma-bicimi-test.js` | Çalışma biçimi senaryoları; en güçlüsü "ortak payda gerçekten ortak mı" |
 | `tools/parametre-kopyasi.js` | Yasal parametrenin `bordro/` dışına kopyalanmasını CI'da engeller |
 | `tools/bordro-tablo.js` | `bordro/index.html` parametre tablosunu parametrelerden üretir |
 | `tools/metodoloji-blogu.py` | Araç sayfalarına metodoloji/künye bloğunu yerleştirir |
 | `tools/sayfa-denetimi.py` | Kırık bağlantı, meta, görsel, başlık düzeni ve sitemap denetimi |
 | `tools/makale-gorsel.js` | Makale kapakları: motordan üretilen veri illüstrasyonları |
 | `tools/makale-listesi.py` | Makale listelerini yazıların kendisinden üretir (başlık, özet, okuma süresi) |
-| `tools/diyagram.js` | Açıklayıcı şemalar: içerik motordan ve depodan üretilir, elle çizilmez |
+| `tools/diyagram.js` | Bordro haritası, sürüm bilgisi ve tüm modüllerin çalışan testlerinden doğrulama dökümü |
+| `tools/bordro-envanter.js` | Araçları gerçek HTML script bağımlılıklarından keşfeder; bağımsız motorları ayırır |
+| `tools/bordro-sayfa-test.js` | Canlı örneğin tarayıcı motoruyla bağlantısı, net sözleşme ve girdi kontrolleri |
+| `bordro/ornek.js` | Belge sayfasındaki canlı brüt/net sözleşme örneği |
+| `bordro/ek-odeme-motoru.js` | Prim ve ikramiyenin yıllık bordroya marjinal etkisi |
+| `bordro/gmsi-motor.js` | Kira geliri, istisna ve gider yöntemleri |
+| `bordro/beyanname-motoru.js` | Çoklu gelir için beyan kararı, matrah ve mahsup |
+| `bordro/emeklilik-motor.js`, `bordro/borc-motor.js` | Aynı klasörde bulunan, kendi parametrelerini kullanan bağımsız motorlar |
 | `tools/make-og.py` | Paylaşım kartları: 8 palet × 4 düzen, aileye göre dağıtılır; `--kontrast` ile doğrulanır |
 | `tools/css-kontrol.js` | CSS parantez dengesi — bozuk parantez sonraki kuralı sessizce düşürür |
 | `tools/parametre-kopyasi.js` | Yasal parametrelerin motor dışına kopyalanmasını engeller |
@@ -69,7 +76,9 @@ node tools/bordro-tablo.js              # parametre tablosunu yeniden üret
 python tools/metodoloji-blogu.py        # künyeleri güncelle
 python tools/sayfa-denetimi.py          # sayfa kalitesi denetimi
 node tools/css-kontrol.js               # CSS parantez dengesi
-node tools/diyagram.js                  # şemaları yeniden üret
+node tools/diyagram.js                  # harita, sürüm ve test dökümünü üret
+node tools/diyagram.js --check          # üretilen belge güncel mi
+node tools/bordro-sayfa-test.js         # canlı örnek ve envanter regresyonları
 python tools/make-og.py --kontrast      # kart paletleri AA geçiyor mu
 python tools/make-og.py                 # paylaşım kartlarını yeniden üret (Chrome gerekir)
 ```

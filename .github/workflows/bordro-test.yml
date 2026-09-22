@@ -648,6 +648,9 @@ jobs:
         # eskirken sessiz kalır, üretilen şema burada patlar.
         run: node tools/diyagram.js --check
 
+      - name: Bordro belgesi ve canlı örnek
+        run: node tools/bordro-sayfa-test.js
+
       - name: Kart karoları ikon kaynağıyla aynı mı
         run: python tools/kart-karo.py --check
 

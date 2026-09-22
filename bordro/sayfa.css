@@ -1,0 +1,84 @@
+/* Bordro belgeleri: sitenin tema değişkenlerini izler. */
+.hero { padding-block: clamp(2.5rem, 5vw, 4rem); }
+section[aria-labelledby="ekosistem"] { padding-top: 1.5rem; padding-bottom: 2.5rem; }
+section[aria-labelledby="deney"] { padding-block: 2.5rem; }
+#deney, #dogrulama, #kullanim-title, #kapsam-title { scroll-margin-top: 10rem; }
+.bordro-deney { border: 1px solid var(--border); border-radius: 20px; padding: clamp(1rem, 3vw, 2rem); background: var(--surface); }
+.bordro-alanlar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.bordro-alanlar label { display: block; margin-bottom: .4rem; font-weight: 600; font-size: .9rem; }
+.bordro-alanlar input, .bordro-alanlar select { width: 100%; min-height: 46px; padding: .7rem; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; font: inherit; box-sizing: border-box; }
+.bordro-deney :is(input, select, button):focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.bordro-deney button { min-height: 44px; padding: .65rem 1.1rem; border: 1px solid var(--brand); border-radius: 8px; color: var(--text); background: var(--surface); font: inherit; cursor: pointer; }
+.bordro-deney [aria-invalid="true"] { border-color: var(--text); }
+.bordro-deney .bordro-hata { font-weight: 600; }
+.bordro-hata:empty { display: none; }
+.bordro-ozet { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 1rem 0; }
+.bordro-ozet div { border: 1px solid var(--border); border-radius: 12px; padding: 1rem; }
+.bordro-ozet dt { font-size: .8rem; color: var(--text-muted); }
+.bordro-ozet dd { margin: .5rem 0 0; font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 700; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.bordro-deney .payroll { width: 100%; min-width: 0; }
+.bordro-deney .payroll th { white-space: normal; }
+.bordro-deney details { margin-top: 1rem; }
+.bordro-deney summary { cursor: pointer; padding-block: .65rem; }
+.bordro-deney [hidden] { display: none; }
+/* Araç sayısı büyüdüğünde harita sütunlarının yüksekliğini dengeler. */
+.bm-map .bm-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 2.5rem; }
+.bm-map [data-group="araclar"] { grid-column: 1 / -1; order: 1; }
+.bm-map [data-group="araclar"] .bm-items { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 1rem; }
+.bm-map .bm-wires { display: block; }
+.bm-map .bm-groups { margin-top: 0; }
+.bm-map .bm-core::after, .bm-map .bm-group::before {
+  animation: bordro-nabiz 3.6s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.bm-map [data-group="hesaplar"]::before { animation-delay: -.9s; }
+.bm-map [data-group="denetim"]::before { animation-delay: -1.8s; }
+.bm-map [data-group="araclar"]::before { animation-delay: -2.7s; }
+.bm-map [data-group="araclar"]::after {
+  content: ""; position: absolute; bottom: calc(100% + 4px); left: calc(50% - 1px);
+  width: 2px; height: calc(2.5rem - 8px); pointer-events: none;
+  background: linear-gradient(to bottom, var(--bm-line) 0 30%, var(--brand) 50%, var(--bm-line) 70% 100%);
+  background-size: 100% 250%;
+  animation: bordro-cikis 2.4s linear infinite; animation-play-state: paused;
+}
+.bm-core-emblem { position: relative; }
+.bm-core-emblem::before {
+  content: ""; position: absolute; inset: -6px; border: 1px dashed var(--brand);
+  border-radius: 50%; opacity: .45; pointer-events: none;
+  animation: bordro-yorunge 18s linear infinite; animation-play-state: paused;
+}
+.bm-map .bm-core-emblem .bm-icon {
+  animation: bordro-ikon 3.6s ease-in-out infinite; animation-play-state: paused;
+}
+.bm-map[data-motion="on"] .bm-core::after,
+.bm-map[data-motion="on"] .bm-core-emblem::before,
+.bm-map[data-motion="on"] .bm-core-emblem .bm-icon,
+.bm-map[data-motion="on"] .bm-group::before,
+.bm-map[data-motion="on"] [data-group="araclar"]::after { animation-play-state: running; }
+@keyframes bordro-nabiz { 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--brand) 15%, transparent); } }
+@keyframes bordro-cikis { from { background-position: 0 100%; } to { background-position: 0 0; } }
+@keyframes bordro-yorunge { to { transform: rotate(360deg); } }
+@keyframes bordro-ikon { 50% { transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) {
+  .bm-map .bm-core::after, .bm-map .bm-core-emblem::before,
+  .bm-map .bm-core-emblem .bm-icon, .bm-map .bm-group::before,
+  .bm-map [data-group="araclar"]::after { animation: none; }
+}
+@media print {
+  .bm-map .bm-core::after, .bm-map .bm-core-emblem::before,
+  .bm-map .bm-core-emblem .bm-icon, .bm-map .bm-group::before,
+  .bm-map [data-group="araclar"]::after { animation: none; }
+  .bm-map .bm-wires { display: none; }
+}
+@media (max-width: 760px) {
+  .bordro-ozet { grid-template-columns: 1fr; }
+  .bm-map .bm-groups { grid-template-columns: 1fr; }
+  .bm-map .bm-wires { display: none; }
+  .bm-map .bm-groups { margin-top: 2rem; gap: 1rem; padding-left: 14px; border-left: 1px solid var(--bm-line); }
+  .bm-map .bm-group::before { top: 24px; left: -19px; }
+  .bm-map [data-group="araclar"]::after { display: none; }
+  .bm-map [data-group="araclar"] .bm-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .bordro-alanlar, .bm-map [data-group="araclar"] .bm-items { grid-template-columns: 1fr; }
+}
