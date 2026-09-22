@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-21T16:54:08+03:00</updated>
+  <updated>2026-09-22T10:40:14+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Bordro Denetimi 2026 — Maaş Bordronuz Doğru mu?</title>
+    <link href="https://korayoner.dev/bordro-denetim/"/>
+    <id>https://korayoner.dev/bordro-denetim/</id>
+    <updated>2026-09-22T10:40:14+03:00</updated>
+    <summary>Bordronuzdaki kesinti satırlarını beklenen tutarla karşılaştırın. Fark varsa o rakamı hangi kümülatif matrahın ürettiğini gösterir.</summary>
+  </entry>
 
   <entry>
     <title>Yılın En Düşük Maaşı Hangi Ay? 2026 Taraması</title>
