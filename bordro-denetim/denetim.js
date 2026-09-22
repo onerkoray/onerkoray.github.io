@@ -185,6 +185,32 @@
       }
     }
 
+    if (anahtar === "net") {
+      /* Net, diğer dört satırın türevi: brüt eksi kesintiler. Fark,
+         kesintilerdeki farkın aynasıysa bunu SÖYLEMEK gerekir --
+         yoksa okur aynı tutarı iki kez görüp iki ayrı hata sanar.
+         İlişki ÖLÇÜLÜYOR, varsayılmıyor: yalnızca girilen kesinti
+         satırlarının farkı nette görülen farkı tam karşılıyorsa. */
+      var kesintiFarki = 0, girilen = 0;
+      ["sgk", "issizlik", "gelirVergisi", "damga"].forEach(function (k) {
+        var v = girdi.bordroSatirlari && girdi.bordroSatirlari[k];
+        if (typeof v === "number" && isFinite(v)) {
+          kesintiFarki += v - hesap[k];
+          girilen++;
+        }
+      });
+      if (girilen > 0 && Math.abs(fark + kesintiFarki) <= 0.02) {
+        out.push({
+          tur: "olcum",
+          metin: "Bu fark yeni bir bulgu değil: yukarıdaki kesinti " +
+            "satırlarındaki farkın aynası. Net, brütten kesintiler " +
+            "düşülerek bulunduğu için kesinti fazlaysa net eksik çıkar.",
+          veri: { "kesintilerdeki toplam fark": kesintiFarki,
+                  "nette gorulen fark": fark }
+        });
+      }
+    }
+
     if (anahtar === "damga") {
       var istisnasiz = girdi.brut * P.oranlar.damga;
       if (Math.abs(sizin - istisnasiz) <= 0.5 && Math.abs(beklenen - istisnasiz) > 0.5) {
@@ -250,7 +276,8 @@
         sebepler: (tamam === false)
           ? sebepler(s.anahtar, beklenen, sizin,
               { yil: yil, ay: ay, brut: girdi.brut,
-                kumulOnce: kumulOnce, secenekler: secenekler }, hesap)
+                kumulOnce: kumulOnce, secenekler: secenekler,
+                bordroSatirlari: bordro }, hesap)
           : []
       };
     });
