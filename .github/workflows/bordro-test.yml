@@ -624,6 +624,23 @@ jobs:
         # yanlis cevap verir.
         run: node bordro-denetim/test.js
 
+      - name: Kategori düzeni
+        # Ölçüldüğünde kategoriler iki yönde birden bozuktu.
+        #
+        # ARAÇLARDA çöp kutusu vardı: 49 aracın 25'i "vergi" etiketi
+        # taşıyordu ve içinde döviz kurları, kredi hesaplama, borç
+        # kapatma planı ve "ev almak mı kiralamak mı" duruyordu. Filtre
+        # düğmesinin kendi adı bunu itiraf ediyordu: "Vergi & Finans".
+        #
+        # MAKALELERDE dağılma vardı: 36 yazıya 16 etiket, 10'u tek üyeli,
+        # ve ikisi aynı şeydi — yalnızca büyük harfle ayrılıyordu.
+        #
+        # Bir aracın kategorisi ÜÇ yerde yazılı: data-cat, karo sınıfı ve
+        # card-icons.json. Üçü ayrıştığında hiçbir şey bozulmaz; yalnızca
+        # filtre ile karo birbirini tutmaz. Kapı üçünü bağlıyor ve
+        # çöp kutusunun yeniden oluşmasını engelliyor.
+        run: node tools/taksonomi-test.js
+
       - name: Erişilebilirlik
         # Site erişilebilirlik iddia ediyor: Person.knowsAbout icinde
         # "Web erişilebilirliği (WCAG)" yazıyor ve sayfalar skip-link,

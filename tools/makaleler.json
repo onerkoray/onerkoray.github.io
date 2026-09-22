@@ -7,19 +7,19 @@
   },
   {
     "slug": "tasarruf-kimde-finansman-kimde",
-    "kicker": "Makro",
+    "kicker": "Finans",
     "alt": "Tasarrufun en büyük payı şirketlerde, finansman ihtiyacı KOBİ'lerde; 2024'te KOBİ kredisi nominal %33,62 büyüdü, reel %7,45 küçüldü.",
     "altyazi": "Gıda ve konut-kira alt gelir grubunun bütçesinde 28,7 puan fazla yer tutuyor — aynı enflasyon aynı şeyi yapmıyor."
   },
   {
     "slug": "kredi-tavani-ve-banka-karliligi",
-    "kicker": "Para politikası",
+    "kicker": "Finans",
     "alt": "Kredi büyümesine konan tavanlar yıllığa çevrildiğinde %6,7–33,1 aralığında; gerçekleşen büyüme %34,2.",
     "altyazi": "Aradaki farkın adı regülasyon takozu — ve kaynaklarının hiçbiri kural ihlali değil."
   },
   {
     "slug": "sgk-prim-tavani-9-kat",
-    "kicker": "Sosyal güvenlik",
+    "kicker": "Emeklilik ve sosyal güvenlik",
     "alt": "Prim tavanı 2026'da asgari ücretin 7,5 katından 9 katına çıktı; etki 247.725 TL'nin üstünde başlıyor, 297.270 TL'de doyuyor.",
     "altyazi": "Tavandaki ücretli, tavanın üç katını kazanandan daha çok kaybediyor — prim tabanı sınırlı, vergi kalkanı değil."
   },
@@ -55,7 +55,7 @@
   },
   {
     "slug": "fazla-mesai-zammi-yuzde-kac",
-    "kicker": "Çalışma hayatı",
+    "kicker": "Bordro",
     "alt": "40 saatlik sözleşmeyle 48 saat çalışılan hafta üç bölgeye ayrılır: 40'a kadar normal, 40–45 arası %25, 45 üstü %50",
     "altyazi": "40 saatlik sözleşmeyle 48 saat çalışılan hafta üç bölgeye ayrılır; ortadaki beş saat %25, üstteki üç saat %50 zamlıdır."
   },
@@ -67,7 +67,7 @@
   },
   {
     "slug": "emekliligin-finansal-matematigi",
-    "kicker": "Akademik",
+    "kicker": "Emeklilik ve sosyal güvenlik",
     "alt": "Aynı görünen üç çift sayı: bağımlılık oranı ile aktif/pasif, model ikame oranı ile gözlenen gelir, fon stoku ile yeni tasarruf",
     "altyazi": "Birbirinin yerine kullanılan üç çift gösterge, aynı şeyi ölçmüyor: bağımlılık oranı ile aktif/pasif, model ikame oranı ile gözlenen gelir, fon stoku ile yeni tasarruf."
   },
@@ -80,13 +80,13 @@
   },
   {
     "slug": "vergi-kamasi-ucretin-gercek-yuku",
-    "kicker": "Kamu maliyesi",
+    "kicker": "Vergi",
     "alt": "İşveren maliyetinin ne kadarı çalışana ulaşıyor? Kama tavanda %51,0 ile zirve yapıp düşüyor",
     "altyazi": "İşverenin ödediği toplam maliyet ile çalışanın eline geçen net arasındaki kama, gelir düzeyi yükseldikçe nasıl değişiyor."
   },
   {
     "slug": "zam-net-maasa-ne-kadar-yansir",
-    "kicker": "Maaş",
+    "kicker": "Bordro",
     "alt": "%30 brüt zam nete %26,5 yansıyor — ama 300 bin TL brütte %31,8, yani brütten fazla",
     "altyazi": "Aynı zam oranı, vergi dilimi geçişleri yüzünden yıl içinde nete farklı yansıyor."
   },
@@ -98,13 +98,13 @@
   },
   {
     "slug": "uzun-vadeli-yatirim-nasil-yapilir",
-    "kicker": "Yatırım",
+    "kicker": "Finans",
     "alt": "Getiriyi doğru ölçmek, enstrüman seçmekten önemli: reel getiri, verginin bileşik etkisi ve sıra riski",
     "altyazi": "Sanılan getiriden vergi ve enflasyon sonrası reel getiriye üç basamak."
   },
   {
     "slug": "emekli-maasi-nasil-hesaplanir",
-    "kicker": "Emeklilik",
+    "kicker": "Emeklilik ve sosyal güvenlik",
     "alt": "“Yeni sistem” haberini kontrol ettik: aynı içerik üç başlıkla dolaşıyor, yürürlükte değişen bir şey yok",
     "altyazi": "Aynı içerik üç ayrı başlıkla dolaşıyor; yürürlükte değişen bir şey yok."
   },
@@ -122,13 +122,13 @@
   },
   {
     "slug": "proforma-fatura-nedir",
-    "kicker": "Fatura ve Belge",
+    "kicker": "Vergi",
     "alt": "Proforma muhasebe kaydı doğurmaz ama kabul edilince sözleşme kurar; dört belgenin farkı tek tabloda",
     "altyazi": "Proforma fatura ile ticari faturanın hangi alanlarda ayrıldığı."
   },
   {
     "slug": "issizlik-maasi-ne-kadar",
-    "kicker": "Sosyal Güvenlik",
+    "kicker": "Emeklilik ve sosyal güvenlik",
     "alt": "İşsizlik ödeneğinin tabanı 13.112 TL, tavanı 26.223 TL; ikisi de net asgari ücret olan 28.076 TL'nin altında"
   },
   {
@@ -203,7 +203,7 @@
   },
   {
     "slug": "bes-devlet-katkisi-ne-kadar-degerli",
-    "kicker": "Emeklilik",
+    "kicker": "Emeklilik ve sosyal güvenlik",
     "alt": "Yıllık katkı arttıkça efektif eşleşme oranının tavandan sonra hiperbolik biçimde erimesi",
     "altyazi": "Devlet katkısı katkı akışıyla, fon gideri birikim stokuyla orantılı; ikisi aynı hızda büyümediği için bir kesişim yılı var."
   }
