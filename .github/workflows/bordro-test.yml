@@ -608,6 +608,22 @@ jobs:
         # yanlis cevap verir.
         run: node bordro-denetim/test.js
 
+      - name: Erişilebilirlik
+        # Site erişilebilirlik iddia ediyor: Person.knowsAbout icinde
+        # "Web erişilebilirliği (WCAG)" yazıyor ve sayfalar skip-link,
+        # ARIA rolleri, görünmez başlık taşıyor. Ama hiçbir kontrol bu
+        # ekseni ölçmüyordu; ölçülmeyen iddia iddiadır.
+        #
+        # İlk tarama 143 sayfada bir gerçek kusur buldu: dither-studio
+        # yöntem seçicisinin erişilebilir adı yoktu. <legend> fieldset'i
+        # adlandırır, içindeki kontrolü değil.
+        #
+        # Kapı yalnızca ikili cevabı olanı soruyor. Kontrast ve odak
+        # sırası statik olarak karara bağlanamaz; denemek uydurma bulgu
+        # üretirdi. Gizli alan da kusur sayılmaz — erişilebilirlik
+        # ağacında yoktur, adı onu tetikleyen düğmededir.
+        run: node tools/erisilebilirlik-test.js
+
       - name: Makale kabuğu ve sınıfları
         # Bir makalenin gövdesini şablona bakmadan kurdum ve sarmal
         # olarak .wrap kullanmadım; genişliği sınırlayan sınıf o.
