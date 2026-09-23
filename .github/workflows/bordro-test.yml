@@ -663,6 +663,16 @@ jobs:
         # ağacında yoktur, adı onu tetikleyen düğmededir.
         run: node tools/erisilebilirlik-test.js
 
+      - name: Gezinti tutarlılığı
+        # KeyMint alt sayfalarında birincil gezinti iki kez “Tüm araçlar”
+        # diyordu: biri site geneline, diğeri KeyMint’in kendi listesine
+        # gidiyordu. Ekran okuyucunun bağlantı listesi iki aynı girdi okuyor;
+        # görenler içinse hangisinin nereye gittiği belirsiz. Erişilebilirlik
+        # kapısı boş bağlantıyı ve erişilebilir adı denetliyor ama aynı adın
+        # farklı hedefe gitmesini görmüyordu. Kapı yalnızca <nav> içine
+        # bakıyor: gövde metninde aynı sözcüğün iki yere bağlanması normaldir.
+        run: node tools/gezinti-test.js
+
       - name: Makale kabuğu ve sınıfları
         # Bir makalenin gövdesini şablona bakmadan kurdum ve sarmal
         # olarak .wrap kullanmadım; genişliği sınırlayan sınıf o.
