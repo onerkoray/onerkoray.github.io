@@ -255,6 +255,9 @@ jobs:
       # hucre karsilastirilir.
       - name: MTV yazısının sayıları
         run: node makaleler/mtv-2026-ne-kadar/sayi-testi.js
+      - name: Emekli promosyonunun ekonomik modelleri
+        run: node makaleler/emekli-promosyonunun-ekonomisi/sayi-testi.js
+
       - name: Güncel finans yazılarının sayısal örnekleri
         run: node makaleler/enflasyon-duserken-fiyatlar-neden-dusmuyor/sayi-testi.js && node makaleler/ciro-artarken-nakit-neden-azalir/sayi-testi.js
 

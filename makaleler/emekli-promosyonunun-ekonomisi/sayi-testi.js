@@ -1,0 +1,14 @@
+'use strict';
+const assert=require('assert'),fs=require('fs');
+const html=fs.readFileSync(__dirname+'/index.html','utf8');
+const close=(a,b)=>assert(Math.abs(a-b)<.005,`${a} != ${b}`);
+const factor=Array.from({length:36},(_,i)=>1/1.015**(i+1)).reduce((a,b)=>a+b,0);
+close(18000/factor,650.74);
+[400,650,900].forEach((g,i)=>close(g*factor-18000,[-6935.73,-20.56,6894.62][i]));
+close(30000*36,1080000);close(15000*.1/12,125);
+[0,3000,6000].forEach((reward,i)=>close(24000+reward-7000-1200,[15800,18800,21800][i]));
+close(24000+2200-8200,18000);
+close(30000-Array.from({length:6},(_,i)=>5000/1.02**(i+1)).reduce((a,b)=>a+b,0),1992.85);
+close(12000*24/36,8000);close(18000-8000,10000);
+for(const s of ['650,74','−6.935,73','−20,56','+6.894,62','15.800','18.800','21.800','2.200','1.992,85','8.000','10.000'])assert(html.includes(s),s);
+console.log('Promosyon: banka NBD, kişisel net fayda, kredi avantajı ve iade modelleri doğrulandı.');
