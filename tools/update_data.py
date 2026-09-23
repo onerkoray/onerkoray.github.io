@@ -520,7 +520,7 @@ PAGE = """<!DOCTYPE html>
   </header>
 
   <main id="main">
-    <nav class="breadcrumb wrap" aria-label="Site haritası">
+    <nav class="breadcrumb wrap" aria-label="Konum">
       <a href="../">Ana Sayfa</a> <span aria-hidden="true">/</span> <span>TCMB Döviz Kurları</span>
     </nav>
 

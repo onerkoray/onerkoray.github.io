@@ -682,6 +682,14 @@ jobs:
         # var olan sınıflar gerekçeleriyle kanca listesinde.
         run: node tools/sinif-gercekligi-test.js
 
+      - name: Görünür iz ve BreadcrumbList
+        # 22 sayfada görünür iz vardı, BreadcrumbList yoktu; arama sonucunda yol
+        # yerine çıplak URL görünüyordu. Eksikler görünür izden türetildi (ölçüm:
+        # 117/117 sayfada izin bağlantıları LD ara öğeleriyle aynı). Kapı ikisinin
+        # kopmasını, son öğenin çapa olmasını, yinelenen URL'yi ve iz etiketini
+        # ("Konum") denetler.
+        run: node tools/iz-test.js
+
       - name: Makale kabuğu ve sınıfları
         # Bir makalenin gövdesini şablona bakmadan kurdum ve sarmal
         # olarak .wrap kullanmadım; genişliği sınırlayan sınıf o.

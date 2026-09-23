@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr" data-theme="auto"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
 <title>Yatırım Fizibilitesi: NBD ve İç Verim Oranı | Koray Öner</title><meta name="description" content="Yatırımın net bugünkü değerini, iç verim oranını ve geri ödeme süresini hesaplayın. Yıllık nakit akışları, üç senaryo, grafik ve CSV raporuyla analiz edin.">
 <meta name="author" content="Koray Öner"><meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://korayoner.dev/yatirim-fizibilite-hesaplama/">
@@ -9,6 +9,7 @@
 <meta property="og:image" content="https://korayoner.dev/images/koray-oner-kapak.png"><meta property="og:image:alt" content="Koray Öner finansal hesaplama araçları"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Yatırım Fizibilitesi: NBD ve İç Verim Oranı"><meta name="twitter:description" content="Yatırımın net bugünkü değerini, iç verim oranını ve geri ödeme süresini hesaplayın. Yıllık nakit akışları, üç senaryo, grafik ve CSV raporuyla analiz edin."><meta name="twitter:image" content="https://korayoner.dev/images/koray-oner-kapak.png">
 <link rel="stylesheet" href="../style.css?v=02b6a168"><link rel="stylesheet" href="style.css?v=8be356a5"><script src="../onay.js?v=0e361dc9" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "image": "https://korayoner.dev/images/koray-oner-kapak.png", "name": "Yatırım Fizibilitesi: NBD ve İç Verim Oranı", "url": "https://korayoner.dev/yatirim-fizibilite-hesaplama/", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "inLanguage": "tr", "description": "Yatırımın net bugünkü değerini, iç verim oranını ve geri ödeme süresini hesaplayın. Yıllık nakit akışları, üç senaryo, grafik ve CSV raporuyla analiz edin.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "author": {"@type": "Person", "@id": "https://korayoner.dev/#oner-koray", "name": "Koray Öner", "url": "https://korayoner.dev/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Yatırım Fizibilitesi", "item": "https://korayoner.dev/yatirim-fizibilite-hesaplama/"}]}</script>
 </head><body class="calculator-page investment-page"><a class="skip-link" href="#main">İçeriğe geç</a>
 <header class="site-header" role="banner">
     <div class="wrap header-inner">
@@ -32,7 +33,7 @@
       </button>
     </div>
   </header><main id="main">
-<nav class="breadcrumb wrap" aria-label="Site haritası"><a href="../">Ana Sayfa</a> › Yatırım Fizibilitesi</nav>
+<nav class="breadcrumb wrap" aria-label="Konum"><a href="../">Ana Sayfa</a> › Yatırım Fizibilitesi</nav>
 <section class="hero"><div class="wrap hero-inner"><p class="eyebrow">Yatırım kararı · Nakit akışı · Risk senaryoları</p><h1>Yatırım Fizibilitesi Analizi</h1><p class="lede">Bir projenin gelir üretmesi, sermayenizin karşılığını verdiği anlamına gelmez. <strong>Paranın zaman değerini</strong> hesaba katın; yatırımın ne kadar değer ürettiğini ve hangi varsayımlara duyarlı olduğunu birlikte görün.</p></div></section>
 <div class="wrap investment-layout" id="hesapla">
 <form class="investment-panel" id="investment-form"><h2>Yatırımın varsayımları</h2><p class="investment-note">Örnek tutarlar piyasa tahmini değildir. Tüm akışlar yıllık, yıl sonu ve nominal TL cinsindedir.</p>
