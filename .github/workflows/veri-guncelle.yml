@@ -32,6 +32,18 @@ jobs:
       - name: Sayfaları yeniden üret
         run: python tools/update_data.py
 
+      # TÜFE serisi TCMB'nin Tüketici Fiyatları tablosundan. Betik yazmadan
+      # önce açıklanmış dört SSK/Bağ-Kur artışını seriden yeniden hesaplar;
+      # tutmazsa, kaynak geri gitmişse ya da geçmiş bir ay değişmişse dosyayı
+      # YAZMAZ ve adım kırmızı olur. Emekli zammı sayfası seriden üretilir;
+      # değiştiyse sitemap lastmod'u aynı commit'te bugüne çekilir (döviz
+      # sayfasıyla aynı model). Etiket/damga adımlarından ÖNCE: dönem
+      # ilerleyince <title> değişir, favicon ve damga ondan türer.
+      - name: TÜFE serisi ve emekli zammı sayfası
+        run: |
+          python tools/tufe-guncelle.py
+          node tools/emekli-zammi-sayfa.js --sitemap
+
       # update_data.py doviz sayfasini SABLONDAN bastan yaziyor; sablonda
       # og:image:alt, twitter:description ve kunye blogu yok. Bunlari
       # sonradan ekleyen uretecler burada calismazsa her veri

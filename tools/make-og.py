@@ -243,6 +243,10 @@ SPEC = {
    "İşveren maliyetinden her gider kalemine kadar tüm akış tek diyagramda — ve her kalemin ömür bedeli.",
    ["Sankey", "Ömür bedeli"], "finans"),
 
+ "emekli-zammi-hesaplama": ("emekli-zammi-hesaplama", "Emekli", "Zammı",
+   "SSK ve Bağ-Kur aylıklarının Ocak ve Temmuz artışı, açıklanan TÜFE verisinden. Tahmin değil, senaryo.",
+   ["5510 m.55", "Her gün güncel"], "bordro"),
+
  "teklif-karsilastirma": ("teklif-karsilastirma", "İki Teklif", "Karşılaştırma",
    "Ocakta önde görünen teklif yılda geride kalabilir. İki teklifi yıllık toplam net üzerinden ölçer.",
    ["Yıllık toplam net", "Tersinme uyarısı"], "bordro"),

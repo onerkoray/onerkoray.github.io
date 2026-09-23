@@ -690,6 +690,26 @@ jobs:
         # ("Konum") denetler.
         run: node tools/iz-test.js
 
+      - name: Emekli zammı motoru
+        # 5510 m.55: aylıklar önceki altı ayın TÜFE değişimi kadar artar. Test,
+        # seriden açıklanmış dört resmî artışı (Ocak 2024 %37,57 · Temmuz 2024
+        # %24,73 · Ocak 2025 %15,75 · Temmuz 2025 %16,67) iki ondalığa kadar
+        # yeniden üretiyor; bileşik yerine toplama, dönem kayması ve sınır ayı
+        # hataları mutasyonla sınandı (8/8).
+        run: node finans/emekli-zammi-test.js
+
+      - name: Emekli zammı sayfası güncel ve taze
+        # Başlık, hero ve tablolar TÜFE serisinden üretiliyor. Seri beklenen TÜİK
+        # açıklamasından 10 gün sonra hâlâ eski aydaysa kırmızı: gece hattı
+        # (tools/tufe-guncelle.py) sessizce kırılmış demektir.
+        run: node tools/emekli-zammi-sayfa.js --check
+
+      - name: TÜFE güncelleme betiğinin ret mantığı
+        # Gece siteye veri yazan betikte en önemli kısım neyi YAZMADIĞI. Ağsız:
+        # depodaki seriden bozuk senaryolar türetip her birinin anlaşılır sebeple
+        # reddedildiğini, temiz verinin kabul edildiğini sınar.
+        run: python tools/tufe-guncelle-test.py
+
       - name: Makale kabuğu ve sınıfları
         # Bir makalenin gövdesini şablona bakmadan kurdum ve sarmal
         # olarak .wrap kullanmadım; genişliği sınırlayan sınıf o.

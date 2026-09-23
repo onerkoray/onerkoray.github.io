@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- EZ-BAS:BASLANGIC -->
+  <title>Ocak 2027 Emekli Zammı Hesaplama | Koray Öner</title>
+  <meta name="description" content="Ocak 2027 SSK ve Bağ-Kur zammı için Temmuz–Ağustos 2026 enflasyonu açıklandı: birikim %3,65. Kalan 4 ay için senaryolar ve aylığınızın yeni tutarı.">
+  <meta property="og:title" content="Ocak 2027 Emekli Zammı Hesaplama — SSK ve Bağ-Kur">
+  <meta property="og:description" content="Şu ana kadar kesinleşen: %3,65 (2/6 ay). Tahmin değil; açıklanan TÜFE ve açıkça işaretli senaryolar.">
+  <meta property="og:image:alt" content="Ocak 2027 Emekli Zammı Hesaplama — SSK ve Bağ-Kur">
+  <meta name="twitter:title" content="Ocak 2027 Emekli Zammı Hesaplama — SSK ve Bağ-Kur">
+  <meta name="twitter:description" content="Şu ana kadar kesinleşen: %3,65 (2/6 ay). Tahmin değil; açıklanan TÜFE ve açıkça işaretli senaryolar.">
+  <!-- EZ-BAS:BITIS -->
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/emekli-zammi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=7eaeda12" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:url" content="https://korayoner.dev/emekli-zammi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/emekli-zammi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:image" content="https://korayoner.dev/images/emekli-zammi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=02b6a168">
+  <link rel="stylesheet" href="style.css?v=a5f5095d">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "image": "https://korayoner.dev/images/emekli-zammi-hesaplama-koray-oner.png",
+        "@id": "https://korayoner.dev/emekli-zammi-hesaplama/#app",
+        "name": "Emekli Zammı Hesaplama",
+        "url": "https://korayoner.dev/emekli-zammi-hesaplama/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "featureList": "SSK ve Bağ-Kur aylıklarının Ocak ve Temmuz artışı, açıklanan aylık TÜFE verisinden bileşik birikim, açıklanmamış aylar için açıkça işaretlenmiş senaryolar, aylığın yeni tutarı, 2016'dan bu yana altı aylık TÜFE farkları",
+        "description": "5510 sayılı Kanun'un 55. maddesine göre SSK ve Bağ-Kur aylıklarının Ocak ve Temmuz artışını açıklanan TÜFE verisinden hesaplar. Veri her iş günü TCMB'den güncellenir."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Emekli Zammı Hesaplama", "item": "https://korayoner.dev/emekli-zammi-hesaplama/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Emekli zammı nasıl hesaplanır?",
+            "acceptedAnswer": { "@type": "Answer", "text": "5510 sayılı Kanun'un 55. maddesine göre SSK ve Bağ-Kur aylıkları her yıl Ocak ve Temmuz'da, bir önceki altı aylık dönemin TÜFE değişim oranı kadar artırılır. Ocak zammı Temmuz–Aralık, Temmuz zammı Ocak–Haziran enflasyonuna dayanır. Altı ayın aylık oranları toplanmaz, bileşik olarak çarpılır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Aylık enflasyon oranlarını toplamak neden yanlış?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Her ayın artışı bir önceki ayın fiyat düzeyinin üzerine gelir. Altı ay art arda yüzde 2'lik artış yüzde 12 değil yüzde 12,62 eder. Toplama yöntemi zammı her zaman olduğundan düşük gösterir ve fark enflasyon yükseldikçe büyür." }
+          },
+          {
+            "@type": "Question",
+            "name": "Emekli zammı ne zaman kesinleşir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "TÜİK bir ayın enflasyonunu izleyen ayın 3'ünde, hafta sonuna denk gelirse ilk iş gününde açıklar. Ocak zammı Aralık enflasyonunun, Temmuz zammı Haziran enflasyonunun açıklandığı gün kesinleşir. O güne kadar açıklanan aylar kesindir, kalan aylar bilinmez." }
+          },
+          {
+            "@type": "Question",
+            "name": "En düşük emekli aylığı da bu oranda artar mı?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Kendiliğinden artmaz. En düşük emekli aylığı kanunla belirlenen bir destek ödemesiyle tamamlanan tutardır; artması için ayrı bir kanun düzenlemesi gerekir. Bu araç 55. maddedeki TÜFE artışını hesaplar, taban tutarı hesaplamaz." }
+          },
+          {
+            "@type": "Question",
+            "name": "Memur emeklileri de bu oranda zam alır mı?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Emekli Sandığı'ndan, yani 5434 sayılı Kanun'a tabi olarak aylık alan memur emeklilerinin artışı memur maaş artışına, toplu sözleşme zammı ve enflasyon farkına bağlıdır. Bu araç SSK (4/a) ve Bağ-Kur (4/b) aylıkları içindir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Refah payı nedir, bu hesapta var mı?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Refah payı, TÜFE farkının üzerine kanunla eklenen ek artıştır. 55. madde bunu öngörmez; verilip verilmeyeceği her dönem ayrı bir kanun düzenlemesine bağlıdır. Buradaki oranlar yalnızca TÜFE farkıdır; bazı dönemlerde uygulanan artış bundan yüksek olmuştur." }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#gecmis">Geçmiş zamlar</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Emekli Zammı Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <!-- EZ-HERO:BASLANGIC -->
+        <h1>Ocak 2027 emekli zammı hesaplama</h1>
+        <p class="lede"><strong>Ocak 2027 zammı için altı aydan ikisi açıklandı: Temmuz–Ağustos 2026 birikimi %3,65.</strong> Bu kısım kesinleşti; kalan aylarda aylık enflasyon eksiye dönmedikçe zam bundan düşük olmaz. Eylül verisinin 5 Ekim 2026 tarihinde açıklanması bekleniyor. Kalan 4 ay için tahmin değil, varsayımı açıkça yazılmış senaryolar var.</p>
+        <!-- EZ-HERO:BITIS -->
+        <p class="muted kunye-satiri">
+          Veri: TCMB, Tüketici Fiyatları (TÜİK) · her iş günü güncellenir ·
+          açıklanmış dört resmî zamla doğrulanıyor
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" data-rapor="yok">
+      <div class="wrap">
+        <div class="bi-duzen">
+          <div class="bi-form">
+            <h2>Aylığınız ne olur?</h2>
+            <div class="alan-grid">
+              <label>Şu anki aylığınız (₺)
+                <input type="text" inputmode="decimal" id="ez-aylik" value="25.000" autocomplete="off">
+                <small>Örnek tutar; kendi aylığınızı yazın.</small>
+              </label>
+              <label id="ez-varsayim-alan">Açıklanmamış aylar için varsayım
+                <select id="ez-varsayim">
+                  <option value="gecen-yil" selected>Geçen yılın aynı ayları</option>
+                  <option value="0">Aylık enflasyon sıfır</option>
+                  <option value="0.01">Her ay %1</option>
+                  <option value="0.015">Her ay %1,5</option>
+                  <option value="0.02">Her ay %2</option>
+                  <option value="0.025">Her ay %2,5</option>
+                  <option value="0.03">Her ay %3</option>
+                  <option value="ozel">Kendi oranım</option>
+                </select>
+                <small>Tahmin değil, sizin seçtiğiniz varsayım.</small>
+              </label>
+              <label id="ez-ozel-alan" hidden>Aylık oran (%)
+                <input type="text" inputmode="decimal" id="ez-ozel" value="1,8" autocomplete="off">
+              </label>
+            </div>
+          </div>
+
+          <div class="bi-sonuc" aria-live="polite">
+            <div class="reel-kart">
+              <p class="reel-etiket" id="ez-etiket">—</p>
+              <p class="reel-deger" id="ez-oran">—</p>
+              <p class="reel-alt" id="ez-aciklama">—</p>
+            </div>
+            <dl class="ozet-liste">
+              <div><dt>Kesinleşen birikim</dt><dd id="ez-kesin">—</dd></div>
+              <div class="vurgu"><dt>Yeni aylık</dt><dd id="ez-yeni">—</dd></div>
+              <div><dt>Aylık artış</dt><dd id="ez-artis">—</dd></div>
+              <div><dt>Altı ayda toplam ek ödeme</dt><dd id="ez-alti">—</dd></div>
+            </dl>
+            <p class="uyari">En düşük emekli aylığı (taban) ve refah payı bu kuralla değil ayrı kanunla belirlenir; hesapta yoktur.</p>
+          </div>
+        </div>
+
+        <!-- EZ-AYLAR:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo">
+              <caption>Ocak 2027 zammının dayandığı altı ay</caption>
+              <thead>
+                <tr><th scope="col">Ay</th><th scope="col">Aylık TÜFE</th><th scope="col">Birikim</th><th scope="col">Durum</th></tr>
+              </thead>
+              <tbody>
+              <tr><th scope="row">Temmuz 2026</th><td>%1,78</td><td>%1,78</td><td>Açıklandı</td></tr>
+              <tr><th scope="row">Ağustos 2026</th><td>%1,84</td><td>%3,65</td><td>Açıklandı</td></tr>
+              <tr class="bekliyor"><th scope="row">Eylül 2026</th><td>—</td><td>—</td><td>5 Ekim 2026 (beklenen)</td></tr>
+              <tr class="bekliyor"><th scope="row">Ekim 2026</th><td>—</td><td>—</td><td>3 Kasım 2026 (beklenen)</td></tr>
+              <tr class="bekliyor"><th scope="row">Kasım 2026</th><td>—</td><td>—</td><td>3 Aralık 2026 (beklenen)</td></tr>
+              <tr class="bekliyor"><th scope="row">Aralık 2026</th><td>—</td><td>—</td><td>4 Ocak 2027 (beklenen)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- EZ-AYLAR:BITIS -->
+
+        <!-- EZ-SENARYO:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo">
+              <caption>Eylül–Aralık 2026 için senaryolar — 25.000 TL aylığa etkisi</caption>
+              <thead>
+                <tr><th scope="col">Kalan 4 ay için varsayım</th><th scope="col">Ocak 2027 zammı</th><th scope="col">25.000 TL aylık olur</th></tr>
+              </thead>
+              <tbody>
+              <tr class="alt-sinir"><th scope="row">Kalan aylarda aylık enflasyon sıfır olsa</th><td>%3,65</td><td>25.913 TL</td></tr>
+              <tr class="gecen-yil"><th scope="row">Geçen yılın aynı ayları tekrarlansa (Eylül–Aralık 2025)</th><td>%11,67</td><td>27.918 TL</td></tr>
+              <tr><th scope="row">Kalan her ay %1</th><td>%7,86</td><td>26.965 TL</td></tr>
+              <tr><th scope="row">Kalan her ay %1,5</th><td>%10,01</td><td>27.503 TL</td></tr>
+              <tr><th scope="row">Kalan her ay %2</th><td>%12,20</td><td>28.050 TL</td></tr>
+              <tr><th scope="row">Kalan her ay %2,5</th><td>%14,41</td><td>28.603 TL</td></tr>
+              <tr><th scope="row">Kalan her ay %3</th><td>%16,66</td><td>29.165 TL</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- EZ-SENARYO:BITIS -->
+      </div>
+    </section>
+
+    <section id="nasil" class="content">
+      <div class="wrap prose">
+        <h2>Nasıl hesaplanır</h2>
+        <p>
+          <strong>5510 sayılı Kanun'un 55. maddesi</strong> SSK (4/a) ve Bağ-Kur (4/b)
+          aylıklarının her yıl Ocak ve Temmuz ödeme tarihlerinden geçerli olmak üzere,
+          bir önceki altı aylık dönemde TÜİK'in açıkladığı tüketici fiyatları genel
+          indeksindeki değişim kadar artırılacağını söyler. Ocak zammı Temmuz–Aralık,
+          Temmuz zammı Ocak–Haziran enflasyonuna dayanır.
+        </p>
+        <p>
+          Altı ayın oranları <strong>toplanmaz, çarpılır</strong>. Her ayın artışı bir
+          önceki ayın fiyat düzeyinin üzerine gelir: altı ay art arda %2 artış %12 değil
+          %12,62 eder. Toplamak zammı her zaman olduğundan düşük gösterir.
+        </p>
+        <p class="formula">zam = (1 + a₁) × (1 + a₂) × … × (1 + a₆) − 1</p>
+        <h3>Bu hesap doğru mu?</h3>
+        <p>
+          Aynı yöntem açıklanmış dört resmî artışı iki ondalığa kadar veriyor:
+          Ocak 2024 %37,57 · Temmuz 2024 %24,73 · Ocak 2025 %15,75 · Temmuz 2025 %16,67.
+          Veriyi çeken betik her çalışmada bu dördünü yeniden hesaplar; tutmazsa yeni
+          veriyi yazmaz. Resmî oran endeksten hesaplanır, buradaki hesap aylık yüzdelerden;
+          iki yol son ondalıkta nadiren ayrışabilir.
+        </p>
+        <h3>Tahmin yok, senaryo var</h3>
+        <p>
+          Açıklanmamış bir ayın enflasyonunu kimse bilmez. Sayfa açıklanan ayları kesin,
+          kalanları senaryo olarak gösterir ve her senaryonun varsayımını yanına yazar.
+          "Geçen yılın aynı ayları" bir öngörü değil, mevsimselliği gösteren bir
+          karşılaştırmadır: eylülde okul, ocakta yıllık fiyat ayarlamaları gibi etkiler
+          her yıl aynı aylara düşer.
+        </p>
+        <h3>Neyi hesaplamıyor</h3>
+        <ul>
+          <li><strong>En düşük emekli aylığı:</strong> taban tutar kanunla belirlenen bir
+            destek ödemesiyle tamamlanır; artması ayrı kanun ister. Güncel durum için
+            <a href="../makaleler/torba-yasa-ne-var-ne-yok/">torba yasada ne var, ne yok?</a></li>
+          <li><strong>Refah payı:</strong> TÜFE farkının üzerine kanunla eklenen artış;
+            55. madde öngörmez.</li>
+          <li><strong>Memur emeklileri:</strong> 5434 sayılı Kanun'a tabi Emekli Sandığı
+            aylıkları memur maaş artışına bağlıdır.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="gecmis" class="content">
+      <div class="wrap prose">
+        <h2>Geçmiş dönemlerin TÜFE farkı</h2>
+        <p>
+          Aşağıdaki oranlar 55. maddenin öngördüğü TÜFE farkıdır. Bazı dönemlerde
+          kanunla refah payı eklendiği için aylıklara uygulanan artış bundan yüksek
+          olmuştur; tablo o ek artışları içermez.
+        </p>
+        <!-- EZ-GECMIS:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo">
+              <caption>Ocak 2016’dan bu yana altı aylık TÜFE farkı (5510 m.55)</caption>
+              <thead>
+                <tr><th scope="col">Zam dönemi</th><th scope="col">TÜFE farkı</th></tr>
+              </thead>
+              <tbody>
+              <tr><th scope="row">Temmuz 2026</th><td>%17,75</td></tr>
+              <tr><th scope="row">Ocak 2026</th><td>%12,20</td></tr>
+              <tr><th scope="row">Temmuz 2025</th><td>%16,67</td></tr>
+              <tr><th scope="row">Ocak 2025</th><td>%15,75</td></tr>
+              <tr><th scope="row">Temmuz 2024</th><td>%24,73</td></tr>
+              <tr><th scope="row">Ocak 2024</th><td>%37,57</td></tr>
+              <tr><th scope="row">Temmuz 2023</th><td>%19,78</td></tr>
+              <tr><th scope="row">Ocak 2023</th><td>%15,39</td></tr>
+              <tr><th scope="row">Temmuz 2022</th><td>%42,34</td></tr>
+              <tr><th scope="row">Ocak 2022</th><td>%25,46</td></tr>
+              <tr><th scope="row">Temmuz 2021</th><td>%8,46</td></tr>
+              <tr><th scope="row">Ocak 2021</th><td>%8,35</td></tr>
+              <tr><th scope="row">Temmuz 2020</th><td>%5,74</td></tr>
+              <tr><th scope="row">Ocak 2020</th><td>%6,49</td></tr>
+              <tr><th scope="row">Temmuz 2019</th><td>%5,01</td></tr>
+              <tr><th scope="row">Ocak 2019</th><td>%10,20</td></tr>
+              <tr><th scope="row">Temmuz 2018</th><td>%9,16</td></tr>
+              <tr><th scope="row">Ocak 2018</th><td>%5,70</td></tr>
+              <tr><th scope="row">Temmuz 2017</th><td>%5,90</td></tr>
+              <tr><th scope="row">Ocak 2017</th><td>%4,73</td></tr>
+              <tr><th scope="row">Temmuz 2016</th><td>%3,63</td></tr>
+              <tr><th scope="row">Ocak 2016</th><td>%3,86</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- EZ-GECMIS:BITIS -->
+      </div>
+    </section>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Veri kaynakları ve güncelleme</h2>
+          <p>
+            Aylık TÜFE değişimleri TCMB'nin
+            <a href="https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Enflasyon+Verileri/Tuketici+Fiyatlari" rel="noopener">Tüketici Fiyatları</a>
+            sayfasından alınır; tablo TÜİK verisini yayımlar. Veri her iş günü otomatik
+            güncellenir, yeni ay açıklandığında sayfa kendiliğinden ilerler. Artış kuralı
+            <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5510.pdf" rel="noopener">5510 sayılı Kanun</a>
+            m.55 (5754 s.K. ile değişik).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <details><summary>Emekli zammı nasıl hesaplanır?</summary>
+          <p>5510 sayılı Kanun'un 55. maddesine göre SSK ve Bağ-Kur aylıkları her yıl Ocak ve Temmuz'da, bir önceki altı aylık dönemin TÜFE değişim oranı kadar artırılır. Ocak zammı Temmuz–Aralık, Temmuz zammı Ocak–Haziran enflasyonuna dayanır. Altı ayın aylık oranları toplanmaz, bileşik olarak çarpılır.</p>
+        </details>
+        <details><summary>Aylık enflasyon oranlarını toplamak neden yanlış?</summary>
+          <p>Her ayın artışı bir önceki ayın fiyat düzeyinin üzerine gelir. Altı ay art arda yüzde 2'lik artış yüzde 12 değil yüzde 12,62 eder. Toplama yöntemi zammı her zaman olduğundan düşük gösterir ve fark enflasyon yükseldikçe büyür.</p>
+        </details>
+        <details><summary>Emekli zammı ne zaman kesinleşir?</summary>
+          <p>TÜİK bir ayın enflasyonunu izleyen ayın 3'ünde, hafta sonuna denk gelirse ilk iş gününde açıklar. Ocak zammı Aralık enflasyonunun, Temmuz zammı Haziran enflasyonunun açıklandığı gün kesinleşir. O güne kadar açıklanan aylar kesindir, kalan aylar bilinmez.</p>
+        </details>
+        <details><summary>En düşük emekli aylığı da bu oranda artar mı?</summary>
+          <p>Kendiliğinden artmaz. En düşük emekli aylığı kanunla belirlenen bir destek ödemesiyle tamamlanan tutardır; artması için ayrı bir kanun düzenlemesi gerekir. Bu araç 55. maddedeki TÜFE artışını hesaplar, taban tutarı hesaplamaz.</p>
+        </details>
+        <details><summary>Memur emeklileri de bu oranda zam alır mı?</summary>
+          <p>Hayır. Emekli Sandığı'ndan, yani 5434 sayılı Kanun'a tabi olarak aylık alan memur emeklilerinin artışı memur maaş artışına, toplu sözleşme zammı ve enflasyon farkına bağlıdır. Bu araç SSK (4/a) ve Bağ-Kur (4/b) aylıkları içindir.</p>
+        </details>
+        <details><summary>Refah payı nedir, bu hesapta var mı?</summary>
+          <p>Refah payı, TÜFE farkının üzerine kanunla eklenen ek artıştır. 55. madde bunu öngörmez; verilip verilmeyeceği her dönem ayrı bir kanun düzenlemesine bağlıdır. Buradaki oranlar yalnızca TÜFE farkıdır; bazı dönemlerde uygulanan artış bundan yüksek olmuştur.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../emekli-ayligi-hesaplama/">Emekli Aylığı Hesaplama</a> — ilk aylığınız prim gününüz ve kazancınızdan nasıl çıkar?</li>
+          <li><a href="../kisisel-enflasyon/">Kişisel Enflasyon</a> — kendi harcama sepetiniz resmî TÜFE'den ne kadar saptı?</li>
+          <li><a href="../makaleler/emekli-maasi-nasil-hesaplanir/">Emekli maaşı nasıl hesaplanır?</a> — aylık bağlama oranı ve güncelleme katsayısı</li>
+          <li><a href="../makaleler/torba-yasa-ne-var-ne-yok/">Torba yasada ne var, ne yok?</a> — en düşük aylık ve refah payının yasal durumu</li>
+          <li><a href="../makaleler/emekli-promosyonunun-ekonomisi/">Emekli promosyonunun ekonomisi</a> — banka ne kazanır, emekliye ne kalır?</li>
+          <li><a href="../makaleler/kademeli-emeklilik-son-durum/">Kademeli emeklilik son durum</a> — teklifin Meclis'teki durumu</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../finans/tufe-serisi.js?v=3f904d8e" defer></script>
+  <script src="../finans/emekli-zammi-motoru.js?v=e503cb1d" defer></script>
+  <script src="script.js?v=da114f82" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>
