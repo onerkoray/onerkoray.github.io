@@ -179,5 +179,40 @@ var gereksizMuaf = KURALSIZ_MUAF.filter(function (c) { return tanimli[c]; });
 dogru("KONTROL: muaf listesinde artık CSS'i olan sınıf yok",
   gereksizMuaf.length === 0, gereksizMuaf.join(", "));
 
+/* --- tarihler: görünür olanla yapılandırılmış olan aynı şeyi söylesin -- */
+/* Yedi yazıda ayrışıyordu. Beşinde görünür tek tarih yayım tarihiydi ama
+   içerik sonra düzeltilmişti (BES katkısı %30 → %20, mülga madde atfı);
+   ikisinde JSON-LD dateModified görünür güncelleme tarihinden eskiydi.
+   Kural: ed-meta'daki ilk tarih datePublished'dır; dateModified daha
+   yeniyse ed-meta'da "Güncelleme: <time datetime=dateModified>" durur. */
+var tarihSorunu = [], tarihliSayfa = 0, guncellemeli = 0;
+sayfalar.forEach(function (p) {
+  var s = fs.readFileSync(path.join(KOK, p), "utf8");
+  var meta = /<p class="ed-meta">([\s\S]*?)<\/p>/.exec(s);
+  var yay = /"datePublished": "([\d-]+)/.exec(s), deg = /"dateModified": "([\d-]+)/.exec(s);
+  if (!meta || !yay || !deg) return;
+  var zamanlar = [], m, re = /<time datetime="([\d-]+)"/g;
+  while ((m = re.exec(meta[1]))) zamanlar.push(m[1]);
+  if (!zamanlar.length) return;
+  tarihliSayfa++;
+  var y = yay[1].slice(0, 10), d = deg[1].slice(0, 10);
+  if (d < y) tarihSorunu.push(p + ": dateModified " + d + " yayımdan (" + y + ") eski");
+  var gun = /Güncelleme:\s*<time datetime="([\d-]+)"/.exec(meta[1]);
+  if (gun) {
+    guncellemeli++;
+    if (gun[1] !== d) tarihSorunu.push(p + ": görünür güncelleme " + gun[1] + ", dateModified " + d);
+    if (zamanlar[0] !== y && zamanlar[0] !== gun[1]) {
+      tarihSorunu.push(p + ": görünür ilk tarih " + zamanlar[0] + ", datePublished " + y);
+    }
+  } else {
+    if (zamanlar[0] !== y) tarihSorunu.push(p + ": görünür tarih " + zamanlar[0] + ", datePublished " + y);
+    if (d > y) tarihSorunu.push(p + ": içerik " + d + " tarihinde değişmiş ama görünür güncelleme yok");
+  }
+});
+dogru("görünür tarihler ile datePublished/dateModified tutarlı",
+  tarihSorunu.length === 0, tarihSorunu.join("\n      "));
+dogru("KONTROL: tarihli makale okundu (>30)", tarihliSayfa > 30, String(tarihliSayfa));
+dogru("KONTROL: güncelleme tarihi taşıyan makale var", guncellemeli >= 5, String(guncellemeli));
+
 console.log("\n" + gecen + " gecti, " + hata + " kaldi. (makale kabuğu)");
 process.exit(hata ? 1 : 0);
