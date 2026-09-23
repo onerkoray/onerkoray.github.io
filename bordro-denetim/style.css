@@ -7,10 +7,32 @@
  * yeni renk tanımlanmıyor.
  */
 
+/* ------------------------------------------------------------ form ----
+   .panel-q'nun genel style.css'teki TEK kuralı @media print içinde
+   (baskıda formu gizliyor); ekranda kuralı yok, her araç kendi dosyasında
+   tanımlıyor. İlk sürüm bunu atladı: etiketler girdinin yanına düştü,
+   girdiler tarayıcının inset kenarlığıyla açıldı. Beyanname aracında aynı
+   hata bir kez yaşanmıştı; tools/sinif-gercekligi-test.js artık yakalıyor. */
+.panel-q { margin: 0; display: flex; flex-direction: column; gap: .3rem; }
+.panel-q label { font-weight: 600; font-size: var(--step--1); }
+.panel-q input,
+.panel-q select {
+  font: inherit;
+  width: 100%;
+  padding: .5rem .65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+}
+
 .bd-grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  /* Etiketi iki satıra kırılan alan ("isteğe bağlı") girdisini aşağı
+     itiyordu; alta hizalamak girdileri tek çizgide tutar. */
+  align-items: end;
 }
 
 .bd-ops {

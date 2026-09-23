@@ -36,7 +36,7 @@
   <meta name="twitter:description" content="Kıdem tavanı dönemi, ihbar kademesi, ödenek süresi: hangi eşiğin size denk geldiği kendi tarihlerinize bağlı ve elle çıkarılamaz.">
   <meta name="twitter:image" content="https://korayoner.dev/images/cikis-takvimi-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=9e119271">
+  <link rel="stylesheet" href="../style.css?v=02b6a168">
   <link rel="stylesheet" href="../maas-hesaplama/style.css?v=2d604ad7">
   <link rel="stylesheet" href="style.css?v=f93acb8f">
 
@@ -134,9 +134,9 @@
     </nav>
 
     <section class="hero">
-      <div class="wrap prose">
+      <div class="wrap hero-inner">
         <h1>Çıkış Takvimi: ayrılma tarihinin bedeli</h1>
-        <p class="lead">
+        <p class="lede">
           Çoğu gün tarih fark etmez — bir gün daha çalışmak kıdeminizi bir günlük
           artırır, o kadar. Ama yılda birkaç gün vardır ki <strong>tek bir gün on
           binlerce lira değiştirir</strong>. Hangilerinin size denk geldiği tamamen
@@ -145,46 +145,47 @@
       </div>
     </section>
 
-    <section class="content" aria-labelledby="arac-title">
+    <!-- data-rapor="yok": genel rapor/yazdır bu araca hiç eklenmemişti —
+         .wrap .calc'ın dışında kaldığı için seçici tutmuyordu. İskelet
+         düzelince davranış sessizce değişmesin. -->
+    <section id="hesapla" class="calc" data-rapor="yok" aria-labelledby="arac-title">
       <div class="wrap">
-        <h2 id="arac-title" class="sr-only">Çıkış takvimi tarama aracı</h2>
-        <section id="hesapla" class="calc" aria-labelledby="arac-title">
-          <form class="exit-form" novalidate>
-            <fieldset class="field-group">
-              <legend>Durumunuz</legend>
-              <p class="field field-wide">
-                <label for="in-giris">İşe giriş tarihiniz</label>
-                <input type="date" id="in-giris" value="2025-10-15">
-              </p>
-              <p class="field">
-                <label for="in-brut">Aylık çıplak brüt ücret (TL)</label>
-                <input type="text" id="in-brut" inputmode="decimal" value="90.000">
-              </p>
-              <p class="field">
-                <label for="in-ekler">Aylık ek menfaatler (TL)</label>
-                <input type="text" id="in-ekler" inputmode="decimal" value="0">
-                <span class="field-note">Yol, yemek, düzenli prim — kıdeme giren giydirilmiş kalemler.</span>
-              </p>
-              <p class="field field-wide">
-                <label for="in-prim">Son 3 yıldaki prim gün sayısı</label>
-                <input type="text" id="in-prim" inputmode="numeric" value="650">
-                <span class="field-note">İşsizlik ödeneğinin süresi bu sayıya göre kademeleniyor: 600, 900 ve 1080 günde uzuyor.</span>
-              </p>
-            </fieldset>
-            <fieldset class="field-group">
-              <legend>Tarama aralığı</legend>
-              <p class="field">
-                <label for="in-bas">Tarama başlangıcı</label>
-                <input type="date" id="in-bas">
-              </p>
-              <p class="field">
-                <label for="in-gun">Kaç gün ileriye bakılsın?</label>
-                <input type="text" id="in-gun" inputmode="numeric" value="365">
-              </p>
-            </fieldset>
-          </form>
-          <div class="calc-out" id="ct-out" aria-live="polite"></div>
-        </section>
+        <h2 id="arac-title" class="visually-hidden">Çıkış takvimi tarama aracı</h2>
+        <form class="exit-form" novalidate>
+          <fieldset class="field-group">
+            <legend>Durumunuz</legend>
+            <p class="field field-wide">
+              <label for="in-giris">İşe giriş tarihiniz</label>
+              <input type="date" id="in-giris" value="2025-10-15">
+            </p>
+            <p class="field">
+              <label for="in-brut">Aylık çıplak brüt ücret (TL)</label>
+              <input type="text" id="in-brut" inputmode="decimal" value="90.000">
+            </p>
+            <p class="field">
+              <label for="in-ekler">Aylık ek menfaatler (TL)</label>
+              <input type="text" id="in-ekler" inputmode="decimal" value="0">
+              <span class="field-note">Yol, yemek, düzenli prim — kıdeme giren giydirilmiş kalemler.</span>
+            </p>
+            <p class="field field-wide">
+              <label for="in-prim">Son 3 yıldaki prim gün sayısı</label>
+              <input type="text" id="in-prim" inputmode="numeric" value="650">
+              <span class="field-note">İşsizlik ödeneğinin süresi bu sayıya göre kademeleniyor: 600, 900 ve 1080 günde uzuyor.</span>
+            </p>
+          </fieldset>
+          <fieldset class="field-group">
+            <legend>Tarama aralığı</legend>
+            <p class="field">
+              <label for="in-bas">Tarama başlangıcı</label>
+              <input type="date" id="in-bas">
+            </p>
+            <p class="field">
+              <label for="in-gun">Kaç gün ileriye bakılsın?</label>
+              <input type="text" id="in-gun" inputmode="numeric" value="365">
+            </p>
+          </fieldset>
+        </form>
+        <div class="calc-out" id="ct-out" aria-live="polite"></div>
       </div>
     </section>
 

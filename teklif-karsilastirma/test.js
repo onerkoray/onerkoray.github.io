@@ -167,6 +167,31 @@ dogru("negatif tutar hata veriyor",
     "dipAy=" + o.dipAy + " beklenen=" + esitAylar[0]);
 })();
 
+/* --- Kuruş tutarlılığı -------------------------------------------- */
+/* Yukarıdaki "12 x net" iddiası 0,25 TL tolerans taşıyor; net 75.000 TL'lik
+   sözleşmede yıl toplamı 899.999,98 yazarken o iddia yeşildi. Sayfada her
+   ay 75.000,00 okunuyordu -- okunan satırlar toplamı vermiyordu. Burada
+   tolerans yok: kuruş cinsinden tam eşitlik. */
+(function () {
+  function kr(v) { return Math.round(v * 100); }
+  [40000, 75000, 150000].forEach(function (n) {
+    var o = T.ozet({ ad: "n", tur: "net", tutar: n }, YIL);
+    dogru("net sözleşmede yıl toplamı kuruşu kuruşuna 12 x net: " + n,
+      kr(o.yilNet) === kr(n * 12), "yilNet=" + o.yilNet);
+  });
+  [40000, 75000, 150000].forEach(function (n) {
+    ["net", "brut"].forEach(function (tur) {
+      var o = T.ozet({ ad: "n", tur: tur, tutar: n }, YIL);
+      var satir = 0;
+      o.aylar.forEach(function (x) { satir += kr(x.net); });
+      dogru("yıl toplamı okunan satırların toplamı (" + tur + " " + n + ")",
+        satir === kr(o.yilNet), "satir=" + satir + " yil=" + kr(o.yilNet));
+      dogru("her ayın neti kuruşa yuvarlı (" + tur + " " + n + ")",
+        o.aylar.every(function (x) { return Math.abs(x.net * 100 - kr(x.net)) < 1e-6; }));
+    });
+  });
+})();
+
 /* --- KONTROLLER ---------------------------------------------------- */
 dogru("KONTROL: iki sözleşme türü tanımlı", T.TURLER.length === 2);
 dogru("KONTROL: modül yasal sabit tanımlamıyor", (function () {

@@ -64,6 +64,22 @@ table.payroll tbody tr.net-up td, table.payroll tbody tr.net-up th {
   border-bottom: 2px solid var(--border, rgba(127,127,127,.35));
 }
 
+/* Ay tablosunda en yüksek ve en düşük aylar. .bracket-jump'ın kuralı hiç
+   yoktu: en düşük ay satırı işaretleniyor ama ekranda hiçbir şey
+   değişmiyordu. Döküm tablosundaki .net-up bir bölüm ayracı (2px alt
+   çizgi); burada ayraç değil vurgu, o yüzden çizgi inceltiliyor. */
+table.payroll.aylik tbody tr.net-up > * {
+  background: color-mix(in srgb, var(--brand) 9%, transparent);
+  border-bottom-width: 1px;
+}
+table.payroll.aylik tbody tr.bracket-jump > * { background: var(--surface-2); }
+.ay-isaret {
+  margin-left: .45rem;
+  font-size: .7rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+
 /* Tesvik kutucugu: form icinde ayri bir satir. */
 .onay { display: flex; align-items: center; gap: .55rem; margin: 4px 0 0; }
 .onay input { width: 18px; height: 18px; }

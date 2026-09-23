@@ -72,7 +72,7 @@
         (a.dilimGecisi ? ' <span class="rs-event-label">Üst dilime geçiş</span>' : "") +
         "</th><td>" + fmt(a.brut) + "</td><td>" + fmt(a.sgk) + "</td><td>" + fmt(a.issizlik) +
         "</td><td>" + fmt(a.gelirVergisi) + "</td><td>" + fmt(a.istisna) + "</td><td>" + fmt(a.damga) +
-        '</td><td class="rate">' + yuzde(a.dilim) + "</td><td><strong>" + fmt(a.net) + "</strong></td></tr>";
+        '</td><td>' + yuzde(a.dilim) + "</td><td><strong>" + fmt(a.net) + "</strong></td></tr>";
     });
 
     html += "</tbody></table></div>";
