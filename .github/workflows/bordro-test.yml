@@ -392,6 +392,9 @@ jobs:
       - name: Makale veri görselleri yerinde mi
         run: python tools/makale-gorseli.py --check
 
+      - name: SVG makale kartları çizimle aynı
+        run: node tools/makale-gorsel.js --svg-check
+
       - name: Görsel SEO regresyonları
         run: node tools/gorsel-seo-test.js
 

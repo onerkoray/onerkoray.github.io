@@ -102,7 +102,9 @@ def yazi_bilgisi(kayit):
         "ozet": ozet,
         "guncelleme": guncelleme,
         "dakika": dakika,
-        "gorsel": kayit.get("gorsel", "images/makale/%s-kart.png" % slug),
+        # SVG kart varsa o (her olcekte keskin, PNG'nin onda biri); yoksa PNG.
+        "gorsel": kayit.get("gorsel", "images/makale/%s-kart.%s" % (slug, "svg" if os.path.exists(
+            os.path.join(KOK, "images", "makale", slug + "-kart.svg")) else "png")),
         "alt": kayit["alt"],
     }
 
