@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-22T18:36:20+03:00</updated>
+  <updated>2026-09-23T09:25:35+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Emekli promosyonunun ekonomisi: banka ne kazanır, emekliye ne kalır?</title>
+    <link href="https://korayoner.dev/makaleler/emekli-promosyonunun-ekonomisi/"/>
+    <id>https://korayoner.dev/makaleler/emekli-promosyonunun-ekonomisi/</id>
+    <updated>2026-09-23T09:25:35+03:00</updated>
+    <summary>Emekli promosyonlarını müşteri edinme maliyeti, net bugünkü değer, puan, kredi ve banka değiştirme maliyetiyle inceleyen ekonomik analiz.</summary>
+  </entry>
 
   <entry>
     <title>Ciro artarken işletmenin nakdi neden azalır?</title>
