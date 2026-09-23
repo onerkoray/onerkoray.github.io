@@ -1540,7 +1540,138 @@ function promosyonNetDeger() {
     '" stroke="' + R.izgara + '" stroke-width="1.5"/>' + cubuk + '</svg>';
 }
 
+/* Ciro yazısı — kâr–nakit köprüsü. Varsayımlar yazının sayi-testi.js'iyle
+   aynı: 1.000.000 TL satış, %70 SMM, 150.000 TL gider; alacak +400, stok
+   +100, ticari borç +200 bin TL. Artı adım mavi, eksi adım turuncu; sonuç
+   çubuğu mürekkep: akış değil, varılan yer. */
+function kariNakitKoprusu() {
+  var SATIS = 1000000, SMM = 700000, GIDER = 150000;
+  var kar = (SATIS - SMM - GIDER) / 1000;
+  var adimlar = [
+    { ad: "Faaliyet", ad2: "kârı", v: kar },
+    { ad: "Alacak", ad2: "artışı", v: -400 },
+    { ad: "Stok", ad2: "artışı", v: -100 },
+    { ad: "Ticari borç", ad2: "artışı", v: 200 }
+  ];
+  var net = adimlar.reduce(function (t, a) { return t + a.v; }, 0);
+  var W = 600, H = 360, SOL = 56, SAG = 580, UST = 104, ALT = 286, UST_V = 200, ALT_V = -400;
+  function y(v) { return UST + (ALT - UST) * ((UST_V - v) / (UST_V - ALT_V)); }
+  function isaretli(v) { return (v > 0 ? "+" : v < 0 ? "\u2212" : "") + nf0.format(Math.abs(v)); }
+  var gen = (SAG - SOL) / 5, w = 54;
+
+  var izgara = [200, 0, -200, -400].map(function (v) {
+    return '<path d="M' + SOL + " " + y(v).toFixed(1) + " H" + SAG + '" stroke="' +
+      (v === 0 ? R.ikincil : R.izgara) + '" stroke-width="1"/>' +
+      '<text x="' + (SOL - 8) + '" y="' + (y(v) + 4).toFixed(1) + '" font-size="12" fill="' +
+      R.ikincil + '" text-anchor="end">' + isaretli(v) + "</text>";
+  }).join("");
+
+  var duzey = 0, cubuk = "";
+  adimlar.concat([{ ad: "Net nakit", ad2: "değişimi", v: net, toplam: true }]).forEach(function (a, i) {
+    var bas = a.toplam ? 0 : duzey, son = a.toplam ? net : duzey + a.v;
+    var cx = SOL + gen * (i + 0.5), ust = Math.min(y(bas), y(son)), boy = Math.abs(y(bas) - y(son));
+    var renk = a.toplam ? R.murekkep : (a.v >= 0 ? R.s1 : R.s2);
+    cubuk += '<rect x="' + (cx - w / 2).toFixed(1) + '" y="' + ust.toFixed(1) + '" width="' + w +
+      '" height="' + boy.toFixed(1) + '" rx="3" fill="' + renk + '"/>' +
+      '<text x="' + cx.toFixed(1) + '" y="' + (ust - 8).toFixed(1) + '" text-anchor="middle" font-size="16" ' +
+      'font-weight="800" fill="' + R.murekkep + '">' + isaretli(a.v) + "</text>" +
+      '<text x="' + cx.toFixed(1) + '" y="' + (ALT + 26) + '" text-anchor="middle" font-size="13" ' +
+      'font-weight="700" fill="' + R.murekkep + '">' + esc(a.ad) + "</text>" +
+      '<text x="' + cx.toFixed(1) + '" y="' + (ALT + 42) + '" text-anchor="middle" font-size="12" fill="' +
+      R.ikincil + '">' + esc(a.ad2) + "</text>";
+    if (!a.toplam && i < 3) {
+      cubuk += '<path d="M' + (cx + w / 2).toFixed(1) + " " + y(son).toFixed(1) + " H" +
+        (cx + gen - w / 2).toFixed(1) + '" stroke="' + R.ikincil + '" stroke-width="1" stroke-dasharray="3 3"/>';
+    }
+    duzey = son;
+  });
+  if (net !== -150) throw new Error("kâr–nakit köprüsü yazıyla ayrıştı: " + net);
+
+  function anahtar(x, renk, metin) {
+    return '<rect x="' + x + '" y="72" width="11" height="11" rx="2" fill="' + renk + '"/>' +
+      '<text x="' + (x + 17) + '" y="82" font-size="12" fill="' + R.ikincil + '">' + metin + "</text>";
+  }
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Faaliyet kârı artı 150 bin TL; alacak, stok ve ticari borç ' +
+    'değişimlerinden sonra net nakit değişimi eksi 150 bin TL">' +
+    '<text x="24" y="34" font-size="16" font-weight="700" fill="' + R.murekkep +
+    '">Kâr var, nakit azalıyor</text>' +
+    '<text x="24" y="56" font-size="13" fill="' + R.ikincil +
+    '">Temsili ay · bin TL · vergi, faiz ve yatırım yok</text>' +
+    anahtar(24, R.s1, "nakdi artırır") + anahtar(128, R.s2, "nakdi azaltır") +
+    anahtar(232, R.murekkep, "ay sonu sonucu") +
+    izgara + cubuk + "</svg>";
+}
+
+/* Enflasyon yazısı — sabit sepet. Oran %40'tan %20'ye yarıya iniyor, ama
+   ikinci artış yükselmiş düzeye uygulandığı için TL artışı yalnız 400'den
+   280'e düşüyor. Çubuk iki parça: önceki fiyat (mavi) + yılın artışı
+   (turuncu). Rakamlar yazının sayi-testi.js'iyle aynı. */
+function sepetOranDuzey() {
+  var BAS = 1000, ORAN = [0.40, 0.20];
+  var d1 = BAS * (1 + ORAN[0]), d2 = d1 * (1 + ORAN[1]);
+  var veri = [
+    { ad: "Başlangıç", ad2: "", onceki: BAS, artis: 0 },
+    { ad: "1. yıl sonu", ad2: "enflasyon %" + Math.round(ORAN[0] * 100), onceki: BAS, artis: d1 - BAS },
+    { ad: "2. yıl sonu", ad2: "enflasyon %" + Math.round(ORAN[1] * 100), onceki: d1, artis: d2 - d1 }
+  ];
+  if (Math.round(d2) !== 1680 || Math.round((d2 / BAS - 1) * 100) !== 68) throw new Error("sepet yazıyla ayrıştı");
+  var W = 600, H = 360, SOL = 40, SAG = 580, UST = 104, ALT = 286, TAVAN = 1800;
+  function y(v) { return ALT - (ALT - UST) * (v / TAVAN); }
+  var gen = (SAG - SOL) / 3, w = 72;
+  var cubuk = "";
+  veri.forEach(function (d, i) {
+    var cx = SOL + gen * (i + 0.5), x0 = cx - w / 2, top = d.onceki + d.artis;
+    cubuk += '<rect x="' + x0.toFixed(1) + '" y="' + y(d.onceki).toFixed(1) + '" width="' + w +
+      '" height="' + (ALT - y(d.onceki)).toFixed(1) + '" rx="3" fill="' + R.s1 + '"/>';
+    if (d.artis) {
+      // 2px zemin boşluğu: iki parça tek blok gibi okunmasın.
+      cubuk += '<rect x="' + x0.toFixed(1) + '" y="' + y(top).toFixed(1) + '" width="' + w +
+        '" height="' + (y(d.onceki) - y(top) - 2).toFixed(1) + '" rx="3" fill="' + R.s2 + '"/>' +
+        '<text x="' + (x0 + w + 10).toFixed(1) + '" y="' + ((y(top) + y(d.onceki)) / 2 + 5).toFixed(1) +
+        '" font-size="14" font-weight="800" fill="' + R.murekkep + '">+' + nf0.format(d.artis) + " TL</text>";
+    }
+    cubuk += '<text x="' + cx.toFixed(1) + '" y="' + (y(top) - 10).toFixed(1) + '" text-anchor="middle" ' +
+      'font-size="16" font-weight="800" fill="' + R.murekkep + '">' + nf0.format(top) + " TL</text>" +
+      '<text x="' + cx.toFixed(1) + '" y="' + (ALT + 26) + '" text-anchor="middle" font-size="13" ' +
+      'font-weight="700" fill="' + R.murekkep + '">' + esc(d.ad) + "</text>" +
+      (d.ad2 ? '<text x="' + cx.toFixed(1) + '" y="' + (ALT + 42) + '" text-anchor="middle" font-size="12" fill="' +
+        R.ikincil + '">' + esc(d.ad2) + "</text>" : "");
+    if (i < 2) {
+      // Bir sonraki yılın artışı bu düzeyin üstüne biniyor.
+      cubuk += '<path d="M' + (x0 + w).toFixed(1) + " " + y(top).toFixed(1) + " H" +
+        (cx + gen - w / 2).toFixed(1) + '" stroke="' + R.ikincil + '" stroke-width="1" stroke-dasharray="3 3"/>';
+    }
+  });
+  function anahtar(x, renk, metin) {
+    return '<rect x="' + x + '" y="72" width="11" height="11" rx="2" fill="' + renk + '"/>' +
+      '<text x="' + (x + 17) + '" y="82" font-size="12" fill="' + R.ikincil + '">' + metin + "</text>";
+  }
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Varsayımsal sabit sepet 1.000 TL; yüzde 40 artışla 1.400 TL, ' +
+    'sonraki yüzde 20 artışla 1.680 TL olur">' +
+    '<text x="24" y="34" font-size="16" font-weight="700" fill="' + R.murekkep +
+    '">Oran yarıya iniyor, sepet pahalanmaya devam ediyor</text>' +
+    '<text x="24" y="56" font-size="13" fill="' + R.ikincil +
+    '">Varsayımsal sabit sepet · iki yılda toplam artış %' + Math.round((d2 / BAS - 1) * 100) + "</text>" +
+    anahtar(24, R.s1, "önceki fiyat") + anahtar(126, R.s2, "yılın artışı") +
+    '<path d="M' + SOL + " " + ALT + " H" + SAG + '" stroke="' + R.ikincil + '" stroke-width="1"/>' +
+    cubuk + "</svg>";
+}
+
 var KAPAKLAR = {
+  "ciro-artarken-nakit-neden-azalir": {
+    kicker: "Finans · İşletme sermayesi",
+    baslik: "Ciro artarken nakit neden azalır?",
+    alt: "150 bin TL kârdan eksi 150 bin TL nakde",
+    cizim: kariNakitKoprusu
+  },
+  "enflasyon-duserken-fiyatlar-neden-dusmuyor": {
+    kicker: "Finans · Hane bütçesi",
+    baslik: "Enflasyon düşerken fiyatlar neden düşmüyor?",
+    alt: "Artış hızı yarıya iniyor, sepet yine 280 TL pahalanıyor",
+    cizim: sepetOranDuzey
+  },
   "emekli-promosyonunun-ekonomisi": {
     kicker: "Finans",
     baslik: "Emekli promosyonunun ekonomisi",
