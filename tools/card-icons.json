@@ -198,5 +198,9 @@
   "basabas-hesaplama": {
     "cat": "finans",
     "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 3v18h18M5 17 19 5M5 9l14 8\"/><circle cx=\"11\" cy=\"12\" r=\"2\"/></svg>"
+  },
+  "emekli-zammi-hesaplama": {
+    "cat": "maas",
+    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"17\" rx=\"2\"/><path d=\"M8 2v4M16 2v4M3 9h18\"/><path d=\"M9 18l6-6\"/><circle cx=\"9.5\" cy=\"12.5\" r=\"1\"/><circle cx=\"14.5\" cy=\"17.5\" r=\"1\"/></svg>"
   }
 }

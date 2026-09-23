@@ -19,9 +19,11 @@
  * fonksiyonları sonucu `baz` alanıyla birlikte döndürür ki arayüz bunu
  * yazmayı unutamasın.
  *
- * TÜFE SERİSİ BURADA YOK: endeks serisi harici veri ister ve güvenilir,
- * anahtarsız bir kaynak henüz doğrulanmadı. Motor oran tabanlı çalışıyor;
- * seri geldiğinde `donemEnflasyonu` ona bağlanacak.
+ * TÜFE SERİSİ AYRI DOSYADA: finans/tufe-serisi.js (aylık ve yıllık %
+ * değişim, 2005'ten bugüne). Kaynak TCMB'nin Tüketici Fiyatları tablosu;
+ * tools/tufe-guncelle.py her iş günü çeker ve açıklanmış resmî emekli
+ * artışlarını yeniden üretemeyen veriyi yazmaz. Bu motor hâlâ oran
+ * tabanlı; seriyi kullanan ilk motor finans/emekli-zammi-motoru.js.
  *
  * Lisans: MIT — Koray Öner, https://korayoner.dev/
  */

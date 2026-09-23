@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-23T09:25:35+03:00</updated>
+  <updated>2026-09-23T18:34:10+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Ocak 2027 Emekli Zammı Hesaplama</title>
+    <link href="https://korayoner.dev/emekli-zammi-hesaplama/"/>
+    <id>https://korayoner.dev/emekli-zammi-hesaplama/</id>
+    <updated>2026-09-23T18:34:10+03:00</updated>
+    <summary>Ocak 2027 SSK ve Bağ-Kur zammı için Temmuz–Ağustos 2026 enflasyonu açıklandı: birikim %3,65. Kalan 4 ay için senaryolar ve aylığınızın yeni tutarı.</summary>
+  </entry>
 
   <entry>
     <title>Emekli Promosyonunun Ekonomisi</title>
