@@ -153,11 +153,38 @@ mkAdlar.forEach(function (a) {
 dogru("iki kategori yalnızca büyük harfle ayrılmıyor",
   ciftler.length === 0, ciftler.join(", "));
 
+/* --- 5. ana sayfa ItemList'i kartlarla aynı kümeyi söylüyor ----------- */
+/* 51 kartın 3'ü (başabaş, yatırım fizibilitesi, beyanname) ana sayfanın
+   araç ItemList'inde yoktu: kart eklenmiş, yapılandırılmış veri
+   unutulmuştu. Küme eşitliği iki yönde de denetleniyor. */
+var ldUrl = [];
+(ana.match(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g) || []).forEach(function (b) {
+  var d;
+  try { d = JSON.parse(b.replace(/^<script[^>]*>/, "").replace(/<\/script>$/, "")); } catch (e) { return; }
+  (Array.isArray(d) ? d : (d["@graph"] || [d])).forEach(function (x) {
+    if (x && x["@type"] === "ItemList" && x["@id"] === "https://korayoner.dev/#projects") {
+      x.itemListElement.forEach(function (e) { ldUrl.push(e.item.url); });
+    }
+  });
+});
+var kartUrl = kartlar.map(function (k) { return "https://korayoner.dev/" + k.slug + "/"; });
+var ldEksik = kartUrl.filter(function (u) { return ldUrl.indexOf(u) < 0; });
+var kartsiz = ldUrl.filter(function (u) { return kartUrl.indexOf(u) < 0; });
+dogru("her araç kartı ana sayfa ItemList'inde", ldEksik.length === 0, ldEksik.join(", "));
+dogru("ItemList'te kartı olmayan araç yok", kartsiz.length === 0, kartsiz.join(", "));
+dogru("ItemList sıra numaraları ardışık", ldUrl.length > 0 && (function () {
+  var m = ana.slice(ana.indexOf('"@id": "https://korayoner.dev/#projects"'));
+  var p = (m.match(/"position": (\d+),/g) || []).slice(0, ldUrl.length)
+    .map(function (x) { return +x.replace(/\D/g, ""); });
+  return p.every(function (v, i) { return v === i + 1; });
+})());
+
 /* --- KONTROLLER ---------------------------------------------------- */
 dogru("KONTROL: kırktan fazla araç kartı okundu", kartlar.length > 40,
   String(kartlar.length));
 dogru("KONTROL: otuzdan fazla makale okundu", makaleler.length > 30,
   String(makaleler.length));
+dogru("KONTROL: ItemList okundu (kırktan fazla öğe)", ldUrl.length > 40, String(ldUrl.length));
 dogru("KONTROL: en az üç araç kategorisi var", adlar.length >= 3,
   String(adlar.length));
 
