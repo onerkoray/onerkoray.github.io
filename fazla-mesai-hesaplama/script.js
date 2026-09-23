@@ -124,7 +124,10 @@
     }
     for (var j = 0; j < 12; j++) {
       var sinif = aylik[j] === enCok ? ' class="net-up"' : (aylik[j] === enAz ? ' class="bracket-jump"' : "");
-      satirlar += "<tr" + sinif + "><th>" + B.AY_ADLARI[j] + "</th><td>" +
+      /* Renk tek başına bilgi taşımasın: işaretli satır adını da söylüyor. */
+      var isaret = aylik[j] === enCok ? ' <span class="ay-isaret">en yüksek</span>' :
+        (aylik[j] === enAz ? ' <span class="ay-isaret">en düşük</span>' : "");
+      satirlar += "<tr" + sinif + "><th>" + B.AY_ADLARI[j] + isaret + "</th><td>" +
         fmt(aylik[j]) + " TL</td><td>%" + fmt((aylik[j] / mesaiBrut) * 100) + "</td></tr>";
     }
     var fark = enCok - enAz;

@@ -47,8 +47,22 @@
     return B.hesaplaYil(teklif.tutar, yil).aylar;
   }
 
+  /* Bordroda her ay kuruşa yuvarlanmış tutar ödenir. Yuvarlamadan
+     toplamak, net 75.000 TL'lik sözleşmede 12 satırın her biri 75.000,00
+     gösterirken yıl toplamını 899.999,98 yazdırıyordu: net→brüt çözümü
+     her ayı 74.999,998 gibi bir değere düşürüyor. Toplam, okunan
+     satırların toplamı olmalı. */
+  function kurus(v) { return Math.round(v * 100) / 100; }
+
   function ozet(teklif, yil) {
-    var a = aylar(teklif, yil);
+    var a = aylar(teklif, yil).map(function (x) {
+      var y = {};
+      for (var k in x) if (Object.prototype.hasOwnProperty.call(x, k)) y[k] = x[k];
+      y.net = kurus(x.net);
+      y.brut = kurus(x.brut);
+      y.isverenMaliyeti = kurus(x.isverenMaliyeti);
+      return y;
+    });
     var net = a.map(function (x) { return x.net; });
     var toplamNet = 0, maliyet = 0, toplamBrut = 0;
     a.forEach(function (x) {

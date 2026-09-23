@@ -52,6 +52,13 @@ table.payroll th, table.payroll td {
 table.payroll th { text-align: right; font-weight: 600; position: sticky; top: 0; background: var(--surface-2, #16181c); }
 table.payroll td:first-child, table.payroll th:first-child { text-align: left; }
 table.payroll tbody tr:nth-child(even) { background: rgba(127,127,127,.05); }
+/* Kararı taşıyan satır (yıllık maliyet oranı). Sınıf hem statik tabloda
+   hem karşılaştırmada basılıyordu ama kuralı yoktu. Vurgu yalnız renkle
+   değil kalınlıkla da taşınıyor. */
+tr.net-up > th, tr.net-up > td {
+  background: color-mix(in srgb, var(--brand) 9%, transparent);
+  font-weight: 700;
+}
 
 .formula {
   font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, monospace;

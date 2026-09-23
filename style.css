@@ -583,6 +583,12 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   50% { filter: drop-shadow(0 2px 9px color-mix(in srgb, var(--brand) 50%, transparent)); }
 }
 .brand-mark { animation: brandGlow 4.5s ease-in-out infinite; }
+/* Araç ipucu ve durum notu. 7 araç kullanıyor ama kural yalnızca
+   beyanname'nin kendi dosyasındaydı: diğer 6 sayfada not gövde metni
+   boyutunda çıkıyordu. Yerel kural (beyanname) sonra yüklendiği için
+   onu ezmez. */
+.muted-note { font-size: var(--step--1); line-height: 1.5; color: var(--text-muted); }
+
 /* Görsel gizli (erişilebilirlik) — TANIMSIZDI: gizli başlıklar/altyazılar büyük görünüyordu */
 .visually-hidden {
   position: absolute !important;

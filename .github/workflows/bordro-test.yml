@@ -673,6 +673,15 @@ jobs:
         # bakıyor: gövde metninde aynı sözcüğün iki yere bağlanması normaldir.
         run: node tools/gezinti-test.js
 
+      - name: Araç sayfalarında sınıf gerçekliği
+        # Aynı hata üç kez yaşandı: işaretleme kopyalandı, stili kopyalanmadı.
+        # Bordro denetimi ve teklif karşılaştırma .panel-q kullanıyordu; bu sınıfın
+        # genel CSS'teki tek kuralı @media print içinde, ekranda form tarayıcı
+        # varsayılanıyla açılıyordu. Yedi araçta .prose-section'ın hiçbir yerde
+        # kuralı yoktu. Kapı baskı bloklarını çıkarıp bakar; JS ya da anlam için
+        # var olan sınıflar gerekçeleriyle kanca listesinde.
+        run: node tools/sinif-gercekligi-test.js
+
       - name: Makale kabuğu ve sınıfları
         # Bir makalenin gövdesini şablona bakmadan kurdum ve sarmal
         # olarak .wrap kullanmadım; genişliği sınırlayan sınıf o.
