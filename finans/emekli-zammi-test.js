@@ -101,6 +101,34 @@ dogru("geçmiş yeniden eskiye, ilki Temmuz 2026",
 dogru("geçmişte yalnızca kesin dönemler", g.every(function (x) { return Z.donem(x.zamYili, x.zamAyi, s08).kesin; }));
 dogru("Ocak 2016 → Temmuz 2026: 22 dönem", g.length === 22, g.length);
 
+/* --- 10. Memur zammı ---------------------------------------------- */
+[[2025, 1, 11.54, 5.23], [2025, 7, 15.57, 10.07]].forEach(function (r) {
+  var m = Z.memurZammi(Z.donem(r[0], r[1]).birikim, r[0], r[1]);
+  dogru("resmî memur zammı " + Z.AY_ADLARI[r[1] - 1] + " " + r[0] + " = %" + r[2] + " (fark %" + r[3] + ")",
+    Math.round(m.toplam * 10000) === Math.round(r[2] * 100) && Math.round(m.fark * 10000) === Math.round(r[3] * 100),
+    JSON.stringify(m));
+});
+var mY = Z.memurYarilari(2027, 1);
+dogru("Ocak 2027 memur zammı: enflasyon 2026 2. yarı, sözleşme 2027 1. yarı",
+  mY.onceki.yil === 2026 && mY.onceki.yari === 2 && mY.yeni.yil === 2027 && mY.yeni.yari === 1);
+var dusuk = Z.memurZammi(0.03, 2027, 1);
+dogru("TÜFE sözleşmenin altındaysa fark sıfır, zam = yeni yarının oranı (%5)",
+  dusuk.fark === 0 && dusuk.toplam === 0.05);
+dogru("fark negatif olmuyor (deflasyon)", Z.memurZammi(-0.02, 2027, 1).fark === 0);
+dogru("TÜFE sözleşmeye tam eşitse fark sıfır", Z.memurZammi(0.07, 2027, 1).fark === 0);
+var yuksek = Z.memurZammi(0.12, 2027, 1);
+dogru("TÜFE %12, sözleşme %7: fark (1,12/1,07−1) iki ondalık",
+  yuksek.fark === Math.round((1.12 / 1.07 - 1) * 10000) / 10000, String(yuksek.fark));
+var dk = Z.donem(2027, 1, s08);
+dogru("fark eşiği: kalan aylar (1+%7)/(1+birikim)−1 kadar artarsa fark doğar",
+  Math.abs(Z.farkEsigi(dk) - (1.07 / (1 + dk.birikim) - 1)) < 1e-12);
+dogru("eşiğin hemen üstünde fark > 0, altında 0",
+  Z.memurZammi(Z.senaryo(dk, [Z.farkEsigi(dk) + 0.001, 0, 0, 0]), 2027, 1).fark > 0 &&
+  Z.memurZammi(Z.senaryo(dk, [Z.farkEsigi(dk) - 0.001, 0, 0, 0]), 2027, 1).fark === 0);
+hataVerdi = false;
+try { Z.memurZammi(0.1, 2028, 1); } catch (e) { hataVerdi = /belirlenmemiş/.test(e.message); }
+dogru("belirlenmemiş toplu sözleşme dönemi sessizce sıfır sayılmıyor (Ocak 2028)", hataVerdi);
+
 /* --- KONTROL ------------------------------------------------------- */
 dogru("KONTROL: seri en az 240 ay", Object.keys(T.aylar).length >= 240);
 dogru("KONTROL: bileşik ile toplam gerçekten ayrışıyor (resmî dönemde)",

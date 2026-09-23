@@ -43,6 +43,7 @@ jobs:
         run: |
           python tools/tufe-guncelle.py
           node tools/emekli-zammi-sayfa.js --sitemap
+          node tools/memur-zammi-sayfa.js --sitemap
 
       # update_data.py doviz sayfasini SABLONDAN bastan yaziyor; sablonda
       # og:image:alt, twitter:description ve kunye blogu yok. Bunlari
