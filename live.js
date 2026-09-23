@@ -1,7 +1,6 @@
 /* Canlılık katmanı — saat, hava, komut paleti (bağımlılıksız, yalnız ana sayfa) */
 (function () {
   "use strict";
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
 
   /* ---------- Yardımcılar ---------- */
@@ -167,13 +166,16 @@
     }
   }
 
-  /* ---------- Header: canlı nokta + küçülme ---------- */
-  var nav = $(".site-nav");
-  if (nav) {
-    var dot = el("span", "live-dot", "Canlı");
-    dot.title = "Bu sayfadaki saat, hava ve gün bilgileri canlıdır";
-    nav.parentNode.insertBefore(dot, nav.nextSibling);
-  }
+  /* ---------- Header: küçülme ----------
+     KALDIRILANLAR (2026-09-23):
+     - Başlıktaki "Canlı" noktası. Sayfanın çok aşağısındaki saat/hava
+       şeridini kastediyordu; başlıkta durunca ürünün bir durumu sanılıyordu.
+       Durum ışığı yalnızca gerçek bir durumu gösterir.
+     - İmleci izleyen radyal parıltı ve hero paralaksı: bilgi taşımayan hareket.
+     - Kart bayrakları. "Yeni" sabit bir listeden basılıyordu ve hiç
+       dolmuyordu (listedekiler aylar önce eklenmişti, gerçekten yeni olanlar
+       listede yoktu); "Popüler" ölçülmeden yazılmıştı. Yeni eklenenleri
+       ana sayfadaki "Son eklenenler" gerçek tarihten gösteriyor. */
   var header = $(".site-header");
   if (header) {
     var lastShrunk = false;
@@ -182,40 +184,6 @@
       if (s !== lastShrunk) { header.classList.toggle("is-shrunk", s); lastShrunk = s; }
     }, { passive: true });
   }
-
-  /* ---------- Cursor glow + hero parallax ---------- */
-  if (!reduced && window.matchMedia("(pointer: fine)").matches) {
-    var glow = el("div", "cursor-glow");
-    document.body.appendChild(glow);
-    document.body.classList.add("has-pointer");
-    var gx = 0, gy = 0, pending = false;
-    window.addEventListener("pointermove", function (e) {
-      gx = e.clientX; gy = e.clientY;
-      if (!pending) {
-        pending = true;
-        requestAnimationFrame(function () {
-          glow.style.transform = "translate(" + (gx - 170) + "px," + (gy - 170) + "px)";
-          // hero parallax
-          var spans = document.querySelectorAll(".hero-bg span");
-          var dx = (gx / window.innerWidth - 0.5), dy = (gy / window.innerHeight - 0.5);
-          for (var i = 0; i < spans.length; i++) {
-            var f = (i + 1) * 6;
-            spans[i].style.transform = "translate(" + (-dx * f) + "px," + (-dy * f) + "px)";
-          }
-          pending = false;
-        });
-      }
-    }, { passive: true });
-  }
-
-  /* ---------- Kart rozetleri ---------- */
-  var NEW_TOOLS = ["kidem-tazminati-hesaplama/", "gumruk-vergisi-hesaplama/", "otv-hesaplama/", "mtv-hesaplama/", "serbest-meslek-makbuzu-hesaplama/"];
-  var HOT_TOOL = "maas-hesaplama/";
-  document.querySelectorAll(".project-card h3 a").forEach(function (a) {
-    var href = a.getAttribute("href") || "";
-    if (href === HOT_TOOL) a.insertAdjacentHTML("afterend", '<span class="card-flag flag-hot">Popüler</span>');
-    else if (NEW_TOOLS.indexOf(href) !== -1) a.insertAdjacentHTML("afterend", '<span class="card-flag flag-new">Yeni</span>');
-  });
 
   /* ---------- Son kullanılan araçlar (localStorage) ---------- */
   var RECENT_KEY = "onerkoray.recent";
