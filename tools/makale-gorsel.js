@@ -2356,6 +2356,73 @@ function katmanliHafta() {
     cubuk + isaret + etiket + "</svg>";
 }
 
+/* SVG KART
+   Gövde figürü ve makale listesi PNG yerine bunu gösteriyor: her
+   yakınlaştırmada keskin ve PNG'nin onda biri boyutunda. Kompozisyon
+   KART_SABLON ile aynı (zemin, 8px şerit, 34/30 kenar boşluğu); çizim
+   aynı fonksiyondan geldiği için ikisi ayrışamaz. <img> olarak
+   veriliyor: gövdede gerçek bir görsel olması Google Görseller için
+   ölçülmüş bir kural (tools/gorsel-seo-test.js). Paylaşım görseli PNG
+   kalıyor — sosyal ağlar SVG önizleme göstermiyor. */
+function kartSvg(slug) {
+  var ic = KAPAKLAR[slug].cizim().trim();
+  if (ic.indexOf("<svg") !== 0 || ic.slice(-6) !== "</svg>") {
+    throw new Error(slug + ": çizim saf SVG döndürmüyor");
+  }
+  var vb = /^<svg[^>]*viewBox="([^"]+)"/.exec(ic);
+  if (!vb) throw new Error(slug + ": çizimde viewBox yok");
+  var etiket = /^<svg[^>]*aria-label="([^"]*)"/.exec(ic);
+  var govde = ic.replace(/^<svg[^>]*>/, "").replace(/<\/svg>$/, "");
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img"' +
+    (etiket ? ' aria-label="' + etiket[1] + '"' : "") + ">" +
+    "<style>text{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif}</style>" +
+    '<rect width="800" height="500" fill="' + R.zemin + '"/>' +
+    '<rect width="8" height="500" fill="' + R.marka + '"/>' +
+    '<svg x="34" y="30" width="732" height="440" viewBox="' + vb[1] + '">' + govde + "</svg></svg>\n";
+}
+
+/* SVG AFİŞ
+   Bazı yazılar gövdede afişi gösteriyor: kalın serif başlık, üst etiket
+   ve imza okura yazının kimliğini veriyor (Koray, 2026-09-23: afişte
+   kalın yazımlar daha iyi). PNG afiş 632px sütunda yumuşuyordu. Bu dosya
+   aynı afiş belgesini (afisHtml) foreignObject içinde taşıyor: yerleşim
+   PNG'yle birebir, çizim her ölçekte keskin. Yalnız gövdesi -afis.svg'yi
+   isteyen yazı için yazılır; paylaşım görseli PNG kalır. */
+function afisSvg(slug) {
+  var h = afisHtml(slug);
+  var css = /<style>([\s\S]*)<\/style>/.exec(h)[1]
+    .replace("html,body{width:1200px;height:630px;overflow:hidden}", ".kok{width:1200px;height:630px;overflow:hidden}")
+    .replace("body{background:", ".kok{background:");
+  if (css.indexOf("body") !== -1) throw new Error(slug + ": afiş CSS'inde body kaldı");
+  var govde = /<body>([\s\S]*)<\/body>/.exec(h)[1]
+    // XHTML içinde satır içi SVG kendi ad alanını ister.
+    .replace(/<svg(?![^>]*xmlns=)/g, '<svg xmlns="http://www.w3.org/2000/svg"')
+    // Büyük harfe çevirme dil kuralı XML'de güvenilmez: İ'yi burada koy.
+    .replace(/(<p class="kicker">)([^<]*)/, function (m, a, t) { return a + t.toLocaleUpperCase("tr-TR"); });
+  var etiket = esc(KAPAKLAR[slug].baslik).replace(/"/g, "&quot;");
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="' + etiket + '">' +
+    '<foreignObject width="1200" height="630">' +
+    '<div xmlns="http://www.w3.org/1999/xhtml" lang="tr" xml:lang="tr" class="kok"><style>' + css + "</style>" + govde + "</div>" +
+    "</foreignObject></svg>\n";
+}
+
+function afisGovdede(slug) {
+  var p = path.join(__dirname, "..", "makaleler", slug, "index.html");
+  return fs.existsSync(p) && fs.readFileSync(p, "utf8").indexOf("images/makale/" + slug + "-afis.svg") !== -1;
+}
+
+function kartSvgYaz(slug) {
+  var hedef = path.join(CIKTI, slug + "-kart.svg");
+  fs.writeFileSync(hedef, kartSvg(slug), "utf8");
+  console.log("   " + path.basename(hedef).padEnd(42) + fs.statSync(hedef).size + " bayt");
+  if (afisGovdede(slug)) {
+    hedef = path.join(CIKTI, slug + "-afis.svg");
+    fs.writeFileSync(hedef, afisSvg(slug), "utf8");
+    console.log("   " + path.basename(hedef).padEnd(42) + fs.statSync(hedef).size + " bayt");
+  }
+  return true;
+}
+
 function chromeBul() {
   for (var i = 0; i < CHROME.length; i++) {
     if (fs.existsSync(CHROME[i])) return CHROME[i];
@@ -2363,18 +2430,20 @@ function chromeBul() {
   return null;
 }
 
-function uret(chrome, slug, kart, olcek) {
-  olcek = olcek || 1;
+function afisHtml(slug) {
   var k = KAPAKLAR[slug];
   var fs_ = k.baslik.length <= 22 ? 52 : (k.baslik.length <= 30 ? 46 : 40);
-  var doc = kart
-    ? KART_SABLON.replace("{svg}", k.cizim())
-    : SABLON
-      .replace("{fs}", fs_)
-      .replace("{kicker}", esc(k.kicker))
-      .replace("{baslik}", esc(k.baslik))
-      .replace("{alt}", esc(k.alt))
-      .replace("{svg}", k.cizim());
+  return SABLON
+    .replace("{fs}", fs_)
+    .replace("{kicker}", esc(k.kicker))
+    .replace("{baslik}", esc(k.baslik))
+    .replace("{alt}", esc(k.alt))
+    .replace("{svg}", k.cizim());
+}
+
+function uret(chrome, slug, kart) {
+  var k = KAPAKLAR[slug];
+  var doc = kart ? KART_SABLON.replace("{svg}", k.cizim()) : afisHtml(slug);
 
   var tmp = fs.mkdtempSync(path.join(os.tmpdir(), "makale-"));
   var src = path.join(tmp, "k.html");
@@ -2383,7 +2452,7 @@ function uret(chrome, slug, kart, olcek) {
   try {
     execFileSync(chrome, [
       "--headless=new", "--disable-gpu", "--hide-scrollbars",
-      "--force-device-scale-factor=" + olcek, "--window-size=" + (kart ? "800,500" : "1200,630"),
+      "--force-device-scale-factor=1", "--window-size=" + (kart ? "800,500" : "1200,630"),
       "--screenshot=" + out, "--user-data-dir=" + path.join(tmp, "u"),
       "file:///" + src.replace(/\\/g, "/")
     ], { timeout: 90000, stdio: "ignore" });
@@ -2391,7 +2460,7 @@ function uret(chrome, slug, kart, olcek) {
 
   if (!fs.existsSync(out)) { console.error("   HATA: " + slug + " uretilemedi"); return false; }
   if (!fs.existsSync(CIKTI)) fs.mkdirSync(CIKTI, { recursive: true });
-  var hedef = path.join(CIKTI, slug + (kart ? "-kart" : "") + (olcek > 1 ? "@" + olcek + "x" : "") + ".png");
+  var hedef = path.join(CIKTI, slug + (kart ? "-kart" : "") + ".png");
   fs.copyFileSync(out, hedef);
   console.log("   " + path.basename(hedef).padEnd(42) + fs.statSync(hedef).size + " bayt");
   return true;
@@ -2403,13 +2472,37 @@ function main() {
     Object.keys(KAPAKLAR).forEach(function (s) { console.log(s); });
     return 0;
   }
+  if (process.argv.indexOf("--svg-check") !== -1) {
+    // SVG kart Chrome'suz ve belirlenimci: CI her kapagi bellekte yeniden
+    // cizer, diskteki dosyayla bayt bayt karsilastirir. Cizim degisip SVG
+    // yeniden uretilmezse govdedeki gorsel eski veriyi gosterirdi.
+    var ayni = function (p, icerik) { return fs.existsSync(p) && fs.readFileSync(p, "utf8") === icerik; };
+    var bozuk = [];
+    Object.keys(KAPAKLAR).forEach(function (s) {
+      if (!ayni(path.join(CIKTI, s + "-kart.svg"), kartSvg(s))) bozuk.push(s + "-kart.svg");
+      if (afisGovdede(s) && !ayni(path.join(CIKTI, s + "-afis.svg"), afisSvg(s))) bozuk.push(s + "-afis.svg");
+    });
+    fs.readdirSync(CIKTI).forEach(function (f) {
+      var m = /^(.+)-afis\.svg$/.exec(f);
+      if (m && !(KAPAKLAR[m[1]] && afisGovdede(m[1]))) bozuk.push(f + " (hiçbir gövde istemiyor)");
+    });
+    bozuk.forEach(function (f) { console.error("  eski ya da eksik: images/makale/" + f); });
+    console.log(bozuk.length ? "\n" + bozuk.length + " SVG kart guncel degil: node tools/makale-gorsel.js <slug>"
+                             : Object.keys(KAPAKLAR).length + " SVG kart ve gövdedeki afişler cizimle ayni.");
+    return bozuk.length ? 1 : 0;
+  }
+  if (process.argv.indexOf("--svg") !== -1) {
+    // Yalniz SVG'ler: Chrome gerekmez, PNG'lere dokunulmaz.
+    (arg.length ? arg : Object.keys(KAPAKLAR)).forEach(kartSvgYaz);
+    return 0;
+  }
   var chrome = chromeBul();
   if (!chrome) { console.error("Chrome bulunamadi."); return 2; }
   var hedefler = arg.length ? arg : Object.keys(KAPAKLAR);
   var ok = 0;
   hedefler.forEach(function (s) {
     if (!KAPAKLAR[s]) { console.error("Bilinmeyen kapak: " + s); return; }
-    if (uret(chrome, s, false) && uret(chrome, s, true) && uret(chrome, s, true, 2)) ok++;
+    if (uret(chrome, s, false) && uret(chrome, s, true) && kartSvgYaz(s)) ok++;
   });
   console.log("\nUretilen: " + ok + " / " + hedefler.length);
   return ok === hedefler.length ? 0 : 1;
