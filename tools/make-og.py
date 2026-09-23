@@ -247,6 +247,10 @@ SPEC = {
    "SSK ve Bağ-Kur aylıklarının Ocak ve Temmuz artışı, açıklanan TÜFE verisinden. Tahmin değil, senaryo.",
    ["5510 m.55", "Her gün güncel"], "bordro"),
 
+ "memur-zammi-hesaplama": ("memur-zammi-hesaplama", "Memur", "Zammı",
+   "Toplu sözleşme oranı ve enflasyon farkı, açıklanan TÜFE verisinden. Alt sınır kesin, kalanı senaryo.",
+   ["Toplu sözleşme", "Enflasyon farkı"], "bordro"),
+
  "teklif-karsilastirma": ("teklif-karsilastirma", "İki Teklif", "Karşılaştırma",
    "Ocakta önde görünen teklif yılda geride kalabilir. İki teklifi yıllık toplam net üzerinden ölçer.",
    ["Yıllık toplam net", "Tersinme uyarısı"], "bordro"),

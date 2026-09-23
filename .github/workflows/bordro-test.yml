@@ -710,6 +710,13 @@ jobs:
         # reddedildiğini, temiz verinin kabul edildiğini sınar.
         run: python tools/tufe-guncelle-test.py
 
+      - name: Memur zammı sayfası güncel ve taze
+        # Toplu sözleşme oranı + enflasyon farkı; açıklanmış iki memur zammını
+        # (Ocak 2025 %11,54 · Temmuz 2025 %15,57) veren yöntemle üretiliyor.
+        # Toplu sözleşme oranı olmayan döneme gelinirse (Ocak 2028) kırmızı:
+        # finans/toplu-sozlesme.js güncellenmeli.
+        run: node tools/memur-zammi-sayfa.js --check
+
       - name: Makale kabuğu ve sınıfları
         # Bir makalenin gövdesini şablona bakmadan kurdum ve sarmal
         # olarak .wrap kullanmadım; genişliği sınırlayan sınıf o.

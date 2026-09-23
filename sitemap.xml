@@ -851,6 +851,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/memur-zammi-hesaplama/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/memur-zammi-hesaplama-koray-oner.png</image:loc>
+      <image:title>Memur Zammı Hesaplama — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/bordro-denetim/</loc>
     <lastmod>2026-09-23</lastmod>
     <changefreq>monthly</changefreq>

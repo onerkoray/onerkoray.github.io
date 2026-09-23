@@ -19,7 +19,15 @@
  *   senaryonun varsayımını sonuçla birlikte döndürür. Kanunla verilen ek
  *   artışları (refah payı, seyyanen artış) ve en düşük aylık tabanını
  *   bilmez: onlar ayrı kanun ister, bu kural değil.
- *   4/c (memur) emeklileri bu kurala değil memur maaş artışına tabidir.
+ *   4/c (memur) emeklileri bu kurala değil memur maaş artışına tabidir;
+ *   onların hesabı aşağıda, memurZammi() — aynı TÜFE birikimi, toplu
+ *   sözleşme oranlarıyla (finans/toplu-sozlesme.js).
+ *
+ * MEMUR ZAMMI
+ *   fark  = max(0, (1 + altı aylık TÜFE) / (1 + o yarının toplu sözleşme oranı) − 1)
+ *   zam   = (1 + fark) × (1 + yeni yarının toplu sözleşme oranı) − 1
+ *   Fark iki ondalıkla ilan edilir (Temmuz 2025: %10,07) ve öyle uygulanır.
+ *   Açıklanmış iki memur zammını veriyor: Ocak 2025 %11,54 · Temmuz 2025 %15,57.
  *
  * Birimler: oranlar kesir (0.1575 = %15,75).
  *
@@ -28,11 +36,11 @@
 (function (root, factory) {
   "use strict";
   if (typeof module === "object" && module.exports) {
-    module.exports = factory(require("./tufe-serisi.js"));
+    module.exports = factory(require("./tufe-serisi.js"), require("./toplu-sozlesme.js"));
   } else {
-    root.EmekliZammiMotoru = factory(root.TufeSerisi);
+    root.EmekliZammiMotoru = factory(root.TufeSerisi, root.TopluSozlesme);
   }
-})(typeof globalThis !== "undefined" ? globalThis : this, function (Tufe) {
+})(typeof globalThis !== "undefined" ? globalThis : this, function (Tufe, TS) {
   "use strict";
 
   var AY_ADLARI = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
@@ -147,8 +155,61 @@
     return out;
   }
 
+  /* ------------------------------------------------------ memur ---- */
+  function yuvarla4(o) { return Math.round(o * 10000) / 10000; }
+
+  /** Toplu sözleşme oranı; yarı 1 = Ocak–Haziran, 2 = Temmuz–Aralık. */
+  function tsOrani(yil, yari, ts) {
+    ts = ts || TS;
+    var o = ts && ts.oranlar[yil + "-" + yari];
+    if (typeof o !== "number") {
+      throw new Error("Toplu sözleşme oranı belirlenmemiş: " + yil + " " + yari + ". yarı");
+    }
+    return o;
+  }
+
+  /** Enflasyonun ölçüldüğü yarı ve zammın geçerli olduğu yarı. */
+  function memurYarilari(zamYili, zamAyi) {
+    zamAyiDogrula(zamAyi);
+    return zamAyi === 1
+      ? { onceki: { yil: zamYili - 1, yari: 2 }, yeni: { yil: zamYili, yari: 1 } }
+      : { onceki: { yil: zamYili, yari: 1 }, yeni: { yil: zamYili, yari: 2 } };
+  }
+
+  /**
+   * Memur ve memur emeklisi zammı. tufeOrani: dayandığı altı ayın TÜFE
+   * değişimi (kesin ya da senaryo).
+   */
+  function memurZammi(tufeOrani, zamYili, zamAyi, ts) {
+    var y = memurYarilari(zamYili, zamAyi);
+    var tsOnceki = tsOrani(y.onceki.yil, y.onceki.yari, ts);
+    var tsYeni = tsOrani(y.yeni.yil, y.yeni.yari, ts);
+    var fark = Math.max(0, yuvarla4((1 + tufeOrani) / (1 + tsOnceki) - 1));
+    return {
+      tsOnceki: tsOnceki,
+      tsYeni: tsYeni,
+      fark: fark,
+      toplam: yuvarla4((1 + fark) * (1 + tsYeni) - 1),
+      altSinir: tsYeni
+    };
+  }
+
+  /**
+   * Enflasyon farkının doğması için kalan aylarda gereken birikimli TÜFE.
+   * Açıklanan birikim toplu sözleşmeyi zaten aşmışsa 0.
+   */
+  function farkEsigi(d, ts) {
+    var y = memurYarilari(d.zamYili, d.zamAyi);
+    var tsOnceki = tsOrani(y.onceki.yil, y.onceki.yari, ts);
+    return Math.max(0, (1 + tsOnceki) / (1 + d.birikim) - 1);
+  }
+
   return {
     AY_ADLARI: AY_ADLARI,
+    tsOrani: tsOrani,
+    memurYarilari: memurYarilari,
+    memurZammi: memurZammi,
+    farkEsigi: farkEsigi,
     donemAylari: donemAylari,
     bilesik: bilesik,
     donem: donem,

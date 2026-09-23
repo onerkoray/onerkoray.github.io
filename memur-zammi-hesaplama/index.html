@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- MZ-BAS:BASLANGIC -->
+  <title>Ocak 2027 Memur Zammı Hesaplama | Koray Öner</title>
+  <meta name="description" content="Ocak 2027 memur ve memur emeklisi zammı en az %5,00. Temmuz–Ağustos 2026 enflasyonu %3,65; senaryolar, enflasyon farkı eşiği ve maaşınızın yeni tutarı.">
+  <meta property="og:title" content="Ocak 2027 Memur Zammı Hesaplama — Memur ve Memur Emeklisi">
+  <meta property="og:description" content="Kesinleşen alt sınır %5,00. Enflasyon farkı açıklanan TÜFE'ye bağlı; tahmin değil, açıkça işaretli senaryolar.">
+  <meta property="og:image:alt" content="Ocak 2027 Memur Zammı Hesaplama — Memur ve Memur Emeklisi">
+  <meta name="twitter:title" content="Ocak 2027 Memur Zammı Hesaplama — Memur ve Memur Emeklisi">
+  <meta name="twitter:description" content="Kesinleşen alt sınır %5,00. Enflasyon farkı açıklanan TÜFE'ye bağlı; tahmin değil, açıkça işaretli senaryolar.">
+  <!-- MZ-BAS:BITIS -->
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/memur-zammi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=50e6b1d1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:url" content="https://korayoner.dev/memur-zammi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/memur-zammi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:image" content="https://korayoner.dev/images/memur-zammi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=02b6a168">
+  <link rel="stylesheet" href="style.css?v=2890a2d0">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "image": "https://korayoner.dev/images/memur-zammi-hesaplama-koray-oner.png",
+        "@id": "https://korayoner.dev/memur-zammi-hesaplama/#app",
+        "name": "Memur Zammı Hesaplama",
+        "url": "https://korayoner.dev/memur-zammi-hesaplama/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "featureList": "Memur ve memur emeklisi zammının toplu sözleşme ve enflasyon farkı bileşenleri, açıklanan TÜFE verisinden kesinleşen alt sınır, enflasyon farkının doğması için gereken eşik, açıkça işaretlenmiş senaryolar, maaşın yeni tutarı",
+        "description": "Memur ve memur emeklisi zammını toplu sözleşme oranı ve açıklanan TÜFE verisinden enflasyon farkıyla birlikte hesaplar. Veri her iş günü TCMB'den güncellenir."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Memur Zammı Hesaplama", "item": "https://korayoner.dev/memur-zammi-hesaplama/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Memur zammı nasıl hesaplanır?",
+            "acceptedAnswer": { "@type": "Answer", "text": "İki parçadan oluşur. Birincisi toplu sözleşmede o altı ay için belirlenen artış oranıdır. İkincisi enflasyon farkıdır: bir önceki altı ayın TÜFE artışı o dönemin toplu sözleşme oranını aşmışsa aradaki fark eklenir. İkisi toplanmaz, çarpılır: zam = (1 + fark) × (1 + toplu sözleşme oranı) − 1." }
+          },
+          {
+            "@type": "Question",
+            "name": "Enflasyon farkı nasıl bulunur?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Altı aylık TÜFE artışı, o altı ayın toplu sözleşme oranına bölünerek bulunur: fark = (1 + TÜFE) / (1 + toplu sözleşme) − 1. Çıkarma yöntemi farkı olduğundan büyük gösterir. TÜFE toplu sözleşme oranının altında kalırsa fark sıfırdır; eksi fark maaştan düşülmez." }
+          },
+          {
+            "@type": "Question",
+            "name": "2026 ve 2027 toplu sözleşme oranları ne?",
+            "acceptedAnswer": { "@type": "Answer", "text": "8. dönem toplu sözleşmeye ilişkin Kamu Görevlileri Hakem Kurulu kararına göre 2026'nın ilk yarısı için yüzde 11, ikinci yarısı için yüzde 7; 2027'nin ilk yarısı için yüzde 5, ikinci yarısı için yüzde 4. Karar 27 Ağustos 2025 tarihli Resmî Gazete'de yayımlandı." }
+          },
+          {
+            "@type": "Question",
+            "name": "Memur emeklileri de aynı oranda zam alır mı?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Emekli Sandığı'ndan, yani 5434 sayılı Kanun'a tabi olarak aylık alan memur emeklileri memur maaş artışıyla aynı oranda zam alır. SSK ve Bağ-Kur emeklileri ise yalnızca altı aylık TÜFE kadar zam alır; onların hesabı emekli zammı sayfasında." }
+          },
+          {
+            "@type": "Question",
+            "name": "Net maaşım da bu oranda mı artar?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Tam olarak değil. Zam maaş katsayılarına uygulanır; brüt maaş bu oranda artar. Net maaştaki artış gelir vergisi diliminize ve yıl içindeki kümülatif matrahınıza göre biraz farklı olabilir. Memur emekli aylıkları gelir vergisine tabi olmadığı için emeklide oran doğrudan geçerlidir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Zam ne zaman kesinleşir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Toplu sözleşme kısmı baştan bellidir ve zam bundan düşük olamaz. Enflasyon farkı ise altı ayın son ayının TÜFE'si açıklandığında kesinleşir: Ocak zammı için 3 Ocak civarında açıklanan Aralık verisi, Temmuz zammı için 3 Temmuz civarında açıklanan Haziran verisi." }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="/#projects">Araçlar</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#gecmis">Geçmiş zamlar</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Memur Zammı Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <!-- MZ-HERO:BASLANGIC -->
+        <h1>Ocak 2027 memur zammı hesaplama</h1>
+        <p class="lede"><strong>Ocak 2027 memur zammı en az %5,00.</strong> 2027 ilk yarısı için toplu sözleşme oranı %5,00 ve zam bundan düşük olamaz. Üstüne enflasyon farkı gelip gelmeyeceği Temmuz–Aralık 2026 enflasyonuna bağlı: altı aylık TÜFE %7,00 oranını aşarsa fark eklenir. Şu ana kadar altı aydan ikisi açıklandı, birikim %3,65. Farkın doğması için kalan 4 ayda birikimli %3,23 üzerinde enflasyon gerekiyor. Eylül verisinin 5 Ekim 2026 tarihinde açıklanması bekleniyor.</p>
+        <!-- MZ-HERO:BITIS -->
+        <p class="muted kunye-satiri">
+          Toplu sözleşme: Kamu Görevlileri Hakem Kurulu kararı (RG 27.08.2025) ·
+          TÜFE: TCMB (TÜİK), her iş günü güncellenir · açıklanmış iki resmî zamla doğrulanıyor
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" data-rapor="yok">
+      <div class="wrap">
+        <div class="bi-duzen">
+          <div class="bi-form">
+            <h2>Maaşınız ne olur?</h2>
+            <div class="alan-grid">
+              <label>Şu anki maaşınız ya da emekli aylığınız (₺)
+                <input type="text" inputmode="decimal" id="mz-maas" value="60.000" autocomplete="off">
+                <small>Örnek tutar; kendi tutarınızı yazın.</small>
+              </label>
+              <label id="mz-varsayim-alan">Açıklanmamış aylar için varsayım
+                <select id="mz-varsayim">
+                  <option value="gecen-yil" selected>Geçen yılın aynı ayları</option>
+                  <option value="0">Aylık enflasyon sıfır</option>
+                  <option value="0.01">Her ay %1</option>
+                  <option value="0.015">Her ay %1,5</option>
+                  <option value="0.02">Her ay %2</option>
+                  <option value="0.025">Her ay %2,5</option>
+                  <option value="0.03">Her ay %3</option>
+                  <option value="ozel">Kendi oranım</option>
+                </select>
+                <small>Tahmin değil, sizin seçtiğiniz varsayım.</small>
+              </label>
+              <label id="mz-ozel-alan" hidden>Aylık oran (%)
+                <input type="text" inputmode="decimal" id="mz-ozel" value="1,8" autocomplete="off">
+              </label>
+            </div>
+          </div>
+
+          <div class="bi-sonuc" aria-live="polite">
+            <div class="reel-kart">
+              <p class="reel-etiket" id="mz-etiket">—</p>
+              <p class="reel-deger" id="mz-oran">—</p>
+              <p class="reel-alt" id="mz-aciklama">—</p>
+            </div>
+            <dl class="ozet-liste">
+              <div><dt>Toplu sözleşme (alt sınır)</dt><dd id="mz-ts">—</dd></div>
+              <div><dt>Enflasyon farkı</dt><dd id="mz-fark">—</dd></div>
+              <div class="vurgu"><dt>Yeni tutar</dt><dd id="mz-yeni">—</dd></div>
+              <div><dt>Aylık artış</dt><dd id="mz-artis">—</dd></div>
+            </dl>
+            <p class="uyari">Zam maaş katsayılarına uygulanır. Çalışan memurda net maaştaki artış vergi dilimine göre biraz farklı olabilir; memur emekli aylığında oran doğrudan geçerlidir.</p>
+          </div>
+        </div>
+
+        <!-- MZ-AYLAR:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo">
+              <caption>Ocak 2027 zammının dayandığı altı ay</caption>
+              <thead>
+                <tr><th scope="col">Ay</th><th scope="col">Aylık TÜFE</th><th scope="col">Birikim</th><th scope="col">Durum</th></tr>
+              </thead>
+              <tbody>
+              <tr><th scope="row">Temmuz 2026</th><td>%1,78</td><td>%1,78</td><td>Açıklandı</td></tr>
+              <tr><th scope="row">Ağustos 2026</th><td>%1,84</td><td>%3,65</td><td>Açıklandı</td></tr>
+              <tr class="bekliyor"><th scope="row">Eylül 2026</th><td>—</td><td>—</td><td>5 Ekim 2026 (beklenen)</td></tr>
+              <tr class="bekliyor"><th scope="row">Ekim 2026</th><td>—</td><td>—</td><td>3 Kasım 2026 (beklenen)</td></tr>
+              <tr class="bekliyor"><th scope="row">Kasım 2026</th><td>—</td><td>—</td><td>3 Aralık 2026 (beklenen)</td></tr>
+              <tr class="bekliyor"><th scope="row">Aralık 2026</th><td>—</td><td>—</td><td>4 Ocak 2027 (beklenen)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- MZ-AYLAR:BITIS -->
+
+        <!-- MZ-SENARYO:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo">
+              <caption>Eylül–Aralık 2026 için senaryolar — 60.000 TL maaşa etkisi</caption>
+              <thead>
+                <tr><th scope="col">Kalan 4 ay için varsayım</th><th scope="col">Altı aylık TÜFE</th><th scope="col">Enflasyon farkı</th><th scope="col">Ocak 2027 zammı</th><th scope="col">60.000 TL olur</th></tr>
+              </thead>
+              <tbody>
+              <tr class="alt-sinir"><th scope="row">Kalan aylarda aylık enflasyon sıfır olsa</th><td>%3,65</td><td>%0,00</td><td>%5,00</td><td>63.000 TL</td></tr>
+              <tr class="gecen-yil"><th scope="row">Geçen yılın aynı ayları tekrarlansa (Eylül–Aralık 2025)</th><td>%11,67</td><td>%4,36</td><td>%9,58</td><td>65.748 TL</td></tr>
+              <tr><th scope="row">Kalan her ay %1</th><td>%7,86</td><td>%0,81</td><td>%5,85</td><td>63.510 TL</td></tr>
+              <tr><th scope="row">Kalan her ay %1,5</th><td>%10,01</td><td>%2,82</td><td>%7,96</td><td>64.776 TL</td></tr>
+              <tr><th scope="row">Kalan her ay %2</th><td>%12,20</td><td>%4,86</td><td>%10,10</td><td>66.060 TL</td></tr>
+              <tr><th scope="row">Kalan her ay %2,5</th><td>%14,41</td><td>%6,93</td><td>%12,28</td><td>67.368 TL</td></tr>
+              <tr><th scope="row">Kalan her ay %3</th><td>%16,66</td><td>%9,03</td><td>%14,48</td><td>68.688 TL</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- MZ-SENARYO:BITIS -->
+      </div>
+    </section>
+
+    <section id="nasil" class="content">
+      <div class="wrap prose">
+        <h2>Nasıl hesaplanır</h2>
+        <p>
+          Memur maaşları ve Emekli Sandığı'na (5434 sayılı Kanun) tabi memur emeklilerinin
+          aylıkları her altı ayda iki parçayla artar: o dönem için toplu sözleşmede
+          belirlenen oran ve, bir önceki altı ayın enflasyonu o dönemin toplu sözleşme
+          oranını aşmışsa, aradaki <strong>enflasyon farkı</strong>.
+        </p>
+        <p class="formula">fark = max(0, (1 + altı aylık TÜFE) ÷ (1 + önceki dönemin toplu sözleşme oranı) − 1)</p>
+        <p class="formula">zam = (1 + fark) × (1 + yeni dönemin toplu sözleşme oranı) − 1</p>
+        <p>
+          Fark çıkarma değil bölmeyle bulunur ve iki parça toplanmaz, çarpılır. Çıkarıp
+          toplamak zammı olduğundan büyük gösterir. Enflasyon toplu sözleşmenin altında
+          kalırsa fark sıfırdır; maaştan bir şey düşülmez. Bu yüzden
+          <strong>yeni dönemin toplu sözleşme oranı zammın alt sınırıdır</strong>.
+        </p>
+        <h3>Bu hesap doğru mu?</h3>
+        <p>
+          Aynı yöntem açıklanmış iki memur zammını birebir veriyor: Ocak 2025 %11,54
+          (fark %5,23 + toplu sözleşme %6) ve Temmuz 2025 %15,57 (fark %10,07 + toplu
+          sözleşme %5). TÜFE verisi, açıklanmış dört SSK/Bağ-Kur artışını da yeniden
+          üretmeden siteye yazılmıyor.
+        </p>
+        <h3>Toplu sözleşme oranları</h3>
+        <ul>
+          <li><strong>2026:</strong> ilk yarı %11, ikinci yarı %7</li>
+          <li><strong>2027:</strong> ilk yarı %5, ikinci yarı %4</li>
+          <li>Kaynak: 8. dönem toplu sözleşmeye ilişkin Kamu Görevlileri Hakem Kurulu kararı,
+            27 Ağustos 2025 tarihli Resmî Gazete (sayı 32561). 2028–2029 oranları 9. dönem
+            toplu sözleşmeyle 2027'de belirlenecek; o güne kadar Ocak 2028 hesaplanmaz.</li>
+        </ul>
+        <h3>Neyi hesaplamıyor</h3>
+        <ul>
+          <li><strong>Seyyanen ve taban aylık artışları:</strong> 2026'nın ilk yarısındaki
+            1.000 TL taban aylık artışı gibi tutar olarak verilen artışlar yüzdeye girmez.</li>
+          <li><strong>Net maaş:</strong> çalışan memurda gelir vergisi dilimi net artışı
+            değiştirebilir; bordro dökümü için <a href="../maas-hesaplama/">maaş hesaplama</a>.</li>
+          <li><strong>SSK ve Bağ-Kur emeklileri:</strong> yalnızca TÜFE kadar zam alır;
+            <a href="../emekli-zammi-hesaplama/">emekli zammı hesaplama</a>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="gecmis" class="content">
+      <div class="wrap prose">
+        <h2>Geçmiş dönemler</h2>
+        <p>
+          Toplu sözleşme oranlarının sitede kayıtlı olduğu dönemler. Ocak 2025 ve Temmuz 2025
+          açıklanmış resmî oranlarla birebir aynı; sonrakiler aynı yöntemle hesaplandı.
+        </p>
+        <!-- MZ-GECMIS:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo">
+              <caption>Memur ve memur emeklisi zammı, dönem dönem</caption>
+              <thead>
+                <tr><th scope="col">Zam dönemi</th><th scope="col">Altı aylık TÜFE</th><th scope="col">Önceki toplu sözleşme</th><th scope="col">Enflasyon farkı</th><th scope="col">Yeni toplu sözleşme</th><th scope="col">Zam</th></tr>
+              </thead>
+              <tbody>
+              <tr><th scope="row">Temmuz 2026</th><td>%17,75</td><td>%11,00</td><td>%6,08</td><td>%7,00</td><td>%13,51</td></tr>
+              <tr><th scope="row">Ocak 2026</th><td>%12,20</td><td>%5,00</td><td>%6,85</td><td>%11,00</td><td>%18,60</td></tr>
+              <tr><th scope="row">Temmuz 2025</th><td>%16,67</td><td>%6,00</td><td>%10,07</td><td>%5,00</td><td>%15,57</td></tr>
+              <tr><th scope="row">Ocak 2025</th><td>%15,75</td><td>%10,00</td><td>%5,23</td><td>%6,00</td><td>%11,54</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- MZ-GECMIS:BITIS -->
+      </div>
+    </section>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Veri kaynakları ve güncelleme</h2>
+          <p>
+            Toplu sözleşme oranları 8. dönem Kamu Görevlileri Hakem Kurulu kararından
+            (RG 27.08.2025, sayı 32561). Aylık TÜFE değişimleri TCMB'nin
+            <a href="https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Enflasyon+Verileri/Tuketici+Fiyatlari" rel="noopener">Tüketici Fiyatları</a>
+            sayfasından alınır; tablo TÜİK verisini yayımlar. Veri her iş günü otomatik
+            güncellenir, yeni ay açıklandığında sayfa kendiliğinden ilerler.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <details><summary>Memur zammı nasıl hesaplanır?</summary>
+          <p>İki parçadan oluşur. Birincisi toplu sözleşmede o altı ay için belirlenen artış oranıdır. İkincisi enflasyon farkıdır: bir önceki altı ayın TÜFE artışı o dönemin toplu sözleşme oranını aşmışsa aradaki fark eklenir. İkisi toplanmaz, çarpılır: zam = (1 + fark) × (1 + toplu sözleşme oranı) − 1.</p>
+        </details>
+        <details><summary>Enflasyon farkı nasıl bulunur?</summary>
+          <p>Altı aylık TÜFE artışı, o altı ayın toplu sözleşme oranına bölünerek bulunur: fark = (1 + TÜFE) / (1 + toplu sözleşme) − 1. Çıkarma yöntemi farkı olduğundan büyük gösterir. TÜFE toplu sözleşme oranının altında kalırsa fark sıfırdır; eksi fark maaştan düşülmez.</p>
+        </details>
+        <details><summary>2026 ve 2027 toplu sözleşme oranları ne?</summary>
+          <p>8. dönem toplu sözleşmeye ilişkin Kamu Görevlileri Hakem Kurulu kararına göre 2026'nın ilk yarısı için yüzde 11, ikinci yarısı için yüzde 7; 2027'nin ilk yarısı için yüzde 5, ikinci yarısı için yüzde 4. Karar 27 Ağustos 2025 tarihli Resmî Gazete'de yayımlandı.</p>
+        </details>
+        <details><summary>Memur emeklileri de aynı oranda zam alır mı?</summary>
+          <p>Emekli Sandığı'ndan, yani 5434 sayılı Kanun'a tabi olarak aylık alan memur emeklileri memur maaş artışıyla aynı oranda zam alır. SSK ve Bağ-Kur emeklileri ise yalnızca altı aylık TÜFE kadar zam alır; onların hesabı emekli zammı sayfasında.</p>
+        </details>
+        <details><summary>Net maaşım da bu oranda mı artar?</summary>
+          <p>Tam olarak değil. Zam maaş katsayılarına uygulanır; brüt maaş bu oranda artar. Net maaştaki artış gelir vergisi diliminize ve yıl içindeki kümülatif matrahınıza göre biraz farklı olabilir. Memur emekli aylıkları gelir vergisine tabi olmadığı için emeklide oran doğrudan geçerlidir.</p>
+        </details>
+        <details><summary>Zam ne zaman kesinleşir?</summary>
+          <p>Toplu sözleşme kısmı baştan bellidir ve zam bundan düşük olamaz. Enflasyon farkı ise altı ayın son ayının TÜFE'si açıklandığında kesinleşir: Ocak zammı için 3 Ocak civarında açıklanan Aralık verisi, Temmuz zammı için 3 Temmuz civarında açıklanan Haziran verisi.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../emekli-zammi-hesaplama/">Emekli Zammı Hesaplama</a> — SSK ve Bağ-Kur aylıklarının Ocak ve Temmuz artışı</li>
+          <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — zamlı maaşın 12 aylık bordro dökümü</li>
+          <li><a href="../kisisel-enflasyon/">Kişisel Enflasyon</a> — kendi harcama sepetiniz resmî TÜFE'den ne kadar saptı?</li>
+          <li><a href="../zam-hesaplama/">Zam Hesaplama</a> — brüt zam oranı nete ne kadar yansır?</li>
+          <li><a href="../makaleler/torba-yasa-ne-var-ne-yok/">Torba yasada ne var, ne yok?</a> — kamu çalışanlarını ilgilendiren düzenlemelerin yasal durumu</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Veri kaynakları ve güncelleme</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../finans/tufe-serisi.js?v=3f904d8e" defer></script>
+  <script src="../finans/toplu-sozlesme.js?v=d14caa9f" defer></script>
+  <script src="../finans/emekli-zammi-motoru.js?v=56ea26f8" defer></script>
+  <script src="script.js?v=adbdfede" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>
