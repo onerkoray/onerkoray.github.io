@@ -1503,7 +1503,50 @@ function dipAyBasamagi() {
     "</svg>";
 }
 
+/* Emekli promosyonu — kişisel net fayda. Yazının modeli: A 18.000 TL
+   nakit; B 24.000 TL nakit + puan − 8.200 TL ek maliyet (7.000 ekonomik ek
+   tüketim + 1.200 ürün/işlem gideri). Puanın kullanılabilir değeri 0 /
+   3.000 / 6.000. Rakamlar yazının sayi-testi.js'iyle aynı modelden. */
+function promosyonNetDeger() {
+  var EK = 7000 + 1200, B_NAKIT = 24000;
+  var veri = [
+    { ad: "A · sade", alt: "18.000 nakit", v: 18000, renk: R.s1 },
+    { ad: "B · puan yok", alt: "24.000 − 8.200", v: B_NAKIT - EK, renk: R.s2 },
+    { ad: "B · yarısı", alt: "+ 3.000 puan", v: B_NAKIT + 3000 - EK, renk: R.s2 },
+    { ad: "B · tamamı", alt: "+ 6.000 puan", v: B_NAKIT + 6000 - EK, renk: R.s2 }
+  ];
+  var W = 600, H = 360, P = 28, TY = 290, TAVAN = 24000, BOY = 190;
+  var gen = (W - 2 * P) / veri.length;
+  var cubuk = veri.map(function (d, i) {
+    var h = d.v / TAVAN * BOY, x0 = P + i * gen + 22, w = gen - 44, cx = x0 + w / 2;
+    return '<rect x="' + x0.toFixed(1) + '" y="' + (TY - h).toFixed(1) + '" width="' + w.toFixed(1) +
+      '" height="' + h.toFixed(1) + '" rx="3" fill="' + d.renk + '"/>' +
+      '<text x="' + cx.toFixed(1) + '" y="' + (TY - h - 10).toFixed(1) +
+      '" text-anchor="middle" font-size="16" font-weight="800" fill="' + R.murekkep + '">' +
+      nf0.format(d.v) + '</text>' +
+      '<text x="' + cx.toFixed(1) + '" y="' + (TY + 22) + '" text-anchor="middle" font-size="14" ' +
+      'font-weight="700" fill="' + R.murekkep + '">' + esc(d.ad) + '</text>' +
+      '<text x="' + cx.toFixed(1) + '" y="' + (TY + 40) + '" text-anchor="middle" font-size="12" fill="' +
+      R.ikincil + '">' + esc(d.alt) + '</text>';
+  }).join("");
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H +
+    '" role="img" aria-label="Sade teklif 18.000 TL net fayda verirken puanlı teklif puan kullanımına göre ' +
+    '15.800, 18.800 veya 21.800 TL bırakıyor">' +
+    '<text x="' + P + '" y="40" font-size="16" font-weight="700" fill="' + R.murekkep +
+    '">Kişisel net fayda, bugünün TL’siyle</text>' +
+    '<text x="' + P + '" y="62" font-size="13" fill="' + R.ikincil +
+    '">Aynı 36 ay · varsayımsal teklifler · B’de 8.200 TL ek maliyet</text>' +
+    '<line x1="' + P + '" y1="' + TY + '" x2="' + (W - P) + '" y2="' + TY +
+    '" stroke="' + R.izgara + '" stroke-width="1.5"/>' + cubuk + '</svg>';
+}
+
 var KAPAKLAR = {
+  "emekli-promosyonunun-ekonomisi": {
+    kicker: "Finans",
+    baslik: "Emekli promosyonunun ekonomisi",
+    alt: "Reklamdaki toplam değil, kişiye kalan net değer",
+    cizim: promosyonNetDeger
+  },
   "yilin-en-dusuk-maasi-hangi-ay": {
     kicker: "Bordro · Ölçüm",
     baslik: "Yılın en düşük maaşı hangi ay?",
@@ -2320,7 +2363,8 @@ function chromeBul() {
   return null;
 }
 
-function uret(chrome, slug, kart) {
+function uret(chrome, slug, kart, olcek) {
+  olcek = olcek || 1;
   var k = KAPAKLAR[slug];
   var fs_ = k.baslik.length <= 22 ? 52 : (k.baslik.length <= 30 ? 46 : 40);
   var doc = kart
@@ -2339,7 +2383,7 @@ function uret(chrome, slug, kart) {
   try {
     execFileSync(chrome, [
       "--headless=new", "--disable-gpu", "--hide-scrollbars",
-      "--force-device-scale-factor=1", "--window-size=" + (kart ? "800,500" : "1200,630"),
+      "--force-device-scale-factor=" + olcek, "--window-size=" + (kart ? "800,500" : "1200,630"),
       "--screenshot=" + out, "--user-data-dir=" + path.join(tmp, "u"),
       "file:///" + src.replace(/\\/g, "/")
     ], { timeout: 90000, stdio: "ignore" });
@@ -2347,7 +2391,7 @@ function uret(chrome, slug, kart) {
 
   if (!fs.existsSync(out)) { console.error("   HATA: " + slug + " uretilemedi"); return false; }
   if (!fs.existsSync(CIKTI)) fs.mkdirSync(CIKTI, { recursive: true });
-  var hedef = path.join(CIKTI, slug + (kart ? "-kart" : "") + ".png");
+  var hedef = path.join(CIKTI, slug + (kart ? "-kart" : "") + (olcek > 1 ? "@" + olcek + "x" : "") + ".png");
   fs.copyFileSync(out, hedef);
   console.log("   " + path.basename(hedef).padEnd(42) + fs.statSync(hedef).size + " bayt");
   return true;
@@ -2365,7 +2409,7 @@ function main() {
   var ok = 0;
   hedefler.forEach(function (s) {
     if (!KAPAKLAR[s]) { console.error("Bilinmeyen kapak: " + s); return; }
-    if (uret(chrome, s, false) && uret(chrome, s, true)) ok++;
+    if (uret(chrome, s, false) && uret(chrome, s, true) && uret(chrome, s, true, 2)) ok++;
   });
   console.log("\nUretilen: " + ok + " / " + hedefler.length);
   return ok === hedefler.length ? 0 : 1;

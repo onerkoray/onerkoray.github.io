@@ -293,3 +293,144 @@
 @media (max-width: 480px) {
   .ed-yayin-listesi > li { padding-left: 0.7rem; }
 }
+
+/* ================================================================ */
+/* MAKALE TABLOLARI — tek dil (2026-09-23)                           */
+/*                                                                  */
+/* Ölçüm: 38 makalede 109 tablo ve 15 ayrı stil vardı. 72'si        */
+/* araçlardan ödünç alınan .payroll (büyük harfli soluk başlık,     */
+/* zebra), gerisi makaleye özel sınıflar (em-tablo, ke-tablo,       */
+/* deposit-table…), 6'sı hiç stilsiz: ortalanmış hücre, çizgisiz,   */
+/* rakamlar hizasız. Bir makale okuyucusu için hepsi aynı şey: veri. */
+/*                                                                  */
+/* Kural SINIFA değil GÖVDEYE bağlı: makale sayfasındaki her tablo  */
+/* bu dili konuşur. Tabloların çoğunu üreteçler yazıyor (bes-,      */
+/* ydo-, beyan-tablosu…); onların HTML'ine dokunmak bir sonraki      */
+/* çalıştırmada geri alınırdı. Kapsam main:has(.ed-article-hero):   */
+/* yalnızca makaleler; ana sayfa ve araçlar etkilenmez.             */
+/*                                                                  */
+/* Dil: yatay çizgiler, dikey çizgi yok; başlık altında koyu çizgi;  */
+/* zemin yok; rakamlar sağda ve tablo rakamlı (hangi sütunun rakam   */
+/* olduğunu /script.js işaretliyor: .sayi). Anlam taşıyan satır      */
+/* vurguları (dilim geçişi gibi, altında açıklaması olan) korunur.   */
+/* ================================================================ */
+:root main:has(.ed-article-hero) :is(.table-scroll, .table-wrap) {
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  border: 0;
+  max-height: none;
+}
+/* Genel kural .prose içindeki tabloyu sayfa genişliğine yayıyordu:
+   metin 632px, tablo 1000px — okuyucu sütundan çıkıp geri giriyordu.
+   Tablo metin sütununda kalır; sığmayan yatay kayar. */
+:root main:has(.ed-article-hero) .prose > .table-scroll { width: auto; margin-inline: 0; }
+/* Sığmayan tablo (makaleler/tablo.js .tablo-genis verir) sayfa genişliğine
+   açılır; yalnızca o. */
+:root main:has(.ed-article-hero) .prose > .tablo-genis {
+  width: min(100vw - 2.5rem, 1000px);
+  margin-inline: calc(50% - min(50vw - 1.25rem, 500px));
+}
+
+:root main:has(.ed-article-hero) table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  background: none;
+  font-size: .875rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+:root main:has(.ed-article-hero) table caption {
+  caption-side: top;
+  padding: 0 0 .65rem;
+  text-align: left;
+  font: 650 .875rem/1.4 var(--font-body);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+}
+:root main:has(.ed-article-hero) table :is(th, td) {
+  padding: .55rem .75rem;
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: none;
+  font-size: inherit;
+  opacity: 1;
+}
+:root main:has(.ed-article-hero) table :is(th, td):first-child { padding-left: 0; }
+:root main:has(.ed-article-hero) table :is(th, td):last-child { padding-right: 0; }
+:root main:has(.ed-article-hero) table thead th {
+  position: static;
+  vertical-align: bottom;
+  font: 600 .78rem/1.35 var(--font-body);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-muted);
+  border-bottom: 1.5px solid var(--text);
+}
+:root main:has(.ed-article-hero) table tbody th { font-weight: 600; }
+:root main:has(.ed-article-hero) table tbody tr:nth-child(even) { background: none; }
+:root main:has(.ed-article-hero) table tbody tr:last-child > * { border-bottom-color: var(--text); }
+:root main:has(.ed-article-hero) table :is(th, td).sayi { text-align: right; white-space: nowrap; }
+/* Toplam satırı: tfoot ya da .tk-toplam/.toplam — üstünde koyu çizgi. */
+:root main:has(.ed-article-hero) table :is(tfoot tr, tr.toplam, tr.tk-toplam) > * {
+  font-weight: 650; border-top: 1.5px solid var(--text); border-bottom: 0;
+}
+@media (max-width: 560px) {
+  :root main:has(.ed-article-hero) table { font-size: .8125rem; }
+  :root main:has(.ed-article-hero) table :is(th, td) { padding: .5rem .55rem; }
+}
+
+/* ---- Formül ---------------------------------------------------- */
+/* Paragraf içine gömülü uzun formül satır sonlarında parçalanıyordu.
+   Uzun olanlar kendi satırında blok; kısa olanlar satır içinde, hafif
+   bir zeminle metinden ayrılır. */
+:root main:has(.ed-article-hero) .prose p code,
+:root main:has(.ed-article-hero) .prose li code {
+  padding: .05em .3em;
+  font-size: .88em;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+}
+.ed-formul {
+  margin: 1.25rem 0;
+  padding: .8rem 1rem;
+  overflow-x: auto;
+  font: 500 .9rem/1.6 var(--font-mono);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+/* p.ed-formul: satır içi kod kuralı (.prose p code) daha özgül; blok
+   içinde her satıra ayrı zemin şeridi çiziyordu. */
+:root main:has(.ed-article-hero) .prose p.ed-formul code { padding: 0; background: none; font-size: inherit; white-space: pre-wrap; }
+
+/* ---- Grafik: gövdeye çizilmiş SVG ------------------------------- */
+/* Afiş PNG'si değil: başlığı ve künyesi görselin içine basılmış
+   800 piksellik bir kart, 632px'lik sütunda retina ekranda bulanık
+   duruyordu ve temayla konuşmuyordu. Gövde grafiği sayfanın kendi
+   metni, kendi rengi ve kendi başlığıyla çizilir; her ölçekte keskin. */
+.ed-grafik { margin: 2rem 0; }
+.ed-grafik-baslik {
+  margin: 0 0 .2rem;
+  font: 650 .95rem/1.4 var(--font-body);
+  color: var(--text);
+}
+.ed-grafik-alt { margin: 0 0 .75rem; font-size: .8125rem; color: var(--text-muted); }
+.ed-grafik svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ed-grafik svg text { font-family: var(--font-body); fill: var(--text-muted); font-size: 13px; }
+.ed-grafik svg .deger { fill: var(--text); font-weight: 650; font-variant-numeric: tabular-nums; }
+.ed-grafik svg .eksen { stroke: var(--text); stroke-width: 1; }
+.ed-grafik svg .esik { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 4; }
+.ed-grafik svg .esik-yazi { fill: var(--text-muted); font-size: 12px; }
+.ed-grafik figcaption { margin-top: .6rem; font-size: var(--step--1); line-height: 1.5; color: var(--text-muted); }
+
+/* Hero'dan sonra gelen .content bölümü (dört makalede gövde böyle
+   kurulu) bölüm dolgusunu (4–8rem) da getiriyordu: başlıkla metin
+   arasında boş bir bant. Makale kabuğunda gövde doğrudan gelir. */
+.ed-article-hero + .content { padding-top: 1.5rem; border-top: 0; }

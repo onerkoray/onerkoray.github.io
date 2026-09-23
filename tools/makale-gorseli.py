@@ -71,17 +71,25 @@ def kacis(s):
 
 
 def blok(kayit):
-    """Yonetilen figure blogu."""
+    """Yonetilen figure blogu.
+
+    Kart 800x500 basiliyor ve 632 piksellik metin sutununda retina ekranda
+    yumusak duruyordu. tools/makale-gorsel.js artik -kart@2x.png de basiyor;
+    dosya varsa srcset'e giriyor ve yalnizca yuksek yogunluklu ekran onu
+    indiriyor. Liste sayfasi 1x'te kaliyor: orada kucuk onizleme."""
     slug = kayit["slug"]
+    iki = os.path.exists(os.path.join(KOK, "images", "makale", slug + "-kart@2x.png"))
+    srcset = ('\n                 srcset="../../images/makale/%s-kart.png 1x, '
+              '../../images/makale/%s-kart@2x.png 2x"' % (slug, slug)) if iki else ""
     return (
         BAS + "\n"
         '          <figure class="ed-veri-gorseli">\n'
-        '            <img src="../../images/makale/%s-kart.png"\n'
+        '            <img src="../../images/makale/%s-kart.png"%s\n'
         '                 width="800" height="500" decoding="async"\n'
         '                 alt="%s">\n'
         "            <figcaption>%s</figcaption>\n"
         "          </figure>\n"
-        "          " % (slug, kacis(kayit["alt"]), kacis(kayit["altyazi"]))
+        "          " % (slug, srcset, kacis(kayit["alt"]), kacis(kayit["altyazi"]))
     ) + BIT
 
 
