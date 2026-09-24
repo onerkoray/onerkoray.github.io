@@ -45,6 +45,9 @@ CIKTI = "_cekirdek"
 # Kural: yalnizca hesap yapan kod ve onu dogrulayan testler. Arayuz, uretec,
 # gorsel ve icerik girmez.
 DOSYALAR = [
+    ("makaleler/kredi-karti-asgari-odeme/kart.js", "kart-borcu/kart.js"),
+    ("kredi-karti-borcu-hesaplama/hesap.js", "kart-borcu/hesap.js"),
+    ("kredi-karti-borcu-hesaplama/test.js", "kart-borcu/test.js"),
     ("nakit-koprusu/hesap.js", "nakit-koprusu/hesap.js"),
     ("nakit-koprusu/test.js", "nakit-koprusu/test.js"),
     ("basabas-hesaplama/hesap.js", "basabas-hesaplama/hesap.js"),
@@ -130,6 +133,7 @@ DOSYALAR = [
 # Cekirdekteki dosyalar birbirini goreli yolla cagiriyor; klasor yapisi
 # degistigi icin bu yollar duzeltilmeli.
 YOL_DUZELTME = [
+    ("../makaleler/kredi-karti-asgari-odeme/kart.js", "./kart.js"),
     ('require("./fatura.js")', 'require("./fatura.js")'),   # ayni klasorde kaliyor
     # Ev/kira cekirdegi kredi cekirdegini cagiriyor. Sitede klasor adi
     # "kredi-hesaplama", pakette "kredi" -- yol duzeltilmezse paketlenmis

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="tr" data-theme="auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="author" content="Koray Öner">
+  <meta name="gecerlilik" content="2026-12-01 | TCMB kredi kartı azami faiz bantları makaleler/kredi-karti-asgari-odeme/kart.js üzerinden okunuyor; aylık TCMB tablosu ve BDDK asgari ödeme kararı kontrol edilmeli.">
+  <title>Kredi Kartı Borcu Kaç Ayda Biter? | Kart Borcu Rotası</title>
+  <meta name="description" content="Kredi kartı borcunuzu asgari ödeme, aylık bütçe ve hedef tarihle karşılaştırın. Ay ay kalan borcu, faiz ve vergiyi, gereken aylık ödemeyi görün.">
+  <link rel="canonical" href="https://korayoner.dev/kredi-karti-borcu-hesaplama/">
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=6287b38b" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="Koray Öner"><meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="Kart Borcu Rotası — Kredi kartı borcum kaç ayda biter?">
+  <meta property="og:description" content="Asgari, aylık bütçe ve hedef tarih: üç ödeme yolunun bitişini ve gerçek maliyetini yan yana görün.">
+  <meta property="og:url" content="https://korayoner.dev/kredi-karti-borcu-hesaplama/">
+  <meta property="og:image" content="https://korayoner.dev/images/kart-borcu-rotasi.png">
+  <meta property="og:image:alt" content="Üç kredi kartı ödeme yolunun azalan borç eğrisi ve faiz maliyeti">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Kart Borcu Rotası"><meta name="twitter:description" content="Asgari ödeme, bütçe ve hedef bitiş tarihini aynı borç takviminde karşılaştırın."><meta name="twitter:image" content="https://korayoner.dev/images/kart-borcu-rotasi.png">
+  <link rel="stylesheet" href="../style.css?v=89def2bd"><link rel="stylesheet" href="style.css?v=725f0c92">
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kart Borcu Rotası — Kredi Kartı Borcu Hesaplama","url":"https://korayoner.dev/kredi-karti-borcu-hesaplama/","image":"https://korayoner.dev/images/kart-borcu-rotasi.png","applicationCategory":"FinanceApplication","operatingSystem":"Web","inLanguage":"tr","description":"Kredi kartı dönem borcunda asgari ödeme, sabit aylık bütçe ve hedef bitiş süresini ay ay karşılaştırır.","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"author":{"@type":"Person","@id":"https://korayoner.dev/#oner-koray","name":"Koray Öner","url":"https://korayoner.dev/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://korayoner.dev/"},{"@type":"ListItem","position":2,"name":"Kart Borcu Rotası","item":"https://korayoner.dev/kredi-karti-borcu-hesaplama/"}]}</script>
+</head>
+<body class="calculator-page rota-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+  <header class="site-header" role="banner"><div class="wrap header-inner">
+    <a class="brand" href="../" aria-label="Koray Öner ana sayfa"><img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true"><span class="brand-name">Koray Öner</span></a>
+    <nav class="site-nav" aria-label="Birincil"><ul><li><a href="../">Ana Sayfa</a></li><li><a href="/#projects">Araçlar</a></li><li><a href="#hesapla">Hesapla</a></li><li><a href="#yontem">Yöntem</a></li></ul></nav>
+    <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir"><span class="theme-toggle-icon" aria-hidden="true"></span><span class="theme-toggle-label">Tema</span></button>
+  </div></header>
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum"><a href="../">Ana Sayfa</a> › Kart Borcu Rotası</nav>
+    <section class="rota-hero"><div class="wrap">
+      <p class="eyebrow">Hane finansı · Kredi kartı · Borç takvimi</p>
+      <h1>Kredi kartı borcunuz hangi yoldan biter?</h1>
+      <p class="lede">Aynı borç için <strong>yalnızca asgari ödeme</strong>, ayırabildiğiniz <strong>aylık bütçe</strong> ve seçtiğiniz <strong>hedef tarih</strong> üç ayrı sonuç verir. Kart Borcu Rotası, bitiş ayını, faiz ile vergi maliyetini ve gereken ödemeyi aynı takvimde gösterir.</p>
+      <div class="rota-hero-points"><span>3 ödeme yolu</span><span>Ay ay denetlenebilir hesap</span><span>Banka oranı seçeneği</span></div>
+    </div></section>
+    <div class="wrap rota-layout" id="hesapla">
+      <form id="rota-form" class="rota-panel" novalidate>
+        <div class="rota-panel-head"><p class="eyebrow">01 · Ekstreniz</p><h2>Borcunuzu ve ödeme gücünüzü girin</h2><p>Örnek tutarlar temsili. Kendi ekstrenizdeki borç, limit ve faiz oranını kullanın.</p></div>
+        <div class="rota-presets" role="group" aria-label="Örnek durumlar"><button type="button" data-ornek="standart">Örnek plan</button><button type="button" data-ornek="dar">Dar bütçe</button><button type="button" data-ornek="harcama">Harcama sürüyor</button></div>
+        <div class="rota-fields">
+          <div><label for="borc">Dönem borcu <span>TL</span></label><input id="borc" name="borc" type="number" min="1" max="100000000" step="0.01" value="40000" required></div>
+          <div><label for="limit">Kart limiti <span>TL</span></label><input id="limit" name="limit" type="number" min="1" max="100000000" step="0.01" value="50000" required><small>Asgari ödeme oranı borca değil kart limitine bağlıdır.</small></div>
+          <div><label for="butce">Her ay ayırabileceğiniz ödeme <span>TL</span></label><input id="butce" name="butce" type="number" min="1" max="100000000" step="0.01" value="10000" required></div>
+          <div><label for="hedefAy">Borcu kaç ayda bitirmek istiyorsunuz? <span>ay</span></label><input id="hedefAy" name="hedefAy" type="number" min="1" max="60" step="1" value="6" required></div>
+        </div>
+        <details class="rota-advanced"><summary>Yeni harcama ve banka faizini ayarla</summary><div class="rota-fields">
+          <div><label for="harcama">Aylık yeni kart harcaması <span>TL</span></label><input id="harcama" name="harcama" type="number" min="0" max="100000000" step="0.01" value="0" required></div>
+          <div><label for="harcamaAy">Yeni harcama kaç ay sürer? <span>ay</span></label><input id="harcamaAy" name="harcamaAy" type="number" min="0" max="24" step="1" value="0" required><small>0 = yeni harcama yok. Sonrasında kart kullanılmıyor varsayılır.</small></div>
+          <div class="rota-full"><label for="oranTipi">Faiz varsayımı</label><select id="oranTipi" name="oranTipi"><option value="tcmb">TCMB azami oran bantları</option><option value="banka">Bankamın aylık akdi faizi</option></select><small>TCMB oranları yasal üst sınırdır; bankanızın uyguladığı oran daha düşük olabilir. Borç alt banda indiğinde seçtiğiniz oran yasal azami düzeye indirilir.</small></div>
+          <div id="bankaOranAlani" hidden><label for="bankaOran">Bankanızın aylık akdi faizi <span>%</span></label><input id="bankaOran" name="bankaOran" type="number" min="0" max="20" step="0.01" value="3.75"></div>
+        </div></details>
+        <button class="rota-primary" type="submit">Borç rotasını hesapla <span aria-hidden="true">→</span></button>
+        <p id="rota-error" class="rota-error" role="alert" hidden></p>
+        <p class="rota-privacy">Girdiler tarayıcınızda hesaplanır; sunucuya gönderilmez. Bu bir banka ekstresi veya yapılandırma teklifi değildir.</p>
+      </form>
+      <section id="sonuc" class="rota-results" aria-live="polite" aria-labelledby="sonuc-baslik">
+        <div class="rota-results-head"><p class="eyebrow">02 · Karşılaştırma</p><h2 id="sonuc-baslik">Üç ödeme yolu</h2><p id="sonuc-ozet">Örnek plan hesaplanıyor…</p></div>
+        <div id="rota-kpis" class="rota-kpis"></div>
+        <p id="rota-denge" class="rota-balance-note"></p>
+        <div id="rota-uyari" class="rota-notice" hidden></div>
+        <div class="rota-chart-wrap"><div class="rota-chart-head"><h3>Kalan dönem borcu</h3><p>Ay sonu · TL</p></div><svg id="rota-chart" viewBox="0 0 700 290" role="img" aria-label="Asgari ödeme ve bütçe planında ay sonu kart borcu"></svg><div class="rota-legend"><span><i class="rota-dot min"></i> Yalnızca asgari</span><span><i class="rota-dot plan"></i> Aylık bütçem</span></div><p id="rota-chart-note" class="rota-chart-note"></p></div>
+        <div class="rota-table-scroll" role="region" aria-label="Ödeme yolları karşılaştırması" tabindex="0"><table><thead><tr><th scope="col">Yol</th><th scope="col">Bitiş</th><th scope="col">Faiz + KKDF + BSMV</th><th scope="col">Toplam ödeme</th></tr></thead><tbody id="rota-karsilastirma"></tbody></table></div>
+        <details class="rota-details"><summary>Ay ay hesap dökümünü aç</summary><div class="rota-table-scroll" role="region" aria-label="Aylık borç takvimi" tabindex="0"><table><thead><tr><th scope="col">Ay</th><th scope="col">Açılış</th><th scope="col">Asgari</th><th scope="col">Ödeme</th><th scope="col">Faiz + vergiler</th><th scope="col">Yeni harcama</th><th scope="col">Kalan</th></tr></thead><tbody id="rota-aylik"></tbody></table></div></details>
+        <button type="button" id="rota-csv" class="rota-secondary">Aylık dökümü CSV indir</button>
+      </section>
+    </div>
+    <section class="content" id="yontem"><div class="wrap prose">
+      <h2>Kredi kartı borcu kaç ayda biter?</h2>
+      <p>Yanıt, yalnızca borç tutarına değil <strong>kart limitinin belirlediği asgari ödeme oranına</strong>, her ay gerçekten ayırabildiğiniz paraya, yeni harcamalara ve uygulanan faize bağlıdır. Araç bu girdilerle üç ödeme yolunu ay ay izler. Hedef süre için gereken en düşük sabit aylık bütçeyi kuruş hassasiyetinde arar; hedef ayda harcama devam ediyorsa bitiş vaat etmez.</p>
+      <h3>Hesap hangi sırayla yapılır?</h3>
+      <p>Her ay önce dönem borcu ve limitten asgari tutar bulunur. Seçilen ödeme yapılır; kalan bakiyeye aylık akdi faiz, faiz üzerine KKDF ve BSMV eklenir. Kullanıcı yeni kart harcaması girdiyse bu tutar ay sonunda eklenir. Sonraki ayın dönemi böyle oluşur. Vergi ve fon faizden ayrı gösterilir. Sabit bütçe o ayın asgarisini karşılamıyorsa araç gecikme faizi uydurmaz; planı uygulanamaz diye işaretler. Limit aşımında plan durdurulur; bankanın işlemi onaylayacağı varsayılmaz.</p>
+      <h3>Asgari ödeme mi, daha yüksek sabit ödeme mi?</h3>
+      <p>Asgari tutar, yalnızca o ayın zorunlu alt sınırıdır. Ek kart harcaması yapılmazsa borç küçülebilir; ancak kalan bakiyeye faiz işlemeye devam eder. Araç asgari yolun bitişini ve toplam maliyetini sabit bütçe yoluyla yan yana koyar. “Asgariyle denge harcaması”, yalnızca ilk ay için asgari ödeme ile o ayın faiz ve vergi toplamı arasındaki farktır; sonraki aylarda oran bandı ve borç değişebileceği için sabit güvenli harcama limiti değildir.</p>
+      <h3>Modelin sınırları</h3>
+      <p>Bu bir <strong>dönemden döneme planlama modeli</strong>dir. Bankanın günlük faiz tahakkuku, hesap kesim/son ödeme günleri, taksitli işlemler, nakit avans, gecikme, ücretler, sigorta ve olası yapılandırma koşulları modellenmez. Faiz oranları plan boyunca sabit varsayılır; TCMB azami bant modu seçilirse borç yeni banda indiğinde o bandın oranı kullanılır. Banka oranı girilirse bu oran her dönemde ilgili yasal üst sınırla kısıtlanır. Gerçek bankanız daha düşük oran uygulayabilir. Aylık yeni harcama yalnızca girilen süre boyunca yapılır. Kart borcunun tamamı her dönem ödendiğinde yeni harcamanın faizsiz kalabildiği basitleştirilmiş zamanlama kullanılır. Hesap sonucunu bankanızın ekstresi ve ödeme planıyla karşılaştırın.</p>
+      <h2>Oran ve yöntem kaynakları</h2>
+      <p><a href="https://tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Bankacilik+Verileri/Kredi_Karti_Islemlerinde_Uygulanacak_Azami_Faiz_Oranlari" rel="noopener">TCMB — aylık azami kredi kartı faiz oranları</a> · <a href="https://www.bddk.org.tr/Duyuru/EkGetir/2074?ekId=862" rel="noopener">BDDK — 10970 sayılı asgari ödeme kararı</a> · <a href="../makaleler/kredi-karti-asgari-odeme/">Asgari ödeme yazısı ve oran tablosu</a>. Kaynak kontrolü: <time datetime="2026-09-24">24 Eylül 2026</time>. Gösterilen TCMB azami oranlarının geçerlilik başlangıcı <time datetime="2026-09-01">1 Eylül 2026</time>; araç oranları ortak <a href="../makaleler/kredi-karti-asgari-odeme/kart.js?v=0e374122">kart modülünden</a> okur.</p>
+      <p><a href="hesap.js?v=355b0c1a">Hesap motoru</a> · <a href="test.js?v=772125c4">Doğrulama testleri</a> · Hazırlayan <a href="../hakkimda/" rel="author">Koray Öner</a></p>
+      <h2>İlgili hesaplar</h2><p><a href="../borc-kapatma-plani/">Birden fazla borcu kapatma planı</a> · <a href="../kredi-hesaplama/">Kredi gerçek maliyeti</a> · <a href="../erken-kapatma-analizi/">Krediyi erken kapatma</a></p>
+    </div></section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+  <footer class="site-footer" role="contentinfo"><div class="wrap footer-legal"><p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; resmî işlemlerde bankanızın ekstresini esas alın.</p><ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar"><li><a href="../hakkimda/">Hakkımda</a></li><li><a href="../makaleler/">Makaleler</a></li><li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li><li><a href="../iletisim/">İletişim</a></li><li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li><li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li><li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li></ul></div></footer>
+  <script src="../makaleler/kredi-karti-asgari-odeme/kart.js?v=0e374122" defer></script><script src="hesap.js?v=355b0c1a" defer></script><script src="script.js?v=5745a68b" defer></script><script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>
