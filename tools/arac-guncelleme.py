@@ -111,9 +111,10 @@ def _imzalar(h):
         if GECERLILIK.search(satir) or DOGRULAMA.search(satir):
             continue
         if satir.startswith("+"):
-            ekli.append(DAMGA.sub("?v=", satir[1:]))
+            # Ilk kez damga eklenmesi de yalnizca onbellek degisimidir.
+            ekli.append(DAMGA.sub("", satir[1:]))
         elif satir.startswith("-"):
-            silik.append(DAMGA.sub("?v=", satir[1:]))
+            silik.append(DAMGA.sub("", satir[1:]))
     kapat()
     _IMZA[h] = tablo
     return tablo

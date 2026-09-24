@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""HTML'deki CSS ve JavaScript baglantilarina icerik ozetinden damga basar.
+"""HTML'deki stil, betik ve marka simgesi baglantilarina ozet damgasi basar.
 
 NEDEN: stil dosyalari "Cache-Control: max-age=3600" ile sunuluyor. HTML
 aninda tazeleniyor ama CSS bir saate kadar eski kaliyor; arada ziyaretci
@@ -34,11 +34,13 @@ KALIP = re.compile('(href|src)="([^"?]+[.](?:css|js))(?:[?]v=[0-9a-f]+)?"')
 # tuzaga dusuluyordu: dosyalar degisir, ziyaretcilerin sekmesinde eski
 # simge kalirdi -- ve hata sessizdir, kimse bildirmez.
 #
-# Bu kalip yalnizca UC dosya adini taniyor; butun gorselleri damgalamak
-# ayri ve cok daha buyuk bir karar olurdu.
+# Logo da her sayfanin ust cubugunda kullaniliyor. Yeni cizim herkesin
+# onbellegine ayni anda ulassin diye onu da damgala. Diger gorseller kapsamda
+# degil; butun gorselleri damgalamak ayri ve cok daha buyuk bir karar olurdu.
 SIMGE_KALIP = re.compile(
     '(href)="((?:[^"?]*/)?(?:favicon[.]svg|favicon[.]ico|apple-touch-icon[.]png))'
     '(?:[?]v=[0-9a-z]+)?"')
+LOGO_KALIP = re.compile('(src)="((?:[^"?]*/)?logo[.]svg)(?:[?]v=[0-9a-z]+)?"')
 
 _ozet = {}
 
@@ -77,6 +79,7 @@ def isle(kontrol):
 
         yeni, _ = KALIP.subn(degistir, s)
         yeni, _ = SIMGE_KALIP.subn(degistir, yeni)
+        yeni, _ = LOGO_KALIP.subn(degistir, yeni)
         if yeni != s:
             if kontrol:
                 bayat.append(os.path.relpath(hy, KOK).replace("\\", "/"))
