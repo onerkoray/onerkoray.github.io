@@ -182,11 +182,14 @@ a:hover { color: var(--brand); }
 .header-inner { display: flex; align-items: center; gap: 1.5rem; padding: .7rem 0; }
 .brand { display: inline-flex; align-items: center; gap: .6rem; color: var(--text); text-decoration: none; font-weight: 700; }
 .brand-mark {
-  display: block; inline-size: 30px; block-size: 30px; border-radius: 9px;
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--brand) 35%, transparent);
-  transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+  display: block; inline-size: 30px; block-size: 30px; border-radius: 2px;
+  transition: transform .3s ease-out;
 }
-.brand:hover .brand-mark { transform: rotate(-8deg) scale(1.08); }
+.brand:hover .brand-mark, .brand:focus-visible .brand-mark { transform: translateY(-1px) scale(1.04); }
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark { transition: none; }
+  .brand:hover .brand-mark, .brand:focus-visible .brand-mark { transform: none; }
+}
 .brand-name {
   position: relative;
   font-size: 1.35rem; font-weight: 800; letter-spacing: -.03em; white-space: nowrap;
@@ -577,12 +580,6 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 /* Formül kutusuna accent kenar */
 .formula { border-left: 3px solid var(--brand); }
 
-/* Hareketli logo: accent renginde yumuşak parıltı (hover'daki dönüşle çakışmaz) */
-@keyframes brandGlow {
-  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
-  50% { filter: drop-shadow(0 2px 9px color-mix(in srgb, var(--brand) 50%, transparent)); }
-}
-.brand-mark { animation: brandGlow 4.5s ease-in-out infinite; }
 /* Araç ipucu ve durum notu. 7 araç kullanıyor ama kural yalnızca
    beyanname'nin kendi dosyasındaydı: diğer 6 sayfada not gövde metni
    boyutunda çıkıyordu. Yerel kural (beyanname) sonra yüklendiği için
@@ -1268,9 +1265,8 @@ section { padding: var(--bolum) 0; }
   transform: translateY(8px);
   transition: opacity .3s ease-out, transform .3s ease-out;
 }
-/* Süresiz dekoratif animasyonlar kaldırıldı. Marka adındaki renk dalgası
-   KORUNDU: kontrastı ölçülmüş bir marka imzası, dekorasyon değil. */
-.brand-mark { animation: none; box-shadow: none; }
+/* Marka adındaki renk dalgası kontrastı ölçülmüş bir marka imzasıdır.
+   Simgenin hafif hareketi kendi SVG dosyasındadır. */
 
 .project-links a:first-child::after,
 .article-meta > a:first-child::after { transition: transform .16s ease-out; }
