@@ -26,7 +26,10 @@ _cekirdek/
 # CI tanimlari.
 .github/
 
-# Depo belgeleri ve Python artiklari.
+# Depo belgeleri ve Python artiklari. AGENTS.md ve CLAUDE.md yazim
+# ajanlarinin kilavuzu; okura degil ajana yazilmis.
 README.md
+AGENTS.md
+CLAUDE.md
 __pycache__/
 *.pyc
