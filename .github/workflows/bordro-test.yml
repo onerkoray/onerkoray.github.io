@@ -809,6 +809,9 @@ jobs:
       - name: Başabaş ve hedef kâr hesaplama
         run: node basabas-hesaplama/test.js
 
+      - name: Nakit Köprüsü aylık akış ve sermaye hesabı
+        run: node nakit-koprusu/test.js
+
       - name: Bordro belgesi ve canlı örnek
         run: node tools/bordro-sayfa-test.js
 
