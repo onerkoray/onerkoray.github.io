@@ -124,10 +124,12 @@ Bu sitede her birinin sayfadaki karşılığı:
 - **Kim?** İçeriği kimin yazdığı görünüyor mu? Her yazıda yazar satırı
   var ve yazar sayfası hakkımda.
 - **Nasıl?** Otomasyon ya da yapay zekâ kullanıldıysa bu okura açık mı?
-  Google bunu zorunlu tutmuyor ama soruyor. **Açık karar:** sitede şu an
-  yapay zekâ kullanımına dair bir açıklama yok. Eklenip eklenmeyeceği ve
-  nasıl ifade edileceği site sahibinin kararıdır; ajanlar bunu kendi
-  başına yayımlamaz.
+  Google bunu zorunlu tutmuyor ama soruyor. Sitenin cevabı
+  [yayın ilkeleri](yayin-ilkeleri/#yapay-zeka) sayfasında: ajanlar kod,
+  taslak ve görsel hazırlıyor; yapay zekâ bilgi kaynağı değil; rakamlar
+  testle yeniden hesaplanıyor; sorumluluk Koray Öner'de. Bu açıklamayı
+  değiştirmek site sahibinin kararıdır. Açıklama bir vaat içeriyor: hesap
+  içeren her yazı testli. Kılavuz kapısı bu vaadi zorluyor.
 - **Neden?** Google'a göre en önemli soru bu. Yazı, önce okura yardım
   etmek için yazılır. Arama trafiği sonuçtur, amaç değildir.
 
@@ -142,12 +144,15 @@ kalan maddeleri CI göremez. Onları elle geç.
 
 **Rakam ve hukuk**
 
-- [ ] Yazının kendi `sayi-testi.js`'i var ve yazıdaki rakamları yeniden
-      üretiyor. Testi workflow'a eklemek yetmez, koşması gerekir:
-      `tools/kilavuz-test.js`, `makaleler/` altındaki her testin workflow'da
-      çağrıldığını doğrular. (Eylül 2026: 39 yazının 22'sinde test var.
-      Eski 17 yazının bir kısmının tabloları motordan üretiliyor, bir kısmı
-      testsiz. Yeni yazı testsiz yayımlanmaz.)
+- [ ] Yazının kendi `sayi-testi.js`'i var ve yazıdaki rakamları sitenin
+      motorlarından yeniden üretiyor (ortak yardımcı: `tools/makale-sayi.js`).
+      Rakamı elle yazıp testte de elle yazmak denetim değildir; değer
+      motordan, parametreden ya da yazının kendi modülünden gelmeli.
+      `tools/kilavuz-test.js` iki şeyi zorlar: her test workflow'da koşar ve
+      her yazı ya testli, ya başka testçe kapsanmış, ya da gerekçesiyle
+      "hesapsız" işaretlidir. Yeni yazı bu üçünden birine girmeden CI yeşile
+      dönmez. (Eylül 2026'da testsiz 17 yazıya test yazılırken beşinde toplam
+      altı yanlış ya da tutarsız rakam çıktı.)
 - [ ] Parametreler tek kaynaktan okunuyor, kopyası yok. [CI: Parametre kopyası var mı]
 - [ ] Mülga maddeye atıf yok. [CI: Mülga maddeye atıf var mı]
 - [ ] Tarihe bağlı her iddia bir geçerlilik tarihi taşıyor. [CI: Tarihe bağlı iddiaların süresi doldu mu]

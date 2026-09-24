@@ -427,6 +427,31 @@ jobs:
       - name: İçerik kılavuzu canlı mı
         run: node tools/kilavuz-test.js
 
+      # Eylül 2026'ya kadar 39 yazının 17'sinde metindeki rakamları
+      # denetleyen hiçbir şey yoktu. Testler yazılırken beş yazıda altı yanlış
+      # ya da tutarsız rakam çıktı (ara başlıkta bayat fark, yanlış hesaplanmış
+      # örnek, eşit olmayan koşullarla "aynı koşullar" karşılaştırması,
+      # yalnız gelir vergisini "gelir ve damga" diye sunmak, hesabın
+      # varsaydığı indirimi kapsam dışı saymak). Rakamlar sitenin kendi
+      # motorlarından yeniden üretiliyor; parametre değişip yazı
+      # güncellenmezse bu adım kırmızıya döner.
+      - name: Eski yazıların sayıları
+        run: |
+          node makaleler/net-maas-mi-brut-maas-mi/sayi-testi.js
+          node makaleler/stopaj-nasil-hesaplanir/sayi-testi.js
+          node makaleler/kdv-tevkifati-nedir/sayi-testi.js
+          node makaleler/proforma-fatura-nedir/sayi-testi.js
+          node makaleler/kredi-yillik-maliyet-orani/sayi-testi.js
+          node makaleler/mevduat-faizi-enflasyon-reel-getiri/sayi-testi.js
+          node makaleler/issizlik-maasi-ne-kadar/sayi-testi.js
+          node makaleler/istifa-edince-kidem-tazminati/sayi-testi.js
+          node makaleler/asgari-ucret-nasil-belirlenir/sayi-testi.js
+          node makaleler/torba-yasa-ne-var-ne-yok/sayi-testi.js
+          node makaleler/kidem-tazminati-tavani/sayi-testi.js
+          node makaleler/maasim-neden-dustu/sayi-testi.js
+          node makaleler/sahis-mi-limited-mi/sayi-testi.js
+          node makaleler/uzun-vadeli-yatirim-nasil-yapilir/sayi-testi.js
+
       # Muhafizin kendisi de bir muhafiz ister: bildirimin bicimi bozulursa
       # kontrol sayfayi hic gormez ve CI yemyesil kalir. Kurulmus gorunup
       # hicbir sey tutmayan bir kapi, hic olmamasindan kotudur.

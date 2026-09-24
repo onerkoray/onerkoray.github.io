@@ -14,6 +14,13 @@
  * sayı testi workflow'da koşmalı. Yazılıp çağrılmayan test, hiç olmayan
  * testten tehlikelidir, çünkü "testli" görünür.
  *
+ * Dördüncüsü kapsam: her yazı ya kendi sayı testini taşır, ya CI'da koşan
+ * başka bir testçe kapsanır (DOLAYLI), ya da hesaplanmış rakam taşımadığı
+ * gerekçesiyle istisnadır (HESAPSIZ). Eylül 2026'da 39 yazının 17'si hiçbir
+ * yere girmiyordu; bu yazıların testleri yazılırken beşinde toplam altı
+ * yanlış ya da tutarsız rakam çıktı. Yeni yazı bu üç kümeden birine girmeden CI yeşile
+ * dönmez.
+ *
  * Kullanım: node tools/kilavuz-test.js
  */
 "use strict";
@@ -60,6 +67,44 @@ function denetle(metin, akis, bugun, testler) {
   return { hatalar: hatalar, uyarilar: uyarilar, anilan: anilan.length };
 }
 
+/* Başka bir testçe kapsanan yazılar: yazı → o testin workflow'daki yolu. */
+var DOLAYLI = {
+  "emekliligin-finansal-matematigi": "tools/makale-emeklilik-test.js",
+  "kademeli-emeklilik-son-durum": "tools/mevzuat-testi.js"
+};
+/* Hesaplanmış rakam taşımayan yazılar ve gerekçesi. Buraya eklemek bir
+   iddiadır: yazıya hesap girerse test de girmelidir. */
+var HESAPSIZ = {
+  "emekli-maasi-nasil-hesaplanir": "haberlerdeki 'yeni tablo' iddiasını bilerek tablo vermeden inceliyor; rakamları dönem tarihleri ve prim günü eşikleri"
+};
+
+function kapsam(yazilar, testler, akis, dolayli, hesapsiz) {
+  var hatalar = [];
+  var testli = {};
+  testler.forEach(function (t) { testli[t.split("/")[1]] = true; });
+  yazilar.forEach(function (y) {
+    if (testli[y]) return;
+    if (dolayli[y]) {
+      if (akis.indexOf(dolayli[y]) === -1) hatalar.push(y + ": kapsayan test " + dolayli[y] + " workflow'da koşmuyor.");
+      return;
+    }
+    if (hesapsiz[y]) return;
+    hatalar.push(y + ": sayı testi yok, başka testçe kapsanmıyor, hesapsız diye de işaretlenmemiş.");
+  });
+  Object.keys(dolayli).concat(Object.keys(hesapsiz)).forEach(function (y) {
+    if (yazilar.indexOf(y) === -1) hatalar.push(y + ": istisna listesinde ama böyle bir yazı yok.");
+    else if (testli[y]) hatalar.push(y + ": kendi testi var, istisna listesinden çıkarılmalı.");
+  });
+  return hatalar;
+}
+
+function makaleler() {
+  var kok = path.join(KOK, "makaleler");
+  return fs.readdirSync(kok).filter(function (d) {
+    return fs.existsSync(path.join(kok, d, "index.html"));
+  });
+}
+
 function makaleTestleri() {
   var kok = path.join(KOK, "makaleler");
   var sonuc = [];
@@ -93,13 +138,25 @@ function oztest() {
   });
   var u = denetle("Son okuma: 2026-03-30\n[CI: Var olan adım]\n", akis, gun, []);
   if (u.hatalar.length || u.uyarilar.length !== 1) throw new Error("öz test: uyarı penceresi çalışmıyor");
+
+  var k = [
+    [["a"], ["makaleler/a/sayi-testi.js"], 0, "testli yazı"],
+    [["a", "yeni"], ["makaleler/a/sayi-testi.js"], 1, "kapsamsız yeni yazı"]
+  ];
+  k.forEach(function (d) {
+    var n = kapsam(d[0], d[1], akis, {}, {}).length;
+    if ((n > 0) !== (d[2] > 0)) throw new Error("öz test kapsam: " + d[3] + " beklenen " + d[2] + ", bulunan " + n);
+  });
 }
 
 oztest();
-var s = denetle(fs.readFileSync(KILAVUZ, "utf8"), fs.readFileSync(AKIS, "utf8"),
-  Date.now(), makaleTestleri());
+var akisMetni = fs.readFileSync(AKIS, "utf8");
+var s = denetle(fs.readFileSync(KILAVUZ, "utf8"), akisMetni, Date.now(), makaleTestleri());
+var yazilar = makaleler();
+s.hatalar = s.hatalar.concat(kapsam(yazilar, makaleTestleri(), akisMetni, DOLAYLI, HESAPSIZ));
 s.uyarilar.forEach(function (u) { console.log("UYARI: " + u); });
 s.hatalar.forEach(function (h) { console.error("HATA: " + h); });
 if (s.hatalar.length) process.exit(1);
-console.log("İçerik kılavuzu canlı: " + s.anilan + " CI adımı yerinde, " +
-  makaleTestleri().length + " makale testi workflow'da.");
+var dolayli = Object.keys(DOLAYLI).length, hesapsiz = Object.keys(HESAPSIZ).length;
+console.log("İçerik kılavuzu canlı: " + s.anilan + " CI adımı yerinde. " + yazilar.length + " yazı — kendi testli: " +
+  (yazilar.length - dolayli - hesapsiz) + ", dolaylı: " + dolayli + ", hesapsız: " + hesapsiz + ".");

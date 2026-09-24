@@ -47,7 +47,7 @@
       "@id": "https://korayoner.dev/yayin-ilkeleri/",
       "url": "https://korayoner.dev/yayin-ilkeleri/",
       "name": "Yayın İlkeleri ve Kaynaklar",
-      "dateModified": "2026-09-10",
+      "dateModified": "2026-09-24",
       "inLanguage": "tr",
       "author": {
         "@id": "https://korayoner.dev/#oner-koray"
@@ -119,7 +119,14 @@
 <h2>Hesaplama nasıl kontrol ediliyor?</h2><p><a href="../bordro/">Bordro Motoru</a> ortak parametrelerle çalışır. Otomatik testler bilinen referans sonuçlarını, sınır durumlarını ve hesaplar arasındaki tutarlılığı kontrol eder. Testlerin geçmesi, mevzuatın değişmediği veya her kişisel durumun kapsandığı anlamına gelmez.</p>
 <p>Mevduat, kira ve ithalat maliyeti için <a href="../finans/kurallar.js?v=da7bebf5">kullanılan kurallar</a> ve <a href="../finans/test.js?v=27cc87cf">regresyon senaryoları</a> ayrıca incelenebilir. İleri tarihli hesaplar, sayfada belirtilen kontrol tarihinde bilinen parametrelerle yapılır.</p>
 <h2>Güncellik ve kapsam</h2><p>İçerik değişiklik tarihi ile mevzuat kontrol tarihi aynı şey değildir. İlgili sayfanın kaynak bölümündeki kontrol tarihi ve dönem esas alınmalıdır. Kira aracındaki TÜFE ve gümrük aracındaki döviz kuru kullanıcı tarafından girilir; canlı veri oldukları varsayılmamalıdır. TCMB kurları ayrı <a href="../doviz-kurlari/">döviz sayfasında</a> yayımlanır.</p>
-<h2 id="duzeltmeler">Düzeltme kaydı</h2><p><time datetime="2026-09-23">23 Eylül 2026</time></p><ul>
+<h2 id="yapay-zeka">Yapay zekâ nasıl kullanılıyor?</h2><p>Araçların kodu, yazıların taslakları ve veri görselleri yapay zekâ destekli yazılım ajanlarıyla hazırlanıyor. Yayımlanan her sayfanın sorumluluğu Koray Öner’e aittir.</p><p>Yapay zekâ bir bilgi kaynağı olarak kullanılmaz. Oran, tutar, tarih ve hukuki dayanak resmî kaynaktan alınır ve sayfada bağlantısıyla gösterilir. Hesap içeren her yazının rakamları otomatik testlerle yeniden hesaplanır; oranlar ve parametreler, araçların da kullandığı açık kaynaklı hesap motorlarından okunur. Bir parametre değişip yazı güncellenmezse denetim başarısız olur ve düzeltme için kayıt açılır.</p><p>Neden bu yöntem: tek kişinin sürdürdüğü bir sitede çok sayıda aracın ve yazının güncel kalması ancak böyle mümkün. Otomasyon hız sağlar; doğruluğu testler ve kaynaklar sağlar. Bir hata bulunduğunda aşağıdaki düzeltme kaydına tarihiyle işlenir.</p>
+<h2 id="duzeltmeler">Düzeltme kaydı</h2><p><time datetime="2026-09-24">24 Eylül 2026</time></p><p>Rakamlarını denetleyen testi olmayan 17 yazıya test yazıldı. Beş yazıda altı yanlış ya da tutarsız rakam çıktı ve düzeltildi:</p><ul>
+<li>Net–brüt maaş yazısında işveren bölümünün başlığı “fark 106 bin lira” diyordu; hesap ve giriş paragrafı 101.440 lira. Başlık 101 bin lira olarak düzeltildi.</li>
+<li>Proforma fatura yazısında, iskontonun tamamını %20’lik kalemden düşen yanlış yöntemin KDV’si 190 TL yazılmıştı; doğrusu 170 TL.</li>
+<li>Kredi maliyeti yazısında ihtiyaç ve konut kredisi “aynı koşullarla” karşılaştırılırken yalnız ihtiyaç kredisine 1.250 TL tahsis ücreti eklenmişti. İki kredi artık aynı ücretle karşılaştırılıyor: fark 55.843,60 TL değil 54.593,60 TL. Aynı yazıda aylık %3,757’nin yıllık bileşik karşılığı %55,6 değil %55,7.</li>
+<li>Asgari ücret yazısı, yıllık 57.881,20 TL’lik gelir vergisi istisnasını “gelir ve damga vergisi” toplamı gibi sunuyordu. Damga istisnasıyla toplam 60.889,57 TL.</li>
+<li>Şahıs–limited yazısı Bağ-Kur’u indirimsiz tutarla (yıllık 137.700 TL) anlatıyor ve 5 puanlık prim indirimini kapsam dışı sayıyordu; oysa yazıdaki tablolar ve araç bu indirimi uyguluyor. Metin hesaba uyduruldu: indirimle yıllık 117.900 TL.</li></ul>
+<p><time datetime="2026-09-23">23 Eylül 2026</time></p><ul>
 <li>Torba yasa yazısı, memur zammının SSK artışına ek olarak uygulandığını ima ediyordu. Memur ve memur emeklileri toplu sözleşmeye tabidir; altı aylık TÜFE yalnızca enflasyon farkını belirler.</li>
 <li>Teklif karşılaştırma aracı, net sözleşmede yıl toplamını ayları kuruşa yuvarlamadan topluyordu: 75.000 TL net teklif için her satır 75.000,00 TL gösterirken yıl 899.999,98 TL çıkıyordu. Aylar artık kuruşa yuvarlanıp toplanıyor.</li>
 <li>Yedi yazıda görünür tarih ile yapılandırılmış güncelleme tarihi ayrışıyordu; beşinde sonradan yapılan içerik düzeltmesi (örneğin BES devlet katkısı oranı) görünür tarihe yansımamıştı. Yayım ve güncelleme tarihleri artık ayrı gösteriliyor ve eşleşmeleri denetleniyor.</li></ul>
