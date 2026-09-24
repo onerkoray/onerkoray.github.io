@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-23T18:56:08+03:00</updated>
+  <updated>2026-09-24T08:21:30+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Nakit Köprüsü: İşletme Sermayesi Hesabı</title>
+    <link href="https://korayoner.dev/nakit-koprusu/"/>
+    <id>https://korayoner.dev/nakit-koprusu/</id>
+    <updated>2026-09-24T08:21:30+03:00</updated>
+    <summary>Kârlı işletme ne zaman nakitsiz kalır? 12 aylık satış, stok, tahsilat ve tedarikçi vadelerini birleştirin; gereken işletme sermayesini ve senaryoları hesaplayın.</summary>
+  </entry>
 
   <entry>
     <title>Ocak 2027 Memur Zammı Hesaplama</title>
