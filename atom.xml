@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-24T08:21:30+03:00</updated>
+  <updated>2026-09-24T16:16:24+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Kredi Kartı Borcu Kaç Ayda Biter? | Kart Borcu Rotası</title>
+    <link href="https://korayoner.dev/kredi-karti-borcu-hesaplama/"/>
+    <id>https://korayoner.dev/kredi-karti-borcu-hesaplama/</id>
+    <updated>2026-09-24T16:16:24+03:00</updated>
+    <summary>Kredi kartı borcunuzu asgari ödeme, aylık bütçe ve hedef tarihle karşılaştırın. Ay ay kalan borcu, faiz ve vergiyi, gereken aylık ödemeyi görün.</summary>
+  </entry>
 
   <entry>
     <title>Nakit Köprüsü: İşletme Sermayesi Hesabı</title>
