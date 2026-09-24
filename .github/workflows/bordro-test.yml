@@ -812,6 +812,9 @@ jobs:
       - name: Nakit Köprüsü aylık akış ve sermaye hesabı
         run: node nakit-koprusu/test.js
 
+      - name: Kart Borcu Rotası ödeme ve limit regresyonları
+        run: node kredi-karti-borcu-hesaplama/test.js
+
       - name: Bordro belgesi ve canlı örnek
         run: node tools/bordro-sayfa-test.js
 
