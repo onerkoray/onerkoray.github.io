@@ -420,6 +420,13 @@ jobs:
       - name: Tarihe bağlı iddiaların süresi doldu mu
         run: node tools/gecerlilik.js --check
 
+      # AGENTS.md ajanların yazmadan önce okuduğu içerik kılavuzu. Google
+      # belgeleri değişir ve CI adımları yeniden adlandırılır; ikisinde de
+      # kılavuz sessizce yanlış olur. Bu kapı ikisini ve her makale testinin
+      # gerçekten koştuğunu denetler.
+      - name: İçerik kılavuzu canlı mı
+        run: node tools/kilavuz-test.js
+
       # Muhafizin kendisi de bir muhafiz ister: bildirimin bicimi bozulursa
       # kontrol sayfayi hic gormez ve CI yemyesil kalir. Kurulmus gorunup
       # hicbir sey tutmayan bir kapi, hic olmamasindan kotudur.
