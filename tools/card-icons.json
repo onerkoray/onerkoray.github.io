@@ -1,4 +1,8 @@
 {
+  "nakit-koprusu": {
+    "cat": "finans",
+    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 18h18M4 15l5-5 4 3 6-8\"/><path d=\"M16 5h3v3\"/><circle cx=\"9\" cy=\"10\" r=\"1\"/></svg>"
+  },
   "beyanname-hesaplama": {
     "cat": "vergi",
     "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h9l4 4v14H6z\"/><path d=\"M15 3v4h4\"/><path d=\"M9 11h6\"/><path d=\"M9 15h3\"/><path d=\"M13.5 18.5 15 20l3-3.5\"/></svg>"

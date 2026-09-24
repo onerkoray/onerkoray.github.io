@@ -45,6 +45,8 @@ CIKTI = "_cekirdek"
 # Kural: yalnizca hesap yapan kod ve onu dogrulayan testler. Arayuz, uretec,
 # gorsel ve icerik girmez.
 DOSYALAR = [
+    ("nakit-koprusu/hesap.js", "nakit-koprusu/hesap.js"),
+    ("nakit-koprusu/test.js", "nakit-koprusu/test.js"),
     ("basabas-hesaplama/hesap.js", "basabas-hesaplama/hesap.js"),
     ("basabas-hesaplama/test.js", "basabas-hesaplama/test.js"),
     ("bordro/parametreler.js",            "bordro/parametreler.js"),
