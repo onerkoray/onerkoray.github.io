@@ -51,6 +51,10 @@
       table('aylik',r.aylar.map(a=>[a.ay+'. ay',money(a.satis),money(a.tahsilat),money(a.tedarik),money(a.sabit),money(a.netAkis),money(a.kapanis)]));
       $('devreden').textContent='Başlangıç öncesi stok ödemesi: '+money(r.hazirlik)+'. 12. ay sonrasında tahsil edilecek alacak: '+money(r.alacak)+'; ödenecek tedarikçi borcu: '+money(r.borc)+'. Bunlar 12 aylık kapanışa dahil edilmez.';
       chart(r,out.senaryolar[1]);
+      const panel=$('kopru-result');
+      panel.classList.remove('is-fresh');
+      void panel.offsetWidth;
+      panel.classList.add('is-fresh');
     } catch(err) {latest=null;$('kopru-result').hidden=true;$('kopru-error').textContent=err.message;$('kopru-error').hidden=false;}
   }
   $('kopru-form').addEventListener('submit',calculate);

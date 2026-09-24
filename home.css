@@ -142,3 +142,17 @@
 @media (prefers-reduced-motion: reduce) {
   .home-page :is(.hq-yeni a,.topic-index a,.tool-search,.chip,.project-body h3 a,.ed-item) { transition: none; }
 }
+/* Kategori filtrelerinin ortak 24px çizgi ikonları. Hareket yalnız etkileşimde. */
+.home-page .chips .chip { display: inline-flex; align-items: center; gap: .46rem; }
+.home-page .chips .chip svg { inline-size: 1.05rem; block-size: 1.05rem; flex: none; opacity: .78; transition: transform .22s ease, opacity .22s ease; }
+.home-page .chips .chip:is(:hover, :focus-visible) svg { transform: translateY(-2px); opacity: 1; }
+.home-page .chips .chip[aria-pressed="true"] svg { opacity: 1; }
+.home-page [data-karo="nakit-koprusu"] .karo-ikon path:nth-child(2) { stroke-dasharray: 36; }
+.home-page .project-card:hover [data-karo="nakit-koprusu"] .karo-ikon path:nth-child(2),
+.home-page .project-card:focus-within [data-karo="nakit-koprusu"] .karo-ikon path:nth-child(2) { animation: nakitIkonCiz .55s ease-out; }
+@keyframes nakitIkonCiz { from { stroke-dashoffset: 36; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .home-page .chips .chip svg { transition: none; }
+  .home-page .chips .chip:is(:hover, :focus-visible) svg { transform: none; }
+  .home-page .project-card:is(:hover, :focus-within) [data-karo="nakit-koprusu"] .karo-ikon path:nth-child(2) { animation: none; }
+}
