@@ -25,7 +25,7 @@
 
   function yilParam(yil) {
     var P = B.parametre(yil == null ? B.sonYil() : yil);
-    if (!P.sigortalilik || !P.sirket) throw new Error(P.yil + " için sigortalılık oranları tanımlı değil.");
+    if (!P.sigortalilik) throw new Error(P.yil + " için sigortalılık oranları tanımlı değil.");
     var d = P.donemler[P.donemler.length - 1];
     return { P: P, S: P.sigortalilik, asgari: d.asgariBrut, tavan: d.sgkTavan };
   }
@@ -45,7 +45,10 @@
   }
 
   function bagkur(kazanc, yil) {
-    var y = yilParam(yil), k = kazancDogrula(kazanc, y), sr = y.P.sirket;
+    /* Bağ-Kur oranı: yıl sigortalilik bloğunda varsa oradan, yoksa sirket'ten. */
+    var y = yilParam(yil), k = kazancDogrula(kazanc, y);
+    var sr = y.S.bagkurOrani != null ? y.S : y.P.sirket;
+    if (!sr || sr.bagkurOrani == null) throw new Error(y.P.yil + " için Bağ-Kur oranı tanımlı değil.");
     return { kazanc: k, oran: sr.bagkurOrani, indirimliOran: sr.bagkurIndirimliOran,
              prim: kurus(k * sr.bagkurOrani), indirimli: kurus(k * sr.bagkurIndirimliOran),
              yillik: kurus(k * sr.bagkurOrani) * 12, yillikIndirimli: kurus(k * sr.bagkurIndirimliOran) * 12 };

@@ -1853,7 +1853,331 @@ function basabasTestere() {
   return s + "</svg>";
 }
 
+/* Eylül 2026 ikinci yazı paketi: on kapak. Her biri yazının kendi
+   modülünden okur, sabit tarih/yıla çivilidir ve yazıyla ayrışırsa hata verir. */
+var GZ = require(path.join(KOK, "finans", "gecikme-zammi.js"));
+var KL = require(path.join(KOK, "finans", "kredi-limiti.js"));
+var KHS = require(path.join(KOK, "kredi-hesaplama", "hesap.js"));
+var KGT = require(path.join(KOK, "finans", "kira-getirisi.js"));
+var SGP = require(path.join(KOK, "bordro", "sgk-prim.js"));
+var ASN = require(path.join(KOK, "bordro", "asgari-senaryo.js"));
+var FZD = require(path.join(KOK, "finans", "faiz-donustur.js"));
+var GMS = require(path.join(KOK, "bordro", "gmsi-motor.js"));
+
+function izgaraY(SOL, SAG, y, degerler, yazi) {
+  return degerler.map(function (v, i) {
+    return '<path d="M' + SOL + " " + y(v).toFixed(1) + " H" + SAG + '" stroke="' + (i === 0 ? R.ikincil : R.izgara) + '" stroke-width="1"/>' +
+      '<text x="' + (SOL - 8) + '" y="' + (y(v) + 4).toFixed(1) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">' + yazi(v) + "</text>";
+  }).join("");
+}
+function cubukEtiket(x, y, metin, boy) {
+  return '<text x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" font-size="' + (boy || 13) + '" font-weight="800" fill="' + R.murekkep + '" text-anchor="middle">' + metin + "</text>";
+}
+function altYazi(x, y, metin) {
+  return '<text x="' + x.toFixed(1) + '" y="' + y + '" font-size="12" fill="' + R.ikincil + '" text-anchor="middle">' + esc(metin) + "</text>";
+}
+function isaretliBin(v) { return (v > 0 ? "+" : v < 0 ? "−" : "") + nf0.format(Math.abs(v)); }
+
+/* 1 — Vergiyi bir yıl geciktirmenin reel bedeli, 2019–2025 vadeleri. */
+function vergiGecikmeReel() {
+  var yillar = [2019, 2020, 2021, 2022, 2023, 2024, 2025];
+  var v = yillar.map(function (y) {
+    var r = GZ.hesapla({ tutar: 100000, vade: y + "-03-31", odeme: (y + 1) + "-03-31" });
+    return ((100000 + r.zam) / TE.carpan(y + "-03", (y + 1) + "-03") - 100000) / 1000;
+  });
+  if (Math.round(v[2] * 1000) !== -26019 || Math.round(v[6] * 1000) !== 14951) throw new Error("vergi gecikme kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UST = 104, ALT = 280, UV = 20, AV = -30;
+  function y(z) { return UST + (ALT - UST) * (UV - z) / (UV - AV); }
+  var s = baslikSatirlari("Vergiyi bir yıl geciktirmenin reel bedeli", "31 Mart vadeli 100.000 TL · bin TL, vade fiyatlarıyla · artı: pahalı, eksi: borç eridi",
+    "Vergiyi bir yıl geciktirmenin reel bedeli 2021 vadesinde eksi 26 bin, 2025 vadesinde artı 15 bin TL");
+  s += anahtarKutu(24, R.s2, "zam enflasyonu geçti") + anahtarKutu(176, R.s1, "enflasyon zammı geçti");
+  s += izgaraY(SOL, SAG, y, [0, 20, 10, -10, -20, -30], isaretliBin);
+  var gen = (SAG - SOL) / yillar.length, w = 40;
+  yillar.forEach(function (yil, i) {
+    var cx = SOL + gen * (i + 0.5), a = y(Math.max(0, v[i])), b = y(Math.min(0, v[i]));
+    s += '<rect x="' + (cx - w / 2).toFixed(1) + '" y="' + a.toFixed(1) + '" width="' + w + '" height="' + (b - a).toFixed(1) + '" rx="3" fill="' + (v[i] > 0 ? R.s2 : R.s1) + '"/>';
+    s += cubukEtiket(cx, v[i] > 0 ? a - 7 : b + 16, isaretliBin(Math.round(v[i])));
+    s += altYazi(cx, ALT + 22, String(yil));
+  });
+  return s + "</svg>";
+}
+
+/* 2 — Aynı taksitle çekilebilecek kredi, vadeye göre; tavan kesikli. */
+function krediVadeTavan() {
+  var t = KHS.turBilgi("ihtiyac"), r = KHS.brutOran(3.99, t.kkdf, t.bsmv), tavan = 20000 / r / 1000;
+  var vadeler = []; for (var n = 6; n <= 120; n += 6) vadeler.push(n);
+  var v = vadeler.map(function (n) { return KL.hesapla({ taksit: 20000, aylikFaiz: 3.99, vade: n, tur: "ihtiyac" }).anapara / 1000; });
+  if (Math.round(tavan * 1000) !== 385579 || v[5] * 1000 !== 323100) throw new Error("kredi vade kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UST = 100, ALT = 280, UV = 400;
+  function x(n) { return SOL + (SAG - SOL) * (n - 0) / 120; }
+  function y(z) { return ALT - (ALT - UST) * z / UV; }
+  var s = baslikSatirlari("Vade uzar, kredi tavana dayanır", "Aylık 20.000 TL taksit · %3,99 ihtiyaç kredisi (KKDF, BSMV dahil) · bin TL",
+    "Aynı taksitle çekilebilecek kredi 36 ayda 323 bin, 60 ayda 367 bin TL; vade ne olursa olsun 386 bin TL tavanını geçemez");
+  s += anahtarKutu(24, R.marka, "çekilebilecek kredi") + anahtarKutu(172, R.s2, "tavan: taksit ÷ aylık maliyet", true);
+  s += izgaraY(SOL, SAG, y, [0, 100, 200, 300, 400], function (z) { return nf0.format(z); });
+  s += '<path d="M' + SOL + " " + y(tavan).toFixed(1) + " H" + SAG + '" stroke="' + R.s2 + '" stroke-width="2" stroke-dasharray="4 3"/>';
+  s += '<polyline fill="none" stroke="' + R.marka + '" stroke-width="2.4" stroke-linejoin="round" points="' +
+    [[0, 0]].concat(vadeler.map(function (n, i) { return [n, v[i]]; })).map(function (p) { return x(p[0]).toFixed(1) + "," + y(p[1]).toFixed(1); }).join(" ") + '"/>';
+  [[36, v[5]], [60, v[9]]].forEach(function (p) {
+    s += '<circle cx="' + x(p[0]).toFixed(1) + '" cy="' + y(p[1]).toFixed(1) + '" r="4.5" fill="' + R.marka + '" stroke="' + R.zemin + '" stroke-width="2"/>' +
+      /* Eğri sağa ve yukarı gider; etiket noktanın sağ altında boş alanda. */
+      '<text x="' + (x(p[0]) + 10).toFixed(1) + '" y="' + (y(p[1]) + 20).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">' + p[0] + " ay: " + nf0.format(p[1]) + " bin</text>";
+  });
+  [12, 36, 60, 120].forEach(function (n) { s += altYazi(x(n), ALT + 20, n + " ay"); });
+  return s + "</svg>";
+}
+
+/* 3 — Mevduatı yakalamak için gereken değer artışı, kira getirisine göre. */
+function kiraBasabas() {
+  var BG = [0.03, 0.04, 0.048, 0.06], FAIZ = [[30, R.s1], [37, R.s2], [45, R.s3]];
+  function b(bg, m) { return KGT.hesapla({ fiyat: 5e6, alimMasraf: 0.02, aylikKira: 5e6 * bg / 12, yillikGider: 15000, kiraArtis: 0.25, degerArtis: 0.25, mevduatFaiz: m, sure: 10 }).basabasDegerArtis * 100; }
+  if (Math.round(b(0.048, 37) * 10) !== 281) throw new Error("kira kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 540, UST = 100, ALT = 280, AV = 15, UV = 40;
+  function x(bg) { return SOL + (SAG - SOL) * (bg - 0.03) / 0.03; }
+  function y(z) { return ALT - (ALT - UST) * (z - AV) / (UV - AV); }
+  var s = baslikSatirlari("Belirleyen kira değil, faiz", "10 yılda mevduatı yakalamak için gereken yıllık konut değer artışı (%)",
+    "Brüt kira getirisi yüzde 3'ten 6'ya çıkınca eşik 2,6 puan düşüyor; mevduat faizi 8 puan değişince 7 puandan fazla");
+  s += anahtarKutu(24, R.s1, "mevduat %30") + anahtarKutu(124, R.s2, "mevduat %37") + anahtarKutu(224, R.s3, "mevduat %45");
+  s += izgaraY(SOL, SAG, y, [15, 20, 25, 30, 35, 40], function (z) { return "%" + z; });
+  FAIZ.forEach(function (f) {
+    var pts = BG.map(function (bg) { return [x(bg), y(b(bg, f[0]))]; });
+    s += '<polyline fill="none" stroke="' + f[1] + '" stroke-width="2.4" points="' + pts.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" ") + '"/>';
+    pts.forEach(function (p) { s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="4" fill="' + f[1] + '" stroke="' + R.zemin + '" stroke-width="2"/>'; });
+    s += '<text x="' + (x(0.06) + 10).toFixed(1) + '" y="' + (y(b(0.06, f[0])) + 4).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">%' + b(0.06, f[0]).toFixed(1).replace(".", ",") + "</text>";
+  });
+  [[0.03, "%3"], [0.04, "%4"], [0.048, "%4,8"], [0.06, "%6"]].forEach(function (k) { s += altYazi(x(k[0]), ALT + 20, k[1]); });
+  s += altYazi((SOL + SAG) / 2, ALT + 38, "brüt kira getirisi");
+  return s + "</svg>";
+}
+
+/* 4 — Askerlik ve doğum borçlanması, günlük en düşük tutar. */
+function borclanmaGunluk() {
+  var s25 = SGP.sinirlar(2025), s26 = SGP.sinirlar(2026);
+  var d = [["Askerlik", SGP.borclanma(1, s25.gunlukAlt, "genel", 2025).gunluk, SGP.borclanma(1, s26.gunlukAlt, "genel", 2026).gunluk],
+           ["Doğum", SGP.borclanma(1, s25.gunlukAlt, "dogum", 2025).gunluk, SGP.borclanma(1, s26.gunlukAlt, "dogum", 2026).gunluk]];
+  if (d[0][2] !== 495.45 || d[1][2] !== 352.32 || d[0][1] !== 277.39) throw new Error("borçlanma kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UST = 104, ALT = 280, UV = 600;
+  function y(z) { return ALT - (ALT - UST) * z / UV; }
+  var s = baslikSatirlari("Askerliğin bir günü bir yılda %78,6 pahalandı", "Borçlanmanın günlük en düşük tutarı · TL",
+    "Askerlik borçlanmasının günü 2025'te 277,39, 2026'da 495,45 TL; doğum borçlanmasında 352,32 TL");
+  s += anahtarKutu(24, R.s1, "2025") + anahtarKutu(84, R.s2, "2026");
+  s += izgaraY(SOL, SAG, y, [0, 200, 400, 600], function (z) { return nf0.format(z); });
+  var gen = (SAG - SOL) / 2, w = 70;
+  d.forEach(function (g, i) {
+    var cx = SOL + gen * (i + 0.5);
+    [[g[1], R.s1, cx - w - 4], [g[2], R.s2, cx + 4]].forEach(function (c) {
+      s += '<rect x="' + c[2].toFixed(1) + '" y="' + y(c[0]).toFixed(1) + '" width="' + w + '" height="' + (ALT - y(c[0])).toFixed(1) + '" rx="3" fill="' + c[1] + '"/>' +
+        cubukEtiket(c[2] + w / 2, y(c[0]) - 7, c[0].toFixed(2).replace(".", ","));
+    });
+    s += altYazi(cx, ALT + 22, g[0] + " (oran " + (i === 0 ? "%32 → %45" : "%32 → %32") + ")");
+  });
+  return s + "</svg>";
+}
+
+/* 5 — 2026'da SGK kalemlerinin artışı, asgari ücret çizgisiyle. */
+function sgkArtis() {
+  var s25 = SGP.sinirlar(2025), s26 = SGP.sinirlar(2026);
+  function mal(y, s) { return B.hesaplaYil(s.aylikAlt, y).aylar[11].isverenMaliyeti; }
+  var d = [
+    ["GSS primi", SGP.gss(1e9, 2026).prim / SGP.gss(1e9, 2025).prim],
+    ["Askerlik borçlanması", SGP.borclanma(1, s26.gunlukAlt, "genel", 2026).gunluk / SGP.borclanma(1, s25.gunlukAlt, "genel", 2025).gunluk],
+    ["SGK tavanı", s26.aylikUst / s25.aylikUst],
+    ["İsteğe bağlı sigorta", SGP.istegeBagli(s26.aylikAlt, 2026).prim / SGP.istegeBagli(s25.aylikAlt, 2025).prim],
+    ["Bağ-Kur", SGP.bagkur(s26.aylikAlt, 2026).prim / SGP.bagkur(s25.aylikAlt, 2025).prim],
+    ["İşverene maliyet", mal(2026, s26) / mal(2025, s25)],
+    ["Doğum borçlanması", SGP.borclanma(1, s26.gunlukAlt, "dogum", 2026).gunluk / SGP.borclanma(1, s25.gunlukAlt, "dogum", 2025).gunluk]
+  ].map(function (k) { return [k[0], (k[1] - 1) * 100]; });
+  var asg = (s26.aylikAlt / s25.aylikAlt - 1) * 100;
+  if (Math.round(d[0][1]) !== 154 || Math.round(asg) !== 27) throw new Error("SGK artış kapağı yazıyla ayrıştı");
+  var SOL = 170, SAG = 540, UST = 92, SATIR = 26, UV = 160;
+  function x(z) { return SOL + (SAG - SOL) * z / UV; }
+  var s = baslikSatirlari("Asgari ücret %27, GSS primi %154 arttı", "2025'ten 2026'ya en düşük tutardaki artış (%)",
+    "2026'da GSS primi yüzde 154, askerlik borçlanması 79, SGK tavanı 52 arttı; asgari ücret yüzde 27");
+  s += '<path d="M' + x(asg).toFixed(1) + " " + (UST - 6) + " V" + (UST + SATIR * d.length) + '" stroke="' + R.s2 + '" stroke-width="2" stroke-dasharray="4 3"/>' +
+    '<text x="' + (x(asg) + 6).toFixed(1) + '" y="' + (UST + SATIR * d.length + 14) + '" font-size="12" fill="' + R.ikincil + '">asgari ücret %' + Math.round(asg) + "</text>";
+  d.forEach(function (k, i) {
+    var yy = UST + i * SATIR;
+    s += '<text x="' + (SOL - 10) + '" y="' + (yy + 13) + '" font-size="13" fill="' + R.murekkep + '" text-anchor="end">' + esc(k[0]) + "</text>" +
+      '<rect x="' + SOL + '" y="' + yy + '" width="' + (x(k[1]) - SOL).toFixed(1) + '" height="17" rx="3" fill="' + R.s1 + '"/>' +
+      '<text x="' + (x(k[1]) + 8).toFixed(1) + '" y="' + (yy + 13) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">%' + Math.round(k[1]) + "</text>";
+  });
+  return s + "</svg>";
+}
+
+/* 6 — İndirim sonrası işveren SGK payı, üç dönem. */
+function primIndirimi() {
+  function o(y, ay, t) { var x = B.oranlarAy(B.parametre(y), ay); return (x.sgkIsveren - B.tesvikOrani(x, { tesvik: t })) * 100; }
+  var d = [["Ocak 2025", o(2025, 1, "genel"), o(2025, 1, "imalat")], ["Şub–Ara 2025", o(2025, 2, "genel"), o(2025, 2, "imalat")], ["2026", o(2026, 1, "genel"), o(2026, 1, "imalat")]];
+  if (Math.abs(d[2][1] - 19.75) > 1e-9 || Math.abs(d[1][1] - 16.75) > 1e-9) throw new Error("prim indirimi kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UST = 104, ALT = 280, UV = 24;
+  function y(z) { return ALT - (ALT - UST) * z / UV; }
+  var s = baslikSatirlari("İmalat dışında indirim sonrası oran 3 puan arttı", "İndirim sonrası SGK işveren payı (%) · işsizlik payı hariç",
+    "İmalat dışı işverenin indirim sonrası SGK payı 2025 Şubat'ta yüzde 16,75, 2026'da 19,75; imalatta 15,75'ten 16,75'e");
+  s += anahtarKutu(24, R.s2, "imalat dışı") + anahtarKutu(116, R.s1, "imalat");
+  s += izgaraY(SOL, SAG, y, [0, 8, 16, 24], function (z) { return "%" + z; });
+  var gen = (SAG - SOL) / 3, w = 56;
+  d.forEach(function (g, i) {
+    var cx = SOL + gen * (i + 0.5);
+    [[g[1], R.s2, cx - w - 3], [g[2], R.s1, cx + 3]].forEach(function (c) {
+      s += '<rect x="' + c[2].toFixed(1) + '" y="' + y(c[0]).toFixed(1) + '" width="' + w + '" height="' + (ALT - y(c[0])).toFixed(1) + '" rx="3" fill="' + c[1] + '"/>' +
+        cubukEtiket(c[2] + w / 2, y(c[0]) - 7, c[0].toFixed(2).replace(".", ","));
+    });
+    s += altYazi(cx, ALT + 22, g[0]);
+  });
+  return s + "</svg>";
+}
+
+/* 7 — Dilimler geride kaldıkça kayıp, iki maaş. */
+function dilimGeriKalma() {
+  function k(b, fark) { return ASN.hesapla({ asgariArtis: 0.25, tarifeArtis: 0.25 - fark, brut: b }).ucret.endeksFarki / 1000; }
+  if (Math.round(k(60000, 0.10) * 1000) !== 2800 || Math.round(k(200000, 0.10) * 1000) !== 14800) throw new Error("dilim kapağı yazıyla ayrıştı");
+  var FARK = [0, 0.05, 0.10, 0.15], SOL = 58, SAG = 540, UST = 100, ALT = 280, UV = 24;
+  function x(f) { return SOL + (SAG - SOL) * f / 0.15; }
+  function y(z) { return ALT - (ALT - UST) * z / UV; }
+  var s = baslikSatirlari("Her 10 puanlık fark: 2.800 ya da 14.800 TL", "Asgari ücrete %25 zam senaryosu · yıllık fazla vergi, bin TL",
+    "Dilimler asgari ücretten 10 puan geride kalırsa 60 bin TL brüt maaş yılda 2.800, 200 bin TL maaş 14.800 TL fazla vergi öder");
+  s += anahtarKutu(24, R.s1, "60.000 TL brüt") + anahtarKutu(144, R.s2, "200.000 TL brüt") + anahtarKutu(274, R.s3, "asgari ücret");
+  s += izgaraY(SOL, SAG, y, [0, 6, 12, 18, 24], function (z) { return nf0.format(z); });
+  [[33030, R.s3], [60000, R.s1], [200000, R.s2]].forEach(function (m) {
+    s += '<polyline fill="none" stroke="' + m[1] + '" stroke-width="2.4" points="' + FARK.map(function (f) { return x(f).toFixed(1) + "," + y(k(m[0], f)).toFixed(1); }).join(" ") + '"/>';
+    FARK.forEach(function (f) { s += '<circle cx="' + x(f).toFixed(1) + '" cy="' + y(k(m[0], f)).toFixed(1) + '" r="4" fill="' + m[1] + '" stroke="' + R.zemin + '" stroke-width="2"/>'; });
+  });
+  s += cubukEtiket(x(0.15) - 6, y(k(200000, 0.15)) - 10, nf0.format(k(200000, 0.15) * 1000) + " TL") +
+    cubukEtiket(x(0.15) - 6, y(k(60000, 0.15)) - 10, nf0.format(k(60000, 0.15) * 1000) + " TL");
+  FARK.forEach(function (f) { s += altYazi(x(f), ALT + 20, Math.round(f * 100) + " puan"); });
+  s += altYazi((SOL + SAG) / 2, ALT + 38, "dilim artışının asgari ücretin gerisinde kaldığı fark");
+  return s + "</svg>";
+}
+
+/* 8 — Aynı faizle vadeye göre yıllık net getiri (yenilenerek). */
+function mevduatVade() {
+  var V = [32, 92, 181, 182, 365, 366, 730], d = V.map(function (g) { var m = FZD.mevduat(0.37, g); return [g, m.yillikNetBilesik * 100, m.stopajOrani * 100]; });
+  if (Math.abs(d[0][1] - 35.15) > 0.005 || Math.abs(d[4][1] - 31.45) > 0.005) throw new Error("mevduat vade kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UST = 104, ALT = 270, AV = 26, UV = 36;
+  function y(z) { return ALT - (ALT - UST) * (z - AV) / (UV - AV); }
+  var s = baslikSatirlari("Kısa vadeyi yenilemek bir yıllık vadeyi geçiyor", "Yıllık %37 brüt faiz · stopaj sonrası yıllık getiri, yenilenerek (%)",
+    "Aynı brüt faizde 32 günlük vadeyi yenilemek yüzde 35,15, bir yıllık vade 31,45 getirir");
+  s += izgaraY(SOL, SAG, y, [26, 28, 30, 32, 34, 36], function (z) { return "%" + z; });
+  var gen = (SAG - SOL) / V.length, w = 44;
+  d.forEach(function (g, i) {
+    var cx = SOL + gen * (i + 0.5);
+    s += '<rect x="' + (cx - w / 2).toFixed(1) + '" y="' + y(g[1]).toFixed(1) + '" width="' + w + '" height="' + (ALT - y(g[1])).toFixed(1) + '" rx="3" fill="' + (i === 0 ? R.s2 : R.s1) + '"/>' +
+      cubukEtiket(cx, y(g[1]) - 7, g[1].toFixed(2).replace(".", ","), 11) + altYazi(cx, ALT + 20, g[0] + " gün") +
+      altYazi(cx, ALT + 36, "%" + String(g[2]).replace(".", ","));
+  });
+  s += '<text x="' + SOL + '" y="' + (ALT + 36) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">stopaj</text>';
+  return s + "</svg>";
+}
+
+/* 9 — İşverenin ödediğinden asgari ücretliye geçen pay. */
+function asgariNetPayi() {
+  var d = [];
+  [2020, 2021, 2022, 2023, 2024, 2025, 2026].forEach(function (yil) {
+    var P = B.parametre(yil), br = []; for (var m = 1; m <= 12; m++) br.push(B.donem(P, m).asgariBrut);
+    var Y = B.hesaplaYil(br, yil), I = B.hesaplaYil(br, yil, { tesvik: "genel" });
+    P.donemler.forEach(function (dd) { d.push([ayKisa(yil + "-" + String(dd.ay).padStart(2, "0")), dd.asgariNet / Y.aylar[dd.ay - 1].isverenMaliyeti * 100, dd.asgariNet / I.aylar[dd.ay - 1].isverenMaliyeti * 100]); });
+  });
+  if (Math.abs(d[d.length - 1][1] - 68.69) > 0.005 || Math.abs(d[1][1] - 64.48) > 0.005) throw new Error("asgari maliyet kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 560, UST = 100, ALT = 270, AV = 60, UV = 75;
+  function x(i) { return SOL + (SAG - SOL) * i / (d.length - 1); }
+  function y(z) { return ALT - (ALT - UST) * (z - AV) / (UV - AV); }
+  var s = baslikSatirlari("Her 100 TL'nin ne kadarı çalışana geçiyor?", "Net asgari ücretin işverene maliyete oranı (%)",
+    "İşverenin asgari ücret için ödediğinin yüzde 64,48'i 2021'de, 69,39'u 2022'de, 68,69'u 2026'da çalışana geçiyor");
+  s += anahtarKutu(24, R.s1, "teşviksiz") + anahtarKutu(112, R.s2, "genel prim indirimiyle");
+  s += izgaraY(SOL, SAG, y, [60, 65, 70, 75], function (z) { return "%" + z; });
+  [[1, R.s1], [2, R.s2]].forEach(function (seri) {
+    s += '<polyline fill="none" stroke="' + seri[1] + '" stroke-width="2.4" points="' + d.map(function (p, i) { return x(i).toFixed(1) + "," + y(p[seri[0]]).toFixed(1); }).join(" ") + '"/>';
+    d.forEach(function (p, i) { s += '<circle cx="' + x(i).toFixed(1) + '" cy="' + y(p[seri[0]]).toFixed(1) + '" r="3.5" fill="' + seri[1] + '" stroke="' + R.zemin + '" stroke-width="1.5"/>'; });
+  });
+  s += cubukEtiket(x(1), y(d[1][1]) + 22, "%64,5") + cubukEtiket(x(d.length - 1) - 10, y(d[d.length - 1][1]) + 24, "%68,7");
+  d.forEach(function (p, i) { if (i % 2 === 0 || i === d.length - 1) s += altYazi(x(i), ALT + 20, p[0]); });
+  return s + "</svg>";
+}
+
+/* 10 — Kira istisnası sınırında vergi sıçraması. */
+function kiraIstisnaSicrama() {
+  var UST = B.parametre(2026).dilimler[2][0], KIRA = 240000, esik = UST - KIRA;
+  function v(d) { var r = GMS.hesapla({ yil: 2026, konutKira: KIRA, brutGelirToplami: d }); return Math.min(r.goturu.kiraVergisi, r.gercek.kiraVergisi) / 1000; }
+  var alt = v(esik), ust = v(esik + 1);
+  if (Math.round(alt * 1000) !== 23205 || Math.round(ust * 1000) !== 31300) throw new Error("kira istisnası kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UTOP = 104, ALT = 270, X0 = 1.0, X1 = 1.5, UV = 40;
+  function x(m) { return SOL + (SAG - SOL) * (m - X0) / (X1 - X0); }
+  function y(z) { return ALT - (ALT - UTOP) * z / UV; }
+  var s = baslikSatirlari("1 lira fazla gelir, 8.095 TL fazla vergi", "240.000 TL konut kirası · kira vergisi, bin TL · 2026",
+    "Kira dışı brüt gelir 1.260.000 TL'yi 1 lira aşınca istisna düşer, kira vergisi 23.205 TL'den 31.300 TL'ye çıkar");
+  s += izgaraY(SOL, SAG, y, [0, 10, 20, 30, 40], function (z) { return nf0.format(z); });
+  var xe = x(esik / 1e6);
+  s += '<path d="M' + SOL + " " + y(alt).toFixed(1) + " H" + xe.toFixed(1) + '" stroke="' + R.marka + '" stroke-width="3"/>' +
+    '<path d="M' + xe.toFixed(1) + " " + y(alt).toFixed(1) + " V" + y(ust).toFixed(1) + '" stroke="' + R.s2 + '" stroke-width="2" stroke-dasharray="3 3"/>' +
+    '<path d="M' + xe.toFixed(1) + " " + y(ust).toFixed(1) + " H" + SAG + '" stroke="' + R.marka + '" stroke-width="3"/>';
+  s += cubukEtiket((SOL + xe) / 2, y(alt) - 10, "23.205 TL") + cubukEtiket((xe + SAG) / 2, y(ust) - 10, "31.300 TL") +
+    '<text x="' + (xe - 8).toFixed(1) + '" y="' + ((y(alt) + y(ust)) / 2 + 4).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.s2 + '" text-anchor="end">+8.095 TL</text>';
+  [1.0, 1.1, 1.2, 1.26, 1.4, 1.5].forEach(function (m) { s += altYazi(x(m), ALT + 20, (m === 1.26 ? "1,26 mn" : String(m).replace(".", ",") + " mn")); });
+  s += altYazi((SOL + SAG) / 2, ALT + 38, "kira dışındaki yıllık brüt gelir (maaş dahil), milyon TL");
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "vergi-borcunu-geciktirmek-karli-mi": {
+    kicker: "Vergi · Borç",
+    baslik: "Vergi borcunu geciktirmek kârlı mı?",
+    alt: "2021–2023'te geç ödeyen kazandı; 2024'ten beri kaybediyor",
+    cizim: vergiGecikmeReel
+  },
+  "kredi-vadesini-uzatmanin-bedeli": {
+    kicker: "Kredi & Finans",
+    baslik: "Kredi vadesini uzatmanın bedeli",
+    alt: "Vade uzar, kredi 385.579 TL'lik tavana dayanır",
+    cizim: krediVadeTavan
+  },
+  "kiraya-vermek-icin-ev-almak-mantikli-mi": {
+    kicker: "Birikim · Gayrimenkul",
+    baslik: "Kiraya vermek için ev almak mantıklı mı?",
+    alt: "Mevduatı yakalamak için yılda %28,1 değer artışı",
+    cizim: kiraBasabas
+  },
+  "askerlik-borclanmasi-2026": {
+    kicker: "Bordro · SGK",
+    baslik: "Askerlik borçlanması 2026",
+    alt: "Günü 495,45 TL: bir yılda %78,6 pahalandı",
+    cizim: borclanmaGunluk
+  },
+  "sgk-primleri-2026-ne-degisti": {
+    kicker: "Bordro · SGK",
+    baslik: "2026'da SGK primlerinde ne değişti?",
+    alt: "Asgari ücret %27, GSS primi %154 arttı",
+    cizim: sgkArtis
+  },
+  "sgk-prim-indirimi-2-puan": {
+    kicker: "Bordro · İşveren",
+    baslik: "SGK prim indirimi 2 puana indi",
+    alt: "İmalat dışında indirim sonrası oran %16,75'ten %19,75'e",
+    cizim: primIndirimi
+  },
+  "vergi-dilimleri-2027-asgari-ucret": {
+    kicker: "Vergi · Senaryo",
+    baslik: "2027 vergi dilimleri ve asgari ücret",
+    alt: "Her 10 puanlık fark: yılda 2.800 ya da 14.800 TL",
+    cizim: dilimGeriKalma
+  },
+  "mevduat-vade-secimi-32-gun-mu-1-yil-mi": {
+    kicker: "Birikim · Mevduat",
+    baslik: "Mevduatta 32 gün mü, 1 yıl mı?",
+    alt: "Aynı faizle 32 günü yenilemek %35,15, bir yıl %31,45",
+    cizim: mevduatVade
+  },
+  "asgari-ucretin-isverene-maliyeti": {
+    kicker: "Bordro · İşveren",
+    baslik: "Asgari ücretin işverene maliyeti",
+    alt: "Her 100 TL'nin 68,69'u çalışana geçiyor",
+    cizim: asgariNetPayi
+  },
+  "kira-geliri-istisnasi-siniri": {
+    kicker: "Vergi · Kira",
+    baslik: "Kira geliri istisnası sınırı",
+    alt: "1 lira fazla gelir, 8.095 TL fazla vergi",
+    cizim: kiraIstisnaSicrama
+  },
   "dolar-mi-tl-mevduat-mi": {
     kicker: "Birikim · Mevduat",
     baslik: "Dolar mı TL mevduat mı?",
