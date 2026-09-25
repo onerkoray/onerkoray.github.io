@@ -58,8 +58,8 @@
       h.push('<div class="rm-manset"><p>' + (kazandi
         ? "Maaşınız enflasyonu <strong>yendi</strong>: alım gücünüz " + yuzde(r.reelDegisim) + " arttı."
         : "Maaşınız enflasyona <strong>yenildi</strong>: alım gücünüz " + yuzde(r.reelDegisim) + " azaldı.") + "</p>" +
-        "<p>" + E.ayAdi(r.eski.ay) + " ile " + E.ayAdi(r.yeni.ay) + " arasında netiniz " + isaretli(r.nominalDegisim) +
-        " değişti, fiyatlar " + nf2.format(r.fiyatCarpani) + " katına çıktı.</p></div>");
+        "<p>" + E.ayAdi(r.eski.ay) + " ile " + E.ayAdi(r.yeni.ay) + " arasında netiniz " + yuzde(r.nominalDegisim) + (r.nominalDegisim >= 0 ? " arttı" : " azaldı") +
+        ", fiyatlar " + nf2.format(r.fiyatCarpani) + " katına çıktı.</p></div>");
       h.push('<div class="rm-kartlar">' +
         '<div class="rm-kart"><span class="rm-kart-ad">Enflasyona göre olması gereken net</span><span class="rm-kart-deger">' + tl(r.gerekenNet) + "</span>" +
         '<span class="rm-kart-alt">' + (r.acik > 0 ? "Bugünkü netiniz bundan " + tl(r.acik) + " düşük." : "Bugünkü netiniz bunu " + tl(-r.acik) + " aşıyor.") + "</span></div>" +
@@ -73,12 +73,14 @@
       if (r.eski.asgariKati && r.yeni.asgariKati) {
         dl.push(satir("Asgari ücretin katı", nf2.format(r.eski.asgariKati) + " → " + nf2.format(r.yeni.asgariKati)));
       }
+      dl.push("</dl>");
       if (r.vergiEtkisi !== undefined) {
+        dl.push('<h3 class="rm-ara">Vergi ve primin etkisi</h3><dl class="rm-olcu">');
         dl.push(satir("Brütün reel değişimi", isaretli(r.brutReel)));
         dl.push(satir("Kesinti oranı", yuzde(r.eski.kesinti) + " → " + yuzde(r.yeni.kesinti)));
         dl.push(satir("Vergi ve primin payı", isaretli(r.vergiEtkisi)));
+        dl.push("</dl>");
       }
-      dl.push("</dl>");
       h.push(dl.join(""));
       var notlar = [];
       if (r.eski.asgariKati && r.yeni.asgariKati && r.yeni.asgariKati < r.eski.asgariKati) {

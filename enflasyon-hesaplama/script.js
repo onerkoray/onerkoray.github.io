@@ -43,10 +43,15 @@
     return isFinite(v) && v > 0 ? v : null;
   }
 
+  var sonCizim = null;
   function grafik(bas, son) {
     var svg = $("en-grafik");
     var aylar = E.aylar().filter(function (a) { return a >= bas && a <= son; });
-    var W = 760, H = 300, sol = 52, sag = 16, ust = 14, alt = 30, gw = W - sol - sag, gh = H - ust - alt;
+    /* Kabın gerçek genişliği: telefonda küçültülmüş 760'lık çizim yazıları okunmaz yapıyordu. */
+    var W = Math.max(300, Math.min(900, Math.round(svg.parentNode.clientWidth || 760))), dar = W < 520;
+    var H = dar ? 220 : 250, sol = dar ? 36 : 52, sag = dar ? 54 : 64, ust = 18, alt = 30, gw = W - sol - sag, gh = H - ust - alt;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    sonCizim = [bas, son];
     var ymax = E.carpan(bas, son), y0 = 1, y1 = Math.max(ymax * 1.05, 1.1);
     function X(i) { return sol + i / Math.max(1, aylar.length - 1) * gw; }
     function Y(v) { return ust + gh - (v - y0) / (y1 - y0) * gh; }
@@ -59,7 +64,11 @@
     });
     var d = "M" + aylar.map(function (a, i) { return X(i).toFixed(1) + "," + Y(E.carpan(bas, a)).toFixed(1); }).join(" L");
     p.push('<path class="en-seri" d="' + d + '"/>');
-    var adim = Math.max(1, Math.round(aylar.length / 6));
+    /* Uç noktası: dönemin katı, çizginin sonunda yazılı. */
+    var sx = X(aylar.length - 1), sy = Y(ymax);
+    p.push('<circle class="en-uc" cx="' + sx.toFixed(1) + '" cy="' + sy.toFixed(1) + '" r="4.5"/>' +
+      '<text class="en-uc-yazi" x="' + (sx + 8).toFixed(1) + '" y="' + (sy + 4).toFixed(1) + '">' + nf2.format(ymax) + "×</text>");
+    var adim = Math.max(1, Math.round(aylar.length / (dar ? 4 : 6)));
     aylar.forEach(function (a, i) {
       if (i % adim !== 0 && i !== aylar.length - 1) return;
       if (i !== aylar.length - 1 && aylar.length - 1 - i < adim / 2) return;
@@ -97,9 +106,14 @@
         "sonrası yılda ortalama <strong>" + yuzde(d.yillik) + "</strong> getiri gerekirdi.</p>");
       var ys = E.yillar(a, b);
       if (ys.length) {
+        /* Çubuk yalnız göz için: değer yanında yazılı, ekran okuyucu çubuğu atlar. */
+        var enBuyuk = Math.max.apply(null, ys.map(function (y) { return y.oran; }));
         h.push('<div class="table-wrap"><table class="data-table en-tablo"><caption>Dönemdeki yıllar, Aralık–Aralık TÜFE</caption>' +
-          '<thead><tr><th scope="col">Yıl</th><th scope="col">Yıllık enflasyon</th></tr></thead><tbody>' +
-          ys.map(function (y) { return '<tr><th scope="row">' + y.yil + "</th><td>" + yuzde(y.oran) + "</td></tr>"; }).join("") +
+          '<thead><tr><th scope="col">Yıl</th><th scope="col">Yıllık enflasyon</th><th scope="col" class="en-cubuk-bas"><span class="visually-hidden">Görsel</span></th></tr></thead><tbody>' +
+          ys.map(function (y) {
+            var w = enBuyuk > 0 ? Math.max(0, y.oran) / enBuyuk * 100 : 0;
+            return '<tr><th scope="row">' + y.yil + "</th><td>" + yuzde(y.oran) + '</td><td class="en-cubuk" aria-hidden="true"><span style="inline-size:' + w.toFixed(1) + '%"></span></td></tr>';
+          }).join("") +
           "</tbody></table></div>");
       }
       cikti.innerHTML = h.join("");
@@ -117,7 +131,11 @@
     $("en-son-ay").value = ba; $("en-son-yil").value = by;
     calistir();
   });
-  var bekle;
+  var bekle, boyut;
+  window.addEventListener("resize", function () {
+    clearTimeout(boyut);
+    boyut = setTimeout(function () { if (sonCizim && !grafikBlok.hidden) grafik(sonCizim[0], sonCizim[1]); }, 120);
+  });
   form.addEventListener("input", function () { clearTimeout(bekle); bekle = setTimeout(calistir, 80); });
   form.addEventListener("change", calistir);
   form.addEventListener("submit", function (e) { e.preventDefault(); calistir(); });

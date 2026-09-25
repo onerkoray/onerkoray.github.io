@@ -8,6 +8,19 @@
 (function () {
   "use strict";
 
+  /* Dar ekranda tablo satırları etiketli kartlara döner (CSS). Etiket,
+     sütun başlığından kopyalanır; başlık tek kaynak kalır. */
+  function etiketle(kok) {
+    Array.prototype.forEach.call(kok.querySelectorAll("table.tb-tablo"), function (t) {
+      var bas = Array.prototype.map.call(t.querySelectorAll("thead th"), function (th) { return th.textContent.trim(); });
+      Array.prototype.forEach.call(t.querySelectorAll("tbody tr"), function (tr) {
+        Array.prototype.forEach.call(tr.children, function (c, i) {
+          if (c.tagName === "TD" && bas[i]) c.setAttribute("data-etiket", bas[i]);
+        });
+      });
+    });
+  }
+
   var D = window.DovizBasabas;
   if (!D) return;
   function $(id) { return document.getElementById(id); }
@@ -20,6 +33,8 @@
   function yuzde(o) { return "%" + nf2.format(Math.abs(o) * 100); }
   function isaretli(o) { return (o >= 0 ? "+" : "−") + yuzde(o); }
   var SEMBOL = { USD: "$", EUR: "€" };
+  /* Stopaj gibi yasal oranlar gereksiz sıfırsız: %17,5, %15, %10. */
+  function oran(o) { return "%" + String(Math.round(o * 1000) / 10).replace(".", ","); }
 
   function sayi(id) {
     var t = String($(id).value || "").trim();
@@ -68,9 +83,9 @@
         yuzde(r.yillikArtis) + ".</p></div>");
       h.push('<div class="tb-kartlar">' +
         '<div class="tb-kart"><span class="tb-kart-ad">TL mevduat, vade sonu</span><span class="tb-kart-deger">' + tl(r.tl.vadeSonu) + "</span>" +
-        '<span class="tb-kart-alt">Net faiz ' + tl(r.tl.net) + " · stopaj %" + nf2.format(r.tl.stopajOrani * 100) + "</span></div>" +
+        '<span class="tb-kart-alt">Net faiz ' + tl(r.tl.net) + " · stopaj " + oran(r.tl.stopajOrani) + "</span></div>" +
         '<div class="tb-kart"><span class="tb-kart-ad">Döviz mevduatı, vade sonu</span><span class="tb-kart-deger">' + nf2.format(r.doviz.vadeSonu) + " " + sb + "</span>" +
-        '<span class="tb-kart-alt">' + nf2.format(r.doviz.anapara) + " " + sb + " anapara · net faiz " + nf2.format(r.doviz.net) + " " + sb + " · stopaj %25</span></div>" +
+        '<span class="tb-kart-alt">' + nf2.format(r.doviz.anapara) + " " + sb + " anapara · net faiz " + nf2.format(r.doviz.net) + " " + sb + " · stopaj " + oran(r.doviz.stopajOrani) + "</span></div>" +
         "</div>");
 
       var sc = D.senaryo(g, DEGISIMLER.map(function (d) { return d === null ? r.gerekenArtis : d; }));
@@ -78,7 +93,7 @@
         '<thead><tr><th scope="col">Kur değişimi</th><th scope="col">Kur</th><th scope="col">Döviz yolu (TL)</th><th scope="col">TL yoluna göre</th></tr></thead><tbody>'];
       sc.forEach(function (s, i) {
         var bb = DEGISIMLER[i] === null;
-        t.push("<tr" + (bb ? ' class="tb-basabas"' : "") + "><td>" + (bb ? "Başabaş " : "") + isaretli(s.degisim) + "</td><td>" + nf4.format(s.kur) +
+        t.push("<tr" + (bb ? ' class="tb-basabas"' : "") + "><th scope=\"row\">" + (bb ? "Başabaş " : "") + isaretli(s.degisim) + "</th><td>" + nf4.format(s.kur) +
           "</td><td>" + tl(s.dovizTl) + "</td><td>" + (Math.abs(s.fark) < 0.005 ? "eşit" : (s.fark > 0 ? "döviz önde " : "TL önde ") + tl(Math.abs(s.fark))) + "</td></tr>");
       });
       t.push("</tbody></table></div>");
@@ -88,7 +103,7 @@
       var u = ['<div class="table-scroll"><table class="data-table tb-tablo"><caption>Aynı faizlerle farklı vadelerde gereken kur artışı</caption>',
         '<thead><tr><th scope="col">Vade</th><th scope="col">TL stopajı</th><th scope="col">Vade boyunca</th><th scope="col">Yıllık karşılık</th></tr></thead><tbody>'];
       v.forEach(function (x) {
-        u.push("<tr" + (x.gun === r.girdi.gun ? ' class="tb-basabas"' : "") + "><td>" + x.gun + " gün</td><td>%" + nf2.format(x.stopajTl * 100) +
+        u.push("<tr" + (x.gun === r.girdi.gun ? ' class="tb-basabas"' : "") + "><th scope=\"row\">" + x.gun + " gün</th><td>" + oran(x.stopajTl) +
           "</td><td>" + yuzde(x.gerekenArtis) + "</td><td>" + yuzde(x.yillikArtis) + "</td></tr>");
       });
       u.push("</tbody></table></div>");
@@ -102,7 +117,7 @@
       if (r.girdi.makas > 0) dl.push(satir("Makasla bozdurma kuru (başabaşta)", nf4.format(r.basabasKur * (1 - r.girdi.makas)) + " TL"));
       dl.push("</dl>");
       h.push(dl.join(""));
-      cikti.innerHTML = h.join("");
+      cikti.innerHTML = h.join(""); etiketle(cikti);
       mesaj.textContent = "Hesap tarayıcınızda yapıldı; girdiğiniz tutarlar hiçbir yere gönderilmedi.";
     } catch (e) {
       mesaj.textContent = e.message;

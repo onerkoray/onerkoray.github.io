@@ -68,22 +68,38 @@
 .rm-kart-deger { font-size: var(--step-2); font-weight: 700; font-variant-numeric: tabular-nums; }
 .rm-kart-alt { color: var(--text-muted); font-size: var(--step--1); }
 
+
+.rm-ara { margin: 1.6rem 0 0; font-size: var(--step-0); }
+
+/* Özet şeridi: ölçüler tek satırda eşit hücreler. Dar ekranda iki sütun;
+   tek kalan hücre tam genişlik alır, yarım satır kalmaz. */
 .rm-olcu {
-  margin: 1rem 0;
+  margin: 1.2rem 0;
   display: grid;
-  gap: 0 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
 }
 .rm-olcu > div {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: .55rem 0;
-  border-bottom: 1px solid var(--border);
+  flex-direction: column;
+  gap: .3rem;
+  padding: .85rem 1rem;
+  border-inline-start: 1px solid var(--border);
 }
-.rm-olcu dt { color: var(--text-muted); font-size: var(--step--1); }
-.rm-olcu dd { margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; text-align: right; }
-.rm-olcu dd small { display: block; color: var(--text-muted); font-weight: 400; }
+.rm-olcu > div:first-child { border-inline-start: 0; }
+.rm-olcu dt { color: var(--text-muted); font-size: var(--step--1); line-height: 1.35; }
+.rm-olcu dd { margin: 0; font-weight: 700; font-size: var(--step-0); font-variant-numeric: tabular-nums; }
+.rm-olcu dd small { display: block; margin-top: .15rem; color: var(--text-muted); font-weight: 400; font-size: var(--step--1); }
+@media (max-width: 720px) {
+  .rm-olcu { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rm-olcu > div { border-inline-start: 0; border-block-start: 1px solid var(--border); }
+  .rm-olcu > div:nth-child(-n+2) { border-block-start: 0; }
+  .rm-olcu > div:nth-child(even) { border-inline-start: 1px solid var(--border); }
+  .rm-olcu > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
 
 .formula {
   font-family: var(--font-mono);

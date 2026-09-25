@@ -7,6 +7,19 @@
 (function () {
   "use strict";
 
+  /* Dar ekranda tablo satırları etiketli kartlara döner (CSS). Etiket,
+     sütun başlığından kopyalanır; başlık tek kaynak kalır. */
+  function etiketle(kok) {
+    Array.prototype.forEach.call(kok.querySelectorAll("table.as-tablo"), function (t) {
+      var bas = Array.prototype.map.call(t.querySelectorAll("thead th"), function (th) { return th.textContent.trim(); });
+      Array.prototype.forEach.call(t.querySelectorAll("tbody tr"), function (tr) {
+        Array.prototype.forEach.call(tr.children, function (c, i) {
+          if (c.tagName === "TD" && bas[i]) c.setAttribute("data-etiket", bas[i]);
+        });
+      });
+    });
+  }
+
   var A = window.AsgariSenaryo;
   if (!A) return;
   function $(id) { return document.getElementById(id); }
@@ -28,7 +41,6 @@
     var v = parseFloat(t.replace(/\s/g, "").replace(/\.(?=\d{3}(\D|$))/g, "").replace(",", "."));
     return isFinite(v) ? v : NaN;
   }
-  function satir(dt, dd) { return "<div><dt>" + dt + "</dt><dd>" + dd + "</dd></div>"; }
   function gecisler(g) {
     return g.length ? g.map(function (x) { return AYLAR[x.ay - 1] + " (" + oran(x.oran) + ")"; }).join(", ") : "yok";
   }
@@ -46,6 +58,7 @@
         "<p>Brüt " + tl(Y.brut) + " · " + r.baz + "'da net " + tl(E.net) + " · senaryo: zam " + oran(r.girdi.asgariArtis) +
         ", dilimler " + oran(r.girdi.tarifeArtis) + "</p></div>");
 
+      h.push('<h3 class="as-ara">Asgari ücret ve vergi dilimleri</h3>');
       var t = ['<div class="table-scroll"><table class="data-table as-tablo"><caption>Asgari ücret ve SGK tavanı</caption>',
         '<thead><tr><th scope="col"></th><th scope="col">' + r.baz + '</th><th scope="col">' + r.hedef + ' (senaryo)</th></tr></thead><tbody>',
         '<tr><th scope="row">Brüt asgari ücret</th><td>' + tl(E.brut) + "</td><td>" + tl(Y.brut) + "</td></tr>",
@@ -66,6 +79,7 @@
 
       if (r.ucret) {
         var u = r.ucret;
+        h.push('<h3 class="as-ara">Maaşınız: ' + tl(u.eskiBrut) + ' brüt, zam ' + oran(u.brutArtis) + '</h3>');
         h.push('<div class="as-kartlar">' +
           '<div class="as-kart"><span class="as-kart-ad">' + r.hedef + " yıllık net (" + tl(u.yeniBrut) + ' brüt)</span><span class="as-kart-deger">' + tl(u.yeni.toplam.net) + "</span>" +
           '<span class="as-kart-alt">' + r.baz + ": " + tl(u.eski.toplam.net) + " · net " + isaretli(u.netArtis) + ", brüt " + isaretli(u.brutArtis) + "</span></div>" +
@@ -77,6 +91,15 @@
         u.etkiler.forEach(function (x) { e.push("<tr><th scope=\"row\">" + x.ad + "</th><td>" + isaretliTl(x.net) + "</td></tr>"); });
         e.push('<tr class="as-toplam"><th scope="row">Toplam</th><td>' + isaretliTl(u.netDegisim) + "</td></tr></tbody></table></div>");
         h.push(e.join(""));
+
+        var k = ['<div class="table-scroll"><table class="data-table as-tablo"><caption>Maaşınız yıl içinde</caption>',
+          '<thead><tr><th scope="col"></th><th scope="col">' + r.baz + " (" + tl(u.eskiBrut) + ' brüt)</th><th scope="col">' + r.hedef + " (" + tl(u.yeniBrut) + " brüt)</th></tr></thead><tbody>",
+          '<tr><th scope="row">Ocak neti</th><td>' + tl(u.eski.ocakNet) + "</td><td>" + tl(u.yeni.ocakNet) + "</td></tr>",
+          '<tr><th scope="row">Aralık neti</th><td>' + tl(u.eski.aralikNet) + "</td><td>" + tl(u.yeni.aralikNet) + "</td></tr>",
+          '<tr><th scope="row">Dilim geçişleri</th><td>' + gecisler(u.eski.dilimGecisleri) + "</td><td>" + gecisler(u.yeni.dilimGecisleri) + "</td></tr>",
+          '<tr><th scope="row">Asgari ücretin katı</th><td>' + nf2.format(u.asgariKati.eski) + "</td><td>" + nf2.format(u.asgariKati.yeni) + "</td></tr>",
+          "</tbody></table></div>"];
+        h.push(k.join(""));
 
         /* Duyarlılık: dilimler asgari ücretten 5/10/15 puan az artarsa. */
         var s = ['<div class="table-scroll"><table class="data-table as-tablo"><caption>Dilimler asgari ücretten az artarsa bu maaşla yıllık kayıp</caption>',
@@ -92,16 +115,8 @@
         s.push("</tbody></table></div>");
         h.push(s.join(""));
 
-        var dl = ['<dl class="as-olcu">'];
-        dl.push(satir("Ocak neti", tl(u.eski.ocakNet) + " → " + tl(u.yeni.ocakNet)));
-        dl.push(satir("Aralık neti", tl(u.eski.aralikNet) + " → " + tl(u.yeni.aralikNet)));
-        dl.push(satir("Dilim geçişleri " + r.baz, gecisler(u.eski.dilimGecisleri)));
-        dl.push(satir("Dilim geçişleri " + r.hedef, gecisler(u.yeni.dilimGecisleri)));
-        dl.push(satir("Asgari ücretin katı", nf2.format(u.asgariKati.eski) + " → " + nf2.format(u.asgariKati.yeni)));
-        dl.push("</dl>");
-        h.push(dl.join(""));
       }
-      cikti.innerHTML = h.join("");
+      cikti.innerHTML = h.join(""); etiketle(cikti);
       mesaj.textContent = "Senaryo hesabıdır; resmî 2027 parametreleri açıklandığında sonuç değişir.";
     } catch (err) {
       mesaj.textContent = err.message;

@@ -37,7 +37,7 @@
   <meta name="twitter:image" content="https://korayoner.dev/images/veraset-ve-intikal-vergisi-hesaplama-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=89def2bd">
-  <link rel="stylesheet" href="style.css?v=64affd9b">
+  <link rel="stylesheet" href="style.css?v=7b9b6649">
 
   <script type="application/ld+json">
   {
@@ -149,18 +149,23 @@
 
           <div id="vi-miras-alan">
             <div class="vi-alanlar">
-              <p class="panel-q"><label for="vi-tasinmaz">Taşınmazlar — emlak vergisi değeri (TL)</label>
-                <input id="vi-tasinmaz" type="text" inputmode="decimal" autocomplete="off" value="6.000.000"></p>
-              <p class="panel-q"><label for="vi-mevduat">Mevduat, nakit, fon (TL)</label>
-                <input id="vi-mevduat" type="text" inputmode="decimal" autocomplete="off" value="2.000.000"></p>
-              <p class="panel-q"><label for="vi-arac">Araç ve diğer menkuller — rayiç (TL)</label>
-                <input id="vi-arac" type="text" inputmode="decimal" autocomplete="off" value="0"></p>
-              <p class="panel-q"><label for="vi-borc">Belgeli borçlar ve cenaze masrafı (TL)</label>
-                <input id="vi-borc" type="text" inputmode="decimal" autocomplete="off" value="0"></p>
+              <p class="panel-q"><label for="vi-tasinmaz">Taşınmazlar (TL)</label>
+                <input id="vi-tasinmaz" type="text" inputmode="decimal" autocomplete="off" value="6.000.000" aria-describedby="vi-tasinmaz-not">
+                <small class="vi-not" id="vi-tasinmaz-not">Piyasa değeri değil, emlak vergisi değeri</small></p>
+              <p class="panel-q"><label for="vi-mevduat">Mevduat ve nakit (TL)</label>
+                <input id="vi-mevduat" type="text" inputmode="decimal" autocomplete="off" value="2.000.000" aria-describedby="vi-mevduat-not">
+                <small class="vi-not" id="vi-mevduat-not">Fon ve hisse dahil, ölüm günündeki değer</small></p>
+              <p class="panel-q"><label for="vi-arac">Araç ve diğer menkuller (TL)</label>
+                <input id="vi-arac" type="text" inputmode="decimal" autocomplete="off" value="0" aria-describedby="vi-arac-not">
+                <small class="vi-not" id="vi-arac-not">Rayiç bedel</small></p>
+              <p class="panel-q"><label for="vi-borc">Borçlar ve cenaze masrafı (TL)</label>
+                <input id="vi-borc" type="text" inputmode="decimal" autocomplete="off" value="0" aria-describedby="vi-borc-not">
+                <small class="vi-not" id="vi-borc-not">Belgeli olanlar tereke değerinden düşülür</small></p>
             </div>
             <fieldset class="vi-aile">
               <legend>Mirasçılar</legend>
-              <label class="vi-onay"><input type="checkbox" id="vi-es" checked> Eş sağ</label>
+              <p class="panel-q"><span class="vi-etiket" id="vi-es-bas">Eş</span>
+                <label class="vi-onay"><input type="checkbox" id="vi-es" checked aria-describedby="vi-es-bas"> Sağ, mirasçı</label></p>
               <p class="panel-q"><label for="vi-cocuk">Çocuk sayısı (evlatlık dahil)</label>
                 <select id="vi-cocuk"></select></p>
               <p class="panel-q" id="vi-ebeveyn-alan"><label for="vi-ebeveyn">Çocuk yoksa: sağ ebeveyn</label>
@@ -312,7 +317,7 @@
   </footer>
 
   <script src="../finans/veraset.js?v=9c349612" defer></script>
-  <script src="script.js?v=35640eba" defer></script>
+  <script src="script.js?v=238685b8" defer></script>
   <script src="../script.js?v=5127b7a8" defer></script>
 </body>
 </html>
