@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/hakkimda/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -105,7 +105,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/asgari-ucret-zam-senaryosu/</loc>
-    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/asgari-ucret-zam-senaryosu-koray-oner.png</image:loc>
       <image:title>Asgari Ücret Zammı Senaryosu 2027 — Koray Öner</image:title>
@@ -137,7 +137,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/gecikme-zammi-hesaplama/</loc>
-    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/gecikme-zammi-hesaplama-koray-oner.png</image:loc>
       <image:title>Gecikme Zammı Hesaplama 2026 — Koray Öner</image:title>
@@ -145,7 +145,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/kira-getirisi-hesaplama/</loc>
-    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/kira-getirisi-hesaplama-koray-oner.png</image:loc>
       <image:title>Kira Getirisi ve Amortisman Hesaplama — Koray Öner</image:title>
@@ -153,7 +153,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/faiz-donusturucu/</loc>
-    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/faiz-donusturucu-koray-oner.png</image:loc>
       <image:title>Faiz Dönüştürücü — Koray Öner</image:title>
@@ -161,7 +161,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/ne-kadar-kredi-cekebilirim/</loc>
-    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/ne-kadar-kredi-cekebilirim-koray-oner.png</image:loc>
       <image:title>Ne Kadar Kredi Çekebilirim? — Koray Öner</image:title>
@@ -169,7 +169,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/</loc>
-    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/bag-kur-ve-borclanma-hesaplama-koray-oner.png</image:loc>
       <image:title>Bağ-Kur ve Borçlanma Hesaplama 2026 — Koray Öner</image:title>
@@ -415,7 +415,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/kira-geliri-vergisi-hesaplama/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -728,7 +728,7 @@
       <image:title>TCMB Döviz Kurları — 4 Eylül 2026 — Koray Öner</image:title>
     </image:image>
   </url>
-  <url><loc>https://korayoner.dev/makaleler/</loc><lastmod>2026-09-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+  <url><loc>https://korayoner.dev/makaleler/</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/makaleler-koray-oner.png</image:loc>
       <image:title>Makaleler — Emeklilik, Bordro ve Vergi — Koray Öner</image:title>
@@ -786,6 +786,66 @@
     <image:image>
       <image:loc>https://korayoner.dev/images/makale/iki-isten-maas-beyanname-siniri.png</image:loc>
       <image:title>İki işten maaş alan beyanname verir mi? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://korayoner.dev/makaleler/vergi-borcunu-geciktirmek-karli-mi/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/vergi-borcunu-geciktirmek-karli-mi.png</image:loc>
+      <image:title>Vergi borcunu geciktirmek kârlı mı? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://korayoner.dev/makaleler/kredi-vadesini-uzatmanin-bedeli/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/kredi-vadesini-uzatmanin-bedeli.png</image:loc>
+      <image:title>Kredi vadesini uzatmak ne kazandırır, ne kaybettirir? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://korayoner.dev/makaleler/kiraya-vermek-icin-ev-almak-mantikli-mi/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/kiraya-vermek-icin-ev-almak-mantikli-mi.png</image:loc>
+      <image:title>Kiraya vermek için ev almak mantıklı mı? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://korayoner.dev/makaleler/askerlik-borclanmasi-2026/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/askerlik-borclanmasi-2026.png</image:loc>
+      <image:title>Askerlik borçlanması 2026&apos;da ne kadar? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://korayoner.dev/makaleler/sgk-primleri-2026-ne-degisti/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/sgk-primleri-2026-ne-degisti.png</image:loc>
+      <image:title>2026&apos;da SGK primlerinde ne değişti? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://korayoner.dev/makaleler/sgk-prim-indirimi-2-puan/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/sgk-prim-indirimi-2-puan.png</image:loc>
+      <image:title>SGK prim indirimi 2 puana indi — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://korayoner.dev/makaleler/vergi-dilimleri-2027-asgari-ucret/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/vergi-dilimleri-2027-asgari-ucret.png</image:loc>
+      <image:title>2027 vergi dilimleri asgari ücretten az artarsa — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://korayoner.dev/makaleler/mevduat-vade-secimi-32-gun-mu-1-yil-mi/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/mevduat-vade-secimi-32-gun-mu-1-yil-mi.png</image:loc>
+      <image:title>Mevduatta 32 gün mü, 1 yıl mı? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://korayoner.dev/makaleler/asgari-ucretin-isverene-maliyeti/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/asgari-ucretin-isverene-maliyeti.png</image:loc>
+      <image:title>Asgari ücretin işverene maliyeti — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url><loc>https://korayoner.dev/makaleler/kira-geliri-istisnasi-siniri/</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/kira-geliri-istisnasi-siniri.png</image:loc>
+      <image:title>Kira geliri istisnası sınırı — Koray Öner</image:title>
     </image:image>
   </url>
   <url><loc>https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
@@ -990,7 +1050,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/isveren-maliyeti-hesaplama/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
