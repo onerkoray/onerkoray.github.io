@@ -1158,8 +1158,7 @@ function beyanPenceresi() {
    uretilecek durumdaydi. Ad artik ayrisik. */
 function dilimKaymasiReel() {
   var W = 600, H = 360, P = 34, SOL = 52, ALT = 58;
-  var SERI = require(path.join(KOK, "makaleler", "dilim-kaymasi-2022-2026",
-    "seriler.js"));
+  var SERI = require(path.join(KOK, "finans", "endeksleme-serileri.js"));
   var yillar = SERI.YILLAR;
   var taban = B.parametre(yillar[0]).dilimler;
   var seriler = [

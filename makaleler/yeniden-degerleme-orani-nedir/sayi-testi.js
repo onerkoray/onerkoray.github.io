@@ -5,7 +5,7 @@
  * NEDEN VAR
  * ---------
  * Yazının bütün sayıları iki kaynaktan türüyor: bordro/parametreler.js'teki
- * tarifeler ve seriler.js'teki oranlar. 2027 girildiğinde tablolar sessizce
+ * tarifeler ve finans/endeksleme-serileri.js'teki oranlar. 2027 girildiğinde tablolar sessizce
  * eskir — sayfa açılır, hizalı durur, yalnızca yanlıştır.
  *
  * İKİ ÖNERME, İKİSİ DE ÖLÇÜMDE

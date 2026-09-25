@@ -227,6 +227,10 @@ SPEC = {
    "OECD tanımı, marjinal oranın kapalı formdan türetilmesi ve ölçümle karşılaştırılması. 39 test.",
    ["39 test", "MIT"], "bordro"),
 
+ "dilim-kaymasi-hesaplama": ("dilim-kaymasi-hesaplama", "Dilim Kayması", "Hesaplama",
+   "Vergi dilimleri enflasyonla büyüseydi maaşınızdan ne kadar vergi kesilirdi? Üç ölçüt, kuruşu kuruşuna.",
+   ["DOI'li yöntem", "Üç ölçüt"], "vergi"),
+
  "vergi-kamasi-hesaplama": ("vergi-kamasi-hesaplama", "Vergi Kaması", "Hesaplama",
    "İşveren maliyeti ile net ücret arasındaki fark. Zirve 100.000 TL'de değil, SGK tavanında.",
    ["OECD tanımı", "Marjinal oran"], "bordro"),

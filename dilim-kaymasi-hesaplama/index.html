@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dilim Kayması Hesaplama 2026 | Koray Öner</title>
+  <meta name="description" content="Vergi dilimleri enflasyonla büyüseydi maaşınızdan ne kadar gelir vergisi kesilirdi? 2026 tarifesini üç ölçütle kendi ücretinizde ölçün.">
+  <meta name="gecerlilik" content="2027-01-15 | 2027 tarifesi, yeniden değerleme oranı ve 2026 TÜFE açıklandı. bordro/parametreler.js'e 2027, finans/endeksleme-serileri.js'e 2027 satırı girildi mi? Sayfadaki 2026 örnekleri, SSS ve kesir payı cümlesi yeni yıl için yeniden kontrol edilmeli.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/dilim-kaymasi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Dilim kayması hesaplama — dilimler enflasyonla büyüseydi?">
+  <meta property="og:description" content="Vergi dilimleri enflasyonla büyüseydi maaşınızdan ne kadar vergi kesilirdi? Üç ölçüt, kendi ücretiniz, kuruşu kuruşuna.">
+  <meta property="og:url" content="https://korayoner.dev/dilim-kaymasi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/dilim-kaymasi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dilim kayması hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Dilim kayması hesaplama">
+  <meta name="twitter:description" content="Vergi dilimleri enflasyonla büyüseydi maaşınızdan ne kadar vergi kesilirdi? Kendi ücretinizde ölçün.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/dilim-kaymasi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=89def2bd">
+  <link rel="stylesheet" href="style.css?v=7c9bff95">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/dilim-kaymasi-hesaplama/#app",
+        "name": "Dilim Kayması Hesaplama",
+        "url": "https://korayoner.dev/dilim-kaymasi-hesaplama/",
+        "description": "Gelir vergisi dilimleri yeniden değerleme oranı, tüketici enflasyonu ya da asgari ücretle büyüseydi bir ücretten kesilecek vergiyi gerçek tarifeyle karşılaştıran ücretsiz araç.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Tarayıcı",
+        "inLanguage": "tr",
+        "image": "https://korayoner.dev/images/dilim-kaymasi-hesaplama-koray-oner.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
+        "isBasedOn": {
+          "@type": "ScholarlyArticle",
+          "@id": "https://doi.org/10.5281/zenodo.22818390",
+          "name": "Endekslemenin Aritmetiği: Türkiye'de Ücret Vergisi Tarifesinde Dilim Kayması (2022–2026 Dönemi İçin Bir Ölçüm ve Bir Nötrleştirme Önermesi)",
+          "author": { "@id": "https://korayoner.dev/#oner-koray" },
+          "datePublished": "2026-09-15"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Dilim Kayması Hesaplama", "item": "https://korayoner.dev/dilim-kaymasi-hesaplama/"}]}</script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#yontem">Yöntem</a></li>
+          <li><a href="#olcutler">Üç ölçüt</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Dilim Kayması Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Vergi · Araştırma aracı</p>
+        <h1 id="hero-title">Vergi dilimleri enflasyonla büyüseydi ne kadar vergi öderdiniz?</h1>
+        <p class="lede">Gelir vergisi dilimleri her yıl bir oranla büyütülür.
+          Büyüme ölçütün gerisinde kalırsa aynı ücretten daha fazla vergi
+          kesilir; buna <strong>dilim kayması</strong> denir. Bu araç tarifeyi
+          üç ölçütle yeniden kurar ve farkı sizin 12 aylık bordronuzda
+          hesaplar.</p>
+        <p class="muted dk-kunye">Yöntem: <a href="https://doi.org/10.5281/zenodo.22818390" rel="noopener">Öner (2026), Endekslemenin Aritmetiği</a>
+          · Hesap <a href="../bordro/">bordro motorundan</a> gelir
+          · Tarayıcınızda çalışır, veri gönderilmez</p>
+      </div>
+    </section>
+
+    <section class="calc" id="hesapla" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="calc-title">Dilim kayması hesabı</h2>
+        <form class="panel" id="dk-form" novalidate>
+          <div class="dk-alanlar">
+            <p class="panel-q">
+              <label for="dk-brut">Aylık brüt ücret (TL)</label>
+              <input id="dk-brut" type="text" inputmode="decimal" autocomplete="off"
+                     value="100.000" placeholder="örn. 85.000">
+            </p>
+            <p class="panel-q">
+              <label for="dk-yil">Tarife yılı</label>
+              <select id="dk-yil"></select>
+            </p>
+            <p class="panel-q">
+              <label for="dk-baz">Karşılaştırmanın başladığı yıl</label>
+              <select id="dk-baz"></select>
+            </p>
+          </div>
+          <fieldset class="dk-olcut-secim">
+            <legend>Dilimler neyle büyüseydi?</legend>
+            <label class="dk-secenek"><input type="radio" name="dk-olcut" value="ydo" checked>
+              <span><strong>Yeniden değerleme oranı</strong><small>Kanunun ölçütü, aşağı yuvarlama yapılmadan</small></span></label>
+            <label class="dk-secenek"><input type="radio" name="dk-olcut" value="tufe">
+              <span><strong>Tüketici enflasyonu</strong><small>Klasik dilim kayması tanımı</small></span></label>
+            <label class="dk-secenek"><input type="radio" name="dk-olcut" value="asgari">
+              <span><strong>Asgari ücret</strong><small>Tarifenin ücretler karşısındaki yeri</small></span></label>
+          </fieldset>
+        </form>
+
+        <div id="dk-sonuc" aria-live="polite"></div>
+        <p class="muted-note" id="dk-mesaj">Aylık brüt ücretinizi girin; hesap otomatik çalışır.</p>
+
+        <div class="dk-grafik-blok" id="dk-grafik-blok" hidden>
+          <h3>Ücret ekseni boyunca fark</h3>
+          <p class="muted">Yatay eksen aylık brüt ücret, dikey eksen yıllık
+            gelir vergisi farkı. Her çizgi bir ölçüt. Sıfırın üstü: tarife o
+            ölçütün gerisinde kaldı, fazla vergi. Altı: tarife ölçütten hızlı
+            büyüdü. Nokta sizin ücretiniz.</p>
+          <div class="grafik-kap">
+            <svg id="dk-grafik" viewBox="0 0 760 330" role="img" aria-labelledby="dk-grafik-baslik"></svg>
+            <p id="dk-grafik-baslik" class="visually-hidden">Aylık brüt ücrete göre, üç ölçütte yıllık gelir vergisi farkı. Sayısal karşılığı yukarıdaki tablolarda.</p>
+          </div>
+          <p class="lejant">
+            <span class="l-ydo"><i></i>Yeniden değerleme</span>
+            <span class="l-tufe"><i></i>TÜFE</span>
+            <span class="l-asgari"><i></i>Asgari ücret</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <h2 id="yontem">Araç neyi hesaplıyor?</h2>
+      <p>Tarifenin <strong>oranları</strong> (%15, %20, %27, %35, %40) sabit
+        kalır; değişen, oranların hangi tutardan başladığını gösteren
+        <strong>eşiklerdir</strong>. Araç, seçtiğiniz başlangıç yılının
+        eşiklerini seçtiğiniz ölçütün o yıldan bu yana birikmiş artışıyla
+        büyütür:</p>
+      <p class="formula">endekslenmiş eşik = başlangıç yılının eşiği × (1 + artış₁) × (1 + artış₂) × …</p>
+      <p>Sonra yılın 12 aylık bordrosunu iki kez hesaplar: gerçek tarifeyle
+        ve endekslenmiş tarifeyle. Asgari ücret, sigorta primi, damga vergisi
+        ve asgari ücret istisnası iki hesapta da aynıdır. Aradaki fark yalnızca
+        eşiklerden gelir:</p>
+      <p class="formula">fark = gerçek tarifeyle gelir vergisi − endekslenmiş tarifeyle gelir vergisi</p>
+      <p>Fark pozitifse tarife o ölçütün gerisinde kalmıştır ve sizden fazla
+        vergi kesilmektedir. Negatifse tarife ölçütten hızlı büyümüştür. Araç
+        ayrıca farkın hangi eşikten geldiğini ayrı ayrı gösterir: tarife
+        parçalı doğrusal olduğu için eşiklerin katkıları toplanır ve toplam
+        farka eşittir.</p>
+
+      <h2 id="olcutler">Üç ölçüt neden üç ayrı cevap veriyor?</h2>
+      <p>"Dilim kayması var mı?" sorusunun içinde bir seçim gizli: neye
+        göre? Araç üç cevabı da gösterir, çünkü aralarındaki fark bulgunun
+        kendisidir.</p>
+      <ul>
+        <li><strong>Yeniden değerleme oranı.</strong> Tarife kanunen bu orana
+          bağlıdır. Ama Gelir Vergisi Kanunu mükerrer 123, oranla bulunan
+          tutarın %5'i aşmayan kesirlerinin atılmasına izin verir ve
+          yuvarlama hep aşağıdır. Bu ölçütteki fark bir kanun ihlali değil,
+          izin verilen aşağı yuvarlamanın sizin bordronuzdaki bedelidir.
+          Ayrıntı: <a href="../makaleler/yeniden-degerleme-orani-nedir/">yeniden değerleme oranı nedir?</a></li>
+        <li><strong>Tüketici enflasyonu (TÜFE).</strong> Klasik dilim kayması
+          tanımı: satın alma gücünüz aynı kalırken vergi yükünüz arttı mı?</li>
+        <li><strong>Asgari ücret.</strong> Tarifenin ücretler karşısındaki
+          yeri: asgari ücret dilimlerden hızlı büyüdükçe daha çok ücretli üst
+          dilimlere taşınır.</li>
+      </ul>
+      <p>Başlangıç yılı da sonucu değiştirir. 2023 tarifesi enflasyonun çok
+        üzerinde artırıldı; bu yüzden 2022'den başlayan bir karşılaştırma
+        kayma bulmaz, 2023'ten başlayan bir karşılaştırma ise sonraki üç
+        yılın erimesini bulur. Savunulabilir tek yol ikisini birlikte
+        raporlamaktır; sonuç bölümündeki tablo bunu yapar. Dönemin tamamı
+        için ölçüm: <a href="../makaleler/dilim-kaymasi-2022-2026/">dilim
+        kayması gerçekten oluyor mu?</a></p>
+
+      <h2 id="ilk-esik">İlk dilim eşiği neden sizi etkilemiyor?</h2>
+      <p>Her yıl manşet olan eşik, %15 diliminin üst sınırıdır. Ama asgari
+        ücret istisnası hesaplanan vergiden düşülür ve tutarı aynı tarifenin
+        asgari ücret matrahına uygulanmasıyla bulunur. Bir eşik asgari ücretin
+        yıllık matrahının altındaysa, onu kaydırmak hem sizin vergiyi hem de
+        istisnayı aynı tutarda değiştirir; ikisinin farkı olan ödenecek vergi
+        değişmez. Etki yaklaşık değil, tam olarak sıfırdır. Eşik tablosunda
+        ilk satırın sıfır çıkması bu yüzdendir. Asgari ücret üstü bir ücretli
+        için anlamlı eşik, %20 diliminin üst sınırıdır.</p>
+
+      <h2 id="sinir">Bu araç neyi kapsamıyor</h2>
+      <ul>
+        <li>Yalnızca tek işverenden alınan ücret; ücret dışı gelir tarifesi
+          ve yıllık beyanname dışarıda.</li>
+        <li>Yıl boyunca sabit aylık brüt; ikramiye, prim ve yıl içi zam
+          yok.</li>
+        <li>Tarife oranlarının kendisindeki değişiklikler; araç yalnızca
+          eşikleri endeksler.</li>
+        <li>Hesap bir karşılaştırmadır; iade ya da ödeme doğurmaz.</li>
+      </ul>
+      <p>Bu aracın bir araştırmada kullanımı için atıf: Öner, K. (2026).
+        <em>Endekslemenin Aritmetiği: Türkiye'de Ücret Vergisi Tarifesinde
+        Dilim Kayması</em>. Zenodo.
+        <a href="https://doi.org/10.5281/zenodo.22818390" rel="noopener">doi:10.5281/zenodo.22818390</a></p>
+    </div>
+
+    <section class="content">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanak</h2>
+          <ul>
+            <li>193 sayılı Gelir Vergisi Kanunu m.103 (tarife), mükerrer m.123
+              (eşiklerin yeniden değerleme oranıyla artırılması ve %5'i aşmayan
+              kesirlerin atılması), m.23/1-(18) (asgari ücret istisnası).</li>
+            <li>213 sayılı Vergi Usul Kanunu mükerrer m.298/B (yeniden değerleme
+              oranının tespiti) ve Genel Tebliğler sıra no. 574 ve 585.</li>
+            <li>TÜİK Tüketici Fiyat Endeksi haber bültenleri, Aralık 2021 –
+              Aralık 2025.</li>
+            <li>Asgari Ücret Tespit Komisyonu kararları (Resmî Gazete).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Dilim kayması nedir?</summary><p>Gelir vergisi dilimleri enflasyondan yavaş büyüdüğünde, reel geliri artmayan birinin matrahı üst dilimlere girer ve vergi yükü kanun değişmeden artar. Artan oranlı tarifelerin yüksek enflasyondaki bilinen etkisidir.</p></details>
+          <details><summary>2026'da vergi dilimleri enflasyonun altında mı arttı?</summary><p>Evet. Ücretliler için bağlayıcı olan ikinci eşik 2025'ten 2026'ya %21,21 arttı. Aynı dönemde yeniden değerleme oranı %25,49, tüketici enflasyonu %30,89 idi. Buna rağmen tarife kanuna uygundur: mükerrer 123 oranla bulunan tutarın %5'e kadar kesrini atmaya izin verir ve 2026'daki dört eşiğin dördü de bu payın içindedir.</p></details>
+          <details><summary>Bu fark benim bordromda ne kadar?</summary><p>Ücrete bağlı. Örneğin 2026'da aylık 100.000 TL brütte, eşikler yeniden değerleme oranıyla kesirsiz büyütülseydi yılda 988,19 TL daha az gelir vergisi kesilirdi. Farkın tamamı ikinci eşikten gelir. Kendi ücretinizi yukarıdaki araçta deneyin.</p></details>
+          <details><summary>Neden üç farklı sonuç çıkıyor?</summary><p>Çünkü "enflasyona göre" sorusu hangi enflasyon ve hangi başlangıç yılı sorusunu içinde taşır. Tarife 2023'te enflasyonun çok üzerinde artırıldı, sonraki yıllarda gerisinde kaldı. 2022'den bakan kayma bulmaz, 2023'ten bakan bulur. Araç bu yüzden bütün seçimleri yan yana gösterir.</p></details>
+          <details><summary>İlk vergi dilimi neden benim vergimi etkilemiyor?</summary><p>Asgari ücret istisnası aynı tarifeyle hesaplanıp vergiden düşüldüğü için, asgari ücret matrahının altındaki bir eşiğin değişmesi hem vergiyi hem istisnayı aynı tutarda değiştirir. Asgari ücret üstü ücretlide etki tam olarak sıfırdır.</p></details>
+          <details><summary>Bu fark bana iade edilir mi?</summary><p>Hayır. Araç yürürlükteki tarifeyi olası bir tarifeyle karşılaştırır. Bordronuzdaki kesinti yürürlükteki tarifeye göre doğrudur; fark bir iade hakkı değil, tarifenin nasıl belirlendiğinin bedelidir.</p></details>
+          <details><summary>Girdiğim tutar bir yere gönderiliyor mu?</summary><p>Hayır. Hesap tamamen tarayıcınızda yapılır. Paylaşım bağlantısı yalnızca siz düğmeye bastığınızda oluşur ve tutarı adres satırında taşır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../makaleler/dilim-kaymasi-2022-2026/">Dilim kayması gerçekten oluyor mu?</a> — dönemin tamamı için ölçüm (yazı).</li>
+          <li><a href="../makaleler/yeniden-degerleme-orani-nedir/">Yeniden değerleme oranı nedir?</a> — kesir atma kuralı (yazı).</li>
+          <li><a href="../vergi-kamasi-hesaplama/">Vergi kaması hesaplama</a> — ücretin toplam yükü.</li>
+          <li><a href="../maas-hesaplama/">Brüt net maaş hesaplama</a> — 12 aylık bordro.</li>
+          <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a> — DOI'li araştırmalar.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanak</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanak</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı tutar için bordronuza ve mali müşavirinize danışın.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=86b81853" defer></script>
+  <script src="../bordro/motor.js?v=89d92ff6" defer></script>
+  <script src="../finans/endeksleme-serileri.js?v=7d235ed1" defer></script>
+  <script src="../makaleler/yeniden-degerleme-orani-nedir/ydo.js?v=dbb16ff9" defer></script>
+  <script src="../bordro/dilim-kaymasi.js?v=65a5b0e7" defer></script>
+  <script src="script.js?v=c0e3e505" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>

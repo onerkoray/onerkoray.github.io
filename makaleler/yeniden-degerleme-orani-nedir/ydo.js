@@ -8,7 +8,7 @@
  *
  * ORAN SERİSİ BURADA TUTULMUYOR
  * -----------------------------
- * Yeniden değerleme oranları zaten dilim kayması yazısının seriler.js
+ * Yeniden değerleme oranları zaten finans/endeksleme-serileri.js
  * dosyasında duruyor ve testle sabitlenmiş durumda. Buraya kopyalanması,
  * birinin güncellenip ötekinin unutulmasıyla biterdi. Modül o dosyadan
  * okuyor.
@@ -40,9 +40,9 @@
 (function (kok, fabrika) {
   if (typeof module === "object" && module.exports) {
     module.exports = fabrika(require("../../bordro/motor.js"),
-      require("../dilim-kaymasi-2022-2026/seriler.js"));
+      require("../../finans/endeksleme-serileri.js"));
   } else {
-    kok.YDO = fabrika(kok.BordroMotor, kok.Seriler);
+    kok.YDO = fabrika(kok.Bordro, kok.EndekslemeSerileri);
   }
 })(typeof self !== "undefined" ? self : this, function (B, S) {
   "use strict";
@@ -55,7 +55,7 @@
     return d || null;
   }
 
-  /* Oranın tanımlı olduğu yıllar — seriler.js ne diyorsa o. */
+  /* Oranın tanımlı olduğu yıllar — endeksleme-serileri.js ne diyorsa o. */
   function oranliYillar() {
     return (S.YILLAR || []).slice().sort(function (a, b) { return a - b; });
   }
