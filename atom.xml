@@ -5,9 +5,89 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-25T12:58:17+03:00</updated>
+  <updated>2026-09-25T18:52:41+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Asgari Ücret Zammı Senaryosu 2027</title>
+    <link href="https://korayoner.dev/asgari-ucret-zam-senaryosu/"/>
+    <id>https://korayoner.dev/asgari-ucret-zam-senaryosu/</id>
+    <updated>2026-09-25T18:52:41+03:00</updated>
+    <summary>2027 asgari ücret zammı yüzde kaç olursa net ne olur? Zam ve dilim artışını girin: net asgari ücret, SGK tavanı, maaşınızın neti ve dilimler geride kalırsa kaybınız.</summary>
+  </entry>
+
+  <entry>
+    <title>Enflasyon Hesaplama — Paranın Bugünkü Değeri</title>
+    <link href="https://korayoner.dev/enflasyon-hesaplama/"/>
+    <id>https://korayoner.dev/enflasyon-hesaplama/</id>
+    <updated>2026-09-25T18:52:41+03:00</updated>
+    <summary>Geçmişteki bir tutar bugün kaç TL eder? 2005'ten bu yana aylık TÜFE ile iki tarih arası enflasyon, yıllık ortalama ve alım gücü kaybı.</summary>
+  </entry>
+
+  <entry>
+    <title>Asgari Ücret Enflasyona Yenildi mi? 2020–2026</title>
+    <link href="https://korayoner.dev/makaleler/asgari-ucret-enflasyona-yenildi-mi/"/>
+    <id>https://korayoner.dev/makaleler/asgari-ucret-enflasyona-yenildi-mi/</id>
+    <updated>2026-09-25T18:52:41+03:00</updated>
+    <summary>Net asgari ücretin 2020–2026 reel seyri: yıllık ortalama %47 arttı, ama her zamdan sonra yıl içinde %11–26 eridi. Aylık TÜFE ve resmî tutarlarla ölçüm.</summary>
+  </entry>
+
+  <entry>
+    <title>Evi Çocuğa Bağışlamak mı, Miras mı? Vergi 2026</title>
+    <link href="https://korayoner.dev/makaleler/bagis-mi-miras-mi-vergi/"/>
+    <id>https://korayoner.dev/makaleler/bagis-mi-miras-mi-vergi/</id>
+    <updated>2026-09-25T18:52:41+03:00</updated>
+    <summary>Aynı ev bağışla geçerse 146.653 TL, mirasla geçerse 929 TL vergi. 2026 tarifesiyle bağış ve miras karşılaştırması: fark neden bu kadar büyük, ne zaman küçülüyor?</summary>
+  </entry>
+
+  <entry>
+    <title>Dolar mı TL Mevduat mı? Başabaş Kur Hesabı</title>
+    <link href="https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/"/>
+    <id>https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/</id>
+    <updated>2026-09-25T18:52:41+03:00</updated>
+    <summary>Yıllık %37 TL faizinde 32 günlük vadede doların %2,61'den fazla artması gerekir. Başabaş kuru vade, stopaj ve kur makası nasıl değiştiriyor? Hesaplı karşılaştırma.</summary>
+  </entry>
+
+  <entry>
+    <title>Fiyatlar Kaç Ayda İkiye Katlanıyor? 2005–2026</title>
+    <link href="https://korayoner.dev/makaleler/fiyatlar-kac-ayda-ikiye-katlaniyor/"/>
+    <id>https://korayoner.dev/makaleler/fiyatlar-kac-ayda-ikiye-katlaniyor/</id>
+    <updated>2026-09-25T18:52:41+03:00</updated>
+    <summary>2016'da fiyatların ikiye katlanması dokuz yıl sürüyordu, Ocak 2023'te 15 aya indi. Aylık TÜFE ile ölçüm: yıllık oran bu süreyi neden yanlış gösteriyor?</summary>
+  </entry>
+
+  <entry>
+    <title>Miras Kalan Ev İçin Vergi Ödenir mi? 2026</title>
+    <link href="https://korayoner.dev/makaleler/miras-kalan-ev-icin-vergi/"/>
+    <id>https://korayoner.dev/makaleler/miras-kalan-ev-icin-vergi/</id>
+    <updated>2026-09-25T18:52:41+03:00</updated>
+    <summary>Aynı 8 milyon TL'lik mirasta vergi sıfır da olabilir 120.000 TL de. 2026 veraset vergisinde aile yapısına göre vergisiz sınır ve emlak vergisi değerinin rolü.</summary>
+  </entry>
+
+  <entry>
+    <title>Reel Maaş Hesaplama — Enflasyona Yenildi mi?</title>
+    <link href="https://korayoner.dev/reel-maas-hesaplama/"/>
+    <id>https://korayoner.dev/reel-maas-hesaplama/</id>
+    <updated>2026-09-25T18:52:41+03:00</updated>
+    <summary>Maaşınız enflasyona yenildi mi? İki tarihteki netinizi TÜFE ile karşılaştırın: alım gücü değişimi, olması gereken maaş ve asgari ücretin kaç katı.</summary>
+  </entry>
+
+  <entry>
+    <title>TL mi Döviz mi? Başabaş Kur Hesaplama</title>
+    <link href="https://korayoner.dev/tl-mi-doviz-mi-hesaplama/"/>
+    <id>https://korayoner.dev/tl-mi-doviz-mi-hesaplama/</id>
+    <updated>2026-09-25T18:52:41+03:00</updated>
+    <summary>Parayı TL mevduatta mı döviz mevduatında mı tutmalı? Faiz, stopaj ve kur makasıyla başabaş kuru hesaplayın: dolar vade sonunda ne kadar artarsa döviz kazanır.</summary>
+  </entry>
+
+  <entry>
+    <title>Veraset ve İntikal Vergisi Hesaplama 2026</title>
+    <link href="https://korayoner.dev/veraset-ve-intikal-vergisi-hesaplama/"/>
+    <id>https://korayoner.dev/veraset-ve-intikal-vergisi-hesaplama/</id>
+    <updated>2026-09-25T18:52:41+03:00</updated>
+    <summary>Miras ve bağışta 2026 veraset ve intikal vergisi: mirasçı başına pay, istisna, matrah ve vergi. Eş, çocuk ve ana-baba için yasal paylarla, 6 taksit planıyla.</summary>
+  </entry>
 
   <entry>
     <title>Dilim Kayması Hesaplama 2026</title>
