@@ -44,7 +44,7 @@
     var msg = el("msg");
     var tutar = num("in-tutar");
     var mod = el("in-mod").value;              // "brut" | "net"
-    var tesvik = el("in-tesvik").checked;
+    var tesvik = el("in-tesvik").value;       // "" | "genel" | "imalat"
 
     if (isNaN(tutar) || tutar <= 0) {
       results.innerHTML = ""; msg.hidden = true; return;
@@ -53,7 +53,8 @@
     var yil = aktifYil();
     var P = B.parametre(yil);
     var o = P.oranlar;
-    var secenek = { tesvik5Puan: tesvik };
+    var secenek = tesvik ? { tesvik: tesvik } : {};
+    var indirimPuan = B.tesvikOrani(B.oranlarAy(P, 1), secenek) * 100;
 
     /* Net modda ocak ayının netini hedefleyen brüt bulunur. Neti sabit tutmak
        için brüt yıl içinde yükseldiğinden yıllık maliyet ay ay hesaplanır. */
@@ -121,9 +122,10 @@
     var notlar =
       '<p class="muted-note table-note">' +
       (tesvik
-        ? "5 puanlık indirim uygulandı: SGK işveren payı " + yuzde(isvSgkOran) +
-          "'e düştü. İndirim 5510 sayılı Kanun m.81/ı kapsamındadır ve prim borcu bulunmaması, bildirgelerin süresinde verilmesi gibi şartlara bağlıdır."
-        : "Teşviksiz hesap. Şartları sağlayan işverenler 5 puanlık indirimden yararlanabilir — yukarıdaki kutucuğu işaretleyerek farkı görebilirsiniz.") +
+        ? (tesvik === "imalat" ? "İmalat sektörü" : "İmalat dışı özel sektör") + " indirimi uygulandı: " +
+          String(indirimPuan).replace(".", ",") + " puan, SGK işveren payı %" + yuzde(isvSgkOran) +
+          "'e düştü (ocak). İndirim 5510 sayılı Kanun m.81/ı kapsamındadır; prim borcu bulunmaması, bildirgelerin süresinde verilmesi gibi şartlara bağlıdır."
+        : "Teşviksiz hesap. Şartları sağlayan özel sektör işvereni 2026'da imalat dışında 2, imalatta 5 puanlık indirimden yararlanır; yukarıdan seçerek farkı görebilirsiniz.") +
       "</p>" +
       (tavanda
         ? '<p class="muted-note table-note">Brüt ücret prime esas kazanç tavanını aştığı için primler tavan üzerinden hesaplandı; tavanın üstündeki kısım prime tabi değildir.</p>'

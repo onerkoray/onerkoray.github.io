@@ -45,7 +45,7 @@ MOTORLU = {
     "fazla-mesai-hesaplama",
 }
 
-MOTOR_SURUMU = "1.0.1"
+MOTOR_SURUMU = "1.1.0"
 MOTOR_TARIHI = "2026-09-05"
 MOTOR_TARIHI_TR = "5 Eylül 2026"
 

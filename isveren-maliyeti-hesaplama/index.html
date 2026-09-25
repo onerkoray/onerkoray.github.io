@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>İşveren Maliyeti Hesaplama 2026 | Koray Öner</title>
-  <meta name="description" content="Bir çalışan işverene ne kadara mal oluyor? Brüt ya da net ücretten aylık ve yıllık maliyet, SGK işveren payı ve 5 puanlık indirim — 2026 parametreleriyle.">
+  <meta name="description" content="Çalışan işverene ne kadara mal oluyor? Brüt ya da net ücretten aylık ve yıllık maliyet, SGK işveren payı ve prim indirimi (imalat dışı 2, imalat 5 puan), 2026.">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
@@ -22,7 +22,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Koray Öner">
   <meta property="og:title" content="İşveren Maliyeti Hesaplama 2026">
-  <meta property="og:description" content="Çalışanın işverene aylık ve yıllık toplam maliyeti, SGK işveren payı ve 5 puanlık indirimin farkı — tarayıcıda, üyeliksiz.">
+  <meta property="og:description" content="Çalışanın işverene aylık ve yıllık toplam maliyeti, SGK işveren payı ve prim indiriminin farkı — tarayıcıda, üyeliksiz.">
   <meta property="og:url" content="https://korayoner.dev/isveren-maliyeti-hesaplama/">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:image" content="https://korayoner.dev/images/isveren-maliyeti-hesaplama-koray-oner.png">
@@ -33,7 +33,7 @@
   <meta name="twitter:site" content="@korayonerdev">
   <meta name="twitter:creator" content="@korayonerdev">
   <meta name="twitter:title" content="İşveren Maliyeti Hesaplama 2026">
-  <meta name="twitter:description" content="Bir çalışan işverene ne kadara mal oluyor? SGK işveren payı ve 5 puanlık indirim dahil.">
+  <meta name="twitter:description" content="Bir çalışan işverene ne kadara mal oluyor? SGK işveren payı ve prim indirimi dahil.">
   <meta name="twitter:image" content="https://korayoner.dev/images/isveren-maliyeti-hesaplama-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=89def2bd">
@@ -56,7 +56,7 @@
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
         "author": { "@id": "https://korayoner.dev/#oner-koray" },
         "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
-        "description": "Brüt veya net ücretten çalışanın işverene aylık ve yıllık toplam maliyetini, SGK işveren ve işsizlik paylarını, prime esas kazanç tavanının etkisini ve 5 puanlık indirimi hesaplar."
+        "description": "Brüt veya net ücretten çalışanın işverene aylık ve yıllık toplam maliyetini, SGK işveren ve işsizlik paylarını, prime esas kazanç tavanının etkisini ve m.81/ı prim indirimini hesaplar."
       },
       {
         "@type": "BreadcrumbList",
@@ -75,8 +75,8 @@
           },
           {
             "@type": "Question",
-            "name": "5 puanlık indirim nedir, maliyeti ne kadar düşürür?",
-            "acceptedAnswer": { "@type": "Answer", "text": "5510 sayılı Kanun m.81/ı uyarınca şartları sağlayan işverenlerin SGK işveren payından 5 puan indirilir. İndirim yalnızca SGK işveren payına uygulanır, işsizlik işveren payına uygulanmaz. Prime esas kazancı 60.000 TL olan bir çalışanda bu, ayda 3.000 TL, yılda 36.000 TL fark demektir. İndirimden yararlanmak için prim borcu bulunmaması ve bildirgelerin süresinde verilmesi gerekir." }
+            "name": "Prim indirimi nedir, maliyeti ne kadar düşürür?",
+            "acceptedAnswer": { "@type": "Answer", "text": "5510 sayılı Kanun m.81/ı uyarınca şartları sağlayan özel sektör işverenlerinin SGK işveren payından indirim yapılır. 2026'da oran imalat dışında 2 puan (7566 sayılı Kanun), imalatta 5 puandır. İndirim işsizlik işveren payına uygulanmaz. Prime esas kazancı 60.000 TL olan bir çalışanda bu, imalat dışında ayda 1.200 TL (yılda 14.400 TL), imalatta ayda 3.000 TL (yılda 36.000 TL) fark demektir. İndirimden yararlanmak için prim borcu bulunmaması ve bildirgelerin süresinde verilmesi gerekir." }
           },
           {
             "@type": "Question",
@@ -144,7 +144,7 @@
         <p class="lede">
           Bir çalışan işverene <strong>gerçekte ne kadara mal oluyor?</strong> Brüt ya da net
           ücretten aylık ve yıllık toplam maliyeti, SGK işveren payını, prime esas kazanç
-          tavanının etkisini ve <strong>5 puanlık indirimin</strong> farkını hesaplayın.
+          tavanının etkisini ve <strong>prim indiriminin</strong> farkını hesaplayın.
           Hesap tamamen tarayıcınızda yapılır.
         </p>
       </div>
@@ -169,9 +169,14 @@
               <input type="text" id="in-tutar" inputmode="decimal" value="60000"> TL
             </p>
           </div>
-          <p class="onay">
-            <input type="checkbox" id="in-tesvik">
-            <label for="in-tesvik">5 puanlık indirim uygulansın (5510 m.81/ı)</label>
+          <p class="panel-q">
+            <label for="in-tesvik">Prim indirimi (5510 m.81/ı)</label>
+            <select id="in-tesvik">
+              <option value="" selected>Uygulanmasın</option>
+              <option value="genel">Özel sektör, imalat dışı (2026: 2 puan)</option>
+              <option value="imalat">İmalat sektörü (5 puan)</option>
+            </select>
+            <span class="muted-note">2026'da imalat dışında 2, imalatta 5 puan; prim borcu olmaması şart.</span>
           </p>
         </form>
 
@@ -219,7 +224,7 @@
         <div class="sources">
           <h2 id="kaynak-title">Veri kaynakları ve güncelleme</h2>
           <ul>
-            <li>5510 sayılı <strong>Kanun m.81</strong> — prim oranları ve 5 puanlık indirim — <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5510.pdf" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
+            <li>5510 sayılı <strong>Kanun m.81</strong> — prim oranları ve m.81/ı indirimi — <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5510.pdf" rel="noopener">Mevzuat Bilgi Sistemi</a></li>
             <li>5510 sayılı <strong>Kanun m.82</strong> — prime esas kazancın alt ve üst sınırı — <a href="https://www.sgk.gov.tr/" rel="noopener">Sosyal Güvenlik Kurumu</a></li>
             <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> m.103 ve m.23/1-(18) — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
             <li>Kullanılan parametreler, hesap adımları ve doğrulama testleri — <a href="../bordro/">Bordro Motoru metodolojisi</a></li>
@@ -237,7 +242,7 @@
         <h2>Sık sorulan sorular</h2>
         <div class="faq-list">
           <details><summary>Bir çalışanın işverene maliyeti nasıl hesaplanır?</summary><p>Brüt ücrete işveren SGK payı ve işveren işsizlik payı eklenir. Primler brütün tamamı üzerinden değil prime esas kazanç üzerinden hesaplanır; brüt SGK tavanını aşarsa primler tavandan alınır. Gelir ve damga vergisi çalışanın brütünden kesilir, işverene ek maliyet getirmez.</p></details>
-          <details><summary>5 puanlık indirim maliyeti ne kadar düşürür?</summary><p>SGK işveren payından 5 puan iner; işsizlik işveren payına uygulanmaz. Prime esas kazancı 60.000 TL olan bir çalışanda ayda 3.000 TL, yılda 36.000 TL fark eder. Prim borcu bulunmaması ve bildirgelerin süresinde verilmesi şarttır.</p></details>
+          <details><summary>Prim indirimi maliyeti ne kadar düşürür?</summary><p>2026'da SGK işveren payından imalat dışında 2 puan, imalatta 5 puan iner; işsizlik işveren payına uygulanmaz. Prime esas kazancı 60.000 TL olan bir çalışanda imalat dışında ayda 1.200 TL, imalatta 3.000 TL fark eder. Prim borcu bulunmaması ve bildirgelerin süresinde verilmesi şarttır.</p></details>
           <details><summary>Net üzerinden anlaşmak neden daha pahalı?</summary><p>Gelir vergisi kümülatif matraha uygulandığı için yıl içinde artar. Brüt sabitse bu artışı çalışan karşılar; net sabitse aynı neti vermek için brüt yükselir ve artışı işveren karşılar.</p></details>
           <details><summary>Maliyet brütün yüzde kaçı?</summary><p>SGK tavanının altındaki ücretlerde brütün yaklaşık %123,75&#8217;i. Brüt tavanı aştığında primler sabitlendiği için bu oran kademeli olarak düşer.</p></details>
           <details><summary>Kıdem ve ihbar tazminatı dahil mi?</summary><p>Hayır. Araç aylık bordro maliyetini hesaplar; kıdem, ihbar, yıllık izin karşılığı ve diğer yükler dahil değildir.</p></details>
@@ -271,7 +276,7 @@
           <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
           <dl class="method-meta">
             <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
-            <div><dt>Hesaplama çekirdeği</dt><dd><a href="../bordro/">Bordro Motoru 1.0.1</a></dd></div>
+            <div><dt>Hesaplama çekirdeği</dt><dd><a href="../bordro/">Bordro Motoru 1.1.0</a></dd></div>
             <div><dt>Son gözden geçirme</dt><dd><time datetime="2026-09-05">5 Eylül 2026</time></dd></div>
             <div><dt>Değişiklik günlüğü</dt><dd><a href="../bordro/#gunluk">Yayımlanıyor</a></dd></div>
           </dl>
@@ -297,9 +302,9 @@
     </div>
   </footer>
 
-  <script src="../bordro/parametreler.js?v=86b81853" defer></script>
-  <script src="../bordro/motor.js?v=89d92ff6" defer></script>
-  <script src="script.js?v=6e284579" defer></script>
+  <script src="../bordro/parametreler.js?v=0adeee60" defer></script>
+  <script src="../bordro/motor.js?v=1e531cca" defer></script>
+  <script src="script.js?v=e9fa27ec" defer></script>
   <script src="../script.js?v=5127b7a8" defer></script>
 </body>
 </html>
