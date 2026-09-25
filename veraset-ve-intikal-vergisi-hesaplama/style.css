@@ -1,0 +1,88 @@
+/*!
+ * Veraset ve intikal vergisi hesaplama — sayfaya özgü stiller.
+ * Renkler mevcut belirteçlerden; yeni renk tanımlanmaz.
+ */
+.panel-q { margin: 0; display: flex; flex-direction: column; gap: .3rem; }
+.panel-q label { font-weight: 600; font-size: var(--step--1); }
+.panel-q input,
+.panel-q select {
+  font: inherit;
+  width: 100%;
+  padding: .5rem .65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+}
+.vi-kip {
+  margin: 0 0 1.2rem;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+.vi-kip legend { padding: 0 0 .5rem; font-weight: 600; font-size: var(--step--1); }
+.vi-secenek {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  padding: .55rem .85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.vi-secenek:has(input:checked) {
+  border-color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 6%, transparent);
+}
+.vi-secenek input { accent-color: var(--brand); }
+.vi-alanlar {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.vi-aile {
+  margin: 1.2rem 0 0;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  align-items: end;
+}
+.vi-aile legend {
+  padding: 0 .4rem;
+  font-weight: 650;
+  font-size: var(--step--1);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.vi-onay { display: flex; gap: .5rem; align-items: center; font-weight: 600; }
+.vi-onay input { accent-color: var(--brand); inline-size: 1.1rem; block-size: 1.1rem; }
+.vi-kunye { font-size: var(--step--1); }
+
+.vi-manset { margin: 1.8rem 0 .8rem; font-size: var(--step-1); }
+.vi-manset p { margin: .2rem 0; }
+.vi-manset p + p { font-size: var(--step-0); color: var(--text-muted); }
+.vi-tablo { margin-top: .6rem; }
+.data-table tr.vi-toplam th,
+.data-table tr.vi-toplam td { font-weight: 700; border-top: 2px solid var(--border); }
+
+.vi-olcu {
+  margin: 1rem 0;
+  display: grid;
+  gap: 0 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.vi-olcu > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.vi-olcu dt { color: var(--text-muted); font-size: var(--step--1); }
+.vi-olcu dd { margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; text-align: right; }

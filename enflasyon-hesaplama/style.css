@@ -1,0 +1,73 @@
+/*!
+ * Enflasyon hesaplama — sayfaya özgü stiller.
+ * Renkler mevcut belirteçlerden; yeni renk tanımlanmaz.
+ */
+.panel-q { margin: 0; display: flex; flex-direction: column; gap: .3rem; }
+.panel-q label { font-weight: 600; font-size: var(--step--1); }
+.panel-q input,
+.en-tarih select {
+  font: inherit;
+  width: 100%;
+  padding: .5rem .65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+}
+.en-alanlar {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: end;
+}
+.en-tarih {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: .5rem;
+}
+.en-tarih legend { padding: 0 0 .3rem; font-weight: 600; font-size: var(--step--1); }
+.en-kisayol { margin: 1rem 0 0; }
+.en-cevir { font-size: var(--step--1); }
+.en-kunye { font-size: var(--step--1); }
+
+.en-manset { margin: 1.8rem 0 .8rem; font-size: var(--step-1); }
+.en-manset p { margin: .2rem 0; }
+.en-manset p + p { font-size: var(--step-0); color: var(--text-muted); }
+
+.en-olcu {
+  margin: 1rem 0;
+  display: grid;
+  gap: 0 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.en-olcu > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.en-olcu dt { color: var(--text-muted); font-size: var(--step--1); }
+.en-olcu dd { margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; }
+.en-tablo { margin-top: 1rem; max-width: 420px; }
+
+.en-grafik-blok { margin-top: 2rem; }
+.grafik-kap { margin-block: 1rem 0; overflow-x: auto; }
+#en-grafik { inline-size: 100%; block-size: auto; min-inline-size: 520px; display: block; }
+.eksen-cizgi { stroke: var(--text-muted); stroke-width: 1; }
+.en-kat { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; }
+.eksen { fill: var(--text-muted); font-size: 11px; }
+.en-seri { fill: none; stroke: var(--dv-1); stroke-width: 2.6; stroke-linejoin: round; }
+
+.formula {
+  font-family: var(--font-mono);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: .75rem .9rem;
+  font-size: .92rem;
+  overflow-x: auto;
+}

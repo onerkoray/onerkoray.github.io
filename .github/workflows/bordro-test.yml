@@ -489,6 +489,51 @@ jobs:
       - name: Dilim kayması sayfasının sayıları
         run: node dilim-kaymasi-hesaplama/test.js
 
+      # Eylül 2026 araç paketi. Motor testleri özdeşlik sınar (zincirleme
+      # endeks = resmî yıllık oran, dört etkinin toplamı = toplam değişim,
+      # başabaşta iki yol eşit, yasal paylar toplamı = tereke); sayfa ve yazı
+      # testleri sayfadaki her rakamı aynı modülden yeniden üretir.
+      - name: TÜFE endeksi motoru
+        run: node finans/tufe-endeksi-test.js
+
+      - name: Enflasyon hesaplama sayfasının sayıları
+        run: node enflasyon-hesaplama/test.js
+
+      - name: Fiyatların ikiye katlanma yazısının sayıları
+        run: node makaleler/fiyatlar-kac-ayda-ikiye-katlaniyor/sayi-testi.js
+
+      - name: Reel maaş motoru
+        run: node finans/reel-maas-test.js
+
+      - name: Reel maaş sayfasının sayıları
+        run: node reel-maas-hesaplama/test.js
+
+      - name: Asgari ücret enflasyon yazısının sayıları
+        run: node makaleler/asgari-ucret-enflasyona-yenildi-mi/sayi-testi.js
+
+      - name: Veraset ve intikal vergisi motoru
+        run: node finans/veraset-test.js
+
+      - name: Veraset sayfasının sayıları
+        run: node veraset-ve-intikal-vergisi-hesaplama/test.js
+
+      - name: Miras ve bağış yazılarının sayıları
+        run: node makaleler/miras-kalan-ev-icin-vergi/sayi-testi.js && node makaleler/bagis-mi-miras-mi-vergi/sayi-testi.js
+
+      - name: TL mi döviz mi başabaş motoru
+        run: node finans/doviz-basabas-test.js
+
+      - name: TL mi döviz mi sayfasının ve yazısının sayıları
+        run: node tl-mi-doviz-mi-hesaplama/test.js && node makaleler/dolar-mi-tl-mevduat-mi/sayi-testi.js
+
+      # Senaryo aracı baz yıla çivili: 2027 parametreleri girildiğinde sayfa
+      # testi kırılır ve metnin 2028'e çevrilmesi gerektiğini söyler.
+      - name: Asgari ücret zammı senaryosu motoru
+        run: node bordro/asgari-senaryo-test.js
+
+      - name: Asgari ücret zammı senaryosu sayfasının sayıları
+        run: node asgari-ucret-zam-senaryosu/test.js
+
       - name: Kredi çekirdeği testleri
         # YMO ikiye bölmesinin yönü ters kurulduğunda oran sessizce 0
         # dönüyordu: sayfa açılıyor, hiçbir yerde hata yok, yalnızca rakam yanlış.

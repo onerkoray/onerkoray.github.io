@@ -1,0 +1,80 @@
+/*!
+ * TL mi döviz mi — sayfaya özgü stiller.
+ * Renkler mevcut belirteçlerden; yeni renk tanımlanmaz.
+ */
+.panel-q { margin: 0; display: flex; flex-direction: column; gap: .3rem; }
+.panel-q label { font-weight: 600; font-size: var(--step--1); }
+.panel-q input,
+.panel-q select {
+  font: inherit;
+  width: 100%;
+  padding: .5rem .65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+}
+.tb-alanlar {
+  display: grid;
+  gap: .9rem 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.tb-ornek { margin: 1rem 0 0; }
+.tb-kunye { font-size: var(--step--1); }
+
+.tb-manset { margin: 1.8rem 0 .8rem; font-size: var(--step-1); }
+.tb-manset p { margin: .2rem 0; }
+.tb-manset p + p { font-size: var(--step-0); color: var(--text-muted); }
+
+.tb-kartlar {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 1.2rem 0;
+}
+.tb-kart {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.tb-kart-ad { font-weight: 650; font-size: var(--step--1); }
+.tb-kart-deger { font-size: var(--step-2); font-weight: 700; font-variant-numeric: tabular-nums; }
+.tb-kart-alt { color: var(--text-muted); font-size: var(--step--1); }
+
+.tb-tablo { margin: 1.4rem 0 .4rem; }
+.tb-tablo caption { text-align: left; font-weight: 650; padding-bottom: .5rem; }
+.tb-tablo td { font-variant-numeric: tabular-nums; }
+.tb-basabas td { font-weight: 700; }
+
+.tb-olcu {
+  margin: 1rem 0;
+  display: grid;
+  gap: 0 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.tb-olcu > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.tb-olcu dt { color: var(--text-muted); font-size: var(--step--1); }
+.tb-olcu dd { margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; text-align: right; }
+
+.formula {
+  font-family: var(--font-mono);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: .75rem .9rem;
+  font-size: .92rem;
+  overflow-x: auto;
+}
+@media (max-width: 520px) {
+  .tb-kart-deger { font-size: var(--step-1); }
+}
