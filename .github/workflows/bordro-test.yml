@@ -534,6 +534,24 @@ jobs:
       - name: Asgari ücret zammı senaryosu sayfasının sayıları
         run: node asgari-ucret-zam-senaryosu/test.js
 
+      # Eylül 2026 ikinci araç paketi. Oranlar birincil kaynakla sabit:
+      # SGK primleri genelge tutarlarına, gecikme zammı GİB oran tablosuna,
+      # kredi ve mevduat hesabı mevcut araçlara bağlı.
+      - name: Gecikme zammı motoru
+        run: node finans/gecikme-zammi-test.js && node gecikme-zammi-hesaplama/test.js
+
+      - name: Kira getirisi motoru
+        run: node finans/kira-getirisi-test.js && node kira-getirisi-hesaplama/test.js
+
+      - name: Faiz dönüştürücü motoru
+        run: node finans/faiz-donustur-test.js && node faiz-donusturucu/test.js
+
+      - name: Kredi limiti motoru
+        run: node finans/kredi-limiti-test.js && node ne-kadar-kredi-cekebilirim/test.js
+
+      - name: SGK primleri ve borçlanma motoru
+        run: node bordro/sgk-prim-test.js && node bag-kur-ve-borclanma-hesaplama/test.js
+
       - name: Kredi çekirdeği testleri
         # YMO ikiye bölmesinin yönü ters kurulduğunda oran sessizce 0
         # dönüyordu: sayfa açılıyor, hiçbir yerde hata yok, yalnızca rakam yanlış.

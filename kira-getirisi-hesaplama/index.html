@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kira Getirisi ve Amortisman Hesaplama | Koray Öner</title>
+  <meta name="description" content="Yatırımlık konut ne kazandırır? Brüt ve net kira getirisi, kira vergisi, amortisman süresi ve mevduatı yakalamak için gereken yıllık değer artışı.">
+  <meta name="gecerlilik" content="2027-03-31 | 2027 kira geliri istisnası ve gelir vergisi tarifesi bordro parametrelerine girildi mi? Araç 2026 kira vergisi kurallarıyla hesaplıyor; SSS örneği yeniden kontrol edilmeli.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/kira-getirisi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Kira getirisi hesaplama: konut mu mevduat mı?">
+  <meta property="og:description" content="Brüt ve net kira getirisi, kira vergisi, amortisman ve mevduatı yakalamak için gereken değer artışı.">
+  <meta property="og:url" content="https://korayoner.dev/kira-getirisi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/kira-getirisi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kira getirisi ve amortisman hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Kira getirisi hesaplama: konut mu mevduat mı?">
+  <meta name="twitter:description" content="Brüt ve net kira getirisi, kira vergisi, amortisman ve mevduatı yakalamak için gereken değer artışı.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/kira-getirisi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=89def2bd">
+  <link rel="stylesheet" href="style.css?v=aabdd638">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/kira-getirisi-hesaplama/#app",
+        "name": "Kira Getirisi Hesaplama",
+        "url": "https://korayoner.dev/kira-getirisi-hesaplama/",
+        "description": "Yatırımlık konutun brüt ve net kira getirisini, 2026 kira geliri vergisini, amortisman süresini ve aynı paranın mevduatta kazanacağıyla eşitlenmesi için gereken yıllık değer artışını hesaplayan ücretsiz araç.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Tarayıcı",
+        "inLanguage": "tr",
+        "image": "https://korayoner.dev/images/kira-getirisi-hesaplama-koray-oner.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Kira Getirisi Hesaplama", "item": "https://korayoner.dev/kira-getirisi-hesaplama/"}]}</script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Kira Getirisi Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Birikim · Gayrimenkul</p>
+        <h1 id="hero-title">Kira getirisi: konut mu, mevduat mı?</h1>
+        <p class="lede">Konutun fiyatını ve kirasını girin. Araç brüt ve net kira getirisini, 2026 kira vergisini, amortisman süresini hesaplar ve aynı parayla mevduatı karşılaştırır. Sonuç tek bir soruya cevap verir: konutun mevduatı yakalaması için yılda en az ne kadar değer kazanması gerekir?</p>
+        <p class="muted kg-kunye" id="kg-kunye">Vergi: <a href="../kira-geliri-vergisi-hesaplama/">kira geliri vergisi motoru</a> · Mevduat: <a href="../vadeli-mevduat-hesaplama/">mevduat aracıyla aynı hesap</a> · Tarayıcınızda çalışır</p>
+      </div>
+    </section>
+
+    <section class="calc" id="hesapla" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="calc-title">Kira getirisi hesabı</h2>
+        <form class="panel" id="kg-form" novalidate>
+          <fieldset class="kg-bolum">
+            <legend>Konut ve kira</legend>
+            <div class="kg-alanlar">
+            <p class="panel-q">
+              <label for="kg-fiyat">Konut fiyatı (TL)</label>
+              <input id="kg-fiyat" type="text" inputmode="decimal" autocomplete="off" value="5.000.000">
+            </p>
+            <p class="panel-q">
+              <label for="kg-masraf">Alım masrafı (fiyatın %'si)</label>
+              <input id="kg-masraf" type="text" inputmode="decimal" autocomplete="off" value="2">
+            </p>
+            <p class="panel-q">
+              <label for="kg-kira">Aylık kira (TL)</label>
+              <input id="kg-kira" type="text" inputmode="decimal" autocomplete="off" value="20.000">
+            </p>
+            <p class="panel-q">
+              <label for="kg-bos">Yılda boş kalan ay</label>
+              <input id="kg-bos" type="text" inputmode="decimal" autocomplete="off" value="0">
+            </p>
+            <p class="panel-q">
+              <label for="kg-gider">Yıllık gider (TL)</label>
+              <input id="kg-gider" type="text" inputmode="decimal" autocomplete="off" value="15.000">
+            </p>
+            <p class="panel-q">
+              <label for="kg-diger">Diğer yıllık brüt geliriniz (TL)</label>
+              <input id="kg-diger" type="text" inputmode="decimal" autocomplete="off" value="0">
+            </p>
+            </div>
+          </fieldset>
+          <fieldset class="kg-bolum">
+            <legend>Karşılaştırma varsayımları</legend>
+            <div class="kg-alanlar">
+            <p class="panel-q">
+              <label for="kg-artis">Kira artışı (yıllık %)</label>
+              <input id="kg-artis" type="text" inputmode="decimal" autocomplete="off" value="25">
+            </p>
+            <p class="panel-q">
+              <label for="kg-deger">Konut değer artışı (yıllık %)</label>
+              <input id="kg-deger" type="text" inputmode="decimal" autocomplete="off" value="25">
+            </p>
+            <p class="panel-q">
+              <label for="kg-faiz">Mevduat faizi (yıllık brüt %)</label>
+              <input id="kg-faiz" type="text" inputmode="decimal" autocomplete="off" value="37">
+            </p>
+            <p class="panel-q">
+              <label for="kg-sure">Karşılaştırma süresi (yıl)</label>
+              <input id="kg-sure" type="text" inputmode="numeric" autocomplete="off" value="10">
+            </p>
+            </div>
+          </fieldset>
+          <p class="muted-note kg-not" id="kg-ornek">Alım masrafı varsayılanı alıcının tapu harcı payı (%2). Yıllık gider: emlak vergisi, bakım, DASK. Artış oranları ve faiz örnektir; kendi varsayımınızı yazın.</p>
+        </form>
+
+        <div id="kg-sonuc" aria-live="polite"></div>
+        <p class="muted-note" id="kg-mesaj">Değerleri girin; hesap otomatik çalışır.</p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <h2 id="nasil">Nasıl hesaplanır?</h2>
+      <p class="formula">brüt kira getirisi = 12 aylık kira ÷ konut fiyatı</p>
+      <p class="formula">net kira getirisi = (tahsil edilen kira − gider − vergi) ÷ (fiyat + alım masrafı)</p>
+      <p>Kira vergisi sitenin kira geliri motoruyla hesaplanır: 2026'da konut kirasında 58.000 TL istisna, götürü ya da gerçek gider yönteminden hangisi daha az vergi çıkarıyorsa o. Diğer brüt gelirleriniz ücretlilerin üçüncü dilim sınırını aşarsa istisna uygulanmaz; bu yüzden o alan hesaba girer.</p>
+      <h2 id="kiyas">Mevduatla kıyas</h2>
+      <p>Toplam maliyet bir yıllık mevduata konulsaydı, stopaj sonrası kazanç ne olurdu? Araç süre boyunca iki serveti karşılaştırır. Konut tarafında her yılın net kirası yıl sonunda mevduata eklenir; konut, girdiğiniz değer artışıyla değerlenir. Sonra iki serveti eşitleyen yıllık değer artışını bulur. Konut ancak bundan hızlı değerlenirse mevduatı geçer.</p>
+      <h2 id="sinir">Bu araç neyi kapsamıyor</h2>
+      <ul>
+        <li>Satış masrafı, emlakçı komisyonu ve satış kazancı vergisi hesaba girmez.</li>
+        <li>Kira, gider ve vergi her yıl kira artışı kadar büyür; bu, istisna ve dilimlerin de aynı oranda arttığı varsayımıdır.</li>
+        <li>Kredili alım, kredi faizi ve kira stopajı (işyeri kiraları) kapsam dışıdır.</li>
+      </ul>
+    </div>
+
+    <section class="content">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanak</h2>
+          <ul>
+            <li>193 sayılı Gelir Vergisi Kanunu m.21 (mesken istisnası), m.74 (giderler), m.103 (tarife).</li>
+            <li>492 sayılı Harçlar Kanunu (4) sayılı tarife: tapu harcı alıcı ve satıcıdan ayrı ayrı binde 20.</li>
+            <li>193 sayılı Gelir Vergisi Kanunu geçici 67. madde: mevduat stopajı.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>5 milyon TL'lik konut ayda 20.000 TL kiraya verilirse getirisi ne olur?</summary><p>Brüt kira getirisi %4,80. Yılda 15.000 TL gider ve 23.205,00 TL kira vergisinden sonra, %2 alım masrafı dahil maliyete göre net getiri %3,96. Amortisman süresi 25,3 yıl; kira yılda %25 artarsa 9 yıl.</p></details>
+          <details><summary>Konut mu mevduat mı?</summary><p>Aynı örnekte %37 brüt faizli bir yıllık mevduat stopaj sonrası %31,45 getirir. 10 yılda iki servetin eşitlenmesi için konutun yılda en az %28,10 değer kazanması gerekir.</p></details>
+          <details><summary>Kira gelirinde vergi istisnası ne kadar?</summary><p>2026'da konut kira gelirinde 58.000 TL. İstisnanın üstü götürü giderle (%15) ya da belgelenen gerçek giderle beyan edilir; araç ikisinden düşük vergiyi seçer.</p></details>
+          <details><summary>Girdiğim tutarlar kaydediliyor mu?</summary><p>Hayır. Hesap tamamen tarayıcınızda yapılır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../kira-geliri-vergisi-hesaplama/">Kira geliri vergisi hesaplama</a> — beyanname ve yöntem karşılaştırması</li>
+          <li><a href="../ev-almak-mi-kiralamak-mi/">Ev almak mı kiralamak mı?</a> — kiracının gözünden aynı soru</li>
+          <li><a href="../kira-artisi-hesaplama/">Kira artışı hesaplama</a> — yasal artış sınırı</li>
+          <li><a href="../vadeli-mevduat-hesaplama/">Vadeli mevduat hesaplama</a> — net faiz ve stopaj</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanak</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanak</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=60bc86c7" defer></script>
+  <script src="../bordro/motor.js?v=1e531cca" defer></script>
+  <script src="../bordro/gmsi-motor.js?v=0c4d4846" defer></script>
+  <script src="../finans/kurallar.js?v=da7bebf5" defer></script>
+  <script src="../finans/kira-getirisi.js?v=7f536581" defer></script>
+  <script src="script.js?v=0462d303" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>

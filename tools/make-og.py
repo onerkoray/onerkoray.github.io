@@ -251,6 +251,26 @@ SPEC = {
    "Miras ve bağışta vergi: yasal paylar, mirasçı başına istisna ve dilim.",
    ["2026 tebliği", "Bağış & miras"], "vergi"),
 
+ "gecikme-zammi-hesaplama": ("gecikme-zammi-hesaplama", "Gecikme Zammı", "Hesaplama 2026",
+   "Vergi borcu bugün ne kadar? GİB oran tablosuyla, her dönem kendi oranıyla.",
+   ["GİB tablosu", "Ay ve gün"], "vergi"),
+
+ "kira-getirisi-hesaplama": ("kira-getirisi-hesaplama", "Kira Getirisi", "ve Amortisman",
+   "Brüt ve net kira getirisi, kira vergisi ve mevduatı yakalamak için gereken değer artışı.",
+   ["Vergi dahil", "Mevduat kıyası"], "finans"),
+
+ "faiz-donusturucu": ("faiz-donusturucu", "Faiz", "Dönüştürücü",
+   "Aylık, yıllık, bileşik ve reel faiz; kredi vergileri ve mevduat stopajı dahil.",
+   ["KKDF ve BSMV", "Reel faiz"], "finans"),
+
+ "ne-kadar-kredi-cekebilirim": ("ne-kadar-kredi-cekebilirim", "Ne Kadar Kredi", "Çekebilirim?",
+   "Taksit bütçenizden, KKDF ve BSMV dahil çekebileceğiniz kredi tutarı.",
+   ["Tersine hesap", "Vade × faiz"], "finans"),
+
+ "bag-kur-ve-borclanma-hesaplama": ("bag-kur-ve-borclanma-hesaplama", "Bağ-Kur ve", "Borçlanma 2026",
+   "Bağ-Kur %35,75, isteğe bağlı %33, GSS %6, borçlanma %45 ve %32.",
+   ["SGK 2026/2", "Genelgeyle testli"], "bordro"),
+
  "vergi-kamasi-hesaplama": ("vergi-kamasi-hesaplama", "Vergi Kaması", "Hesaplama",
    "İşveren maliyeti ile net ücret arasındaki fark. Zirve 100.000 TL'de değil, SGK tavanında.",
    ["OECD tanımı", "Marjinal oran"], "bordro"),

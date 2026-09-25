@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gecikme Zammı Hesaplama 2026 | Koray Öner</title>
+  <meta name="description" content="Vadesinde ödenmeyen vergi borcu bugün ne kadar oldu? GİB oran tablosuyla gecikme zammı: her oran dönemi ayrı, tam ay ve gün hesabıyla, 2010'dan bugüne.">
+  <meta name="gecerlilik" content="2027-03-31 | Gecikme zammı oranı değişti mi? GİB oran tablosu (6183 m.51) kontrol edilmeli; yeni oran finans/gecikme-zammi.js ORANLAR listesine eklenmeli.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/gecikme-zammi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Gecikme zammı hesaplama: vergi borcu bugün ne kadar?">
+  <meta property="og:description" content="GİB oran tablosuyla gecikme zammı: her oran dönemi ayrı, ay ve gün hesabıyla.">
+  <meta property="og:url" content="https://korayoner.dev/gecikme-zammi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/gecikme-zammi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Gecikme zammı hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Gecikme zammı hesaplama: vergi borcu bugün ne kadar?">
+  <meta name="twitter:description" content="GİB oran tablosuyla gecikme zammı: her oran dönemi ayrı, ay ve gün hesabıyla.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/gecikme-zammi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=89def2bd">
+  <link rel="stylesheet" href="style.css?v=57b30c63">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/gecikme-zammi-hesaplama/#app",
+        "name": "Gecikme Zammı Hesaplama",
+        "url": "https://korayoner.dev/gecikme-zammi-hesaplama/",
+        "description": "Vadesinde ödenmeyen vergi ve diğer amme alacaklarının gecikme zammını 6183 sayılı Kanun m.51 ve GİB oran tablosuna göre, her oran dönemini ayrı hesaplayarak bulan ücretsiz araç.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Tarayıcı",
+        "inLanguage": "tr",
+        "image": "https://korayoner.dev/images/gecikme-zammi-hesaplama-koray-oner.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Gecikme Zammı Hesaplama", "item": "https://korayoner.dev/gecikme-zammi-hesaplama/"}]}</script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Gecikme Zammı Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Vergi · Borç</p>
+        <h1 id="hero-title">Gecikme zammı: vergi borcunuz bugün ne kadar?</h1>
+        <p class="lede">Borcun tutarını, vadesini ve ödeyeceğiniz günü girin. Araç 6183 sayılı Kanunun 51. maddesine göre gecikme zammını GİB'in oran tablosuyla hesaplar: oran değiştiyse her dönemi kendi oranıyla, tam aylar için aylık oranla, kalan günler için günlük hesapla. Sonuç, dönem dönem dökümüyle gelir.</p>
+        <p class="muted gz-kunye" id="gz-kunye">Oranlar: GİB gecikme zammı tablosu (6183 m.51) · Güncel oran: aylık %3,7 (10556 s. CB Kararı) · Tarayıcınızda çalışır</p>
+      </div>
+    </section>
+
+    <section class="calc" id="hesapla" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="calc-title">Gecikme zammı hesabı</h2>
+        <form class="panel" id="gz-form" novalidate>
+          <div class="gz-alanlar">
+            <p class="panel-q">
+              <label for="gz-tutar">Borç tutarı (TL)</label>
+              <input id="gz-tutar" type="text" inputmode="decimal" autocomplete="off" value="100.000">
+            </p>
+            <p class="panel-q">
+              <label for="gz-vade">Vade tarihi</label>
+              <input id="gz-vade" type="date" min="2010-10-19" value="2025-03-31">
+            </p>
+            <p class="panel-q">
+              <label for="gz-odeme">Ödeme tarihi</label>
+              <input id="gz-odeme" type="date" min="2010-10-19" value="2026-09-25">
+            </p>
+          </div>
+          <p class="muted-note gz-not" id="gz-ornek">Vergi aslı için hesaplar. SGK prim borçlarında 5510 sayılı Kanunun 89. maddesi, vergi cezalarında ayrı kurallar uygulanır. Kesin tutarı vergi dairesi hesaplar.</p>
+        </form>
+
+        <div id="gz-sonuc" aria-live="polite"></div>
+        <p class="muted-note" id="gz-mesaj">Değerleri girin; hesap otomatik çalışır.</p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <h2 id="nasil">Nasıl hesaplanır?</h2>
+      <p>Gecikme zammı vadeden sonraki günden ödeme gününe kadar işler. Her ay için aylık oran uygulanır; ay kesirleri günlük hesaplanır:</p>
+      <p class="formula">gecikme zammı = borç × aylık oran × (tam ay + kalan gün ÷ 30)</p>
+      <p>Oran bu süre içinde değiştiyse süre dönemlere bölünür ve her dönem kendi oranıyla ayrı hesaplanıp toplanır. Oran değişikliği karar tarihinden itibaren uygulanır; bir önceki gün eski oranla hesaplanır. Zam anaparaya eklenmez; bileşik işlemez. Hesaplanan zam 1 TL'den az olamaz.</p>
+      <h2 id="oranlar">Oranlar</h2>
+      <div class="table-scroll"><table class="data-table gz-tablo"><caption>Gecikme zammı oranları, 2018'den bu yana (GİB tablosu)</caption>
+        <thead><tr><th scope="col">Başlangıç</th><th scope="col">Aylık oran</th><th scope="col">Dayanak</th></tr></thead><tbody>
+          <tr><th scope="row">13.11.2025</th><td>%3,7</td><td>10556 sayılı CB Kararı</td></tr>
+          <tr><th scope="row">21.05.2024</th><td>%4,5</td><td>8484 sayılı CB Kararı</td></tr>
+          <tr><th scope="row">14.11.2023</th><td>%3,5</td><td>7782 sayılı CB Kararı</td></tr>
+          <tr><th scope="row">21.07.2022</th><td>%2,5</td><td>5801 sayılı CB Kararı</td></tr>
+          <tr><th scope="row">30.12.2019</th><td>%1,6</td><td>1947 sayılı CB Kararı</td></tr>
+          <tr><th scope="row">02.10.2019</th><td>%2</td><td>1592 sayılı CB Kararı</td></tr>
+          <tr><th scope="row">01.07.2019</th><td>%2,5</td><td>1266 sayılı CB Kararı</td></tr>
+          <tr><th scope="row">05.09.2018</th><td>%2</td><td>62 sayılı CB Kararı</td></tr>
+        </tbody></table></div>
+      <p>Araç 19.10.2010'dan (aylık %1,4) bu yana bütün oranları kullanır.</p>
+      <h2 id="karar">Ödemeyi geciktirmek mantıklı mı?</h2>
+      <p>Aylık %3,7 yıllık basit %44,4 eder. Bu, çoğu mevduatın net getirisinden yüksektir: vergi borcunu geciktirip parayı mevduatta tutmak genellikle zarar ettirir. Borcu ödeyemiyorsanız vergi dairesinden tecil ya da yapılandırma istemek, zammın işlemesinden ucuz olabilir.</p>
+      <h2 id="sinir">Bu araç neyi kapsamıyor</h2>
+      <ul>
+        <li>SGK prim borçları (5510 m.89: gecikme cezası ve zammı birlikte) ve trafik gibi idari para cezaları.</li>
+        <li>Vergi ziyaı cezası ve diğer cezalar; tecil faizi ve yapılandırma kanunlarının hesapları.</li>
+        <li>Vade tarihinin tatile denk gelmesi gibi özel durumlar; vadeyi kesin tarih olarak girin.</li>
+      </ul>
+    </div>
+
+    <section class="content">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanak</h2>
+          <ul>
+            <li>6183 sayılı Amme Alacaklarının Tahsil Usulü Hakkında Kanun m.51 (gecikme zammı, nispet ve hesabı).</li>
+            <li>GİB, Gecikme Zammı Oranları tablosu (6183 sayılı Kanunun 51. maddesi).</li>
+            <li>10556 sayılı Cumhurbaşkanı Kararı (13.11.2025): aylık %3,7.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>100.000 TL vergi borcuna ne kadar gecikme zammı biner?</summary><p>31 Mart 2025 vadeli 100.000 TL borç 25 Eylül 2026'da ödenirse gecikme zammı 71.903,33 TL, toplam borç 171.903,33 TL olur. Bunun 33.300,00 TL'si %4,5'lik dönemden (7 ay 12 gün), 38.603,33 TL'si 13 Kasım 2025'ten sonraki %3,7'lik dönemden (10 ay 13 gün) gelir.</p></details>
+          <details><summary>Gecikme zammı oranı şu an kaç?</summary><p>13 Kasım 2025'ten bu yana aylık %3,7 (10556 sayılı Cumhurbaşkanı Kararı). Önceki oran 21 Mayıs 2024'ten itibaren %4,5'ti.</p></details>
+          <details><summary>Gecikme zammı gün hesabı nasıl yapılır?</summary><p>Tam aylar için aylık oran, kalan günler için aylık oranın otuzda biri gün başına uygulanır. 2 ay 15 gün gecikmiş 100.000 TL'ye %3,7 ile 9.250,00 TL zam biner.</p></details>
+          <details><summary>Girdiğim tutarlar kaydediliyor mu?</summary><p>Hayır. Hesap tamamen tarayıcınızda yapılır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../mtv-hesaplama/">MTV hesaplama</a> — motorlu taşıtlar vergisi ve taksitleri</li>
+          <li><a href="../beyanname-hesaplama/">Beyanname hesaplama</a> — yıllık gelir vergisi ve taksitler</li>
+          <li><a href="../faiz-donusturucu/">Faiz dönüştürücü</a> — aylık oranın yıllık karşılığı</li>
+          <li><a href="../vadeli-mevduat-hesaplama/">Vadeli mevduat hesaplama</a> — parayı tutmanın getirisi</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanak</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanak</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../finans/gecikme-zammi.js?v=f30770f4" defer></script>
+  <script src="script.js?v=99e88d88" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>

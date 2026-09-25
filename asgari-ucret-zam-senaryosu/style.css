@@ -78,7 +78,7 @@
   .data-table.as-tablo { min-width: 0; }
   .as-tablo caption { display: block; padding-bottom: .5rem; }
   .as-tablo tr { padding: .55rem .75rem; border-bottom: 1px solid var(--border); }
-  .as-tablo tbody th[scope="row"] { display: block; padding: .15rem 0 .3rem; border: 0; text-align: left; font-weight: 700; }
+  .as-tablo tbody th[scope="row"] { display: block; padding: .15rem 0 .3rem; border: 0; text-align: left; font-weight: 700; white-space: normal; }
   .as-tablo td { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .18rem 0; border: 0; text-align: right; white-space: normal; }
   .as-tablo td::before { content: attr(data-etiket); color: var(--text-muted); font-size: var(--step--1); text-align: left; }
   .as-tablo td:empty { display: none; }

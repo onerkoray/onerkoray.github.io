@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bağ-Kur ve Borçlanma Hesaplama 2026 | Koray Öner</title>
+  <meta name="description" content="2026 Bağ-Kur primi, isteğe bağlı sigorta primi, GSS primi ve askerlik ya da doğum borçlanması ne kadar? SGK 2026/2 Genelgesi oranlarıyla hesaplayın.">
+  <meta name="gecerlilik" content="2027-01-15 | 2027 asgari ücreti ve SGK prim oranları açıklandı mı? Araç 2026 oranlarıyla çalışıyor (sigortalilik bloğu); 2027 bordro parametreleri girildiğinde oranlar da eklenmeli.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Bağ-Kur, isteğe bağlı sigorta ve borçlanma hesaplama 2026">
+  <meta property="og:description" content="Bağ-Kur %35,75, isteğe bağlı %33, GSS %6, borçlanma %45 ve %32: 2026 prim ve borçlanma tutarları.">
+  <meta property="og:url" content="https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/bag-kur-ve-borclanma-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bağ-Kur ve borçlanma hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Bağ-Kur, isteğe bağlı sigorta ve borçlanma hesaplama 2026">
+  <meta name="twitter:description" content="Bağ-Kur %35,75, isteğe bağlı %33, GSS %6, borçlanma %45 ve %32: 2026 prim ve borçlanma tutarları.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/bag-kur-ve-borclanma-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=89def2bd">
+  <link rel="stylesheet" href="style.css?v=3544c54f">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/#app",
+        "name": "Bağ-Kur, İsteğe Bağlı Sigorta ve Borçlanma Hesaplama",
+        "url": "https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/",
+        "description": "2026 Bağ-Kur (4/b), isteğe bağlı sigorta ve genel sağlık sigortası primlerini, askerlik ve doğum borçlanması tutarlarını SGK 2026/2 Genelgesi oranlarıyla hesaplayan ücretsiz araç.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Tarayıcı",
+        "inLanguage": "tr",
+        "image": "https://korayoner.dev/images/bag-kur-ve-borclanma-hesaplama-koray-oner.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Bağ-Kur ve Borçlanma Hesaplama", "item": "https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/"}]}</script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Bağ-Kur ve Borçlanma Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Bordro · SGK</p>
+        <h1 id="hero-title">Bağ-Kur, isteğe bağlı sigorta ve borçlanma: 2026'da ne kadar?</h1>
+        <p class="lede">Bağ-Kur primini, isteğe bağlı sigorta primini, genel sağlık sigortası primini ve askerlik ya da doğum borçlanmasının maliyetini 2026 oranlarıyla hesaplayın. Oranlar ve alt-üst sınırlar sitenin bordro parametrelerinden okunur; genelgedeki tutarlarla aynı olduklarını bir test doğrular.</p>
+        <p class="muted sp-kunye" id="sp-kunye">Kaynak: SGK 2026/2 Genelgesi · 7566 s.K. · Hesap: <a href="../bordro/">bordro parametreleri</a> · Tarayıcınızda çalışır</p>
+      </div>
+    </section>
+
+    <section class="calc" id="hesapla" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="calc-title">SGK prim hesabı</h2>
+        <form class="panel" id="sp-form" novalidate>
+          <fieldset class="sp-kip">
+            <legend>Ne hesaplanacak?</legend>
+            <label class="sp-secenek"><input type="radio" name="sp-kip" value="bagkur" checked><span>Bağ-Kur (4/b)</span></label>
+            <label class="sp-secenek"><input type="radio" name="sp-kip" value="istege"><span>İsteğe bağlı sigorta</span></label>
+            <label class="sp-secenek"><input type="radio" name="sp-kip" value="gss"><span>Genel sağlık sigortası</span></label>
+            <label class="sp-secenek"><input type="radio" name="sp-kip" value="borc"><span>Borçlanma</span></label>
+          </fieldset>
+          <fieldset class="sp-bolum" id="sp-g-kazanc">
+            <legend>Kazanç</legend>
+            <div class="sp-alanlar">
+            <p class="panel-q">
+              <label for="sp-kazanc">Aylık prime esas kazanç (TL)</label>
+              <input id="sp-kazanc" type="text" inputmode="decimal" autocomplete="off" value="33.030">
+            </p>
+            </div>
+          </fieldset>
+          <fieldset class="sp-bolum" id="sp-g-gss">
+            <legend>Gelir testi</legend>
+            <div class="sp-alanlar">
+            <p class="panel-q">
+              <label for="sp-gelir">Hanede kişi başına aylık gelir (TL)</label>
+              <input id="sp-gelir" type="text" inputmode="decimal" autocomplete="off" value="15.000">
+            </p>
+            </div>
+          </fieldset>
+          <fieldset class="sp-bolum" id="sp-g-borc">
+            <legend>Borçlanma</legend>
+            <div class="sp-alanlar">
+            <p class="panel-q">
+              <label for="sp-borc-tur">Borçlanma türü</label>
+              <select id="sp-borc-tur"><option value="genel" selected>Askerlik, yurt dışı, doktora vb. (%45)</option><option value="dogum">Doğum (%32)</option></select>
+            </p>
+            <p class="panel-q">
+              <label for="sp-gun">Borçlanılacak gün</label>
+              <input id="sp-gun" type="text" inputmode="numeric" autocomplete="off" value="540">
+            </p>
+            <p class="panel-q">
+              <label for="sp-gunluk">Günlük kazanç (TL)</label>
+              <input id="sp-gunluk" type="text" inputmode="decimal" autocomplete="off" value="1.101">
+            </p>
+            </div>
+          </fieldset>
+          <p class="muted-note sp-not" id="sp-ornek">Kazanç 33.030 TL ile 297.270 TL, günlük kazanç 1.101 TL ile 9.909 TL arasında seçilebilir.</p>
+        </form>
+
+        <div id="sp-sonuc" aria-live="polite"></div>
+        <p class="muted-note" id="sp-mesaj">Değerleri girin; hesap otomatik çalışır.</p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <h2 id="nasil">Nasıl hesaplanır?</h2>
+      <p>Prim, beyan ettiğiniz kazancın oranla çarpımıdır. Kazanç en az brüt asgari ücret, en çok onun dokuz katı olabilir.</p>
+      <p class="formula">Bağ-Kur (4/b) = kazanç × %35,75   (düzenli ödeyene 5 puan indirimle %30,75)</p>
+      <p class="formula">isteğe bağlı sigorta = kazanç × %33</p>
+      <p class="formula">genel sağlık sigortası = brüt asgari ücret × %6</p>
+      <p class="formula">borçlanma = gün × günlük kazanç × %45   (doğumda %32)</p>
+      <p>7566 sayılı Kanunla malullük, yaşlılık ve ölüm sigortası primi bir puan arttı. Bağ-Kur %34,75'ten %35,75'e, isteğe bağlı sigorta %32'den %33'e çıktı; doğum dışındaki borçlanmalarda oran %32'den %45'e yükseldi. Genel sağlık sigortası primi 2026'da asgari ücretin %3'ünden %6'sına çıktı.</p>
+      <h2 id="gss">Genel sağlık sigortasında gelir testi</h2>
+      <p>Hanede kişi başına düşen aylık gelir brüt asgari ücretin üçte birinden (2026'da 11.010 TL) azsa prim devletçe ödenir. Değilse prim her ay 1.981,80 TL'dir. Gelir testini SGK yapar; araç sonucu tahmin eder.</p>
+      <h2 id="borc">Borçlanmada kazanç seçimi</h2>
+      <p>Borçlanmada günlük kazancı siz seçersiniz. Yüksek kazanç daha pahalıdır ama emekli aylığının hesabına da daha yüksek kazanç olarak girer. Gün sayısı hizmet sürenize eklenir.</p>
+    </div>
+
+    <section class="content">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanak</h2>
+          <ul>
+            <li>5510 sayılı Kanun m.41 (borçlanma), m.51 (isteğe bağlı sigorta), m.60/1-c-1 ve m.82 (genel sağlık sigortası ve prime esas kazanç sınırları).</li>
+            <li>7566 sayılı Kanun (Resmî Gazete, 19 Aralık 2025): prim ve borçlanma oranları.</li>
+            <li>SGK 2026/2 sayılı Genelge: 2026 prime esas kazanç alt ve üst sınırları ile işlemlere esas tutarlar.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>2026'da en düşük Bağ-Kur primi ne kadar?</summary><p>Brüt asgari ücret (33.030 TL) üzerinden %35,75 ile 11.808,23 TL. Borcu olmayan ve düzenli ödeyene 5 puanlık indirimle 10.156,73 TL. En yüksek prim tavandan 106.274,03 TL.</p></details>
+          <details><summary>İsteğe bağlı sigorta primi 2026'da ne kadar?</summary><p>Oran %33: en düşük 10.899,90 TL, en yüksek 98.099,10 TL.</p></details>
+          <details><summary>Askerlik borçlanması 2026'da ne kadar?</summary><p>Oran %45. En düşük günlük kazançla (1.101 TL) günü 495,45 TL; 540 günlük askerlik için en az 267.543,00 TL. Doğum borçlanmasında oran %32, günü en az 352,32 TL.</p></details>
+          <details><summary>GSS primi 2026'da ne kadar?</summary><p>Kişi başı hane geliri brüt asgari ücretin üçte birini aşıyorsa ayda 1.981,80 TL (asgari ücretin %6'sı).</p></details>
+          <details><summary>Girdiğim tutarlar kaydediliyor mu?</summary><p>Hayır. Hesap tamamen tarayıcınızda yapılır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../calisma-bicimi-karsilastirma/">Şahıs mı, limited mi, maaşlı mı?</a> — Bağ-Kur'un çalışma biçimine etkisi</li>
+          <li><a href="../emekli-ayligi-hesaplama/">Emekli aylığı hesaplama</a> — borçlanılan günlerin aylığa etkisi</li>
+          <li><a href="../isveren-maliyeti-hesaplama/">İşveren maliyeti hesaplama</a> — 4/a primleri</li>
+          <li><a href="../bordro/">Bordro motoru</a> — 2020–2026 parametreler ve dayanaklar</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanak</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanak</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=60bc86c7" defer></script>
+  <script src="../bordro/motor.js?v=1e531cca" defer></script>
+  <script src="../bordro/sgk-prim.js?v=4a562057" defer></script>
+  <script src="script.js?v=65045982" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>

@@ -101,7 +101,7 @@
   .data-table.tb-tablo { min-width: 0; }
   .tb-tablo caption { display: block; padding-bottom: .5rem; }
   .tb-tablo tr { padding: .55rem .75rem; border-bottom: 1px solid var(--border); }
-  .tb-tablo tbody th[scope="row"] { display: block; padding: .15rem 0 .3rem; border: 0; text-align: left; font-weight: 700; }
+  .tb-tablo tbody th[scope="row"] { display: block; padding: .15rem 0 .3rem; border: 0; text-align: left; font-weight: 700; white-space: normal; }
   .tb-tablo td { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .18rem 0; border: 0; text-align: right; white-space: normal; }
   .tb-tablo td::before { content: attr(data-etiket); color: var(--text-muted); font-size: var(--step--1); text-align: left; }
   .tb-tablo td:empty { display: none; }
