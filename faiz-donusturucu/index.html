@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faiz Dönüştürücü: Aylık, Yıllık, Bileşik Faiz | Koray Öner</title>
+  <meta name="description" content="Aylık faiz yıllık kaç eder? Aylık, yıllık, bileşik ve günlük faizi çevirin; kredi faizine vergiyi, mevduata stopajı ekleyip reel karşılığı görün.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/faiz-donusturucu/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Faiz dönüştürücü: aylık, yıllık, bileşik ve reel">
+  <meta property="og:description" content="Aylık faiz yıllık kaç eder? Kredi (KKDF, BSMV) ve mevduat (stopaj) dahil, ortak ölçüde ve reel olarak.">
+  <meta property="og:url" content="https://korayoner.dev/faiz-donusturucu/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/faiz-donusturucu-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Faiz dönüştürücü aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Faiz dönüştürücü: aylık, yıllık, bileşik ve reel">
+  <meta name="twitter:description" content="Aylık faiz yıllık kaç eder? Kredi (KKDF, BSMV) ve mevduat (stopaj) dahil, ortak ölçüde ve reel olarak.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/faiz-donusturucu-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=89def2bd">
+  <link rel="stylesheet" href="style.css?v=e1490c71">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/faiz-donusturucu/#app",
+        "name": "Faiz Dönüştürücü",
+        "url": "https://korayoner.dev/faiz-donusturucu/",
+        "description": "Aylık, yıllık basit, yıllık bileşik ve günlük faiz oranlarını birbirine çeviren; kredi faizini KKDF ve BSMV ile, mevduat faizini stopajla yıllık bileşik orana getirip enflasyona göre reel karşılığını hesaplayan ücretsiz araç.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Tarayıcı",
+        "inLanguage": "tr",
+        "image": "https://korayoner.dev/images/faiz-donusturucu-koray-oner.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Faiz Dönüştürücü", "item": "https://korayoner.dev/faiz-donusturucu/"}]}</script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Faiz Dönüştürücü
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Kredi & Finans · Faiz</p>
+        <h1 id="hero-title">Faiz dönüştürücü: aylık faiz yıllık kaç eder?</h1>
+        <p class="lede">Kredi aylık, mevduat yıllık, enflasyon yıllık bileşik oranla ilan edilir. Bunları karşılaştırmanın tek yolu ortak bir ölçü: yıllık bileşik oran. Araç her oranı dört biçime çevirir, kredi faizine KKDF ve BSMV'yi, mevduata stopajı ekler ve hepsinin enflasyon sonrası reel karşılığını tek tabloda verir.</p>
+        <p class="muted fd-kunye" id="fd-kunye">Kredi vergileri: <a href="../kredi-hesaplama/">kredi aracıyla aynı hesap</a> · Stopaj: GVK geçici 67 · Tarayıcınızda çalışır</p>
+      </div>
+    </section>
+
+    <section class="calc" id="hesapla" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="calc-title">Faiz dönüştürme</h2>
+        <form class="panel" id="fd-form" novalidate>
+          <fieldset class="fd-bolum">
+            <legend>Dönüştürülecek oran</legend>
+            <div class="fd-alanlar">
+            <p class="panel-q">
+              <label for="fd-oran">Oran (%)</label>
+              <input id="fd-oran" type="text" inputmode="decimal" autocomplete="off" value="3">
+            </p>
+            <p class="panel-q">
+              <label for="fd-tur">Bu oran</label>
+              <select id="fd-tur"><option value="aylik" selected>Aylık</option><option value="yillikBasit">Yıllık basit (nominal)</option><option value="yillikBilesik">Yıllık bileşik (efektif)</option><option value="gunluk">Günlük</option></select>
+            </p>
+            </div>
+          </fieldset>
+          <fieldset class="fd-bolum">
+            <legend>Kredi, mevduat ve enflasyon</legend>
+            <div class="fd-alanlar">
+            <p class="panel-q">
+              <label for="fd-kredi">Kredi aylık akdi faiz (%)</label>
+              <input id="fd-kredi" type="text" inputmode="decimal" autocomplete="off" value="3,99">
+            </p>
+            <p class="panel-q">
+              <label for="fd-kredi-tur">Kredi türü</label>
+              <select id="fd-kredi-tur"><option value="ihtiyac" selected>İhtiyaç</option><option value="tasit">Taşıt</option><option value="konut">Konut (vergisiz)</option><option value="ticari">Ticari</option></select>
+            </p>
+            <p class="panel-q">
+              <label for="fd-mevduat">Mevduat yıllık brüt faiz (%)</label>
+              <input id="fd-mevduat" type="text" inputmode="decimal" autocomplete="off" value="37">
+            </p>
+            <p class="panel-q">
+              <label for="fd-vade">Mevduat vadesi (gün)</label>
+              <input id="fd-vade" type="text" inputmode="numeric" autocomplete="off" value="32">
+            </p>
+            <p class="panel-q">
+              <label for="fd-enf">Yıllık enflasyon (%)</label>
+              <input id="fd-enf" type="text" inputmode="decimal" autocomplete="off" value="31,5">
+            </p>
+            </div>
+          </fieldset>
+          <p class="muted-note fd-not" id="fd-ornek">Kredi ve mevduat oranları örnektir. Enflasyon alanı TÜİK'in son on iki aylık TÜFE değişimiyle doldurulur; değiştirebilirsiniz.</p>
+        </form>
+
+        <div id="fd-sonuc" aria-live="polite"></div>
+        <p class="muted-note" id="fd-mesaj">Değerleri girin; hesap otomatik çalışır.</p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <h2 id="nasil">Nasıl hesaplanır?</h2>
+      <p class="formula">yıllık basit = aylık × 12</p>
+      <p class="formula">yıllık bileşik = (1 + aylık)^12 − 1</p>
+      <p class="formula">kredi aylık maliyeti = akdi faiz × (1 + KKDF + BSMV)</p>
+      <p class="formula">mevduat yıllık bileşik = (1 + vade neti)^(365 ÷ gün) − 1</p>
+      <p class="formula">reel = (1 + nominal) ÷ (1 + enflasyon) − 1</p>
+      <p>Bankaların ilan ettiği "yıllık" kredi faizi çoğu zaman aylık faizin 12 katıdır; bu basit (nominal) orandır ve bileşik maliyeti eksik gösterir. Mevduatta yıllık brüt faiz vadeye göre basit faizdir; vade her yenilendiğinde faiz de anaparaya eklenir, bu yüzden kısa vadeyi yenilemenin yıllık bileşik karşılığı ilan edilen orandan yüksek çıkabilir.</p>
+      <p>Kredi maliyeti burada yalnız faiz ve vergidir. Dosya masrafı ve sigorta dahil yıllık maliyet oranı için <a href="../kredi-hesaplama/">kredi hesaplama</a> aracını kullanın.</p>
+    </div>
+
+    <section class="content">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanak</h2>
+          <ul>
+            <li>6802 sayılı Gider Vergileri Kanunu m.28 (BSMV) ve Kaynak Kullanımını Destekleme Fonu kararları: tüketici kredilerinde oranlar kredi aracındaki gibi.</li>
+            <li>193 sayılı Gelir Vergisi Kanunu geçici 67. madde: mevduat stopajı vadeye göre %17,5 / %15 / %10.</li>
+            <li>TÜİK Tüketici Fiyat Endeksi (TCMB yayını): son on iki aylık değişim.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Aylık %3 faiz yıllık kaç eder?</summary><p>Basit hesapla yıllık %36,00, bileşik hesapla %42,58. Aylık %3 ile para 1,95 yılda ikiye katlanır.</p></details>
+          <details><summary>Aylık %3,99 ihtiyaç kredisinin gerçek maliyeti nedir?</summary><p>KKDF ve BSMV ile aylık maliyet %5,187 olur; yıllık bileşik karşılığı %83,46. Maliyetin %23,08'i vergidir.</p></details>
+          <details><summary>Yıllık %37 mevduatın net getirisi nedir?</summary><p>32 günlük vadede stopaj %17,5; vade her yenilendiğinde yıllık bileşik net getiri %35,15. Bir yıllık vadede stopaj %15 ve net getiri %31,45.</p></details>
+          <details><summary>Girdiğim tutarlar kaydediliyor mu?</summary><p>Hayır. Hesap tamamen tarayıcınızda yapılır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../kredi-hesaplama/">Kredi hesaplama</a> — ödeme planı ve yıllık maliyet oranı</li>
+          <li><a href="../vadeli-mevduat-hesaplama/">Vadeli mevduat hesaplama</a> — net faiz ve stopaj</li>
+          <li><a href="../ne-kadar-kredi-cekebilirim/">Ne kadar kredi çekebilirim?</a> — taksit bütçesinden kredi tutarı</li>
+          <li><a href="../makaleler/mevduat-faizi-enflasyon-reel-getiri/">Mevduat faizi ve enflasyon</a> — reel getiri (yazı)</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanak</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanak</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../kredi-hesaplama/hesap.js?v=15e5fae2" defer></script>
+  <script src="../finans/kurallar.js?v=da7bebf5" defer></script>
+  <script src="../finans/tufe-serisi.js?v=3f904d8e" defer></script>
+  <script src="../finans/tufe-endeksi.js?v=e7cec7e0" defer></script>
+  <script src="../finans/faiz-donustur.js?v=eb172e42" defer></script>
+  <script src="script.js?v=2b2fc721" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>

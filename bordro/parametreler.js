@@ -177,6 +177,22 @@
         bagkurIndirimliOran: 0.3075,    // borcu olmayan düzenli ödeyende 5 puanlık indirim
         dayanak: "KVK m.32, GVK m.22, m.86, m.89/13, m.94; 5510 m.80-81"
       },
+      /* Bağımsız ve isteğe bağlı sigortalılık, GSS ve borçlanma (2026).
+         Kaynak: SGK 2026/2 Genelgesi (EY Sosyal Güvenlik Sirküleri 2026/7).
+         Tutarlar yazılmaz; alt/üst sınır dönem asgari ücretinden ve
+         tavandan türer. 4/b oranı sirket.bagkurOrani'dadır.
+           isteğe bağlı  %33 = MYÖ %21 + GSS %12 (7566 s.K. ile %32'den)
+           GSS (60/g)    %6  (1 Ocak 2026'dan; önce %3) — asgari ücret üzerinden
+           borçlanma     %45 (7566 s.K. ile %32'den; doğum borçlanması hariç)
+           doğum borç.   %32 */
+      sigortalilik: {
+        istegeBagliOrani: 0.33,
+        gssOrani: 0.06,
+        gssGelirTestiKati: 1 / 3,       // kişi başı gelir asgari ücretin 1/3'ünden azsa prim devletçe ödenir
+        borclanmaOrani: 0.45,
+        dogumBorclanmaOrani: 0.32,
+        dayanak: "5510 m.41, m.51, m.60/1-c-1, m.82; 7566 s.K.; SGK 2026/2 Genelgesi"
+      },
       dayanak: "GVK m.103 (2026 tarifesi), GVK m.23/18 asgari ücret istisnası, 5510/82 + 7566 s.K. (tavan = taban x 9; MYÖ işveren %12, işveren payı %21,75; m.81/ı imalat dışı 2 puan)"
     },
 
