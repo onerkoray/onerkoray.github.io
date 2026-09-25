@@ -245,16 +245,38 @@ B.yillar().forEach(function (yil) {
   }
 })();
 
-baslik("İşveren maliyeti ve 5 puanlık indirim");
+baslik("İşveren maliyeti ve m.81/ı prim indirimi");
 (function () {
   var a = B.hesaplaYil(60000, 2026).aylar[0];
-  var t = B.hesaplaYil(60000, 2026, { tesvik5Puan: true }).aylar[0];
+  var t = B.hesaplaYil(60000, 2026, { tesvik: "genel" }).aylar[0];
+  var im = B.hesaplaYil(60000, 2026, { tesvik: "imalat" }).aylar[0];
   var o = B.parametre(2026).oranlar;
+  ok("2026 imalat dışı indirim 2 puan", yakin(a.isverenSgk - t.isverenSgk, a.primEsas * 0.02, 0.01));
+  ok("2026 imalat indirimi 5 puan", yakin(a.isverenSgk - im.isverenSgk, a.primEsas * 0.05, 0.01));
+  ok("Eski ad tesvik5Puan imalat sayılır",
+     yakin(B.hesaplaYil(60000, 2026, { tesvik5Puan: true }).aylar[0].isverenSgk, im.isverenSgk, 1e-9));
+  /* ÇSGB "asgari ücretin işverene maliyeti" tabloları: işveren payı ve
+     indirim yıl yıl bu tablolarla aynı çıkmalı. İlk sürüm 2026 oranını
+     bütün yıllara yazmıştı (düzeltme günlüğü, 2026-09-25). */
+  function maliyet(yil, ay, sec) {
+    var P = B.parametre(yil);
+    return B.hesaplaYil(B.donem(P, ay).asgariBrut, yil, sec).aylar[ay - 1].isverenMaliyeti;
+  }
+  ok("ÇSGB 2025: indirimli (5 puan, Ocak) maliyet 30.621,48 TL", yakin(maliyet(2025, 1, { tesvik: "genel" }), 30621.48, 0.01));
+  ok("ÇSGB 2025: teşviksiz işveren payı %20,75", yakin(B.oranlarAy(B.parametre(2025), 6).sgkIsveren, 0.2075, 1e-12));
+  ok("2025 Şubat'tan imalat dışı 4 puan (7538 s.K.)",
+     B.tesvikOrani(B.oranlarAy(B.parametre(2025), 1), { tesvik: "genel" }) === 0.05 &&
+     B.tesvikOrani(B.oranlarAy(B.parametre(2025), 2), { tesvik: "genel" }) === 0.04 &&
+     B.tesvikOrani(B.oranlarAy(B.parametre(2025), 12), { tesvik: "imalat" }) === 0.05);
+  ok("2024 Eylül'den kısa vadeli %2,25 (7524 s.K.)",
+     B.oranlarAy(B.parametre(2024), 8).sgkIsveren === 0.205 && B.oranlarAy(B.parametre(2024), 9).sgkIsveren === 0.2075);
+  ok("2026 teşviksiz asgari ücret maliyeti 40.874,63 TL", yakin(maliyet(2026, 1), 40874.625, 0.01));
+  ok("2020 indirimli asgari ücret maliyeti %17,5 fazlası", yakin(maliyet(2020, 1, { tesvik: "genel" }), 2943 * 1.175, 0.01));
   ok("Maliyet = brüt + işveren primleri",
      yakin(a.isverenMaliyeti, a.brut + a.isverenSgk + a.isverenIssizlik, 0.01));
   ok("İşveren SGK payı prime esas kazanç üzerinden",
      yakin(a.isverenSgk, a.primEsas * o.sgkIsveren, 0.01));
-  ok("5 puanlık indirim tam 5 puan düşürür",
+  ok("Genel indirim yılın oranı kadar düşürür",
      yakin(a.isverenSgk - t.isverenSgk, a.primEsas * o.sgkIsverenIndirim, 0.01),
      "fark: " + (a.isverenSgk - t.isverenSgk));
   ok("İndirim işsizlik işveren payına uygulanmaz",

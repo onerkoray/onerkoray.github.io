@@ -99,7 +99,10 @@ ok("İndirim oranı kazancın %80'i üzerinden",
 baslik("Bağ-Kur (4/b) primi");
 var bkTaban = K.bagkurYillik(P, 0, false);
 ok("Matrah girilmezse taban asgari ücrettir", bkTaban.aylikMatrah === d.asgariBrut);
-ok("Standart oran %34,75", yakin(bkTaban.oran, S.bagkurOrani, 1e-9));
+ok("Standart oran %35,75", yakin(bkTaban.oran, S.bagkurOrani, 1e-9));
+/* 2026 resmî en düşük Bağ-Kur primleri: 11.808,23 TL ve indirimle 10.156,73 TL. */
+ok("2026 en düşük Bağ-Kur primi 11.808,23 TL", Math.round(d.asgariBrut * S.bagkurOrani * 100) / 100 === 11808.23);
+ok("2026 indirimli en düşük prim 10.156,73 TL", Math.round(d.asgariBrut * S.bagkurIndirimliOran * 100) / 100 === 10156.73);
 ok("Yıllık prim = aylık matrah × oran × 12",
   yakin(bkTaban.yillik, d.asgariBrut * S.bagkurOrani * 12));
 ok("5 puanlık indirim primi düşürür",

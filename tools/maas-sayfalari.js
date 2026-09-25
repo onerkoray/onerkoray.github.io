@@ -265,7 +265,11 @@ function analiz(tutar) {
     tavandaMi: tutar > d1.sgkTavan,
     primEsas: aylar[0].primEsas,
     isverenMaliyeti: aylar[0].isverenMaliyeti,
-    isverenIndirimli: aylar[0].isverenMaliyeti - aylar[0].primEsas * P.oranlar.sgkIsverenIndirim,
+    /* m.81/ı indirimi yıla ve sektöre göre (2026: imalat dışı 2, imalat 5 puan). */
+    isverenIndirimli: aylar[0].isverenMaliyeti - aylar[0].primEsas * B.tesvikOrani(B.oranlarAy(P, 1), { tesvik: "genel" }),
+    isverenImalat: aylar[0].isverenMaliyeti - aylar[0].primEsas * B.tesvikOrani(B.oranlarAy(P, 1), { tesvik: "imalat" }),
+    indirimGenelPuan: B.tesvikOrani(B.oranlarAy(P, 1), { tesvik: "genel" }) * 100,
+    indirimImalatPuan: B.tesvikOrani(B.oranlarAy(P, 1), { tesvik: "imalat" }) * 100,
     sabitNetAralikBrut: sabitNetBrutler[11],
     enSertDusus: enSertDusus,
     marjinalOcak: marjinalOcak,
@@ -471,8 +475,9 @@ function blok(a) {
   }
 
   s.push("<li><strong>İşverene aylık maliyeti " + fm(a.isverenMaliyeti) +
-    " TL.</strong> İşveren SGK payı ve işsizlik primi dahildir. İşveren 5 puanlık " +
-    "prim indiriminden yararlanıyorsa maliyet <strong>" + fm(a.isverenIndirimli) +
+    " TL.</strong> İşveren SGK payı ve işsizlik primi dahildir. Prim indiriminden " +
+    "yararlanan işverende maliyet imalat dışında " + a.indirimGenelPuan + " puanla <strong>" + fm(a.isverenIndirimli) +
+    " TL</strong>'ye, imalatta " + a.indirimImalatPuan + " puanla <strong>" + fm(a.isverenImalat) +
     " TL</strong>'ye iner. Ayrıntı için <a href=\"../../isveren-maliyeti-hesaplama/\">" +
     "işveren maliyeti hesaplama</a> aracına bakabilirsiniz.</li>");
 

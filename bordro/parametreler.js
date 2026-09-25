@@ -18,19 +18,42 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  /* Tüm yıllarda değişmeyen kesinti oranları.
-     Bir yıl bunlardan sapıyorsa yıl bloğunda "oranlar" ile ezilir. */
+  /* 2020'den bu yana değişmeyen kesinti oranları. Bir yıl bunlardan
+     sapıyorsa yıl bloğunda oranlarIle({...}) ile ezilir; yıl İÇİNDE bir
+     oran değişiyorsa yıl bloğunun oranDegisimleri listesine o aydan
+     itibaren geçerli değer yazılır (motor: Bordro.oranlarAy).
+
+     İŞVEREN PAYI SABİT DEĞİL. İlk sürümde 2026'nın %21,75'i bütün yıllara
+     yazılmıştı; 2020–2025 işveren maliyeti bu yüzden 1–1,25 puan yüksek
+     çıkıyordu (düzeltme günlüğü, 2026-09-25). Seyir, ÇSGB'nin yıllık
+     "asgari ücretin işverene maliyeti" tablolarıyla aynı:
+       2020 – Ağu 2024  %20,5   MYÖ 11 + GSS 7,5 + kısa vadeli 2
+       Eyl 2024 – 2025  %20,75  kısa vadeli %2,25 (7524 s.K. m.28, 2024/Eylül)
+       2026             %21,75  MYÖ işveren 12 (7566 s.K., 1 Ocak 2026)
+     İşçi payı (%14 = MYÖ 9 + GSS 5) bu değişikliklerden etkilenmedi. */
   var VARSAYILAN_ORANLAR = {
     sgkIsci: 0.14,          // SGK işçi payı (malullük/yaşlılık/ölüm + GSS)
     issizlikIsci: 0.01,     // işsizlik sigortası işçi payı
-    sgkIsveren: 0.2175,     // SGK işveren payı — teşviksiz
-    /* 5510 m.81/ı: şartları sağlayan işverende SGK işveren payından 5 puan
-       indirilir (prim borcu yoksa, bildirge zamanında verilmişse). İşsizlik
-       işveren payına uygulanmaz. */
+    sgkIsveren: 0.205,      // SGK işveren payı — teşviksiz
+    /* 5510 m.81/ı: şartları sağlayan özel sektör işvereninde MYÖ işveren
+       hissesinden indirim (prim borcu yoksa, bildirge zamanında verilmişse).
+       İşsizlik işveren payına uygulanmaz. Oran da sabit değil:
+         Ocak 2025'e kadar  5 puan, bütün sektörler
+         Şubat 2025         imalat dışı 4 puan (7538 s.K.)
+         2026               imalat dışı 2 puan (7566 s.K.)
+       İmalat (NACE C) 5 puanda kaldı (5510 geçici m.108). Motor iki
+       seçeneği ayrı tutar: tesvik "genel" ya da "imalat". */
     sgkIsverenIndirim: 0.05,
+    sgkIsverenIndirimImalat: 0.05,
     issizlikIsveren: 0.02,  // işsizlik sigortası işveren payı
     damga: 0.00759          // damga vergisi — binde 7,59 (2013'ten beri sabit)
   };
+  function oranlarIle(ek) {
+    var o = {};
+    for (var k in VARSAYILAN_ORANLAR) o[k] = VARSAYILAN_ORANLAR[k];
+    for (var j in ek) o[j] = ek[j];
+    return o;
+  }
 
   /* 2020-2021 asgari geçim indirimi (AGİ) oranları — GVK m.32 (mülga).
      AGİ = aylık brüt asgari ücret x toplam oran x %15 */
@@ -81,7 +104,8 @@
       // Motor bu alani OKUMUYOR; sgkTavan ile iliskisini bordro/test.js
       // bagliyor (tavan = asgariBrut x tavanKatsayisi).
       tavanKatsayisi: 9,
-      oranlar: VARSAYILAN_ORANLAR,
+      // 7566 s.K.: MYÖ işveren hissesi %11 → %12; m.81/ı imalat dışı 2 puan.
+      oranlar: oranlarIle({ sgkIsveren: 0.2175, sgkIsverenIndirim: 0.02 }),
       dilimler: [[190000, 0.15], [400000, 0.20], [1500000, 0.27], [5300000, 0.35], [null, 0.40]],
       // Ücret dışı gelirler (serbest meslek, ticari, kira) için ayrı tarife:
       // üçüncü dilimin üst sınırı ücret tarifesinden farklıdır (1.000.000 / 1.500.000).
@@ -146,11 +170,14 @@
         karPayiIstisnaOrani: 0.50,      // GVK m.22 — kâr payının yarısı istisna
         hizmetIhracatiIndirimi: 0.80,   // GVK m.89/13 — yurt dışına verilen hizmetlerde
         serbestMeslekStopaji: 0.20,     // GVK m.94/2 — kurum/işletmelere kesilen makbuzda
-        bagkurOrani: 0.3475,            // 4/b: %20 MYÖ + %12,5 GSS + %2 kısa vadeli
-        bagkurIndirimliOran: 0.2975,    // borcu olmayan düzenli ödeyende 5 puanlık indirim
+        /* 4/b: %21 MYÖ (7566 s.K.) + %12,5 GSS + %2,25 kısa vadeli = %35,75.
+           2026 en düşük prim 33.030 × %35,75 = 11.808,23 TL. İlk sürümde
+           2025'in %34,75'i kalmıştı (düzeltme günlüğü, 2026-09-25). */
+        bagkurOrani: 0.3575,
+        bagkurIndirimliOran: 0.3075,    // borcu olmayan düzenli ödeyende 5 puanlık indirim
         dayanak: "KVK m.32, GVK m.22, m.86, m.89/13, m.94; 5510 m.80-81"
       },
-      dayanak: "GVK m.103 (2026 tarifesi), GVK m.23/18 asgari ücret istisnası, 5510/82 + 7566 s.K. (tavan = taban x 9)"
+      dayanak: "GVK m.103 (2026 tarifesi), GVK m.23/18 asgari ücret istisnası, 5510/82 + 7566 s.K. (tavan = taban x 9; MYÖ işveren %12, işveren payı %21,75; m.81/ı imalat dışı 2 puan)"
     },
 
     2025: {
@@ -159,7 +186,9 @@
       istisnaRejimi: "asgari-ucret",
       damgaIstisnasi: true,
       tavanKatsayisi: 7.5,
-      oranlar: VARSAYILAN_ORANLAR,
+      oranlar: oranlarIle({ sgkIsveren: 0.2075 }),
+      // 7538 s.K. (RG 15.01.2025): imalat dışı indirim 1 Şubat 2025'ten 4 puan.
+      oranDegisimleri: [{ ay: 2, sgkIsverenIndirim: 0.04 }],
       dilimler: [[158000, 0.15], [330000, 0.20], [1200000, 0.27], [4300000, 0.35], [null, 0.40]],
       donemler: [
         { ay: 1, asgariBrut: 26005.50, asgariNet: 22104.67, sgkTavan: 195041.25 }
@@ -170,7 +199,7 @@
         { ay: 1, tutar: 46655.43 },
         { ay: 7, tutar: 53919.68 }
       ],
-      dayanak: "GVK m.103 (2025 tarifesi), GVK m.23/18, 5510/82 (tavan = taban x 7,5)"
+      dayanak: "GVK m.103 (2025 tarifesi), GVK m.23/18, 5510/82 (tavan = taban x 7,5); işveren payı %20,75; 7538 s.K. (m.81/ı imalat dışı 4 puan, Şubat 2025)"
     },
 
     2024: {
@@ -180,6 +209,8 @@
       damgaIstisnasi: true,
       tavanKatsayisi: 7.5,
       oranlar: VARSAYILAN_ORANLAR,
+      // 7524 s.K. m.28 (RG 02.08.2024): kısa vadeli %2 → %2,25, 2024/Eylül'den.
+      oranDegisimleri: [{ ay: 9, sgkIsveren: 0.2075 }],
       dilimler: [[110000, 0.15], [230000, 0.20], [870000, 0.27], [3000000, 0.35], [null, 0.40]],
       donemler: [
         { ay: 1, asgariBrut: 20002.50, asgariNet: 17002.12, sgkTavan: 150018.75 }
@@ -190,7 +221,7 @@
       ],
       issizlik: ISSIZLIK_VARSAYILAN,
       fazlaMesai: FAZLA_MESAI_VARSAYILAN,
-      dayanak: "GVK m.103 (2024 tarifesi), GVK m.23/18, 5510/82; kıdem tavanı: Hazine ve Maliye Bakanlığı Mali ve Sosyal Haklar Genelgeleri"
+      dayanak: "GVK m.103 (2024 tarifesi), GVK m.23/18, 5510/82; kıdem tavanı: Hazine ve Maliye Bakanlığı Mali ve Sosyal Haklar Genelgeleri; 7524 s.K. m.28 (kısa vadeli %2,25, işveren payı %20,75, Eylül 2024)"
     },
 
     2023: {

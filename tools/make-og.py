@@ -152,8 +152,8 @@ SPEC = {
    ["%50 ve %25", "12 ay karşılaştırma"], "bordro"),
 
  "isveren-maliyeti-hesaplama": ("isveren-maliyeti-hesaplama", "İşveren", "Maliyeti 2026",
-   "Bir çalışan işverene ne kadara mal oluyor? SGK işveren payı ve 5 puanlık indirim dahil.",
-   ["Brüt & net mod", "5 puan indirimi"], "bordro"),
+   "Bir çalışan işverene ne kadara mal oluyor? SGK işveren payı ve prim indirimi dahil.",
+   ["Brüt & net mod", "2 ve 5 puan indirim"], "bordro"),
 
  "issizlik-maasi-hesaplama": ("issizlik-maasi-hesaplama", "İşsizlik Maaşı", "Hesaplama 2026",
    "Son 4 aylık brüt kazanca ve prim gün sayısına göre ödenek, tavan ve süre.",

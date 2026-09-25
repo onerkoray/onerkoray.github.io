@@ -45,6 +45,31 @@
     return d;
   }
 
+  /* Ayın (1-12) geçerli kesinti oranları: yıl oranları + o aya kadar
+     yürürlüğe girmiş oranDegisimleri. Yıl içinde değişen oran yoksa
+     P.oranlar'ın kendisi döner. */
+  function oranlarAy(P, ay) {
+    var d = P.oranDegisimleri;
+    if (!d || !d.length) return P.oranlar;
+    var o = {};
+    for (var k in P.oranlar) o[k] = P.oranlar[k];
+    d.forEach(function (x) {
+      if (x.ay <= ay) for (var j in x) if (j !== "ay") o[j] = x[j];
+    });
+    return o;
+  }
+
+  /* 5510 m.81/ı indirimi, puan cinsinden oran. secenekler.tesvik:
+     "genel" (özel sektör, imalat dışı) ya da "imalat" (NACE C). Eski ad
+     tesvik5Puan "imalat" sayılır: 5 puan yalnız orada kaldı. */
+  function tesvikOrani(o, secenekler) {
+    if (!secenekler) return 0;
+    var t = secenekler.tesvik || (secenekler.tesvik5Puan ? "imalat" : null);
+    if (t === "imalat") return o.sgkIsverenIndirimImalat != null ? o.sgkIsverenIndirimImalat : (o.sgkIsverenIndirim || 0);
+    if (t === "genel") return o.sgkIsverenIndirim || 0;
+    return 0;
+  }
+
   /* ---------- tarife ---------- */
 
   /* Kümülatif matrah üzerinden tarifeye göre toplam gelir vergisi. */
@@ -74,17 +99,16 @@
   /* birikim: { matrah, asgariMatrah } — yerinde güncellenir. */
   function hesaplaAy(brut, ay, P, birikim, secenekler) {
     var d = donem(P, ay);
-    var o = P.oranlar;
+    var o = oranlarAy(P, ay);
 
     /* secenekler.primsiz: ücret geliri var ama 4/a primi yok.
        Tipik örnek, limited şirket ortağına ödenen huzur hakkı/ücret — ortak
        zaten 4/b sigortalısı olduğu için bu ödemeden SGK primi kesilmez, ama
        ödeme ücret sayıldığından gelir ve damga vergisine tabidir. */
     var primsiz = !!(secenekler && secenekler.primsiz);
-    /* secenekler.tesvik5Puan: 5510 m.81/ı beş puanlık indirim. Oran
-       parametrelerden gelir; araç sayfaları kopyalamaz. */
-    var isvSgkOran = o.sgkIsveren -
-      ((secenekler && secenekler.tesvik5Puan) ? (o.sgkIsverenIndirim || 0) : 0);
+    /* secenekler.tesvik: 5510 m.81/ı indirimi ("genel" | "imalat");
+       oranı yıla ve aya göre tesvikOrani() verir. */
+    var isvSgkOran = o.sgkIsveren - tesvikOrani(o, secenekler);
 
     // Prime esas kazanç: alt sınır asgari ücret, üst sınır SGK tavanı.
     var primEsas = primsiz ? 0 : Math.min(Math.max(brut, d.asgariBrut), d.sgkTavan);
@@ -245,13 +269,15 @@
   }
 
   return {
-    surum: "1.0.1",
+    surum: "1.1.0",
     AY_ADLARI: AY_ADLARI,
     parametreler: PARAMETRELER,
     yillar: yillar,
     sonYil: sonYil,
     parametre: parametre,
     donem: donem,
+    oranlarAy: oranlarAy,
+    tesvikOrani: tesvikOrani,
     tarifeVergisi: tarifeVergisi,
     dilimOrani: dilimOrani,
     hesaplaAy: hesaplaAy,

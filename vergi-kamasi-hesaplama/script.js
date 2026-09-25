@@ -33,7 +33,7 @@
       alt: deger("k-alt"),
       ust: deger("k-ust"),
       adet: deger("k-adet"),
-      secenekler: $("k-tesvik").checked ? { tesvik5Puan: true } : {}
+      secenekler: $("k-tesvik").value ? { tesvik: $("k-tesvik").value } : {}
     };
   }
 

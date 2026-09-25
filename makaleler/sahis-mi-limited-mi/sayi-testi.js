@@ -42,7 +42,7 @@ function hepsi(liste, f) { return liste.length > 0 && liste.every(f); }
 
 var normal = tara(0);
 
-/* "500 bin ile 1,3 milyon arasında maaşlı çalışma önde; 500 binde fark %22" */
+/* "500 bin ile 1,3 milyon arasında maaşlı çalışma önde; 500 binde fark %23" */
 t.dogru("500 bin – 1,2 milyon çalışan önde", hepsi(aralik(normal, 500000, 1200000), function (x) { return x.kazanan === "calisan"; }));
 t.dogru("1,3 milyonda çalışan artık önde değil", aralik(normal, 1300000, 1300000)[0].kazanan !== "calisan");
 t.gecsin("500 binde fark", "500 bin TL düzeyinde fark %" + Math.round(aralik(normal, 500000, 500000)[0].fark * 100));
