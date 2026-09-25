@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-24T16:16:24+03:00</updated>
+  <updated>2026-09-25T12:58:17+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Dilim Kayması Hesaplama 2026</title>
+    <link href="https://korayoner.dev/dilim-kaymasi-hesaplama/"/>
+    <id>https://korayoner.dev/dilim-kaymasi-hesaplama/</id>
+    <updated>2026-09-25T12:58:17+03:00</updated>
+    <summary>Vergi dilimleri enflasyonla büyüseydi maaşınızdan ne kadar gelir vergisi kesilirdi? 2026 tarifesini üç ölçütle kendi ücretinizde ölçün.</summary>
+  </entry>
 
   <entry>
     <title>Kredi Kartı Borcu Kaç Ayda Biter? | Kart Borcu Rotası</title>
