@@ -1,5 +1,65 @@
 [
   {
+    "slug": "vergi-borcunu-geciktirmek-karli-mi",
+    "kicker": "Vergi",
+    "alt": "Mart vadeli 100.000 TL verginin bir yıl geç ödenmesinin enflasyondan arındırılmış bedeli: 2021 vadesinde eksi 26.019 TL, 2025 vadesinde artı 14.951 TL.",
+    "altyazi": "Gecikme zammı enflasyonun altında kaldığı yıllarda geciktirmek borcu eritti; 2024'ten beri pahalı."
+  },
+  {
+    "slug": "kredi-vadesini-uzatmanin-bedeli",
+    "kicker": "Finans",
+    "alt": "Aylık 20.000 TL taksitle çekilebilecek ihtiyaç kredisi vade uzadıkça 385.579 TL'lik tavana yaklaşıyor: 36 ayda 323.100, 60 ayda 367.000 TL.",
+    "altyazi": "Her ek yıl bir öncekinin kabaca yarısı kadar kredi getiriyor ama her yıl aynı 240.000 TL'yi ödetiyor."
+  },
+  {
+    "slug": "kiraya-vermek-icin-ev-almak-mantikli-mi",
+    "kicker": "Finans",
+    "alt": "Konutun 10 yılda mevduatı yakalaması için gereken yıllık değer artışı: kira getirisiyle az, mevduat faiziyle çok değişiyor.",
+    "altyazi": "Brüt kira getirisini iki katına çıkarmak eşiği 2,6 puan düşürüyor; faiz farkı 7 puandan fazla oynatıyor."
+  },
+  {
+    "slug": "askerlik-borclanmasi-2026",
+    "kicker": "Bordro",
+    "alt": "Askerlik borçlanmasının günlük en düşük tutarı 2025'te 277,39, 2026'da 495,45 TL; doğum borçlanmasında 352,32 TL.",
+    "altyazi": "Oran %32'den %45'e, asgari ücret %27 arttı: askerlik borçlanması bir yılda %78,6 pahalandı."
+  },
+  {
+    "slug": "sgk-primleri-2026-ne-degisti",
+    "kicker": "Bordro",
+    "alt": "2025'ten 2026'ya SGK kalemlerinin artışı: GSS primi yüzde 154, askerlik borçlanması 79, SGK tavanı 52; asgari ücret 27.",
+    "altyazi": "Asgari ücrete bağlı her kalem en az %27 arttı; fazlasını 7566 sayılı Kanunun oran değişiklikleri getirdi."
+  },
+  {
+    "slug": "sgk-prim-indirimi-2-puan",
+    "kicker": "Bordro",
+    "alt": "İndirim sonrası SGK işveren payı: imalat dışında 2025 Şubat'ta %16,75, 2026'da %19,75; imalatta %15,75'ten %16,75'e.",
+    "altyazi": "İmalat dışı işverenin asgari ücretli başına yıllık ek yükü 11.890,80 TL."
+  },
+  {
+    "slug": "vergi-dilimleri-2027-asgari-ucret",
+    "kicker": "Vergi",
+    "alt": "Dilimler asgari ücretten geride kaldıkça yıllık fazla vergi: 60.000 TL brütte her 10 puanda 2.800 TL, 200.000 TL brütte 14.800 TL.",
+    "altyazi": "Kayıp eşik × fark × dilim oranı farkı; birinci eşiği asgari ücret istisnası nötrlüyor."
+  },
+  {
+    "slug": "mevduat-vade-secimi-32-gun-mu-1-yil-mi",
+    "kicker": "Finans",
+    "alt": "Yıllık %37 brüt faizde vadeye göre stopaj sonrası yıllık getiri: 32 günü yenilemek %35,15, bir yıllık vade %31,45.",
+    "altyazi": "Bir yıllık vadenin yetişmesi için brüt faizin %41,36 olması gerekir; uzun vadenin avantajı faizi kilitlemek."
+  },
+  {
+    "slug": "asgari-ucretin-isverene-maliyeti",
+    "kicker": "Bordro",
+    "alt": "Net asgari ücretin işverene maliyete oranı: 2021'de %64,48, 2022'de %69,39, 2026'da %68,69.",
+    "altyazi": "2022'deki vergi istisnası payı yükseltti; 2025–2026'daki işveren primi artışları hafifçe düşürdü."
+  },
+  {
+    "slug": "kira-geliri-istisnasi-siniri",
+    "kicker": "Vergi",
+    "alt": "240.000 TL konut kirasında kira dışı brüt gelir 1.260.000 TL'yi 1 lira aşınca kira vergisi 23.205 TL'den 31.300 TL'ye sıçrıyor.",
+    "altyazi": "Sınır kademe değil eşik: aşınca 58.000 TL istisnanın tamamı düşüyor."
+  },
+  {
     "slug": "dolar-mi-tl-mevduat-mi",
     "kicker": "Finans",
     "alt": "Döviz mevduatının TL mevduatı geçmesi için gereken yıllık kur artışı 32 günlük vadede yüzde 34,1; vade 1 yılı aşıp TL stopajı yüzde 10'a inince eşik sıçrıyor.",

@@ -67,7 +67,16 @@ gecer("tavan üstü kazanç", atar(function () { S.istegeBagli(300000, YIL); }))
 gecer("günlük kazanç alt sınır altı", atar(function () { S.borclanma(10, 1000, "genel", YIL); }));
 gecer("gün 0", atar(function () { S.borclanma(0, 1500, "genel", YIL); }));
 gecer("negatif gelir", atar(function () { S.gss(-1, YIL); }));
-gecer("parametresi olmayan yıl", atar(function () { S.bagkur(20000, 2025); }));
+gecer("parametresi olmayan yıl", atar(function () { S.bagkur(20000, 2024); }));
+
+/* 2025 (7566 s.K. öncesi): askerlik borçlanması günlük en az 277,39 TL, Bağ-Kur %34,75 */
+var s25 = S.sinirlar(2025);
+gecer("2025 günlük alt 866,85", Math.abs(s25.gunlukAlt - 866.85) < 1e-9);
+gecer("2025 borçlanma günlük 277,39", S.borclanma(1, s25.gunlukAlt, "genel", 2025).gunluk === 277.39);
+gecer("2025 doğum borçlanması da %32", S.borclanma(1, s25.gunlukAlt, "dogum", 2025).gunluk === 277.39);
+gecer("2025 Bağ-Kur en düşük 9.036,91", S.bagkur(s25.aylikAlt, 2025).prim === 9036.91);
+gecer("2025 isteğe bağlı en düşük 8.321,76", S.istegeBagli(s25.aylikAlt, 2025).prim === 8321.76);
+gecer("2025 GSS %3", Math.round(S.gss(20000, 2025).prim) === 780);
 
 console.log(gecen + " geçti, " + kalan + " kaldı. (SGK primleri)");
 process.exit(kalan ? 1 : 0);

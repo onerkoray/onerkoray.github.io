@@ -552,6 +552,37 @@ jobs:
       - name: SGK primleri ve borçlanma motoru
         run: node bordro/sgk-prim-test.js && node bag-kur-ve-borclanma-hesaplama/test.js
 
+      # Eylül 2026 ikinci yazı paketi: her yazının sayıları kendi testinde.
+      - name: vergi-borcunu-geciktirmek-karli-mi yazısının sayıları
+        run: node makaleler/vergi-borcunu-geciktirmek-karli-mi/sayi-testi.js
+
+      - name: kredi-vadesini-uzatmanin-bedeli yazısının sayıları
+        run: node makaleler/kredi-vadesini-uzatmanin-bedeli/sayi-testi.js
+
+      - name: kiraya-vermek-icin-ev-almak-mantikli-mi yazısının sayıları
+        run: node makaleler/kiraya-vermek-icin-ev-almak-mantikli-mi/sayi-testi.js
+
+      - name: askerlik-borclanmasi-2026 yazısının sayıları
+        run: node makaleler/askerlik-borclanmasi-2026/sayi-testi.js
+
+      - name: sgk-primleri-2026-ne-degisti yazısının sayıları
+        run: node makaleler/sgk-primleri-2026-ne-degisti/sayi-testi.js
+
+      - name: sgk-prim-indirimi-2-puan yazısının sayıları
+        run: node makaleler/sgk-prim-indirimi-2-puan/sayi-testi.js
+
+      - name: vergi-dilimleri-2027-asgari-ucret yazısının sayıları
+        run: node makaleler/vergi-dilimleri-2027-asgari-ucret/sayi-testi.js
+
+      - name: mevduat-vade-secimi-32-gun-mu-1-yil-mi yazısının sayıları
+        run: node makaleler/mevduat-vade-secimi-32-gun-mu-1-yil-mi/sayi-testi.js
+
+      - name: asgari-ucretin-isverene-maliyeti yazısının sayıları
+        run: node makaleler/asgari-ucretin-isverene-maliyeti/sayi-testi.js
+
+      - name: kira-geliri-istisnasi-siniri yazısının sayıları
+        run: node makaleler/kira-geliri-istisnasi-siniri/sayi-testi.js
+
       - name: Kredi çekirdeği testleri
         # YMO ikiye bölmesinin yönü ters kurulduğunda oran sessizce 0
         # dönüyordu: sayfa açılıyor, hiçbir yerde hata yok, yalnızca rakam yanlış.

@@ -205,6 +205,20 @@
       oranlar: oranlarIle({ sgkIsveren: 0.2075 }),
       // 7538 s.K. (RG 15.01.2025): imalat dışı indirim 1 Şubat 2025'ten 4 puan.
       oranDegisimleri: [{ ay: 2, sgkIsverenIndirim: 0.04 }],
+      /* 2025 sigortalılık oranları, 7566 s.K. öncesi. 2025'te sirket bloğu
+         yok; Bağ-Kur oranı bu yüzden burada durur (%20 MYÖ + %12,5 GSS +
+         %2,25 kısa vadeli). Kaynak: SGK 2025 tutarları (askerlik borçlanması
+         günlük en az 277,39 TL = 866,85 × %32; GSS 26.005,50 × %3). */
+      sigortalilik: {
+        bagkurOrani: 0.3475,
+        bagkurIndirimliOran: 0.2975,
+        istegeBagliOrani: 0.32,
+        gssOrani: 0.03,
+        gssGelirTestiKati: 1 / 3,
+        borclanmaOrani: 0.32,
+        dogumBorclanmaOrani: 0.32,
+        dayanak: "5510 m.41, m.51, m.60/1-c-1, m.82 (7566 s.K. öncesi)"
+      },
       dilimler: [[158000, 0.15], [330000, 0.20], [1200000, 0.27], [4300000, 0.35], [null, 0.40]],
       donemler: [
         { ay: 1, asgariBrut: 26005.50, asgariNet: 22104.67, sgkTavan: 195041.25 }
