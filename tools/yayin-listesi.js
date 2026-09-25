@@ -88,6 +88,13 @@ function liste() {
           "</a></p>");
       }
 
+      /* Çalışmanın yöntemini okurun kendi rakamına uygulayan araç. */
+      if (c.arac) {
+        satir.push("            <p class=\"ed-yayin-arac\">" +
+          "Kendi rakamınızla deneyin: <a href=\"../" + c.arac.yol + "/\">" +
+          esc(c.arac.ad) + "</a></p>");
+      }
+
       /* Zenodo kaydındaki başlık farklıysa saklanmıyor, yazılıyor. */
       if (c.zenodoBaslik) {
         satir.push("            <p class=\"ed-yayin-not\">" +

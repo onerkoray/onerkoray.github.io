@@ -55,6 +55,7 @@
         "Ölçüm ve Kapalı Form Türetme)",
       zenodoBaslik: null,
       sayfa: "makaleler/vergi-kamasi-ucretin-gercek-yuku",
+      arac: { yol: "vergi-kamasi-hesaplama", ad: "Vergi Kaması Hesaplama" },
       kendiDoi: false,
       ozetSorunlu: false,
       ozetDiliFarkli: false
@@ -91,6 +92,8 @@
         "Bir Nötrleştirme Önermesi)",
       zenodoBaslik: null,
       sayfa: "makaleler/dilim-kaymasi-2022-2026",
+      /* 2026-09-25: yöntem kişiye uygulanabilir bir araç oldu. */
+      arac: { yol: "dilim-kaymasi-hesaplama", ad: "Dilim Kayması Hesaplama" },
       kendiDoi: true,
       ozetSorunlu: true,
       ozetDiliFarkli: false

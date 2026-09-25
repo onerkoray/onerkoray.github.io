@@ -177,6 +177,17 @@ gecsin("dil notu açıklanmış", "dili Türkçe diyor ama özet İngilizce");
   gecer("KONTROL: altı bağlantı da sayfada",
     kacKez("ed-yayin-baglanti") === Y.CALISMALAR.length,
     String(kacKez("ed-yayin-baglanti")));
+
+  /* Yöntemi araç olan çalışmalar: modülde "arac" alanı kaçsa sayfada o
+     kadar araç bağlantısı, her biri doğru adrese. */
+  var aracli = Y.CALISMALAR.filter(function (c) { return c.arac; });
+  gecer("araç bağlantısı sayısı modülle aynı",
+    kacKez("ed-yayin-arac") === aracli.length,
+    kacKez("ed-yayin-arac") + " vs " + aracli.length);
+  aracli.forEach(function (c) {
+    gecer("araç bağlantısı yerinde: " + c.arac.yol,
+      kacKez('href="../' + c.arac.yol + '/"') >= 1);
+  });
 })();
 
 /* ---------------------------------------------------------------- 5

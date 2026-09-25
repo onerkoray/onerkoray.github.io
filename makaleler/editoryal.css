@@ -274,7 +274,8 @@
   font-variant-numeric: tabular-nums;
 }
 
-.ed-yayin-baglanti {
+.ed-yayin-baglanti,
+.ed-yayin-arac {
   margin: 0;
   font-size: var(--step--1);
 }

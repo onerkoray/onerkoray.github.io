@@ -1,0 +1,181 @@
+/*!
+ * Dilim kayması hesaplama — sayfaya özgü stiller.
+ *
+ * Site geneli style.css'in üstüne yalnızca bu sayfanın ihtiyacı olanlar.
+ * Renkler mevcut belirteçlerden alınır; seriler sitenin doğrulanmış
+ * kategorik veri paletinden (--dv-1..3). Renk hiçbir yerde tek başına
+ * bilgi taşımaz: rozetlerde metin, grafikte çizgi deseni, tablolarda işaret.
+ */
+
+/* ------------------------------------------------------------ form ----
+   .panel-q'nun genel style.css'teki tek kuralı @media print içinde; ekran
+   kuralını her araç kendisi tanımlıyor (bkz. tools/sinif-gercekligi-test.js). */
+.panel-q { margin: 0; display: flex; flex-direction: column; gap: .3rem; }
+.panel-q label { font-weight: 600; font-size: var(--step--1); }
+.panel-q input,
+.panel-q select {
+  font: inherit;
+  width: 100%;
+  padding: .5rem .65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.dk-alanlar {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.dk-olcut-secim {
+  margin: 1.2rem 0 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: .6rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+.dk-olcut-secim legend {
+  padding: 0 0 .5rem;
+  font-weight: 600;
+  font-size: var(--step--1);
+}
+.dk-secenek {
+  display: flex;
+  gap: .6rem;
+  align-items: flex-start;
+  padding: .7rem .8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.dk-secenek:has(input:checked) {
+  border-color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 6%, transparent);
+}
+.dk-secenek input { margin-top: .25rem; accent-color: var(--brand); }
+.dk-secenek span { display: flex; flex-direction: column; gap: .15rem; }
+.dk-secenek small { color: var(--text-muted); font-size: var(--step--1); }
+
+.dk-kunye { font-size: var(--step--1); }
+
+/* ------------------------------------------------------------ sonuç ---- */
+.dk-manset { margin: 1.8rem 0 .6rem; font-size: var(--step-1); }
+.dk-manset p { margin: .2rem 0; }
+.dk-manset p + p { font-size: var(--step-0); color: var(--text-muted); }
+
+.dk-not {
+  margin: 1rem 0 1.4rem;
+  padding: .9rem 1.1rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--brand) 5%, transparent);
+}
+.dk-not h3 { margin: 0 0 .35rem; font-size: var(--step-0); }
+.dk-not p { margin: 0; }
+
+.dk-kartlar {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin: 1.4rem 0 1.6rem;
+}
+.dk-kart {
+  font: inherit;
+  color: var(--text);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  cursor: pointer;
+}
+.dk-kart:hover { border-color: var(--text-muted); }
+.dk-kart:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.dk-kart--secili { border-color: var(--brand); border-width: 2px; padding: calc(1rem - 1px) calc(1.1rem - 1px); }
+.dk-kart-ad { font-weight: 650; font-size: var(--step--1); }
+.dk-kart-deger { font-size: var(--step-2); font-weight: 700; font-variant-numeric: tabular-nums; }
+.dk-kart-alt { color: var(--text-muted); font-size: var(--step--1); }
+
+/* Rozet: yön metinle yazılı; renk yalnızca destek. */
+.dk-rozet {
+  align-self: flex-start;
+  font-size: var(--step--1);
+  font-weight: 650;
+  padding: .1rem .5rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+.dk-rozet--fazla { color: var(--dv-2); }
+.dk-rozet--lehine { color: var(--dv-1); }
+.dk-rozet--notr { color: var(--text-muted); }
+
+.dk-tablo { margin-top: .4rem; }
+.dk-tablo th small { color: var(--text-muted); font-weight: 400; margin-left: .35rem; }
+.data-table tr.dk-toplam th,
+.data-table tr.dk-toplam td { font-weight: 700; border-top: 2px solid var(--border); }
+.data-table tr.dk-notr td:last-child,
+.data-table tr.dk-uzak td { color: var(--text-muted); }
+.data-table td.dk-secili {
+  font-weight: 700;
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+  outline: 2px solid var(--brand);
+  outline-offset: -2px;
+}
+.dk-matris { margin-top: 1.4rem; }
+
+.dk-paylas {
+  margin: 1.6rem 0 0;
+  padding: 1rem 1.1rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+}
+.dk-paylas-cumle { margin: 0 0 .7rem; }
+.dk-paylas-satir { margin: 0; display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+.dk-durum { color: var(--text-muted); font-size: var(--step--1); }
+
+/* ------------------------------------------------------------ grafik --- */
+.dk-grafik-blok { margin-top: 2rem; }
+.dk-grafik-blok h3 { margin-bottom: .3rem; }
+.grafik-kap { margin-block: 1rem 0; overflow-x: auto; }
+#dk-grafik { inline-size: 100%; block-size: auto; min-inline-size: 520px; display: block; }
+.eksen-cizgi { stroke: var(--border); stroke-width: 1; }
+.dk-sifir { stroke: var(--text-muted); stroke-width: 1.2; }
+.eksen { fill: var(--text-muted); font-size: 11px; }
+.dk-seri { fill: none; stroke-width: 1.8; stroke-linejoin: round; opacity: .55; }
+.dk-seri-secili { stroke-width: 3; opacity: 1; }
+.dk-seri-ydo { stroke: var(--dv-1); }
+.dk-seri-tufe { stroke: var(--dv-2); stroke-dasharray: 7 4; }
+.dk-seri-asgari { stroke: var(--dv-3); stroke-dasharray: 2 4; }
+.dk-nokta { stroke: var(--bg); stroke-width: 2.5; }
+.dk-nokta-ydo { fill: var(--dv-1); }
+.dk-nokta-tufe { fill: var(--dv-2); }
+.dk-nokta-asgari { fill: var(--dv-3); }
+
+.lejant { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; margin: .6rem 0 0;
+  font-size: var(--step--1); color: var(--text-muted); }
+.lejant span { display: inline-flex; align-items: center; gap: .45rem; }
+.lejant i { inline-size: 24px; block-size: 0; border-block-start: 3px solid; display: inline-block; }
+.lejant .l-ydo i { border-color: var(--dv-1); }
+.lejant .l-tufe i { border-color: var(--dv-2); border-block-start-style: dashed; }
+.lejant .l-asgari i { border-color: var(--dv-3); border-block-start-style: dotted; }
+
+.formula {
+  font-family: var(--font-mono);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: .75rem .9rem;
+  font-size: .92rem;
+  overflow-x: auto;
+}
+
+@media (max-width: 520px) {
+  .dk-kart-deger { font-size: var(--step-1); }
+}

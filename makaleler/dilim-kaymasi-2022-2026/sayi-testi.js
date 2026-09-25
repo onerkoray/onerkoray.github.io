@@ -25,7 +25,7 @@ var path = require("path");
 
 var KOK = path.dirname(path.dirname(__dirname));
 var B = require(path.join(KOK, "bordro", "motor.js"));
-var S = require(path.join(__dirname, "seriler.js"));
+var S = require(path.join(KOK, "finans", "endeksleme-serileri.js"));
 var HTML = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
 
 var gecen = 0, kalan = 0;

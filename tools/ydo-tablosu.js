@@ -5,7 +5,7 @@
  * NEDEN ÜRETİLİYOR
  * ----------------
  * Tabloların tamamı iki kaynaktan türüyor: bordro/parametreler.js'teki
- * tarifeler ve dilim kayması yazısının seriler.js'indeki oranlar. Elle
+ * tarifeler ve finans/endeksleme-serileri.js'teki oranlar. Elle
  * yazılsaydı 2027 girildiğinde sessizce eskirdi.
  *
  * DÖRT TABLO

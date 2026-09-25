@@ -3,14 +3,14 @@
  *
  * NEDEN AYRI DOSYA
  * ----------------
- * Bu iki seri bir HESAP PARAMETRESİ değil, dış istatistik. Sitedeki hiçbir
- * araç onları kullanmıyor; yalnızca bu yazının ölçümü onlara dayanıyor. Bu
- * yüzden bordro/parametreler.js'e konmadılar: orası araçların okuduğu tek
- * doğruluk kaynağı ve hiçbir aracın okumadığı veriyle şişirilmesi, o
- * dosyanın ne olduğunu bulanıklaştırır.
+ * Bu iki seri bir HESAP PARAMETRESİ değil, dış istatistik. Bu yüzden
+ * bordro/parametreler.js'e konmadılar: orası vergi hesabının yasal
+ * girdileri ve TÜFE bir yasal girdi değil.
  *
- * Ama yazının içine de gömülmediler. Gömülselerdi tablo ile metin ayrı ayrı
- * eskir ve fark edilmezdi; burada tek yerde durup testle sabitleniyorlar.
+ * İlk sürümde yalnız dilim kayması yazısı okuyordu ve dosya yazının
+ * klasöründe duruyordu. 2026-09-25'te dilim kayması hesaplayıcısı
+ * (dilim-kaymasi-hesaplama/) da okumaya başlayınca finans/ altına taşındı:
+ * yazı, yeniden değerleme yazısı ve araç aynı seriyi okuyor, üçü ayrışamaz.
  *
  * İKİ ÖLÇÜT NEDEN FARKLI
  * ----------------------
