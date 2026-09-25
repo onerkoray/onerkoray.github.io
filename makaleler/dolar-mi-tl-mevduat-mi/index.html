@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dolar mı TL Mevduat mı? Başabaş Kur Hesabı | Koray Öner</title>
+  <meta name="description" content="Yıllık %37 TL faizinde 32 günlük vadede doların %2,61'den fazla artması gerekir. Başabaş kuru vade, stopaj ve kur makası nasıl değiştiriyor? Hesaplı karşılaştırma.">
+  <meta name="gecerlilik" content="2027-03-31 | Mevduat stopaj oranları (GVK geçici 67; TL için %17,5 / %15 / %10, döviz için %25) değişti mi? Değiştiyse finans/kurallar.js ve yazıdaki vade tablosu güncellenmeli.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/">
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Dolar mı TL mevduat mı? Kurun ne kadar artması gerekir">
+  <meta property="og:description" content="%37 TL faizinde 32 günde doların %2,61 artması gerekir. Vade, stopaj ve kur makası başabaşı nasıl değiştiriyor?">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/dolar-mi-tl-mevduat-mi.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Vadeye göre döviz mevduatının TL mevduatı geçmesi için gereken yıllık kur artışı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Dolar mı TL mevduat mı?">
+  <meta name="twitter:description" content="%37 TL faizinde 32 günde doların %2,61 artması gerekir.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/dolar-mi-tl-mevduat-mi.png">
+
+  <link rel="stylesheet" href="../../style.css?v=89def2bd">
+  <link rel="stylesheet" href="../editoryal.css?v=96ccec8b">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/",
+        "url": "https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/",
+        "name": "Dolar mı TL mevduat mı?",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "inLanguage": "tr",
+        "primaryImageOfPage": "https://korayoner.dev/images/makale/dolar-mi-tl-mevduat-mi.png"
+      },
+      {
+        "@type": "Article",
+        "@id": "https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/#article",
+        "headline": "Dolar mı TL mevduat mı? Kurun ne kadar artması gerekir",
+        "description": "TL vadeli mevduat ile döviz mevduatının başabaş kuru; vade, stopaj kademeleri ve kur makasının etkisi örnek oranlarla hesaplandı.",
+        "inLanguage": "tr",
+        "datePublished": "2026-09-25",
+        "dateModified": "2026-09-25",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "mainEntityOfPage": "https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/",
+        "image": "https://korayoner.dev/images/makale/dolar-mi-tl-mevduat-mi.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "about": [
+          { "@type": "Thing", "name": "Vadeli mevduat" },
+          { "@type": "Thing", "name": "Döviz mevduatı" },
+          { "@type": "Thing", "name": "Stopaj" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/korayonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://www.youtube.com/@onerkoray",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Makaleler", "item": "https://korayoner.dev/makaleler/"}, {"@type": "ListItem", "position": 3, "name": "Dolar mı TL mevduat mı?", "item": "https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/"}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../">
+        <img class="brand-mark" src="../../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span>Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Ana menü">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../tl-mi-doviz-mi-hesaplama/">TL mi döviz mi</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> Dolar mı TL mevduat mı?
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Birikim · Mevduat</p>
+        <h1 id="hero-title">Dolar mı TL mevduat mı? Kurun ne kadar artması gerekir</h1>
+        <p class="ed-standfirst">Yıllık %37 brüt TL faizine karşı %1 döviz
+          faizinde, 32 günlük vadede döviz mevduatının TL'yi geçmesi için
+          doların vade boyunca %2,61'den fazla artması gerekir. Aynı hız bir yıla
+          yayıldığında %34,14 eder; Ağustos 2026'da yıllık enflasyon %31,5'ti.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-09-25">25 Eylül 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <section class="content"><div class="wrap prose ed-body">
+          <!-- LEAD-GORSEL:BASLANGIC -->
+          <figure class="ed-veri-gorseli">
+            <img src="../../images/makale/dolar-mi-tl-mevduat-mi-kart.svg"
+                 width="800" height="500" decoding="async"
+                 alt="Döviz mevduatının TL mevduatı geçmesi için gereken yıllık kur artışı 32 günlük vadede yüzde 34,1; vade 1 yılı aşıp TL stopajı yüzde 10'a inince eşik sıçrıyor.">
+            <figcaption>Örnek oranlarla (TL %37, döviz %1): eşiği TL faizi ve vade belirliyor, döviz stopajı değil.</figcaption>
+          </figure>
+          <!-- LEAD-GORSEL:BITIS -->
+      <div class="legal-note verdict">
+        <h2>Kısa cevap</h2>
+        <p>Hangisinin kazanacağını kur belirler, ama eşiği faiz ve vade
+          belirler. Başabaş kur, iki yolu vade sonunda eşitleyen kurdur: kur onun
+          üstünde biterse döviz, altında biterse TL kazanır. Bu yazıdaki oranlar
+          <strong>örnektir</strong> (TL %37, döviz %1); kendi bankanızın oranıyla
+          <a href="../../tl-mi-doviz-mi-hesaplama/">başabaş kur hesaplama</a>
+          aracında deneyin.</p>
+        <p>Hesap üç şey gösteriyor: vade 1 yılı bir gün aştığında eşik 1,9 puan
+          yükseliyor, döviz stopajının %25 olması eşiği neredeyse hiç
+          değiştirmiyor, bankanın kur makası ise stopaj farkından yüz kat ağır
+          basıyor.</p>
+      </div>
+
+      <h2 id="ornek">Bir örnekle başabaş kur</h2>
+      <p>100.000 TL'niz var ve 32 günlük vade düşünüyorsunuz. Dolar 48,85 TL.</p>
+      <ul>
+        <li><strong>TL yolu:</strong> %37 brüt faiz 32 günde 3.243,84 TL brüt
+          faiz getirir; %17,5 stopaj 567,67 TL'dir. Net faiz 2.676,16 TL,
+          vade sonunda 102.676,16 TL.</li>
+        <li><strong>Döviz yolu:</strong> para bugün 2.047,08 dolar eder. %1 brüt
+          faiz ve %25 stopajdan sonra vade sonunda 2.048,43 dolar.</li>
+      </ul>
+      <p>İkisini eşitleyen kur 102.676,16 ÷ 2.048,43, yani başabaş kur
+        50,1243 TL. Dolar 32 gün sonra bunun üstündeyse döviz, altındaysa TL
+        daha çok para bırakır. Başabaşın bugünkü kura oranı, anaparadan ve
+        kurun düzeyinden bağımsızdır: hangi tutarla hesaplarsanız hesaplayın,
+        kurun aynı yüzdeyle artması gerekir.</p>
+
+      <h2 id="faiz">Eşiği asıl TL faizi belirliyor</h2>
+      <p>Aşağıdaki tablo, döviz faizi %1'de sabitken TL faizine ve vadeye göre
+        gereken kur artışının yıllık karşılığını veriyor. Kısa vadeler için
+        yıllık karşılık, aynı getiriyle vadenin bir yıl boyunca yenilendiği
+        varsayımıyla bileşik hesaplandı.</p>
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption>Döviz mevduatının TL mevduatı geçmesi için gereken kur artışı, yıllık karşılık. Döviz faizi %1 brüt, stopajlar düşülmüş.</caption>
+          <thead><tr><th scope="col">TL faizi (brüt)</th><th scope="col">32 gün</th><th scope="col">92 gün</th><th scope="col">182 gün</th><th scope="col">366 gün</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">%25</th><td>%21,76</td><td>%21,36</td><td>%21,47</td><td>%21,58</td></tr>
+            <tr><th scope="row">%30</th><td>%26,79</td><td>%26,19</td><td>%26,18</td><td>%26,05</td></tr>
+            <tr><th scope="row">%37</th><td>%34,14</td><td>%33,19</td><td>%32,93</td><td>%32,29</td></tr>
+            <tr><th scope="row">%45</th><td>%43,02</td><td>%41,54</td><td>%40,86</td><td>%39,43</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Kabaca kural şu: kurun yılda, TL mevduatın <em>net</em> faizi kadar
+        artması gerekir. Döviz faizi bu eşiği yalnızca kendisi kadar düşürür;
+        %2 döviz faizinde %33,14'e, %3 döviz faizinde %32,15'e iner.</p>
+
+      <h2 id="vade">Bir gün vade farkı: 1,9 puan</h2>
+      <p>TL mevduatta stopaj vadeye göre kademeli: 6 aya kadar %17,5, 1 yıla
+        kadar %15, 1 yıldan uzun vadede %10. Döviz mevduatında her vadede
+        %25. Bu yüzden eşik vadeyle düzgün değişmiyor, kademe sınırlarında
+        sıçrıyor:</p>
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption>TL %37, döviz %1 brüt faizde vadeye göre gereken kur artışı. 6 ay ve 1 yıl sınırları 1 Ocak'ta açılan hesaba göre.</caption>
+          <thead><tr><th scope="col">Vade</th><th scope="col">TL stopajı</th><th scope="col">Vade boyunca</th><th scope="col">Yıllık karşılık</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">32 gün</th><td>%17,5</td><td>%2,61</td><td>%34,14</td></tr>
+            <tr><th scope="row">92 gün</th><td>%17,5</td><td>%7,49</td><td>%33,19</td></tr>
+            <tr><th scope="row">181 gün</th><td>%17,5</td><td>%14,71</td><td>%31,88</td></tr>
+            <tr><th scope="row">182 gün</th><td>%15</td><td>%15,25</td><td>%32,93</td></tr>
+            <tr><th scope="row">365 gün</th><td>%15</td><td>%30,47</td><td>%30,47</td></tr>
+            <tr><th scope="row">366 gün</th><td>%10</td><td>%32,40</td><td>%32,29</td></tr>
+            <tr><th scope="row">730 gün</th><td>%10</td><td>%64,14</td><td>%28,12</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>365 günlük vadede kurun %30,47'den fazla artması yetiyor; vade bir
+        gün uzayıp 366 gün olunca eşik %30,47'den %32,40'a çıkıyor. Tek günlük
+        faiz bunun küçük bir kısmı; farkın çoğu TL stopajının %15'ten %10'a
+        inmesinden geliyor. Aynı sıçrama daha küçük ölçekte 6 ay sınırında da
+        var. Uzun vadede yıllık eşik düşüyor, çünkü tek seferlik basit faiz,
+        kısa vadeleri yenilemenin bileşik getirisinden geride kalıyor.</p>
+
+      <h2 id="stopaj">Döviz stopajı %25: sanıldığı kadar önemli değil</h2>
+      <p>Döviz mevduatının dezavantajı olarak en çok %25 stopaj anılır. Ölçünce
+        etkisi çok küçük çıkıyor, çünkü stopaj faize kesilir ve döviz faizi
+        zaten düşüktür. Örnekte döviz stopajı TL'ninkine eşit (%17,5) olsaydı,
+        32 günde gereken kur artışı %2,609'dan %2,602'ye inerdi: fark
+        yalnızca 0,007 puan.</p>
+      <p>Buna karşılık bankanın alış-satış farkı doğrudan anaparaya dokunur.
+        Vade sonunda dövizi satış kurundan %1 düşük bir kurla bozdurursanız,
+        %1 makas eşiği %3,65'e çıkarır. Makasın eşiğe etkisi, stopaj farkınınkinin
+        yüz katından fazla. Döviz ile TL arasında karar verirken bakılacak ilk
+        rakam stopaj değil, bankanın makası.</p>
+
+      <h2 id="enflasyon">Enflasyonla karşılaştırma</h2>
+      <p>Ağustos 2026'da yıllık tüketici enflasyonu %31,5'ti. 32 günlük vadeyi
+        %37'den yenileyen biri için yıllık eşik %34,14. Kur bir yıl boyunca
+        yalnızca enflasyon kadar artarsa, yani TL reel olarak ne değer kazanır
+        ne kaybederse, TL mevduat kazanır. Döviz mevduatının öne geçmesi için
+        TL'nin reel olarak değer kaybetmesi gerekir. Bu bir tahmin değil,
+        eşiğin ne anlama geldiğinin tarifi: kurun nereye gideceğini bu hesap
+        söylemez.</p>
+
+      <h2 id="varsayim">Varsayımlar</h2>
+      <ul>
+        <li>Faiz oranları örnektir; bir bankanın ya da piyasanın ortalaması değildir.</li>
+        <li>TL mevduatta faiz basit faizdir; yıllık karşılık, vadenin aynı
+          faizle yenilendiğini varsayar.</li>
+        <li>Stopaj oranları 9 Temmuz 2025'ten sonra açılan ya da yenilenen hesaplar
+          içindir. 6 ay ve 1 yıl sınırı takvime bağlıdır; tablolar 1 Ocak'ta
+          açılan hesaba göredir.</li>
+        <li>Makas, belirtilmedikçe sıfır alındı. Kur korumalı mevduat ve altın
+          hesabı karşılaştırmaya girmedi.</li>
+      </ul>
+
+      <h2 id="kendi">Kendi hesabınız</h2>
+      <p><a href="../../tl-mi-doviz-mi-hesaplama/">TL mi döviz mi? Başabaş kur
+        hesaplama</a> aracı, kendi faiz oranınızı ve vadenizi girdiğinizde
+        başabaş kuru, kur senaryolarını ve bu yazıdaki vade tablosunu sizin
+        oranlarınızla verir. Yalnız TL mevduatın net getirisi için:
+        <a href="../../vadeli-mevduat-hesaplama/">vadeli mevduat hesaplama</a>.</p>
+
+      <h2 id="kaynaklar">Kaynaklar</h2>
+      <ul>
+        <li>193 sayılı Gelir Vergisi Kanunu geçici 67. madde ve 10041 sayılı
+          Cumhurbaşkanı Kararı; GİB geçici 67. madde tevkifat oranları tablosu.</li>
+        <li>TCMB gösterge niteliğindeki döviz kurları; TÜİK Tüketici Fiyat
+          Endeksi (TCMB Tüketici Fiyatları tablosu).</li>
+      </ul>
+      <p>Tablolardaki bütün tutarlar sitenin açık kaynaklı başabaş kur
+        modülünden üretilir ve otomatik testle yeniden hesaplanır. Mevduat
+        hesabı, vadeli mevduat aracıyla aynı fonksiyondan gelir.</p>
+
+      <h2>Sık sorulan sorular</h2>
+      <details><summary>Dolar ne kadar artarsa döviz mevduatı TL mevduatı geçer?</summary><p>Yıllık %37 brüt TL faizine karşı %1 döviz faizinde, 32 günlük vadede kurun %2,61'den fazla artması gerekir. Bu, yıllık %34,14'lük artışa denk gelir.</p></details>
+      <details><summary>Döviz mevduatında stopaj kaç?</summary><p>Vade ne olursa olsun %25. TL mevduatta 6 aya kadar %17,5, 1 yıla kadar %15, 1 yıldan uzun vadede %10.</p></details>
+      <details><summary>Döviz stopajının yüksek olması dövizi dezavantajlı yapar mı?</summary><p>Çok az. Döviz faizi düşük olduğu için stopaj farkı eşiği puanın binde birkaçı kadar değiştirir. Bankanın kur makası çok daha belirleyicidir: %1 makas eşiği yaklaşık bir puan yükseltir.</p></details>
+      <details><summary>Vadeyi 1 yıldan bir gün uzun yapmak neyi değiştirir?</summary><p>TL stopajı %15'ten %10'a iner. %37 faizde bu, dövizin geçmesi için gereken kur artışını %30,47'den %32,40'a çıkarır.</p></details>
+    </div></section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+<script src="../tablo.js?v=de093bf6" defer></script>
+</body>
+</html>

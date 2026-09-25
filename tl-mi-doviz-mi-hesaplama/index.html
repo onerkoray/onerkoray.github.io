@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TL mi Döviz mi? Başabaş Kur Hesaplama | Koray Öner</title>
+  <meta name="description" content="Parayı TL mevduatta mı döviz mevduatında mı tutmalı? Faiz, stopaj ve kur makasıyla başabaş kuru hesaplayın: dolar vade sonunda ne kadar artarsa döviz kazanır.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/tl-mi-doviz-mi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="TL mi döviz mi? Başabaş kur hesaplama">
+  <meta property="og:description" content="TL mevduatla döviz mevduatını stopaj ve kur makası dahil karşılaştırın: kur ne kadar artarsa döviz kazanır?">
+  <meta property="og:url" content="https://korayoner.dev/tl-mi-doviz-mi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/tl-mi-doviz-mi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TL mi döviz mi başabaş kur hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="TL mi döviz mi? Başabaş kur">
+  <meta name="twitter:description" content="Dolar vade sonunda ne kadar artarsa döviz mevduatı TL mevduatı geçer? Stopaj ve kur makası dahil.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/tl-mi-doviz-mi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=89def2bd">
+  <link rel="stylesheet" href="style.css?v=53cb837c">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/tl-mi-doviz-mi-hesaplama/#app",
+        "name": "TL mi Döviz mi? Başabaş Kur Hesaplama",
+        "url": "https://korayoner.dev/tl-mi-doviz-mi-hesaplama/",
+        "description": "TL vadeli mevduat ile döviz mevduatını aynı vadede, stopaj ve kur makası dahil karşılaştırıp başabaş kuru ve gereken kur artışını hesaplayan ücretsiz araç.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Tarayıcı",
+        "inLanguage": "tr",
+        "image": "https://korayoner.dev/images/tl-mi-doviz-mi-hesaplama-koray-oner.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "TL mi Döviz mi? Başabaş Kur", "item": "https://korayoner.dev/tl-mi-doviz-mi-hesaplama/"}]}</script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> TL mi Döviz mi? Başabaş Kur
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Birikim · Mevduat</p>
+        <h1 id="hero-title">TL mi döviz mi? Kur ne kadar artarsa döviz kazanır?</h1>
+        <p class="lede">Aynı parayı aynı vadede TL mevduata ya da döviz mevduatına
+          koyduğunuzu düşünün. Araç iki yolun vade sonundaki net tutarını stopaj
+          dahil hesaplar ve ikisini eşitleyen kuru bulur: kur vade sonunda bunun
+          üstündeyse döviz, altındaysa TL kazanır. Kur tahmini yapmaz; kararı
+          vereceğiniz eşiği verir.</p>
+        <p class="muted tb-kunye" id="tb-kunye">Stopaj: GVK geçici 67 · Hesap: <a href="../vadeli-mevduat-hesaplama/">mevduat aracıyla aynı fonksiyon</a>
+          · Tarayıcınızda çalışır, veri gönderilmez</p>
+      </div>
+    </section>
+
+    <section class="calc" id="hesapla" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="calc-title">Başabaş kur hesabı</h2>
+        <form class="panel" id="tb-form" novalidate>
+          <div class="tb-alanlar">
+            <p class="panel-q">
+              <label for="tb-anapara">Anapara (TL)</label>
+              <input id="tb-anapara" type="text" inputmode="decimal" autocomplete="off" value="100.000">
+            </p>
+            <p class="panel-q">
+              <label for="tb-gun">Vade (gün)</label>
+              <input id="tb-gun" type="text" inputmode="numeric" autocomplete="off" value="32">
+            </p>
+            <p class="panel-q">
+              <label for="tb-tl-faiz">TL mevduat faizi (yıllık brüt %)</label>
+              <input id="tb-tl-faiz" type="text" inputmode="decimal" autocomplete="off" value="37">
+            </p>
+            <p class="panel-q">
+              <label for="tb-para">Döviz</label>
+              <select id="tb-para"><option value="USD">ABD doları</option><option value="EUR">Euro</option></select>
+            </p>
+            <p class="panel-q">
+              <label for="tb-doviz-faiz">Döviz mevduat faizi (yıllık brüt %)</label>
+              <input id="tb-doviz-faiz" type="text" inputmode="decimal" autocomplete="off" value="1">
+            </p>
+            <p class="panel-q">
+              <label for="tb-kur">Bugünkü kur (TL)</label>
+              <input id="tb-kur" type="text" inputmode="decimal" autocomplete="off" value="48,85">
+            </p>
+            <p class="panel-q">
+              <label for="tb-makas">Kur makası (%)</label>
+              <input id="tb-makas" type="text" inputmode="decimal" autocomplete="off" value="0">
+            </p>
+          </div>
+          <p class="muted-note tb-ornek" id="tb-ornek">Faiz oranları örnektir; bankanızın size verdiği oranı yazın. Kur, TCMB'nin son döviz satış kurundan doldurulur.</p>
+        </form>
+
+        <div id="tb-sonuc" aria-live="polite"></div>
+        <p class="muted-note" id="tb-mesaj">Tutarları girin; hesap otomatik çalışır.</p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <h2 id="nasil">Nasıl hesaplanır?</h2>
+      <p>İki yol aynı anapara ve aynı vadeyle kurulur. TL yolunda faiz basit
+        faizdir ve vadeye göre stopaj kesilir. Döviz yolunda para bugünkü kurla
+        dövize çevrilir, döviz faizi işler ve %25 stopaj kesilir:</p>
+      <p class="formula">TL vade sonu = anapara × (1 + TL faizi × gün ÷ 365 × (1 − TL stopajı))</p>
+      <p class="formula">döviz vade sonu = anapara ÷ kur × (1 + döviz faizi × gün ÷ 365 × 0,75)</p>
+      <p class="formula">başabaş kur = TL vade sonu ÷ (döviz vade sonu × (1 − makas))</p>
+      <p>Başabaş kur, vade sonunda döviz yolunu TL yoluna eşitleyen kurdur.
+        Kur bunun üstünde biterse döviz, altında biterse TL daha çok para
+        bırakır. Yıllık karşılık, aynı getiriyle vadenin bir yıl boyunca
+        yenilendiği varsayımıyla bileşik hesaplanır.</p>
+
+      <h2 id="stopaj">Stopaj vadeye göre değişir</h2>
+      <p>TL mevduatta stopaj 6 aya kadar vadede %17,5, 1 yıla kadar %15, 1
+        yıldan uzun vadede %10'dur. Döviz mevduatında vade ne olursa olsun
+        %25'tir. Uzun vadede TL stopajı düştüğü için başabaş kur yükselir;
+        sonuçtaki vade tablosu bunu gösterir. 6 ay ve 1 yıl sınırları takvime
+        bağlıdır; araç 1 Ocak'ta açılan hesabı esas alır (6 ay = 181 gün,
+        1 yıl = 365 gün).</p>
+
+      <h2 id="makas">Kur makası</h2>
+      <p>Banka dövizi satarken ve geri alırken farklı kur uygular. Makas,
+        vade sonunda dövizi bozdururken kaybettiğiniz orandır ve başabaş kuru
+        doğrudan yükseltir: %1 makas, dövizin kısa vadede aşması gereken eşiği
+        yaklaşık bir puan artırır. Bankanızın alış ve satış kurunu karşılaştırıp
+        buraya yazın.</p>
+
+      <h2 id="sinir">Bu araç neyi kapsamıyor</h2>
+      <ul>
+        <li>Kur tahmini yapmaz; kurun nereye gideceği hakkında bir şey söylemez.</li>
+        <li>Kur korumalı mevduat, altın hesabı ve yatırım fonu hesaba girmez.</li>
+        <li>Stopaj oranları 9 Temmuz 2025'ten sonra açılan veya yenilenen hesaplar içindir.</li>
+        <li>Mevduat sigortası sınırı ve bankaya özgü masraflar dikkate alınmaz.</li>
+      </ul>
+    </div>
+
+    <section class="content">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanak</h2>
+          <ul>
+            <li>193 sayılı Gelir Vergisi Kanunu geçici 67. madde; 10041 sayılı Cumhurbaşkanı Kararı (mevduat stopaj oranları).</li>
+            <li>GİB, Gelir Vergisi Kanunu geçici 67. madde kapsamında uygulanacak tevkifat oranları tablosu.</li>
+            <li>TCMB gösterge niteliğindeki döviz kurları (günlük bülten, döviz satış).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Dolar ne kadar artarsa döviz mevduatı TL mevduatı geçer?</summary><p>TL faizine, döviz faizine ve vadeye bağlı. Örnek: 100.000 TL, TL'de yıllık %37 brüt, dövizde %1 brüt, 32 gün vade ve 48,85 TL kur. TL yolu vade sonunda 102.676,16 TL bırakır. Döviz yolunun bunu geçmesi için kurun 50,1243 TL'yi, yani %2,61 artışı aşması gerekir. Bu, yıllık %34,14'lük kur artışına denk gelir.</p></details>
+          <details><summary>Döviz stopajının %25 olması dövizi dezavantajlı yapar mı?</summary><p>Döviz faizi düşük olduğu sürece çok az. Yukarıdaki örnekte döviz stopajı TL'ninkine (%17,5) eşit olsaydı gereken kur artışı yüzde 2,609'dan 2,602'ye inerdi. Başabaşı asıl belirleyen TL faizinin yüksekliği, vade ve kur makasıdır.</p></details>
+          <details><summary>Kur makası sonucu ne kadar değiştirir?</summary><p>Makas başabaş kuru 1 ÷ (1 − makas) oranında yükseltir. Aynı örnekte %1 makasla başabaş kur 50,63 TL'ye, gereken artış %3,65'e çıkar.</p></details>
+          <details><summary>Vade uzayınca neden daha büyük kur artışı gerekiyor?</summary><p>Vade uzadıkça TL faizi daha uzun süre işler. Ayrıca 6 ay ve 1 yıl sınırlarında TL stopajı düşer (%17,5 → %15 → %10); döviz stopajı %25'te kalır. 1 yılı bir gün aşan vade, bu yüzden başabaş kuru belirgin biçimde yükseltir.</p></details>
+          <details><summary>Girdiğim tutarlar kaydediliyor mu?</summary><p>Hayır. Hesap tamamen tarayıcınızda yapılır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../vadeli-mevduat-hesaplama/">Vadeli mevduat hesaplama</a> — net faiz ve stopaj.</li>
+          <li><a href="../doviz-kurlari/">Döviz kurları</a> — TCMB günlük kurları ve son 90 gün.</li>
+          <li><a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a> — iki tarih arası enflasyon ve paranın değeri.</li>
+          <li><a href="../makaleler/dolar-mi-tl-mevduat-mi/">Dolar mı TL mevduat mı?</a> — başabaşı neyin belirlediği (yazı).</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanak</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanak</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../finans/kurallar.js?v=da7bebf5" defer></script>
+  <script src="../finans/doviz-basabas.js?v=18e5c55d" defer></script>
+  <script src="script.js?v=e10b8a0a" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>

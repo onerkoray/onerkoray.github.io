@@ -1,5 +1,35 @@
 [
   {
+    "slug": "dolar-mi-tl-mevduat-mi",
+    "kicker": "Finans",
+    "alt": "Döviz mevduatının TL mevduatı geçmesi için gereken yıllık kur artışı 32 günlük vadede yüzde 34,1; vade 1 yılı aşıp TL stopajı yüzde 10'a inince eşik sıçrıyor.",
+    "altyazi": "Örnek oranlarla (TL %37, döviz %1): eşiği TL faizi ve vade belirliyor, döviz stopajı değil."
+  },
+  {
+    "slug": "bagis-mi-miras-mi-vergi",
+    "kicker": "Vergi",
+    "alt": "Ebeveynden tek çocuğa geçen 3 milyon TL'lik malda bağış vergisi 146.653 TL, miras vergisi 929 TL; 20 milyonda 1.668.307 TL'ye karşı 594.643 TL.",
+    "altyazi": "İki tarife, iki istisna: fark değer büyüdükçe küçülüyor ama kapanmıyor."
+  },
+  {
+    "slug": "miras-kalan-ev-icin-vergi",
+    "kicker": "Vergi",
+    "alt": "8 milyon TL net terekede toplam veraset vergisi eş ve üç çocukta sıfır, yalnız anne ve baba mirasçıyken 120.000 TL.",
+    "altyazi": "Vergiyi evin değeri kadar mirasçıların kim olduğu belirliyor: her mirasçının kendi istisnası var."
+  },
+  {
+    "slug": "asgari-ucret-enflasyona-yenildi-mi",
+    "kicker": "Bordro",
+    "alt": "Net asgari ücretin Ağustos 2026 fiyatlarıyla aylık değeri: her zamda sıçrıyor, arada eriyor; yıllık ortalama 2020'de 21.261, 2024'te 31.179 TL.",
+    "altyazi": "Ortalamada alım gücü arttı; ama her zamdan sonraki aylarda %11 ile %26 arasında eridi."
+  },
+  {
+    "slug": "fiyatlar-kac-ayda-ikiye-katlaniyor",
+    "kicker": "Finans",
+    "alt": "Fiyatların ikiye katlanma süresi Mart 2016'da 109 ay, Ocak 2023'te 15 ay, Ağustos 2026'da 29 ay.",
+    "altyazi": "Aylık TÜFE ile geriye dönük ölçüm: süre 2023'te dibe vurdu, 2026'da yeniden uzuyor."
+  },
+  {
     "slug": "emekli-promosyonunun-ekonomisi",
     "kicker": "Finans",
     "alt": "Sade teklif 18.000 TL net fayda verirken koşullu teklif puanın kullanımına göre 15.800, 18.800 veya 21.800 TL bırakıyor.",

@@ -1658,7 +1658,232 @@ function sepetOranDuzey() {
     cubuk + "</svg>";
 }
 
+/* Beş yeni yazının kapakları. Hepsi yazının kendi modülünden okur ve
+   sabit bir tarihe/yıla çivilidir: gece gelen veri kapağı değiştirmez,
+   --svg-check kararlı kalır. Sayı yazıyla ayrışırsa çizim hata verir. */
+var TE = require(path.join(KOK, "finans", "tufe-endeksi.js"));
+var RM = require(path.join(KOK, "finans", "reel-maas.js"));
+var VV = require(path.join(KOK, "finans", "veraset.js"));
+var DB = require(path.join(KOK, "finans", "doviz-basabas.js"));
+var CIVI = "2026-08";
+
+function anahtarKutu(x, renk, metin, kesik) {
+  return (kesik
+    ? '<path d="M' + x + " 77.5 h12" + '" stroke="' + renk + '" stroke-width="2" stroke-dasharray="4 3"/>'
+    : '<rect x="' + x + '" y="72" width="11" height="11" rx="2" fill="' + renk + '"/>') +
+    '<text x="' + (x + 17) + '" y="82" font-size="12" fill="' + R.ikincil + '">' + metin + "</text>";
+}
+function baslikSatirlari(baslik, alt, etiket) {
+  return '<svg viewBox="0 0 600 360" width="600" height="360" role="img" aria-label="' + etiket + '">' +
+    '<text x="24" y="34" font-size="16" font-weight="700" fill="' + R.murekkep + '">' + esc(baslik) + "</text>" +
+    '<text x="24" y="56" font-size="13" fill="' + R.ikincil + '">' + esc(alt) + "</text>";
+}
+function ayKisa(a) {
+  return ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"][+a.slice(5) - 1] + " " + a.slice(0, 4);
+}
+
+/* Fiyatların ikiye katlanma süresi, her ay geriye dönük ölçüm. */
+function ikiyeKatlanmaCizgi() {
+  var aylar = TE.aylar().filter(function (a) { return a >= "2013-12" && a <= CIVI; });
+  var v = aylar.map(function (a) { return TE.ikiyeKatlanma(a); });
+  var enUzun = 0, enKisa = 0;
+  v.forEach(function (x, i) { if (x > v[enUzun]) enUzun = i; if (x < v[enKisa]) enKisa = i; });
+  if (v[enUzun] !== 109 || v[enKisa] !== 15 || v[v.length - 1] !== 29) throw new Error("ikiye katlanma kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UST = 96, ALT = 292, TAVAN = 120;
+  function x(i) { return SOL + (SAG - SOL) * i / (aylar.length - 1); }
+  function y(m) { return ALT - (ALT - UST) * m / TAVAN; }
+  var s = baslikSatirlari("Fiyatlar kaç ayda ikiye katlandı?", "Her ay geriye dönük ölçüm · aylık TÜFE · Aralık 2013–Ağustos 2026",
+    "Fiyatların ikiye katlanma süresi Mart 2016'da 109 ay, Ocak 2023'te 15 ay, Ağustos 2026'da 29 ay");
+  [0, 24, 48, 72, 96, 120].forEach(function (m) {
+    s += '<path d="M' + SOL + " " + y(m).toFixed(1) + " H" + SAG + '" stroke="' + (m ? R.izgara : R.ikincil) + '" stroke-width="1"/>' +
+      '<text x="' + (SOL - 8) + '" y="' + (y(m) + 4).toFixed(1) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">' +
+      (m ? (m / 12) + " yıl" : "0") + "</text>";
+  });
+  aylar.forEach(function (a, i) {
+    if (a.slice(5) === "01" && (+a.slice(0, 4)) % 2 === 0) {
+      s += '<text x="' + x(i).toFixed(1) + '" y="' + (ALT + 20) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="middle">' + a.slice(0, 4) + "</text>";
+    }
+  });
+  s += '<polyline fill="none" stroke="' + R.marka + '" stroke-width="2" stroke-linejoin="round" points="' +
+    v.map(function (m, i) { return x(i).toFixed(1) + "," + y(m).toFixed(1); }).join(" ") + '"/>';
+  [[enUzun, "start", 10, -10], [enKisa, "middle", 0, 22], [v.length - 1, "end", -4, -14]].forEach(function (n) {
+    var i = n[0];
+    s += '<circle cx="' + x(i).toFixed(1) + '" cy="' + y(v[i]).toFixed(1) + '" r="4.5" fill="' + R.marka + '" stroke="' + R.zemin + '" stroke-width="2"/>' +
+      '<text x="' + (x(i) + n[2]).toFixed(1) + '" y="' + (y(v[i]) + n[3]).toFixed(1) + '" font-size="14" font-weight="800" fill="' + R.murekkep +
+      '" text-anchor="' + n[1] + '">' + v[i] + " ay · " + ayKisa(aylar[i]) + "</text>";
+  });
+  return s + "</svg>";
+}
+
+/* Net asgari ücretin alım gücü, Ağustos 2026 lirasıyla: her zam bir
+   sıçrama, arası erime; kesikli çizgi yıllık ortalama. */
+function asgariReelTestere() {
+  var aylar = TE.aylar().filter(function (a) { return a >= "2020-01" && a <= CIVI; });
+  var v = aylar.map(function (a) { return RM.asgariNet(a) * TE.carpan(a, CIVI) / 1000; });
+  var ort = {};
+  aylar.forEach(function (a, i) { var y0 = a.slice(0, 4); (ort[y0] = ort[y0] || []).push(v[i]); });
+  Object.keys(ort).forEach(function (k) { ort[k] = ort[k].reduce(function (t, z) { return t + z; }, 0) / ort[k].length; });
+  if (Math.round((ort[2024] / ort[2020] - 1) * 100) !== 47) throw new Error("asgari ücret kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UST = 100, ALT = 292, ALTV = 15, USTV = 40;
+  function x(i) { return SOL + (SAG - SOL) * i / (aylar.length - 1); }
+  function y(z) { return ALT - (ALT - UST) * (z - ALTV) / (USTV - ALTV); }
+  var s = baslikSatirlari("Her zam bir sıçrama, arası erime", "Net asgari ücret, Ağustos 2026 fiyatlarıyla · bin TL",
+    "Net asgari ücretin alım gücü 2020 ortalamasında 21 bin, 2024 ortalamasında 31 bin TL; her zamdan sonra yüzde 11 ile 26 arasında eriyor");
+  s += anahtarKutu(24, R.marka, "aylık") + anahtarKutu(96, R.s2, "yıllık ortalama", true);
+  [15, 20, 25, 30, 35, 40].forEach(function (z) {
+    s += '<path d="M' + SOL + " " + y(z).toFixed(1) + " H" + SAG + '" stroke="' + (z === 15 ? R.ikincil : R.izgara) + '" stroke-width="1"/>' +
+      '<text x="' + (SOL - 8) + '" y="' + (y(z) + 4).toFixed(1) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">' + z + "</text>";
+  });
+  aylar.forEach(function (a, i) {
+    if (a.slice(5) === "01") s += '<text x="' + x(i + 5.5).toFixed(1) + '" y="' + (ALT + 20) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="middle">' + a.slice(0, 4) + "</text>";
+  });
+  Object.keys(ort).forEach(function (k) {
+    var i0 = aylar.indexOf(k + "-01"), i1 = aylar.lastIndexOf(aylar.filter(function (a) { return a.slice(0, 4) === k; }).pop());
+    s += '<path d="M' + x(i0).toFixed(1) + " " + y(ort[k]).toFixed(1) + " H" + x(i1).toFixed(1) + '" stroke="' + R.s2 + '" stroke-width="2" stroke-dasharray="4 3"/>';
+    if (k === "2020" || k === "2024") {
+      // Etiket çizginin üstüne binmesin: boş alana, yılın hizasına.
+      var ilk = k === "2020";
+      s += '<text x="' + (ilk ? x(i0) + 4 : (x(i0) + x(i1)) / 2).toFixed(1) + '" y="' + y(ilk ? 26.5 : 38.4).toFixed(1) + '" font-size="13" font-weight="800" fill="' +
+        R.murekkep + '" text-anchor="' + (ilk ? "start" : "middle") + '">' + k + " ort. " + nf0.format(Math.round(ort[k] * 1000)) + " TL</text>";
+    }
+  });
+  s += '<polyline fill="none" stroke="' + R.marka + '" stroke-width="2" stroke-linejoin="round" points="' +
+    v.map(function (z, i) { return x(i).toFixed(1) + "," + y(z).toFixed(1); }).join(" ") + '"/>';
+  return s + "</svg>";
+}
+
+/* Aynı 8 milyonluk mirasın vergisi, sekiz aile yapısında. */
+function mirasAileCubuk() {
+  var AILE = [
+    ["Eş + 3 çocuk", { es: true, cocuk: 3 }], ["Eş + 2 çocuk", { es: true, cocuk: 2 }],
+    ["Eş + 1 çocuk", { es: true, cocuk: 1 }], ["İki çocuk", { es: false, cocuk: 2 }],
+    ["Tek çocuk", { es: false, cocuk: 1 }], ["Yalnız eş", { es: true }],
+    ["Eş + anne ve baba", { es: true, cocuk: 0, ebeveyn: 2 }], ["Anne ve baba", { es: false, cocuk: 0, ebeveyn: 2 }]
+  ];
+  var v = AILE.map(function (a) { return VV.miras({ yil: 2026, tereke: 8e6, aile: a[1] }).toplamVergi; });
+  if (Math.round(v[7]) !== 120000 || v[0] !== 0) throw new Error("miras kapağı yazıyla ayrıştı");
+  var SOL = 170, SAG = 520, UST = 96, SATIR = 25, TAVAN = 130000;
+  function x(z) { return SOL + (SAG - SOL) * z / TAVAN; }
+  var s = baslikSatirlari("Aynı 8 milyon TL, sekiz aile", "2026 veraset ve intikal vergisi, toplam · net tereke 8.000.000 TL",
+    "8 milyon TL mirasta vergi eş ve üç çocukta sıfır, yalnız anne ve baba mirasçıyken 120 bin TL");
+  s += '<path d="M' + SOL + " " + (UST - 6) + " V" + (UST + SATIR * AILE.length - 2) + '" stroke="' + R.ikincil + '" stroke-width="1"/>';
+  AILE.forEach(function (a, i) {
+    var yy = UST + i * SATIR, gen = Math.max(0, x(v[i]) - SOL);
+    s += '<text x="' + (SOL - 10) + '" y="' + (yy + 13) + '" font-size="13" fill="' + R.murekkep + '" text-anchor="end">' + esc(a[0]) + "</text>";
+    if (gen > 0) s += '<rect x="' + SOL + '" y="' + yy + '" width="' + gen.toFixed(1) + '" height="17" rx="3" fill="' + (i === 7 ? R.s2 : R.s1) + '"/>';
+    s += '<text x="' + (SOL + gen + 8).toFixed(1) + '" y="' + (yy + 13) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">' +
+      nf0.format(Math.round(v[i])) + " TL</text>";
+  });
+  return s + "</svg>";
+}
+
+/* Bağış ile miras: aynı değer, ebeveynden tek çocuğa. */
+function bagisMirasCubuk() {
+  var DEG = [3e6, 5e6, 10e6, 20e6];
+  var bag = DEG.map(function (d) { return VV.bagis({ yil: 2026, deger: d, yakin: true }).vergi; });
+  var mir = DEG.map(function (d) { return VV.miras({ yil: 2026, tereke: d, aile: { es: false, cocuk: 1 } }).toplamVergi; });
+  if (Math.round(bag[0]) !== 146653 || Math.round(mir[0]) !== 929) throw new Error("bağış kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UST = 104, ALT = 286, TAVAN = 1800;
+  function y(z) { return ALT - (ALT - UST) * z / TAVAN; }
+  var s = baslikSatirlari("Bağışla geçen ev, mirasla geçenin katları vergi", "2026 veraset ve intikal vergisi · ebeveynden tek çocuğa · bin TL",
+    "3 milyon TL'de bağış vergisi 147 bin, miras vergisi 1 bin TL; 20 milyonda 1.668 bine karşı 595 bin TL");
+  s += anahtarKutu(24, R.s2, "bağış") + anahtarKutu(90, R.s1, "miras");
+  [0, 600, 1200, 1800].forEach(function (z) {
+    s += '<path d="M' + SOL + " " + y(z).toFixed(1) + " H" + SAG + '" stroke="' + (z ? R.izgara : R.ikincil) + '" stroke-width="1"/>' +
+      '<text x="' + (SOL - 8) + '" y="' + (y(z) + 4).toFixed(1) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">' + nf0.format(z) + "</text>";
+  });
+  var gen = (SAG - SOL) / DEG.length, w = 40;
+  DEG.forEach(function (d, i) {
+    var cx = SOL + gen * (i + 0.5);
+    [[bag[i], R.s2, cx - w - 1], [mir[i], R.s1, cx + 1]].forEach(function (c) {
+      var z = c[0] / 1000, top = y(z);
+      s += '<rect x="' + c[2].toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + w + '" height="' + Math.max(0.5, ALT - top).toFixed(1) + '" rx="3" fill="' + c[1] + '"/>' +
+        '<text x="' + (c[2] + w / 2).toFixed(1) + '" y="' + (top - 7).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep +
+        '" text-anchor="middle">' + nf0.format(Math.round(z)) + "</text>";
+    });
+    s += '<text x="' + cx.toFixed(1) + '" y="' + (ALT + 22) + '" font-size="13" font-weight="700" fill="' + R.murekkep + '" text-anchor="middle">' +
+      nf0.format(d / 1e6) + " milyon TL</text>";
+  });
+  return s + "</svg>";
+}
+
+/* Başabaş: kurun yıllık ne kadar artması gerekir, vadeye göre.
+   Stopaj kademesinde testere dişi sıçrama. */
+function basabasTestere() {
+  var G = { anapara: 100000, tlFaiz: 37, dovizFaiz: 1, kur: 48.85 };
+  function yil(gun) { var g = {}; for (var k in G) g[k] = G[k]; g.gun = gun; return DB.hesapla(g); }
+  var tufe = TE.donem("2025-08", CIVI).toplam * 100;
+  if (Math.abs(yil(32).yillikArtis * 100 - 34.14) > 0.005 || Math.abs(tufe - 31.5) > 0.05) throw new Error("başabaş kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UST = 100, ALT = 280, ALTV = 26, USTV = 36, G0 = 30, G1 = 730;
+  function x(g) { return SOL + (SAG - SOL) * (g - G0) / (G1 - G0); }
+  function y(z) { return ALT - (ALT - UST) * (z - ALTV) / (USTV - ALTV); }
+  var s = baslikSatirlari("Kur yılda ne kadar artarsa döviz kazanır?", "Örnek: TL %37, döviz %1 brüt faiz · stopaj düşülmüş · yıllık karşılık",
+    "Gereken yıllık kur artışı 32 günde yüzde 34,1; vade 1 yılı aşınca TL stopajı yüzde 10'a indiği için eşik sıçrıyor");
+  s += anahtarKutu(24, R.marka, "gereken kur artışı") + anahtarKutu(156, R.s2, "yıllık enflasyon, Ağu 2026", true);
+  [26, 28, 30, 32, 34, 36].forEach(function (z) {
+    s += '<path d="M' + SOL + " " + y(z).toFixed(1) + " H" + SAG + '" stroke="' + (z === 26 ? R.ikincil : R.izgara) + '" stroke-width="1"/>' +
+      '<text x="' + (SOL - 8) + '" y="' + (y(z) + 4).toFixed(1) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">%' + z + "</text>";
+  });
+  var parca = [], simdiki = [], onceki = null;
+  for (var g = G0; g <= G1; g++) {
+    var r = yil(g);
+    if (onceki !== null && r.tl.stopajOrani !== onceki) { parca.push(simdiki); simdiki = []; }
+    simdiki.push([g, r.yillikArtis * 100]); onceki = r.tl.stopajOrani;
+  }
+  parca.push(simdiki);
+  var bantlar = ["stopaj %17,5", "%15", "%10"];
+  parca.forEach(function (p, i) {
+    s += '<polyline fill="none" stroke="' + R.marka + '" stroke-width="2" stroke-linejoin="round" points="' +
+      p.map(function (q) { return x(q[0]).toFixed(1) + "," + y(q[1]).toFixed(1); }).join(" ") + '"/>';
+    if (i > 0) {
+      var a = parca[i - 1][parca[i - 1].length - 1], b = p[0];
+      s += '<path d="M' + x(a[0]).toFixed(1) + " " + y(a[1]).toFixed(1) + " L" + x(b[0]).toFixed(1) + " " + y(b[1]).toFixed(1) +
+        '" stroke="' + R.marka + '" stroke-width="1" stroke-dasharray="2 2"/>';
+    }
+    var orta = (p[0][0] + p[p.length - 1][0]) / 2;
+    s += '<text x="' + x(orta).toFixed(1) + '" y="' + (ALT + 38) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="middle">' + bantlar[i] + "</text>";
+  });
+  s += '<path d="M' + SOL + " " + y(tufe).toFixed(1) + " H" + SAG + '" stroke="' + R.s2 + '" stroke-width="2" stroke-dasharray="4 3"/>';
+  [32, 182, 366, 730].forEach(function (g2) {
+    s += '<text x="' + x(g2).toFixed(1) + '" y="' + (ALT + 20) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="middle">' + g2 + " gün</text>";
+  });
+  var s366 = yil(366).yillikArtis * 100;
+  s += '<circle cx="' + x(366).toFixed(1) + '" cy="' + y(s366).toFixed(1) + '" r="4.5" fill="' + R.marka + '" stroke="' + R.zemin + '" stroke-width="2"/>' +
+    '<text x="' + (x(366) + 10).toFixed(1) + '" y="' + (y(s366) - 10).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">366. gün: stopaj %15 → %10</text>';
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "dolar-mi-tl-mevduat-mi": {
+    kicker: "Birikim · Mevduat",
+    baslik: "Dolar mı TL mevduat mı?",
+    alt: "Kurun ne kadar artması gerekir: vade, stopaj ve makas",
+    cizim: basabasTestere
+  },
+  "bagis-mi-miras-mi-vergi": {
+    kicker: "Vergi · Miras",
+    baslik: "Evi çocuğa bağışlamak mı, miras mı?",
+    alt: "3 milyon TL'lik ev: bağışla 146.653, mirasla 929 TL vergi",
+    cizim: bagisMirasCubuk
+  },
+  "miras-kalan-ev-icin-vergi": {
+    kicker: "Vergi · Miras",
+    baslik: "Miras kalan ev için vergi ödenir mi?",
+    alt: "Aynı 8 milyon TL: sıfırdan 120.000 TL'ye, mirasçıya göre",
+    cizim: mirasAileCubuk
+  },
+  "asgari-ucret-enflasyona-yenildi-mi": {
+    kicker: "Bordro · Enflasyon",
+    baslik: "Asgari ücret enflasyona yenildi mi?",
+    alt: "Ortalamada %47 arttı, her zamdan sonra %11–26 eridi",
+    cizim: asgariReelTestere
+  },
+  "fiyatlar-kac-ayda-ikiye-katlaniyor": {
+    kicker: "Finans · Enflasyon",
+    baslik: "Fiyatlar kaç ayda ikiye katlanıyor?",
+    alt: "Dokuz yıldan 15 aya, sonra 29 aya",
+    cizim: ikiyeKatlanmaCizgi
+  },
   "ciro-artarken-nakit-neden-azalir": {
     kicker: "Finans · İşletme sermayesi",
     baslik: "Ciro artarken nakit neden azalır?",

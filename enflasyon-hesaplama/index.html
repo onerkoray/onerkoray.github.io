@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enflasyon Hesaplama — Paranın Bugünkü Değeri | Koray Öner</title>
+  <meta name="description" content="Geçmişteki bir tutar bugün kaç TL eder? 2005'ten bu yana aylık TÜFE ile iki tarih arası enflasyon, yıllık ortalama ve alım gücü kaybı.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/enflasyon-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Enflasyon hesaplama — geçmişteki para bugün kaç TL?">
+  <meta property="og:description" content="İki tarih arası enflasyon, paranın bugünkü karşılığı ve alım gücü kaybı. Aylık TÜFE, 2005'ten bugüne, her gün güncel.">
+  <meta property="og:url" content="https://korayoner.dev/enflasyon-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/enflasyon-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Enflasyon hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Enflasyon hesaplama">
+  <meta name="twitter:description" content="Geçmişteki bir tutar bugün kaç TL eder? Aylık TÜFE ile, iki yönde.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/enflasyon-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=89def2bd">
+  <link rel="stylesheet" href="style.css?v=a295c77c">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/enflasyon-hesaplama/#app",
+        "name": "Enflasyon Hesaplama",
+        "url": "https://korayoner.dev/enflasyon-hesaplama/",
+        "description": "İki tarih arasındaki tüketici enflasyonunu, bir tutarın başka bir tarihteki karşılığını ve alım gücü kaybını aylık TÜFE serisiyle hesaplayan ücretsiz araç.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Tarayıcı",
+        "inLanguage": "tr",
+        "image": "https://korayoner.dev/images/enflasyon-hesaplama-koray-oner.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Enflasyon Hesaplama", "item": "https://korayoner.dev/enflasyon-hesaplama/"}]}</script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Enflasyon Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Finans · TÜFE</p>
+        <h1 id="hero-title">Geçmişteki para bugün kaç TL eder?</h1>
+        <p class="lede">İki tarih seçin: araç o dönemin tüketici enflasyonunu,
+          tutarınızın karşılığını ve alım gücü kaybını aylık TÜFE serisiyle
+          hesaplar. Seri 2005'ten başlıyor ve her iş günü TCMB'den
+          güncelleniyor.</p>
+        <p class="muted en-kunye" id="en-kunye">Kaynak: TÜİK Tüketici Fiyat Endeksi (TCMB yayını)
+          · Hesap tarayıcınızda çalışır, veri gönderilmez</p>
+      </div>
+    </section>
+
+    <section class="calc" id="hesapla" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="calc-title">Enflasyon hesabı</h2>
+        <form class="panel" id="en-form" novalidate>
+          <div class="en-alanlar">
+            <p class="panel-q">
+              <label for="en-tutar">Tutar (TL)</label>
+              <input id="en-tutar" type="text" inputmode="decimal" autocomplete="off" value="1.000" placeholder="örn. 1.000">
+            </p>
+            <fieldset class="en-tarih">
+              <legend>Tutarın ait olduğu ay</legend>
+              <label class="visually-hidden" for="en-bas-ay">Başlangıç ayı</label>
+              <select id="en-bas-ay"></select>
+              <label class="visually-hidden" for="en-bas-yil">Başlangıç yılı</label>
+              <select id="en-bas-yil"></select>
+            </fieldset>
+            <fieldset class="en-tarih">
+              <legend>Hangi ayın fiyatlarıyla?</legend>
+              <label class="visually-hidden" for="en-son-ay">Bitiş ayı</label>
+              <select id="en-son-ay"></select>
+              <label class="visually-hidden" for="en-son-yil">Bitiş yılı</label>
+              <select id="en-son-yil"></select>
+            </fieldset>
+          </div>
+          <p class="en-kisayol">
+            <button type="button" class="btn en-cevir" id="en-cevir">Tarihleri yer değiştir</button>
+          </p>
+        </form>
+
+        <div id="en-sonuc" aria-live="polite"></div>
+        <p class="muted-note" id="en-mesaj">Tutarı ve iki tarihi seçin; hesap otomatik çalışır.</p>
+
+        <div class="en-grafik-blok" id="en-grafik-blok" hidden>
+          <h3>Fiyat düzeyi, seçilen dönem</h3>
+          <p class="muted">Başlangıç ayının fiyatları 1 kabul edilir; çizgi fiyatların
+            kaç katına çıktığını gösterir. Yatay kesikli çizgiler iki, dört ve sekiz kat.</p>
+          <div class="grafik-kap">
+            <svg id="en-grafik" viewBox="0 0 760 300" role="img" aria-labelledby="en-grafik-baslik"></svg>
+            <p id="en-grafik-baslik" class="visually-hidden">Seçilen iki tarih arasında fiyat düzeyinin başlangıca göre katı; yıllık oranlar aşağıdaki tabloda.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <h2 id="nasil">Nasıl hesaplanır?</h2>
+      <p>TÜİK her ay tüketici fiyatlarının bir önceki aya göre değişimini
+        açıklar. İki tarih arasındaki fiyat artışı bu aylık değişimlerin
+        <strong>çarpımıdır</strong>, toplamı değil:</p>
+      <p class="formula">çarpan = (1 + aylık₁) × (1 + aylık₂) × … × (1 + aylıkₙ)</p>
+      <p class="formula">karşılık = tutar × çarpan</p>
+      <p>Başlangıç ayı o ayın fiyat düzeyidir; çarpan bir sonraki aydan
+        itibaren bitiş ayına kadarki bütün aylık değişimleri içerir. Yıllık
+        ortalama enflasyon, çarpanın dönem uzunluğuna göre bileşik
+        karşılığıdır: çarpan<sup>12 / ay sayısı</sup> − 1. Aylık oranları
+        toplamak ya da yıllık oranların ortalamasını almak yanlış sonuç
+        verir; yüksek enflasyonda fark büyüktür.</p>
+      <p>Seri iki ondalığa yuvarlanmış aylık oranlardan kurulduğu için
+        çarpımın küçük bir yuvarlama hatası taşıması beklenir. Ölçüldü:
+        zincirlenmiş 12 aylık değişim, TÜİK'in açıkladığı yıllık orandan
+        ortalama 0,01 puandan az sapıyor; 20 yıllık çarpanda fark binde bir
+        bile değil. Bu kontrol her gece yeni veriyle yeniden çalışıyor.</p>
+
+      <h2 id="ornekler">Birkaç örnek</h2>
+      <ul>
+        <li>Ocak 2020'deki 1.000 TL, Ağustos 2026 fiyatlarıyla
+          <strong>9.603,60 TL</strong> eder. Yıllık ortalama enflasyon %41,00;
+          alım gücü kaybı %89,59.</li>
+        <li>Ocak 2005'teki 1.000 TL, Ağustos 2026 fiyatlarıyla
+          <strong>37.457,04 TL</strong> eder.</li>
+        <li>Fiyatların ikiye katlanma süresi Ocak 2023'te biten dönemde
+          <strong>15 aya</strong> kadar indi. Ayrıntı:
+          <a href="../makaleler/fiyatlar-kac-ayda-ikiye-katlaniyor/">fiyatlar kaç ayda ikiye katlanıyor?</a></li>
+      </ul>
+
+      <h2 id="sinir">Bu araç neyi ölçmez</h2>
+      <ul>
+        <li>Sizin harcamanızı değil, TÜİK sepetini ölçer. Kendi sepetinizin
+          değişimi için <a href="../kisisel-enflasyon/">kişisel enflasyon</a> aracını kullanın.</li>
+        <li>Faiz, kur ya da maaş değişimi içermez. Maaşınızın enflasyona
+          göre seyri için <a href="../reel-maas-hesaplama/">reel maaş hesaplama</a>.</li>
+        <li>Resmî TÜFE endeks düzeyini değil, aylık değişimlerden kurulan
+          zinciri kullanır; fark yukarıda ölçülüyor.</li>
+      </ul>
+    </div>
+
+    <section class="content">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanak</h2>
+          <ul>
+            <li>TÜİK, Tüketici Fiyat Endeksi (2003=100), aylık haber bültenleri.</li>
+            <li>TCMB, Enflasyon Verileri — Tüketici Fiyatları tablosu (aylık ve yıllık % değişim).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>2020'deki 1.000 TL bugün kaç TL?</summary><p>Ocak 2020'deki 1.000 TL, Ağustos 2026 fiyatlarıyla 9.603,60 TL eder. Aynı sepeti alabilmek için 9,6 kat para gerekir. Daha yeni aylar için araç her gün güncel veriyle hesaplar.</p></details>
+          <details><summary>Aylık enflasyonları toplayarak yıllık bulunur mu?</summary><p>Hayır. Aylık değişimler birbirinin üzerine biner, bu yüzden çarpılır. Her ay %3 artış, yılda %36 değil %42,58 eder.</p></details>
+          <details><summary>Yıllık ortalama enflasyon nasıl bulunur?</summary><p>Dönemin toplam çarpanının yıl sayısına göre kökü alınır: çarpan üzeri (12 ÷ ay sayısı), eksi 1. Yıllık oranların aritmetik ortalaması bu değeri vermez.</p></details>
+          <details><summary>Alım gücü kaybı neyi gösterir?</summary><p>Başlangıçtaki paranın bugün, o gün alabildiğinin ne kadarını alamadığını. Fiyatlar iki katına çıktığında alım gücü kaybı %50'dir, %100 değil.</p></details>
+          <details><summary>Veriler ne kadar güncel?</summary><p>TÜİK her ayın 3'ünde bir önceki ayın verisini açıklar; site her iş günü TCMB tablosunu kontrol eder ve yeni ayı ekler. Seçebileceğiniz en son ay, açıklanmış son aydır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../reel-maas-hesaplama/">Reel maaş hesaplama</a> — maaşınız enflasyona yenildi mi?</li>
+          <li><a href="../kisisel-enflasyon/">Kişisel enflasyon</a> — kendi sepetinizin değişimi.</li>
+          <li><a href="../birikim-hesaplama/">BES ve birikim hesaplama</a> — reel getiri.</li>
+          <li><a href="../makaleler/fiyatlar-kac-ayda-ikiye-katlaniyor/">Fiyatlar kaç ayda ikiye katlanıyor?</a> — 2005–2026 ölçümü (yazı).</li>
+          <li><a href="../makaleler/enflasyon-duserken-fiyatlar-neden-dusmuyor/">Enflasyon düşerken fiyatlar neden düşmüyor?</a> (yazı)</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanak</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanak</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../finans/tufe-serisi.js?v=3f904d8e" defer></script>
+  <script src="../finans/tufe-endeksi.js?v=e7cec7e0" defer></script>
+  <script src="script.js?v=f2a01be4" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>

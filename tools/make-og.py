@@ -231,6 +231,26 @@ SPEC = {
    "Vergi dilimleri enflasyonla büyüseydi maaşınızdan ne kadar vergi kesilirdi? Üç ölçüt, kuruşu kuruşuna.",
    ["DOI'li yöntem", "Üç ölçüt"], "vergi"),
 
+ "reel-maas-hesaplama": ("reel-maas-hesaplama", "Reel Maaş", "Hesaplama",
+   "Maaşınız enflasyona yenildi mi? İki tarihteki neti TÜFE ile karşılaştırır.",
+   ["TÜFE serisi", "Brüt ya da net"], "bordro"),
+
+ "asgari-ucret-zam-senaryosu": ("asgari-ucret-zam-senaryosu", "Asgari Ücret", "Zammı Senaryosu",
+   "Zam ve dilim artışını siz girin: 2027 net asgari ücret, SGK tavanı ve maaşınızın neti.",
+   ["Bordro motoru", "Dört etki"], "bordro"),
+
+ "enflasyon-hesaplama": ("enflasyon-hesaplama", "Enflasyon", "Hesaplama",
+   "İki tarih arası TÜFE enflasyonu ve paranın bugünkü değeri. 2005'ten aylık seri.",
+   ["TCMB serisi", "2005'ten"], "finans"),
+
+ "tl-mi-doviz-mi-hesaplama": ("tl-mi-doviz-mi-hesaplama", "TL mi Döviz mi?", "Başabaş Kur",
+   "Kur vade sonunda ne kadar artarsa döviz mevduatı TL'yi geçer? Stopaj ve makas dahil.",
+   ["Stopaj dahil", "Kur makası"], "finans"),
+
+ "veraset-ve-intikal-vergisi-hesaplama": ("veraset-ve-intikal-vergisi-hesaplama", "Veraset ve İntikal", "Vergisi 2026",
+   "Miras ve bağışta vergi: yasal paylar, mirasçı başına istisna ve dilim.",
+   ["2026 tebliği", "Bağış & miras"], "vergi"),
+
  "vergi-kamasi-hesaplama": ("vergi-kamasi-hesaplama", "Vergi Kaması", "Hesaplama",
    "İşveren maliyeti ile net ücret arasındaki fark. Zirve 100.000 TL'de değil, SGK tavanında.",
    ["OECD tanımı", "Marjinal oran"], "bordro"),

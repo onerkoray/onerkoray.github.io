@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reel Maaş Hesaplama — Enflasyona Yenildi mi? | Koray Öner</title>
+  <meta name="description" content="Maaşınız enflasyona yenildi mi? İki tarihteki netinizi TÜFE ile karşılaştırın: alım gücü değişimi, olması gereken maaş ve asgari ücretin kaç katı.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/reel-maas-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Reel maaş hesaplama — maaşınız enflasyona yenildi mi?">
+  <meta property="og:description" content="İki tarihteki maaşınızı TÜFE ile karşılaştırın: alım gücü değişimi, olması gereken maaş ve vergi yükünün payı.">
+  <meta property="og:url" content="https://korayoner.dev/reel-maas-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/reel-maas-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Reel maaş hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Reel maaş hesaplama">
+  <meta name="twitter:description" content="Maaşınız enflasyona yenildi mi? İki tarihteki netinizi TÜFE ile karşılaştırın.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/reel-maas-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=89def2bd">
+  <link rel="stylesheet" href="style.css?v=4467b3b2">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/reel-maas-hesaplama/#app",
+        "name": "Reel Maaş Hesaplama",
+        "url": "https://korayoner.dev/reel-maas-hesaplama/",
+        "description": "İki tarihteki net ya da brüt maaşı TÜFE ile karşılaştırıp alım gücü değişimini, enflasyona göre olması gereken maaşı ve asgari ücrete göre konumu hesaplayan ücretsiz araç.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Tarayıcı",
+        "inLanguage": "tr",
+        "image": "https://korayoner.dev/images/reel-maas-hesaplama-koray-oner.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Reel Maaş Hesaplama", "item": "https://korayoner.dev/reel-maas-hesaplama/"}]}</script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Tema</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Reel Maaş Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Bordro · Enflasyon</p>
+        <h1 id="hero-title">Maaşınız enflasyona yenildi mi?</h1>
+        <p class="lede">Eski ve yeni maaşınızı girin. Araç iki tarih arasındaki
+          tüketici enflasyonunu hesaplar ve alım gücünüzün ne kadar değiştiğini,
+          enflasyona yenilmemek için bugün en az ne kazanmanız gerektiğini ve
+          asgari ücrete göre konumunuzun nasıl kaydığını söyler. Brüt girerseniz
+          neti o ayın gerçek bordrosundan hesaplar.</p>
+        <p class="muted rm-kunye" id="rm-kunye">Fiyatlar: TÜİK TÜFE (TCMB) · Bordro: <a href="../bordro/">bordro motoru</a>
+          · Tarayıcınızda çalışır, veri gönderilmez</p>
+      </div>
+    </section>
+
+    <section class="calc" id="hesapla" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="calc-title">Reel maaş hesabı</h2>
+        <form class="panel" id="rm-form" novalidate>
+          <div class="rm-ikili">
+            <fieldset class="rm-uc">
+              <legend>Eski maaş</legend>
+              <p class="rm-tarih">
+                <label for="rm-eski-ay">Ay</label><select id="rm-eski-ay"></select>
+                <label for="rm-eski-yil">Yıl</label><select id="rm-eski-yil"></select>
+              </p>
+              <p class="panel-q">
+                <label for="rm-eski-tutar">Aylık tutar (TL)</label>
+                <input id="rm-eski-tutar" type="text" inputmode="decimal" autocomplete="off" value="30.000">
+              </p>
+              <p class="panel-q">
+                <label for="rm-eski-tur">Tutar türü</label>
+                <select id="rm-eski-tur"><option value="net">Net (ele geçen)</option><option value="brut">Brüt</option></select>
+              </p>
+            </fieldset>
+            <fieldset class="rm-uc">
+              <legend>Yeni maaş</legend>
+              <p class="rm-tarih">
+                <label for="rm-yeni-ay">Ay</label><select id="rm-yeni-ay"></select>
+                <label for="rm-yeni-yil">Yıl</label><select id="rm-yeni-yil"></select>
+              </p>
+              <p class="panel-q">
+                <label for="rm-yeni-tutar">Aylık tutar (TL)</label>
+                <input id="rm-yeni-tutar" type="text" inputmode="decimal" autocomplete="off" value="60.000">
+              </p>
+              <p class="panel-q">
+                <label for="rm-yeni-tur">Tutar türü</label>
+                <select id="rm-yeni-tur"><option value="net">Net (ele geçen)</option><option value="brut">Brüt</option></select>
+              </p>
+            </fieldset>
+          </div>
+        </form>
+
+        <div id="rm-sonuc" aria-live="polite"></div>
+        <p class="muted-note" id="rm-mesaj">İki maaşı ve tarihlerini girin; hesap otomatik çalışır.</p>
+      </div>
+    </section>
+
+    <div class="wrap prose">
+      <h2 id="nasil">Nasıl hesaplanır?</h2>
+      <p>Önce iki tarih arasındaki fiyat artışı, aylık TÜFE değişimlerinin
+        çarpımıyla bulunur. Sonra maaşın değişimi bu çarpana bölünür:</p>
+      <p class="formula">reel değişim = (yeni net ÷ eski net) ÷ fiyat çarpanı − 1</p>
+      <p class="formula">enflasyona göre olması gereken net = eski net × fiyat çarpanı</p>
+      <p>Karşılaştırma nete dayanır, çünkü alım gücünü ele geçen para
+        belirler. Brüt girildiğinde net, o ayın 12 aylık bordrosundan alınır:
+        aynı brüt, kümülatif vergi yüzünden ocakta aralıktan yüksek net verir.
+        Karşılaştırmayı iki ucu aynı aya denk getirerek yapmak (ör. iki
+        ocak) bu etkiyi ayıklar.</p>
+      <p>İki uç da brüt verildiğinde araç bir adım daha atar: netin reel
+        değişimini brütün reel değişiminden ayırır. Aradaki fark vergi ve
+        prim kesintisinin oranındaki değişimden gelir. Kesinti oranı
+        yükseldiyse zammınızın bir kısmını vergi yemiştir.</p>
+
+      <h2 id="asgari">Asgari ücretin kaç katı?</h2>
+      <p>Aynı dönemde asgari ücret de değişir. Araç netinizi her iki tarihte o
+        ayın resmî net asgari ücretine böler. Katınız düştüyse maaşınız asgari
+        ücrete yaklaşmıştır; enflasyonu yenseniz bile ücret dağılımındaki yeriniz
+        aşağı kaymış olabilir. Asgari ücretin 2020'den bu yana reel seyri için:
+        <a href="../makaleler/asgari-ucret-enflasyona-yenildi-mi/">asgari ücret
+        enflasyona yenildi mi?</a></p>
+
+      <h2 id="sinir">Bu araç neyi kapsamıyor</h2>
+      <ul>
+        <li>Brütten nete dönüşüm 2020–2026 bordro yılları için yapılır; daha
+          eski tarihlerde net girin.</li>
+        <li>İkramiye, prim ve yan haklar hesaba girmez; aylık düzenli ücret
+          karşılaştırılır.</li>
+        <li>Fiyat ölçüsü TÜİK sepetidir; kendi harcamanız farklı artmış
+          olabilir (<a href="../kisisel-enflasyon/">kişisel enflasyon</a>).</li>
+      </ul>
+    </div>
+
+    <section class="content">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Dayanak</h2>
+          <ul>
+            <li>TÜİK Tüketici Fiyat Endeksi, aylık % değişim (TCMB Tüketici Fiyatları tablosu).</li>
+            <li>193 sayılı Gelir Vergisi Kanunu m.103 ve m.23/1-(18); 5510 sayılı Kanun m.82.</li>
+            <li>Asgari Ücret Tespit Komisyonu kararları, 2020–2026 (Resmî Gazete).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Maaşım yüzde 100 arttı, enflasyonu yendim mi?</summary><p>Aynı dönemde fiyatlar ne kadar arttıysa ona bağlı. Ocak 2023'te 30.000 TL net alan biri Ağustos 2026'da 60.000 TL alıyorsa, maaşı iki katına çıkmıştır ama fiyatlar 3,56 katına çıktığı için alım gücü %43,88 azalmıştır. Aynı alım gücü için 106.915,65 TL gerekirdi.</p></details>
+          <details><summary>Neden brüt değil net karşılaştırılıyor?</summary><p>Alım gücünü ele geçen para belirler. Brüt artsa bile kesinti oranı yükselmişse net daha az artar; araç iki uç da brüt verildiğinde bu farkı ayrıca gösterir.</p></details>
+          <details><summary>Ocak ile ağustos maaşını karşılaştırmak doğru mu?</summary><p>Brüt ücrette net yıl içinde değişir; ocak neti yılın en yüksek netidir. Karşılaştırmayı iki ucu aynı aya denk getirerek yapmak daha doğru sonuç verir.</p></details>
+          <details><summary>Asgari ücretin katı neden önemli?</summary><p>Enflasyonu yenen bir maaş, asgari ücret daha hızlı arttıysa ücret dağılımında aşağı kaymış olabilir. Kat, maaşınızın asgari ücrete göre yerini gösterir.</p></details>
+          <details><summary>Girdiğim tutarlar kaydediliyor mu?</summary><p>Hayır. Hesap tamamen tarayıcınızda yapılır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar ve yazılar</h2>
+        <ul>
+          <li><a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a> — iki tarih arası enflasyon ve paranın değeri.</li>
+          <li><a href="../zam-hesaplama/">Zam hesaplama</a> — brüt zammın nete yansıması.</li>
+          <li><a href="../maas-hesaplama/">Brüt net maaş hesaplama</a> — 12 aylık bordro.</li>
+          <li><a href="../makaleler/asgari-ucret-enflasyona-yenildi-mi/">Asgari ücret enflasyona yenildi mi?</a> — 2020–2026 reel seyir (yazı).</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Dayanak</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Dayanak</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=86b81853" defer></script>
+  <script src="../bordro/motor.js?v=89d92ff6" defer></script>
+  <script src="../finans/tufe-serisi.js?v=3f904d8e" defer></script>
+  <script src="../finans/tufe-endeksi.js?v=e7cec7e0" defer></script>
+  <script src="../finans/reel-maas.js?v=6f69586c" defer></script>
+  <script src="script.js?v=df31ba7c" defer></script>
+  <script src="../script.js?v=5127b7a8" defer></script>
+</body>
+</html>
