@@ -136,6 +136,46 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/gecikme-zammi-hesaplama/</loc>
+    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/gecikme-zammi-hesaplama-koray-oner.png</image:loc>
+      <image:title>Gecikme Zammı Hesaplama 2026 — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/kira-getirisi-hesaplama/</loc>
+    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/kira-getirisi-hesaplama-koray-oner.png</image:loc>
+      <image:title>Kira Getirisi ve Amortisman Hesaplama — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/faiz-donusturucu/</loc>
+    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/faiz-donusturucu-koray-oner.png</image:loc>
+      <image:title>Faiz Dönüştürücü — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/ne-kadar-kredi-cekebilirim/</loc>
+    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/ne-kadar-kredi-cekebilirim-koray-oner.png</image:loc>
+      <image:title>Ne Kadar Kredi Çekebilirim? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/</loc>
+    <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/bag-kur-ve-borclanma-hesaplama-koray-oner.png</image:loc>
+      <image:title>Bağ-Kur ve Borçlanma Hesaplama 2026 — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/dilim-kaymasi-hesaplama/</loc>
     <lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <image:image>
@@ -259,7 +299,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/kredi-hesaplama/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -319,7 +359,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/emekli-ayligi-hesaplama/</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -375,7 +415,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/kira-geliri-vergisi-hesaplama/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -485,7 +525,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/mtv-hesaplama/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
