@@ -15,7 +15,8 @@ var B = S.bordro();
 var t = S.yazi(__dirname);
 
 t.dogru("baz yıl 2026", A.bazYil() === 2026, String(A.bazYil()));
-[[33030, "33.030 TL (asgari)"], [60000, "60.000 TL"], [100000, "100.000 TL"], [200000, "200.000 TL"]].forEach(function (k) {
+var ASG = B.parametre(2026).donemler[0].asgariBrut;
+[[ASG, S.tam(ASG) + " TL (asgari)"], [60000, "60.000 TL"], [100000, "100.000 TL"], [200000, "200.000 TL"]].forEach(function (k) {
   var h = [0.25, 0.20, 0.15, 0.10].map(function (ta) { return S.tl(A.hesapla({ asgariArtis: 0.25, tarifeArtis: ta, brut: k[0] }).ucret.endeksFarki) + " TL"; });
   t.gecsin("satır " + k[0], k[1] + " " + h.join(" "));
 });
