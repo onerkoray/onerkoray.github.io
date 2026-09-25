@@ -50,21 +50,36 @@
 .tb-tablo td { font-variant-numeric: tabular-nums; }
 .tb-basabas td { font-weight: 700; }
 
+
+/* Özet şeridi: ölçüler tek satırda eşit hücreler. Dar ekranda iki sütun;
+   tek kalan hücre tam genişlik alır, yarım satır kalmaz. */
 .tb-olcu {
-  margin: 1rem 0;
+  margin: 1.2rem 0;
   display: grid;
-  gap: 0 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
 }
 .tb-olcu > div {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: .55rem 0;
-  border-bottom: 1px solid var(--border);
+  flex-direction: column;
+  gap: .3rem;
+  padding: .85rem 1rem;
+  border-inline-start: 1px solid var(--border);
 }
-.tb-olcu dt { color: var(--text-muted); font-size: var(--step--1); }
-.tb-olcu dd { margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; text-align: right; }
+.tb-olcu > div:first-child { border-inline-start: 0; }
+.tb-olcu dt { color: var(--text-muted); font-size: var(--step--1); line-height: 1.35; }
+.tb-olcu dd { margin: 0; font-weight: 700; font-size: var(--step-0); font-variant-numeric: tabular-nums; }
+.tb-olcu dd small { display: block; margin-top: .15rem; color: var(--text-muted); font-weight: 400; font-size: var(--step--1); }
+@media (max-width: 720px) {
+  .tb-olcu { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tb-olcu > div { border-inline-start: 0; border-block-start: 1px solid var(--border); }
+  .tb-olcu > div:nth-child(-n+2) { border-block-start: 0; }
+  .tb-olcu > div:nth-child(even) { border-inline-start: 1px solid var(--border); }
+  .tb-olcu > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
 
 .formula {
   font-family: var(--font-mono);
@@ -77,4 +92,17 @@
 }
 @media (max-width: 520px) {
   .tb-kart-deger { font-size: var(--step-1); }
+}
+
+/* Dar ekran: satırlar etiketli kartlar. Sağdan kesilen sütun kalmaz. */
+@media (max-width: 600px) {
+  .tb-tablo thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .tb-tablo, .tb-tablo tbody, .tb-tablo tr { display: block; inline-size: 100%; }
+  .data-table.tb-tablo { min-width: 0; }
+  .tb-tablo caption { display: block; padding-bottom: .5rem; }
+  .tb-tablo tr { padding: .55rem .75rem; border-bottom: 1px solid var(--border); }
+  .tb-tablo tbody th[scope="row"] { display: block; padding: .15rem 0 .3rem; border: 0; text-align: left; font-weight: 700; }
+  .tb-tablo td { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .18rem 0; border: 0; text-align: right; white-space: normal; }
+  .tb-tablo td::before { content: attr(data-etiket); color: var(--text-muted); font-size: var(--step--1); text-align: left; }
+  .tb-tablo td:empty { display: none; }
 }

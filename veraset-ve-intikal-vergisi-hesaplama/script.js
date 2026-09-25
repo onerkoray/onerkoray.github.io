@@ -5,6 +5,19 @@
 (function () {
   "use strict";
 
+  /* Dar ekranda tablo satırları etiketli kartlara döner (CSS). Etiket,
+     sütun başlığından kopyalanır; başlık tek kaynak kalır. */
+  function etiketle(kok) {
+    Array.prototype.forEach.call(kok.querySelectorAll("table.vi-tablo"), function (t) {
+      var bas = Array.prototype.map.call(t.querySelectorAll("thead th"), function (th) { return th.textContent.trim(); });
+      Array.prototype.forEach.call(t.querySelectorAll("tbody tr"), function (tr) {
+        Array.prototype.forEach.call(tr.children, function (c, i) {
+          if (c.tagName === "TD" && bas[i]) c.setAttribute("data-etiket", bas[i]);
+        });
+      });
+    });
+  }
+
   var V = window.Veraset;
   if (!V) return;
   function $(id) { return document.getElementById(id); }
@@ -88,7 +101,7 @@
     $("vi-miras-alan").hidden = m !== "miras";
     $("vi-bagis-alan").hidden = m !== "bagis";
     try {
-      cikti.innerHTML = m === "miras" ? mirasCiz() : bagisCiz();
+      cikti.innerHTML = m === "miras" ? mirasCiz() : bagisCiz(); etiketle(cikti);
       mesaj.textContent = "2026 tutarlarıyla hesaplandı. Hesap tarayıcınızda yapıldı.";
     } catch (e) {
       cikti.innerHTML = "";

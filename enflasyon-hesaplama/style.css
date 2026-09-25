@@ -37,30 +37,57 @@
 .en-manset p { margin: .2rem 0; }
 .en-manset p + p { font-size: var(--step-0); color: var(--text-muted); }
 
-.en-olcu {
-  margin: 1rem 0;
-  display: grid;
-  gap: 0 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+.en-tablo { margin-top: 1.4rem; }
+.en-tablo caption { text-align: left; font-weight: 650; padding-bottom: .5rem; }
+.en-tablo td { font-variant-numeric: tabular-nums; }
+.en-cubuk-bas { inline-size: 55%; }
+.en-cubuk { vertical-align: middle; }
+.en-cubuk span {
+  display: block;
+  block-size: .7rem;
+  border-radius: 0 3px 3px 0;
+  background: var(--dv-1);
 }
-.en-olcu > div {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: .55rem 0;
-  border-bottom: 1px solid var(--border);
-}
-.en-olcu dt { color: var(--text-muted); font-size: var(--step--1); }
-.en-olcu dd { margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; }
-.en-tablo { margin-top: 1rem; max-width: 420px; }
 
-.en-grafik-blok { margin-top: 2rem; }
+.en-grafik-blok { margin-block: 2.2rem 1.6rem; }
 .grafik-kap { margin-block: 1rem 0; overflow-x: auto; }
-#en-grafik { inline-size: 100%; block-size: auto; min-inline-size: 520px; display: block; }
+#en-grafik { inline-size: 100%; block-size: auto; display: block; }
 .eksen-cizgi { stroke: var(--text-muted); stroke-width: 1; }
 .en-kat { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; }
 .eksen { fill: var(--text-muted); font-size: 11px; }
 .en-seri { fill: none; stroke: var(--dv-1); stroke-width: 2.6; stroke-linejoin: round; }
+.en-uc { fill: var(--dv-1); stroke: var(--surface); stroke-width: 2; }
+.en-uc-yazi { fill: var(--text); font-size: 13px; font-weight: 700; }
+
+/* Özet şeridi: ölçüler tek satırda eşit hücreler. Dar ekranda iki sütun;
+   tek kalan hücre tam genişlik alır, yarım satır kalmaz. */
+.en-olcu {
+  margin: 1.2rem 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.en-olcu > div {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  padding: .85rem 1rem;
+  border-inline-start: 1px solid var(--border);
+}
+.en-olcu > div:first-child { border-inline-start: 0; }
+.en-olcu dt { color: var(--text-muted); font-size: var(--step--1); line-height: 1.35; }
+.en-olcu dd { margin: 0; font-weight: 700; font-size: var(--step-0); font-variant-numeric: tabular-nums; }
+.en-olcu dd small { display: block; margin-top: .15rem; color: var(--text-muted); font-weight: 400; font-size: var(--step--1); }
+@media (max-width: 720px) {
+  .en-olcu { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .en-olcu > div { border-inline-start: 0; border-block-start: 1px solid var(--border); }
+  .en-olcu > div:nth-child(-n+2) { border-block-start: 0; }
+  .en-olcu > div:nth-child(even) { border-inline-start: 1px solid var(--border); }
+  .en-olcu > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
 
 .formula {
   font-family: var(--font-mono);

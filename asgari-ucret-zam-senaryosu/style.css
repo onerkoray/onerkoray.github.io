@@ -44,26 +44,19 @@
 .as-kart-deger { font-size: var(--step-2); font-weight: 700; font-variant-numeric: tabular-nums; }
 .as-kart-alt { color: var(--text-muted); font-size: var(--step--1); }
 
+.as-ara {
+  margin: 2.4rem 0 .2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+  font-size: var(--step-1);
+}
+.as-manset + .as-ara { border-top: 0; padding-top: 0; margin-top: 1.2rem; }
 .as-tablo { margin: 1.4rem 0 .4rem; }
 .as-tablo caption { text-align: left; font-weight: 650; padding-bottom: .5rem; }
 .as-tablo td { font-variant-numeric: tabular-nums; }
 .as-toplam th, .as-toplam td { font-weight: 700; }
 
-.as-olcu {
-  margin: 1rem 0;
-  display: grid;
-  gap: 0 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-.as-olcu > div {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: .55rem 0;
-  border-bottom: 1px solid var(--border);
-}
-.as-olcu dt { color: var(--text-muted); font-size: var(--step--1); }
-.as-olcu dd { margin: 0; font-weight: 650; font-variant-numeric: tabular-nums; text-align: right; }
+
 
 .formula {
   font-family: var(--font-mono);
@@ -76,4 +69,17 @@
 }
 @media (max-width: 520px) {
   .as-kart-deger { font-size: var(--step-1); }
+}
+
+/* Dar ekran: satırlar etiketli kartlar. Sağdan kesilen sütun kalmaz. */
+@media (max-width: 600px) {
+  .as-tablo thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .as-tablo, .as-tablo tbody, .as-tablo tr { display: block; inline-size: 100%; }
+  .data-table.as-tablo { min-width: 0; }
+  .as-tablo caption { display: block; padding-bottom: .5rem; }
+  .as-tablo tr { padding: .55rem .75rem; border-bottom: 1px solid var(--border); }
+  .as-tablo tbody th[scope="row"] { display: block; padding: .15rem 0 .3rem; border: 0; text-align: left; font-weight: 700; }
+  .as-tablo td { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .18rem 0; border: 0; text-align: right; white-space: normal; }
+  .as-tablo td::before { content: attr(data-etiket); color: var(--text-muted); font-size: var(--step--1); text-align: left; }
+  .as-tablo td:empty { display: none; }
 }
