@@ -5,9 +5,49 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-25T18:52:41+03:00</updated>
+  <updated>2026-09-25T23:49:14+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Bağ-Kur ve Borçlanma Hesaplama 2026</title>
+    <link href="https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/"/>
+    <id>https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/</id>
+    <updated>2026-09-25T23:49:14+03:00</updated>
+    <summary>2026 Bağ-Kur primi, isteğe bağlı sigorta primi, GSS primi ve askerlik ya da doğum borçlanması ne kadar? SGK 2026/2 Genelgesi oranlarıyla hesaplayın.</summary>
+  </entry>
+
+  <entry>
+    <title>Faiz Dönüştürücü: Aylık, Yıllık, Bileşik Faiz</title>
+    <link href="https://korayoner.dev/faiz-donusturucu/"/>
+    <id>https://korayoner.dev/faiz-donusturucu/</id>
+    <updated>2026-09-25T23:49:14+03:00</updated>
+    <summary>Aylık faiz yıllık kaç eder? Aylık, yıllık, bileşik ve günlük faizi çevirin; kredi faizine vergiyi, mevduata stopajı ekleyip reel karşılığı görün.</summary>
+  </entry>
+
+  <entry>
+    <title>Gecikme Zammı Hesaplama 2026</title>
+    <link href="https://korayoner.dev/gecikme-zammi-hesaplama/"/>
+    <id>https://korayoner.dev/gecikme-zammi-hesaplama/</id>
+    <updated>2026-09-25T23:49:14+03:00</updated>
+    <summary>Vadesinde ödenmeyen vergi borcu bugün ne kadar oldu? GİB oran tablosuyla gecikme zammı: her oran dönemi ayrı, tam ay ve gün hesabıyla, 2010'dan bugüne.</summary>
+  </entry>
+
+  <entry>
+    <title>Kira Getirisi ve Amortisman Hesaplama</title>
+    <link href="https://korayoner.dev/kira-getirisi-hesaplama/"/>
+    <id>https://korayoner.dev/kira-getirisi-hesaplama/</id>
+    <updated>2026-09-25T23:49:14+03:00</updated>
+    <summary>Yatırımlık konut ne kazandırır? Brüt ve net kira getirisi, kira vergisi, amortisman süresi ve mevduatı yakalamak için gereken yıllık değer artışı.</summary>
+  </entry>
+
+  <entry>
+    <title>Ne Kadar Kredi Çekebilirim?</title>
+    <link href="https://korayoner.dev/ne-kadar-kredi-cekebilirim/"/>
+    <id>https://korayoner.dev/ne-kadar-kredi-cekebilirim/</id>
+    <updated>2026-09-25T23:49:14+03:00</updated>
+    <summary>Maaşımla ne kadar kredi çekebilirim? Gelirinizden ayırabileceğiniz taksitten KKDF ve BSMV dahil çekilebilecek ihtiyaç, taşıt ya da konut kredisi tutarı.</summary>
+  </entry>
 
   <entry>
     <title>Asgari Ücret Zammı Senaryosu 2027</title>
