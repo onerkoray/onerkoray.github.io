@@ -45,6 +45,16 @@ jobs:
           node tools/emekli-zammi-sayfa.js --sitemap
           node tools/memur-zammi-sayfa.js --sitemap
 
+      # Grafikler sayfası: ay sonu kur, politika faizi ve Dünya Bankası
+      # enflasyonu. Betik yazmadan önce çapraz doğrular (Dünya Bankası'nın
+      # Türkiye satırı TÜFE serisiyle, ay sonu kur günlük seriyle tutmalı);
+      # tutmazsa dosya YAZILMAZ ve adım kırmızı olur. Sayfa seriden üretilir,
+      # değiştiyse sitemap lastmod aynı commit'te bugüne çekilir.
+      - name: Grafik verisi ve grafikler sayfası
+        run: |
+          python tools/grafik-verisi.py
+          node tools/grafikler-sayfa.js --sitemap
+
       # update_data.py doviz sayfasini SABLONDAN bastan yaziyor; sablonda
       # og:image:alt, twitter:description ve kunye blogu yok. Bunlari
       # sonradan ekleyen uretecler burada calismazsa her veri

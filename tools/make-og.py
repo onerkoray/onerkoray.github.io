@@ -355,6 +355,10 @@ SPEC = {
    "Konut ve iş yeri kirasında 12 aylık TÜFE ortalamasına göre yasal azami oran.",
    ["TÜFE tavanı", "Konut & iş yeri"], "finans"),
 
+ "grafikler": ("grafikler", "Türkiye Ekonomisi,", "Grafiklerle",
+   "Fiyatlar, enflasyon, faiz, kur ve asgari ücret; 2005'ten bugüne resmî seriden, G20 karşılaştırmasıyla.",
+   ["TCMB · TÜİK", "Dünya Bankası"], "canli"),
+
  "doviz-kurlari": ("doviz-kurlari", "TCMB", "Döviz Kurları",
    "Merkez Bankası gösterge kurları, her iş günü otomatik güncellenir.",
    ["Resmî veri", "Her iş günü"], "finans"),

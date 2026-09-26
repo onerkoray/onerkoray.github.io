@@ -856,6 +856,23 @@ jobs:
         # finans/toplu-sozlesme.js güncellenmeli.
         run: node tools/memur-zammi-sayfa.js --check
 
+      - name: Grafik verisi kaynak kurallarına uyuyor mu
+        # finans/grafik-verisi.js gece TCMB ve Dünya Bankası'ndan çekiliyor.
+        # Dünya Bankası'nın Türkiye satırı sitenin TÜFE serisiyle her yıl
+        # 0,05 puan içinde tutmalı; ay sonu kurlar döviz sayfasının günlük
+        # serisiyle aynı bültenleri vermeli; bilinen faiz kararları yerinde.
+        run: python tools/grafik-verisi.py --check
+
+      - name: Grafikler sayfasının hesabı
+        # Sayfadaki her rakam hesap.js'ten; test her birini ikinci bir yoldan
+        # yeniden hesaplar ve resmî net asgari ücreti bordro motoruyla sınar.
+        run: node grafikler/test.js
+
+      - name: Grafikler sayfası seriden üretilmiş mi
+        # Rakamlar, statik SVG'ler ve tablolar üreteçten. Seri uzayıp sayfa
+        # yeniden üretilmezse kırmızı.
+        run: node tools/grafikler-sayfa.js --check
+
       - name: Site başlığı tek standartta
         # Ana sayfadaki hareketli marka adı makalelerde düz ve farklı boyutta
         # açılıyordu; site sahibi gördü, CI görmedi. Başlık beş ayrı biçimde

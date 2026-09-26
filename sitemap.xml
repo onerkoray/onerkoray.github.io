@@ -728,6 +728,12 @@
       <image:title>TCMB Döviz Kurları — 4 Eylül 2026 — Koray Öner</image:title>
     </image:image>
   </url>
+  <url><loc>https://korayoner.dev/grafikler/</loc><lastmod>2026-09-26</lastmod><changefreq>daily</changefreq><priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/grafikler-koray-oner.png</image:loc>
+      <image:title>Türkiye ekonomisi, grafiklerle — Koray Öner</image:title>
+    </image:image>
+  </url>
   <url><loc>https://korayoner.dev/makaleler/</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/makaleler-koray-oner.png</image:loc>
