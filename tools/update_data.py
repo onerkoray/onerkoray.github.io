@@ -391,6 +391,7 @@ PAGE = """<!DOCTYPE html>
   <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
   <script src="../onay.js" defer></script>
   <meta charset="UTF-8">
+  <script src="../tema-erken.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TCMB Döviz Kurları — {tarih_metin} | Koray Öner</title>
   <meta name="description" content="{tarih_metin} tarihli TCMB resmî döviz kurları: dolar {usd_satis} TL, euro {eur_satis} TL. Merkez Bankası efektif alış ve satış kurları, her iş günü güncellenir.">
@@ -508,13 +509,15 @@ PAGE = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Birincil">
         <ul>
           <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="../#projects">Araçlar</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
           <li><a href="#kurlar">Kurlar</a></li>
           <li><a href="#sss">SSS</a></li>
         </ul>
       </nav>
       <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
         <span class="theme-toggle-icon" aria-hidden="true"></span>
-        <span class="theme-toggle-label">Tema</span>
+        <span class="theme-toggle-label">Sistem</span>
       </button>
     </div>
   </header>

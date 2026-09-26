@@ -856,6 +856,15 @@ jobs:
         # finans/toplu-sozlesme.js güncellenmeli.
         run: node tools/memur-zammi-sayfa.js --check
 
+      - name: Site başlığı tek standartta
+        # Ana sayfadaki hareketli marka adı makalelerde düz ve farklı boyutta
+        # açılıyordu; site sahibi gördü, CI görmedi. Başlık beş ayrı biçimde
+        # yazılmıştı: 43 sayfada ad sınıfsız, 31 sayfada script.js yok (tema
+        # düğmesi ölü, seçilen renk kayboluyor), 15 yazıda kopya "ÖTV · MTV"
+        # menüsü, KeyMint'te tema düğmesini iki betik dinliyor. Kapı eski
+        # ağaçta 9 iddianın 8'inde kırmızıydı.
+        run: node tools/baslik-test.js
+
       - name: Makale kabuğu ve sınıfları
         # Bir makalenin gövdesini şablona bakmadan kurdum ve sarmal
         # olarak .wrap kullanmadım; genişliği sınırlayan sınıf o.

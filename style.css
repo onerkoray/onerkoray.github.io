@@ -426,14 +426,21 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .hero-bg { display: none; }
 }
-/* Use the existing second navigation row on tablets too; preserve all links. */
-@media (max-width: 980px) {
+/* Use the existing second navigation row on tablets too; preserve all links.
+   Eşik 1180px: menü Ana Sayfa · Araçlar · Makaleler ile başladığından beri
+   980–1180 arasında uzun menüler tema düğmesini ekran dışına itiyordu.
+   Bu aralıkta her sayfa aynı iki satırlı düzeni kullanır. */
+@media (max-width: 1180px) {
   .header-inner { flex-wrap: wrap; gap: .6rem 1rem; padding-bottom: .45rem; }
   .site-nav { order: 3; flex-basis: 100%; margin-left: 0; overflow-x: auto; scrollbar-width: none; }
   .site-nav::-webkit-scrollbar { display: none; }
   .site-nav ul { gap: 1rem; padding-bottom: .3rem; }
   .site-nav a { white-space: nowrap; }
   .theme-toggle { margin-left: auto; }
+  /* Renk ve tema düğmeleri sağda birlikte durur (bordro sayfası zaten
+     böyleydi; diğerlerinde renk düğmesi ada yapışık kalıyordu). */
+  .palette { margin-left: auto; }
+  .palette + .theme-toggle { margin-left: 0; }
 }
 @media (max-width: 680px) {
   .theme-toggle-label { display: none; }
@@ -1503,6 +1510,9 @@ section { padding: var(--bolum) 0; }
   cursor: not-allowed; opacity: .6; box-shadow: none; transform: none;
 }
 .site-nav a { display: inline-flex; align-items: center; min-height: 44px; }
+/* Menü öğesi iki satıra kırılmaz; sığmıyorsa menü kısalır (tools/baslik-test.js
+   her sayfada öğe sayısını sınırlıyor). "Ana Sayfa" alt alta düşüyordu. */
+.site-nav a { white-space: nowrap; }
 .legal-note a { text-underline-offset: .2em; }
 @media (max-width: 640px) {
   .topic-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }

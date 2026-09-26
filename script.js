@@ -3,13 +3,17 @@
   "use strict";
   var KEY = "onerkoray.theme";
   var order = ["auto", "light", "dark"];
+  /* Görünen etiket Türkçe; saklanan değer (auto/light/dark) aynı kalıyor ki
+     tema-erken.js ve eski tercihler bozulmasın. */
+  var ETIKET = { auto: "Sistem", light: "Açık", dark: "Koyu" };
   var btn = document.getElementById("themeToggle");
 
   function apply(mode) {
+    if (!ETIKET[mode]) mode = "auto";
     document.documentElement.setAttribute("data-theme", mode);
     if (btn) {
       var label = btn.querySelector(".theme-toggle-label");
-      if (label) label.textContent = mode.charAt(0).toUpperCase() + mode.slice(1);
+      if (label) label.textContent = ETIKET[mode];
     }
   }
 

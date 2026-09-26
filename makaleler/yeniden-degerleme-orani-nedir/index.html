@@ -4,6 +4,7 @@
   <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
   <script src="../../onay.js?v=0e361dc9" defer></script>
   <meta charset="UTF-8">
+  <script src="../../tema-erken.js?v=3d1c1238"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yeniden Değerleme Oranı Nedir, Neyi Belirler? | Koray Öner</title>
   <meta name="gecerlilik" content="2026-11-30 | 2026 yılı yeniden değerleme oranı Kasım'da VUK Genel Tebliği ile Resmî Gazete'de ilan edilir; bu oran 2027 tarifesine esas alınır. İlan edilince makaleler/dilim-kaymasi-2022-2026/seriler.js'e 2027 satırı eklensin (ydo = ilan edilen oran, tufe = 2026 Aralık TÜFE'si açıklanınca). 2027 tarifesi bordro/parametreler.js'e girildikten sonra node tools/ydo-tablosu.js çalıştırılsın — kural denetimi 2027'yi kendiliğinden kapsar.">
@@ -37,7 +38,7 @@
   <meta name="twitter:description" content="2022–2026 arasındaki yirmi dilimin yirmisi de aynı kuralın çıktısı: orana göre hesapla, kesri at. Kesir hep aşağı atılıyor.">
   <meta name="twitter:image" content="https://korayoner.dev/images/makale/yeniden-degerleme-orani-nedir.png">
 
-  <link rel="stylesheet" href="../../style.css?v=89def2bd">
+  <link rel="stylesheet" href="../../style.css?v=d52082c5">
   <link rel="stylesheet" href="../editoryal.css?v=96ccec8b">
 
   <script type="application/ld+json">
@@ -134,23 +135,23 @@
 <body>
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="wrap header-inner">
-      <a class="brand" href="../../">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
         <img class="brand-mark" src="../../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
-        <span>Koray Öner</span>
+        <span class="brand-name">Koray Öner</span>
       </a>
-      <nav class="site-nav" aria-label="Ana menü">
+      <nav class="site-nav" aria-label="Birincil">
         <ul>
           <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../../#projects">Araçlar</a></li>
           <li><a href="../" aria-current="page">Makaleler</a></li>
-          <li><a href="../../otv-hesaplama/">ÖTV</a></li>
           <li><a href="../../mtv-hesaplama/">MTV</a></li>
         </ul>
       </nav>
       <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
         <span class="theme-toggle-icon" aria-hidden="true"></span>
-        <span class="theme-toggle-label">Tema</span>
+        <span class="theme-toggle-label">Sistem</span>
       </button>
     </div>
   </header>
@@ -428,5 +429,6 @@
     </div>
   </footer>
 <script src="../tablo.js?v=de093bf6" defer></script>
+<script src="../../script.js?v=222b0c4d" defer></script>
 </body>
 </html>

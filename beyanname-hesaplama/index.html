@@ -4,6 +4,7 @@
   <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
   <script src="../onay.js?v=0e361dc9" defer></script>
   <meta charset="UTF-8">
+  <script src="../tema-erken.js?v=3d1c1238"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yıllık Gelir Vergisi Beyannamesi Hesaplama 2026 | Koray Öner</title>
   <meta name="description" content="Beyanname vermem gerekir mi? Ücret, kira, menkul sermaye iradı ve serbest meslek gelirini birlikte değerlendirir, GVK m.86 sınırını uygular.">
@@ -36,7 +37,7 @@
   <meta name="twitter:description" content="Beyan sınırı kiranın kendisine değil, vergiye tâbi gelir toplamına bakar. Çoğu hesaplayıcı bunu atlıyor.">
   <meta name="twitter:image" content="https://korayoner.dev/images/beyanname-hesaplama-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=89def2bd">
+  <link rel="stylesheet" href="../style.css?v=d52082c5">
   <link rel="stylesheet" href="style.css?v=bea251eb">
 
   <script type="application/ld+json">
@@ -87,23 +88,25 @@
 <body>
   <a class="skip-link" href="#main">İçeriğe geç</a>
 
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="wrap header-inner">
-      <a class="brand" href="../">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
         <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
-        <span>Koray Öner</span>
+        <span class="brand-name">Koray Öner</span>
       </a>
-      <nav class="site-nav" aria-label="Ana menü">
+      <nav class="site-nav" aria-label="Birincil">
         <ul>
           <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="../#projects">Araçlar</a></li>
           <li><a href="../makaleler/">Makaleler</a></li>
-          <li><a href="../otv-hesaplama/">ÖTV</a></li>
-          <li><a href="../mtv-hesaplama/">MTV</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#takvim">Takvim</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
         </ul>
       </nav>
       <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
         <span class="theme-toggle-icon" aria-hidden="true"></span>
-        <span class="theme-toggle-label">Tema</span>
+        <span class="theme-toggle-label">Sistem</span>
       </button>
     </div>
   </header>
@@ -373,5 +376,6 @@
   <script src="../bordro/gmsi-motor.js?v=0c4d4846" defer></script>
   <script src="../bordro/beyanname-motoru.js?v=197dbdf6" defer></script>
   <script src="script.js?v=ac9fa6bf" defer></script>
+<script src="../script.js?v=222b0c4d" defer></script>
 </body>
 </html>
