@@ -46,8 +46,9 @@ var SIRA_YAZI = ["", "birinci", "ikinci", "üçüncü", "dördüncü", "beşinci
 
 /* Genişlikler: tek sütun grafik 1000 px, yan yana ikili 540 px. Tarayıcı
    zaten kutu genişliğinde yeniden çizer; bu, ilk boyamanın ölçeği. */
-var GENISLIK = { fiyat: 1000, enflasyon: 1000, faiz: 540, reel: 540, kur: 540, reelKur: 540,
-  asgari: 1000, dunya: 540, dunyaSeri: 540 };
+var GENISLIK = { fiyat: 1000, enflasyon: 1000, isi: 1000, faiz: 540, reel: 540, kur: 540, reelKur: 540,
+  birikim: 1000, asgari: 1000, vergi: 1000, dunyaEnf: 540, dunyaReel: 540, dunyaSeri: 1000,
+  kisiBasi: 540, buyume: 540, issizlik: 540, cari: 540 };
 var ZAMAN_VARSAYILAN = "2015-01";
 
 var sayi = Cizim.sayi;
@@ -71,6 +72,22 @@ function bulunma(n) {
   return "'" + (sert ? "t" : "d") + (kalin ? "a" : "e");
 }
 function ayDa(ay) { return ayUzun(ay) + bulunma(+ay.slice(0, 4)); }
+
+/* İyelik (3. tekil) eki: "10 ayın 9'u", "20 yılın 19'u". Ünlüyle biten
+   kelimede kaynaştırma s'si: "2'si", "6'sı". */
+function unluSinif(k) {
+  var u = (k.match(/[aıoueiöü]/g) || []).pop();
+  return { a: "ı", "ı": "ı", e: "i", i: "i", o: "u", u: "u", "ö": "ü", "ü": "ü" }[u];
+}
+function iyelik(n) {
+  var k = sonKelime(n), u = unluSinif(k);
+  return (/[aıoueiöü]$/.test(k) ? "s" : "") + u;
+}
+/* İyelik + bulunma: "19'unda", "2'sinde". */
+function iyelikBulunma(n) {
+  var u = unluSinif(sonKelime(n));
+  return iyelik(n) + "n" + ({ "ı": "da", u: "da", i: "de", "ü": "de" }[u]);
+}
 function uzunTarih(iso) {
   var p = iso.split("-");
   return +p[2] + " " + AYLAR[+p[1] - 1] + " " + p[0];
@@ -129,6 +146,64 @@ function sayilar(r) {
     reelTepeAy: ayUzun(o.reelTepe.ay),
     reelTepe: sayi(o.reelTepe.reel),
 
+    ocakOrt: sayi(o.ocakOrt, 2),
+    digerOrt: sayi(o.digerOrt, 2),
+    aylikUstu5: String(o.aylikUstu5),
+    aylikUstu5Esik: "Aralık 2021",
+    aylikUstu5Sonra: String(o.aylikUstu5Liste.filter(function (a) { return a >= "2021-12"; }).length),
+    aylikUstu5Ek: iyelik(o.aylikUstu5Liste.filter(function (a) { return a >= "2021-12"; }).length),
+    aylikTepeAy: ayUzun(o.aylikTepe.ay),
+    aylikTepe: sayi(o.aylikTepe.deger, 2),
+
+    birikimAltin: sayi(100 * o.altinKat),
+    birikimDolar: sayi(100 * o.dolarKatB),
+    birikimEuro: sayi(100 * o.euroKat),
+    birikimFiyat: sayi(100 * o.fiyatKatB),
+    gramIlk: sayi(o.gramIlk, 2),
+    gramSon: sayi(o.gramSon),
+    onsSon: sayi(o.onsSon),
+
+    vergiIlkYil: String(o.vergiIlk.yil),
+    vergiIlkEk: bulunma(o.vergiIlk.yil).slice(1),
+    vergiIlkKat: sayi(o.vergiIlk.ikinciKat, 2),
+    vergiSonYil: String(o.vergiSon.yil),
+    vergiSonEk: bulunma(o.vergiSon.yil).slice(1),
+    vergiSonKat: sayi(o.vergiSon.ikinciKat, 2),
+
+    bisEnfAy: ayUzun(o.bisEnfAy),
+    bisReelAy: ayUzun(o.bisReelAy),
+    bisAlanSayisi: String(o.bisAlanSayisi),
+    bisTurSira: String(o.bisTurEnf.sira),
+    bisTurSiraYazi: SIRA_YAZI[o.bisTurEnf.sira],
+    bisTurEnf: sayi(o.bisTurEnf.deger, 1),
+    bisEnfBirinciAd: o.bisEnfBirinci.ad,
+    bisEnfBirinci: sayi(o.bisEnfBirinci.deger, 1),
+    bisEnfOrtanca: sayi(o.bisEnfOrtanca, 1),
+    bisTurReel: sayi(o.bisTurReel.deger, 1),
+    bisTurReelSiraYazi: SIRA_YAZI[o.bisTurReel.sira],
+    bisReelBirinciAd: o.bisReelBirinci.ad,
+    bisReelBirinci: sayi(o.bisReelBirinci.deger, 1),
+    bisEskiyenNot: o.bisEskiyen.length
+      ? o.bisEskiyen.map(function (e) {
+          return e.ad + " reel faiz sıralamasında yok: BIS'teki politika faizi serisi " + ayDa(e.sonAy) + " bitiyor.";
+        }).join(" ")
+      : "Sıralamada bütün ekonomiler var.",
+
+    kisiBasiSon: sayi(o.kisiBasiSon.tur),
+    kisiBasiYil: String(o.kisiBasiSon.yil),
+    kisiBasiEk: bulunma(o.kisiBasiSon.yil).slice(1),
+    kisiBasiTepeYazi: o.kisiBasiTepe.yil === o.kisiBasiSon.yil ? "en yüksek düzeyi"
+      : "zirvesinin altında (" + o.kisiBasiTepe.yil + ": $" + sayi(o.kisiBasiTepe.tur) + ")",
+    kisiBasiSira: String(o.kisiBasiSira.sira),
+    buyumeAralik: o.buyumeIlkYil + "–" + o.buyumeSonYil,
+    buyumeOrt: sayi(o.buyumeOrt, 1),
+    daralmaYillari: o.daralmaYillari.length ? o.daralmaYillari.join(", ") : "yok",
+    issizlikSon: sayi(o.issizlikSon.tur, 1),
+    issizlikOrtanca: sayi(o.issizlikSon.ortanca, 1),
+    cariYil: String(o.cariYil),
+    cariAcikYil: String(o.cariAcikYil),
+    cariAcikEk: iyelikBulunma(o.cariAcikYil),
+
     dunyaYil: o.dunyaYil,
     turSiraYazi: SIRA_YAZI[o.turSira],
     turSiraRakam: String(o.turSira),
@@ -185,16 +260,29 @@ function tablolar(r) {
       yilSonlari(r.faiz, son).map(function (n) {
         return [yilEtiket(n.ay), "%" + sayi(n.faiz, 2), "%" + sayi(n.tufe, 2), (n.reel < 0 ? "−%" : "%") + sayi(Math.abs(n.reel), 1)];
       })),
-    kur: tablo("Ay sonu kurlar, yıl sonları", ["Yıl", "Dolar (TL)", "Euro (TL)", "Fiyatlara göre dolar"],
+    kur: tablo("Ay sonu kurlar ve gram altın, yıl sonları", ["Yıl", "Dolar (TL)", "Euro (TL)", "Gram altın (TL)", "Fiyatlara göre dolar"],
       yilSonlari(r.kur, r.kur[r.kur.length - 1].ay).map(function (n) {
-        return [yilEtiket(n.ay), sayi(n.usd, 4), sayi(n.eur, 4), sayi(100 * n.usdEndeks / n.tufeEndeks, 1)];
+        var b = r.birikim.filter(function (x) { return x.ay === n.ay; })[0];
+        return [yilEtiket(n.ay), sayi(n.usd, 4), sayi(n.eur, 4), b ? sayi(b.gram, 2) : "—", sayi(100 * n.usdEndeks / n.tufeEndeks, 1)];
       })),
     asgari: tablo("Net asgari ücret, dönem başları", ["Dönem", "Brüt (TL)", "Net (TL)", "Dolar karşılığı", ayUzun(son) + " fiyatlarıyla"],
       r.asgari.filter(function (n, i, a) { return !i || n.net !== a[i - 1].net; }).map(function (n) {
         return [ayUzun(n.ay), sayi(n.brut, 2), sayi(n.net, 2), "$" + sayi(n.usd), sayi(n.reel) + " TL"];
       })),
-    dunya: tablo("G20'de yıllık ortalama enflasyon, " + r.siralama.yil, ["Ekonomi", "Sıra", "Enflasyon"],
-      r.siralama.liste.map(function (u) { return [u.ad, String(u.sira), "%" + sayi(u.deger, 1)]; }))
+    dunya: tablo("Enflasyon ve reel politika faizi, " + ayUzun(r.dunyaAy.enfAy) + " (BIS)",
+      ["Ekonomi", "Yıllık enflasyon", "Politika faizi", "Reel faiz"],
+      r.dunyaAy.enf.map(function (u) {
+        var re = r.dunyaAy.reel.filter(function (x) { return x.kod === u.kod; })[0];
+        return [u.ad, "%" + sayi(u.deger, 1), re ? "%" + sayi(re.faiz, 2) : "—",
+          re ? (re.deger < 0 ? "−%" : "%") + sayi(Math.abs(re.deger), 1) : "—"];
+      })),
+    buyume: tablo("Türkiye: gelir, büyüme, işsizlik ve cari denge (Dünya Bankası)",
+      ["Yıl", "Kişi başı GSYH ($)", "Reel büyüme", "İşsizlik", "Cari denge (% GSYH)"],
+      r.makro.kisiBasi.map(function (n, i) {
+        function bul(ad) { var x = r.makro[ad].filter(function (m) { return m.yil === n.yil; })[0]; return x ? x.tur : null; }
+        function y(v) { return v == null ? "—" : (v < 0 ? "−%" : "%") + sayi(Math.abs(v), 1); }
+        return [String(n.yil), sayi(n.tur), y(bul("buyume")), y(bul("issizlik")), y(bul("cari"))];
+      }))
   };
 }
 
@@ -259,4 +347,5 @@ function main() {
 }
 
 if (require.main === module) process.exit(main());
-module.exports = { sayilar: sayilar, bulunma: bulunma, zamanMetni: zamanMetni, uret: uret };
+module.exports = { sayilar: sayilar, bulunma: bulunma, iyelik: iyelik, iyelikBulunma: iyelikBulunma,
+  zamanMetni: zamanMetni, uret: uret };

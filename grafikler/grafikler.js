@@ -37,6 +37,15 @@
     return h;
   }
   var FIYAT = harita(r.fiyat), FAIZ = harita(r.faiz), KUR = harita(r.kur), ASGARI = harita(r.asgari);
+  var BIRIKIM = harita(r.birikim), VERGI = harita(r.vergi, "yil");
+  var MAKRO = {};
+  ["kisiBasi", "buyume", "issizlik", "cari"].forEach(function (k) { MAKRO[k] = harita(r.makro[k], "yil"); });
+  function yuzdeYil(k, yil, etiket, ondalik) {
+    var n = MAKRO[k][yil]; if (!n) return null;
+    var satir = [["gr-i-iki", "Türkiye", k === "kisiBasi" ? "$" + sayi(n.tur) : yuzde(n.tur, ondalik)]];
+    if (n.ortanca != null) satir.push(["gr-i-soluk", "G20 ortancası", k === "kisiBasi" ? "$" + sayi(n.ortanca) : yuzde(n.ortanca, ondalik)]);
+    return { baslik: yil + " · " + etiket, satir: satir };
+  }
   function yuzde(v, d) { return (v < 0 ? "−%" : "%") + sayi(Math.abs(v), d == null ? 2 : d); }
 
   /* ---- ipucu içerikleri: ay (ya da yıl) → satırlar ------------------------ */
@@ -72,12 +81,36 @@
       return { baslik: ayEtiket(ay), satir: [["", "Net", sayi(n.net, 2) + " TL"], ["gr-i-iki", "Dolar", "$" + sayi(n.usd)],
         ["gr-i-bir", ayEtiket(r.sonAy) + " TL'si", sayi(n.reel) + " TL"]] };
     },
-    dunyaSeri: function (yil) {
-      var satir = r.dunya.filter(function (s) { return s.kod !== "ARG"; }).map(function (s) {
-        var n = s.nokta.filter(function (p) { return p.yil === yil; })[0];
-        return n ? [s.kod === "TUR" ? "gr-i-iki" : "gr-i-soluk", s.ad, yuzde(n.deger, 1)] : null;
+    dunyaSeri: function (ay) {
+      var satir = r.dunyaAy.seriler.map(function (s) {
+        var n = s.nokta.filter(function (p) { return p.ay === ay; })[0];
+        return n ? [s.kod === "TR" ? "gr-i-iki" : "gr-i-soluk", s.ad, n.deger == null ? "yayımlanmadı" : yuzde(n.deger, 1)] : null;
       }).filter(Boolean);
-      return satir.length ? { baslik: String(yil), satir: satir } : null;
+      return satir.length ? { baslik: ayEtiket(ay), satir: satir } : null;
+    },
+    birikim: function (ay) {
+      var n = BIRIKIM[ay]; if (!n) return null;
+      return { baslik: ayEtiket(ay) + " · 100 TL'nin karşılığı", satir: [
+        ["gr-i-uc", "Altın", sayi(n.altin) + " TL"], ["gr-i-iki", "Dolar", sayi(n.dolar) + " TL"],
+        ["gr-i-soluk", "Euro", sayi(n.euro) + " TL"], ["gr-i-bir", "Fiyatlar", sayi(n.fiyat) + " TL"],
+        ["", "Gram altın", sayi(n.gram, 2) + " TL"]] };
+    },
+    vergi: function (yil) {
+      var n = VERGI[yil]; if (!n) return null;
+      return { baslik: String(yil), satir: [["gr-i-iki", "İkinci eşik", sayi(n.ikinci) + " TL · " + sayi(n.ikinciKat, 2) + "×"],
+        ["gr-i-bir", "Üçüncü eşik", sayi(n.ucuncu) + " TL · " + sayi(n.ucuncuKat, 2) + "×"],
+        ["", "Yıllık asgari brüt", sayi(n.yillikAsgari) + " TL"]] };
+    },
+    kisiBasi: function (yil) { return yuzdeYil("kisiBasi", yil, "kişi başı GSYH"); },
+    buyume: function (yil) {
+      var n = MAKRO.buyume[yil]; if (!n) return null;
+      return { baslik: yil + " · reel büyüme", satir: [[n.tur < 0 ? "gr-i-kayip" : "gr-i-kazanc", "Türkiye", yuzde(n.tur, 1)],
+        ["gr-i-soluk", "G20 ortancası", yuzde(n.ortanca, 1)]] };
+    },
+    issizlik: function (yil) { return yuzdeYil("issizlik", yil, "işsizlik", 1); },
+    cari: function (yil) {
+      var n = MAKRO.cari[yil]; if (!n) return null;
+      return { baslik: yil + " · cari denge", satir: [[n.tur < 0 ? "gr-i-kayip" : "gr-i-kazanc", "Türkiye", yuzde(n.tur, 1) + " GSYH"]] };
     }
   };
 
@@ -100,6 +133,7 @@
     c.ad = ad;
     cizimler[ad] = c;
     if (IPUCU[ad]) baglaImlec(c);
+    if (ad === "isi") baglaIsi(c);
     if (ad === "fiyat") secimCiz();
     if (!azHareket) kap.classList.add("gr-canli");
     return c;
@@ -138,14 +172,15 @@
       var anahtar = yil ? xv : aydan(xv);
       var icerik = IPUCU[ad](anahtar);
       if (!icerik) return;
-      var px = t.tur === "cubukAyrisan" ? c.x(xv) + c.gen / 2 : c.x(xv);
+      var px = t.tur === "cubukAyrisan" ? c.x(xv) + (c.bosluk || 0) / 2 + c.gen / 2 : c.x(xv);
       var H0 = c.kenar.ust, H1 = +svg.getAttribute("height") - c.kenar.alt;
       var parca = ['<line x1="' + px + '" x2="' + px + '" y1="' + H0 + '" y2="' + H1 + '"/>'];
       if (t.seriler) {
         t.seriler.forEach(function (s) {
           var n = s.noktalar.filter(function (p) { return c.xDeger(p.x) === xv; })[0];
           if (!n || n.y == null) return;
-          var sinif = /gr-s-iki/.test(s.sinif) ? "gr-i-iki" : /gr-s-soluk/.test(s.sinif) ? "gr-i-soluk" : "gr-i-bir";
+          var sinif = /gr-s-iki/.test(s.sinif) ? "gr-i-iki" : /gr-s-soluk/.test(s.sinif) ? "gr-i-soluk" :
+            /gr-s-uc/.test(s.sinif) ? "gr-i-uc" : "gr-i-bir";
           parca.push('<circle class="' + sinif + '" cx="' + px + '" cy="' + c.y(n.y) + '" r="4.5"/>');
         });
       }
@@ -184,6 +219,27 @@
       else if (e.key === "End") { e.preventDefault(); goster(xmax); }
       else if (e.key === "Escape") { gizle(); }
     });
+  }
+
+  /* ---- ısı haritası: hücre üzerine gelince ------------------------------------ */
+  function baglaIsi(c) {
+    var svg = c.el, kutu = ipucuKutusu(c.kap);
+    function goster(h) {
+      var ay = h.getAttribute("data-ay"), n = FIYAT[ay];
+      kutu.innerHTML = "<b>" + ayEtiket(ay) + "</b><span><i>Aylık</i>" + yuzde(+h.getAttribute("data-v")) + "</span>" +
+        (n ? "<span><i>Yıllık</i>" + yuzde(n.yillik) + "</span>" : "");
+      kutu.hidden = false;
+      var b = h.getBoundingClientRect(), t = c.kap.querySelector(".gr-tuval").getBoundingClientRect();
+      var kw = kutu.offsetWidth, sol = b.left - t.left + b.width / 2;
+      kutu.style.left = Math.max(kw / 2 + 2, Math.min(t.width - kw / 2 - 2, sol)) + "px";
+      kutu.style.top = (b.top - t.top - kutu.offsetHeight - 8) + "px";
+      kutu.style.transform = "translate(-50%, 0)";
+    }
+    svg.addEventListener("pointermove", function (e) {
+      var h = e.target.closest && e.target.closest(".gr-isi-hucre");
+      if (h) goster(h); else kutu.hidden = true;
+    });
+    svg.addEventListener("pointerleave", function () { kutu.hidden = true; });
   }
 
   /* ---- zaman makinesi --------------------------------------------------------- */
@@ -225,7 +281,8 @@
      ölçeğin tersinden okunur; bitişte gerçek değere oturur. */
   var IZLEYICI = {
     fiyat: { seri: 0, bicim: function (v) { return sayi(v); }, son: function () { return sayi(r.fiyat[r.fiyat.length - 1].endeks); } },
-    kur: { seri: 1, bicim: function (v) { return "×" + sayi(v / 100, 1); }, son: function () { return "×" + sayi(r.kur[r.kur.length - 1].usdEndeks / 100, 1); } }
+    kur: { seri: 1, bicim: function (v) { return "×" + sayi(v / 100, 1); }, son: function () { return "×" + sayi(r.kur[r.kur.length - 1].usdEndeks / 100, 1); } },
+    birikim: { seri: 3, bicim: function (v) { return sayi(v) + " TL"; }, son: function () { return sayi(r.birikim[r.birikim.length - 1].altin) + " TL"; } }
   };
 
   function oynat(kap) {

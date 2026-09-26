@@ -174,11 +174,15 @@
      o = { id, genislik, yukseklik, etiket, noktalar: [{x: ay, y}], y: {min, max, izgara, bicim}, x: {min, max} } */
   function cubukAyrisan(o) {
     var W = o.genislik, H = o.yukseklik, dar = W < 560;
+    var yillik = o.x.tip === "yil";
+    var xd = yillik ? function (v) { return +v; } : ayIndeksi;
     var kenar = { sol: dar ? 40 : 52, sag: dar ? 14 : 22, ust: 12, alt: 30 };
-    var x = dogrusal(ayIndeksi(o.x.min), ayIndeksi(o.x.max) + 1, kenar.sol, W - kenar.sag);
+    var x = dogrusal(xd(o.x.min), xd(o.x.max) + 1, kenar.sol, W - kenar.sag);
     var y = dogrusal(o.y.min, o.y.max, H - kenar.alt, kenar.ust);
     var bicim = o.y.bicim;
-    var gen = Math.max(0.6, (W - kenar.sol - kenar.sag) / (ayIndeksi(o.x.max) - ayIndeksi(o.x.min) + 1) - 0.6);
+    var adet = xd(o.x.max) - xd(o.x.min) + 1;
+    var bosluk = yillik ? Math.max(2, (W - kenar.sol - kenar.sag) / adet * 0.28) : 0.6;
+    var gen = Math.max(0.6, (W - kenar.sol - kenar.sag) / adet - bosluk);
     var p = ['<svg class="gr-svg" viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
       '" role="img" aria-label="' + kacis(o.etiket) + '" data-grafik="' + o.id + '">'];
     o.y.izgara.forEach(function (v) {
@@ -188,21 +192,22 @@
     });
     var y0 = r1(y(0));
     o.noktalar.forEach(function (n, i) {
-      var xx = r1(x(ayIndeksi(n.x)) + 0.3), yy = r1(y(n.y));
+      var xx = r1(x(xd(n.x)) + (yillik ? bosluk / 2 : 0.3)), yy = r1(y(n.y));
       var ust = Math.min(y0, yy), boy = Math.max(0.5, Math.abs(yy - y0));
       p.push('<rect class="gr-cubuk ' + (n.y < 0 ? "gr-kayip" : "gr-kazanc") + '" x="' + xx + '" y="' + r1(ust) +
         '" width="' + r1(gen) + '" height="' + r1(boy) + '" style="--i:' + i + '"/>');
     });
     p.push('<line class="gr-sifir" x1="' + kenar.sol + '" x2="' + (W - kenar.sag) + '" y1="' + y0 + '" y2="' + y0 + '"/>');
-    var yil0 = +o.x.min.slice(0, 4), yil1 = +o.x.max.slice(0, 4), aralik = dar ? 4 : 2;
+    var yil0 = +String(o.x.min).slice(0, 4), yil1 = +String(o.x.max).slice(0, 4);
+    var aralik = yillik ? (dar ? 5 : 2) : (dar ? 4 : 2);
     for (var yil = yil0; yil <= yil1; yil++) {
-      if (yil % aralik || yil * 12 < ayIndeksi(o.x.min)) continue;
-      var xx = r1(x(yil * 12));
+      if (yil % aralik || (!yillik && yil * 12 < ayIndeksi(o.x.min))) continue;
+      var xx = r1(yillik ? x(yil) + (W - kenar.sol - kenar.sag) / adet / 2 : x(yil * 12));
       p.push('<line class="gr-centik" x1="' + xx + '" x2="' + xx + '" y1="' + (H - kenar.alt) + '" y2="' + (H - kenar.alt + 5) + '"/>');
       p.push('<text class="gr-eksen gr-eksen-x" x="' + xx + '" y="' + (H - kenar.alt + 18) + '">' + yil + "</text>");
     }
     p.push('<g class="gr-imlec" aria-hidden="true"></g></svg>');
-    return { svg: p.join(""), x: x, y: y, kenar: kenar, xDeger: ayIndeksi, gen: gen };
+    return { svg: p.join(""), x: x, y: y, kenar: kenar, xDeger: xd, gen: gen, bosluk: yillik ? bosluk : 0 };
   }
 
   /* ---- sıralı yatay çubuklar (dünya) — logaritmik x ------------------------
@@ -212,26 +217,35 @@
     var satir = dar ? 22 : 24;
     var kenar = { sol: dar ? 104 : 136, sag: dar ? 52 : 64, ust: 10, alt: 28 };
     var H = kenar.ust + kenar.alt + satir * o.liste.length;
-    var x = logaritmik(o.x.min, o.x.max, kenar.sol, W - kenar.sag);
+    var lin = o.x.tip === "lin";
+    var x = (lin ? dogrusal : logaritmik)(o.x.min, o.x.max, kenar.sol + (lin && o.x.min < 0 ? 0 : 0), W - kenar.sag);
+    var sifirX = lin ? x(Math.max(o.x.min, 0)) : kenar.sol;
+    var bicimX = o.x.bicim || function (v) { return "%" + sayi(v, v < 1 && v > 0 ? 1 : 0); };
     var p = ['<svg class="gr-svg" viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
       '" role="img" aria-label="' + kacis(o.etiket) + '" data-grafik="' + o.id + '">'];
     o.x.izgara.forEach(function (v) {
       var xx = r1(x(v));
       p.push('<line class="gr-izgara" x1="' + xx + '" x2="' + xx + '" y1="' + kenar.ust + '" y2="' + (H - kenar.alt) + '"/>');
-      p.push('<text class="gr-eksen gr-eksen-x" x="' + xx + '" y="' + (H - kenar.alt + 18) + '">%' + sayi(v, v < 1 ? 1 : 0) + "</text>");
+      p.push('<text class="gr-eksen gr-eksen-x" x="' + xx + '" y="' + (H - kenar.alt + 18) + '">' + kacis(bicimX(v)) + "</text>");
     });
     o.liste.forEach(function (u, i) {
       var yy = kenar.ust + i * satir;
       var deger = Math.max(o.x.min, u.deger);
       var bitis = r1(x(deger));
-      p.push('<g class="gr-sira' + (u.vurgu ? " gr-sira--vurgu" : "") + '" style="--i:' + i + '">');
+      var eksi = u.deger < 0;
+      var bas = eksi ? bitis : sifirX, gen = Math.max(2, Math.abs(bitis - sifirX));
+      var etiket = (eksi ? "−%" : "%") + sayi(Math.abs(u.deger), 1);
+      p.push('<g class="gr-sira' + (u.vurgu ? " gr-sira--vurgu" : "") + (eksi ? " gr-sira--eksi" : "") + '" style="--i:' + i + '">');
       p.push('<text class="gr-sira-ad" x="' + (kenar.sol - 10) + '" y="' + (yy + satir / 2 + 4) + '">' + kacis(u.ad) + "</text>");
-      p.push('<rect class="gr-sira-cubuk" x="' + kenar.sol + '" y="' + (yy + 5) + '" width="' + r1(Math.max(2, bitis - kenar.sol)) +
+      p.push('<rect class="gr-sira-cubuk" x="' + r1(bas) + '" y="' + (yy + 5) + '" width="' + r1(gen) +
         '" height="' + (satir - 10) + '" rx="2"/>');
-      p.push('<text class="gr-sira-deger" x="' + r1(bitis + 6) + '" y="' + (yy + satir / 2 + 4) + '">%' + sayi(u.deger, 1) + "</text>");
+      p.push('<text class="gr-sira-deger" x="' + r1(eksi ? sifirX + 6 : bitis + 6) + '" y="' + (yy + satir / 2 + 4) + '">' + etiket + "</text>");
       p.push("</g>");
     });
-    if (o.ortanca) {
+    if (lin && o.x.min < 0) {
+      p.push('<line class="gr-sifir" x1="' + r1(sifirX) + '" x2="' + r1(sifirX) + '" y1="' + (kenar.ust - 4) + '" y2="' + (H - kenar.alt) + '"/>');
+    }
+    if (o.ortanca != null) {
       var xo = r1(x(o.ortanca));
       p.push('<line class="gr-ortanca" x1="' + xo + '" x2="' + xo + '" y1="' + (kenar.ust - 4) + '" y2="' + (H - kenar.alt) + '"/>');
     }
@@ -239,7 +253,45 @@
     return { svg: p.join(""), H: H };
   }
 
+  /* ---- ısı haritası (yıl × ay) ---------------------------------------------
+     o = { id, genislik, etiket, satirlar: [{ yil, aylar: [12 değer | null] }], esikler: [..] }
+     Renk sınıfı eşikten: gr-isi-e (eksi), gr-isi-1 … gr-isi-6. Değer yazısı
+     hücre yeterince genişse basılır; dar ekranda ipucu okur. */
+  function isi(o) {
+    var W = o.genislik, dar = W < 560;
+    var kenar = { sol: dar ? 34 : 46, sag: 4, ust: 22, alt: 6 };
+    var hg = (W - kenar.sol - kenar.sag) / 12, hy = dar ? 15 : 19;
+    var H = kenar.ust + kenar.alt + hy * o.satirlar.length;
+    var yazili = hg >= 50;
+    var p = ['<svg class="gr-svg gr-isi" viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H +
+      '" role="img" aria-label="' + kacis(o.etiket) + '" data-grafik="' + o.id + '">'];
+    AY_KISA.forEach(function (a, i) {
+      p.push('<text class="gr-eksen gr-eksen-x" x="' + r1(kenar.sol + hg * (i + .5)) + '" y="' + (kenar.ust - 8) + '">' +
+        (dar ? a.charAt(0) : a) + "</text>");
+    });
+    o.satirlar.forEach(function (s, r) {
+      var yy = kenar.ust + r * hy;
+      p.push('<text class="gr-eksen gr-eksen-y" x="' + (kenar.sol - 6) + '" y="' + r1(yy + hy / 2 + 4) + '">' +
+        (dar ? "'" + String(s.yil).slice(2) : s.yil) + "</text>");
+      s.aylar.forEach(function (v, i) {
+        if (v == null) return;
+        var sinif = "gr-isi-e";
+        if (v >= 0) { sinif = "gr-isi-1"; o.esikler.forEach(function (e, k) { if (v >= e) sinif = "gr-isi-" + (k + 2); }); }
+        var xx = kenar.sol + i * hg;
+        p.push('<rect class="gr-isi-hucre ' + sinif + '" x="' + r1(xx + .5) + '" y="' + r1(yy + .5) + '" width="' + r1(hg - 1) +
+          '" height="' + r1(hy - 1) + '" data-ay="' + s.yil + "-" + (i < 9 ? "0" : "") + (i + 1) + '" data-v="' + v + '"/>');
+        if (yazili) {
+          p.push('<text class="gr-isi-yazi ' + sinif + '" x="' + r1(xx + hg / 2) + '" y="' + r1(yy + hy / 2 + 4) + '">' +
+            sayi(v, 1) + "</text>");
+        }
+      });
+    });
+    p.push("</svg>");
+    return { svg: p.join(""), H: H };
+  }
+
   return {
+    isi: isi,
     cizgi: cizgi,
     cubukAyrisan: cubukAyrisan,
     siraCubuk: siraCubuk,
