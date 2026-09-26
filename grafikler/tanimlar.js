@@ -182,41 +182,173 @@
       };
     },
 
-    /* VI. G20'de enflasyon, sıralı */
-    dunya: function (r, W) {
-      var s = r.siralama;
+    /* II-b. Aylık TÜFE ısı haritası */
+    isi: function (r, W) {
       return {
-        tur: "siraCubuk",
-        id: "dunya", genislik: W,
-        etiket: s.yil + " yılında G20 ekonomilerinde enflasyon. Türkiye " + r.ozet.turSira + ". sırada, %" + sayi(r.ozet.turDeger, 1) + ".",
-        liste: s.liste.map(function (u) { return { ad: u.ad, deger: u.deger, vurgu: u.kod === "TUR" }; }),
-        x: { min: 0.1, max: yukariYuvarla(s.liste[0].deger * 1.6, 100), izgara: [0.1, 1, 10, 100] },
-        ortanca: s.ortanca
+        tur: "isi", id: "isi", genislik: W,
+        etiket: "Aylık TÜFE değişimi, yıl ve ay, 2005–" + r.sonAy.slice(0, 4) + ". En yüksek ay " +
+          ayEtiket(r.ozet.aylikTepe.ay) + " %" + sayi(r.ozet.aylikTepe.deger, 2) + ".",
+        satirlar: r.isi.map(function (s) { return { yil: s.yil, aylar: s.aylar }; }),
+        esikler: [1, 2, 3, 5, 8]
       };
     },
 
-    /* VI-b. Yirmi beş yıl: Türkiye ve beş ekonomi */
-    dunyaSeri: function (r, W) {
-      var seriler = r.dunya.filter(function (s) { return s.kod !== "ARG"; });
-      var tum = [];
-      seriler.forEach(function (s) { s.nokta.forEach(function (n) { tum.push(n); }); });
-      var ust = yukariYuvarla(enBuyuk(tum, function (n) { return n.deger; }) * 1.08, 20);
-      var yil0 = enKucuk(tum, function (n) { return n.yil; }), yil1 = enBuyuk(tum, function (n) { return n.yil; });
+    /* IV-c. 2005'te 100 TL: dolar, euro, altın, fiyatlar */
+    birikim: function (r, W) {
+      var b = r.birikim, son = b[b.length - 1];
+      var ust = Math.max(son.altin, son.dolar, son.fiyat, son.euro);
       return {
-        tur: "cizgi",
-        id: "dunyaSeri", genislik: W, yukseklik: W < 560 ? 280 : 340,
-        etiket: "Yıllık enflasyon " + yil0 + "–" + yil1 + ": Türkiye, Brezilya, Rusya, ABD ve euro bölgesi.",
-        x: { tip: "yil", min: yil0, max: yil1 },
+        tur: "cizgi", id: "birikim", genislik: W, yukseklik: W < 560 ? 300 : 380,
+        etiket: "Ocak 2005'te 100 TL: altın, dolar, euro ve fiyatlar, logaritmik. " + ayEtiket(son.ay) +
+          " itibarıyla altın ×" + sayi(son.altin / 100, 1) + ".",
+        x: { tip: "ay", min: b[0].ay, max: son.ay },
+        y: { tip: "log", min: 60, max: ust * 1.5, izgara: ikininKuvvetleri(ust * 1.3), bicim: function (v) { return sayi(v); } },
+        seriler: [
+          { ad: "Euro", sinif: "gr-s-soluk", noktalar: b.map(function (n) { return { x: n.ay, y: n.euro }; }) },
+          { ad: "Fiyatlar", sinif: "gr-s-bir", noktalar: b.map(function (n) { return { x: n.ay, y: n.fiyat }; }) },
+          { ad: "Dolar", sinif: "gr-s-iki", noktalar: b.map(function (n) { return { x: n.ay, y: n.dolar }; }) },
+          { ad: "Altın", sinif: "gr-s-uc gr-s-kalin", noktalar: b.map(function (n) { return { x: n.ay, y: n.altin }; }) }
+        ],
+        notlar: [
+          { x: son.ay, y: son.altin, metin: "altın ×" + sayi(son.altin / 100, 1), hiza: "sag", dy: -14, sinif: "gr-not--son gr-not--uc" },
+          { x: son.ay, y: son.fiyat, metin: "fiyatlar ×" + sayi(son.fiyat / 100, 1), hiza: "sag", dy: 20, sinif: "gr-not--bir" }
+        ]
+      };
+    },
+
+    /* V-b. Vergi eşikleri, yıllık asgari ücretin katı */
+    vergi: function (r, W) {
+      var v = r.vergi, son = v[v.length - 1], ilk = v[0];
+      var ust = yukariYuvarla(enBuyuk(v, function (n) { return n.ucuncuKat; }) * 1.12, 1);
+      return {
+        tur: "cizgi", id: "vergi", genislik: W, yukseklik: W < 560 ? 240 : 280,
+        etiket: "İkinci ve üçüncü gelir vergisi eşiği, yıllık asgari ücretin katı, " + ilk.yil + "–" + son.yil + ".",
+        x: { tip: "yil", min: ilk.yil, max: son.yil },
+        y: { tip: "lin", min: 0, max: ust, izgara: adimlar(0, ust, 1), bicim: function (x) { return sayi(x) + "×"; } },
+        referans: 1,
+        seriler: [
+          { ad: "Üçüncü eşik", sinif: "gr-s-bir", noktalar: v.map(function (n) { return { x: n.yil, y: n.ucuncuKat }; }) },
+          { ad: "İkinci eşik", sinif: "gr-s-iki gr-s-kalin", noktalar: v.map(function (n) { return { x: n.yil, y: n.ikinciKat }; }) }
+        ],
+        notlar: [
+          { x: ilk.yil, y: ilk.ikinciKat, metin: sayi(ilk.ikinciKat, 2) + "×", hiza: "sol", dy: -12, sinif: "gr-not--iki" },
+          { x: son.yil, y: son.ikinciKat, metin: sayi(son.ikinciKat, 2) + "×", alt: "ikinci eşik", hiza: "sag", dy: -14, sinif: "gr-not--son gr-not--iki" },
+          { x: ilk.yil, y: ilk.ucuncuKat, metin: sayi(ilk.ucuncuKat, 2) + "×", hiza: "sol", dy: -12, sinif: "gr-not--bir" },
+          { x: son.yil, y: son.ucuncuKat, metin: sayi(son.ucuncuKat, 2) + "×", alt: "üçüncü eşik", hiza: "sag", dy: -14, sinif: "gr-not--bir" }
+        ]
+      };
+    },
+
+    /* VI. G20'de aylık enflasyon, sıralı (BIS) */
+    dunyaEnf: function (r, W) {
+      var d = r.dunyaAy;
+      var ust = yukariYuvarla(d.enf[0].deger * 1.18, 10);
+      return {
+        tur: "siraCubuk", id: "dunyaEnf", genislik: W,
+        etiket: ayEtiket(d.enfAy) + " yıllık enflasyon, " + d.enf.length + " ekonomi. Türkiye " +
+          r.ozet.bisTurEnf.sira + ". sırada, %" + sayi(r.ozet.bisTurEnf.deger, 1) + ".",
+        liste: d.enf.map(function (u) { return { ad: u.ad, deger: u.deger, vurgu: u.kod === "TR" }; }),
+        x: { tip: "lin", min: 0, max: ust, izgara: adimlar(0, ust, 10) },
+        ortanca: d.enfOrtanca
+      };
+    },
+
+    /* VI-b. Reel politika faizi, sıralı (BIS) */
+    dunyaReel: function (r, W) {
+      var d = r.dunyaAy;
+      var alt = asagiYuvarla(Math.min(0, d.reel[d.reel.length - 1].deger) - 1, 2);
+      var ust = yukariYuvarla(d.reel[0].deger * 1.2, 2);
+      return {
+        tur: "siraCubuk", id: "dunyaReel", genislik: W,
+        etiket: ayEtiket(d.reelAy) + " reel politika faizi, " + d.reel.length + " ekonomi. Türkiye " +
+          r.ozet.bisTurReel.sira + ". sırada, %" + sayi(r.ozet.bisTurReel.deger, 1) + ".",
+        liste: d.reel.map(function (u) { return { ad: u.ad, deger: u.deger, vurgu: u.kod === "TR" }; }),
+        x: { tip: "lin", min: alt, max: ust, izgara: adimlar(alt, ust, 2).filter(function (v) { return v % 4 === 0; }), bicim: yuzde }
+      };
+    },
+
+    /* VI-c. Yirmi bir yıl, aylık: Türkiye ve dört ekonomi (BIS) */
+    dunyaSeri: function (r, W) {
+      var seriler = r.dunyaAy.seriler;
+      var tum = [];
+      seriler.forEach(function (s) { s.nokta.forEach(function (n) { if (n.deger != null) tum.push(n); }); });
+      var ust = yukariYuvarla(enBuyuk(tum, function (n) { return n.deger; }) * 1.08, 20);
+      var son = seriler[0].nokta.filter(function (n) { return n.deger != null; });
+      var turSon = son[son.length - 1];
+      return {
+        tur: "cizgi", id: "dunyaSeri", genislik: W, yukseklik: W < 560 ? 280 : 340,
+        etiket: "Yıllık enflasyon, aylık, 2005–" + turSon.ay.slice(0, 4) + ": Türkiye, Brezilya, Rusya, ABD ve euro bölgesi.",
+        x: { tip: "ay", min: seriler[0].nokta[0].ay, max: seriler[0].nokta[seriler[0].nokta.length - 1].ay },
         y: { tip: "lin", min: -10, max: ust, izgara: adimlar(0, ust, 20), bicim: yuzde },
         sifir: true,
-        seriler: seriler.map(function (s) {
-          return { ad: s.ad, kod: s.kod, sinif: s.kod === "TUR" ? "gr-s-iki gr-s-kalin" : "gr-s-soluk",
-            noktalar: s.nokta.map(function (n) { return { x: n.yil, y: n.deger }; }) };
-        }),
-        notlar: seriler.filter(function (s) { return s.kod === "TUR"; }).map(function (s) {
-          var n = s.nokta[s.nokta.length - 1];
-          return { x: n.yil, y: n.deger, metin: "Türkiye %" + sayi(n.deger, 1), alt: String(n.yil), hiza: "sag", sinif: "gr-not--son" };
-        })
+        seriler: seriler.slice(1).map(function (s) {
+          return { ad: s.ad, kod: s.kod, sinif: "gr-s-soluk", noktalar: s.nokta.map(function (n) { return { x: n.ay, y: n.deger }; }) };
+        }).concat([{ ad: seriler[0].ad, kod: "TR", sinif: "gr-s-iki gr-s-kalin",
+          noktalar: seriler[0].nokta.map(function (n) { return { x: n.ay, y: n.deger }; }) }]),
+        notlar: [{ x: turSon.ay, y: turSon.deger, metin: "Türkiye %" + sayi(turSon.deger, 1), alt: ayEtiket(turSon.ay), hiza: "sag", dy: -26, sinif: "gr-not--son" }]
+      };
+    },
+
+    /* VII. Kişi başı gelir, cari $ */
+    kisiBasi: function (r, W) {
+      var m = r.makro.kisiBasi, son = m[m.length - 1];
+      var ust = yukariYuvarla(Math.max(enBuyuk(m, function (n) { return n.tur; }),
+        enBuyuk(m, function (n) { return n.ortanca || 0; })) * 1.12, 10000);
+      return {
+        tur: "cizgi", id: "kisiBasi", genislik: W, yukseklik: W < 560 ? 240 : 280,
+        etiket: "Kişi başı GSYH, cari dolar, " + m[0].yil + "–" + son.yil + ": Türkiye ve G20 ortancası.",
+        x: { tip: "yil", min: m[0].yil, max: son.yil },
+        y: { tip: "lin", min: 0, max: ust, izgara: adimlar(0, ust, 10000), bicim: function (v) { return "$" + sayi(v / 1000) + "b"; } },
+        seriler: [
+          { ad: "G20 ortancası", sinif: "gr-s-soluk", noktalar: m.map(function (n) { return { x: n.yil, y: n.ortanca }; }) },
+          { ad: "Türkiye", sinif: "gr-s-iki gr-s-kalin", noktalar: m.map(function (n) { return { x: n.yil, y: n.tur }; }) }
+        ],
+        notlar: [{ x: son.yil, y: son.tur, metin: "$" + sayi(son.tur), alt: String(son.yil), hiza: "sag", dy: -18, sinif: "gr-not--son" }]
+      };
+    },
+
+    /* VII-b. Reel büyüme */
+    buyume: function (r, W) {
+      var m = r.makro.buyume;
+      var alt = asagiYuvarla(enKucuk(m, function (n) { return n.tur; }) - 1, 4);
+      var ust = yukariYuvarla(enBuyuk(m, function (n) { return n.tur; }) + 1, 4);
+      return {
+        tur: "cubukAyrisan", id: "buyume", genislik: W, yukseklik: W < 560 ? 220 : 260,
+        etiket: "Reel GSYH büyümesi, Türkiye, " + m[0].yil + "–" + m[m.length - 1].yil + ".",
+        x: { tip: "yil", min: m[0].yil, max: m[m.length - 1].yil },
+        y: { min: alt, max: ust, izgara: adimlar(alt, ust, 4), bicim: yuzde },
+        noktalar: m.map(function (n) { return { x: n.yil, y: n.tur }; })
+      };
+    },
+
+    /* VII-c. İşsizlik */
+    issizlik: function (r, W) {
+      var m = r.makro.issizlik, son = m[m.length - 1];
+      var ust = yukariYuvarla(enBuyuk(m, function (n) { return n.tur; }) * 1.15, 4);
+      return {
+        tur: "cizgi", id: "issizlik", genislik: W, yukseklik: W < 560 ? 240 : 280,
+        etiket: "İşsizlik oranı (ILO modeli), Türkiye ve G20 ortancası, " + m[0].yil + "–" + son.yil + ".",
+        x: { tip: "yil", min: m[0].yil, max: son.yil },
+        y: { tip: "lin", min: 0, max: ust, izgara: adimlar(0, ust, 4), bicim: yuzde },
+        seriler: [
+          { ad: "G20 ortancası", sinif: "gr-s-soluk", noktalar: m.map(function (n) { return { x: n.yil, y: n.ortanca }; }) },
+          { ad: "Türkiye", sinif: "gr-s-iki gr-s-kalin", noktalar: m.map(function (n) { return { x: n.yil, y: n.tur }; }) }
+        ],
+        notlar: [{ x: son.yil, y: son.tur, metin: "%" + sayi(son.tur, 1), alt: String(son.yil), hiza: "sag", dy: -20, sinif: "gr-not--son" }]
+      };
+    },
+
+    /* VII-d. Cari denge */
+    cari: function (r, W) {
+      var m = r.makro.cari;
+      var alt = asagiYuvarla(enKucuk(m, function (n) { return n.tur; }) - 1, 2);
+      var ust = yukariYuvarla(Math.max(2, enBuyuk(m, function (n) { return n.tur; }) + 1), 2);
+      return {
+        tur: "cubukAyrisan", id: "cari", genislik: W, yukseklik: W < 560 ? 220 : 260,
+        etiket: "Cari işlemler dengesi, GSYH'nin yüzdesi, Türkiye, " + m[0].yil + "–" + m[m.length - 1].yil + ".",
+        x: { tip: "yil", min: m[0].yil, max: m[m.length - 1].yil },
+        y: { min: alt, max: ust, izgara: adimlar(alt, ust, 2).filter(function (v) { return v % 4 === 0; }), bicim: yuzde },
+        noktalar: m.map(function (n) { return { x: n.yil, y: n.tur }; })
       };
     }
   };

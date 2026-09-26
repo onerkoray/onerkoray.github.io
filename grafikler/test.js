@@ -143,6 +143,98 @@ dogru("Türkiye'nin sırası " + turSira, o.turSira === turSira);
 var degerler = G.ulkeler.map(function (u) { return G.dunya[u[0]][yil]; }).sort(function (a, b) { return a - b; });
 dogru("ortanca (20 ülke: iki ortanın ortalaması)", yakin(o.ortanca, (degerler[9] + degerler[10]) / 2, 1e-12));
 
+/* ---- II-b. ısı haritası --------------------------------------------------------- */
+var hucre = 0, hucreHata = [];
+r.isi.forEach(function (satir) {
+  satir.aylar.forEach(function (v, i) {
+    var ay = satir.yil + "-" + (i < 9 ? "0" : "") + (i + 1);
+    if (v == null) { if (T.aylar[ay]) hucreHata.push(ay + " boş"); return; }
+    hucre++;
+    if (v !== T.aylar[ay].aylik) hucreHata.push(ay);
+  });
+});
+dogru("ısı haritası: " + hucre + " hücrenin her biri TÜİK aylık değişimi", hucre === aylar.length && !hucreHata.length,
+  hucreHata.slice(0, 5).join(", "));
+var aylikTepe = aylar.reduce(function (a2, b2) { return T.aylar[b2].aylik > T.aylar[a2].aylik ? b2 : a2; });
+dogru("en yüksek aylık artış " + aylikTepe, o.aylikTepe.ay === aylikTepe);
+var oc = aylar.filter(function (x) { return x >= "2022-01" && x.slice(5) === "01"; });
+var dg = aylar.filter(function (x) { return x >= "2022-01" && x.slice(5) !== "01"; });
+function ort(l) { return l.reduce(function (t, x) { return t + T.aylar[x].aylik; }, 0) / l.length; }
+dogru("2022'den beri Ocak ortalaması ve diğer aylar", yakin(o.ocakOrt, ort(oc), 1e-12) && yakin(o.digerOrt, ort(dg), 1e-12));
+dogru("aylık %5 üstü ay sayısı", o.aylikUstu5 === aylar.filter(function (x) { return T.aylar[x].aylik >= 5; }).length);
+
+/* ---- IV-c. altın ve birikim -------------------------------------------------------- */
+var altin = G.altin;
+dogru("altın serisi Ocak 2005'ten, boşluksuz", altin.ilk === "2005-01" && altin.usdOns.every(function (v) { return v > 0; }));
+var gram0 = altin.usdOns[0] * G.kur["2005-01"].USD / 31.1034768;
+dogru("Ocak 2005 gram altın = ons × kur ÷ 31,1035", yakin(o.gramIlk, gram0, 1e-9), o.gramIlk + " / " + gram0);
+var bAy = o.birikimAy, bi = H.aySayisi("2005-01", bAy);
+var gramS = altin.usdOns[bi] * G.kur[bAy].USD / 31.1034768;
+dogru("son ay gram altın", yakin(o.gramSon, gramS, 1e-9));
+dogru("altın katı = gram(son) / gram(Ocak 2005)", yakin(o.altinKat, gramS / gram0, 1e-12));
+dogru("birikimdeki dolar katı kur bölümündekiyle aynı", bAy !== kurSon || yakin(o.dolarKatB, o.usdKat, 1e-12));
+dogru("birikimdeki fiyat katı kur bölümündekiyle aynı", bAy !== kurSon || yakin(o.fiyatKatB, o.tufeKatKur, 1e-12));
+
+/* ---- V-b. vergi eşikleri — dilim yazısıyla aynı tanım ve aynı rakam --------------------- */
+r.vergi.forEach(function (v) {
+  var P = B.parametre(v.yil), ya = B.donem(P, 1).asgariBrut * 12;
+  dogru("vergi " + v.yil + ": ikinci ve üçüncü eşik ÷ (Ocak asgari brüt × 12)",
+    yakin(v.ikinciKat, P.dilimler[1][0] / ya, 1e-12) && yakin(v.ucuncuKat, P.dilimler[2][0] / ya, 1e-12));
+});
+var yazi = fs.readFileSync(path.join(KOK, "makaleler", "vergi-dilimleri-asgari-ucrete-yetisemiyor", "index.html"), "utf8");
+function iki(v) { return v.toFixed(2).replace(".", ","); }
+var ilkV = r.vergi[0], sonV = r.vergi.filter(function (v) { return v.yil === 2026; })[0];
+dogru("dilim yazısı da " + iki(ilkV.ikinciKat) + " → " + iki(sonV.ikinciKat) + " diyor",
+  yazi.indexOf(iki(ilkV.ikinciKat) + "'dan " + iki(sonV.ikinciKat) + "'e") >= 0);
+
+/* ---- VI. BIS ------------------------------------------------------------------------ */
+var bis = G.bis, bisHata = [];
+bis.tufe.TR.forEach(function (v, i) {
+  var a2 = aylar[i];
+  if (v != null && a2 && Math.abs(v - T.aylar[a2].yillik) > 0.05) bisHata.push(a2);
+});
+dogru("BIS Türkiye enflasyonu her ay TÜİK ile 0,05 puan içinde", bisHata.length === 0, bisHata.slice(0, 5).join(", "));
+var faizHata = [];
+r.faiz.forEach(function (n) {
+  var i = H.aySayisi("2005-01", n.ay);
+  if (bis.faiz.TR[i] != null && bis.faiz.TR[i] !== n.faiz) faizHata.push(n.ay);
+});
+dogru("BIS Türkiye politika faizi TCMB tablosuyla her ay aynı", faizHata.length === 0, faizHata.slice(0, 5).join(", "));
+var eI = H.aySayisi("2005-01", o.bisEnfAy);
+dogru("enflasyon sıralaması ayında bütün ekonomilerin verisi var",
+  bis.alanlar.every(function (a2) { return bis.tufe[a2[0]][eI] != null; }) &&
+  (eI + 1 >= bis.tufe.TR.length || !bis.alanlar.every(function (a2) { return bis.tufe[a2[0]][eI + 1] != null; })));
+var turE = bis.tufe.TR[eI], sira = 1 + bis.alanlar.filter(function (a2) { return bis.tufe[a2[0]][eI] > turE; }).length;
+dogru("Türkiye enflasyon sırası " + sira, o.bisTurEnf.sira === sira && o.bisTurEnf.deger === turE);
+var rI = H.aySayisi("2005-01", o.bisReelAy);
+var turR = 100 * ((1 + bis.faiz.TR[rI] / 100) / (1 + bis.tufe.TR[rI] / 100) - 1);
+dogru("Türkiye reel faizi Fisher ile", yakin(o.bisTurReel.deger, turR, 1e-9));
+function sonDolu(d2) { for (var k = d2.length - 1; k >= 0; k--) if (d2[k] != null) return k; return -1; }
+var trSon = sonDolu(bis.faiz.TR);
+var eskiBeklenen = bis.alanlar.filter(function (a2) { return trSon - sonDolu(bis.faiz[a2[0]]) > 6; })
+  .map(function (a2) { return a2[0]; });
+dogru("reel sıralamadan düşen ekonomi yalnız faiz serisi altı aydan eski olan: " + eskiBeklenen.join(", "),
+  JSON.stringify(o.bisEskiyen.map(function (e) { return e.kod; })) === JSON.stringify(eskiBeklenen) &&
+  o.bisReelSayisi + eskiBeklenen.length === bis.alanlar.length);
+
+/* ---- VII. büyüme ve gelir -------------------------------------------------------------- */
+var kb = G.makro.kisiBasi, kbYil = o.kisiBasiSiraYil;
+var kbDeger = G.ulkeler.map(function (u) { return kb[u[0]][kbYil]; }).sort(function (x, y) { return x - y; });
+dogru("kişi başı gelir sırası", o.kisiBasiSira.sira === 1 + G.ulkeler.filter(function (u) { return kb[u[0]][kbYil] > kb.TUR[kbYil]; }).length);
+dogru("kişi başı G20 ortancası (20 değer)", yakin(o.kisiBasiSon.ortanca, (kbDeger[9] + kbDeger[10]) / 2, 1e-9));
+var bu = G.makro.buyume.TUR;
+dogru("daralma yılları: " + o.daralmaYillari.join(", "),
+  JSON.stringify(o.daralmaYillari.map(String)) === JSON.stringify(Object.keys(bu).filter(function (y) { return bu[y] < 0; })));
+var ca = G.makro.cari.TUR;
+dogru("cari açık yılı sayısı", o.cariAcikYil === Object.keys(ca).filter(function (y) { return ca[y] < 0; }).length &&
+  o.cariYil === Object.keys(ca).length);
+
+/* ---- Türkçe iyelik ekleri ------------------------------------------------------------- */
+var IY = { 1: "i", 2: "si", 3: "ü", 4: "ü", 6: "sı", 9: "u", 10: "u", 19: "u", 20: "si", 40: "ı" };
+Object.keys(IY).forEach(function (n) { dogru("iyelik " + n + "'" + IY[n], Uretec.iyelik(+n) === IY[n], Uretec.iyelik(+n)); });
+dogru("iyelik+bulunma 19'unda, 2'sinde, 6'sında",
+  Uretec.iyelikBulunma(19) === "unda" && Uretec.iyelikBulunma(2) === "sinde" && Uretec.iyelikBulunma(6) === "sında");
+
 /* ---- zaman makinesi ---------------------------------------------------------- */
 var z = H.zamanMakinesi(r, "2015-01");
 dogru("zaman makinesi: 100 TL × endeks oranı", yakin(z.sepet, 100 * endeks[son] / endeks["2015-01"], 1e-9));

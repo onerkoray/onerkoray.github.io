@@ -15,6 +15,13 @@
  *   kur             ayın son iş günü TCMB döviz satış kuru.
  *   asgari ücret    resmî net (bekâr, çocuksuz); dolar karşılığı o ayın
  *                   son iş günü kuruyla, reel karşılığı son ayın fiyatlarıyla.
+ *   altın (gram TL) Dünya Bankası aylık ortalama ons fiyatı × ay sonu dolar
+ *                   kuru ÷ 31,1034768. Ortalama ile ay sonu karışımı bilinçli:
+ *                   aylık ortalama kur yok; 21 yıllık katta fark ihmal edilir.
+ *   vergi eşiği     ikinci ve üçüncü gelir vergisi eşiği ÷ (Ocak asgari
+ *                   brütü × 12) — dilim kayması yazısıyla aynı tanım.
+ *   dünya           BIS aylık yıllık TÜFE ve ay sonu politika faizi; sıralama,
+ *                   o seride bütün ekonomilerin verisi olan son ay.
  *
  * Lisans: MIT — Koray Öner, https://korayoner.dev/
  */
@@ -160,6 +167,126 @@
     });
   }
 
+  /* ---- II-b. Aylık enflasyon ısı haritası --------------------------------- */
+  function isiHaritasi(T) {
+    var yillar = {};
+    Object.keys(T.aylar).sort().forEach(function (ay) {
+      var y = ay.slice(0, 4);
+      if (!yillar[y]) yillar[y] = [null, null, null, null, null, null, null, null, null, null, null, null];
+      yillar[y][+ay.slice(5, 7) - 1] = T.aylar[ay].aylik;
+    });
+    return Object.keys(yillar).sort().map(function (y) { return { yil: +y, aylar: yillar[y] }; });
+  }
+
+  /* ---- IV-b. 2005'te 100 TL: dolar, euro, altın, fiyatlar ------------------ */
+  var GRAM_ONS = 31.1034768;
+  function birikim(fiyat, kur, altin) {
+    var altinAy = {};
+    var a0 = altin.ilk.split("-"), y0 = +a0[0], m0 = +a0[1];
+    altin.usdOns.forEach(function (v, i) {
+      var t = (y0 * 12 + m0 - 1) + i, yy = Math.floor(t / 12), mm = t - yy * 12 + 1;
+      altinAy[yy + "-" + (mm < 10 ? "0" : "") + mm] = v;
+    });
+    var seri = [], taban = null;
+    fiyat.forEach(function (n) {
+      var k = kur[n.ay], o = altinAy[n.ay];
+      if (!k || o == null) return;
+      var gram = o * k.USD / GRAM_ONS;
+      if (!taban) taban = { usd: k.USD, eur: k.EUR, gram: gram, endeks: n.endeks };
+      seri.push({
+        ay: n.ay, gram: gram, usdOns: o,
+        dolar: 100 * k.USD / taban.usd, euro: 100 * k.EUR / taban.eur,
+        altin: 100 * gram / taban.gram, fiyat: 100 * n.endeks / taban.endeks
+      });
+    });
+    return seri;
+  }
+
+  /* ---- V-b. Vergi eşikleri ve asgari ücret --------------------------------- */
+  function vergiEsikleri(Bordro, sonYil) {
+    var seri = [];
+    for (var y = 2020; y <= sonYil; y++) {
+      var P;
+      try { P = Bordro.parametre(y); } catch (e) { break; }
+      var ya = P.donemler[0].asgariBrut * 12;
+      seri.push({ yil: y, yillikAsgari: ya, ikinci: P.dilimler[1][0], ucuncu: P.dilimler[2][0],
+        ikinciKat: P.dilimler[1][0] / ya, ucuncuKat: P.dilimler[2][0] / ya });
+    }
+    return seri;
+  }
+
+  /* ---- VI. BIS: aylık dünya -------------------------------------------------- */
+  function bisAy(bis, i) {
+    var p = bis.ilk.split("-"), t = +p[0] * 12 + (+p[1] - 1) + i, y = Math.floor(t / 12), m = t - y * 12 + 1;
+    return y + "-" + (m < 10 ? "0" : "") + m;
+  }
+  /* Bütün alanlarda verisi olan son ay; "haric" listesindekiler aranmaz. */
+  function ortakSonAy(bis, alan, haric) {
+    var n = bis[alan].TR.length;
+    for (var i = n - 1; i >= 0; i--) {
+      var tam = bis.alanlar.every(function (a) {
+        return (haric || []).indexOf(a[0]) >= 0 || bis[alan][a[0]][i] != null;
+      });
+      if (tam) return i;
+    }
+    return -1;
+  }
+  function sonGozlem(dizi) {
+    for (var i = dizi.length - 1; i >= 0; i--) if (dizi[i] != null) return i;
+    return -1;
+  }
+  function ortanca(degerler) {
+    var d = degerler.slice().sort(function (a, b) { return a - b; }), n = d.length;
+    return n % 2 ? d[(n - 1) / 2] : (d[n / 2 - 1] + d[n / 2]) / 2;
+  }
+  function dunyaAylik(bis) {
+    var enfI = ortakSonAy(bis, "tufe");
+    // Faiz serisi altı aydan fazla geride kalan alan (Arjantin: BIS'te Haziran
+    // 2025'te bitiyor) reel faiz sıralamasına alınmaz; hangisi olduğu yazılır.
+    var enSon = sonGozlem(bis.faiz.TR);
+    var eskiyen = bis.alanlar.filter(function (a) { return enSon - sonGozlem(bis.faiz[a[0]]) > 6; })
+      .map(function (a) { return a[0]; });
+    var reelI = Math.min(ortakSonAy(bis, "faiz", eskiyen), enfI);
+    var enf = bis.alanlar.map(function (a) { return { kod: a[0], ad: a[1], deger: bis.tufe[a[0]][enfI] }; })
+      .sort(function (a, b) { return b.deger - a.deger; });
+    enf.forEach(function (x, i) { x.sira = i + 1; });
+    var reel = bis.alanlar.filter(function (a) { return eskiyen.indexOf(a[0]) < 0; }).map(function (a) {
+      var f = bis.faiz[a[0]][reelI], t = bis.tufe[a[0]][reelI];
+      return { kod: a[0], ad: a[1], faiz: f, tufe: t, deger: 100 * ((1 + f / 100) / (1 + t / 100) - 1) };
+    }).sort(function (a, b) { return b.deger - a.deger; });
+    reel.forEach(function (x, i) { x.sira = i + 1; });
+    return {
+      enfAy: bisAy(bis, enfI), enf: enf, enfOrtanca: ortanca(enf.map(function (x) { return x.deger; })),
+      reelAy: bisAy(bis, reelI), reel: reel, eskiyen: eskiyen.map(function (k) {
+        var a = bis.alanlar.filter(function (x) { return x[0] === k; })[0];
+        return { kod: k, ad: a[1], sonAy: bisAy(bis, sonGozlem(bis.faiz[k])) };
+      }),
+      seriler: ["TR", "BR", "RU", "US", "XM"].map(function (k) {
+        var a = bis.alanlar.filter(function (x) { return x[0] === k; })[0];
+        return { kod: k, ad: a[1], nokta: bis.tufe[k].map(function (v, i) { return { ay: bisAy(bis, i), deger: v }; }) };
+      })
+    };
+  }
+
+  /* ---- VII. Büyüme ve gelir (Dünya Bankası, yıllık) ------------------------- */
+  function makroSeri(G, ad) {
+    var m = G.makro[ad], tur = m.TUR, yillar = Object.keys(tur).sort();
+    return yillar.map(function (y) {
+      var hepsi = G.ulkeler.map(function (u) { return m[u[0]][y]; }).filter(function (v) { return v != null; });
+      return { yil: +y, tur: tur[y], ortanca: hepsi.length >= 15 ? ortanca(hepsi) : null, n: hepsi.length };
+    });
+  }
+  function makroSira(G, ad) {
+    var m = G.makro[ad], yil = null;
+    Object.keys(m.TUR).sort().forEach(function (y) {
+      if (G.ulkeler.every(function (u) { return m[u[0]][y] != null; })) yil = y;
+    });
+    var liste = G.ulkeler.map(function (u) { return { kod: u[0], ad: u[1], deger: m[u[0]][yil] }; })
+      .sort(function (a, b) { return b.deger - a.deger; });
+    liste.forEach(function (x, i) { x.sira = i + 1; });
+    return { yil: yil, liste: liste };
+  }
+
   /* ---- Zaman makinesi: seçilen ayın 100 TL'si ve doları bugün ------------ */
   function zamanMakinesi(r, ay) {
     var f = r.fiyat, son = f[f.length - 1], n = null, k = null, ks = r.kur[r.kur.length - 1];
@@ -208,6 +335,26 @@
     var donemBas = asgari[0];
     asgari.forEach(function (n, i) { if (i && n.net !== asgari[i - 1].net) donemBas = n; });
 
+    var isi = isiHaritasi(T);
+    var aylikTepe = fiyat.reduce(function (a, b) { return T.aylar[b.ay].aylik > T.aylar[a.ay].aylik ? b : a; });
+    var ocaklar = fiyat.filter(function (n) { return n.ay.slice(5) === "01" && n.ay >= "2022-01"; });
+    var digerAylar = fiyat.filter(function (n) { return n.ay.slice(5) !== "01" && n.ay >= "2022-01"; });
+    function ortalama(d, f) { return d.reduce(function (t, n) { return t + f(n); }, 0) / d.length; }
+
+    var bir = G.altin ? birikim(fiyat, G.kur, G.altin) : [];
+    var birSon = bir[bir.length - 1];
+
+    var vergi = vergiEsikleri(Bordro, +son.ay.slice(0, 4));
+    var dunyaAy = G.bis ? dunyaAylik(G.bis) : null;
+    var turEnf = dunyaAy && dunyaAy.enf.filter(function (x) { return x.kod === "TR"; })[0];
+    var turReel = dunyaAy && dunyaAy.reel.filter(function (x) { return x.kod === "TR"; })[0];
+
+    var makro = G.makro ? {
+      kisiBasi: makroSeri(G, "kisiBasi"), buyume: makroSeri(G, "buyume"),
+      issizlik: makroSeri(G, "issizlik"), cari: makroSeri(G, "cari"),
+      kisiBasiSira: makroSira(G, "kisiBasi")
+    } : null;
+
     var siralama = dunyaSiralama(G);
     var tur = siralama.liste.filter(function (x) { return x.kod === "TUR"; })[0];
 
@@ -220,6 +367,11 @@
       asgari: asgari,
       siralama: siralama,
       dunya: dunyaSerileri(G, ["TUR", "ARG", "BRA", "RUS", "USA", "EMU"]),
+      isi: isi,
+      birikim: bir,
+      vergi: vergi,
+      dunyaAy: dunyaAy,
+      makro: makro,
       ozet: {
         fiyatKat: son.endeks / 100,
         sonTufe: son.yillik,
@@ -251,6 +403,44 @@
         donemBas: { ay: donemBas.ay, reel: donemBas.reel, usd: donemBas.usd },
         donemErime: 1 - asgariSon.reel / donemBas.reel,
 
+        aylikTepe: { ay: aylikTepe.ay, deger: T.aylar[aylikTepe.ay].aylik },
+        ocakOrt: ortalama(ocaklar, function (n) { return T.aylar[n.ay].aylik; }),
+        digerOrt: ortalama(digerAylar, function (n) { return T.aylar[n.ay].aylik; }),
+        aylikUstu5: fiyat.filter(function (n) { return T.aylar[n.ay].aylik >= 5; }).length,
+        aylikUstu5Liste: fiyat.filter(function (n) { return T.aylar[n.ay].aylik >= 5; }).map(function (n) { return n.ay; }),
+
+        birikimAy: birSon ? birSon.ay : null,
+        altinKat: birSon ? birSon.altin / 100 : null,
+        dolarKatB: birSon ? birSon.dolar / 100 : null,
+        euroKat: birSon ? birSon.euro / 100 : null,
+        fiyatKatB: birSon ? birSon.fiyat / 100 : null,
+        gramSon: birSon ? birSon.gram : null,
+        gramIlk: bir.length ? bir[0].gram : null,
+        onsSon: birSon ? birSon.usdOns : null,
+
+        vergiIlk: vergi[0], vergiSon: vergi[vergi.length - 1],
+
+        bisEnfAy: dunyaAy && dunyaAy.enfAy, bisTurEnf: turEnf, bisEnfOrtanca: dunyaAy && dunyaAy.enfOrtanca,
+        bisEnfBirinci: dunyaAy && dunyaAy.enf[0], bisAlanSayisi: dunyaAy && dunyaAy.enf.length,
+        bisReelAy: dunyaAy && dunyaAy.reelAy, bisTurReel: turReel, bisReelBirinci: dunyaAy && dunyaAy.reel[0],
+        bisReelSon: dunyaAy && dunyaAy.reel[dunyaAy.reel.length - 1], bisReelSayisi: dunyaAy && dunyaAy.reel.length,
+        bisEskiyen: dunyaAy && dunyaAy.eskiyen,
+
+        kisiBasiSon: makro && makro.kisiBasi[makro.kisiBasi.length - 1],
+        kisiBasiTepe: makro && makro.kisiBasi.reduce(function (a, b) { return b.tur > a.tur ? b : a; }),
+        kisiBasiSira: makro && makro.kisiBasiSira.liste.filter(function (x) { return x.kod === "TUR"; })[0],
+        kisiBasiSiraYil: makro && makro.kisiBasiSira.yil,
+        buyumeOrt: makro && ortalama(makro.buyume, function (n) { return n.tur; }),
+        buyumeIlkYil: makro && makro.buyume[0].yil, buyumeSonYil: makro && makro.buyume[makro.buyume.length - 1].yil,
+        buyumeDip: makro && makro.buyume.reduce(function (a, b) { return b.tur < a.tur ? b : a; }),
+        buyumeTepe: makro && makro.buyume.reduce(function (a, b) { return b.tur > a.tur ? b : a; }),
+        issizlikSon: makro && makro.issizlik[makro.issizlik.length - 1],
+        cariSon: makro && makro.cari[makro.cari.length - 1],
+        cariAcikYil: makro && makro.cari.filter(function (n) { return n.tur < 0; }).length,
+        cariFazlaYillari: makro && makro.cari.filter(function (n) { return n.tur >= 0; }).map(function (n) { return n.yil; }),
+        daralmaYillari: makro && makro.buyume.filter(function (n) { return n.tur < 0; }).map(function (n) { return n.yil; }),
+        cariYil: makro && makro.cari.length,
+
         dunyaYil: siralama.yil,
         turSira: tur.sira, turDeger: tur.deger,
         ulkeSayisi: siralama.liste.length,
@@ -263,6 +453,11 @@
   return {
     hesapla: hesapla,
     zamanMakinesi: zamanMakinesi,
+    isiHaritasi: isiHaritasi,
+    birikim: birikim,
+    vergiEsikleri: vergiEsikleri,
+    dunyaAylik: dunyaAylik,
+    GRAM_ONS: GRAM_ONS,
     ayAdi: ayAdi,
     aySayisi: aySayisi,
     fiyatEndeksi: fiyatEndeksi,
