@@ -162,6 +162,7 @@ kalan maddeleri CI göremez. Onları elle geç.
 **Sayfa ve görsel**
 
 - [ ] Kabuk şablondan kuruldu, gövde ezberden yazılmadı. [CI: Makale kabuğu ve sınıfları]
+- [ ] Üst başlık site standardında: marka adı `brand-name`, menü Ana Sayfa · Araçlar · Makaleler ile başlıyor, `tema-erken.js` ve `script.js` yüklü. Menüye yazıyla ilgisiz bağlantı kopyalanmadı. [CI: Site başlığı tek standartta]
 - [ ] Gövdede gerçek bir `<img>` var (Google Görseller). [CI: Görsel SEO regresyonları]
 - [ ] Görsel `tools/makale-gorsel.js` içinde çizildi. Pillow ya da elle PNG yok. [CI: SVG makale kartları çizimle aynı]
 - [ ] Paylaşım meta etiketleri tam. [CI: Paylaşım meta etiketleri tam mı]

@@ -17,9 +17,8 @@
  * ---------
  *   1. KABUK. Her makale breadcrumb, `.wrap prose` ve `.wrap
  *      footer-legal` taşımalı. Bunlar 36 makalenin 36'sında var.
- *      `site-header` BİLEREK dışarıda: iki meşru kabuk var ve
- *      makalelerin 18'inde üst menü yok. Var olmayan bir tekdüzeliği
- *      dayatmak, gerçek bir kuralı test etmekten farklı bir şeydir.
+ *      `site-header` burada denetlenmiyor; başlığın tek standardını
+ *      bütün sayfalar için tools/baslik-test.js zorluyor (Eylül 2026).
  *
  *   2. SINIFLAR GERÇEK Mİ. Kullanılan her `ed-` sınıfının bir CSS
  *      kuralı olmalı. Uydurma sınıf sessizdir: sayfa açılır, hiçbir
