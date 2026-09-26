@@ -164,6 +164,8 @@ def etiket(slug):
 def tur(slug):
     if slug == "yayinlar":
         return "Yayınlar"
+    if slug == "grafikler":
+        return "Grafikler"
     if slug.endswith("/metodoloji"):
         return "Metodoloji"
     if slug.startswith("makaleler/"):
