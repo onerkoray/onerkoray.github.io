@@ -47,10 +47,12 @@ def dogru(ad, kosul, detay=""):
 _SAYAC = [0]
 
 
-def commit(dosyalar):
+def commit(dosyalar, icerik=None):
     """Sahte bir 'git show' ciktisi kurar ve commit karmasini dondurur.
 
     dosyalar: {yol: [(isaret, satir), ...]}
+    icerik:   {yol: (once, sonra)} -- kabuk elegi dosyanin tamamini okur;
+              verilmezse dosya bulunamamis sayilir (elek devreye girmez).
     """
     _SAYAC[0] += 1
     h = "sahte%04d" % _SAYAC[0]
@@ -63,12 +65,22 @@ def commit(dosyalar):
         for isaret, satir in satirlar:
             parca.append(isaret + satir)
     cikti = "\n".join(parca)
-    A.git = lambda *a, **k: cikti          # noqa: E731  (test cift yonlusu)
+    icerik = icerik or {}
+
+    def sahte_git(*a, **k):                # test cift yonlusu
+        if len(a) == 2 and a[0] == "show" and ":" in a[1]:
+            rev, yol = a[1].split(":", 1)
+            ikili = icerik.get(yol)
+            if not ikili:
+                return ""
+            return ikili[0] if rev.endswith("^") else ikili[1]
+        return cikti
+    A.git = sahte_git
     return h
 
 
-def degisti(dosyalar, yol):
-    return A.ozlu_degisim(commit(dosyalar), yol)
+def degisti(dosyalar, yol, icerik=None):
+    return A.ozlu_degisim(commit(dosyalar, icerik), yol)
 
 
 print("Tarama commit'i ayirt etme kurali\n")
@@ -151,6 +163,37 @@ dogru("KONTROL: 'arac' sorgusu 'aracgereç' klasorunu yakalamaz",
 dogru("ayni satirin silinip eklenmesi ozlu sayilmaz",
       not degisti({"x/index.html": [
           ("-", "  <p>ayni</p>"), ("+", "  <p>ayni</p>")]}, "x/index.html"))
+
+# --- 7) Site kabugu icerik degil ------------------------------------------
+# 26 Eylul 2026: ust baslik tek standarda cekildi. Menusu kendine ozgu olan
+# araclarda diff baska sayfaya benzemedigi icin tekrar esigi yakalamadi ve
+# 18 kart "bugun guncellendi" oldu.
+GOVDE = "<main><h1>Kredi</h1><p>Aylik taksit 1.000 TL.</p></main>"
+ONCE = ('<head><meta charset="UTF-8"></head><body>'
+        '<header class="site-header"><nav><ul><li><a href="../">Ana Sayfa</a></li>'
+        '<li><a href="#hesapla">Hesapla</a></li></ul></nav></header>' + GOVDE +
+        '<footer class="site-footer"><p>eski</p></footer></body>')
+SONRA = ('<head><meta charset="UTF-8"><script src="../tema-erken.js?v=ab12cd34"></script></head><body>'
+         '<header class="site-header" role="banner"><nav><ul><li><a href="../">Ana Sayfa</a></li>'
+         '<li><a href="../#projects">Araclar</a></li><li><a href="../makaleler/">Makaleler</a></li>'
+         '<li><a href="#hesapla">Hesapla</a></li></ul></nav></header>' + GOVDE +
+         '<footer class="site-footer"><p>yeni</p></footer>'
+         '<script src="../script.js?v=12ab34cd" defer></script></body>')
+dogru("yalnizca baslik/altbilgi/site betigi degisen sayfa ozlu sayilmaz",
+      not degisti({"kredi/index.html": [("-", ONCE), ("+", SONRA)]}, "kredi/index.html",
+                  {"kredi/index.html": (ONCE, SONRA)}))
+
+# KONTROL: ayni kabuk degisikligine govdede tek rakam eklenirse ozlu sayilir.
+# Bu olmadan yukaridaki iddia, elek her HTML'i kabuk saysa da gecerdi.
+SONRA2 = SONRA.replace("1.000 TL", "1.250 TL")
+dogru("KONTROL: kabukla birlikte govde de degisirse ozlu sayilir",
+      degisti({"kredi/index.html": [("-", ONCE), ("+", SONRA2)]}, "kredi/index.html",
+              {"kredi/index.html": (ONCE, SONRA2)}))
+
+# KONTROL: dosyanin eski hali yoksa (yeni sayfa) elek devreye girmez.
+dogru("KONTROL: yeni eklenen sayfa ozlu sayilir",
+      degisti({"yeni/index.html": [("+", SONRA)]}, "yeni/index.html",
+              {"yeni/index.html": ("", SONRA)}))
 
 print("\n%d gecti, %d kaldi. (tarama commit'i kurali)" % (gecen[0], hata[0]))
 sys.exit(1 if hata[0] else 0)

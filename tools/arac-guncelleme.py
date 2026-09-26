@@ -75,6 +75,39 @@ GECERLILIK = re.compile(r'<meta\s+name="gecerlilik"')
 DOGRULAMA = re.compile(r'<meta\s+name="google-site-verification"')
 
 
+# SITE KABUGU sayfanin icerigi degil. 26 Eylul 2026'da ust baslik 173
+# sayfada tek standarda cekildi: menuye Araclar/Makaleler eklendi, marka
+# adina sinif verildi, tema betigi eklendi. Tekrar esigi bunun cogunu
+# yakaladi ama menusu tek satirda yazilmis ya da kendine ozgu ogeler tasiyan
+# 18 aracin diff'i baska hicbir sayfaya benzemiyordu; kartlari "bugun
+# guncellendi" oldu. Oysa okura sunulan icerik degismemisti. Ucuncu elek
+# dosyanin once/sonra halini baslik, altbilgi ve site betikleri cikarilmis
+# olarak karsilastirir; geriye fark kalmiyorsa degisiklik ozlu degildir.
+KABUK_BAS = re.compile(r'<header class="site-header"[^>]*>.*?</header>', re.S)
+KABUK_DIP = re.compile(r'<footer class="site-footer"[^>]*>.*?</footer>', re.S)
+KABUK_BETIK = re.compile(
+    r'<script src="[^"]*(?:tema-erken|script)[.]js(?:[?]v=[0-9a-f]+)?"(?: defer)?></script>')
+
+
+def _kabuksuz(metin):
+    metin = KABUK_BAS.sub("", metin)
+    metin = KABUK_DIP.sub("", metin)
+    metin = KABUK_BETIK.sub("", metin)
+    metin = DAMGA.sub("", metin)
+    return re.sub(r"\s+", " ", metin)
+
+
+def yalniz_kabuk(h, yol):
+    """Commit bu HTML dosyasinda yalnizca site kabugunu mu degistirdi?"""
+    if not yol.endswith(".html"):
+        return False
+    once = git("show", h + "^:" + yol)
+    sonra = git("show", h + ":" + yol)
+    if not once or not sonra:          # yeni ya da silinmis dosya
+        return False
+    return _kabuksuz(once) == _kabuksuz(sonra)
+
+
 # Ayni degisiklik kac dosyada tekrarlarsa "site geneli tarama" sayilir.
 # Uc sayfayi ayni sekilde duzenlemek esgudumlu gercek bir istir; kirk sayfaya
 # ayni satiri basmak taramadir. Eldeki dagilim bu araligi bos birakiyor.
@@ -148,15 +181,15 @@ def ozlu_degisim(h, yol):
     tablo = _imzalar(h)
     # Cagiranlardan biri dosya yolu ("x/index.html"), digeri klasor ("x")
     # veriyor; ikisi de karsilanmali.
-    kendi = [v for k, v in tablo.items()
+    kendi = [(k, v) for k, v in tablo.items()
              if k == yol or k.startswith(yol.rstrip("/") + "/")]
     if not kendi:
         return False
-    for imza in kendi:
+    for dosya, imza in kendi:
         if imza[0] == imza[1]:      # normalize sonrasi geriye bir sey yok
             continue
         tekrar = sum(1 for v in tablo.values() if v == imza)
-        if tekrar < TARAMA_TEKRARI:
+        if tekrar < TARAMA_TEKRARI and not yalniz_kabuk(h, dosya):
             return True
     return False
 
