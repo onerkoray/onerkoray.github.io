@@ -118,6 +118,22 @@ def blok(html, kok, motorlu):
             satir("Yöntem", '<a href="#yontem">Aylık nakit akışlarının bugünkü değeri</a>'),
             satir("Kaynak kod ve testler", '<a href="https://korayoner.dev/pesin-mi-taksit-mi/motor.js">Hesap motoru</a> · <a href="https://korayoner.dev/pesin-mi-taksit-mi/test.js">Sayısal testler</a>'),
         ]
+    # Grafikler sayfası bir araç değil, veri sayfası: okur bir şey girmez,
+    # künye veri kaynağını ve doğrulama yolunu belgeler.
+    elif 'href="https://korayoner.dev/grafikler/"' in html:
+        metin = (
+            'Bu sayfayı <a href="%(k)shakkimda/" rel="author"><strong>Koray Öner</strong></a> hazırladı ve '
+            'sürdürüyor. Grafikler TÜİK, TCMB ve Dünya Bankası verisinden her iş günü yeniden üretilir; '
+            'sayfadaki her rakam bir hesap modülünden gelir ve ayrı bir testle ikinci bir yoldan '
+            'yeniden hesaplanır. Tanımlar ve doğrulama kuralları <a href="#yontem">yöntem bölümünde</a>.'
+        ) % {"k": kok}
+        satirlar = [
+            satir("Hazırlayan", '<a href="%shakkimda/" rel="author">Koray Öner</a>' % kok),
+            satir("Veri", "TÜİK, TCMB, Dünya Bankası — her iş günü"),
+            satir("Hesap ve testler", '<a href="https://korayoner.dev/grafikler/hesap.js">Hesap modülü</a> · '
+                  '<a href="https://korayoner.dev/grafikler/test.js">Testler</a>'),
+        ]
+        hesaplayici = False
     elif 'id="kaynak-title"' in html:
         metin = (
             "Bu aracı <a href=\"%(k)shakkimda/\" rel=\"author\"><strong>Koray Öner</strong></a> geliştirdi ve "
@@ -159,7 +175,8 @@ def blok(html, kok, motorlu):
         "             alt=\"Koray Öner\" loading=\"lazy\" decoding=\"async\">",
         "        <div class=\"method-body\">",
         "          <h2 id=\"metod-title\">%s</h2>" % (
-            "Bu aracı kim yaptı, nasıl hesaplıyor?" if hesaplayici else "Bu aracı kim yaptı?"),
+            "Bu sayfayı kim hazırladı, veri nereden geliyor?" if 'href="https://korayoner.dev/grafikler/"' in html
+            else "Bu aracı kim yaptı, nasıl hesaplıyor?" if hesaplayici else "Bu aracı kim yaptı?"),
         "          <p>%s</p>" % metin,
         "          <p><a href=\"/yayin-ilkeleri/\">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>",
         "          <dl class=\"method-meta\">",

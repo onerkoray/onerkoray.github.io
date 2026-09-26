@@ -169,5 +169,5 @@ module.exports = {
   yuzde: yuzde, yuzdeKisa: yuzdeKisa, tl: tl, kacis: kacis, KACI: KACI,
   aciklamaTarihi: aciklamaTarihi, sonrakiAciklama: sonrakiAciklama,
   uzunTarih: uzunTarih, aralik: aralik, durum: durum,
-  aylarTablosu: aylarTablosu, calistir: calistir
+  aylarTablosu: aylarTablosu, calistir: calistir, sitemapTazele: sitemapTazele
 };

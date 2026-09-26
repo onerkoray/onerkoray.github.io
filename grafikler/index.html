@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <script src="../tema-erken.js?v=3d1c1238"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ekonomi Grafikleri: Enflasyon, Faiz, Kur | Koray Öner</title>
+  <meta name="description" content="Türkiye'de fiyatlar, enflasyon, faiz, dolar kuru ve asgari ücret 2005'ten bugüne, G20 karşılaştırmasıyla. TCMB, TÜİK ve Dünya Bankası verisi.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/grafikler/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+  <link rel="alternate" type="application/atom+xml" title="Koray Öner — Yeni Araçlar" href="../atom.xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Türkiye ekonomisi, grafiklerle">
+  <meta property="og:description" content="Fiyatlar, enflasyon, politika faizi, dolar kuru ve asgari ücret: 2005'ten bugüne resmî seriden, G20 karşılaştırmasıyla.">
+  <meta property="og:url" content="https://korayoner.dev/grafikler/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/grafikler-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Türkiye ekonomisi grafikleri: enflasyon, faiz, kur ve asgari ücret">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Türkiye ekonomisi, grafiklerle">
+  <meta name="twitter:description" content="Fiyatlar, enflasyon, faiz, kur ve asgari ücret: 2005'ten bugüne resmî seriden.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/grafikler-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=d52082c5">
+  <link rel="stylesheet" href="grafikler.css?v=7a46138f">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://korayoner.dev/grafikler/#webpage",
+        "url": "https://korayoner.dev/grafikler/",
+        "name": "Türkiye ekonomisi, grafiklerle",
+        "description": "Türkiye'de fiyatlar, enflasyon, politika faizi, dolar kuru ve asgari ücret 2005'ten bugüne; G20 karşılaştırmasıyla.",
+        "inLanguage": "tr",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "primaryImageOfPage": "https://korayoner.dev/images/grafikler-koray-oner.png",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "mainEntity": { "@id": "https://korayoner.dev/grafikler/#veri" }
+      },
+      {
+        "@type": "Dataset",
+        "@id": "https://korayoner.dev/grafikler/#veri",
+        "name": "Türkiye ekonomisi grafik serileri",
+        "description": "Aylık tüketici fiyat endeksi (Aralık 2004 = 100), yıllık TÜFE, TCMB politika faizi ve Fisher reel faizi, ay sonu dolar ve euro kuru, net asgari ücretin dolar ve reel karşılığı; G20 ekonomilerinde yıllık enflasyon.",
+        "url": "https://korayoner.dev/grafikler/",
+        "inLanguage": "tr",
+        "temporalCoverage": "2005-01/..",
+        "spatialCoverage": "Türkiye",
+        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
+        "license": "https://opensource.org/licenses/MIT",
+        "isBasedOn": [
+          "https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Enflasyon+Verileri/Tuketici+Fiyatlari",
+          "https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Temel+Faaliyetler/Para+Politikasi/Merkez+Bankasi+Faiz+Oranlari/1+Hafta+Repo",
+          "https://www.tcmb.gov.tr/kurlar/kurlar_tr.html",
+          "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG"
+        ],
+        "variableMeasured": ["Tüketici fiyat endeksi", "Yıllık enflasyon", "Politika faizi", "Reel faiz", "Dolar kuru", "Net asgari ücret"]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Grafikler", "item": "https://korayoner.dev/grafikler/"}]}</script>
+</head>
+<body class="grafik-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="../#projects">Araçlar</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
+          <li><a href="#fiyatlar">Fiyatlar</a></li>
+          <li><a href="#enflasyon">Enflasyon</a></li>
+          <li><a href="#faiz">Faiz</a></li>
+          <li><a href="#kur">Kur</a></li>
+          <li><a href="#ucret">Ücret</a></li>
+          <li><a href="#dunya">Dünya</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Grafikler
+    </nav>
+
+    <section class="gr-giris" aria-labelledby="gr-baslik">
+      <div class="wrap">
+        <p class="gr-ust">Grafikler · Türkiye ekonomisi, 2005–<span data-s="sonYil">2026</span></p>
+        <h1 id="gr-baslik">Fiyatlar 2005'ten bu yana <span class="gr-dev"><span class="gr-carpi">×</span><span data-s="fiyatKat" data-sayac>37,7</span></span></h1>
+        <p class="gr-giris-metin">Aralık 2004'te 100 TL olan sepet <span data-s="sonAyDa">Ağustos 2026'da</span> <strong><span data-s="sepet">3.766</span> TL</strong>. Aşağıda enflasyonun, faizin, kurun ve asgari ücretin aynı yirmi bir yılı; her grafik resmî seriden, her iş günü yeniden çizilir.</p>
+        <ol class="gr-fihrist" aria-label="Bölümler ve öne çıkan rakamlar">
+          <li><a href="#fiyatlar"><span class="gr-no">I</span><span class="gr-ad">Fiyatlar</span><span class="gr-deger">×<span data-s="fiyatKat">37,7</span></span></a></li>
+          <li><a href="#enflasyon"><span class="gr-no">II</span><span class="gr-ad">Enflasyon</span><span class="gr-deger">%<span data-s="sonTufe">31,51</span></span></a></li>
+          <li><a href="#faiz"><span class="gr-no">III</span><span class="gr-ad">Faiz</span><span class="gr-deger">%<span data-s="faiz">37</span></span></a></li>
+          <li><a href="#kur"><span class="gr-no">IV</span><span class="gr-ad">Dolar</span><span class="gr-deger"><span data-s="usdSon">48,26</span> TL</span></a></li>
+          <li><a href="#ucret"><span class="gr-no">V</span><span class="gr-ad">Asgari ücret</span><span class="gr-deger">$<span data-s="asgariSonUsd">582</span></span></a></li>
+          <li><a href="#dunya"><span class="gr-no">VI</span><span class="gr-ad">G20'de sıra</span><span class="gr-deger"><span data-s="turSiraRakam">2</span>.</span></a></li>
+        </ol>
+        <p class="gr-kunye">Son veri: <span data-s="sonAyUzun">Ağustos 2026</span> TÜFE ve ay sonu kuru · Kaynak: TÜİK, TCMB, Dünya Bankası · <a href="#yontem">Yöntem</a></p>
+      </div>
+    </section>
+
+    <!-- ============================================================ I -->
+    <section class="gr-bolum" id="fiyatlar" data-bolum="I" aria-labelledby="b1">
+      <div class="wrap">
+        <header class="gr-bolum-bas">
+          <p class="gr-numara"><span>I</span> Fiyatlar</p>
+          <h2 id="b1">Fiyatlar <span data-s="katSayisiYazi">beş</span> kez ikiye katlandı. İlki <span data-s="ilkKatSure">106</span> ay sürdü, sonuncusu <span data-s="sonKatSure">25</span>.</h2>
+          <p class="gr-oz">Endeks her ay TÜFE'nin aylık değişimiyle zincirleniyor. Logaritmik ölçekte her yatay çizgi bir ikiye katlanma; eğim dikleştikçe aralar kısalıyor.</p>
+        </header>
+        <figure class="gr-sekil" data-kap="fiyat">
+          <div class="gr-sekil-ust">
+            <p class="gr-sekil-ad">Tüketici fiyat endeksi · Aralık 2004 = 100</p>
+            <div class="gr-secim" role="group" aria-label="Ölçek">
+              <button type="button" data-secenek="olcek" data-deger="log" aria-pressed="true">Logaritmik</button>
+              <button type="button" data-secenek="olcek" data-deger="lin" aria-pressed="false">Doğrusal</button>
+            </div>
+          </div>
+          <div class="gr-tuval">
+<!-- GR:fiyat:BASLANGIC --><svg class="gr-svg" viewBox="0 0 1000 400" width="1000" height="400" role="img" aria-label="Tüketici fiyat endeksi, Aralık 2004 = 100. Ağu 2026 itibarıyla 3.766." data-grafik="fiyat"><line class="gr-izgara" x1="52" x2="978" y1="351.1" y2="351.1"/><text class="gr-eksen gr-eksen-y" x="44" y="355.1">100</text><line class="gr-izgara" x1="52" x2="978" y1="292.3" y2="292.3"/><text class="gr-eksen gr-eksen-y" x="44" y="296.3">200</text><line class="gr-izgara" x1="52" x2="978" y1="233.6" y2="233.6"/><text class="gr-eksen gr-eksen-y" x="44" y="237.6">400</text><line class="gr-izgara" x1="52" x2="978" y1="174.8" y2="174.8"/><text class="gr-eksen gr-eksen-y" x="44" y="178.8">800</text><line class="gr-izgara" x1="52" x2="978" y1="116" y2="116"/><text class="gr-eksen gr-eksen-y" x="44" y="120">1.600</text><line class="gr-izgara" x1="52" x2="978" y1="57.3" y2="57.3"/><text class="gr-eksen gr-eksen-y" x="44" y="61.3">3.200</text><line class="gr-centik" x1="98.3" x2="98.3" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="98.3" y="388">2006</text><line class="gr-centik" x1="183.8" x2="183.8" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="183.8" y="388">2008</text><line class="gr-centik" x1="269.3" x2="269.3" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="269.3" y="388">2010</text><line class="gr-centik" x1="354.7" x2="354.7" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="354.7" y="388">2012</text><line class="gr-centik" x1="440.2" x2="440.2" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="440.2" y="388">2014</text><line class="gr-centik" x1="525.7" x2="525.7" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="525.7" y="388">2016</text><line class="gr-centik" x1="611.2" x2="611.2" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="611.2" y="388">2018</text><line class="gr-centik" x1="696.6" x2="696.6" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="696.6" y="388">2020</text><line class="gr-centik" x1="782.1" x2="782.1" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="782.1" y="388">2022</text><line class="gr-centik" x1="867.6" x2="867.6" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="867.6" y="388">2024</text><line class="gr-centik" x1="953.1" x2="953.1" y1="370" y2="375"/><text class="gr-eksen gr-eksen-x" x="953.1" y="388">2026</text><path class="gr-alan gr-s-ana" d="M52 351.1L55.6 350.6L59.1 350.6L62.7 350.4L66.2 349.8L69.8 349L73.4 348.9L76.9 349.4L80.5 348.7L84.1 347.8L87.6 346.3L91.2 345.1L94.7 344.8L98.3 344.2L101.9 344L105.4 343.7L109 342.6L112.5 341L116.1 340.7L119.7 340L123.2 340.4L126.8 339.3L130.4 338.2L133.9 337.2L137.5 337L141 336.1L144.6 335.8L148.2 335L151.7 334L155.3 333.5L158.8 333.7L162.4 334.4L166 334.3L169.5 333.5L173.1 332L176.7 330.3L180.2 330.1L183.8 329.5L187.3 328.4L190.9 327.6L194.5 326.1L198 324.9L201.6 325.2L205.1 324.7L208.7 324.9L212.3 324.5L215.8 322.4L219.4 321.7L223 322L226.5 321.8L230.1 322L233.6 321.1L237.2 321.1L240.8 320.6L244.3 320.5L247.9 320.3L251.4 320.5L255 320.2L258.6 318.2L262.1 317.1L265.7 316.6L269.3 315.1L272.8 313.9L276.4 313.4L279.9 312.9L283.5 313.2L287.1 313.7L290.6 314.1L294.2 313.7L297.7 312.7L301.3 311.1L304.9 311.1L308.4 311.4L312 311L315.6 310.4L319.1 310.1L322.7 309.3L326.2 307.3L329.8 308.5L333.4 308.9L336.9 308.2L340.5 307.6L344 304.9L347.6 303.4L351.2 302.9L354.7 302.5L358.3 302L361.9 301.6L365.4 300.4L369 300.5L372.5 301.3L376.1 301.5L379.7 301L383.2 300.2L386.8 298.5L390.3 298.2L393.9 297.9L397.5 296.5L401 296.2L404.6 295.7L408.2 295.3L411.7 295.2L415.3 294.6L418.8 294.3L422.4 294.4L426 293.7L429.5 292.2L433.1 292.2L436.6 291.8L440.2 290.2L443.8 289.8L447.3 288.8L450.9 287.7L454.5 287.4L458 287.1L461.6 286.7L465.1 286.7L468.7 286.5L472.3 284.9L475.8 284.8L479.4 285.2L482.9 284.2L486.5 283.6L490.1 282.6L493.6 281.3L497.2 280.8L500.8 281.2L504.3 281.1L507.9 280.8L511.4 280.1L515 278.7L518.6 278.2L522.1 278L525.7 276.5L529.2 276.5L532.8 276.5L536.4 275.9L539.9 275.4L543.5 275L547.1 274L550.6 274.2L554.2 274.1L557.7 272.9L561.3 272.4L564.9 271.1L568.4 269L572 268.3L575.5 267.5L579.1 266.4L582.7 266L586.2 266.2L589.8 266.1L593.4 265.6L596.9 265.1L600.5 263.3L604 262.1L607.6 261.5L611.2 260.6L614.7 260L618.3 259.2L621.8 257.6L625.4 256.3L629 254.1L632.5 253.6L636.1 251.7L639.7 246.5L643.2 244.3L646.8 245.5L650.3 245.8L653.9 244.9L657.5 244.8L661 243.9L664.6 242.5L668.1 241.7L671.7 241.7L675.3 240.6L678.8 239.8L682.4 239L686 237.3L689.5 237L693.1 236.4L696.6 235.2L700.2 234.9L703.8 234.4L707.3 233.7L710.9 232.6L714.4 231.6L718 231.1L721.6 230.4L725.1 229.6L728.7 227.8L732.3 225.9L735.8 224.8L739.4 223.4L742.9 222.7L746.5 221.7L750.1 220.3L753.6 219.6L757.2 217.9L760.7 216.4L764.3 215.5L767.9 214.4L771.4 212.4L775 209.5L778.6 198.7L782.1 189.8L785.7 185.8L789.2 181.3L792.8 175.4L796.4 172.9L799.9 168.8L803.5 166.8L807 165.6L810.6 163L814.2 160L817.7 157.6L821.3 156.6L824.9 151.2L828.4 148.6L832 146.6L835.5 144.6L839.1 144.6L842.7 141.3L846.2 133.7L849.8 126.3L853.3 122.3L856.9 119.5L860.5 116.7L864 114.3L867.6 108.8L871.2 105L874.7 102.4L878.3 99.8L881.8 96.9L885.4 95.6L889 92.9L892.5 90.8L896.1 88.3L899.6 85.9L903.2 84L906.8 83.2L910.3 79L913.9 77.1L917.5 75L921 72.5L924.6 71.2L928.1 70.1L931.7 68.4L935.3 66.7L938.8 64L942.4 61.8L945.9 61.1L949.5 60.3L953.1 56.3L956.6 53.9L960.2 52.2L963.8 48.8L967.3 47.3L970.9 46.5L974.4 45L978 43.4V370H52Z"/><path class="gr-cizgi gr-s-ana" data-seri="0" d="M52 351.1L55.6 350.6L59.1 350.6L62.7 350.4L66.2 349.8L69.8 349L73.4 348.9L76.9 349.4L80.5 348.7L84.1 347.8L87.6 346.3L91.2 345.1L94.7 344.8L98.3 344.2L101.9 344L105.4 343.7L109 342.6L112.5 341L116.1 340.7L119.7 340L123.2 340.4L126.8 339.3L130.4 338.2L133.9 337.2L137.5 337L141 336.1L144.6 335.8L148.2 335L151.7 334L155.3 333.5L158.8 333.7L162.4 334.4L166 334.3L169.5 333.5L173.1 332L176.7 330.3L180.2 330.1L183.8 329.5L187.3 328.4L190.9 327.6L194.5 326.1L198 324.9L201.6 325.2L205.1 324.7L208.7 324.9L212.3 324.5L215.8 322.4L219.4 321.7L223 322L226.5 321.8L230.1 322L233.6 321.1L237.2 321.1L240.8 320.6L244.3 320.5L247.9 320.3L251.4 320.5L255 320.2L258.6 318.2L262.1 317.1L265.7 316.6L269.3 315.1L272.8 313.9L276.4 313.4L279.9 312.9L283.5 313.2L287.1 313.7L290.6 314.1L294.2 313.7L297.7 312.7L301.3 311.1L304.9 311.1L308.4 311.4L312 311L315.6 310.4L319.1 310.1L322.7 309.3L326.2 307.3L329.8 308.5L333.4 308.9L336.9 308.2L340.5 307.6L344 304.9L347.6 303.4L351.2 302.9L354.7 302.5L358.3 302L361.9 301.6L365.4 300.4L369 300.5L372.5 301.3L376.1 301.5L379.7 301L383.2 300.2L386.8 298.5L390.3 298.2L393.9 297.9L397.5 296.5L401 296.2L404.6 295.7L408.2 295.3L411.7 295.2L415.3 294.6L418.8 294.3L422.4 294.4L426 293.7L429.5 292.2L433.1 292.2L436.6 291.8L440.2 290.2L443.8 289.8L447.3 288.8L450.9 287.7L454.5 287.4L458 287.1L461.6 286.7L465.1 286.7L468.7 286.5L472.3 284.9L475.8 284.8L479.4 285.2L482.9 284.2L486.5 283.6L490.1 282.6L493.6 281.3L497.2 280.8L500.8 281.2L504.3 281.1L507.9 280.8L511.4 280.1L515 278.7L518.6 278.2L522.1 278L525.7 276.5L529.2 276.5L532.8 276.5L536.4 275.9L539.9 275.4L543.5 275L547.1 274L550.6 274.2L554.2 274.1L557.7 272.9L561.3 272.4L564.9 271.1L568.4 269L572 268.3L575.5 267.5L579.1 266.4L582.7 266L586.2 266.2L589.8 266.1L593.4 265.6L596.9 265.1L600.5 263.3L604 262.1L607.6 261.5L611.2 260.6L614.7 260L618.3 259.2L621.8 257.6L625.4 256.3L629 254.1L632.5 253.6L636.1 251.7L639.7 246.5L643.2 244.3L646.8 245.5L650.3 245.8L653.9 244.9L657.5 244.8L661 243.9L664.6 242.5L668.1 241.7L671.7 241.7L675.3 240.6L678.8 239.8L682.4 239L686 237.3L689.5 237L693.1 236.4L696.6 235.2L700.2 234.9L703.8 234.4L707.3 233.7L710.9 232.6L714.4 231.6L718 231.1L721.6 230.4L725.1 229.6L728.7 227.8L732.3 225.9L735.8 224.8L739.4 223.4L742.9 222.7L746.5 221.7L750.1 220.3L753.6 219.6L757.2 217.9L760.7 216.4L764.3 215.5L767.9 214.4L771.4 212.4L775 209.5L778.6 198.7L782.1 189.8L785.7 185.8L789.2 181.3L792.8 175.4L796.4 172.9L799.9 168.8L803.5 166.8L807 165.6L810.6 163L814.2 160L817.7 157.6L821.3 156.6L824.9 151.2L828.4 148.6L832 146.6L835.5 144.6L839.1 144.6L842.7 141.3L846.2 133.7L849.8 126.3L853.3 122.3L856.9 119.5L860.5 116.7L864 114.3L867.6 108.8L871.2 105L874.7 102.4L878.3 99.8L881.8 96.9L885.4 95.6L889 92.9L892.5 90.8L896.1 88.3L899.6 85.9L903.2 84L906.8 83.2L910.3 79L913.9 77.1L917.5 75L921 72.5L924.6 71.2L928.1 70.1L931.7 68.4L935.3 66.7L938.8 64L942.4 61.8L945.9 61.1L949.5 60.3L953.1 56.3L956.6 53.9L960.2 52.2L963.8 48.8L967.3 47.3L970.9 46.5L974.4 45L978 43.4"/><g class="gr-isaret" style="--sira:0"><line x1="429.5" x2="429.5" y1="292.3" y2="370"/><circle cx="429.5" cy="292.3" r="3.5"/><text x="436.5" y="309.3" text-anchor="start">×2 · 106 ay</text></g><g class="gr-isaret" style="--sira:1"><line x1="710.9" x2="710.9" y1="233.6" y2="370"/><circle cx="710.9" cy="233.6" r="3.5"/><text x="717.9" y="250.6" text-anchor="start">×2 · 79 ay</text></g><g class="gr-isaret" style="--sira:2"><line x1="796.4" x2="796.4" y1="174.8" y2="370"/><circle cx="796.4" cy="174.8" r="3.5"/><text x="803.4" y="191.8" text-anchor="start">×2 · 24 ay</text></g><g class="gr-isaret" style="--sira:3"><line x1="864" x2="864" y1="116" y2="370"/><circle cx="864" cy="116" r="3.5"/><text x="871" y="133" text-anchor="start">×2 · 19 ay</text></g><g class="gr-isaret" style="--sira:4"><line x1="953.1" x2="953.1" y1="57.3" y2="370"/><circle cx="953.1" cy="57.3" r="3.5"/><text x="946.1" y="74.3" text-anchor="end">×2 · 25 ay</text></g><g class="gr-not gr-not--son"><circle class="gr-not-hale" cx="978" cy="43.4" r="9"/><circle class="gr-not-nokta" cx="978" cy="43.4" r="4"/><text class="gr-not-metin" x="968" y="37.4" text-anchor="end">3.766</text><text class="gr-not-alt" x="968" y="53.4" text-anchor="end">Ağu 2026</text></g><g class="gr-imlec" aria-hidden="true"></g></svg><!-- GR:fiyat:BITIS -->
+          </div>
+          <figcaption>Kesikli çizgiler fiyatların ikiye katlandığı ay; yanındaki sayı bir önceki katlanmadan bu yana geçen süre. Kaynak: TÜİK tüketici fiyatları, TCMB yayını.</figcaption>
+        </figure>
+
+        <div class="gr-zaman" data-zaman>
+          <label for="gr-zaman-secim">Bir ay seçin, o ayın 100 TL'sini bugüne taşıyalım</label>
+          <input type="range" id="gr-zaman-secim" min="0" max="259" value="120" step="1">
+          <p class="gr-zaman-cikti" aria-live="polite"><!-- GR-ZAMAN:BASLANGIC --><strong>Ocak 2015</strong> sonunda 100 TL olan sepet, Ağustos 2026 sonunda <strong>1.712 TL</strong>: fiyatlar ×17,1. Aynı sürede dolar 2,42 TL'den 48,26 TL'ye çıktı: ×19,9.<!-- GR-ZAMAN:BITIS --></p>
+        </div>
+
+        <details class="gr-tablo">
+          <summary>Veriyi tablo olarak gör</summary>
+<!-- GRT:fiyat:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo gr-veri-tablo">
+              <caption>Fiyat endeksi ve yıllık TÜFE, yıl sonları</caption>
+              <thead><tr><th scope="col">Yıl</th><th scope="col" class="sayi">Endeks (Aralık 2004 = 100)</th><th scope="col" class="sayi">Yıllık TÜFE</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">2005</th><td class="sayi">107,7</td><td class="sayi">%7,72</td></tr>
+                <tr><th scope="row">2006</th><td class="sayi">118,1</td><td class="sayi">%9,65</td></tr>
+                <tr><th scope="row">2007</th><td class="sayi">128,0</td><td class="sayi">%8,39</td></tr>
+                <tr><th scope="row">2008</th><td class="sayi">140,9</td><td class="sayi">%10,06</td></tr>
+                <tr><th scope="row">2009</th><td class="sayi">150,1</td><td class="sayi">%6,53</td></tr>
+                <tr><th scope="row">2010</th><td class="sayi">159,7</td><td class="sayi">%6,40</td></tr>
+                <tr><th scope="row">2011</th><td class="sayi">176,4</td><td class="sayi">%10,45</td></tr>
+                <tr><th scope="row">2012</th><td class="sayi">187,3</td><td class="sayi">%6,16</td></tr>
+                <tr><th scope="row">2013</th><td class="sayi">201,2</td><td class="sayi">%7,40</td></tr>
+                <tr><th scope="row">2014</th><td class="sayi">217,6</td><td class="sayi">%8,17</td></tr>
+                <tr><th scope="row">2015</th><td class="sayi">236,8</td><td class="sayi">%8,81</td></tr>
+                <tr><th scope="row">2016</th><td class="sayi">257,0</td><td class="sayi">%8,53</td></tr>
+                <tr><th scope="row">2017</th><td class="sayi">287,6</td><td class="sayi">%11,92</td></tr>
+                <tr><th scope="row">2018</th><td class="sayi">346,0</td><td class="sayi">%20,30</td></tr>
+                <tr><th scope="row">2019</th><td class="sayi">387,0</td><td class="sayi">%11,84</td></tr>
+                <tr><th scope="row">2020</th><td class="sayi">443,3</td><td class="sayi">%14,60</td></tr>
+                <tr><th scope="row">2021</th><td class="sayi">603,3</td><td class="sayi">%36,08</td></tr>
+                <tr><th scope="row">2022</th><td class="sayi">990,9</td><td class="sayi">%64,27</td></tr>
+                <tr><th scope="row">2023</th><td class="sayi">1.632,9</td><td class="sayi">%64,77</td></tr>
+                <tr><th scope="row">2024</th><td class="sayi">2.357,4</td><td class="sayi">%44,38</td></tr>
+                <tr><th scope="row">2025</th><td class="sayi">3.085,8</td><td class="sayi">%30,89</td></tr>
+                <tr><th scope="row">Ağustos 2026</th><td class="sayi">3.766,3</td><td class="sayi">%31,51</td></tr>
+              </tbody>
+            </table>
+          </div>
+<!-- GRT:fiyat:BITIS -->
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ II -->
+    <section class="gr-bolum" id="enflasyon" data-bolum="II" aria-labelledby="b2">
+      <div class="wrap">
+        <header class="gr-bolum-bas">
+          <p class="gr-numara"><span>II</span> Enflasyon</p>
+          <h2 id="b2">Tepe %<span data-s="tepeTufe">85,51</span>, <span data-s="tepeAy">Ekim 2022</span>. Bugün %<span data-s="sonTufe">31,51</span>.</h2>
+          <p class="gr-oz">2005–2017 arasındaki <span data-s="bantAy">156</span> ayın <span data-s="bantIci">143</span> ayında yıllık TÜFE %6 ile %12 arasındaydı. Bant 2018'de kırıldı: Ekim 2018'de %<span data-s="tepe2018">25,24</span>.</p>
+        </header>
+        <figure class="gr-sekil" data-kap="enflasyon">
+          <div class="gr-sekil-ust">
+            <p class="gr-sekil-ad">Yıllık TÜFE · bir önceki yılın aynı ayına göre</p>
+          </div>
+          <div class="gr-tuval">
+<!-- GR:enflasyon:BASLANGIC --><svg class="gr-svg" viewBox="0 0 1000 320" width="1000" height="320" role="img" aria-label="Yıllık TÜFE, 2005–2026. Tepe Eki 2022 %85,51." data-grafik="enflasyon"><line class="gr-izgara" x1="52" x2="978" y1="290" y2="290"/><text class="gr-eksen gr-eksen-y" x="44" y="294">%0</text><line class="gr-izgara" x1="52" x2="978" y1="235.6" y2="235.6"/><text class="gr-eksen gr-eksen-y" x="44" y="239.6">%20</text><line class="gr-izgara" x1="52" x2="978" y1="181.2" y2="181.2"/><text class="gr-eksen gr-eksen-y" x="44" y="185.2">%40</text><line class="gr-izgara" x1="52" x2="978" y1="126.8" y2="126.8"/><text class="gr-eksen gr-eksen-y" x="44" y="130.8">%60</text><line class="gr-izgara" x1="52" x2="978" y1="72.4" y2="72.4"/><text class="gr-eksen gr-eksen-y" x="44" y="76.4">%80</text><line class="gr-izgara" x1="52" x2="978" y1="18" y2="18"/><text class="gr-eksen gr-eksen-y" x="44" y="22">%100</text><line class="gr-centik" x1="94.9" x2="94.9" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="94.9" y="308">2006</text><line class="gr-centik" x1="180.7" x2="180.7" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="180.7" y="308">2008</text><line class="gr-centik" x1="266.5" x2="266.5" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="266.5" y="308">2010</text><line class="gr-centik" x1="352.3" x2="352.3" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="352.3" y="308">2012</text><line class="gr-centik" x1="438.1" x2="438.1" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="438.1" y="308">2014</text><line class="gr-centik" x1="523.9" x2="523.9" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="523.9" y="308">2016</text><line class="gr-centik" x1="609.7" x2="609.7" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="609.7" y="308">2018</text><line class="gr-centik" x1="695.6" x2="695.6" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="695.6" y="308">2020</text><line class="gr-centik" x1="781.4" x2="781.4" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="781.4" y="308">2022</text><line class="gr-centik" x1="867.2" x2="867.2" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="867.2" y="308">2024</text><line class="gr-centik" x1="953" x2="953" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="953" y="308">2026</text><path class="gr-alan gr-s-ana" d="M52 264.9L55.6 266.4L59.2 268.4L62.7 267.8L66.3 266.3L69.9 265.7L73.5 268.7L77 268.5L80.6 268.3L84.2 269.5L87.8 269.3L91.3 269L94.9 268.4L98.5 267.8L102.1 267.8L105.6 266L109.2 263.2L112.8 262.5L116.4 258.2L119.9 262.1L123.5 261.3L127.1 262.9L130.7 263.2L134.2 263.8L137.8 263L141.4 262.4L145 260.5L148.5 260.8L152.1 264.9L155.7 266.6L159.3 271.2L162.8 269.9L166.4 270.6L170 269.1L173.6 267.2L177.1 267.2L180.7 267.8L184.3 265.2L187.9 265.1L191.4 263.7L195 260.8L198.6 261.1L202.2 257.2L205.7 258L209.3 259.7L212.9 257.4L216.5 260.7L220 262.6L223.6 264.2L227.2 269L230.8 268.5L234.3 273.3L237.9 275.7L241.5 274.4L245.1 275.3L248.6 275.5L252.2 275.7L255.8 276.2L259.4 275L262.9 272.2L266.5 267.7L270.1 262.4L273.7 264L277.2 262.3L280.8 265.2L284.4 267.2L288 269.4L291.5 267.3L295.1 264.9L298.7 266.6L302.3 270.2L305.8 272.6L309.4 276.7L313 278.7L316.6 279.1L320.1 278.4L323.7 270.5L327.3 273L330.9 272.8L334.4 271.9L338 273.3L341.6 269.2L345.2 264.2L348.7 261.6L352.3 261.1L355.9 261.6L359.5 261.6L363.1 259.7L366.6 267.5L370.2 265.9L373.8 265.3L377.4 265.8L380.9 265L384.5 268.8L388.1 272.7L391.7 273.2L395.2 270.1L398.8 270.9L402.4 270.2L406 273.3L409.5 272.3L413.1 267.4L416.7 265.8L420.3 267.8L423.8 268.6L427.4 269L431 270.1L434.6 269.9L438.1 268.9L441.7 268.5L445.3 267.2L448.9 264.5L452.4 263.7L456 265.1L459.6 264.6L463.2 264.1L466.7 265.9L470.3 265.6L473.9 265.1L477.5 267.8L481 270.3L484.6 269.5L488.2 269.3L491.8 268.5L495.3 268L498.9 270.4L502.5 271.5L506.1 270.6L509.6 268.4L513.2 269.4L516.8 268L520.4 266L523.9 263.9L527.5 266.1L531.1 269.7L534.7 272.1L538.2 272.1L541.8 269.2L545.4 266.1L549 268.1L552.5 270.2L556.1 270.5L559.7 271L563.3 266.8L566.8 264.9L570.4 262.4L574 259.3L577.6 257.7L581.1 258.1L584.7 260.4L588.3 263.4L591.9 261L595.4 259.5L599 257.6L602.6 254.7L606.2 257.6L609.7 261.8L613.3 262.1L616.9 262.2L620.5 260.5L624 257L627.6 248.1L631.2 246.9L634.8 241.3L638.3 223.3L641.9 221.3L645.5 231.2L649.1 234.8L652.6 234.6L656.2 236.5L659.8 236.4L663.4 237L666.9 239.1L670.5 247.2L674.1 244.7L677.7 249.2L681.3 264.8L684.8 266.7L688.4 261.3L692 257.8L695.6 257L699.1 256.4L702.7 257.7L706.3 260.2L709.9 259L713.4 255.7L717 258L720.6 258L724.2 258L727.7 257.7L731.3 251.8L734.9 250.3L738.5 249.3L742 247.5L745.6 246L749.2 243.4L752.8 244.9L756.3 242.3L759.9 238.5L763.5 237.6L767.1 236.7L770.6 235.9L774.2 232L777.8 191.9L781.4 157.6L784.9 141.9L788.5 123.7L792.1 99.7L795.7 90.1L799.2 76.2L802.8 73.5L806.4 71.8L810 63L813.5 57.4L817.1 60.5L820.7 115.2L824.3 133.1L827.8 139.9L831.4 152.6L835 171.2L838.6 182.3L842.1 186.1L845.7 159.9L849.3 129.7L852.9 122.6L856.4 123.1L860 121.4L863.6 113.8L867.2 113.6L870.7 107.6L874.3 103.7L877.9 100.1L881.5 84.8L885 95.2L888.6 122L892.2 148.6L895.8 155.7L899.3 157.9L902.9 161.9L906.5 169.3L910.1 175.4L913.6 183.8L917.2 186.4L920.8 187L924.4 193.7L927.9 194.7L931.5 198.8L935.1 200.4L938.7 199.5L942.2 200.6L945.8 205.5L949.4 206L953 206.6L956.5 204.2L960.1 206L963.7 202L967.3 201.3L970.8 202.7L974.4 203.6L978 204.3V290H52Z"/><path class="gr-cizgi gr-s-ana" data-seri="0" d="M52 264.9L55.6 266.4L59.2 268.4L62.7 267.8L66.3 266.3L69.9 265.7L73.5 268.7L77 268.5L80.6 268.3L84.2 269.5L87.8 269.3L91.3 269L94.9 268.4L98.5 267.8L102.1 267.8L105.6 266L109.2 263.2L112.8 262.5L116.4 258.2L119.9 262.1L123.5 261.3L127.1 262.9L130.7 263.2L134.2 263.8L137.8 263L141.4 262.4L145 260.5L148.5 260.8L152.1 264.9L155.7 266.6L159.3 271.2L162.8 269.9L166.4 270.6L170 269.1L173.6 267.2L177.1 267.2L180.7 267.8L184.3 265.2L187.9 265.1L191.4 263.7L195 260.8L198.6 261.1L202.2 257.2L205.7 258L209.3 259.7L212.9 257.4L216.5 260.7L220 262.6L223.6 264.2L227.2 269L230.8 268.5L234.3 273.3L237.9 275.7L241.5 274.4L245.1 275.3L248.6 275.5L252.2 275.7L255.8 276.2L259.4 275L262.9 272.2L266.5 267.7L270.1 262.4L273.7 264L277.2 262.3L280.8 265.2L284.4 267.2L288 269.4L291.5 267.3L295.1 264.9L298.7 266.6L302.3 270.2L305.8 272.6L309.4 276.7L313 278.7L316.6 279.1L320.1 278.4L323.7 270.5L327.3 273L330.9 272.8L334.4 271.9L338 273.3L341.6 269.2L345.2 264.2L348.7 261.6L352.3 261.1L355.9 261.6L359.5 261.6L363.1 259.7L366.6 267.5L370.2 265.9L373.8 265.3L377.4 265.8L380.9 265L384.5 268.8L388.1 272.7L391.7 273.2L395.2 270.1L398.8 270.9L402.4 270.2L406 273.3L409.5 272.3L413.1 267.4L416.7 265.8L420.3 267.8L423.8 268.6L427.4 269L431 270.1L434.6 269.9L438.1 268.9L441.7 268.5L445.3 267.2L448.9 264.5L452.4 263.7L456 265.1L459.6 264.6L463.2 264.1L466.7 265.9L470.3 265.6L473.9 265.1L477.5 267.8L481 270.3L484.6 269.5L488.2 269.3L491.8 268.5L495.3 268L498.9 270.4L502.5 271.5L506.1 270.6L509.6 268.4L513.2 269.4L516.8 268L520.4 266L523.9 263.9L527.5 266.1L531.1 269.7L534.7 272.1L538.2 272.1L541.8 269.2L545.4 266.1L549 268.1L552.5 270.2L556.1 270.5L559.7 271L563.3 266.8L566.8 264.9L570.4 262.4L574 259.3L577.6 257.7L581.1 258.1L584.7 260.4L588.3 263.4L591.9 261L595.4 259.5L599 257.6L602.6 254.7L606.2 257.6L609.7 261.8L613.3 262.1L616.9 262.2L620.5 260.5L624 257L627.6 248.1L631.2 246.9L634.8 241.3L638.3 223.3L641.9 221.3L645.5 231.2L649.1 234.8L652.6 234.6L656.2 236.5L659.8 236.4L663.4 237L666.9 239.1L670.5 247.2L674.1 244.7L677.7 249.2L681.3 264.8L684.8 266.7L688.4 261.3L692 257.8L695.6 257L699.1 256.4L702.7 257.7L706.3 260.2L709.9 259L713.4 255.7L717 258L720.6 258L724.2 258L727.7 257.7L731.3 251.8L734.9 250.3L738.5 249.3L742 247.5L745.6 246L749.2 243.4L752.8 244.9L756.3 242.3L759.9 238.5L763.5 237.6L767.1 236.7L770.6 235.9L774.2 232L777.8 191.9L781.4 157.6L784.9 141.9L788.5 123.7L792.1 99.7L795.7 90.1L799.2 76.2L802.8 73.5L806.4 71.8L810 63L813.5 57.4L817.1 60.5L820.7 115.2L824.3 133.1L827.8 139.9L831.4 152.6L835 171.2L838.6 182.3L842.1 186.1L845.7 159.9L849.3 129.7L852.9 122.6L856.4 123.1L860 121.4L863.6 113.8L867.2 113.6L870.7 107.6L874.3 103.7L877.9 100.1L881.5 84.8L885 95.2L888.6 122L892.2 148.6L895.8 155.7L899.3 157.9L902.9 161.9L906.5 169.3L910.1 175.4L913.6 183.8L917.2 186.4L920.8 187L924.4 193.7L927.9 194.7L931.5 198.8L935.1 200.4L938.7 199.5L942.2 200.6L945.8 205.5L949.4 206L953 206.6L956.5 204.2L960.1 206L963.7 202L967.3 201.3L970.8 202.7L974.4 203.6L978 204.3"/><g class="gr-not "><circle class="gr-not-hale" cx="813.5" cy="57.4" r="9"/><circle class="gr-not-nokta" cx="813.5" cy="57.4" r="4"/><text class="gr-not-metin" x="823.5" y="51.4" text-anchor="start">%85,51</text><text class="gr-not-alt" x="823.5" y="67.4" text-anchor="start">Eki 2022</text></g><g class="gr-not gr-not--son"><circle class="gr-not-hale" cx="978" cy="204.3" r="9"/><circle class="gr-not-nokta" cx="978" cy="204.3" r="4"/><text class="gr-not-metin" x="968" y="198.3" text-anchor="end">%31,51</text><text class="gr-not-alt" x="968" y="214.3" text-anchor="end">Ağu 2026</text></g><g class="gr-imlec" aria-hidden="true"></g></svg><!-- GR:enflasyon:BITIS -->
+          </div>
+          <figcaption>Kaynak: TÜİK tüketici fiyatları, TCMB yayını. Seri her ayın 3'ünde açıklanan veriyle aynı gün uzar.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================ III -->
+    <section class="gr-bolum" id="faiz" data-bolum="III" aria-labelledby="b3">
+      <div class="wrap">
+        <header class="gr-bolum-bas">
+          <p class="gr-numara"><span>III</span> Faiz</p>
+          <h2 id="b3">Reel politika faizi <span data-s="faizAySayisi">196</span> ayın <span data-s="negatifAy">126</span> ayında negatifti.</h2>
+          <p class="gr-oz">En derin nokta <span data-s="dipAy">Kasım 2022</span>: faiz %<span data-s="dipFaiz">9</span>, yıllık TÜFE %<span data-s="dipTufe">84,39</span>, reel faiz −%<span data-s="dipReel">40,9</span>. En uzun negatif dönem <span data-s="enUzunAy">37</span> ay sürdü (<span data-s="enUzunAralik">Ağustos 2021 – Ağustos 2024</span>). Bugün faiz %<span data-s="faiz">37</span>, reel faiz <span data-s="reelSonYazi">%4,2</span>.</p>
+        </header>
+        <div class="gr-ikili">
+          <figure class="gr-sekil" data-kap="faiz">
+            <div class="gr-sekil-ust">
+              <p class="gr-sekil-ad">Politika faizi ve yıllık TÜFE</p>
+              <ul class="gr-lejant" aria-label="Seriler">
+                <li class="gr-l-bir">Politika faizi</li>
+                <li class="gr-l-iki">Yıllık TÜFE</li>
+              </ul>
+            </div>
+            <div class="gr-tuval">
+<!-- GR:faiz:BASLANGIC --><svg class="gr-svg" viewBox="0 0 540 260" width="540" height="260" role="img" aria-label="TCMB politika faizi ve yıllık TÜFE, May 2010–Ağu 2026." data-grafik="faiz"><line class="gr-izgara" x1="40" x2="526" y1="230" y2="230"/><text class="gr-eksen gr-eksen-y" x="32" y="234">%0</text><line class="gr-izgara" x1="40" x2="526" y1="187.6" y2="187.6"/><text class="gr-eksen gr-eksen-y" x="32" y="191.6">%20</text><line class="gr-izgara" x1="40" x2="526" y1="145.2" y2="145.2"/><text class="gr-eksen gr-eksen-y" x="32" y="149.2">%40</text><line class="gr-izgara" x1="40" x2="526" y1="102.8" y2="102.8"/><text class="gr-eksen gr-eksen-y" x="32" y="106.8">%60</text><line class="gr-izgara" x1="40" x2="526" y1="60.4" y2="60.4"/><text class="gr-eksen gr-eksen-y" x="32" y="64.4">%80</text><line class="gr-izgara" x1="40" x2="526" y1="18" y2="18"/><text class="gr-eksen gr-eksen-y" x="32" y="22">%100</text><line class="gr-centik" x1="179.6" x2="179.6" y1="230" y2="235"/><text class="gr-eksen gr-eksen-x" x="179.6" y="248">2015</text><line class="gr-centik" x1="329.1" x2="329.1" y1="230" y2="235"/><text class="gr-eksen gr-eksen-x" x="329.1" y="248">2020</text><line class="gr-centik" x1="478.6" x2="478.6" y1="230" y2="235"/><text class="gr-eksen gr-eksen-x" x="478.6" y="248">2025</text><path class="gr-cizgi gr-s-iki" data-seri="0" d="M40 210.7L42.5 212.3L45 213.9L47.5 212.3L50 210.4L52.5 211.7L55 214.5L57.4 216.4L59.9 219.6L62.4 221.2L64.9 221.5L67.4 221L69.9 214.8L72.4 216.8L74.9 216.6L77.4 215.9L79.9 217L82.4 213.8L84.9 209.9L87.4 207.8L89.8 207.5L92.3 207.9L94.8 207.9L97.3 206.4L99.8 212.4L102.3 211.2L104.8 210.8L107.3 211.2L109.8 210.5L112.3 213.5L114.8 216.5L117.3 216.9L119.8 214.5L122.2 215.1L124.7 214.5L127.2 217L129.7 216.2L132.2 212.4L134.7 211.2L137.2 212.7L139.7 213.3L142.2 213.7L144.7 214.5L147.2 214.3L149.7 213.6L152.2 213.3L154.6 212.2L157.1 210.1L159.6 209.5L162.1 210.6L164.6 210.2L167.1 209.8L169.6 211.2L172.1 211L174.6 210.6L177.1 212.7L179.6 214.7L182.1 214L184.6 213.9L187 213.2L189.5 212.8L192 214.7L194.5 215.6L197 214.9L199.5 213.1L202 213.9L204.5 212.8L207 211.3L209.5 209.7L212 211.4L214.5 214.2L217 216.1L219.4 216.1L221.9 213.8L224.4 211.4L226.9 212.9L229.4 214.6L231.9 214.8L234.4 215.2L236.9 211.9L239.4 210.5L241.9 208.5L244.4 206.1L246.9 204.8L249.4 205.2L251.8 206.9L254.3 209.2L256.8 207.4L259.3 206.3L261.8 204.8L264.3 202.5L266.8 204.7L269.3 208.1L271.8 208.2L274.3 208.3L276.8 207L279.3 204.2L281.8 197.4L284.2 196.4L286.7 192.1L289.2 178L291.7 176.5L294.2 184.2L296.7 187L299.2 186.9L301.7 188.3L304.2 188.2L306.7 188.7L309.2 190.3L311.7 196.7L314.2 194.7L316.6 198.2L319.1 210.4L321.6 211.9L324.1 207.6L326.6 204.9L329.1 204.2L331.6 203.8L334.1 204.9L336.6 206.8L339.1 205.9L341.6 203.2L344.1 205.1L346.6 205L349 205.1L351.5 204.8L354 200.3L356.5 199L359 198.3L361.5 196.9L364 195.7L366.5 193.7L369 194.8L371.5 192.8L374 189.8L376.5 189.2L379 188.5L381.4 187.8L383.9 184.8L386.4 153.5L388.9 126.8L391.4 114.6L393.9 100.4L396.4 81.7L398.9 74.2L401.4 63.3L403.9 61.2L406.4 60L408.9 53.1L411.4 48.7L413.8 51.1L416.3 93.7L418.8 107.7L421.3 113L423.8 122.9L426.3 137.4L428.8 146.1L431.3 149L433.8 128.6L436.3 105L438.8 99.6L441.3 99.9L443.8 98.6L446.2 92.7L448.7 92.5L451.2 87.8L453.7 84.8L456.2 82L458.7 70L461.2 78.2L463.7 99L466.2 119.8L468.7 125.3L471.2 127L473.7 130.2L476.2 135.9L478.6 140.7L481.1 147.2L483.6 149.2L486.1 149.7L488.6 154.9L491.1 155.7L493.6 158.9L496.1 160.1L498.6 159.4L501.1 160.3L503.6 164.1L506.1 164.5L508.6 165L511 163.2L513.5 164.6L516 161.4L518.5 160.9L521 161.9L523.5 162.7L526 163.2"/><path class="gr-cizgi gr-s-bir" data-seri="1" d="M40 215.2H42.5V215.2H45V215.2H47.5V215.2H50V215.2H52.5V215.2H55V215.2H57.4V216.2H59.9V216.8H62.4V216.8H64.9V216.8H67.4V216.8H69.9V216.8H72.4V216.8H74.9V216.8H77.4V217.8H79.9V217.8H82.4V217.8H84.9V217.8H87.4V217.8H89.8V217.8H92.3V217.8H94.8V217.8H97.3V217.8H99.8V217.8H102.3V217.8H104.8V217.8H107.3V217.8H109.8V217.8H112.3V217.8H114.8V217.8H117.3V218.3H119.8V218.3H122.2V218.3H124.7V218.3H127.2V219.4H129.7V220.5H132.2V220.5H134.7V220.5H137.2V220.5H139.7V220.5H142.2V220.5H144.7V220.5H147.2V220.5H149.7V208.8H152.2V208.8H154.6V208.8H157.1V208.8H159.6V209.9H162.1V211.5H164.6V212.5H167.1V212.5H169.6V212.5H172.1V212.5H174.6V212.5H177.1V212.5H179.6V213.6H182.1V214.1H184.6V214.1H187V214.1H189.5V214.1H192V214.1H194.5V214.1H197V214.1H199.5V214.1H202V214.1H204.5V214.1H207V214.1H209.5V214.1H212V214.1H214.5V214.1H217V214.1H219.4V214.1H221.9V214.1H224.4V214.1H226.9V214.1H229.4V214.1H231.9V214.1H234.4V213H236.9V213H239.4V213H241.9V213H244.4V213H246.9V213H249.4V213H251.8V213H254.3V213H256.8V213H259.3V213H261.8V213H264.3V213H266.8V213H269.3V213H271.8V213H274.3V213H276.8V213H279.3V213H281.8V192.4H284.2V192.4H286.7V192.4H289.2V179.1H291.7V179.1H294.2V179.1H296.7V179.1H299.2V179.1H301.7V179.1H304.2V179.1H306.7V179.1H309.2V179.1H311.7V179.1H314.2V188.1H316.6V188.1H319.1V195H321.6V200.3H324.1V200.3H326.6V204.6H329.1V206.2H331.6V207.2H334.1V209.3H336.6V211.5H339.1V212.5H341.6V212.5H344.1V212.5H346.6V212.5H349V208.3H351.5V208.3H354V198.2H356.5V194H359V194H361.5V194H364V189.7H366.5V189.7H369V189.7H371.5V189.7H374V189.7H376.5V189.7H379V191.8H381.4V196.1H383.9V198.2H386.4V200.3H388.9V200.3H391.4V200.3H393.9V200.3H396.4V200.3H398.9V200.3H401.4V200.3H403.9V200.3H406.4V202.4H408.9V204.6H411.4V207.7H413.8V210.9H416.3V210.9H418.8V210.9H421.3V212H423.8V212H426.3V212H428.8V212H431.3V198.2H433.8V192.9H436.3V177H438.8V166.4H441.3V155.8H443.8V145.2H446.2V139.9H448.7V134.6H451.2V134.6H453.7V124H456.2V124H458.7V124H461.2V124H463.7V124H466.2V124H468.7V124H471.2V124H473.7V124H476.2V129.3H478.6V134.6H481.1V134.6H483.6V139.9H486.1V132.5H488.6V132.5H491.1V132.5H493.6V138.8H496.1V138.8H498.6V144.1H501.1V146.3H503.6V146.3H506.1V149.4H508.6V151.6H511V151.6H513.5V151.6H516V151.6H518.5V151.6H521V151.6H523.5V151.6H526V151.6"/><g class="gr-not gr-not--son gr-not--bir"><circle class="gr-not-hale" cx="526" cy="151.6" r="9"/><circle class="gr-not-nokta" cx="526" cy="151.6" r="4"/><text class="gr-not-metin" x="516" y="141.6" text-anchor="end">faiz %37,00</text></g><g class="gr-not gr-not--iki"><circle class="gr-not-hale" cx="526" cy="163.2" r="9"/><circle class="gr-not-nokta" cx="526" cy="163.2" r="4"/><text class="gr-not-metin" x="516" y="185.2" text-anchor="end">TÜFE %31,51</text></g><g class="gr-imlec" aria-hidden="true"></g></svg><!-- GR:faiz:BITIS -->
+            </div>
+          </figure>
+          <figure class="gr-sekil" data-kap="reel">
+            <div class="gr-sekil-ust">
+              <p class="gr-sekil-ad">Reel politika faizi · (1 + faiz) ÷ (1 + TÜFE) − 1</p>
+              <ul class="gr-lejant" aria-label="Seriler">
+                <li class="gr-l-kazanc">Pozitif</li>
+                <li class="gr-l-kayip">Negatif</li>
+              </ul>
+            </div>
+            <div class="gr-tuval">
+<!-- GR:reel:BASLANGIC --><svg class="gr-svg" viewBox="0 0 540 220" width="540" height="220" role="img" aria-label="Reel politika faizi, May 2010–Ağu 2026: 126 ayda negatif." data-grafik="reel"><line class="gr-izgara" x1="40" x2="526" y1="160.3" y2="160.3"/><text class="gr-eksen gr-eksen-y" x="32" y="164.3">−%40</text><line class="gr-izgara" x1="40" x2="526" y1="101" y2="101"/><text class="gr-eksen gr-eksen-y" x="32" y="105">−%20</text><line class="gr-izgara" x1="40" x2="526" y1="41.7" y2="41.7"/><text class="gr-eksen gr-eksen-y" x="32" y="45.7">%0</text><rect class="gr-cubuk gr-kayip" x="40.3" y="41.7" width="1.9" height="5.7" style="--i:0"/><rect class="gr-cubuk gr-kayip" x="42.8" y="41.7" width="1.9" height="3.7" style="--i:1"/><rect class="gr-cubuk gr-kayip" x="45.3" y="41.7" width="1.9" height="1.6" style="--i:2"/><rect class="gr-cubuk gr-kayip" x="47.7" y="41.7" width="1.9" height="3.6" style="--i:3"/><rect class="gr-cubuk gr-kayip" x="50.2" y="41.7" width="1.9" height="6" style="--i:4"/><rect class="gr-cubuk gr-kayip" x="52.7" y="41.7" width="1.9" height="4.4" style="--i:5"/><rect class="gr-cubuk gr-kayip" x="55.2" y="41.7" width="1.9" height="0.8" style="--i:6"/><rect class="gr-cubuk gr-kazanc" x="57.7" y="41.4" width="1.9" height="0.5" style="--i:7"/><rect class="gr-cubuk gr-kazanc" x="60.1" y="37.8" width="1.9" height="3.9" style="--i:8"/><rect class="gr-cubuk gr-kazanc" x="62.6" y="35.7" width="1.9" height="6" style="--i:9"/><rect class="gr-cubuk gr-kazanc" x="65.1" y="35.2" width="1.9" height="6.5" style="--i:10"/><rect class="gr-cubuk gr-kazanc" x="67.6" y="36" width="1.9" height="5.7" style="--i:11"/><rect class="gr-cubuk gr-kayip" x="70.1" y="41.7" width="1.9" height="2.5" style="--i:12"/><rect class="gr-cubuk gr-kazanc" x="72.5" y="41.6" width="1.9" height="0.5" style="--i:13"/><rect class="gr-cubuk gr-kayip" x="75" y="41.7" width="1.9" height="0.5" style="--i:14"/><rect class="gr-cubuk gr-kayip" x="77.5" y="41.7" width="1.9" height="2.5" style="--i:15"/><rect class="gr-cubuk gr-kayip" x="80" y="41.7" width="1.9" height="1.1" style="--i:16"/><rect class="gr-cubuk gr-kayip" x="82.5" y="41.7" width="1.9" height="5.2" style="--i:17"/><rect class="gr-cubuk gr-kayip" x="84.9" y="41.7" width="1.9" height="10.1" style="--i:18"/><rect class="gr-cubuk gr-kayip" x="87.4" y="41.7" width="1.9" height="12.6" style="--i:19"/><rect class="gr-cubuk gr-kayip" x="89.9" y="41.7" width="1.9" height="13" style="--i:20"/><rect class="gr-cubuk gr-kayip" x="92.4" y="41.7" width="1.9" height="12.5" style="--i:21"/><rect class="gr-cubuk gr-kayip" x="94.9" y="41.7" width="1.9" height="12.5" style="--i:22"/><rect class="gr-cubuk gr-kayip" x="97.3" y="41.7" width="1.9" height="14.4" style="--i:23"/><rect class="gr-cubuk gr-kayip" x="99.8" y="41.7" width="1.9" height="6.9" style="--i:24"/><rect class="gr-cubuk gr-kayip" x="102.3" y="41.7" width="1.9" height="8.5" style="--i:25"/><rect class="gr-cubuk gr-kayip" x="104.8" y="41.7" width="1.9" height="9" style="--i:26"/><rect class="gr-cubuk gr-kayip" x="107.2" y="41.7" width="1.9" height="8.5" style="--i:27"/><rect class="gr-cubuk gr-kayip" x="109.7" y="41.7" width="1.9" height="9.3" style="--i:28"/><rect class="gr-cubuk gr-kayip" x="112.2" y="41.7" width="1.9" height="5.6" style="--i:29"/><rect class="gr-cubuk gr-kayip" x="114.7" y="41.7" width="1.9" height="1.7" style="--i:30"/><rect class="gr-cubuk gr-kayip" x="117.2" y="41.7" width="1.9" height="1.8" style="--i:31"/><rect class="gr-cubuk gr-kayip" x="119.6" y="41.7" width="1.9" height="5" style="--i:32"/><rect class="gr-cubuk gr-kayip" x="122.1" y="41.7" width="1.9" height="4.2" style="--i:33"/><rect class="gr-cubuk gr-kayip" x="124.6" y="41.7" width="1.9" height="4.9" style="--i:34"/><rect class="gr-cubuk gr-kayip" x="127.1" y="41.7" width="1.9" height="3.1" style="--i:35"/><rect class="gr-cubuk gr-kayip" x="129.6" y="41.7" width="1.9" height="5.6" style="--i:36"/><rect class="gr-cubuk gr-kayip" x="132" y="41.7" width="1.9" height="10.4" style="--i:37"/><rect class="gr-cubuk gr-kayip" x="134.5" y="41.7" width="1.9" height="11.9" style="--i:38"/><rect class="gr-cubuk gr-kayip" x="137" y="41.7" width="1.9" height="10" style="--i:39"/><rect class="gr-cubuk gr-kayip" x="139.5" y="41.7" width="1.9" height="9.3" style="--i:40"/><rect class="gr-cubuk gr-kayip" x="142" y="41.7" width="1.9" height="8.8" style="--i:41"/><rect class="gr-cubuk gr-kayip" x="144.4" y="41.7" width="1.9" height="7.8" style="--i:42"/><rect class="gr-cubuk gr-kayip" x="146.9" y="41.7" width="1.9" height="8" style="--i:43"/><rect class="gr-cubuk gr-kazanc" x="149.4" y="35.5" width="1.9" height="6.2" style="--i:44"/><rect class="gr-cubuk gr-kazanc" x="151.9" y="35.9" width="1.9" height="5.8" style="--i:45"/><rect class="gr-cubuk gr-kazanc" x="154.4" y="37.3" width="1.9" height="4.4" style="--i:46"/><rect class="gr-cubuk gr-kazanc" x="156.8" y="40" width="1.9" height="1.7" style="--i:47"/><rect class="gr-cubuk gr-kayip" x="159.3" y="41.7" width="1.9" height="0.5" style="--i:48"/><rect class="gr-cubuk gr-kayip" x="161.8" y="41.7" width="1.9" height="1.1" style="--i:49"/><rect class="gr-cubuk gr-kayip" x="164.3" y="41.7" width="1.9" height="2.9" style="--i:50"/><rect class="gr-cubuk gr-kayip" x="166.8" y="41.7" width="1.9" height="3.5" style="--i:51"/><rect class="gr-cubuk gr-kayip" x="169.2" y="41.7" width="1.9" height="1.6" style="--i:52"/><rect class="gr-cubuk gr-kayip" x="171.7" y="41.7" width="1.9" height="1.9" style="--i:53"/><rect class="gr-cubuk gr-kayip" x="174.2" y="41.7" width="1.9" height="2.4" style="--i:54"/><rect class="gr-cubuk gr-kazanc" x="176.7" y="41.4" width="1.9" height="0.5" style="--i:55"/><rect class="gr-cubuk gr-kazanc" x="179.2" y="40.3" width="1.9" height="1.4" style="--i:56"/><rect class="gr-cubuk gr-kayip" x="181.6" y="41.7" width="1.9" height="0.5" style="--i:57"/><rect class="gr-cubuk gr-kayip" x="184.1" y="41.7" width="1.9" height="0.5" style="--i:58"/><rect class="gr-cubuk gr-kayip" x="186.6" y="41.7" width="1.9" height="1.1" style="--i:59"/><rect class="gr-cubuk gr-kayip" x="189.1" y="41.7" width="1.9" height="1.6" style="--i:60"/><rect class="gr-cubuk gr-kazanc" x="191.6" y="40.8" width="1.9" height="0.9" style="--i:61"/><rect class="gr-cubuk gr-kazanc" x="194" y="39.8" width="1.9" height="1.9" style="--i:62"/><rect class="gr-cubuk gr-kazanc" x="196.5" y="40.7" width="1.9" height="1" style="--i:63"/><rect class="gr-cubuk gr-kayip" x="199" y="41.7" width="1.9" height="1.2" style="--i:64"/><rect class="gr-cubuk gr-kayip" x="201.5" y="41.7" width="1.9" height="0.5" style="--i:65"/><rect class="gr-cubuk gr-kayip" x="204" y="41.7" width="1.9" height="1.6" style="--i:66"/><rect class="gr-cubuk gr-kayip" x="206.4" y="41.7" width="1.9" height="3.5" style="--i:67"/><rect class="gr-cubuk gr-kayip" x="208.9" y="41.7" width="1.9" height="5.6" style="--i:68"/><rect class="gr-cubuk gr-kayip" x="211.4" y="41.7" width="1.9" height="3.5" style="--i:69"/><rect class="gr-cubuk gr-kazanc" x="213.9" y="41.6" width="1.9" height="0.5" style="--i:70"/><rect class="gr-cubuk gr-kazanc" x="216.4" y="39.1" width="1.9" height="2.6" style="--i:71"/><rect class="gr-cubuk gr-kazanc" x="218.8" y="39.1" width="1.9" height="2.6" style="--i:72"/><rect class="gr-cubuk gr-kayip" x="221.3" y="41.7" width="1.9" height="0.5" style="--i:73"/><rect class="gr-cubuk gr-kayip" x="223.8" y="41.7" width="1.9" height="3.5" style="--i:74"/><rect class="gr-cubuk gr-kayip" x="226.3" y="41.7" width="1.9" height="1.5" style="--i:75"/><rect class="gr-cubuk gr-kazanc" x="228.7" y="41.1" width="1.9" height="0.6" style="--i:76"/><rect class="gr-cubuk gr-kazanc" x="231.2" y="40.7" width="1.9" height="1" style="--i:77"/><rect class="gr-cubuk gr-kazanc" x="233.7" y="38.9" width="1.9" height="2.8" style="--i:78"/><rect class="gr-cubuk gr-kayip" x="236.2" y="41.7" width="1.9" height="1.4" style="--i:79"/><rect class="gr-cubuk gr-kayip" x="238.7" y="41.7" width="1.9" height="3.3" style="--i:80"/><rect class="gr-cubuk gr-kayip" x="241.1" y="41.7" width="1.9" height="5.7" style="--i:81"/><rect class="gr-cubuk gr-kayip" x="243.6" y="41.7" width="1.9" height="8.7" style="--i:82"/><rect class="gr-cubuk gr-kayip" x="246.1" y="41.7" width="1.9" height="10.2" style="--i:83"/><rect class="gr-cubuk gr-kayip" x="248.6" y="41.7" width="1.9" height="9.8" style="--i:84"/><rect class="gr-cubuk gr-kayip" x="251.1" y="41.7" width="1.9" height="7.7" style="--i:85"/><rect class="gr-cubuk gr-kayip" x="253.5" y="41.7" width="1.9" height="4.8" style="--i:86"/><rect class="gr-cubuk gr-kayip" x="256" y="41.7" width="1.9" height="7.2" style="--i:87"/><rect class="gr-cubuk gr-kayip" x="258.5" y="41.7" width="1.9" height="8.5" style="--i:88"/><rect class="gr-cubuk gr-kayip" x="261" y="41.7" width="1.9" height="10.3" style="--i:89"/><rect class="gr-cubuk gr-kayip" x="263.5" y="41.7" width="1.9" height="13" style="--i:90"/><rect class="gr-cubuk gr-kayip" x="265.9" y="41.7" width="1.9" height="10.4" style="--i:91"/><rect class="gr-cubuk gr-kayip" x="268.4" y="41.7" width="1.9" height="6.3" style="--i:92"/><rect class="gr-cubuk gr-kayip" x="270.9" y="41.7" width="1.9" height="6" style="--i:93"/><rect class="gr-cubuk gr-kayip" x="273.4" y="41.7" width="1.9" height="6" style="--i:94"/><rect class="gr-cubuk gr-kayip" x="275.9" y="41.7" width="1.9" height="7.6" style="--i:95"/><rect class="gr-cubuk gr-kayip" x="278.3" y="41.7" width="1.9" height="10.9" style="--i:96"/><rect class="gr-cubuk gr-kazanc" x="280.8" y="35.6" width="1.9" height="6.1" style="--i:97"/><rect class="gr-cubuk gr-kazanc" x="283.3" y="36.8" width="1.9" height="4.9" style="--i:98"/><rect class="gr-cubuk gr-kayip" x="285.8" y="41.7" width="1.9" height="0.5" style="--i:99"/><rect class="gr-cubuk gr-kayip" x="288.3" y="41.7" width="1.9" height="1.2" style="--i:100"/><rect class="gr-cubuk gr-kayip" x="290.7" y="41.7" width="1.9" height="2.9" style="--i:101"/><rect class="gr-cubuk gr-kazanc" x="293.2" y="35.9" width="1.9" height="5.8" style="--i:102"/><rect class="gr-cubuk gr-kazanc" x="295.7" y="32.5" width="1.9" height="9.2" style="--i:103"/><rect class="gr-cubuk gr-kazanc" x="298.2" y="32.7" width="1.9" height="9" style="--i:104"/><rect class="gr-cubuk gr-kazanc" x="300.7" y="30.9" width="1.9" height="10.8" style="--i:105"/><rect class="gr-cubuk gr-kazanc" x="303.1" y="31" width="1.9" height="10.7" style="--i:106"/><rect class="gr-cubuk gr-kazanc" x="305.6" y="30.5" width="1.9" height="11.2" style="--i:107"/><rect class="gr-cubuk gr-kazanc" x="308.1" y="28.4" width="1.9" height="13.3" style="--i:108"/><rect class="gr-cubuk gr-kazanc" x="310.6" y="20.4" width="1.9" height="21.3" style="--i:109"/><rect class="gr-cubuk gr-kazanc" x="313.1" y="33.8" width="1.9" height="7.9" style="--i:110"/><rect class="gr-cubuk gr-kazanc" x="315.5" y="29.4" width="1.9" height="12.3" style="--i:111"/><rect class="gr-cubuk gr-kazanc" x="318" y="22" width="1.9" height="19.7" style="--i:112"/><rect class="gr-cubuk gr-kazanc" x="320.5" y="26.8" width="1.9" height="14.9" style="--i:113"/><rect class="gr-cubuk gr-kazanc" x="323" y="32.4" width="1.9" height="9.3" style="--i:114"/><rect class="gr-cubuk gr-kazanc" x="325.5" y="41.2" width="1.9" height="0.5" style="--i:115"/><rect class="gr-cubuk gr-kayip" x="327.9" y="41.7" width="1.9" height="2.3" style="--i:116"/><rect class="gr-cubuk gr-kayip" x="330.4" y="41.7" width="1.9" height="4.2" style="--i:117"/><rect class="gr-cubuk gr-kayip" x="332.9" y="41.7" width="1.9" height="5.6" style="--i:118"/><rect class="gr-cubuk gr-kayip" x="335.4" y="41.7" width="1.9" height="5.8" style="--i:119"/><rect class="gr-cubuk gr-kayip" x="337.9" y="41.7" width="1.9" height="8.3" style="--i:120"/><rect class="gr-cubuk gr-kayip" x="340.3" y="41.7" width="1.9" height="11.5" style="--i:121"/><rect class="gr-cubuk gr-kayip" x="342.8" y="41.7" width="1.9" height="9.3" style="--i:122"/><rect class="gr-cubuk gr-kayip" x="345.3" y="41.7" width="1.9" height="9.3" style="--i:123"/><rect class="gr-cubuk gr-kayip" x="347.8" y="41.7" width="1.9" height="3.9" style="--i:124"/><rect class="gr-cubuk gr-kayip" x="350.2" y="41.7" width="1.9" height="4.3" style="--i:125"/><rect class="gr-cubuk gr-kazanc" x="352.7" y="39.1" width="1.9" height="2.6" style="--i:126"/><rect class="gr-cubuk gr-kazanc" x="355.2" y="35.5" width="1.9" height="6.2" style="--i:127"/><rect class="gr-cubuk gr-kazanc" x="357.7" y="36.4" width="1.9" height="5.3" style="--i:128"/><rect class="gr-cubuk gr-kazanc" x="360.2" y="38.1" width="1.9" height="3.6" style="--i:129"/><rect class="gr-cubuk gr-kazanc" x="362.6" y="34.5" width="1.9" height="7.2" style="--i:130"/><rect class="gr-cubuk gr-kazanc" x="365.1" y="37" width="1.9" height="4.7" style="--i:131"/><rect class="gr-cubuk gr-kazanc" x="367.6" y="35.5" width="1.9" height="6.2" style="--i:132"/><rect class="gr-cubuk gr-kazanc" x="370.1" y="38" width="1.9" height="3.7" style="--i:133"/><rect class="gr-cubuk gr-kazanc" x="372.6" y="41.5" width="1.9" height="0.5" style="--i:134"/><rect class="gr-cubuk gr-kayip" x="375" y="41.7" width="1.9" height="0.6" style="--i:135"/><rect class="gr-cubuk gr-kayip" x="377.5" y="41.7" width="1.9" height="3.9" style="--i:136"/><rect class="gr-cubuk gr-kayip" x="380" y="41.7" width="1.9" height="9.6" style="--i:137"/><rect class="gr-cubuk gr-kayip" x="382.5" y="41.7" width="1.9" height="15.4" style="--i:138"/><rect class="gr-cubuk gr-kayip" x="385" y="41.7" width="1.9" height="48.1" style="--i:139"/><rect class="gr-cubuk gr-kayip" x="387.4" y="41.7" width="1.9" height="69.2" style="--i:140"/><rect class="gr-cubuk gr-kayip" x="389.9" y="41.7" width="1.9" height="77.6" style="--i:141"/><rect class="gr-cubuk gr-kayip" x="392.4" y="41.7" width="1.9" height="86.8" style="--i:142"/><rect class="gr-cubuk gr-kayip" x="394.9" y="41.7" width="1.9" height="97.7" style="--i:143"/><rect class="gr-cubuk gr-kayip" x="397.4" y="41.7" width="1.9" height="101.7" style="--i:144"/><rect class="gr-cubuk gr-kayip" x="399.8" y="41.7" width="1.9" height="107.3" style="--i:145"/><rect class="gr-cubuk gr-kayip" x="402.3" y="41.7" width="1.9" height="108.3" style="--i:146"/><rect class="gr-cubuk gr-kayip" x="404.8" y="41.7" width="1.9" height="110.6" style="--i:147"/><rect class="gr-cubuk gr-kayip" x="407.3" y="41.7" width="1.9" height="115.5" style="--i:148"/><rect class="gr-cubuk gr-kayip" x="409.8" y="41.7" width="1.9" height="119.9" style="--i:149"/><rect class="gr-cubuk gr-kayip" x="412.2" y="41.7" width="1.9" height="121.3" style="--i:150"/><rect class="gr-cubuk gr-kayip" x="414.7" y="41.7" width="1.9" height="99.8" style="--i:151"/><rect class="gr-cubuk gr-kayip" x="417.2" y="41.7" width="1.9" height="91.6" style="--i:152"/><rect class="gr-cubuk gr-kayip" x="419.7" y="41.7" width="1.9" height="89.2" style="--i:153"/><rect class="gr-cubuk gr-kayip" x="422.2" y="41.7" width="1.9" height="82.8" style="--i:154"/><rect class="gr-cubuk gr-kayip" x="424.6" y="41.7" width="1.9" height="72.6" style="--i:155"/><rect class="gr-cubuk gr-kayip" x="427.1" y="41.7" width="1.9" height="66" style="--i:156"/><rect class="gr-cubuk gr-kayip" x="429.6" y="41.7" width="1.9" height="49.8" style="--i:157"/><rect class="gr-cubuk gr-kayip" x="432.1" y="41.7" width="1.9" height="60.8" style="--i:158"/><rect class="gr-cubuk gr-kayip" x="434.6" y="41.7" width="1.9" height="63.3" style="--i:159"/><rect class="gr-cubuk gr-kayip" x="437" y="41.7" width="1.9" height="57.9" style="--i:160"/><rect class="gr-cubuk gr-kayip" x="439.5" y="41.7" width="1.9" height="48.4" style="--i:161"/><rect class="gr-cubuk gr-kayip" x="442" y="41.7" width="1.9" height="40.2" style="--i:162"/><rect class="gr-cubuk gr-kayip" x="444.5" y="41.7" width="1.9" height="40.1" style="--i:163"/><rect class="gr-cubuk gr-kayip" x="447" y="41.7" width="1.9" height="35.7" style="--i:164"/><rect class="gr-cubuk gr-kayip" x="449.4" y="41.7" width="1.9" height="39.2" style="--i:165"/><rect class="gr-cubuk gr-kayip" x="451.9" y="41.7" width="1.9" height="32.5" style="--i:166"/><rect class="gr-cubuk gr-kayip" x="454.4" y="41.7" width="1.9" height="34.6" style="--i:167"/><rect class="gr-cubuk gr-kayip" x="456.9" y="41.7" width="1.9" height="43" style="--i:168"/><rect class="gr-cubuk gr-kayip" x="459.4" y="41.7" width="1.9" height="37.3" style="--i:169"/><rect class="gr-cubuk gr-kayip" x="461.8" y="41.7" width="1.9" height="21.6" style="--i:170"/><rect class="gr-cubuk gr-kayip" x="464.3" y="41.7" width="1.9" height="3.8" style="--i:171"/><rect class="gr-cubuk gr-kazanc" x="466.8" y="40.4" width="1.9" height="1.3" style="--i:172"/><rect class="gr-cubuk gr-kazanc" x="469.3" y="38.8" width="1.9" height="2.9" style="--i:173"/><rect class="gr-cubuk gr-kazanc" x="471.7" y="35.8" width="1.9" height="5.9" style="--i:174"/><rect class="gr-cubuk gr-kazanc" x="474.2" y="35.3" width="1.9" height="6.4" style="--i:175"/><rect class="gr-cubuk gr-kazanc" x="476.7" y="35.7" width="1.9" height="6" style="--i:176"/><rect class="gr-cubuk gr-kazanc" x="479.2" y="29" width="1.9" height="12.7" style="--i:177"/><rect class="gr-cubuk gr-kazanc" x="481.7" y="32.2" width="1.9" height="9.5" style="--i:178"/><rect class="gr-cubuk gr-kazanc" x="484.1" y="24.1" width="1.9" height="17.6" style="--i:179"/><rect class="gr-cubuk gr-kazanc" x="486.6" y="18.5" width="1.9" height="23.2" style="--i:180"/><rect class="gr-cubuk gr-kazanc" x="489.1" y="17.6" width="1.9" height="24.1" style="--i:181"/><rect class="gr-cubuk gr-kazanc" x="491.6" y="20.6" width="1.9" height="21.1" style="--i:182"/><rect class="gr-cubuk gr-kazanc" x="494.1" y="19.2" width="1.9" height="22.5" style="--i:183"/><rect class="gr-cubuk gr-kazanc" x="496.5" y="25.6" width="1.9" height="16.1" style="--i:184"/><rect class="gr-cubuk gr-kazanc" x="499" y="26.9" width="1.9" height="14.8" style="--i:185"/><rect class="gr-cubuk gr-kazanc" x="501.5" y="22.6" width="1.9" height="19.1" style="--i:186"/><rect class="gr-cubuk gr-kazanc" x="504" y="25.6" width="1.9" height="16.1" style="--i:187"/><rect class="gr-cubuk gr-kazanc" x="506.5" y="27.2" width="1.9" height="14.5" style="--i:188"/><rect class="gr-cubuk gr-kazanc" x="508.9" y="29.3" width="1.9" height="12.4" style="--i:189"/><rect class="gr-cubuk gr-kazanc" x="511.4" y="27.8" width="1.9" height="13.9" style="--i:190"/><rect class="gr-cubuk gr-kazanc" x="513.9" y="31.3" width="1.9" height="10.4" style="--i:191"/><rect class="gr-cubuk gr-kazanc" x="516.4" y="31.8" width="1.9" height="9.9" style="--i:192"/><rect class="gr-cubuk gr-kazanc" x="518.9" y="30.7" width="1.9" height="11" style="--i:193"/><rect class="gr-cubuk gr-kazanc" x="521.3" y="29.8" width="1.9" height="11.9" style="--i:194"/><rect class="gr-cubuk gr-kazanc" x="523.8" y="29.3" width="1.9" height="12.4" style="--i:195"/><line class="gr-sifir" x1="40" x2="526" y1="41.7" y2="41.7"/><line class="gr-centik" x1="89.6" x2="89.6" y1="190" y2="195"/><text class="gr-eksen gr-eksen-x" x="89.6" y="208">2012</text><line class="gr-centik" x1="208.6" x2="208.6" y1="190" y2="195"/><text class="gr-eksen gr-eksen-x" x="208.6" y="208">2016</text><line class="gr-centik" x1="327.6" x2="327.6" y1="190" y2="195"/><text class="gr-eksen gr-eksen-x" x="327.6" y="208">2020</text><line class="gr-centik" x1="446.7" x2="446.7" y1="190" y2="195"/><text class="gr-eksen gr-eksen-x" x="446.7" y="208">2024</text><g class="gr-imlec" aria-hidden="true"></g></svg><!-- GR:reel:BITIS -->
+            </div>
+            <figcaption>Faiz, ay sonunda yürürlükteki bir hafta vadeli repo oranı; seri <span data-s="faizIlkAyDa">Mayıs 2010'da</span>, repo politika faizi olduğunda başlar. Kaynak: TCMB. Son değişiklik <span data-s="faizTarih">23 Ocak 2026</span>; sonraki toplantılarda faiz sabit tutuldu.</figcaption>
+          </figure>
+        </div>
+        <details class="gr-tablo">
+          <summary>Veriyi tablo olarak gör</summary>
+<!-- GRT:faiz:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo gr-veri-tablo">
+              <caption>Politika faizi, yıllık TÜFE ve reel faiz, yıl sonları</caption>
+              <thead><tr><th scope="col">Yıl</th><th scope="col" class="sayi">Politika faizi</th><th scope="col" class="sayi">Yıllık TÜFE</th><th scope="col" class="sayi">Reel faiz</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">2010</th><td class="sayi">%6,50</td><td class="sayi">%6,40</td><td class="sayi">%0,1</td></tr>
+                <tr><th scope="row">2011</th><td class="sayi">%5,75</td><td class="sayi">%10,45</td><td class="sayi">−%4,3</td></tr>
+                <tr><th scope="row">2012</th><td class="sayi">%5,50</td><td class="sayi">%6,16</td><td class="sayi">−%0,6</td></tr>
+                <tr><th scope="row">2013</th><td class="sayi">%4,50</td><td class="sayi">%7,40</td><td class="sayi">−%2,7</td></tr>
+                <tr><th scope="row">2014</th><td class="sayi">%8,25</td><td class="sayi">%8,17</td><td class="sayi">%0,1</td></tr>
+                <tr><th scope="row">2015</th><td class="sayi">%7,50</td><td class="sayi">%8,81</td><td class="sayi">−%1,2</td></tr>
+                <tr><th scope="row">2016</th><td class="sayi">%8,00</td><td class="sayi">%8,53</td><td class="sayi">−%0,5</td></tr>
+                <tr><th scope="row">2017</th><td class="sayi">%8,00</td><td class="sayi">%11,92</td><td class="sayi">−%3,5</td></tr>
+                <tr><th scope="row">2018</th><td class="sayi">%24,00</td><td class="sayi">%20,30</td><td class="sayi">%3,1</td></tr>
+                <tr><th scope="row">2019</th><td class="sayi">%12,00</td><td class="sayi">%11,84</td><td class="sayi">%0,1</td></tr>
+                <tr><th scope="row">2020</th><td class="sayi">%17,00</td><td class="sayi">%14,60</td><td class="sayi">%2,1</td></tr>
+                <tr><th scope="row">2021</th><td class="sayi">%14,00</td><td class="sayi">%36,08</td><td class="sayi">−%16,2</td></tr>
+                <tr><th scope="row">2022</th><td class="sayi">%9,00</td><td class="sayi">%64,27</td><td class="sayi">−%33,6</td></tr>
+                <tr><th scope="row">2023</th><td class="sayi">%42,50</td><td class="sayi">%64,77</td><td class="sayi">−%13,5</td></tr>
+                <tr><th scope="row">2024</th><td class="sayi">%47,50</td><td class="sayi">%44,38</td><td class="sayi">%2,2</td></tr>
+                <tr><th scope="row">2025</th><td class="sayi">%38,00</td><td class="sayi">%30,89</td><td class="sayi">%5,4</td></tr>
+                <tr><th scope="row">Ağustos 2026</th><td class="sayi">%37,00</td><td class="sayi">%31,51</td><td class="sayi">%4,2</td></tr>
+              </tbody>
+            </table>
+          </div>
+<!-- GRT:faiz:BITIS -->
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ IV -->
+    <section class="gr-bolum" id="kur" data-bolum="IV" aria-labelledby="b4">
+      <div class="wrap">
+        <header class="gr-bolum-bas">
+          <p class="gr-numara"><span>IV</span> Kur</p>
+          <h2 id="b4">Ocak 2005'ten bu yana dolar ×<span data-s="usdKat">36,1</span>, fiyatlar ×<span data-s="tufeKatKur">37,5</span>.</h2>
+          <p class="gr-oz">Fiyatlara göre dolar en ucuz <span data-s="reelKurMinAyDa">Temmuz 2008'de</span>, en pahalı <span data-s="reelKurMaxAyDa">Kasım 2021'de</span> oldu. Bugün <span data-s="reelKurSon">96,4</span>: Ocak 2005'teki düzeyin (100) yakınında.</p>
+        </header>
+        <div class="gr-ikili">
+          <figure class="gr-sekil" data-kap="kur">
+            <div class="gr-sekil-ust">
+              <p class="gr-sekil-ad">Dolar kuru ve fiyatlar · Ocak 2005 = 100 · logaritmik</p>
+              <ul class="gr-lejant" aria-label="Seriler">
+                <li class="gr-l-iki">Dolar</li>
+                <li class="gr-l-bir">Fiyatlar</li>
+              </ul>
+            </div>
+            <div class="gr-tuval">
+<!-- GR:kur:BASLANGIC --><svg class="gr-svg" viewBox="0 0 540 300" width="540" height="300" role="img" aria-label="Dolar kuru ve tüketici fiyatları, Ocak 2005 = 100, logaritmik ölçek." data-grafik="kur"><line class="gr-izgara" x1="40" x2="526" y1="241.2" y2="241.2"/><text class="gr-eksen gr-eksen-y" x="32" y="245.2">100</text><line class="gr-izgara" x1="40" x2="526" y1="202.1" y2="202.1"/><text class="gr-eksen gr-eksen-y" x="32" y="206.1">200</text><line class="gr-izgara" x1="40" x2="526" y1="163.1" y2="163.1"/><text class="gr-eksen gr-eksen-y" x="32" y="167.1">400</text><line class="gr-izgara" x1="40" x2="526" y1="124" y2="124"/><text class="gr-eksen gr-eksen-y" x="32" y="128">800</text><line class="gr-izgara" x1="40" x2="526" y1="84.9" y2="84.9"/><text class="gr-eksen gr-eksen-y" x="32" y="88.9">1.600</text><line class="gr-izgara" x1="40" x2="526" y1="45.8" y2="45.8"/><text class="gr-eksen gr-eksen-y" x="32" y="49.8">3.200</text><line class="gr-centik" x1="40" x2="40" y1="270" y2="275"/><text class="gr-eksen gr-eksen-x" x="40" y="288">2005</text><line class="gr-centik" x1="152.6" x2="152.6" y1="270" y2="275"/><text class="gr-eksen gr-eksen-x" x="152.6" y="288">2010</text><line class="gr-centik" x1="265.2" x2="265.2" y1="270" y2="275"/><text class="gr-eksen gr-eksen-x" x="265.2" y="288">2015</text><line class="gr-centik" x1="377.8" x2="377.8" y1="270" y2="275"/><text class="gr-eksen gr-eksen-x" x="377.8" y="288">2020</text><line class="gr-centik" x1="490.3" x2="490.3" y1="270" y2="275"/><text class="gr-eksen gr-eksen-x" x="490.3" y="288">2025</text><path class="gr-cizgi gr-s-bir" data-seri="0" d="M40 241.2L41.9 241.2L43.8 241L45.6 240.6L47.5 240.1L49.4 240.1L51.3 240.4L53.1 239.9L55 239.3L56.9 238.3L58.8 237.6L60.6 237.3L62.5 236.9L64.4 236.8L66.3 236.6L68.1 235.9L70 234.8L71.9 234.6L73.8 234.2L75.7 234.4L77.5 233.7L79.4 233L81.3 232.3L83.2 232.1L85 231.6L86.9 231.3L88.8 230.8L90.7 230.1L92.5 229.8L94.4 230L96.3 230.4L98.2 230.4L100 229.8L101.9 228.8L103.8 227.7L105.7 227.6L107.6 227.1L109.4 226.4L111.3 225.9L113.2 224.9L115.1 224.1L116.9 224.3L118.8 224L120.7 224.1L122.6 223.9L124.4 222.4L126.3 221.9L128.2 222.2L130.1 222L131.9 222.2L133.8 221.6L135.7 221.6L137.6 221.2L139.5 221.2L141.3 221L143.2 221.2L145.1 221L147 219.6L148.8 218.9L150.7 218.6L152.6 217.6L154.5 216.8L156.3 216.4L158.2 216.1L160.1 216.3L162 216.6L163.8 216.9L165.7 216.7L167.6 216L169.5 215L171.4 214.9L173.2 215.1L175.1 214.9L177 214.5L178.9 214.2L180.7 213.7L182.6 212.4L184.5 213.2L186.4 213.4L188.2 213L190.1 212.6L192 210.8L193.9 209.8L195.7 209.5L197.6 209.2L199.5 208.9L201.4 208.6L203.3 207.8L205.1 207.9L207 208.4L208.9 208.6L210.8 208.2L212.6 207.7L214.5 206.6L216.4 206.4L218.3 206.1L220.1 205.2L222 205L223.9 204.7L225.8 204.4L227.6 204.4L229.5 203.9L231.4 203.8L233.3 203.8L235.2 203.4L237 202.4L238.9 202.4L240.8 202.1L242.7 201L244.5 200.8L246.4 200.1L248.3 199.4L250.2 199.2L252 199L253.9 198.7L255.8 198.7L257.7 198.6L259.5 197.5L261.4 197.4L263.3 197.7L265.2 197.1L267.1 196.7L268.9 196L270.8 195.1L272.7 194.8L274.6 195.1L276.4 195L278.3 194.8L280.2 194.3L282.1 193.4L283.9 193L285.8 192.9L287.7 191.9L289.6 191.9L291.4 191.9L293.3 191.5L295.2 191.2L297.1 190.9L298.9 190.3L300.8 190.4L302.7 190.3L304.6 189.5L306.5 189.2L308.3 188.3L310.2 186.9L312.1 186.5L314 185.9L315.8 185.2L317.7 184.9L319.6 185.1L321.5 185L323.3 184.7L325.2 184.3L327.1 183.2L329 182.3L330.8 182L332.7 181.4L334.6 181L336.5 180.4L338.4 179.4L340.2 178.5L342.1 177L344 176.7L345.9 175.4L347.7 172L349.6 170.5L351.5 171.3L353.4 171.5L355.2 170.9L357.1 170.9L359 170.3L360.9 169.3L362.7 168.8L364.6 168.8L366.5 168L368.4 167.5L370.3 167L372.1 165.9L374 165.7L375.9 165.2L377.8 164.5L379.6 164.3L381.5 164L383.4 163.5L385.3 162.7L387.1 162.1L389 161.8L390.9 161.3L392.8 160.7L394.6 159.6L396.5 158.3L398.4 157.6L400.3 156.6L402.2 156.1L404 155.5L405.9 154.6L407.8 154.1L409.7 153L411.5 152L413.4 151.4L415.3 150.7L417.2 149.3L419 147.4L420.9 140.2L422.8 134.3L424.7 131.6L426.5 128.6L428.4 124.7L430.3 123L432.2 120.3L434.1 119L435.9 118.2L437.8 116.5L439.7 114.5L441.6 112.9L443.4 112.2L445.3 108.6L447.2 106.9L449.1 105.6L450.9 104.2L452.8 104.2L454.7 102.1L456.6 96.9L458.4 92L460.3 89.4L462.2 87.5L464.1 85.7L466 84.1L467.8 80.4L469.7 77.9L471.6 76.2L473.5 74.4L475.3 72.5L477.2 71.6L479.1 69.8L481 68.5L482.8 66.8L484.7 65.2L486.6 64L488.5 63.4L490.3 60.6L492.2 59.3L494.1 58L496 56.3L497.9 55.5L499.7 54.7L501.6 53.5L503.5 52.4L505.4 50.6L507.2 49.2L509.1 48.7L511 48.2L512.9 45.5L514.7 43.9L516.6 42.8L518.5 40.5L520.4 39.5L522.2 39L524.1 38L526 37"/><path class="gr-cizgi gr-s-iki" data-seri="1" d="M40 241.2L41.9 243.4L43.8 240.5L45.6 238.9L47.5 240.1L49.4 241L51.3 241.6L53.1 240.5L55 240.7L56.9 240.7L58.8 240.3L60.6 240.7L62.5 241.6L64.4 242.2L66.3 240.7L68.1 241.8L70 232.2L71.9 231.8L73.8 235.1L75.7 236.4L77.5 234.5L79.4 236.2L81.3 236.5L83.2 238.1L85 237.8L86.9 237.8L88.8 239.1L90.7 239.9L92.5 241.8L94.4 242.3L96.3 243.6L98.2 242.8L100 246.8L101.9 248.3L103.8 248.3L105.7 248.9L107.6 248.5L109.4 247.4L111.3 242.2L113.2 243.1L115.1 246.7L116.9 246.1L118.8 249.1L120.7 248.2L122.6 245.5L124.4 232.2L126.3 232.1L128.2 233.6L130.1 229.6L131.9 227.8L133.8 228.4L135.7 231.5L137.6 233.1L139.5 233.5L141.3 235.6L143.2 234.6L145.1 235.3L147 235.1L148.8 235.1L150.7 234.9L152.6 235L154.5 233.1L156.3 233.8L158.2 235.4L160.1 232L162 231.7L163.8 234.2L165.7 233.6L167.6 236.6L169.5 237.1L171.4 234.4L173.2 233L175.1 230.8L177 231L178.9 233.1L180.7 233.9L182.6 231.3L184.5 230.2L186.4 228.2L188.2 225.9L190.1 222.5L192 225.8L193.9 222.9L195.7 221.4L197.6 225.3L199.5 226.1L201.4 225L203.3 225.7L205.1 222.9L207 223.9L208.9 224.6L210.8 223.8L212.6 224.6L214.5 224.6L216.4 224.8L218.3 224.8L220.1 225.6L222 224.4L223.9 224L225.8 224.4L227.6 221.7L229.5 220.5L231.4 220.3L233.3 217.5L235.2 217.3L237 218.7L238.9 217.9L240.8 214.8L242.7 211.2L244.5 212.7L246.4 214.1L248.3 215.2L250.2 215.8L252 215L253.9 214.7L255.8 214.1L257.7 211L259.5 212.9L261.4 212.7L263.3 209.8L265.2 207.7L267.1 205.6L268.9 203.3L270.8 202.4L272.7 202.3L274.6 201.8L276.4 199.7L278.3 197.1L280.2 195L282.1 197.1L283.9 197.2L285.8 197.1L287.7 196.2L289.6 196.2L291.4 198.9L293.3 199.4L295.2 196.4L297.1 197.7L298.9 195.3L300.8 196.4L302.7 195.5L304.6 193.6L306.5 188.2L308.3 186.5L310.2 182.4L312.1 185.1L314 184.7L315.8 186L317.7 186.3L319.6 186.5L321.5 186.4L323.3 187.8L325.2 186L327.1 182.5L329 180.1L330.8 182.6L332.7 182.9L334.6 182.2L336.5 180L338.4 178.7L340.2 172.9L342.1 171.9L344 167.8L345.9 151.5L347.7 156.5L349.6 161.4L351.5 165L353.4 163.6L355.2 164.4L357.1 163.2L359 160L360.9 156.8L362.7 157.7L364.6 158.8L366.5 161.1L368.4 158.2L370.3 159.9L372.1 159.2L374 158.9L375.9 157L377.8 156.7L379.6 154.3L381.5 151.3L383.4 148L385.3 149.3L387.1 149L389 148.2L390.9 145.2L392.8 142L394.6 138.1L396.5 141.7L398.4 144.5L400.3 145.2L402.2 144.8L404 138L405.9 138.6L407.8 136.8L409.7 135.6L411.5 137.4L413.4 138.1L415.3 134.3L417.2 130.6L419 113.1L420.9 111.4L422.8 111.1L424.7 109.4L426.5 106.2L428.4 105.6L430.3 99.8L432.2 98.9L434.1 94.8L435.9 94L437.8 92.9L439.7 92.7L441.6 92.6L443.4 92.4L445.3 92.1L447.2 91.9L449.1 91L450.9 90.2L452.8 86.7L454.7 74.2L456.6 71.8L458.4 72.3L460.3 70.9L462.2 69.1L464.1 68L466 66.8L467.8 65.2L469.7 63.6L471.6 61.6L473.5 61.5L475.3 61.8L477.2 60.6L479.1 60.2L481 58.8L482.8 58.4L484.7 58.4L486.6 57.7L488.5 56.6L490.3 55.8L492.2 54.8L494.1 52.7L496 51.8L497.9 50.8L499.7 49.9L501.6 48.8L503.5 48.2L505.4 47.4L507.2 46.9L509.1 46.3L511 45.6L512.9 45L514.7 44.4L516.6 43.6L518.5 42.9L520.4 42.1L522.2 40.9L524.1 40L526 39"/><g class="gr-not gr-not--bir"><circle class="gr-not-hale" cx="526" cy="37" r="9"/><circle class="gr-not-nokta" cx="526" cy="37" r="4"/><text class="gr-not-metin" x="516" y="27" text-anchor="end">fiyatlar ×37,5</text></g><g class="gr-not gr-not--son gr-not--iki"><circle class="gr-not-hale" cx="526" cy="39" r="9"/><circle class="gr-not-nokta" cx="526" cy="39" r="4"/><text class="gr-not-metin" x="516" y="61" text-anchor="end">dolar ×36,1</text></g><g class="gr-imlec" aria-hidden="true"></g></svg><!-- GR:kur:BITIS -->
+            </div>
+          </figure>
+          <figure class="gr-sekil" data-kap="reelKur">
+            <div class="gr-sekil-ust">
+              <p class="gr-sekil-ad">Fiyatlara göre dolar · dolar endeksi ÷ fiyat endeksi</p>
+            </div>
+            <div class="gr-tuval">
+<!-- GR:reelKur:BASLANGIC --><svg class="gr-svg" viewBox="0 0 540 240" width="540" height="240" role="img" aria-label="Fiyatlara göre dolar, Ocak 2005 = 100. En düşük Tem 2008, en yüksek Kas 2021." data-grafik="reelKur"><line class="gr-izgara" x1="40" x2="526" y1="210" y2="210"/><text class="gr-eksen gr-eksen-y" x="32" y="214">50</text><line class="gr-izgara" x1="40" x2="526" y1="162" y2="162"/><text class="gr-eksen gr-eksen-y" x="32" y="166">100</text><line class="gr-izgara" x1="40" x2="526" y1="114" y2="114"/><text class="gr-eksen gr-eksen-y" x="32" y="118">150</text><line class="gr-izgara" x1="40" x2="526" y1="66" y2="66"/><text class="gr-eksen gr-eksen-y" x="32" y="70">200</text><line class="gr-izgara" x1="40" x2="526" y1="18" y2="18"/><text class="gr-eksen gr-eksen-y" x="32" y="22">250</text><line class="gr-referans" x1="40" x2="526" y1="162" y2="162"/><line class="gr-centik" x1="40" x2="40" y1="210" y2="215"/><text class="gr-eksen gr-eksen-x" x="40" y="228">2005</text><line class="gr-centik" x1="152.6" x2="152.6" y1="210" y2="215"/><text class="gr-eksen gr-eksen-x" x="152.6" y="228">2010</text><line class="gr-centik" x1="265.2" x2="265.2" y1="210" y2="215"/><text class="gr-eksen gr-eksen-x" x="265.2" y="228">2015</text><line class="gr-centik" x1="377.8" x2="377.8" y1="210" y2="215"/><text class="gr-eksen gr-eksen-x" x="377.8" y="228">2020</text><line class="gr-centik" x1="490.3" x2="490.3" y1="210" y2="215"/><text class="gr-eksen gr-eksen-x" x="490.3" y="228">2025</text><path class="gr-cizgi gr-s-iki" data-seri="0" d="M40 162L41.9 165.7L43.8 161.1L45.6 159L47.5 162L49.4 163.6L51.3 164L53.1 162.9L55 164.2L56.9 165.9L58.8 166.6L60.6 167.5L62.5 169.7L64.4 170.8L66.3 168.7L68.1 171.6L70 157.4L71.9 157.1L73.8 163.6L75.7 165.3L77.5 163.4L79.4 167.3L81.3 168.9L83.2 171.6L85 172L86.9 172.4L88.8 175.1L90.7 177.3L92.5 180.3L94.4 180.8L96.3 182L98.2 181L100 186.9L101.9 190.1L103.8 191.4L105.7 192.3L107.6 192.3L109.4 191.9L111.3 186.1L113.2 188.5L115.1 193.7L116.9 192.8L118.8 196.5L120.7 195.4L122.6 192.6L124.4 177.3L126.3 177.8L128.2 179.6L130.1 174L131.9 171L133.8 172.9L135.7 177.5L137.6 180.3L139.5 180.9L141.3 183.9L143.2 182.3L145.1 183.5L147 185L148.8 185.9L150.7 186.1L152.6 187.6L154.5 186.1L156.3 187.5L158.2 189.8L160.1 185.3L162 184.5L163.8 187.4L165.7 186.9L167.6 191.4L169.5 193.2L171.4 190.1L173.2 188.1L175.1 185.6L177 186.4L178.9 189.2L180.7 190.8L182.6 189.3L184.5 187L186.4 184.2L188.2 181.5L190.1 177.5L192 184.5L193.9 181.8L195.7 180.3L197.6 185.8L199.5 187.3L201.4 186.1L203.3 188.2L205.1 184.4L207 185.1L208.9 185.7L210.8 185.1L212.6 186.9L214.5 188.3L216.4 188.8L218.3 189.1L220.1 191.1L222 189.9L223.9 189.9L225.8 190.6L227.6 187.4L229.5 186.5L231.4 186.5L233.3 182.7L235.2 183.1L237 186.1L238.9 185.1L240.8 181.3L242.7 177.9L244.5 180.3L246.4 183.1L248.3 185.5L250.2 186.6L252 185.8L253.9 185.7L255.8 184.9L257.7 181L259.5 184.9L261.4 184.8L263.3 180.6L265.2 178.5L267.1 176.1L268.9 173.6L270.8 173.6L272.7 174L274.6 172.7L276.4 169.7L278.3 165.8L280.2 163.3L282.1 168.1L283.9 168.8L285.8 168.8L287.7 169.1L289.6 169.1L291.4 173.1L293.3 174.5L295.2 170.5L297.1 172.9L298.9 170.1L300.8 171.6L302.7 170.4L304.6 168.7L306.5 160.2L308.3 158.9L310.2 153.9L312.1 159.6L314 159.8L315.8 163.4L317.7 164.3L319.6 164.5L321.5 164.4L323.3 167.1L325.2 164.8L327.1 160.9L329 158.2L330.8 163.1L332.7 164.5L334.6 164L336.5 161.3L338.4 160.9L340.2 152L342.1 152.9L344 145.7L345.9 111.2L347.7 131.7L349.6 145.1L351.5 150.5L353.4 147.5L355.2 150.1L357.1 148.1L359 142.9L360.9 138.2L362.7 141.2L364.6 143.4L366.5 149.5L368.4 144.7L370.3 149.1L372.1 150L374 149.8L375.9 146.9L377.8 147.8L379.6 143.5L381.5 137.8L383.4 131.6L385.3 136.1L387.1 136.9L389 136L390.9 130.2L392.8 124.1L394.6 117.5L396.5 129.2L398.4 136.9L400.3 140.4L402.2 140.7L404 126.9L405.9 130.6L407.8 127.6L409.7 127.3L411.5 133.6L413.4 136.6L415.3 129.8L417.2 124.3L419 81.7L420.9 98.1L422.8 113.3L424.7 115.5L426.5 115L428.4 123.3L430.3 113L432.2 117.6L434.1 110.7L435.9 110.5L437.8 112.2L439.7 116.6L441.6 120.4L443.4 121.4L445.3 129.3L447.2 132.7L449.1 133.7L450.9 134.8L452.8 127L454.7 100.5L456.6 108L458.4 121.8L460.3 124.6L462.2 124.9L464.1 126.5L466 127.5L467.8 132.1L469.7 134.1L471.6 133.6L473.5 137.4L475.3 141.9L477.2 141.3L479.1 144.1L481 144L482.8 146.7L484.7 149.6L486.6 150.7L488.5 149.7L490.3 153.4L492.2 154L494.1 152.6L496 154.1L497.9 153.8L499.7 153.4L501.6 153.5L503.5 154.5L505.4 156.4L507.2 158L509.1 157.8L511 157.5L512.9 161L514.7 162.8L516.6 163.4L518.5 166L520.4 166.2L522.2 165.2L524.1 165.3L526 165.4"/><g class="gr-not "><circle class="gr-not-hale" cx="118.8" cy="196.5" r="9"/><circle class="gr-not-nokta" cx="118.8" cy="196.5" r="4"/><text class="gr-not-metin" x="128.8" y="190.5" text-anchor="start">64,1</text><text class="gr-not-alt" x="128.8" y="206.5" text-anchor="start">Tem 2008</text></g><g class="gr-not "><circle class="gr-not-hale" cx="419" cy="81.7" r="9"/><circle class="gr-not-nokta" cx="419" cy="81.7" r="4"/><text class="gr-not-metin" x="409" y="75.7" text-anchor="end">183,7</text><text class="gr-not-alt" x="409" y="91.7" text-anchor="end">Kas 2021</text></g><g class="gr-not gr-not--son"><circle class="gr-not-hale" cx="526" cy="165.4" r="9"/><circle class="gr-not-nokta" cx="526" cy="165.4" r="4"/><text class="gr-not-metin" x="516" y="181.4" text-anchor="end">96,4</text><text class="gr-not-alt" x="516" y="197.4" text-anchor="end">Ağu 2026</text></g><g class="gr-imlec" aria-hidden="true"></g></svg><!-- GR:reelKur:BITIS -->
+            </div>
+            <figcaption>100'ün üstü: dolar, Ocak 2005'e göre fiyatlardan hızlı artmış. Kur, ayın son iş günü TCMB döviz satış kuru. Bu bir reel efektif kur değil: yalnız Türkiye fiyatlarıyla bölünür, ABD enflasyonu hesaba katılmaz.</figcaption>
+          </figure>
+        </div>
+        <details class="gr-tablo">
+          <summary>Veriyi tablo olarak gör</summary>
+<!-- GRT:kur:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo gr-veri-tablo">
+              <caption>Ay sonu kurlar, yıl sonları</caption>
+              <thead><tr><th scope="col">Yıl</th><th scope="col" class="sayi">Dolar (TL)</th><th scope="col" class="sayi">Euro (TL)</th><th scope="col" class="sayi">Fiyatlara göre dolar</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">2005</th><td class="sayi">1,3483</td><td class="sayi">1,5952</td><td class="sayi">94,2</td></tr>
+                <tr><th scope="row">2006</th><td class="sayi">1,4124</td><td class="sayi">1,8604</td><td class="sayi">90,0</td></tr>
+                <tr><th scope="row">2007</th><td class="sayi">1,1649</td><td class="sayi">1,7142</td><td class="sayi">68,5</td></tr>
+                <tr><th scope="row">2008</th><td class="sayi">1,5291</td><td class="sayi">2,1435</td><td class="sayi">81,7</td></tr>
+                <tr><th scope="row">2009</th><td class="sayi">1,4945</td><td class="sayi">2,1530</td><td class="sayi">74,9</td></tr>
+                <tr><th scope="row">2010</th><td class="sayi">1,5450</td><td class="sayi">2,0650</td><td class="sayi">72,8</td></tr>
+                <tr><th scope="row">2011</th><td class="sayi">1,8980</td><td class="sayi">2,4556</td><td class="sayi">81,0</td></tr>
+                <tr><th scope="row">2012</th><td class="sayi">1,7862</td><td class="sayi">2,3565</td><td class="sayi">71,8</td></tr>
+                <tr><th scope="row">2013</th><td class="sayi">2,1343</td><td class="sayi">2,9397</td><td class="sayi">79,9</td></tr>
+                <tr><th scope="row">2014</th><td class="sayi">2,3311</td><td class="sayi">2,8323</td><td class="sayi">80,6</td></tr>
+                <tr><th scope="row">2015</th><td class="sayi">2,9233</td><td class="sayi">3,1896</td><td class="sayi">92,9</td></tr>
+                <tr><th scope="row">2016</th><td class="sayi">3,5255</td><td class="sayi">3,7166</td><td class="sayi">103,3</td></tr>
+                <tr><th scope="row">2017</th><td class="sayi">3,7787</td><td class="sayi">4,5237</td><td class="sayi">98,9</td></tr>
+                <tr><th scope="row">2018</th><td class="sayi">5,2905</td><td class="sayi">6,0530</td><td class="sayi">115,1</td></tr>
+                <tr><th scope="row">2019</th><td class="sayi">5,9507</td><td class="sayi">6,6741</td><td class="sayi">115,7</td></tr>
+                <tr><th scope="row">2020</th><td class="sayi">7,4327</td><td class="sayi">9,1329</td><td class="sayi">126,2</td></tr>
+                <tr><th scope="row">2021</th><td class="sayi">13,3530</td><td class="sayi">15,1139</td><td class="sayi">166,6</td></tr>
+                <tr><th scope="row">2022</th><td class="sayi">18,7320</td><td class="sayi">19,9708</td><td class="sayi">142,3</td></tr>
+                <tr><th scope="row">2023</th><td class="sayi">29,4913</td><td class="sayi">32,6326</td><td class="sayi">135,9</td></tr>
+                <tr><th scope="row">2024</th><td class="sayi">35,3438</td><td class="sayi">36,8024</td><td class="sayi">112,8</td></tr>
+                <tr><th scope="row">2025</th><td class="sayi">42,9229</td><td class="sayi">50,3765</td><td class="sayi">104,7</td></tr>
+                <tr><th scope="row">Ağustos 2026</th><td class="sayi">48,2613</td><td class="sayi">55,9658</td><td class="sayi">96,4</td></tr>
+              </tbody>
+            </table>
+          </div>
+<!-- GRT:kur:BITIS -->
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ V -->
+    <section class="gr-bolum" id="ucret" data-bolum="V" aria-labelledby="b5">
+      <div class="wrap">
+        <header class="gr-bolum-bas">
+          <p class="gr-numara"><span>V</span> Asgari ücret</p>
+          <h2 id="b5">Net asgari ücret <span data-s="usdDipAyDa">Aralık 2021'de</span> $<span data-s="usdDip">212</span>, <span data-s="usdTepeAyDa">Ocak 2026'da</span> $<span data-s="usdTepe">647</span>.</h2>
+          <p class="gr-oz">Zam ayı tepedir, sonrası erime. <span data-s="donemBasAy">Ocak 2026</span> zammından bu yana net <span data-s="asgariSonNet">28.075,50</span> TL sabit, alım gücü %<span data-s="donemErime">14,1</span> geriledi. Bugünün fiyatlarıyla en yüksek değer <span data-s="reelTepeAy">Ocak 2024</span>: <span data-s="reelTepe">36.754</span> TL.</p>
+        </header>
+        <figure class="gr-sekil" data-kap="asgari">
+          <div class="gr-sekil-ust">
+            <p class="gr-sekil-ad">Net asgari ücret · bekâr, çocuksuz</p>
+            <div class="gr-secim" role="group" aria-label="Birim">
+              <button type="button" data-secenek="birim" data-deger="usd" aria-pressed="true">Dolar</button>
+              <button type="button" data-secenek="birim" data-deger="tl" aria-pressed="false">Bugünün TL'si</button>
+            </div>
+          </div>
+          <div class="gr-tuval">
+<!-- GR:asgari:BASLANGIC --><svg class="gr-svg" viewBox="0 0 1000 320" width="1000" height="320" role="img" aria-label="Net asgari ücret, dolar karşılığı, Oca 2020–Ağu 2026." data-grafik="asgari"><line class="gr-izgara" x1="52" x2="978" y1="290" y2="290"/><text class="gr-eksen gr-eksen-y" x="44" y="294">$0</text><line class="gr-izgara" x1="52" x2="978" y1="256" y2="256"/><text class="gr-eksen gr-eksen-y" x="44" y="260">$100</text><line class="gr-izgara" x1="52" x2="978" y1="222" y2="222"/><text class="gr-eksen gr-eksen-y" x="44" y="226">$200</text><line class="gr-izgara" x1="52" x2="978" y1="188" y2="188"/><text class="gr-eksen gr-eksen-y" x="44" y="192">$300</text><line class="gr-izgara" x1="52" x2="978" y1="154" y2="154"/><text class="gr-eksen gr-eksen-y" x="44" y="158">$400</text><line class="gr-izgara" x1="52" x2="978" y1="120" y2="120"/><text class="gr-eksen gr-eksen-y" x="44" y="124">$500</text><line class="gr-izgara" x1="52" x2="978" y1="86" y2="86"/><text class="gr-eksen gr-eksen-y" x="44" y="90">$600</text><line class="gr-izgara" x1="52" x2="978" y1="52" y2="52"/><text class="gr-eksen gr-eksen-y" x="44" y="56">$700</text><line class="gr-izgara" x1="52" x2="978" y1="18" y2="18"/><text class="gr-eksen gr-eksen-y" x="44" y="22">$800</text><line class="gr-centik" x1="52" x2="52" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="52" y="308">2020</text><line class="gr-centik" x1="192.7" x2="192.7" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="192.7" y="308">2021</text><line class="gr-centik" x1="333.3" x2="333.3" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="333.3" y="308">2022</text><line class="gr-centik" x1="474" x2="474" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="474" y="308">2023</text><line class="gr-centik" x1="614.6" x2="614.6" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="614.6" y="308">2024</text><line class="gr-centik" x1="755.3" x2="755.3" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="755.3" y="308">2025</text><line class="gr-centik" x1="895.9" x2="895.9" y1="290" y2="295"/><text class="gr-eksen gr-eksen-x" x="895.9" y="308">2026</text><path class="gr-alan gr-s-iki" d="M52 157.9H63.7V163.3H75.4V169.9H87.2V176.8H98.9V174.2H110.6V174.7H122.3V176.3H134.1V182.3H145.8V188.2H157.5V195H169.2V188.7H180.9V183.7H192.7V159H204.4V159.9H216.1V174.8H227.8V173.5H239.5V177.2H251.3V179.5H263V176H274.7V174.5H286.4V182H298.2V188.8H309.9V215.9H321.6V218H333.3V182.3H345V185.6H356.8V191.4H368.5V192.4H380.2V201.9H391.9V203.4H403.6V185.7H415.4V187.3H427.1V189.2H438.8V189.6H450.5V189.7H462.3V190.2H474V136.3H485.7V137H497.4V139.3H509.1V141.4H520.9V150.3H532.6V178.2H544.3V146.3H556V144.9H567.7V148.6H579.5V152.9H591.2V155.7H602.9V158.5H614.6V99.5H626.4V104.8H638.1V111.3H649.8V111.4H661.5V110.4H673.2V114.2H685V115.6H696.7V119.9H708.4V120.9H720.1V121.2H731.8V123.1H743.6V126.4H755.3V80.2H767V83.8H778.7V91.4H790.5V94.5H802.2V97.9H813.9V101.2H825.6V104.8H837.3V106.8H849.1V109.3H860.8V110.9H872.5V112.9H884.2V114.9H895.9V70.2H907.7V72.5H919.4V75.4H931.1V78.1H942.8V81.2H954.6V85.4H966.3V88.7H978V92.2V290H52Z"/><path class="gr-cizgi gr-s-iki" data-seri="0" d="M52 157.9H63.7V163.3H75.4V169.9H87.2V176.8H98.9V174.2H110.6V174.7H122.3V176.3H134.1V182.3H145.8V188.2H157.5V195H169.2V188.7H180.9V183.7H192.7V159H204.4V159.9H216.1V174.8H227.8V173.5H239.5V177.2H251.3V179.5H263V176H274.7V174.5H286.4V182H298.2V188.8H309.9V215.9H321.6V218H333.3V182.3H345V185.6H356.8V191.4H368.5V192.4H380.2V201.9H391.9V203.4H403.6V185.7H415.4V187.3H427.1V189.2H438.8V189.6H450.5V189.7H462.3V190.2H474V136.3H485.7V137H497.4V139.3H509.1V141.4H520.9V150.3H532.6V178.2H544.3V146.3H556V144.9H567.7V148.6H579.5V152.9H591.2V155.7H602.9V158.5H614.6V99.5H626.4V104.8H638.1V111.3H649.8V111.4H661.5V110.4H673.2V114.2H685V115.6H696.7V119.9H708.4V120.9H720.1V121.2H731.8V123.1H743.6V126.4H755.3V80.2H767V83.8H778.7V91.4H790.5V94.5H802.2V97.9H813.9V101.2H825.6V104.8H837.3V106.8H849.1V109.3H860.8V110.9H872.5V112.9H884.2V114.9H895.9V70.2H907.7V72.5H919.4V75.4H931.1V78.1H942.8V81.2H954.6V85.4H966.3V88.7H978V92.2"/><g class="gr-not "><circle class="gr-not-hale" cx="895.9" cy="70.2" r="9"/><circle class="gr-not-nokta" cx="895.9" cy="70.2" r="4"/><text class="gr-not-metin" x="885.9" y="64.2" text-anchor="end">$647</text><text class="gr-not-alt" x="885.9" y="80.2" text-anchor="end">Oca 2026</text></g><g class="gr-not "><circle class="gr-not-hale" cx="321.6" cy="218" r="9"/><circle class="gr-not-nokta" cx="321.6" cy="218" r="4"/><text class="gr-not-metin" x="331.6" y="212" text-anchor="start">$212</text><text class="gr-not-alt" x="331.6" y="228" text-anchor="start">Ara 2021</text></g><g class="gr-not gr-not--son"><circle class="gr-not-hale" cx="978" cy="92.2" r="9"/><circle class="gr-not-nokta" cx="978" cy="92.2" r="4"/><text class="gr-not-metin" x="968" y="108.2" text-anchor="end">$582</text><text class="gr-not-alt" x="968" y="124.2" text-anchor="end">Ağu 2026</text></g><g class="gr-imlec" aria-hidden="true"></g></svg><!-- GR:asgari:BITIS -->
+          </div>
+          <figcaption>Dolar karşılığı: o ayın son iş günü TCMB kuru. Bugünün TL'si: <span data-s="sonAyUzun">Ağustos 2026</span> fiyatlarıyla, TÜFE ile. Net tutarlar resmî asgari ücret tablosundan; sitenin bordro motoru her dönemi yeniden üretiyor.</figcaption>
+        </figure>
+        <details class="gr-tablo">
+          <summary>Veriyi tablo olarak gör</summary>
+<!-- GRT:asgari:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo gr-veri-tablo">
+              <caption>Net asgari ücret, dönem başları</caption>
+              <thead><tr><th scope="col">Dönem</th><th scope="col" class="sayi">Brüt (TL)</th><th scope="col" class="sayi">Net (TL)</th><th scope="col" class="sayi">Dolar karşılığı</th><th scope="col" class="sayi">Ağustos 2026 fiyatlarıyla</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Ocak 2020</th><td class="sayi">2.943,00</td><td class="sayi">2.324,71</td><td class="sayi">$389</td><td class="sayi">22.326 TL</td></tr>
+                <tr><th scope="row">Ocak 2021</th><td class="sayi">3.577,50</td><td class="sayi">2.825,90</td><td class="sayi">$385</td><td class="sayi">23.610 TL</td></tr>
+                <tr><th scope="row">Ocak 2022</th><td class="sayi">5.004,00</td><td class="sayi">4.253,40</td><td class="sayi">$317</td><td class="sayi">23.901 TL</td></tr>
+                <tr><th scope="row">Temmuz 2022</th><td class="sayi">6.471,00</td><td class="sayi">5.500,35</td><td class="sayi">$307</td><td class="sayi">23.565 TL</td></tr>
+                <tr><th scope="row">Ocak 2023</th><td class="sayi">10.008,00</td><td class="sayi">8.506,80</td><td class="sayi">$452</td><td class="sayi">30.317 TL</td></tr>
+                <tr><th scope="row">Temmuz 2023</th><td class="sayi">13.414,50</td><td class="sayi">11.402,32</td><td class="sayi">$423</td><td class="sayi">33.045 TL</td></tr>
+                <tr><th scope="row">Ocak 2024</th><td class="sayi">20.002,50</td><td class="sayi">17.002,12</td><td class="sayi">$560</td><td class="sayi">36.754 TL</td></tr>
+                <tr><th scope="row">Ocak 2025</th><td class="sayi">26.005,50</td><td class="sayi">22.104,67</td><td class="sayi">$617</td><td class="sayi">33.624 TL</td></tr>
+                <tr><th scope="row">Ocak 2026</th><td class="sayi">33.030,00</td><td class="sayi">28.075,50</td><td class="sayi">$647</td><td class="sayi">32.685 TL</td></tr>
+              </tbody>
+            </table>
+          </div>
+<!-- GRT:asgari:BITIS -->
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ VI -->
+    <section class="gr-bolum" id="dunya" data-bolum="VI" aria-labelledby="b6">
+      <div class="wrap">
+        <header class="gr-bolum-bas">
+          <p class="gr-numara"><span>VI</span> Dünya</p>
+          <h2 id="b6"><span data-s="dunyaYil">2024</span> yılında G20'nin en yüksek <span data-s="turSiraYazi">ikinci</span> enflasyonu: %<span data-s="turDeger">58,5</span>.</h2>
+          <p class="gr-oz">Önde yalnız <span data-s="birinciAd">Arjantin</span> var (%<span data-s="birinciDeger">219,9</span>). <span data-s="ulkeSayisi">20</span> ekonominin ortancası %<span data-s="ortanca">2,8</span>. Ölçek logaritmik: her çizgi on kat.</p>
+        </header>
+        <div class="gr-ikili gr-ikili--dunya">
+          <figure class="gr-sekil" data-kap="dunya">
+            <div class="gr-sekil-ust">
+              <p class="gr-sekil-ad">Yıllık ortalama enflasyon, <span data-s="dunyaYil">2024</span> · kesikli çizgi ortanca</p>
+            </div>
+            <div class="gr-tuval">
+<!-- GR:dunya:BASLANGIC --><svg class="gr-svg" viewBox="0 0 540 478" width="540" height="478" role="img" aria-label="2024 yılında G20 ekonomilerinde enflasyon. Türkiye 2. sırada, %58,5." data-grafik="dunya"><line class="gr-izgara" x1="104" x2="104" y1="10" y2="450"/><text class="gr-eksen gr-eksen-x" x="104" y="468">%0,1</text><line class="gr-izgara" x1="210.6" x2="210.6" y1="10" y2="450"/><text class="gr-eksen gr-eksen-x" x="210.6" y="468">%1</text><line class="gr-izgara" x1="317.2" x2="317.2" y1="10" y2="450"/><text class="gr-eksen gr-eksen-x" x="317.2" y="468">%10</text><line class="gr-izgara" x1="423.8" x2="423.8" y1="10" y2="450"/><text class="gr-eksen gr-eksen-x" x="423.8" y="468">%100</text><g class="gr-sira" style="--i:0"><text class="gr-sira-ad" x="94" y="25">Arjantin</text><rect class="gr-sira-cubuk" x="104" y="15" width="356.3" height="12" rx="2"/><text class="gr-sira-deger" x="466.3" y="25">%219,9</text></g><g class="gr-sira gr-sira--vurgu" style="--i:1"><text class="gr-sira-ad" x="94" y="47">Türkiye</text><rect class="gr-sira-cubuk" x="104" y="37" width="295" height="12" rx="2"/><text class="gr-sira-deger" x="405" y="47">%58,5</text></g><g class="gr-sira" style="--i:2"><text class="gr-sira-ad" x="94" y="69">Rusya</text><rect class="gr-sira-cubuk" x="104" y="59" width="205.3" height="12" rx="2"/><text class="gr-sira-deger" x="315.3" y="69">%8,4</text></g><g class="gr-sira" style="--i:3"><text class="gr-sira-ad" x="94" y="91">Hindistan</text><rect class="gr-sira-cubuk" x="104" y="81" width="180.7" height="12" rx="2"/><text class="gr-sira-deger" x="290.7" y="91">%5,0</text></g><g class="gr-sira" style="--i:4"><text class="gr-sira-ad" x="94" y="113">Meksika</text><rect class="gr-sira-cubuk" x="104" y="103" width="178.5" height="12" rx="2"/><text class="gr-sira-deger" x="288.5" y="113">%4,7</text></g><g class="gr-sira" style="--i:5"><text class="gr-sira-ad" x="94" y="135">Brezilya</text><rect class="gr-sira-cubuk" x="104" y="125" width="174.9" height="12" rx="2"/><text class="gr-sira-deger" x="284.9" y="135">%4,4</text></g><g class="gr-sira" style="--i:6"><text class="gr-sira-ad" x="94" y="157">Güney Afrika</text><rect class="gr-sira-cubuk" x="104" y="147" width="174.8" height="12" rx="2"/><text class="gr-sira-deger" x="284.8" y="157">%4,4</text></g><g class="gr-sira" style="--i:7"><text class="gr-sira-ad" x="94" y="179">Birleşik Krallık</text><rect class="gr-sira-cubuk" x="104" y="169" width="161.5" height="12" rx="2"/><text class="gr-sira-deger" x="271.5" y="179">%3,3</text></g><g class="gr-sira" style="--i:8"><text class="gr-sira-ad" x="94" y="201">Avustralya</text><rect class="gr-sira-cubuk" x="104" y="191" width="160" height="12" rx="2"/><text class="gr-sira-deger" x="270" y="201">%3,2</text></g><g class="gr-sira" style="--i:9"><text class="gr-sira-ad" x="94" y="223">ABD</text><rect class="gr-sira-cubuk" x="104" y="213" width="156.7" height="12" rx="2"/><text class="gr-sira-deger" x="266.7" y="223">%3,0</text></g><g class="gr-sira" style="--i:10"><text class="gr-sira-ad" x="94" y="245">Japonya</text><rect class="gr-sira-cubuk" x="104" y="235" width="153.3" height="12" rx="2"/><text class="gr-sira-deger" x="263.3" y="245">%2,7</text></g><g class="gr-sira" style="--i:11"><text class="gr-sira-ad" x="94" y="267">Kanada</text><rect class="gr-sira-cubuk" x="104" y="257" width="146.8" height="12" rx="2"/><text class="gr-sira-deger" x="256.8" y="267">%2,4</text></g><g class="gr-sira" style="--i:12"><text class="gr-sira-ad" x="94" y="289">Güney Kore</text><rect class="gr-sira-cubuk" x="104" y="279" width="145.6" height="12" rx="2"/><text class="gr-sira-deger" x="255.6" y="289">%2,3</text></g><g class="gr-sira" style="--i:13"><text class="gr-sira-ad" x="94" y="311">Almanya</text><rect class="gr-sira-cubuk" x="104" y="301" width="144.4" height="12" rx="2"/><text class="gr-sira-deger" x="254.4" y="311">%2,3</text></g><g class="gr-sira" style="--i:14"><text class="gr-sira-ad" x="94" y="333">Euro bölgesi</text><rect class="gr-sira-cubuk" x="104" y="323" width="144.4" height="12" rx="2"/><text class="gr-sira-deger" x="254.4" y="333">%2,3</text></g><g class="gr-sira" style="--i:15"><text class="gr-sira-ad" x="94" y="355">Endonezya</text><rect class="gr-sira-cubuk" x="104" y="345" width="142.7" height="12" rx="2"/><text class="gr-sira-deger" x="252.7" y="355">%2,2</text></g><g class="gr-sira" style="--i:16"><text class="gr-sira-ad" x="94" y="377">Fransa</text><rect class="gr-sira-cubuk" x="104" y="367" width="138.7" height="12" rx="2"/><text class="gr-sira-deger" x="248.7" y="377">%2,0</text></g><g class="gr-sira" style="--i:17"><text class="gr-sira-ad" x="94" y="399">Suudi Arabistan</text><rect class="gr-sira-cubuk" x="104" y="389" width="130.9" height="12" rx="2"/><text class="gr-sira-deger" x="240.9" y="399">%1,7</text></g><g class="gr-sira" style="--i:18"><text class="gr-sira-ad" x="94" y="421">İtalya</text><rect class="gr-sira-cubuk" x="104" y="411" width="105.7" height="12" rx="2"/><text class="gr-sira-deger" x="215.7" y="421">%1,0</text></g><g class="gr-sira" style="--i:19"><text class="gr-sira-ad" x="94" y="443">Çin</text><rect class="gr-sira-cubuk" x="104" y="433" width="36.5" height="12" rx="2"/><text class="gr-sira-deger" x="146.5" y="443">%0,2</text></g><line class="gr-ortanca" x1="259" x2="259" y1="6" y2="450"/></svg><!-- GR:dunya:BITIS -->
+            </div>
+          </figure>
+          <figure class="gr-sekil" data-kap="dunyaSeri">
+            <div class="gr-sekil-ust">
+              <p class="gr-sekil-ad">Yirmi beş yıl · Türkiye ve dört ekonomi</p>
+              <ul class="gr-lejant" aria-label="Seriler">
+                <li class="gr-l-iki">Türkiye</li>
+                <li class="gr-l-soluk">Brezilya, Rusya, ABD, euro bölgesi</li>
+              </ul>
+            </div>
+            <div class="gr-tuval">
+<!-- GR:dunyaSeri:BASLANGIC --><svg class="gr-svg" viewBox="0 0 540 280" width="540" height="280" role="img" aria-label="Yıllık enflasyon 2000–2025: Türkiye, Brezilya, Rusya, ABD ve euro bölgesi." data-grafik="dunyaSeri"><line class="gr-izgara" x1="40" x2="526" y1="224.2" y2="224.2"/><text class="gr-eksen gr-eksen-y" x="32" y="228.2">%0</text><line class="gr-izgara" x1="40" x2="526" y1="172.7" y2="172.7"/><text class="gr-eksen gr-eksen-y" x="32" y="176.7">%20</text><line class="gr-izgara" x1="40" x2="526" y1="121.1" y2="121.1"/><text class="gr-eksen gr-eksen-y" x="32" y="125.1">%40</text><line class="gr-izgara" x1="40" x2="526" y1="69.6" y2="69.6"/><text class="gr-eksen gr-eksen-y" x="32" y="73.6">%60</text><line class="gr-izgara" x1="40" x2="526" y1="18" y2="18"/><text class="gr-eksen gr-eksen-y" x="32" y="22">%80</text><line class="gr-sifir" x1="40" x2="526" y1="224.2" y2="224.2"/><line class="gr-centik" x1="40" x2="40" y1="250" y2="255"/><text class="gr-eksen gr-eksen-x" x="40" y="268">2000</text><line class="gr-centik" x1="137.2" x2="137.2" y1="250" y2="255"/><text class="gr-eksen gr-eksen-x" x="137.2" y="268">2005</text><line class="gr-centik" x1="234.4" x2="234.4" y1="250" y2="255"/><text class="gr-eksen gr-eksen-x" x="234.4" y="268">2010</text><line class="gr-centik" x1="331.6" x2="331.6" y1="250" y2="255"/><text class="gr-eksen gr-eksen-x" x="331.6" y="268">2015</text><line class="gr-centik" x1="428.8" x2="428.8" y1="250" y2="255"/><text class="gr-eksen gr-eksen-x" x="428.8" y="268">2020</text><line class="gr-centik" x1="526" x2="526" y1="250" y2="255"/><text class="gr-eksen gr-eksen-x" x="526" y="268">2025</text><path class="gr-cizgi gr-s-iki gr-s-kalin" data-seri="0" d="M40 82.7L59.4 84L78.9 108.3L98.3 168.5L117.8 202.1L137.2 203.1L156.6 199.5L176.1 201.6L195.5 197.3L215 208.1L234.4 202.1L253.8 207.5L273.3 201.3L292.7 204.9L312.2 201.4L331.6 204.5L351 204.2L370.5 195.5L389.9 182.1L409.4 185.1L428.8 192.6L448.2 173.7L467.7 37.8L487.1 85.4L506.6 73.4L526 134.3"/><path class="gr-cizgi gr-s-soluk" data-seri="1" d="M40 206.1L59.4 206.6L78.9 202.4L98.3 186.3L117.8 207.2L137.2 206.5L156.6 213.4L176.1 214.8L195.5 209.6L215 211.6L234.4 211.2L253.8 207.1L273.3 210.3L292.7 208.2L312.2 207.9L331.6 200.9L351 201.7L370.5 215.3L389.9 214.8L409.4 214.6L428.8 215.9L448.2 202.8L467.7 200.3L487.1 212.4L506.6 213L526 211.3"/><path class="gr-cizgi gr-s-soluk" data-seri="2" d="M40 170.6L59.4 168.9L78.9 183.5L98.3 189L117.8 196.2L137.2 191.5L156.6 199.3L176.1 201L195.5 187.8L215 194.2L234.4 206.6L253.8 202.5L273.3 211.2L292.7 206.8L312.2 204.1L331.6 184.2L351 206.1L370.5 214.7L389.9 216.8L409.4 212.7L428.8 215.5L448.2 207L467.7 188.8L487.1 209.1L506.6 202.5L526 201.7"/><path class="gr-cizgi gr-s-soluk" data-seri="3" d="M40 215.5L59.4 216.9L78.9 220.1L98.3 218.4L117.8 217.3L137.2 215.5L156.6 215.9L176.1 216.9L195.5 214.3L215 225.2L234.4 220L253.8 216.1L273.3 218.9L292.7 220.5L312.2 220L331.6 223.9L351 221L370.5 218.7L389.9 217.9L409.4 219.6L428.8 221.1L448.2 212.1L467.7 203.6L487.1 213.6L506.6 216.6"/><path class="gr-cizgi gr-s-soluk" data-seri="4" d="M40 216.4L59.4 216.7L78.9 217.9L98.3 218.8L117.8 218.5L137.2 217.6L156.6 217.1L176.1 217.8L195.5 213.5L215 222.9L234.4 220.3L253.8 215.7L273.3 217.5L292.7 221.1L312.2 223.7L331.6 224.5L351 223.8L370.5 220.7L389.9 219.8L409.4 220.5L428.8 223.7L448.2 217.7L467.7 202.2L487.1 208.9L506.6 218.4L526 217.9"/><g class="gr-not gr-not--son"><circle class="gr-not-hale" cx="526" cy="134.3" r="9"/><circle class="gr-not-nokta" cx="526" cy="134.3" r="4"/><text class="gr-not-metin" x="516" y="128.3" text-anchor="end">Türkiye %34,9</text><text class="gr-not-alt" x="516" y="144.3" text-anchor="end">2025</text></g><g class="gr-imlec" aria-hidden="true"></g></svg><!-- GR:dunyaSeri:BITIS -->
+            </div>
+            <figcaption>Kaynak: Dünya Bankası, Dünya Kalkınma Göstergeleri (FP.CPI.TOTL.ZG). Yıllık ortalama değişimdir; TÜİK'in Aralık–Aralık rakamından farklıdır. G20'de Avrupa Birliği yerine euro bölgesi alındı. Arjantin 2007–2016 için Dünya Bankası'nda veri yok.</figcaption>
+          </figure>
+        </div>
+        <details class="gr-tablo">
+          <summary>Veriyi tablo olarak gör</summary>
+<!-- GRT:dunya:BASLANGIC -->
+          <div class="table-scroll">
+            <table class="veri-tablo gr-veri-tablo">
+              <caption>G20'de yıllık ortalama enflasyon, 2024</caption>
+              <thead><tr><th scope="col">Ekonomi</th><th scope="col" class="sayi">Sıra</th><th scope="col" class="sayi">Enflasyon</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Arjantin</th><td class="sayi">1</td><td class="sayi">%219,9</td></tr>
+                <tr><th scope="row">Türkiye</th><td class="sayi">2</td><td class="sayi">%58,5</td></tr>
+                <tr><th scope="row">Rusya</th><td class="sayi">3</td><td class="sayi">%8,4</td></tr>
+                <tr><th scope="row">Hindistan</th><td class="sayi">4</td><td class="sayi">%5,0</td></tr>
+                <tr><th scope="row">Meksika</th><td class="sayi">5</td><td class="sayi">%4,7</td></tr>
+                <tr><th scope="row">Brezilya</th><td class="sayi">6</td><td class="sayi">%4,4</td></tr>
+                <tr><th scope="row">Güney Afrika</th><td class="sayi">7</td><td class="sayi">%4,4</td></tr>
+                <tr><th scope="row">Birleşik Krallık</th><td class="sayi">8</td><td class="sayi">%3,3</td></tr>
+                <tr><th scope="row">Avustralya</th><td class="sayi">9</td><td class="sayi">%3,2</td></tr>
+                <tr><th scope="row">ABD</th><td class="sayi">10</td><td class="sayi">%3,0</td></tr>
+                <tr><th scope="row">Japonya</th><td class="sayi">11</td><td class="sayi">%2,7</td></tr>
+                <tr><th scope="row">Kanada</th><td class="sayi">12</td><td class="sayi">%2,4</td></tr>
+                <tr><th scope="row">Güney Kore</th><td class="sayi">13</td><td class="sayi">%2,3</td></tr>
+                <tr><th scope="row">Almanya</th><td class="sayi">14</td><td class="sayi">%2,3</td></tr>
+                <tr><th scope="row">Euro bölgesi</th><td class="sayi">15</td><td class="sayi">%2,3</td></tr>
+                <tr><th scope="row">Endonezya</th><td class="sayi">16</td><td class="sayi">%2,2</td></tr>
+                <tr><th scope="row">Fransa</th><td class="sayi">17</td><td class="sayi">%2,0</td></tr>
+                <tr><th scope="row">Suudi Arabistan</th><td class="sayi">18</td><td class="sayi">%1,7</td></tr>
+                <tr><th scope="row">İtalya</th><td class="sayi">19</td><td class="sayi">%1,0</td></tr>
+                <tr><th scope="row">Çin</th><td class="sayi">20</td><td class="sayi">%0,2</td></tr>
+              </tbody>
+            </table>
+          </div>
+<!-- GRT:dunya:BITIS -->
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ yöntem -->
+    <section class="gr-yontem" id="yontem" aria-labelledby="yontem-baslik">
+      <div class="wrap">
+        <h2 id="yontem-baslik">Yöntem ve kaynaklar</h2>
+        <dl class="gr-tanimlar">
+          <div><dt>Fiyat endeksi</dt><dd>Aralık 2004 = 100. Her ay, TÜİK'in açıkladığı aylık TÜFE değişimiyle zincirlenir. Seri: <a href="https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Enflasyon+Verileri/Tuketici+Fiyatlari" rel="noopener">TCMB, Tüketici Fiyatları</a>.</dd></div>
+          <div><dt>Reel faiz</dt><dd>(1 + politika faizi) ÷ (1 + yıllık TÜFE) − 1. Ay sonunda yürürlükte olan faiz ile o ayın yıllık TÜFE'si; geriye dönük (gerçekleşen) reel faizdir, beklenen enflasyonla değil. Faiz kararları: <a href="https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Temel+Faaliyetler/Para+Politikasi/Merkez+Bankasi+Faiz+Oranlari/1+Hafta+Repo" rel="noopener">TCMB, 1 hafta repo</a>.</dd></div>
+          <div><dt>Kur</dt><dd>Her ayın son iş günü TCMB döviz satış kuru, <a href="https://www.tcmb.gov.tr/kurlar/kurlar_tr.html" rel="noopener">günlük bülten arşivinden</a>. Aralık 2004 bülteni eski TL cinsinden olduğu için seri Ocak 2005'te başlar.</dd></div>
+          <div><dt>Asgari ücret</dt><dd>Resmî net tutar, bekâr ve çocuksuz. 2022'den önce asgari geçim indirimi dahildir. Tutarları <a href="../bordro/">bordro motoru</a> ayrıca yeniden hesaplar.</dd></div>
+          <div><dt>Dünya</dt><dd><a href="https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG" rel="noopener">Dünya Bankası</a>, tüketici fiyatları yıllık ortalama değişim. Sıralama, 20 ekonominin hepsinde verisi olan son yılı kullanır.</dd></div>
+        </dl>
+        <p class="gr-dogrulama">Veri her iş günü yeniden çekilir ve yazılmadan önce sınanır. Dünya Bankası'nın Türkiye satırı, bu sitenin TÜFE serisinden hesaplanan yıllık ortalamayla 2006'dan bu yana her yıl 0,05 puan içinde tutmak zorunda. Ay sonu kurlar, döviz sayfasının günlük serisiyle aynı bültenleri vermeli. Geçmiş bir ay değişirse veri reddedilir. Hesap açık kaynak: <a href="hesap.js?v=b0a81f22">grafikler/hesap.js</a>.</p>
+        <ul class="gr-ilgili" aria-label="İlgili araçlar ve yazılar">
+          <li><a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></li>
+          <li><a href="../reel-maas-hesaplama/">Reel maaş hesaplama</a></li>
+          <li><a href="../doviz-kurlari/">TCMB döviz kurları</a></li>
+          <li><a href="../tl-mi-doviz-mi-hesaplama/">TL mi döviz mi?</a></li>
+          <li><a href="../makaleler/fiyatlar-kac-ayda-ikiye-katlaniyor/">Fiyatlar kaç ayda ikiye katlanıyor?</a></li>
+          <li><a href="../makaleler/asgari-ucret-enflasyona-yenildi-mi/">Asgari ücret enflasyona yenildi mi?</a></li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu sayfayı kim hazırladı, veri nereden geliyor?</h2>
+          <p>Bu sayfayı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> hazırladı ve sürdürüyor. Grafikler TÜİK, TCMB ve Dünya Bankası verisinden her iş günü yeniden üretilir; sayfadaki her rakam bir hesap modülünden gelir ve ayrı bir testle ikinci bir yoldan yeniden hesaplanır. Tanımlar ve doğrulama kuralları <a href="#yontem">yöntem bölümünde</a>.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Hazırlayan</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Veri</dt><dd>TÜİK, TCMB, Dünya Bankası — her iş günü</dd></div>
+            <div><dt>Hesap ve testler</dt><dd><a href="https://korayoner.dev/grafikler/hesap.js">Hesap modülü</a> · <a href="https://korayoner.dev/grafikler/test.js">Testler</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <nav class="gr-hud" aria-label="Grafik bölümleri">
+    <div class="gr-hud-ic">
+      <a href="#fiyatlar" data-hud="fiyatlar"><b>I</b><span>Fiyatlar</span></a>
+      <a href="#enflasyon" data-hud="enflasyon"><b>II</b><span>Enflasyon</span></a>
+      <a href="#faiz" data-hud="faiz"><b>III</b><span>Faiz</span></a>
+      <a href="#kur" data-hud="kur"><b>IV</b><span>Kur</span></a>
+      <a href="#ucret" data-hud="ucret"><b>V</b><span>Ücret</span></a>
+      <a href="#dunya" data-hud="dunya"><b>VI</b><span>Dünya</span></a>
+      <span class="gr-hud-cubuk" aria-hidden="true"><i></i></span>
+    </div>
+  </nav>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=e9188d05" defer></script>
+  <script src="../bordro/motor.js?v=1e531cca" defer></script>
+  <script src="../finans/tufe-serisi.js?v=3f904d8e" defer></script>
+  <script src="../finans/grafik-verisi.js?v=14e9984e" defer></script>
+  <script src="hesap.js?v=b0a81f22" defer></script>
+  <script src="cizim.js?v=f6c59f6d" defer></script>
+  <script src="tanimlar.js?v=f0de02e8" defer></script>
+  <script src="grafikler.js?v=d1817d2e" defer></script>
+  <script src="../script.js?v=222b0c4d" defer></script>
+</body>
+</html>

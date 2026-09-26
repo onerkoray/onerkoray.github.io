@@ -156,3 +156,10 @@
   .home-page .chips .chip:is(:hover, :focus-visible) svg { transform: none; }
   .home-page .project-card:is(:hover, :focus-within) [data-karo="nakit-koprusu"] .karo-ikon path:nth-child(2) { animation: none; }
 }
+
+/* Ana sayfa menüsü sitenin en uzunu (8 bağlantı + "Canlı"). Grafikler
+   sekmesi eklenince 1180 px üstünde tema düğmesi içerik sınırını ~17 px
+   aşıyordu; öğe aralığı yalnız burada biraz daraltıldı. */
+@media (min-width: 1181px) {
+  .home-page .site-nav ul { gap: 1rem; }
+}
