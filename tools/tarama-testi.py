@@ -7,8 +7,9 @@ sayfadaki her kart tarihini belirliyor, ama ciktisi bir tarih oldugu icin
 yanlisligi sessiz kaliyor -- ekranda 13 Eylul yerine 14 Eylul yazar,
 kimse fark etmez. Kuralin kendisi burada dogrudan sinaniyor.
 
-Sinanan kural iki elekten olusuyor: damga/bildirim normalizasyonu ve
-tekrar esigi. Ikisi de "okuyucunun gordugu bir sey degisti mi" sorusunu
+Sinanan kural uc elekten olusuyor: damga/bildirim normalizasyonu, site ici
+gezinme (yalniz baglanti ekleyen satirlar) ve
+tekrar esigi. Ucu de "okuyucunun gordugu bir sey degisti mi" sorusunu
 soruyor.
 
 Kullanim: python tools/tarama-testi.py
@@ -194,6 +195,32 @@ dogru("KONTROL: kabukla birlikte govde de degisirse ozlu sayilir",
 dogru("KONTROL: yeni eklenen sayfa ozlu sayilir",
       degisti({"yeni/index.html": [("+", SONRA)]}, "yeni/index.html",
               {"yeni/index.html": ("", SONRA)}))
+
+
+# --- 6) Site ici gezinme icerik guncellemesi degil -------------------------
+# 27 Eylul 2026: yeni araclar eklenirken eski araclara birer "ilgili"
+# baglanti konuyordu ve 20 aracin karti 11-14 Eylul'den 25-27 Eylul'e
+# kaymisti; hesaplarin hicbiri degismemisti.
+dogru("yalnizca ilgili baglanti maddesi eklemek ozlu sayilmaz",
+      not degisti({"x/index.html": [
+          ("+", '          <li><a href="../y/">Y Hesaplama</a> — kisa aciklama.</li>')]},
+          "x/index.html"))
+dogru("satir ici site ici baglanti eklemek ozlu sayilmaz",
+      not degisti({"x/index.html": [
+          ("-", '<p><a href="../a/">A</a> · <a href="../b/">B</a></p>'),
+          ("+", '<p><a href="../a/">A</a> · <a href="../b/">B</a> · <a href="../c/">C</a></p>')]},
+          "x/index.html"))
+
+# KONTROL: dis kaynak eklemek icerik; baglantiyla birlikte metin degisirse de.
+dogru("KONTROL: dis kaynak maddesi eklemek ozlu sayilir",
+      degisti({"x/index.html": [
+          ("+", '  <li><a href="https://www.gib.gov.tr/x">GİB rehberi</a> — oran tablosu.</li>')]},
+          "x/index.html"))
+dogru("KONTROL: baglanti satirinda metin degisirse ozlu sayilir",
+      degisti({"x/index.html": [
+          ("-", '<p>Oran %20. <a href="../a/">A</a></p>'),
+          ("+", '<p>Oran %18. <a href="../a/">A</a></p>')]},
+          "x/index.html"))
 
 print("\n%d gecti, %d kaldi. (tarama commit'i kurali)" % (gecen[0], hata[0]))
 sys.exit(1 if hata[0] else 0)
