@@ -1,96 +1,138 @@
-/* Kira Artışı Hesaplama — TÜFE yasal zam oranı (bağımlılıksız).
-   Tüm hesaplama istemci tarafında yapılır. */
+/* Kira Artışı Hesaplama — sayfa betiği.
+   Oranlar finans/kira-tufe.js'ten, kurallar finans/kira-motoru.js'ten,
+   görünüm gorunum.js'ten gelir; bu dosya yalnızca formları ve grafiğin
+   imlecini bağlar. Hesap tamamen tarayıcıda yapılır. */
 (function () {
   "use strict";
 
-  var nf = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  var pf = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 2 });
-  function fmt(n) { return isFinite(n) ? nf.format(Math.round(n * 100) / 100) : "—"; }
+  var M = window.KiraMotoru, G = window.KiraGorunum, C = window.GrafikCizim;
+  if (!M || !G || !C) return;
 
-  function num(id) {
-    var el = document.getElementById(id);
-    if (!el) return NaN;
-    var raw = String(el.value).trim().replace(/\s/g, "");
-    if (raw === "") return NaN;
-    if (raw.indexOf(",") >= 0) {
-      raw = raw.replace(/\./g, "").replace(",", "."); // virgül ondalık, nokta binlik
-    } else {
-      // yalnızca nokta: tüm gruplar tam 3 basamaksa binlik (100.000), aksi ondalık (3.79)
-      var parts = raw.split(".");
-      if (parts.length > 1 && parts.slice(1).every(function (p) { return p.length === 3; })) {
-        raw = parts.join("");
-      }
-    }
-    return Finans.sayi(el.value, el.type === "number");
+  function el(id) { return document.getElementById(id); }
+  function tutar(id) { return Finans.sayi(el(id).value, false); }
+  function oranAlani(id) {
+    var ham = String(el(id).value).trim();
+    if (ham === "") return null;
+    var v = Finans.sayi(ham.replace(/^%/, ""), false);
+    return isFinite(v) ? v : NaN;
+  }
+  function bugun() {
+    var d = new Date();
+    return d.getFullYear() + "-" + (d.getMonth() < 9 ? "0" : "") + (d.getMonth() + 1) + "-" + (d.getDate() < 10 ? "0" : "") + d.getDate();
+  }
+  function mesaj(id, metin) { var m = el(id); m.textContent = metin || ""; m.hidden = !metin; }
+
+  /* ---- 1. bu yılki zam ---------------------------------------------------- */
+  function hesapla() {
+    var sonuc = el("results"), tur = el("in-type").value;
+    var kira = tutar("in-rent"), tarih = el("in-date").value, soz = oranAlani("in-agreed");
+    if (!isFinite(kira) || kira <= 0) { sonuc.innerHTML = ""; mesaj("msg", "Mevcut aylık kirayı girin."); return; }
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(tarih)) { sonuc.innerHTML = ""; mesaj("msg", "Yenileme tarihini seçin."); return; }
+    if (soz !== null && (isNaN(soz) || soz < 0)) { sonuc.innerHTML = ""; mesaj("msg", "Sözleşmedeki oranı sayı olarak girin (ör. 25) ya da boş bırakın."); return; }
+    var r = M.yeniKira(kira, { tarih: tarih, tur: tur, sozlesme: soz });
+    var g = G.yeniKiraHtml(r, tur);
+    sonuc.innerHTML = g.html;
+    mesaj("msg", g.mesaj);
   }
 
-  function sumCard(label, value, note) {
-    return '<div class="sum-card"><span class="sum-label">' + label +
-      '</span><strong class="sum-value">' + value +
-      '</strong><span class="sum-note">' + note + "</span></div>";
+  /* ---- 2. kira geçmişi ------------------------------------------------------ */
+  function gecmis() {
+    var kap = el("gecmis-sonuc"), tur = el("g-type").value;
+    var kira = tutar("g-rent"), bas = el("g-start").value, soz = oranAlani("g-agreed");
+    if (!isFinite(kira) || kira <= 0 || !/^\d{4}-\d{2}-\d{2}$/.test(bas)) {
+      kap.innerHTML = '<p class="kira-not">Başlangıç tarihini ve ilk kirayı girin.</p>'; return;
+    }
+    if (soz !== null && (isNaN(soz) || soz < 0)) {
+      kap.innerHTML = '<p class="kira-not">Sözleşmedeki oranı sayı olarak girin ya da boş bırakın.</p>'; return;
+    }
+    if (bas > bugun()) { kap.innerHTML = '<p class="kira-not">Başlangıç tarihi bugünden sonra olamaz.</p>'; return; }
+    kap.innerHTML = G.gecmisHtml(M.gecmis({ baslangic: bas, kira: kira, tur: tur, sozlesme: soz, bugun: bugun() }));
   }
 
-  function recalc() {
-    var results = document.getElementById("results");
-    var msg = document.getElementById("msg");
-    var type = document.getElementById("in-type").value;
-
-    var rent = num("in-rent");
-    var tufe = num("in-tufe");
-    var agreed = num("in-agreed");
-
-    if (isNaN(rent) || rent <= 0) {
-      results.innerHTML = ""; msg.hidden = true; return;
-    }
-
-    if (document.getElementById("in-tufe").value.trim() === "") {
-      results.innerHTML = ""; msg.textContent = "Hesaplamak için yenileme ayının TÜFE oranını girin."; msg.hidden = false; return;
-    }
-    var calculation;
-    try {
-      calculation = Finans.kira(rent, tufe, document.getElementById("in-agreed").value.trim() === "" ? null : agreed);
-    } catch (err) {
-      results.innerHTML = ""; msg.textContent = err.message; msg.hidden = false; return;
-    }
-    var rate = calculation.rate;
-    var rateNote = calculation.limited ? "Sözleşme oranı TÜFE tavanıyla sınırlandı" : "Konut ve çatılı iş yeri için olağan yenileme";
-    msg.hidden = true;
-
-    var newRent = rent * (1 + rate / 100);
-    var monthlyDiff = newRent - rent;
-    var yearlyDiff = monthlyDiff * 12;
-
-    var cards =
-      sumCard("Yeni aylık kira", fmt(newRent) + " TL", "%" + pf.format(rate) + " artışla") +
-      sumCard("Aylık artış farkı", "+ " + fmt(monthlyDiff) + " TL", rateNote) +
-      sumCard("Yıllık toplam fark", "+ " + fmt(yearlyDiff) + " TL", "12 ay üzerinden") +
-      sumCard("Uygulanan oran", "%" + pf.format(rate), type === "konut" ? "Konut kirası" : "İş yeri kirası");
-
-    var warn = "";
-    if (calculation.limited) {
-      warn = '<p class="muted-note table-note">⚠ Girilen oran 12 aylık TÜFE ortalamasını aşıyor; olağan konut ve çatılı iş yeri yenilemesinde TÜFE tavanı uygulandı.</p>';
-    }
-
-    results.innerHTML = '<div class="sum-grid">' + cards + "</div>" + warn;
+  /* ---- adres çubuğu: hesabı paylaşılabilir kılar --------------------------- */
+  var ALANLAR = { tur: "in-type", kira: "in-rent", tarih: "in-date", oran: "in-agreed",
+    gtur: "g-type", baslangic: "g-start", ilk: "g-rent", goran: "g-agreed" };
+  function adresOku() {
+    var q = new URLSearchParams(location.search);
+    Object.keys(ALANLAR).forEach(function (k) { if (q.has(k)) el(ALANLAR[k]).value = q.get(k); });
+  }
+  function adresYaz() {
+    var q = new URLSearchParams();
+    Object.keys(ALANLAR).forEach(function (k) {
+      var e = el(ALANLAR[k]);
+      if (e.value !== e.defaultValue && !(e.tagName === "SELECT" && e.selectedOptions[0] && e.selectedOptions[0].defaultSelected)) q.set(k, e.value);
+    });
+    var s = q.toString();
+    history.replaceState(null, "", location.pathname + (s ? "?" + s : "") + location.hash);
   }
 
-  // İş yeri seçilince sözleşme oranı alanını göster
-  var typeEl = document.getElementById("in-type");
-  var agreedWrap = document.getElementById("agreed-wrap");
-  function syncType() {
-    if (agreedWrap) agreedWrap.hidden = false; // her iki türde de kullanılabilir
-    recalc();
-  }
-  if (typeEl) typeEl.addEventListener("change", syncType);
+  /* ---- grafik imleci ----------------------------------------------------------- */
+  function imlecBagla(kap, W) {
+    var svg = kap.querySelector("svg");
+    if (!svg) return;
+    var o = G.grafikSecenek(W), c = C.cizgi(o);
+    var noktalar = o.seriler[0].noktalar;
+    var xmin = c.xDeger(o.x.min), xmax = c.xDeger(o.x.max);
+    var imlec = svg.querySelector(".gr-imlec"), konum = null;
+    var kutu = document.createElement("div");
+    kutu.className = "gr-ipucu"; kutu.hidden = true; kutu.setAttribute("role", "status");
+    kap.appendChild(kutu);
+    if (svg.getAttribute("role") === "img") svg.setAttribute("tabindex", "0");
 
-  ["in-rent", "in-tufe", "in-agreed", "in-type"].forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) { el.addEventListener("input", recalc); el.addEventListener("change", recalc); }
+    function goster(xv) {
+      xv = Math.max(xmin, Math.min(xmax, xv));
+      konum = xv;
+      var n = noktalar.filter(function (p) { return c.xDeger(p.x) === xv; })[0];
+      if (!n) return;
+      var px = c.x(xv), py = c.y(n.y), H1 = +svg.getAttribute("height") - c.kenar.alt;
+      imlec.innerHTML = '<line x1="' + px + '" x2="' + px + '" y1="' + c.kenar.ust + '" y2="' + H1 + '"/>' +
+        '<circle class="gr-i-bir" cx="' + px + '" cy="' + py + '" r="4.5"/>';
+      var sinirli = n.x >= "2022-06" && n.x < "2024-07" && n.y > M.SINIR25.oran;
+      kutu.innerHTML = "<b>" + M.ayAdi(n.x) + " yenilemesi</b>" +
+        '<span><i class="gr-i-bir">İş yeri</i>' + G.yuzde(n.y) + "</span>" +
+        '<span><i class="gr-i-bir">Konut</i>' + (sinirli ? (n.x === "2022-06" ? "%25 (11 Haz.'dan)" : "%25") : G.yuzde(n.y)) + "</span>";
+      kutu.hidden = false;
+      var olcek = svg.clientWidth / W, kw = kutu.offsetWidth;
+      var sol = Math.max(kw / 2 + 2, Math.min(svg.clientWidth - kw / 2 - 2, px * olcek));
+      kutu.style.left = sol + "px";
+      kutu.style.top = (c.kenar.ust + 8) * olcek + "px";
+      kutu.style.transform = "translate(-50%, 0)";
+    }
+    function gizle() { imlec.innerHTML = ""; kutu.hidden = true; }
+    function isaretciden(e) {
+      var p = svg.createSVGPoint();
+      p.x = e.clientX; p.y = e.clientY;
+      goster(Math.round(c.x.ters(p.matrixTransform(svg.getScreenCTM().inverse()).x)));
+    }
+    svg.addEventListener("pointermove", isaretciden);
+    svg.addEventListener("pointerdown", isaretciden);
+    svg.addEventListener("pointerleave", gizle);
+    svg.addEventListener("blur", gizle);
+    svg.addEventListener("focus", function () { goster(xmax); });
+    svg.addEventListener("keydown", function (e) {
+      var adim = { ArrowLeft: -1, ArrowRight: 1, PageDown: -12, PageUp: 12 }[e.key];
+      if (adim) { e.preventDefault(); goster((konum == null ? xmax : konum) + adim); }
+      else if (e.key === "Home") { e.preventDefault(); goster(xmin); }
+      else if (e.key === "End") { e.preventDefault(); goster(xmax); }
+      else if (e.key === "Escape") gizle();
+    });
+  }
+
+  adresOku();
+  ["in-type", "in-rent", "in-date", "in-agreed"].forEach(function (id) {
+    el(id).addEventListener("input", function () { hesapla(); adresYaz(); });
+    el(id).addEventListener("change", function () { hesapla(); adresYaz(); });
   });
-
-  var y = document.getElementById("year");
-  if (y) y.textContent = new Date().getFullYear();
-
-  agreedWrap.hidden = false;
-  recalc();
+  ["g-type", "g-start", "g-rent", "g-agreed"].forEach(function (id) {
+    el(id).addEventListener("input", function () { gecmis(); adresYaz(); });
+    el(id).addEventListener("change", function () { gecmis(); adresYaz(); });
+  });
+  ["kira-form", "gecmis-form"].forEach(function (id) {
+    el(id).addEventListener("submit", function (e) { e.preventDefault(); });
+  });
+  hesapla();
+  gecmis();
+  var genis = document.querySelector(".kira-grafik-genis"), dar = document.querySelector(".kira-grafik-dar");
+  if (genis) imlecBagla(genis, 1000);
+  if (dar) imlecBagla(dar, 380);
 })();

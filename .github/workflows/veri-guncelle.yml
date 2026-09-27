@@ -50,10 +50,13 @@ jobs:
       # Türkiye satırı TÜFE serisiyle, ay sonu kur günlük seriyle tutmalı);
       # tutmazsa dosya YAZILMAZ ve adım kırmızı olur. Sayfa seriden üretilir,
       # değiştiyse sitemap lastmod aynı commit'te bugüne çekilir.
+      # Kira artışı sayfası aynı adımda: oranlar grafik-verisi.py'nin
+      # yazdığı finans/kira-tufe.js'ten; TÜİK ayın 3'ünde açıklar.
       - name: Grafik verisi ve grafikler sayfası
         run: |
           python tools/grafik-verisi.py
           node tools/grafikler-sayfa.js --sitemap
+          node tools/kira-sayfa.js --sitemap
 
       # update_data.py doviz sayfasini SABLONDAN bastan yaziyor; sablonda
       # og:image:alt, twitter:description ve kunye blogu yok. Bunlari

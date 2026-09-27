@@ -39,6 +39,15 @@
    enflasyonu TÜİK ile tutuyor (3. madde); bu, kaynağın Türkiye hattının
    güvenilirliğinin ölçüsü.
 
+7. KİRA ARTIŞ ORANI — TÜFE'nin 12 aylık ortalamalara göre değişimi (TBK
+   m.344). Aylık değişimlerin yuvarlanmış hâlinden zincirlemek eski
+   aylarda 0,01 puan sapıyordu (Ağustos 2024 resmî %65,93, zincir 65,92).
+   Bu yüzden BIS'in tam hassasiyetli TÜFE ENDEKSİ (WS_LONG_CPI, 628)
+   kullanılır. Doğrulama: endeksten türeyen aylık değişim TÜİK'le HER ay
+   aynı (2026-09-27: 260/260), yıllık değişim 2007'den bu yana her ay
+   aynı; açıklanmış beş kira oranı çapa olarak tutmalı. Çıktı:
+   finans/kira-tufe.js.
+
 REDDEDİLEN VERİ (dosya YAZILMAZ, çıkış kodu 1)
 ----------------------------------------------
 - Depodaki geçmiş bir ayın kuru, geçmiş bir faiz kararı değişirse
@@ -64,6 +73,11 @@ import xml.etree.ElementTree as ET
 
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HEDEF = os.path.join(KOK, "finans", "grafik-verisi.js")
+KIRA_HEDEF = os.path.join(KOK, "finans", "kira-tufe.js")
+KIRA_GECICI_EN_COK = 2       # BIS gecikirse TCMB ile en çok bu kadar ay uzatılır
+KIRA_ILK = "2008-12"          # 2010'da başlayan bir sözleşmenin yenilemesine yeter
+# Açıklanmış resmî oranlar (veri ayı → 12 aylık ortalama % değişim).
+KIRA_CAPA = {"2022-12": 72.31, "2024-06": 65.07, "2024-07": 65.93, "2025-12": 34.88, "2026-08": 31.79}
 SERI_JSON = os.path.join(KOK, "doviz-kurlari", "seri.json")
 UA = "Mozilla/5.0 (korayoner.dev veri guncelleme; +https://korayoner.dev/)"
 
@@ -509,6 +523,136 @@ def makro_dogrula(makro):
     return hata
 
 
+# ------------------------------------------------------------------ 7) kira
+def kira_endeks_cek():
+    import csv
+    metin = al("https://stats.bis.org/api/v1/data/WS_LONG_CPI/M.TR.628?startPeriod=2003-01&format=csv", 120).decode("utf-8")
+    return {r["TIME_PERIOD"]: float(r["OBS_VALUE"]) for r in csv.DictReader(io.StringIO(metin))
+            if r.get("OBS_VALUE") and r["OBS_VALUE"] != "NaN"}
+
+
+def kira_tufe():
+    return json.loads(subprocess.run(["node", "-e",
+        "var T=require('./finans/tufe-serisi.js');console.log(JSON.stringify(T.aylar))"],
+        cwd=KOK, capture_output=True, text=True, check=True).stdout)
+
+
+def kira_uzat(endeks, tufe):
+    """BIS, TÜİK'in ayın 3'ündeki açıklamasını birkaç gün ya da hafta geç
+    yayımlayabilir; kira oranını arayan okur ise tam o gün geliyor. BIS'te
+    henüz olmayan aylar, sitenin TCMB'den aynı gün çektiği aylık değişimle
+    (finans/tufe-serisi.js) zincirlenerek GEÇİCİ olarak eklenir. Aylık
+    değişim iki basamağa yuvarlı olduğundan tek halkanın oran üzerindeki
+    etkisi binde bir puanın altında; yine de bu aylar "gecici" diye
+    işaretlenir ve BIS gelince sessizce BIS değeriyle değiştirilir.
+    Geriye dönük ölçüm (2026-09-27): BIS'in son 1, 2 ya da 3 ayı silinip
+    uzatıldığında her ay BIS'le birebir aynı; 6 ayda 0,01 sapıyor. Bu
+    yüzden en çok KIRA_GECICI_EN_COK ay uzatılır; BIS daha geç kalırsa
+    oran eskir ve tools/kira-sayfa.js --check bayatlığı söyler."""
+    uzun = dict(endeks)
+    gecici = []
+    a = max(uzun)
+    while True:
+        y, m = int(a[:4]), int(a[5:7]) + 1
+        if m == 13:
+            y, m = y + 1, 1
+        sonraki = "%d-%02d" % (y, m)
+        if sonraki not in tufe or len(gecici) >= KIRA_GECICI_EN_COK:
+            break
+        uzun[sonraki] = uzun[a] * (1 + tufe[sonraki]["aylik"] / 100)
+        gecici.append(sonraki)
+        a = sonraki
+    return uzun, gecici
+
+
+def kira_oranlari(endeks):
+    ay = sorted(endeks)
+    oran = {}
+    for i in range(23, len(ay)):
+        if ay[i] < KIRA_ILK:
+            continue
+        son = sum(endeks[ay[j]] for j in range(i - 11, i + 1)) / 12
+        onceki = sum(endeks[ay[j]] for j in range(i - 23, i - 11)) / 12
+        oran[ay[i]] = round(100 * (son / onceki - 1) + 1e-9, 2)
+    return oran
+
+
+def kira_dogrula(endeks, oran, tufe):
+    """endeks: yalnız BIS'ten gelen aylar (geçici uzatma sınanmaz)."""
+    hata = []
+    ay = sorted(endeks)
+    aylik = yillik = 0
+    for i, a in enumerate(ay):
+        if a not in tufe:
+            continue
+        if i >= 1:
+            aylik += 1
+            if abs(round(100 * (endeks[a] / endeks[ay[i - 1]] - 1), 2) - tufe[a]["aylik"]) > 0.001:
+                hata.append("BIS TR endeksi %s aylık değişimi TÜİK'ten farklı" % a)
+        if i >= 12 and a >= "2007-01":
+            yillik += 1
+            if abs(round(100 * (endeks[a] / endeks[ay[i - 12]] - 1), 2) - tufe[a]["yillik"]) > 0.001:
+                hata.append("BIS TR endeksi %s yıllık değişimi TÜİK'ten farklı" % a)
+    if aylik < 250 or yillik < 220:
+        hata.append("kira endeksi az sınandı (aylık %d, yıllık %d)" % (aylik, yillik))
+    for a, v in KIRA_CAPA.items():
+        if a in oran and oran[a] != v:
+            hata.append("kira oranı %s = %.2f, açıklanan %.2f" % (a, oran[a], v))
+    if sum(1 for a in KIRA_CAPA if a in oran) < 4:
+        hata.append("kira çapalarının çoğu seride yok")
+    return hata, aylik, yillik
+
+
+def kira_yaz(oran, gecici):
+    govde = json.dumps(dict(sorted(oran.items())), ensure_ascii=False)
+    govde = govde.replace(", ", ",\n    ").replace("{", "{\n    ").replace("}", "\n  }")
+    metin = u'''/*!
+ * Kira artış oranı: TÜFE'nin 12 aylık ortalamalara göre değişimi — ÜRETİLİR.
+ *
+ * Anahtar VERİ AYI: "2026-08" → Eylül 2026'da yenilenen kiraya uygulanan oran.
+ * Kaynak: BIS WS_LONG_CPI (TÜİK TÜFE endeksi, tam hassasiyet); üreteç
+ * tools/grafik-verisi.py. Endeksin aylık değişimi TÜİK'le her ay aynı,
+ * açıklanmış kira oranları çapa olarak sınanır.
+ *
+ * gecici: BIS'te henüz olmayan, TCMB'nin aylık değişimiyle zincirlenen
+ * aylar. BIS yayımlayınca onun değeriyle değişir.
+ *
+ * Lisans: MIT — Koray Öner, https://korayoner.dev/
+ */
+(function (root, factory) {
+  "use strict";
+  var v = factory();
+  if (typeof module === "object" && module.exports) module.exports = v;
+  else root.KiraTufe = v;
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+  var oranlar = /*VERI*/__GOVDE__/*VERI-SON*/;
+  var gecici = /*GECICI*/__GECICI__/*GECICI-SON*/;
+  var aylar = Object.keys(oranlar).sort();
+  return { oranlar: oranlar, gecici: gecici, ilkAy: aylar[0], sonAy: aylar[aylar.length - 1] };
+});
+'''.replace("__GOVDE__", govde).replace("__GECICI__", json.dumps(sorted(gecici)))
+    eski = io.open(KIRA_HEDEF, encoding="utf-8").read() if os.path.exists(KIRA_HEDEF) else ""
+    if eski != metin:
+        io.open(KIRA_HEDEF, "w", encoding="utf-8", newline="\n").write(metin)
+        return True
+    return False
+
+
+def kira_oku():
+    if not os.path.exists(KIRA_HEDEF):
+        return None
+    m = re.search(r"/\*VERI\*/(.*?)/\*VERI-SON\*/", io.open(KIRA_HEDEF, encoding="utf-8").read(), re.S)
+    return json.loads(m.group(1)) if m else None
+
+
+def kira_gecici_oku():
+    if not os.path.exists(KIRA_HEDEF):
+        return []
+    m = re.search(r"/\*GECICI\*/(.*?)/\*GECICI-SON\*/", io.open(KIRA_HEDEF, encoding="utf-8").read(), re.S)
+    return json.loads(m.group(1)) if m else []
+
+
 # ------------------------------------------------------------------ ana akış
 def main():
     eski = oku() or {}
@@ -522,7 +666,14 @@ def main():
         h4, bf, bt = bis_dogrula(eski["bis"], eski["politikaFaizi"])
         h5 = altin_dogrula(eski["altin"], None)
         h6 = makro_dogrula(eski["makro"])
-        hata = h1 + h2 + h3 + h4 + h5 + h6
+        h7 = []
+        kira = kira_oku()
+        if not kira:
+            h7.append("finans/kira-tufe.js yok")
+        else:
+            h7 = ["kira oranı %s = %.2f, açıklanan %.2f" % (a, kira[a], v)
+                  for a, v in KIRA_CAPA.items() if a in kira and kira[a] != v]
+        hata = h1 + h2 + h3 + h4 + h5 + h6 + h7
         for x in hata:
             print("  HATA  " + x)
         print("Grafik verisi: %d ay kur (%d ay günlük seriyle eşleşti), %d faiz kararı, "
@@ -545,7 +696,19 @@ def main():
     h5 = altin_dogrula(altin, eski.get("altin"))
     makro = makro_cek()
     h6 = makro_dogrula(makro)
-    hata = h1 + h2 + h3 + h4 + h5 + h6
+    endeks = kira_endeks_cek()
+    tufe = kira_tufe()
+    uzun, gecici = kira_uzat(endeks, tufe)
+    kira = kira_oranlari(uzun)
+    h7, _ka, _ky = kira_dogrula(endeks, kira, tufe)
+    eski_kira = kira_oku() or {}
+    eski_gecici = set(kira_gecici_oku())
+    h7 += ["geçmiş kira oranı değişti: %s" % a for a in eski_kira
+           if a in kira and kira[a] != eski_kira[a] and a not in eski_gecici]
+    h7 += ["kira oranı geri gitti: %s artık yok" % a for a in eski_kira if a not in kira]
+    if gecici:
+        print("Kira: BIS %s'te; %s TCMB aylık değişimiyle geçici eklendi." % (max(endeks), ", ".join(gecici)))
+    hata = h1 + h2 + h3 + h4 + h5 + h6 + h7
     if hata:
         for x in hata:
             print("  RED  " + x)
@@ -577,8 +740,12 @@ def main():
     }
     karsilastir = dict(yeni)
     if eski and json.dumps(eski, sort_keys=True) == json.dumps(karsilastir, sort_keys=True):
+        if kira_yaz(kira, gecici):
+            print("Kira oranları yazıldı: %s–%s (%d ay)." % (min(kira), max(kira), len(kira)))
         print("Grafik verisi güncel.")
         return 0
+    if kira_yaz(kira, gecici):
+        print("Kira oranları yazıldı: %s–%s (%d ay)." % (min(kira), max(kira), len(kira)))
     yaz(yeni)
     print("Grafik verisi yazıldı: %d ay kur (%d ay günlük seriyle eşleşti), %d faiz kararı, "
           "%d ülke (TUR %d yılda TÜFE ile tutuyor)." % (len(kur), eslesen, len(kararlar), len(dunya), sinanan))

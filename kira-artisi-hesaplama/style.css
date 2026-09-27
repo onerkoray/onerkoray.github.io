@@ -44,3 +44,93 @@
   padding: 12px 14px;
   font-size: .95rem;
 }
+
+/* ---- 2026-09: oranlar seriden, iki hesaplayıcı, grafik ve tablo ---- */
+#gecmis-form input[type="text"], #gecmis-form select,
+#kira-form input[type="date"], #gecmis-form input[type="date"] {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--border, rgba(127,127,127,.3));
+  border-radius: 8px;
+  background: var(--surface, transparent);
+  color: inherit;
+}
+#gecmis-form input[type="text"] { max-width: 12rem; }
+
+.kira-manset {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .15rem .6rem;
+  margin: .6rem 0 .4rem;
+  font-size: var(--step-1); font-weight: 600; color: var(--text);
+}
+.kira-oran {
+  font-family: var(--font-display);
+  font-size: var(--step-4); line-height: 1; letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums; color: var(--accent-strong);
+}
+:root[data-theme="dark"] .kira-oran { color: var(--accent-glow); }
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .kira-oran { color: var(--accent-glow); }
+}
+.kira-aciklama { max-width: 70ch; color: var(--text-muted); }
+.kira-gecmis { padding-top: 0; }
+.kira-kart-ana { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+.kira-kart-ana .sum-value { font-size: 1.5rem; }
+.kira-not { margin: 10px 0 0; font-size: .88rem; color: var(--text-muted); max-width: 75ch; }
+
+.kira-oranlar h2 { margin-bottom: .4rem; }
+.kira-grafik { margin: 1.25rem 0 0; }
+.kira-grafik figcaption { margin-top: .5rem; font-size: .8rem; color: var(--text-muted); }
+.kira-grafik-dar { display: none; }
+@media (max-width: 560px) {
+  .kira-grafik-genis { display: none; }
+  .kira-grafik-dar { display: block; }
+}
+
+.veri-tablo { width: 100%; border-collapse: collapse; font-size: .88rem; font-variant-numeric: tabular-nums; }
+.veri-tablo caption { text-align: left; font-size: .8rem; color: var(--text-muted); padding-bottom: .4rem; }
+.veri-tablo th, .veri-tablo td { padding: 7px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.veri-tablo thead th { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); }
+.veri-tablo tbody th { font-weight: 600; white-space: nowrap; }
+.veri-tablo .sayi { text-align: right; white-space: nowrap; }
+.veri-tablo small { color: var(--text-muted); font-size: .78em; }
+.kira-tablo { min-width: 520px; }
+.kira-tablo-kap { max-height: 32rem; overflow-y: auto; }
+.kira-tablo-kap thead th { position: sticky; top: 0; background: var(--surface); }
+.kira-bekleyen th, .kira-bekleyen td { color: var(--text-muted); font-style: italic; }
+
+/* grafik: grafikler sayfasının çizgi işaretlerinin alt kümesi */
+.gr-tuval { position: relative; }
+.gr-svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
+.gr-svg:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+.gr-izgara { stroke: var(--dv-grid); stroke-width: 1; }
+.gr-centik { stroke: var(--dv-axis); stroke-width: 1; }
+.gr-referans { stroke: var(--dv-axis); stroke-width: 1; stroke-dasharray: 4 4; }
+.gr-eksen { font: 500 11px var(--font-mono); fill: var(--text-muted); font-variant-numeric: tabular-nums; }
+.gr-eksen-y { text-anchor: end; }
+.gr-eksen-x { text-anchor: middle; }
+.gr-cizgi { fill: none; stroke-width: 2.25; stroke-linejoin: round; stroke-linecap: round; }
+.gr-s-ana { stroke: var(--dv-1); }
+.gr-alan { stroke: none; fill: var(--dv-1); opacity: .1; }
+.gr-bant, .kira-bant { fill: var(--dv-mute); opacity: .35; }
+.gr-bant-metin { font: 600 11px var(--font-mono); fill: var(--text-muted); }
+.gr-not { pointer-events: none; }
+.gr-not-nokta { fill: var(--text); }
+.gr-not-hale { fill: none; stroke: none; }
+.gr-not--son .gr-not-hale { stroke: var(--dv-2); stroke-width: 2; opacity: .55; }
+.gr-not-metin, .gr-not-alt { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.gr-not-metin { font: 700 12.5px var(--font-mono); fill: var(--text); font-variant-numeric: tabular-nums; }
+.gr-not-alt { font: 500 10.5px var(--font-mono); fill: var(--text-muted); }
+.gr-imlec line { stroke: var(--text); stroke-width: 1; opacity: .35; }
+.gr-imlec circle { stroke: var(--surface); stroke-width: 2; }
+.gr-imlec .gr-i-bir { fill: var(--dv-1); }
+.gr-ipucu {
+  position: absolute; z-index: 5; pointer-events: none; min-width: 150px;
+  padding: .55rem .7rem; border: 1px solid var(--border); border-radius: 2px;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  box-shadow: 0 8px 24px rgba(16, 24, 20, .12);
+  font: 500 .76rem/1.45 var(--font-mono); color: var(--text); font-variant-numeric: tabular-nums;
+}
+.gr-ipucu[hidden] { display: none; }
+.gr-ipucu b { display: block; font-weight: 700; margin-bottom: .2rem; letter-spacing: .02em; }
+.gr-ipucu span { display: flex; justify-content: space-between; gap: 1rem; }
+.gr-ipucu i { font-style: normal; color: var(--text-muted); }

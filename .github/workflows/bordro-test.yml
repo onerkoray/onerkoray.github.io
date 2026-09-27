@@ -873,6 +873,17 @@ jobs:
         # yeniden üretilmezse kırmızı.
         run: node tools/grafikler-sayfa.js --check
 
+      - name: Kira artışı aracının hesabı
+        # Oran serisi resmî açıklanan beş oranla (çapa) ve sitenin TÜFE
+        # serisinden ikinci bir yoldan sınanır; %25 sınırının başladığı ve
+        # bittiği gün, sözleşme oranı, 29 Şubat ve TÜİK'in hafta sonu kuralı.
+        run: node kira-artisi-hesaplama/test.js
+
+      - name: Kira artışı sayfası seriden üretilmiş mi
+        # Başlık, manşet, tablo, grafik ve S.S.S. seriden yazılır. Seri,
+        # beklenen açıklamadan 10 gün sonra hâlâ eskiyse de kırmızı.
+        run: node tools/kira-sayfa.js --check
+
       - name: Site başlığı tek standartta
         # Ana sayfadaki hareketli marka adı makalelerde düz ve farklı boyutta
         # açılıyordu; site sahibi gördü, CI görmedi. Başlık beş ayrı biçimde
