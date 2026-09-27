@@ -180,6 +180,11 @@
       if (status) status.textContent = visible + " / " + cards.length + " araç gösteriliyor";
       var soon = document.querySelector(".project-card--soon");
       if (soon) soon.hidden = !!q || activeCat !== "hepsi";
+      /* Grafik kartları araç değil: arama ya da kategori seçiliyken
+         sonuç listesine karışmasınlar, sayıma da girmezler. */
+      document.querySelectorAll(".project-card--grafik").forEach(function (g) {
+        g.classList.toggle("is-hidden", !!q || activeCat !== "hepsi");
+      });
       if (searchClear) searchClear.hidden = !search || !search.value;
     }
     applyFilter();

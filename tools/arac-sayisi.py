@@ -34,7 +34,8 @@ KALIPLAR = [
 def kart_sayisi(s):
     """Dizindeki gerçek araç kartları: "yakında" kartı hariç."""
     kartlar = re.findall(r'class="project-card([^"]*)"', s)
-    return sum(1 for k in kartlar if "--soon" not in k)
+    # "yakında" kartı ve grafik kartları araç değildir.
+    return sum(1 for k in kartlar if "--soon" not in k and "--grafik" not in k)
 
 
 def main():

@@ -28,6 +28,7 @@ var path = require("path");
 
 var KOK = path.join(__dirname, "..");
 var SAYFA = path.join(KOK, "grafikler", "index.html");
+var ANA = path.join(KOK, "index.html");
 var H = require(path.join(KOK, "grafikler", "hesap.js"));
 var Cizim = require(path.join(KOK, "grafikler", "cizim.js"));
 var Tanim = require(path.join(KOK, "grafikler", "tanimlar.js"));
@@ -286,6 +287,119 @@ function tablolar(r) {
   };
 }
 
+/* ---- ana sayfa: araç dizinindeki iki grafik kartı -------------------------
+   Kart anatomisi araç kartlarıyla AYNI (bant, ikon kutusu, başlık, rozet,
+   açıklama, bağlantı, alt satır); tek fark bandın dekoratif izi yerine
+   gerçek veri çizgisi. Araç sayımına ve filtreye girmezler (--grafik). */
+/* Bant 4,2:1 (style.css :root .karo); viewBox aynı oranda, yani çizim
+   ölçek bozulmadan oturur ve noktalar daire kalır. Sol %27 ikon kutusuna,
+   üst şerit değer etiketine ayrılır. */
+var KART = { W: 420, H: 100, X0: 118, X1: 404, Y0: 34, Y1: 86 };
+function olcekLog(degerler) {
+  var lo = Math.log(Math.min.apply(null, degerler)), hi = Math.log(Math.max.apply(null, degerler));
+  return function (v) { return KART.Y1 - (KART.Y1 - KART.Y0) * (Math.log(v) - lo) / (hi - lo); };
+}
+function kartX(i, n) { return KART.X0 + (KART.X1 - KART.X0) * i / (n - 1); }
+function kartYol(noktalar, y) {
+  return noktalar.map(function (v, i) {
+    return (i ? "L" : "M") + kartX(i, noktalar.length).toFixed(1) + " " + y(v).toFixed(1);
+  }).join("");
+}
+/* Çizgi CSS'te cubic-bezier(.65,0,.35,1) ile 1,9 sn'de çiziliyor (home.css).
+   Bir işaretin, çizginin ucu ona VARDIĞINDA belirmesi için: işaretin yol
+   üzerindeki payı p ise, eğrinin p'ye ulaştığı zaman t aranır. */
+var CIZIM = { bas: 0.2, sure: 1.9, x1: .65, y1: 0, x2: .35, y2: 1 };
+function bezier(u, a, b) { return 3 * a * u * (1 - u) * (1 - u) + 3 * b * u * u * (1 - u) + u * u * u; }
+function zamanBul(pay) {
+  var lo = 0, hi = 1;
+  for (var k = 0; k < 40; k++) {                // ilerleme(t): önce u'yu x'ten bul, sonra y
+    var t = (lo + hi) / 2, ulo = 0, uhi = 1;
+    for (var j = 0; j < 40; j++) { var u = (ulo + uhi) / 2; if (bezier(u, CIZIM.x1, CIZIM.x2) < t) ulo = u; else uhi = u; }
+    if (bezier((ulo + uhi) / 2, CIZIM.y1, CIZIM.y2) < pay) lo = t; else hi = t;
+  }
+  return CIZIM.bas + CIZIM.sure * (lo + hi) / 2;
+}
+function yolPayi(noktalar, y, i) {
+  var n = noktalar.length, top = 0, kadar = 0;
+  for (var k = 1; k < n; k++) {
+    var dx = kartX(k, n) - kartX(k - 1, n), dy = y(noktalar[k]) - y(noktalar[k - 1]);
+    var l = Math.sqrt(dx * dx + dy * dy);
+    top += l; if (k <= i) kadar += l;
+  }
+  return kadar / top;
+}
+function kartSvg(o) {
+  var n = o.ana.length, y = o.y;
+  var yol = kartYol(o.ana, y);
+  var sonX = kartX(n - 1, n).toFixed(1), sonY = y(o.ana[n - 1]).toFixed(1);
+  var p = ['<svg class="kart-iz" viewBox="0 0 ' + KART.W + " " + KART.H + '" aria-hidden="true">',
+    '<defs><linearGradient id="' + o.id + '" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0" class="' + o.renkG + ' kart-g-ust"/><stop offset="1" class="' + o.renkG + ' kart-g-alt"/></linearGradient></defs>',
+    '<path class="kart-taban" d="M' + KART.X0 + " " + KART.Y1 + "H" + KART.X1 + '"/>',
+    '<path class="kart-alan" fill="url(#' + o.id + ')" d="' + yol + "V" + KART.Y1 + "H" + KART.X0 + 'Z"/>'];
+  (o.ikinci || []).forEach(function (s2) {
+    p.push('<path pathLength="1" class="kart-cizgi kart-ince ' + s2.renk + '" d="' + kartYol(s2.noktalar, y) + '"/>');
+  });
+  p.push('<path pathLength="1" class="kart-cizgi ' + o.renk + '" d="' + yol + '"/>');
+  p.push('<path pathLength="1" class="kart-parilti ' + o.renk + '" d="' + yol + '"/>');
+  (o.isaretler || []).forEach(function (k) {
+    var gecikme = zamanBul(yolPayi(o.ana, y, k.i));
+    p.push('<circle class="kart-kat" style="--gecikme:' + gecikme.toFixed(2) + 's" cx="' + kartX(k.i, n).toFixed(1) +
+      '" cy="' + y(k.v).toFixed(1) + '" r="2.6"/>');
+  });
+  p.push('<circle class="kart-hale" cx="' + sonX + '" cy="' + sonY + '" r="3.4"/>');
+  p.push('<circle class="kart-son" cx="' + sonX + '" cy="' + sonY + '" r="3.4"/>');
+  p.push('<circle class="kart-kosucu ' + o.kosucu + '" r="4" style="offset-path: path(\'' + yol + '\')"/>');
+  p.push("</svg>");
+  return p.join("");
+}
+function anaKartlar(r) {
+  var d = sayilar(r);
+  var fiyat = [100].concat(r.fiyat.map(function (n) { return n.endeks; }));
+  var b = r.birikim;
+  var altin = b.map(function (n) { return n.altin; }), dolar = b.map(function (n) { return n.dolar; });
+  function kart(o) {
+    return [
+      '<li class="project-card project-card--grafik reveal">',
+      '            <div class="karo karo--grafik" aria-hidden="true"><span class="karo-ikon">' + o.ikon + "</span>",
+      "              " + o.svg,
+      '              <span class="kart-iz-deger" data-deger="' + o.deger + '">' + o.deger + "</span></div>",
+      '            <div class="project-body">',
+      '              <h3><a href="' + o.href + '">' + o.baslik + "</a></h3>",
+      '              <p class="card-badges" aria-hidden="true"><span>Grafik</span><span>Resmî veri</span></p>',
+      "              <p>" + o.metin + "</p>",
+      '              <p class="project-links"><a href="' + o.href + '">Grafiği aç</a> · <a href="grafikler/">' + Tanim.adlar.length + " grafik</a></p>",
+      '              <p class="card-updated">Veri: ' + o.veri + "</p>",
+      "            </div>",
+      "          </li>"
+    ].join("\n");
+  }
+  var ikonCizgi = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 16l4-5 4 3 6-8"/><circle cx="19" cy="6" r="1.2"/></svg>';
+  var ikonAltin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>';
+  var aylarF = ["2004-12"].concat(r.fiyat.map(function (n) { return n.ay; }));
+  var katlar = r.katlar.map(function (k) { return { i: aylarF.indexOf(k.ay), v: k.esik }; });
+  var yAB = olcekLog(altin.concat(dolar));
+  return "\n" + kart({
+    href: "grafikler/#fiyatlar", ikon: ikonCizgi,
+    svg: kartSvg({ id: "kart-g-fiyat", ana: fiyat, y: olcekLog(fiyat), renk: "kart-bir", renkG: "kart-g-bir",
+      kosucu: "kart-kosucu--bir", isaretler: katlar }),
+    deger: "×" + d.fiyatKat,
+    baslik: "Fiyatlar 2005'ten bu yana ×" + d.fiyatKat,
+    metin: "Aralık 2004'te 100 TL olan sepet " + d.sonAyDa + " " + d.sepet + " TL. Fiyatlar " + d.katSayisiYazi +
+      " kez ikiye katlandı; ilki " + d.ilkKatSure + " ay, sonuncusu " + d.sonKatSure + " ay sürdü.",
+    veri: d.sonAyUzun + " TÜFE"
+  }) + "\n" + kart({
+    href: "grafikler/#kur", ikon: ikonAltin,
+    svg: kartSvg({ id: "kart-g-altin", ana: altin, y: yAB, renk: "kart-uc", renkG: "kart-g-uc", kosucu: "kart-kosucu--uc",
+      ikinci: [{ noktalar: dolar, renk: "kart-iki" }] }),
+    deger: "×" + sayi(r.ozet.altinKat, 1),
+    baslik: "Gram altın 2005'ten bu yana ×" + sayi(r.ozet.altinKat, 1),
+    metin: "Ocak 2005'in 100 TL'si altına konsa bugün " + d.birikimAltin + " TL, dolara " + d.birikimDolar +
+      " TL; aynı sepetin fiyatı " + d.birikimFiyat + " TL.",
+    veri: Tanim.ayUzun(r.ozet.birikimAy) + ", ay sonu kur"
+  }) + "\n";
+}
+
 /* ---- sayfayı kur ---------------------------------------------------------- */
 function blokDegistir(s, ad, icerik, degisen) {
   var bas = "<!-- " + ad + ":BASLANGIC -->", bit = "<!-- " + ad + ":BITIS -->";
@@ -330,6 +444,17 @@ function main() {
   var eski = fs.readFileSync(SAYFA, "utf8");
   var sonuc = uret(eski);
   var degisti = sonuc.s !== eski;
+  var anaEski = fs.readFileSync(ANA, "utf8"), anaDegisen = [];
+  var anaYeni = blokDegistir(anaEski, "ANA-KART-GRAFIK", anaKartlar(sonuc.r), anaDegisen);
+  if (kontrol && anaYeni !== anaEski) {
+    console.error("Ana sayfadaki grafik kartları seriden farklı — 'node tools/grafikler-sayfa.js' çalıştırın.");
+    return 1;
+  }
+  if (!kontrol && anaYeni !== anaEski) {
+    fs.writeFileSync(ANA, anaYeni, "utf8");
+    console.log("Ana sayfa grafik kartları yazıldı.");
+    if (harita && !Ortak.sitemapTazele("https://korayoner.dev/")) return 1;
+  }
   if (kontrol) {
     if (degisti) {
       console.error("Grafikler sayfası seriden üretilmiş halinden farklı (" +
@@ -347,5 +472,5 @@ function main() {
 }
 
 if (require.main === module) process.exit(main());
-module.exports = { sayilar: sayilar, bulunma: bulunma, iyelik: iyelik, iyelikBulunma: iyelikBulunma,
+module.exports = { anaKartlar: anaKartlar, sayilar: sayilar, bulunma: bulunma, iyelik: iyelik, iyelikBulunma: iyelikBulunma,
   zamanMetni: zamanMetni, uret: uret };

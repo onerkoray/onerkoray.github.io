@@ -39,7 +39,7 @@
         : { tip: "lin", min: 0, max: yukariYuvarla(ust * 1.08, 1000), izgara: adimlar(0, yukariYuvarla(ust * 1.08, 1000), 1000), bicim: function (v) { return sayi(v); } };
       return {
         tur: "cizgi",
-        id: "fiyat", genislik: W, yukseklik: W < 560 ? 300 : 400,
+        id: "fiyat", genislik: W, yukseklik: (s && s.yukseklik) || (W < 560 ? 300 : 400),
         etiket: "Tüketici fiyat endeksi, Aralık 2004 = 100. " + ayEtiket(son.ay) + " itibarıyla " + sayi(son.endeks) + ".",
         x: { tip: "ay", min: "2004-12", max: son.ay },
         y: y,
