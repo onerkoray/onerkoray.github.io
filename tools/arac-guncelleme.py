@@ -115,6 +115,25 @@ TARAMA_TEKRARI = 10
 
 _IMZA = {}
 
+# Site ici gezinme bir icerik guncellemesi degildir. 27 Eylul 2026'da bes
+# araca birer "ilgili" baglanti eklendi; KDV aracinin karti 12 Eylul'den 27
+# Eylul'e kaydi, hesabi ise degismemisti. Google bunu acikca sayiyor:
+# icerik esasli degismeden tarihi ilerletmek. Iki elek:
+#   - yalnizca site ici baglanti tasiyan liste maddesi satiri tamamen elenir,
+#   - kalan satirlarda site ici <a> ogeleri ve " · " ayraclari silinip
+#     karsilastirilir (satir ici baglanti eklemek de gezinmedir).
+# Dis baglanti (kaynak) eklemek elenmez: kaynak listesi icerigin parcasi.
+IC_HREF = r'href="(?:\.\./|/|https://korayoner\.dev/)[^"]*"'
+BAGLANTI_MADDESI = re.compile(r'^\s*<li><a ' + IC_HREF + r'>[^<]*</a>[^<]*</li>\s*$')
+IC_BAGLANTI = re.compile(r'(?:\s*·\s*)?<a ' + IC_HREF + r'>[^<]*</a>')
+
+
+def _gezinmesiz(satir):
+    """None: satir yalnizca gezinme; yoksa site ici baglantilari silinmis hali."""
+    if BAGLANTI_MADDESI.match(satir):
+        return None
+    return IC_BAGLANTI.sub("", satir)
+
 
 def _imzalar(h):
     """Commit'teki her dosyanin normalize edilmis diff imzasi.
@@ -143,11 +162,11 @@ def _imzalar(h):
             continue
         if GECERLILIK.search(satir) or DOGRULAMA.search(satir):
             continue
-        if satir.startswith("+"):
+        if satir.startswith(("+", "-")):
             # Ilk kez damga eklenmesi de yalnizca onbellek degisimidir.
-            ekli.append(DAMGA.sub("", satir[1:]))
-        elif satir.startswith("-"):
-            silik.append(DAMGA.sub("", satir[1:]))
+            temiz = _gezinmesiz(DAMGA.sub("", satir[1:]))
+            if temiz is not None:
+                (ekli if satir.startswith("+") else silik).append(temiz)
     kapat()
     _IMZA[h] = tablo
     return tablo
