@@ -176,10 +176,21 @@ var ISARETLER = [
   { ad: "YAYIN-LDJSON", uret: ldjson }
 ];
 
+/* Paylaşım açıklamalarındaki çalışma sayısı. Elle yazılmıştı ve ALTI
+   çalışma varken "beş" diyordu; artık modülden türüyor. */
+var SAYI_YAZI = ["sıfır", "bir", "iki", "üç", "dört", "beş", "altı", "yedi",
+  "sekiz", "dokuz", "on", "on bir", "on iki", "on üç", "on dört", "on beş"];
+var SAYI_KALIBI = /(DOI ile kalıcı kaydı bulunan )([a-zçğıöşü ]+?)( çalışma)/g;
+function sayiYaz(s) {
+  return s.replace(SAYI_KALIBI, "$1" + SAYI_YAZI[Y.CALISMALAR.length] + "$3");
+}
+
 function main() {
   var kontrol = process.argv.indexOf("--check") !== -1;
   var s = fs.readFileSync(SAYFA, "utf8");
   var degisen = 0;
+  var sayili = sayiYaz(s);
+  if (sayili !== s) { degisen++; if (!kontrol) s = sayili; }
   for (var k = 0; k < ISARETLER.length; k++) {
     var t = ISARETLER[k];
     var bas = "<!-- " + t.ad + ":BASLANGIC -->";
