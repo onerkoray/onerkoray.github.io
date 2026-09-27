@@ -163,3 +163,86 @@
 @media (min-width: 1181px) {
   .home-page .site-nav ul { gap: 1rem; }
 }
+
+/* =========================================================================
+   Araç dizininde iki grafik kartı
+   -------------------------------------------------------------------------
+   Kardeş kartlarla aynı anatomi (bant, ikon kutusu, başlık, rozet, açıklama,
+   bağlantı, alt satır). Tek fark: bandın dekoratif izi ve sinyal çubuğu
+   yerine gerçek veri çizgisi. Renk yalnız --dv-* (tools/veri-renkleri.js);
+   bandın saturate(.62) filtresi burada kapalı, yoksa veri rengi solar.
+
+   Hareket (kart .reveal ile görünür olunca, bir kez):
+     çizgi soldan çizilir, ucunda bir nokta koşar (offset-path), altı dolar,
+     fiyat kartında ikiye katlanma noktaları sırayla belirir, değer ×1'den
+     sayar (home.js). Sonra çizgi boyunca ara ara ince bir parıltı akar:
+     sitenin bant "sinyali"nin veri hali. Hareket azaltmada hiçbiri yok ve
+     JS'siz görünümde grafik baştan tam çizili.
+   ========================================================================= */
+:root .home-page .project-card--grafik .karo { filter: none; }
+:root .home-page .project-card--grafik .karo::before,
+:root .home-page .project-card--grafik .karo::after { display: none; }
+.project-card--grafik .kart-iz { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.project-card--grafik .kart-taban { stroke: color-mix(in srgb, var(--text) 14%, transparent); stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+.project-card--grafik .kart-cizgi, .project-card--grafik .kart-parilti { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.project-card--grafik .kart-cizgi { stroke-width: 2.4; }
+.project-card--grafik .kart-ince { stroke-width: 1.6; opacity: .85; }
+.project-card--grafik .kart-bir { stroke: var(--dv-1); }
+.project-card--grafik .kart-iki { stroke: var(--dv-2); }
+.project-card--grafik .kart-uc { stroke: var(--dv-3); }
+.project-card--grafik .kart-g-bir { stop-color: var(--dv-1); }
+.project-card--grafik .kart-g-uc { stop-color: var(--dv-3); }
+.project-card--grafik .kart-g-ust { stop-opacity: .22; }
+.project-card--grafik .kart-g-alt { stop-opacity: 0; }
+/* Parıltı çizginin kendi tonunun açığı + aynı renkte hafif ışıma: çizgide
+   boşluk gibi değil, üzerinden geçen bir ışık gibi okunur. */
+.project-card--grafik .kart-parilti { stroke-width: 2.6; opacity: 0; stroke-dasharray: .08 1; }
+.project-card--grafik .kart-parilti.kart-bir { stroke: color-mix(in srgb, var(--dv-1) 45%, #fff); filter: drop-shadow(0 0 3px var(--dv-1)); }
+.project-card--grafik .kart-parilti.kart-uc { stroke: color-mix(in srgb, var(--dv-3) 45%, #fff); filter: drop-shadow(0 0 3px var(--dv-3)); }
+.project-card--grafik .kart-kat { fill: var(--surface); stroke: var(--dv-1-ink); stroke-width: 1.6; }
+.project-card--grafik .kart-son { fill: var(--text); }
+.project-card--grafik .kart-hale { fill: none; stroke: var(--dv-2); stroke-width: 1.6; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.project-card--grafik .kart-kosucu { display: none; }
+.project-card--grafik .kart-iz-deger {
+  position: absolute; right: 5cqw; top: 9%;
+  font: 700 clamp(.8rem, 4.2cqw, 1rem)/1 var(--font-mono); letter-spacing: .02em;
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.project-card--grafik .card-badges span:first-child { color: var(--dv-1-ink); }
+
+@keyframes kart-ciz { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes kart-bel { from { opacity: 0; } to { opacity: 1; } }
+@keyframes kart-kos { from { offset-distance: 0%; opacity: 1; } 96% { opacity: 1; } to { offset-distance: 100%; opacity: 0; } }
+@keyframes kart-nabiz { 0% { transform: scale(.8); opacity: .75; } 100% { transform: scale(3); opacity: 0; } }
+@keyframes kart-parilti {
+  0% { stroke-dashoffset: 1.07; opacity: 0; }
+  6% { opacity: .9; }
+  55% { stroke-dashoffset: 0; opacity: .9; }
+  58%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes kart-kat { 0% { transform: scale(0); } 70% { transform: scale(1.35); } 100% { transform: scale(1); } }
+
+.project-card--grafik.is-visible .kart-cizgi { stroke-dasharray: 1; animation: kart-ciz 1.9s cubic-bezier(.65, 0, .35, 1) .2s both; }
+.project-card--grafik.is-visible .kart-ince { animation-delay: .45s; }
+.project-card--grafik.is-visible .kart-alan { animation: kart-bel 1s ease 1.3s both; }
+.project-card--grafik.is-visible .kart-kat { transform-box: fill-box; transform-origin: center; animation: kart-kat .45s cubic-bezier(.34, 1.56, .64, 1) var(--gecikme, .5s) both; }
+.project-card--grafik.is-visible .kart-son { animation: kart-bel .3s ease 2s both; }
+.project-card--grafik.is-visible .kart-hale { animation: kart-nabiz 2.6s ease-out 2.2s infinite; }
+.project-card--grafik.is-visible .kart-parilti { animation: kart-parilti 6.5s ease-in-out 3s infinite; }
+.project-card--grafik.is-visible .kart-iz-deger { animation: kart-bel .4s ease .2s both; }
+@supports (offset-path: path("M0 0")) {
+  .project-card--grafik.is-visible .kart-kosucu {
+    display: block; fill: var(--dv-2); stroke: var(--surface); stroke-width: 2;
+    animation: kart-kos 1.9s cubic-bezier(.65, 0, .35, 1) .2s both;
+  }
+  .project-card--grafik .kart-kosucu.kart-kosucu--uc { fill: var(--dv-3); }
+  .project-card--grafik .kart-kosucu.kart-kosucu--bir { fill: var(--dv-1); }
+}
+/* Üzerine gelince parıltı hemen yeniden akar. */
+@media (hover: hover) and (pointer: fine) {
+  .project-card--grafik.is-visible:is(:hover, :focus-within) .kart-parilti { animation: kart-parilti 1.8s ease-in-out 0s infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card--grafik.is-visible :is(.kart-cizgi, .kart-alan, .kart-kat, .kart-son, .kart-hale, .kart-parilti, .kart-iz-deger, .kart-kosucu) { animation: none !important; }
+  .project-card--grafik .kart-kosucu { display: none !important; }
+}

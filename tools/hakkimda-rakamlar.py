@@ -35,7 +35,8 @@ def arac_sayisi():
     """Ana sayfadaki gerçek araç kartları — arac-sayisi.py ile aynı kural."""
     s = io.open(ANA, encoding="utf-8").read()
     kartlar = re.findall(r'class="project-card([^"]*)"', s)
-    return sum(1 for k in kartlar if "--soon" not in k)
+    # "yakında" kartı ve grafik kartları araç değildir.
+    return sum(1 for k in kartlar if "--soon" not in k and "--grafik" not in k)
 
 
 def makale_sayisi():

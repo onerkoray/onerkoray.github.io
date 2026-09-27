@@ -45,7 +45,7 @@ AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
          "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
 
 KART = re.compile(
-    r'(<li class="project-card(?![^"]*--soon)[^"]*"[^>]*>.*?</li>)', re.S)
+    r'(<li class="project-card(?![^"]*--(?:soon|grafik))[^"]*"[^>]*>.*?</li>)', re.S)
 BAGLANTI = re.compile(r'<h3><a href="([^"#?]+)"')
 MEVCUT = re.compile(r'\s*<p class="card-updated">.*?</p>', re.S)
 # Kartin son paragrafi ile </div> arasindaki yer. SATIR SONU DESENLE
