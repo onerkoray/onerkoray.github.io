@@ -52,8 +52,13 @@ console.log("Yayın listesi — künye denetimi\n");
 
 /* ---------------------------------------------------------------- 1
    Ö1: iki yönlü kapsama */
-gecer("modülde 6 çalışma", Y.CALISMALAR.length === 6,
+/* ORCID 0009-0005-8730-3577 ile 2026-09-27'de karşılaştırıldı: 8 kayıt. */
+gecer("modülde 8 çalışma", Y.CALISMALAR.length === 8,
   String(Y.CALISMALAR.length));
+var SAYI_YAZI = ["sıfır", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz", "on"];
+gecer("paylaşım açıklamaları çalışma sayısını doğru söylüyor",
+  kacKez("DOI ile kalıcı kaydı bulunan " + SAYI_YAZI[Y.CALISMALAR.length] + " çalışma") === 2,
+  "sayfada '" + SAYI_YAZI[Y.CALISMALAR.length] + " çalışma' iki kez geçmeli");
 
 Y.CALISMALAR.forEach(function (c) {
   gecer("DOI sayfada: " + c.doi, kacKez(c.doi) >= 1);
@@ -66,7 +71,7 @@ var benzersiz = sayfaDoi.filter(function (d, i) {
 gecer("sayfadaki her DOI modülde var",
   benzersiz.every(function (d) { return Y.calisma(d) !== null; }),
   benzersiz.filter(function (d) { return !Y.calisma(d); }).join(", "));
-gecer("sayfada tam 6 farklı DOI", benzersiz.length === 6,
+gecer("sayfada modüldeki kadar farklı DOI", benzersiz.length === Y.CALISMALAR.length,
   String(benzersiz.length));
 
 /* KONTROL: arama gerçekten yapılıyor mu? Olmayan bir DOI bulunmamalı. */
@@ -169,12 +174,12 @@ gecsin("dil notu açıklanmış", "dili Türkçe diyor ama özet İngilizce");
   gecer("sayfasız çalışma sayısı ile not sayısı aynı",
     sayfasiz === not, sayfasiz + " çalışma vs " + not + " not");
 
-  /* KONTROL: bugün altısının da sayfası var; yukarıdaki eşitlik
-     ikisi de sıfır olduğu için de geçerdi. Sayfaların gerçekten
-     bağlandığı ayrıca ölçülüyor. */
-  gecer("KONTROL: altı çalışmanın da sayfası var", sayfasiz === 0,
-    String(sayfasiz));
-  gecer("KONTROL: altı bağlantı da sayfada",
+  /* KONTROL: eşitliğin boş yere (ikisi de sıfır) geçmediği: 2026-09-27
+     itibarıyla iki yeni çalışmanın yazısı yok, not iki kez görünmeli.
+     Yazıları çıkınca bu sayı düşer ve test bunu söyler. */
+  gecer("KONTROL: sayfasız iki çalışma notla gösteriliyor", sayfasiz === 2 && not === 2,
+    sayfasiz + " / " + not);
+  gecer("KONTROL: her çalışmanın bağlantı satırı sayfada",
     kacKez("ed-yayin-baglanti") === Y.CALISMALAR.length,
     String(kacKez("ed-yayin-baglanti")));
 

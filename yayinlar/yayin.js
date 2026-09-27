@@ -105,8 +105,7 @@
         "2026 İndiriminin Ufuk Etkisi (Eşleşme, Hak Ediş ve Fon " +
         "Giderlerinin Birleşik Bir Ölçümü)",
       zenodoBaslik: null,
-      /* 21 Eylül 2026'da yazısı yayımlandı. Altı çalışmanın altısının da
-         artık sitede bir sayfası var. */
+      /* 21 Eylül 2026'da yazısı yayımlandı. */
       sayfa: "makaleler/bes-devlet-katkisi-ne-kadar-degerli",
       kendiDoi: false,
       ozetSorunlu: false,
@@ -123,6 +122,34 @@
       kendiDoi: false,
       ozetSorunlu: false,
       ozetDiliFarkli: true
+    },
+    /* 2026-09-27: ORCID'e düşen iki yeni kayıt. Künye, dil (tur), lisans
+       ve özet Zenodo API'sinden okundu; iki özet de başlıktaki çalışmayı
+       anlatıyor. Henüz sitede anlatan yazıları yok: sayfa bunu açıkça
+       söylüyor. */
+    {
+      doi: "10.5281/zenodo.22972368",
+      tarih: "2026-09-26",
+      baslik: "Yüksek Enflasyon Ortamında Sermaye Yapısı Kararları ve " +
+        "Finansal Kaldıracın Ölçümü: TMS 29 Uygulamasının Kuramsal ve " +
+        "Yöntemsel Sonuçları",
+      zenodoBaslik: null,
+      sayfa: null,
+      kendiDoi: false,
+      ozetSorunlu: false,
+      ozetDiliFarkli: false
+    },
+    {
+      doi: "10.5281/zenodo.22972569",
+      tarih: "2026-09-26",
+      baslik: "Gelişmekte Olan Hisse Senedi Piyasalarında Yatırımcı " +
+        "Duyarlılığı ve Arbitraj Sınırları: Borsa İstanbul İçin Kuramsal " +
+        "Bir Çerçeve ve Sınanabilir Önermeler",
+      zenodoBaslik: null,
+      sayfa: null,
+      kendiDoi: false,
+      ozetSorunlu: false,
+      ozetDiliFarkli: false
     }
   ];
 
