@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * Dizine açık maaş sayfaları birbirine ne kadar benziyor?
+ * Maaş tutar sayfaları (dizine kapalı, ayrıntılı olanlar) birbirine ne kadar benziyor?
  *
  * NEDEN VAR
  * ---------
@@ -40,16 +40,19 @@ var KOK = path.join(__dirname, "..");
    robots etiketine bakarak bulunuyor -- boylece liste de elle
    yazilmamis oluyor. */
 
-/* Dizine açık sayfalar, robots etiketinden OKUNUYOR — liste elle
-   yazılmıyor ki üreteçteki KALICI dizisiyle ayrışmasın. */
-function dizineAcikSayfalar() {
+/* 28 Eylül 2026'dan beri hiçbir tutar sayfası dizine açık değil (site
+   sahibinin kararı: "X brüt ne kadar net" sorusunu brüt–net tablosu
+   karşılıyor). Benzerlik ölçümü şablonun gerilemesini yakalamak için
+   AYRINTILI sayfalar üzerinde sürüyor; liste dosyalardan okunuyor ki
+   üreteçteki DETAYLI dizisiyle ayrışmasın. */
+function tutarSayfalari() {
   var kok = path.join(KOK, "maas-hesaplama");
   return fs.readdirSync(kok).filter(function (d) {
-    var p = path.join(kok, d, "index.html");
-    if (!/-tl-brut-ne-kadar-net$/.test(d) || !fs.existsSync(p)) return false;
-    return fs.readFileSync(p, "utf8").indexOf('content="noindex') < 0;
+    return /-tl-brut-ne-kadar-net$/.test(d) && fs.existsSync(path.join(kok, d, "index.html"));
   }).map(function (d) { return path.join(kok, d, "index.html"); });
 }
+function dizineAcik(p) { return fs.readFileSync(p, "utf8").indexOf('content="noindex') < 0; }
+function detayli(p) { return fs.readFileSync(p, "utf8").indexOf("<!-- MAAS-DETAY:BASLANGIC -->") > -1; }
 
 function govde(p) {
   var s = fs.readFileSync(p, "utf8");
@@ -92,8 +95,13 @@ function dogru(ad, k, detay) {
 
 console.log("Maaş sayfalarının birbirine benzerliği\n");
 
-var sayfalar = dizineAcikSayfalar();
-dogru("dizine açık sayfa bulundu", sayfalar.length >= 2,
+var tum = tutarSayfalari();
+var acik = tum.filter(dizineAcik);
+dogru("hiçbir tutar sayfası dizine açık değil (tabloya toplama kararı)", tum.length >= 20 && acik.length === 0,
+  acik.length + " açık: " + acik.map(function (p) { return path.basename(path.dirname(p)); }).join(", "));
+
+var sayfalar = tum.filter(detayli);
+dogru("ayrıntılı sayfa bulundu", sayfalar.length >= 2,
   "bulunan: " + sayfalar.length);
 if (sayfalar.length < 2) {
   console.log("\n" + gecen + " gecti, " + hata + " kaldi.");
