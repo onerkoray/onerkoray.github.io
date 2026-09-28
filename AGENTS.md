@@ -34,12 +34,16 @@ düşebileceği tuzaklar:
 sayfaları aynı şablondan çıkıyor. Eylül 2026'da ölçüldü: sekiz kelimelik
 dizilerin %23–25'ini paylaşıyorlar (makalelerde aynı ölçü binde bir). Dizine
 açık sekiz sayfanın altısı dizinde değil. Üreteçle farklılaştırma iki kez
-denendi, ikisi de işe yaramadı. Kural:
+denendi, ikisi de işe yaramadı. 28 Eylül 2026'da site sahibi karar verdi:
+28 tutar sayfasının hiçbiri dizine açık değil (noindex, follow; site
+haritasında yok). Sayfalar yayında; "X brüt ne kadar net" sorusunu
+Brüt–Net Maaş Tablosu ile ana maaş aracı karşılıyor. Kural:
 
 - Yeni bir **programatik sayfa ailesi** (aynı şablon, değişen tek parametre)
   açma. Açmak gerekiyorsa önce her sayfanın başka hiçbir sayfada olmayan
   hangi bilgiyi taşıdığını yaz. Yazamıyorsan açma.
 - Maaş şablonuna ortak paragraf ekleme. Ortak metin benzerliği artırır.
+- Tutar sayfalarını dizine geri açma. [CI: Maaş sayfaları birbirine fazla benziyor mu]
   [CI: Maaş sayfaları birbirine fazla benziyor mu]
 
 **Sayfa tarihini taze göstermek.** Google, arama motoru için yazılmış

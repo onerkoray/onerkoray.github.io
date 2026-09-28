@@ -9,7 +9,7 @@
  * tek basina benzerligin dizine alinmamaya neden oldugunu kanitlamaz.
  *
  * COZUM iki parcali:
- *   1) SECILI tutarlar (KALICI) o tutara OZGU, motordan uretilen bir bolum
+ *   1) SECILI tutarlar (DETAYLI) o tutara OZGU, motordan uretilen bir bolum
  *      aliyor: dilim kirilmalarinin hangi ayda oldugu, asgari ucrete brut ve
  *      net oran farki, yillik efektif vergi yuku, SGK tavaninin devreye girip
  *      girmedigi, isveren maliyeti ve sabit net icin gereken brut. Bunlarin
@@ -17,6 +17,15 @@
  *   2) Kalan tutarlar noindex aliyor ve sitemap'ten cikiyor. Silinmiyorlar;
  *      brut-net-tablosu'ndan erisilmeye ve kullaniciya hizmet etmeye devam
  *      ediyorlar, yalnizca dizine girmek icin yarismiyorlar.
+ *
+ * 28 EYLUL 2026 -- TABLOYA TOPLAMA (site sahibinin karari): ayrintili
+ * sekiz sayfa da benzerligini kiramadi (sekiz kelimelik dizilerin
+ * %23-25'i ortak; uretecle iki ayristirma denemesi basarisiz) ve GSC'de
+ * "Tarandi - su anda dizine eklenmis degil" listesine dustu. Artik HICBIR
+ * tutar sayfasi dizine acik degil: "X brut ne kadar net" sorusunu
+ * brut-net-tablosu ile ana arac karsiliyor. Ayrintili bloklar okur icin
+ * yerinde kaliyor. Bu yuzden iki liste ayri: DETAYLI blok alir,
+ * DIZINE_ACIK robots ve sitemap'i belirler.
  *
  * Kullanim:
  *   node tools/maas-sayfalari.js           # bloklari yaz, noindex uygula
@@ -38,10 +47,15 @@ var ZAM = require("../makaleler/zam-net-maasa-ne-kadar-yansir/zam.js");
 var KOK = path.resolve(__dirname, "..");
 var YIL = 2026;
 
-/* Dizine girmek icin yarisacak tutarlar. Secim iki olcute dayaniyor:
-   yuvarlak ve aranan rakamlar olmalari, ve her birinin farkli bir hikayesi
-   olmasi - dilim yolculuklari, kirilma aylari ve tavan durumlari ayri. */
-var KALICI = [40000, 50000, 60000, 75000, 100000, 150000, 200000, 300000];
+/* Ayrintili blok alan tutarlar. Secim iki olcute dayaniyor: yuvarlak ve
+   aranan rakamlar olmalari, ve her birinin farkli bir hikayesi olmasi -
+   dilim yolculuklari, kirilma aylari ve tavan durumlari ayri. */
+var DETAYLI = [40000, 50000, 60000, 75000, 100000, 150000, 200000, 300000];
+
+/* Dizine acik tutar sayfalari. Bos: yukaridaki 28 Eylul kararina bakin.
+   Buraya tutar eklemek yeni bir programatik sayfa ailesi acmaktir
+   (AGENTS.md, "olcekli icerik istismari"). */
+var DIZINE_ACIK = [];
 
 var BAS = "<!-- MAAS-DETAY:BASLANGIC -->";
 var BIT = "<!-- MAAS-DETAY:BITIS -->";
@@ -96,7 +110,7 @@ var AY_DA = {
 };
 
 /* ELLE YAZILMIS yorumlar. Uretilmiyorlar ve uretilmemeliler: bu sayfalari
-   birbirinden ayiran tek sey bunlar. KALICI listesine yeni bir tutar
+   birbirinden ayiran tek sey bunlar. DETAYLI listesine yeni bir tutar
    eklenirse buraya da bir paragraf yazilmalidir - yoksa --check patlar. */
 var YORUM = {
   40000: "Bu bant, asgari ücretin hemen üstündeki ilk basamaktır ve buradaki " +
@@ -549,25 +563,26 @@ function main() {
       var a = analiz(p.tutar);
       var yol = [yuzde(a.ilkDilim)].concat(a.kirilmalar.map(function (k) { return yuzde(k.yeni); }));
       console.log(String(fm0(p.tutar)).padStart(9) + "  " +
-        (KALICI.indexOf(p.tutar) > -1 ? "dizine acik" : "noindex").padEnd(19) +
+        (DIZINE_ACIK.indexOf(p.tutar) > -1 ? "dizine acik" : "noindex").padEnd(19) +
         yol.join(" -> ").padEnd(23) +
         a.kirilmalar.map(function (k) { return k.ay; }).join(", "));
     });
     return 0;
   }
 
-  KALICI.forEach(function (t) {
+  DETAYLI.forEach(function (t) {
     if (!YORUM[t]) {
-      console.error("HATA: " + t + " KALICI listesinde ama YORUM metni yok.");
+      console.error("HATA: " + t + " DETAYLI listesinde ama YORUM metni yok.");
       console.error("Elle yazilmis yorum olmadan sayfa digerlerinin kopyasi olur.");
       process.exit(2);
     }
   });
 
   liste.forEach(function (p) {
-    var indexlensin = KALICI.indexOf(p.tutar) > -1;
+    var indexlensin = DIZINE_ACIK.indexOf(p.tutar) > -1;
+    var detayli = DETAYLI.indexOf(p.tutar) > -1;
     var eski = fs.readFileSync(p.yol, "utf8");
-    var yeni = guncelle(eski, indexlensin ? blok(analiz(p.tutar)) : "", indexlensin);
+    var yeni = guncelle(eski, detayli ? blok(analiz(p.tutar)) : "", indexlensin);
     if (yeni !== eski) {
       degisen.push(p.ad);
       if (!kontrol) fs.writeFileSync(p.yol, yeni, "utf8");
@@ -581,7 +596,7 @@ function main() {
   liste.forEach(function (p) {
     var url = "https://korayoner.dev/maas-hesaplama/" + p.ad + "/";
     var icinde = sm.indexOf("<loc>" + url + "</loc>") > -1;
-    var olmali = KALICI.indexOf(p.tutar) > -1;
+    var olmali = DIZINE_ACIK.indexOf(p.tutar) > -1;
     if (icinde !== olmali) sitemapSorun.push((olmali ? "eksik: " : "fazla: ") + p.ad);
   });
 
@@ -598,13 +613,13 @@ function main() {
       console.error("Duzeltmek icin: node tools/maas-sayfalari.js");
       return 1;
     }
-    console.log("Maas sayfalari guncel (" + KALICI.length + " dizine acik, " +
-      (liste.length - KALICI.length) + " noindex).");
+    console.log("Maas sayfalari guncel (" + DIZINE_ACIK.length + " dizine acik, " +
+      (liste.length - DIZINE_ACIK.length) + " noindex).");
     return 0;
   }
 
-  console.log(degisen.length + " sayfa guncellendi (" + KALICI.length + " dizine acik, " +
-    (liste.length - KALICI.length) + " noindex).");
+  console.log(degisen.length + " sayfa guncellendi (" + DIZINE_ACIK.length + " dizine acik, " +
+    (liste.length - DIZINE_ACIK.length) + " noindex).");
   if (sitemapSorun.length) {
     console.log("\nSitemap elle duzeltilmeli:");
     sitemapSorun.forEach(function (a) { console.log("  - " + a); });
