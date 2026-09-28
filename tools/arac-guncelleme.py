@@ -74,6 +74,11 @@ GECERLILIK = re.compile(r'<meta\s+name="gecerlilik"')
 # gerekce: eklenmesini "sayfa guncellendi" diye sunmak lastmod'u sisirir.
 DOGRULAMA = re.compile(r'<meta\s+name="google-site-verification"')
 
+# Robots etiketi de okuyucuya gorunmez. 28 Eylul 2026'da maas tutar
+# sayfalari noindex yapildi; sekiz alt sayfanin robots satiri degisti ve
+# ana maas aracinin karti, hesabi degismedigi halde bugune kaydi.
+ROBOTS = re.compile(r'<meta\s+name="robots"')
+
 
 # SITE KABUGU sayfanin icerigi degil. 26 Eylul 2026'da ust baslik 173
 # sayfada tek standarda cekildi: menuye Araclar/Makaleler eklendi, marka
@@ -160,7 +165,7 @@ def _imzalar(h):
             continue
         if satir.startswith("+++") or satir.startswith("---"):
             continue
-        if GECERLILIK.search(satir) or DOGRULAMA.search(satir):
+        if GECERLILIK.search(satir) or DOGRULAMA.search(satir) or ROBOTS.search(satir):
             continue
         if satir.startswith(("+", "-")):
             # Ilk kez damga eklenmesi de yalnizca onbellek degisimidir.
