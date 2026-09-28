@@ -99,6 +99,7 @@ def main():
     sema_person = set()
     sema_kisi_sayfasi = set()
     sema_sameas = set()
+    sema_altad = set()
     sema_website = set()
 
 
@@ -208,6 +209,11 @@ def main():
                         sema_kisi_sayfasi.add(mep)
                     if d.get("sameAs"):
                         sema_sameas.add(tuple(d["sameAs"]))
+                        # Tanimlayan dugum adin Turkce karaktersiz
+                        # yazimini da tasir ("koray oner" diye arayan
+                        # okur ayni varliga ulassin). 28 Eylul 2026'da
+                        # 91 sayfaya eklendi; yeni sayfa kopmasin.
+                        sema_altad.add(str(d.get("alternateName")))
 
         # Olcum onay kapisi. Analitik artik SATIR ICI degil: gtag yalnizca
         # kullanici onay verirse, onay.js tarafindan yukleniyor. Bu yuzden
@@ -387,6 +393,10 @@ def main():
         bulgu("SEMA KISI SAYFASI COKLU", "site geneli",
               "Person.mainEntityOfPage tutarsiz: " +
               ", ".join(sorted(sema_kisi_sayfasi)))
+
+    if len(sema_altad) > 1 or (sema_altad and "None" in sema_altad):
+        bulgu("SEMA ALTERNATIF AD", "site geneli",
+              "Person.alternateName tutarsiz ya da eksik: " + ", ".join(sorted(sema_altad)))
 
     if len(sema_sameas) > 1:
         bulgu("SEMA SAMEAS COKLU", "site geneli",
