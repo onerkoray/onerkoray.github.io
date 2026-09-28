@@ -48,6 +48,17 @@
    aynı; açıklanmış beş kira oranı çapa olarak tutmalı. Çıktı:
    finans/kira-tufe.js.
 
+8. TL MEVDUAT FAİZİ — TCMB, "Mevduat Faiz Oranları (Akım)", 1 aya kadar
+   vadeli TL mevduat (TP.TRY.MT01), haftalık verinin aylık ortalaması.
+   EVDS3'ün herkese açık ucundan (anahtarsız) çekilir. Yalnızca BİTMİŞ aylar
+   yazılır: içinde bulunulan ayın ortalaması birkaç haftadan oluşur ve ay
+   bitince değişir. Denetim: 2005'ten her ay var, değerler 0-100 arasında,
+   2010'dan beri politika faizinden en çok 25 puan uzakta (yanlış seri ya da
+   birim karışmasını yakalar), yazılmış bir ay 0,05 puandan fazla
+   değişmemiş. IMF'nin MFS_IR "Deposit Rate" satırı DENENDİ ve REDDEDİLDİ:
+   2013'te ay ay 14 -> 16 -> 12,5 -> 16,9, Mart 2024'te %80,5; ağırlıklı
+   ortalama böyle davranmaz. Çıktı: finans/mevduat-faizi.js.
+
 REDDEDİLEN VERİ (dosya YAZILMAZ, çıkış kodu 1)
 ----------------------------------------------
 - Depodaki geçmiş bir ayın kuru, geçmiş bir faiz kararı değişirse
@@ -74,6 +85,10 @@ import xml.etree.ElementTree as ET
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HEDEF = os.path.join(KOK, "finans", "grafik-verisi.js")
 KIRA_HEDEF = os.path.join(KOK, "finans", "kira-tufe.js")
+MEVDUAT_HEDEF = os.path.join(KOK, "finans", "mevduat-faizi.js")
+MEVDUAT_SERI = "TP.TRY.MT01"
+MEVDUAT_ILK = "2005-01"
+MEVDUAT_URL = "https://evds3.tcmb.gov.tr/igmevdsms-dis/fe"
 KIRA_GECICI_EN_COK = 2       # BIS gecikirse TCMB ile en çok bu kadar ay uzatılır
 KIRA_ILK = "2008-12"          # 2010'da başlayan bir sözleşmenin yenilemesine yeter
 # Açıklanmış resmî oranlar (veri ayı → 12 aylık ortalama % değişim).
@@ -653,6 +668,104 @@ def kira_gecici_oku():
     return json.loads(m.group(1)) if m else []
 
 
+# ------------------------------------------------------------------ 8) mevduat
+def mevduat_cek():
+    govde = json.dumps({
+        "type": "json", "series": MEVDUAT_SERI, "aggregationTypes": "avg", "formulas": "0",
+        "startDate": "01-01-2004", "endDate": dt.date.today().strftime("%d-%m-%Y"),
+        "frequency": "5", "decimalSeperator": ".", "decimal": "4", "dateFormat": "0",
+        "lang": "tr", "yon": "0", "sira": "0", "ozelFormuller": [],
+        "groupSeperator": True, "isRaporSayfasi": False}).encode("utf-8")
+    istek = urllib.request.Request(MEVDUAT_URL, data=govde, method="POST", headers={
+        "User-Agent": UA, "Content-Type": "application/json",
+        "Origin": "https://evds3.tcmb.gov.tr", "Referer": "https://evds3.tcmb.gov.tr/"})
+    with urllib.request.urlopen(istek, timeout=90) as y:
+        veri = json.loads(y.read().decode("utf-8"))
+    alan = MEVDUAT_SERI.replace(".", "_")
+    bu_ay = dt.date.today().strftime("%Y-%m")
+    oran = {}
+    for x in veri.get("items", []):
+        ay, v = x.get("Tarih"), x.get(alan)
+        if not ay or v in (None, "", "ND") or ay < MEVDUAT_ILK or ay >= bu_ay:
+            continue
+        oran[ay] = round(float(v), 4)
+    return oran
+
+
+def mevduat_dogrula(oran, politika):
+    hata = []
+    aylar = sorted(oran)
+    if not aylar or aylar[0] != MEVDUAT_ILK:
+        return ["mevduat serisi %s ile başlamıyor" % MEVDUAT_ILK]
+    y, m = int(aylar[0][:4]), int(aylar[0][5:])
+    for a in aylar:
+        if a != "%d-%02d" % (y, m):
+            hata.append("mevduat serisinde ay eksik: %d-%02d" % (y, m))
+            break
+        m += 1
+        if m == 13:
+            y, m = y + 1, 1
+    kotu = [a for a in aylar if not 0 < oran[a] < 100]
+    if kotu:
+        hata.append("mevduat oranı aralık dışı: " + ", ".join(kotu[:3]))
+    # Politika faizi karar tarihli; her ayın sonunda geçerli olanı bul.
+    kararlar = sorted((k[0], k[1]) for k in politika) if politika else []
+    uzak = []
+    for a in aylar:
+        if a < "2010-06" or not kararlar:
+            continue
+        son_gun = "%s-%02d" % (a, calendar.monthrange(int(a[:4]), int(a[5:]))[1])
+        gecerli = [o for t, o in kararlar if t <= son_gun]
+        if gecerli and abs(oran[a] - gecerli[-1]) > 25:
+            uzak.append("%s (mevduat %.2f, politika %.2f)" % (a, oran[a], gecerli[-1]))
+    if uzak:
+        hata.append("mevduat politika faizinden 25 puandan uzak: " + "; ".join(uzak[:3]))
+    return hata
+
+
+def mevduat_yaz(oran):
+    govde = json.dumps(dict(sorted(oran.items())), ensure_ascii=False)
+    govde = govde.replace(", ", ",\n    ").replace("{", "{\n    ").replace("}", "\n  }")
+    metin = u'''/*!
+ * TL mevduat faizi: 1 aya kadar vadeli, akım, ağırlıklı ortalama — ÜRETİLİR.
+ *
+ * Kaynak: TCMB, Mevduat Faiz Oranları (Akım), seri __SERI__, haftalık
+ * verinin aylık ortalaması, yıllık %. Üreteç tools/grafik-verisi.py;
+ * yalnızca bitmiş aylar yazılır.
+ *
+ * Lisans: MIT — Koray Öner, https://korayoner.dev/
+ */
+(function (root, factory) {
+  "use strict";
+  var v = factory();
+  if (typeof module === "object" && module.exports) module.exports = v;
+  else root.MevduatFaizi = v;
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+  var oranlar = /*VERI*/__GOVDE__/*VERI-SON*/;
+  var aylar = Object.keys(oranlar).sort();
+  return {
+    seri: "__SERI__",
+    kaynak: "TCMB, Mevduat Faiz Oranları (Akım), 1 aya kadar vadeli TL mevduat",
+    kaynakUrl: "https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Faiz+Istatistikleri/Haftalik/Mevduat+Faiz+Oranlari/",
+    oranlar: oranlar, ilkAy: aylar[0], sonAy: aylar[aylar.length - 1]
+  };
+});
+'''.replace("__GOVDE__", govde).replace("__SERI__", MEVDUAT_SERI)
+    eski = io.open(MEVDUAT_HEDEF, encoding="utf-8").read() if os.path.exists(MEVDUAT_HEDEF) else ""
+    if eski != metin:
+        io.open(MEVDUAT_HEDEF, "w", encoding="utf-8", newline="\n").write(metin)
+        return True
+    return False
+
+
+def mevduat_oku():
+    if not os.path.exists(MEVDUAT_HEDEF):
+        return None
+    m = re.search(r"/\*VERI\*/(.*?)/\*VERI-SON\*/", io.open(MEVDUAT_HEDEF, encoding="utf-8").read(), re.S)
+    return json.loads(m.group(1)) if m else None
+
+
 # ------------------------------------------------------------------ ana akış
 def main():
     eski = oku() or {}
@@ -673,7 +786,9 @@ def main():
         else:
             h7 = ["kira oranı %s = %.2f, açıklanan %.2f" % (a, kira[a], v)
                   for a, v in KIRA_CAPA.items() if a in kira and kira[a] != v]
-        hata = h1 + h2 + h3 + h4 + h5 + h6 + h7
+        mevduat = mevduat_oku()
+        h8 = ["finans/mevduat-faizi.js yok"] if not mevduat else mevduat_dogrula(mevduat, eski["politikaFaizi"])
+        hata = h1 + h2 + h3 + h4 + h5 + h6 + h7 + h8
         for x in hata:
             print("  HATA  " + x)
         print("Grafik verisi: %d ay kur (%d ay günlük seriyle eşleşti), %d faiz kararı, "
@@ -708,7 +823,13 @@ def main():
     h7 += ["kira oranı geri gitti: %s artık yok" % a for a in eski_kira if a not in kira]
     if gecici:
         print("Kira: BIS %s'te; %s TCMB aylık değişimiyle geçici eklendi." % (max(endeks), ", ".join(gecici)))
-    hata = h1 + h2 + h3 + h4 + h5 + h6 + h7
+    mevduat = mevduat_cek()
+    h8 = mevduat_dogrula(mevduat, kararlar)
+    eski_mevduat = mevduat_oku() or {}
+    h8 += ["geçmiş mevduat oranı değişti: %s (%.4f -> %.4f)" % (a, eski_mevduat[a], mevduat[a])
+           for a in eski_mevduat if a in mevduat and abs(mevduat[a] - eski_mevduat[a]) > 0.05]
+    h8 += ["mevduat oranı geri gitti: %s artık yok" % a for a in eski_mevduat if a not in mevduat]
+    hata = h1 + h2 + h3 + h4 + h5 + h6 + h7 + h8
     if hata:
         for x in hata:
             print("  RED  " + x)
@@ -742,10 +863,14 @@ def main():
     if eski and json.dumps(eski, sort_keys=True) == json.dumps(karsilastir, sort_keys=True):
         if kira_yaz(kira, gecici):
             print("Kira oranları yazıldı: %s–%s (%d ay)." % (min(kira), max(kira), len(kira)))
+        if mevduat_yaz(mevduat):
+            print("Mevduat faizi yazıldı: %s–%s (%d ay)." % (min(mevduat), max(mevduat), len(mevduat)))
         print("Grafik verisi güncel.")
         return 0
     if kira_yaz(kira, gecici):
         print("Kira oranları yazıldı: %s–%s (%d ay)." % (min(kira), max(kira), len(kira)))
+    if mevduat_yaz(mevduat):
+        print("Mevduat faizi yazıldı: %s–%s (%d ay)." % (min(mevduat), max(mevduat), len(mevduat)))
     yaz(yeni)
     print("Grafik verisi yazıldı: %d ay kur (%d ay günlük seriyle eşleşti), %d faiz kararı, "
           "%d ülke (TUR %d yılda TÜFE ile tutuyor)." % (len(kur), eslesen, len(kararlar), len(dunya), sinanan))

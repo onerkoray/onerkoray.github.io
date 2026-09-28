@@ -1,0 +1,150 @@
+/* Altın mı, dolar mı, mevduat mı? — araca özgü stiller.
+   Veri renkleri yalnızca --dv-* tokenlarından (tools/veri-renkleri.js):
+   dolar --dv-1, altın --dv-2, TL mevduat --dv-3. Paletin dördüncü rengi yok;
+   euro nötr gri, kimliğini etiket taşıyor. */
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 4px 20px;
+  align-items: end;
+}
+#varlik-form input[type="text"], #varlik-form select {
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: inherit;
+}
+#varlik-form input[type="text"] { max-width: 12rem; }
+.panel-q { margin: 0 0 10px; }
+.panel-q > label { display: block; margin-bottom: 6px; font-weight: 600; }
+.vk-tarih { border: 0; margin: 0; padding: 0; min-width: 0; }
+.vk-tarih legend { padding: 0; margin-bottom: 6px; font-weight: 600; }
+.vk-tarih select + select { margin-left: 6px; }
+
+.vk-manset { font-size: var(--step-1); font-weight: 500; max-width: 62ch; margin: .6rem 0 .4rem; color: var(--text); }
+.vk-manset strong { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.vk-aciklama { max-width: 70ch; color: var(--text-muted); }
+.vk-not { margin: 12px 0 0; font-size: .9rem; color: var(--text-muted); max-width: 78ch; }
+.vk-baslik { margin: 20px 0 10px; font-weight: 600; }
+
+/* ---- sonuç kartları ---- */
+.vk-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+.vk-kart {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.vk-ilk { border-color: color-mix(in srgb, var(--text) 35%, var(--border)); box-shadow: var(--shadow); }
+.vk-ad { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--text-muted); flex-wrap: wrap; }
+.vk-ad i, .vk-lejant i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; background: var(--dv-mute); flex: none; }
+.vk-rozet { font-size: .7rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: var(--text); border: 1px solid var(--border); border-radius: 999px; padding: 1px 7px; }
+.vk-deger { font-size: 1.3rem; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.vk-ilk .vk-deger { font-size: 1.5rem; }
+.vk-satir { font-size: .78rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.vk-arti { color: var(--dv-gain-ink); }
+.vk-eksi { color: var(--dv-loss-ink); }
+
+.vk-bir i { background: var(--dv-1); }
+.vk-iki i { background: var(--dv-2); }
+.vk-uc i { background: var(--dv-3); }
+.vk-dort i { background: var(--text-muted); }
+.vk-soluk i { background: var(--dv-mute); }
+.vk-kesik i { height: 0; border-top: 2px dashed var(--dv-axis); border-radius: 0; background: none; }
+
+/* ---- grafik ---- */
+.vk-grafik { margin: 1.5rem 0 0; }
+.vk-grafik figcaption { margin-top: .5rem; font-size: .8rem; color: var(--text-muted); }
+.vk-grafik-dar { display: none; }
+@media (max-width: 560px) {
+  .vk-grafik-genis { display: none; }
+  .vk-grafik-dar { display: block; }
+}
+.vk-lejant { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0; margin: 10px 0 0; font-size: .82rem; color: var(--text-muted); }
+.vk-lejant li { display: flex; align-items: center; gap: 7px; }
+
+.gr-tuval { position: relative; }
+.gr-svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
+.gr-svg:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+.gr-izgara { stroke: var(--dv-grid); stroke-width: 1; }
+.gr-centik { stroke: var(--dv-axis); stroke-width: 1; }
+.gr-eksen { font: 500 11px var(--font-mono); fill: var(--text-muted); font-variant-numeric: tabular-nums; }
+.gr-eksen-y { text-anchor: end; }
+.gr-eksen-x { text-anchor: middle; }
+.gr-cizgi { fill: none; stroke-width: 2.25; stroke-linejoin: round; stroke-linecap: round; }
+.gr-s-bir { stroke: var(--dv-1); }
+.gr-s-iki { stroke: var(--dv-2); }
+.gr-s-uc { stroke: var(--dv-3); }
+.gr-s-soluk { stroke: var(--dv-axis); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.gr-not { pointer-events: none; }
+.gr-not-hale { fill: none; stroke: none; }
+.gr-not-metin, .gr-not-alt { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.gr-not-metin { font: 700 12.5px var(--font-mono); fill: var(--text); font-variant-numeric: tabular-nums; }
+.gr-not-alt { font: 500 10.5px var(--font-mono); fill: var(--text-muted); }
+.gr-not--bir .gr-not-nokta { fill: var(--dv-1); }
+.gr-not--iki .gr-not-nokta { fill: var(--dv-2); }
+.gr-not--uc .gr-not-nokta { fill: var(--dv-3); }
+.gr-not--bir .gr-not-metin { fill: var(--dv-1-ink); }
+.gr-not--iki .gr-not-metin { fill: var(--dv-2-ink); }
+.gr-not--uc .gr-not-metin { fill: var(--dv-3-ink); }
+.gr-imlec line { stroke: var(--text); stroke-width: 1; opacity: .35; }
+.gr-imlec circle { stroke: var(--surface); stroke-width: 2; }
+.gr-imlec .gr-i-bir { fill: var(--dv-1); }
+.gr-imlec .gr-i-iki { fill: var(--dv-2); }
+.gr-imlec .gr-i-uc { fill: var(--dv-3); }
+.gr-ipucu {
+  position: absolute; z-index: 5; pointer-events: none; min-width: 170px;
+  padding: .55rem .7rem; border: 1px solid var(--border); border-radius: 2px;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  box-shadow: 0 8px 24px rgba(16, 24, 20, .12);
+  font: 500 .76rem/1.45 var(--font-mono); color: var(--text); font-variant-numeric: tabular-nums;
+}
+.gr-ipucu[hidden] { display: none; }
+.gr-ipucu b { display: block; font-weight: 700; margin-bottom: .2rem; }
+.gr-ipucu span { display: flex; justify-content: space-between; gap: 1rem; }
+.gr-ipucu i { font-style: normal; display: inline-flex; align-items: center; gap: .35rem; color: var(--text-muted); }
+.gr-ipucu i::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--dv-mute); }
+.gr-ipucu .gr-i-bir::before { background: var(--dv-1); }
+.gr-ipucu .gr-i-iki::before { background: var(--dv-2); }
+.gr-ipucu .gr-i-uc::before { background: var(--dv-3); }
+.gr-ipucu .gr-i-soluk::before { background: var(--dv-axis); }
+
+/* ---- kazanan haritası ---- */
+.vk-kazananlar h2 { margin-bottom: .4rem; }
+.vk-sureler { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.vk-sureler button {
+  font: inherit; font-size: .9rem; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer;
+}
+.vk-sureler button[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+.vk-sureler button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.vk-harita-kap { overflow-x: auto; }
+.vk-harita-svg { display: block; max-width: 100%; height: auto; }
+.vk-h { fill: var(--dv-mute); }
+.vk-h-bir { fill: var(--dv-1); }
+.vk-h-iki { fill: var(--dv-2); }
+.vk-h-uc { fill: var(--dv-3); }
+.vk-h-dort { fill: var(--text-muted); }
+.vk-h-yenik { opacity: .32; }
+.vk-h-ay, .vk-h-yil { font: 500 10.5px var(--font-mono); fill: var(--text-muted); }
+.vk-h-ay { text-anchor: middle; }
+.vk-h-yil { text-anchor: end; }
+.vk-harita-lejant .vk-yenik-lejant i { background: var(--dv-2); opacity: .32; }
+
+/* ---- tablolar ---- */
+.veri-tablo { width: 100%; border-collapse: collapse; font-size: .88rem; font-variant-numeric: tabular-nums; }
+.veri-tablo caption { text-align: left; font-size: .8rem; color: var(--text-muted); padding-bottom: .4rem; }
+.veri-tablo th, .veri-tablo td { padding: 7px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.veri-tablo thead th { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); }
+.veri-tablo tbody th { font-weight: 600; white-space: nowrap; }
+.veri-tablo .sayi { text-align: right; white-space: nowrap; }
+.veri-tablo small { color: var(--text-muted); font-size: .78em; }
+.vk-tablo { min-width: 520px; }
