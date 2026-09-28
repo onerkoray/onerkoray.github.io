@@ -44,7 +44,6 @@ Brüt–Net Maaş Tablosu ile ana maaş aracı karşılıyor. Kural:
   hangi bilgiyi taşıdığını yaz. Yazamıyorsan açma.
 - Maaş şablonuna ortak paragraf ekleme. Ortak metin benzerliği artırır.
 - Tutar sayfalarını dizine geri açma. [CI: Maaş sayfaları birbirine fazla benziyor mu]
-  [CI: Maaş sayfaları birbirine fazla benziyor mu]
 
 **Sayfa tarihini taze göstermek.** Google, arama motoru için yazılmış
 içeriğin uyarı işaretleri arasında şunu sayıyor: "İçerik esaslı değişmediği
