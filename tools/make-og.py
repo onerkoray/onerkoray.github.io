@@ -355,6 +355,10 @@ SPEC = {
    "Konut ve iş yeri kirasında 12 aylık TÜFE ortalamasına göre yasal azami oran.",
    ["TÜFE tavanı", "Konut & iş yeri"], "finans"),
 
+ "altin-mi-dolar-mi-mevduat-mi": ("altin-mi-dolar-mi-mevduat-mi", "Altın mı, Dolar mı,", "Mevduat mı?",
+   "2005'ten bu yana aynı tutar: gram altın, dolar, euro ve stopaj sonrası TL mevduat, enflasyondan sonra.",
+   ["TCMB · TÜİK", "Dünya Bankası"], "canli"),
+
  "grafikler": ("grafikler", "Türkiye Ekonomisi,", "Grafiklerle",
    "Fiyatlar, enflasyon, faiz, kur ve asgari ücret; 2005'ten bugüne resmî seriden, G20 karşılaştırmasıyla.",
    ["TCMB · TÜİK", "Dünya Bankası"], "canli"),

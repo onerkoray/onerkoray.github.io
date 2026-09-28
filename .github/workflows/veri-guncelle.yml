@@ -57,6 +57,7 @@ jobs:
           python tools/grafik-verisi.py
           node tools/grafikler-sayfa.js --sitemap
           node tools/kira-sayfa.js --sitemap
+          node tools/varlik-sayfa.js --sitemap
 
       # update_data.py doviz sayfasini SABLONDAN bastan yaziyor; sablonda
       # og:image:alt, twitter:description ve kunye blogu yok. Bunlari

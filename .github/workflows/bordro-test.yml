@@ -884,6 +884,17 @@ jobs:
         # beklenen açıklamadan 10 gün sonra hâlâ eskiyse de kırmızı.
         run: node tools/kira-sayfa.js --check
 
+      - name: Varlık karşılaştırma motoru
+        # Altın mı, dolar mı, mevduat mı: gram altın grafikler sayfasıyla ay ay
+        # aynı, mevduat bağımsız döngüyle, stopaj GİB rehberindeki her sınır
+        # günüyle, kazanan haritası tek tek hesapla sınanır.
+        run: node finans/varlik-test.js
+
+      - name: Altın mı dolar mı mevduat mı sayfası seriden üretilmiş mi
+        # Manşet, açıklama, kartlar, grafik, harita ve S.S.S. seriden yazılır.
+        # Ortak son veri ayı iki aydan fazla geride kalırsa da kırmızı.
+        run: node altin-mi-dolar-mi-mevduat-mi/test.js && node tools/varlik-sayfa.js --check
+
       - name: Site başlığı tek standartta
         # Ana sayfadaki hareketli marka adı makalelerde düz ve farklı boyutta
         # açılıyordu; site sahibi gördü, CI görmedi. Başlık beş ayrı biçimde
