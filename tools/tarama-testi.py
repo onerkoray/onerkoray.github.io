@@ -197,6 +197,12 @@ dogru("KONTROL: yeni eklenen sayfa ozlu sayilir",
               {"yeni/index.html": ("", SONRA)}))
 
 
+# --- 5b) Robots etiketi okuyucuya gorunmez --------------------------------
+dogru("robots etiketini noindex yapmak ozlu sayilmaz",
+      not degisti({"x/alt/index.html": [
+          ("-", '  <meta name="robots" content="index, follow, max-snippet:-1">'),
+          ("+", '  <meta name="robots" content="noindex, follow">')]}, "x"))
+
 # --- 6) Site ici gezinme icerik guncellemesi degil -------------------------
 # 27 Eylul 2026: yeni araclar eklenirken eski araclara birer "ilgili"
 # baglanti konuyordu ve 20 aracin karti 11-14 Eylul'den 25-27 Eylul'e
