@@ -3,7 +3,8 @@
  *
  * Bağımlılıksız. Hem tarayıcıda (window.Bordro) hem Node'da (require) çalışır.
  * Kümülatif gelir vergisi tarifesi, SGK taban/tavan, asgari ücret istisnası,
- * AGİ rejimi (2020-2021), damga vergisi, yıl içi asgari ücret değişiklikleri
+ * AGİ rejimi (2020-2021), damga vergisi, yıl içi asgari ücret değişiklikleri,
+ * kıst ay (eksik gün), engellilik indirimi, BES otomatik katılım kesintisi
  * ve netten brüte iteratif çözüm.
  *
  * Lisans: MIT — Koray Öner, https://korayoner.dev/bordro/
@@ -94,12 +95,45 @@
     return dilimler[dilimler.length - 1][1];
   }
 
+  /* ---------- seçenek yardımcıları ---------- */
+
+  /* secenekler.gun: ayın prim gün sayısı (0-30). Sayı ya da 12 elemanlı dizi;
+     verilmezse 30. Kıst ay: ay içinde işe başlama/ayrılma ya da kısmi süreli
+     çalışma. Brüt, o ay GERÇEKTEN ödenen tutardır; motor onu gün oranıyla
+     bölmez, yalnızca SGK alt ve üst sınırını güne indirir. */
+  function gunAy(secenekler, ay) {
+    var g = secenekler && secenekler.gun;
+    if (g == null) return 30;
+    if (Array.isArray(g)) g = g[ay - 1];
+    g = Number(g);
+    if (!isFinite(g) || g < 0 || g > 30 || Math.round(g) !== g) {
+      throw new Error("Bordro: gün sayısı 0 ile 30 arasında tam sayı olmalı.");
+    }
+    return g;
+  }
+
+  /* secenekler.engellilik: 1, 2 ya da 3 (derece). GVK m.31. */
+  function engellilikTutari(P, secenekler) {
+    var d = secenekler && secenekler.engellilik;
+    if (!d) return 0;
+    if ([1, 2, 3].indexOf(Number(d)) < 0) throw new Error("Bordro: engellilik derecesi 1, 2 ya da 3 olmalı.");
+    if (!P.engellilik) throw new Error("Bordro: " + P.yil + " yılı için engellilik indirimi tutarı tanımlı değil.");
+    return P.engellilik[Number(d) - 1];
+  }
+
   /* ---------- tek ay ---------- */
 
   /* birikim: { matrah, asgariMatrah } — yerinde güncellenir. */
   function hesaplaAy(brut, ay, P, birikim, secenekler) {
     var d = donem(P, ay);
     var o = oranlarAy(P, ay);
+    var gun = gunAy(secenekler, ay);
+    /* Kıst ay 2022 öncesinde modellenmez: AGİ'nin eksik günde nasıl
+       uygulandığı bu motorda kaynakla doğrulanmadı. */
+    if (gun < 30 && P.istisnaRejimi !== "asgari-ucret") {
+      throw new Error("Bordro: kıst ay (30 günden az) yalnızca 2022 ve sonrası için hesaplanır.");
+    }
+    if (gun === 0) brut = 0; // o ay ücret ödenmedi (işe başlamadan önce / ayrıldıktan sonra)
 
     /* secenekler.primsiz: ücret geliri var ama 4/a primi yok.
        Tipik örnek, limited şirket ortağına ödenen huzur hakkı/ücret — ortak
@@ -110,12 +144,19 @@
        oranı yıla ve aya göre tesvikOrani() verir. */
     var isvSgkOran = o.sgkIsveren - tesvikOrani(o, secenekler);
 
-    // Prime esas kazanç: alt sınır asgari ücret, üst sınır SGK tavanı.
-    var primEsas = primsiz ? 0 : Math.min(Math.max(brut, d.asgariBrut), d.sgkTavan);
+    /* Prime esas kazanç: alt sınır asgari ücret, üst sınır SGK tavanı; kıst
+       ayda ikisi de prim gün sayısına indirilir (günlük tutar × gün). Gün 0
+       ise o ay bordro yoktur. */
+    var primEsas = (primsiz || gun === 0) ? 0
+      : Math.min(Math.max(brut, d.asgariBrut * gun / 30), d.sgkTavan * gun / 30);
     var sgk = primEsas * o.sgkIsci;
     var issizlik = primEsas * o.issizlikIsci;
 
-    var matrah = brut - sgk - issizlik;
+    /* Engellilik indirimi (GVK m.31) tarifeden önce matrahtan düşülür (318
+       Seri No'lu GVGT m.6/1). Matrahtan büyük olamaz; artan kısım devretmez. */
+    var matrahOnce = brut - sgk - issizlik;
+    var engellilik = Math.min(Math.max(0, matrahOnce), engellilikTutari(P, secenekler));
+    var matrah = matrahOnce - engellilik;
     var kumulOnce = birikim.matrah;
     var vergiTarife = tarifeVergisi(kumulOnce + matrah, P.dilimler) - tarifeVergisi(kumulOnce, P.dilimler);
 
@@ -134,6 +175,12 @@
     if (istisnasiz) {
       /* asgariMatrah 0 kalir: birikim kirlenmesin. */
     } else if (P.istisnaRejimi === "asgari-ucret") {
+      /* Kıst ayda da istisna TAM uygulanır: "yeni işe başlayan ve işten
+         ayrılan hizmet erbabına yapılan kıst ücret ödemelerine istisna tam
+         olarak uygulanacaktır" (318 Seri No'lu GVGT m.6/2). Asgari ücretlinin
+         birikimi işe başlamadan önceki aylarda da ilerler: istisna, asgari
+         ücretin O AYDAKİ vergisidir. Menfaat hesaplanan vergiyi aşamaz
+         (aşağıda max(0, ...)). */
       asgariMatrah = d.asgariBrut * (1 - o.sgkIsci - o.issizlikIsci);
       istisna = tarifeVergisi(birikim.asgariMatrah + asgariMatrah, P.dilimler)
               - tarifeVergisi(birikim.asgariMatrah, P.dilimler);
@@ -153,7 +200,7 @@
 
     // 2021 uygulaması: asgari ücretlinin neti yıl içinde taban tutarın altına düşmez.
     var ilaveAgi = 0;
-    if (P.netAsgariTaban && brut <= d.asgariBrut + 0.005 && net < P.netAsgariTaban) {
+    if (P.netAsgariTaban && gun === 30 && brut <= d.asgariBrut + 0.005 && net < P.netAsgariTaban) {
       ilaveAgi = P.netAsgariTaban - net;
       gelirVergisi = Math.max(0, gelirVergisi - ilaveAgi);
       net = brut - sgk - issizlik - gelirVergisi - damga;
@@ -162,14 +209,23 @@
     birikim.matrah += matrah;
     birikim.asgariMatrah += asgariMatrah;
 
+    /* BES otomatik katılım (4632 s.K. ek m.2): prime esas kazancın oranı
+       (yasal varsayılan %3) netten kesilip emeklilik şirketine aktarılır.
+       Vergi matrahını ve neti DEĞİŞTİRMEZ; ele geçen tutarı azaltır. */
+    var besOran = (secenekler && secenekler.bes) ? Number(secenekler.bes) : 0;
+    if (!isFinite(besOran) || besOran < 0 || besOran > 1) throw new Error("Bordro: BES oranı 0 ile 1 arasında olmalı.");
+    var bes = primEsas * besOran;
+
     return {
       ay: ay,
       ayAdi: AY_ADLARI[ay - 1],
+      gun: gun,
       brut: brut,
       primEsas: primEsas,
       sgk: sgk,
       issizlik: issizlik,
       matrah: matrah,
+      engellilik: engellilik,
       kumulatifMatrah: birikim.matrah,
       dilim: dilimOrani(birikim.matrah, P.dilimler),
       vergiTarife: vergiTarife,
@@ -178,6 +234,8 @@
       gelirVergisi: gelirVergisi,
       damga: damga,
       net: net,
+      bes: bes,
+      eleGecen: net - bes,
       isverenSgk: primEsas * isvSgkOran,
       isverenIssizlik: primEsas * o.issizlikIsveren,
       isverenMaliyeti: brut + primEsas * (isvSgkOran + o.issizlikIsveren),
@@ -207,11 +265,13 @@
   }
 
   function ozet(aylar) {
-    var t = { brut: 0, sgk: 0, issizlik: 0, gelirVergisi: 0, damga: 0, istisna: 0, net: 0, isverenMaliyeti: 0 };
+    var t = { brut: 0, sgk: 0, issizlik: 0, gelirVergisi: 0, damga: 0, istisna: 0, net: 0, isverenMaliyeti: 0,
+      engellilik: 0, bes: 0, eleGecen: 0 };
     aylar.forEach(function (a) {
       t.brut += a.brut; t.sgk += a.sgk; t.issizlik += a.issizlik;
       t.gelirVergisi += a.gelirVergisi; t.damga += a.damga; t.istisna += a.istisna;
       t.net += a.net; t.isverenMaliyeti += a.isverenMaliyeti;
+      t.engellilik += a.engellilik; t.bes += a.bes; t.eleGecen += a.eleGecen;
     });
     t.ortalamaNet = t.net / 12;
     t.ilkAyNet = aylar[0].net;
@@ -229,6 +289,8 @@
      yan yana koymak neti bazı aylarda hedefin üstüne çıkarıyordu. Burada her
      ay, o aya kadar GERÇEKLEŞEN birikimle çözülür ve çözüldükten sonra birikim
      o brütle ilerletilir. */
+  /* hedefNet: sayı ya da 12 elemanlı dizi (kıst ayda o ayın hedefi). Gün
+     sayısı 0 olan ayda brüt 0'dır; birikim yine ilerletilir. */
   function nettenBruteYil(hedefNet, yil, secenekler) {
     var P = parametre(yil);
     var birikim = { matrah: 0, asgariMatrah: 0 };
@@ -241,11 +303,17 @@
     }
 
     for (var ay = 1; ay <= 12; ay++) {
-      var alt = hedefNet, ust = hedefNet * 2.2 + 1000, guvenlik = 0;
-      while (netAt(ust, ay) < hedefNet && guvenlik++ < 60) ust *= 1.5;
+      var hedef = Array.isArray(hedefNet) ? hedefNet[ay - 1] : hedefNet;
+      if (gunAy(secenekler, ay) === 0 || !(hedef > 0)) {
+        brutler.push(0);
+        hesaplaAy(0, ay, P, birikim, secenekler);
+        continue;
+      }
+      var alt = hedef, ust = hedef * 2.2 + 1000, guvenlik = 0;
+      while (netAt(ust, ay) < hedef && guvenlik++ < 60) ust *= 1.5;
       for (var i = 0; i < 60; i++) {
         var orta = (alt + ust) / 2;
-        if (netAt(orta, ay) < hedefNet) alt = orta; else ust = orta;
+        if (netAt(orta, ay) < hedef) alt = orta; else ust = orta;
       }
       var g = Math.round(ust * 100) / 100;
       brutler.push(g);
@@ -269,7 +337,7 @@
   }
 
   return {
-    surum: "1.1.0",
+    surum: "1.2.0",
     AY_ADLARI: AY_ADLARI,
     parametreler: PARAMETRELER,
     yillar: yillar,
@@ -278,6 +346,8 @@
     donem: donem,
     oranlarAy: oranlarAy,
     tesvikOrani: tesvikOrani,
+    gunAy: gunAy,
+    engellilikTutari: engellilikTutari,
     tarifeVergisi: tarifeVergisi,
     dilimOrani: dilimOrani,
     hesaplaAy: hesaplaAy,
