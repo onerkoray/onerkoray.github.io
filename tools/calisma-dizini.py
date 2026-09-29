@@ -120,8 +120,10 @@ def yayinlar():
 
 
 def cekirdek():
-    p = json.load(io.open(os.path.join(KOK, "_cekirdek", "package.json"), encoding="utf-8"))
-    return p["name"], p["version"]
+    # Paket adı depoda izlenen üreteçten okunur. _cekirdek/ .gitignore'da,
+    # CI'da yok. Sürüm bilerek yazılmıyor: yerel sürüm npm'dekinden ileride
+    # olabilir (yayımlamak ayrı adım), sayfa yayında olmayanı söylememeli.
+    return re.search(r'"name":\s*"([^"]+)"', oku(os.path.join(KOK, "tools", "cekirdek.py"))).group(1)
 
 
 # ---------------------------------------------------------------- büyüme çizgisi
@@ -180,7 +182,7 @@ def buyume_svg(ar, yz):
 # ---------------------------------------------------------------- sayfa gövdesi
 def govde():
     ar, yz, yy = araclar(), yazilar(), yayinlar()
-    ad_c, surum = cekirdek()
+    ad_c = cekirdek()
     n_arac, n_yazi, n_ci = H.arac_sayisi(), H.makale_sayisi(), H.ci_komut_sayisi()
     n_yayin = len(yy)
     son_ar = sorted([a for a in ar if a["tarih"]], key=lambda a: (a["tarih"], a["ad"]), reverse=True)[:6]
@@ -277,7 +279,7 @@ def govde():
       <div class="wrap kd-iki">
         <div>
           <h2 id="ak-title">Açık kaynak</h2>
-          <p>Bordro, tazminat, emeklilik, kira geliri, vergi ve kredi hesaplarının çekirdeği <strong>%s</strong> adıyla npm'de yayında (sürüm %s). Bağımlılığı yok; tarayıcıda ve Node.js'te aynı kodla çalışıyor ve sitedeki araçlar da onu kullanıyor. Her değişiklikte %d otomatik kontrol koşuyor.</p>
+          <p>Bordro, tazminat, emeklilik, kira geliri, vergi ve kredi hesaplarının çekirdeği <strong>%s</strong> adıyla npm'de yayında. Bağımlılığı yok; tarayıcıda ve Node.js'te aynı kodla çalışıyor ve sitedeki araçlar da onu kullanıyor. Her değişiklikte %d otomatik kontrol koşuyor.</p>
           <p><a href="https://www.npmjs.com/package/%s" rel="noopener">npm</a> · <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></p>
         </div>
         <div>
@@ -285,7 +287,7 @@ def govde():
           <p>Kur, enflasyon, faiz, altın ve mevduat serileri her gece resmî kaynaklardan çekilip birbirine karşı doğrulanıyor: TCMB, TÜİK, BIS ve Dünya Bankası. Tutmayan veri yayına girmiyor. Bu serilerden üretilen sayfalar: <a href="../grafikler/">ekonomi grafikleri</a>, <a href="../kira-artisi-hesaplama/">kira artışı</a>, <a href="../altin-mi-dolar-mi-mevduat-mi/">altın mı, dolar mı, mevduat mı</a>, <a href="../doviz-kurlari/">döviz kurları</a>.</p>
         </div>
       </div>
-    </section>''' % (ad_c, surum, n_ci, ad_c))
+    </section>''' % (ad_c, n_ci, ad_c))
 
     p.append('''
     <section class="content kd-bolum" id="kanallar" aria-labelledby="kanal-title">
