@@ -11,10 +11,6 @@
 }
 #varlik-form input[type="text"], #varlik-form select {
   font: inherit; font-size: var(--type-form-control);
-  padding: 8px 10px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface);
   color: inherit;
 }
 #varlik-form input[type="text"] { max-width: 12rem; }
@@ -120,12 +116,7 @@
 /* ---- kazanan haritası ---- */
 .vk-kazananlar h2 { margin-bottom: .4rem; }
 .vk-sureler { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
-.vk-sureler button {
-  font: inherit; font-size: .9rem; padding: 6px 14px; border-radius: 999px;
-  border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer;
-}
-.vk-sureler button[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
-.vk-sureler button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+/* Süre düğmeleri sitenin ortak seçicisi: .secim (style.css). */
 .vk-harita-kap { overflow-x: auto; }
 .vk-harita-svg { display: block; max-width: 100%; height: auto; }
 .vk-h { fill: var(--dv-mute); }

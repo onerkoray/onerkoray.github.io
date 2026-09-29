@@ -22,7 +22,7 @@
   <meta property="og:image" content="https://korayoner.dev/images/kart-borcu-rotasi.png">
   <meta property="og:image:alt" content="Üç kredi kartı ödeme yolunun azalan borç eğrisi ve faiz maliyeti">
   <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Kart Borcu Rotası"><meta name="twitter:description" content="Asgari ödeme, bütçe ve hedef bitiş tarihini aynı borç takviminde karşılaştırın."><meta name="twitter:image" content="https://korayoner.dev/images/kart-borcu-rotasi.png">
-  <link rel="stylesheet" href="../style.css?v=2ce37010"><link rel="stylesheet" href="style.css?v=90d3072a">
+  <link rel="stylesheet" href="../style.css?v=b94f4967"><link rel="stylesheet" href="style.css?v=90d3072a">
   <script src="../onay.js?v=0e361dc9" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kart Borcu Rotası — Kredi Kartı Borcu Hesaplama","url":"https://korayoner.dev/kredi-karti-borcu-hesaplama/","image":"https://korayoner.dev/images/kart-borcu-rotasi.png","applicationCategory":"FinanceApplication","operatingSystem":"Web","inLanguage":"tr","description":"Kredi kartı dönem borcunda asgari ödeme, sabit aylık bütçe ve hedef bitiş süresini ay ay karşılaştırır.","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"author":{"@type":"Person","@id":"https://korayoner.dev/#oner-koray","name":"Koray Öner","url":"https://korayoner.dev/"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://korayoner.dev/"},{"@type":"ListItem","position":2,"name":"Kart Borcu Rotası","item":"https://korayoner.dev/kredi-karti-borcu-hesaplama/"}]}</script>
@@ -45,7 +45,7 @@
     <div class="wrap rota-layout" id="hesapla">
       <form id="rota-form" class="rota-panel" novalidate>
         <div class="rota-panel-head"><p class="eyebrow">01 · Ekstreniz</p><h2>Borcunuzu ve ödeme gücünüzü girin</h2><p>Örnek tutarlar temsili. Kendi ekstrenizdeki borç, limit ve faiz oranını kullanın.</p></div>
-        <div class="rota-presets" role="group" aria-label="Örnek durumlar"><button type="button" data-ornek="standart">Örnek plan</button><button type="button" data-ornek="dar">Dar bütçe</button><button type="button" data-ornek="harcama">Harcama sürüyor</button></div>
+        <div class="rota-presets" role="group" aria-label="Örnek durumlar"><button type="button" class="secim" data-ornek="standart">Örnek plan</button><button type="button" class="secim" data-ornek="dar">Dar bütçe</button><button type="button" class="secim" data-ornek="harcama">Harcama sürüyor</button></div>
         <div class="rota-fields">
           <div><label for="borc">Dönem borcu <span>TL</span></label><input id="borc" name="borc" type="number" min="1" max="100000000" step="0.01" value="40000" required></div>
           <div><label for="limit">Kart limiti <span>TL</span></label><input id="limit" name="limit" type="number" min="1" max="100000000" step="0.01" value="50000" required><small>Asgari ödeme oranı borca değil kart limitine bağlıdır.</small></div>
@@ -58,7 +58,7 @@
           <div class="rota-full"><label for="oranTipi">Faiz varsayımı</label><select id="oranTipi" name="oranTipi"><option value="tcmb">TCMB azami oran bantları</option><option value="banka">Bankamın aylık akdi faizi</option></select><small>TCMB oranları yasal üst sınırdır; bankanızın uyguladığı oran daha düşük olabilir. Borç alt banda indiğinde seçtiğiniz oran yasal azami düzeye indirilir.</small></div>
           <div id="bankaOranAlani" hidden><label for="bankaOran">Bankanızın aylık akdi faizi <span>%</span></label><input id="bankaOran" name="bankaOran" type="number" min="0" max="20" step="0.01" value="3.75"></div>
         </div></details>
-        <button class="rota-primary" type="submit">Borç rotasını hesapla <span aria-hidden="true">→</span></button>
+        <button class="rota-primary btn btn-primary" type="submit">Borç rotasını hesapla <span aria-hidden="true">→</span></button>
         <p id="rota-error" class="rota-error" role="alert" hidden></p>
         <p class="rota-privacy">Girdiler tarayıcınızda hesaplanır; sunucuya gönderilmez. Bu bir banka ekstresi veya yapılandırma teklifi değildir.</p>
       </form>
@@ -70,7 +70,7 @@
         <div class="rota-chart-wrap"><div class="rota-chart-head"><h3>Kalan dönem borcu</h3><p>Ay sonu · TL</p></div><svg id="rota-chart" viewBox="0 0 700 290" role="img" aria-label="Asgari ödeme ve bütçe planında ay sonu kart borcu"></svg><div class="rota-legend"><span><i class="rota-dot min"></i> Yalnızca asgari</span><span><i class="rota-dot plan"></i> Aylık bütçem</span></div><p id="rota-chart-note" class="rota-chart-note"></p></div>
         <div class="rota-table-scroll" role="region" aria-label="Ödeme yolları karşılaştırması" tabindex="0"><table><thead><tr><th scope="col">Yol</th><th scope="col">Bitiş</th><th scope="col">Faiz + KKDF + BSMV</th><th scope="col">Toplam ödeme</th></tr></thead><tbody id="rota-karsilastirma"></tbody></table></div>
         <details class="rota-details"><summary>Ay ay hesap dökümünü aç</summary><div class="rota-table-scroll" role="region" aria-label="Aylık borç takvimi" tabindex="0"><table><thead><tr><th scope="col">Ay</th><th scope="col">Açılış</th><th scope="col">Asgari</th><th scope="col">Ödeme</th><th scope="col">Faiz + vergiler</th><th scope="col">Yeni harcama</th><th scope="col">Kalan</th></tr></thead><tbody id="rota-aylik"></tbody></table></div></details>
-        <button type="button" id="rota-csv" class="rota-secondary">Aylık dökümü CSV indir</button>
+        <button type="button" id="rota-csv" class="rota-secondary btn">Aylık dökümü CSV indir</button>
       </section>
     </div>
     <section class="content" id="yontem"><div class="wrap prose">

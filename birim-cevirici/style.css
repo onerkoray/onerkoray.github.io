@@ -4,10 +4,6 @@
 .panel-q { margin: 0; }
 #cevirici-form input[type="text"], #cevirici-form select {
   font: inherit; font-size: var(--type-form-control);
-  padding: 9px 10px;
-  border: 1px solid var(--border, rgba(127,127,127,.3));
-  border-radius: 8px;
-  background: var(--surface, transparent);
   color: inherit;
   width: 100%;
 }

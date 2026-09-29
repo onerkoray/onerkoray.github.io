@@ -8,10 +8,6 @@
 .panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
 #kira-form input[type="text"], #kira-form select {
   font: inherit; font-size: var(--type-form-control);
-  padding: 8px 10px;
-  border: 1px solid var(--border, rgba(127,127,127,.3));
-  border-radius: 8px;
-  background: var(--surface, transparent);
   color: inherit;
 }
 #kira-form input[type="text"] { max-width: 12rem; }
@@ -49,10 +45,6 @@
 #gecmis-form input[type="text"], #gecmis-form select,
 #kira-form input[type="date"], #gecmis-form input[type="date"] {
   font: inherit; font-size: var(--type-form-control);
-  padding: 8px 10px;
-  border: 1px solid var(--border, rgba(127,127,127,.3));
-  border-radius: 8px;
-  background: var(--surface, transparent);
   color: inherit;
 }
 #gecmis-form input[type="text"] { max-width: 12rem; }

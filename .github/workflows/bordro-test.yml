@@ -884,7 +884,7 @@ jobs:
         # beklenen açıklamadan 10 gün sonra hâlâ eskiyse de kırmızı.
         run: node tools/kira-sayfa.js --check
 
-      - name: Araç sayfalarında yazı tek ölçekte
+      - name: Araç sayfalarında yazı ve bileşenler tek ölçekte
         # Etiket, giriş kutusu ve tablo yazısı tarayıcıda ÖLÇÜLÜR: sapmaların
         # çoğu CSS'te yazılı değildi, "font: inherit" kutuyu kaptan alıyordu.
         # 2026-09-29'da 66 sayfada etiket 7, kutu 5, hücre 9 boyuttaydı.

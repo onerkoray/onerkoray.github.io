@@ -30,7 +30,7 @@
 .be-legend span:first-child { color: var(--dv-1); }
 .be-legend span:last-child { color: var(--dv-2); }
 #be-chart { display: block; width: 100%; height: auto; }
-#be-chart text { font: 12px sans-serif; fill: var(--text-muted); }
+#be-chart text { font: 11px var(--font-mono); fill: var(--text-muted); }
 #be-chart .axis { stroke: var(--dv-axis); stroke-width: 1; }
 #be-chart .revenue { fill: none; stroke: var(--dv-1); stroke-width: 3; }
 #be-chart .cost { fill: none; stroke: var(--dv-2); stroke-width: 3; stroke-dasharray: 7 4; }

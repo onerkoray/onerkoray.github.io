@@ -285,7 +285,7 @@
     var kap = $("e-senaryolar");
     kap.innerHTML = stres.yollar.map(function (y) {
       return '<button type="button" data-ad="' + y.ad + '"' +
-        (y.hayattaKaldi ? "" : ' class="batik"') +
+        ' class="secim' + (y.hayattaKaldi ? "" : " batik") + '"' +
         ' aria-pressed="' + (y.ad === seciliSenaryo) + '">' + y.etiket + "</button>";
     }).join("");
   }

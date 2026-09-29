@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 /*!
- * Araç sayfalarında form ve tablo yazısı tek ölçekte mi? Tarayıcıda ölçer.
+ * Araç sayfalarında yazı ve bileşenler tek ölçekte mi? Tarayıcıda ölçer.
+ *
+ * 2026-09-29 (ikinci tur): giriş kutusu 26, buton 26, tablo 27 farklı
+ * görünümdeydi. Artık kutu --control-h ve --radius-control, ana/ikincil
+ * eylem sitenin .btn'i (yüksekliği örnek bir .btn'den ölçülür), seçici
+ * düğme .secim/.tab/.sekme (--secim-h, hap köşe), veri tablosu
+ * --tablo-pad-y ve tabular rakam, grafik yazısı --font-mono ve ≥10,5 px.
  *
  * NEDEN TARAYICIDA
  * ----------------
@@ -84,6 +90,48 @@ var OLC = "(" + function () {
     sina(e, grup ? [H.baslik] : [H.tablo], grup ? "grup başlığı" : "hücre");
   });
   main.querySelectorAll("thead th").forEach(function (e) { sina(e, [H.baslik], "başlık"); });
+
+  /* ---- Bileşenler: kutu, buton, seçici, tablo, grafik yazısı ---- */
+  var G = { kutu: sonda("--control-h"), secim: sonda("--secim-h"), padY: sonda("--tablo-pad-y"),
+    kose: parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--radius-control")) };
+  function geo(e, ad2, kosul, detay) { say++; if (!kosul) sapma.push(ad2 + " " + ad(e) + " " + detay); }
+  // Örnek buton: sayfanın kendi .btn'i nasıl çiziliyorsa standart odur.
+  var ornek = document.createElement("button");
+  ornek.className = "btn btn-primary"; ornek.textContent = "Örnek";
+  main.appendChild(ornek);
+  var btnH = ornek.getBoundingClientRect().height;
+  ornek.remove();
+  main.querySelectorAll("input, select").forEach(function (e) {
+    if (!gorunur(e) || e.readOnly || /^(checkbox|radio|range|hidden|color|submit|button|reset|file|image)$/.test(e.type)) return;
+    var b = e.getBoundingClientRect(), c = getComputedStyle(e);
+    geo(e, "kutu yüksekliği", Math.abs(b.height - G.kutu) < 0.6, b.height + "px (beklenen " + G.kutu + ")");
+    geo(e, "kutu köşesi", Math.abs(parseFloat(c.borderTopLeftRadius) - G.kose) < 0.6, c.borderTopLeftRadius);
+  });
+  main.querySelectorAll(".btn").forEach(function (e) {
+    if (!gorunur(e) || e.classList.contains("btn-sm") || e.closest(".method, .related")) return;
+    var h = e.getBoundingClientRect().height;
+    if (e.textContent.trim().length < 2) return; // simge düğmesi (⇄)
+    geo(e, "buton", Math.abs(h - btnH) < 1.1, h + "px (beklenen " + btnH + ")");
+  });
+  main.querySelectorAll(".secim, .tab, .sekme").forEach(function (e) {
+    if (!gorunur(e)) return;
+    var b = e.getBoundingClientRect(), c = getComputedStyle(e);
+    geo(e, "seçici", Math.abs(b.height - G.secim) < 1.1 && parseFloat(c.borderTopLeftRadius) >= 20, b.height + "px, köşe " + c.borderTopLeftRadius);
+  });
+  main.querySelectorAll("table").forEach(function (t) {
+    if (!gorunur(t) || t.querySelector("input, select")) return;
+    var td = t.querySelector("tbody td");
+    if (!td) return;
+    var c = getComputedStyle(td);
+    geo(td, "tablo dolgusu", Math.abs(parseFloat(c.paddingTop) - G.padY) < 0.6, c.paddingTop);
+    geo(td, "tablo rakamı", /tabular-nums/.test(c.fontVariantNumeric), c.fontVariantNumeric);
+  });
+  var mono = getComputedStyle(document.documentElement).getPropertyValue("--font-mono").split(",")[0].trim().replace(/["']/g, "");
+  main.querySelectorAll("svg text").forEach(function (e) {
+    if (!gorunur(e.closest("svg")) || !e.textContent.trim()) return;
+    var c = getComputedStyle(e), aile = c.fontFamily.split(",")[0].trim().replace(/["']/g, "");
+    geo(e, "grafik yazısı", aile === mono && parseFloat(c.fontSize) >= 10.5, aile + " " + c.fontSize);
+  });
   return JSON.stringify({ say: say, sapma: sapma, H: H });
 } + ")()";
 
@@ -136,7 +184,7 @@ async function main() {
   }
   ws.close(); ch.kill();
   try { fs.rmSync(profil, { recursive: true, force: true }); } catch (e) { /* Windows kilidi */ }
-  if (hata) { console.error("\n" + hata + " araç sayfasında form ya da tablo yazısı ortak ölçeğin dışında."); return 1; }
+  if (hata) { console.error("\n" + hata + " araç sayfasında yazı ya da bileşen ortak ölçeğin dışında."); return 1; }
   console.log("Tipografi: " + liste.length + " araç sayfasında " + olculen + " öğe ortak ölçekte.");
   return 0;
 }

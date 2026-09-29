@@ -8,10 +8,6 @@
 .panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
 #mevduat-form input[type="text"], #mevduat-form select {
   font: inherit; font-size: var(--type-form-control);
-  padding: 8px 10px;
-  border: 1px solid var(--border, rgba(127,127,127,.3));
-  border-radius: 8px;
-  background: var(--surface, transparent);
   color: inherit;
 }
 #mevduat-form input[type="text"] { max-width: 12rem; }
