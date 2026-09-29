@@ -213,6 +213,16 @@ dogru("KONTROL: stil ile birlikte sayfa metni degisirse ozlu sayilir",
       degisti({"x/style.css": [("+", "  color: red;")],
                "x/index.html": [("-", "<p>Oran %20.</p>"), ("+", "<p>Oran %18.</p>")]}, "x"))
 
+# --- 5d) Sinif niteligi eklemek sunumdur -----------------------------------
+dogru("yalnizca sinif niteligi eklemek ozlu sayilmaz",
+      not degisti({"x/index.html": [
+          ("-", '<button type="submit">Hesapla</button>'),
+          ("+", '<button type="submit" class="btn btn-primary">Hesapla</button>')]}, "x/index.html"))
+dogru("KONTROL: sinifla birlikte dugme metni degisirse ozlu sayilir",
+      degisti({"x/index.html": [
+          ("-", '<button type="submit">Hesapla</button>'),
+          ("+", '<button type="submit" class="btn">Yeniden hesapla</button>')]}, "x/index.html"))
+
 # --- 6) Site ici gezinme icerik guncellemesi degil -------------------------
 # 27 Eylul 2026: yeni araclar eklenirken eski araclara birer "ilgili"
 # baglanti konuyordu ve 20 aracin karti 11-14 Eylul'den 25-27 Eylul'e
