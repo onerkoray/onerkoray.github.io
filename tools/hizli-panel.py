@@ -39,7 +39,9 @@ ADET = 3            # panelde kaç "son eklenen" gösterilecek
 # ürünler, "yeni araç eklendi" anlamına gelmiyorlar.
 HARIC_KOK = {"yayin-ilkeleri", "decorpalette", "keymint", "dither-studio", "images", "tools",
              "node_modules", "_cekirdek", "bordro", "makaleler", "hakkimda",
-             "iletisim", "gizlilik", "kullanim-kosullari"}
+             "iletisim", "gizlilik", "kullanim-kosullari",
+             # Kişi sayfası (çalışma dizini): hakkımda gibi, yeni araç değil.
+             "koray-oner"}
 
 # İsteğe bağlı editoryal kısa başlıklar. Yeni sayfalar bu listeye kayıt
 # gerektirmez; HTML başlıkları doğrudan kullanılır ve kartta satıra sarılır.
@@ -166,6 +168,8 @@ def tur(slug):
         return "Yayınlar"
     if slug == "grafikler":
         return "Grafikler"
+    if slug == "diyagramlar":
+        return "Diyagramlar"
     if slug.endswith("/metodoloji"):
         return "Metodoloji"
     if slug.startswith("makaleler/"):
