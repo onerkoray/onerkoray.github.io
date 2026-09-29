@@ -1,0 +1,89 @@
+/* Koray Öner — çalışma dizini. Veri çizgileri --dv-* tokenlarından:
+   araçlar --dv-1, yazılar --dv-2 (tools/veri-renkleri.js). */
+
+.kd-hero h1 { font-size: var(--type-page-title); letter-spacing: var(--tracking-title); margin-block: .4rem .75rem; }
+.kd-hero .lede { max-width: 62ch; }
+.kd-yonlendir { color: var(--text-muted); font-size: var(--step--1); margin: .5rem 0 0; }
+
+.kd-sayilar {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0; margin: 1.75rem 0 0; max-width: 46rem;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.kd-sayilar div { padding: .9rem 1rem .9rem 0; }
+.kd-sayilar div + div { padding-left: 1rem; border-left: 1px solid var(--border); }
+.kd-sayilar dt { font: 600 var(--type-label)/1.3 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+.kd-sayilar dd { margin: .3rem 0 0; font: 700 var(--step-3)/1 var(--font-display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) {
+  .kd-sayilar { grid-template-columns: 1fr 1fr; }
+  .kd-sayilar div:nth-child(3) { padding-left: 0; border-left: 0; border-top: 1px solid var(--border); }
+  .kd-sayilar div:nth-child(4) { border-top: 1px solid var(--border); }
+}
+
+.kd-bolum h2 { margin-bottom: .5rem; }
+.kd-aciklama { color: var(--text-muted); max-width: 70ch; margin-top: 0; }
+
+/* büyüme çizgisi */
+.kd-grafik { margin: 1rem 0 0; }
+.kd-buyume { display: block; width: 100%; height: auto; }
+.kd-izgara { stroke: var(--dv-grid); stroke-width: 1; }
+.kd-eksen { font: 500 11px var(--font-mono); fill: var(--text-muted); }
+.kd-eksen-y { text-anchor: end; }
+.kd-cizgi { fill: none; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.kd-dolgu { stroke: none; opacity: .1; }
+.kd-cizgi.kd-arac { stroke: var(--dv-1); }
+.kd-cizgi.kd-yazi { stroke: var(--dv-2); }
+.kd-dolgu.kd-arac { fill: var(--dv-1); }
+.kd-dolgu.kd-yazi { fill: var(--dv-2); }
+.kd-son { font: 700 12.5px var(--font-mono); }
+.kd-son.kd-arac { fill: var(--dv-1-ink); }
+.kd-son.kd-yazi { fill: var(--dv-2-ink); }
+.kd-grafik figcaption { display: flex; gap: 1.25rem; margin-top: .5rem; font-size: var(--step--1); color: var(--text-muted); }
+.kd-lejant::before { content: ""; display: inline-block; width: 14px; height: 3px; border-radius: 2px; margin-right: .45rem; vertical-align: middle; }
+.kd-lejant.kd-arac::before { background: var(--dv-1); }
+.kd-lejant.kd-yazi::before { background: var(--dv-2); }
+
+/* alanlar */
+.kd-alanlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-grid); margin-top: 1.25rem; }
+.kd-alan { border: 1px solid var(--border); border-radius: var(--radius-inset); background: var(--surface); padding: var(--space-card); display: flex; flex-direction: column; }
+.kd-alan h3 { margin: 0 0 .35rem; font-size: var(--step-1); }
+.kd-alan-sayi { margin: 0; color: var(--text-muted); font-size: var(--step--1); }
+.kd-alan-sayi strong { color: var(--text); font-variant-numeric: tabular-nums; }
+.kd-alan-acik { font-size: var(--step--1); color: var(--text-muted); margin: .5rem 0 .75rem; }
+.kd-arac-listesi { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .35rem; }
+.kd-arac-listesi a { display: inline-block; font-size: var(--type-metadata); padding: .28rem .6rem; border: 1px solid var(--border); border-radius: 999px; text-decoration: none; color: var(--text); background: var(--bg); }
+.kd-arac-listesi a:hover { border-color: var(--brand); color: var(--brand-strong); }
+.kd-alan-yazi { margin: auto 0 0; padding-top: .9rem; font-size: var(--step--1); color: var(--text-muted); }
+
+/* son yazılar ve araçlar */
+.kd-iki { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+@media (max-width: 860px) { .kd-iki { grid-template-columns: 1fr; gap: 1rem; } }
+.kd-akis { list-style: none; padding: 0; margin: .75rem 0 1rem; }
+.kd-akis li { display: grid; grid-template-columns: 8.5rem 1fr; gap: .15rem 1rem; padding: .7rem 0; border-bottom: 1px solid var(--border); }
+.kd-akis time { font: 500 var(--type-metadata)/1.5 var(--font-mono); color: var(--text-muted); grid-row: span 2; }
+.kd-akis a { font-weight: 600; text-decoration: none; color: var(--text); }
+.kd-akis a:hover { color: var(--brand-strong); text-decoration: underline; }
+.kd-akis span { font-size: var(--type-metadata); color: var(--text-muted); }
+@media (max-width: 480px) { .kd-akis li { grid-template-columns: 1fr; } .kd-akis time { grid-row: auto; } }
+
+/* yayınlar */
+.kd-yayinlar { padding-left: 0; list-style: none; margin: 1rem 0 0; counter-reset: yayin; }
+.kd-yayinlar li { position: relative; padding: .85rem 0 .85rem 2.6rem; border-bottom: 1px solid var(--border); counter-increment: yayin; }
+.kd-yayinlar li::before { content: counter(yayin, decimal-leading-zero); position: absolute; left: 0; top: .95rem; font: 600 var(--type-metadata) var(--font-mono); color: var(--text-muted); }
+.kd-yayinlar time { display: block; font: 500 var(--type-metadata) var(--font-mono); color: var(--text-muted); margin-bottom: .2rem; }
+.kd-yayinlar a { color: var(--text); font-weight: 600; text-decoration-color: color-mix(in srgb, var(--text) 30%, transparent); }
+.kd-yayinlar span { display: block; font-size: var(--type-metadata); color: var(--text-muted); margin-top: .25rem; }
+.kd-yayinlar span a { font-weight: 500; }
+
+/* kanallar */
+.kd-kanallar { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .6rem; }
+.kd-kanallar li { display: flex; flex-direction: column; gap: .15rem; padding: .8rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface); }
+.kd-kanallar a { font-weight: 650; text-decoration: none; color: var(--text); }
+.kd-kanallar a:hover { color: var(--brand-strong); }
+.kd-kanallar span { font-size: var(--type-metadata); color: var(--text-muted); }
+@media (max-width: 640px) {
+  /* dar ekranda kaydırma sağ uçtan, en güncel haftadan başlar */
+  .kd-grafik { overflow-x: auto; direction: rtl; }
+  .kd-buyume, .kd-grafik figcaption { direction: ltr; }
+  .kd-buyume { min-width: 620px; }
+}
