@@ -11,7 +11,7 @@
    yanina satir ici akiyordu -- ayni izgarada iki farkli hizalama. */
 #gmsi-form input[type="text"],
 #gmsi-form select {
-  font: inherit; padding: 8px 10px;
+  font: inherit; font-size: var(--type-form-control); padding: 8px 10px;
   border: 1px solid var(--border, rgba(127,127,127,.3));
   border-radius: 10px; background: var(--surface); color: var(--text);
   min-height: 44px; max-width: 100%;

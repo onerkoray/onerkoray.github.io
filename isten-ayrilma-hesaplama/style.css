@@ -102,7 +102,7 @@
 /* ---- döküm tablosu ---- */
 table.detail tbody tr.row-head th {
   padding-top: 18px;
-  font-size: .78rem;
+  font-size: var(--type-table-head);
   text-transform: uppercase;
   letter-spacing: .05em;
   opacity: .65;

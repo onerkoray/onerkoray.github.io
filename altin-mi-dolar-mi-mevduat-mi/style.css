@@ -10,7 +10,7 @@
   align-items: end;
 }
 #varlik-form input[type="text"], #varlik-form select {
-  font: inherit;
+  font: inherit; font-size: var(--type-form-control);
   padding: 8px 10px;
   border: 1px solid var(--border);
   border-radius: 8px;

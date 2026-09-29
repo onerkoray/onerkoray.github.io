@@ -59,11 +59,10 @@ table.cmp-table thead th.is-best { color: #063528; }
 table.cmp-table tbody tr.row-total th,
 table.cmp-table tbody tr.row-total td {
   border-top: 2px solid var(--border, rgba(127,127,127,.35));
-  font-size: 1.02em;
 }
 table.cmp-table tbody tr.row-head th {
   padding-top: 18px;
-  font-size: .78rem;
+  font-size: var(--type-table-head);
   text-transform: uppercase;
   letter-spacing: .05em;
   opacity: .65;
