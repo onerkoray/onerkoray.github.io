@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-28T18:06:55+03:00</updated>
+  <updated>2026-09-29T17:59:13+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Koray Öner — Araçlar, Yazılar ve Yayınlar</title>
+    <link href="https://korayoner.dev/koray-oner/"/>
+    <id>https://korayoner.dev/koray-oner/</id>
+    <updated>2026-09-29T17:59:13+03:00</updated>
+    <summary>Koray Öner'in çalışmaları tek yerde: 66 hesaplama aracı, 54 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.</summary>
+  </entry>
 
   <entry>
     <title>Altın mı, Dolar mı, Mevduat mı? Getiri Hesabı</title>
