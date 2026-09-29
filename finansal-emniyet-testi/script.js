@@ -1,480 +1,268 @@
-/*!
- * Finansal Emniyet Testi — arayüz.
- *
- * Bu dosya SADECE arayüzdür: tek bir finansal formül içermez. Bütün hesap
- * hesap.js'te, taksitler ise sitenin kredi çekirdeğinde.
- *
- * WEB WORKER YOK — ÇÜNKÜ GEREKMİYOR. Tam rapor (7 senaryo × 12 ay, güvenli
- * tutar için ~60 adımlık ikiye bölme ve 5 alternatif) ölçüldüğünde birkaç
- * milisaniye sürüyor. Ölçmeden worker eklemek mimari gösterisi olurdu.
- *
- * Lisans: MIT — Koray Öner
- */
+/* İşsiz kalırsam kaç ay dayanırım? — sayfa katmanı.
+   Hesap yapmaz: formu okur, Dayanma çekirdeğine (hesap.js) verir, sonucu
+   çizer. Yıllık fiyat artışının önerisi sitenin TÜFE serisinden gelir;
+   çekirdek seriyi bilmez. Renkler --dv-* veri tokenlarından (style.css). */
 (function () {
   "use strict";
-  var E = window.Emniyet;
-  if (!E) return;
+  var D = window.Dayanma, B = window.Bordro, C = window.BordroCikis, T = window.TufeSerisi;
+  var form = document.getElementById("dy-form");
+  if (!D || !B || !C || !form) return;
 
   function $(id) { return document.getElementById(id); }
+  var nf = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
+  var nf1 = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  function tl(v) { return nf.format(Math.round(v)) + " TL"; }
+  function sayi(el) {
+    var s = String(el.value).trim().replace(/\s/g, "").replace(/TL|₺/gi, "");
+    if (!s) return 0;
+    if (s.indexOf(",") > -1) s = s.replace(/\./g, "").replace(",", ".");
+    else if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
+    var n = parseFloat(s);
+    return isFinite(n) ? n : NaN;
+  }
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  var AY = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+  var AY_KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+  function ayAdi(ym) { var p = ym.split("-"); return AY[+p[1] - 1] + " " + p[0]; }
+  function sure(ay) {
+    if (!isFinite(ay)) return "süresiz";
+    return nf1.format(ay) + " ay";
+  }
 
-  var para0 = new Intl.NumberFormat("tr-TR", {
-    style: "currency", currency: "TRY", maximumFractionDigits: 0
+  /* ---- form hazırlığı --------------------------------------------------- */
+  var fesih = $("d-fesih");
+  C.FESIH_TURLERI.forEach(function (t) {
+    var o = document.createElement("option");
+    o.value = t.kod; o.textContent = t.kisa;
+    if (t.kod === "isveren") o.selected = true;
+    fesih.appendChild(o);
   });
-  function para(n) {
-    if (!isFinite(n)) return "—";
-    return para0.format(Math.round(n));
-  }
-  function yuzde(x) {
-    if (!isFinite(x)) return "—";
-    return "%" + (x * 100).toFixed(1).replace(".", ",");
-  }
-  function ay(m) {
-    if (!isFinite(m)) return "sınırsız";
-    return (Math.round(m * 10) / 10).toString().replace(".", ",") + " ay";
-  }
-  function puanYaz(p) { return Math.round(p).toString(); }
-  function deger(id) { return E.sayi($(id).value); }
+  // Tarih sınırı: parametresi olan son yılın sonu.
+  var sonYil = B.sonYil();
+  $("d-cikis").max = sonYil + "-12-31";
+  $("d-giris").max = sonYil + "-12-31";
 
-  /* PROFİL KÖPRÜSÜ — sitedeki en zengin eşleşme: bu aracın sorduğu
-     alanların neredeyse tamamının profilde karşılığı var.
+  /* Yıllık fiyat artışı önerisi: TÜFE serisinin son 12 aylık değişimi. */
+  var tufeNot = "";
+  if (T && T.aylar && T.sonAy && T.aylar[T.sonAy]) {
+    var y = T.aylar[T.sonAy].yillik;
+    $("d-enf").value = String(y).replace(".", ",");
+    tufeNot = "Öneri: son 12 ay TÜFE, " + ayAdi(T.sonAy) + " itibarıyla %" + String(y).replace(".", ",") + ". Giderler her ay bu hızla büyür; ödenek ve taksit sabit kalır.";
+    $("d-enf-not").textContent = tufeNot;
+  }
 
-     İki tanesinin YOK ve o ikisi bilerek boş bırakılıyor:
-     - Kıdem tazminatı hakkı (kaç aylık maaş) — profil çalışma süresini
-       tutmuyor.
-     - Dövizli borç payı — profil borcun para birimini tutmuyor.
-     Bunlara varsayılan bir sayı yazmak, kullanıcının kendi girdiği bir
-     değer sanmasına yol açardı. */
-  function kopruKur() {
-    if (!window.ProfilKopru) return;
-    var PK = window.ProfilKopru;
+  var hedef = 6;
+  document.querySelectorAll("[data-hedef]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      hedef = +b.getAttribute("data-hedef");
+      document.querySelectorAll("[data-hedef]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      hesapla();
+    });
+  });
+
+  function girdi() {
+    var g = {
+      cikis: $("d-cikis").value, iseGiris: $("d-giris").value, fesihTuru: fesih.value,
+      ciplakBrut: sayi($("d-brut")), son3YilPrimGunu: sayi($("d-prim")), kullanilmayanIzinGunu: sayi($("d-izin")),
+      nakit: sayi($("d-nakit")), yatirim: sayi($("d-yatirim")),
+      zorunluGider: sayi($("d-zorunlu")), istegeBagliGider: sayi($("d-istege")), kisintiOrani: sayi($("d-kisinti")),
+      borcTaksiti: sayi($("d-borc")), digerGelir: sayi($("d-diger")), gss: $("d-gss").value,
+      enflasyonYillik: sayi($("d-enf"))
+    };
+    var tutar = sayi($("k-tutar"));
+    if (tutar > 0) {
+      g.karar = { tutar: tutar, pesinat: sayi($("k-pesinat")), krediTuru: $("k-tur").value, vade: sayi($("k-vade")),
+        aylikFaiz: sayi($("k-faiz")), ekGider: sayi($("k-ekgider")), tekSeferlik: sayi($("k-tek")) };
+    }
+    return g;
+  }
+  function gecersiz(g) {
+    var alanlar = [["ciplakBrut", "brüt maaş"], ["son3YilPrimGunu", "prim günü"], ["kullanilmayanIzinGunu", "izin günü"],
+      ["nakit", "nakit"], ["yatirim", "yatırım"], ["zorunluGider", "zorunlu gider"], ["istegeBagliGider", "isteğe bağlı gider"],
+      ["kisintiOrani", "kısıntı oranı"], ["borcTaksiti", "taksit"], ["digerGelir", "diğer gelir"], ["enflasyonYillik", "fiyat artışı"]];
+    for (var i = 0; i < alanlar.length; i++) {
+      var v = g[alanlar[i][0]];
+      if (!isFinite(v) || v < 0) return "Lütfen " + alanlar[i][1] + " için sıfır ya da pozitif bir sayı girin.";
+    }
+    if (g.son3YilPrimGunu > 1080) return "Son 3 yıldaki prim günü en fazla 1080 olabilir.";
+    return null;
+  }
+
+  /* ---- çizim ------------------------------------------------------------ */
+  function grafik(s) {
+    var n = Math.min(D.UFUK, Math.max(12, isFinite(s.dayanmaAy) ? Math.ceil(s.dayanmaAy) + 3 : 24, hedef + 2));
+    var A = s.aylar.slice(0, n);
+    var W = Math.max(300, $("r-grafik").clientWidth || 420), H = 190;
+    var k = { sol: 46, sag: 8, ust: 12, alt: 26 };
+    var degerler = [s.baslangicNakit].concat(A.map(function (a) { return a.nakitSon; }));
+    var ymax = Math.max.apply(null, degerler.concat([1])), ymin = Math.min(0, Math.min.apply(null, degerler));
+    var adim = Math.pow(10, Math.floor(Math.log(Math.max(ymax - ymin, 1)) / Math.LN10));
+    if ((ymax - ymin) / adim < 3) adim /= 2;
+    ymax = Math.ceil(ymax / adim) * adim; ymin = Math.floor(ymin / adim) * adim;
+    function x(m) { return k.sol + m / n * (W - k.sol - k.sag); }
+    function y(v) { return H - k.alt - (v - ymin) / (ymax - ymin) * (H - k.ust - k.alt); }
+    function r(v) { return Math.round(v * 10) / 10; }
+    var p = ['<svg class="dy-svg" viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="' +
+      esc("Ay sonu kasa, " + n + " ay: " + (isFinite(s.dayanmaAy) ? sure(s.dayanmaAy) + " sonra sıfırın altına iner." : "sıfırın altına inmiyor.")) + '">'];
+    if (s.odenek.ay) {
+      var ob = s.odenek.bas, os = Math.min(n, s.odenek.bas + s.odenek.ay - 1);
+      p.push('<rect class="dy-odenek" x="' + r(x(ob - 1)) + '" y="' + k.ust + '" width="' + r(x(os) - x(ob - 1)) + '" height="' + (H - k.ust - k.alt) + '"/>');
+    }
+    for (var v = ymin; v <= ymax + 1e-6; v += adim) {
+      p.push('<line class="dy-izgara" x1="' + k.sol + '" x2="' + (W - k.sag) + '" y1="' + r(y(v)) + '" y2="' + r(y(v)) + '"/>');
+      p.push('<text class="dy-eksen" x="' + (k.sol - 6) + '" y="' + r(y(v) + 4) + '" text-anchor="end">' +
+        (Math.abs(v) >= 1e6 ? nf1.format(v / 1e6) + " mn" : nf.format(v / 1000) + " b") + "</text>");
+    }
+    p.push('<line class="dy-sifir" x1="' + k.sol + '" x2="' + (W - k.sag) + '" y1="' + r(y(0)) + '" y2="' + r(y(0)) + '"/>');
+    // Etiket aralığı genişliğe göre: bir etikete en az ~58 px düşsün.
+    var etiketAdim = [1, 2, 3, 6, 12].filter(function (a) { return (W - k.sol - k.sag) / n * a >= 58; })[0] || 12;
+    for (var m = 0; m <= n; m += etiketAdim) {
+      var ym = m === 0 ? s.aylar[0].tarih : s.aylar[m - 1].tarih;
+      var etiket = m === 0 ? "Çıkış" : AY_KISA[+ym.split("-")[1] - 1] + " '" + ym.slice(2, 4);
+      p.push('<text class="dy-eksen" x="' + r(x(m)) + '" y="' + (H - 8) + '" text-anchor="middle">' + etiket + "</text>");
+    }
+    // hedef çizgisi
+    if (hedef <= n) {
+      p.push('<line class="dy-hedef-cizgi" x1="' + r(x(hedef)) + '" x2="' + r(x(hedef)) + '" y1="' + k.ust + '" y2="' + (H - k.alt) + '"/>');
+      p.push('<text class="dy-hedef-yazi" x="' + r(x(hedef) + 4) + '" y="' + (k.ust + 10) + '">' + hedef + ". ay</text>");
+    }
+    var yol = "M" + r(x(0)) + " " + r(y(s.baslangicNakit));
+    A.forEach(function (a) { yol += "L" + r(x(a.ay)) + " " + r(y(a.nakitSon)); });
+    p.push('<path class="dy-dolgu" d="' + yol + "L" + r(x(n)) + " " + r(y(0)) + "L" + r(x(0)) + " " + r(y(0)) + 'Z"/>');
+    p.push('<path class="dy-cizgi" d="' + yol + '"/>');
+    if (isFinite(s.dayanmaAy) && s.dayanmaAy <= n) {
+      p.push('<circle class="dy-bitis-nokta" cx="' + r(x(s.dayanmaAy)) + '" cy="' + r(y(0)) + '" r="5"/>');
+    }
+    p.push("</svg>");
+    $("r-grafik").innerHTML = p.join("");
+  }
+
+  function kalemler(s) {
+    var c = s.kalemler, o = s.odenek;
+    var satir = [
+      ["Birikim (nakit + yatırım)", tl(c.birikim)],
+      ["Kıdem tazminatı, net", c.kidem ? tl(c.kidem) : "doğmuyor"],
+      ["İhbar tazminatı, net", c.ihbar ? tl(c.ihbar) : "doğmuyor"],
+      ["İzin ücreti ve son ay ücreti", tl(c.izin + c.sonAy)],
+      ["İşsizlik ödeneği", o.ay ? tl(o.aylik) + " × " + o.ay + " ay" : "bağlanmıyor"]
+    ];
+    if (c.kararCikisi) satir.push(["Karar: peşinat ve masraf", "−" + tl(c.kararCikisi)]);
+    satir.push(["Çıkış günü kasası", tl(s.baslangicNakit)]);
+    satir.push(["GSS primi, ödenekten sonra", s.gssAylik ? tl(s.gssAylik) + "/ay" : "ödenmiyor"]);
+    $("r-kalemler").innerHTML = satir.map(function (x, i) {
+      return '<div' + (i === satir.length - 2 ? ' class="dy-kasa"' : "") + "><dt>" + esc(x[0]) + "</dt><dd>" + esc(x[1]) + "</dd></div>";
+    }).join("");
+    var gerekce = [];
+    if (!c.kidem && s.paket.kidem.gerekce) gerekce.push("Kıdem: " + s.paket.kidem.gerekce);
+    if (!o.ay && s.paket.issizlik.gerekce) gerekce.push("Ödenek: " + s.paket.issizlik.gerekce);
+    $("r-grafik-not").textContent = "Ay sonunda kasadaki para." + (o.ay ? " Mavi bant işsizlik ödeneği ayları." : "") +
+      (gerekce.length ? " " + gerekce.join(" ") : "");
+  }
+
+  function cevap(s) {
+    $("r-ay").textContent = isFinite(s.dayanmaAy) ? sure(s.dayanmaAy) : (s.tukenmez ? "tükenmiyor" : D.UFUK + " aydan uzun");
+    $("r-bitis").textContent = isFinite(s.dayanmaAy)
+      ? "Kasa " + ayAdi(s.bitis) + " içinde sıfırın altına iner."
+      : (s.tukenmez ? "Ödenek bittikten sonra da hanedeki gelir giderleri karşılıyor." : D.UFUK + " ay boyunca kasa sıfırın altına inmiyor.");
+    var h = s.hedefler.filter(function (x) { return x.ay === hedef; })[0];
+    if (!h) {
+      // hesap motoru 3/6/9/12 dışını hesaplamaz; seçici de yalnız bunları sunar
+      $("r-hedef").textContent = "";
+      return;
+    }
+    $("r-hedef").innerHTML = h.yeterli
+      ? '<span class="dy-rozet dy-iyi">Yeterli</span> ' + hedef + " ay iş ararsanız kasada en az " + esc(tl(h.pay)) + " kalır."
+      : '<span class="dy-rozet dy-kotu">Eksik</span> ' + hedef + " ay dayanmak için bugün " + esc(tl(h.eksik)) + " daha birikim gerekir.";
+  }
+
+  function duyarlilik(g) {
+    var d = D.duyarlilik(g);
+    $("r-duyar").innerHTML = d.satirlar.map(function (x) {
+      var f = x.fark === null ? "—" : (x.fark >= 0 ? "+" : "−") + nf1.format(Math.abs(x.fark)) + " ay";
+      var sinif = x.fark === null ? "" : x.fark < -0.05 ? "dy-eksi" : x.fark > 0.05 ? "dy-arti" : "";
+      return '<tr><th scope="row">' + esc(x.ad) + '</th><td class="sayi">' + esc(isFinite(x.dayanmaAy) ? sure(x.dayanmaAy) : "süresiz") +
+        '</td><td class="sayi ' + sinif + '">' + esc(f) + "</td></tr>";
+    }).join("");
+  }
+
+  function karar(g) {
+    var hedefYazi = hedef + " ay";
+    if (!g.karar) {
+      var ke = D.kararEtkisi(Object.assign({}, g, { karar: null }), hedef);
+      $("r-karar").innerHTML = "<p>Tutarı girin. Şimdiki hâlinizle " + esc(hedefYazi) + " iş arama süresini bozmadan en fazla <strong>" +
+        esc(tl(ke.enFazlaPesin)) + "</strong> peşin harcayabilirsiniz.</p>";
+      return;
+    }
+    var k = D.kararEtkisi(g, hedef);
+    var satir = "<p>Dayanma süresi <strong>" + esc(sure(k.once)) + "</strong> iken karardan sonra <strong>" + esc(sure(k.sonra)) + "</strong>.";
+    if (k.karar.kredi > 0) satir += " Kredi taksiti " + esc(tl(k.karar.taksit)) + ", " + k.karar.vade + " ay (KKDF ve BSMV dahil).";
+    satir += "</p><p>" + esc(hedefYazi) + " iş arama süresini bozmayan en büyük peşin harcama: <strong>" + esc(tl(k.enFazlaPesin)) + "</strong>.</p>";
+    $("r-karar").innerHTML = satir;
+  }
+
+  function aylar(s) {
+    var n = Math.min(D.UFUK, Math.max(12, isFinite(s.dayanmaAy) ? Math.ceil(s.dayanmaAy) + 1 : 24));
+    $("r-aylar").innerHTML = s.aylar.slice(0, n).map(function (a) {
+      var gider = a.giderToplam - a.gider.gss;
+      return '<tr' + (a.nakitSon < 0 ? ' class="dy-negatif"' : "") + '><th scope="row">' + esc(ayAdi(a.tarih)) + '</th><td class="sayi">' +
+        esc(a.odenek ? tl(a.odenek) : "—") + '</td><td class="sayi">' + esc(a.digerGelir ? tl(a.digerGelir) : "—") + '</td><td class="sayi">' +
+        esc(tl(gider)) + '</td><td class="sayi">' + esc(a.gider.gss ? tl(a.gider.gss) : "—") + '</td><td class="sayi">' + esc(tl(a.nakitSon)) + "</td></tr>";
+    }).join("");
+  }
+
+  var sonGirdi = null;
+  function hesapla() {
+    var g = girdi(), hata = gecersiz(g);
+    if (!hata) { var h = D.dogrula(g); if (h.length) hata = h.join(" "); }
+    if (hata) { $("d-hata").textContent = hata; $("dy-sonuc").classList.add("dy-bayat"); return; }
+    try {
+      var s = D.hesapla(g);
+      $("d-hata").textContent = "";
+      $("dy-sonuc").classList.remove("dy-bayat");
+      cevap(s); kalemler(s); grafik(s); duyarlilik(g); karar(g); aylar(s);
+      sonGirdi = g;
+    } catch (e) {
+      $("d-hata").textContent = e.message.replace(/^Dayanma: /, "");
+      $("dy-sonuc").classList.add("dy-bayat");
+    }
+  }
+
+  var bekle = null;
+  function planla() { clearTimeout(bekle); bekle = setTimeout(hesapla, 120); }
+  document.querySelectorAll("#hesapla input, #hesapla select").forEach(function (el) {
+    el.addEventListener("input", planla);
+    el.addEventListener("change", planla);
+  });
+  window.addEventListener("resize", function () { clearTimeout(bekle); bekle = setTimeout(hesapla, 200); });
+
+  /* ---- profil köprüsü: Finansal İkiz profilinden okur, yazmaz ---------- */
+  if (window.ProfilKopru) {
     var NAKIT = { nakit: true, mevduat: true };
-    var ALTIN = { altin: true, doviz: true };
-    var ILLIKIT = { konut: true, arac: true, bes: true, diger: true };
-
-    PK.bagla({
-      hedef: $("pk-alan"),
-      alanlar: ["gelir", "gider", "varlik", "borc"],
-      yol: "../finansal-ikiz/",
+    var LIKIT = { altin: true, doviz: true, fon: true, hisse: true, tahvil: true, yatirim: true };
+    window.ProfilKopru.bagla({
+      hedef: $("pk-alan"), alanlar: ["gelir", "gider", "varlik", "borc"], yol: "../finansal-ikiz/",
       doldur: function (p) {
         var yapilan = [];
-
-        /* ---- giderler */
-        var zorunlu = 0, istege = 0;
-        p.giderler.forEach(function (k) {
-          if (k.zorunlu) zorunlu += k.aylik; else istege += k.aylik;
-        });
-        if (zorunlu > 0) { $("e-zorunlu").value = Math.round(zorunlu); }
-        if (istege > 0) { $("e-istege").value = Math.round(istege); }
-        if (zorunlu > 0 || istege > 0) yapilan.push("zorunlu ve isteğe bağlı gider");
-
-        /* ---- varliklar */
-        var nakit = 0, yatirim = 0, altin = 0, illikit = 0, enBuyuk = 0, toplam = 0;
-        p.varliklar.forEach(function (v) {
-          if (NAKIT[v.tur]) nakit += v.deger;
-          else if (ALTIN[v.tur]) altin += v.deger;
-          else if (ILLIKIT[v.tur]) illikit += v.deger;
-          else yatirim += v.deger;
-          toplam += v.deger;
-          if (v.deger > enBuyuk) enBuyuk = v.deger;
-        });
-        if (toplam > 0) {
-          $("e-nakit").value = Math.round(nakit);
-          $("e-yatirim").value = Math.round(yatirim);
-          $("e-altin").value = Math.round(altin);
-          $("e-illikit").value = Math.round(illikit);
-          yapilan.push("nakit, yatırım, altın/döviz ve likit olmayan varlıklar");
-          /* Yogunlasma profilde alan olarak yok ama HESAPLANABILIYOR:
-             en buyuk tek varligin toplam icindeki payi. */
-          $("e-yogunlasma").value =
-            (enBuyuk / toplam * 100).toFixed(0);
-          yapilan.push("en büyük tek varlığın payı (profilden hesaplandı)");
-        }
-
-        /* ---- borclar */
+        var ucret = null;
+        p.gelirler.forEach(function (x) { if (x.tur === "ucret" && x.aylikBrut > 0 && (!ucret || x.aylikBrut > ucret.aylikBrut)) ucret = x; });
+        if (ucret) { $("d-brut").value = nf.format(Math.round(ucret.aylikBrut)); yapilan.push("brüt maaş"); }
+        var digerNet = p.gelirler.reduce(function (t, x) { return t + (x.tur === "ucret" ? 0 : (x.aylikNet || 0)); }, 0);
+        if (digerNet > 0) { $("d-diger").value = nf.format(Math.round(digerNet)); yapilan.push("ücret dışı gelirler (kira, temettü…) diğer gelire"); }
+        var z = 0, i = 0;
+        p.giderler.forEach(function (x) { if (x.zorunlu) z += x.aylik; else i += x.aylik; });
+        if (z || i) { $("d-zorunlu").value = nf.format(Math.round(z)); $("d-istege").value = nf.format(Math.round(i)); yapilan.push("zorunlu ve isteğe bağlı gider"); }
+        var n = 0, y = 0;
+        p.varliklar.forEach(function (v) { if (NAKIT[v.tur]) n += v.deger; else if (LIKIT[v.tur]) y += v.deger; });
+        if (n || y) { $("d-nakit").value = nf.format(Math.round(n)); $("d-yatirim").value = nf.format(Math.round(y)); yapilan.push("nakit ve likit yatırımlar (ev, araba ve BES hariç)"); }
         if (p.borclar.length) {
-          var bakiye = 0, servis = 0, faizAgirlik = 0, degisken = 0;
-          p.borclar.forEach(function (b) {
-            bakiye += b.kalanAnapara;
-            servis += b.aylikOdeme;
-            faizAgirlik += b.aylikFaiz * b.kalanAnapara;
-            if (b.tur === "konut-degisken") degisken += b.kalanAnapara;
-          });
-          $("e-borc-bakiye").value = Math.round(bakiye);
-          $("e-borc-servisi").value = Math.round(servis);
-          yapilan.push("borç bakiyesi ve aylık ödeme");
-          if (bakiye > 0) {
-            /* Faiz BAKIYEYE GORE agirliklandiriliyor: 5.000 TL'lik bir
-               kartla 500.000 TL'lik konut kredisinin oranini esit
-               saymak, ortalamayi anlamsiz yapardi. */
-            $("e-faiz").value = (faizAgirlik / bakiye * 100)
-              .toFixed(2).replace(".", ",");
-            $("e-degisken-pay").value = (degisken / bakiye * 100).toFixed(0);
-            yapilan.push("bakiyeye göre ağırlıklı ortalama faiz");
-          }
+          var t = 0; p.borclar.forEach(function (b) { t += b.aylikOdeme; });
+          $("d-borc").value = nf.format(Math.round(t)); yapilan.push("aylık borç ödemeleri");
         }
-
-        return PK.ucretNeti(p).then(function (net) {
-          if (net > 0) { $("e-gelir").value = Math.round(net); }
-          var diger = p.gelirler.reduce(function (a, g) {
-            return a + (g.tur === "ucret" ? 0 : g.aylikNet);
-          }, 0);
-          if (diger > 0) { $("e-diger").value = Math.round(diger); }
-          if (net > 0 || diger > 0) yapilan.push("net gelir");
-          yapilan.push("kıdem hakkı ve dövizli borç payı profilde yok, dokunulmadı");
-          hesapla();
-          return yapilan;
-        }, function () {
-          hesapla();
-          yapilan.push("net gelir hesaplanamadı (bordro motoru yüklenemedi)");
-          return yapilan;
-        });
+        hesapla();
+        return yapilan;
       }
     });
   }
-  function isaretli(id) { return $(id).checked; }
-
-  function durumTopla() {
-    return {
-      netGelir: deger("e-gelir"),
-      digerGelir: deger("e-diger"),
-      gelirTuru: $("e-gelir-turu").value,
-      zorunluGider: deger("e-zorunlu"),
-      istegeBagliGider: deger("e-istege"),
-      nakit: deger("e-nakit"),
-      yatirim: deger("e-yatirim"),
-      altinDoviz: deger("e-altin"),
-      illikit: deger("e-illikit"),
-      enBuyukVarlikYuzde: deger("e-yogunlasma"),
-      borcBakiye: deger("e-borc-bakiye"),
-      borcServisi: deger("e-borc-servisi"),
-      mevcutAylikFaiz: deger("e-faiz"),
-      dovizliBorcYuzde: deger("e-doviz-pay"),
-      degiskenFaizliBorcYuzde: deger("e-degisken-pay"),
-      kidemAy: deger("e-kidem"),
-      issizlikOdenegi: deger("e-odenek"),
-      issizlikOdenegiAy: deger("e-odenek-ay"),
-      saglikSigortasi: isaretli("e-saglik"),
-      borcSigortasi: isaretli("e-borc-sigorta"),
-      hedefAy: deger("e-hedef-ay"),
-      harcamaKisintisi: deger("e-kisinti"),
-      dsrEsigi: deger("e-dsr-esigi"),
-      sokHedefi: deger("e-sok-hedefi"),
-      yakinYukumluluk: 0
-    };
-  }
-
-  function kararTopla() {
-    return {
-      tutar: deger("e-karar-tutar"),
-      pesinat: deger("e-pesinat"),
-      vade: deger("e-vade"),
-      aylikFaiz: deger("e-kredi-faiz"),
-      krediTuru: $("e-kredi-turu").value,
-      aylikEkGider: deger("e-ek-gider"),
-      tekSeferlikGider: deger("e-tek-gider")
-    };
-  }
-
-  /* ------------------------------------------------------------------ *
-   * Bileşen çubukları
-   *
-   * Tek skora indirgememenin arayüzdeki karşılığı. Karar öncesi seviye ince
-   * bir işaretle çubuğun üstünde kalıyor: düşüşü tabloya bakmadan görün.
-   * ------------------------------------------------------------------ */
-  var BILESEN_AD = {
-    likidite: "Likidite",
-    nakitAkisi: "Nakit akışı",
-    borc: "Borç",
-    sok: "Şok dayanıklılığı",
-    koruma: "Koruma"
-  };
-
-  function seviye(p) { return p < 40 ? "dusuk" : (p < 70 ? "orta" : ""); }
-
-  function bilesenleriCiz(once, sonra) {
-    var kap = $("e-bilesenler");
-    var html = "";
-    Object.keys(BILESEN_AD).forEach(function (k) {
-      var o = once.bilesen[k];
-      var s = sonra ? sonra.bilesen[k] : o;
-      var isaret = (sonra && Math.abs(s - o) > 0.5)
-        ? '<i class="bilesen-once" style="left:' + o.toFixed(1) + '%"></i>' : "";
-      html +=
-        '<div class="bilesen">' +
-        '<dt class="bilesen-ad">' + BILESEN_AD[k] + " (%" +
-          Math.round(E.AGIRLIK[k] * 100) + ")</dt>" +
-        '<dd class="bilesen-ray"><span class="bilesen-dolgu ' + seviye(s) +
-          '" style="inline-size:' + s.toFixed(1) + '%"></span>' + isaret + "</dd>" +
-        '<dd class="bilesen-deger">' + puanYaz(s) + "</dd>" +
-        "</div>";
-    });
-    kap.innerHTML = html;
-  }
-
-  /* ------------------------------------------------------------------ *
-   * Nakit yolu grafiği — saf SVG, kütüphane yok
-   *
-   * Dikey eksen DOĞRUSAL ve negatifi de kapsıyor: sıfırın altına inen bir
-   * senaryoyu tabana yapıştırıp göstermemek, aracın söylediği tek şeyi
-   * gizlemek olurdu.
-   * ------------------------------------------------------------------ */
-  var seciliSenaryo = "birlesik";
-
-  function grafikCiz(stres, taban) {
-    var svg = $("e-grafik");
-    if (!svg) return;
-    var W = 720, H = 300, sol = 8, sag = 58, ust = 14, alt = 26;
-    var gw = W - sol - sag, gh = H - ust - alt;
-
-    var enB = taban, enK = 0;
-    stres.yollar.forEach(function (y) {
-      var dizi = [y.baslangicNakdi].concat(y.aylar);
-      dizi.forEach(function (v) {
-        if (v > enB) enB = v;
-        if (v < enK) enK = v;
-      });
-    });
-    if (enB <= enK) enB = enK + 1;
-    var pay = (enB - enK) * 0.06;
-    enB += pay; enK -= pay;
-
-    var n = stres.yollar[0] ? stres.yollar[0].aylar.length : 12;
-    function x(i) { return sol + (gw * i) / Math.max(1, n); }
-    function y(v) { return ust + gh - gh * ((v - enK) / (enB - enK)); }
-
-    function yolu(k) {
-      var dizi = [k.baslangicNakdi].concat(k.aylar);
-      return "M" + dizi.map(function (v, i) { return x(i) + "," + y(v); }).join(" L");
-    }
-
-    var parcalar = [];
-    /* Sıfırın altı hafifçe boyanıyor: "burası batış bölgesi". */
-    if (enK < 0) {
-      parcalar.push('<rect class="bolge-eksi" x="' + sol + '" y="' + y(0) +
-        '" width="' + gw + '" height="' + Math.max(0, ust + gh - y(0)) + '"/>');
-    }
-    parcalar.push('<line class="cizgi-taban" x1="' + sol + '" y1="' + y(taban) +
-      '" x2="' + (W - sag) + '" y2="' + y(taban) + '"/>');
-    parcalar.push('<line class="cizgi-sifir" x1="' + sol + '" y1="' + y(0) +
-      '" x2="' + (W - sag) + '" y2="' + y(0) + '"/>');
-
-    var secili = null;
-    stres.yollar.forEach(function (k) {
-      if (k.ad === seciliSenaryo) { secili = k; return; }
-      parcalar.push('<path class="yol-soluk" d="' + yolu(k) + '"/>');
-    });
-    if (secili) {
-      parcalar.push('<path class="' + (secili.hayattaKaldi ? "yol-secili" : "yol-batik") +
-        '" d="' + yolu(secili) + '"/>');
-    }
-
-    parcalar.push('<text class="eksen" x="' + (W - sag + 4) + '" y="' + (y(taban) + 4) +
-      '">taban</text>');
-    parcalar.push('<text class="eksen" x="' + (W - sag + 4) + '" y="' + (y(0) + 4) +
-      '">0 ₺</text>');
-    parcalar.push('<text class="eksen" x="' + sol + '" y="' + (H - 8) + '">bugün</text>');
-    parcalar.push('<text class="eksen" x="' + (W - sag) + '" y="' + (H - 8) +
-      '" text-anchor="end">' + n + ". ay</text>");
-    parcalar.push('<text class="eksen" x="' + sol + '" y="' + (ust + 10) + '">' +
-      para(enB) + "</text>");
-
-    svg.innerHTML = parcalar.join("");
-  }
-
-  function senaryoDugmeleri(stres) {
-    var kap = $("e-senaryolar");
-    kap.innerHTML = stres.yollar.map(function (y) {
-      return '<button type="button" data-ad="' + y.ad + '"' +
-        ' class="secim' + (y.hayattaKaldi ? "" : " batik") + '"' +
-        ' aria-pressed="' + (y.ad === seciliSenaryo) + '">' + y.etiket + "</button>";
-    }).join("");
-  }
-
-  /* ------------------------------------------------------------------ *
-   * Ana akış
-   * ------------------------------------------------------------------ */
-  function hesapla() {
-    var girdi = durumTopla();
-    var karar = kararTopla();
-    var r = E.rapor(girdi, karar);
-    var once = r.once, sonra = r.sonra || r.once;
-    var kararVar = !!r.sonra;
-
-    /* Hedef tampon otomatikse türetimi kullanıcıya göster. */
-    var d = r.durum;
-    var not = $("e-hedef-not");
-    if (d.hedefAyOtomatik) {
-      not.textContent = "Durumunuzdan türetildi: " + d.hedefAy + " ay (" +
-        d.hedefAyGerekce.map(function (p) { return p.neden; }).join(" + ") + ").";
-    } else {
-      not.textContent = "Sizin belirlediğiniz süre. Durumunuzdan türetilseydi " +
-        d.hedefAyOnerilen + " ay olurdu.";
-    }
-
-    $("e-kopru").setAttribute("data-karar", kararVar ? "var" : "yok");
-    $("e-puan-once").textContent = puanYaz(once.puan);
-    $("e-segment-once").textContent = once.segment;
-    $("e-yan-once").className = "kopru-yan kopru-once " + seviye(once.puan);
-    $("e-puan-sonra").textContent = puanYaz(sonra.puan);
-    $("e-segment-sonra").textContent = sonra.segment;
-    $("e-yan-sonra").className = "kopru-yan kopru-sonra " + seviye(sonra.puan);
-
-    var fark = sonra.puan - once.puan;
-    var farkEl = $("e-fark");
-    if (!kararVar) {
-      farkEl.className = "kopru-fark";
-      farkEl.textContent = "Bir karar tutarı girin; etkisini burada görürsünüz.";
-    } else {
-      farkEl.className = "kopru-fark " + (fark < -0.5 ? "eksi" : (fark > 0.5 ? "arti" : ""));
-      farkEl.textContent = fark < -0.5
-        ? "Bu karar emniyet skorunuzu " + Math.abs(Math.round(fark)) + " puan düşürüyor."
-        : (fark > 0.5 ? "Bu karar skoru " + Math.round(fark) + " puan yükseltiyor."
-                      : "Bu kararın skora etkisi ihmal edilebilir.");
-    }
-
-    bilesenleriCiz(once, kararVar ? sonra : null);
-
-    function ikili(idOnce, id, bicim, oAl, sAl) {
-      $(idOnce).textContent = kararVar ? bicim(oAl(once)) + " →" : "";
-      $(id).textContent = bicim(sAl(sonra));
-    }
-    ikili("e-menzil-once", "e-menzil", ay,
-      function (s) { return s.olcum.menzil; }, function (s) { return s.olcum.menzil; });
-    ikili("e-pay-once", "e-pay", para,
-      function (s) { return s.olcum.finansalPay; }, function (s) { return s.olcum.finansalPay; });
-    ikili("e-taban-once", "e-taban", para,
-      function (s) { return s.olcum.nakitTabani; }, function (s) { return s.olcum.nakitTabani; });
-    ikili("e-fazla-once", "e-fazla", para,
-      function (s) { return s.olcum.fazlaLikidite; }, function (s) { return s.olcum.fazlaLikidite; });
-    ikili("e-dsr-once", "e-dsr", yuzde,
-      function (s) { return s.olcum.dsr; }, function (s) { return s.olcum.dsr; });
-
-    $("e-sok-once").textContent = kararVar
-      ? once.stres.gecenSenaryo + "/" + once.stres.senaryoSayisi + " →" : "";
-    $("e-sok").textContent = sonra.stres.gecenSenaryo + "/" + sonra.stres.senaryoSayisi;
-    $("e-taksit").textContent = r.karar ? para(r.karar.taksit) : "—";
-
-    var g = r.guvenliTutar;
-    $("e-guvenli").textContent = !g ? "—"
-      : (!g.guvenli ? "0 ₺" : (g.sinirBulunamadi ? para(g.tutar) + "+" : para(g.tutar)));
-
-    /* Uyarılar: en ağır olan bir tane. Beş uyarıyı üst üste yığmak hiçbirini
-       okutmaz. */
-    var uyari = "", agir = false;
-    if (r.kararAcigi > 0.5) {
-      uyari = "Peşinat ve tek seferlik masraflar için " + para(r.kararAcigi) +
-        " eksiğiniz var; bu tutar likit varlıklarınızdan karşılanamıyor.";
-      agir = true;
-    } else if (g && !g.guvenli) {
-      uyari = "Mevcut durumunuz kısıtları zaten sağlamıyor, bu yüzden güvenle " +
-        "verilebilecek bir karar büyüklüğü yok. Önce tamponu ve borç yükünü düzeltmek gerekiyor.";
-      agir = true;
-    } else if (g && kararVar && r.karar.tutar > g.tutar && !g.sinirBulunamadi) {
-      uyari = "Girdiğiniz tutar, güvenli üst sınırın " +
-        para(r.karar.tutar - g.tutar) + " üzerinde." +
-        (g.engel.length ? " Sınırı belirleyen kısıt: " + engelAdi(g.engel[0]) + "." : "");
-      agir = sonra.puan < 50;
-    } else if (sonra.olcum.finansalPay <= 0) {
-      uyari = "Zorunlu gider ve borç ödemeniz gelirinizi aşıyor; her ay birikim eriyor.";
-      agir = true;
-    }
-    $("e-uyari").hidden = !uyari;
-    $("e-uyari").className = "uyari" + (agir ? " agir" : "");
-    $("e-uyari").textContent = uyari;
-
-    /* Gerekçe */
-    $("e-gerekce").innerHTML = (kararVar ? r.gerekce : [{
-      alan: "yok", baslik: "Henüz bir karar girilmedi",
-      metin: "Yukarıdaki karar alanlarını doldurun; skorun neden değiştiği burada satır satır çıkar."
-    }]).map(function (x) {
-      return '<li' + (x.alan === "yok" ? ' class="iyi"' : "") + "><strong>" +
-        x.baslik + "</strong><span>" + x.metin + "</span></li>";
-    }).join("");
-
-    /* Grafik ve senaryo tablosu — karar sonrası duruma göre. */
-    var stres = sonra.stres;
-    if (!stres.yollar.some(function (y) { return y.ad === seciliSenaryo; })) {
-      seciliSenaryo = stres.yollar[stres.yollar.length - 1].ad;
-    }
-    senaryoDugmeleri(stres);
-    grafikCiz(stres, sonra.olcum.nakitTabani);
-
-    $("e-senaryo-tablo").innerHTML = stres.yollar.map(function (y, i) {
-      var o = once.stres.yollar[i];
-      return "<tr><th scope=\"row\">" + y.etiket + "</th>" +
-        '<td class="' + (o.hayattaKaldi ? "gecti" : "dustu") + '">' +
-          (o.hayattaKaldi ? "geçti" : o.batisAyi + ". ay") + "</td>" +
-        '<td class="' + (y.hayattaKaldi ? "gecti" : "dustu") + '">' +
-          (y.hayattaKaldi ? "geçti" : y.batisAyi + ". ay") + "</td>" +
-        "<td>" + para(y.enDusukNakit) + "</td>" +
-        "<td>" + (y.batisAyi ? y.batisAyi + ". ay" : "—") + "</td></tr>";
-    }).join("");
-
-    /* Alternatifler */
-    var enIyi = 0;
-    r.alternatif.forEach(function (a, i) {
-      if (a.fonlanabilir && a.puan > r.alternatif[enIyi].puan) enIyi = i;
-    });
-    $("e-alternatif-tablo").innerHTML = r.alternatif.map(function (a, i) {
-      return "<tr" + (i === enIyi && i !== 0 ? ' class="oneri"' : "") +
-        '><th scope="row">' + a.etiket +
-        (a.not ? '<br><small class="muted">' + a.not + "</small>" : "") + "</th>" +
-        "<td>" + puanYaz(a.puan) + "</td>" +
-        "<td>" + ay(a.menzil) + "</td>" +
-        "<td>" + yuzde(a.dsr) + "</td>" +
-        "<td>" + a.gecen + "/" + a.senaryo + "</td>" +
-        "<td>" + (a.taksit > 0 ? para(a.taksit) : "—") + "</td>" +
-        "<td>" + (a.toplamGeriOdeme > 0 ? para(a.toplamGeriOdeme) : "—") + "</td></tr>";
-    }).join("");
-
-    /* Skora girmeyen riskler */
-    var b = sonra.bayrak;
-    $("e-bayraklar").innerHTML =
-      bayrakSatiri("Yoğunlaşma riski", b.yogunlasma,
-        "Yatırılabilir varlığınızın " + yuzde(b.yogunlasma.deger) +
-        "'i tek bir yerde. Tek varlığın çökmesi tamponu birlikte götürür.") +
-      bayrakSatiri("Kur riski", b.kur,
-        "Net döviz açığınız " + para(sonra.olcum.kurAcikligi) +
-        ", yıllık hane gelirinizin " + yuzde(b.kur.deger) + "'i kadar. " +
-        "Geliri TL, borcu döviz olan hane kur yükselince iki kere kaybeder.");
-  }
-
-  function bayrakSatiri(ad, b, aciklama) {
-    return '<li class="bayrak"><b>' + ad + '</b><span class="rozet ' +
-      (b.seviye === "dusuk" ? "" : b.seviye) + '">' + b.etiket + "</span><em>" +
-      aciklama + "</em></li>";
-  }
-
-  function engelAdi(k) {
-    return {
-      "nakit-tabani": "nakit tabanı",
-      "borc-servisi": "borç servisi tavanı",
-      "sok-dayanimi": "şok dayanımı hedefi",
-      "pesinat-fonlanamiyor": "peşinatın karşılanamaması"
-    }[k] || k;
-  }
-
-  var bekle = 0;
-  function tetikle() {
-    clearTimeout(bekle);
-    bekle = setTimeout(hesapla, 90);
-  }
-
-  document.querySelectorAll("#hesapla input, #hesapla select").forEach(function (el) {
-    el.addEventListener("input", tetikle);
-    el.addEventListener("change", tetikle);
-  });
-
-  $("e-senaryolar").addEventListener("click", function (ev) {
-    var d = ev.target.closest("button[data-ad]");
-    if (!d) return;
-    seciliSenaryo = d.getAttribute("data-ad");
-    hesapla();
-  });
 
   hesapla();
-  kopruKur();
-
-  var y = document.getElementById("year");
-  if (y) y.textContent = String(new Date().getFullYear());
-}());
+})();

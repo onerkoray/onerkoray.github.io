@@ -6,8 +6,8 @@
   <meta charset="UTF-8">
   <script src="../../tema-erken.js?v=3d1c1238"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Finansal Emniyet Metodolojisi | Koray Öner</title>
-  <meta name="description" content="Emniyet skoru nasıl kuruldu? Nakit tabanı ile şok başarısızlığının ayrılması, likidite katsayıları, güvenli karar tutarı ve 108 test.">
+  <title>Dayanma Süresi Hesabı: Yöntem ve Dayanaklar | Koray Öner</title>
+  <meta name="description" content="İşsiz kalınca dayanma süresi nasıl hesaplanıyor? Kıdem, ihbar, işsizlik ödeneği ve GSS kuralları, fiyat artışı, eksik fon formülleri ve sınırlar.">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
@@ -17,28 +17,28 @@
   <link rel="canonical" href="https://korayoner.dev/finansal-emniyet-testi/metodoloji/">
 
   <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
-  <link rel="icon" href="../favicon.svg?v=59e057fa" type="image/svg+xml">
+  <link rel="icon" href="../favicon.svg?v=c941b96b" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Koray Öner">
-  <meta property="og:title" content="Finansal Emniyet Metodolojisi">
-  <meta property="og:description" content="Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor? Açık defter.">
+  <meta property="og:title" content="Dayanma süresi nasıl hesaplanıyor?">
+  <meta property="og:description" content="Kıdem, ihbar, işsizlik ödeneği ve GSS kuralları, fiyat artışı ve eksik fon formülleri: açık defter.">
   <meta property="og:url" content="https://korayoner.dev/finansal-emniyet-testi/metodoloji/">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:image" content="https://korayoner.dev/images/emniyet-metodoloji-koray-oner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Finansal Emniyet Metodolojisi">
+  <meta property="og:image:alt" content="Dayanma süresi nasıl hesaplanıyor? Yöntem ve dayanaklar">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@korayonerdev">
   <meta name="twitter:creator" content="@korayonerdev">
-  <meta name="twitter:title" content="Finansal Emniyet Metodolojisi">
-  <meta name="twitter:description" content="Taksit formülü, brütleşmiş maliyet oranı, YMO ve erken kapama nasıl hesaplanıyor?">
+  <meta name="twitter:title" content="Dayanma süresi nasıl hesaplanıyor?">
+  <meta name="twitter:description" content="Kıdem, ihbar, işsizlik ödeneği ve GSS kuralları, fiyat artışı ve eksik fon formülleri.">
   <meta name="twitter:image" content="https://korayoner.dev/images/emniyet-metodoloji-koray-oner.png">
 
   <link rel="stylesheet" href="../../style.css?v=b94f4967">
-  <link rel="stylesheet" href="../style.css?v=60640baa">
+  <link rel="stylesheet" href="../style.css?v=9605f941">
 
   <script type="application/ld+json">
   {
@@ -47,21 +47,21 @@
       {
         "@type": "TechArticle",
         "@id": "https://korayoner.dev/finansal-emniyet-testi/metodoloji/#article",
-        "headline": "Emniyet metodolojisi",
+        "headline": "Dayanma süresi nasıl hesaplanıyor?",
         "url": "https://korayoner.dev/finansal-emniyet-testi/metodoloji/",
         "inLanguage": "tr",
         "datePublished": "2026-09-07",
-        "dateModified": "2026-09-10",
+        "dateModified": "2026-09-29",
         "author": { "@id": "https://korayoner.dev/#oner-koray" },
         "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
         "about": { "@id": "https://korayoner.dev/finansal-emniyet-testi/#app" },
-        "description": "Finansal emniyet skorunun yöntemi: nakit tabanı ile şok başarısızlığının ayrılması, likidite katsayıları, yedi şok senaryosunun aylık yürütülmesi, Türkiye'de faiz şokunun yalnızca değişken faizli borca uygulanması, güvenli karar tutarının ikiye bölmeyle çözülmesi ve monotonluğun testle doğrulanması."
+        "description": "İşsiz kalınca dayanma süresinin yöntemi: çıkış paketi ve işsizlik ödeneğinin bordro motorundan alınması, ödenek bitince GSS primi, fiyat artışıyla büyüyen giderler, dayanma süresi ve eksik fon formülleri, duyarlılık ve sınırlar."
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Finansal Emniyet Testi", "item": "https://korayoner.dev/finansal-emniyet-testi/" },
+          { "@type": "ListItem", "position": 2, "name": "İşsiz Kalırsam Kaç Ay Dayanırım?", "item": "https://korayoner.dev/finansal-emniyet-testi/" },
           { "@type": "ListItem", "position": 3, "name": "Metodoloji", "item": "https://korayoner.dev/finansal-emniyet-testi/metodoloji/" }
         ]
       },
@@ -94,6 +94,7 @@
           <li><a href="../../#projects">Araçlar</a></li>
           <li><a href="../../makaleler/">Makaleler</a></li>
           <li><a href="../">Aracı aç</a></li>
+          <li><a href="#kalemler">Yasal kalemler</a></li>
           <li><a href="#formul">Formüller</a></li>
           <li><a href="#test">Testler</a></li>
         </ul>
@@ -108,334 +109,73 @@
   <main id="main">
     <nav class="breadcrumb wrap" aria-label="Konum">
       <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
-      <a href="../">Finansal Emniyet Testi</a> <span aria-hidden="true">&#8250;</span> Metodoloji
+      <a href="../">İşsiz Kalırsam Kaç Ay Dayanırım?</a> <span aria-hidden="true">&#8250;</span> Metodoloji
     </nav>
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Açık defter · MIT lisanslı · 108 test</p>
-        <h1 id="hero-title">Emniyet metodolojisi</h1>
+        <p class="eyebrow">Açık defter · MIT lisanslı · ay ay kasa</p>
+        <h1 id="hero-title">Dayanma süresi nasıl hesaplanıyor?</h1>
         <p class="lede">
-          Bu araç, hane halkı finansal kırılganlığı literatürü ile birkaç açık
-          kaynaklı finansal sağlık projesinin ortak çerçevesi çıkarılarak kuruldu.
-          Bu sayfa neyin alındığını, neyin <em>alınmadığını</em> ve kaynak
-          çerçeveden nerede <em>bilerek ayrıldığımızı</em> anlatıyor —
-          <strong>iddia olarak değil, formül ve test olarak.</strong>
+          "İşsiz kalırsam kaç ay dayanırım?" aracının yöntemi: hangi yasal kalem nereden
+          geliyor, fiyat artışı nasıl işliyor, dayanma süresi ve eksik fon hangi formülle
+          bulunuyor ve araç neyi <em>bilerek hesaba katmıyor</em>.
         </p>
       </div>
     </section>
 
     <article class="content">
       <div class="wrap prose">
-        <p class="byline muted">Hazırlayan <a href="../../hakkimda/" rel="author">Koray Öner</a> · Güncelleme: 8 Eylül 2026 · <a href="../">Aracı aç</a></p>
+        <p class="byline muted">Hazırlayan <a href="../../hakkimda/" rel="author">Koray Öner</a> · Yayın: 7 Eylül 2026 · Güncelleme: 29 Eylül 2026 · <a href="../">Aracı aç</a></p>
 
-        <h2 id="kaynak">1. Ne alındı, ne alınmadı</h2>
-        <p>
-          Bu araç, hane halkı finansal kırılganlığı literatürü ile birkaç açık kaynaklı
-          finansal sağlık projesinin ortak çerçevesi çıkarılarak kuruldu. Alınan şey
-          <strong>yöntem</strong>: kırılganlığı tek bir servet rakamıyla değil,
-          <em>likidite + ödeme gücü</em> ikilisiyle ölçmek; değerlendirmeyi olumsuz
-          senaryolarla tamamlamak; şokları tek tek değil <strong>birleşik</strong> de
-          uygulamak; ve hesabı kullanıcının cihazında tutmak.
-        </p>
-        <p>
-          Alınmayan şeyler de en az bunun kadar önemli:
-        </p>
+        <h2 id="neden">Neden skor yok?</h2>
+        <p>Bu adresteki araç 29 Eylül 2026'ya kadar bir "finansal emniyet skoru" veriyordu: beş bileşenin ağırlıklı ortalaması, 0-100 arası. Ağırlıklar ve puan eğrileri kodun kendisinde "seçilmiştir, kalibre edilmemiştir" diye işaretliydi. Para konusunda savunulamayacak bir sayıyı öne koymak yerine araç yeniden kuruldu: her çıktı artık bir <strong>ay sayısı</strong> ya da bir <strong>tutar</strong> ve her biri ay ay yürütülen bir kasa tablosundan okunuyor. Skor tamamen kaldırıldı.</p>
+
+        <h2 id="takvim">Zaman çizelgesi</h2>
         <ul>
-          <li><strong>Sunucu mimarisi alınmadı.</strong> Referans projeler hesabı bir API'nin arkasında yapıyor. Bu araç son derece hassas veri işliyor — gelir, borç, varlık. O verinin ağdan hiç çıkmaması, mimarinin kendisiyle garanti edilmeli; bu yüzden her şey tarayıcıda.</li>
-          <li><strong>Yükümlülüklerin bugünkü değeri üzerinden "fonlanmışlık oranı" alınmadı.</strong> O yaklaşım, hanenin ömür boyu yükümlülüklerinin vade yapısını bilmeyi gerektirir. Elimizde o veri yok; olmayan veriyle kurulan bir oran, kesinlik görüntüsü veren bir tahminden ibaret olurdu.</li>
-          <li><strong>Hazır segment eşikleri "kalibre edilmiş" gibi alınmadı.</strong> Literatürdeki 0-30/30-50/50-70/70-100 bantları anket verisiyle regresyondan türetilmiş ağırlıklara dayanıyor. Bizde o veri yok. Bantlar okunabilirlik için kullanılıyor ama <em>seçilmiş parametre</em> olduğu her yerde yazılı.</li>
-          <li><strong>Açıklama katmanı için dil modeli kullanılmadı.</strong> "Skorun neden düştüğü" bölümündeki cümlelerin tamamı hesaplanmış farklardan üretilir. Finansal bir sayının yanında duran cümle, o sayıyı üreten koddan gelmelidir.</li>
+          <li><strong>Ay 0, çıkış günü.</strong> Birikim ve çıkış paketi kasadadır. Kıdem ve ihbar tazminatı iş sözleşmesi sona erdiğinde ödenmesi gereken alacaklardır.</li>
+          <li><strong>Ay 1, 2, …</strong> Çıkıştan sonraki takvim ayları. Her ay gelir girer, gider çıkar; ay sonu kasası bir sonraki ayın başlangıcıdır. En fazla 60 ay yürütülür.</li>
+          <li><strong>İşsizlik ödeneği</strong> bordro motorunun verdiği ilk ödeme ayından başlar (başvuruyu izleyen ayın 5'i) ve hak edilen gün ÷ 30 ay sürer.</li>
         </ul>
 
-        <h2 id="ayrilik">2. Kaynak çerçeveden üç ayrılık</h2>
+        <h2 id="kalemler">Yasal kalemler: kural, dayanak, kaynak</h2>
+        <p>Bu araçta hiçbir yasal kural ikinci kez yazılmıyor; hepsi sitenin <a href="../../bordro/">bordro motorundan</a> çağrılıyor. Aynı rakamı <a href="../../isten-ayrilma-hesaplama/">işten ayrılma paketi</a> ve <a href="../../issizlik-maasi-hesaplama/">işsizlik maaşı</a> araçları da veriyor.</p>
+        <div class="table-scroll">
+          <table class="payroll">
+            <caption>Çıkış paketi ve ödenek</caption>
+            <thead><tr><th scope="col">Kalem</th><th scope="col">Kural</th><th scope="col">Dayanak</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Kıdem tazminatı</th><td>Her hizmet yılı için 30 günlük giydirilmiş brüt, artan süre oranlanır; esas ücret yılın kıdem tavanını aşamaz. Yalnız damga vergisi kesilir. En az bir yıl çalışma gerekir; istifada ve işverenin haklı feshinde doğmaz.</td><td>1475 s.K. m.14</td></tr>
+              <tr><th scope="row">İhbar tazminatı</th><td>Hizmet süresine göre 2, 4, 6 ya da 8 haftalık ücret; gelir ve damga vergisine tabi. İhbar süresi çalıştırıldıysa ayrıca ödenmez.</td><td>4857 s.K. m.17</td></tr>
+              <tr><th scope="row">İzin ücreti ve son ay</th><td>Kullanılmayan yıllık izin günü ve son ayın çalışılan günleri ücret olarak ödenir.</td><td>4857 s.K. m.59</td></tr>
+              <tr><th scope="row">İşsizlik ödeneği</th><td>Son 3 yılda 600 gün prim ve son 120 gün kesintisiz çalışma şartı; 600 gün için 180, 900 gün için 240, 1080 gün için 300 gün. Tutar son dört ayın brüt ortalamasının %40'ı, asgari ücretin brüt %80'ini aşamaz; yalnız damga vergisi kesilir. Kendi istek ve kusuruyla ayrılana bağlanmaz.</td><td>4447 s.K. m.50-51</td></tr>
+              <tr><th scope="row">Genel sağlık sigortası</th><td>Ödenek alınan günler için prim İşsizlik Sigortası Fonu'ndan ödenir. Sonrasında, bakmakla yükümlü olunan kişi değilseniz ve gelir testi prim ödemenizi gerektiriyorsa asgari ücret × GSS oranı kadar prim ödersiniz.</td><td>İŞKUR; 5510 s.K. m.60, m.82</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <h3>2.1 Nakit tabanının altına inmek, batmak değildir</h3>
-        <p>
-          Referans çerçevede stres senaryosu, nakit <em>minimum nakit tabanının</em>
-          altına indiğinde başarısız sayılıyor. Bu tanım kulağa doğru geliyor ama
-          <strong>acil fonu iki kez sayar</strong>: acil fon tam da acil durumda
-          harcanmak için birikir. Şokta onu kullanmayı başarısızlık saymak, "altı
-          aylık tamponun var ama altı aylık işsizlikte tamponu kullanırsan
-          başarısızsın" demektir.
-        </p>
-        <p>Bu araçta iki kavram ayrı tutuluyor:</p>
+        <h2 id="formul">Formüller</h2>
+        <p><strong>Fiyat artışı.</strong> Yıllık oran π ise aylık oran <code>i = (1 + π)^(1/12) − 1</code>. Zorunlu gider ve kesilmeyen isteğe bağlı gider m. ayda <code>G_m = G_0 · (1 + i)^m</code> olur. Ödenek, kredi taksiti ve hanedeki diğer gelir nominal sabittir: ödenek geçmiş kazançtan hesaplanır, taksit sözleşmeyle sabittir, diğer gelir için bir artış varsaymak iyimser olurdu. GSS primi bugünkü asgari ücretle sabittir; gelecek yılın asgari ücreti belli değil. Sayfa, yıllık oranı sitenin <a href="../../enflasyon-hesaplama/">TÜFE serisinin</a> son 12 aylık değişiminden önerir; değeri değiştirebilirsiniz.</p>
+        <p><strong>Kasa.</strong> <code>K_0 = birikim + kıdem + ihbar + izin + son ay − (varsa) peşinat ve tek seferlik masraf</code>; her ay <code>K_m = K_(m−1) + gelir_m − gider_m</code>.</p>
+        <p><strong>Dayanma süresi.</strong> Kasanın ilk kez sıfırın altına indiği ay m ise <code>d = (m − 1) + K_(m−1) ÷ (gider_m − gelir_m)</code>. İkinci terim o ayın kaçta kaçının karşılanabildiğidir. 60 ay boyunca sıfırın altına inilmezse ve son ayda gelir gideri karşılıyorsa sonuç "tükenmiyor" olarak verilir.</p>
+        <p><strong>Eksik fon.</strong> T aylık iş arama süresi için <code>E_T = max(0, −min(K_1 … K_T))</code>. Bugün bu kadar ek birikim olsaydı kasa T. aya kadar sıfırın altına inmezdi. Tersi de aynı tanımdan çıkar: T hedefini bozmayan en büyük peşin harcama <code>max(0, min(K_1 … K_T))</code>.</p>
+
+        <h2 id="duyarlilik">Ne olursa ne değişir?</h2>
+        <p>Duyarlılık tablosunun her satırı tek bir varsayımı değiştirip hesabı baştan yürütür: isteğe bağlı giderin tamamını kesmek, fiyatların hiç artmaması, fiyat artışının yıllık 10 puan daha yüksek olması, altın, döviz ve yatırımların %30 değer kaybetmesi, kıdem ve ihbarın ödenmemesi ya da gecikmesi, ödeneğin bağlanmaması ve planlanan harcamanın yapılmaması. Satırlar bir olasılık iddiası taşımaz; hangi varsayımın sonucu ne kadar taşıdığını gösterir.</p>
+
+        <h2 id="karar">Büyük harcama ve kredi</h2>
+        <p>Peşinat ve tek seferlik masraf çıkış günü kasasından düşülür. Kredi taksiti sitenin <a href="../../kredi-hesaplama/">kredi çekirdeğinden</a> gelir: kredi türüne göre KKDF ve BSMV dahil eşit taksit. Taksit vade boyunca, karardan doğan aylık gider (yakıt, sigorta, aidat) fiyat artışıyla birlikte her ay kasadan çıkar.</p>
+
+        <h2 id="test">Testler ne sınıyor?</h2>
+        <p>Testler çekirdeğin içinden değil, ikinci bir yoldan kurulur: yasal kalemlerin bordro motoruyla birebir aynı olması; ödenek süresinin 599, 600, 899, 900, 1079 ve 1080 gün sınırlarında doğru değişmesi; tavanın asgari brüt × %80 olması; GSS priminin ödenek bitince başlaması; sabit giderde dayanmanın kasa ÷ aylık gider, fiyat artışında geometrik seriyle aynı çıkması; eksik tutar eklenince hedef ayda kasanın tam sıfıra inmesi; kredi taksitinin kredi çekirdeğiyle aynı olması. Sayfadaki örnek hane ve SSS yapısal verisi aynı çekirdekten üretilir; ayrışırsa sürekli entegrasyon kırmızı yanar. Kod ve testler <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">açık kaynak</a>.</p>
+
+        <h2 id="sinirlar">Sınırlar</h2>
         <ul>
-          <li><strong>Nakit tabanı</strong> — <em>gönüllü</em> kararlar için bir çizgidir. İsteyerek yapılan bir harcama sizi bu çizginin altına indirmemeli. Güvenli karar tutarı bu kısıtı kullanır.</li>
-          <li><strong>Şokta hayatta kalma</strong> — ölçüt tektir: nakit <strong>sıfırın</strong> altına iniyor mu. Şokta tampon erir; erimesi gereken şey odur.</li>
-        </ul>
-        <p>
-          Bu ayrım kodda bir testle sabitlendi: tabanın altına inen ama sıfırın altına
-          inmeyen bir senaryonun <em>hayatta kaldı</em> sayıldığı doğrulanıyor. Tanım
-          sessizce geri değişirse test düşer.
-        </p>
-
-        <h3>2.2 Faiz şoku Türkiye'de mevcut borcu (çoğunlukla) vurmaz</h3>
-        <p>
-          Yurt dışı için yazılmış kırılganlık modellerinde faiz artışı doğrudan hane
-          bütçesine yazılır; bunun sebebi oralarda konut kredilerinin büyük ölçüde
-          değişken faizli olmasıdır. <strong>Türkiye'de tüketici ve taşıt kredileri
-          sabit faizlidir</strong>: sözleşme imzalandıktan sonra politika faizi ne
-          yaparsa yapsın taksit değişmez.
-        </p>
-        <p>
-          Bu yüzden faiz şoku burada yalnızca <em>değişken faizli borç payına</em>
-          uygulanır — kredi kartı bakiyesi, kredili mevduat hesabı ve bazı ticari
-          krediler — ve varsayılan payı <strong>sıfırdır</strong>. Uygulama orantısaldır:
-        </p>
-        <p class="formula">yeni taksit = taksit × (1 + değişken pay × faiz artışı ÷ mevcut yıllık faiz)</p>
-        <p>
-          Yani yıllık faiz %38,4 iken +10 puanlık bir şok, değişken payın ödemesini
-          yaklaşık %26 artırır. Faiz artışının asıl zararı <em>yeni</em> borçlanmadadır;
-          o da zaten karar tarafında, kredinin kendi faiziyle fiyatlanır.
-        </p>
-        <p>
-          Buna karşılık <strong>kur şoku ayrı ve ağır bir senaryo olarak eklendi.</strong>
-          Geliri TL, borcu döviz olan bir hane için kur, gelir şokundan hem daha olası
-          hem daha serttir. Kur şoku iki yönlü çalışır: dövizli borcun taksitini
-          büyütür, altın/döviz varlığının değerini artırır. Net döviz açığı ayrıca
-          raporlanır.
-        </p>
-
-        <h3>2.3 "Üç ay mı altı ay mı" sorusuna sabit cevap verilmiyor</h3>
-        <p>
-          Acil fon tavsiyeleri neredeyse her yerde tek bir sayıya indirgenir. Ama
-          değişken gelirli, tek gelirli ve borçlu bir hane ile çift gelirli kadrolu bir
-          hane aynı tamponla aynı güvende değildir. Hedef tampon burada türetilir:
-        </p>
-        <div class="table-scroll">
-          <table class="veri-tablo">
-            <caption>Hedef tampon süresinin türetimi</caption>
-            <thead>
-              <tr><th scope="col">Bileşen</th><th scope="col">Katkı</th></tr>
-            </thead>
-            <tbody>
-              <tr><th scope="row">Kadrolu / uzun süreli gelir</th><td>3 ay</td></tr>
-              <tr><th scope="row">Sözleşmeli / kısa süreli gelir</th><td>4 ay</td></tr>
-              <tr><th scope="row">Serbest / değişken gelir</th><td>6 ay</td></tr>
-              <tr><th scope="row">Hane gelirinin %85'inden fazlası tek kişiden</th><td>+1 ay</td></tr>
-              <tr><th scope="row">Borç servisi hane gelirinin %30'unu aşıyor</th><td>+1 ay</td></tr>
-              <tr><th scope="row">Alt ve üst sınır</th><td>2 – 9 ay</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          Türetimin her adımı arayüzde yazılı ve kullanıcı kendi sayısını yazarak
-          üzerine geçebilir. Bu sayılar <strong>seçilmiş parametredir</strong>; kanun
-          ya da kalibrasyon değil.
-        </p>
-
-        <h2 id="formuller">3. Ölçümler</h2>
-        <p class="formula">finansal pay = hane geliri − zorunlu gider − borç servisi</p>
-        <p class="formula">dayanma süresi = likit varlık ÷ (zorunlu gider + borç servisi)</p>
-        <p class="formula">nakit tabanı = (zorunlu gider + borç servisi) × hedef ay + yakın vadeli yükümlülük</p>
-        <p class="formula">borç servisi oranı = borç servisi ÷ hane geliri</p>
-        <p class="formula">finansal yük oranı = (zorunlu gider + borç servisi) ÷ hane geliri</p>
-        <p class="formula">net döviz açığı = dövizli yükümlülük − dövize bağlı varlık</p>
-        <p>
-          Borç servisi oranı tek başına yanıltıcıdır. Aynı %20 borç oranına sahip iki
-          hane, biri gelirinin %40'ını, diğeri %75'ini zorunlu gidere harcıyorsa aynı
-          riskte değildir. Bu yüzden ikisi <em>birlikte</em> kullanılır — nasıl
-          birleştirildiği 5. bölümde.
-        </p>
-
-        <h3>3.1 Likidite katsayıları</h3>
-        <p>
-          Varlıkların hepsi aynı hızda paraya dönmez. Katsayılar <strong>zorla nakde
-          çevirme sürtünmesini</strong> temsil eder: makas, zamanlama, komisyon. Piyasa
-          değer kaybı ayrı modellenir (senaryonun varlık şoku); ikisini aynı katsayıya
-          yıkmak aynı riski iki kez saymak olurdu. Katsayılar bu yüzden bilerek 1'e
-          yakın.
-        </p>
-        <div class="table-scroll">
-          <table class="veri-tablo">
-            <caption>Dayanma süresi hesabında kullanılan katsayılar</caption>
-            <thead>
-              <tr><th scope="col">Varlık</th><th scope="col">Katsayı</th><th scope="col">Gerekçe</th></tr>
-            </thead>
-            <tbody>
-              <tr><th scope="row">Nakit ve mevduat</th><td>1,00</td><td>Anında ve tam değerinde.</td></tr>
-              <tr><th scope="row">Altın ve döviz</th><td>0,97</td><td>Alış-satış makası ve dönüştürme maliyeti.</td></tr>
-              <tr><th scope="row">Yatırım (fon, hisse, tahvil)</th><td>0,93</td><td>Satış süresi ve işlem maliyeti; değer kaybı ayrıca senaryoda.</td></tr>
-              <tr><th scope="row">Likit olmayan varlık</th><td>0,00</td><td>Gayrimenkul altı ayda satılmaz; altı aylık krizi fonlayamaz.</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          Son satır aracın en sert tercihidir. Kaynak çerçeve konut sermayesine 0,40
-          gibi bir katsayı veriyor — ama o katsayı <em>"toplam kaynak"</em> hesabı
-          içindir, <em>"dayanma süresi"</em> hesabı için değil. İkisini karıştırmak,
-          likit olmayan bir haneye likit görüntüsü verir. Likit olmayan varlık net
-          değere girer, dayanma süresine girmez.
-        </p>
-
-        <h2 id="senaryo">4. Senaryo motoru</h2>
-        <p>
-          Yedi şok senaryosu ve bir baz durum, 12 ay boyunca ay ay yürütülür. Baz
-          durumun ağırlığı <strong>sıfırdır</strong>: şoksuz koşulda ayakta kalmak bir
-          başarı değildir, puana katılsaydı herkesin skoru şişerdi.
-        </p>
-        <div class="table-scroll">
-          <table class="veri-tablo">
-            <caption>Senaryolar ve ağırlıkları</caption>
-            <thead>
-              <tr><th scope="col">Senaryo</th><th scope="col">Şok</th><th scope="col">Ağırlık</th></tr>
-            </thead>
-            <tbody>
-              <tr><th scope="row">Baz durum</th><td>yok</td><td>0</td></tr>
-              <tr><th scope="row">Gelir düşüşü</th><td>−%20</td><td>3</td></tr>
-              <tr><th scope="row">Gelir düşüşü</th><td>−%40</td><td>2</td></tr>
-              <tr><th scope="row">İşsizlik</th><td>6 ay gelir yok</td><td>3</td></tr>
-              <tr><th scope="row">Zorunlu gider artışı</th><td>+%20</td><td>2</td></tr>
-              <tr><th scope="row">Varlık değer kaybı</th><td>−%30</td><td>1</td></tr>
-              <tr><th scope="row">Kur yükselişi</th><td>+%30</td><td>2</td></tr>
-              <tr><th scope="row">Birleşik şok</th><td>gelir −%30, gider +%20, varlık −%25, kur +%20, faiz +10 puan</td><td>2</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          Ağırlıklar <strong>olabilirliği</strong> temsil eder, şiddeti değil. İşini
-          kaybetmek, borsanın %30 düşmesinden daha sık başa gelir. Bu ağırlıklar da
-          seçilmiş parametredir.
-        </p>
-
-        <h3>4.1 Aylık döngü</h3>
-        <p class="formula">kasa ← kasa + gelir − gider − borç servisi</p>
-        <p>
-          Başlangıç kasası, likidite katsayıları ve senaryonun varlık/kur şoku
-          uygulanmış likit varlıktır. Gider tarafında zorunlu gider şok kadar artar;
-          isteğe bağlı gider ise kısılır — varsayılan kısıntı %70 ve bu bir girdidir.
-          Kriz geldiğinde keyfi harcamanın tamamından vazgeçildiğini varsaymak
-          iyimserlik, hiç vazgeçilmediğini varsaymak karamsarlık olurdu.
-        </p>
-
-        <h3>4.2 İşsizlik senaryosu</h3>
-        <p>
-          İşsizlikte <strong>yalnızca sizin geliriniz</strong> sıfırlanır; hanedeki
-          ikinci gelir ayrı bir riske tabidir ve ayakta kalır. İkinci gelirin koruyucu
-          sayılmasının sebebi tam olarak budur. Kıdem tazminatı fesih anında toptan
-          gelir olarak girer; işsizlik ödeneği girdiğiniz süre boyunca aylık gelirdir.
-          Bu iki rakamı <a href="../../kidem-tazminati-hesaplama/">kıdem</a> ve
-          <a href="../../issizlik-maasi-hesaplama/">işsizlik ödeneği</a> araçlarıyla
-          hesaplayıp buraya girebilirsiniz — bu araç onları tahmin etmez.
-        </p>
-
-        <h3>4.3 Kısmî kredi</h3>
-        <p>
-          Bir senaryo 12 ayın 11'inde ayakta kalıp son ay batıyorsa, 2. ayda batan bir
-          senaryoyla aynı sayılamaz. Kullanıcıya gösterilen sayı ikilidir (5/7 gibi),
-          çünkü anlaşılır olan odur; <strong>skorda kullanılan sayı kısmî kredilidir</strong>:
-        </p>
-        <p class="formula">kalma oranı = (batış ayı − 1) ÷ 12&nbsp;&nbsp;·&nbsp;&nbsp;batmadıysa 1</p>
-        <p>
-          Bunun ikinci bir faydası var: puan eşiğin iki yanında zıplamaz. Güvenli karar
-          tutarını çözen ikiye bölme yöntemi bu sürekliliğe dayanıyor.
-        </p>
-
-        <h2 id="skor">5. Emniyet skoru</h2>
-        <p>
-          Beş bileşenin ağırlıklı ortalaması. Ağırlıklar ve puan eğrilerinin kırılım
-          noktaları <strong>seçilmiştir</strong>; anket verisiyle kalibre edilmiş
-          değildir ve öyle sunulmamalıdır. Veri biriktikçe kalibre edilmesi gereken yer
-          burasıdır.
-        </p>
-        <div class="table-scroll">
-          <table class="veri-tablo">
-            <caption>Bileşenler, ağırlıklar ve kaynak ölçüler</caption>
-            <thead>
-              <tr><th scope="col">Bileşen</th><th scope="col">Ağırlık</th><th scope="col">Neyden hesaplanır</th></tr>
-            </thead>
-            <tbody>
-              <tr><th scope="row">Likidite</th><td>%25</td><td>Dayanma süresi (0 ay → 0 puan, 6 ay → 75, 12 ay → 100)</td></tr>
-              <tr><th scope="row">Nakit akışı</th><td>%20</td><td>Finansal pay ÷ hane geliri</td></tr>
-              <tr><th scope="row">Borç</th><td>%20</td><td>Yük oranı ve borç servisi oranından <strong>kötü olanı</strong></td></tr>
-              <tr><th scope="row">Şok dayanıklılığı</th><td>%25</td><td>Ağırlıklı kısmî kalma oranı</td></tr>
-              <tr><th scope="row">Koruma</th><td>%10</td><td>Sağlanan koruma maddesi ÷ geçerli madde</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>
-          Borç bileşeninde ortalama değil <strong>minimum</strong> alınıyor. Ortalama
-          almak, iki ölçütten birinin kötü olduğu durumu diğeriyle gizlerdi; oysa
-          kırılganlık en zayıf halkadan gelir.
-        </p>
-        <p>
-          Koruma bileşeninde <strong>geçersiz maddeler paydadan düşer</strong>: borcu
-          olmayan birine "kredi hayat sigortan yok" diye puan kırmak yanlış olurdu.
-          Borçsuz hane üç madde üzerinden, borçlu hane dört madde üzerinden puanlanır.
-        </p>
-
-        <h3>5.1 Skora girmeyen iki risk</h3>
-        <p>
-          <strong>Yoğunlaşma riski</strong> (yatırılabilir varlığın tek bir yerdeki
-          payı) ve <strong>kur riski</strong> (net döviz açığının yıllık hane gelirine
-          oranı) hesaplanır, üç seviyede işaretlenir ve ekranda gösterilir — ama skora
-          <em>girmez</em>. Sebep basit: bu ikisinin ağırlığını savunacak verimiz yok.
-          Uydurma bir ağırlıkla skora katmak, skoru kesinleştirmez, yalnızca
-          bulanıklaştırır. Gizlemek ise daha kötü olurdu; ikisi de gerçek risklerdir.
-        </p>
-
-        <h2 id="cozucu">6. Güvenli karar tutarı</h2>
-        <p>
-          Araç "gelirinin şu kadar katı" gibi bir kural kullanmaz. Üç kısıtı birlikte
-          sağlayan en büyük karar büyüklüğünü arar:
-        </p>
-        <ul>
-          <li>karar sonrası likit varlık <strong>≥</strong> nakit tabanı</li>
-          <li>borç servisi oranı <strong>≤</strong> eşik (varsayılan %35)</li>
-          <li>ağırlıklı şok dayanımı <strong>≥</strong> hedef (varsayılan %80)</li>
-        </ul>
-        <p>
-          Arama ikiye bölmeyle yapılır. Bu <em>ancak</em> kısıtlar tutar büyüdükçe tek
-          yönlü kötüleşiyorsa geçerlidir: tutar arttıkça peşinat likiditeyi düşürür,
-          taksit borç servisini yükseltir, artan gider nakit tabanını büyütür — üçü de
-          aynı yöne çalışır. Bu <strong>iddia edilmiyor, test ediliyor</strong>:
-          rastgele üretilmiş 60 hanede, tutar sıfırdan dört katına çıkarılırken
-          uygunluğun bir kez bozulup bir daha geri dönmediği doğrulanıyor. Monotonluk
-          bozulsaydı çözücü sessizce fazla bir tavan döndürür, kullanıcıya güvenli
-          olmayan bir rakam söylerdik.
-        </p>
-        <p>
-          Sıfır tutarda bile kısıtlar sağlanmıyorsa aranacak bir tutar yoktur ve araç
-          bunu açıkça söyler. <strong>Bu dal ulaşılabilir</strong>: mevcut durumun
-          kendisi zaten güvensiz olabilir. Sınırın hemen üstünde hangi kısıtın
-          bozulduğu da raporlanır — "neyi düzeltirsen daha fazlasını alabilirsin"
-          sorusunun tek dürüst cevabı odur.
-        </p>
-
-        <h2 id="testler">7. Testler ne yakaladı</h2>
-        <p>
-          108 test var ve hepsi geçiyor. Biri, yazarken fark edilmeyen gerçek bir
-          tasarım hatasını yakaladı ve anlatmaya değer.
-        </p>
-        <p>
-          "Skor neden değişti" bölümü, karar öncesi ve sonrası farklardan cümle üretir.
-          İlk sürümde anlamlılık eşikleri neredeyse sıfırdı: tamponun yarım lira
-          değişmesi bile "tampon inceldi" cümlesi doğuruyordu. Sonuç iki yönlü kötüydü.
-          Birincisi gürültü: 5 milyon likiditesi olan bir hanede 1.000 ₺'lik bir karar
-          uyarı üretiyordu. İkincisi ve daha sinsisi, <strong>"hiçbir gösterge
-          bozulmuyor" dalı ulaşılamaz hale gelmişti</strong> — her karar en az bir
-          uyarı doğurduğu için o cümle hiç yazılamıyordu. Eşikler haneye göre
-          ölçeklendi: tamponun bir aylık zorunlu yanmadan az değişmesi, o hane için
-          haber değildir. Ölü dal böylece canlandı.
-        </p>
-        <p>
-          Diğer testler ağırlıkların toplamının 1 ettiğini, azalan puan eğrilerinin ters
-          çalışmadığını, sonsuz dayanma süresinin NaN üretmediğini, kredi taksitinin
-          <a href="../../kredi-hesaplama/">kredi çekirdeğiyle</a> kuruşu kuruşuna aynı
-          çıktığını, peşinatın doğru likidite sırasında çekildiğini ve yeni TL
-          kredisinin dövizli borç payını seyrelttiğini doğruluyor.
-        </p>
-
-        <h2 id="sinirlar">8. Sınırlar</h2>
-        <ul>
-          <li><strong>Olasılık verilmiyor.</strong> Bu araç belirlenimci senaryolar yürütür; "bu şokun gelme ihtimali %7" demez. Olasılıklı modelleme için <a href="../../finansal-ozgurluk-hesaplama/">FIRE simülasyonuna</a> bakın.</li>
-          <li><strong>Ufuk 12 ay.</strong> Enflasyon bu süre boyunca sabit sayılır. Kısa ufukta kabul edilebilir; uzun vadeli planlama için değil.</li>
-          <li><strong>Vergi modellenmiyor.</strong> Gelirleri net, giderleri gerçekleşen tutar olarak girin.</li>
-          <li><strong>Gelir oynaklığı ayrı bir değişken değil.</strong> Gelir türü üzerinden dolaylı modelleniyor; aylık gelir varyansı girdi olarak alınmıyor.</li>
-          <li><strong>Ağırlıklar kalibre edilmiş değildir.</strong> Skorun kendisinden çok bileşen dağılımına ve senaryo tablosuna bakın.</li>
-          <li><strong>Karar bir tanedir.</strong> Aynı anda iki büyük kararın birleşik etkisi modellenmiyor; sırayla girin.</li>
-          <li><strong>Yatırım ya da kredi tavsiyesi değildir.</strong> Araç karar vermez; kararınızın kötü senaryolarda nerede durduğunu ölçer.</li>
+          <li><strong>İş bulma süresi tahmin edilmez.</strong> Ortalama bir süreyi herkese uygulamak yanıltır; araç süreyi size bırakır ve 3, 6, 9, 12 ay için sonucu verir.</li>
+          <li><strong>Kıdem gecikebilir.</strong> Yasal olarak fesihle ödenmesi gerekse de pratikte gecikebilir ya da uyuşmazlığa düşebilir; bu yüzden "ödenmezse" satırı ayrıca gösterilir.</li>
+          <li><strong>Ödenek başvurusu.</strong> Fesihten sonraki 30 gün içinde yapılmazsa geciken süre ödenekten düşer; araç zamanında başvuru varsayar.</li>
+          <li><strong>Kapsam dışı:</strong> ev ve araba gibi birkaç ayda nakde dönmeyen varlıklar, BES birikimi, ek iş ya da serbest çalışma geliri, vergi iadesi, yeni işte alınacak maaş. Tek kişinin bordrosu hesaplanır; hanedeki ikinci ücretli "diğer gelir" olarak girer.</li>
+          <li><strong>Yıl:</strong> kıdem tavanı, asgari ücret ve GSS oranı çıkış yılının parametreleridir. Yeni yılın parametreleri açıklanıp motora girilene kadar çıkış tarihi o yılla sınırlıdır.</li>
         </ul>
       </div>
     </article>
@@ -445,15 +185,17 @@
         <div class="sources">
           <h2 id="kaynak-title">Dayanaklar</h2>
           <ul>
-            <li>Hane halkı finansal kırılganlığı çerçevesi (likidite + ödeme gücü + stres testi) — <a href="https://www.imf.org/-/media/files/publications/wp/2017/wp17228.pdf" rel="noopener">IMF, A Generalized Framework for the Assessment of Household Financial Vulnerability</a> (2017)</li>
-            <li>Negatif finansal pay ve yetersiz likit varlık ikilisi — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9030839/" rel="noopener">Household Financial Vulnerability to Income and Medical Expenditure Shocks</a> (2022)</li>
-            <li>0–100 dayanıklılık puanlaması ve göstergelerin veriyle ağırlıklandırılması — <a href="https://www.finresilienceinstitute.org/financial-resilience-index-model/" rel="noopener">Financial Resilience Institute, Resilience Index Model</a>. Bantlar okunabilirlik için alındı; ağırlıklar <strong>alınmadı</strong>, çünkü kalibrasyon verisi bizde yok.</li>
-            <li>Likidite kesintileri, yoğunlaşma riski ve bileşik şok yaklaşımı — <a href="https://github.com/engineerinvestor/financial-health-calculator" rel="noopener">financial-health-calculator</a> ve <a href="https://github.com/rjgreenresearch/economic-fragility-simulator" rel="noopener">economic-fragility-simulator</a> (açık kaynak). Sunucu mimarileri alınmadı; hesap tarayıcıda kalıyor.</li>
-            <li>Kredi taksiti, KKDF ve BSMV — sitenin kendi <a href="../../kredi-hesaplama/">kredi çekirdeği</a>. Bu araçta ikinci bir taksit formülü yok.</li>
+            <li>İşsizlik ödeneğinin şartları, süresi ve tutarı — <a href="https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=4447&amp;MevzuatTur=1&amp;MevzuatTertip=5" rel="noopener">4447 sayılı İşsizlik Sigortası Kanunu</a>, m.50-51</li>
+            <li>Ödenek süresince genel sağlık sigortası primi — <a href="https://www.iskur.gov.tr/is-arayan/issizlik-sigortasi/issizlik-odenegi/" rel="noopener">İŞKUR, İşsizlik Ödeneği</a></li>
+            <li>Kıdem tazminatı — 1475 sayılı İş Kanunu m.14; tavan: Hazine ve Maliye Bakanlığı Mali ve Sosyal Haklar Genelgeleri (<a href="../../bordro/#parametreler">bordro parametreleri</a>)</li>
+            <li>İhbar tazminatı ve izin ücreti — 4857 sayılı İş Kanunu m.17 ve m.59</li>
+            <li>GSS oranı ve asgari ücret — 5510 sayılı Kanun m.82 ve SGK 2026/2 Genelgesi (<a href="../../bordro/#parametreler">bordro parametreleri</a>)</li>
+            <li>Tüketici fiyatları — <a href="https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Enflasyon+Verileri/Tuketici+Fiyatlari" rel="noopener">TCMB, Tüketici Fiyatları (TÜİK verisi)</a></li>
+            <li>Kredi taksiti, KKDF ve BSMV — sitenin <a href="../../kredi-hesaplama/">kredi çekirdeği</a></li>
             <li>Kaynak kodu ve testler — <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">açık kaynak çekirdek (MIT)</a></li>
           </ul>
           <p class="muted-note">
-            Bilgilendirme amaçlıdır; bağlayıcı teklif değildir. Bir bilgi güncelliğini
+            Bilgilendirme amaçlıdır; hukuki danışmanlık değildir. Bir bilgi güncelliğini
             yitirdiyse <a href="../../iletisim/">bana bildirin</a>.
           </p>
         </div>
@@ -464,11 +206,11 @@
       <div class="wrap prose">
         <h2>İlgili sayfalar</h2>
         <ul>
-          <li><a href="../">Finansal Emniyet Testi</a> — aracın kendisi.</li>
-          <li><a href="../../kredi-hesaplama/">Kredi Hesaplama</a> — buradaki taksitleri üreten çekirdek.</li>
-          <li><a href="../../finansal-ozgurluk-hesaplama/">Finansal Özgürlük (FIRE)</a> — uzun vadeli, olasılıklı karşılığı.</li>
-          <li><a href="../../issizlik-maasi-hesaplama/">İşsizlik Maaşı Hesaplama</a> — işsizlik senaryosundaki ödenek.</li>
-          <li><a href="../../kidem-tazminati-hesaplama/">Kıdem Tazminatı Hesaplama</a> — şokta gelen toplu ödeme.</li>
+          <li><a href="../">İşsiz kalırsam kaç ay dayanırım?</a> — aracın kendisi.</li>
+          <li><a href="../../isten-ayrilma-hesaplama/">İşten Ayrılma Paketi</a> — kıdem, ihbar, izin ve ödenek ayrıntısı.</li>
+          <li><a href="../../issizlik-maasi-hesaplama/">İşsizlik Maaşı Hesaplama</a> — ödeneğin tutarı ve süresi.</li>
+          <li><a href="../../kidem-tazminati-hesaplama/">Kıdem Tazminatı Hesaplama</a> — tavan ve hizmet süresi.</li>
+          <li><a href="../../kredi-hesaplama/">Kredi Hesaplama</a> — taksitleri üreten çekirdek.</li>
         </ul>
       </div>
     </section>

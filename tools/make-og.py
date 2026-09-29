@@ -315,13 +315,13 @@ SPEC = {
    "Ortak kazancı ücret olarak mı, kâr payı olarak mı almalı? Beyan eşiğini geçmek netinizi düşürür.",
    ["Optimum ücret", "Beyan eşiği"], "finans"),
 
- "emniyet-metodoloji": ("finansal-emniyet-testi/metodoloji", "Emniyet Testi", "Metodolojisi",
-   "Nakit tabani, sok senaryolari, guvenli karar tutari ve 108 test.",
-   ["108 test", "MIT"], "finans"),
+ "emniyet-metodoloji": ("finansal-emniyet-testi/metodoloji", "Dayanma Süresi", "Yöntemi",
+   "Kıdem, ihbar, işsizlik ödeneği ve GSS kuralları; fiyat artışı ve eksik fon formülleri.",
+   ["Açık defter", "MIT"], "finans"),
 
- "finansal-emniyet-testi": ("finansal-emniyet-testi", "Finansal Emniyet", "Testi",
-   "Karsilayabilmek baska, guvenle karsilayabilmek baska. Karariniz yedi soktan geciyor.",
-   ["7 senaryo", "Emniyet skoru"], "finans"),
+ "finansal-emniyet-testi": ("finansal-emniyet-testi", "İşsiz Kalırsam", "Kaç Ay Dayanırım?",
+   "Birikim, kıdem, ihbar ve işsizlik ödeneğiyle ay ay dayanma süresi ve eksik acil durum fonu.",
+   ["Kıdem + ödenek", "Enflasyon dahil"], "finans"),
 
  "fire-metodoloji": ("finansal-ozgurluk-hesaplama/metodoloji", "FIRE Simülasyonu", "Metodolojisi",
    "Monte Carlo nasıl kuruldu? Korelasyonlu getiri-enflasyon, Student-t ve 40 test.",

@@ -48,7 +48,6 @@ var KANCA = {
   "d-year": "kıdem aracında tarih seçicilerini JS'e bağlayan kanca",
   "calc-out": "çıkış takviminde JS'in doldurduğu kapsayıcı; düzeni içeriği veriyor",
   "proj-title": "çıkış takviminde düz h3; sitenin h3 stili yeterli",
-  "kopru-once": "finansal emniyet testinde durum kancası; görünüm kopru-yan ve seviye sınıflarından",
   "report-title": "baskı raporu başlığı; ekranda .report-head gizli",
   "report-meta": "baskı raporu başlığı; ekranda .report-head gizli",
   "report-actions": "yazdır düğmesi kapsayıcısı; düğmenin kendisi .btn ile stilli",
