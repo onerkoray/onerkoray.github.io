@@ -591,8 +591,14 @@ jobs:
       - name: Ev/kira karşılaştırma testleri
         run: node ev-almak-mi-kiralamak-mi/test.js
 
-      - name: Finansal emniyet çekirdeği testleri
+      - name: Dayanma süresi çekirdeği testleri
         run: node finansal-emniyet-testi/test.js
+
+      - name: Dayanma süresi sayfası hesaptan üretilmiş mi
+        # Örnek hane, metindeki GSS primi ve ödenek tavanı, SSS yapısal
+        # verisi hesap çekirdeğinden ve bordro parametrelerinden. Yeni yıl
+        # parametreleri girilip sayfa yeniden üretilmezse kırmızı.
+        run: node tools/dayanma-ornek.js --check
 
       - name: FIRE simülasyon testleri
         run: node finansal-ozgurluk-hesaplama/test.js
