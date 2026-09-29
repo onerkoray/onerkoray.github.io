@@ -602,6 +602,12 @@
       <image:title>Türkiye ekonomisi, grafiklerle — Koray Öner</image:title>
     </image:image>
   </url>
+  <url><loc>https://korayoner.dev/diyagramlar/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/diyagramlar-koray-oner.png</image:loc>
+      <image:title>Paranın mekaniği: maaş, vergi ve kredi, dört diyagramda — Koray Öner</image:title>
+    </image:image>
+  </url>
   <url><loc>https://korayoner.dev/makaleler/</loc><lastmod>2026-09-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/makaleler-koray-oner.png</image:loc>

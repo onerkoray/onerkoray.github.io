@@ -873,6 +873,17 @@ jobs:
         # yeniden üretilmezse kırmızı.
         run: node tools/grafikler-sayfa.js --check
 
+      - name: Diyagramlar sayfasının hesabı
+        # Rakamlar bordro ve kredi motorundan; test her birini motoru
+        # çağırmadan kapalı formülle yeniden kurar (tarife, anüite, tavan),
+        # akışların korunumunu ve kredi örneğinin araçla aynı olduğunu sınar.
+        run: node diyagramlar/test.js
+
+      - name: Diyagramlar sayfası hesaptan üretilmiş mi
+        # Statik SVG'ler, tablolar ve metindeki rakamlar üreteçten. Motor ya
+        # da parametre değişip sayfa yeniden üretilmezse kırmızı.
+        run: node tools/diyagramlar-sayfa.js --check
+
       - name: Kira artışı aracının hesabı
         # Oran serisi resmî açıklanan beş oranla (çapa) ve sitenin TÜFE
         # serisinden ikinci bir yoldan sınanır; %25 sınırının başladığı ve

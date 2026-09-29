@@ -1,0 +1,270 @@
+/* =========================================================================
+   Diyagramlar sayfası — paranın mekaniği
+   -------------------------------------------------------------------------
+   Veri işaretleri YALNIZCA --dv-* tokenlarını kullanır (tools/veri-renkleri.js).
+   Anlam bütün şekillerde aynı:
+     dg-net    sana kalan: net ücret, kredide anapara      --dv-1
+     dg-vergi  geri dönmeyen: vergi ve faiz                --dv-2
+     dg-prim   sosyal güvenlik primi, karşılığı olan       --dv-mute
+   Çerçeve dili teknik çizim: noktalı çizim kâğıdı, ölçü çizgisi ve her
+   şeklin altında antet (şekil no, kaynak motor, yıl). grafikler/ sayfasının
+   ölçüm-aleti dilinden bilerek ayrı: orası veri izler, burası mekanizma çizer.
+   ========================================================================= */
+
+.diyagram-page { --dg-ic: 24px; --dg-kagit: color-mix(in srgb, var(--text) 9%, transparent); }
+
+/* ---- giriş -------------------------------------------------------------- */
+.dg-giris { padding: clamp(1.5rem, 1rem + 2vw, 2.75rem) 0 clamp(1.5rem, 1rem + 2vw, 2.5rem); }
+.dg-ust {
+  font: 600 .72rem/1.4 var(--font-mono); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text-muted); margin: 0 0 1rem;
+}
+.dg-giris h1 {
+  font-size: clamp(1.9rem, 1.15rem + 3.3vw, 3.35rem); line-height: 1.07; letter-spacing: -.035em;
+  max-width: 20ch; margin: 0 0 1.1rem; text-wrap: balance; font-variant-numeric: tabular-nums;
+}
+.dg-vurgu { color: var(--dv-1-ink); white-space: nowrap; }
+.dg-giris-metin { font-size: 1.06rem; line-height: 1.65; color: var(--text-muted); max-width: 64ch; margin: 0; }
+.dg-giris-metin strong { color: var(--text); font-variant-numeric: tabular-nums; }
+
+/* 100 liralık şerit: sayfanın tezi tek satırda */
+.dg-serit { margin: clamp(1.5rem, 1rem + 2vw, 2.25rem) 0 0; max-width: 880px; }
+.dg-serit-bar {
+  display: flex; height: 22px; gap: 2px;
+  border-radius: 3px; overflow: hidden;
+}
+.dg-serit-bar span { display: block; height: 100%; min-width: 2px; }
+.dg-serit-bar .dg-net { background: var(--dv-1); }
+.dg-serit-bar .dg-vergi { background: var(--dv-2); }
+.dg-serit-bar .dg-prim { background: color-mix(in srgb, var(--text) 30%, var(--surface)); }
+.dg-serit-ol {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem 1.25rem;
+  list-style: none; margin: .75rem 0 0; padding: 0;
+}
+.dg-serit-ol li { display: grid; gap: .1rem; }
+.dg-serit-ol b {
+  font: 700 clamp(1.25rem, 1.05rem + .9vw, 1.75rem)/1.1 var(--font-display);
+  font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+}
+.dg-serit-ol span { font-size: .84rem; color: var(--text-muted); line-height: 1.4; }
+.dg-serit-ol li::before { content: ""; width: 22px; height: 3px; border-radius: 2px; margin-bottom: .35rem; }
+.dg-serit-ol .dg-net::before { background: var(--dv-1); }
+.dg-serit-ol .dg-vergi::before { background: var(--dv-2); }
+.dg-serit-ol .dg-prim::before { background: color-mix(in srgb, var(--text) 30%, var(--surface)); }
+.dg-serit-ol .dg-net b { color: var(--dv-1-ink); }
+.dg-serit-ol .dg-vergi b { color: var(--dv-2-ink); }
+.dg-kunye { margin: 1.1rem 0 0; font: 500 .72rem/1.5 var(--font-mono); color: var(--text-muted); letter-spacing: .02em; }
+.dg-kunye a { color: inherit; }
+
+/* şekil fihristi */
+.dg-fihrist {
+  list-style: none; padding: 0; margin: clamp(1.75rem, 1.25rem + 2vw, 2.5rem) 0 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--text); border-bottom: 1px solid var(--border);
+}
+.dg-fihrist li + li { border-left: 1px solid var(--border); }
+.dg-fihrist a {
+  display: grid; gap: .3rem; align-content: start; padding: .85rem .9rem 1rem; height: 100%;
+  color: var(--text); text-decoration: none; transition: background .2s ease;
+}
+.dg-fihrist a:hover, .dg-fihrist a:focus-visible { background: var(--surface); }
+.dg-fihrist-no { font: 600 .66rem/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); }
+.dg-fihrist-ad { font-size: .9rem; line-height: 1.35; }
+@media (max-width: 760px) {
+  .dg-fihrist { grid-template-columns: 1fr 1fr; }
+  .dg-fihrist li:nth-child(3) { border-left: 0; }
+  .dg-fihrist li:nth-child(n + 3) { border-top: 1px solid var(--border); }
+  .dg-serit-ol { grid-template-columns: 1fr; }
+  .diyagram-page { --dg-ic: 12px; }
+}
+
+/* ---- ortak maaş seçici --------------------------------------------------- */
+.dg-kontrol {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem;
+  margin: 0 0 1rem;
+}
+.dg-kontrol-ad { font: 600 .72rem/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+.dg-secimler { display: flex; flex-wrap: wrap; gap: .4rem; }
+.dg-kontrol-not { font-size: .82rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+/* ---- bölümler ----------------------------------------------------------- */
+.dg-bolum { padding: clamp(2.5rem, 1.8rem + 3vw, 4.25rem) 0 0; scroll-margin-top: 4.5rem; }
+.dg-bolum-bas { max-width: 800px; margin-bottom: 1.25rem; }
+.dg-sekil-no {
+  display: flex; align-items: center; gap: .75rem; margin: 0 0 .8rem;
+  font: 600 .72rem/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted);
+}
+.dg-sekil-no::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+.dg-bolum-bas h2 {
+  font-size: clamp(1.4rem, 1.05rem + 1.5vw, 2.1rem); line-height: 1.2; letter-spacing: -.025em;
+  margin: 0 0 .7rem; text-wrap: balance; font-variant-numeric: tabular-nums;
+}
+.dg-oz { color: var(--text-muted); line-height: 1.65; margin: 0; max-width: 68ch; font-variant-numeric: tabular-nums; }
+.dg-oz strong { color: var(--text); }
+.dg-arac { margin: 1rem 0 0; font-size: .92rem; }
+
+/* ---- şekil: çizim kâğıdı + antet --------------------------------------- */
+.dg-sekil {
+  margin: 0; min-width: 0;
+  border: 1px solid var(--border); border-radius: var(--radius-inset, 10px);
+  background-color: var(--surface);
+  background-image: radial-gradient(circle at 1px 1px, var(--dg-kagit) 1px, transparent 1.4px);
+  background-size: 16px 16px;
+  overflow: hidden;
+}
+.dg-sekil-ust {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: .6rem 1rem; padding: .9rem var(--dg-ic) 0;
+}
+.dg-sekil-ad { margin: 0; font: 600 .7rem/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+.dg-tuval { position: relative; padding: .75rem var(--dg-ic) .5rem; }
+
+/* antet: teknik çizimin sağ alt köşesindeki başlık bloğu */
+.dg-antet {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: stretch;
+  border-top: 1px solid var(--border);
+  font: 500 .7rem/1.4 var(--font-mono); color: var(--text-muted); letter-spacing: .03em;
+  background: var(--surface);
+}
+.dg-antet > * { padding: .55rem .8rem; margin: 0; }
+.dg-antet > * + * { border-left: 1px solid var(--border); }
+.dg-antet b { color: var(--text); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.dg-antet a { color: inherit; }
+@media (max-width: 640px) {
+  .dg-antet { grid-template-columns: 1fr 1fr; }
+  .dg-antet > :nth-child(2) { grid-column: 1 / -1; grid-row: 2; border-left: 0; border-top: 1px solid var(--border); }
+}
+
+.dg-lejant { display: flex; flex-wrap: wrap; gap: .35rem 1rem; list-style: none; margin: 0; padding: 0; font-size: .8rem; color: var(--text-muted); }
+.dg-lejant li { display: inline-flex; align-items: center; gap: .45rem; }
+.dg-lejant li::before { content: ""; width: 12px; height: 12px; border-radius: 2px; }
+.dg-lejant .dg-l-net::before { background: var(--dv-1); }
+.dg-lejant .dg-l-vergi::before { background: var(--dv-2); }
+.dg-lejant .dg-l-prim::before { background: color-mix(in srgb, var(--text) 30%, var(--surface)); }
+.dg-lejant .dg-l-tarali::before {
+  background: repeating-linear-gradient(45deg, var(--dv-2) 0 2px, color-mix(in srgb, var(--dv-2) 28%, var(--surface)) 2px 5px);
+}
+.dg-lejant .dg-l-ort::before { height: 3px; width: 16px; background: var(--dv-2); }
+.dg-lejant .dg-l-marj::before { height: 2px; width: 16px; background: var(--dv-1); }
+
+/* ---- SVG ----------------------------------------------------------------- */
+.dg-svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
+.dg-izgara { stroke: var(--dv-grid); stroke-width: 1; }
+.dg-centik { stroke: var(--dv-axis); stroke-width: 1; }
+.dg-eksen { font: 500 11px var(--font-mono); fill: var(--text-muted); font-variant-numeric: tabular-nums; }
+.dg-eksen-kat { fill: color-mix(in srgb, var(--text-muted) 70%, transparent); font-size: 10.5px; }
+.dg-sutun { font: 600 10.5px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; fill: var(--text-muted); }
+.dg-hale { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+
+.dg-etiket { font: 600 13px var(--font-body); fill: var(--text); }
+.dg-buyuk { font: 700 22px var(--font-display); fill: var(--text); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.dg-kucuk { font: 500 11px var(--font-mono); fill: var(--text-muted); font-variant-numeric: tabular-nums; }
+.dg-ara { font: 600 12px var(--font-body); fill: var(--text); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.dg-ara-deger, .dg-orta-deger { font: 700 12px var(--font-mono); fill: var(--text-muted); }
+.dg-son.dg-net .dg-renkli, .dg-son.dg-net .dg-orta-deger { fill: var(--dv-1-ink); }
+.dg-son.dg-vergi .dg-renkli, .dg-son.dg-vergi .dg-orta-deger { fill: var(--dv-2-ink); }
+.dg-renkli-vergi { fill: var(--dv-2-ink); }
+.dg-not { font: 600 12px var(--font-mono); fill: var(--text); font-variant-numeric: tabular-nums; }
+.dg-not-deger { font-weight: 700; font-size: 13px; }
+
+/* sankey */
+.dg-bag { stroke: none; transition: fill .2s ease, opacity .2s ease; }
+.dg-bag.dg-akis { fill: color-mix(in srgb, var(--text) 9%, transparent); }
+.dg-bag.dg-net { fill: color-mix(in srgb, var(--dv-1) 42%, transparent); }
+.dg-bag.dg-vergi { fill: color-mix(in srgb, var(--dv-2) 48%, transparent); }
+.dg-bag.dg-prim { fill: color-mix(in srgb, var(--text) 17%, transparent); }
+.dg-baglar:hover .dg-bag { opacity: .45; }
+.dg-baglar .dg-bag:hover, .dg-baglar .dg-bag.dg-etkin { opacity: 1; }
+.dg-dugum { stroke: none; }
+.dg-dugum.dg-d-kaynak { fill: var(--text); }
+.dg-dugum.dg-net { fill: var(--dv-1); }
+.dg-dugum.dg-vergi { fill: var(--dv-2); }
+.dg-dugum.dg-prim { fill: color-mix(in srgb, var(--text) 42%, var(--surface)); }
+
+/* aylık sütunlar ve kredi alanları */
+.dg-kat.dg-net, .dg-alan.dg-net { fill: var(--dv-1); }
+.dg-kat.dg-vergi, .dg-alan.dg-vergi { fill: var(--dv-2); }
+.dg-kat.dg-prim { fill: color-mix(in srgb, var(--text) 26%, var(--surface)); }
+.dg-alan.dg-tarali { fill: url(#dg-tarama); }
+.dg-tarama-zemin { fill: color-mix(in srgb, var(--dv-2) 28%, var(--surface)); }
+.dg-tarama-cizgi { stroke: var(--dv-2); stroke-width: 2.2; }
+.dg-sinir { fill: none; stroke: var(--surface); stroke-width: 1.5; }
+.dg-vurus { fill: transparent; }
+.dg-sutun-g:hover .dg-kat, .dg-sutun-g.dg-etkin .dg-kat { filter: brightness(1.08); }
+.dg-sutun-g:hover .dg-vurus, .dg-sutun-g.dg-etkin .dg-vurus { fill: color-mix(in srgb, var(--text) 5%, transparent); }
+.dg-vuruslar .dg-vurus:hover, .dg-vuruslar .dg-vurus.dg-etkin { fill: color-mix(in srgb, var(--text) 7%, transparent); }
+.dg-referans { stroke: var(--text); stroke-width: 1.25; stroke-dasharray: 5 4; opacity: .7; }
+.dg-olcu line { stroke: var(--dv-2-ink); stroke-width: 1.5; }
+.dg-dilim line { stroke: var(--text-muted); stroke-width: 1; }
+.dg-dilim text { font: 700 10.5px var(--font-mono); fill: var(--dv-2-ink); text-anchor: middle; }
+.dg-isaret line { stroke: var(--text); stroke-width: 1; stroke-dasharray: 2 3; }
+.dg-isaret circle { fill: var(--surface); stroke: var(--text); stroke-width: 2; }
+.dg-katman-ad { font: 700 12px var(--font-body); fill: var(--text); }
+
+/* kesinti eğrisi */
+.dg-cizgi { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.dg-ort { stroke: var(--dv-2); stroke-width: 3; }
+.dg-marj { stroke: var(--dv-1); stroke-width: 1.75; }
+.dg-cizgi-ad { font: 600 12px var(--font-mono); }
+.dg-ort-ad { fill: var(--dv-2-ink); }
+.dg-marj-ad { fill: var(--dv-1-ink); }
+.dg-tavan { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 4; }
+.dg-nokta { stroke: var(--surface); stroke-width: 2; }
+.dg-n-tepe { fill: var(--dv-2-ink); }
+.dg-n-geri { fill: var(--surface); stroke: var(--dv-2-ink); stroke-width: 2; }
+.dg-secili circle:first-child { fill: none; stroke: var(--text); stroke-width: 1.5; }
+.dg-secili circle:last-child { fill: var(--text); }
+.dg-imlec { stroke: var(--text); stroke-width: 1; opacity: .35; pointer-events: none; }
+
+/* ipucu */
+.dg-ipucu {
+  position: absolute; z-index: 5; pointer-events: none; min-width: 190px; max-width: 280px;
+  padding: .6rem .75rem; border: 1px solid var(--border); border-radius: 4px;
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  box-shadow: 0 8px 24px rgba(16, 24, 20, .14);
+  font: 500 .76rem/1.5 var(--font-mono); color: var(--text); font-variant-numeric: tabular-nums;
+  transform: translate(-50%, calc(-100% - 14px));
+}
+.dg-ipucu[hidden] { display: none; }
+.dg-ipucu b { display: block; font-weight: 700; margin-bottom: .25rem; }
+.dg-ipucu span { display: flex; justify-content: space-between; gap: 1rem; }
+.dg-ipucu i { font-style: normal; display: inline-flex; align-items: center; gap: .4rem; color: var(--text-muted); }
+.dg-ipucu i::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: transparent; }
+.dg-ipucu .dg-net::before { background: var(--dv-1); }
+.dg-ipucu .dg-vergi::before, .dg-ipucu .dg-ort::before { background: var(--dv-2); }
+.dg-ipucu .dg-prim::before { background: color-mix(in srgb, var(--text) 30%, var(--surface)); }
+.dg-ipucu .dg-marj::before { background: var(--dv-1); }
+
+/* ---- tablolar ------------------------------------------------------------ */
+.dg-tablo { margin: 0; padding: 0 var(--dg-ic) .75rem; }
+.dg-tablo summary {
+  cursor: pointer; font: 600 .74rem/1.4 var(--font-mono); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--text-muted); padding: .5rem 0; min-height: 44px; display: flex; align-items: center;
+}
+.dg-tablo summary:hover { color: var(--text); }
+.dg-tablo-kap { overflow-x: auto; }
+.dg-tablo table { width: 100%; border-collapse: collapse; background: var(--surface); }
+.dg-tablo caption { text-align: left; font-weight: 700; padding: .4rem 0 .6rem; }
+
+/* ---- yöntem ------------------------------------------------------------- */
+.dg-yontem { padding: clamp(3rem, 2rem + 3vw, 4.5rem) 0 clamp(3rem, 2rem + 3vw, 4.5rem); }
+.dg-yontem h2 { font-size: 1.35rem; margin: 0 0 1.1rem; }
+.dg-tanimlar { display: grid; margin: 0; border-top: 1px solid var(--text); }
+.dg-tanimlar div { display: grid; gap: .25rem 1.5rem; padding: .85rem 0; border-bottom: 1px solid var(--border); }
+@media (min-width: 720px) { .dg-tanimlar div { grid-template-columns: 180px 1fr; } }
+.dg-tanimlar dt { font: 600 .74rem/1.5 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+.dg-tanimlar dd { margin: 0; color: var(--text-muted); line-height: 1.6; max-width: 74ch; }
+.dg-ilgili { list-style: none; padding: 0; margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.dg-ilgili a {
+  display: inline-flex; align-items: center; min-height: 40px; padding: .4rem .8rem;
+  border: 1px solid var(--border); border-radius: 2px; color: var(--text); text-decoration: none; font-size: .88rem;
+}
+.dg-ilgili a:hover, .dg-ilgili a:focus-visible { border-color: var(--text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-bag, .dg-fihrist a { transition: none; }
+}
+@media print {
+  .dg-kontrol { display: none !important; }
+  .dg-sekil { background-image: none; }
+}
