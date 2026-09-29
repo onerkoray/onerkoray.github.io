@@ -107,6 +107,12 @@
       // 7566 s.K.: MYÖ işveren hissesi %11 → %12; m.81/ı imalat dışı 2 puan.
       oranlar: oranlarIle({ sgkIsveren: 0.2175, sgkIsverenIndirim: 0.02 }),
       dilimler: [[190000, 0.15], [400000, 0.20], [1500000, 0.27], [5300000, 0.35], [null, 0.40]],
+      /* GVK m.31 engellilik indirimi: aylık, derece sırasıyla (%80, %60, %40
+         çalışma gücü kaybı). Ücret matrahından tarifeden ÖNCE düşülür (318
+         Seri No'lu GVGT m.6/1). Kaynak: GİB "Engellilik İndirimi Tutarları"
+         tablosu. 2020 tabloda yok; motor o yıl için seçeneği reddeder. */
+      // 332 Seri No'lu GVGT, RG 31.12.2025.
+      engellilik: [12000, 7000, 3000],
       // Ücret dışı gelirler (serbest meslek, ticari, kira) için ayrı tarife:
       // üçüncü dilimin üst sınırı ücret tarifesinden farklıdır (1.000.000 / 1.500.000).
       dilimlerUcretDisi: [[190000, 0.15], [400000, 0.20], [1000000, 0.27], [5300000, 0.35], [null, 0.40]],
@@ -220,6 +226,8 @@
         dayanak: "5510 m.41, m.51, m.60/1-c-1, m.82 (7566 s.K. öncesi)"
       },
       dilimler: [[158000, 0.15], [330000, 0.20], [1200000, 0.27], [4300000, 0.35], [null, 0.40]],
+      // GVK m.31 engellilik indirimi, aylık TL (1., 2., 3. derece); 329 Seri No'lu GVGT, RG 30.12.2024.
+      engellilik: [9900, 5700, 2400],
       donemler: [
         { ay: 1, asgariBrut: 26005.50, asgariNet: 22104.67, sgkTavan: 195041.25 }
       ],
@@ -242,6 +250,8 @@
       // 7524 s.K. m.28 (RG 02.08.2024): kısa vadeli %2 → %2,25, 2024/Eylül'den.
       oranDegisimleri: [{ ay: 9, sgkIsveren: 0.2075 }],
       dilimler: [[110000, 0.15], [230000, 0.20], [870000, 0.27], [3000000, 0.35], [null, 0.40]],
+      // GVK m.31 engellilik indirimi, aylık TL (1., 2., 3. derece); 324 Seri No'lu GVGT, RG 30.12.2023.
+      engellilik: [6900, 4000, 1700],
       donemler: [
         { ay: 1, asgariBrut: 20002.50, asgariNet: 17002.12, sgkTavan: 150018.75 }
       ],
@@ -262,6 +272,8 @@
       tavanKatsayisi: 7.5,
       oranlar: VARSAYILAN_ORANLAR,
       dilimler: [[70000, 0.15], [150000, 0.20], [550000, 0.27], [1900000, 0.35], [null, 0.40]],
+      // GVK m.31 engellilik indirimi, aylık TL (1., 2., 3. derece); 323 Seri No'lu GVGT, RG 30.12.2022.
+      engellilik: [4400, 2600, 1100],
       donemler: [
         { ay: 1, asgariBrut: 10008.00, asgariNet: 8506.80, sgkTavan: 75060.00 },
         { ay: 7, asgariBrut: 13414.50, asgariNet: 11402.32, sgkTavan: 100608.75 }
@@ -284,6 +296,8 @@
       tavanKatsayisi: 7.5,
       oranlar: VARSAYILAN_ORANLAR,
       dilimler: [[32000, 0.15], [70000, 0.20], [250000, 0.27], [880000, 0.35], [null, 0.40]],
+      // GVK m.31 engellilik indirimi, aylık TL (1., 2., 3. derece); 317 Seri No'lu GVGT, RG 21.12.2021.
+      engellilik: [2000, 1170, 500],
       donemler: [
         { ay: 1, asgariBrut: 5004.00, asgariNet: 4253.40, sgkTavan: 37530.00 },
         { ay: 7, asgariBrut: 6471.00, asgariNet: 5500.35, sgkTavan: 48532.50 }
@@ -307,6 +321,8 @@
       oranlar: VARSAYILAN_ORANLAR,
       agiOranlari: AGI_ORANLARI,
       dilimler: [[24000, 0.15], [53000, 0.20], [190000, 0.27], [650000, 0.35], [null, 0.40]],
+      // GVK m.31 engellilik indirimi, aylık TL (1., 2., 3. derece); 313 Seri No'lu GVGT, RG 29.12.2020.
+      engellilik: [1500, 860, 380],
       donemler: [
         { ay: 1, asgariBrut: 3577.50, asgariNet: 2825.90, sgkTavan: 26831.25 }
       ],

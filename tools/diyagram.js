@@ -236,7 +236,7 @@ function dogrulamaOzeti() {
 
 function surumOzeti() {
   return '<p class="muted">Hazırlayan <a href="../hakkimda/" rel="author">Koray Öner</a> · Çekirdek sürümü ' +
-    esc(B.surum) + ' · Belge güncellemesi: <time datetime="2026-09-22">22 Eylül 2026</time></p>';
+    esc(B.surum) + ' · Belge güncellemesi: <time datetime="2026-09-29">29 Eylül 2026</time></p>';
 }
 
 var HEDEFLER = [

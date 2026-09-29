@@ -354,5 +354,89 @@ baslik("Fazla mesai parametreleri");
      8 * f.serbestZamanFazlaSureliKat === 10);
 })();
 
+/* 1.2.0 — kıst ay, engellilik indirimi, BES otomatik katılım.
+   Beklenenler motordan değil kapalı formülden: tarife, oranlar, dönem. */
+(function () {
+  var Y = B.sonYil(), P = B.parametre(Y), d = B.donem(P, 1), o = B.oranlarAy(P, 1);
+  var CAL = o.sgkIsci + o.issizlikIsci;
+  function T(m) { return B.tarifeVergisi(m, P.dilimler); }
+
+  baslik("Kıst ay (318 Seri No'lu GVGT m.6/2)");
+  var z = B.hesaplaYil(80000, Y), g30 = B.hesaplaYil(80000, Y, { gun: 30 });
+  ok("gün: 30 seçeneksizle birebir aynı", z.aylar.every(function (a, i) {
+    return Object.keys(a).every(function (k) { return a[k] === g30.aylar[i][k]; });
+  }));
+  // PEK sınırları güne iner
+  [[5000, 10], [20000, 15], [400000, 20], [250000, 30]].forEach(function (c) {
+    var a = B.hesaplaYil(c[0], Y, { gun: c[1] }).aylar[0];
+    var bek = Math.min(Math.max(c[0], d.asgariBrut * c[1] / 30), d.sgkTavan * c[1] / 30);
+    ok(c[1] + " gün, brüt " + c[0] + ": prime esas kazanç günlük sınırlarda", yakin(a.primEsas, bek), a.primEsas + " ≠ " + bek);
+  });
+  // 16 Eylül'de işe giriş: önceki aylar sıfır, istisna yine asgari ücretin Eylül vergisi
+  var gun = [0, 0, 0, 0, 0, 0, 0, 0, 15, 30, 30, 30];
+  var r = B.hesaplaYil(gun.map(function (g) { return 100000 * g / 30; }), Y, { gun: gun });
+  ok("gün 0 olan aylarda bordro yok", r.aylar.slice(0, 8).every(function (a) {
+    return a.brut === 0 && a.net === 0 && a.sgk === 0 && a.gelirVergisi === 0 && a.isverenMaliyeti === 0;
+  }));
+  var am = d.asgariBrut * (1 - CAL);
+  ok("kıst Eylül istisnası = asgari ücretin Eylül vergisi (tam, günle orantılanmaz)",
+     yakin(r.aylar[8].istisna, T(9 * am) - T(8 * am)), r.aylar[8].istisna.toFixed(2));
+  ok("işe girişte çalışanın matrah birikimi sıfırdan başlar",
+     yakin(r.aylar[8].kumulatifMatrah, 50000 * (1 - CAL)));
+  ok("istisna menfaati hesaplanan vergiyi aşmaz (düşük kıst ücret)",
+     B.hesaplaYil(8000, Y, { gun: 7 }).aylar.every(function (a) { return a.gelirVergisi === 0 && a.istisna <= a.vergiTarife + 1e-9; }));
+  var hatali = 0;
+  [31, -1, 12.5].forEach(function (g) { try { B.hesaplaYil(50000, Y, { gun: g }); } catch (e) { hatali++; } });
+  ok("geçersiz gün sayısı reddedilir (31, −1, 12,5)", hatali === 3);
+  var agiYili = B.yillar().filter(function (y) { return B.parametre(y).istisnaRejimi === "agi"; })[0];
+  var red = false; try { B.hesaplaYil(5000, agiYili, { gun: 15 }); } catch (e) { red = true; }
+  ok(agiYili + " (AGİ) kıst ay reddedilir: kaynakla doğrulanmadı", red);
+  var hedef = gun.map(function (g) { return 60000 * g / 30; });
+  var brutler = B.nettenBruteYil(hedef, Y, { gun: gun });
+  var geri = B.hesaplaYil(brutler, Y, { gun: gun });
+  ok("netten brüte kıst ay gidiş-dönüş", geri.aylar.every(function (a, i) { return yakin(a.net, hedef[i], 0.02); }));
+
+  baslik("Engellilik indirimi (GVK m.31)");
+  B.yillar().forEach(function (y) {
+    var E = B.parametre(y).engellilik;
+    if (!E) {
+      var reddedildi = false; try { B.hesaplaYil(50000, y, { engellilik: 1 }); } catch (e) { reddedildi = true; }
+      ok(y + " tutar tanımsız: seçenek reddedilir", reddedildi);
+      return;
+    }
+    ok(y + " dereceler azalan (1. > 2. > 3.)", E[0] > E[1] && E[1] > E[2], JSON.stringify(E));
+  });
+  var yillarE = B.yillar().filter(function (y) { return B.parametre(y).engellilik; }).sort();
+  ok("tutarlar yıldan yıla artıyor", yillarE.every(function (y, i) {
+    return !i || B.parametre(y).engellilik[0] > B.parametre(yillarE[i - 1]).engellilik[0];
+  }));
+  [1, 2, 3].forEach(function (der) {
+    var brut = 100000, E = P.engellilik[der - 1];
+    var ind = B.hesaplaYil(brut, Y, { engellilik: der }), yok = B.hesaplaYil(brut, Y);
+    var M = 12 * brut * (1 - CAL);
+    var bek = T(M) - T(M - 12 * E);
+    ok(der + ". derece: yıllık vergi tasarrufu = tarife(M) − tarife(M − 12 × indirim)",
+       yakin(yok.toplam.gelirVergisi - ind.toplam.gelirVergisi, bek, 0.05),
+       (yok.toplam.gelirVergisi - ind.toplam.gelirVergisi).toFixed(2) + " ≠ " + bek.toFixed(2));
+    ok(der + ". derece: prim ve damga değişmez", yakin(ind.toplam.sgk, yok.toplam.sgk) && yakin(ind.toplam.damga, yok.toplam.damga));
+  });
+  // 7 günlük kıst ücret: matrah indirimden küçük; indirim matrahla sınırlanır, sonraki aya devretmez
+  var gunK = [7, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30];
+  var kr = B.hesaplaYil(gunK.map(function (g, i) { return i ? 100000 : 8000; }), Y, { engellilik: 1, gun: gunK }).aylar;
+  var mo = 8000 * (1 - CAL);
+  ok("indirim matrahı aşamaz (kıst ay: indirim = matrah, matrah 0)", yakin(kr[0].engellilik, mo) && yakin(kr[0].matrah, 0));
+  ok("artan indirim sonraki aya devretmez", yakin(kr[1].engellilik, P.engellilik[0]), kr[1].engellilik);
+
+  baslik("BES otomatik katılım (4632 s.K. ek m.2)");
+  var b0 = B.hesaplaYil(100000, Y), b3 = B.hesaplaYil(100000, Y, { bes: 0.03 });
+  ok("BES netten sonra kesilir: net ve vergiler aynı", b0.aylar.every(function (a, i) {
+    return a.net === b3.aylar[i].net && a.gelirVergisi === b3.aylar[i].gelirVergisi;
+  }));
+  ok("BES = prime esas kazanç × %3", b3.aylar.every(function (a) { return yakin(a.bes, a.primEsas * 0.03) && yakin(a.eleGecen, a.net - a.bes); }));
+  var t = B.hesaplaYil(d.sgkTavan * 2, Y, { bes: 0.03 }).aylar[0];
+  ok("tavan üstünde BES tavandan hesaplanır", yakin(t.bes, d.sgkTavan * 0.03));
+  ok("seçeneksiz BES sıfır, ele geçen = net", b0.aylar.every(function (a) { return a.bes === 0 && a.eleGecen === a.net; }));
+})();
+
 console.log("\n" + gecen + " geçti, " + kalan + " kaldı.");
 process.exit(kalan ? 1 : 0);
