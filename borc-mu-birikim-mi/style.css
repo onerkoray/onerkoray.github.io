@@ -3,7 +3,7 @@
 .field-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 4px 20px; }
 .panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
 #dagitim-form input[type="text"], #dagitim-form select {
-  font: inherit; padding: 8px 10px;
+  font: inherit; font-size: var(--type-form-control); padding: 8px 10px;
   border: 1px solid var(--border, rgba(127,127,127,.3));
   border-radius: 10px; background: var(--surface); color: var(--text);
   min-height: 44px; max-width: 100%;

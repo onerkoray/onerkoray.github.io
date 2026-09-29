@@ -58,6 +58,14 @@
   --type-card-description: .93rem;
   --type-metadata: .82rem;
   --type-label: .72rem;
+  /* Araç formu ve tablosu. 2026-09-29'da ölçüldü: 66 araç sayfasında
+     etiket 7, giriş kutusu 5, tablo hücresi 9 farklı boyuttaydı (12,5 ile
+     22,4 px arası); her araç kendi değerini yazmıştı. Kutu --step-0'ın
+     altına inmez: iOS 16 px altındaki kutuya dokununca sayfayı büyütüyor. */
+  --type-form-label: var(--step--1);
+  --type-form-control: var(--step-0);
+  --type-table: var(--step--1);
+  --type-table-head: .75rem;
   --leading-title: 1.15;
   --leading-body: 1.65;
   --tracking-title: -.02em;
@@ -1501,7 +1509,14 @@ section { padding: var(--bolum) 0; }
 :root .calculator-page :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="hidden"], [type="color"], [type="submit"], [type="button"], [type="reset"]), select, textarea) {
   min-height: 44px; border-radius: var(--radius-control);
   border-color: var(--border); background-color: var(--surface); color: var(--text);
+  font-size: var(--type-form-control);
 }
+/* Etiket ve tablo yazısı da tek ölçekte. Seçiciler araçların tek sınıflı
+   yerel kurallarını (.panel-q label, .veri-tablo td) yenecek güçte; yeni
+   bir araç kendi boyutunu yazsa bile bu ölçeğe düşer. */
+:root .calculator-page main :is(label, legend) { font-size: var(--type-form-label); }
+:root .calculator-page main :is(td, tbody th, tfoot th) { font-size: var(--type-table); }
+:root .calculator-page main thead th { font-size: var(--type-table-head); }
 :root :is(input, select, textarea):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 :root .calculator-page :is(.tab, .sekme)[aria-selected="true"] {
   background: var(--accent-strong); border-color: var(--accent-strong); color: #fff;

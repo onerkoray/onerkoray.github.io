@@ -14,6 +14,7 @@
   border-radius: 8px;
   background: var(--surface, transparent);
   color: inherit;
+  font-size: var(--type-form-control);
 }
 
 /* Gün / ay / yıl tarih seçici */
