@@ -212,6 +212,11 @@ def ozlu_degisim(h, yol):
     for dosya, imza in kendi:
         if imza[0] == imza[1]:      # normalize sonrasi geriye bir sey yok
             continue
+        # Stil dosyasi icerik degildir. 29 Eylul 2026'da form ve tablo
+        # yazisi tek olcege baglandi; 23 aracin karti, hicbir hesabi ya da
+        # metni degismedigi halde bugune kaydi.
+        if dosya.endswith(".css"):
+            continue
         tekrar = sum(1 for v in tablo.values() if v == imza)
         if tekrar < TARAMA_TEKRARI and not yalniz_kabuk(h, dosya):
             return True
