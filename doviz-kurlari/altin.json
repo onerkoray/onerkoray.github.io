@@ -1,43 +1,43 @@
 {
- "guncelleme": "2026-09-25 20:56:01",
- "cekildi": "2026-09-25 17:56",
+ "guncelleme": "2026-09-29 21:36:01",
+ "cekildi": "2026-09-29 18:36",
  "kaynak": "https://finans.truncgil.com/v4/today.json",
  "kalemler": {
   "GRA": {
    "ad": "Gram altın",
-   "alis": 6743,
-   "satis": 6743.98,
-   "degisim": 0.38
+   "alis": 6559.68,
+   "satis": 6560.57,
+   "degisim": 1.24
   },
   "CEYREKALTIN": {
    "ad": "Çeyrek altın",
-   "alis": 10722.45,
-   "satis": 10967.28,
-   "degisim": 0.24
+   "alis": 10481.8,
+   "satis": 10741.05,
+   "degisim": 0.11
   },
   "YARIMALTIN": {
    "ad": "Yarım altın",
-   "alis": 21377.89,
-   "satis": 21934.56,
-   "degisim": 0.24
+   "alis": 20898.09,
+   "satis": 21482.09,
+   "degisim": 0.11
   },
   "TAMALTIN": {
    "ad": "Tam altın",
-   "alis": 42889.81,
-   "satis": 43734.95,
-   "degisim": 0.24
+   "alis": 41927.21,
+   "satis": 42832.79,
+   "degisim": 0.11
   },
   "CUMHURIYETALTINI": {
    "ad": "Cumhuriyet altını",
-   "alis": 44615,
-   "satis": 45287.0,
-   "degisim": 0.33
+   "alis": 43525,
+   "satis": 44179.0,
+   "degisim": 0.05
   },
   "GUMUS": {
    "ad": "Gümüş (gram)",
-   "alis": 101.14,
-   "satis": 101.23,
-   "degisim": 0.89
+   "alis": 96.19,
+   "satis": 96.27,
+   "degisim": 0.77
   }
  }
 }
