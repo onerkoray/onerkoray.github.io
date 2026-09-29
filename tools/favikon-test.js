@@ -164,7 +164,9 @@ dogru("kırık favicon bağlantısı yok", kirik.length === 0, kirik.slice(0, 6)
    duserse bu bir gerilemedir: 2026-09-13 oncesi 28 sayfa boyleydi. */
 var beklenenKok = ["gizlilik/index.html", "hakkimda/index.html",
   "iletisim/index.html", "kullanim-kosullari/index.html",
-  "yayin-ilkeleri/index.html", "404.html"];
+  "yayin-ilkeleri/index.html", "404.html",
+  /* Kişinin çalışma dizini: hakkımda gibi kök markayı taşır (2026-09-29). */
+  "koray-oner/index.html"];
 var fazla = kokeDusen.filter(function (p) { return beklenenKok.indexOf(p) < 0; });
 dogru("kök markaya yalnızca hak eden sayfalar düşüyor", fazla.length === 0,
   "beklenmeyen: " + fazla.slice(0, 8).join(", "));

@@ -32,6 +32,7 @@ BIT = "<!-- METODOLOJI-BLOGU:BITIS -->"
 # Araç olmayan sayfalar: kurumsal, yasal, içerik ve taslak sayfalar.
 HARIC = {
     "yayin-ilkeleri", "gizlilik", "iletisim", "kullanim-kosullari", "hakkimda", "makaleler",
+    "koray-oner",
     "bordro",
 }
 

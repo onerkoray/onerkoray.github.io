@@ -884,6 +884,12 @@ jobs:
         # beklenen açıklamadan 10 gün sonra hâlâ eskiyse de kırmızı.
         run: node tools/kira-sayfa.js --check
 
+      - name: Çalışma dizini güncel mi
+        # /koray-oner/ araç, yazı ve yayın listesini ve rakamlarını depodan
+        # üretir (hakkımda ile aynı sayım fonksiyonları). Yeni araç ya da yazı
+        # eklenip dizin yeniden üretilmezse kırmızı.
+        run: python tools/calisma-dizini.py --check
+
       - name: Araç sayfalarında yazı ve bileşenler tek ölçekte
         # Etiket, giriş kutusu ve tablo yazısı tarayıcıda ÖLÇÜLÜR: sapmaların
         # çoğu CSS'te yazılı değildi, "font: inherit" kutuyu kaptan alıyordu.
