@@ -166,7 +166,7 @@ kalan maddeleri CI göremez. Onları elle geç.
 
 - [ ] Kabuk şablondan kuruldu, gövde ezberden yazılmadı. [CI: Makale kabuğu ve sınıfları]
 - [ ] Üst başlık site standardında: marka adı `brand-name`, menü Ana Sayfa · Araçlar · Makaleler ile başlıyor, `tema-erken.js` ve `script.js` yüklü. Menüye yazıyla ilgisiz bağlantı kopyalanmadı. [CI: Site başlığı tek standartta]
-- [ ] Form etiketi, giriş kutusu ve tablo yazısı kendi boyutunu yazmıyor; `style.css`'teki `--type-form-*` ve `--type-table*` ölçeğine düşüyor. [CI: Araç sayfalarında yazı tek ölçekte]
+- [ ] Form etiketi, giriş kutusu, buton, seçici, tablo ve grafik yazısı kendi ölçüsünü yazmıyor: `style.css`'teki `--type-*`, `--control-h`, `--secim-h`, `--tablo-pad-*` ve `.btn` / `.secim` sistemine düşüyor. [CI: Araç sayfalarında yazı ve bileşenler tek ölçekte]
 - [ ] Gövdede gerçek bir `<img>` var (Google Görseller). [CI: Görsel SEO regresyonları]
 - [ ] Görsel `tools/makale-gorsel.js` içinde çizildi. Pillow ya da elle PNG yok. [CI: SVG makale kartları çizimle aynı]
 - [ ] Paylaşım meta etiketleri tam. [CI: Paylaşım meta etiketleri tam mı]

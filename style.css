@@ -66,6 +66,16 @@
   --type-form-control: var(--step-0);
   --type-table: var(--step--1);
   --type-table-head: .75rem;
+  /* Araç bileşenleri. 2026-09-29 ölçümü: giriş kutusu 26, buton 26, tablo
+     27 farklı görünümdeydi (kutu 44-53 px, buton köşesi 0-999 px, hücre
+     dolgusu 4,8-12,8 px). Ana eylem sitenin .btn'i; seçici düğmeler
+     (süre, senaryo, örnek, sekme) .secim; tablo tek dolgu ve çizgide. */
+  --control-h: 48px;
+  --control-pad-x: .75rem;
+  --secim-h: 40px;
+  --tablo-pad-y: .6rem;
+  --tablo-pad-x: .75rem;
+  --tablo-zebra: color-mix(in srgb, var(--text) 3%, transparent);
   --leading-title: 1.15;
   --leading-body: 1.65;
   --tracking-title: -.02em;
@@ -1510,13 +1520,62 @@ section { padding: var(--bolum) 0; }
   min-height: 44px; border-radius: var(--radius-control);
   border-color: var(--border); background-color: var(--surface); color: var(--text);
   font-size: var(--type-form-control);
+  min-height: var(--control-h); padding-inline: var(--control-pad-x);
+  padding-block: .45rem; line-height: 1.4; box-sizing: border-box;
+  border: 1px solid var(--border); border-radius: var(--radius-control);
 }
+/* textarea çok satırlı: yüksekliği içerik ve rows belirler. */
+:root .calculator-page textarea { padding-block: .6rem; }
 /* Etiket ve tablo yazısı da tek ölçekte. Seçiciler araçların tek sınıflı
    yerel kurallarını (.panel-q label, .veri-tablo td) yenecek güçte; yeni
    bir araç kendi boyutunu yazsa bile bu ölçeğe düşer. */
 :root .calculator-page main :is(label, legend) { font-size: var(--type-form-label); }
 :root .calculator-page main :is(td, tbody th, tfoot th) { font-size: var(--type-table); }
 :root .calculator-page main thead th { font-size: var(--type-table-head); }
+
+/* ---- Araç bileşenleri: buton, seçici, tablo, grafik yazısı ---- */
+/* Ana ve ikincil eylem: sitenin .btn'i. Rengi olmayan .btn tarayıcının gri
+   düğmesine düşüyordu (4 sayfa); varsayılan artık ikincil görünüm. */
+:root .calculator-page main .btn {
+  min-height: var(--control-h); border-radius: var(--radius-control);
+  font-size: var(--type-form-control); font-weight: 650; justify-content: center;
+  padding-block: .8rem; line-height: 1.6; border-width: 1px; border-style: solid;
+}
+:root .calculator-page main .btn.btn-primary {
+  background-color: var(--brand); border-color: var(--brand); color: var(--brand-contrast);
+}
+:root .calculator-page main .btn:not(.btn-primary) {
+  background: var(--surface); color: var(--text); border-color: var(--border);
+}
+:root .calculator-page main .btn:not(.btn-primary):hover { border-color: var(--brand); color: var(--brand-strong); }
+:root .calculator-page main .btn.btn-sm { min-height: var(--secim-h); font-size: var(--type-form-label); padding-block: .4rem; }
+/* Seçici: süre, senaryo, örnek ve sekme düğmeleri. Seçili olan dolu. */
+:root .calculator-page main :is(.secim, .tab, .sekme) {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: var(--secim-h); padding: .35rem 1rem; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  font: 600 var(--type-form-label)/1.2 var(--font-body, inherit); cursor: pointer;
+}
+:root .calculator-page main :is(.secim, .tab, .sekme):hover { border-color: var(--brand); }
+:root .calculator-page main :is(.secim, .tab, .sekme):is([aria-pressed="true"], [aria-selected="true"]) {
+  background: var(--accent-strong); border-color: var(--accent-strong); color: #fff;
+}
+/* Veri tablosu. İçinde kutu olan düzenleme tabloları (satır ekle/sil) dolgu
+   ve zebradan muaf: kutunun kendi yüksekliği satırı belirler. */
+:root .calculator-page main table:not(:has(input, select)) :is(td, th) {
+  padding: var(--tablo-pad-y) var(--tablo-pad-x);
+  border-bottom: 1px solid var(--border);
+}
+:root .calculator-page main table :is(td, th) { font-variant-numeric: tabular-nums; }
+/* Sayı sütunu sağa: basamaklar alt alta okunur. Sitede zaten kullanılan
+   .sayi sınıfı ortak kurala bağlandı. */
+:root .calculator-page main table .sayi { text-align: right; }
+:root .calculator-page main table:not(:has(input, select)) tbody tr:nth-child(even) > :is(td, th) { background-color: var(--tablo-zebra); }
+:root .calculator-page main thead th {
+  text-transform: uppercase; letter-spacing: .04em; font-weight: 600; color: var(--text-muted);
+}
+/* Grafik ve diyagram yazısı: eksen, not ve etiket tek aileden. */
+:root .calculator-page main svg text { font-family: var(--font-mono); }
 :root :is(input, select, textarea):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 :root .calculator-page :is(.tab, .sekme)[aria-selected="true"] {
   background: var(--accent-strong); border-color: var(--accent-strong); color: #fff;

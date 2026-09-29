@@ -3,10 +3,7 @@
 .bp-butce .panel-q { max-width: 420px; }
 .panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
 #borc-form input[type="text"], #borc-form select {
-  font: inherit; font-size: var(--type-form-control); padding: 8px 10px;
-  border: 1px solid var(--border, rgba(127,127,127,.3));
-  border-radius: 10px; background: var(--surface); color: var(--text);
-  min-height: 44px; max-width: 100%;
+  font: inherit; font-size: var(--type-form-control); color: var(--text); max-width: 100%;
 }
 
 .bp-baslik-satir {
@@ -104,7 +101,7 @@
 .bp-seri-1 { stroke: var(--dv-1); background: var(--dv-1); }
 .bp-seri-2 { stroke: var(--dv-2); background: var(--dv-2); }
 .bp-seri-3 { stroke: var(--dv-3); background: var(--dv-3); }
-.bp-eksen { font-size: 10px; fill: var(--text-muted); }
+.bp-eksen { font-size: 11px; fill: var(--text-muted); }
 .bp-lejant {
   display: flex; flex-wrap: wrap; gap: .35rem 1.1rem;
   margin-top: .7rem; font-size: .75rem; color: var(--text-muted);

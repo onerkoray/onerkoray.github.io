@@ -9,10 +9,6 @@
 .panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
 #kidem-form select, #kidem-form input[type="date"] {
   font: inherit;
-  padding: 8px 10px;
-  border: 1px solid var(--border, rgba(127,127,127,.3));
-  border-radius: 8px;
-  background: var(--surface, transparent);
   color: inherit;
   font-size: var(--type-form-control);
 }

@@ -11,10 +11,7 @@
 .panel-q .muted-note { display: block; font-size: .75rem; opacity: .92; }
 .panel-q label { display: block; font-weight: 600; font-size: .82rem; margin-bottom: .3rem; }
 #na-form input[type="text"], #na-form select {
-  font: inherit; font-size: var(--type-form-control); padding: 8px 10px;
-  border: 1px solid var(--border); border-radius: 10px;
-  background: var(--surface); color: var(--text);
-  min-height: 44px; max-width: 100%;
+  font: inherit; font-size: var(--type-form-control); color: var(--text); max-width: 100%;
 }
 #na-form input[type="text"] { width: 9rem; }
 #na-form select { width: 100%; }

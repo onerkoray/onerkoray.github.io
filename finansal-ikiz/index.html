@@ -37,8 +37,8 @@
   <meta name="twitter:description" content="20 yıllık servet projeksiyonu, üç senaryo ve en etkili değişken.">
   <meta name="twitter:image" content="https://korayoner.dev/images/finansal-ikiz-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=2ce37010">
-  <link rel="stylesheet" href="style.css?v=048ca55b">
+  <link rel="stylesheet" href="../style.css?v=b94f4967">
+  <link rel="stylesheet" href="style.css?v=cf5f8dcf">
 
   <script type="application/ld+json">
   {
@@ -200,7 +200,7 @@
             <div class="fi-bolum">
               <div class="fi-baslik-satir">
                 <h3>Aylık giderler</h3>
-                <button type="button" class="fi-ekle" data-ekle="gider">+ Ekle</button>
+                <button type="button" class="fi-ekle btn btn-sm" data-ekle="gider">+ Ekle</button>
               </div>
               <div class="fi-tablo-sarmal">
                 <table class="fi-girdi">
@@ -215,7 +215,7 @@
             <div class="fi-bolum">
               <div class="fi-baslik-satir">
                 <h3>Varlıklar</h3>
-                <button type="button" class="fi-ekle" data-ekle="varlik">+ Ekle</button>
+                <button type="button" class="fi-ekle btn btn-sm" data-ekle="varlik">+ Ekle</button>
               </div>
               <div class="fi-tablo-sarmal">
                 <table class="fi-girdi">
@@ -234,7 +234,7 @@
             <div class="fi-bolum">
               <div class="fi-baslik-satir">
                 <h3>Borçlar</h3>
-                <button type="button" class="fi-ekle" data-ekle="borc">+ Ekle</button>
+                <button type="button" class="fi-ekle btn btn-sm" data-ekle="borc">+ Ekle</button>
               </div>
               <div class="fi-tablo-sarmal">
                 <table class="fi-girdi">
@@ -259,7 +259,7 @@
                     <option value="buyuk-harcama">Büyük harcama</option>
                     <option value="ozel">Özel</option>
                   </select>
-                  <button type="button" class="fi-ekle" data-ekle="olay">+ Ekle</button>
+                  <button type="button" class="fi-ekle btn btn-sm" data-ekle="olay">+ Ekle</button>
                 </div>
               </div>
               <div class="fi-tablo-sarmal">
@@ -292,7 +292,7 @@
                     <option value="harcama">Harcama hedefi (peşinat vb.)</option>
                     <option value="borcsuzluk">Borçsuz olmak</option>
                   </select>
-                  <button type="button" class="fi-ekle" data-ekle="hedef">+ Ekle</button>
+                  <button type="button" class="fi-ekle btn btn-sm" data-ekle="hedef">+ Ekle</button>
                 </div>
               </div>
               <div class="fi-tablo-sarmal">
@@ -348,12 +348,12 @@
               de silinir.
             </p>
             <div class="fi-dosya">
-              <button type="button" id="fi-disa" class="fi-dugme">Profili dosyaya kaydet</button>
+              <button type="button" id="fi-disa" class="fi-dugme btn btn-primary btn-sm">Profili dosyaya kaydet</button>
               <label class="fi-dugme fi-dugme--ikincil">
                 Dosyadan yükle
                 <input type="file" id="fi-ice" accept="application/json,.json" hidden>
               </label>
-              <button type="button" id="fi-sifirla" class="fi-dugme fi-dugme--sade">Sıfırla</button>
+              <button type="button" id="fi-sifirla" class="fi-dugme fi-dugme--sade btn btn-sm">Sıfırla</button>
             </div>
             <p id="fi-dosya-mesaj" class="muted-note" role="status"></p>
           </div>
