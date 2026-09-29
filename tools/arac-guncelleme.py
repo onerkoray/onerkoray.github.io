@@ -133,11 +133,17 @@ BAGLANTI_MADDESI = re.compile(r'^\s*<li><a ' + IC_HREF + r'>[^<]*</a>[^<]*</li>\
 IC_BAGLANTI = re.compile(r'(?:\s*·\s*)?<a ' + IC_HREF + r'>[^<]*</a>')
 
 
+# Sinif niteligi sunumdur: 29 Eylul 2026'da butonlara .btn/.secim ve sayi
+# hucrelerine .sayi eklendi, 14 aracin karti metni degismeden bugune kaydi.
+SINIF_NITELIGI = re.compile(r'\sclass="[^"]*"')
+
+
 def _gezinmesiz(satir):
-    """None: satir yalnizca gezinme; yoksa site ici baglantilari silinmis hali."""
+    """None: satir yalnizca gezinme; yoksa site ici baglantilari ve sinif
+    nitelikleri silinmis hali."""
     if BAGLANTI_MADDESI.match(satir):
         return None
-    return IC_BAGLANTI.sub("", satir)
+    return SINIF_NITELIGI.sub("", IC_BAGLANTI.sub("", satir))
 
 
 def _imzalar(h):
