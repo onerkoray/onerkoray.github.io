@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-29T17:59:13+03:00</updated>
+  <updated>2026-09-29T18:55:05+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Maaş, Vergi ve Kredi Diyagramları</title>
+    <link href="https://korayoner.dev/diyagramlar/"/>
+    <id>https://korayoner.dev/diyagramlar/</id>
+    <updated>2026-09-29T18:55:05+03:00</updated>
+    <summary>İşverenin 100 lirası nereye gidiyor, net maaş yıl içinde neden düşüyor, kredi taksitinin ne kadarı faiz? Sitenin hesap motorlarından çizilen dört diyagram.</summary>
+  </entry>
 
   <entry>
     <title>Koray Öner — Araçlar, Yazılar ve Yayınlar</title>
