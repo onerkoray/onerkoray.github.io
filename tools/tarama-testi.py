@@ -203,6 +203,16 @@ dogru("robots etiketini noindex yapmak ozlu sayilmaz",
           ("-", '  <meta name="robots" content="index, follow, max-snippet:-1">'),
           ("+", '  <meta name="robots" content="noindex, follow">')]}, "x"))
 
+# --- 5c) Stil dosyasi icerik degil ------------------------------------------
+dogru("yalnizca araç stil dosyasini degistirmek ozlu sayilmaz",
+      not degisti({"x/style.css": [
+          ("-", "  font-size: .82rem;"),
+          ("+", "  font-size: var(--type-form-label);")]}, "x"))
+# KONTROL: ayni commit sayfanin kendisine metin getirirse ozlu sayilir.
+dogru("KONTROL: stil ile birlikte sayfa metni degisirse ozlu sayilir",
+      degisti({"x/style.css": [("+", "  color: red;")],
+               "x/index.html": [("-", "<p>Oran %20.</p>"), ("+", "<p>Oran %18.</p>")]}, "x"))
+
 # --- 6) Site ici gezinme icerik guncellemesi degil -------------------------
 # 27 Eylul 2026: yeni araclar eklenirken eski araclara birer "ilgili"
 # baglanti konuyordu ve 20 aracin karti 11-14 Eylul'den 25-27 Eylul'e
