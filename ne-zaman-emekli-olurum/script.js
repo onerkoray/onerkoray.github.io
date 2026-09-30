@@ -55,7 +55,7 @@
   });
   function dogumAlani() {
     var kadin = secim.cinsiyet === "kadin";
-    document.querySelectorAll(".em-dogum").forEach(function (x) { x.hidden = !kadin; });
+    document.querySelectorAll("[data-kadin]").forEach(function (x) { x.hidden = !kadin; });
   }
   $("e-ilk").max = BUGUN; $("e-dogum").max = BUGUN;
 
