@@ -597,6 +597,18 @@ jobs:
         # parametreleri girilip sayfa yeniden üretilmezse kırmızı.
         run: node tools/dayanma-ornek.js --check
 
+      - name: Emeklilik tarihi çekirdeği testleri
+        # Tablolar kanun metninin satırlarıyla, örnek kişilerin tarihleri
+        # elle türetilmiş beklentilerle (506 Geçici m.81, 1479 Geçici m.10,
+        # 5510 m.28 ve Geçici m.6/9). Borçlanma bedeli bordro parametresinden.
+        run: node ne-zaman-emekli-olurum/test.js
+
+      - name: Emeklilik sayfası hesaptan üretilmiş mi
+        # "Tek günün farkı" örneği, Geçici m.81/B tablosu ve SSS yapısal
+        # verisi çekirdekten. Asgari ücret ya da en düşük emekli aylığı
+        # değişip sayfa yeniden üretilmezse kırmızı.
+        run: node tools/emeklilik-ornek.js --check
+
       - name: FIRE simülasyon testleri
         run: node finansal-ozgurluk-hesaplama/test.js
 

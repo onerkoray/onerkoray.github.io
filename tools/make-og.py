@@ -267,6 +267,10 @@ SPEC = {
    "Taksit bütçenizden, KKDF ve BSMV dahil çekebileceğiniz kredi tutarı.",
    ["Tersine hesap", "Vade × faiz"], "finans"),
 
+ "ne-zaman-emekli-olurum": ("ne-zaman-emekli-olurum", "Ne Zaman", "Emekli Olurum?",
+   "EYT, 1999–2008 ya da 2008 sonrası: en erken tarih, bağlayıcı şart, borçlanmanın etkisi.",
+   ["5510 m.28", "Kanun metniyle testli"], "bordro"),
+
  "bag-kur-ve-borclanma-hesaplama": ("bag-kur-ve-borclanma-hesaplama", "Bağ-Kur ve", "Borçlanma 2026",
    "Bağ-Kur %35,75, isteğe bağlı %33, GSS %6, borçlanma %45 ve %32.",
    ["SGK 2026/2", "Genelgeyle testli"], "bordro"),
