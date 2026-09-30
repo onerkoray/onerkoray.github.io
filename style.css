@@ -454,6 +454,12 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   .site-nav::-webkit-scrollbar { display: none; }
   .site-nav ul { gap: 1rem; padding-bottom: .3rem; }
   .site-nav a { white-space: nowrap; }
+  /* Şerit kaydığını söylesin: sağ kenar solar, kelime ortasında kesilmiş
+     gibi durmaz. Son bağlantı solmanın altında kalmasın diye liste sonunda
+     solma kadar boşluk var. */
+  .site-nav { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2.25rem), transparent);
+              mask-image: linear-gradient(to right, #000 calc(100% - 2.25rem), transparent); }
+  .site-nav ul { padding-inline-end: 2.25rem; }
   .theme-toggle { margin-left: auto; }
   /* Renk ve tema düğmeleri sağda birlikte durur (bordro sayfası zaten
      böyleydi; diğerlerinde renk düğmesi ada yapışık kalıyordu). */
@@ -1498,6 +1504,18 @@ section { padding: var(--bolum) 0; }
 /* Directory and calculator refinements. Keep the existing palette and typography. */
 .home-page .hero { padding-block: clamp(2rem, 5vw, 4rem) 2rem; }
 .home-page .hero h1 { font-size: clamp(2.6rem, 5.4vw, 4.5rem); line-height: 1.06; }
+/* Kahraman alanı GÖRÜNÜR DOĞAR. .reveal onu opaklık 0'da tutup ertelenmiş
+   script.js'in gözlemcisini bekliyordu: başlık, sayfanın en büyük içerik
+   öğesi (LCP), betik gelene kadar ekranda yoktu. 30 Eylül 2026 ölçümü:
+   canlıda ilk boyama 2,8 sn, belge yüklenmesinden sonra. Hareket kalıyor ama
+   yalnız konum: opaklık hiç sıfıra inmiyor, betik beklenmiyor. */
+:root .home-page .hero .reveal {
+  opacity: 1; transform: none; transition: none;
+  animation: kahramanGiris .6s cubic-bezier(.22, 1, .36, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+@keyframes kahramanGiris { from { transform: translateY(10px); } }
+@media (prefers-reduced-motion: reduce) { :root .home-page .hero .reveal { animation: none; } }
 .home-page .hero .lede { max-width: 38rem; font-size: 1.1rem; line-height: 1.65; }
 .home-page .hero-spec { flex-wrap: wrap; }
 .home-page .hero-quick { border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; background: var(--surface); }
