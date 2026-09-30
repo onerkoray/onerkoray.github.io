@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <script src="../tema-erken.js?v=3d1c1238"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ne Zaman Emekli Olurum? Emeklilik Hesaplama | Koray Öner</title>
+  <meta name="description" content="EYT, 1999–2008 ya da 2008 sonrası: yaş, prim günü ve sigortalılık süresinden emeklilik tarihinizi, bağlayıcı şartı ve borçlanmanın etkisini hesaplar.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="gecerlilik" content="2027-01-15 | 2027 parametreleri (asgari ücret, en düşük emekli aylığı) girildi mi? Girildiyse örnek node tools/emeklilik-ornek.js ile yeniden üretilmeli. Kademeli emeklilik ya da Bağ-Kur gün sayısı yasalaştı mı? 5510 m.28 ve Geçici m.9 mevzuat.gov.tr'den yeniden okunmalı.">
+  <link rel="canonical" href="https://korayoner.dev/ne-zaman-emekli-olurum/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=5493baed" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Ne zaman emekli olurum?">
+  <meta property="og:description" content="Yaş, prim günü ve sigortalılık süresinden en erken emeklilik tarihi, bağlayıcı şart ve askerlik ya da doğum borçlanmasının kaç ay öne çektiği.">
+  <meta property="og:url" content="https://korayoner.dev/ne-zaman-emekli-olurum/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/ne-zaman-emekli-olurum-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ne zaman emekli olurum? Emeklilik tarihi hesaplama">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Ne zaman emekli olurum?">
+  <meta name="twitter:description" content="EYT, 1999–2008 ve 2008 sonrası kurallarıyla en erken emeklilik tarihi, bağlayıcı şart ve borçlanmanın etkisi.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/ne-zaman-emekli-olurum-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=5fe93b1c">
+  <link rel="stylesheet" href="style.css?v=d764abff">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "image": "https://korayoner.dev/images/ne-zaman-emekli-olurum-koray-oner.png",
+        "@id": "https://korayoner.dev/ne-zaman-emekli-olurum/#app",
+        "name": "Ne Zaman Emekli Olurum? Emeklilik Tarihi Hesaplama",
+        "url": "https://korayoner.dev/ne-zaman-emekli-olurum/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "featureList": "EYT, 1999–2008 ve 2008 sonrası grupları, 4/a ve 4/b, 506 Geçici m.81 gün tablosu, 5510 m.28 kademeli yaş, kısmi emeklilik, 18 yaş kuralı, askerlik ve doğum borçlanmasının başlangıcı geri çekmesi, borçlanma bedeli, çalışma yoğunluğuna göre tarih",
+        "description": "İlk sigorta girişi, doğum tarihi ve prim gününden, yürürlükteki kanuna göre en erken emeklilik tarihini ve bağlayıcı şartı hesaplar; askerlik ya da doğum borçlanmasının tarihi kaç ay öne çektiğini ve en az bedelini gösterir."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Ne Zaman Emekli Olurum?",
+            "item": "https://korayoner.dev/ne-zaman-emekli-olurum/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "EYT'li olup olmadığımı nasıl anlarım?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "e-Devlet'te SGK Tescil ve Hizmet Dökümü'ndeki ilk giriş tarihinize bakın. 8 Eylül 1999'dan önceyse EYT kapsamındasınız: yaş şartı yok, yalnız gün ve sigortalılık süresi şartı var. Birkaç günlük bir çalışmanın girişi de ilk giriştir. Girişiniz sonraysa, ilk girişten önce geçmiş askerliğinizi borçlanarak başlangıcı geri çekebilirsiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Askerlik borçlanması emekliliği öne çeker mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İki şekilde çekebilir. Borçlanılan günler prim gününe eklenir; askerlik ilk girişten önce yapıldıysa sigortalılık başlangıcı da borçlanılan gün kadar geri gider. İkincisi grubunuzu değiştirebilir. Yukarıdaki örnekte 540 günlük borçlanma emekliliği 14 yıl 3 ay öne çekiyor ve en az 267.543 TL tutuyor. Yaşın bağladığı yerde ise borçlanma tarihi değiştirmez. Borçlanma oranı askerlikte %45, doğumda %32."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "7200 günüm doldu, neden emekli olamıyorum?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "2008 sonrası ya da 1999–2008 grubundaysanız yaş şartı da var: kadın 58, erkek 60. Gün şartı 2036'dan sonra dolarsa yaş kademeli olarak 65'e kadar çıkar. Bu gruplarda gün dolduktan sonra yaşı bekleyen kişi, emeklilikte tarihi değil aylığı artırmak için çalışmaya devam eder."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kısmi emeklilik nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tam emeklilik için gereken günden azıyla, karşılığında daha ileri yaşta emekli olmaktır. 2008 sonrasında yaşa üç yıl eklenir ve 5400 gün yeter; EYT grubunda 15 yıl ve 3600 günle 58/60 yaş. Aylık, gün sayısına göre hesaplandığı için daha düşük olur. Araç iki yolu da hesaplar ve hangisinin daha erken olduğunu gösterir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Emekli olmak için işten ayrılmak gerekir mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evet. İşçiler işten ayrılıp yazılı talepte bulunur, aylık talebi izleyen ay başından bağlanır (5510 m.28 ve m.30). Bağ-Kur'da ayrıca talep tarihinde prim borcu olmaması gerekir. Emekli olduktan sonra yeniden çalışılabilir; bu ayrı bir prim rejimidir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kademeli emeklilik çıktı mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bu sayfanın son kontrolünde kanunlaşmamıştı. Araç yürürlükteki metni uygular ve teklifleri hesaba katmaz. Durumu kademeli emeklilik yazısında izliyoruz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Verilerim bir yere gönderiliyor mu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Hesap tarayıcınızda yapılır; doğum tarihiniz ve sigorta geçmişiniz hiçbir sunucuya gönderilmez."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="../#projects">Araçlar</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#borclanma">Borçlanma</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Ne Zaman Emekli Olurum?
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Emeklilik tarihi hesaplama · <span data-s="yil">2026</span></p>
+        <h1>Ne zaman emekli olurum?</h1>
+        <p class="lede">
+          Emeklilik tarihini ilk sigorta girişiniz belirler: 8 Eylül 1999 öncesi, 1999–2008 arası ve
+          2008 sonrası için kanun başka şart arar. Araç sizi doğru gruba koyar, yaş, prim günü ve
+          sigortalılık süresinden hangisinin en son dolduğunu bulur ve o tarihi verir. Askerlik ya da
+          doğum borçlanması tarihi öne çekiyorsa ne kadar çektiğini ve en az kaça mal olduğunu gösterir.
+        </p>
+        <p class="muted kunye-satiri">
+          Kurallar 5510, 506 ve 1479 sayılı kanunların güncel metninden ·
+          borçlanma bedeli <a href="../bordro/">bordro parametrelerinden</a> ·
+          hesap tarayıcınızda çalışır, veri gönderilmez
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-label="Emeklilik tarihi hesaplayıcısı">
+      <div class="wrap">
+        <div class="em-duzen">
+          <form class="em-form" id="em-form" novalidate>
+            <fieldset class="em-grup">
+              <legend><span class="em-no">1</span> Siz</legend>
+              <div class="em-grid">
+                <div class="em-alan">
+                  <span class="em-etiket-yazi" id="e-cins-bas">Cinsiyet</span>
+                  <div class="em-secimler" role="group" aria-labelledby="e-cins-bas">
+                    <button type="button" class="secim" data-secim="cinsiyet" data-deger="kadin" aria-pressed="false">Kadın</button>
+                    <button type="button" class="secim" data-secim="cinsiyet" data-deger="erkek" aria-pressed="true">Erkek</button>
+                  </div>
+                </div>
+                <div class="em-alan">
+                  <label for="e-dogum">Doğum tarihi</label>
+                  <input type="date" id="e-dogum" value="1985-04-12" min="1930-01-01">
+                </div>
+                <div class="em-alan em-genis">
+                  <span class="em-etiket-yazi" id="e-statu-bas">Nasıl sigortalısınız?</span>
+                  <div class="em-secimler" role="group" aria-labelledby="e-statu-bas">
+                    <button type="button" class="secim" data-secim="statu" data-deger="4a" aria-pressed="true">İşçi (4/a, SSK)</button>
+                    <button type="button" class="secim" data-secim="statu" data-deger="4b" aria-pressed="false">Esnaf, serbest (4/b, Bağ-Kur)</button>
+                  </div>
+                  <small>Memurlar (4/c) bu araçta yok. Birden çok statüde çalıştıysanız aylık, SGK'nın hizmet birleştirme kuralıyla belirlenen statüden bağlanır.</small>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="em-grup">
+              <legend><span class="em-no">2</span> Sigorta geçmişiniz</legend>
+              <div class="em-grid">
+                <div class="em-alan">
+                  <label for="e-ilk">İlk sigorta girişi</label>
+                  <input type="date" id="e-ilk" value="2006-09-01" min="1950-01-01" aria-describedby="e-ilk-not">
+                  <small id="e-ilk-not">e-Devlet'te SGK Tescil ve Hizmet Dökümü'ndeki ilk giriş. Birkaç günlük bir çalışmanın girişi de sayılır.</small>
+                </div>
+                <div class="em-alan">
+                  <label for="e-gun">Toplam prim günü</label>
+                  <input type="text" inputmode="numeric" id="e-gun" value="5.400" aria-describedby="e-gun-not">
+                  <small id="e-gun-not">Aynı dökümün toplamı. Borçlanma girecekseniz buraya eklemeyin.</small>
+                </div>
+                <div class="em-alan">
+                  <label for="e-yillik">Bundan sonra yılda kaç gün prim?</label>
+                  <input type="text" inputmode="numeric" id="e-yillik" value="360" aria-describedby="e-yillik-not">
+                  <small id="e-yillik-not">Kesintisiz çalışma 360. Ara vermeyi düşünüyorsanız düşürün.</small>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="em-grup">
+              <legend><span class="em-no">3</span> Borçlanma <span class="em-istege">isteğe bağlı</span></legend>
+              <div class="em-grid">
+                <div class="em-alan">
+                  <label for="e-asker">Askerlik (gün)</label>
+                  <input type="text" inputmode="numeric" id="e-asker" value="0" aria-describedby="e-asker-not">
+                  <small id="e-asker-not">Er ya da yedek subay olarak geçen süre (5510 m.41/1-b).</small>
+                </div>
+                <div class="em-alan">
+                  <label for="e-asker-once">Askerlik ilk girişinizden önce miydi?</label>
+                  <select id="e-asker-once">
+                    <option value="evet">Evet, önce</option>
+                    <option value="hayir">Hayır, sonra</option>
+                  </select>
+                </div>
+                <div class="em-alan em-dogum">
+                  <label for="e-dogumgun">Doğum borçlanması (gün)</label>
+                  <input type="text" inputmode="numeric" id="e-dogumgun" value="0" aria-describedby="e-dogumgun-not">
+                  <small id="e-dogumgun-not">Her doğum için en çok 720 gün, en çok üç doğum. Sigortalı olmadığınız süre borçlanılır (m.41/1-a).</small>
+                </div>
+                <div class="em-alan em-dogum">
+                  <label for="e-dogum-once">Doğumlar ilk girişinizden önce miydi?</label>
+                  <select id="e-dogum-once">
+                    <option value="evet">Evet, önce</option>
+                    <option value="hayir">Hayır, sonra</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+            <p class="em-hata" id="e-hata" role="alert"></p>
+          </form>
+
+          <aside class="em-sonuc" id="em-sonuc" aria-live="polite" aria-labelledby="em-cevap-bas">
+            <p class="em-ust" id="em-cevap-bas">En erken emeklilik</p>
+            <p class="em-cevap" id="r-tarih">—</p>
+            <p class="em-alt" id="r-alt"></p>
+            <p class="em-grup-satir" id="r-grup"></p>
+
+            <div class="em-secimler em-yol-sec" id="r-yol-sec" role="group" aria-label="Emeklilik yolu" hidden></div>
+            <figure class="em-cizelge">
+              <div id="r-cizelge"></div>
+              <figcaption>Her şartın dolduğu tarih. Emeklilik, en son dolan şartın günüdür; o şart koyu çizilir.</figcaption>
+            </figure>
+
+            <dl class="em-kosullar" id="r-kosullar"></dl>
+            <p class="em-dayanak" id="r-dayanak"></p>
+            <p class="em-aylik" id="r-aylik"></p>
+            <ul class="em-notlar" id="r-notlar"></ul>
+          </aside>
+        </div>
+
+        <section class="em-panel" aria-labelledby="em-yollar-bas">
+          <h2 id="em-yollar-bas">Kanunun size açtığı yollar</h2>
+          <p class="em-panel-not">Grubunuzda emekliliğe giden her yol ve dolduğu tarih. Gün sayısı az olan yolda aylık bağlama oranı da düşük olur.</p>
+          <div class="em-tablo-kap">
+            <table>
+              <caption>Yol, dayanak ve tarih</caption>
+              <thead><tr><th scope="col">Yol</th><th scope="col">Dayanak</th><th scope="col" class="sayi">Tarih</th><th scope="col">En son dolan</th></tr></thead>
+              <tbody id="r-yollar"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="em-panel" id="borclanma" aria-labelledby="em-borc-bas">
+          <h2 id="em-borc-bas">Borçlanma emekliliği ne kadar öne çeker?</h2>
+          <div class="em-borc" id="r-borc"></div>
+        </section>
+
+        <section class="em-panel" aria-labelledby="em-duyar-bas">
+          <h2 id="em-duyar-bas">Ara verirsem ne değişir?</h2>
+          <p class="em-panel-not">Yalnız bundan sonraki çalışma yoğunluğu değişir; geri kalan her şey yukarıdaki gibi.</p>
+          <div class="em-tablo-kap">
+            <table>
+              <caption>Yılda ödenen prim gününe göre en erken tarih</caption>
+              <thead><tr><th scope="col">Bundan sonra</th><th scope="col" class="sayi">En erken</th><th scope="col" class="sayi">Gecikme</th></tr></thead>
+              <tbody id="r-duyar"></tbody>
+            </table>
+          </div>
+          <p class="em-duyar-not" id="r-duyar-not"></p>
+        </section>
+      </div>
+    </section>
+
+    <article class="content" id="nasil">
+      <div class="wrap prose">
+        <h2>Nasıl hesaplanır?</h2>
+        <p>Emekliliğin üç şartı var: yaş, prim günü ve bazı gruplarda sigortalılık süresi. Hepsi dolmadan aylık bağlanmaz; bu yüzden emeklilik tarihi, <strong>en son dolan şartın tarihidir</strong>. Araç her şartın dolacağı günü ayrı ayrı bulur.</p>
+        <ol>
+          <li><strong>Başlangıç ve grup.</strong> İlk sigorta girişiniz, ilk girişten önce geçmiş borçlanılan gün kadar geri çekilir (5510 m.41). Geri çekilmiş tarih 8 Eylül 1999'dan önceyse EYT grubu, 30 Nisan 2008'e kadarsa 1999–2008 grubu, sonrasıysa 2008 sonrası grubu.</li>
+          <li><strong>Sigortalılık süresi.</strong> Başlangıçtan geçen takvim süresidir. 18 yaşından önce başlayanlarda 18. yaş gününden sayılır; 1 Nisan 1981'den önce tescil edilenlerde bu kural yoktur (m.38/2, Geçici m.6).</li>
+          <li><strong>Prim günü.</strong> Bugünkü toplamınıza borçlanılan günler eklenir. Sonrası için her ay, yılda kaç gün prim ödeyeceğinizin on ikide biri kadar artar; eşiğin aşıldığı ayın son günü şartın dolduğu gün sayılır.</li>
+          <li><strong>Yaş.</strong> EYT'de yok. 1999–2008 grubunda kadın 58, erkek 60. 2008 sonrasında da 58/60, ama gün şartı 2036'dan sonra dolarsa kademeyle 65'e kadar çıkar: yaş, gün şartının dolduğu tarihe göre belirlenir (m.28/2-b).</li>
+          <li><strong>Yolların en erkeni.</strong> Her grupta ikinci bir yol vardır: daha az günle ama daha ileri yaşta (kısmi) ya da 25 yıl sigortalılıkla. Araç hepsini hesaplar ve en erken olanı verir.</li>
+        </ol>
+
+        <h2 id="ornek">Tek günün farkı</h2>
+<!-- EM-ORNEK:BASLANGIC -->
+<div class="em-ornek">
+<p>İki erkek, ikisi de 1 Ocak 1981 doğumlu, ikisi de hizmet akdiyle (4/a) çalışıyor ve 1 Ekim 2026 itibarıyla ikisinin de 6.500 prim günü var. Tek fark ilk sigorta girişi: biri 7 Eylül 1999'da, öbürü bir gün sonra.</p>
+<dl>
+<dt>7 Eylül 1999 girişli</dt><dd>EYT kapsamında. 5.975 gün (Geçici m.81/B-(o)) ve 25 yıl sigortalılık şartı 7 Eylül 2024'te tamamlandı: şartlar dolu, yaş aranmıyor.</dd>
+<dt>8 Eylül 1999 girişli</dt><dd>EYT dışında (Geçici m.9). 60 yaşını bekliyor: 1 Ocak 2041.</dd>
+<dt>Aradaki fark</dt><dd>14 yıl 3 ay</dd>
+<dt>İkincisi 540 gün askerliğini borçlanırsa</dt><dd>Askerlik ilk girişten önceyse başlangıç 540 gün geri gider: 17 Mart 1998. EYT kapsamına girer; o tarihte 18 yaşından küçük olduğu için sigortalılık süresi 1 Ocak 1999'dan sayılır (m.38/2). 5.975 gün (Geçici m.81/B-(o)) ve 25 yıl şartı dolu: 7.040 günü var, 25 yıl 1 Ocak 2024'te doldu.</dd>
+<dt>Borçlanma bedeli, en az</dt><dd>267.543 TL (540 gün × asgari günlük kazanç × %45, 2026)</dd>
+<dt>Bu bedel</dt><dd>Temmuz 2026 en düşük emekli aylığının (23.552 TL) 11,4 katı</dd>
+</dl>
+<p>Bir günlük giriş farkı emekliliği 14 yıl 3 ay öteliyor; 540 günlük askerlik borçlanması bu farkı kapatıyor. Borçlanma ancak borçlanılan süre ilk girişten <em>önce</em> geçmişse başlangıcı geri çeker (5510 m.41). Girişten sonraki askerlik yalnız prim gününe eklenir.</p>
+</div>
+<!-- EM-ORNEK:BITIS -->
+
+        <h2 id="kurallar">Üç grubun kuralları</h2>
+        <h3>8 Eylül 1999 öncesi (EYT)</h3>
+        <p>7438 sayılı Kanun yaş şartını kaldırdı, gün ve sigortalılık süresi şartlarını değil. İşçilerde (4/a) gün sayısı, 23 Mayıs 2002'de ne kadar süredir sigortalı olduğunuza göre 5000 ile 5975 arasında değişir; kadında 20, erkekte 25 yıl sigortalılık aranır (506 s.K. Geçici m.81/B). Bağ-Kur'da (4/b) kadın 20, erkek 25 tam yıl, yani 7200 ve 9000 gün (1479 s.K. Geçici m.10). Bu gruptakiler için ikinci yol, 15 yıl sigortalılık ve 3600 günle yaştan emekliliktir. EYT onu değiştirmedi: bugün kadın 58, erkek 60 yaş.</p>
+<!-- EM-TABLO:BASLANGIC -->
+<div class="em-tablo-kap">
+<table>
+<caption>Kadın: 20 yıl sigortalılık ve aşağıdaki gün. 23 Mayıs 2002'deki sigortalılık süresine göre.</caption>
+<thead><tr><th scope="col">Bent</th><th scope="col">23.5.2002'deki süre, en az</th><th scope="col" class="sayi">Prim günü</th><th scope="col" class="sayi">EYT öncesi yaş</th></tr></thead>
+<tbody>
+<tr><td>(a)</td><td>18 yıl</td><td class="sayi">5.000</td><td class="sayi">40</td></tr>
+<tr><td>(b)</td><td>17 yıl</td><td class="sayi">5.000</td><td class="sayi">41</td></tr>
+<tr><td>(c)</td><td>16 yıl</td><td class="sayi">5.075</td><td class="sayi">42</td></tr>
+<tr><td>(d)</td><td>15 yıl</td><td class="sayi">5.150</td><td class="sayi">43</td></tr>
+<tr><td>(e)</td><td>14 yıl</td><td class="sayi">5.225</td><td class="sayi">44</td></tr>
+<tr><td>(f)</td><td>13 yıl</td><td class="sayi">5.300</td><td class="sayi">45</td></tr>
+<tr><td>(g)</td><td>12 yıl</td><td class="sayi">5.375</td><td class="sayi">46</td></tr>
+<tr><td>(h)</td><td>11 yıl</td><td class="sayi">5.450</td><td class="sayi">47</td></tr>
+<tr><td>(ı)</td><td>10 yıl</td><td class="sayi">5.525</td><td class="sayi">48</td></tr>
+<tr><td>(j)</td><td>9 yıl</td><td class="sayi">5.600</td><td class="sayi">49</td></tr>
+<tr><td>(k)</td><td>8 yıl</td><td class="sayi">5.675</td><td class="sayi">50</td></tr>
+<tr><td>(l)</td><td>7 yıl</td><td class="sayi">5.750</td><td class="sayi">51</td></tr>
+<tr><td>(m)</td><td>6 yıl</td><td class="sayi">5.825</td><td class="sayi">52</td></tr>
+<tr><td>(n)</td><td>5 yıl</td><td class="sayi">5.900</td><td class="sayi">53</td></tr>
+<tr><td>(o)</td><td>4 yıl</td><td class="sayi">5.975</td><td class="sayi">54</td></tr>
+<tr><td>(p)</td><td>3 yıl</td><td class="sayi">5.975</td><td class="sayi">55</td></tr>
+<tr><td>(r)</td><td>2 yıl 8 ay 15 gün</td><td class="sayi">5.975</td><td class="sayi">56</td></tr>
+</tbody>
+</table>
+</div>
+<div class="em-tablo-kap">
+<table>
+<caption>Erkek: 25 yıl sigortalılık ve aşağıdaki gün. 23 Mayıs 2002'deki sigortalılık süresine göre.</caption>
+<thead><tr><th scope="col">Bent</th><th scope="col">23.5.2002'deki süre, en az</th><th scope="col" class="sayi">Prim günü</th><th scope="col" class="sayi">EYT öncesi yaş</th></tr></thead>
+<tbody>
+<tr><td>(a)</td><td>23 yıl</td><td class="sayi">5.000</td><td class="sayi">44</td></tr>
+<tr><td>(b)</td><td>21 yıl 6 ay</td><td class="sayi">5.000</td><td class="sayi">45</td></tr>
+<tr><td>(c)</td><td>20 yıl</td><td class="sayi">5.075</td><td class="sayi">46</td></tr>
+<tr><td>(d)</td><td>18 yıl 6 ay</td><td class="sayi">5.150</td><td class="sayi">47</td></tr>
+<tr><td>(e)</td><td>17 yıl</td><td class="sayi">5.225</td><td class="sayi">48</td></tr>
+<tr><td>(f)</td><td>15 yıl 6 ay</td><td class="sayi">5.300</td><td class="sayi">49</td></tr>
+<tr><td>(g)</td><td>14 yıl</td><td class="sayi">5.375</td><td class="sayi">50</td></tr>
+<tr><td>(h)</td><td>12 yıl 6 ay</td><td class="sayi">5.450</td><td class="sayi">51</td></tr>
+<tr><td>(ı)</td><td>11 yıl</td><td class="sayi">5.525</td><td class="sayi">52</td></tr>
+<tr><td>(j)</td><td>9 yıl 6 ay</td><td class="sayi">5.600</td><td class="sayi">53</td></tr>
+<tr><td>(k)</td><td>8 yıl</td><td class="sayi">5.675</td><td class="sayi">54</td></tr>
+<tr><td>(l)</td><td>6 yıl 6 ay</td><td class="sayi">5.750</td><td class="sayi">55</td></tr>
+<tr><td>(m)</td><td>5 yıl</td><td class="sayi">5.825</td><td class="sayi">56</td></tr>
+<tr><td>(n)</td><td>3 yıl 6 ay</td><td class="sayi">5.900</td><td class="sayi">57</td></tr>
+<tr><td>(o)</td><td>2 yıl 8 ay 15 gün</td><td class="sayi">5.975</td><td class="sayi">58</td></tr>
+</tbody>
+</table>
+</div>
+<!-- EM-TABLO:BITIS -->
+        <h3>8 Eylül 1999 – 30 Nisan 2008</h3>
+        <p>İşçide kadın 58, erkek 60 yaş ve 7000 gün; ya da aynı yaş, 25 yıl sigortalılık ve 4500 gün. Bağ-Kur'da 58/60 yaş ve 25 tam yıl (9000 gün); ya da kadın 60, erkek 62 yaş ve 15 tam yıl (5400 gün) (5510 s.K. Geçici m.9). Yaş kademesi yok. Meclise gelen "kademeli emeklilik" teklifleri bu grubu hedefliyor; araç yasalaşmamış teklifi hesaba katmaz.</p>
+        <h3>1 Mayıs 2008 ve sonrası</h3>
+        <p>İşçide 7200, Bağ-Kur'da 9000 gün ve kadın 58, erkek 60 yaş (5510 s.K. m.28). Gün şartı 2036–2037'de dolarsa yaş 59/61, 2038–2039'da 60/62 olur ve kademe 2048'de kadın ve erkek için 65'te durur. İkinci yol: yaşa üç yıl eklenir (en çok 65), 5400 gün yeter. İşçide bu 5400, ilk girişi 2008'de olan için 4600'dür ve her başlangıç yılı için 100 gün artar (Geçici m.6).</p>
+
+        <h2>Kapsam dışı</h2>
+        <p>Memurlar (4/c), fiili hizmet zammı (yıpranma payı), malulen ve engelli emekliliği, maden, erken yaşlanma ve ağır engelli çocuğu olan annelerin indirimi, yurt dışı borçlanması ve farklı statülerdeki hizmetlerin birleştirilmesi hesaplanmaz. Bunlardan birine giriyorsanız tarih daha erken olabilir; SGK'dan hizmet dökümünüzle birlikte teyit alın. Araç tarih verir, tutar vermez: aylık tutarı için <a href="../emekli-ayligi-hesaplama/">emekli aylığı hesaplayıcısı</a>.</p>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+        <h3>EYT'li olup olmadığımı nasıl anlarım?</h3>
+        <p>e-Devlet'te SGK Tescil ve Hizmet Dökümü'ndeki ilk giriş tarihinize bakın. 8 Eylül 1999'dan önceyse EYT kapsamındasınız: yaş şartı yok, yalnız gün ve sigortalılık süresi şartı var. Birkaç günlük bir çalışmanın girişi de ilk giriştir. Girişiniz sonraysa, ilk girişten önce geçmiş askerliğinizi borçlanarak başlangıcı geri çekebilirsiniz.</p>
+        <h3>Askerlik borçlanması emekliliği öne çeker mi?</h3>
+        <p>İki şekilde çekebilir. Borçlanılan günler prim gününe eklenir; askerlik ilk girişten önce yapıldıysa sigortalılık başlangıcı da borçlanılan gün kadar geri gider. İkincisi grubunuzu değiştirebilir. Yukarıdaki örnekte 540 günlük borçlanma emekliliği <span data-s="farkAB">14 yıl 3 ay</span> öne çekiyor ve en az <span data-s="borcBedel">267.543 TL</span> tutuyor. Yaşın bağladığı yerde ise borçlanma tarihi değiştirmez. Borçlanma oranı askerlikte <span data-s="oranGenel">%45</span>, doğumda <span data-s="oranDogum">%32</span>.</p>
+        <h3>7200 günüm doldu, neden emekli olamıyorum?</h3>
+        <p>2008 sonrası ya da 1999–2008 grubundaysanız yaş şartı da var: kadın 58, erkek 60. Gün şartı 2036'dan sonra dolarsa yaş kademeli olarak 65'e kadar çıkar. Bu gruplarda gün dolduktan sonra yaşı bekleyen kişi, emeklilikte tarihi değil aylığı artırmak için çalışmaya devam eder.</p>
+        <h3>Kısmi emeklilik nedir?</h3>
+        <p>Tam emeklilik için gereken günden azıyla, karşılığında daha ileri yaşta emekli olmaktır. 2008 sonrasında yaşa üç yıl eklenir ve 5400 gün yeter; EYT grubunda 15 yıl ve 3600 günle 58/60 yaş. Aylık, gün sayısına göre hesaplandığı için daha düşük olur. Araç iki yolu da hesaplar ve hangisinin daha erken olduğunu gösterir.</p>
+        <h3>Emekli olmak için işten ayrılmak gerekir mi?</h3>
+        <p>Evet. İşçiler işten ayrılıp yazılı talepte bulunur, aylık talebi izleyen ay başından bağlanır (5510 m.28 ve m.30). Bağ-Kur'da ayrıca talep tarihinde prim borcu olmaması gerekir. Emekli olduktan sonra yeniden çalışılabilir; bu ayrı bir prim rejimidir.</p>
+        <h3>Kademeli emeklilik çıktı mı?</h3>
+        <p>Bu sayfanın son kontrolünde kanunlaşmamıştı. Araç yürürlükteki metni uygular ve teklifleri hesaba katmaz. Durumu <a href="../makaleler/kademeli-emeklilik-son-durum/">kademeli emeklilik yazısında</a> izliyoruz.</p>
+        <h3>Verilerim bir yere gönderiliyor mu?</h3>
+        <p>Hayır. Hesap tarayıcınızda yapılır; doğum tarihiniz ve sigorta geçmişiniz hiçbir sunucuya gönderilmez.</p>
+<!-- SSS:BITIS -->
+
+        <h2>Kaynaklar</h2>
+        <ul>
+          <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5510.pdf" rel="noopener">5510 sayılı Kanun</a>: m.28, m.30, m.38, m.41, Geçici m.6, 9 ve 95 (mevzuat.gov.tr, 30 Eylül 2026'da okundu)</li>
+          <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.506.pdf" rel="noopener">506 sayılı Kanun</a>: Geçici m.81</li>
+          <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.1479.pdf" rel="noopener">1479 sayılı Kanun</a>: Geçici m.10</li>
+          <li>SGK 2008/96 ve 2023/13 sayılı genelgeler: 5400 günlük geçiş tablosu ve Geçici m.95'in uygulanışı</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <ul>
+          <li><a href="../emekli-ayligi-hesaplama/">Emekli aylığı hesaplama</a></li>
+          <li><a href="../bag-kur-ve-borclanma-hesaplama/">Bağ-Kur ve borçlanma hesaplama</a></li>
+          <li><a href="../emekli-zammi-hesaplama/">Emekli zammı hesaplama</a></li>
+          <li><a href="../kidem-tazminati-hesaplama/">Kıdem tazminatı hesaplama</a></li>
+          <li><a href="../makaleler/kademeli-emeklilik-son-durum/">Kademeli emeklilik: son durum</a></li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../koray-oner/">Koray Öner: çalışma dizini</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=a4c6b089" defer></script>
+  <script src="../bordro/motor.js?v=1048b746" defer></script>
+  <script src="../bordro/sgk-prim.js?v=b4899b33" defer></script>
+  <script src="../bordro/emeklilik-parametreleri.js?v=8f8b9c51" defer></script>
+  <script src="hesap.js?v=6b8c308f" defer></script>
+  <script src="script.js?v=4810f0ef" defer></script>
+  <script src="../script.js?v=72b4a7c6" defer></script>
+</body>
+</html>

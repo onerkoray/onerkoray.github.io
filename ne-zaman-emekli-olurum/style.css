@@ -1,0 +1,128 @@
+/* Ne zaman emekli olurum? — araca özgü stiller.
+
+   Bileşenler sitenin standardında (calculator-page: kutu --control-h,
+   seçici .secim, tablo --tablo-pad-*). Veri renkleri yalnız --dv-*:
+     bağlayıcı şart çubuğu   --dv-1
+     diğer şartlar           --dv-1, açık
+     dolmuş şart             --dv-gain
+     emeklilik çizgisi       --text, kesikli */
+
+/* --------------------------------- düzen --------------------------------- */
+.kunye-satiri { margin: .9rem 0 0; font-size: var(--type-metadata, .85rem); }
+.em-form { min-inline-size: 0; }
+.em-duzen {
+  display: grid; gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  align-items: start;
+}
+.em-duzen > * { min-inline-size: 0; }
+@media (max-width: 960px) { .em-duzen { grid-template-columns: 1fr; } }
+@media (min-width: 961px) { .em-sonuc { position: sticky; top: 84px; } }
+
+.em-grup { border: 0; margin: 0 0 1.5rem; padding: 0; min-inline-size: 0; }
+.em-grup legend {
+  display: flex; align-items: center; gap: .55rem; padding: 0; margin-bottom: .8rem;
+  font: 700 var(--step-1)/1.2 var(--font-display, inherit);
+}
+.em-no {
+  display: inline-grid; place-items: center; inline-size: 1.7rem; block-size: 1.7rem; border-radius: 50%;
+  font: 700 .8rem/1 var(--font-mono); color: var(--brand-contrast, #fff); background: var(--brand);
+}
+.em-istege { font: 500 .75rem/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
+.em-grid { display: grid; gap: .9rem 1rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.em-genis { grid-column: 1 / -1; }
+.em-alan { display: flex; flex-direction: column; gap: .35rem; min-inline-size: 0; }
+.em-alan[hidden] { display: none; }
+.em-alan label, .em-etiket-yazi { font-weight: 600; }
+.em-alan :is(input, select) { inline-size: 100%; font-variant-numeric: tabular-nums; }
+.em-alan small { font-size: var(--type-metadata, .8rem); color: var(--text-muted); line-height: 1.45; }
+.em-secimler { display: flex; flex-wrap: wrap; gap: .4rem; }
+.em-hata { margin: 0; font-weight: 600; color: var(--dv-loss-ink); }
+.em-hata:empty { display: none; }
+
+/* --------------------------------- sonuç --------------------------------- */
+.em-sonuc {
+  border: 1px solid var(--border); border-radius: var(--radius-card); background: var(--surface);
+  padding: 1.25rem; box-shadow: var(--shadow-card);
+  transition: opacity .2s ease;
+}
+.em-sonuc.em-bayat { opacity: .45; }
+.em-ust { margin: 0; font: 600 .72rem/1.3 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+.em-cevap {
+  margin: .3rem 0 0; font: 800 clamp(2.1rem, 1.6rem + 2.2vw, 3rem)/1.05 var(--font-display);
+  letter-spacing: -.03em; font-variant-numeric: tabular-nums; color: var(--dv-1-ink); text-wrap: balance;
+}
+.em-alt { margin: .45rem 0 0; color: var(--text-muted); font-size: .95rem; font-variant-numeric: tabular-nums; }
+.em-grup-satir { margin: .9rem 0 0; padding-top: .9rem; border-top: 1px dashed var(--border); line-height: 1.5; font-size: .92rem; }
+
+.em-rozet {
+  display: inline-block; padding: .12rem .5rem; border-radius: 999px; margin-right: .25rem;
+  font: 700 .72rem/1.4 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap;
+}
+.em-iyi { color: var(--dv-gain-ink); background: color-mix(in srgb, var(--dv-gain) 16%, transparent); }
+.em-uyar { color: var(--dv-loss-ink); background: color-mix(in srgb, var(--dv-loss) 14%, transparent); }
+.em-grup-eyt, .em-grup-gecis, .em-grup-yeni { color: var(--dv-1-ink); background: color-mix(in srgb, var(--dv-1) 14%, transparent); }
+
+.em-yol-sec { margin: 1rem 0 0; }
+.em-yol-sec[hidden] { display: none; }
+
+.em-cizelge { margin: .9rem 0 0; }
+.em-cizelge figcaption { margin-top: .35rem; font-size: .8rem; color: var(--text-muted); line-height: 1.45; }
+.em-svg { display: block; inline-size: 100%; block-size: auto; overflow: visible; }
+.em-izgara { stroke: var(--dv-grid); stroke-width: 1; }
+.em-bugun { stroke: var(--dv-axis); stroke-width: 1.25; }
+.em-eksen { font: 500 10.5px var(--font-mono); fill: var(--text-muted); font-variant-numeric: tabular-nums; }
+.em-etiket { font-size: 12px; font-weight: 600; fill: var(--text-muted); }
+.em-etiket.em-bag, .em-deger.em-bag { fill: var(--text); font-weight: 700; }
+.em-deger { font: 600 11px var(--font-mono); fill: var(--text-muted); font-variant-numeric: tabular-nums; }
+.em-cubuk { fill: color-mix(in srgb, var(--dv-1) 45%, var(--surface)); }
+.em-cubuk-bag { fill: var(--dv-1); }
+.em-tamam { fill: color-mix(in srgb, var(--dv-gain) 20%, transparent); stroke: var(--dv-gain); stroke-width: 1.25; }
+.em-tik { fill: none; stroke: var(--dv-gain-ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.em-hedef { stroke: var(--text); stroke-width: 1.25; stroke-dasharray: 4 3; }
+.em-bos { margin: 0; padding: .9rem 0; line-height: 1.5; }
+
+.em-kosullar { margin: 1rem 0 0; display: grid; gap: 0; }
+.em-kosullar div {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .5rem 0;
+  border-bottom: 1px solid var(--border); font-size: .92rem;
+}
+.em-kosullar dt { color: var(--text-muted); display: flex; flex-direction: column; gap: .1rem; }
+.em-kosullar dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.em-kosullar .em-bag-satir { border-bottom: 2px solid var(--text); }
+.em-kosullar .em-bag-satir :is(dt, dd) { color: var(--text); font-weight: 700; }
+.em-kucuk { font-size: .78rem; font-weight: 500; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.em-dayanak { margin: .7rem 0 0; font-size: .8rem; color: var(--text-muted); line-height: 1.45; }
+.em-aylik { margin: .7rem 0 0; line-height: 1.5; font-size: .92rem; }
+.em-aylik:empty, .em-dayanak:empty { display: none; }
+.em-notlar { margin: .7rem 0 0; padding-left: 1.1rem; font-size: .85rem; color: var(--text-muted); line-height: 1.5; }
+.em-notlar:empty { display: none; }
+.em-notlar li + li { margin-top: .3rem; }
+
+/* -------------------------------- paneller -------------------------------- */
+.em-panel {
+  margin-top: clamp(1.5rem, 1rem + 2vw, 2.25rem); padding: 1.25rem;
+  border: 1px solid var(--border); border-radius: var(--radius-card); background: var(--surface);
+}
+.em-panel h2 { margin: 0 0 .35rem; font-size: var(--step-1); }
+.em-panel-not { margin: 0 0 1rem; color: var(--text-muted); max-width: 70ch; }
+.em-tablo-kap { overflow-x: auto; }
+.em-tablo-kap table { inline-size: 100%; border-collapse: collapse; }
+.em-tablo-kap caption { text-align: left; font-size: .8rem; color: var(--text-muted); padding-bottom: .4rem; }
+.em-tablo-kap th { text-align: left; font-weight: 500; }
+.em-tablo-kap .sayi { white-space: nowrap; text-align: right; }
+.em-tablo-kap tr.em-en :is(th, td) { font-weight: 700; }
+.em-duyar-not { margin: .8rem 0 0; line-height: 1.55; max-width: 75ch; }
+.em-duyar-not:empty { display: none; }
+.em-borc p { margin: .35rem 0; line-height: 1.6; font-variant-numeric: tabular-nums; max-width: 75ch; }
+
+/* makale içi örnek ve tablolar (üreteçten) */
+.em-ornek { border-left: 3px solid var(--dv-1); padding: .2rem 0 .2rem 1rem; }
+.em-ornek dl { display: grid; grid-template-columns: minmax(0, max-content) minmax(0, 1fr); gap: .35rem 1rem; margin: .6rem 0; }
+.em-ornek dt { color: var(--text-muted); }
+.em-ornek dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) { .em-ornek dl { grid-template-columns: 1fr; } .em-ornek dd { margin-bottom: .4rem; } }
+.prose .em-tablo-kap { margin: 1rem 0 1.5rem; }
+
+@media (prefers-reduced-motion: reduce) { .em-sonuc { transition: none; } }
+@media print { .em-sonuc { position: static; } }
