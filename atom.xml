@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-29T18:55:05+03:00</updated>
+  <updated>2026-09-30T10:23:53+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Ne Zaman Emekli Olurum? Emeklilik Hesaplama</title>
+    <link href="https://korayoner.dev/ne-zaman-emekli-olurum/"/>
+    <id>https://korayoner.dev/ne-zaman-emekli-olurum/</id>
+    <updated>2026-09-30T10:23:53+03:00</updated>
+    <summary>EYT, 1999–2008 ya da 2008 sonrası: yaş, prim günü ve sigortalılık süresinden emeklilik tarihinizi, bağlayıcı şartı ve borçlanmanın etkisini hesaplar.</summary>
+  </entry>
 
   <entry>
     <title>Maaş, Vergi ve Kredi Diyagramları</title>
