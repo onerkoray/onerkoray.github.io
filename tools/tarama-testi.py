@@ -223,6 +223,18 @@ dogru("KONTROL: sinifla birlikte dugme metni degisirse ozlu sayilir",
           ("-", '<button type="submit">Hesapla</button>'),
           ("+", '<button type="submit" class="btn">Yeniden hesapla</button>')]}, "x/index.html"))
 
+# Stil dosyasinin yeri degisti (ortak stil koke tasindi): sunum, icerik degil.
+dogru("yalnizca stil dosyasi yolu degisen sayfa ozlu sayilmaz",
+      not degisti({"x/index.html": [
+          ("-", '  <link rel="stylesheet" href="../yuzde-hesaplama/style.css?v=a2c30434">'),
+          ("+", '  <link rel="stylesheet" href="../hesap-paneli.css?v=a2c30434">')]}, "x/index.html"))
+dogru("KONTROL: stil baglantisiyla birlikte baslik degisirse ozlu sayilir",
+      degisti({"x/index.html": [
+          ("-", '  <link rel="stylesheet" href="../eski.css">'),
+          ("+", '  <link rel="stylesheet" href="../yeni.css">'),
+          ("-", "  <h1>Eski baslik</h1>"),
+          ("+", "  <h1>Yeni baslik</h1>")]}, "x/index.html"))
+
 # --- 6) Site ici gezinme icerik guncellemesi degil -------------------------
 # 27 Eylul 2026: yeni araclar eklenirken eski araclara birer "ilgili"
 # baglanti konuyordu ve 20 aracin karti 11-14 Eylul'den 25-27 Eylul'e
