@@ -263,21 +263,42 @@
        Vergi & Belge    gelir vergisi dilim merdiveni (%15-20-27-35-40 oranlı)
        Kredi & Finans   aylık noktalarıyla bileşik büyüme eğrisi
        Genel            ölçü cetveli
-   · Motif sağa yaslı, ikon karosuyla çakışmaz; sürekli kayma yok, üzerine
-     gelince belirginleşir. Renk marka tokenından: beş palet ve koyu tema.
+   · Motif sağa yaslı, ikon karosuyla çakışmaz. Renk marka tokenından: beş
+     palet ve koyu tema.
+   · HAFİF HAREKET, her kartta: motifin üzerinden birkaç saniyede bir ince
+     bir ışık geçer — grafik kartlarındaki "parıltı"nın aynısı, yani bant
+     tek bir hareket dili konuşur. Kartlar aynı anda parlamasın diye faz
+     kaydırılır. Üzerine gelince motif hafifçe yükselir, belirginleşir ve ışık
+     hızlanır; ikonun eğilmesi live.css'te olduğu gibi kalır. Hareket
+     azaltmada hiçbiri yok.
    Grafik kartları (data-cat yok) bu kurallara girmez.
    Motifler tools/… değil, bu blokta; üretimi scratchpad karo-motif.py.
    ========================================================================= */
 :root .home-page .project-card[data-cat] .karo::before {
   inset: auto 5cqw 13% auto; inline-size: 60%; block-size: 58%;
-  background-image: none; background-color: var(--brand); opacity: var(--motif-opak, .45);
+  /* Renk ile opaklık ayrı: motif kendi tonunda durur, üzerinden markanın
+     koyu tonunda dar bir şerit geçer. Açık zeminde beyaz ışık kayboluyordu;
+     ışık burada rengi koyulaştıran bir akış olarak okunur. */
+  opacity: 1;
+  background-color: color-mix(in srgb, var(--brand) var(--motif-yuzde, 45%), transparent);
+  background-image: linear-gradient(100deg, transparent 0 42%,
+    color-mix(in srgb, var(--brand-strong) 88%, transparent) 50%, transparent 58% 100%);
+  /* 200% genişlik, konum 130% → −30%: şerit görünür alanı döngünün
+     hareketli kısmının %62'sinde, yaklaşık 2,8 saniyede süzülerek geçer. */
+  background-size: 200% 100%; background-repeat: no-repeat; background-position: 130% 0;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
   -webkit-mask-position: right bottom; mask-position: right bottom;
   -webkit-mask-size: contain; mask-size: contain;
-  animation: none; transform: none;
-  transition: opacity .35s ease;
+  transform: none; transform-origin: right bottom;
+  animation: bantIsik 7.5s ease-in-out infinite;
+  transition: background-color .35s ease, transform .5s cubic-bezier(.22, 1, .36, 1);
 }
-:root .home-page .project-card[data-cat="maas"] .karo::before { --motif-opak: .24; -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 60'%3E%3Cg fill='black'%3E%3Crect x='3' y='10' width='9' height='44' rx='1.5'/%3E%3Crect x='18' y='10' width='9' height='44' rx='1.5'/%3E%3Crect x='33' y='14' width='9' height='40' rx='1.5'/%3E%3Crect x='48' y='23' width='9' height='31' rx='1.5'/%3E%3Crect x='63' y='23' width='9' height='31' rx='1.5'/%3E%3Crect x='78' y='25' width='9' height='29' rx='1.5'/%3E%3Crect x='93' y='36' width='9' height='18' rx='1.5'/%3E%3Crect x='108' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='123' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='138' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='153' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='168' y='32' width='9' height='22' rx='1.5'/%3E%3C/g%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 60'%3E%3Cg fill='black'%3E%3Crect x='3' y='10' width='9' height='44' rx='1.5'/%3E%3Crect x='18' y='10' width='9' height='44' rx='1.5'/%3E%3Crect x='33' y='14' width='9' height='40' rx='1.5'/%3E%3Crect x='48' y='23' width='9' height='31' rx='1.5'/%3E%3Crect x='63' y='23' width='9' height='31' rx='1.5'/%3E%3Crect x='78' y='25' width='9' height='29' rx='1.5'/%3E%3Crect x='93' y='36' width='9' height='18' rx='1.5'/%3E%3Crect x='108' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='123' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='138' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='153' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='168' y='32' width='9' height='22' rx='1.5'/%3E%3C/g%3E%3C/svg%3E"); }
+@keyframes bantIsik { 0%, 40% { background-position: 130% 0; } 100% { background-position: -30% 0; } }
+/* Faz kayması: aynı satırdaki üç kart ve alt satırlar aynı anda parlamaz. */
+:root .home-page .project-grid .project-card[data-cat]:nth-child(4n+2) .karo::before { animation-delay: -1.9s; }
+:root .home-page .project-grid .project-card[data-cat]:nth-child(4n+3) .karo::before { animation-delay: -3.8s; }
+:root .home-page .project-grid .project-card[data-cat]:nth-child(4n+4) .karo::before { animation-delay: -5.7s; }
+:root .home-page .project-card[data-cat="maas"] .karo::before { --motif-yuzde: 26%; -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 60'%3E%3Cg fill='black'%3E%3Crect x='3' y='10' width='9' height='44' rx='1.5'/%3E%3Crect x='18' y='10' width='9' height='44' rx='1.5'/%3E%3Crect x='33' y='14' width='9' height='40' rx='1.5'/%3E%3Crect x='48' y='23' width='9' height='31' rx='1.5'/%3E%3Crect x='63' y='23' width='9' height='31' rx='1.5'/%3E%3Crect x='78' y='25' width='9' height='29' rx='1.5'/%3E%3Crect x='93' y='36' width='9' height='18' rx='1.5'/%3E%3Crect x='108' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='123' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='138' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='153' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='168' y='32' width='9' height='22' rx='1.5'/%3E%3C/g%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 60'%3E%3Cg fill='black'%3E%3Crect x='3' y='10' width='9' height='44' rx='1.5'/%3E%3Crect x='18' y='10' width='9' height='44' rx='1.5'/%3E%3Crect x='33' y='14' width='9' height='40' rx='1.5'/%3E%3Crect x='48' y='23' width='9' height='31' rx='1.5'/%3E%3Crect x='63' y='23' width='9' height='31' rx='1.5'/%3E%3Crect x='78' y='25' width='9' height='29' rx='1.5'/%3E%3Crect x='93' y='36' width='9' height='18' rx='1.5'/%3E%3Crect x='108' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='123' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='138' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='153' y='32' width='9' height='22' rx='1.5'/%3E%3Crect x='168' y='32' width='9' height='22' rx='1.5'/%3E%3C/g%3E%3C/svg%3E"); }
 :root .home-page .project-card[data-cat="vergi"] .karo::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 60'%3E%3Cpath d='M0 54 V36.8 H36 V31 H72 V23 H108 V13.8 H144 V8 H180' fill='none' stroke='black' stroke-width='1.6' stroke-linejoin='round'/%3E%3Cpath d='M0 54.5H180' stroke='black' stroke-opacity='.45' stroke-width='1'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 60'%3E%3Cpath d='M0 54 V36.8 H36 V31 H72 V23 H108 V13.8 H144 V8 H180' fill='none' stroke='black' stroke-width='1.6' stroke-linejoin='round'/%3E%3Cpath d='M0 54.5H180' stroke='black' stroke-opacity='.45' stroke-width='1'/%3E%3C/svg%3E"); }
 :root .home-page .project-card[data-cat="finans"] .karo::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 60'%3E%3Cpath d='M6 50 L20 47.8 L34 45.4 L48 42.8 L62 40 L76 36.9 L90 33.6 L104 29.9 L118 25.9 L132 21.6 L146 16.8 L160 11.6 L174 6' fill='none' stroke='black' stroke-width='1.6' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cg fill='black'%3E%3Ccircle cx='6' cy='50' r='1.5'/%3E%3Ccircle cx='20' cy='47.8' r='1.5'/%3E%3Ccircle cx='34' cy='45.4' r='1.5'/%3E%3Ccircle cx='48' cy='42.8' r='1.5'/%3E%3Ccircle cx='62' cy='40' r='1.5'/%3E%3Ccircle cx='76' cy='36.9' r='1.5'/%3E%3Ccircle cx='90' cy='33.6' r='1.5'/%3E%3Ccircle cx='104' cy='29.9' r='1.5'/%3E%3Ccircle cx='118' cy='25.9' r='1.5'/%3E%3Ccircle cx='132' cy='21.6' r='1.5'/%3E%3Ccircle cx='146' cy='16.8' r='1.5'/%3E%3Ccircle cx='160' cy='11.6' r='1.5'/%3E%3Ccircle cx='174' cy='6' r='2.4'/%3E%3C/g%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 60'%3E%3Cpath d='M6 50 L20 47.8 L34 45.4 L48 42.8 L62 40 L76 36.9 L90 33.6 L104 29.9 L118 25.9 L132 21.6 L146 16.8 L160 11.6 L174 6' fill='none' stroke='black' stroke-width='1.6' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cg fill='black'%3E%3Ccircle cx='6' cy='50' r='1.5'/%3E%3Ccircle cx='20' cy='47.8' r='1.5'/%3E%3Ccircle cx='34' cy='45.4' r='1.5'/%3E%3Ccircle cx='48' cy='42.8' r='1.5'/%3E%3Ccircle cx='62' cy='40' r='1.5'/%3E%3Ccircle cx='76' cy='36.9' r='1.5'/%3E%3Ccircle cx='90' cy='33.6' r='1.5'/%3E%3Ccircle cx='104' cy='29.9' r='1.5'/%3E%3Ccircle cx='118' cy='25.9' r='1.5'/%3E%3Ccircle cx='132' cy='21.6' r='1.5'/%3E%3Ccircle cx='146' cy='16.8' r='1.5'/%3E%3Ccircle cx='160' cy='11.6' r='1.5'/%3E%3Ccircle cx='174' cy='6' r='2.4'/%3E%3C/g%3E%3C/svg%3E"); }
 :root .home-page .project-card[data-cat="genel"] .karo::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 60'%3E%3Cg stroke='black' stroke-width='1.2'%3E%3Cpath d='M10 54V46'/%3E%3Cpath d='M20 54V46'/%3E%3Cpath d='M30 54V46'/%3E%3Cpath d='M40 54V46'/%3E%3Cpath d='M50 54V36'/%3E%3Cpath d='M60 54V46'/%3E%3Cpath d='M70 54V46'/%3E%3Cpath d='M80 54V46'/%3E%3Cpath d='M90 54V46'/%3E%3Cpath d='M100 54V36'/%3E%3Cpath d='M110 54V46'/%3E%3Cpath d='M120 54V46'/%3E%3Cpath d='M130 54V46'/%3E%3Cpath d='M140 54V46'/%3E%3Cpath d='M150 54V36'/%3E%3Cpath d='M160 54V46'/%3E%3Cpath d='M170 54V46'/%3E%3C/g%3E%3Cpath d='M0 54.5H180' stroke='black' stroke-width='1'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 60'%3E%3Cg stroke='black' stroke-width='1.2'%3E%3Cpath d='M10 54V46'/%3E%3Cpath d='M20 54V46'/%3E%3Cpath d='M30 54V46'/%3E%3Cpath d='M40 54V46'/%3E%3Cpath d='M50 54V36'/%3E%3Cpath d='M60 54V46'/%3E%3Cpath d='M70 54V46'/%3E%3Cpath d='M80 54V46'/%3E%3Cpath d='M90 54V46'/%3E%3Cpath d='M100 54V36'/%3E%3Cpath d='M110 54V46'/%3E%3Cpath d='M120 54V46'/%3E%3Cpath d='M130 54V46'/%3E%3Cpath d='M140 54V46'/%3E%3Cpath d='M150 54V36'/%3E%3Cpath d='M160 54V46'/%3E%3Cpath d='M170 54V46'/%3E%3C/g%3E%3Cpath d='M0 54.5H180' stroke='black' stroke-width='1'/%3E%3C/svg%3E"); }
@@ -297,8 +318,13 @@
 :root .home-page .project-card[data-cat="genel"] .karo::after { content: "GENEL"; }
 
 @media screen and (hover: hover) and (pointer: fine) {
-  :root .home-page .project-card[data-cat]:is(:hover, :focus-within) .karo::before { opacity: calc(var(--motif-opak, .45) + .25); }
+  :root .home-page .project-card[data-cat]:is(:hover, :focus-within) .karo::before {
+    background-color: color-mix(in srgb, var(--brand) calc(var(--motif-yuzde, 45%) + 25%), transparent);
+    transform: translateY(-2px) scale(1.03);
+    animation-duration: 2.8s;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  :root .home-page .project-card[data-cat] .karo::before { transition: none; }
+  :root .home-page .project-card[data-cat] .karo::before { animation: none; transition: none; }
+  :root .home-page .project-card[data-cat]:is(:hover, :focus-within) .karo::before { transform: none; }
 }
