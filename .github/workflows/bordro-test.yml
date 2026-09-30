@@ -890,6 +890,11 @@ jobs:
         # da parametre değişip sayfa yeniden üretilmezse kırmızı.
         run: node tools/diyagramlar-sayfa.js --check
 
+      - name: 404 sayfası her derinlikte çalışıyor mu
+        # 404.html olmayan adresin kendisinde sunulur; göreli yol orada kırılır.
+        # Her src/href kökten ya da tam adresle başlamalı, yerel varlık damgalı.
+        run: node tools/404-test.js
+
       - name: Kira artışı aracının hesabı
         # Oran serisi resmî açıklanan beş oranla (çapa) ve sitenin TÜFE
         # serisinden ikinci bir yoldan sınanır; %25 sınırının başladığı ve
