@@ -22,7 +22,7 @@
     <link href="https://korayoner.dev/koray-oner/"/>
     <id>https://korayoner.dev/koray-oner/</id>
     <updated>2026-09-29T17:59:13+03:00</updated>
-    <summary>Koray Öner'in çalışmaları tek yerde: 66 hesaplama aracı, 54 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.</summary>
+    <summary>Koray Öner'in çalışmaları tek yerde: 56 hesaplama aracı, 54 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.</summary>
   </entry>
 
   <entry>
@@ -986,50 +986,10 @@
   </entry>
 
   <entry>
-    <title>Dither Studio — Dithering Görsel Aracı</title>
-    <link href="https://korayoner.dev/dither-studio/"/>
-    <id>https://korayoner.dev/dither-studio/</id>
-    <updated>2026-07-15T12:00:00+03:00</updated>
-    <summary>Görsellerinizi 1-bit, 8-bit, 16-bit ve 32-bit dithering efektleriyle retro/piksel estetiğine dönüştürün. Floyd–Steinberg ve ordered dithering.</summary>
-  </entry>
-
-  <entry>
-    <title>Yaş Hesaplama — Kaç Yaşındayım?</title>
-    <link href="https://korayoner.dev/yas-hesaplama/"/>
-    <id>https://korayoner.dev/yas-hesaplama/</id>
-    <updated>2026-07-14T23:44:24+03:00</updated>
-    <summary>Yaş hesaplama aracı: doğum tarihinize göre kaç yaşında olduğunuzu yıl, ay ve gün olarak; iki tarih arası gün sayısını hesaplayın.</summary>
-  </entry>
-
-  <entry>
-    <title>Son Depremler — Canlı Deprem Listesi</title>
-    <link href="https://korayoner.dev/son-depremler/"/>
-    <id>https://korayoner.dev/son-depremler/</id>
-    <updated>2026-07-14T23:30:50+03:00</updated>
-    <summary>Son depremler: Türkiye ve çevresindeki son dakika depremlerini canlı izleyin, renkli diyagramda görün, geçmiş tarihleri arşivden sorgulayın.</summary>
-  </entry>
-
-  <entry>
-    <title>İnternet Hız Testi — İndirme Hızı ve Ping</title>
-    <link href="https://korayoner.dev/internet-hiz-testi/"/>
-    <id>https://korayoner.dev/internet-hiz-testi/</id>
-    <updated>2026-07-14T23:15:36+03:00</updated>
-    <summary>İnternet hız testi: indirme hızınızı ve ping değerinizi tarayıcınızda ölçün. Ücretsiz, reklamsız ve kayıt gerektirmez.</summary>
-  </entry>
-
-  <entry>
     <title>KDV Hesaplama — Dahil ve Hariç Tutar</title>
     <link href="https://korayoner.dev/kdv-hesaplama/"/>
     <id>https://korayoner.dev/kdv-hesaplama/</id>
     <updated>2026-07-14T23:15:36+03:00</updated>
     <summary>KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.</summary>
-  </entry>
-
-  <entry>
-    <title>Yüzde Hesaplama — Oran, İndirim ve Artış</title>
-    <link href="https://korayoner.dev/yuzde-hesaplama/"/>
-    <id>https://korayoner.dev/yuzde-hesaplama/</id>
-    <updated>2026-07-14T23:08:27+03:00</updated>
-    <summary>Yüzde hesaplama aracı: bir sayının yüzdesi, iki sayı arasındaki yüzde, yüzde artış ve azalış. Formüller ve örneklerle, ücretsiz.</summary>
   </entry>
 </feed>
