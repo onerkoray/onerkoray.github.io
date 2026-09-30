@@ -35,8 +35,6 @@ var ATLA = ["node_modules", ".git", "_cekirdek", "dist"];
 // tasarımları olan alt projeler ve profil sayfası; yol yine de doğru
 // olmalı (son öğe canonical, yineleme yok).
 var IZSIZ = {
-  "decorpalette/index.html": "alt proje, kendi başlığı ve gezintisi var",
-  "dither-studio/index.html": "alt proje, kendi başlığı ve gezintisi var",
   "hakkimda/index.html": "profil sayfası; tek seviyeli yol, görünür iz gürültü olurdu"
 };
 

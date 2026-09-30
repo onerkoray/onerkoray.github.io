@@ -87,8 +87,8 @@
 
     function uygula(svg) {
       var yeni = svg.replace(/(class="fv-vurgu"[^>]*fill=")[^"]*"/, "$1" + renk + '"');
-      /* Beklenen kalıp yoksa DOKUNMA: alt proje faviconları (decorpalette,
-         keymint) bu sistemin dışında ve kendi markalarını taşıyor. */
+      /* Beklenen kalıp yoksa DOKUNMA: bu sistemin dışında kendi markasını
+         taşıyan bir favicon olabilir. */
       if (yeni === svg) return;
       bag.setAttribute("href", "data:image/svg+xml," + encodeURIComponent(yeni));
     }
