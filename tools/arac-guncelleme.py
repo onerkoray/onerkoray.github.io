@@ -138,10 +138,18 @@ IC_BAGLANTI = re.compile(r'(?:\s*·\s*)?<a ' + IC_HREF + r'>[^<]*</a>')
 SINIF_NITELIGI = re.compile(r'\sclass="[^"]*"')
 
 
+# Stil dosyasi baglantisi sunumdur. 30 Eylul 2026'da ortak panel stili
+# yuzde-hesaplama/style.css'ten koke tasindi; 33 sayfanin <link> satiri
+# degisti ve derinligi farkli sekiz aracin sitemap tarihi icerik degismeden
+# ilerledi (tekrar elegi 10 esigini ancak ayni derinlikteki maas sayfalarinda
+# gecebildi).
+STIL_BAGLANTISI = re.compile(r'^\s*<link rel="stylesheet" href="[^"]*"\s*/?>\s*$')
+
+
 def _gezinmesiz(satir):
-    """None: satir yalnizca gezinme; yoksa site ici baglantilari ve sinif
-    nitelikleri silinmis hali."""
-    if BAGLANTI_MADDESI.match(satir):
+    """None: satir yalnizca gezinme ya da stil baglantisi; yoksa site ici
+    baglantilari ve sinif nitelikleri silinmis hali."""
+    if BAGLANTI_MADDESI.match(satir) or STIL_BAGLANTISI.match(satir):
         return None
     return SINIF_NITELIGI.sub("", IC_BAGLANTI.sub("", satir))
 
