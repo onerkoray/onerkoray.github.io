@@ -371,65 +371,20 @@ SPEC = {
    "Kararın tersine döndüğü getiri eşiği ve erken ödeme tazminatının yasal sınırı (TKHK m.27, m.37).",
    ["Başabaş eşiği", "TKHK m.27/37"], "finans"),
 
- "yuzde-hesaplama": ("yuzde-hesaplama", "Yüzde", "Hesaplama",
-   "Bir sayının yüzdesi, iki sayı arasındaki yüzde, artış ve azalış.",
-   ["Formüllerle", "Örneklerle"], "gunluk"),
 
- "birim-cevirici": ("birim-cevirici", "Birim", "Çevirici",
-   "Uzunluk, ağırlık, sıcaklık, alan, hacim, hız, veri ve zaman dönüşümü.",
-   ["8 kategori", "Anında"], "gunluk"),
 
- "hesap-bolusme": ("hesap-bolusme", "Hesap", "Bölüşme (AA)",
-   "Grup harcamasını kişi sayısına böler, bahşiş ekler, kuruşu adil dağıtır.",
-   ["Bahşiş dahil", "Adil kuruş"], "gunluk"),
 
- "yas-hesaplama": ("yas-hesaplama", "Yaş", "Hesaplama",
-   "Doğum tarihine göre yıl, ay, gün ve doğum gününe kalan süre.",
-   ["İki tarih arası", "Anında"], "gunluk"),
 
- "final-notu-hesaplama": ("final-notu-hesaplama", "Final Notu", "Hesaplama",
-   "Vize notu ve ağırlıklara göre geçmek için gereken final notu.",
-   ["Ağırlıklı", "Ortalama"], "gunluk"),
 
- "internet-hiz-testi": ("internet-hiz-testi", "İnternet", "Hız Testi",
-   "İndirme hızınızı ve ping değerinizi tarayıcınızda ölçün.",
-   ["Kayıtsız", "Ping ölçümü"], "canli"),
 
- "son-depremler": ("son-depremler", "Son", "Depremler",
-   "Türkiye ve çevresindeki son depremler, canlı liste ve arşiv sorgusu.",
-   ["Canlı liste", "Arşiv"], "canli"),
 
- "keymint": ("keymint", "KeyMint", "Şifre Üreteci",
-   "Güçlü ve rastgele şifre üretin. Tamamen tarayıcıda, hiçbir yere gönderilmez.",
-   ["Tarayıcıda", "Kriptografik"], "guvenlik"),
 
- "sifre-guc-testi": ("keymint/sifre-guc-testi", "Şifre", "Güç Testi",
-   "Parolanızın gücünü entropi ve tahmini kırılma süresiyle ölçün.",
-   ["Entropi", "Tarayıcıda"], "guvenlik"),
 
- "pin-uretici": ("keymint/pin-uretici", "PIN Kodu", "Üreteci",
-   "4, 6 veya 8 haneli rastgele ve güvenli PIN oluşturun.",
-   ["Kriptografik", "Zayıf kalıp uyarısı"], "guvenlik"),
 
- "parola-cumlesi": ("keymint/parola-cumlesi", "Parola Cümlesi", "Üreteci",
-   "Kolay hatırlanan ama güçlü, kelimelerden oluşan parolalar.",
-   ["Passphrase", "Tarayıcıda"], "guvenlik"),
 
- "wifi-sifresi": ("keymint/wifi-sifresi", "WiFi Şifresi", "Üreteci",
-   "Misafirlerin kolayca yazabileceği, karışan karakter içermeyen parolalar.",
-   ["Kolay yazılır", "Güçlü"], "guvenlik"),
 
- "hash-uretici": ("keymint/hash-uretici", "Hash", "Üreteci",
-   "Metninizin SHA-256, SHA-1 veya SHA-512 özetini anında hesaplayın.",
-   ["SHA-256", "Tarayıcıda"], "guvenlik"),
 
- "uuid-uretici": ("keymint/uuid-uretici", "UUID", "Üreteci (v4)",
-   "Rastgele ve benzersiz kimlikler üretin; tek tek veya toplu.",
-   ["v4", "Toplu üretim"], "guvenlik"),
 
- "base64": ("keymint/base64", "Base64", "Kodlayıcı & Çözücü",
-   "Metni Base64'e kodlayın veya Base64'ü metne çözün. UTF-8 uyumlu.",
-   ["UTF-8", "Tarayıcıda"], "guvenlik"),
 
  # Kurumsal sayfalar: eskiden hepsi ayni genel kapagi paylasiyordu.
  "makaleler": ("makaleler", "Bordro, vergi ve", "emeklilik yazıları",

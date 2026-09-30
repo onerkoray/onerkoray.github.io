@@ -467,9 +467,6 @@ jobs:
       - name: Yatırım fizibilitesi regresyonları
         run: node yatirim-fizibilite-hesaplama/test.js
 
-      - name: Şifre motoru regresyonları
-        run: node keymint/sifre-test.js
-
       # Dagitim motoru bir ONERI uretiyor: yanlis oncelik sirasi, makul
       # gorunen ama para kaybettiren bir tavsiye demek. Oncelik kurallari
       # ve reel getiri aritmetigi burada sabitleniyor.

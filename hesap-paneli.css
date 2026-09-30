@@ -1,4 +1,6 @@
-/* Yüzde Hesaplama — sayfaya özel ek stiller (ana style.css'i tamamlar) */
+/* Hesap paneli: sekme, panel ve görünmez etiket gibi araçların ortak bileşenleri.
+   Önceden yuzde-hesaplama/style.css adıyla duruyordu ve 37 sayfa onu yüklüyordu;
+   araç kaldırılınca (30 Eylül 2026) köke taşındı. */
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;

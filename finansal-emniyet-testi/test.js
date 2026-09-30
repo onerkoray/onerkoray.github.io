@@ -16,9 +16,12 @@ var path = require("path");
 var cp = require("child_process");
 var KOK = path.join(__dirname, "..");
 var D = require("./hesap.js");
-var C = require(path.join(KOK, "bordro", "cikis.js"));
-var B = require(path.join(KOK, "bordro", "motor.js"));
-var K = require(path.join(KOK, "kredi-hesaplama", "hesap.js"));
+/* Göreli require: npm paketinde klasör adı değişir (kredi-hesaplama → kredi)
+   ve tools/cekirdek.py yalnız bu yazımı çevirir. path.join ile yazıldığında
+   paketlenmiş test modülü bulamıyordu. */
+var C = require("../bordro/cikis.js");
+var B = require("../bordro/motor.js");
+var K = require("../kredi-hesaplama/hesap.js");
 
 var gecen = 0, kalan = 0;
 function ok(ad, kosul, ek) {
@@ -131,10 +134,14 @@ var ters = false; try { D.hesapla(g({ iseGiris: "2027-01-01" })); } catch (e) { 
 ok("işe giriş çıkıştan sonra olamaz", ters);
 
 baslik("Sayfa");
-var r = cp.spawnSync(process.execPath, [path.join(KOK, "tools", "dayanma-ornek.js"), "--check"], { encoding: "utf8" });
+// Sayfa üreteci yalnız sitede var; npm paketinde bu bölüm atlanır.
+var URETEC = path.join(KOK, "tools", "dayanma-ornek.js");
+if (require("fs").existsSync(URETEC)) {
+var r = cp.spawnSync(process.execPath, [URETEC, "--check"], { encoding: "utf8" });
 ok("örnek hane ve SSS yapısal verisi üreteçle aynı", r.status === 0, (r.stderr || "").trim());
 var O = require(path.join(KOK, "tools", "dayanma-ornek.js")).ORNEK;
 ok("sayfa örneği test temeliyle aynı girdi", JSON.stringify(O) === JSON.stringify(TEMEL));
+}
 
 console.log("\n" + gecen + " geçti, " + kalan + " kaldı.");
 process.exit(kalan ? 1 : 0);
