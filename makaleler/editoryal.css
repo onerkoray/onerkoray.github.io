@@ -163,6 +163,9 @@
 /* Gövde başlıkları da serif — yazı ile araç sayfası ayrışsın */
 .ed-body h2, .ed-body h3 { font-family: var(--serif); letter-spacing: -.012em; }
 .ed-body h2 { line-height: 1.25; }
+/* Kısa cevap kutusundan sonraki başlık kutuya yapışıyordu: kutunun alt
+   boşluğu yoktu, h2'nin üst boşluğu da inline-block çizgisinde sıfırdı. */
+.ed-body .verdict { margin-bottom: 2.5rem; }
 .ed-body .verdict h2 { font-family: var(--font-display); font-size: var(--type-card-title); line-height: 1.4; letter-spacing: var(--tracking-title); }
 .ed-body > p:first-of-type { font-size: 1.06em; }
 
