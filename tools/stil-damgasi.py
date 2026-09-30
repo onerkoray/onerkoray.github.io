@@ -71,7 +71,14 @@ def isle(kontrol):
 
         def degistir(m):
             bagil = m.group(2)
-            hedef = os.path.normpath(os.path.join(dizin, bagil))
+            # Kökten başlayan yol ("/style.css") sitenin köküne göre çözülür.
+            # 404 sayfası her derinlikte sunulduğu için yalnız mutlak yol
+            # kullanır; önceden bu yollar dosyaya çözülemeyip sessizce
+            # damgasız kalıyordu.
+            if bagil.startswith("/") and not bagil.startswith("//"):
+                hedef = os.path.normpath(os.path.join(KOK, bagil.lstrip("/")))
+            else:
+                hedef = os.path.normpath(os.path.join(dizin, bagil))
             if not os.path.exists(hedef):
                 return m.group(0)      # dis kaynak ya da kirik: dokunma
             sayac[0] += 1
