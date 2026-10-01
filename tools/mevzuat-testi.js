@@ -170,6 +170,37 @@ IFADELER.forEach(function (x) {
   gecer("takvimde makine okunur tarihli satır var", tarihli >= 2, tarihli + " satır");
 })();
 
+/* 5. GEÇMİŞ TARİH, GELECEK ZAMAN — bütün site.
+   1 Ekim 2026'da "torba yasa beklentisi" yazısı hâlâ "Yeni yasama yılı
+   1 Ekim 2026'da açılıyor" diyordu. Yazının gecerlilik bildirimi başka bir
+   iddiaya (31 Aralık puanlama turu) bağlı olduğu için yukarıdaki listeler
+   cümleyi hiç görmedi. Bu tarama listeye bağlı değil: tarihi geçmiş bir
+   günü gelecek zamanla anlatan her cümle kırmızıdır. */
+(function () {
+  console.log("\nGeçmiş tarih, gelecek zaman (bütün site)");
+  var AY = { "Ocak": 1, "Şubat": 2, "Mart": 3, "Nisan": 4, "Mayıs": 5, "Haziran": 6, "Temmuz": 7,
+    "Ağustos": 8, "Eylül": 9, "Ekim": 10, "Kasım": 11, "Aralık": 12 };
+  var FIIL = "açılıyor|açılacak|başlıyor|başlayacak|yapılacak|yürürlüğe girecek|yayımlanacak|toplanacak|açıklanacak";
+  var re = new RegExp("(\\d{1,2}) (" + Object.keys(AY).join("|") + ") (\\d{4})'?[a-zçğıöşü]*\\s+(?:\\S+\\s+){0,2}?(" + FIIL + ")", "g");
+  var bulunan = [], taranan = 0;
+  (function gez(d) {
+    fs.readdirSync(d, { withFileTypes: true }).forEach(function (e) {
+      var p = path.join(d, e.name);
+      if (e.isDirectory()) { if (!/^(\.git|_cekirdek|node_modules|_kontak)$/.test(e.name)) gez(p); return; }
+      if (!e.name.endsWith(".html")) return;
+      taranan++;
+      var s = oku(p).replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " "), m;
+      re.lastIndex = 0;
+      while ((m = re.exec(s))) {
+        var t = m[3] + "-" + String(AY[m[2]]).padStart(2, "0") + "-" + String(m[1]).padStart(2, "0");
+        if (t <= BUGUN) bulunan.push(path.relative(KOK, p) + ": \"" + m[0] + "\"");
+      }
+    });
+  })(KOK);
+  gecer("tarihi geçmiş gün gelecek zamanla anlatılmıyor (" + taranan + " sayfa)", bulunan.length === 0,
+    bulunan.slice(0, 6).join("\n             "));
+})();
+
 /* ------------------------------------------------------------------ */
 console.log("\n" + (gecen + kalan) + " kontrol, " + gecen + " geçti, " +
   kalan + " kaldı.");
