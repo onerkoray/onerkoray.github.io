@@ -927,6 +927,14 @@ jobs:
         # 2026-09-29'da 66 sayfada etiket 7, kutu 5, hücre 9 boyuttaydı.
         run: node tools/tipografi-test.js
 
+      - name: Görsel ve hareket standardı
+        # AGENTS.md bölüm 5: kaldırılan dekor (imleç haresi, gradyan leke,
+        # parçacık ağı) geri gelmez; Math.random yalnız kimlik üretiminde;
+        # taşan eğri ve büyütüp sektiren animasyon metne ve veriye uygulanmaz;
+        # buzlu cam yalnız işlevsel katmanda. Ölü efekt kodu 30 Eylül 2026'ya
+        # kadar her imleç hareketinde boşa çizim döngüsü çalıştırıyordu.
+        run: node tools/hareket-test.js
+
       - name: Varlık karşılaştırma motoru
         # Altın mı, dolar mı, mevduat mı: gram altın grafikler sayfasıyla ay ay
         # aynı, mevduat bağımsız döngüyle, stopaj GİB rehberindeki her sınır

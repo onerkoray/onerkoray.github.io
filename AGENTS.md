@@ -168,6 +168,7 @@ kalan maddeleri CI göremez. Onları elle geç.
 - [ ] Üst başlık site standardında: marka adı `brand-name`, menü Ana Sayfa · Araçlar · Makaleler ile başlıyor, `tema-erken.js` ve `script.js` yüklü. Menüye yazıyla ilgisiz bağlantı kopyalanmadı. [CI: Site başlığı tek standartta]
 - [ ] Form etiketi, giriş kutusu, buton, seçici, tablo ve grafik yazısı kendi ölçüsünü yazmıyor: `style.css`'teki `--type-*`, `--control-h`, `--secim-h`, `--tablo-pad-*` ve `.btn` / `.secim` sistemine düşüyor. [CI: Araç sayfalarında yazı ve bileşenler tek ölçekte]
 - [ ] Gövdede gerçek bir `<img>` var (Google Görseller). [CI: Görsel SEO regresyonları]
+- [ ] Bölüm 5'teki yasak dekor ve hareket kalıpları yok. [CI: Görsel ve hareket standardı]
 - [ ] Görsel `tools/makale-gorsel.js` içinde çizildi. Pillow ya da elle PNG yok. [CI: SVG makale kartları çizimle aynı]
 - [ ] Paylaşım meta etiketleri tam. [CI: Paylaşım meta etiketleri tam mı]
 - [ ] Görünür iz ile BreadcrumbList aynı. [CI: Görünür iz ve BreadcrumbList]
@@ -189,3 +190,65 @@ kalan maddeleri CI göremez. Onları elle geç.
       sitemap commit'i → CI'ın tamamı → tek push.
 - [ ] Sitenin görünümünü geniş ölçekte değiştiren iş, yayından önce
       önce/sonra görüntüsüyle site sahibine gösterildi.
+- [ ] Görünümü değiştiren her iş bölüm 5'teki gözden geçirme kapısından
+      geçti: kontak sayfası, puan, hiçbir ölçüt 8/10'un altında değil.
+
+---
+
+## 5. Görsel ve hareket standardı
+
+1 Ekim 2026'da referans alındı: bir Claude hareket stüdyosu tanımı
+(@claudecode84, "CLAUDE.md", 8 dosyanın yalnız ilki yayımlanmış). O metin
+video için yazılmış. Aşağıda yalnızca bu siteye uyan kısmı var; çoğunu site
+zaten tek tek öğrenmişti, burada tek yerde duruyor.
+
+**Tek fikir, gerçek veri.** Bir görsel tek bir iddiayı gösterir (bölüm 2):
+bir ana nesne, onu okutan yardımcı bilgi ve bilinçli bırakılmış boşluk.
+Yalnız gerçek veri ve gerçek ekran kullanılır. Uydurma arayüz, temsili
+olmayan sayı ya da süs için çizilmiş grafik olmaz.
+
+**Yasak varsayılanlar.** Bunların her biri bu sitede bir kez denendi ve
+geri alındı. [CI: Görsel ve hareket standardı]
+
+- Bulanık, yüzen gradyan lekeler; ortalanmış başlık ve sıradan gradyan.
+- İmleci izleyen hare, neon hale, aşırı parlama.
+- Rastgele parçacıklar. Süs için buzlu cam: `backdrop-filter` yalnız işlevsel
+  katmanda (yapışkan başlık, komut paleti örtüsü, grafik araç çubuğu).
+- Her öğede zıplama. Kartın yaylanarak kalkması.
+- Gizlenip kodu bırakılan efekt. `display: none` görsel olarak siler ama
+  betik yüklenmeye ve her imleç hareketinde çizim döngüsü çalıştırmaya
+  devam eder. Kaldırılan efektin kodu da silinir.
+
+Süs olmayan şey yasak değildir. Örneğin kart bandındaki kategori etiketi
+bir okuma alanıdır, filtre düğmesiyle aynı adı taşır. "Canlı" göstergesindeki
+nabız da verinin gerçekten yenilendiğini söyleyen bir durum işaretidir.
+
+**Hareket.**
+
+- Deterministik: aynı sayfa her açılışta aynı kareyi çizer. `Math.random`
+  yalnız kimlik üretiminde kullanılır; gürültü gerekirse sabit tohumla.
+- Taşma (overshoot) yalnız arayüz tepkisinde ve hafif olur. Metinde ve veri
+  işaretinde olmaz: bir veri noktası kısa bir an bile değerinden büyük
+  görünemez.
+- Metin önce yerine oturur, sonra hareket eder. Geçişler fiziksel ve
+  süreklidir; bir öğe sahneden sahneye taşınır, birden belirmez.
+- "Hareketi azalt" tercihi her animasyonu kapatır (`style.css` genel kuralı).
+- Grafik kartları ve kart bandındaki hafif hareketler bilinçlidir ve korunur.
+
+**Gözden geçirme kapısı.** Görünümü değiştiren her iş yayından önce:
+
+1. `python tools/kontak-sayfasi.py [sayfalar] --cikti once.png` ile değişiklik
+   öncesi, aynı komutla sonrası çekilir: masaüstü açık, masaüstü koyu,
+   telefon. Kareler "hareketi azalt" açıkken çekilir; iki kontak sayfası
+   piksel piksel karşılaştırılabilir.
+2. Puanlanır, her biri 10 üzerinden: okunabilirlik, kompozisyon, hareket,
+   site diliyle tutarlılık, verinin doğru gösterimi.
+3. En büyük üç sorun düzeltilir. En çok üç tur.
+4. Herhangi bir ölçüt 8/10'un altındaysa yayınlanmaz.
+5. Geniş görsel değişiklik ayrıca önce/sonra görüntüsüyle site sahibine
+   gösterilir (bölüm 4, "Sonra").
+
+**Bitti demeden.** "Tamam" demek, workflow'daki CI komutlarının tamamının
+yerelde koşulup çıktısının görülmesi demektir. Seçilmiş bir alt küme yeşil
+diye iş bitmiş sayılmaz. Oran, tarih ve kanun gibi değişen bilgi ezberden
+yazılmaz; kaynaktan okunur (bölüm 3).

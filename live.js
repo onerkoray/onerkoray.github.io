@@ -1,7 +1,6 @@
 /* Canlılık katmanı — saat, hava, komut paleti (bağımlılıksız, yalnız ana sayfa) */
 (function () {
   "use strict";
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
 
   /* ---------- Yardımcılar ---------- */
@@ -183,30 +182,6 @@
     }, { passive: true });
   }
 
-  /* ---------- Cursor glow + hero parallax ---------- */
-  if (!reduced && window.matchMedia("(pointer: fine)").matches) {
-    var glow = el("div", "cursor-glow");
-    document.body.appendChild(glow);
-    document.body.classList.add("has-pointer");
-    var gx = 0, gy = 0, pending = false;
-    window.addEventListener("pointermove", function (e) {
-      gx = e.clientX; gy = e.clientY;
-      if (!pending) {
-        pending = true;
-        requestAnimationFrame(function () {
-          glow.style.transform = "translate(" + (gx - 170) + "px," + (gy - 170) + "px)";
-          // hero parallax
-          var spans = document.querySelectorAll(".hero-bg span");
-          var dx = (gx / window.innerWidth - 0.5), dy = (gy / window.innerHeight - 0.5);
-          for (var i = 0; i < spans.length; i++) {
-            var f = (i + 1) * 6;
-            spans[i].style.transform = "translate(" + (-dx * f) + "px," + (-dy * f) + "px)";
-          }
-          pending = false;
-        });
-      }
-    }, { passive: true });
-  }
 
   /* ---------- Kart rozetleri ---------- */
   var NEW_TOOLS = ["kidem-tazminati-hesaplama/", "gumruk-vergisi-hesaplama/", "otv-hesaplama/", "mtv-hesaplama/", "serbest-meslek-makbuzu-hesaplama/"];
