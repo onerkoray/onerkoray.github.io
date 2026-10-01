@@ -220,12 +220,13 @@
   55% { stroke-dashoffset: 0; opacity: .9; }
   58%, 100% { stroke-dashoffset: 0; opacity: 0; }
 }
-@keyframes kart-kat { 0% { transform: scale(0); } 70% { transform: scale(1.35); } 100% { transform: scale(1); } }
+/* Veri noktası değerinden büyük görünmez: taşmasız, kapalı biçimli yavaşlama. */
+@keyframes kart-kat { from { transform: scale(0); } to { transform: scale(1); } }
 
 .project-card--grafik.is-visible .kart-cizgi { stroke-dasharray: 1; animation: kart-ciz 1.9s cubic-bezier(.65, 0, .35, 1) .2s both; }
 .project-card--grafik.is-visible .kart-ince { animation-delay: .45s; }
 .project-card--grafik.is-visible .kart-alan { animation: kart-bel 1s ease 1.3s both; }
-.project-card--grafik.is-visible .kart-kat { transform-box: fill-box; transform-origin: center; animation: kart-kat .45s cubic-bezier(.34, 1.56, .64, 1) var(--gecikme, .5s) both; }
+.project-card--grafik.is-visible .kart-kat { transform-box: fill-box; transform-origin: center; animation: kart-kat .45s cubic-bezier(.22, 1, .36, 1) var(--gecikme, .5s) both; }
 .project-card--grafik.is-visible .kart-son { animation: kart-bel .3s ease 2s both; }
 .project-card--grafik.is-visible .kart-hale { animation: kart-nabiz 2.6s ease-out 2.2s infinite; }
 .project-card--grafik.is-visible .kart-parilti { animation: kart-parilti 6.5s ease-in-out 3s infinite; }

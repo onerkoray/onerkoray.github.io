@@ -1,16 +1,5 @@
 /* Canlılık katmanı — hero canlı bar, komut paleti, mikro dokunuşlar */
 
-/* ---- Zaman paletine göre hero tonu (çok hafif) ---- */
-.hero { position: relative; }
-.hero::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(120% 90% at 50% 0%, var(--live-tint, transparent), transparent 70%);
-  opacity: .45; transition: background 1.2s ease;
-}
-:root[data-daypart="sabah"]  { --live-tint: rgba(255, 166, 87, .14); }
-:root[data-daypart="oglen"]  { --live-tint: rgba(112, 187, 255, .12); }
-:root[data-daypart="aksam"]  { --live-tint: rgba(168, 120, 255, .12); }
-:root[data-daypart="gece"]   { --live-tint: rgba(38, 66, 139, .18); }
 
 /* ---- Hero canlı bar ---- */
 .live-bar {
@@ -19,7 +8,6 @@
 }
 .live-card {
   background: color-mix(in srgb, var(--surface) 62%, transparent);
-  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
   border-radius: 16px; padding: .7rem .95rem; min-height: 64px;
   box-shadow: 0 2px 12px rgba(16, 24, 20, .05);
@@ -44,15 +32,6 @@
 .site-header .header-inner { transition: padding .22s ease; }
 .site-header.is-shrunk .header-inner { padding-block: .35rem; }
 
-/* ---- Cursor glow + hero parallax ---- */
-.cursor-glow {
-  position: fixed; left: 0; top: 0; width: 340px; height: 340px; border-radius: 50%;
-  pointer-events: none; z-index: 0; opacity: 0; transition: opacity .4s ease;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent-bright, #2bb596) 12%, transparent), transparent 65%);
-  will-change: transform;
-}
-body.has-pointer .cursor-glow { opacity: 1; }
-.hero-bg span { will-change: transform; transition: transform .7s cubic-bezier(.2,.8,.3,1); }
 
 /* ---- Komut paleti ---- */
 .cmdk-backdrop {
@@ -87,11 +66,9 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .live-dot::before, .lc-skeleton .lc-value { animation: none; }
-  .cursor-glow { display: none; }
 }
 @media (max-width: 640px) {
   .live-bar { grid-template-columns: repeat(2, 1fr); }
-  .cursor-glow { display: none; }
 }
 
 /* Dünya saatleri kartı */
@@ -118,7 +95,6 @@ html { scroll-behavior: smooth; }
 
 .tech-panel{width:100%;height:100%;align-self:stretch;padding:16px 18px 12px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;
   background: color-mix(in srgb, var(--surface) 68%, transparent);
-  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   border: 1px solid color-mix(in srgb, var(--brand) 20%, transparent);
   box-shadow: 0 2px 12px rgba(16,24,20,.05), inset 0 0 60px color-mix(in srgb, var(--brand) 5%, transparent);
   border-radius: var(--radius);
@@ -228,7 +204,6 @@ html { scroll-behavior: smooth; }
   border: 1px solid color-mix(in srgb, var(--brand) 22%, var(--border));
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--surface) 72%, transparent);
-  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   padding: 16px 18px;
   box-shadow: var(--shadow);
 }

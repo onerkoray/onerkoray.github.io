@@ -15,3 +15,6 @@ _cekirdek/
 
 # Python onbellegi (tools/*.py calisinca olusuyor)
 __pycache__/
+
+# Gözden geçirme kapısının kontak sayfaları (tools/kontak-sayfasi.py)
+_kontak/
