@@ -85,6 +85,13 @@
 
   function kabulEdildi() { return durum() === KABUL; }
 
+  /* Ziyaretçi ölçümü KENDİSİ mi açtı? Varsayılan açık ölçüm buna sayılmaz.
+     IP adresini üçüncü bir tarafa gönderen ve karşılığında yalnız süs
+     getiren işler (ana sayfadaki şehir tahmini) bunu bekler: varsayılan
+     karar analitiği kapsar, kişinin IP'sini başka bir servise taşımayı
+     kapsamaz. */
+  function acikKabul() { return secimYapildi() && durum() === KABUL; }
+
   /* ---------------------------------------------------------- ölçüm */
 
   var yuklendi = false;
@@ -155,6 +162,7 @@
   root.Onay = {
     durum: durum,
     kabulEdildi: kabulEdildi,
+    acikKabul: acikKabul,
     secimYapildi: secimYapildi,
     ver: ver,
     dinle: dinle,

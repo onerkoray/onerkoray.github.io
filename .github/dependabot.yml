@@ -1,0 +1,12 @@
+# Workflow eylemleri commit SHA'sına sabitli (bir etiketin sonradan başka
+# bir koda yönlendirilmesine karşı). Dependabot sabitleri ve yanlarındaki
+# sürüm yorumunu haftalık tazeler; güncelleme PR olarak gelir, CI'dan geçer.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      eylemler:
+        patterns: ["*"]

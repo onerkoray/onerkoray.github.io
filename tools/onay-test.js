@@ -132,6 +132,8 @@ var o1 = sahteOrtam();
 var K1 = kapiYukle(o1);
 esit("durum kabul", K1.durum(), "kabul");
 esit("secim yapilmadi", K1.secimYapildi(), false);
+/* Varsayilan acik olcum, IP'yi ucuncu tarafa tasiyan isleri ACMAZ. */
+esit("varsayilan acik kabul sayilmaz", K1.acikKabul(), false);
 esit("serit YOK", o1.govde.length, 0);
 esit("gtag yuklendi", o1.eklenenBetikler.length, 1);
 dogru("gtag betigi", /googletagmanager\.com\/gtag\/js\?id=G-/.test(o1.eklenenBetikler[0]));
@@ -163,13 +165,18 @@ var o4 = sahteOrtam({
 var K4 = kapiYukle(o4);
 esit("acik kabul DNT'yi yener", K4.durum(), "kabul");
 esit("acik kabulde olcum basliyor", o4.eklenenBetikler.length, 1);
+esit("depodaki kabul acik kabuldur", K4.acikKabul(), true);
 
 console.log("\nCIKIS: kapatilinca olcum baslamaz ve KALICI olur");
 var o5 = sahteOrtam({ baslangic: { "korayoner.olcum-onayi": "ret" } });
 var K5 = kapiYukle(o5);
 esit("ret durumu", K5.durum(), "ret");
 esit("secim yapildi", K5.secimYapildi(), true);
+esit("ret acik kabul degil", K5.acikKabul(), false);
 esit("betik YOK", o5.eklenenBetikler.length, 0);
+K5.ver(true);
+esit("oturumda verilen kabul acik kabuldur", K5.acikKabul(), true);
+K5.ver(false);
 
 console.log("\nCIKIS CEREZLERI DE SILER");
 /* Yalnizca "bir daha yukleme" demek, ORTADA DURAN veriyi birakmak olurdu. */
