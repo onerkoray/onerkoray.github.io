@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-09-30T10:23:53+03:00</updated>
+  <updated>2026-10-02T04:28:22+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Emekli Çalışan Maaş Hesaplama 2026 (SGDP)</title>
+    <link href="https://korayoner.dev/emekli-calisan-maas-hesaplama/"/>
+    <id>https://korayoner.dev/emekli-calisan-maas-hesaplama/</id>
+    <updated>2026-10-02T04:28:22+03:00</updated>
+    <summary>Emekli olup çalışanın net maaşı ve işverene maliyeti: SGDP %7,5 işçi, %22,5 işveren, işsizlik primi yok. Emekli olmayan çalışanla karşılaştırma, 2026.</summary>
+  </entry>
 
   <entry>
     <title>Ne Zaman Emekli Olurum? Emeklilik Hesaplama</title>

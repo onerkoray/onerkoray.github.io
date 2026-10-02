@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=0e361dc9" defer></script>
+  <meta charset="UTF-8">
+  <script src="../tema-erken.js?v=3d1c1238"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emekli Çalışan Maaş Hesaplama 2026 (SGDP) | Koray Öner</title>
+  <meta name="description" content="Emekli olup çalışanın net maaşı ve işverene maliyeti: SGDP %7,5 işçi, %22,5 işveren, işsizlik primi yok. Emekli olmayan çalışanla karşılaştırma, 2026.">
+  <meta name="gecerlilik" content="2027-01-15 | 2027 asgari ücreti ve bordro parametreleri girildi mi? Girildiyse SSS'deki örnekler node emekli-calisan-maas-hesaplama/test.js ile yeniden doğrulanmalı. SGDP oranı (5510 geçici m.14/a) ya da kısa vadeli oran (m.81/1-c) değişti mi? mevzuat.gov.tr'den yeniden okunmalı.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/emekli-calisan-maas-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Emekli çalışan maaş hesaplama 2026 (SGDP)">
+  <meta property="og:description" content="Emekli çalışanın neti ve işverene maliyeti: brütte anlaşınca işverene pahalı, netle anlaşınca ucuz. Emekli olmayan çalışanla yan yana.">
+  <meta property="og:url" content="https://korayoner.dev/emekli-calisan-maas-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/emekli-calisan-maas-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Emekli çalışan maaş hesaplama aracı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Emekli çalışan maaş hesaplama 2026 (SGDP)">
+  <meta name="twitter:description" content="Emekli çalışanın neti ve işverene maliyeti: brütte anlaşınca işverene pahalı, netle anlaşınca ucuz.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/emekli-calisan-maas-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=75e37a08">
+  <link rel="stylesheet" href="style.css?v=0511dc8d">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://korayoner.dev/emekli-calisan-maas-hesaplama/#app",
+        "name": "Emekli Çalışan Maaş Hesaplama (SGDP)",
+        "url": "https://korayoner.dev/emekli-calisan-maas-hesaplama/",
+        "image": "https://korayoner.dev/images/emekli-calisan-maas-hesaplama-koray-oner.png",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "isBasedOn": { "@id": "https://korayoner.dev/bordro/#motor" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "description": "Emekli olup 4/a kapsamında çalışanın sosyal güvenlik destek primi kesintisiyle net ücretini ve işverene maliyetini hesaplar; aynı brütte ve aynı nette emekli olmayan çalışanla karşılaştırır."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Emekli Çalışan Maaş Hesaplama", "item": "https://korayoner.dev/emekli-calisan-maas-hesaplama/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Emekli çalışanın maaşından ne kesilir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Prime esas kazancın %7,5'i sosyal güvenlik destek primi (SGDP), gelir vergisi ve damga vergisi. İşsizlik sigortası primi kesilmez. Emekli olmayan çalışanda prim kesintisi %15'tir (%14 SGK, %1 işsizlik)." }
+          },
+          {
+            "@type": "Question",
+            "name": "Asgari ücretle çalışan emeklinin net maaşı 2026'da ne kadar?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Ocak ayında 30.181,16 TL. Brüt 33.030 TL'den 2.477,25 TL SGDP ve 371,59 TL gelir vergisi kesilir. Asgari ücret istisnası standart asgari ücret matrahı üzerinden hesaplandığı için emekli asgari ücretli az da olsa gelir vergisi öder. Emekli olmayan asgari ücretlinin neti 28.075,50 TL'dir." }
+          },
+          {
+            "@type": "Question",
+            "name": "Emekli çalıştırmak işverene daha mı ucuz?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Brüt ücrette anlaşıldıysa hayır. 2026'da emekli çalışan için işveren brütün %24,75'ini öder (%22,5 SGDP, %2,25 kısa vadeli sigorta). Emekli olmayan çalışan için bu oran %23,75'tir ve şartları sağlayan işveren 2 puan (imalatta 5 puan) indirim alır; bu indirim SGDP'ye uygulanmaz. Net ücrette anlaşıldıysa evet: aynı neti vermek için emeklinin brütü daha düşük olur. Ayda 60.000 TL net için yıllık maliyet emeklide 1.161.457,92 TL, indirimli emekli olmayan çalışanda 1.234.782,77 TL'dir." }
+          },
+          {
+            "@type": "Question",
+            "name": "SGDP emekli aylığını artırır mı?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Hayır. 5510 sayılı Kanun geçici madde 14 uyarınca SGDP'ye tabi çalışanlar hakkında yalnızca iş kazası ve meslek hastalığı sigortası hükümleri uygulanır. Ödenen prim yeni bir aylık hakkı doğurmaz, mevcut aylığı da kesmez." }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="../#projects">Araçlar</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Emekli Çalışan Maaş Hesaplama
+    </nav>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Bordro · SGDP</p>
+        <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="3"/><path d="M3 20v-1.5a5 5 0 0 1 8.5-3.5"/><rect x="13" y="13" width="8" height="7" rx="1.5"/><path d="M15.5 13v-1.5h3V13"/></svg></div>
+        <h1 id="hero-title">Emekli çalışan maaş hesaplama 2026</h1>
+        <p class="lede">
+          Emekli olup bir işyerinde çalışanın maaşından %15 yerine <strong>%7,5 prim</strong> kesilir;
+          işsizlik primi yoktur. İşveren ise %24,75 öder ve prim indiriminden yararlanamaz. Araç
+          emekli çalışanın netini ve işverene maliyetini hesaplar, aynı brütte ya da aynı nette
+          emekli olmayan bir çalışanla yan yana koyar.
+        </p>
+        <p class="muted ec-kunye">
+          Dayanak: 5510 s.K. geçici m.14/a ve m.81 · Hesap: <a href="../bordro/">Bordro Motoru</a> ·
+          tarayıcınızda çalışır, veri gönderilmez
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 id="calc-title" class="visually-hidden">Emekli çalışan maaş hesaplama aracı</h2>
+        <form id="ec-form" class="panel" novalidate>
+          <div class="ec-alanlar">
+            <p class="panel-q">
+              <label for="ec-mod">Anlaşılan ücret</label>
+              <select id="ec-mod">
+                <option value="brut" selected>Brüt ücret</option>
+                <option value="net">Net ücret</option>
+              </select>
+            </p>
+            <p class="panel-q">
+              <label for="ec-tutar">Aylık tutar (TL)</label>
+              <input type="text" id="ec-tutar" inputmode="decimal" autocomplete="off" value="80.000">
+            </p>
+            <p class="panel-q">
+              <label for="ec-tesvik">Karşılaştırılan çalışanda prim indirimi</label>
+              <select id="ec-tesvik">
+                <option value="">Yok</option>
+                <option value="genel" selected>İmalat dışı (2 puan)</option>
+                <option value="imalat">İmalat (5 puan)</option>
+              </select>
+            </p>
+          </div>
+          <p class="muted-note ec-not">İndirim (5510 m.81/ı) emekli olmayan çalışana uygulanır; SGDP'li çalışana kanun gereği uygulanmaz.</p>
+        </form>
+
+        <div id="ec-sonuc" aria-live="polite"></div>
+        <p class="muted-note" id="ec-mesaj">Tutarı girin; hesap otomatik çalışır.</p>
+      </div>
+    </section>
+
+    <article class="content">
+      <div class="wrap prose">
+        <h2 id="nasil">Nasıl hesaplanır?</h2>
+        <p>
+          Emekli olup 4/a kapsamında (işçi olarak) çalışanların aylığı kesilmez; bunun yerine
+          <strong>sosyal güvenlik destek primi</strong> (SGDP) ödenir. Oran, kısa vadeli sigorta kolları
+          primine %30 eklenerek bulunur. %30'un dörtte biri çalışandan, dörtte üçü işverenden alınır;
+          kısa vadeli primin tamamını işveren öder (5510 s.K. geçici m.14/a, m.81/1-c).
+        </p>
+        <p class="formula">Çalışandan: prime esas kazanç × %7,5   (işsizlik primi yok)</p>
+        <p class="formula">İşverenden: prime esas kazanç × (%22,5 + %2,25) = %24,75</p>
+        <p>
+          Prime esas kazancın alt sınırı asgari ücret, üst sınırı tavandır; emeklide de aynıdır.
+          Gelir vergisi her çalışanda olduğu gibi kümülatif matraha uygulanır. Matrah, brütten yalnızca
+          %7,5 düşüldüğü için emekli olmayan çalışanınkinden yüksektir. <strong>Asgari ücret
+          istisnası değişmez</strong>: istisna, asgari ücretin standart kesintilerle bulunan matrahının
+          vergisidir. Bu yüzden asgari ücretle çalışan emekli de az bir gelir vergisi öder.
+        </p>
+
+        <h2 id="isveren">Emekli çalıştırmak işverene ucuz mu?</h2>
+        <p>
+          Anlaşmanın biçimine bağlı. <strong>Brütte anlaşıldıysa pahalı.</strong> Emekli olmayan
+          çalışan için işveren 2026'da %21,75 SGK ve %2 işsizlik, toplam %23,75 öder; şartları
+          sağlarsa imalat dışında 2, imalatta 5 puan indirim alır. Emekli çalışanda oran %24,75'tir ve
+          indirim yoktur. Brüt 80.000 TL'lik bir çalışan işverene ayda 99.800,00 TL'ye mal olur;
+          emekli olmayan aynı çalışan indirimle 97.400,00 TL'ye.
+        </p>
+        <p>
+          <strong>Netle anlaşıldıysa ucuz.</strong> Emeklinin kesintisi az olduğundan aynı net daha düşük
+          bir brütle verilir. Ayda 60.000 TL net için ocak brütü emeklide 71.325,07 TL, emekli olmayan
+          çalışanda 77.685,27 TL'dir. Yıllık maliyet emeklide 1.161.457,92 TL, indirimli emekli olmayan
+          çalışanda 1.234.782,77 TL; fark 73.324,85 TL.
+        </p>
+
+        <h2 id="kapsam">Kimler SGDP öder, araç neyi kapsamaz?</h2>
+        <ul>
+          <li><strong>Kapsanan:</strong> 1 Ekim 2008'den önce sigortalı olmuş, emekli aylığı alırken 4/a kapsamında (bir işverene bağlı) çalışanlar.</li>
+          <li><strong>Esnaf emekli (4/b):</strong> 2016'dan beri SGDP ödemez (geçici m.14, 6663 s.K.). Bu araç ona göre değil.</li>
+          <li><strong>İlk kez 1 Ekim 2008'den sonra sigortalı olanlar:</strong> emekli olduktan sonra 4/a kapsamında çalışırsa aylığı kesilir, tam prim ödenir (5510 m.30). Bu durumda <a href="../maas-hesaplama/">brüt-net maaş aracı</a> doğru sonucu verir.</li>
+          <li><strong>Kapsam dışı:</strong> emekli memurun yeniden memur (4/c) olarak çalışması, engellilik indirimi, birden fazla işverenden ücret, yan haklar.</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="kaynak-title">
+      <div class="wrap">
+        <div class="sources">
+          <h2 id="kaynak-title">Veri kaynakları ve güncelleme</h2>
+          <ul>
+            <li>5510 sayılı <strong>Kanun geçici m.14</strong> — SGDP oranı ve kapsamı; <strong>m.81/1-c</strong> kısa vadeli sigorta kolları primi; <strong>m.81/ı</strong> prim indirimi ve SGDP istisnası — <a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5510.pdf" rel="noopener">Mevzuat Bilgi Sistemi</a> (2 Ekim 2026'da okundu)</li>
+            <li>5510 sayılı <strong>Kanun m.82</strong> — prime esas kazancın alt ve üst sınırı — <a href="https://www.sgk.gov.tr/" rel="noopener">Sosyal Güvenlik Kurumu</a></li>
+            <li>193 sayılı <strong>Gelir Vergisi Kanunu</strong> m.103 ve m.23/1-(18) — <a href="https://www.gib.gov.tr/" rel="noopener">Gelir İdaresi Başkanlığı</a></li>
+            <li>Parametreler, hesap adımları ve doğrulama testleri — <a href="../bordro/">Bordro Motoru metodolojisi</a></li>
+          </ul>
+          <p class="muted-note">
+            Bu araç bilgilendirme amaçlıdır; mali müşavirlik hizmeti yerine geçmez.
+            Bir bilgi güncelliğini yitirdiyse <a href="../iletisim/">bana bildirin</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sss" class="faq">
+      <div class="wrap prose">
+        <h2>Sık sorulan sorular</h2>
+        <div class="faq-list">
+          <details><summary>Emekli çalışanın maaşından ne kesilir?</summary><p>Prime esas kazancın %7,5'i sosyal güvenlik destek primi (SGDP), gelir vergisi ve damga vergisi. İşsizlik sigortası primi kesilmez. Emekli olmayan çalışanda prim kesintisi %15'tir (%14 SGK, %1 işsizlik).</p></details>
+          <details><summary>Asgari ücretle çalışan emeklinin net maaşı 2026'da ne kadar?</summary><p>Ocak ayında 30.181,16 TL. Brüt 33.030 TL'den 2.477,25 TL SGDP ve 371,59 TL gelir vergisi kesilir. Emekli olmayan asgari ücretlinin neti 28.075,50 TL'dir. İşverene maliyet emeklide 41.204,93 TL, emekli olmayanda teşviksiz 40.874,63 TL.</p></details>
+          <details><summary>Emekli çalıştırmak işverene daha mı ucuz?</summary><p>Brüt ücrette anlaşıldıysa hayır: işveren emekliye %24,75, emekli olmayana %23,75 öder ve indirim yalnız emekli olmayana uygulanır. Net ücrette anlaşıldıysa evet: ayda 60.000 TL net için yıllık maliyet emeklide 1.161.457,92 TL, indirimli emekli olmayan çalışanda 1.234.782,77 TL.</p></details>
+          <details><summary>SGDP emekli aylığını artırır mı?</summary><p>Hayır. SGDP'ye tabi çalışanlar hakkında yalnızca iş kazası ve meslek hastalığı sigortası hükümleri uygulanır (5510 geçici m.14/a). Ödenen prim yeni bir aylık hakkı doğurmaz, mevcut aylığı da kesmez.</p></details>
+          <details><summary>Emekli çalışan işsizlik maaşı alabilir mi?</summary><p>Hayır. SGDP'li çalışandan işsizlik sigortası primi alınmaz; bu çalışma işsizlik ödeneği hakkı doğurmaz.</p></details>
+          <details><summary>Girdiğim tutarlar kaydediliyor mu?</summary><p>Hayır. Hesap tamamen tarayıcınızda yapılır.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <ul>
+          <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — emekli olmayan çalışanın 12 aylık net dökümü.</li>
+          <li><a href="../isveren-maliyeti-hesaplama/">İşveren Maliyeti Hesaplama</a> — SGK işveren payı ve prim indirimi.</li>
+          <li><a href="../emekli-ayligi-hesaplama/">Emekli Aylığı Hesaplama</a> — bağlanacak aylığın tahmini.</li>
+          <li><a href="../emekli-zammi-hesaplama/">Emekli Zammı Hesaplama</a> — aylığın Ocak ve Temmuz artışı.</li>
+          <li><a href="../bordro/">Bordro Motoru</a> — bu aracı çalıştıran açık kaynak çekirdek.</li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu sayfadaki hesapları <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Sonuçlar, açık kaynaklı <a href="../bordro/">Bordro Motoru</a> çekirdeğinden gelir: kullanılan yasal parametreler, adım adım hesap yöntemi ve doğrulama testleri <a href="../bordro/#metodoloji">metodoloji sayfasında</a> herkese açıktır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Hesaplama çekirdeği</dt><dd><a href="../bordro/">Bordro Motoru 1.3.0</a></dd></div>
+            <div><dt>Son gözden geçirme</dt><dd><time datetime="2026-09-05">5 Eylül 2026</time></dd></div>
+            <div><dt>Değişiklik günlüğü</dt><dd><a href="../bordro/#gunluk">Yayımlanıyor</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../koray-oner/">Koray Öner: çalışma dizini</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=5489aa17" defer></script>
+  <script src="../bordro/motor.js?v=41cbee4c" defer></script>
+  <script src="script.js?v=ae4a1d5f" defer></script>
+  <script src="../script.js?v=72b4a7c6" defer></script>
+</body>
+</html>

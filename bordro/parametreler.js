@@ -46,7 +46,19 @@
     sgkIsverenIndirim: 0.05,
     sgkIsverenIndirimImalat: 0.05,
     issizlikIsveren: 0.02,  // işsizlik sigortası işveren payı
-    damga: 0.00759          // damga vergisi — binde 7,59 (2013'ten beri sabit)
+    damga: 0.00759,         // damga vergisi — binde 7,59 (2013'ten beri sabit)
+    /* Sosyal güvenlik destek primi (SGDP): emekli olup 4/a kapsamında
+       çalışmaya devam edenler. 5510 geçici m.14/a: oran, m.81/1-c'deki
+       kısa vadeli sigorta kolları oranına %30 eklenerek bulunur; %30'un
+       dörtte biri sigortalı, dörtte üçü işveren hissesidir. Kısa vadeli
+       primin tamamını işveren öder. İşsizlik sigortası primi alınmaz
+       (yalnız iş kazası ve meslek hastalığı hükümleri uygulanır) ve m.81/ı
+       indirimi SGDP'ye tabi çalışanlara uygulanmaz.
+       kisaVadeli sgkIsveren'in içindeki kısa vadeli payla aynı sayıdır;
+       bordro/test.js ikisinin birlikte değiştiğini doğrular. */
+    sgdpIsci: 0.075,
+    sgdpIsveren: 0.225,
+    kisaVadeli: 0.02        // 5510 m.81/1-c; 7524 s.K. ile Eylül 2024'ten %2,25
   };
   function oranlarIle(ek) {
     var o = {};
@@ -105,7 +117,7 @@
       // bagliyor (tavan = asgariBrut x tavanKatsayisi).
       tavanKatsayisi: 9,
       // 7566 s.K.: MYÖ işveren hissesi %11 → %12; m.81/ı imalat dışı 2 puan.
-      oranlar: oranlarIle({ sgkIsveren: 0.2175, sgkIsverenIndirim: 0.02 }),
+      oranlar: oranlarIle({ sgkIsveren: 0.2175, sgkIsverenIndirim: 0.02, kisaVadeli: 0.0225 }),
       dilimler: [[190000, 0.15], [400000, 0.20], [1500000, 0.27], [5300000, 0.35], [null, 0.40]],
       /* GVK m.31 engellilik indirimi: aylık, derece sırasıyla (%80, %60, %40
          çalışma gücü kaybı). Ücret matrahından tarifeden ÖNCE düşülür (318
@@ -208,7 +220,7 @@
       istisnaRejimi: "asgari-ucret",
       damgaIstisnasi: true,
       tavanKatsayisi: 7.5,
-      oranlar: oranlarIle({ sgkIsveren: 0.2075 }),
+      oranlar: oranlarIle({ sgkIsveren: 0.2075, kisaVadeli: 0.0225 }),
       // 7538 s.K. (RG 15.01.2025): imalat dışı indirim 1 Şubat 2025'ten 4 puan.
       oranDegisimleri: [{ ay: 2, sgkIsverenIndirim: 0.04 }],
       /* 2025 sigortalılık oranları, 7566 s.K. öncesi. 2025'te sirket bloğu
@@ -248,7 +260,7 @@
       tavanKatsayisi: 7.5,
       oranlar: VARSAYILAN_ORANLAR,
       // 7524 s.K. m.28 (RG 02.08.2024): kısa vadeli %2 → %2,25, 2024/Eylül'den.
-      oranDegisimleri: [{ ay: 9, sgkIsveren: 0.2075 }],
+      oranDegisimleri: [{ ay: 9, sgkIsveren: 0.2075, kisaVadeli: 0.0225 }],
       dilimler: [[110000, 0.15], [230000, 0.20], [870000, 0.27], [3000000, 0.35], [null, 0.40]],
       // GVK m.31 engellilik indirimi, aylık TL (1., 2., 3. derece); 324 Seri No'lu GVGT, RG 30.12.2023.
       engellilik: [6900, 4000, 1700],
