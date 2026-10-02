@@ -140,10 +140,13 @@
     $("#lv-sun-card").classList.remove("lc-skeleton");
     $("#lv-sun").textContent = "—";
   }
-  /* ŞEHİR TAHMİNİ ONAYA BAĞLI.
+  /* ŞEHİR TAHMİNİ AÇIK ONAYA BAĞLI.
      Bu istek IP adresini üçüncü bir tarafa (ipapi.co) ulaştırıyor ve
      karşılığında aldığımız şey dekoratif bir hava durumu göstergesi.
-     Ölçüm için onay isteyip bunu sessizce yapmak tutarsız olurdu.
+     Ölçüm varsayılan olarak açık (onay.js), ama o varsayılan analitiği
+     kapsar; IP'yi başka bir servise taşımayı kapsamaz. Bu yüzden burada
+     kabulEdildi() değil acikKabul() soruluyor: yalnız ziyaretçi gizlilik
+     sayfasında ölçümü kendisi açtıysa şehir tahmin edilir.
 
      Onay yoksa gösterge KAYBOLMUYOR, İstanbul'a düşüyor — zaten eskiden
      de istek başarısız olunca yaptığı buydu. Yani onay vermemenin
@@ -155,7 +158,7 @@
     }).catch(function () { loadWeather(41.01, 28.98, "İstanbul"); });
   }
 
-  if (window.Onay && window.Onay.kabulEdildi()) {
+  if (window.Onay && window.Onay.acikKabul && window.Onay.acikKabul()) {
     sehirTahmini();
   } else {
     loadWeather(41.01, 28.98, "İstanbul");
