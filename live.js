@@ -1,4 +1,4 @@
-/* Canlılık katmanı — saat, hava, komut paleti (bağımlılıksız, yalnız ana sayfa) */
+/* Canlılık katmanı — saat, tarih, komut paleti (bağımlılıksız, yalnız ana sayfa) */
 (function () {
   "use strict";
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -31,10 +31,6 @@
     '<span class="lc-value" id="lv-clock">--:--:--</span><span class="lc-sub" id="lv-dpname"></span></div>' +
     '<div class="live-card"><span class="lc-label">Bugün</span>' +
     '<span class="lc-value" id="lv-date"></span><span class="lc-sub" id="lv-doy"></span></div>' +
-    '<div class="live-card lc-skeleton" id="lv-wx-card"><span class="lc-label" id="lv-city">Hava</span>' +
-    '<span class="lc-value" id="lv-wx">......</span><span class="lc-sub" id="lv-wx-sub"></span></div>' +
-    '<div class="live-card lc-skeleton" id="lv-sun-card"><span class="lc-label" id="lv-sun-label">Gün batımı</span>' +
-    '<span class="lc-value" id="lv-sun">......</span><span class="lc-sub" id="lv-sun-sub"></span></div>' +
     '<div class="live-card"><span class="lc-label">Sonraki tatil</span>' +
     '<span class="lc-value" id="lv-hol"></span><span class="lc-sub" id="lv-hol-sub"></span></div>' +
     '<div class="live-card"><span class="lc-label">Dünya saatleri</span>' +
@@ -48,8 +44,6 @@
     if (heroInner) { heroInner.appendChild(bar); }
     else { heroActions.parentNode.insertBefore(bar, heroActions.nextSibling); }
   }
-
-  var sunTimes = null; // { sunrise: Date, sunset: Date }
 
   // 2026-2027 resmi tatiller
   var TATIL = [
@@ -78,19 +72,6 @@
     var doy = Math.floor((n - start) / 864e5);
     var yearDays = (n.getFullYear() % 4 === 0 && (n.getFullYear() % 100 !== 0 || n.getFullYear() % 400 === 0)) ? 366 : 365;
     $("#lv-doy").textContent = "Yılın " + doy + ". günü · " + (yearDays - doy) + " gün kaldı";
-    // gün batımı/doğumu geri sayımı
-    if (sunTimes) {
-      var target, label;
-      if (n < sunTimes.sunrise) { target = sunTimes.sunrise; label = "Gün doğumuna"; }
-      else if (n < sunTimes.sunset) { target = sunTimes.sunset; label = "Gün batımına"; }
-      else { target = new Date(sunTimes.sunrise.getTime() + 864e5); label = "Gün doğumuna"; }
-      var ms = target - n, hh = Math.floor(ms / 36e5), mm = Math.floor((ms % 36e5) / 6e4);
-      $("#lv-sun-label").textContent = label;
-      $("#lv-sun").textContent = hh + " sa " + pad(mm) + " dk";
-      $("#lv-sun-sub").textContent = "Batış " + pad(sunTimes.sunset.getHours()) + ":" + pad(sunTimes.sunset.getMinutes()) +
-        " · Doğuş " + pad(sunTimes.sunrise.getHours()) + ":" + pad(sunTimes.sunrise.getMinutes());
-      $("#lv-sun-card").classList.remove("lc-skeleton");
-    }
     // sonraki tatil
     var nh = nextHoliday(n);
     if (nh) {
@@ -107,73 +88,16 @@
   tick();
   setInterval(tick, 1000);
 
-  /* ---------- Hava durumu (Open-Meteo, anahtar gerektirmez) ---------- */
-  /* [ad, simge]. Ucuncu bir eleman daha vardi -- atmosfer katmaninin
-     turunu secerdi; katman kaldirilinca olu veri haline geldi. */
-  function wxInfo(code) {
-    if (code === 0) return ["Açık", "☀️"];
-    if (code <= 2) return ["Az bulutlu", "🌤️"];
-    if (code === 3) return ["Bulutlu", "☁️"];
-    if (code <= 48) return ["Sisli", "🌫️"];
-    if (code <= 67 || (code >= 80 && code <= 82)) return ["Yağmurlu", "🌧️"];
-    if (code <= 77 || code === 85 || code === 86) return ["Kar yağışlı", "🌨️"];
-    return ["Sağanak/Fırtına", "⛈️"];
-  }
-  function loadWeather(lat, lon, city) {
-    var u = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon +
-      "&current=temperature_2m,weather_code&daily=sunrise,sunset&timezone=auto&forecast_days=1";
-    fetch(u).then(function (r) { return r.json(); }).then(function (d) {
-      var t = Math.round(d.current.temperature_2m);
-      var w = wxInfo(d.current.weather_code);
-      $("#lv-city").textContent = city || "Hava";
-      $("#lv-wx").textContent = w[1] + " " + t + "°C";
-      $("#lv-wx-sub").textContent = w[0];
-      $("#lv-wx-card").classList.remove("lc-skeleton");
-      sunTimes = { sunrise: new Date(d.daily.sunrise[0]), sunset: new Date(d.daily.sunset[0]) };
-      tick();
-    }).catch(function () { fallbackWx(); });
-  }
-  function fallbackWx() {
-    $("#lv-wx").textContent = "—";
-    $("#lv-wx-sub").textContent = "Hava alınamadı";
-    $("#lv-wx-card").classList.remove("lc-skeleton");
-    $("#lv-sun-card").classList.remove("lc-skeleton");
-    $("#lv-sun").textContent = "—";
-  }
-  /* ŞEHİR TAHMİNİ AÇIK ONAYA BAĞLI.
-     Bu istek IP adresini üçüncü bir tarafa (ipapi.co) ulaştırıyor ve
-     karşılığında aldığımız şey dekoratif bir hava durumu göstergesi.
-     Ölçüm varsayılan olarak açık (onay.js), ama o varsayılan analitiği
-     kapsar; IP'yi başka bir servise taşımayı kapsamaz. Bu yüzden burada
-     kabulEdildi() değil acikKabul() soruluyor: yalnız ziyaretçi gizlilik
-     sayfasında ölçümü kendisi açtıysa şehir tahmin edilir.
-
-     Onay yoksa gösterge KAYBOLMUYOR, İstanbul'a düşüyor — zaten eskiden
-     de istek başarısız olunca yaptığı buydu. Yani onay vermemenin
-     bedeli, bir şehir adının varsayılan kalması. */
-  function sehirTahmini() {
-    fetch("https://ipapi.co/json/").then(function (r) { return r.json(); }).then(function (g) {
-      if (g && g.latitude) loadWeather(g.latitude, g.longitude, g.city);
-      else loadWeather(41.01, 28.98, "İstanbul");
-    }).catch(function () { loadWeather(41.01, 28.98, "İstanbul"); });
-  }
-
-  if (window.Onay && window.Onay.acikKabul && window.Onay.acikKabul()) {
-    sehirTahmini();
-  } else {
-    loadWeather(41.01, 28.98, "İstanbul");
-    /* Kullanıcı sonradan onay verirse şehir kendiliğinden düzelsin:
-       "kabul ettim ama hiçbir şey değişmedi" demek zorunda kalmasın. */
-    if (window.Onay) {
-      window.Onay.dinle(function (d) { if (d === "kabul") sehirTahmini(); });
-    }
-  }
+  /* Hava durumu ve gün batımı kartları kaldırıldı (Ekim 2026): ikisi de
+     ziyaretçinin tarayıcısından üçüncü taraflara (ipapi.co, Open-Meteo)
+     istek gönderiyordu. Site veri toplamadığını söylüyor; süs için IP
+     adresini başka bir servise taşımak bu iddiayla bağdaşmıyordu. */
 
   /* ---------- Header: canlı nokta + küçülme ---------- */
   var nav = $(".site-nav");
   if (nav) {
     var dot = el("span", "live-dot", "Canlı");
-    dot.title = "Bu sayfadaki saat, hava ve gün bilgileri canlıdır";
+    dot.title = "Bu sayfadaki saat ve tarih bilgileri canlıdır";
     nav.parentNode.insertBefore(dot, nav.nextSibling);
   }
   var header = $(".site-header");
