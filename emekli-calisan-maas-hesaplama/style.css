@@ -1,0 +1,79 @@
+/*!
+ * Emekli Çalışan Maaş Hesaplama — sayfaya özgü stiller.
+ * Renkler mevcut belirteçlerden; yeni renk tanımlanmaz.
+ */
+.panel-q { margin: 0; display: flex; flex-direction: column; gap: .3rem; }
+.panel-q label { font-weight: 600; }
+.panel-q input,
+.panel-q select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--text);
+}
+.ec-alanlar {
+  display: grid;
+  gap: .9rem 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.ec-not { margin: 1rem 0 0; }
+.ec-kunye { font-size: var(--step--1); }
+
+.ec-manset { margin: 1.8rem 0 .8rem; font-size: var(--step-1); }
+.ec-manset p { margin: .2rem 0; }
+.ec-manset p + p { font-size: var(--step-0); color: var(--text-muted); }
+
+.ec-tablo { margin: 1.4rem 0 .4rem; }
+.ec-tablo caption { text-align: left; font-weight: 650; padding-bottom: .5rem; }
+.ec-tablo td { font-variant-numeric: tabular-nums; }
+.ec-vurgu th, .ec-vurgu td { font-weight: 700; }
+
+/* Özet şeridi: ölçüler tek satırda eşit hücreler; dar ekranda iki sütun. */
+.ec-olcu {
+  margin: 1.2rem 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.ec-olcu > div {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  padding: .85rem 1rem;
+  border-inline-start: 1px solid var(--border);
+}
+.ec-olcu > div:first-child { border-inline-start: 0; }
+.ec-olcu dt { color: var(--text-muted); font-size: var(--step--1); line-height: 1.35; }
+.ec-olcu dd { margin: 0; font-weight: 700; font-size: var(--step-0); font-variant-numeric: tabular-nums; }
+@media (max-width: 720px) {
+  .ec-olcu { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ec-olcu > div { border-inline-start: 0; border-block-start: 1px solid var(--border); }
+  .ec-olcu > div:nth-child(-n+2) { border-block-start: 0; }
+  .ec-olcu > div:nth-child(even) { border-inline-start: 1px solid var(--border); }
+}
+
+.formula {
+  font-family: var(--font-mono);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: .75rem .9rem;
+  font-size: .92rem;
+  overflow-x: auto;
+}
+
+/* Dar ekran: satırlar etiketli kartlar. Sağdan kesilen sütun kalmaz. */
+@media (max-width: 600px) {
+  .ec-tablo thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .ec-tablo, .ec-tablo tbody, .ec-tablo tr { display: block; inline-size: 100%; }
+  .data-table.ec-tablo { min-width: 0; }
+  .ec-tablo caption { display: block; padding-bottom: .5rem; }
+  .ec-tablo tr { padding: .55rem .75rem; border-bottom: 1px solid var(--border); }
+  .ec-tablo tbody th[scope="row"] { display: block; padding: .15rem 0 .3rem; border: 0; text-align: left; font-weight: 700; white-space: normal; }
+  .ec-tablo td { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .18rem 0; border: 0; text-align: right; white-space: normal; }
+  .ec-tablo td::before { content: attr(data-etiket); color: var(--text-muted); font-size: var(--step--1); text-align: left; }
+}

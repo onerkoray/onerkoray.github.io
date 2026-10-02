@@ -438,5 +438,83 @@ baslik("Fazla mesai parametreleri");
   ok("seçeneksiz BES sıfır, ele geçen = net", b0.aylar.every(function (a) { return a.bes === 0 && a.eleGecen === a.net; }));
 })();
 
+/* 1.3.0 — sosyal güvenlik destek primi (5510 geçici m.14/a).
+   Beklenenler kapalı formülden; bir de dış referans: 2026 asgari ücretli
+   emekli çalışanın bordrosu (net 30.181,17, işverene maliyet 41.204,93). */
+(function () {
+  baslik("SGDP — emekli çalışan (5510 geçici m.14/a)");
+  B.yillar().forEach(function (y) {
+    var P = B.parametre(y);
+    for (var ay = 1; ay <= 12; ay++) {
+      var o = B.oranlarAy(P, ay);
+      /* sgkIsveren = MYÖ işveren + GSS işveren %7,5 + kısa vadeli. Kısa
+         vadeli iki yerde duruyor; biri değişip öteki unutulursa SGDP
+         maliyeti sessizce kayar. MYÖ işveren 2026'ya kadar %11, sonra %12. */
+      var myo = o.sgkIsveren - 0.075 - o.kisaVadeli;
+      if (!(yakin(myo, 0.11, 1e-9) || yakin(myo, 0.12, 1e-9))) {
+        ok(y + "/" + ay + " kısa vadeli oran işveren payıyla tutarlı", false, myo.toFixed(4));
+        return;
+      }
+    }
+    ok(y + " kısa vadeli oran işveren payıyla tutarlı (12 ay)", true);
+  });
+  var P24 = B.parametre(2024);
+  ok("2024 Ağustos kısa vadeli %2, Eylül %2,25",
+     B.oranlarAy(P24, 8).kisaVadeli === 0.02 && B.oranlarAy(P24, 9).kisaVadeli === 0.0225);
+
+  var Y = 2026, P = B.parametre(Y), d = B.donem(P, 1), o = B.oranlarAy(P, 1);
+  ok("SGDP oranları: %30'un dörtte biri işçi, dörtte üçü işveren",
+     yakin(o.sgdpIsci + o.sgdpIsveren, 0.30, 1e-12) && yakin(o.sgdpIsci * 3, o.sgdpIsveren, 1e-12));
+
+  var a = B.hesaplaYil(d.asgariBrut, Y, { sgdp: true }).aylar[0];
+  ok("2026 asgari ücret: işçi SGDP 2.477,25", yakin(a.sgk, 2477.25), a.sgk.toFixed(2));
+  ok("2026 asgari ücret: işsizlik primi yok", a.issizlik === 0 && a.isverenIssizlik === 0);
+  ok("2026 asgari ücret: gelir vergisi 371,58 (istisna standart matrahtan)", yakin(a.gelirVergisi, 371.58), a.gelirVergisi.toFixed(2));
+  ok("2026 asgari ücret: damga 0", a.damga === 0);
+  ok("2026 asgari ücret: net 30.181,17", yakin(a.net, 30181.17), a.net.toFixed(2));
+  ok("2026 asgari ücret: işveren SGDP + kısa vadeli 8.174,93", yakin(a.isverenSgk, 8174.93), a.isverenSgk.toFixed(2));
+  ok("2026 asgari ücret: işverene maliyet 41.204,93", yakin(a.isverenMaliyeti, 41204.93), a.isverenMaliyeti.toFixed(2));
+
+  // Kapalı formül: her ay, her tutar
+  function T(m) { return B.tarifeVergisi(m, P.dilimler); }
+  [60000, 150000, d.sgkTavan * 1.5].forEach(function (brut) {
+    var r = B.hesaplaYil(brut, Y, { sgdp: true });
+    var am = d.asgariBrut * (1 - o.sgkIsci - o.issizlikIsci);
+    var hepsi = r.aylar.every(function (x, i) {
+      var pek = Math.min(brut, d.sgkTavan);
+      var m = brut - pek * o.sgdpIsci;
+      var gv = Math.max(0, (T((i + 1) * m) - T(i * m)) - (T((i + 1) * am) - T(i * am)));
+      var dv = (brut - d.asgariBrut) * o.damga;
+      return yakin(x.sgk, pek * o.sgdpIsci) && yakin(x.gelirVergisi, gv) && yakin(x.damga, dv) &&
+        yakin(x.net, brut - pek * o.sgdpIsci - gv - dv) &&
+        yakin(x.isverenMaliyeti, brut + pek * (o.sgdpIsveren + o.kisaVadeli));
+    });
+    ok("brüt " + Math.round(brut) + ": 12 ay kapalı formülle aynı", hepsi);
+  });
+
+  var t = B.hesaplaYil(100000, Y, { sgdp: true, tesvik: "imalat" }).aylar[0];
+  var t0 = B.hesaplaYil(100000, Y, { sgdp: true }).aylar[0];
+  ok("m.81/ı indirimi SGDP'ye uygulanmaz", t.isverenMaliyeti === t0.isverenMaliyeti);
+  var red = false; try { B.hesaplaYil(50000, Y, { sgdp: true, primsiz: true }); } catch (e) { red = true; }
+  ok("sgdp ile primsiz birlikte reddedilir", red);
+
+  var hedef = 50000, br = B.nettenBruteYil(hedef, Y, { sgdp: true });
+  ok("SGDP netten brüte gidiş-dönüş (12 ay)",
+     B.hesaplaYil(br, Y, { sgdp: true }).aylar.every(function (x) { return yakin(x.net, hedef, 0.02); }));
+  var n = B.hesaplaYil(80000, Y).aylar[0], s2 = B.hesaplaYil(80000, Y, { sgdp: true }).aylar[0];
+  /* Yaygın inanışın tersi: 2026'da emekli çalıştırmak işverene PAHALI.
+     SGDP %22,5 + kısa vadeli %2,25 = %24,75; normal çalışan %21,75 +
+     işsizlik %2 = %23,75 ve indirim SGDP'ye uygulanmıyor. */
+  ok("aynı brütte emekli çalışanın neti yüksek",
+     // net farkı = prim farkı (%15 − %7,5) − bu farkın doğurduğu ek gelir vergisi
+     yakin(s2.net - n.net, 80000 * (o.sgkIsci + o.issizlikIsci - o.sgdpIsci) - (s2.gelirVergisi - n.gelirVergisi), 0.01) &&
+     s2.gelirVergisi > n.gelirVergisi && s2.net > n.net,
+     (s2.net - n.net).toFixed(2));
+  ok("2026'da aynı brütte işverene maliyet 1 puan YÜKSEK (teşviksiz)",
+     yakin(s2.isverenMaliyeti - n.isverenMaliyeti, 80000 * (o.sgdpIsveren + o.kisaVadeli - o.sgkIsveren - o.issizlikIsveren)) &&
+     yakin(o.sgdpIsveren + o.kisaVadeli - o.sgkIsveren - o.issizlikIsveren, 0.01, 1e-12),
+     (s2.isverenMaliyeti - n.isverenMaliyeti).toFixed(2));
+})();
+
 console.log("\n" + gecen + " geçti, " + kalan + " kaldı.");
 process.exit(kalan ? 1 : 0);

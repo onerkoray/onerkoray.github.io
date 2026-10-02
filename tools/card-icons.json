@@ -226,5 +226,9 @@
   "ne-zaman-emekli-olurum": {
     "cat": "maas",
     "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h12M6 21h12\"/><path d=\"M7 3v2.5a5 5 0 0 0 5 5 5 5 0 0 1 5 5V21\"/><path d=\"M17 3v2.5a5 5 0 0 1-5 5 5 5 0 0 0-5 5V21\"/></svg>"
+  },
+  "emekli-calisan-maas-hesaplama": {
+    "cat": "maas",
+    "svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"8\" cy=\"7\" r=\"3\"/><path d=\"M3 20v-1.5a5 5 0 0 1 8.5-3.5\"/><rect x=\"13\" y=\"13\" width=\"8\" height=\"7\" rx=\"1.5\"/><path d=\"M15.5 13v-1.5h3V13\"/></svg>"
   }
 }
