@@ -75,7 +75,13 @@ t.gecsin("SSS faiz", "Orta Vadeli Program'a göre " + bir(c.faiz) + " milyar TL,
 t.gecsin("SSS oran", "genel bütçe vergi gelirlerinin %" + S.tl(oran(c)) + "'si");
 t.gecsin("teklif karşılaştırması", "faiz ödeneği OVP'deki " + bir(c.faiz) + " milyar TL'den sapıyor mu, vergi geliri tahmini " + bir(c.vergi) + " milyar TL'den, ve ikisinin oranı " + S.tl(oran(c)) + "'den");
 
-/* 8 — Teklif henüz yokken yazı teklif rakamı iddia etmemeli. */
+/* 8 — Akış diyagramı: başlıktaki iki tutar tablodan, her kalem bir şerit. */
+t.gecsin("diyagram başlığı", "borçlanma (" + bir(-c.denge) + " milyar TL) ile faiz gideri (" + bir(c.faiz) + " milyar TL) neredeyse aynı kalınlıkta");
+t.gecsin("diyagram faiz şeridi", "Bütçe → Faiz: " + bir(c.faiz) + " mr TL");
+t.gecsin("diyagram borçlanma şeridi", "Borçlanma (açık) → Bütçe: " + bir(-c.denge) + " mr TL");
+t.gecsin("diyagram vergi şeridi", "Vergi gelirleri → Bütçe: " + bir(c.vergi) + " mr TL");
+
+/* 9 — Teklif henüz yokken yazı teklif rakamı iddia etmemeli. */
 if (!Bu.teklifVar()) {
   t.gecmesin("teklif rakamı yok", "Teklife göre");
   t.dogru("gecerlilik bildirimi teklif tarihine bağlı", /name="gecerlilik" content="2026-10-17 \|/.test(t.html));
