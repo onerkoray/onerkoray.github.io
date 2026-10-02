@@ -242,6 +242,12 @@
   color: var(--text-muted);
 }
 
+/* Yazı içi akış diyagramı (finans/sankey.js). Paragraflardan ayrı dursun;
+   .sk kendi üst boşluğunu taşıdığı için yalnız alt boşluk eklenir. */
+.ed-diyagram {
+  margin: 0 0 2rem;
+}
+
 /* ---------------------------------------------------------------- */
 /* Yayın listesi (/yayinlar/)                                        */
 /*                                                                   */

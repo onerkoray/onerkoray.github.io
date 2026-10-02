@@ -1866,7 +1866,10 @@ section { padding: var(--bolum) 0; }
   paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px;
   stroke-linejoin: round;
 }
-.sk-deger { font-family: var(--font-mono); font-size: 11px; fill: var(--text-muted); }
+.sk-deger {
+  font-family: var(--font-mono); font-size: 11px; fill: var(--text-muted);
+  paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round;
+}
 
 .sk-not { margin: .8rem 0 0; font-size: .78rem; line-height: 1.6; color: var(--text-muted); }
 .sk-tablo { margin: .7rem 0 0; font-size: .78rem; }
