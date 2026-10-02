@@ -79,5 +79,7 @@ t.gecsin("teklif karşılaştırması", "faiz ödeneği OVP'deki " + bir(c.faiz)
 if (!Bu.teklifVar()) {
   t.gecmesin("teklif rakamı yok", "Teklife göre");
   t.dogru("gecerlilik bildirimi teklif tarihine bağlı", /name="gecerlilik" content="2026-10-17 \|/.test(t.html));
+  t.gecsin("okura güncelleme notu", "Bu yazı 17 Ekim 2026'da güncellenecek");
+  t.gecsin("standfirst güncelleme", "en geç 17 Ekim 2026'da Meclis'e sunulacak bütçe teklifinin rakamlarıyla güncellenecek");
 }
 t.bitir(Bu.teklifVar() ? "Teklif girildi." : "Teklif bekleniyor; rakamlar OVP'den.");
