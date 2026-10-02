@@ -216,7 +216,8 @@ function dogrulamaOzeti() {
     "borc-test.js": ["Borç planı · bağımsız modül", "borc-motor.js"],
     "dilim-kaymasi-test.js": ["Dilim kayması", "dilim-kaymasi.js"],
     "asgari-senaryo-test.js": ["Asgari ücret zammı senaryosu", "asgari-senaryo.js"],
-    "sgk-prim-test.js": ["Bağ-Kur, isteğe bağlı sigorta ve borçlanma", "sgk-prim.js"]
+    "sgk-prim-test.js": ["Bağ-Kur, isteğe bağlı sigorta ve borçlanma", "sgk-prim.js"],
+    "sgdp-test.js": ["Emekli çalışan (SGDP)", "sgdp.js"]
   };
   return '<p><strong>' + testSayisi() + ' doğrulama, ' + TESTLER.length + ' test dosyası.</strong> Sayılar, aşağıdaki testler başarıyla çalıştırılarak üretilir; canlı bir CI durum göstergesi değildir.</p>\n' +
     '<div class="table-scroll"><table class="payroll"><caption>Hesap modülleri ve doğrulamalar</caption>' +

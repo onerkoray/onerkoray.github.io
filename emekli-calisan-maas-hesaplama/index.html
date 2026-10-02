@@ -38,7 +38,7 @@
   <meta name="twitter:image" content="https://korayoner.dev/images/emekli-calisan-maas-hesaplama-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=75e37a08">
-  <link rel="stylesheet" href="style.css?v=0511dc8d">
+  <link rel="stylesheet" href="style.css?v=5543e932">
 
   <script type="application/ld+json">
   {
@@ -82,7 +82,7 @@
           {
             "@type": "Question",
             "name": "Emekli çalıştırmak işverene daha mı ucuz?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Brüt ücrette anlaşıldıysa hayır. 2026'da emekli çalışan için işveren brütün %24,75'ini öder (%22,5 SGDP, %2,25 kısa vadeli sigorta). Emekli olmayan çalışan için bu oran %23,75'tir ve şartları sağlayan işveren 2 puan (imalatta 5 puan) indirim alır; bu indirim SGDP'ye uygulanmaz. Net ücrette anlaşıldıysa evet: aynı neti vermek için emeklinin brütü daha düşük olur. Ayda 60.000 TL net için yıllık maliyet emeklide 1.161.457,92 TL, indirimli emekli olmayan çalışanda 1.234.782,77 TL'dir." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Brüt ücrette anlaşıldıysa hayır. 2026'da emekli çalışan için işveren brütün %24,75'ini öder (%22,5 SGDP, %2,25 kısa vadeli sigorta). Emekli olmayan çalışan için bu oran %23,75'tir ve şartları sağlayan işveren 2 puan (imalatta 5 puan) indirim alır; bu indirim SGDP'ye uygulanmaz. Net ücrette anlaşıldıysa evet: aynı neti vermek için emeklinin brütü daha düşük olur. Ayda 60.000 TL net için yıllık maliyet emeklide 1.161.457,92 TL, indirimli emekli olmayan çalışanda 1.234.782,77 TL'dir. İstisna asgari ücrete yakın netlerdir: 2026'da 28.622,76 TL netin altında emeklinin brütü asgari ücrete takılır ve emekli yine pahalıdır." }
           },
           {
             "@type": "Question",
@@ -117,6 +117,7 @@
           <li><a href="../#projects">Araçlar</a></li>
           <li><a href="../makaleler/">Makaleler</a></li>
           <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#isveren">Ucuz mu?</a></li>
           <li><a href="#nasil">Nasıl hesaplanır</a></li>
           <li><a href="#sss">S.S.S.</a></li>
         </ul>
@@ -140,9 +141,9 @@
         <h1 id="hero-title">Emekli çalışan maaş hesaplama 2026</h1>
         <p class="lede">
           Emekli olup bir işyerinde çalışanın maaşından %15 yerine <strong>%7,5 prim</strong> kesilir;
-          işsizlik primi yoktur. İşveren ise %24,75 öder ve prim indiriminden yararlanamaz. Araç
-          emekli çalışanın netini ve işverene maliyetini hesaplar, aynı brütte ya da aynı nette
-          emekli olmayan bir çalışanla yan yana koyar.
+          işveren ise %24,75 öder ve prim indiriminden yararlanamaz. Sonuç anlaşmaya bağlı:
+          <strong>brütte anlaşınca emekli işverene pahalı, netle anlaşınca çoğunlukla ucuz.</strong>
+          Araç farkı, dönüm noktasını ve emekli aylığıyla birlikte ele geçeni 2020–2026 için hesaplar.
         </p>
         <p class="muted ec-kunye">
           Dayanak: 5510 s.K. geçici m.14/a ve m.81 · Hesap: <a href="../bordro/">Bordro Motoru</a> ·
@@ -156,30 +157,57 @@
         <h2 id="calc-title" class="visually-hidden">Emekli çalışan maaş hesaplama aracı</h2>
         <form id="ec-form" class="panel" novalidate>
           <div class="ec-alanlar">
+            <div class="ec-alan">
+              <span class="ec-etiket" id="ec-mod-bas">Anlaşma</span>
+              <div class="ec-secimler" role="group" aria-labelledby="ec-mod-bas">
+                <button type="button" class="secim" data-secim="mod" data-deger="brut" aria-pressed="true">Brüt</button>
+                <button type="button" class="secim" data-secim="mod" data-deger="net" aria-pressed="false">Net</button>
+              </div>
+            </div>
             <p class="panel-q">
-              <label for="ec-mod">Anlaşılan ücret</label>
-              <select id="ec-mod">
-                <option value="brut" selected>Brüt ücret</option>
-                <option value="net">Net ücret</option>
-              </select>
-            </p>
-            <p class="panel-q">
-              <label for="ec-tutar">Aylık tutar (TL)</label>
+              <label for="ec-tutar" id="ec-tutar-etiket">Aylık brüt ücret (TL)</label>
               <input type="text" id="ec-tutar" inputmode="decimal" autocomplete="off" value="80.000">
             </p>
             <p class="panel-q">
-              <label for="ec-tesvik">Karşılaştırılan çalışanda prim indirimi</label>
+              <label for="ec-aylik">Emekli aylığı (TL, isteğe bağlı)</label>
+              <input type="text" id="ec-aylik" inputmode="decimal" autocomplete="off" placeholder="örn. 20.000">
+            </p>
+            <p class="panel-q">
+              <label for="ec-yil">Yıl</label>
+              <select id="ec-yil"></select>
+            </p>
+            <p class="panel-q">
+              <label for="ec-giris">İşe giriş ayı</label>
+              <select id="ec-giris">
+                <option value="1" selected>Ocak (tam yıl)</option>
+                <option value="2">Şubat</option><option value="3">Mart</option><option value="4">Nisan</option>
+                <option value="5">Mayıs</option><option value="6">Haziran</option><option value="7">Temmuz</option>
+                <option value="8">Ağustos</option><option value="9">Eylül</option><option value="10">Ekim</option>
+                <option value="11">Kasım</option><option value="12">Aralık</option>
+              </select>
+            </p>
+            <p class="panel-q">
+              <label for="ec-tesvik">Emekli olmayanda prim indirimi</label>
               <select id="ec-tesvik">
                 <option value="">Yok</option>
-                <option value="genel" selected>İmalat dışı (2 puan)</option>
-                <option value="imalat">İmalat (5 puan)</option>
+                <option value="genel" selected>İmalat dışı</option>
+                <option value="imalat">İmalat</option>
               </select>
             </p>
           </div>
-          <p class="muted-note ec-not">İndirim (5510 m.81/ı) emekli olmayan çalışana uygulanır; SGDP'li çalışana kanun gereği uygulanmaz.</p>
+          <p class="muted-note ec-not">İndirim (5510 m.81/ı) yalnız emekli olmayan çalışana uygulanır; SGDP'li çalışana kanun gereği uygulanmaz. Oranı yıla göre parametrelerden okunur.</p>
         </form>
 
         <div id="ec-sonuc" aria-live="polite"></div>
+
+        <figure class="ec-cizelge">
+          <div id="ec-grafik"></div>
+          <figcaption>Emekli çalıştırmanın işverene yıllık maliyet farkı (emekli − emekli olmayan), seçili yıl ve indirimle.
+            Sıfırın üstü: emekli pahalı. Brütte anlaşınca her ücrette pahalı; netle anlaşınca eşiğin üstünde ucuz.
+            Eşiğin altında emeklinin brütü asgari ücrete takılır ve ona fazladan net ödenir.
+            <span id="ec-esik-yazi"></span></figcaption>
+        </figure>
+        <div id="ec-detay"></div>
         <p class="muted-note" id="ec-mesaj">Tutarı girin; hesap otomatik çalışır.</p>
       </div>
     </section>
@@ -212,10 +240,21 @@
           emekli olmayan aynı çalışan indirimle 97.400,00 TL'ye.
         </p>
         <p>
-          <strong>Netle anlaşıldıysa ucuz.</strong> Emeklinin kesintisi az olduğundan aynı net daha düşük
-          bir brütle verilir. Ayda 60.000 TL net için ocak brütü emeklide 71.325,07 TL, emekli olmayan
-          çalışanda 77.685,27 TL'dir. Yıllık maliyet emeklide 1.161.457,92 TL, indirimli emekli olmayan
-          çalışanda 1.234.782,77 TL; fark 73.324,85 TL.
+          <strong>Netle anlaşıldıysa çoğunlukla ucuz.</strong> Emeklinin kesintisi az olduğundan aynı net
+          daha düşük bir brütle verilir. Ayda 60.000 TL net için ocak brütü emeklide 71.325,07 TL, emekli
+          olmayan çalışanda 77.685,27 TL'dir. Yıllık maliyet emeklide 1.161.457,92 TL, indirimli emekli
+          olmayan çalışanda 1.234.782,77 TL; fark 73.324,85 TL.
+        </p>
+        <p>
+          <strong>İstisna asgari ücret bölgesi.</strong> Brüt, asgari ücretten az olamaz. Emekli asgari
+          ücretlinin neti 30.181,16 TL, emekli olmayanınki 28.075,50 TL'dir. Bu ikisinin arasındaki bir
+          netle anlaşılırsa emeklinin brütü asgari ücrete takılır, ona fazladan net ödenir ve emekli yine
+          pahalıya gelir. 2026'da sınır, imalat dışı indirimle karşılaştırıldığında 28.622,76 TL net;
+          indirimsiz 28.254,97 TL, imalatta 29.197,67 TL. Grafikteki eşik noktası budur.
+        </p>
+        <p>
+          Bu üç sonuç 2020'den 2026'ya her yılda ve her indirim türünde aynıdır; motor testi her yıl
+          için brüt ve net eğrisini ayrı ayrı tarar.
         </p>
 
         <h2 id="kapsam">Kimler SGDP öder, araç neyi kapsamaz?</h2>
@@ -252,7 +291,7 @@
         <div class="faq-list">
           <details><summary>Emekli çalışanın maaşından ne kesilir?</summary><p>Prime esas kazancın %7,5'i sosyal güvenlik destek primi (SGDP), gelir vergisi ve damga vergisi. İşsizlik sigortası primi kesilmez. Emekli olmayan çalışanda prim kesintisi %15'tir (%14 SGK, %1 işsizlik).</p></details>
           <details><summary>Asgari ücretle çalışan emeklinin net maaşı 2026'da ne kadar?</summary><p>Ocak ayında 30.181,16 TL. Brüt 33.030 TL'den 2.477,25 TL SGDP ve 371,59 TL gelir vergisi kesilir. Emekli olmayan asgari ücretlinin neti 28.075,50 TL'dir. İşverene maliyet emeklide 41.204,93 TL, emekli olmayanda teşviksiz 40.874,63 TL.</p></details>
-          <details><summary>Emekli çalıştırmak işverene daha mı ucuz?</summary><p>Brüt ücrette anlaşıldıysa hayır: işveren emekliye %24,75, emekli olmayana %23,75 öder ve indirim yalnız emekli olmayana uygulanır. Net ücrette anlaşıldıysa evet: ayda 60.000 TL net için yıllık maliyet emeklide 1.161.457,92 TL, indirimli emekli olmayan çalışanda 1.234.782,77 TL.</p></details>
+          <details><summary>Emekli çalıştırmak işverene daha mı ucuz?</summary><p>Brüt ücrette anlaşıldıysa hayır: işveren emekliye %24,75, emekli olmayana %23,75 öder ve indirim yalnız emekli olmayana uygulanır. Net ücrette anlaşıldıysa evet: ayda 60.000 TL net için yıllık maliyet emeklide 1.161.457,92 TL, indirimli emekli olmayan çalışanda 1.234.782,77 TL. İstisna asgari ücrete yakın netlerdir: 2026'da 28.622,76 TL netin altında emeklinin brütü asgari ücrete takılır ve emekli yine pahalıdır.</p></details>
           <details><summary>SGDP emekli aylığını artırır mı?</summary><p>Hayır. SGDP'ye tabi çalışanlar hakkında yalnızca iş kazası ve meslek hastalığı sigortası hükümleri uygulanır (5510 geçici m.14/a). Ödenen prim yeni bir aylık hakkı doğurmaz, mevcut aylığı da kesmez.</p></details>
           <details><summary>Emekli çalışan işsizlik maaşı alabilir mi?</summary><p>Hayır. SGDP'li çalışandan işsizlik sigortası primi alınmaz; bu çalışma işsizlik ödeneği hakkı doğurmaz.</p></details>
           <details><summary>Girdiğim tutarlar kaydediliyor mu?</summary><p>Hayır. Hesap tamamen tarayıcınızda yapılır.</p></details>
@@ -314,7 +353,8 @@
 
   <script src="../bordro/parametreler.js?v=5489aa17" defer></script>
   <script src="../bordro/motor.js?v=41cbee4c" defer></script>
-  <script src="script.js?v=ae4a1d5f" defer></script>
+  <script src="../bordro/sgdp.js?v=afecd0ad" defer></script>
+  <script src="script.js?v=e5cf8867" defer></script>
   <script src="../script.js?v=72b4a7c6" defer></script>
 </body>
 </html>

@@ -479,6 +479,13 @@ jobs:
       # Emekli calisan (SGDP): sayfadaki SSS ve metin rakamlari motordan
       # yeniden uretiliyor. Asgari ucret ya da oran degisip sayfa
       # guncellenmezse kirmizi.
+      # SGDP karsilastirma motoru: brut anlasmada fark oranlarin kapali
+      # formulunden, net anlasmada hedef netten, esik iki yanindaki isaretten.
+      # Sayfanin iddiasi (brutte pahali, esigin ustunde netle ucuz) her yil
+      # ve her indirim turunde egri boyunca taraniyor.
+      - name: Emekli çalışan (SGDP) motoru
+        run: node bordro/sgdp-test.js
+
       - name: Emekli çalışan sayfasının sayıları
         run: node emekli-calisan-maas-hesaplama/test.js
 
