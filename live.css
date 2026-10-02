@@ -17,12 +17,6 @@
 .live-card .lc-label { display: block; font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .2rem; }
 .live-card .lc-value { display: block; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--text); font-variant-numeric: tabular-nums; line-height: 1.25; }
 .live-card .lc-sub { display: block; font-size: .74rem; color: var(--text-muted); margin-top: .12rem; }
-.lc-skeleton .lc-value {
-  color: transparent; border-radius: 6px; min-width: 6ch; user-select: none;
-  background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 50%, var(--surface-2) 75%);
-  background-size: 200% 100%; animation: lcShimmer 1.2s linear infinite;
-}
-@keyframes lcShimmer { to { background-position: -200% 0; } }
 
 /* ---- Header: canlı nokta + küçülme ---- */
 .live-dot { display: inline-flex; align-items: center; gap: .4rem; font-size: .72rem; font-weight: 700; color: var(--text-muted); white-space: nowrap; }
@@ -65,7 +59,7 @@
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .live-dot::before, .lc-skeleton .lc-value { animation: none; }
+  .live-dot::before { animation: none; }
 }
 @media (max-width: 640px) {
   .live-bar { grid-template-columns: repeat(2, 1fr); }
