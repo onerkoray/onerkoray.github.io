@@ -476,6 +476,12 @@ jobs:
       - name: Motor testleri
         run: node bordro/test.js
 
+      # Emekli calisan (SGDP): sayfadaki SSS ve metin rakamlari motordan
+      # yeniden uretiliyor. Asgari ucret ya da oran degisip sayfa
+      # guncellenmezse kirmizi.
+      - name: Emekli çalışan sayfasının sayıları
+        run: node emekli-calisan-maas-hesaplama/test.js
+
       # Dilim kayması: bir araştırmanın yöntemini kişiye uyguluyor. Test
       # çalışmanın iki önermesini (nötrleştirme, kapalı form), eşik
       # katkılarının toplanabilirliğini ve iki yazıyla (dilim kayması,

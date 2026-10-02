@@ -4,8 +4,9 @@
  * Bağımlılıksız. Hem tarayıcıda (window.Bordro) hem Node'da (require) çalışır.
  * Kümülatif gelir vergisi tarifesi, SGK taban/tavan, asgari ücret istisnası,
  * AGİ rejimi (2020-2021), damga vergisi, yıl içi asgari ücret değişiklikleri,
- * kıst ay (eksik gün), engellilik indirimi, BES otomatik katılım kesintisi
- * ve netten brüte iteratif çözüm.
+ * kıst ay (eksik gün), engellilik indirimi, BES otomatik katılım kesintisi,
+ * emekli çalışanın sosyal güvenlik destek primi (SGDP) ve netten brüte
+ * iteratif çözüm.
  *
  * Lisans: MIT — Koray Öner, https://korayoner.dev/bordro/
  */
@@ -140,17 +141,28 @@
        zaten 4/b sigortalısı olduğu için bu ödemeden SGK primi kesilmez, ama
        ödeme ücret sayıldığından gelir ve damga vergisine tabidir. */
     var primsiz = !!(secenekler && secenekler.primsiz);
+    /* secenekler.sgdp: emekli olup 4/a kapsamında çalışan (5510 geçici
+       m.14/a). Prim matrahı aynı prime esas kazançtır (alt sınır, tavan);
+       değişen yalnızca oranlardır: işçi %7,5, işveren %22,5 + kısa vadeli,
+       işsizlik primi yok. m.81/ı indirimi SGDP'ye uygulanmadığından
+       tesvik seçeneği bu durumda yok sayılır. Gelir vergisi istisnası
+       DEĞİŞMEZ: istisna, asgari ücretin standart kesintilerle bulunan
+       matrahının vergisidir, çalışanın kendi prim oranından türemez. */
+    var sgdp = !!(secenekler && secenekler.sgdp);
+    if (sgdp && primsiz) throw new Error("Bordro: sgdp ve primsiz birlikte seçilemez.");
     /* secenekler.tesvik: 5510 m.81/ı indirimi ("genel" | "imalat");
        oranı yıla ve aya göre tesvikOrani() verir. */
-    var isvSgkOran = o.sgkIsveren - tesvikOrani(o, secenekler);
+    var isvSgkOran = sgdp ? o.sgdpIsveren + o.kisaVadeli
+      : o.sgkIsveren - tesvikOrani(o, secenekler);
+    var isvIssizlikOran = sgdp ? 0 : o.issizlikIsveren;
 
     /* Prime esas kazanç: alt sınır asgari ücret, üst sınır SGK tavanı; kıst
        ayda ikisi de prim gün sayısına indirilir (günlük tutar × gün). Gün 0
        ise o ay bordro yoktur. */
     var primEsas = (primsiz || gun === 0) ? 0
       : Math.min(Math.max(brut, d.asgariBrut * gun / 30), d.sgkTavan * gun / 30);
-    var sgk = primEsas * o.sgkIsci;
-    var issizlik = primEsas * o.issizlikIsci;
+    var sgk = primEsas * (sgdp ? o.sgdpIsci : o.sgkIsci);
+    var issizlik = sgdp ? 0 : primEsas * o.issizlikIsci;
 
     /* Engellilik indirimi (GVK m.31) tarifeden önce matrahtan düşülür (318
        Seri No'lu GVGT m.6/1). Matrahtan büyük olamaz; artan kısım devretmez. */
@@ -237,8 +249,8 @@
       bes: bes,
       eleGecen: net - bes,
       isverenSgk: primEsas * isvSgkOran,
-      isverenIssizlik: primEsas * o.issizlikIsveren,
-      isverenMaliyeti: brut + primEsas * (isvSgkOran + o.issizlikIsveren),
+      isverenIssizlik: primEsas * isvIssizlikOran,
+      isverenMaliyeti: brut + primEsas * (isvSgkOran + isvIssizlikOran),
       asgariBrut: d.asgariBrut,
       sgkTavan: d.sgkTavan
     };
@@ -337,7 +349,7 @@
   }
 
   return {
-    surum: "1.2.0",
+    surum: "1.3.0",
     AY_ADLARI: AY_ADLARI,
     parametreler: PARAMETRELER,
     yillar: yillar,

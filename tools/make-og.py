@@ -267,6 +267,10 @@ SPEC = {
    "Taksit bütçenizden, KKDF ve BSMV dahil çekebileceğiniz kredi tutarı.",
    ["Tersine hesap", "Vade × faiz"], "finans"),
 
+ "emekli-calisan-maas-hesaplama": ("emekli-calisan-maas-hesaplama", "Emekli Çalışan", "Maaş Hesaplama",
+   "SGDP %7,5 işçi, %24,75 işveren: neti ve işverene maliyeti, emekli olmayanla yan yana.",
+   ["5510 geçici m.14", "Motorla testli"], "bordro"),
+
  "ne-zaman-emekli-olurum": ("ne-zaman-emekli-olurum", "Ne Zaman", "Emekli Olurum?",
    "EYT, 1999–2008 ya da 2008 sonrası: en erken tarih, bağlayıcı şart, borçlanmanın etkisi.",
    ["5510 m.28", "Kanun metniyle testli"], "bordro"),

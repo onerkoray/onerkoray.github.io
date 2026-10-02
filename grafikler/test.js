@@ -97,12 +97,18 @@ dogru("en uzun negatif dönem " + uzun + " ay", o.enUzunNegatif.ay === uzun &&
 dogru("güncel faiz son kararın oranı", o.faiz === G.politikaFaizi[G.politikaFaizi.length - 1][1]);
 
 /* ---- IV. kur --------------------------------------------------------------- */
-var kurAylar = Object.keys(G.kur).sort(), kurSon = kurAylar[kurAylar.length - 1];
+/* Ay sonu kuru, o ayın TÜFE'sinden önce yayımlanır (kur ayın son iş günü,
+   TÜFE izleyen ayın 3'ünde). Arada kur serisi bir ay öndedir; grafik yalnız
+   TÜFE'si olan aylarda çizilir, beklentiler de o aylardan kurulur. */
+var kurHam = Object.keys(G.kur).sort(), kurHamSon = kurHam[kurHam.length - 1];
+var kurAylar = kurHam.filter(function (a) { return T.aylar[a]; }), kurSon = kurAylar[kurAylar.length - 1];
 dogru("dolar katı = son ay / Ocak 2005", yakin(o.usdKat, G.kur[kurSon].USD / G.kur["2005-01"].USD, 1e-12));
 var tufeKat = 1;
 kurAylar.slice(1).forEach(function (a) { tufeKat *= 1 + T.aylar[a].aylik / 100; });
 dogru("aynı dönemde fiyat katı (Şubat 2005'ten zincir)", yakin(o.tufeKatKur, tufeKat, 1e-9), o.tufeKatKur + " / " + tufeKat);
 dogru("kur serisi TÜFE'nin son ayına kadar", kurSon === son || kurSon === aylar[aylar.length - 2]);
+dogru("kur serisi TÜFE'den en çok bir ay önde", kurHamSon === kurSon ||
+  H.aySayisi(son, kurHamSon) === 1, kurHamSon + " / " + son);
 
 /* ---- V. asgari ücret -------------------------------------------------------- */
 var donemler = [];
