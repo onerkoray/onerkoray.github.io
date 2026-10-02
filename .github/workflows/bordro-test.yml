@@ -590,6 +590,11 @@ jobs:
       - name: asgari-ucretin-isverene-maliyeti yazısının sayıları
         run: node makaleler/asgari-ucretin-isverene-maliyeti/sayi-testi.js
 
+      # Butce yazisi: tablo OVP'den finans/butce.js'e elle girildi; test once
+      # tablonun kendi toplamlarini, sonra yazidaki her orani yeniden uretir.
+      - name: Bütçe yazısının sayıları
+        run: node makaleler/butce-2027-faiz-vergi/sayi-testi.js
+
       - name: kira-geliri-istisnasi-siniri yazısının sayıları
         run: node makaleler/kira-geliri-istisnasi-siniri/sayi-testi.js
 
