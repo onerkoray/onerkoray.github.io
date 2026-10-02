@@ -10,6 +10,7 @@
 
 var S = require("../tools/makale-sayi.js");
 var B = S.bordro();
+var G = require("../bordro/sgdp.js");
 var t = S.yazi(__dirname);
 
 var YIL = 2026, P = B.parametre(YIL), d = B.donem(P, 1), o = B.oranlarAy(P, 1);
@@ -40,13 +41,21 @@ function net(h, sec) { return B.hesaplaYil(B.nettenBruteYil(h, YIL, sec), YIL, s
 var ne = net(60000, { sgdp: true }), nn = net(60000, {}), ng = net(60000, { tesvik: "genel" });
 t.gecsin("60.000 brüt", "ocak brütü emeklide " + S.tl(ne.aylar[0].brut) + " TL, emekli olmayan çalışanda " + S.tl(nn.aylar[0].brut) + " TL");
 t.gecsin("60.000 maliyet", "Yıllık maliyet emeklide " + S.tl(ne.toplam.isverenMaliyeti) + " TL, indirimli emekli olmayan çalışanda " + S.tl(ng.toplam.isverenMaliyeti) + " TL; fark " + S.tl(ng.toplam.isverenMaliyeti - ne.toplam.isverenMaliyeti) + " TL");
+t.gecsin("SSS eşik", "2026'da " + S.tl(G.esikNet({ yil: YIL, tesvik: "genel" })) + " TL netin altında emeklinin brütü asgari ücrete takılır");
 t.gecsin("SSS 60.000", "yıllık maliyet emeklide " + S.tl(ne.toplam.isverenMaliyeti) + " TL, indirimli emekli olmayan çalışanda " + S.tl(ng.toplam.isverenMaliyeti) + " TL");
+
+/* Asgari ücret bölgesi ve eşikler: motordan */
+t.gecsin("emekli asgari net", "Emekli asgari ücretlinin neti " + S.tl(ae.net) + " TL, emekli olmayanınki " + S.tl(an.net) + " TL");
+t.gecsin("eşikler", "imalat dışı indirimle karşılaştırıldığında " + S.tl(G.esikNet({ yil: YIL, tesvik: "genel" })) +
+  " TL net; indirimsiz " + S.tl(G.esikNet({ yil: YIL, tesvik: "" })) + " TL, imalatta " + S.tl(G.esikNet({ yil: YIL, tesvik: "imalat" })) + " TL");
+t.dogru("başlangıç yılı aralığı 2020–2026", t.metin.indexOf("2020–2026") !== -1 && B.yillar().slice(-1)[0] === 2020 && B.sonYil() === 2026);
+t.dogru("sayfa sgdp.js'i yüklüyor", /<script src="\.\.\/bordro\/sgdp\.js(\?v=[0-9a-f]+)?" defer><\/script>/.test(t.html));
 
 /* Yapısal veri görünür SSS ile aynı rakamları söylüyor */
 var ld = JSON.parse(t.html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
 var faq = ld["@graph"].filter(function (x) { return x["@type"] === "FAQPage"; })[0];
 var faqMetin = faq.mainEntity.map(function (q) { return q.acceptedAnswer.text; }).join(" ");
-[S.tl(ae.net), S.tl(ae.sgk), S.tl(ae.gelirVergisi), S.tl(an.net), S.tl(ne.toplam.isverenMaliyeti), S.tl(ng.toplam.isverenMaliyeti)].forEach(function (x) {
+[S.tl(ae.net), S.tl(ae.sgk), S.tl(ae.gelirVergisi), S.tl(an.net), S.tl(ne.toplam.isverenMaliyeti), S.tl(ng.toplam.isverenMaliyeti), S.tl(G.esikNet({ yil: YIL, tesvik: "genel" }))].forEach(function (x) {
   t.dogru("yapısal SSS'de " + x, faqMetin.indexOf(x) !== -1);
 });
 t.bitir();
