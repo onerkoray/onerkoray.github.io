@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-10-02T04:28:22+03:00</updated>
+  <updated>2026-10-02T05:29:54+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>2027 Bütçesinde Faiz ve Vergi</title>
+    <link href="https://korayoner.dev/makaleler/butce-2027-faiz-vergi/"/>
+    <id>https://korayoner.dev/makaleler/butce-2027-faiz-vergi/</id>
+    <updated>2026-10-02T05:29:54+03:00</updated>
+    <summary>OVP'ye göre 2027'de faiz gideri 3.975 milyar TL: her 100 TL verginin 19,97 TL'si. Oran beş yılın zirvesinde; bütçe açığının tamamına yakını faiz.</summary>
+  </entry>
 
   <entry>
     <title>Emekli Çalışan Maaş Hesaplama 2026 (SGDP)</title>
@@ -38,7 +46,7 @@
     <link href="https://korayoner.dev/koray-oner/"/>
     <id>https://korayoner.dev/koray-oner/</id>
     <updated>2026-09-29T17:59:13+03:00</updated>
-    <summary>Koray Öner'in çalışmaları tek yerde: 58 hesaplama aracı, 54 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.</summary>
+    <summary>Koray Öner'in çalışmaları tek yerde: 58 hesaplama aracı, 55 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.</summary>
   </entry>
 
   <entry>

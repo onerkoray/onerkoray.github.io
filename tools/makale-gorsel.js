@@ -2027,6 +2027,30 @@ function primIndirimi() {
   return s + "</svg>";
 }
 
+/* Bütçe: her 100 TL vergi gelirine karşılık faiz gideri, OVP 2025–2029.
+   Tek seri; 2027 marka rengiyle, diğer yıllar ikincil tonda. Değerler
+   finans/butce.js'ten, yazıdaki tabloyla ayrışamaz. */
+var BUTCE = require(path.join(KOK, "finans", "butce.js"));
+function butceFaizVergi() {
+  var d = BUTCE.YILLAR.map(function (y) { var x = BUTCE.yil(y); return { yil: y, oran: 100 * x.faiz / x.vergi, durum: x.durum }; });
+  var z = d.reduce(function (m, x) { return x.oran > m.oran ? x : m; });
+  if (z.yil !== 2027 || Math.abs(z.oran - 19.97) > 0.005) throw new Error("bütçe kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 578, UST = 104, ALT = 280, UV = 25;
+  function y(v) { return ALT - (ALT - UST) * v / UV; }
+  var s = baslikSatirlari("Her 100 TL verginin kaçı faize?", "Merkezî yönetim faiz gideri ÷ genel bütçe vergi gelirleri · OVP 2027-2029",
+    "Her 100 TL vergi gelirine karşılık faiz gideri: 2025'te 18,59, 2026'da 19,37, 2027'de 19,97, 2028'de 19,58, 2029'da 18,92 TL");
+  s += izgaraY(SOL, SAG, y, [0, 5, 10, 15, 20, 25], function (v) { return v + " TL"; });
+  var gen = (SAG - SOL) / d.length, w = 58;
+  d.forEach(function (x, i) {
+    var cx = SOL + gen * (i + 0.5), renk = x.yil === 2027 ? R.marka : "#a9b4af";
+    s += '<rect x="' + (cx - w / 2).toFixed(1) + '" y="' + y(x.oran).toFixed(1) + '" width="' + w + '" height="' + (ALT - y(x.oran)).toFixed(1) + '" rx="3" fill="' + renk + '"/>' +
+      cubukEtiket(cx, y(x.oran) - 8, x.oran.toFixed(2).replace(".", ","), x.yil === 2027 ? 15 : 13) +
+      altYazi(cx, ALT + 20, String(x.yil)) +
+      altYazi(cx, ALT + 36, x.yil === 2025 ? "gerçekleşme" : x.yil === 2026 ? "tahmin" : "program");
+  });
+  return s + "</svg>";
+}
+
 /* 7 — Dilimler geride kaldıkça kayıp, iki maaş. */
 function dilimGeriKalma() {
   function k(b, fark) { return ASN.hesapla({ asgariArtis: 0.25, tarifeArtis: 0.25 - fark, brut: b }).ucret.endeksFarki / 1000; }
@@ -2147,6 +2171,12 @@ var KAPAKLAR = {
     baslik: "2026'da SGK primlerinde ne değişti?",
     alt: "Asgari ücret %27, GSS primi %154 arttı",
     cizim: sgkArtis
+  },
+  "butce-2027-faiz-vergi": {
+    kicker: "Vergi · Bütçe",
+    baslik: "2027 bütçesinde faiz ve vergi",
+    alt: "Her 100 TL verginin 19,97 TL'si faize",
+    cizim: butceFaizVergi
   },
   "sgk-prim-indirimi-2-puan": {
     kicker: "Bordro · İşveren",
