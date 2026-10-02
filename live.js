@@ -1,4 +1,4 @@
-/* Canlılık katmanı — saat, hava, komut paleti (bağımlılıksız, yalnız ana sayfa) */
+/* Canlılık katmanı — saat, tarih, komut paleti (bağımlılıksız, yalnız ana sayfa) */
 (function () {
   "use strict";
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -97,7 +97,7 @@
   var nav = $(".site-nav");
   if (nav) {
     var dot = el("span", "live-dot", "Canlı");
-    dot.title = "Bu sayfadaki saat, hava ve gün bilgileri canlıdır";
+    dot.title = "Bu sayfadaki saat ve tarih bilgileri canlıdır";
     nav.parentNode.insertBefore(dot, nav.nextSibling);
   }
   var header = $(".site-header");
