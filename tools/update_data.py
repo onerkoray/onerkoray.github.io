@@ -641,7 +641,6 @@ PAGE = """<!DOCTYPE html>
               cinsinden düzenlenen makbuzlarda TL karşılığı bu kurla bulunur.</li>
           <li><a href="../vadeli-mevduat-hesaplama/">Vadeli Mevduat</a> — döviz mevduatının
               TL getirisini karşılaştırmak için.</li>
-          <li><a href="../birim-cevirici/">Birim Çevirici</a> — diğer ölçü dönüşümleri için.</li>
         </ul>
 
         <div class="sources">
