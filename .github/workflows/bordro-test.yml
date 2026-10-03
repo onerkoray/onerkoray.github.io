@@ -637,6 +637,18 @@ jobs:
         # değişip sayfa yeniden üretilmezse kırmızı.
         run: node tools/emeklilik-ornek.js --check
 
+      - name: Rapor parası çekirdeği testleri
+        # Oranlar ve gün sayıları 5510 m.17-18 metninden (1/2, 2/3, 90, 180,
+        # üçüncü gün, 8 + 16 hafta); alt sınır bordro parametresinden; raporlu
+        # ayın neti motorun ay ve yıl hesabıyla bağımsız kurulup karşılaştırılır.
+        run: node bordro/rapor-test.js
+
+      - name: Rapor parası sayfası hesaptan üretilmiş mi
+        # "Zam aldıktan sonra rapor" örneği, metindeki sınırlar ve SSS yapısal
+        # verisi çekirdekten. Asgari ücret ya da vergi tarifesi değişip sayfa
+        # yeniden üretilmezse kırmızı.
+        run: node tools/rapor-ornek.js --check
+
       - name: FIRE simülasyon testleri
         run: node finansal-ozgurluk-hesaplama/test.js
 

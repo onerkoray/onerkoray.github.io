@@ -271,6 +271,10 @@ SPEC = {
    "SGDP %7,5 işçi, %24,75 işveren: neti ve işverene maliyeti, emekli olmayanla yan yana.",
    ["5510 geçici m.14", "Motorla testli"], "bordro"),
 
+ "rapor-parasi-hesaplama": ("rapor-parasi-hesaplama", "Rapor Parası", "Hesaplama",
+   "Hastalık, iş kazası, doğum: günlük ödenek, ödenmeyen iki gün, raporlu ayda ele geçen.",
+   ["5510 m.17–18", "Bordro motoruyla testli"], "bordro"),
+
  "ne-zaman-emekli-olurum": ("ne-zaman-emekli-olurum", "Ne Zaman", "Emekli Olurum?",
    "EYT, 1999–2008 ya da 2008 sonrası: en erken tarih, bağlayıcı şart, borçlanmanın etkisi.",
    ["5510 m.28", "Kanun metniyle testli"], "bordro"),
