@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=f7307c52" defer></script>
+  <meta charset="UTF-8">
+  <script src="../../tema-erken.js?v=3d1c1238"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doğum Parası Ne Kadar? 24 Haftalık İzin Hesabı | Koray Öner</title>
+  <meta name="description" content="Doğum izni 24 hafta, SGK 168 gün öder. 2026'da 60.000 TL brütte doğum parası 224.000 TL. Vergisiz olduğu için izin yılı bazı maaşlarda kayıp, bazılarında kazanç.">
+  <meta name="gecerlilik" content="2027-01-15 | 2027 asgari ücreti ve SGK tavanı açıklandı mı? Girildiyse örnek 2027 doğumu için yeniden kurulmalı (dogum.js DOGUM ve YIL) ve node tools/dogum-yazisi.js çalıştırılmalı. 4857 m.74, Ek m.2 ve 5510 m.17-18 yeniden okunmalı.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/">
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Doğum parası ne kadar?">
+  <meta property="og:description" content="24 haftalık izin, 168 gün ödenek. Ödenek vergisiz: brüt 71.346 TL'nin altında izin yılı nette kayıp, üstünde 277.021 TL'ye kadar kazanç.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/dogum-parasi-ne-kadar.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Doğum izni yılının net farkı brüt maaşa göre: asgari ücrette eksi, 80 ile 250 bin TL arasında artı">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Doğum parası ne kadar?">
+  <meta name="twitter:description" content="Asgari ücretli anne izin yılını 31.103 TL kayıpla kapatıyor, 200.000 TL brüt kazanan 79.423 TL kazançla. Nedeni ödeneğin vergisiz olması.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/dogum-parasi-ne-kadar.png">
+
+  <link rel="stylesheet" href="../../style.css?v=4c3de685">
+  <link rel="stylesheet" href="../editoryal.css?v=021afbde">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/",
+        "url": "https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/",
+        "name": "Doğum parası ne kadar?",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "inLanguage": "tr",
+        "primaryImageOfPage": "https://korayoner.dev/images/makale/dogum-parasi-ne-kadar.png"
+      },
+      {
+        "@type": "Article",
+        "@id": "https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/#article",
+        "headline": "Doğum parası ne kadar? 24 haftalık iznin hesabı",
+        "description": "7578 sayılı Kanunla 24 haftaya çıkan doğum izni ve SGK'nın 168 günlük analık ödeneği: hesap yöntemi, brüt maaşa göre tutarlar, izin yılının ay ay bordrosu ve ödeneğin vergisiz olmasının maaşa göre doğurduğu kayıp ya da kazanç.",
+        "inLanguage": "tr",
+        "datePublished": "2026-10-03",
+        "dateModified": "2026-10-03",
+        "author": { "@id": "https://korayoner.dev/#oner-koray" },
+        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "mainEntityOfPage": "https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/",
+        "image": "https://korayoner.dev/images/makale/dogum-parasi-ne-kadar.png",
+        "isPartOf": { "@id": "https://korayoner.dev/#website" },
+        "about": [
+          { "@type": "Thing", "name": "Doğum izni" },
+          { "@type": "Thing", "name": "Analık ödeneği" },
+          { "@type": "Thing", "name": "Geçici iş göremezlik ödeneği" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "name": "Koray Öner",
+        "alternateName": "Koray Oner",
+        "url": "https://korayoner.dev/",
+        "sameAs": [
+        "https://github.com/onerkoray",
+        "https://www.linkedin.com/in/korayoner/",
+        "https://x.com/korayonerdev",
+        "https://www.instagram.com/korayonerv/",
+        "https://www.youtube.com/@onerkoray",
+        "https://korayoner.substack.com/",
+        "https://substack.com/@korayoner",
+        "https://onerkoray.medium.com/",
+        "https://www.xing.com/profile/Koray_Oener015108",
+        "https://metu.academia.edu/KorayOner",
+        "https://500px.com/p/korayoner",
+        "https://orcid.org/0009-0005-8730-3577"
+      ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Makaleler", "item": "https://korayoner.dev/makaleler/"}, {"@type": "ListItem", "position": 3, "name": "Doğum parası ne kadar?", "item": "https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/"}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../../">Ana Sayfa</a></li>
+          <li><a href="../../#projects">Araçlar</a></li>
+          <li><a href="../" aria-current="page">Makaleler</a></li>
+          <li><a href="../../rapor-parasi-hesaplama/">Rapor parası hesaplama</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span>
+      <a href="../">Makaleler</a> <span aria-hidden="true">&#8250;</span> Doğum parası ne kadar?
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Bordro · SGK</p>
+        <h1 id="hero-title">Doğum parası ne kadar? 24 haftalık iznin hesabı</h1>
+        <p class="ed-standfirst">Doğum izni 1 Mayıs 2026'dan beri 24 hafta ve SGK bunun 168 gününe ödenek veriyor. Ödenek günlük kazancın üçte ikisi, ama vergisiz ve primsiz; maaş ise kesintili. Bu yüzden izin yılının sonucu maaşa göre değişiyor. <strong>2026 rakamlarıyla brüt 71.346 TL'nin altında kazanan anne izin yılını nette kayıpla, 71.346 ile 277.021 TL arasında kazanan kazançla kapatıyor.</strong></p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-10-03">3 Ekim 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <section class="content"><div class="wrap prose ed-body">
+          <!-- LEAD-GORSEL:BASLANGIC -->
+          <figure class="ed-veri-gorseli">
+            <img src="../../images/makale/dogum-parasi-ne-kadar-kart.svg"
+                 width="800" height="500" decoding="async"
+                 alt="Doğum izni yılının net farkı: asgari ücrette −31.103 TL, 60.000 TL brütte −8.499 TL, 100.000 TL'de +10.789 TL, 200.000 TL'de +79.423 TL, SGK tavanında −29.187 TL.">
+            <figcaption>Doğum 15 Haziran 2026, önceki on iki ayda aynı brüt, işveren izinde ücret ödemiyor. Fark: izinli yılın maaş neti ve ödeneği, izinsiz yılın netinden ne kadar az ya da fazla.</figcaption>
+          </figure>
+          <!-- LEAD-GORSEL:BITIS -->
+
+      <div class="legal-note verdict">
+        <h2 id="kisa-cevap">Kısa cevap</h2>
+        <p><strong>Doğum parası = günlük kazanç × 2/3 × 168 gün.</strong> Günlük kazanç, doğumdan önceki on iki ayın prime esas kazançlarının prim gününe bölümü. On iki ay 60.000 TL brütle çalışmış biri için günlük kazanç 2.000 TL, günlük ödenek 1.333,33 TL, toplam 224.000 TL. Asgari ücrette toplam 123.312 TL.</p>
+        <p><strong>İzin kaç hafta?</strong> Doğumdan önce 8, sonra 16 hafta: 24 hafta. İkiz ve daha fazla gebelikte doğum öncesi 10 hafta. Ödenek için doğumdan önceki bir yılda en az 90 gün prim gerekir. Baba 10 gün ücretli izin alır.</p>
+        <p><strong>Neden maaşa göre değişiyor?</strong> Ödenekten vergi ve prim kesilmez, maaştan kesilir. 30 günlük ödenek asgari ücrette normal netin %78,4'ü, 150.000 TL brütte %100,1'i, SGK tavanında %110,0'u.</p>
+      </div>
+
+      <h2 id="kac-hafta">Doğum izni kaç hafta?</h2>
+      <p>7578 sayılı Kanun 1 Mayıs 2026'da yürürlüğe girdi ve İş Kanunu'nun 74. maddesindeki doğum sonrası süreyi 8 haftadan 16 haftaya çıkardı. Kadın işçi doğumdan önce 8, sonra 16 hafta, toplam 24 hafta çalıştırılmaz. Çoğul gebelikte doğum öncesi sekiz haftaya iki hafta eklenir. Aynı değişiklik SGK'nın ödenek süresine (5510 s.K. m.18) ve memurların izin süresine (657 s.K. m.104) de yapıldı.</p>
+<!-- DOGUM-ZAMAN:BASLANGIC -->
+<figure class="ed-grafik" aria-labelledby="dz-b">
+<p class="ed-grafik-baslik" id="dz-b">Kim, doğumun neresinde, kaç gün?</p>
+<p class="ed-grafik-alt">Hafta; doğum günü sıfır. Annenin izni ve SGK ödeneği aynı süreyi kapsar.</p>
+<div class="ed-grafik-kap"><svg viewBox="0 0 640 264" role="img" aria-labelledby="dz-t dz-d"><title id="dz-t">Doğum izni süreleri</title><desc id="dz-d">Tek bebek: doğumdan önce 8 hafta, sonra 16 hafta, 168 gün; İkiz ya da daha fazla: doğumdan önce 10 hafta, sonra 16 hafta, 182 gün; Doğuma 2 hafta kalana kadar çalışırsa: doğumdan önce 2 hafta, sonra 22 hafta, 168 gün; Baba: doğumdan önce 0 hafta, sonra 10 gün, 10 gün</desc><path class="izgara" d="M200.0 22 V234"/><text x="200.0" y="252" text-anchor="middle">−8</text><path class="izgara" d="M248.0 22 V234"/><text x="248.0" y="252" text-anchor="middle">−4</text><path class="izgara" d="M296.0 22 V234"/><text x="296.0" y="252" text-anchor="middle">0</text><path class="izgara" d="M344.0 22 V234"/><text x="344.0" y="252" text-anchor="middle">+4</text><path class="izgara" d="M392.0 22 V234"/><text x="392.0" y="252" text-anchor="middle">+8</text><path class="izgara" d="M440.0 22 V234"/><text x="440.0" y="252" text-anchor="middle">+12</text><path class="izgara" d="M488.0 22 V234"/><text x="488.0" y="252" text-anchor="middle">+16</text><path class="izgara" d="M536.0 22 V234"/><text x="536.0" y="252" text-anchor="middle">+20</text><text x="0" y="252">hafta</text><text class="deger" x="0" y="43"><tspan>Tek bebek</tspan></text><rect class="seri-1" x="200.0" y="30" width="95.0" height="16" rx="3"/><rect class="seri-2" x="297.0" y="30" width="191.0" height="16" rx="3"/><text class="deger" x="496.0" y="43">168 gün</text><text class="kucuk" x="496.0" y="58">8 + 16 hafta</text><text class="deger" x="0" y="93"><tspan>İkiz ya da daha fazla</tspan></text><rect class="seri-1" x="176.0" y="80" width="119.0" height="16" rx="3"/><rect class="seri-2" x="297.0" y="80" width="191.0" height="16" rx="3"/><text class="deger" x="496.0" y="93">182 gün</text><text class="kucuk" x="496.0" y="108">10 + 16 hafta</text><text class="deger" x="0" y="135"><tspan>Doğuma 2 hafta kalana</tspan><tspan x="0" dy="15">kadar çalışırsa</tspan></text><rect class="calisma" x="200.0" y="131" width="70.0" height="14" rx="3"/><text class="kucuk" x="236.0" y="126" text-anchor="middle">çalışıyor</text><rect class="seri-1" x="272.0" y="130" width="23.0" height="16" rx="3"/><rect class="seri-2" x="297.0" y="130" width="263.0" height="16" rx="3"/><text class="deger" x="568.0" y="143">168 gün</text><text class="kucuk" x="568.0" y="158">2 + 22 hafta</text><text class="deger" x="0" y="193"><tspan>Baba</tspan></text><rect class="seri-3" x="296.0" y="180" width="17.1" height="16" rx="3"/><text x="321.1" y="193">10 gün ücretli izin, işveren öder</text><path class="sifir" d="M296.0 16 V234"/><text class="deger" x="296.0" y="12" text-anchor="middle">doğum</text></svg></div>
+<figcaption>Doğum öncesi sekiz haftanın altısında doktor onayıyla çalışılabilir; çalışılan süre doğum sonrasına eklenir ve ödenen gün sayısı değişmez. Kaynak: 4857 s.K. m.74 ve Ek m.2, 5510 s.K. m.18; hepsi 7578 sayılı Kanunla değişik.</figcaption>
+</figure>
+<!-- DOGUM-ZAMAN:BITIS -->
+      <ul>
+        <li><strong>Doğuma iki hafta kalana kadar çalışmak.</strong> Sağlık durumu uygunsa ve doktor onaylarsa anne doğumdan önceki iki haftaya kadar çalışabilir; çalıştığı süre doğum sonrasına eklenir. Bu sınır 7578 sayılı Kanunla üç haftadan iki haftaya indi. Erken doğumda kullanılamayan doğum öncesi süre de doğum sonrasına eklenir.</li>
+        <li><strong>Baba.</strong> Eşi doğum yapan işçiye on gün ücretli izin verilir (4857 s.K. Ek m.2; önce beş gündü). Bu izni SGK değil işveren öder.</li>
+        <li><strong>İzinden sonra.</strong> Anne isterse 24 haftanın (çoğul gebelikte 26 haftanın) bitiminden sonra altı aya kadar ücretsiz izin alabilir. Ya da haftalık çalışma süresinin yarısı kadar ücretsiz izin: ilk doğumda 60, ikincide 120, sonrakilerde 180 gün; çoğul doğumda bunlara 30'ar gün eklenir (4857 s.K. m.74).</li>
+      </ul>
+
+      <h2 id="nasil">Doğum parası nasıl hesaplanır?</h2>
+      <p>SGK'nın adı analık hâlinde geçici iş göremezlik ödeneği. Hesap dört adım:</p>
+      <ol>
+        <li><strong>Şart.</strong> Doğumdan önceki bir yılda en az 90 gün kısa vadeli sigorta primi bildirilmiş olmalı (5510 s.K. m.18/1-c). Ödenek, çalışılmayan her gün için verilir.</li>
+        <li><strong>Günlük kazanç.</strong> Doğumdan önceki on iki ayın prime esas kazançları toplanır, bu kazançlara esas prim gününe bölünür (m.17). Güncel maaş değil, on iki ayın ortalaması. Her ayın kazancı o ayın SGK taban ve tavanıyla sınırlıdır; günlük kazanç alt sınırın (2026'da 1.101 TL) altına inmez.</li>
+        <li><strong>Oran.</strong> Günlük ödenek, günlük kazancın üçte ikisi (m.18).</li>
+        <li><strong>Süre.</strong> Tek bebekte 8 + 16 hafta, 168 gün; çoğul gebelikte 10 + 16 hafta, 182 gün. Doğum öncesi çalışılıp sonraya aktarılan haftalar ödenen gün sayısını değiştirmez.</li>
+      </ol>
+      <p>Örnek: on iki ay boyunca 60.000 TL brüt. On iki ayın kazancı 720.000 TL, prim günü 360; günlük kazanç 2.000 TL. Günlük ödenek 1.333,33 TL, 168 günde 224.000 TL. İkiz gebelikte 182 gün, 242.667 TL.</p>
+      <p>Esnaf ve serbest çalışan (4/b) kadınlar da analık ödeneği alır; ödeme için genel sağlık sigortası dahil prim borcu olmaması gerekir (m.18).</p>
+
+      <h2 id="tablo">Maaşa göre doğum parası</h2>
+      <p>Tablo, aynı tarihte doğum yapan ve önceki on iki ayda hep aynı brütü almış çalışanlar için ödeneği ve izin yılının sonucunu gösteriyor. "İzinde kaybolan net", izin olmasaydı yıl boyunca alınacak net maaş ile izinli yılın net maaşı arasındaki fark. "İzin yılının net farkı", ödenek eklendikten sonra kalan.</p>
+<!-- DOGUM-TABLO:BASLANGIC -->
+<div class="table-scroll">
+<table class="data-table">
+<caption>Doğum 15 Haziran 2026, önceki on iki ayda aynı brüt, işveren izinde ücret ödemiyor. Tutarlar TL.</caption>
+<thead><tr><th scope="col">Aylık brüt</th><th scope="col" class="num">Günlük kazanç</th><th scope="col" class="num">Günlük ödenek</th><th scope="col" class="num">168 günlük ödenek</th><th scope="col" class="num">İzinde kaybolan net</th><th scope="col" class="num">İzin yılının net farkı</th></tr></thead>
+<tbody>
+<tr><th scope="row">Asgari ücret (33.030)</th><td class="num">1.101,00</td><td class="num">734,00</td><td class="num">123.312 TL</td><td class="num">154.415 TL</td><td class="num"><strong>−31.103 TL</strong></td></tr>
+<tr><th scope="row">45.000</th><td class="num">1.500,00</td><td class="num">1.000,00</td><td class="num">168.000 TL</td><td class="num">188.990 TL</td><td class="num"><strong>−20.990 TL</strong></td></tr>
+<tr><th scope="row">60.000</th><td class="num">2.000,00</td><td class="num">1.333,33</td><td class="num">224.000 TL</td><td class="num">232.499 TL</td><td class="num"><strong>−8.499 TL</strong></td></tr>
+<tr><th scope="row">80.000</th><td class="num">2.666,67</td><td class="num">1.777,78</td><td class="num">298.667 TL</td><td class="num">295.124 TL</td><td class="num"><strong>+3.542 TL</strong></td></tr>
+<tr><th scope="row">100.000</th><td class="num">3.333,33</td><td class="num">2.222,22</td><td class="num">373.333 TL</td><td class="num">362.545 TL</td><td class="num"><strong>+10.789 TL</strong></td></tr>
+<tr><th scope="row">150.000</th><td class="num">5.000,00</td><td class="num">3.333,33</td><td class="num">560.000 TL</td><td class="num">528.695 TL</td><td class="num"><strong>+31.305 TL</strong></td></tr>
+<tr><th scope="row">200.000</th><td class="num">6.570,25</td><td class="num">4.380,16</td><td class="num">735.868 TL</td><td class="num">656.445 TL</td><td class="num"><strong>+79.423 TL</strong></td></tr>
+<tr><th scope="row">250.000</th><td class="num">7.264,69</td><td class="num">4.843,13</td><td class="num">813.645 TL</td><td class="num">784.195 TL</td><td class="num"><strong>+29.450 TL</strong></td></tr>
+<tr><th scope="row">SGK tavanı (297.270)</th><td class="num">7.921,22</td><td class="num">5.280,81</td><td class="num">887.177 TL</td><td class="num">916.364 TL</td><td class="num"><strong>−29.187 TL</strong></td></tr>
+<tr><th scope="row">400.000</th><td class="num">7.921,22</td><td class="num">5.280,81</td><td class="num">887.177 TL</td><td class="num">1.279.335 TL</td><td class="num"><strong>−392.159 TL</strong></td></tr>
+</tbody>
+</table>
+</div>
+<!-- DOGUM-TABLO:BITIS -->
+      <p>200.000 TL ile SGK tavanı arasında ödenek neden yavaşlıyor? Doğum Haziran'da olunca geriye dönük on iki ayın yedisi 2025'te kalıyor ve o ayların kazancı 2025 tavanıyla (195.041,25 TL) sınırlı. Tavanın üstünde ise ödenek hiç artmıyor, kaybolan net artmaya devam ediyor: 400.000 TL brütte izin yılı 392.159 TL eksiyle kapanıyor.</p>
+
+      <h2 id="neden">Neden üçte iki değil?</h2>
+      <p>"Doğum parası maaşın üçte ikisi" doğru değil, çünkü üçte iki brüt kazanca uygulanıyor, karşılaştırılan ise net maaş. Maaştan %15 SGK ve işsizlik primi ile gelir vergisi kesiliyor; ödenekten hiçbiri kesilmiyor. Sosyal sigorta kurumlarının sigortalılara yaptığı ödemeler gelir vergisinden istisna (GVK m.25/6).</p>
+      <p>Aşağıdaki oranlarda on iki ayın kazancı 2026 sınırlarıyla hesaplandı:</p>
+      <ul>
+        <li><strong>Asgari ücrette</strong> maaşın geliri zaten vergiden istisna; kesinti yalnız SGK primi. 30 günlük ödenek 22.020 TL, net asgari ücret 28.075,50 TL: netin %78,4'ü.</li>
+        <li><strong>60.000 TL brütte</strong> 30 günlük ödenek 40.000 TL, yılın ortalama aylık neti 44.974 TL: %88,9.</li>
+        <li><strong>150.000 TL brütte</strong> ikisi eşit: ödenek 100.000 TL, ortalama net 99.936 TL.</li>
+        <li><strong>SGK tavanında</strong> (297.270 TL) ödenek 198.180 TL, ortalama net 180.185 TL: netin %110,0'u. Maaş yükseldikçe vergi dilimi yükseliyor, ödenek ise vergisiz kalıyor.</li>
+      </ul>
+
+      <h2 id="aylar">İzin yılı ay ay</h2>
+      <p>Bir de yılın tamamına bakmak gerekiyor. İzin aylarında maaş olmadığı için yıllık vergi matrahı düşük kalıyor; izinden sonraki aylarda gelir vergisi bir alt dilimden hesaplanıyor. 60.000 TL brüt örnekte bu etki yılın son iki ayında netin ayda 3.570 TL yüksek çıkması demek.</p>
+<!-- DOGUM-AYLAR:BASLANGIC -->
+<figure class="ed-grafik" aria-labelledby="da-b">
+<p class="ed-grafik-baslik" id="da-b">60.000 TL brüt: izin yılının on iki ayı</p>
+<p class="ed-grafik-alt">Doğum 15 Haziran 2026; izin 20 Nisan 2026 – 4 Ekim 2026.</p>
+<div class="ed-grafik-kap"><svg viewBox="0 0 640 290" role="img" aria-labelledby="da-t da-d"><title id="da-t">60.000 TL brüt maaşta doğum izni yılının on iki ayı</title><desc id="da-d">Ocak: maaş 47.357 TL, ödenek 0 TL, izinsiz 47.357 TL; Şubat: maaş 47.357 TL, ödenek 0 TL, izinsiz 47.357 TL; Mart: maaş 47.357 TL, ödenek 0 TL, izinsiz 47.357 TL; Nisan: maaş 31.629 TL, ödenek 14.667 TL, izinsiz 46.657 TL; Mayıs: maaş 0 TL, ödenek 41.333 TL, izinsiz 44.807 TL; Haziran: maaş 0 TL, ödenek 40.000 TL, izinsiz 44.807 TL; Temmuz: maaş 0 TL, ödenek 41.333 TL, izinsiz 45.133 TL; Ağustos: maaş 0 TL, ödenek 41.333 TL, izinsiz 45.650 TL; Eylül: maaş 0 TL, ödenek 40.000 TL, izinsiz 42.640 TL; Ekim: maaş 41.066 TL, ödenek 5.333 TL, izinsiz 42.640 TL; Kasım: maaş 46.210 TL, ödenek 0 TL, izinsiz 42.640 TL; Aralık: maaş 46.210 TL, ödenek 0 TL, izinsiz 42.640 TL</desc><rect class="seri-1" x="46" y="4" width="11" height="11" rx="2"/><text x="62" y="14">Maaşın neti</text><rect class="seri-2" x="158" y="4" width="11" height="11" rx="2"/><text x="174" y="14">SGK ödeneği</text><path class="normal" d="M278 9.5 h14"/><text x="298" y="14">İzin olmasaydı net</text><path class="sifir" d="M46 228.0 H632"/><text x="40" y="232.0" text-anchor="end">0</text><path class="izgara" d="M46 189.2 H632"/><text x="40" y="193.2" text-anchor="end">10 bin</text><path class="izgara" d="M46 150.4 H632"/><text x="40" y="154.4" text-anchor="end">20 bin</text><path class="izgara" d="M46 111.6 H632"/><text x="40" y="115.6" text-anchor="end">30 bin</text><path class="izgara" d="M46 72.8 H632"/><text x="40" y="76.8" text-anchor="end">40 bin</text><path class="izgara" d="M46 34.0 H632"/><text x="40" y="38.0" text-anchor="end">50 bin</text><rect class="seri-1" x="55.4" y="44.3" width="30" height="183.7" rx="2"/><path class="normal" d="M51.4 44.3 h38"/><text x="70.4" y="246" text-anchor="middle">Oca</text><rect class="seri-1" x="104.3" y="44.3" width="30" height="183.7" rx="2"/><path class="normal" d="M100.3 44.3 h38"/><text x="119.3" y="246" text-anchor="middle">Şub</text><rect class="seri-1" x="153.1" y="44.3" width="30" height="183.7" rx="2"/><path class="normal" d="M149.1 44.3 h38"/><text x="168.1" y="246" text-anchor="middle">Mar</text><rect class="seri-1" x="201.9" y="105.3" width="30" height="122.7" rx="2"/><rect class="seri-2" x="201.9" y="48.4" width="30" height="54.9" rx="2"/><path class="normal" d="M197.9 47.0 h38"/><text x="216.9" y="246" text-anchor="middle">Nis</text><text class="kucuk" x="216.9" y="264" text-anchor="middle">−361</text><rect class="seri-2" x="250.8" y="67.6" width="30" height="160.4" rx="2"/><path class="normal" d="M246.8 54.2 h38"/><text x="265.8" y="246" text-anchor="middle">May</text><text class="kucuk" x="265.8" y="264" text-anchor="middle">−3.473</text><rect class="seri-2" x="299.6" y="72.8" width="30" height="155.2" rx="2"/><path class="normal" d="M295.6 54.2 h38"/><text x="314.6" y="246" text-anchor="middle">Haz</text><text class="kucuk" x="314.6" y="264" text-anchor="middle">−4.807</text><rect class="seri-2" x="348.4" y="67.6" width="30" height="160.4" rx="2"/><path class="normal" d="M344.4 52.9 h38"/><text x="363.4" y="246" text-anchor="middle">Tem</text><text class="kucuk" x="363.4" y="264" text-anchor="middle">−3.800</text><rect class="seri-2" x="397.3" y="67.6" width="30" height="160.4" rx="2"/><path class="normal" d="M393.3 50.9 h38"/><text x="412.3" y="246" text-anchor="middle">Ağu</text><text class="kucuk" x="412.3" y="264" text-anchor="middle">−4.317</text><rect class="seri-2" x="446.1" y="72.8" width="30" height="155.2" rx="2"/><path class="normal" d="M442.1 62.6 h38"/><text x="461.1" y="246" text-anchor="middle">Eyl</text><text class="kucuk" x="461.1" y="264" text-anchor="middle">−2.640</text><rect class="seri-1" x="494.9" y="68.7" width="30" height="159.3" rx="2"/><rect class="seri-2" x="494.9" y="48.0" width="30" height="18.7" rx="2"/><path class="normal" d="M490.9 62.6 h38"/><text x="509.9" y="246" text-anchor="middle">Eki</text><text class="kucuk" x="509.9" y="264" text-anchor="middle">+3.759</text><rect class="seri-1" x="543.8" y="48.7" width="30" height="179.3" rx="2"/><path class="normal" d="M539.8 62.6 h38"/><text x="558.8" y="246" text-anchor="middle">Kas</text><text class="kucuk" x="558.8" y="264" text-anchor="middle">+3.570</text><rect class="seri-1" x="592.6" y="48.7" width="30" height="179.3" rx="2"/><path class="normal" d="M588.6 62.6 h38"/><text x="607.6" y="246" text-anchor="middle">Ara</text><text class="kucuk" x="607.6" y="264" text-anchor="middle">+3.570</text><text class="kucuk" x="46" y="284">alt satır: izin olmasaydı nete göre fark, TL</text></svg></div>
+<figcaption>Mayıs–Eylül arası maaş yok, yalnız ödenek var; ödenek izinsiz netin biraz altında kalıyor. Kasım ve Aralık'ta izin aylarında düşen vergi matrahı yüzünden net, izinsiz yıldan yüksek. Yılın toplamı: −8.499 TL.</figcaption>
+</figure>
+<!-- DOGUM-AYLAR:BITIS -->
+      <p>Ödenek toplamı 224.000 TL, izin yüzünden kaybolan net 232.499 TL. Fark yılın sonunda −8.499 TL; içindeki 7.140 TL'lik vergi kazancı olmasa fark iki katına yaklaşırdı.</p>
+
+      <h2 id="kim">Kimin için kayıp, kimin için kazanç?</h2>
+      <p>Aynı hesabı her maaş için yapınca bir eşik çıkıyor. Brüt 71.346 TL'nin altında ödenek kaybolan neti karşılamıyor; asgari ücrette izin yılı 31.103 TL eksiyle kapanıyor. 71.346 TL'nin üstünde ödenek kaybolan netten fazla; fark 2025 SGK tavanı olan 195.041,25 TL brütte en yükseğe, +84.379 TL'ye çıkıyor. 277.021 TL'den sonra tavan yüzünden yeniden eksiye dönüyor.</p>
+<!-- DOGUM-EGRI:BASLANGIC -->
+<figure class="ed-grafik" aria-labelledby="de-b">
+<p class="ed-grafik-baslik" id="de-b">İzin yılı nette kayıp mı, kazanç mı?</p>
+<p class="ed-grafik-alt">Yıllık net fark (maaş + ödenek − izinsiz yılın neti), aylık brüt maaşa göre. Doğum 15 Haziran 2026.</p>
+<div class="ed-grafik-kap"><svg viewBox="0 0 640 292" role="img" aria-labelledby="de-t de-d"><title id="de-t">İzin yılının net farkı, brüt maaşa göre</title><desc id="de-d">Fark 71.346 TL brütün altında eksi, 71.346 ile 277.021 TL arasında artı; en yüksek 195.041 TL brütte +84.379 TL.</desc><path class="izgara" d="M58 235.1 H612"/><text x="52" y="239.1" text-anchor="end">−40 bin</text><path class="izgara" d="M58 205.2 H612"/><text x="52" y="209.2" text-anchor="end">−20 bin</text><path class="sifir" d="M58 175.3 H612"/><text x="52" y="179.3" text-anchor="end">0</text><path class="izgara" d="M58 145.5 H612"/><text x="52" y="149.5" text-anchor="end">+20 bin</text><path class="izgara" d="M58 115.6 H612"/><text x="52" y="119.6" text-anchor="end">+40 bin</text><path class="izgara" d="M58 85.7 H612"/><text x="52" y="89.7" text-anchor="end">+60 bin</text><path class="izgara" d="M58 55.9 H612"/><text x="52" y="59.9" text-anchor="end">+80 bin</text><path class="izgara" d="M58 26.0 H612"/><text x="52" y="30.0" text-anchor="end">+100 bin</text><text x="108.4" y="268" text-anchor="middle">50 bin</text><text x="209.1" y="268" text-anchor="middle">100 bin</text><text x="309.8" y="268" text-anchor="middle">150 bin</text><text x="410.5" y="268" text-anchor="middle">200 bin</text><text x="511.3" y="268" text-anchor="middle">250 bin</text><text x="612.0" y="268" text-anchor="middle">300 bin</text><text x="612" y="286" text-anchor="end">aylık brüt maaş, TL</text><path class="esik" d="M400.6 26 V250"/><text class="esik-yazi" x="404.6" y="36" text-anchor="start">2025 tavanı</text><path class="esik" d="M606.5 26 V250"/><text class="esik-yazi" x="602.5" y="36" text-anchor="end">2026 tavanı</text><path class="cizgi-1" d="M74.2 221.8 L78.1 219.5 L88.2 214.5 L98.3 206.7 L108.4 199.5 L118.4 193.6 L128.5 188.0 L138.6 182.4 L148.7 176.8 L158.7 172.7 L168.8 170.0 L178.9 167.3 L188.9 164.6 L199.0 161.9 L209.1 159.2 L219.2 156.5 L229.2 153.8 L239.3 151.1 L249.4 148.4 L259.5 145.7 L269.5 143.0 L279.6 140.3 L289.7 137.6 L299.7 134.9 L309.8 128.6 L319.9 119.8 L330.0 111.0 L340.0 102.2 L350.1 93.4 L360.2 84.6 L370.3 75.8 L380.3 67.0 L390.4 58.2 L400.5 49.4 L400.6 49.3 L410.5 56.7 L420.6 64.2 L430.7 71.7 L440.8 79.1 L450.8 86.6 L460.9 94.0 L471.0 101.5 L481.1 109.0 L491.1 116.4 L501.2 123.9 L511.3 131.4 L521.3 138.8 L531.4 146.3 L541.5 153.7 L551.6 161.2 L561.6 171.0 L571.7 181.7 L581.8 192.5 L591.9 203.3 L601.9 214.0 L606.5 218.9 L612.0 233.3"/><circle class="nokta" cx="151.4" cy="175.3" r="4.5"/><text class="deger" x="159.4" y="193.3" text-anchor="start">71.346 TL</text><circle class="nokta" cx="565.7" cy="175.3" r="4.5"/><text class="deger" x="557.7" y="193.3" text-anchor="end">277.021 TL</text><circle class="nokta" cx="400.6" cy="49.3" r="4.5"/><text class="deger" x="390.6" y="53.3" text-anchor="end">+84.379 TL</text><circle class="nokta" cx="74.2" cy="221.8" r="4.5"/><text class="deger" x="82.2" y="239.8">asgari ücret −31.103 TL</text></svg></div>
+<figcaption>Kesikli çizgiler SGK tavanları. Ödenek, on iki ayın her birinin kendi tavanıyla sınırlı kazançtan hesaplanıyor; bu örnekte yedi ay 2025'te kaldığı için 2025 tavanının üstündeki maaşta ödenek, kaybolan netten yavaş büyüyor.</figcaption>
+</figure>
+<!-- DOGUM-EGRI:BITIS -->
+      <p>Bunu iki kural birlikte doğuruyor: ödenek brüt kazancın sabit bir oranı ve vergisiz, maaşın vergisi ise kazanç yükseldikçe artıyor. Sonuç: düşük ücretli anne izin yılını kayıpla, orta ve yüksek ücretli anne kazançla kapatıyor. Bazı toplu sözleşmeler ve işverenler izinde maaşı tamamlıyor; o durumda sonuç bu hesaptan farklıdır.</p>
+
+      <h2 id="zam">Zam aldıysanız ödenek düşük çıkar</h2>
+      <p>Günlük kazanç on iki ayın ortalaması olduğu için yakın zamandaki bir zam ödeneğe tam yansımaz. Ocak 2026'da 48.000 TL'den 60.000 TL'ye zam alıp 15 Mart 2026'da doğum yapan biri için on iki ayın on'u eski maaştan sayılıyor. Günlük kazanç 2.000 TL yerine 1.666,67 TL, yani %16,7 düşük. 168 günlük ödenek 224.000 TL yerine 186.667 TL: zamanlama yüzünden 37.333 TL eksik.</p>
+      <p>Asgari ücretlide bu kayıp görülmez: on iki ayın ortalaması yeni yılın alt sınırının altında kalırsa ödenek alt sınırdan (2026'da günde 1.101 TL) hesaplanır.</p>
+      <p>Kendi maaşınız, zam tarihiniz ve doğum tarihinizle: <a href="../../rapor-parasi-hesaplama/">rapor parası hesaplama</a> aracında "Doğum"u seçin. Araç ödeneği ve izin aylarının bordrosunu sitenin bordro motoruyla hesaplar.</p>
+
+      <h2 id="varsayim">Varsayımlar ve sınırlar</h2>
+      <ul>
+        <li>Örnek doğum tarihi 15 Haziran 2026: izin 20 Nisan – 4 Ekim 2026, tamamı 2026'da. Böylece yıl tek bordro hesabıyla kurulabiliyor. 12 Eylül 2026 ve sonrasında doğum yapanın izni 2027'ye taşar; 2027 asgari ücreti ve vergi dilimleri açıklanmadan o yıl hesaplanamaz.</li>
+        <li>Kişi doğumdan önceki on iki ayda aynı işyerinde, aynı brütle, her ay 30 gün çalışmış (zam bölümü hariç); başka geliri yok; işveren izin günlerinin ücretini ödemiyor.</li>
+        <li>İzinli ay kısmi ise ücret 30 gün üzerinden düşülür; ayın tamamı izinliyse ücret sıfırdır.</li>
+        <li>Emzirme ödeneği ayrıca ödenir; tutarı SGK Yönetim Kurulunun tarifesiyle belirlenir ve bu hesaba katılmadı.</li>
+        <li>Rakamlar ödeneğin kanundaki hesabını gösterir. SGK'nın ödediği tutar, hizmet dökümündeki gerçek kazanç ve gün sayısıyla hesaplanır.</li>
+      </ul>
+
+      <h2 id="kaynaklar">Kaynaklar</h2>
+      <ul>
+        <li>7578 sayılı Sosyal Hizmetler Kanunu ve Bazı Kanunlarda Değişiklik Yapılmasına Dair Kanun, m.2, 15, 16, 18 ve 19 — <a href="https://www.resmigazete.gov.tr/eskiler/2026/05/20260501-1.htm" rel="noopener">Resmî Gazete, 1 Mayıs 2026, sayı 33240</a></li>
+        <li>4857 sayılı İş Kanunu m.74 ve Ek m.2 — <a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.4857.pdf" rel="noopener">mevzuat.gov.tr</a></li>
+        <li>5510 sayılı Kanun m.15, 17 ve 18 — <a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5510.pdf" rel="noopener">mevzuat.gov.tr</a></li>
+        <li>193 sayılı Gelir Vergisi Kanunu m.25/6 — <a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.4.193.pdf" rel="noopener">mevzuat.gov.tr</a></li>
+        <li>2025 ve 2026 asgari ücret ve SGK tavanı: sitenin <a href="../../bordro/">bordro motoru</a> parametreleri</li>
+      </ul>
+      <p>Kanun metinleri 3 Ekim 2026'da okundu. Tutarlar yazının kendi modülünden (<code>dogum.js</code>) gelir; modül ödeneği sitenin <a href="../../rapor-parasi-hesaplama/">rapor parası çekirdeğiyle</a>, izin yılının bordrosunu bordro motoruyla hesaplar. Tablo ve grafikler bu modülden çizilir; hepsi otomatik testle denetlenir.</p>
+
+      <h2>Sık sorulan sorular</h2>
+      <details><summary>Doğum parası 2026'da ne kadar?</summary><p>Doğumdan önceki on iki ayın günlük ortalama kazancının üçte ikisi, 168 gün için. On iki ay 60.000 TL brütle çalışmış biri 224.000 TL, asgari ücretli 123.312 TL alır. İkiz gebelikte süre 182 gün.</p></details>
+      <details><summary>Doğum izni kaç hafta oldu?</summary><p>1 Mayıs 2026'dan beri 24 hafta: doğumdan önce 8, sonra 16 hafta. İkiz ve daha fazla gebelikte doğum öncesi 10 hafta, toplam 26 hafta. Değişiklik 7578 sayılı Kanunla yapıldı.</p></details>
+      <details><summary>Doğum parası almak için kaç gün prim gerekir?</summary><p>Doğumdan önceki bir yılda en az 90 gün kısa vadeli sigorta primi. Esnaf ve serbest çalışanlarda ayrıca prim borcu olmaması gerekir.</p></details>
+      <details><summary>Doğum parasından vergi kesilir mi?</summary><p>Hayır. Analık ödeneği sosyal sigorta ödemesi olarak gelir vergisinden istisnadır (GVK m.25/6) ve SGK primi kesilmez. Bu yüzden ödenek, net maaşa oranla brütün üçte ikisinden daha fazladır.</p></details>
+      <details><summary>Babalık izni kaç gün?</summary><p>On gün ücretli izin. 7578 sayılı Kanunla beş günden on güne çıktı. Bu izni işveren öder; SGK ödeneği yoktur.</p></details>
+    </div></section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../../koray-oner/">Koray Öner: çalışma dizini</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+<script src="../tablo.js?v=de093bf6" defer></script>
+<script src="../../script.js?v=72b4a7c6" defer></script>
+</body>
+</html>

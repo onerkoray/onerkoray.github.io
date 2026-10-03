@@ -439,6 +439,20 @@
 .ed-grafik svg .esik { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 4; }
 .ed-grafik svg .esik-yazi { fill: var(--text-muted); font-size: 12px; }
 .ed-grafik figcaption { margin-top: .6rem; font-size: var(--step--1); line-height: 1.5; color: var(--text-muted); }
+/* Veri işaretleri yalnız --dv-* tokenlarından; yazı metin tokenında kalır.
+   Dar ekranda yazı küçülmesin diye SVG en az 540px çizilir, kap kayar. */
+.ed-grafik-kap { overflow-x: auto; }
+.ed-grafik-kap svg { min-width: 540px; }
+.ed-grafik svg .izgara { stroke: var(--dv-grid); stroke-width: 1; fill: none; }
+.ed-grafik svg .sifir { stroke: var(--text); stroke-width: 1; fill: none; }
+.ed-grafik svg .kucuk { font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.ed-grafik svg .seri-1 { fill: var(--dv-1); }
+.ed-grafik svg .seri-2 { fill: var(--dv-2); }
+.ed-grafik svg .seri-3 { fill: var(--dv-3); }
+.ed-grafik svg .calisma { fill: none; stroke: var(--dv-mute); stroke-width: 1.25; stroke-dasharray: 3 3; }
+.ed-grafik svg .normal { stroke: var(--text); stroke-width: 1.5; stroke-dasharray: 4 3; fill: none; }
+.ed-grafik svg .cizgi-1 { fill: none; stroke: var(--dv-1); stroke-width: 2.25; stroke-linejoin: round; }
+.ed-grafik svg .nokta { fill: var(--dv-1); stroke: var(--bg); stroke-width: 2; }
 
 /* Hero'dan sonra gelen .content bölümü (dört makalede gövde böyle
    kurulu) bölüm dolgusunu (4–8rem) da getiriyordu: başlıkla metin

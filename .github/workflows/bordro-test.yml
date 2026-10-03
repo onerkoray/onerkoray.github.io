@@ -605,6 +605,16 @@ jobs:
       - name: Bütçe diyagramı güncel mi
         run: node tools/butce-diyagram.js --check
 
+      # Doğum parası yazısı: ödenek rapor parası çekirdeğinden, izin yılı
+      # bordro motorundan (dogum.js). Test önce bağımsız aritmetikle sınar,
+      # sonra her rakamın sayfada göründüğünü doğrular; tablo, diyagram ve
+      # iki grafik aynı modülden çizilir.
+      - name: Doğum parası yazısının sayıları
+        run: node makaleler/dogum-parasi-ne-kadar/sayi-testi.js
+
+      - name: Doğum parası yazısının görselleri güncel mi
+        run: node tools/dogum-yazisi.js --check
+
       - name: kira-geliri-istisnasi-siniri yazısının sayıları
         run: node makaleler/kira-geliri-istisnasi-siniri/sayi-testi.js
 
