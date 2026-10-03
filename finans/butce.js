@@ -9,7 +9,7 @@
  * program.
  *
  * teklif: 2027 Merkezî Yönetim Bütçe Kanunu Teklifi Meclis'e sunulunca
- * (Anayasa m.162: mali yıl başından en az 75 gün önce, yani en geç
+ * (Anayasa m.161: mali yıl başından en az 75 gün önce, yani en geç
  * 17 Ekim 2026) aynı kalemlerle doldurulacak. O zamana kadar null.
  *
  * Bu dosyada hesap yok, yalnız tablo ve tablonun kendi kimlikleri

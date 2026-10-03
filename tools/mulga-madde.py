@@ -26,6 +26,11 @@ MÜLGA OLDUĞU SÖYLENEREK yapılan atıf serbest: parametreler.js 2020-2021
 yıllarının AGİ'sini anlatırken m.32'yi anmak zorunda ve "(mülga)" diye
 işaretliyor. Kapı bu işareti tanıyor.
 
+EKLENEN KURAL (3 Ekim 2026): Anayasa m.162-164. 6771 sayılı Kanunla
+21/1/2017'de yürürlükten kaldırıldı; bütçe teklifinin "mali yılbaşından en
+az yetmişbeş gün önce" sunulması bugün m.161'de. 2027 bütçe yazısı süreyi
+üç yerde m.162'ye dayandırıyordu.
+
 Kullanım:
     python tools/mulga-madde.py           # bulguları listele
     python tools/mulga-madde.py --check   # bulgu varsa kırmızı (CI)
@@ -48,9 +53,18 @@ PENCERE = 90
 # Atıf mülga olduğu söylenerek yapılmışsa serbest.
 MULGA = re.compile(r"m[üu]lga", re.IGNORECASE)
 
-# "m.32", "m. 32", "madde 32" biçimleri
-ATIF = re.compile(r"m(?:adde)?\.?\s*32\b")
-GVK = re.compile(r"Gelir\s+Vergisi\s+Kanunu|GVK|193\s+say[ıi]l[ıi]", re.IGNORECASE)
+# Kurallar: (ad, atıf kalıbı, kanun bağlamı kalıbı, doğru dayanak notu)
+KURALLAR = [
+    ("GVK m.32",
+     re.compile(r"m(?:adde)?\.?\s*32\b"),
+     re.compile(r"Gelir\s+Vergisi\s+Kanunu|GVK|193\s+say[ıi]l[ıi]", re.IGNORECASE),
+     "GVK m.32 (asgari gecim indirimi) 7349 s.K. ile 1.1.2022'den itibaren mulgadir; "
+     "asgari ucret istisnasi m.23/1-(18)'dedir."),
+    ("Anayasa m.162-164",
+     re.compile(r"m(?:adde)?\.?\s*16[234]\b"),
+     re.compile(r"Anayasa", re.IGNORECASE),
+     "Anayasa m.162-164 6771 s.K. ile 21.1.2017'de mulgadir; butce ve kesinhesap m.161'dedir."),
+]
 
 
 def dosyalar():
@@ -69,16 +83,17 @@ def bulgular():
             s = io.open(yol, encoding="utf-8").read()
         except (UnicodeDecodeError, OSError):
             continue
-        for m in ATIF.finditer(s):
-            bas = max(0, m.start() - PENCERE)
-            onceki = s[bas:m.start()]
-            if not GVK.search(onceki):
-                continue                      # başka kanunun m.32'si
-            cevre = s[bas:m.end() + 40]
-            if MULGA.search(cevre):
-                continue                      # mülga olduğu söylenmiş
-            cikti.append((os.path.relpath(yol, KOK).replace(os.sep, "/"),
-                          " ".join(cevre.split())))
+        for ad, atif, baglam, _ in KURALLAR:
+            for m in atif.finditer(s):
+                bas = max(0, m.start() - PENCERE)
+                onceki = s[bas:m.start()]
+                if not baglam.search(onceki):
+                    continue                  # başka kanunun aynı numaralı maddesi
+                cevre = s[bas:m.end() + 40]
+                if MULGA.search(cevre):
+                    continue                  # mülga olduğu söylenmiş
+                cikti.append((ad, os.path.relpath(yol, KOK).replace(os.sep, "/"),
+                              " ".join(cevre.split())))
     return cikti
 
 
@@ -88,13 +103,15 @@ def main():
     if not b:
         print("Mulga madde atfi yok.")
         return 0
-    print("Mulga GVK m.32 atfi bulunan %d yer:" % len(b))
-    for yol, cevre in b:
-        print("  - %s" % yol)
+    print("Mulga madde atfi bulunan %d yer:" % len(b))
+    for ad, yol, cevre in b:
+        print("  - [%s] %s" % (ad, yol))
         print("      ...%s..." % cevre[:120])
     if kontrol:
-        print("\nGVK m.32 (asgari gecim indirimi) 7349 s.K. ile 1.1.2022'den "
-              "itibaren mulgadir; asgari ucret istisnasi m.23/1-(18)'dedir.")
+        print()
+        for ad, _, _, not_ in KURALLAR:
+            if any(x[0] == ad for x in b):
+                print(not_)
         return 1
     return 0
 
