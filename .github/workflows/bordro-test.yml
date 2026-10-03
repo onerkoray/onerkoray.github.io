@@ -595,6 +595,13 @@ jobs:
       - name: Bütçe yazısının sayıları
         run: node makaleler/butce-2027-faiz-vergi/sayi-testi.js
 
+      # Ocak 2027 yazısı: 11 kalemin karar mercii kalemler.js'te; emekli zammının
+      # kesin kısmı TÜFE serisinden, memur oranı toplu sözleşmeden, MTV oranı
+      # tarifeden. TBMM teklif taramaları (5. ve 4. yasama yılı) anlık görüntüden
+      # yeniden sayılır: imza sayısına göre kanunlaşma oranı dahil.
+      - name: Ocak 2027 yazısının sayıları
+        run: node makaleler/ocak-2027-meclis-mi-belirleyecek/sayi-testi.js
+
       - name: Bütçe diyagramı güncel mi
         run: node tools/butce-diyagram.js --check
 
