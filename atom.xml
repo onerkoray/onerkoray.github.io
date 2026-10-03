@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-10-02T05:29:54+03:00</updated>
+  <updated>2026-10-03T16:30:21+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Ocak 2027'yi Meclis mi Belirleyecek?</title>
+    <link href="https://korayoner.dev/makaleler/ocak-2027-meclis-mi-belirleyecek/"/>
+    <id>https://korayoner.dev/makaleler/ocak-2027-meclis-mi-belirleyecek/</id>
+    <updated>2026-10-03T16:30:21+03:00</updated>
+    <summary>Meclis 1 Ekim'de açıldı. Ocak 2027'de maaşa, aylığa ve vergiye dokunan 11 kalemin 7'si Meclis oyuna bağlı değil. Kim karar veriyor, bugün ne kesin?</summary>
+  </entry>
 
   <entry>
     <title>2027 Bütçesinde Faiz ve Vergi</title>
