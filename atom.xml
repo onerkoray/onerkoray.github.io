@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-10-03T18:45:39+03:00</updated>
+  <updated>2026-10-03T20:35:35+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Doğum Parası Ne Kadar? 24 Haftalık İzin Hesabı</title>
+    <link href="https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/"/>
+    <id>https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/</id>
+    <updated>2026-10-03T20:35:35+03:00</updated>
+    <summary>Doğum izni 24 hafta, SGK 168 gün öder. 2026'da 60.000 TL brütte doğum parası 224.000 TL. Vergisiz olduğu için izin yılı bazı maaşlarda kayıp, bazılarında kazanç.</summary>
+  </entry>
 
   <entry>
     <title>Rapor Parası Hesaplama 2026</title>
@@ -62,7 +70,7 @@
     <link href="https://korayoner.dev/koray-oner/"/>
     <id>https://korayoner.dev/koray-oner/</id>
     <updated>2026-09-29T17:59:13+03:00</updated>
-    <summary>Koray Öner'in çalışmaları tek yerde: 59 hesaplama aracı, 56 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.</summary>
+    <summary>Koray Öner'in çalışmaları tek yerde: 59 hesaplama aracı, 57 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.</summary>
   </entry>
 
   <entry>
