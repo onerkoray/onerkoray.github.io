@@ -189,7 +189,7 @@
     } else if (P.istisnaRejimi === "asgari-ucret") {
       /* Kıst ayda da istisna TAM uygulanır: "yeni işe başlayan ve işten
          ayrılan hizmet erbabına yapılan kıst ücret ödemelerine istisna tam
-         olarak uygulanacaktır" (318 Seri No'lu GVGT m.6/2). Asgari ücretlinin
+         olarak uygulanacaktır" (319 Seri No'lu GVGT m.6/2). Asgari ücretlinin
          birikimi işe başlamadan önceki aylarda da ilerler: istisna, asgari
          ücretin O AYDAKİ vergisidir. Menfaat hesaplanan vergiyi aşamaz
          (aşağıda max(0, ...)). */

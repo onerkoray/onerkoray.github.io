@@ -361,7 +361,7 @@ baslik("Fazla mesai parametreleri");
   var CAL = o.sgkIsci + o.issizlikIsci;
   function T(m) { return B.tarifeVergisi(m, P.dilimler); }
 
-  baslik("Kıst ay (318 Seri No'lu GVGT m.6/2)");
+  baslik("Kıst ay (319 Seri No'lu GVGT m.6/2)");
   var z = B.hesaplaYil(80000, Y), g30 = B.hesaplaYil(80000, Y, { gun: 30 });
   ok("gün: 30 seçeneksizle birebir aynı", z.aylar.every(function (a, i) {
     return Object.keys(a).every(function (k) { return a[k] === g30.aylar[i][k]; });

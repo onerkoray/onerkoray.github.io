@@ -188,7 +188,7 @@
 
     var notlar = [];
     notlar.push(P.istisnaRejimi === "agi" ? "AGİ rejimi; geçmiş yıl sınırlarını aşağıda inceleyin." : "Asgari ücret istisnası uygulanır.");
-    if (kistVar(d)) notlar.push("Kıst ayda istisna tam uygulanır (318 Seri No'lu GVGT m.6/2); damga istisnası da aylık asgari ücret tutarıyla.");
+    if (kistVar(d)) notlar.push("Kıst ayda istisna tam uygulanır (319 Seri No'lu GVGT m.6/2); damga istisnası da aylık asgari ücret tutarıyla.");
     notlar.push(s.tesvik ? "İşveren maliyeti seçilen m.81/ı indirimiyle." : "İşveren maliyeti teşviksiz.");
     notlar.push("Tek işveren. Tutarlar gösterimde kuruşa yuvarlanır.");
     yaz("ornek-rejim", notlar.join(" "));
