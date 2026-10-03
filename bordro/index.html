@@ -416,7 +416,7 @@
 <tr><th scope="row"><a href="gmsi-motor.js?v=0c4d4846">Kira geliri</a></th><td>59</td><td><a href="gmsi-test.js?v=1ed943cc">gmsi-test.js</a></td></tr>
 <tr><th scope="row"><a href="sgdp.js?v=afecd0ad">Emekli çalışan (SGDP)</a></th><td>108</td><td><a href="sgdp-test.js?v=91f382db">sgdp-test.js</a></td></tr>
 <tr><th scope="row"><a href="sgk-prim.js?v=b4899b33">Bağ-Kur, isteğe bağlı sigorta ve borçlanma</a></th><td>37</td><td><a href="sgk-prim-test.js?v=08fa5dee">sgk-prim-test.js</a></td></tr>
-<tr><th scope="row"><a href="motor.js?v=41cbee4c">Ücret bordrosu</a></th><td>197</td><td><a href="test.js?v=bf4a52d5">test.js</a></td></tr></tbody></table></div>
+<tr><th scope="row"><a href="motor.js?v=2de19617">Ücret bordrosu</a></th><td>197</td><td><a href="test.js?v=85080907">test.js</a></td></tr></tbody></table></div>
 <p>Çekirdeğin gelir vergisi tarifesini ve bordro hesabını kullanan <strong>29 ana araç</strong> yukarıda listelenir. Maaş tutarı alt sayfaları ayrıca sayılmaz. Aynı klasördeki bağımsız motorlar: <a href="../borc-kapatma-plani/">Borç Kapatma Planı</a> ve <a href="../emekli-ayligi-hesaplama/">Emekli Aylığı Hesaplama 2026</a>. Bağımsız motorlar kendi parametreleriyle çalışır.</p>
         <!-- DIYAGRAM:dogrulama-ozeti:BITIS -->
         <p><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">Açık kaynak kod ve testler</a> ·
@@ -573,7 +573,7 @@
           </dd>
           <dt>1.0.0 — 5 Eylül 2026</dt>
           <dd>
-            Hesaplama çekirdeği araç sayfasından ayrıldı ve <a href="motor.js?v=41cbee4c">bordro/motor.js</a>
+            Hesaplama çekirdeği araç sayfasından ayrıldı ve <a href="motor.js?v=2de19617">bordro/motor.js</a>
             olarak bağımsız hâle geldi. 2020-2026 arası yedi bordro yılı eklendi. Yıl içi asgari
             ücret değişiklikleri (2022 ve 2023 Temmuz), AGİ rejimi (2020-2021), prime esas kazanç
             alt sınırı ve vergi dilimi geçişinin işaretlenmesi desteklendi. 70 doğrulama testi eklendi.
@@ -680,9 +680,9 @@ const sonuc = Bordro.hesaplaYil(75000, 2026);
 console.log(sonuc.toplam.net);
 // Doğrulama: node bordro/test.js</code></pre>
         <p>
-          Dosyalar: <a href="motor.js?v=41cbee4c">motor.js</a> (hesaplama),
+          Dosyalar: <a href="motor.js?v=2de19617">motor.js</a> (hesaplama),
           <a href="parametreler.js?v=5489aa17">parametreler.js</a> (yasal parametreler),
-          <a href="test.js?v=bf4a52d5">test.js</a> (doğrulama).
+          <a href="test.js?v=85080907">test.js</a> (doğrulama).
           Kaynak kod <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub'da</a>.
         </p>
       </div>
@@ -737,8 +737,8 @@ console.log(sonuc.toplam.net);
 
   <script src="../script.js?v=72b4a7c6" defer></script>
   <script src="parametreler.js?v=5489aa17" defer></script>
-  <script src="motor.js?v=41cbee4c" defer></script>
-  <script src="ornek.js?v=4268fb9d" defer></script>
+  <script src="motor.js?v=2de19617" defer></script>
+  <script src="ornek.js?v=07ad4389" defer></script>
   <script src="diyagram.js?v=83ea6df3" defer></script>
 </body>
 </html>
