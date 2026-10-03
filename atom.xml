@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-10-03T16:30:21+03:00</updated>
+  <updated>2026-10-03T18:45:39+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Rapor Parası Hesaplama 2026</title>
+    <link href="https://korayoner.dev/rapor-parasi-hesaplama/"/>
+    <id>https://korayoner.dev/rapor-parasi-hesaplama/</id>
+    <updated>2026-10-03T18:45:39+03:00</updated>
+    <summary>SGK rapor parası (geçici iş göremezlik ödeneği) ne kadar? Hastalık, iş kazası ve doğum raporu; son 12 ayın kazancından günlük ödenek ve raporlu ayda elinize geçen.</summary>
+  </entry>
 
   <entry>
     <title>Ocak 2027'yi Meclis mi Belirleyecek?</title>
