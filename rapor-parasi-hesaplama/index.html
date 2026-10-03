@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=f7307c52" defer></script>
+  <meta charset="UTF-8">
+  <script src="../tema-erken.js?v=3d1c1238"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rapor Parası Hesaplama 2026 | Koray Öner</title>
+  <meta name="description" content="SGK rapor parası (geçici iş göremezlik ödeneği) ne kadar? Hastalık, iş kazası ve doğum raporu; son 12 ayın kazancından günlük ödenek ve raporlu ayda elinize geçen.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="gecerlilik" content="2027-01-15 | 2027 asgari ücreti ve SGK tavanı parametrelere girildi mi? Girildiyse örnek node tools/rapor-ornek.js ile yeniden üretilmeli; 2027'ye taşan analık ödeneğinde alt sınır artık hesaplanabilir. 5510 m.17-18 yeniden okunmalı.">
+  <link rel="canonical" href="https://korayoner.dev/rapor-parasi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=54bc16ae" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Rapor parası ne kadar?">
+  <meta property="og:description" content="Hastalık, iş kazası ve doğum raporunda SGK ödeneği: son 12 ayın kazancından günlük tutar, ödenmeyen günler ve raporlu ayda elinize geçen.">
+  <meta property="og:url" content="https://korayoner.dev/rapor-parasi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/rapor-parasi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Rapor parası hesaplama: SGK geçici iş göremezlik ödeneği">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Rapor parası ne kadar?">
+  <meta name="twitter:description" content="SGK geçici iş göremezlik ödeneği: günlük tutar, ödenmeyen iki gün, 180 gün kuralı ve raporlu ayın bordrosu.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/rapor-parasi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=4c3de685">
+  <link rel="stylesheet" href="style.css?v=72fe4d78">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "image": "https://korayoner.dev/images/rapor-parasi-hesaplama-koray-oner.png",
+        "@id": "https://korayoner.dev/rapor-parasi-hesaplama/#app",
+        "name": "Rapor Parası Hesaplama: SGK Geçici İş Göremezlik Ödeneği",
+        "url": "https://korayoner.dev/rapor-parasi-hesaplama/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "featureList": "Hastalık, iş kazası, meslek hastalığı ve doğum raporu; son 12 ayın prime esas kazancından günlük kazanç; yatarak ve ayakta oranları; hastalıkta ödenmeyen ilk iki gün; 90 gün prim şartı; 180 günden az primde alt sınırın iki katı sınırı; ikramiye sınırı; yılbaşında alt sınır artışı; 7578 sayılı Kanunla 8 + 16 haftalık doğum ödeneği; raporlu ayın bordrosu ve yıllık net etkisi",
+        "description": "SGK'nın geçici iş göremezlik ödeneğini (rapor parası) 5510 sayılı Kanunun 17 ve 18. maddelerine göre hesaplar; raporlu ayda maaştan kesilen tutarı bordro motoruyla bulup ödenekle birlikte elinize geçeni gösterir."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Rapor Parası Hesaplama",
+            "item": "https://korayoner.dev/rapor-parasi-hesaplama/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Rapor parası nasıl hesaplanır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rapordan önceki on iki ayın prime esas kazançları toplanıp bu aylardaki prim gününe bölünür; çıkan günlük kazancın ayakta tedavide üçte ikisi, yatarak tedavide yarısı her gün için ödenir. Örnek: on iki ayda 630.000 TL kazanç ve 360 gün prim varsa günlük kazanç 1.750,00 TL, ayakta raporda günlük ödenek 1.166,67 TL olur."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Raporun ilk iki günü ödenir mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hastalık raporunda hayır: SGK ödeneği üçüncü günden başlar. İki günlük raporda ödenek alınmaz. İş kazası ve meslek hastalığında ilk günden ödenir. İlk iki günün ücretini bazı işverenler kendisi öder; bu iş sözleşmesine ya da toplu sözleşmeye bağlıdır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Rapor parası neden maaşımdan düşük?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İki nedenle. Ödenek günlük kazancın en çok üçte ikisidir. Günlük kazanç da güncel maaşınızdan değil, son on iki ayın ortalamasından hesaplanır; yıl içinde zam aldıysanız ortalama güncel maaşın gerisinde kalır. Yukarıdaki örnekte bu, on günlük raporda 1.333,34 TL daha az ödenek demek."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Doğum parası ne kadar ve kaç gün ödenir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Doğumdan önceki bir yılda en az 90 gün prim ödenmişse doğumdan önceki 8 ve sonraki 16 hafta, toplam 168 gün için günlük kazancın üçte ikisi ödenir. Günlük kazancı 1.750,00 TL olan biri için bu 196.000 TL eder. İkiz ve daha fazla gebelikte doğum öncesi süre 10 hafta, toplam 182 gündür. Doğuma iki hafta kalıncaya kadar çalışılırsa kullanılmayan haftalar doğumdan sonraya eklenir; ödenen gün sayısı değişmez."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Rapor parasından vergi kesilir mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Hastalık sebebiyle yapılan yardımlar Gelir Vergisi Kanunu m.25/1 ile vergiden istisnadır; ödenekten gelir vergisi kesilmez. Rapor günleri için işverenin ödemediği ücretin vergisi ve primi de doğmaz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Verilerim bir yere gönderiliyor mu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Hesap tarayıcınızda yapılır; maaşınız ve rapor bilgileriniz hiçbir sunucuya gönderilmez."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="../#projects">Araçlar</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#nasil">Nasıl hesaplanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Rapor Parası Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">SGK geçici iş göremezlik ödeneği · <span data-s="yil">2026</span></p>
+        <h1>Rapor parası ne kadar?</h1>
+        <p class="lede">
+          Hastalık, iş kazası ya da doğum raporunda SGK'nın ödediği günlük tutarı ve raporlu ayda
+          elinize toplam ne geçeceğini hesaplar. Ödenek güncel maaşınızdan değil, rapordan önceki
+          on iki ayın kazancından hesaplanır; zam aldıysanız beklediğinizden düşük çıkar. Araç bunu
+          ve maaşınızdan kesilecek günleri birlikte gösterir.
+        </p>
+        <p class="muted kunye-satiri">
+          5510 sayılı Kanun m.17–18 (7537 ve 7578 sayılı Kanunlarla değişik) ·
+          maaş kesintisi <a href="../bordro/">bordro motorundan</a> ·
+          hesap tarayıcınızda çalışır, veri gönderilmez
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-label="Rapor parası hesaplayıcısı">
+      <div class="wrap">
+        <div class="rp-duzen">
+          <form class="rp-form" id="rp-form" novalidate>
+            <fieldset class="rp-grup">
+              <legend><span class="rp-no">1</span> Rapor</legend>
+              <div class="rp-grid">
+                <div class="rp-alan rp-genis">
+                  <span class="rp-etiket" id="r-tur-bas">Rapor türü</span>
+                  <div class="rp-secimler" role="group" aria-labelledby="r-tur-bas">
+                    <button type="button" class="secim" data-tur="hastalik" aria-pressed="true">Hastalık</button>
+                    <button type="button" class="secim" data-tur="isKazasi" aria-pressed="false">İş kazası</button>
+                    <button type="button" class="secim" data-tur="meslekHastaligi" aria-pressed="false">Meslek hastalığı</button>
+                    <button type="button" class="secim" data-tur="analik" aria-pressed="false">Doğum</button>
+                  </div>
+                </div>
+                <div class="rp-alan">
+                  <label for="r-bas" id="r-bas-etiket">Rapor başlangıcı</label>
+                  <input type="date" id="r-bas" value="2026-10-05">
+                </div>
+                <div class="rp-alan" data-rapor>
+                  <label for="r-ayakta">Ayakta tedavi (gün)</label>
+                  <input type="text" inputmode="numeric" id="r-ayakta" value="10">
+                </div>
+                <div class="rp-alan" data-rapor>
+                  <label for="r-yatarak">Hastanede yatarak (gün)</label>
+                  <input type="text" inputmode="numeric" id="r-yatarak" value="0" aria-describedby="r-yatarak-not">
+                  <small id="r-yatarak-not">Yatarak geçen günlerde ödenek günlük kazancın yarısı, ayakta üçte ikisi.</small>
+                </div>
+                <div class="rp-alan" data-rapor>
+                  <label for="r-ilk">Rapor hangisiyle başladı?</label>
+                  <select id="r-ilk">
+                    <option value="ayakta">Ayakta tedavi</option>
+                    <option value="yatarak">Hastanede yatış</option>
+                  </select>
+                </div>
+                <div class="rp-alan" data-analik hidden>
+                  <label for="r-cogul">Gebelik</label>
+                  <select id="r-cogul">
+                    <option value="tek">Tek bebek</option>
+                    <option value="cogul">İkiz ya da daha fazla</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="rp-grup">
+              <legend><span class="rp-no">2</span> Kazancınız</legend>
+              <div class="rp-grid">
+                <div class="rp-alan">
+                  <label for="r-brut">Güncel aylık brüt maaş (TL)</label>
+                  <input type="text" inputmode="decimal" id="r-brut" value="60.000">
+                </div>
+                <div class="rp-alan">
+                  <label for="r-once">Son zamdan önceki brüt (TL)</label>
+                  <input type="text" inputmode="decimal" id="r-once" value="50.000" aria-describedby="r-once-not">
+                  <small id="r-once-not">Zam almadıysanız güncel brütü yazın.</small>
+                </div>
+                <div class="rp-alan">
+                  <label for="r-zam">Son zam hangi aydan beri?</label>
+                  <input type="month" id="r-zam" value="2026-07">
+                </div>
+                <div class="rp-alan">
+                  <label for="r-ay">Rapordan önceki 12 ayda kaç ay çalıştınız?</label>
+                  <input type="text" inputmode="numeric" id="r-ay" value="12" aria-describedby="r-ay-not">
+                  <small id="r-ay-not">Her ay 30 prim günü sayılır. 6 aydan az ise 180 gün kuralı devreye girer.</small>
+                </div>
+                <div class="rp-alan">
+                  <label for="r-ikr">Son 12 aydaki ikramiye ve prim (TL)</label>
+                  <input type="text" inputmode="decimal" id="r-ikr" value="0">
+                </div>
+                <div class="rp-alan rp-genis">
+                  <details class="rp-dokum">
+                    <summary>Hizmet dökümünden kesin rakamla girmek istiyorum</summary>
+                    <p class="rp-not">e-Devlet'te "SGK Tescil ve Hizmet Dökümü"nde rapordan önceki 12 ayın kazançlarını ve gün sayılarını toplayın. Bu iki alan doluysa maaştan türetilen tahmin yerine bunlar kullanılır.</p>
+                    <div class="rp-grid">
+                      <div class="rp-alan">
+                        <label for="r-dk">12 ayın prime esas kazancı (TL)</label>
+                        <input type="text" inputmode="decimal" id="r-dk" value="">
+                      </div>
+                      <div class="rp-alan">
+                        <label for="r-dg">12 ayın prim günü</label>
+                        <input type="text" inputmode="numeric" id="r-dg" value="">
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="rp-grup">
+              <legend><span class="rp-no">3</span> İşvereniniz</legend>
+              <div class="rp-grid">
+                <div class="rp-alan rp-genis">
+                  <label for="r-pol">Rapor günlerinde maaşınız ne oluyor?</label>
+                  <select id="r-pol">
+                    <option value="kesilir">Rapor günleri maaştan kesilir (yaygın)</option>
+                    <option value="ilkIkiGun">İlk iki günü işveren öder, gerisi kesilir</option>
+                    <option value="tamamlar">İşveren tam maaş öder, ödeneği kendisi alır</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+            <p class="rp-hata" id="r-hata" role="alert"></p>
+          </form>
+
+          <aside class="rp-sonuc" id="rp-sonuc" aria-live="polite" aria-labelledby="rp-cevap-bas">
+            <p class="rp-ust" id="rp-cevap-bas">SGK'nın ödeyeceği rapor parası</p>
+            <p class="rp-cevap" id="o-toplam">—</p>
+            <p class="rp-alt" id="o-alt"></p>
+            <p class="rp-uyari" id="o-uyari"></p>
+
+            <dl class="rp-kalemler" id="o-kalemler"></dl>
+            <p class="rp-icgoru" id="o-icgoru"></p>
+
+            <figure class="rp-grafik">
+              <div id="o-grafik"></div>
+              <figcaption id="o-grafik-not">Raporlu ayda elinize geçen: maaşın kalan kısmı ve SGK ödeneği, normal bir ayın netiyle.</figcaption>
+            </figure>
+            <dl class="rp-kalemler" id="o-bordro"></dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <article class="content" id="nasil">
+      <div class="wrap prose">
+        <h2>Nasıl hesaplanır?</h2>
+        <ol>
+          <li><strong>Günlük kazanç.</strong> Rapordan (doğumda doğum tarihinden) önceki on iki ayın prime esas kazançları toplanır ve bu kazançlara esas prim gününe bölünür (5510 m.17, 21 Aralık 2024'ten beri). Güncel maaşınız değil, on iki ayın ortalaması esas alınır. İkramiye ve prim varsa günlük kazanç, yalnız ücretle bulunan tutarın %50 fazlasını geçemez.</li>
+          <li><strong>180 gün kuralı.</strong> Önceki on iki ayda 180 günden az prim bildirilmişse günlük kazanç, raporun başladığı tarihteki günlük alt sınırın iki katıyla sınırlanır: <span data-s="dusukSinir">2026'da 2.202 TL</span>. Günlük kazanç alt sınırın altına da inemez: <span data-s="altSinir">2026'da 1.101 TL</span>.</li>
+          <li><strong>Oran.</strong> Ödenek, günlük kazancın ayakta tedavide üçte ikisi, hastanede yatarak tedavide yarısıdır (m.18). Doğum ödeneği ayakta oranıyla ödenir.</li>
+          <li><strong>Ödenen günler.</strong> Hastalık raporunda ödenek üçüncü günden başlar, ilk iki gün ödenmez; ayrıca rapordan önceki bir yılda en az 90 gün prim gerekir. İş kazası ve meslek hastalığında ilk günden ödenir, prim şartı yoktur. Doğumda 90 gün prim şartıyla doğumdan önceki 8 ve sonraki 16 hafta ödenir; çoğul gebelikte doğum öncesi 10 haftadır. Doğum sonrası süre 1 Mayıs 2026'da 7578 sayılı Kanunla 8 haftadan 16 haftaya çıktı.</li>
+          <li><strong>Yılbaşı.</strong> Rapor yeni yıla taşarsa ve günlük kazancınız yeni alt sınırın altında kalırsa, o günlerin ödeneği yeni alt sınırdan hesaplanır (m.18).</li>
+          <li><strong>Raporlu ayın bordrosu.</strong> İşveren rapor günlerinin ücretini ödemiyorsa maaş o günler kadar azalır; gelir vergisi ve SGK primi kalan ücret üzerinden yeniden hesaplanır. Ödenek gelir vergisinden istisnadır (GVK m.25/1), kesinti yapılmaz. Araç, ayın netini ve yılın kalanındaki vergi etkisini sitenin bordro motoruyla hesaplar.</li>
+        </ol>
+
+        <h2 id="ornek">Örnek: zam aldıktan sonra rapor</h2>
+<!-- RP-ORNEK:BASLANGIC -->
+<div class="rp-ornek">
+<p>Rapordan önceki on iki ayın tamamında aynı işyerinde, aylık 50.000 TL brütle çalışan biri Temmuz 2026 itibarıyla 60.000 TL brüte zam alıyor. 5 Ekim 2026 tarihinde 10 günlük ayakta hastalık raporu alıyor; işvereni rapor günlerinin ücretini ödemiyor.</p>
+<dl>
+<dt>Son 12 ayın kazancı</dt><dd>9 ay × 50.000 TL (Ekim 2025 – Haziran 2026) + 3 ay × 60.000 TL (Temmuz 2026 – Eylül 2026) = 630.000 TL, 360 gün</dd>
+<dt>Günlük kazanç</dt><dd>630.000 TL ÷ 360 = 1.750,00 TL (güncel maaşla 2.000,00 TL olurdu)</dd>
+<dt>Günlük ödenek, ayakta</dt><dd>1.750,00 TL × 2/3 = 1.166,67 TL</dd>
+<dt>Ödenen gün</dt><dd>10 günün 8'i (ilk 2 gün ödenmez)</dd>
+<dt>Rapor parası</dt><dd>9.333,33 TL, vergisiz</dd>
+<dt>Normal bir Ekim neti</dt><dd>42.640,40 TL</dd>
+<dt>Ekim maaşı, 20 gün ücret</dt><dd>30.382,20 TL</dd>
+<dt>Elinize geçen</dt><dd>39.715,53 TL (−2.924,87 TL)</dd>
+</dl>
+<p>Rapor parası kesilen ücretin yerini tam tutmuyor: raporlu ayda elinize normal aydan 2.924,87 TL az geçiyor. Bunun 1.333,34 TL'si zamdan kaynaklanıyor: ödenek güncel maaştan hesaplansaydı 10.666,67 TL olurdu. On iki ayın ortalaması zamdan önceki 9 ayı da içeriyor.</p>
+</div>
+<!-- RP-ORNEK:BITIS -->
+
+        <h2>Kapsam dışı</h2>
+        <p>Esnaf ve serbest çalışanlar (4/b), memurlar (4/c), sürekli iş göremezlik geliri, emzirme ödeneği ve birden çok işverende aynı anda çalışma hesaplanmaz. 4/b sigortalılara hastalık ödeneği verilmez; iş kazası ve analıkta prim borcu olmaması gibi ayrı şartlar vardır. Ödeneğin hesabı SGK'nın kayıtlarına göre yapılır; bu araç bir tahmin verir.</p>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+        <h3>Rapor parası nasıl hesaplanır?</h3>
+        <p>Rapordan önceki on iki ayın prime esas kazançları toplanıp bu aylardaki prim gününe bölünür; çıkan günlük kazancın ayakta tedavide üçte ikisi, yatarak tedavide yarısı her gün için ödenir. Örnek: on iki ayda <span data-s="ornekKazanc">630.000 TL</span> kazanç ve <span data-s="ornekGun">360</span> gün prim varsa günlük kazanç <span data-s="ornekGk">1.750,00 TL</span>, ayakta raporda günlük ödenek <span data-s="ornekGunluk">1.166,67 TL</span> olur.</p>
+        <h3>Raporun ilk iki günü ödenir mi?</h3>
+        <p>Hastalık raporunda hayır: SGK ödeneği üçüncü günden başlar. İki günlük raporda ödenek alınmaz. İş kazası ve meslek hastalığında ilk günden ödenir. İlk iki günün ücretini bazı işverenler kendisi öder; bu iş sözleşmesine ya da toplu sözleşmeye bağlıdır.</p>
+        <h3>Rapor parası neden maaşımdan düşük?</h3>
+        <p>İki nedenle. Ödenek günlük kazancın en çok üçte ikisidir. Günlük kazanç da güncel maaşınızdan değil, son on iki ayın ortalamasından hesaplanır; yıl içinde zam aldıysanız ortalama güncel maaşın gerisinde kalır. Yukarıdaki örnekte bu, on günlük raporda <span data-s="ornekKayip">1.333,34 TL</span> daha az ödenek demek.</p>
+        <h3>Doğum parası ne kadar ve kaç gün ödenir?</h3>
+        <p>Doğumdan önceki bir yılda en az 90 gün prim ödenmişse doğumdan önceki 8 ve sonraki 16 hafta, toplam <span data-s="analikGun">168</span> gün için günlük kazancın üçte ikisi ödenir. Günlük kazancı <span data-s="ornekGk">1.750,00 TL</span> olan biri için bu <span data-s="analikToplam">196.000 TL</span> eder. İkiz ve daha fazla gebelikte doğum öncesi süre 10 hafta, toplam <span data-s="analikCogulGun">182</span> gündür. Doğuma iki hafta kalıncaya kadar çalışılırsa kullanılmayan haftalar doğumdan sonraya eklenir; ödenen gün sayısı değişmez.</p>
+        <h3>Rapor parasından vergi kesilir mi?</h3>
+        <p>Hayır. Hastalık sebebiyle yapılan yardımlar Gelir Vergisi Kanunu m.25/1 ile vergiden istisnadır; ödenekten gelir vergisi kesilmez. Rapor günleri için işverenin ödemediği ücretin vergisi ve primi de doğmaz.</p>
+        <h3>Verilerim bir yere gönderiliyor mu?</h3>
+        <p>Hayır. Hesap tarayıcınızda yapılır; maaşınız ve rapor bilgileriniz hiçbir sunucuya gönderilmez.</p>
+<!-- SSS:BITIS -->
+
+        <h2>Kaynaklar</h2>
+        <ul>
+          <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5510.pdf" rel="noopener">5510 sayılı Kanun</a> m.15–18 (7537 ve 7578 sayılı Kanunlarla değişik hâli; 3 Ekim 2026'da okundu)</li>
+          <li><a href="https://www.resmigazete.gov.tr/eskiler/2026/05/20260501-1.htm" rel="noopener">7578 sayılı Kanun</a>, Resmî Gazete 1 Mayıs 2026, sayı 33240: doğum sonrası 16 hafta</li>
+          <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.4.193.pdf" rel="noopener">193 sayılı Gelir Vergisi Kanunu</a> m.25/1</li>
+          <li>SGK 2025/3 sayılı Genelge: 7537 sayılı Kanun sonrası günlük kazanç hesabı</li>
+          <li>Asgari ücret ve SGK tavanı: <a href="../bordro/">Bordro Motoru</a> parametreleri</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <ul>
+          <li><a href="../maas-hesaplama/">Brüt net maaş hesaplama</a></li>
+          <li><a href="../issizlik-maasi-hesaplama/">İşsizlik maaşı hesaplama</a></li>
+          <li><a href="../isten-ayrilma-hesaplama/">İşten ayrılma paketi hesaplama</a></li>
+          <li><a href="../bordro-denetim/">Bordro denetimi</a></li>
+          <li><a href="../ne-zaman-emekli-olurum/">Ne zaman emekli olurum?</a></li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../koray-oner/">Koray Öner: çalışma dizini</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=5489aa17" defer></script>
+  <script src="../bordro/motor.js?v=2de19617" defer></script>
+  <script src="../bordro/rapor.js?v=db918c3d" defer></script>
+  <script src="script.js?v=45f8125a" defer></script>
+  <script src="../script.js?v=72b4a7c6" defer></script>
+</body>
+</html>
