@@ -2031,6 +2031,34 @@ function primIndirimi() {
    Tek seri; 2027 marka rengiyle, diğer yıllar ikincil tonda. Değerler
    finans/butce.js'ten, yazıdaki tabloyla ayrışamaz. */
 var BUTCE = require(path.join(KOK, "finans", "butce.js"));
+/* Ocak 2027: maaşa ve vergiye dokunan 11 kalem, kararı kim veriyor.
+   İki sütun: Meclis oyu gerekmeyen (kategorik 1) ve gereken (kategorik 2).
+   Sayılar kalemler.js'ten; 7 / 4 dışında bir dağılım çizimi durdurur. */
+var OCAK = require(path.join(KOK, "makaleler", "ocak-2027-meclis-mi-belirleyecek", "kalemler.js"));
+function ocakMeclis() {
+  var disi = OCAK.KALEMLER.filter(function (k) { return k.merci !== "meclis"; });
+  var ici = OCAK.KALEMLER.filter(function (k) { return k.merci === "meclis"; });
+  if (disi.length !== 7 || ici.length !== 4) throw new Error("Ocak 2027 kapağı yazıyla ayrıştı");
+  var s = baslikSatirlari("Ocak 2027'yi belirleyen 11 kalemin kararı kimde?",
+    "Maaşa, aylığa ve vergiye dokunan kalemler · yürürlükteki kanunlara göre",
+    "Ocak 2027'de maaşa ve vergiye dokunan 11 kalemin 7'si Meclis oyuna bağlı değil, 4'ü bağlı");
+  function sutun(x, gen, renk, baslik, liste) {
+    var out = '<text x="' + x + '" y="96" font-size="13" font-weight="700" fill="' + R.murekkep + '">' + esc(baslik) + "</text>" +
+      '<path d="M' + x + " 106 h" + gen + '" stroke="' + R.izgara + '" stroke-width="1"/>';
+    liste.forEach(function (k, i) {
+      var y = 130 + i * 29;
+      out += '<rect x="' + x + '" y="' + (y - 11) + '" width="12" height="12" rx="2" fill="' + renk + '"/>' +
+        '<text x="' + (x + 20) + '" y="' + y + '" font-size="13" fill="' + R.murekkep + '">' + esc(k.kisa) + "</text>";
+    });
+    return out;
+  }
+  s += sutun(24, 260, R.s1, "Meclis oyu gerekmez · " + disi.length, disi);
+  s += sutun(316, 260, R.s2, "Meclis oyu gerekir · " + ici.length, ici);
+  s += '<text x="316" y="268" font-size="12" fill="' + R.ikincil + '">Bütçe dışındaki üçünün</text>' +
+    '<text x="316" y="285" font-size="12" fill="' + R.ikincil + '">sunulmuş bir teklifi ya da takvimi yok.</text>';
+  return s + "</svg>";
+}
+
 function butceFaizVergi() {
   var d = BUTCE.YILLAR.map(function (y) { var x = BUTCE.yil(y); return { yil: y, oran: 100 * x.faiz / x.vergi, durum: x.durum }; });
   var z = d.reduce(function (m, x) { return x.oran > m.oran ? x : m; });
@@ -2171,6 +2199,12 @@ var KAPAKLAR = {
     baslik: "2026'da SGK primlerinde ne değişti?",
     alt: "Asgari ücret %27, GSS primi %154 arttı",
     cizim: sgkArtis
+  },
+  "ocak-2027-meclis-mi-belirleyecek": {
+    kicker: "Mevzuat · Takvim",
+    baslik: "Ocak 2027'yi Meclis mi belirleyecek?",
+    alt: "11 kalemin 7'si Meclis oyuna bağlı değil",
+    cizim: ocakMeclis
   },
   "butce-2027-faiz-vergi": {
     kicker: "Vergi · Bütçe",

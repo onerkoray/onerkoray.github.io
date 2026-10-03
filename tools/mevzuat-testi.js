@@ -102,8 +102,12 @@ IFADELER.forEach(function (x) {
   var b = esasNumaralari(oku(KADEME));
   gecer("torba yazısında esas numarası var", a.length >= 1, a.join(", ") || "(yok)");
   gecer("kademeli yazısında esas numarası var", b.length >= 1, b.join(", ") || "(yok)");
-  gecer("iki yazı aynı esas numarasını söylüyor",
-    a.length >= 1 && b.length >= 1 && a.join(",") === b.join(","),
+  /* Kademeli yazısının andığı her esas numarası torba yazısında da geçmeli.
+     Torba yazısı karşılaştırma için başka teklifler de anabilir (3 Ekim
+     2026: 2/3560, 48 imzalı bir torba teklif örneği); eşitlik şartı bunu
+     da hata sayıyordu. */
+  gecer("kademeli yazısının esas numaraları torba yazısında da var",
+    a.length >= 1 && b.length >= 1 && b.every(function (x) { return a.indexOf(x) !== -1; }),
     "torba: " + (a.join(", ") || "-") + "   kademeli: " + (b.join(", ") || "-") +
     "\n             Biri güncellenip öteki unutulmuş olabilir.");
 })();
