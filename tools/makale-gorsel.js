@@ -2169,6 +2169,30 @@ function kiraIstisnaSicrama() {
   return s + "</svg>";
 }
 
+/* Doğum izni yılının net farkı, brüt maaşa göre (yazının modülünden). */
+var DOGUM = require(path.join(KOK, "makaleler", "dogum-parasi-ne-kadar", "dogum.js"));
+function dogumYilFarki() {
+  var d = DOGUM.tablo().filter(function (k) { return k.brut <= DOGUM.TAVAN; });
+  var ilk = d[0].yilFarki, zir = d.reduce(function (m, k) { return k.yilFarki > m.yilFarki ? k : m; });
+  if (Math.round(ilk) !== -31103 || Math.round(zir.yilFarki) !== 79423) throw new Error("doğum kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 584, UST = 104, ALT = 300, YMIN = -50000, YMAX = 90000;
+  function y(v) { return ALT - (ALT - UST) * (v - YMIN) / (YMAX - YMIN); }
+  var s = baslikSatirlari("İzin yılı nette kayıp mı, kazanç mı?", "Doğum 15 Haziran 2026 · 168 gün ödenek · yıllık net fark, bin TL",
+    "Doğum izni yılının net farkı: asgari ücrette −31.103 TL, 60.000 TL brütte −8.499 TL, 200.000 TL brütte +79.423 TL, SGK tavanında −29.187 TL");
+  s += anahtarKutu(24, R.s2, "kayıp") + anahtarKutu(94, R.s1, "kazanç");
+  s += izgaraY(SOL, SAG, y, [0, -40000, -20000, 20000, 40000, 60000, 80000], function (v) { return isaretliBin(v / 1000); });
+  var gen = (SAG - SOL) / d.length, w = 36;
+  d.forEach(function (k, i) {
+    var cx = SOL + gen * (i + 0.5), v = k.yilFarki, ust = Math.min(y(v), y(0)), boy = Math.abs(y(v) - y(0));
+    s += '<rect x="' + (cx - w / 2).toFixed(1) + '" y="' + ust.toFixed(1) + '" width="' + w + '" height="' + Math.max(1, boy).toFixed(1) + '" rx="3" fill="' + (v < 0 ? R.s2 : R.s1) + '"/>';
+    s += cubukEtiket(cx, v < 0 ? y(v) + 16 : y(v) - 7, isaretliBin(Math.round(v / 1000)), 12);
+    var ad = k.brut === DOGUM.ASGARI ? "asgari" : k.brut === DOGUM.TAVAN ? "tavan" : nf0.format(k.brut / 1000) + " bin";
+    s += altYazi(cx, ALT + 22, ad);
+  });
+  s += altYazi((SOL + SAG) / 2, ALT + 42, "aylık brüt maaş");
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
   "vergi-borcunu-geciktirmek-karli-mi": {
     kicker: "Vergi · Borç",
@@ -2205,6 +2229,12 @@ var KAPAKLAR = {
     baslik: "Ocak 2027'yi Meclis mi belirleyecek?",
     alt: "11 kalemin 7'si Meclis oyuna bağlı değil",
     cizim: ocakMeclis
+  },
+  "dogum-parasi-ne-kadar": {
+    kicker: "Bordro · SGK",
+    baslik: "Doğum parası ne kadar?",
+    alt: "Asgari ücrette izin yılı 31.103 TL kayıp, 200 bin TL brütte 79.423 TL kazanç",
+    cizim: dogumYilFarki
   },
   "butce-2027-faiz-vergi": {
     kicker: "Vergi · Bütçe",

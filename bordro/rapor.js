@@ -20,8 +20,9 @@
  *           geçemez.
  *   m.18/4  Alt sınır yükselirse, yeni alt sınırın altındaki günlük kazançla
  *           ödenek alanlar o tarihten itibaren yeni alt sınırdan alır.
- *   GVK m.25/1: hastalık sebebiyle verilen yardımlar gelir vergisinden
- *           istisna; ödenekten kesinti yapılmaz.
+ *   GVK m.25/6: sosyal sigorta kurumlarının sigortalılara yaptığı
+ *           ödemeler (hastalıkta ayrıca m.25/1) gelir vergisinden istisna;
+ *           ödenekten kesinti yapılmaz.
  *
  * YASAL SAYI BU DOSYADA YOK. Asgari ücret ve SGK tavanı bordro/parametreler.js
  * dönemlerinden okunur (motor.parametre). Kesirler (1/2, 2/3, 90, 180, hafta
