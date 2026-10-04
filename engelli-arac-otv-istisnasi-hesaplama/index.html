@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=f7307c52" defer></script>
+  <meta charset="UTF-8">
+  <script src="../tema-erken.js?v=3d1c1238"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engelli Araç ÖTV İstisnası Hesaplama 2026 | Koray Öner</title>
+  <meta name="description" content="Engelli raporuyla ÖTV'siz araç: 2.873.900 TL sınırı, %40 yerli katkı, 10 yıl kuralı. Uygun musunuz, ne kadar ödersiniz, MTV ve 5 yıl içinde satış.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="gecerlilik" content="2027-01-01 | 2027 sınır tutarı (2026 yeniden değerleme oranıyla) açıklandı mı? hesap.js SINIR'a girilmeli ve node tools/engelli-arac-ornek.js çalıştırılmalı. 4760 m.7/1-2, m.15/2-a ve ÖTV (II) Sayılı Liste Uygulama Genel Tebliği II/C-1 yeniden okunmalı; yerli katkı oranı (CB Kararı) ve ÖTV oranları değişti mi?">
+  <link rel="canonical" href="https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=18057ad2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Engelli raporuyla ÖTV'siz araç">
+  <meta property="og:description" content="2026 sınırı 2.873.900 TL, yerli katkı %40, istisna 10 yılda bir. Sınırı 1 TL aşan araçta indirim sıfır; hemen altındakinde 1,36 milyon TL.">
+  <meta property="og:url" content="https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/engelli-arac-otv-istisnasi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Engelli araç ÖTV istisnası hesaplama">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Engelli raporuyla ÖTV'siz araç">
+  <meta name="twitter:description" content="Uygunluk, istisnayla ödeyeceğiniz tutar, MTV muafiyeti ve 5 yıl içinde satışta ÖTV: yürürlükteki kanun ve tebliğe göre.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/engelli-arac-otv-istisnasi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=4c3de685">
+  <link rel="stylesheet" href="style.css?v=fa1ab366">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "image": "https://korayoner.dev/images/engelli-arac-otv-istisnasi-hesaplama-koray-oner.png",
+        "@id": "https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/#app",
+        "name": "Engelli Araç ÖTV İstisnası Hesaplama",
+        "url": "https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "featureList": "4760 sayılı ÖTV Kanunu m.7/1-2'nin (a), (b) ve (c) bentleri; 7577 sayılı Kanunla yeniden düzenlenen ortopedik engelli ve özel tertibat yolu; 2026 sınırı 2.873.900 TL; %40 yerli katkı şartı; on yılda bir kuralı; anahtar teslim fiyattan vergisiz fiyata ters hesap ve ÖTV tarife boşluğu uyarısı; istisnayla ödenecek tutar; MTV muafiyeti ve ilk beş yılın MTV'si; beş yıl içinde satışta alıcının ödeyeceği ÖTV",
+        "description": "Engelli raporuyla araç alımında ÖTV istisnasına uygun olup olmadığınızı yürürlükteki kanun ve tebliğe göre denetler; istisnayla ödeyeceğiniz tutarı, tasarrufu, MTV muafiyetini ve satış takvimini hesaplar."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Engelli Araç ÖTV İstisnası Hesaplama",
+            "item": "https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Engelli araç ÖTV sınırı 2026'da ne kadar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Otomobilde istisna olmasaydı ödenecek ÖTV ve KDV dahil bedel 2.873.900 TL'yi aşmamalı (16 Seri No'lu Tebliğ, 1 Ocak 2026'dan beri). Tekerlekli sandalye ya da sedye kullanan %90 ve üzeri engellilerin yük-yolcu ve 9 kişilik araçlarında sınır yok; kamyonet ve vanda yalnız 2.800 cm³ sınırı var."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "ÖTV'siz araç kaç yılda bir alınır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On yılda bir. 7537 sayılı Kanun 27 Aralık 2024'ten beri süreyi beşten ona çıkardı ve bu, önceden araç almış olanlara da uygulanıyor. Araç beş yıldan sonra ÖTV ödenmeden satılabilir, ama yeni istisna için on yıl beklenir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Yerli katkı oranı şartı nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İstisnayla alınacak aracın model ve versiyon bazında yerli katkı oranı en az %40 olmalı (9321 sayılı Cumhurbaşkanı Kararı, 27 Aralık 2024). Vergi dairesi Sanayi ve Teknoloji Bakanlığının yayımladığı güncel yerli katkı oranı beyanlarına bakar. Bu şart yüzünden ithal araçların çoğu istisna dışında."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "%90'ın altında engellilik oranıyla ÖTV'siz araç alınır mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İki durumda alınır. Raporda yalnız hareket ettirici aksamda özel tertibatlı araç kullanmanız gerektiği yazıyorsa ve sürücü belgenizde bu tertibatın kodu varsa, tertibat yaptırılmış bir araçla. Ya da ortopedik engel oranınız %40 ve üzeriyse ve bu engel yüzünden sürücü belgesi alamıyorsanız. İki yolda da fiyat sınırı %90 ve üzeriyle aynı."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "ÖTV'siz aldığım aracı beş yıl dolmadan satarsam ne olur?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İstisnadan yararlanamayan birine satışta, ilk alıştaki vergisiz fiyat üzerinden ve tescil tarihindeki oranla ÖTV alıcıdan alınır. İstisnadan yararlanabilecek başka bir engelliye satışta ÖTV aranmaz. Erken satış, sizin yeni istisna için beklemeniz gereken on yılı kısaltmaz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Engelli aracında MTV ödenir mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Engellilik oranı %90 ve üzeriyse adınıza kayıtlı taşıtta ödenmez; %90'ın altındaysa ancak durumunuza uygun özel tertibatlı taşıtta ödenmez (197 s.K. m.4/1-c). Örnek araçta muafiyet ilk beş yılda 54.108 TL ediyor."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="../#projects">Araçlar</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#kim">Kim yararlanır</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> Engelli Araç ÖTV İstisnası Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Engelli raporuyla araç alımı · <span data-s="yil">2026</span></p>
+        <h1>Engelli raporuyla ÖTV'siz araç: uygun musunuz, ne kadar ödersiniz?</h1>
+        <p class="lede">
+          Engellilik oranınız, aracın türü ve fiyatından istisnanın hangi bendinden yararlanabileceğinizi,
+          şartların her birini ve istisnayla ödeyeceğiniz tutarı hesaplar. <span data-s="yil">2026</span>'da fiyat sınırı
+          <strong data-s="sinir">2.873.900 TL</strong>, aracın yerli katkı oranı en az %40 ve istisna on yılda bir.
+          Sınırı bir lira aşan araçta indirim kısmen değil tamamen kaybolur; araç bu sınırı istisna olmasaydı ödenecek
+          vergiler dahil fiyatla ölçer.
+        </p>
+        <p class="muted kunye-satiri">
+          4760 sayılı ÖTV Kanunu m.7 ve m.15 (7537 ve 7577 sayılı Kanunlarla değişik) ·
+          ÖTV oranları <a href="../otv-hesaplama/">ÖTV aracının tarifesinden</a> ·
+          hesap tarayıcınızda çalışır, veri gönderilmez
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-label="Engelli araç ÖTV istisnası hesaplayıcısı">
+      <div class="wrap">
+        <div class="ea-duzen">
+          <form class="ea-form" id="ea-form" novalidate>
+            <fieldset class="ea-grup">
+              <legend><span class="ea-no">1</span> Engel durumunuz</legend>
+              <div class="ea-grid">
+                <div class="ea-alan ea-genis">
+                  <span class="ea-etiket" id="e-durum-bas">Raporunuz hangisini söylüyor?</span>
+                  <div class="ea-secimler" role="group" aria-labelledby="e-durum-bas">
+                    <button type="button" class="secim" data-durum="a" aria-pressed="true">Engellilik oranı %90 ve üzeri</button>
+                    <button type="button" class="secim" data-durum="b" aria-pressed="false">%90 ve üzeri, tekerlekli sandalye ya da sedye</button>
+                    <button type="button" class="secim" data-durum="c1" aria-pressed="false">Özel tertibatla kendim kullanacağım</button>
+                    <button type="button" class="secim" data-durum="c2" aria-pressed="false">Ortopedik engel %40+, sürücü belgesi alamıyorum</button>
+                  </div>
+                </div>
+                <div class="ea-alan" data-gor="a b">
+                  <label for="e-oran">Engellilik oranı (%)</label>
+                  <input type="text" inputmode="numeric" id="e-oran" value="90" aria-describedby="e-oran-not">
+                  <small id="e-oran-not">Engellilik sağlık kurulu raporundaki tüm vücut fonksiyon kaybı oranı. 18 yaş altında ÇÖZGER.</small>
+                </div>
+                <div class="ea-alan" data-gor="b">
+                  <label for="e-sandalye">Raporda araç kullanamayacağınız ve sürekli tekerlekli sandalye ya da sedye kullanmanız gerektiği yazıyor mu?</label>
+                  <select id="e-sandalye"><option value="evet">Evet</option><option value="hayir">Hayır</option></select>
+                </div>
+                <div class="ea-alan" data-gor="c1" hidden>
+                  <label for="e-tertibat">Raporda "sadece hareket ettirici aksamda özel tertibatlı taşıt kullanması gerekir" değerlendirmesi var mı?</label>
+                  <select id="e-tertibat"><option value="evet">Evet</option><option value="hayir">Hayır</option></select>
+                </div>
+                <div class="ea-alan" data-gor="c1" hidden>
+                  <label for="e-kod">Sürücü belgenizde bu tertibatın kodu var mı?</label>
+                  <select id="e-kod"><option value="evet">Evet</option><option value="hayir">Hayır</option></select>
+                </div>
+                <div class="ea-alan" data-gor="c2" hidden>
+                  <label for="e-orto">Ortopedik engel oranı (%)</label>
+                  <input type="text" inputmode="numeric" id="e-orto" value="45" aria-describedby="e-orto-not">
+                  <small id="e-orto-not">Yalnız ortopedik engel varsa raporun oranı; başka engel de varsa ortopedik teşhisin karşısındaki oran.</small>
+                </div>
+                <div class="ea-alan" data-gor="c2" hidden>
+                  <label for="e-ehliyet">Ortopedik engeliniz yüzünden sürücü belgesi alamayacağınız raporda yazıyor mu?</label>
+                  <select id="e-ehliyet"><option value="evet">Evet</option><option value="hayir">Hayır</option></select>
+                </div>
+                <div class="ea-alan">
+                  <label for="e-onceki">Daha önce istisnayla araç aldınız mı?</label>
+                  <select id="e-onceki"><option value="hayir">Hayır</option><option value="evet">Evet</option></select>
+                </div>
+                <div class="ea-alan" data-onceki hidden>
+                  <label for="e-onceki-tarih">O aracın alış tarihi</label>
+                  <input type="date" id="e-onceki-tarih" value="2019-06-15">
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="ea-grup">
+              <legend><span class="ea-no">2</span> Araç</legend>
+              <div class="ea-grid">
+                <div class="ea-alan ea-genis">
+                  <span class="ea-etiket" id="e-sinif-bas">Taşıt türü</span>
+                  <div class="ea-secimler" role="group" aria-labelledby="e-sinif-bas">
+                    <button type="button" class="secim" data-sinif="binek" aria-pressed="true">Otomobil, SUV</button>
+                    <button type="button" class="secim" data-sinif="yukyolcu" aria-pressed="false">Panelvan, kombi</button>
+                    <button type="button" class="secim" data-sinif="dokuz" aria-pressed="false">9 kişilik</button>
+                    <button type="button" class="secim" data-sinif="kamyonet" aria-pressed="false">Kamyonet, van</button>
+                    <button type="button" class="secim" data-sinif="motosiklet" aria-pressed="false">Motosiklet</button>
+                  </div>
+                </div>
+                <div class="ea-alan ea-genis" data-arac="motor">
+                  <span class="ea-etiket" id="e-yakit-bas">Motor</span>
+                  <div class="ea-secimler" role="group" aria-labelledby="e-yakit-bas">
+                    <button type="button" class="secim" data-yakit="icten" aria-pressed="true">Benzin, dizel</button>
+                    <button type="button" class="secim" data-yakit="hibrit" aria-pressed="false">Hibrit</button>
+                    <button type="button" class="secim" data-yakit="phev" aria-pressed="false">Şarj edilebilir hibrit</button>
+                    <button type="button" class="secim" data-yakit="elektrik" aria-pressed="false">Elektrikli</button>
+                  </div>
+                </div>
+                <div class="ea-alan" data-yakitgor="icten hibrit phev">
+                  <label for="e-hacim">Motor silindir hacmi (cm³)</label>
+                  <input type="text" inputmode="numeric" id="e-hacim" value="1.400">
+                </div>
+                <div class="ea-alan" data-yakitgor="hibrit phev" hidden>
+                  <label for="e-ekw">Elektrik motoru gücü (kW)</label>
+                  <input type="text" inputmode="numeric" id="e-ekw" value="60">
+                </div>
+                <div class="ea-alan" data-yakitgor="elektrik" hidden>
+                  <label for="e-kw">Motor gücü (kW)</label>
+                  <input type="text" inputmode="numeric" id="e-kw" value="150">
+                </div>
+                <div class="ea-alan" data-yakitgor="phev" hidden>
+                  <label for="e-co2">CO₂ emisyonu (g/km)</label>
+                  <input type="text" inputmode="numeric" id="e-co2" value="20">
+                </div>
+                <div class="ea-alan" data-yakitgor="phev" hidden>
+                  <label for="e-menzil">Elektrikli menzil (km)</label>
+                  <input type="text" inputmode="numeric" id="e-menzil" value="80">
+                </div>
+                <div class="ea-alan" data-ticari hidden>
+                  <label for="e-4x4">Bütün tekerlekler motordan güç alıyor mu (4x4)?</label>
+                  <select id="e-4x4"><option value="hayir">Hayır</option><option value="evet">Evet</option></select>
+                </div>
+                <div class="ea-alan ea-genis">
+                  <label for="e-yerli">Model ve versiyonun yerli katkı oranı %40 veya üzeri mi?</label>
+                  <select id="e-yerli" aria-describedby="e-yerli-not">
+                    <option value="evet">Evet</option>
+                    <option value="hayir">Hayır</option>
+                    <option value="bilinmiyor">Bilmiyorum</option>
+                  </select>
+                  <small id="e-yerli-not">Vergi dairesi Sanayi ve Teknoloji Bakanlığının yayımladığı güncel yerli katkı oranı beyanlarına bakar. İthal araçların büyük kısmı bu şartı sağlamaz.</small>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="ea-grup" data-fiyat>
+              <legend><span class="ea-no">3</span> Fiyat</legend>
+              <div class="ea-grid">
+                <div class="ea-alan ea-genis">
+                  <span class="ea-etiket" id="e-tip-bas">Elinizdeki fiyat</span>
+                  <div class="ea-secimler" role="group" aria-labelledby="e-tip-bas">
+                    <button type="button" class="secim" data-tip="anahtar" aria-pressed="true">Anahtar teslim (vergiler dahil)</button>
+                    <button type="button" class="secim" data-tip="matrah" aria-pressed="false">Vergisiz fiyat</button>
+                  </div>
+                </div>
+                <div class="ea-alan">
+                  <label for="e-fiyat" id="e-fiyat-etiket">Anahtar teslim fiyat (TL)</label>
+                  <input type="text" inputmode="decimal" id="e-fiyat" value="1.850.000">
+                </div>
+                <div class="ea-alan">
+                  <label for="e-tarih">Alım tarihi</label>
+                  <input type="date" id="e-tarih" value="2026-10-04">
+                </div>
+              </div>
+            </fieldset>
+            <p class="ea-hata" id="e-hata" role="alert"></p>
+          </form>
+
+          <aside class="ea-sonuc" id="ea-sonuc" aria-live="polite" aria-labelledby="ea-cevap-bas">
+            <div class="ea-ust-satir">
+              <p class="ea-ust" id="ea-cevap-bas">İstisnayla ödeyeceğiniz</p>
+              <span class="ea-rozet" id="o-rozet"></span>
+            </div>
+            <p class="ea-cevap" id="o-toplam">—</p>
+            <p class="ea-alt" id="o-alt"></p>
+
+            <div class="ea-akis-kart">
+              <div class="ea-akis-ust">
+                <p class="ea-akis-baslik">Liste fiyatı nereye gidiyor?</p>
+                <div class="ea-secimler ea-mod" role="group" aria-label="Görünüm">
+                  <button type="button" class="secim" data-mod="normal" aria-pressed="false">Normal alıcı</button>
+                  <button type="button" class="secim" data-mod="istisna" aria-pressed="true">İstisnayla</button>
+                </div>
+              </div>
+              <div id="o-akis" class="ea-akis"></div>
+              <p class="ea-akis-not" id="o-akis-not"></p>
+            </div>
+
+            <div class="ea-sinir" id="o-sinir"></div>
+            <ul class="ea-kosullar" id="o-kosullar"></ul>
+            <dl class="ea-kalemler" id="o-kalemler"></dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <article class="content" id="kim">
+      <div class="wrap prose">
+        <h2>Kim yararlanır?</h2>
+        <p>İstisna 4760 sayılı Kanunun 7. maddesinin birinci fıkrasının (2) numaralı bendinde, dört alt bentte düzenleniyor. Hangisinden yararlanacağınızı engellilik oranınız, aracı kendiniz kullanıp kullanmayacağınız ve raporunuzdaki ifade belirliyor. Her yolda ortak üç şart var: aracın yerli katkı oranı en az %40, istisna on yılda bir ve araç ilk kez sizin adınıza tescil ediliyor.</p>
+<!-- EA-KARAR:BASLANGIC -->
+<figure class="ea-sekil" aria-labelledby="ek-b">
+<p class="ea-sekil-baslik" id="ek-b">Hangi bentten yararlanırsınız?</p>
+<p class="ea-sekil-alt">4760 s.K. m.7/1-2'nin alt bentleri, kanundaki sırayla.</p>
+<div class="ea-sekil-kap"><svg viewBox="0 0 640 452" role="img" aria-labelledby="ek-t ek-d"><title id="ek-t">Engelli araç ÖTV istisnası: hangi bent?</title><desc id="ek-d">Engellilik oranı yüzde 90 ve üzeriyse: tekerlekli sandalye ya da sedye ve yük-yolcu veya 9 kişilik araç varsa (b) bendi, fiyat sınırı yok; değilse (a) bendi, sınır var. Yüzde 90 altındaysa: raporda özel tertibat zorunluluğu ve sürücü belgesinde kod varsa (c) bendi bizzat kullanım; ortopedik engel yüzde 40 ve üzeri ve sürücü belgesi alamıyorsa (c) bendi ortopedik; hiçbiri değilse istisna yok. Her yolda ortak şart: yerli katkı yüzde 40, on yılda bir, sınırlı bentlerde vergiler dahil bedel sınırı.</desc><defs><marker id="ek-ok" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="k-ok-uc" d="M0 0 L8 4 L0 8 Z"/></marker></defs><rect class="k-soru" x="180" y="8" width="280" height="40" rx="8"/><text x="320" y="32" text-anchor="middle" class="t-ana">Engellilik oranı %90 ve üzeri mi?</text><path class="k-ok" d="M250 48 L165 90" marker-end="url(#ek-ok)"/><text class="t-kucuk" x="200" y="66" text-anchor="end">evet</text><path class="k-ok" d="M390 48 L475 90" marker-end="url(#ek-ok)"/><text class="t-kucuk" x="440" y="66" text-anchor="start">hayır</text><rect class="k-soru" x="20" y="92" width="290" height="52" rx="8"/><text x="165" y="114" text-anchor="middle">Tekerlekli sandalye ya da sedye</text><text x="165" y="130" text-anchor="middle">ve panelvan, kombi ya da 9 kişilik?</text><rect class="k-soru" x="330" y="92" width="290" height="52" rx="8"/><text x="475" y="114" text-anchor="middle">Raporda özel tertibat zorunluluğu</text><text x="475" y="130" text-anchor="middle">ve sürücü belgesinde kodu?</text><path class="k-ok" d="M90 144 L80 196" marker-end="url(#ek-ok)"/><text class="t-kucuk" x="80" y="172" text-anchor="end">evet</text><path class="k-ok" d="M240 144 L230 196" marker-end="url(#ek-ok)"/><text class="t-kucuk" x="242" y="172" text-anchor="start">hayır</text><path class="k-ok" d="M400 144 L410 196" marker-end="url(#ek-ok)"/><text class="t-kucuk" x="398" y="172" text-anchor="end">evet</text><path class="k-ok" d="M560 144 L560 196" marker-end="url(#ek-ok)"/><text class="t-kucuk" x="566" y="172" text-anchor="start">hayır</text><rect class="k-sonuc" x="10" y="198" width="150" height="56" rx="8"/><text x="85" y="222" text-anchor="middle" class="t-ana">(b) bendi</text><text x="85" y="238" text-anchor="middle">fiyat sınırı yok</text><rect class="k-sonuc" x="170" y="198" width="150" height="56" rx="8"/><text x="245" y="222" text-anchor="middle" class="t-ana">(a) bendi</text><text x="245" y="238" text-anchor="middle">sınır 2.873.900 TL</text><rect class="k-sonuc" x="335" y="198" width="150" height="56" rx="8"/><text x="410" y="222" text-anchor="middle" class="t-ana">(c) bizzat</text><text x="410" y="238" text-anchor="middle">kullanım, aynı sınır</text><rect class="k-soru" x="495" y="198" width="135" height="56" rx="8"/><text x="562.5" y="214" text-anchor="middle">Ortopedik %40+,</text><text x="562.5" y="230" text-anchor="middle">sürücü belgesi</text><text x="562.5" y="246" text-anchor="middle">alamıyor mu?</text><path class="k-ok" d="M530 254 L485 300" marker-end="url(#ek-ok)"/><text class="t-kucuk" x="500" y="280" text-anchor="end">evet</text><path class="k-ok" d="M600 254 L600 300" marker-end="url(#ek-ok)"/><text class="t-kucuk" x="606" y="280" text-anchor="start">hayır</text><rect class="k-sonuc" x="380" y="302" width="150" height="52" rx="8"/><text x="455" y="324" text-anchor="middle" class="t-ana">(c) ortopedik</text><text x="455" y="340" text-anchor="middle">aynı sınır</text><rect class="k-yok" x="540" y="302" width="90" height="52" rx="8"/><text x="585" y="324" text-anchor="middle" class="t-ana">İstisna</text><text x="585" y="340" text-anchor="middle" class="t-ana">yok</text><path class="k-ok" d="M85 254 L85 384" marker-end="url(#ek-ok)"/><path class="k-ok" d="M245 254 L245 384" marker-end="url(#ek-ok)"/><path class="k-ok" d="M410 254 L360 384" marker-end="url(#ek-ok)"/><path class="k-ok" d="M455 354 L430 384" marker-end="url(#ek-ok)"/><rect class="k-ortak" x="10" y="386" width="620" height="58" rx="8"/><text x="320" y="411" text-anchor="middle" class="t-ana">Her yolda: yerli katkı %40 · on yılda bir · ilk tescil engellinin adına</text><text x="320" y="427" text-anchor="middle">(a) ve (c): istisna olmasaydı ödenecek vergiler dahil bedel sınırı aşmamalı</text></svg></div>
+<figcaption>Yük-yolcu araç: panelvan, kombi gibi yük taşımasında kullanılıp yolcu kapasitesi istiap haddinin %50'sinin altında olan taşıt. Kaynak: 4760 s.K. m.7/1-2; ÖTV (II) Sayılı Liste Uygulama Genel Tebliği II/C-1.</figcaption>
+</figure>
+<!-- EA-KARAR:BITIS -->
+        <ul>
+          <li><strong>Engellilik oranı %90 ve üzeri (a).</strong> Aracın özel tertibatlı olması ya da sizin kullanmanız gerekmez. Otomobilde vergiler dahil bedel <span data-s="sinir">2.873.900 TL</span>'yi aşmamalı; kamyonet ve vanda (87.04) motor 2.800 cm³'ü aşmamalı; motosiklette sınır yok.</li>
+          <li><strong>Tekerlekli sandalye ya da sedye (b).</strong> Raporda aracı kullanamayacağınız ve sürekli tekerlekli sandalye ya da sedye kullanmanız gerektiği yazıyorsa, panelvan, kombi gibi yük-yolcu araçları ve sürücü dahil 9 kişilik araçlar <strong>fiyat sınırı olmadan</strong> alınabilir. 2.800 cm³'ü aşan, dört çeker ve 8 kişiye kadar binek otomobiller bu yolun dışında. Sandalye ya da sedye tertibatı tescilden önce yaptırılır.</li>
+          <li><strong>Özel tertibatla bizzat kullanım (c).</strong> Oran şartı yok. Raporda "sadece hareket ettirici aksamda özel tertibatlı taşıt kullanması gerekir" değerlendirmesi, sürücü belgesinde engele uygun tertibat kodu ve araçta pedallara ya da vites koluna sabitlenmiş tertibat gerekir. Direksiyon topuzu, sinyal ya da silecek kolunun taşınması tertibat sayılmaz. Otomatik vites, yalnız vites ve debriyajda tertibat gerektiren biri için tertibat yerine geçer.</li>
+          <li><strong>Ortopedik engeli %40 ve üzeri, sürücü belgesi alamayan (c).</strong> 7577 sayılı Kanunla 17 Nisan 2026'dan beri. Raporda ortopedik engel oranının %40 ve üzeri olduğu ve bu engel yüzünden sürücü belgesi alınamayacağı yazmalı; raporda yoksa sürücü sağlık raporu bunu göstermeli. Fiyat sınırı (a) ile aynı.</li>
+        </ul>
+        <p>(c) bendi Anayasa Mahkemesinin 22 Nisan 2025 tarihli kararıyla iptal edilmiş, iptal 26 Mart 2026'da yürürlüğe girmişti; 7577 sayılı Kanun bendi 17 Nisan 2026'dan geçerli olarak yeniden düzenledi ve ortopedik engeli yüzünden sürücü belgesi alamayanları da kapsama aldı.</p>
+
+        <h2 id="sinir">Fiyat sınırı: neden bir lira her şeyi değiştirir?</h2>
+        <p>Sınır, aracın sizin ödeyeceğiniz fiyatına değil, <strong>istisna olmasaydı ödenecek ÖTV ve KDV dahil bedeline</strong> uygulanıyor. Bedel <span data-s="sinir">2.873.900 TL</span>'yi aşarsa istisna kısmen değil, hiç uygulanmaz. Sınırın hemen altında kalan bir otomobilde indirim en büyük olduğu için, bir liralık fark yüz binlerce liralık bir uçuruma dönüşür.</p>
+<!-- EA-UCURUM:BASLANGIC -->
+<figure class="ea-sekil" aria-labelledby="eu-b">
+<p class="ea-sekil-baslik" id="eu-b">Bir lira farkla 1,36 milyon TL</p>
+<p class="ea-sekil-alt">1400 cm³'e kadar benzinli otomobil; anahtar teslim fiyat, vergisiz fiyata göre.</p>
+<div class="ea-sekil-kap"><svg viewBox="0 0 640 330" role="img" aria-labelledby="eu-t eu-d"><title id="eu-t">Vergisiz fiyata göre anahtar teslim fiyat, istisnalı ve istisnasız</title><desc id="eu-d">1400 cm³'e kadar benzinli otomobilde vergisiz fiyat 1.260.482 TL olana kadar istisnalı fiyat, istisnasız fiyatın çok altında; bu noktada fark 1,36 milyon TL. Bir lira daha pahalı araçta istisna uygulanmaz ve iki fiyat çakışır.</desc><path class="izgara" d="M70 276.0 H618"/><text class="t-mono" x="62" y="280.0" text-anchor="end">0</text><path class="izgara" d="M70 240.9 H618"/><text class="t-mono" x="62" y="244.9" text-anchor="end">0,5 mn</text><path class="izgara" d="M70 205.7 H618"/><text class="t-mono" x="62" y="209.7" text-anchor="end">1 mn</text><path class="izgara" d="M70 170.6 H618"/><text class="t-mono" x="62" y="174.6" text-anchor="end">1,5 mn</text><path class="izgara" d="M70 135.4 H618"/><text class="t-mono" x="62" y="139.4" text-anchor="end">2 mn</text><path class="izgara" d="M70 100.3 H618"/><text class="t-mono" x="62" y="104.3" text-anchor="end">2,5 mn</text><path class="izgara" d="M70 65.1 H618"/><text class="t-mono" x="62" y="69.1" text-anchor="end">3 mn</text><path class="izgara" d="M70 30.0 H618"/><text class="t-mono" x="62" y="34.0" text-anchor="end">3,5 mn</text><text class="t-mono" x="70.0" y="294" text-anchor="start">500 bin</text><text class="t-mono" x="207.0" y="294" text-anchor="middle">750 bin</text><text class="t-mono" x="344.0" y="294" text-anchor="middle">1.000 bin</text><text class="t-mono" x="481.0" y="294" text-anchor="middle">1.250 bin</text><text class="t-mono" x="618.0" y="294" text-anchor="end">1.500 bin</text><text x="618" y="314" text-anchor="end">vergisiz fiyat (ÖTV matrahı), TL</text><path class="sinir" d="M70 74.0 H618"/><text class="t-kucuk sol" x="76" y="68.0">sınır: vergiler dahil 2.873.900 TL</text><path class="alan-kazanc sol" d="M70 233.82857142857142 L486.7 169.7 L486.7 74.0 L486.5 74.1 L485.1 74.5 L483.7 74.9 L482.4 75.3 L481.0 75.7 L479.6 76.1 L478.3 76.5 L476.9 76.9 L475.5 77.3 L474.2 77.7 L472.8 78.1 L471.4 78.5 L470.0 78.9 L468.7 79.3 L467.3 79.7 L465.9 80.1 L464.6 80.5 L463.2 80.9 L461.8 81.3 L460.4 81.7 L459.1 82.1 L457.7 82.5 L456.3 82.9 L455.0 83.3 L453.6 83.7 L452.2 84.1 L450.9 84.5 L449.5 84.9 L448.1 85.3 L446.8 85.7 L445.4 86.1 L444.0 86.5 L442.6 86.9 L441.3 87.3 L439.9 87.7 L438.5 88.1 L437.2 88.5 L435.8 88.9 L434.4 89.3 L433.1 89.7 L431.7 90.1 L430.3 90.5 L428.9 90.9 L427.6 91.3 L426.2 91.7 L424.8 92.1 L423.5 92.5 L422.1 92.9 L420.7 93.3 L419.3 93.7 L418.0 94.1 L416.6 94.5 L415.2 94.9 L413.9 95.3 L412.5 95.7 L411.1 96.1 L409.8 96.5 L408.4 96.9 L407.0 97.3 L405.7 97.7 L404.3 98.1 L402.9 98.5 L401.5 98.9 L400.2 99.3 L398.8 99.7 L398.8 109.0 L398.8 109.0 L397.4 109.4 L396.1 109.8 L394.7 110.1 L393.3 110.5 L391.9 110.9 L390.6 111.3 L389.2 111.7 L387.8 112.0 L386.5 112.4 L385.1 112.8 L383.7 113.2 L382.4 113.6 L381.0 113.9 L379.6 114.3 L378.3 114.7 L376.9 115.1 L375.5 115.5 L374.1 115.8 L372.8 116.2 L371.4 116.6 L370.0 117.0 L368.7 117.4 L367.3 117.7 L365.9 118.1 L364.6 118.5 L363.2 118.9 L361.8 119.2 L360.4 119.6 L359.1 120.0 L357.7 120.4 L356.3 120.8 L355.0 121.1 L353.6 121.5 L352.2 121.9 L350.8 122.3 L349.5 122.7 L348.1 123.0 L346.7 123.4 L345.4 123.8 L344.0 124.2 L342.6 124.6 L341.3 124.9 L339.9 125.3 L338.5 125.7 L337.1 126.1 L335.8 126.5 L334.4 126.8 L333.0 127.2 L331.7 127.6 L330.3 128.0 L328.9 128.4 L327.6 128.7 L326.2 129.1 L324.8 129.5 L323.5 129.9 L322.1 130.3 L320.7 130.6 L319.3 131.0 L318.0 131.4 L316.6 131.8 L315.2 132.2 L313.9 132.5 L312.5 132.9 L311.1 133.3 L309.8 133.7 L308.4 134.1 L307.0 134.4 L305.6 134.8 L304.3 135.2 L302.9 135.6 L301.5 135.9 L300.2 136.3 L298.8 136.7 L297.4 137.1 L296.0 137.5 L294.7 137.8 L293.3 138.2 L291.9 138.6 L290.6 139.0 L289.2 139.4 L289.2 143.2 L289.2 143.2 L287.8 143.5 L286.5 143.9 L285.1 144.3 L283.7 144.6 L282.4 145.0 L281.0 145.4 L279.6 145.7 L278.2 146.1 L276.9 146.5 L275.5 146.8 L274.1 147.2 L272.8 147.6 L271.4 148.0 L270.0 148.3 L268.6 148.7 L267.3 149.1 L265.9 149.4 L264.5 149.8 L263.2 150.2 L261.8 150.5 L260.4 150.9 L259.1 151.3 L257.7 151.6 L256.3 152.0 L255.0 152.4 L253.6 152.8 L252.2 153.1 L250.8 153.5 L249.5 153.9 L248.1 154.2 L246.7 154.6 L245.4 155.0 L244.0 155.3 L242.6 155.7 L241.3 156.1 L239.9 156.4 L238.5 156.8 L237.1 157.2 L235.8 157.6 L234.4 157.9 L233.0 158.3 L231.7 158.7 L230.3 159.0 L228.9 159.4 L227.5 159.8 L226.2 160.1 L224.8 160.5 L223.4 160.9 L222.1 161.2 L220.7 161.6 L219.3 162.0 L218.0 162.3 L216.6 162.7 L215.2 163.1 L213.8 163.5 L212.5 163.8 L211.1 164.2 L209.7 164.6 L208.4 164.9 L207.0 165.3 L205.6 165.7 L204.3 166.0 L202.9 166.4 L201.5 166.8 L200.2 167.1 L198.8 167.5 L197.4 167.9 L196.0 168.3 L194.7 168.6 L193.3 169.0 L191.9 169.4 L190.6 169.7 L189.2 170.1 L187.8 170.5 L186.4 170.8 L185.1 171.2 L183.7 171.6 L182.3 171.9 L181.0 172.3 L179.6 172.7 L178.2 173.0 L176.9 173.4 L175.5 173.8 L174.1 174.2 L172.8 174.5 L171.4 174.9 L170.0 175.3 L168.6 175.6 L167.3 176.0 L165.9 176.4 L164.5 176.7 L163.2 177.1 L161.8 177.5 L160.4 177.8 L159.1 178.2 L157.7 178.6 L156.3 179.0 L154.9 179.3 L153.6 179.7 L152.2 180.1 L152.2 182.8 L152.2 182.8 L150.8 183.2 L149.5 183.5 L148.1 183.9 L146.7 184.2 L145.4 184.6 L144.0 185.0 L142.6 185.3 L141.2 185.7 L139.9 186.0 L138.5 186.4 L137.1 186.7 L135.8 187.1 L134.4 187.5 L133.0 187.8 L131.7 188.2 L130.3 188.5 L128.9 188.9 L127.5 189.3 L126.2 189.6 L124.8 190.0 L123.4 190.3 L122.1 190.7 L120.7 191.0 L119.3 191.4 L117.9 191.8 L116.6 192.1 L115.2 192.5 L113.8 192.8 L112.5 193.2 L111.1 193.6 L109.7 193.9 L108.4 194.3 L107.0 194.6 L105.6 195.0 L104.3 195.3 L102.9 195.7 L101.5 196.1 L100.1 196.4 L98.8 196.8 L97.4 197.1 L96.0 197.5 L94.7 197.9 L93.3 198.2 L91.9 198.6 L90.5 198.9 L89.2 199.3 L87.8 199.6 L86.4 200.0 L85.1 200.4 L83.7 200.7 L82.3 201.1 L81.0 201.4 L79.6 201.8 L78.2 202.2 L76.8 202.5 L75.5 202.9 L74.1 203.2 L72.7 203.6 L71.4 204.0 L70.0 204.3 Z"/><path class="s-normal ciz" d="M70.0 204.3 L71.4 204.0 L72.7 203.6 L74.1 203.2 L75.5 202.9 L76.8 202.5 L78.2 202.2 L79.6 201.8 L81.0 201.4 L82.3 201.1 L83.7 200.7 L85.1 200.4 L86.4 200.0 L87.8 199.6 L89.2 199.3 L90.5 198.9 L91.9 198.6 L93.3 198.2 L94.7 197.9 L96.0 197.5 L97.4 197.1 L98.8 196.8 L100.1 196.4 L101.5 196.1 L102.9 195.7 L104.3 195.3 L105.6 195.0 L107.0 194.6 L108.4 194.3 L109.7 193.9 L111.1 193.6 L112.5 193.2 L113.8 192.8 L115.2 192.5 L116.6 192.1 L117.9 191.8 L119.3 191.4 L120.7 191.0 L122.1 190.7 L123.4 190.3 L124.8 190.0 L126.2 189.6 L127.5 189.3 L128.9 188.9 L130.3 188.5 L131.7 188.2 L133.0 187.8 L134.4 187.5 L135.8 187.1 L137.1 186.7 L138.5 186.4 L139.9 186.0 L141.2 185.7 L142.6 185.3 L144.0 185.0 L145.4 184.6 L146.7 184.2 L148.1 183.9 L149.5 183.5 L150.8 183.2 L152.2 182.8 L152.2 182.8 L152.2 180.1 L153.6 179.7 L154.9 179.3 L156.3 179.0 L157.7 178.6 L159.1 178.2 L160.4 177.8 L161.8 177.5 L163.2 177.1 L164.5 176.7 L165.9 176.4 L167.3 176.0 L168.6 175.6 L170.0 175.3 L171.4 174.9 L172.8 174.5 L174.1 174.2 L175.5 173.8 L176.9 173.4 L178.2 173.0 L179.6 172.7 L181.0 172.3 L182.3 171.9 L183.7 171.6 L185.1 171.2 L186.4 170.8 L187.8 170.5 L189.2 170.1 L190.6 169.7 L191.9 169.4 L193.3 169.0 L194.7 168.6 L196.0 168.3 L197.4 167.9 L198.8 167.5 L200.2 167.1 L201.5 166.8 L202.9 166.4 L204.3 166.0 L205.6 165.7 L207.0 165.3 L208.4 164.9 L209.7 164.6 L211.1 164.2 L212.5 163.8 L213.8 163.5 L215.2 163.1 L216.6 162.7 L218.0 162.3 L219.3 162.0 L220.7 161.6 L222.1 161.2 L223.4 160.9 L224.8 160.5 L226.2 160.1 L227.5 159.8 L228.9 159.4 L230.3 159.0 L231.7 158.7 L233.0 158.3 L234.4 157.9 L235.8 157.6 L237.1 157.2 L238.5 156.8 L239.9 156.4 L241.3 156.1 L242.6 155.7 L244.0 155.3 L245.4 155.0 L246.7 154.6 L248.1 154.2 L249.5 153.9 L250.8 153.5 L252.2 153.1 L253.6 152.8 L255.0 152.4 L256.3 152.0 L257.7 151.6 L259.1 151.3 L260.4 150.9 L261.8 150.5 L263.2 150.2 L264.5 149.8 L265.9 149.4 L267.3 149.1 L268.6 148.7 L270.0 148.3 L271.4 148.0 L272.8 147.6 L274.1 147.2 L275.5 146.8 L276.9 146.5 L278.2 146.1 L279.6 145.7 L281.0 145.4 L282.4 145.0 L283.7 144.6 L285.1 144.3 L286.5 143.9 L287.8 143.5 L289.2 143.2 L289.2 143.2 L289.2 139.4 L290.6 139.0 L291.9 138.6 L293.3 138.2 L294.7 137.8 L296.0 137.5 L297.4 137.1 L298.8 136.7 L300.2 136.3 L301.5 135.9 L302.9 135.6 L304.3 135.2 L305.6 134.8 L307.0 134.4 L308.4 134.1 L309.8 133.7 L311.1 133.3 L312.5 132.9 L313.9 132.5 L315.2 132.2 L316.6 131.8 L318.0 131.4 L319.3 131.0 L320.7 130.6 L322.1 130.3 L323.5 129.9 L324.8 129.5 L326.2 129.1 L327.6 128.7 L328.9 128.4 L330.3 128.0 L331.7 127.6 L333.0 127.2 L334.4 126.8 L335.8 126.5 L337.1 126.1 L338.5 125.7 L339.9 125.3 L341.3 124.9 L342.6 124.6 L344.0 124.2 L345.4 123.8 L346.7 123.4 L348.1 123.0 L349.5 122.7 L350.8 122.3 L352.2 121.9 L353.6 121.5 L355.0 121.1 L356.3 120.8 L357.7 120.4 L359.1 120.0 L360.4 119.6 L361.8 119.2 L363.2 118.9 L364.6 118.5 L365.9 118.1 L367.3 117.7 L368.7 117.4 L370.0 117.0 L371.4 116.6 L372.8 116.2 L374.1 115.8 L375.5 115.5 L376.9 115.1 L378.3 114.7 L379.6 114.3 L381.0 113.9 L382.4 113.6 L383.7 113.2 L385.1 112.8 L386.5 112.4 L387.8 112.0 L389.2 111.7 L390.6 111.3 L391.9 110.9 L393.3 110.5 L394.7 110.1 L396.1 109.8 L397.4 109.4 L398.8 109.0 L398.8 109.0 L398.8 99.7 L400.2 99.3 L401.5 98.9 L402.9 98.5 L404.3 98.1 L405.7 97.7 L407.0 97.3 L408.4 96.9 L409.8 96.5 L411.1 96.1 L412.5 95.7 L413.9 95.3 L415.2 94.9 L416.6 94.5 L418.0 94.1 L419.3 93.7 L420.7 93.3 L422.1 92.9 L423.5 92.5 L424.8 92.1 L426.2 91.7 L427.6 91.3 L428.9 90.9 L430.3 90.5 L431.7 90.1 L433.1 89.7 L434.4 89.3 L435.8 88.9 L437.2 88.5 L438.5 88.1 L439.9 87.7 L441.3 87.3 L442.6 86.9 L444.0 86.5 L445.4 86.1 L446.8 85.7 L448.1 85.3 L449.5 84.9 L450.9 84.5 L452.2 84.1 L453.6 83.7 L455.0 83.3 L456.3 82.9 L457.7 82.5 L459.1 82.1 L460.4 81.7 L461.8 81.3 L463.2 80.9 L464.6 80.5 L465.9 80.1 L467.3 79.7 L468.7 79.3 L470.0 78.9 L471.4 78.5 L472.8 78.1 L474.2 77.7 L475.5 77.3 L476.9 76.9 L478.3 76.5 L479.6 76.1 L481.0 75.7 L482.4 75.3 L483.7 74.9 L485.1 74.5 L486.5 74.1 L487.8 73.7 L489.2 73.3 L490.6 72.9 L492.0 72.5 L493.3 72.1 L494.7 71.7 L496.1 71.3 L497.4 70.9 L498.8 70.5 L500.2 70.1 L501.6 69.7 L502.9 69.3 L504.3 68.9 L505.7 68.5 L507.0 68.1 L508.4 67.7 L509.8 67.3 L511.1 66.9 L512.5 66.5 L513.9 66.1 L515.3 65.7 L516.6 65.3 L518.0 64.9 L519.4 64.5 L520.7 64.1 L522.1 63.7 L523.5 63.3 L524.8 62.9 L526.2 62.5 L527.6 62.1 L529.0 61.7 L530.3 61.3 L531.7 60.9 L533.1 60.5 L534.4 60.1 L535.8 59.7 L537.2 59.3 L538.5 58.9 L539.9 58.5 L541.3 58.1 L542.7 57.7 L544.0 57.3 L545.4 56.9 L546.8 56.5 L548.1 56.1 L549.5 55.7 L550.9 55.3 L552.2 54.9 L553.6 54.5 L555.0 54.1 L556.3 53.7 L557.7 53.3 L559.1 52.8 L560.5 52.4 L561.8 52.0 L563.2 51.6 L564.6 51.2 L565.9 50.8 L567.3 50.4 L568.7 50.0 L570.0 49.6 L571.4 49.2 L572.8 48.8 L574.2 48.4 L575.5 48.0 L576.9 47.6 L578.3 47.2 L579.6 46.8 L581.0 46.4 L582.4 46.0 L583.8 45.6 L585.1 45.2 L586.5 44.8 L587.9 44.4 L589.2 44.0 L590.6 43.6 L592.0 43.2 L593.3 42.8 L594.7 42.4 L596.1 42.0 L597.5 41.6 L598.8 41.2 L600.2 40.8 L601.6 40.4 L602.9 40.0 L604.3 39.6 L605.7 39.2 L607.0 38.8 L608.4 38.4 L609.8 38.0 L611.1 37.6 L612.5 37.2 L613.9 36.8 L615.3 36.4 L616.6 36.0 L618.0 35.6"/><path class="s-istisna ciz" d="M70.0 233.8 L486.7 169.7 L486.7 74.0 L618.0 35.6"/><circle class="nokta-1" cx="486.7" cy="169.7" r="4.5"/><circle class="nokta-2" cx="486.7" cy="74.0" r="4.5"/><text class="t-ana sol" x="476.7" y="125.8" text-anchor="end">1,36 milyon TL fark</text><text class="t-kucuk sol" x="496.7" y="187.7">1 TL sonra: fark yok</text><rect class="lej-2" x="70" y="6" width="11" height="11" rx="2"/><text x="86" y="15">İstisnasız (liste fiyatı)</text><rect class="lej-1" x="284" y="6" width="11" height="11" rx="2"/><text x="300" y="15">İstisnayla</text><rect class="lej-k" x="400" y="6" width="11" height="11" rx="2"/><text x="416" y="15">tasarruf</text></svg></div>
+<figcaption>Turuncu çizgi istisnasız liste fiyatı: ÖTV eşiklerinde (650, 900 ve 1.100 bin TL) sıçrar, çünkü üst oran bütün matraha uygulanır. Mavi çizgi istisnalı fiyat: vergisiz fiyat + %20 KDV. Liste fiyatı 2.873.900 TL'ye değdiği noktada (vergisiz 1.260.482 TL) istisna biter ve iki çizgi birleşir.</figcaption>
+</figure>
+<!-- EA-UCURUM:BITIS -->
+        <p>Tasarrufun içinde yalnız ÖTV yok: KDV, ÖTV dahil bedel üzerinden hesaplandığı için ÖTV kalkınca ÖTV'nin KDV'si de kalkar. Tasarruf, ÖTV tutarının 1,2 katıdır. Sınır her yıl bir önceki yılın yeniden değerleme oranıyla artar ve 100 liranın altındaki kesir atılır: kanundaki 200.000 TL'den (2018) bu yıla zincir <span data-s="sinir">2.873.900 TL</span>'ye varır.</p>
+
+        <h2 id="sinif">Motor sınıfına göre en büyük indirim</h2>
+        <p>Sınırın altında kalabilen en pahalı aracın vergisiz fiyatı, ÖTV oranı yükseldikçe düşer: ÖTV oranı yüksek bir motorda sınıra daha ucuz bir araçla ulaşılır ama o aracın ÖTV'si daha büyüktür. Bu yüzden indirimin tavanı sınıftan sınıfa değişir.</p>
+<!-- EA-SINIF:BASLANGIC -->
+<figure class="ea-sekil" aria-labelledby="es-b">
+<p class="ea-sekil-baslik" id="es-b">Sınırdaki en büyük tasarruf, motor sınıfına göre</p>
+<p class="ea-sekil-alt">Her sınıfta liste fiyatı sınırın altında kalan en pahalı araç.</p>
+<div class="ea-sekil-kap"><svg viewBox="0 0 640 254" role="img" aria-labelledby="es-t es-d"><title id="es-t">Motor sınıfına göre sınırdaki en büyük tasarruf</title><desc id="es-d">1600–2000 cm³ benzin, dizel: 1.724.340 TL; 1400 cm³'e kadar benzin, dizel: 1.361.321 TL; 1400–1600 cm³ benzin, dizel: 1.361.321 TL; Hibrit, 1800 cm³'e kadar, elektrik motoru 50 kW üstü: 1.277.289 TL; Şarj edilebilir hibrit, 1600 cm³'e kadar: 1.231.671 TL; Elektrikli, 160 kW üstü: 1.132.142 TL; Elektrikli, 160 kW'a kadar: 495.000 TL</desc><text x="200" y="29" text-anchor="end" class="t-ana">Benzin, dizel 1601–2000</text><rect class="cubuk-zemin" x="210" y="18" width="350" height="14" rx="3"/><rect class="cubuk uza" x="210" y="18" width="301.8" height="14" rx="3"/><text class="t-mono t-ana sol" x="519.8" y="29">1,72 mn</text><text x="200" y="63" text-anchor="end">Benzin, dizel ≤1400 cm³</text><rect class="cubuk-zemin" x="210" y="52" width="350" height="14" rx="3"/><rect class="cubuk uza" x="210" y="52" width="238.2" height="14" rx="3"/><text class="t-mono t-ana sol" x="456.2" y="63">1,36 mn</text><text x="200" y="97" text-anchor="end">Benzin, dizel 1401–1600</text><rect class="cubuk-zemin" x="210" y="86" width="350" height="14" rx="3"/><rect class="cubuk uza" x="210" y="86" width="238.2" height="14" rx="3"/><text class="t-mono t-ana sol" x="456.2" y="97">1,36 mn</text><text x="200" y="131" text-anchor="end">Hibrit ≤1800 cm³, 50 kW+</text><rect class="cubuk-zemin" x="210" y="120" width="350" height="14" rx="3"/><rect class="cubuk uza" x="210" y="120" width="223.5" height="14" rx="3"/><text class="t-mono t-ana sol" x="441.5" y="131">1,28 mn</text><text x="200" y="165" text-anchor="end">Şarj edilebilir hibrit</text><rect class="cubuk-zemin" x="210" y="154" width="350" height="14" rx="3"/><rect class="cubuk uza" x="210" y="154" width="215.5" height="14" rx="3"/><text class="t-mono t-ana sol" x="433.5" y="165">1,23 mn</text><text x="200" y="199" text-anchor="end">Elektrikli &gt;160 kW</text><rect class="cubuk-zemin" x="210" y="188" width="350" height="14" rx="3"/><rect class="cubuk uza" x="210" y="188" width="198.1" height="14" rx="3"/><text class="t-mono t-ana sol" x="416.1" y="199">1,13 mn</text><text x="200" y="233" text-anchor="end">Elektrikli ≤160 kW</text><rect class="cubuk-zemin" x="210" y="222" width="350" height="14" rx="3"/><rect class="cubuk uza" x="210" y="222" width="86.6" height="14" rx="3"/><text class="t-mono t-ana sol" x="304.6" y="233">0,50 mn</text></svg></div>
+<figcaption>En büyük indirim 1600–2000 cm³ benzin, dizel sınıfında: ÖTV oranı %150 olduğu için sınıra ucuz bir araçla ulaşılır ama ÖTV'si büyüktür. 160 kW'a kadar elektrikli otomobilde ÖTV %25'te kaldığı sürece liste fiyatı sınıra yaklaşamaz; en büyük tasarruf 495.000 TL.</figcaption>
+<div class="table-scroll">
+<table class="data-table">
+<caption>Sınırın altında kalabilecek en pahalı araç, motor sınıfına göre. Liste fiyatı her satırda 2.873.900 TL; 160 kW'a kadar elektrikli otomobilde 2.475.000 TL.</caption>
+<thead><tr><th scope="col">Motor</th><th scope="col">Vergisiz fiyat</th><th scope="col">ÖTV</th><th scope="col">İstisnayla</th><th scope="col">Tasarruf</th></tr></thead>
+<tbody>
+<tr><th scope="row">Benzin, dizel ≤1400 cm³</th><td>1.260.482 TL</td><td>%90</td><td>1.512.579 TL</td><td><strong>1.361.321 TL</strong> (%47,4)</td></tr>
+<tr><th scope="row">Benzin, dizel 1401–1600</th><td>1.260.482 TL</td><td>%90</td><td>1.512.579 TL</td><td><strong>1.361.321 TL</strong> (%47,4)</td></tr>
+<tr><th scope="row">Benzin, dizel 1601–2000</th><td>957.967 TL</td><td>%150</td><td>1.149.560 TL</td><td><strong>1.724.340 TL</strong> (%60,0)</td></tr>
+<tr><th scope="row">Hibrit ≤1800 cm³, 50 kW+</th><td>1.330.509 TL</td><td>%80</td><td>1.596.611 TL</td><td><strong>1.277.289 TL</strong> (%44,4)</td></tr>
+<tr><th scope="row">Şarj edilebilir hibrit</th><td>1.368.524 TL</td><td>%75</td><td>1.642.229 TL</td><td><strong>1.231.671 TL</strong> (%42,9)</td></tr>
+<tr><th scope="row">Elektrikli ≤160 kW</th><td>1.650.000 TL</td><td>%25</td><td>1.980.000 TL</td><td><strong>495.000 TL</strong> (%20,0)</td></tr>
+<tr><th scope="row">Elektrikli &gt;160 kW</th><td>1.451.465 TL</td><td>%65</td><td>1.741.758 TL</td><td><strong>1.132.142 TL</strong> (%39,4)</td></tr>
+</tbody>
+</table>
+</div>
+</figure>
+<!-- EA-SINIF:BITIS -->
+
+        <h2 id="ornek">Örnek</h2>
+<!-- EA-ORNEK:BASLANGIC -->
+<div class="ea-ornek">
+<p>Engellilik oranı %90 olan biri, yerli katkı oranı %40'ın üstünde, 1400 cm³ benzinli bir otomobil alıyor. Liste fiyatı 1.850.000 TL ve daha önce istisnadan yararlanmamış.</p>
+<dl>
+<dt>Vergisiz fiyat</dt><dd>880.952 TL (matrah 650.000–900.000 TL aralığında: ÖTV %75)</dd>
+<dt>Liste fiyatındaki ÖTV</dt><dd>660.714 TL</dd>
+<dt>Vergiler dahil bedel</dt><dd>1.850.000 TL: sınırın 1.023.900 TL altında</dd>
+<dt>İstisnayla ödenecek</dt><dd>1.057.143 TL (vergisiz fiyat + %20 KDV)</dd>
+<dt>Tasarruf</dt><dd>792.857 TL (%42,9): ÖTV 660.714 TL ve onun KDV'si 132.143 TL</dd>
+<dt>MTV</dt><dd>muaf; normal alıcı ilk yıl 12.028 TL, ilk beş yılda 54.108 TL öderdi</dd>
+<dt>Satış</dt><dd>4 Ekim 2031'e kadar istisnasız birine satılırsa alıcı yaklaşık 660.714 TL ÖTV öder</dd>
+<dt>Yeni istisna</dt><dd>en erken 4 Ekim 2036</dd>
+</dl>
+</div>
+<!-- EA-ORNEK:BITIS -->
+
+        <h2 id="satis">Aracı ne zaman satabilirim, ne zaman yenisini alabilirim?</h2>
+        <p>Satış ve yeni istisna iki ayrı saatle işler. Beş yıl dolmadan aracı istisnadan yararlanamayan birine satarsanız ÖTV, ilk alıştaki vergisiz fiyat üzerinden, satış tarihindeki oranla <strong>alıcıdan</strong> alınır (4760 s.K. m.15/2-a). İstisnadan yararlanabilecek başka bir engelliye satışta ÖTV aranmaz. Beş yıldan sonra satış serbest; ama yeni bir istisnalı araç ancak ilk alıştan on yıl sonra alınabilir. Aracı erken satıp ÖTV'sini ödetmek bu süreyi kısaltmaz.</p>
+<!-- EA-TAKVIM:BASLANGIC -->
+<figure class="ea-sekil" aria-labelledby="et-b">
+<p class="ea-sekil-baslik" id="et-b">Satış ve yeni istisna takvimi</p>
+<p class="ea-sekil-alt">Yıl; ilk tescilden itibaren.</p>
+<div class="ea-sekil-kap"><svg viewBox="0 0 640 150" role="img" aria-labelledby="et-t et-d"><title id="et-t">İstisnalı araçta satış ve yeni istisna takvimi</title><desc id="et-d">İlk beş yıl: istisnasız birine satışta alıcı ÖTV öder, başka bir engelliye satış vergisiz. Beşinci yıldan sonra satış serbest. Onuncu yıl dolunca yeni bir istisnalı araç alınabilir; eldeki aracı satmak gerekmez.</desc><rect class="z-kirmizi" x="20" y="34" width="298" height="30" rx="5"/><rect class="z-gri" x="322" y="34" width="298" height="30" rx="5"/><text class="t-ana" x="30" y="53">0–5 yıl: istisnasız alıcı ÖTV öder</text><text class="t-ana" x="332" y="53">5–10 yıl: satış serbest</text><rect class="z-yesil" x="616" y="28" width="8" height="42" rx="3"/><path class="izgara" d="M20.0 72 V80"/><text class="t-mono" x="20.0" y="94" text-anchor="middle">0</text><path class="izgara" d="M80.0 72 V80"/><text class="t-mono" x="80.0" y="94" text-anchor="middle">1</text><path class="izgara" d="M140.0 72 V80"/><text class="t-mono" x="140.0" y="94" text-anchor="middle">2</text><path class="izgara" d="M200.0 72 V80"/><text class="t-mono" x="200.0" y="94" text-anchor="middle">3</text><path class="izgara" d="M260.0 72 V80"/><text class="t-mono" x="260.0" y="94" text-anchor="middle">4</text><path class="izgara" d="M320.0 72 V80"/><text class="t-mono" x="320.0" y="94" text-anchor="middle">5</text><path class="izgara" d="M380.0 72 V80"/><text class="t-mono" x="380.0" y="94" text-anchor="middle">6</text><path class="izgara" d="M440.0 72 V80"/><text class="t-mono" x="440.0" y="94" text-anchor="middle">7</text><path class="izgara" d="M500.0 72 V80"/><text class="t-mono" x="500.0" y="94" text-anchor="middle">8</text><path class="izgara" d="M560.0 72 V80"/><text class="t-mono" x="560.0" y="94" text-anchor="middle">9</text><path class="izgara" d="M620.0 72 V80"/><text class="t-mono" x="620.0" y="94" text-anchor="middle">10</text><text class="t-kucuk" x="20" y="20">alış (ilk tescil)</text><text class="t-kucuk" x="620" y="20" text-anchor="end">yeni istisna hakkı</text><text class="t-kucuk" x="20" y="118">Başka bir engelliye satış her zaman ÖTV'siz.</text><text class="t-kucuk" x="20" y="136">Erken satış ve ÖTV ödenmesi on yılı kısaltmaz; on yıl dolunca eldeki aracı satmak gerekmez.</text></svg></div>
+<figcaption>Kaynak: 4760 s.K. m.7/1-2 ve m.15/2-a; ÖTV (II) Sayılı Liste Uygulama Genel Tebliği IV/F-1.1.</figcaption>
+</figure>
+<!-- EA-TAKVIM:BITIS -->
+        <p>On yıl kuralı 7537 sayılı Kanunla 27 Aralık 2024'ten beri herkese uygulanıyor: o tarihten önce beş yıl kuralıyla araç almış olanlar için de bir sonraki istisna, önceki alıştan on yıl sonra. Deprem, sel, yangın ya da kaza yüzünden hurdaya çıkan araçta istisna on yıl dolmadan bir kez daha kullanılabilir; ayıplı mal olarak iade edilen aracın yerine alınan araçta da istisna uygulanır ve on yıl yeni alıştan başlar.</p>
+
+        <h2 id="mtv">MTV muafiyeti</h2>
+        <p>Motorlu taşıtlar vergisinde muafiyet ayrı bir kanunda ve ÖTV'den farklı kurgulanmış (197 s.K. m.4/1-c): %90 ve üzeri engellilerin adına kayıtlı taşıtlar ile diğer engellilerin durumlarına uygun özel tertibatlı taşıtları MTV'den müstesna. Ortopedik engeli yüzünden sürücü belgesi alamayan biri için alınan araç özel tertibatlı olmadığından, kanun metnine göre MTV ödenir. Bu durumda MTV'nin dayandığı taşıt değeri KDV matrahıdır (m.2/20); ÖTV istisna edildiği için vergisiz fiyattır, yani normal alıcınınkinden düşük bir kademeye düşebilir.</p>
+
+        <h2 id="belgeler">Belgeler ve işlem</h2>
+        <ol>
+          <li><strong>Rapor.</strong> Yetkili sağlık kurumundan engellilik sağlık kurulu raporu (18 yaş altında ÇÖZGER). Birden çok rapor varsa en son tarihli rapor geçerli. Süreli rapor, bitimine en az altı ay kala kullanılabilir; araç alındıktan sonra raporun süresi dolsa da istisna düşmez.</li>
+          <li><strong>Sürücü belgesi ve tertibat.</strong> Özel tertibat yolunda sürücü belgesinde tertibat kodu ve araçta yapılan tertibatı gösteren, TSE onaylı teknik belge.</li>
+          <li><strong>Bayi.</strong> Belgeleri bayiye verirsiniz; bayi faturada ÖTV'yi göstermez, "ÖTV Kanununun 7/2 Maddesi Kapsamında Hesaplanıp Fatura Bedeline Dâhil Edilmeyen ÖTV Tutarı" şerhini düşer ve belgeleri vergi dairesine verir. Vergi dairesi raporu Sağlık Bakanlığı sisteminden doğrulayıp "ÖTV Ödeme Belgesi" verir; tescil bununla yapılır.</li>
+          <li><strong>Daha önce yararlandım mı?</strong> Bayi, on yılın dolup dolmadığını Gelir İdaresinin İnternet Vergi Dairesinde "Engellilik İstisnası Bilgileri" sorgusundan görür.</li>
+        </ol>
+
+        <h2 id="kayip">İstisnayı geri aldıran durumlar</h2>
+        <p>Araç engelli tarafından bizzat kullanılmalı; kullanamıyorsa sürekli onun istifadesine sunulmalı. Zorunlu sebepler dışında böyle olmadığı, ya da yaptırılan tertibatın sonradan söküldüğü tespit edilirse ödenmeyen ÖTV, vergi ziyaı cezası ve gecikme faiziyle engelliden istenir. Tespit ilk alıştan beş yıl geçtikten sonra yapılırsa işlem yapılmaz. Araç muvazaalı olarak engelli adına alınıp başkası tarafından kullanılıyorsa vergi, işleme taraf olanların hepsinden müteselsilen aranır.</p>
+
+        <h2>Kapsam dışı ve varsayımlar</h2>
+        <p>Araç yürürlükteki ÖTV oranlarını (24/7/2025 tarihli ve 10115 sayılı Cumhurbaşkanı Kararı) ve <span data-s="yil">2026</span> sınırını kullanır. Kamyonet (87.04) ve motosiklette (87.11) uygunluğu denetler ama tutar hesaplamaz. İthal edilen araçta gümrük istisnası, emzirme ya da trafik sigortası gibi kalemler hesaba girmez. MTV, bugünkü tarifeyle yeni tescilli bir otomobilin ilk beş yılı için gösterilir; tarifeler her yıl değişir. Son kararı vergi dairesi raporunuz ve aracın belgeleriyle verir.</p>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+        <h3>Engelli araç ÖTV sınırı 2026'da ne kadar?</h3>
+        <p>Otomobilde istisna olmasaydı ödenecek ÖTV ve KDV dahil bedel <span data-s="sinir">2.873.900 TL</span>'yi aşmamalı (16 Seri No'lu Tebliğ, 1 Ocak 2026'dan beri). Tekerlekli sandalye ya da sedye kullanan %90 ve üzeri engellilerin yük-yolcu ve 9 kişilik araçlarında sınır yok; kamyonet ve vanda yalnız 2.800 cm³ sınırı var.</p>
+        <h3>ÖTV'siz araç kaç yılda bir alınır?</h3>
+        <p>On yılda bir. 7537 sayılı Kanun 27 Aralık 2024'ten beri süreyi beşten ona çıkardı ve bu, önceden araç almış olanlara da uygulanıyor. Araç beş yıldan sonra ÖTV ödenmeden satılabilir, ama yeni istisna için on yıl beklenir.</p>
+        <h3>Yerli katkı oranı şartı nedir?</h3>
+        <p>İstisnayla alınacak aracın model ve versiyon bazında yerli katkı oranı en az %40 olmalı (9321 sayılı Cumhurbaşkanı Kararı, 27 Aralık 2024). Vergi dairesi Sanayi ve Teknoloji Bakanlığının yayımladığı güncel yerli katkı oranı beyanlarına bakar. Bu şart yüzünden ithal araçların çoğu istisna dışında.</p>
+        <h3>%90'ın altında engellilik oranıyla ÖTV'siz araç alınır mı?</h3>
+        <p>İki durumda alınır. Raporda yalnız hareket ettirici aksamda özel tertibatlı araç kullanmanız gerektiği yazıyorsa ve sürücü belgenizde bu tertibatın kodu varsa, tertibat yaptırılmış bir araçla. Ya da ortopedik engel oranınız %40 ve üzeriyse ve bu engel yüzünden sürücü belgesi alamıyorsanız. İki yolda da fiyat sınırı %90 ve üzeriyle aynı.</p>
+        <h3>ÖTV'siz aldığım aracı beş yıl dolmadan satarsam ne olur?</h3>
+        <p>İstisnadan yararlanamayan birine satışta, ilk alıştaki vergisiz fiyat üzerinden ve tescil tarihindeki oranla ÖTV alıcıdan alınır. İstisnadan yararlanabilecek başka bir engelliye satışta ÖTV aranmaz. Erken satış, sizin yeni istisna için beklemeniz gereken on yılı kısaltmaz.</p>
+        <h3>Engelli aracında MTV ödenir mi?</h3>
+        <p>Engellilik oranı %90 ve üzeriyse adınıza kayıtlı taşıtta ödenmez; %90'ın altındaysa ancak durumunuza uygun özel tertibatlı taşıtta ödenmez (197 s.K. m.4/1-c). Örnek araçta muafiyet ilk beş yılda <span data-s="ornekMtv5">54.108 TL</span> ediyor.</p>
+<!-- SSS:BITIS -->
+
+        <h2>Kaynaklar</h2>
+        <ul>
+          <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.4760.pdf" rel="noopener">4760 sayılı Özel Tüketim Vergisi Kanunu</a> m.7/1-2, m.15/2-a ve (II) sayılı liste (7537 ve 7577 sayılı Kanunlarla değişik hâli; 4 Ekim 2026'da okundu)</li>
+          <li><a href="https://mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=20695&amp;mevzuatTur=Teblig&amp;mevzuatTertip=5" rel="noopener">ÖTV (II) Sayılı Liste Uygulama Genel Tebliği</a> II/C-1 ve IV/F-1.1 (22 Nisan 2026 değişikliğiyle)</li>
+          <li>16 Seri No'lu ÖTV (II) Sayılı Liste Uygulama Genel Tebliğinde Değişiklik Tebliği, Resmî Gazete 31 Aralık 2025, sayı 33124 (5. Mükerrer): 2026 sınırı</li>
+          <li>9321 sayılı Cumhurbaşkanı Kararı, Resmî Gazete 27 Aralık 2024, sayı 32765: yerli katkı oranı %40</li>
+          <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.197.pdf" rel="noopener">197 sayılı Motorlu Taşıtlar Vergisi Kanunu</a> m.2/20 ve m.4/1-c</li>
+          <li>ÖTV oranları ve MTV tutarları: sitenin <a href="../otv-hesaplama/">ÖTV</a> ve <a href="../mtv-hesaplama/">MTV</a> araçlarının tarife modülleri</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili araçlar</h2>
+        <ul>
+          <li><a href="../otv-hesaplama/">ÖTV hesaplama</a> — otomobilde ÖTV satırı ve matrah eşikleri</li>
+          <li><a href="../mtv-hesaplama/">MTV hesaplama</a> — yaşa, hacme ve taşıt değerine göre</li>
+          <li><a href="../makaleler/otv-basamak-etkisi/">ÖTV basamak etkisi</a> — eşiğin hemen üstündeki araç neden daha pahalı (yazı)</li>
+          <li><a href="../kredi-hesaplama/">Kredi hesaplama</a></li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../koray-oner/">Koray Öner: çalışma dizini</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../otv-hesaplama/tarife.js?v=08e1f910" defer></script>
+  <script src="../mtv-hesaplama/tarife.js?v=872b4882" defer></script>
+  <script src="hesap.js?v=5c9514e1" defer></script>
+  <script src="akis.js?v=f970c3b6" defer></script>
+  <script src="script.js?v=775b3488" defer></script>
+  <script src="../script.js?v=72b4a7c6" defer></script>
+</body>
+</html>
