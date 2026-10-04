@@ -5,9 +5,17 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-10-03T20:35:35+03:00</updated>
+  <updated>2026-10-04T13:54:52+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Engelli Araç ÖTV İstisnası Hesaplama 2026</title>
+    <link href="https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/"/>
+    <id>https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/</id>
+    <updated>2026-10-04T13:54:52+03:00</updated>
+    <summary>Engelli raporuyla ÖTV'siz araç: 2.873.900 TL sınırı, %40 yerli katkı, 10 yıl kuralı. Uygun musunuz, ne kadar ödersiniz, MTV ve 5 yıl içinde satış.</summary>
+  </entry>
 
   <entry>
     <title>Doğum Parası Ne Kadar? 24 Haftalık İzin Hesabı</title>
