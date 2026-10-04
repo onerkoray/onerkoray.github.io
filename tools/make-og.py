@@ -203,6 +203,10 @@ SPEC = {
    "Motor hacmi ve matraha göre ÖTV, KDV ve anahtar teslim fiyat.",
    ["Hibrit & elektrikli", "Vergi yükü"], "vergi"),
 
+ "engelli-arac-otv-istisnasi-hesaplama": ("engelli-arac-otv-istisnasi-hesaplama", "Engelli Araç", "ÖTV İstisnası",
+   "Uygunluk, 2.873.900 TL sınırı, yerli katkı %40, MTV ve 5 yıl içinde satış.",
+   ["4760 m.7/1-2", "Kanun ve tebliğle testli"], "vergi"),
+
  "gumruk-vergisi-hesaplama": ("gumruk-vergisi-hesaplama", "Gümrük Vergisi", "Hesaplama 2026",
    "Yurt dışı alışverişte vergi, IMEI kayıt harcı ve toplam maliyet.",
    ["AB & diğer ülke", "IMEI harcı"], "vergi"),

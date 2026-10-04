@@ -647,6 +647,18 @@ jobs:
         # değişip sayfa yeniden üretilmezse kırmızı.
         run: node tools/emeklilik-ornek.js --check
 
+      - name: Engelli araç ÖTV istisnası çekirdeği testleri
+        # Sınır 200.000 TL'den (7061 s.K.) yıllık yeniden değerlemeyle bağımsız
+        # kurulup tebliğdeki 2.873.900 TL ile karşılaştırılır; bentler, yerli katkı,
+        # on yıl, uçurum ve MTV elle türetilmiş beklentilerle (4760 m.7/1-2, m.15/2-a).
+        run: node engelli-arac-otv-istisnasi-hesaplama/test.js
+
+      - name: Engelli araç sayfası hesaptan üretilmiş mi
+        # Karar diyagramı, uçurum ve sınıf grafikleri, örnek, takvim ve SSS yapısal
+        # verisi çekirdekten. Sınır, ÖTV oranı ya da MTV tarifesi değişip sayfa
+        # yeniden üretilmezse kırmızı.
+        run: node tools/engelli-arac-ornek.js --check
+
       - name: Rapor parası çekirdeği testleri
         # Oranlar ve gün sayıları 5510 m.17-18 metninden (1/2, 2/3, 90, 180,
         # üçüncü gün, 8 + 16 hafta); alt sınır bordro parametresinden; raporlu
