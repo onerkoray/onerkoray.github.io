@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/koray-oner/</loc>
-    <lastmod>2026-10-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <lastmod>2026-10-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-portre.jpg</image:loc>
       <image:title>Koray Öner — araçlar, yazılar ve yayınlar</image:title>
@@ -25,7 +25,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/hakkimda/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -960,7 +960,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/fatura-olusturma/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
