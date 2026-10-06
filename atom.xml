@@ -5,9 +5,25 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/</id>
-  <updated>2026-10-04T13:54:52+03:00</updated>
+  <updated>2026-10-06T07:05:16+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>İŞKUR Gençlik Programı Ödeme Hesaplama</title>
+    <link href="https://korayoner.dev/iskur-genclik-programi-hesaplama/"/>
+    <id>https://korayoner.dev/iskur-genclik-programi-hesaplama/</id>
+    <updated>2026-10-06T07:05:16+03:00</updated>
+    <summary>İŞKUR Gençlik Programı ve NEET İşgücü Uyum Programı: günde 1.375 TL, ay ay ne kadar, 140 gün sınırı ne zaman dolar, hane geliri şartı ve emeklilik primi.</summary>
+  </entry>
+
+  <entry>
+    <title>İŞKUR'dan 19 Bin TL: Gerçekte Ne Ödeniyor?</title>
+    <link href="https://korayoner.dev/makaleler/iskur-19-bin-tl-gercekte-ne/"/>
+    <id>https://korayoner.dev/makaleler/iskur-19-bin-tl-gercekte-ne/</id>
+    <updated>2026-10-06T07:05:16+03:00</updated>
+    <summary>Gençlere ayda 19 bin TL maaş değil: kamu kurumunda katılınan her gün için 1.375 TL. Kimler alır, ayda kaç gün, emekliliğe sayılır mı ve programlar nerede.</summary>
+  </entry>
 
   <entry>
     <title>Engelli Araç ÖTV İstisnası Hesaplama 2026</title>
