@@ -381,10 +381,6 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 .portre--kucuk .portre-cerceve::after { inline-size: 10px; block-size: 10px; }
 .portre--kucuk .portre-ad { font-size: .85rem; }
 .portre--kucuk .portre-rol { font-size: .62rem; letter-spacing: .06em; }
-/* 150 piksellik etikette "YAZILIM GELISTIRICI · ISTANBUL" iki satira
-   dusuyor ve satir sonunda bosta bir ayrac birakiyordu. Kunye
-   portresinde konum zaten sayfanin baska yerinde yaziyor. */
-.portre--kucuk .portre-yer { display: none; }
 
 @media (hover: none) {
   .portre-cerceve img { filter: none; }

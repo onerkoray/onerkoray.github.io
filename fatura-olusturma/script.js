@@ -950,15 +950,15 @@
         unvan: "Örnek Yazılım ve Danışmanlık Ltd. Şti.",
         adres: "Kozyatağı Mah. Bilgi Sok. No: 12/4\nKadıköy / İstanbul",
         vd: "Kozyatağı", vkn: "1234567808",
-        tel: "0216 000 00 00", eposta: "fatura@ornekyazilim.com",
-        web: "ornekyazilim.com", mersis: "0123456789000001",
+        tel: "0216 000 00 00", eposta: "fatura@example.com",
+        web: "example.com", mersis: "0123456789000001",
         iban: "TR330006100519786457841326"
       },
       musteri: {
         unvan: "Deneme Ticaret A.Ş.",
         adres: "Maslak Mah. Büyükdere Cad. No: 255\nSarıyer / İstanbul",
         vd: "Maslak", vkn: "9876543217",
-        tel: "0212 000 00 00", eposta: "muhasebe@denemeticaret.com"
+        tel: "0212 000 00 00", eposta: "muhasebe@example.net"
       },
       "belge-turu": "TEKLİF",
       "belge-no": yeniNo("TEKLİF"),

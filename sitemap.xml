@@ -8,7 +8,7 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
-      <image:title>Koray Öner — ücretsiz açık kaynak web araçları</image:title>
+      <image:title>Koray Öner — maaş, vergi ve finans hesaplama araçları</image:title>
     </image:image>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-portre.jpg</image:loc>
@@ -18,6 +18,10 @@
   <url>
     <loc>https://korayoner.dev/koray-oner/</loc>
     <lastmod>2026-10-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/koray-oner-portre.jpg</image:loc>
+      <image:title>Koray Öner — araçlar, yazılar ve yayınlar</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://korayoner.dev/hakkimda/</loc>
