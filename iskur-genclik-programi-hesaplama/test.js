@@ -33,10 +33,11 @@ ok("açıklanmamış yılın tutarı yok", I.gunluk(2027) === null);
 
 baslik("Hane geliri sınırı");
 var net = B.donem(B.parametre(2026), 10).asgariNet;
-ok("net asgari ücret 2026: 28.075,50", yakin(net, 28075.5));
-ok("Gençlik: 3 × net = 84.226,50", yakin(I.haneSiniri("genclik", 2026, 10), 84226.5));
-ok("İUP: 2 × net = 56.151", yakin(I.haneSiniri("iup", 2026, 10), 56151));
-ok("İUP sınırında uygun, 1 TL üstünde değil", I.haneUygun("iup", 56151, 2026, 10).uygun === true && I.haneUygun("iup", 56152, 2026, 10).uygun === false);
+/* Net asgari ücret bordro parametresinden; burada kopyası tutulmaz. */
+ok("net asgari ücret motordan geliyor", net > 0 && I.netAsgari(2026, 10) === net);
+ok("Gençlik: 3 × net", yakin(I.haneSiniri("genclik", 2026, 10), 3 * net));
+ok("İUP: 2 × net", yakin(I.haneSiniri("iup", 2026, 10), 2 * net));
+ok("İUP sınırında uygun, 1 TL üstünde değil", I.haneUygun("iup", 2 * net, 2026, 10).uygun === true && I.haneUygun("iup", 2 * net + 1, 2026, 10).uygun === false);
 ok("yurtta kalan için sınır aranmaz", I.haneUygun("genclik", 999999, 2026, 10, true).uygun === true);
 
 /* Bağımsız sayım: başlangıçtan 10 ay boyunca, haftanın ilk k iş günü. */
@@ -85,8 +86,8 @@ ok("tarih yoksa hata", hata(function () { I.takvim({ program: "iup", baslangic: 
 
 baslik("Net asgari ücretle karşılaştırma");
 var k = I.asgariKarsilastirma(2026, 10);
-ok("aylık 19.250, net asgarinin %68,6'sı", yakin(k.oran, 19250 / 28075.5, 1e-9) && k.oran.toFixed(3) === "0.686");
-ok("saat başına 183,33 TL; net asgari 124,78 TL", yakin(k.saatlik, 1375 / 7.5) && yakin(k.asgariSaatlik, 28075.5 / 225));
+ok("aylık 19.250, net asgarinin %68,6'sı", yakin(k.oran, 19250 / net, 1e-9) && k.oran.toFixed(3) === "0.686");
+ok("saat başına 183,33 TL; net asgari 124,78 TL", yakin(k.saatlik, 1375 / 7.5) && yakin(k.asgariSaatlik, net / 225));
 
 console.log("\n" + gecen + " geçti, " + kalan + " kaldı.");
 process.exit(kalan ? 1 : 0);
