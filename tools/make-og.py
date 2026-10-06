@@ -275,6 +275,10 @@ SPEC = {
    "SGDP %7,5 işçi, %24,75 işveren: neti ve işverene maliyeti, emekli olmayanla yan yana.",
    ["5510 geçici m.14", "Motorla testli"], "bordro"),
 
+ "iskur-genclik-programi-hesaplama": ("iskur-genclik-programi-hesaplama", "İŞKUR Gençlik", "Ödeme Hesaplama",
+   "Günde 1.375 TL, 140 gün sınırı, ay ay cep harçlığı ve hane geliri şartı.",
+   ["Gençlik ve NEET programı", "Testli takvim"], "bordro"),
+
  "rapor-parasi-hesaplama": ("rapor-parasi-hesaplama", "Rapor Parası", "Hesaplama",
    "Hastalık, iş kazası, doğum: günlük ödenek, ödenmeyen iki gün, raporlu ayda ele geçen.",
    ["5510 m.17–18", "Bordro motoruyla testli"], "bordro"),

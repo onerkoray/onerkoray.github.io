@@ -2193,6 +2193,31 @@ function dogumYilFarki() {
   return s + "</svg>";
 }
 
+/* GÜÇ programlarında hedef ve gerçekleşme (yazının GÜÇ anlık görüntüsünden). */
+var GUC = require(path.join(KOK, "makaleler", "iskur-19-bin-tl-gercekte-ne", "guc.js"));
+function gucHedef() {
+  var d = GUC.VERI.programlar.slice().sort(function (a, b) { return GUC.oran(b) - GUC.oran(a); });
+  if (Math.round(GUC.oran(GUC.program("staj")) * 1000) !== 1036 || Math.round(GUC.oran(GUC.program("niup")) * 1000) !== 362) throw new Error("İŞKUR kapağı yazıyla ayrıştı");
+  var AD = { staj: "Staj desteği", meslek: "Geleceğim Meslekte", genclik: "Gençlik Programı", niup: "NEET Uyum", ilkadim: "İşe İlk Adım" };
+  var SOL = 168, SAG = 520, UST = 92, SATIR = 46, MAX = 1.1;
+  function x(o) { return SOL + (SAG - SOL) * Math.min(o, MAX) / MAX; }
+  var ALT = UST + d.length * SATIR;
+  var s = baslikSatirlari("Yıllık hedefe ne kadar ulaşıldı?", "GÜÇ programları · yararlanan genç ÷ yıllık hedef · Ağustos 2026",
+    "GÜÇ programlarında Ağustos 2026 gerçekleşmesi: staj desteği %103,6, Geleceğim Meslekte %67,3, İŞKUR Gençlik %44,5, NEET İşgücü Uyum %36,2, İşe İlk Adım %0");
+  [0, 0.5, 1].forEach(function (o) {
+    s += '<path d="M' + x(o).toFixed(1) + " " + (UST - 6) + " V" + ALT + '" stroke="' + (o === 1 ? R.ikincil : R.izgara) + '" stroke-width="1"' + (o === 1 ? ' stroke-dasharray="4 3"' : "") + "/>";
+    s += altYazi(x(o), ALT + 18, "%" + Math.round(o * 100));
+  });
+  d.forEach(function (p, i) {
+    var cy = UST + i * SATIR + SATIR / 2, o = GUC.oran(p);
+    s += '<text x="' + (SOL - 12) + '" y="' + (cy - 1) + '" font-size="13" font-weight="700" fill="' + R.murekkep + '" text-anchor="end">' + esc(AD[p.kod]) + "</text>";
+    s += '<text x="' + (SOL - 12) + '" y="' + (cy + 15) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">' + nf0.format(p.gerceklesen) + " / " + nf0.format(p.hedef) + "</text>";
+    if (o > 0) s += '<rect x="' + SOL + '" y="' + (cy - 10) + '" width="' + (x(o) - SOL).toFixed(1) + '" height="20" rx="3" fill="' + R.marka + '"/>';
+    s += '<text x="' + (x(o) + 8).toFixed(1) + '" y="' + (cy + 5) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">' + "%" + (o * 100).toFixed(1).replace(".", ",") + (o === 0 ? " · başlamadı" : "") + "</text>";
+  });
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
   "vergi-borcunu-geciktirmek-karli-mi": {
     kicker: "Vergi · Borç",
@@ -2229,6 +2254,12 @@ var KAPAKLAR = {
     baslik: "Ocak 2027'yi Meclis mi belirleyecek?",
     alt: "11 kalemin 7'si Meclis oyuna bağlı değil",
     cizim: ocakMeclis
+  },
+  "iskur-19-bin-tl-gercekte-ne": {
+    kicker: "Sosyal güvenlik · İŞKUR",
+    baslik: "İŞKUR'dan 19 bin TL: gerçekte ne ödeniyor?",
+    alt: "14 gün × 1.375 TL; emeklilik primi yok",
+    cizim: gucHedef
   },
   "dogum-parasi-ne-kadar": {
     kicker: "Bordro · SGK",

@@ -1,0 +1,13 @@
+{
+  "kaynak": "https://guc.iskur.gov.tr/",
+  "okundu": "2026-10-06",
+  "donem": "Ağustos 2026",
+  "toplam": { "hizmetSunulan": 630618, "hedef": 1000000, "isBirligi": 10873, "ucYilHedef": 3000000, "ucYilKaynakMilyar": 472.3 },
+  "programlar": [
+    { "kod": "staj", "ad": "Staj desteği", "kimler": "Üniversite ve meslek okulu öğrencileri", "gerceklesen": 274578, "hedef": 265000, "ucYil": 800000, "kaynakMilyar": 26.2 },
+    { "kod": "meslek", "ad": "Geleceğim Meslekte", "kimler": "Meslek lisesi ve meslek yüksekokulu son sınıf öğrencileri", "gerceklesen": 168265, "hedef": 250000, "ucYil": 750000, "kaynakMilyar": null },
+    { "kod": "genclik", "ad": "İŞKUR Gençlik Programı", "kimler": "Devlet üniversitesi örgün öğrencileri", "gerceklesen": 133428, "hedef": 300000, "ucYil": 1000000, "kaynakMilyar": 95.8, "kadin": 80672, "not": "2025-2026 öğretim yılı; üç yıllık hedef 2028 sonuna kadar" },
+    { "kod": "niup", "ad": "NEET İşgücü Uyum Programı", "kimler": "Ne eğitimde ne istihdamda olan gençler", "gerceklesen": 54347, "hedef": 150000, "ucYil": 450000, "kaynakMilyar": 107.3, "kadin": 35220 },
+    { "kod": "ilkadim", "ad": "İşe İlk Adım", "kimler": "Özel sektörde ilk işine giren 18–25 yaş gençler", "gerceklesen": 0, "hedef": 250000, "ucYil": 750000, "kaynakMilyar": 243.0, "not": "Portalda 'Çok yakında'; ilk 6 ayın ücreti ve primi devletten" }
+  ]
+}

@@ -615,6 +615,15 @@ jobs:
       - name: Doğum parası yazısının görselleri güncel mi
         run: node tools/dogum-yazisi.js --check
 
+      # İŞKUR "19 bin TL" yazısı: tutar ve takvim aracın çekirdeğinden, program
+      # göstergeleri GÜÇ anlık görüntüsünden (guc.js). Aynı üreteç aracın
+      # sayfa alanlarını ve SSS yapısal verisini de yazar.
+      - name: İŞKUR yazısının sayıları
+        run: node makaleler/iskur-19-bin-tl-gercekte-ne/sayi-testi.js
+
+      - name: İŞKUR yazısı ve aracı hesaptan üretilmiş mi
+        run: node tools/iskur-yazisi.js --check
+
       - name: kira-geliri-istisnasi-siniri yazısının sayıları
         run: node makaleler/kira-geliri-istisnasi-siniri/sayi-testi.js
 
@@ -670,6 +679,12 @@ jobs:
         # verisi çekirdekten. Asgari ücret ya da vergi tarifesi değişip sayfa
         # yeniden üretilmezse kırmızı.
         run: node tools/rapor-ornek.js --check
+
+      - name: İŞKUR GÜÇ ödeme çekirdeği testleri
+        # Günlük 1.375 TL, 140 fiili gün, 10 ay, haftalık düzen (Gençlik 3 gün;
+        # NEET ilk 4 hafta 5 gün) ve hane sınırı (net asgari × 3 / × 2) İŞKUR
+        # program sayfalarından; takvim elle sayılmış beklentilerle sınanır.
+        run: node iskur-genclik-programi-hesaplama/test.js
 
       - name: FIRE simülasyon testleri
         run: node finansal-ozgurluk-hesaplama/test.js
