@@ -10,10 +10,10 @@ Tek islemde:
   - Yeni domain icin CNAME dosyasi olusturur (GitHub Pages'te birakilirsa gerekir).
 
 Kullanim:
-    python tools/migrate-domain.py ornekdomain.com --email iletisim@ornekdomain.com
+    python tools/migrate-domain.py example.com --email iletisim@example.com
         -> KURU CALISMA: hicbir dosya degismez, sadece rapor basar.
 
-    python tools/migrate-domain.py ornekdomain.com --email iletisim@ornekdomain.com --apply
+    python tools/migrate-domain.py example.com --email iletisim@example.com --apply
         -> Degisiklikleri yazar.
 
 Geri almak icin:  git checkout -- .
@@ -56,8 +56,8 @@ def walk_files(root):
 
 def main():
     ap = argparse.ArgumentParser(description="Siteyi yeni alan adina tasir.")
-    ap.add_argument("domain", help="Yeni alan adi, ornek: hesavo.com (https:// yazma)")
-    ap.add_argument("--email", help="Sitede gorunecek iletisim e-postasi, ornek: iletisim@hesavo.com")
+    ap.add_argument("domain", help="Yeni alan adi, ornek: example.com (https:// yazma)")
+    ap.add_argument("--email", help="Sitede gorunecek iletisim e-postasi, ornek: iletisim@example.com")
     ap.add_argument("--apply", action="store_true", help="Degisiklikleri gercekten yaz")
     ap.add_argument("--no-cname", action="store_true", help="CNAME dosyasi olusturma (Vercel'de gerekmez)")
     args = ap.parse_args()

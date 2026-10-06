@@ -252,6 +252,7 @@ def benioku(sayilar):
 [korayoner.dev](https://korayoner.dev/) üzerindeki hesaplama araçlarını çalıştıran
 bağımlılıksız çekirdek. Türkiye mevzuatına göre ücret bordrosu ve fatura tutarı
 hesaplar. Tarayıcıda ve Node.js'te aynı kodla çalışır.
+Geliştiren: [Koray Öner](https://korayoner.dev/hakkimda/).
 
 **Bu depo bir aynadır.** Kaynak, sitenin kendi deposudur; buraya
 `tools/cekirdek.py` ile üretilir. Katkı ve hata bildirimi için
@@ -440,7 +441,7 @@ def paket_json(sayilar):
             "gelir-vergisi", "income-tax", "kredi", "finance", "turkish",
         ],
         "license": "MIT",
-        "author": "Koray Oner (https://korayoner.dev/)",
+        "author": "Koray Öner (https://korayoner.dev/hakkimda/)",
         "homepage": "https://korayoner.dev/bordro/",
         "repository": {"type": "git", "url": "git+%s.git" % DEPO},
         "bugs": {"url": "%s/issues" % DEPO},

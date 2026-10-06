@@ -193,6 +193,19 @@ def govde():
       <div class="wrap hero-inner">
         <p class="eyebrow">Çalışma dizini</p>
         <h1 id="hero-title">Koray Öner</h1>
+        <figure class="portre portre--kucuk kd-portre">
+          <div class="portre-cerceve">
+            <picture>
+              <source srcset="../images/koray-oner-portre-360.webp" type="image/webp">
+              <img src="../images/koray-oner-portre.jpg" width="160" height="160"
+                   alt="Koray Öner — yazılım geliştirici" decoding="async">
+            </picture>
+          </div>
+          <figcaption class="portre-etiket">
+            <span class="portre-ad">Koray Öner</span>
+            <span class="portre-rol">Yazılım geliştirici</span>
+          </figcaption>
+        </figure>
         <p class="lede">Türkiye'de maaş, vergi, SGK, emeklilik ve hane finansı için ücretsiz hesap araçları geliştiriyor; hesabın arkasındaki kuralı anlatan, her rakamı testle sabitlenmiş yazılar ve DOI ile kalıcı kaydı olan çalışmalar yayımlıyor. Bu sayfa hepsinin dizini: ne yapıldı, ne zaman, hangi alanda.</p>
         <p class="kd-yonlendir">Kim olduğu için <a href="../hakkimda/">hakkımda</a>, ulaşmak için <a href="../iletisim/">iletişim</a> sayfası.</p>
         <dl class="kd-sayilar">
