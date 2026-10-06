@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=f7307c52" defer></script>
+  <meta charset="UTF-8">
+  <script src="../tema-erken.js?v=3d1c1238"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İŞKUR Gençlik Programı Ödeme Hesaplama | Koray Öner</title>
+  <meta name="description" content="İŞKUR Gençlik Programı ve NEET İşgücü Uyum Programı: günde 1.375 TL, ay ay ne kadar, 140 gün sınırı ne zaman dolar, hane geliri şartı ve emeklilik primi.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="gecerlilik" content="2027-01-15 | 2027 cep harçlığı tutarı (İŞKUR Yönetim Kurulu) ve net asgari ücret açıklandı mı? hesap.js GUNLUK'a girilmeli. İŞKUR Gençlik ve İUP sayfalarındaki gün, saat, 140 gün ve hane geliri kuralları yeniden okunmalı.">
+  <link rel="canonical" href="https://korayoner.dev/iskur-genclik-programi-hesaplama/">
+
+  <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=33dc4571" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="İŞKUR'dan ayda 19.250 TL: kime, kaç gün?">
+  <meta property="og:description" content="Günde 1.375 TL, yalnız katılınan günler. Programa göre ay ay ödeme, 140 gün sınırı, hane geliri şartı ve emeklilik primi sayılıyor mu?">
+  <meta property="og:url" content="https://korayoner.dev/iskur-genclik-programi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/iskur-genclik-programi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="İŞKUR Gençlik Programı ve İşgücü Uyum Programı ödeme hesaplama">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="İŞKUR'dan ayda 19.250 TL: kime, kaç gün?">
+  <meta name="twitter:description" content="Ödeme maaş değil, katılınan gün başına 1.375 TL. Ay ay tutar, 140 gün sınırı ve hane geliri şartı.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/iskur-genclik-programi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=d4615061">
+  <link rel="stylesheet" href="style.css?v=8f7f61cd">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "image": "https://korayoner.dev/images/iskur-genclik-programi-hesaplama-koray-oner.png",
+        "@id": "https://korayoner.dev/iskur-genclik-programi-hesaplama/#app",
+        "name": "İŞKUR Gençlik Programı ve İşgücü Uyum Programı Ödeme Hesaplama",
+        "url": "https://korayoner.dev/iskur-genclik-programi-hesaplama/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "featureList": "İŞKUR Gençlik Programı ve İşgücü Uyum Programı (NEET gençler dahil); günlük 1.375 TL cep harçlığı; haftalık gün düzeni (Gençlik'te en çok 3 gün, İUP'de ilk dört hafta 5 gün); ay ay katılım günü ve tutar; 10 ay ve toplam 140 fiili gün sınırı; daha önce kullanılan günlerin düşülmesi; hane geliri şartı (net asgari ücretin 3 ve 2 katı); emeklilik prim günü etkisi",
+        "description": "İŞKUR'un GÜÇ kapsamındaki iki programında katılımcının ay ay alacağı cep harçlığını, 140 fiili gün sınırının dolduğu tarihi ve hane geliri şartını İŞKUR'un yayımladığı kurallara göre hesaplar."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "İŞKUR Gençlik Programı Ödeme Hesaplama",
+            "item": "https://korayoner.dev/iskur-genclik-programi-hesaplama/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "İŞKUR gençlere ayda 19 bin TL veriyor mu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evde oturana değil. GÜÇ kapsamındaki İŞKUR Gençlik Programı ve İşgücü Uyum Programı'nda katılımcılar kamu kurumlarında ya da üniversitede çoğunlukla haftada 3 gün (NEET programında ilk dört hafta 5 gün) görev yapıyor ve katıldıkları her gün için 1.375 TL alıyor. Ayda 14 gün katılan 19.250 TL alır; bu bir maaş değil, katılım günü kadar ödenen cep harçlığı."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kimler başvurabilir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Gençlik Programı'na devlet üniversitelerinin örgün öğrencileri, İşgücü Uyum Programı'na İŞKUR'a kayıtlı işsizler başvurabilir; NEET programı ne eğitimde ne istihdamda olan gençler için. İkisinde de 18 yaşını tamamlamış olmak, son bir ayda sigortalı çalışmamış olmak ve hane geliri şartını sağlamak gerekir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hane geliri sınırı ne kadar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Aynı adreste yaşayanların aylık toplam kazancı Gençlik Programı'nda net asgari ücretin 3 katını (84.226,50 TL), İşgücü Uyum Programı'nda 2 katını (56.151 TL) aşmamalı. Yurtta ya da benzeri toplu yaşam alanında kalanlar için bu şart aranmaz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Programda geçen süre emekliliğe sayılır mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Katılımcılar için yalnız iş kazası ve meslek hastalığı ile genel sağlık sigortası primi ödeniyor (5510 s.K. m.5/1-e); emeklilik prim gününe eklenen gün yok."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Programa katılırken başka bir işte çalışabilir miyim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İŞKUR'a göre katılımcı program sürerken başka bir işyerinde sigortalı çalışabilir. Ama başvuru tarihinden önceki son bir ayda sigortalı bildirilmiş olmak katılıma engel."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Verilerim bir yere gönderiliyor mu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Hesap tarayıcınızda yapılır; girdiğiniz bilgiler hiçbir sunucuya gönderilmez."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../">Ana Sayfa</a></li>
+          <li><a href="../#projects">Araçlar</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
+          <li><a href="#hesapla">Hesapla</a></li>
+          <li><a href="#kurallar">Kurallar</a></li>
+          <li><a href="#sss">S.S.S.</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">&#8250;</span> İŞKUR Gençlik Programı Ödeme Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Gençliğin Üretim Çağı (GÜÇ) · <span data-s="yil">2026</span></p>
+        <h1>İŞKUR'dan ayda 19.250 TL: kime, kaç gün?</h1>
+        <p class="lede">
+          İŞKUR'un GÜÇ kapsamındaki iki programında ödeme bir maaş değil, kamu kurumunda ya da üniversitede
+          <strong>katıldığınız her gün için <span data-s="gunluk">1.375 TL</span></strong> cep harçlığı. Ayda 14 gün katılan
+          <span data-s="aylik14">19.250 TL</span> alır; izin ya da devamsızlık gününde ödeme yok. Araç, programınıza ve
+          başlangıç tarihinize göre ay ay ne alacağınızı, 140 günlük toplam sınırın ne zaman dolacağını ve hane geliri
+          şartını hesaplar.
+        </p>
+        <p class="muted kunye-satiri">
+          Kurallar İŞKUR'un program sayfalarından ve 5510 s.K. m.5'ten ·
+          net asgari ücret <a href="../bordro/">bordro parametrelerinden</a> ·
+          yazının tamamı: <a href="../makaleler/iskur-19-bin-tl-gercekte-ne/">işin aslı</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-label="İŞKUR cep harçlığı hesaplayıcısı">
+      <div class="wrap">
+        <div class="ig-duzen">
+          <form class="ig-form" id="ig-form" novalidate>
+            <fieldset class="ig-grup">
+              <legend><span class="ig-no">1</span> Program</legend>
+              <div class="ig-grid">
+                <div class="ig-alan ig-genis">
+                  <span class="ig-etiket" id="i-prog-bas">Hangi programa başvuruyorsunuz?</span>
+                  <div class="ig-secimler" role="group" aria-labelledby="i-prog-bas">
+                    <button type="button" class="secim" data-program="genclik" aria-pressed="true">Üniversite öğrencisiyim (Gençlik)</button>
+                    <button type="button" class="secim" data-program="iup" aria-pressed="false">Okulda da işte de değilim (NEET İUP)</button>
+                  </div>
+                </div>
+                <div class="ig-alan">
+                  <label for="i-bas">Programın başlangıcı</label>
+                  <input type="date" id="i-bas" value="2026-11-02">
+                </div>
+                <div class="ig-alan" data-genclik>
+                  <label for="i-gun">Haftada kaç gün?</label>
+                  <select id="i-gun"><option value="3">3 gün</option><option value="2">2 gün</option><option value="1">1 gün</option></select>
+                </div>
+                <div class="ig-alan">
+                  <label for="i-once">Daha önce İUP programlarında geçen gün</label>
+                  <input type="text" inputmode="numeric" id="i-once" value="0" aria-describedby="i-once-not">
+                  <small id="i-once-not">Gençlik Programı ve İşgücü Uyum Programı'nda toplam sınır 140 fiili gün.</small>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="ig-grup">
+              <legend><span class="ig-no">2</span> Hane geliri</legend>
+              <div class="ig-grid">
+                <div class="ig-alan">
+                  <label for="i-hane">Aynı adreste yaşayanların aylık toplam kazancı (TL)</label>
+                  <input type="text" inputmode="decimal" id="i-hane" value="45.000" aria-describedby="i-hane-not">
+                  <small id="i-hane-not">Adres kaydındaki herkesin çalışarak elde ettiği aylık gelir.</small>
+                </div>
+                <div class="ig-alan">
+                  <label for="i-yurt">Yurtta ya da benzeri toplu yaşam alanında mı kalıyorsunuz?</label>
+                  <select id="i-yurt"><option value="hayir">Hayır</option><option value="evet">Evet</option></select>
+                </div>
+              </div>
+            </fieldset>
+            <p class="ig-hata" id="i-hata" role="alert"></p>
+          </form>
+
+          <aside class="ig-sonuc" id="ig-sonuc" aria-live="polite" aria-labelledby="ig-cevap-bas">
+            <div class="ig-ust-satir">
+              <p class="ig-ust" id="ig-cevap-bas">Program boyunca toplam</p>
+              <span class="ig-rozet" id="o-rozet"></span>
+            </div>
+            <p class="ig-cevap" id="o-toplam">—</p>
+            <p class="ig-alt" id="o-alt"></p>
+            <figure class="ig-grafik">
+              <div id="o-grafik"></div>
+              <figcaption id="o-grafik-not">Her ay katılım günü × günlük tutar. Kesikli çizgi İŞKUR'un açıkladığı aylık 19.250 TL.</figcaption>
+            </figure>
+            <dl class="ig-kalemler" id="o-kalemler"></dl>
+            <p class="ig-not" id="o-not"></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <article class="content" id="kurallar">
+      <div class="wrap prose">
+        <h2>Kurallar</h2>
+        <div class="table-scroll">
+          <table class="data-table data-table--text">
+            <caption>İŞKUR'un iki programı, yan yana (İŞKUR program sayfaları, 6 Ekim 2026'da okundu)</caption>
+            <thead><tr><th scope="col"></th><th scope="col">İŞKUR Gençlik Programı</th><th scope="col">İşgücü Uyum Programı (NEET dahil)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Kimler</th><td>Devlet üniversitelerinin ön lisans, lisans, yüksek lisans ve doktora örgün öğrencileri; açık ve uzaktan öğretim hariç</td><td>İşsizler; NEET programında ne eğitimde ne istihdamda olan gençler</td></tr>
+              <tr><th scope="row">Nerede</th><td>Kendi üniversitesinde: kampüs, akademik ve idari işler, dijital dönüşüm, sosyal faaliyetler</td><td>Kamu kurum ve kuruluşlarında: bakım, tarım, park ve yeşil alan, geri dönüşüm, kültür ve spor</td></tr>
+              <tr><th scope="row">Ödeme</th><td colspan="2">Katılınan her gün için <span data-s="gunluk">1.375 TL</span> cep harçlığı; izin ve devamsızlık gününde ödeme yok</td></tr>
+              <tr><th scope="row">Haftalık</th><td>En çok 3 gün ve 22,5 saat</td><td>İlk dört hafta 5 gün ve 37,5 saat, sonra 3 gün ve 22,5 saat</td></tr>
+              <tr><th scope="row">Süre</th><td colspan="2">Program en çok 10 ay; bir kişi bu programlardan toplamda en çok 140 fiili gün yararlanır</td></tr>
+              <tr><th scope="row">Hane geliri</th><td>Net asgari ücretin 3 katı: <span data-s="hane3">84.226,50 TL</span></td><td>Net asgari ücretin 2 katı: <span data-s="hane2">56.151 TL</span></td></tr>
+              <tr><th scope="row">Seçim</th><td>Noter huzurunda kura</td><td>Önce kadınlar, engelliler, eski hükümlüler ve Hane Bazlı İzleme Sistemi'ndekiler</td></tr>
+              <tr><th scope="row">Sigorta</th><td colspan="2">İş kazası ve meslek hastalığı ile genel sağlık sigortası (%5,5 prim, İŞKUR öder); emeklilik primi yok</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Ortak şartlar: Türkiye Cumhuriyeti vatandaşı ve İŞKUR'a kayıtlı olmak, 18 yaşını tamamlamış olmak, yaşlılık ya da malullük aylığı almamak, başvurudan önceki son bir ayda sigortalı bildirilmemiş olmak, programı yürüten kurumda son bir yıl çalışmamış olmak, başka bir aktif işgücü ya da işsizlik sigortası programından yararlanmıyor olmak.</p>
+
+        <h2 id="emeklilik">Emekliliğe sayılır mı?</h2>
+        <p>Hayır. Katılımcılar 5510 sayılı Kanunun 5. maddesinin (e) bendine göre sigortalı sayılıyor ve bu bentte yalnız <strong>iş kazası ve meslek hastalığı sigortası ile genel sağlık sigortası</strong> uygulanıyor. Malullük, yaşlılık ve ölüm sigortası yani uzun vadeli sigorta yok; programda geçen günler emeklilik için gereken prim gününe eklenmiyor. Primi İŞKUR ödüyor, katılımcının cep harçlığından kesinti yapılmıyor.</p>
+
+        <h2 id="ay">19.250 TL neden her ay aynı değil?</h2>
+        <p>Ödeme ay değil gün üzerinden. Haftada 3 gün katılan biri ayların çoğunda 12–14 gün katılır; pazartesi ve salıları beşer kez geçen bir ayda 15 gün katılıp <span data-s="ay15">20.625 TL</span> alabilir, kısa bir ayda 12 gün katılıp <span data-s="ay12">16.500 TL</span> alır. NEET programında ilk dört hafta 5 gün olduğu için ilk ay belirgin biçimde yüksektir. Toplam ise 140 günle sınırlı: kişi başı en çok <span data-s="tavan">192.500 TL</span>.</p>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+        <h3>İŞKUR gençlere ayda 19 bin TL veriyor mu?</h3>
+        <p>Evde oturana değil. GÜÇ kapsamındaki İŞKUR Gençlik Programı ve İşgücü Uyum Programı'nda katılımcılar kamu kurumlarında ya da üniversitede çoğunlukla haftada 3 gün (NEET programında ilk dört hafta 5 gün) görev yapıyor ve katıldıkları her gün için <span data-s="gunluk">1.375 TL</span> alıyor. Ayda 14 gün katılan <span data-s="aylik14">19.250 TL</span> alır; bu bir maaş değil, katılım günü kadar ödenen cep harçlığı.</p>
+        <h3>Kimler başvurabilir?</h3>
+        <p>Gençlik Programı'na devlet üniversitelerinin örgün öğrencileri, İşgücü Uyum Programı'na İŞKUR'a kayıtlı işsizler başvurabilir; NEET programı ne eğitimde ne istihdamda olan gençler için. İkisinde de 18 yaşını tamamlamış olmak, son bir ayda sigortalı çalışmamış olmak ve hane geliri şartını sağlamak gerekir.</p>
+        <h3>Hane geliri sınırı ne kadar?</h3>
+        <p>Aynı adreste yaşayanların aylık toplam kazancı Gençlik Programı'nda net asgari ücretin 3 katını (<span data-s="hane3">84.226,50 TL</span>), İşgücü Uyum Programı'nda 2 katını (<span data-s="hane2">56.151 TL</span>) aşmamalı. Yurtta ya da benzeri toplu yaşam alanında kalanlar için bu şart aranmaz.</p>
+        <h3>Programda geçen süre emekliliğe sayılır mı?</h3>
+        <p>Hayır. Katılımcılar için yalnız iş kazası ve meslek hastalığı ile genel sağlık sigortası primi ödeniyor (5510 s.K. m.5/1-e); emeklilik prim gününe eklenen gün yok.</p>
+        <h3>Programa katılırken başka bir işte çalışabilir miyim?</h3>
+        <p>İŞKUR'a göre katılımcı program sürerken başka bir işyerinde sigortalı çalışabilir. Ama başvuru tarihinden önceki son bir ayda sigortalı bildirilmiş olmak katılıma engel.</p>
+        <h3>Verilerim bir yere gönderiliyor mu?</h3>
+        <p>Hayır. Hesap tarayıcınızda yapılır; girdiğiniz bilgiler hiçbir sunucuya gönderilmez.</p>
+<!-- SSS:BITIS -->
+
+        <h2>Varsayımlar</h2>
+        <p>Takvim, katılım günlerinin haftanın ilk iş günlerinden seçildiğini varsayar; resmî tatiller ve kurumun belirleyeceği gerçek günler ayrıca düşülmez, aylık tutar bir iki gün oynayabilir. 2027'ye taşan günler, 2027 tutarı açıklanana kadar <span data-s="yil">2026</span> tutarıyla gösterilir. Kesinti, vergi ya da sosyal yardım etkisi hesaplanmaz.</p>
+
+        <h2 id="kaynak-title">Kaynaklar</h2>
+        <ul>
+          <li><a href="https://www.iskur.gov.tr/is-arayan/aktif-isgucu-programlari/iskur-genclik-programi/" rel="noopener">İŞKUR Gençlik Programı</a> ve <a href="https://www.iskur.gov.tr/is-arayan/aktif-isgucu-programlari/isgucu-uyum-programi/" rel="noopener">İşgücü Uyum Programı</a> sayfaları, Türkiye İş Kurumu (6 Ekim 2026'da okundu)</li>
+          <li><a href="https://guc.iskur.gov.tr/" rel="noopener">Gençliğin Üretim Çağı (GÜÇ) portalı</a>: program hedefleri ve Ağustos 2026 göstergeleri</li>
+          <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5510.pdf" rel="noopener">5510 sayılı Kanun</a> m.5/1-e</li>
+          <li>Net asgari ücret: sitenin <a href="../bordro/">bordro motoru</a> parametreleri</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili</h2>
+        <ul>
+          <li><a href="../makaleler/iskur-19-bin-tl-gercekte-ne/">İŞKUR'dan 19 bin TL: gerçekte ne ödeniyor?</a> — programların haritası, hedefler ve gerçekleşme (yazı)</li>
+          <li><a href="../issizlik-maasi-hesaplama/">İşsizlik maaşı hesaplama</a></li>
+          <li><a href="../maas-hesaplama/">Brüt net maaş hesaplama</a></li>
+          <li><a href="../ne-zaman-emekli-olurum/">Ne zaman emekli olurum?</a></li>
+        </ul>
+      </div>
+    </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Kaynaklar</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Kaynaklar</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../koray-oner/">Koray Öner: çalışma dizini</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=5489aa17" defer></script>
+  <script src="../bordro/motor.js?v=2de19617" defer></script>
+  <script src="hesap.js?v=ba79cbc7" defer></script>
+  <script src="script.js?v=60334810" defer></script>
+  <script src="../script.js?v=72b4a7c6" defer></script>
+</body>
+</html>
