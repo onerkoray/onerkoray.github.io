@@ -670,3 +670,27 @@ html { scroll-behavior: smooth; }
   .home-page .project-card, .home-page .chip, .home-page .chip::before,
   .home-page .project-links a:first-child::after { transition: none; transform: none; }
 }
+
+/* ---- Kurumsal cila (7 Ekim 2026) ----
+   Ana sayfa girişi tek bir dil konuşsun: aynı yarıçap, nötr kenar, renkli
+   şerit yok. Vurgu rengi düğmede, üst etikette ve etkin bağlantıda kalır. */
+
+/* Başlığın ikinci satırı vurgu renginde bir slogandı; künye gibi okunsun
+   diye mürekkebin ikincil tonuna indi. */
+:root .home-page .hero h1 .accent { color: var(--text-muted); }
+
+:root .home-page .hero-quick { border-radius: var(--radius-control); }
+:root .home-page .hero-quick::before { display: none; }
+:root .home-page .hero-quick h2 { color: var(--text-muted); }
+
+:root .home-page .topic-index a {
+  border-radius: var(--radius-control);
+  border-top: 1px solid var(--border);
+}
+:root .home-page .topic-index a:is(:hover, :focus-visible) { border-color: var(--brand); }
+
+:root .home-page .hero-latest .hq-yeni a {
+  border-radius: var(--radius-control);
+  background: var(--surface);
+}
+:root .home-page .hero-latest .hq-yeni em { color: var(--text-muted); }

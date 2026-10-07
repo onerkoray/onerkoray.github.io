@@ -2035,3 +2035,28 @@ section { padding: var(--bolum) 0; }
 @media print {
   .prose a[href^="http"]::after { content: none; }
 }
+
+/* ---- 15. Kurumsal cila (7 Ekim 2026) ----
+   Site sahibinin isteği: finans ve sosyal güvenlik kaynağına yakışan,
+   profesyonel bir yüz. Yerleşim ve araç kartları aynı; değişen dil. */
+
+/* Gezinme: mono, büyük harf ve geniş aralıklı ~11px yazı okunmuyordu ve
+   sekiz bağlantıyı bir terminal satırına çeviriyordu. Finans
+   kaynaklarındaki gibi düz sans, cümle düzeni, 14px. Etkin sayfa mürekkep
+   renginde ve alt çizgili; vurgu rengi yalnız o çizgide. */
+:root .site-nav a {
+  font-family: var(--font-body); text-transform: none; letter-spacing: 0;
+  font-size: .875rem; font-weight: 500; color: var(--text-muted);
+}
+:root .site-nav a:hover,
+:root .site-nav a[aria-current="page"],
+:root .site-nav a.nav-featured { color: var(--text); }
+:root .site-header .theme-toggle,
+:root .site-header .palette > button {
+  font-family: var(--font-body); text-transform: none; letter-spacing: 0;
+  font-size: .8125rem; font-weight: 500;
+}
+
+/* Marka adı sabit mürekkep. Renk dalgası her 6,5 saniyede adı boyuyordu;
+   bir finans kaynağında ad kıpırdamaz. Üzerine gelince çizgi kalır. */
+:root .brand-name { animation: none; background-image: none; color: var(--text); }
