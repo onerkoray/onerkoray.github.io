@@ -92,11 +92,19 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
         run: |
-          # Yayınlamadan biten (publish=false) çalışma da "success" görünür ve
-          # head_sha'sı şimdiki HEAD olabilir: HEAD'den farklı ve onun atası
-          # olan en yeni çalışma alınır (fazlası gitse de zararsız).
+          # Yayınlamadan biten (publish=false) çalışma da "success" görünür:
+          # 7 Ekim 2026'da böyle bir çalışma temel alındı ve o günün
+          # değişiklikleri hiç bildirilmedi. Temel, bu adımı GERÇEKTEN koşmuş
+          # (atlanmamış) ve HEAD'in atası olan en yeni çalışmadır.
           ONCEKI=HEAD~1
-          for SHA in $(gh api "repos/$REPO/actions/workflows/pages.yml/runs?status=success&branch=main&per_page=20" --jq '.workflow_runs[].head_sha' 2>/dev/null || true); do
-            if [ "$SHA" != "$(git rev-parse HEAD)" ] && git merge-base --is-ancestor "$SHA" HEAD 2>/dev/null; then ONCEKI=$SHA; break; fi
+          for RUN in $(gh api "repos/$REPO/actions/workflows/pages.yml/runs?status=success&branch=main&per_page=30" --jq '.workflow_runs[] | "\(.id):\(.head_sha)"' 2>/dev/null || true); do
+            SHA=${RUN#*:}
+            [ "$SHA" = "$(git rev-parse HEAD)" ] && continue
+            git merge-base --is-ancestor "$SHA" HEAD 2>/dev/null || continue
+            KOSTU=$(gh api "repos/$REPO/actions/runs/${RUN%%:*}/jobs" --jq '[.jobs[].steps[] | select(.name == "IndexNow bildirimi" and .conclusion == "success")] | length' 2>/dev/null || echo 0)
+            if [ "$KOSTU" -gt 0 ]; then ONCEKI=$SHA; break; fi
           done
+          # Bu adımı koşmuş çalışma yoksa (ilk kurulum) son 30 commit'in
+          # başı temel alınır.
+          if [ "$ONCEKI" = "HEAD~1" ] && [ "$(git rev-list --count HEAD)" -gt 30 ]; then ONCEKI=HEAD~30; fi
           node scripts/indexnow.mjs --onceki "$ONCEKI" --bekle 600

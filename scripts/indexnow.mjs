@@ -32,7 +32,7 @@ const host = new URL(SITE).host;
 
 function oncekiManifest(ref) {
   try {
-    return JSON.parse(execFileSync("git", ["show", ref + ":content.json"], { cwd: KOK, encoding: "utf8", maxBuffer: 1e8 }));
+    return JSON.parse(execFileSync("git", ["show", ref + ":content.json"], { cwd: KOK, encoding: "utf8", maxBuffer: 1e8, stdio: ["ignore", "pipe", "ignore"] }));
   } catch {
     return null;
   }
@@ -66,9 +66,17 @@ async function canliHazir(adresler, sure) {
 
 async function main() {
   const ref = arg("--onceki", "HEAD~1");
-  const eski = oncekiManifest(ref);
-  if (!eski) { console.log("Önceki manifest okunamadı (" + ref + "); bildirim yok."); return 0; }
-  const adresler = degisenler(eski, yeni);
+  let eski = oncekiManifest(ref), adresler;
+  if (eski) adresler = degisenler(eski, yeni);
+  else {
+    /* Manifest o commit'ten sonra kuruldu: commit zamanından sonra
+       güncellenen sayfalar gider. */
+    let zaman;
+    try { zaman = execFileSync("git", ["show", "-s", "--format=%cI", ref], { cwd: KOK, encoding: "utf8" }).trim(); } catch { zaman = ""; }
+    if (!zaman) { console.log("Önceki commit okunamadı (" + ref + "); bildirim yok."); return 0; }
+    adresler = yeni.sayfalar.filter((s) => !s.noindex && new Date(s.updatedAt || s.updated) > new Date(zaman)).map((s) => s.url);
+    console.log("Önceki commit'te manifest yok; " + zaman + " sonrası güncellenenler alınıyor.");
+  }
   console.log("Önceki: " + ref + " · değişen ya da yeni adres: " + adresler.length);
   adresler.slice(0, 20).forEach((u) => console.log("  " + u));
   if (!adresler.length) return 0;
