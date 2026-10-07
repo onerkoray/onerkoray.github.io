@@ -1,4 +1,4 @@
-/* Canlılık katmanı — saat, tarih, komut paleti (bağımlılıksız, yalnız ana sayfa) */
+/* Ana sayfa katmanı — başlık küçülmesi, son kullanılanlar, komut paleti (bağımlılıksız). */
 (function () {
   "use strict";
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -10,88 +10,11 @@
     if (html != null) e.innerHTML = html;
     return e;
   }
-  var AYLAR = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
-  var GUNLER = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
-  function pad(n) { return (n < 10 ? "0" : "") + n; }
-
-  /* ---------- Güne göre ton + selamlama ---------- */
-  function daypart(h) {
-    if (h >= 6 && h < 12) return ["sabah", "🌅 Günaydın"];
-    if (h >= 12 && h < 17) return ["oglen", "☀️ İyi öğleden sonralar"];
-    if (h >= 17 && h < 21) return ["aksam", "🌇 İyi akşamlar"];
-    return ["gece", "🌙 İyi geceler"];
-  }
-
-  /* ---------- Hero canlı bar ---------- */
+  /* Saat, selamlama, sonraki tatil ve dünya saatleri şeridi 7 Ekim 2026'da
+     kaldırıldı: finans bilgisi taşımıyordu, emojili selam sitenin diline
+     uymuyordu ve elle yazılmış tatil listesi 2027'de bayatlayacaktı. */
   var heroActions = $(".hero-actions");
   if (!heroActions) return; // yalnızca ana sayfa
-  var bar = el("div", "live-bar");
-  bar.innerHTML =
-    '<div class="live-card"><span class="lc-label" id="lv-greet">Merhaba</span>' +
-    '<span class="lc-value" id="lv-clock">--:--:--</span><span class="lc-sub" id="lv-dpname"></span></div>' +
-    '<div class="live-card"><span class="lc-label">Bugün</span>' +
-    '<span class="lc-value" id="lv-date"></span><span class="lc-sub" id="lv-doy"></span></div>' +
-    '<div class="live-card"><span class="lc-label">Sonraki tatil</span>' +
-    '<span class="lc-value" id="lv-hol"></span><span class="lc-sub" id="lv-hol-sub"></span></div>' +
-    '<div class="live-card"><span class="lc-label">Dünya saatleri</span>' +
-    '<span class="lc-world" id="lv-world"></span></div>';
-  /* Canli serit artik hero'nun icinde degil, araclarin ve makalelerin altindaki
-     kendi yuvasinda duruyor: urun ilk ekranda, ortam bilgisi asagida. */
-  var yuva = document.getElementById("live-slot");
-  if (yuva) { yuva.appendChild(bar); }
-  else {
-    var heroInner = heroActions.closest(".hero-inner");
-    if (heroInner) { heroInner.appendChild(bar); }
-    else { heroActions.parentNode.insertBefore(bar, heroActions.nextSibling); }
-  }
-
-  // 2026-2027 resmi tatiller
-  var TATIL = [
-    ["2026-03-20", "Ramazan Bayramı"], ["2026-04-23", "Ulusal Egemenlik Bayramı"], ["2026-05-01", "Emek ve Dayanışma Günü"],
-    ["2026-05-19", "Gençlik ve Spor Bayramı"], ["2026-05-27", "Kurban Bayramı"], ["2026-07-15", "Demokrasi ve Millî Birlik Günü"],
-    ["2026-08-30", "Zafer Bayramı"], ["2026-10-29", "Cumhuriyet Bayramı"], ["2027-01-01", "Yılbaşı"]
-  ];
-  function nextHoliday(n) {
-    for (var i = 0; i < TATIL.length; i++) {
-      var d = new Date(TATIL[i][0] + "T00:00:00");
-      if (d > n) return [d, TATIL[i][1]];
-    }
-    return null;
-  }
-  function worldTime(tz) {
-    return new Intl.DateTimeFormat("tr-TR", { hour: "2-digit", minute: "2-digit", timeZone: tz }).format(new Date());
-  }
-  function tick() {
-    var n = new Date();
-    var dp = daypart(n.getHours());
-    document.documentElement.setAttribute("data-daypart", dp[0]);
-    $("#lv-greet").textContent = dp[1];
-    $("#lv-clock").textContent = pad(n.getHours()) + ":" + pad(n.getMinutes()) + ":" + pad(n.getSeconds());
-    $("#lv-date").textContent = n.getDate() + " " + AYLAR[n.getMonth()] + " " + GUNLER[n.getDay()];
-    var start = new Date(n.getFullYear(), 0, 0);
-    var doy = Math.floor((n - start) / 864e5);
-    var yearDays = (n.getFullYear() % 4 === 0 && (n.getFullYear() % 100 !== 0 || n.getFullYear() % 400 === 0)) ? 366 : 365;
-    $("#lv-doy").textContent = "Yılın " + doy + ". günü · " + (yearDays - doy) + " gün kaldı";
-    // sonraki tatil
-    var nh = nextHoliday(n);
-    if (nh) {
-      var kalan = Math.ceil((nh[0] - n) / 864e5);
-      $("#lv-hol").textContent = kalan + " gün";
-      $("#lv-hol-sub").textContent = nh[1] + " · " + nh[0].getDate() + " " + AYLAR[nh[0].getMonth()];
-    }
-    // dünya saatleri
-    $("#lv-world").innerHTML =
-      "<span>İstanbul<b>" + worldTime("Europe/Istanbul") + "</b></span>" +
-      "<span>New York<b>" + worldTime("America/New_York") + "</b></span>" +
-      "<span>Tokyo<b>" + worldTime("Asia/Tokyo") + "</b></span>";
-  }
-  tick();
-  setInterval(tick, 1000);
-
-  /* Hava durumu ve gün batımı kartları kaldırıldı (Ekim 2026): ikisi de
-     ziyaretçinin tarayıcısından üçüncü taraflara (ipapi.co, Open-Meteo)
-     istek gönderiyordu. Site veri toplamadığını söylüyor; süs için IP
-     adresini başka bir servise taşımak bu iddiayla bağdaşmıyordu. */
 
   /* ---------- Header: küçülme ---------- */
   var header = $(".site-header");
@@ -103,15 +26,6 @@
     }, { passive: true });
   }
 
-
-  /* ---------- Kart rozetleri ---------- */
-  var NEW_TOOLS = ["kidem-tazminati-hesaplama/", "gumruk-vergisi-hesaplama/", "otv-hesaplama/", "mtv-hesaplama/", "serbest-meslek-makbuzu-hesaplama/"];
-  var HOT_TOOL = "maas-hesaplama/";
-  document.querySelectorAll(".project-card h3 a").forEach(function (a) {
-    var href = a.getAttribute("href") || "";
-    if (href === HOT_TOOL) a.insertAdjacentHTML("afterend", '<span class="card-flag flag-hot">Popüler</span>');
-    else if (NEW_TOOLS.indexOf(href) !== -1) a.insertAdjacentHTML("afterend", '<span class="card-flag flag-new">Yeni</span>');
-  });
 
   /* ---------- Son kullanılan araçlar (localStorage) ---------- */
   var RECENT_KEY = "onerkoray.recent";

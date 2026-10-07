@@ -1155,20 +1155,18 @@ section { padding: var(--bolum) 0; }
   border-color: color-mix(in srgb, var(--text) 40%, transparent);
 }
 .project-card::after { height: 1px; }
-.project-card, .panel, .live-card { box-shadow: none; }
-.panel:focus-within, .live-card:hover { box-shadow: none; }
+.project-card, .panel { box-shadow: none; }
+.panel:focus-within { box-shadow: none; }
 /* Koyu temadaki yeşil neon hale kaldırıldı: yapay zekâ girişimi dili,
    editoryal dille doğrudan çelişiyordu. */
 :root[data-theme="dark"] { --shadow: none; }
 :root[data-theme="dark"] .project-card,
 :root[data-theme="dark"] .panel,
-:root[data-theme="dark"] .live-card { box-shadow: none; }
 :root[data-theme="dark"] .project-card:hover { box-shadow: none; }
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] { --shadow: none; }
   :root[data-theme="auto"] .project-card,
   :root[data-theme="auto"] .panel,
-  :root[data-theme="auto"] .live-card { box-shadow: none; }
 }
 .karo { border-radius: 0; }
 /* Rozetler pill olmaktan çıkıp künye satırına döndü. */
@@ -1183,7 +1181,7 @@ section { padding: var(--bolum) 0; }
 
 /* ---- 5. Pill sıfırlama ---- */
 .badges li, .skills li, .social-list a, .theme-toggle,
-.tool-search, .palette-pop, .card-flag, .tech-tags li { border-radius: 2px; }
+.tool-search, .palette-pop, .tech-tags li { border-radius: 2px; }
 .skills li:hover { transform: none; }
 .site-header.is-scrolled { box-shadow: none; }
 /* Filtreler: dolu yeşil pill sayfanın en yüksek kontrastlı öğesiydi —
