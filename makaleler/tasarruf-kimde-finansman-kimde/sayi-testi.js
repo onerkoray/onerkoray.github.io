@@ -248,8 +248,9 @@ gecsin("KOBİ reel nesirde", "<strong>%7,45 küçüldü</strong>");
 gecsin("yuvarlama notu var", "yuvarlanmış bileşenlerin");
 gecsin("iki paydanın farkı anlatılmış", "farklı paydalara");
 
-/* DOI sayfada birden çok yerde geçiyor; tam sayı çivileniyor. */
-tamKez("DOI sayfada tam beş kez", "10.5281/zenodo.22819842", 5);
+/* DOI sayfada birden çok yerde geçiyor; tam sayı çivileniyor. Altıncısı
+   7 Ekim 2026'dan beri JSON-LD'deki sameAs (scripts/sync-dates.mjs). */
+tamKez("DOI sayfada tam altı kez", "10.5281/zenodo.22819842", 6);
 
 /* ---------------------------------------------------------------- */
 console.log("\n" + gecen + " kontrol geçti, " + kalan + " kaldı.");

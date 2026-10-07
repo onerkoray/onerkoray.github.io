@@ -190,9 +190,10 @@ gecsin("kanun dayanağı yazılı", "4632 sayılı Kanun");
 gecsin("akış-stok tezi yazılı", "<strong>Devlet katkısı akışla orantılıdır.</strong>");
 gecsin("geçerlilik bildirimi var", "name=\"gecerlilik\"");
 
-/* Uc yer: JSON-LD atfi, kaynakcadaki baglanti adresi ve baglanti
-   metni. Ucu de mesru; sayi civilenince biri sessizce dusemez. */
-tamKez("DOI sayfada tam uc kez", "10.5281/zenodo.22852165", 3);
+/* Dort yer: JSON-LD atfi, JSON-LD sameAs (7 Ekim 2026, scripts/sync-dates.mjs),
+   kaynakcadaki baglanti adresi ve baglanti metni. Hepsi mesru; sayi
+   civilenince biri sessizce dusemez. */
+tamKez("DOI sayfada tam dort kez", "10.5281/zenodo.22852165", 4);
 tamKez("KONTROL: olmayan DOI sıfır kez", "10.5281/zenodo.11111111", 0);
 
 console.log("\n" + gecen + " kontrol geçti, " + kalan + " kaldı.");
