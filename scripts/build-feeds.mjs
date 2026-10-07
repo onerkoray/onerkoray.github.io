@@ -31,15 +31,17 @@ const SITE = M.site;
 const PORTRE = { loc: SITE + "/images/koray-oner-portre.jpg", title: "Koray Öner" };
 const EK_GORSEL = { [SITE + "/"]: [PORTRE], [SITE + "/hakkimda/"]: [PORTRE], [SITE + "/koray-oner/"]: [PORTRE] };
 
+/* Sayılar manifestten (sayaclar): akış alt başlığı elle yazılmış sayı taşımaz. */
+const N = M.sayaclar;
 const AKISLAR = [
   { dosya: "atom.xml", baslik: "Koray Öner — Araçlar ve Yazılar",
-    alt: "Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için hesaplama araçları ve arkalarındaki mevzuatı anlatan yazılar.",
+    alt: "Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için " + N.arac + " hesaplama aracı ve arkalarındaki mevzuatı anlatan " + N.makale + " yazı.",
     alternate: SITE + "/", turler: ["arac", "makale", "metodoloji", "grafik"] },
   { dosya: "makaleler/atom.xml", baslik: "Koray Öner — Yazılar",
-    alt: "Bordro, vergi, sosyal güvenlik ve kişisel finans üzerine, hesabı ve kaynağı verilen yazılar.",
+    alt: "Bordro, vergi, sosyal güvenlik ve kişisel finans üzerine, hesabı ve kaynağı verilen " + N.makale + " yazı.",
     alternate: SITE + "/makaleler/", turler: ["makale"] },
   { dosya: "araclar/atom.xml", baslik: "Koray Öner — Hesaplama Araçları",
-    alt: "Tarayıcıda çalışan, reklamsız ve üyeliksiz maaş, vergi, SGK ve kredi hesaplama araçları.",
+    alt: "Tarayıcıda çalışan, reklamsız ve üyeliksiz " + N.arac + " maaş, vergi, SGK ve kredi hesaplama aracı.",
     alternate: SITE + "/araclar/", turler: ["arac"] }
 ];
 

@@ -39,11 +39,11 @@ html { scroll-behavior: smooth; }
 .lang-bar{display:flex;height:8px;border-radius:99px;gap:2px;background:color-mix(in srgb, var(--border) 55%, transparent)}
 .lang-bar span{display:block;height:100%;border-radius:99px;position:relative;cursor:default;background:var(--brand);
   flex:0.001 1 0%;min-width:0;transform-origin:center;
-  transition:flex-grow .6s cubic-bezier(.22,1,.36,1) var(--slice-delay,0ms), transform .18s ease, opacity .18s ease}
-.lang-bar span:nth-child(1){--slice-delay:0ms}
-.lang-bar span:nth-child(2){background:color-mix(in srgb, var(--brand) 72%, var(--surface));--slice-delay:90ms}
-.lang-bar span:nth-child(3){background:color-mix(in srgb, var(--brand) 50%, var(--surface));--slice-delay:180ms}
-.lang-bar span:nth-child(4){background:color-mix(in srgb, var(--brand) 32%, var(--surface));--slice-delay:270ms}
+  transition:transform .18s ease, opacity .18s ease}
+
+.lang-bar span:nth-child(2){background:color-mix(in srgb, var(--brand) 72%, var(--surface))}
+.lang-bar span:nth-child(3){background:color-mix(in srgb, var(--brand) 50%, var(--surface))}
+.lang-bar span:nth-child(4){background:color-mix(in srgb, var(--brand) 32%, var(--surface))}
 .lang-bar span:hover,.lang-bar span.is-active{transform:scaleY(1.8)}
 .lang-legend{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--text-muted)}
 .lang-legend li{display:flex;align-items:center;gap:6px}

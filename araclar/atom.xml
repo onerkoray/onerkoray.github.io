@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Hesaplama Araçları</title>
-  <subtitle>Tarayıcıda çalışan, reklamsız ve üyeliksiz maaş, vergi, SGK ve kredi hesaplama araçları.</subtitle>
+  <subtitle>Tarayıcıda çalışan, reklamsız ve üyeliksiz 61 maaş, vergi, SGK ve kredi hesaplama aracı.</subtitle>
   <link href="https://korayoner.dev/araclar/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/araclar/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/araclar/atom.xml</id>

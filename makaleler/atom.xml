@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Yazılar</title>
-  <subtitle>Bordro, vergi, sosyal güvenlik ve kişisel finans üzerine, hesabı ve kaynağı verilen yazılar.</subtitle>
+  <subtitle>Bordro, vergi, sosyal güvenlik ve kişisel finans üzerine, hesabı ve kaynağı verilen 59 yazı.</subtitle>
   <link href="https://korayoner.dev/makaleler/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/makaleler/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/makaleler/atom.xml</id>
