@@ -83,9 +83,14 @@ ROBOTS = re.compile(r'<meta\s+name="robots"')
 # "Guncellendi"/"Guncelleme:" satirlari, JSON-LD dateModified ve sitemap/
 # Atom tarihleri icerik manifestinden (content.json) YAZILIYOR. Yazilan
 # tarih ozlu sayilirsa her senkron tarihi bugune iter ve dongu kurulur.
-TARIH_SATIRI = re.compile(r'"dateModified"\s*:|class="card-updated"|Güncelleme: <time|<lastmod>|<updated>|<published>')
+TARIH_SATIRI = re.compile(r'"dateModified"\s*:|class="card-updated"|<lastmod>|<updated>|<published>')
 # Akis baglantilari ve isaretleri (scripts/apply-shell.mjs) site kabugudur.
-KABUK_SATIRI = re.compile(r'<link rel="alternate" type="application/atom\+xml"|<!-- AKIS:(?:BASLANGIC|BITIS) -->')
+KABUK_SATIRI = re.compile(r'<link rel="alternate" type="application/atom\+xml"|<!-- AKIS:(?:BASLANGIC|BITIS) -->'
+                          # Yazi kunyesindeki tarih ve ayirici satirlari (scripts/sync-dates.mjs
+                          # yayin tarihini gorunur tutarken yazar): tek basina bir <time> ya da
+                          # "·" ayiricisi. Ozlu sayilirsa senkron tarihi bugune iter.
+                          r'|^\s*<time datetime="[\d-]+">[^<]*</time>\s*$'
+                          r'|^\s*<span class="ed-sep" aria-hidden="true">·</span>\s*$')
 
 
 # SITE KABUGU sayfanin icerigi degil. 26 Eylul 2026'da ust baslik 173
@@ -166,6 +171,20 @@ def _gezinmesiz(satir):
     return SINIF_NITELIGI.sub("", IC_BAGLANTI.sub("", satir))
 
 
+# Tarih senkronunun (scripts/sync-dates.mjs) yazdigi parcalar: kunyedeki
+# yayin/guncelleme zamani, "·" ayiricisi ve JSON-LD dateModified.
+TARIH_PARCASI = re.compile(
+    r'<span>Güncelleme: <time datetime="[\d-]+">[^<]*</time></span>'
+    r'|<span(?: class="ed-sep")? aria-hidden="true">·</span>'   # sinif niteligi once siliniyor
+    r'|<time datetime="[\d-]+">[^<]*</time>'
+    r'|"dateModified":\s*"[^"]*",?'
+    r'|\s·\s')
+
+
+def _birlesik(satirlar):
+    return re.sub(r"\s+", "", TARIH_PARCASI.sub("", "".join(satirlar)))
+
+
 def _imzalar(h):
     """Commit'teki her dosyanin normalize edilmis diff imzasi.
 
@@ -178,7 +197,11 @@ def _imzalar(h):
 
     def kapat():
         if yol is not None:
-            tablo[yol] = (tuple(sorted(ekli)), tuple(sorted(silik)))
+            # Ucuncu ve dorduncu oge: tarih parcalari atilip bosluksuz
+            # birlestirilmis metin. Tek satirlik bir kunye cok satira
+            # bolundugunde satir kumeleri tutmaz ama metin ayni kalir.
+            tablo[yol] = (tuple(sorted(ekli)), tuple(sorted(silik)),
+                          _birlesik(ekli), _birlesik(silik))
 
     for satir in git("show", "--format=", "--unified=0", h).split("\n"):
         if satir.startswith("diff --git "):
@@ -191,7 +214,7 @@ def _imzalar(h):
             continue
         if satir.startswith("+++") or satir.startswith("---"):
             continue
-        if GECERLILIK.search(satir) or DOGRULAMA.search(satir) or ROBOTS.search(satir) or TARIH_SATIRI.search(satir) or KABUK_SATIRI.search(satir):
+        if GECERLILIK.search(satir) or DOGRULAMA.search(satir) or ROBOTS.search(satir) or TARIH_SATIRI.search(satir) or KABUK_SATIRI.search(satir[1:] if satir[:1] in "+-" else satir):
             continue
         if satir.startswith(("+", "-")):
             # Ilk kez damga eklenmesi de yalnizca onbellek degisimidir.
@@ -236,7 +259,7 @@ def ozlu_degisim(h, yol):
     if not kendi:
         return False
     for dosya, imza in kendi:
-        if imza[0] == imza[1]:      # normalize sonrasi geriye bir sey yok
+        if imza[0] == imza[1] or imza[2] == imza[3]:      # normalize sonrasi geriye bir sey yok
             continue
         # Stil dosyasi icerik degildir. 29 Eylul 2026'da form ve tablo
         # yazisi tek olcege baglandi; 23 aracin karti, hicbir hesabi ya da
