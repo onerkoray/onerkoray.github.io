@@ -220,8 +220,11 @@ geri alındı. [CI: Görsel ve hareket standardı]
   devam eder. Kaldırılan efektin kodu da silinir.
 
 Süs olmayan şey yasak değildir. Örneğin kart bandındaki kategori etiketi
-bir okuma alanıdır, filtre düğmesiyle aynı adı taşır. "Canlı" göstergesindeki
-nabız da verinin gerçekten yenilendiğini söyleyen bir durum işaretidir.
+bir okuma alanıdır, filtre düğmesiyle aynı adı taşır. Verinin gerçekten
+yenilendiğini söyleyen bir nabız da durum işaretidir; ama yenilenen verinin
+yanında durur. Genel menüde neyin canlı olduğunu söylemeyen "Canlı" rozeti
+ve ana sayfadaki saat, selam ve dünya saatleri şeridi bu yüzden 7 Ekim
+2026'da kaldırıldı.
 
 **Hareket.**
 
