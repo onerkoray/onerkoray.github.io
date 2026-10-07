@@ -1032,6 +1032,13 @@ jobs:
         # ağaçta 9 iddianın 8'inde kırmızıydı.
         run: node tools/baslik-test.js
 
+      - name: Menü her sayfada aynı mı
+        # 7 Ekim 2026: 170 sayfada ~90 farklı üst menü vardı; makaleye girince
+        # Grafikler kayboluyordu. Menü tools/menu.py'den yazılır, sayfa içi
+        # atlamalar "Bu sayfada" satırına taşınır. Elle düzenlenen bir menü
+        # ya da şablondan eski menüyle üreyen bir sayfa burada kırmızı.
+        run: python tools/menu.py --check
+
       - name: Makale kabuğu ve sınıfları
         # Bir makalenin gövdesini şablona bakmadan kurdum ve sarmal
         # olarak .wrap kullanmadım; genişliği sınırlayan sınıf o.

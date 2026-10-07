@@ -21,8 +21,10 @@
  *   2. marka bağlantısı aria-label="Koray Öner ana sayfa" taşıyor, ad
  *      <span class="brand-name"> içinde
  *   3. gezinme aria-label="Birincil"
- *   4. ana sayfa dışında menünün ilk üç öğesi Ana Sayfa · Araçlar ·
- *      Makaleler ve gerçekten oraya gidiyor
+ *   4. menü her sayfada aynı altı öğe, aynı sırada ve gerçekten oraya
+ *      gidiyor: Araçlar · Makaleler · Grafikler · Bordro Motoru ·
+ *      Yayınlar · Hakkımda (7 Ekim 2026; önceden yalnız ilk üç öğe
+ *      sabitti, 170 sayfada ~90 farklı menü vardı)
  *   5. <head> içinde, ertelenmeden tema-erken.js (tema ilk boyamadan
  *      önce uygulanır, sayfa geçişinde açık/koyu yanıp sönmez)
  *   6. sitenin script.js'i yükleniyor
@@ -76,14 +78,15 @@ dosyalar(KOK).forEach(function (tam) {
   if (h.indexOf('<span class="brand-name">Koray Öner</span>') < 0) hata("marka adı .brand-name", p);
   if (h.indexOf('<nav class="site-nav" aria-label="Birincil">') < 0) hata("gezinme aria-label Birincil", p);
 
-  if (p !== "index.html") {
+  {
     var ogeler = [];
     var re = /<li><a [^>]*?href="([^"]*)"[^>]*>([\s\S]*?)<\/a><\/li>/g, m;
     while ((m = re.exec(h))) ogeler.push([m[2].replace(/<[^>]+>/g, "").trim(), cozumle(m[1], p)]);
-    var beklenen = [["Ana Sayfa", "/"], ["Araçlar", "/#projects"], ["Makaleler", "/makaleler/"]];
-    var ilk = ogeler.slice(0, 3).map(function (o) { return o.join(" "); }).join(" · ");
+    var beklenen = [["Araçlar", "/#projects"], ["Makaleler", "/makaleler/"], ["Grafikler", "/grafikler/"],
+      ["Bordro Motoru", "/bordro/"], ["Yayınlar", "/yayinlar/"], ["Hakkımda", "/hakkimda/"]];
+    var ilk = ogeler.map(function (o) { return o.join(" "); }).join(" · ");
     var ist = beklenen.map(function (o) { return o.join(" "); }).join(" · ");
-    if (ilk !== ist) hata("menü Ana Sayfa · Araçlar · Makaleler ile başlıyor", p, ilk);
+    if (ilk !== ist) hata("menü her sayfada aynı altı öğe", p, ilk);
     var harf = ogeler.reduce(function (t, o) { return t + Array.from(o[0]).length; }, 0);
     var genislik = Math.round(harf * 7.17 + (ogeler.length - 1) * 20);
     if (genislik > 680) hata("menü tek satıra sığıyor", p, genislik + " px");
@@ -110,7 +113,7 @@ dosyalar(KOK).forEach(function (tam) {
 
 console.log("Site başlığı tek standartta\n\n  taranan sayfa: " + sayfa + "\n");
 var IDDIALAR = ["header role=banner", "marka aria-label", "marka adı .brand-name", "gezinme aria-label Birincil",
-  "menü Ana Sayfa · Araçlar · Makaleler ile başlıyor", "tema-erken.js <head> içinde", "tema-erken.js ertelenmemeli",
+  "menü her sayfada aynı altı öğe", "tema-erken.js <head> içinde", "tema-erken.js ertelenmemeli",
   "sitenin script.js'i yükleniyor", "tema düğmesini yalnız script.js dinliyor", "menü tek satıra sığıyor"];
 var kalan = 0;
 IDDIALAR.forEach(function (ad) {
