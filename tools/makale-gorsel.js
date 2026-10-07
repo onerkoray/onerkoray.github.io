@@ -2218,6 +2218,38 @@ function gucHedef() {
   return s + "</svg>";
 }
 
+/* İlk giriş yılına göre tam emeklilik yaşı (sosyal güvenlik yazısının modülünden). */
+var SGD = require(path.join(KOK, "makaleler", "turkiyede-sosyal-guvenligin-donusumu", "donusum.js"));
+function sgEmeklilikYasi() {
+  var K = SGD.seri("kadin"), E = SGD.seri("erkek"), ek = SGD.esikler("kadin"), ee = SGD.esikler("erkek");
+  var son = function (S) { return S[S.length - 1].yas; };
+  if (ek.eyt[0].yas !== 40 || ek.eyt[1].yas !== 58 || son(K) !== 63 || ee.eyt[0].yas !== 45 || son(E) !== 65) throw new Error("sosyal güvenlik kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 548, UST = 92, ALT = 296, X0 = 1985, X1 = 2026, Y0 = 35, Y1 = 67;
+  function x(t) { return SOL + (t - X0) / (X1 - X0) * (SAG - SOL); }
+  function y(v) { return ALT - (v - Y0) / (Y1 - Y0) * (ALT - UST); }
+  function yil(iso) { var p = iso.split("-"); return +p[0] + ((+p[1] - 1) * 30.4 + (+p[2] - 1)) / 365.25; }
+  function basamak(S, ekNok) {
+    var nok = S.map(function (k) { return [yil(k.giris), k.yas]; }).concat([[yil(ekNok.giris), ekNok.yas]]).sort(function (a, b) { return a[0] - b[0]; });
+    return nok.map(function (n, i) { return (i ? "L" : "M") + x(n[0]).toFixed(1) + " " + y(n[1]).toFixed(1) + " H" + x(i + 1 < nok.length ? nok[i + 1][0] : X1).toFixed(1); }).join(" ");
+  }
+  var s = baslikSatirlari("Aynı kariyer, kaç yaşında emeklilik?", "20 yaşında başlayıp hiç ara vermeyen 4/a sigortalı · bugünkü kanun",
+    "İlk giriş yılına göre tam emeklilik yaşı: 8 Eylül 1999 öncesi kadın 40, erkek 45; sonrası 58 ve 60; 2025 girişi 63 ve 65");
+  s += anahtarKutu(24, R.s1, "kadın") + anahtarKutu(94, R.s2, "erkek");
+  s += izgaraY(SOL, SAG, y, [40, 50, 60], function (v) { return String(v); });
+  var xe = x(yil(ek.eyt[1].giris));
+  s += '<path d="M' + xe.toFixed(1) + " " + UST + " V" + ALT + '" stroke="' + R.ikincil + '" stroke-width="1" stroke-dasharray="3 3"/>';
+  s += '<text x="' + (xe + 5).toFixed(1) + '" y="' + (UST + 10) + '" font-size="12" fill="' + R.ikincil + '">8 Eylül 1999</text>';
+  s += '<path fill="none" stroke="' + R.s1 + '" stroke-width="3" d="' + basamak(K, ek.eyt[1]) + '"/>';
+  s += '<path fill="none" stroke="' + R.s2 + '" stroke-width="3" d="' + basamak(E, ee.eyt[1]) + '"/>';
+  s += cubukEtiket(x(1987.5), y(40) + 20, "40") + cubukEtiket(x(1987.5), y(45) - 9, "45");
+  s += cubukEtiket(x(2005), y(58) + 20, "58") + cubukEtiket(x(2005), y(60) - 9, "60");
+  s += '<text x="' + (SAG + 8) + '" y="' + (y(63) + 5).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">63</text>';
+  s += '<text x="' + (SAG + 8) + '" y="' + (y(65) - 1).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">65</text>';
+  [1985, 1995, 2005, 2015, 2025].forEach(function (t) { s += altYazi(x(t), ALT + 20, String(t)); });
+  s += altYazi((SOL + SAG) / 2, ALT + 40, "ilk sigortalılık yılı");
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
   "vergi-borcunu-geciktirmek-karli-mi": {
     kicker: "Vergi · Borç",
@@ -2254,6 +2286,12 @@ var KAPAKLAR = {
     baslik: "Ocak 2027'yi Meclis mi belirleyecek?",
     alt: "11 kalemin 7'si Meclis oyuna bağlı değil",
     cizim: ocakMeclis
+  },
+  "turkiyede-sosyal-guvenligin-donusumu": {
+    kicker: "Sosyal güvenlik · Araştırma",
+    baslik: "Türkiye'de sosyal güvenliğin dönüşümü",
+    alt: "Bir gün arayla sigortalı olan iki kişi: 18 yıl fark",
+    cizim: sgEmeklilikYasi
   },
   "iskur-19-bin-tl-gercekte-ne": {
     kicker: "Sosyal güvenlik · İŞKUR",

@@ -624,6 +624,16 @@ jobs:
       - name: İŞKUR yazısı ve aracı hesaptan üretilmiş mi
         run: node tools/iskur-yazisi.js --check
 
+      # Sosyal güvenliğin dönüşümü (araştırma yazısı): model sigortalı 1985–2025
+      # girişleri için emeklilik tarihi ve aylık bağlama oranı çekirdeklerinden
+      # hesaplanır; test aynı kuralları kanun metninden bağımsız kurar
+      # (506 Geçici m.81/B, 5510 Geçici m.9, m.28/2, Geçici m.82, m.29).
+      - name: Sosyal güvenlik yazısının sayıları
+        run: node makaleler/turkiyede-sosyal-guvenligin-donusumu/sayi-testi.js
+
+      - name: Sosyal güvenlik yazısının grafikleri güncel mi
+        run: node tools/sosyal-guvenlik-yazisi.js --check
+
       - name: kira-geliri-istisnasi-siniri yazısının sayıları
         run: node makaleler/kira-geliri-istisnasi-siniri/sayi-testi.js
 
