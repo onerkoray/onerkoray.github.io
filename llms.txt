@@ -1,0 +1,178 @@
+# Koray Öner — korayoner.dev
+
+> Türkiye'de maaş, vergi, SGK, emeklilik ve hane finansı için ücretsiz hesaplama araçları ve bu hesapların kuralını anlatan yazılar. 61 araç, 59 yazı. Hesaplar tarayıcıda yapılır; hesap içeren her yazının rakamları sitenin hesap motorlarından testle yeniden üretilir.
+
+Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değiştikçe sayfalar güncellenir; her sayfanın güncelleme tarihi site haritasında (https://korayoner.dev/sitemap.xml) ve akışlarda aynıdır. Yazar ve sorumlu: Koray Öner.
+
+## Araçlar: Maaş & Tazminat
+
+- [Asgari Ücret Zammı Senaryosu](https://korayoner.dev/asgari-ucret-zam-senaryosu/): 2027 asgari ücret zammı yüzde kaç olursa net ne olur? Zam ve dilim artışını girin: net asgari ücret, SGK tavanı, maaşınızın neti ve dilimler geride kalırsa kaybınız.
+- [Bağ-Kur ve Borçlanma Hesaplama](https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/): 2026 Bağ-Kur primi, isteğe bağlı sigorta primi, GSS primi ve askerlik ya da doğum borçlanması ne kadar? SGK 2026/2 Genelgesi oranlarıyla hesaplayın.
+- [Bordro Denetimi](https://korayoner.dev/bordro-denetim/): Bordronuzdaki kesinti satırlarını beklenen tutarla karşılaştırın. Fark varsa o rakamı hangi kümülatif matrahın ürettiğini gösterir.
+- [Çalışma Biçimi Karşılaştırma](https://korayoner.dev/calisma-bicimi-karsilastirma/): Aynı parayı maaşlı, şahıs işletmesi veya limited şirket olarak kazansanız elinizde ne kalır? Vergi, prim ve gider dahil dört senaryoyu yan yana karşılaştırın.
+- [Çıkış Takvimi](https://korayoner.dev/cikis-takvimi/): İşten ne zaman ayrılmalı? Kıdem tavanı, ihbar kademesi ve ödenek süresi eşiklerini kendi tarihlerinize göre tarar; hangi günün kaç lira değiştirdiğini söyler.
+- [Emekli Aylığı Hesaplama](https://korayoner.dev/emekli-ayligi-hesaplama/): Emekli aylığı hesaplama: prim gününüze ve kazancınıza göre aylık bağlama oranını (ABO), üç dönemin kısmi aylıklarını ve alt sınır aylığı hesaplayın.
+- [Emekli Çalışan Maaş Hesaplama](https://korayoner.dev/emekli-calisan-maas-hesaplama/): Emekli olup çalışanın net maaşı ve işverene maliyeti: SGDP %7,5 işçi, %22,5 işveren, işsizlik primi yok. Emekli olmayan çalışanla karşılaştırma, 2026.
+- [Emekli Zammı Hesaplama](https://korayoner.dev/emekli-zammi-hesaplama/): Ocak 2027 SSK ve Bağ-Kur zammı için Temmuz–Eylül 2026 enflasyonu açıklandı: birikim %5,56. Kalan 3 ay için senaryolar ve aylığınızın yeni tutarı.
+- [Fazla Mesai Ücreti Hesaplama](https://korayoner.dev/fazla-mesai-hesaplama/): Fazla mesai ücreti: %50 ve %25 zamlı saatlerin brüt karşılığı ve — asıl önemlisi — elinize geçen net. Aynı mesai ocakta ve aralıkta farklı para bırakır.
+- [İŞKUR Gençlik Programı Ödeme Hesaplama](https://korayoner.dev/iskur-genclik-programi-hesaplama/): İŞKUR Gençlik Programı ve NEET İşgücü Uyum Programı: günde 1.375 TL, ay ay ne kadar, 140 gün sınırı ne zaman dolar, hane geliri şartı ve emeklilik primi.
+- [İşsizlik Maaşı Hesaplama](https://korayoner.dev/issizlik-maasi-hesaplama/): İşsizlik maaşı hesaplama: son 4 aylık brüt kazanca ve prim gün sayısına göre aylık ödeneği, tavanı ve kaç ay alacağınızı hesaplayın.
+- [İşten Ayrılma Hesaplama](https://korayoner.dev/isten-ayrilma-hesaplama/): İşten ayrılınca eline ne zaman ne geçer? Fesih türüne göre kıdem, ihbar, yıllık izin, son ay ücreti ve işsizlik maaşı — tek ekranda, ödeme takvimiyle.
+- [İşveren Maliyeti Hesaplama](https://korayoner.dev/isveren-maliyeti-hesaplama/): Çalışan işverene ne kadara mal oluyor? Brüt ya da net ücretten aylık ve yıllık maliyet, SGK işveren payı ve prim indirimi (imalat dışı 2, imalat 5 puan), 2026.
+- [Kıdem Tazminatı Hesaplama](https://korayoner.dev/kidem-tazminati-hesaplama/): 2026 kıdem tazminatı hesaplama: güncel tavan, giydirilmiş brüt ücret, damga vergisi ve ihbar tazminatıyla gün gün hesaplayın, PDF rapor alın.
+- [Maaş Hesaplama](https://korayoner.dev/maas-hesaplama/): 2026 brüt net maaş hesaplama: vergi dilimleri, SGK tavanı ve asgari ücret istisnasıyla ay ay bordro. 2020-2026 geçmiş yıllar ve netten brüte dahil.
+- [Memur Zammı Hesaplama](https://korayoner.dev/memur-zammi-hesaplama/): Ocak 2027 memur ve memur emeklisi zammı en az %5,00. Temmuz–Eylül 2026 enflasyonu %5,56; senaryolar, enflasyon farkı eşiği ve maaşınızın yeni tutarı.
+- [Ne Zaman Emekli Olurum?](https://korayoner.dev/ne-zaman-emekli-olurum/): EYT, 1999–2008 ya da 2008 sonrası: yaş, prim günü ve sigortalılık süresinden emeklilik tarihinizi, bağlayıcı şartı ve borçlanmanın etkisini hesaplar.
+- [Prim ve İkramiye Vergisi](https://korayoner.dev/prim-ikramiye-vergisi/): Prim, ikramiye ve bonusun net ne kadarı elinize geçer? Marjinal kesinti oranı, SGK tavanı etkisi ve hangi ayda almanın gerçekten fark ettiği — 2026 parametreleriyle.
+- [Rapor Parası Hesaplama](https://korayoner.dev/rapor-parasi-hesaplama/): SGK rapor parası (geçici iş göremezlik ödeneği) ne kadar? Hastalık, iş kazası ve doğum raporu; son 12 ayın kazancından günlük ödenek ve raporlu ayda elinize geçen.
+- [Reel Maaş Hesaplama](https://korayoner.dev/reel-maas-hesaplama/): Maaşınız enflasyona yenildi mi? İki tarihteki netinizi TÜFE ile karşılaştırın: alım gücü değişimi, olması gereken maaş ve asgari ücretin kaç katı.
+- [Teklif Karşılaştırma](https://korayoner.dev/teklif-karsilastirma/): İki iş teklifini yıllık toplam net üzerinden karşılaştırın. Ocakta önde görünen teklif yılda geride kalabilir; araç bunu ölçüp söyler.
+- [Ücret–Kâr Payı Optimizasyonu](https://korayoner.dev/ucret-kar-payi-optimizasyonu/): Şirket ortağı gelirini ücret ve kâr payı arasında nasıl paylaştırmalı? Optimum ücreti hesaplar ve beyan eşiğindeki net kaybı uçurumunu gösterir.
+- [Zam Hesaplama](https://korayoner.dev/zam-hesaplama/): Brüt zam oranı net zam oranı değildir. Zammın elinize ne geçeceğini, hedeflediğiniz net için brütte ne istemeniz gerektiğini hesaplayın.
+
+## Araçlar: Vergi & Belge
+
+- [Beyanname hesaplama](https://korayoner.dev/beyanname-hesaplama/): Beyanname vermem gerekir mi? Ücret, kira, menkul sermaye iradı ve serbest meslek gelirini birlikte değerlendirir, GVK m.86 sınırını uygular.
+- [Dilim Kayması Hesaplama](https://korayoner.dev/dilim-kaymasi-hesaplama/): Vergi dilimleri enflasyonla büyüseydi maaşınızdan ne kadar gelir vergisi kesilirdi? 2026 tarifesini üç ölçütle kendi ücretinizde ölçün.
+- [Engelli Araç ÖTV İstisnası Hesaplama](https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/): Engelli raporuyla ÖTV'siz araç: 2.873.900 TL sınırı, %40 yerli katkı, 10 yıl kuralı. Uygun musunuz, ne kadar ödersiniz, MTV ve 5 yıl içinde satış.
+- [Fatura ve Teklif Merkezi](https://korayoner.dev/fatura-olusturma/): Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti. Üyeliksiz; veriler tarayıcınızda kalır.
+- [Gecikme Zammı Hesaplama](https://korayoner.dev/gecikme-zammi-hesaplama/): Vadesinde ödenmeyen vergi borcu bugün ne kadar oldu? GİB oran tablosuyla gecikme zammı: her oran dönemi ayrı, tam ay ve gün hesabıyla, 2010'dan bugüne.
+- [Gümrük Vergisi Hesaplama](https://korayoner.dev/gumruk-vergisi-hesaplama/): 2026 yurt dışı alışverişte ithalat maliyetini planlayın. Teklifteki vergi, kargo ve hizmet bedellerini ekleyin; telefon IMEI harcını hesaplayın.
+- [KDV Hesaplama](https://korayoner.dev/kdv-hesaplama/): KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.
+- [Kira Geliri Vergisi Hesaplama](https://korayoner.dev/kira-geliri-vergisi-hesaplama/): Kira geliri vergisi hesaplama: mesken istisnası, götürü ve gerçek gider karşılaştırması, işyeri stopaj mahsubu ve ödenecek vergi tek ekranda.
+- [MTV Hesaplama](https://korayoner.dev/mtv-hesaplama/): 2026 MTV hesaplama: motor hacmi, yaş ve değere göre taşıt vergisi. Elektrikli araçta kW bantları, 2018 öncesi tescilde (I/A) tarifesi, taksitler ve projeksiyon.
+- [Araç ÖTV Hesaplama](https://korayoner.dev/otv-hesaplama/): Araç ÖTV hesaplama: matraha göre ÖTV, KDV ve anahtar teslim fiyat. Hibritte elektrik motor gücü, şarjlıda menzil ve emisyon koşullarıyla.
+- [Serbest Meslek Makbuzu Hesaplama](https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/): Serbest meslek makbuzu hesaplama: brütten nete, netten brüte; %20 stopaj, KDV ve KDV tevkifatı dahil, 2026 oranlarıyla. Ücretsiz.
+- [Veraset ve İntikal Vergisi Hesaplama](https://korayoner.dev/veraset-ve-intikal-vergisi-hesaplama/): Miras ve bağışta 2026 veraset ve intikal vergisi: mirasçı başına pay, istisna, matrah ve vergi. Eş, çocuk ve ana-baba için yasal paylarla, 6 taksit planıyla.
+- [Vergi Kaması Hesaplama](https://korayoner.dev/vergi-kamasi-hesaplama/): İşveren maliyetinin ne kadarı vergi ve prim? Ortalama ve marjinal kamayı ücret ekseni boyunca hesaplar, zirveyi bulur ve kapalı formla doğrular.
+
+## Araçlar: Kredi & Finans
+
+- [Altın mı, Dolar mı, Mevduat mı?](https://korayoner.dev/altin-mi-dolar-mi-mevduat-mi/): Aralık 2005'te 100.000 TL: altında 30,79 milyon TL, dolarda 3,64 milyon TL, mevduatta 2,37 milyon TL. Kendi tarihlerinizle, enflasyondan sonra hesaplayın.
+- [Başabaş ve Hedef Kâr](https://korayoner.dev/basabas-hesaplama/): Kaç satışla giderlerinizi karşılıyorsunuz? Komisyon dahil başabaş adedi, hedef kâr, kapasite kontrolü ve gerekli satış fiyatını hesaplayın.
+- [Birikim ve BES Hesaplama](https://korayoner.dev/birikim-hesaplama/): Nominal getiri yanıltır. Enflasyona göre reel getiri, BES devlet katkısı ve hak kazanma, hedefe ulaşmak için aylık katkı ve birikimin kaç yıl yeteceği — tek ekranda.
+- [Borç Kapatma Planı](https://korayoner.dev/borc-kapatma-plani/): Birden çok borcu ay ay simüle eder; çığ, kartopu ve asgari ödeme stratejilerini yarıştırır. Hangi borca önce saldıracağınızı ve kurtulan faizi gösterir.
+- [Borç mu, Birikim mi?](https://korayoner.dev/borc-mu-birikim-mi/): Fazladan paranız nereye gitmeli? Her hedefin vergi ve enflasyon sonrası gerçek getirisini hesaplar, acil durum fonu kısıtı altında aylık dağılımı çıkarır.
+- [TCMB Döviz Kurları](https://korayoner.dev/doviz-kurlari/): 6 Ekim 2026 tarihli TCMB resmî döviz kurları: dolar 49,18 TL, euro 55,28 TL. Merkez Bankası efektif alış ve satış kurları, her iş günü güncellenir.
+- [Enflasyon Hesaplama](https://korayoner.dev/enflasyon-hesaplama/): Geçmişteki bir tutar bugün kaç TL eder? 2005'ten bu yana aylık TÜFE ile iki tarih arası enflasyon, yıllık ortalama ve alım gücü kaybı.
+- [Erken Kapatma Analizi](https://korayoner.dev/erken-kapatma-analizi/): Elinizdeki parayla krediyi kapatmak mı, yatırım yapmak mı? Kararın tersine döndüğü getiri eşiğini ve erken ödeme tazminatının yasal sınırını hesaplar.
+- [Ev Almak mı Kiralamak mı](https://korayoner.dev/ev-almak-mi-kiralamak-mi/): Peşinatı yatırsaydınız ne olurdu? Kira ile satın almayı fark yatırımı, masraflar ve enflasyonla karşılaştırır; başabaş yılını ve başabaş kirayı bulur.
+- [Faiz Dönüştürücü](https://korayoner.dev/faiz-donusturucu/): Aylık faiz yıllık kaç eder? Aylık, yıllık, bileşik ve günlük faizi çevirin; kredi faizine vergiyi, mevduata stopajı ekleyip reel karşılığı görün.
+- [İşsiz Kalırsam Kaç Ay Dayanırım?](https://korayoner.dev/finansal-emniyet-testi/): İşsiz kalırsanız birikim, kıdem, ihbar ve işsizlik ödeneğiyle kaç ay dayanırsınız? Enflasyonla artan giderleri ay ay yürütür, eksik acil durum fonunu hesaplar.
+- [Finansal İkiz](https://korayoner.dev/finansal-ikiz/): Finansal hayatınızın dijital ikizi: gelir, gider, varlık ve borçlarınızdan 20 yıllık servet projeksiyonu. Üç senaryo ve en etkili değişken.
+- [Finansal Özgürlük Hesaplama](https://korayoner.dev/finansal-ozgurluk-hesaplama/): Planınız hangi olasılıkla tutar? Monte Carlo ile getiri ve enflasyonu birlikte rastgeleleştirir, başarı oranını ve sürdürülebilir çekimi hesaplar.
+- [Kira Artışı Hesaplama](https://korayoner.dev/kira-artisi-hesaplama/): Ekim 2026'da yenilenen kiralarda yasal azami artış %31,49. Yeni kiranızı, sözleşmeden bugüne yasal kiranızı ve 2022'den beri her ayın oranını görün.
+- [Kira Getirisi Hesaplama](https://korayoner.dev/kira-getirisi-hesaplama/): Yatırımlık konut ne kazandırır? Brüt ve net kira getirisi, kira vergisi, amortisman süresi ve mevduatı yakalamak için gereken yıllık değer artışı.
+- [Kişisel Enflasyon](https://korayoner.dev/kisisel-enflasyon/): Kendi harcamanızdan kişisel enflasyonunuzu hesaplayın: hangi kalem kaç puan ekledi, zammınız yetti mi? Resmî oran bir sepet ortalamasıdır, sizinki değil.
+- [Kredi Hesaplama](https://korayoner.dev/kredi-hesaplama/): Bankanın ilan ettiği faiz ödeyeceğiniz maliyet değildir. KKDF, BSMV ve masraflarla yıllık maliyet oranı, ödeme planı, erken kapama ve ek ödeme senaryoları.
+- [Kart Borcu Rotası](https://korayoner.dev/kredi-karti-borcu-hesaplama/): Kredi kartı borcunuzu asgari ödeme, aylık bütçe ve hedef tarihle karşılaştırın. Ay ay kalan borcu, faiz ve vergiyi, gereken aylık ödemeyi görün.
+- [Nakit Akışı Analizi](https://korayoner.dev/nakit-akisi-analizi/): İşveren maliyetinden her gider kalemine kadar paranızın tüm akışı tek diyagramda. Her giderin ömür bedeli, tasarruf oranınız ve vergi kaması.
+- [Nakit Köprüsü](https://korayoner.dev/nakit-koprusu/): Kârlı işletme ne zaman nakitsiz kalır? 12 aylık satış, stok, tahsilat ve tedarikçi vadelerini birleştirin; gereken işletme sermayesini ve senaryoları hesaplayın.
+- [Ne Kadar Kredi Çekebilirim?](https://korayoner.dev/ne-kadar-kredi-cekebilirim/): Maaşımla ne kadar kredi çekebilirim? Gelirinizden ayırabileceğiniz taksitten KKDF ve BSMV dahil çekilebilecek ihtiyaç, taşıt ya da konut kredisi tutarı.
+- [Peşin mi, taksit mi?](https://korayoner.dev/pesin-mi-taksit-mi/): Peşin fiyatı üç taksit teklifiyle karşılaştırın. Peşinat, ücret, net getiri, enflasyon ve bütçeyle bugünkü maliyeti ve başa baş getiri oranını hesaplayın.
+- [TL mi Döviz mi? Başabaş Kur](https://korayoner.dev/tl-mi-doviz-mi-hesaplama/): Parayı TL mevduatta mı döviz mevduatında mı tutmalı? Faiz, stopaj ve kur makasıyla başabaş kuru hesaplayın: dolar vade sonunda ne kadar artarsa döviz kazanır.
+- [Vadeli Mevduat Faizi Hesaplama](https://korayoner.dev/vadeli-mevduat-hesaplama/): Vadeli mevduat faizi hesaplama: anapara, faiz oranı ve vadeye göre brüt faiz, stopaj kesintisi ve net getiri. Güncel stopaj oranlarıyla.
+- [Yatırım Fizibilitesi](https://korayoner.dev/yatirim-fizibilite-hesaplama/): Yatırımın net bugünkü değerini, iç verim oranını ve geri ödeme süresini hesaplayın. Yıllık nakit akışları, üç senaryo, grafik ve CSV raporuyla analiz edin.
+
+## Yazılar: Maaş & Tazminat
+
+- [Doğum parası ne kadar? 24 haftalık iznin hesabı](https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/): Doğum izni 24 hafta, SGK 168 gün öder. 2026'da 60.000 TL brütte doğum parası 224.000 TL. Vergisiz olduğu için izin yılı bazı maaşlarda kayıp, bazılarında kazanç.
+- [2026'da SGK primlerinde ne değişti?](https://korayoner.dev/makaleler/sgk-primleri-2026-ne-degisti/): Asgari ücret %27 arttı; GSS primi %154, askerlik borçlanması %79, SGK tavanı %52 arttı. 7566 sayılı Kanunun 2026 prim değişiklikleri tek tabloda.
+- [SGK prim indirimi 2 puana indi: işverene maliyeti ne?](https://korayoner.dev/makaleler/sgk-prim-indirimi-2-puan/): İmalat dışı işverenin SGK prim indirimi 2025'te 4, 2026'da 2 puan; imalatta 5. Asgari ücretli başına yıllık ek yük 11.890,80 TL. Maaş düzeyine göre işveren maliyeti.
+- [Askerlik borçlanması 2026'da ne kadar, neden pahalandı?](https://korayoner.dev/makaleler/askerlik-borclanmasi-2026/): Askerlik borçlanmasının bir günü 2026'da en az 495,45 TL; 2025'te 277,39 TL'ydi. 540 gün en az 267.543 TL. Oran %32'den %45'e çıktı; doğum borçlanması %32'de kaldı.
+- [Asgari ücretin işverene maliyeti: ödenenin ne kadarı çalışana geçiyor?](https://korayoner.dev/makaleler/asgari-ucretin-isverene-maliyeti/): 2026'da asgari ücret işverene 40.874,63 TL'ye mal oluyor, çalışana 28.075,50 TL geçiyor: her 100 TL'nin 68,69'u. 2021'de 64,48'di. Yedi yılın maliyet tablosu.
+- [Asgari ücret enflasyona yenildi mi?](https://korayoner.dev/makaleler/asgari-ucret-enflasyona-yenildi-mi/): Net asgari ücretin 2020–2026 reel seyri: yıllık ortalama %47 arttı, ama her zamdan sonra yıl içinde %11–26 eridi. Aylık TÜFE ve resmî tutarlarla ölçüm.
+- [Yılın en düşük maaşı hangi ay?](https://korayoner.dev/makaleler/yilin-en-dusuk-maasi-hangi-ay/): Aralık yılın en kötü ayı değil. 2026 parametreleriyle 5.670 brüt ücret tarandı: brütünüze göre netin dibe vurduğu ay mayıstan aralığa kadar değişiyor.
+- [Fazla mesai zammı yüzde kaç?](https://korayoner.dev/makaleler/fazla-mesai-zammi-yuzde-kac/): Fazla mesai zammı %50 mi %25 mi? Oranı çalıştığınız saat değil sözleşmeniz belirler. Üç durumda ise fazladan çalıştığınız saat hiç fazla mesai sayılmaz.
+- [Zam nete ne kadar yansır?](https://korayoner.dev/makaleler/zam-net-maasa-ne-kadar-yansir/): %30 brüt zam nete %26,5 yansıyor — ama her maaşta değil. 300.000 TL brütte aynı zam nete %31,8 yansıyor. 2026 rakamlarıyla hesaplanmış tam tablo.
+- [Net maaşta mı, brüt maaşta mı anlaşmalı?](https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/): Aynı rakamda anlaşan iki kişiden net anlaşan 720.000 TL, brüt anlaşan 669.758 TL alıyor. 2026 rakamlarıyla ay ay fark ve işverene maliyeti.
+- [Kıdem tazminatı tavanı: maaşınız artıyor, tazminatınız neden artmıyor?](https://korayoner.dev/makaleler/kidem-tazminati-tavani/): Kıdem tazminatı tavanı Temmuz–Aralık 2026'da 73.729,87 TL. Tavanı aşan ücretlerde tazminat sabitleniyor: 90.000 TL ile 150.000 TL brüt aynı tazminatı veriyor.
+- [İstifa edince kıdem tazminatı alınır mı?](https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/): Gerekçesiz istifa eden kıdem alamaz — ama işçinin kendi ayrıldığı beş durumda kıdem doğar. 11 fesih türünün hak tablosu ve aynı ücrette 665.279 TL'lik fark.
+- [Asgari ücret nasıl belirlenir? Ve neden yalnızca asgari ücretliyi ilgilendirmez](https://korayoner.dev/makaleler/asgari-ucret-nasil-belirlenir/): Asgari ücreti kim, nasıl ve ne zaman belirliyor? Komisyonun yapısı, aralık takvimi ve az bilinen bir gerçek: asgari ücret her çalışanın netini değiştirir.
+- [Maaşım neden düştü? Kümülatif vergi matrahının işleyişi](https://korayoner.dev/makaleler/maasim-neden-dustu/): Net maaşınız yıl içinde neden azalıyor, hangi ayda hangi dilime geçiyorsunuz ve neden bazı aylarda tam tersine yükseliyor? 2026 rakamlarıyla ay ay anlatım.
+
+## Yazılar: Vergi & Belge
+
+- [2027 bütçesinde faiz: her 100 TL verginin kaçı faize gidiyor?](https://korayoner.dev/makaleler/butce-2027-faiz-vergi/): OVP'ye göre 2027'de faiz gideri 3.975 milyar TL: her 100 TL verginin 19,97 TL'si. Oran beş yılın zirvesinde; bütçe açığının tamamına yakını faiz.
+- [2027 vergi dilimleri asgari ücretten az artarsa maaşınızdan ne gider?](https://korayoner.dev/makaleler/vergi-dilimleri-2027-asgari-ucret/): Dilimler asgari ücretten her 10 puan geride kaldığında ikinci eşiği aşan ücretli yılda 2.800 TL, üçüncüyü aşan 14.800 TL fazla vergi öder. Asgari ücretli etkilenmez.
+- [Vergi borcunu geciktirmek kârlı mı?](https://korayoner.dev/makaleler/vergi-borcunu-geciktirmek-karli-mi/): Gecikme zammı aylık %3,7, yıllık basit %44,4; enflasyon %31,5. Mart vadeli 100.000 TL vergiyi bir yıl geç ödemenin reel bedeli 2019'dan bu yana nasıl değişti?
+- [Kira geliri istisnası: 1 lira fazla gelir, 8.095 TL fazla vergi](https://korayoner.dev/makaleler/kira-geliri-istisnasi-siniri/): Yılda 240.000 TL konut kirası alan ücretli, kira dahil brüt geliri 1.500.000 TL'yi aşınca 58.000 TL istisnayı kaybeder; kira vergisi 23.205'ten 31.300 TL'ye çıkar.
+- [Miras kalan ev için vergi ödenir mi?](https://korayoner.dev/makaleler/miras-kalan-ev-icin-vergi/): Aynı 8 milyon TL'lik mirasta vergi sıfır da olabilir 120.000 TL de. 2026 veraset vergisinde aile yapısına göre vergisiz sınır ve emlak vergisi değerinin rolü.
+- [Evi çocuğa bağışlamak mı, miras bırakmak mı?](https://korayoner.dev/makaleler/bagis-mi-miras-mi-vergi/): Aynı ev bağışla geçerse 146.653 TL, mirasla geçerse 929 TL vergi. 2026 tarifesiyle bağış ve miras karşılaştırması: fark neden bu kadar büyük, ne zaman küçülüyor?
+- [Yeniden değerleme oranı nedir, neyi belirler?](https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/): Yeniden değerleme oranı nedir? TÜFE değil, Yİ-ÜFE'nin ekim ortalaması. Ve hiçbir tutar tam olarak o oranla artmıyor: kanun kesirlerin atılmasına izin veriyor.
+- [İkramiye hangi ay ödenirse daha az kesilir?](https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/): İkramiye hangi ay ödenirse daha az kesilir? 2026'da hiçbiri — net her ayda aynı. Fark eden şey ödeme sayısı, o da yalnızca SGK tavanı aşılırsa.
+- [İki işten maaş alan beyanname verir mi?](https://korayoner.dev/makaleler/iki-isten-maas-beyanname-siniri/): 2026 beyan sınırı 400.000 TL — brüt değil safi. İkinci iş aylık 39.215 TL'ye kadar beyansız; bir lira fazlası 37.500 TL vergi doğuruyor.
+- [Endekslemenin aritmetiği: dilim kayması gerçekten oluyor mu?](https://korayoner.dev/makaleler/dilim-kaymasi-2022-2026/): Vergi dilimleri enflasyonun altında mı kaldı? 2022–2026 tam bordro ölçümü: dönem bütününde kayma yok, 2024'te başlıyor. Ve ilk dilim eşiği ücretliyi hiç etkilemiyor.
+- [Serbest meslek makbuzunda stopaj ve KDV: elinizde ne kalıyor?](https://korayoner.dev/makaleler/serbest-meslek-makbuzu-stopaj-kdv/): 100.000 TL brüt makbuzda hesabınıza yine 100.000 TL geçiyor — ama iki ayrı 20.000 içeriden geçti. Stopaj nihai vergi değil: 535.714 TL'ye kadar iade alırsınız.
+- [Vergi dilimleri asgari ücrete yetişemiyor](https://korayoner.dev/makaleler/vergi-dilimleri-asgari-ucrete-yetisemiyor/): 2020'den 2026'ya asgari ücret 11,2 katına çıktı, ilk vergi dilimi 8,6 katına. Aynı katta maaş alan biri her yıl daha hızlı üst dilime tırmanıyor.
+- [2026 MTV ne kadar? Aynı araca iki farklı tarife](https://korayoner.dev/makaleler/mtv-2026-ne-kadar/): 2026 MTV tutarları: motor hacmi ve yaşa göre tam tablo. Aynı araca tescil tarihine göre iki farklı tarife uygulanıyor — 1601 cm³ üstünde fark tam %10.
+- [ÖTV'nin basamak etkisi: araç fiyatlarındaki boş aralıklar](https://korayoner.dev/makaleler/otv-basamak-etkisi/): ÖTV kademeli değildir: eşik aşılınca üst oran matrahın tamamına uygulanır. Bu, araç fiyatlarında hiçbir aracın dolduramadığı boş aralıklar doğurur.
+- [Vergi kaması: ücretin gerçek yükü](https://korayoner.dev/makaleler/vergi-kamasi-ucretin-gercek-yuku/): İşveren maliyetinin ne kadarı çalışana ulaşıyor? Kama asgari ücrette %31,3, SGK tavanında %51,0 ile zirve yapıp yüksek ücretlerde düşüyor. Hesaplanmış analiz.
+- [Stopaj nasıl hesaplanır?](https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/): Stopaj brütten kesilir, netten eklenmez. Net 10.000 TL için %20 stopajda brüt 12.000 değil 12.500 TL'dir. Formül, tablo ve stopajın ne zaman nihai vergi olduğu.
+- [Proforma fatura nedir, normal faturadan farkı ne?](https://korayoner.dev/makaleler/proforma-fatura-nedir/): Proforma muhasebe kaydı doğurmaz, KDV yaratmaz — ama kabul edilirse sözleşme kurar. Teklif, proforma, fatura ve irsaliye farkı tabloyla.
+- [KDV tevkifatı nedir, faturaya nasıl yazılır?](https://korayoner.dev/makaleler/kdv-tevkifati-nedir/): Tevkifat fatura toplamını değil tahsilatı değiştirir: 100.000 TL matrahta 5/10 ile ödenecek tutar 120.000 değil 110.000 TL olur. Adım adım.
+- [Şahıs mı, limited mi, maaşlı mı? Tek bir eşik yok](https://korayoner.dev/makaleler/sahis-mi-limited-mi/): Tek bir eşik yok: kazanan gelir aralığı boyunca beş kez el değiştiriyor. Şahıs, limited ve maaşlı çalışmanın 2026 rakamlarıyla karşılaştırması.
+
+## Yazılar: Kredi & Finans
+
+- [Mevduatta 32 gün mü, 1 yıl mı?](https://korayoner.dev/makaleler/mevduat-vade-secimi-32-gun-mu-1-yil-mi/): Aynı %37 brüt faizle 32 günlük vadeyi yenilemek yılda net %35,15, bir yıllık vade %31,45 getirir. Bir yıllık vadenin yetişmesi için faizin %41,36 olması gerekir.
+- [Kredi vadesini uzatmak ne kazandırır, ne kaybettirir?](https://korayoner.dev/makaleler/kredi-vadesini-uzatmanin-bedeli/): Aynı taksitle vadeyi uzatmak ne kadar fazla kredi getirir? 20.000 TL taksitle 36 ay 323.100, 60 ay 367.000 TL; vade ne olursa olsun tutar 385.579 TL'yi geçemez.
+- [Kiraya vermek için ev almak mantıklı mı?](https://korayoner.dev/makaleler/kiraya-vermek-icin-ev-almak-mantikli-mi/): 5 milyon TL'lik konut ayda 20.000 TL kira getiriyor: brüt %4,8, net %3,96. Mevduatı yakalamak için konutun yılda en az %28,1 değer kazanması gerekiyor.
+- [Fiyatlar kaç ayda ikiye katlanıyor?](https://korayoner.dev/makaleler/fiyatlar-kac-ayda-ikiye-katlaniyor/): 2016'da fiyatların ikiye katlanması dokuz yıl sürüyordu, Ocak 2023'te 15 aya indi. Aylık TÜFE ile ölçüm: yıllık oran bu süreyi neden yanlış gösteriyor?
+- [Dolar mı TL mevduat mı? Kurun ne kadar artması gerekir](https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/): Yıllık %37 TL faizinde 32 günlük vadede doların %2,61'den fazla artması gerekir. Başabaş kuru vade, stopaj ve kur makası nasıl değiştiriyor? Hesaplı karşılaştırma.
+- [Emekli promosyonunun ekonomisi: banka ne kazanır, emekliye ne kalır?](https://korayoner.dev/makaleler/emekli-promosyonunun-ekonomisi/): Emekli promosyonlarını müşteri edinme maliyeti, net bugünkü değer, puan, kredi ve banka değiştirme maliyetiyle inceleyen ekonomik analiz.
+- [Enflasyon düşerken fiyatlar neden düşmüyor?](https://korayoner.dev/makaleler/enflasyon-duserken-fiyatlar-neden-dusmuyor/): Ağustos 2026 verileriyle enflasyon oranı, fiyat düzeyi ve baz etkisi. Üç bütçe senaryosunda nominal gelir ile satın alma gücünün farkı.
+- [Ciro artarken işletmenin nakdi neden azalır?](https://korayoner.dev/makaleler/ciro-artarken-nakit-neden-azalir/): Eylül 2026 finansman ortamında ciro, kâr ve nakit ayrımı. Alacak, stok, ödeme vadeleri ve peşin indirimini sayısal örneklerle inceleyin.
+- [Tasarruf kimde, finansman ihtiyacı kimde?](https://korayoner.dev/makaleler/tasarruf-kimde-finansman-kimde/): Tasarrufun en büyük payını şirketler tutuyor, finansmana en çok ihtiyaç duyan KOBİ'ler. 2024'te KOBİ kredisi nominal %33,62 büyüdü, reel %7,45 küçüldü.
+- [Kredi tavanı tutuyor mu?](https://korayoner.dev/makaleler/kredi-tavani-ve-banka-karliligi/): Kredi büyümesine konan tavanlar yıllığa çevrildiğinde %6,7–33,1 aralığında; gerçekleşen büyüme %34,2. Aradaki farkın adı regülasyon takozu.
+- [Asgari ödersem borcum ne zaman biter?](https://korayoner.dev/makaleler/kredi-karti-asgari-odeme/): Asgari ödersem kart borcum hiç bitmez mi? Türkiye'de bitiyor: asgari oran, borcun büyüme eşiğinin üç katından fazla. Faturası ise anaparanın beşte biri.
+- [Krediyi erken kapatmak mı, mevduatta tutmak mı?](https://korayoner.dev/makaleler/krediyi-erken-kapatmak-mantikli-mi/): Krediyi erken kapatmak mantıklı mı? 100.000 TL üzerinden mevduat karşılaştırması, erken ödeme tazminatı ve kalan taksitlerle doğru hesap yöntemi.
+- [Mevduat faizi enflasyonu geçiyor mu?](https://korayoner.dev/makaleler/mevduat-faizi-enflasyon-reel-getiri/): Mevduatın reel getirisi nasıl hesaplanır? 100.000 TL ve 32 gün örneğinde net faiz, stopaj, enflasyon karşılaştırması ve satın alma gücü hesabını inceleyin.
+- [Uzun vadeli yatırım nasıl yapılır?](https://korayoner.dev/makaleler/uzun-vadeli-yatirim-nasil-yapilir/): %45 kazandıran yatırım %40 enflasyonda %5 değil %3,57 kazandırır; %15 stopajdan sonra ise reel olarak kaybettirir. Uzun vadeli yatırımın altı aritmetik kuralı.
+- [Yıllık maliyet oranı nedir, bankanın söylediği faiz neden yanıltır?](https://korayoner.dev/makaleler/kredi-yillik-maliyet-orani/): Aylık %2,89 faizli kredide bankanın söylediği yıllık oran %34,68; gerçek maliyet %56,31. Farkı üreten üç şey ve iki teklifi doğru karşılaştırmanın yolu.
+
+## Yazılar: Emeklilik & Sosyal Güvenlik
+
+- [Türkiye'de sosyal güvenliğin dönüşümü: aynı kariyer, üç kural](https://korayoner.dev/makaleler/turkiyede-sosyal-guvenligin-donusumu/): 1999 ve 2008 reformları ile 2023 düzenlemesi emekliliği nasıl değiştirdi? Aynı kariyer, üç kural: emeklilik yaşı, prim yılı ve aylık bağlama oranı, kanundan ölçüldü.
+- [İŞKUR'dan 19 bin TL: gerçekte ne ödeniyor?](https://korayoner.dev/makaleler/iskur-19-bin-tl-gercekte-ne/): Gençlere ayda 19 bin TL maaş değil: kamu kurumunda katılınan her gün için 1.375 TL. Kimler alır, ayda kaç gün, emekliliğe sayılır mı ve programlar nerede.
+- [BES devlet katkısı ne kadar değerli?](https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/): Devlet katkısı 2026'da %30'dan %20'ye indi. Katkı akışla, fon gideri stokla orantılı olduğu için bir kesişim yılı var — indirim onu 25'ten 18'e çekti.
+- [SGK prim tavanı 9 kata çıktı: kimin cebinden ne çıkıyor?](https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/): SGK prim tavanı 2026'da 7,5 kattan 9 kata çıktı: 297.270 TL. Kimi etkiliyor, ne kadara mal oluyor ve neden en yüksek ücretliler daha az kaybediyor?
+- [Türkiye'de emekliliğin finansal matematiği](https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/): Nüfus yaşlanması, çalışma hayatı, emekli aylığı ve tasarruf göstergeleri hangi tanımlarla karşılaştırılabilir? OECD, TÜİK, SGK ve EGM verileriyle akademik inceleme.
+- [Emekliye "yeni maaş sistemi" mi geldi? Önce şu başlıklara bakın](https://korayoner.dev/makaleler/emekli-maasi-nasil-hesaplanir/): “Emekliye yeni maaş sistemi” haberlerini kontrol ettik: yürürlüğe girmiş bir değişiklik yok. Maaşı belirleyen dönem kırılmaları ise gerçek.
+- [İşsizlik maaşı ne kadar? Tavanı net asgari ücretin altında](https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/): 2026'da işsizlik ödeneği en az 13.111,72 TL, en çok 26.223,44 TL net. Tavan 66.060 TL brütte doluyor ve net asgari ücretin 1.852 TL altında kalıyor.
+
+## Yazılar: Mevzuat
+
+- [Ocak 2027'yi Meclis mi belirleyecek?](https://korayoner.dev/makaleler/ocak-2027-meclis-mi-belirleyecek/): Meclis 1 Ekim'de açıldı. Ocak 2027'de maaşa, aylığa ve vergiye dokunan 11 kalemin 7'si Meclis oyuna bağlı değil. Kim karar veriyor, bugün ne kesin?
+- [Torba yasa beklentileri tuttu mu?](https://korayoner.dev/makaleler/torba-yasa-beklenti-tutuyor-mu/): Tekrarlayan torba yasa beklentilerinin kaçı yasalaştı? Sekiz torba kanun Resmî Gazete künyeleriyle tarandı: gelen maddelerin tamamı tek bir yıla düşüyor.
+- [Yakında çıkacak torba yasa: ne var, ne yok?](https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/): Yeni torba yasada ne var? 1 Ekim 2026 itibarıyla sunulmuş teklif yok. 2026'da çıkan kanunlar, Ekim-Aralık takvimi, Ocak 2027 zammı ve 2027 asgari ücreti.
+- [Kademeli emeklilik son durum: yasalaştı mı, kimleri kapsıyor?](https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/): Kademeli emeklilik yasalaştı mı? Teklifin TBMM'deki gerçek durumu, kimleri kapsadığı ve 1999-2008 arası sigortalılara şu an uygulanan yaş ve prim gün şartları.
+
+## Yöntem, veri ve grafikler
+
+- [Metodoloji](https://korayoner.dev/birikim-hesaplama/metodoloji/): Reel getiri neden çıkarmayla değil Fisher denklemiyle bulunur? BES devlet katkısı, tavanı, hak kazanma ve stopaj nasıl hesaplanıyor? Formüller ve 67 test.
+- [Bordro Motoru](https://korayoner.dev/bordro/): Koray Öner'in maaş araçlarını çalıştıran açık bordro motoru: 2020-2026 vergi dilimleri, asgari ücret, SGK tavanı, istisnalar, hesap adımları ve değişiklik günlüğü.
+- [Diyagramlar](https://korayoner.dev/diyagramlar/): İşverenin 100 lirası nereye gidiyor, net maaş yıl içinde neden düşüyor, kredi taksitinin ne kadarı faiz? Sitenin hesap motorlarından çizilen dört diyagram.
+- [Metodoloji](https://korayoner.dev/ev-almak-mi-kiralamak-mi/metodoloji/): Ev almakla kiralamayı dürüst karşılaştırmanın tek kuralı: fark yatırılır. Peşinatın fırsat maliyeti, geri dönmeyen masraflar, başabaş yılı ve 31 test.
+- [Metodoloji](https://korayoner.dev/fatura-olusturma/metodoloji/): Fatura Merkezi nasıl hesaplıyor, veri nerede duruyor? Kuruş aritmetiği, iskonto dağıtımı, tevkifat, VKN ve IBAN doğrulaması, 159 test.
+- [Metodoloji](https://korayoner.dev/finansal-emniyet-testi/metodoloji/): İşsiz kalınca dayanma süresi nasıl hesaplanıyor? Kıdem, ihbar, işsizlik ödeneği ve GSS kuralları, fiyat artışı, eksik fon formülleri ve sınırlar.
+- [Metodoloji](https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/): Monte Carlo nasıl kuruldu? Getiri ve enflasyonun korelasyonlu üretimi, Student-t birim varyans tuzağı, sequence-of-returns ve 40 test.
+- [Grafikler](https://korayoner.dev/grafikler/): Türkiye'de fiyatlar, enflasyon, faiz, kur, altın, asgari ücret ve büyüme 2005'ten bugüne, G20 ile. TCMB, TÜİK, BIS ve Dünya Bankası verisi.
+- [Metodoloji](https://korayoner.dev/kredi-hesaplama/metodoloji/): Kredi taksiti, KKDF ve BSMV, yıllık maliyet oranı ve erken kapama nasıl hesaplanıyor? Formüller, kuruş aritmetiği, 64 test ve oranların neden koda gömülmediği.
+- [Metodoloji](https://korayoner.dev/ucret-kar-payi-optimizasyonu/metodoloji/): Şirket ortağı için optimum ücret nasıl bulunur? Beyan eşiği uçurumu, ikiye bölmeyle çözüm, çekirdek tutarlılığı ve 34 test.
+- [Metodoloji](https://korayoner.dev/vergi-kamasi-hesaplama/metodoloji/): Vergi kaması nasıl ölçüldü? OECD tanımı, marjinal oranın kapalı formdan türetilmesi, SGK tavanı zirvesi ve 39 test.
+- [Metodoloji](https://korayoner.dev/zam-hesaplama/metodoloji/): Brüt zam oranı neden nete aynen yansımaz? Kümülatif matrah, SGK tavanı ve üç bölge. Pazarlık için geriye çözüm ve 40 test.
+
+## Optional
+
+- [Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları](https://korayoner.dev/): Koray Öner'in sitesi: maaş, vergi, SGK, kira ve kredi için testli, ücretsiz hesaplama araçları; mevzuat yazıları, yayımlanmış çalışmalar ve sosyal hesaplar.
+- [Araçlar](https://korayoner.dev/araclar/): Maaş ve tazminat, vergi ve belge, kredi ve finans için ücretsiz, reklamsız hesaplama araçları; kategoriye göre, güncelleme tarihi ve metodolojisiyle.
+- [Gizlilik Politikası](https://korayoner.dev/gizlilik/): Bu sitede hangi veriler işleniyor, hangi çerezler kullanılıyor ve haklarınız neler? Hesaplama verileriniz cihazınızdan çıkmaz.
+- [Hakkımda](https://korayoner.dev/hakkimda/): Koray Öner kimdir? Serbest çalışan yazılım geliştirici. Bordro ve vergi araçlarındaki her sayıyı yasal parametreden türetip her değişiklikte yeniden doğruluyor.
+- [İletişim](https://korayoner.dev/iletisim/): Koray Öner ile iletişim: hata bildirimi, yeni araç önerisi, işbirliği ve KVKK başvuruları için doğru kanallar.
+- [Koray Öner](https://korayoner.dev/koray-oner/): Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 59 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.
+- [Kullanım Koşulları](https://korayoner.dev/kullanim-kosullari/): Hesaplama araçlarının kapsamı, doğruluk taahhüdü, sorumluluk sınırları ve lisans bilgileri. Araçlar bilgilendirme amaçlıdır.
+- [2026 Brüt–Net Tablosu](https://korayoner.dev/maas-hesaplama/brut-net-tablosu/): 2026 brüt net maaş tablosu: 35.000 TL'den 500.000 TL'ye kadar brüt maaşların net karşılıkları ve her tutar için ay ay bordro dökümü.
+- [Makaleler](https://korayoner.dev/makaleler/): Emeklilik, bordro, tazminat ve vergi konularında kaynağı gösterilen, güncel tutulan rehberler. Mevzuat değiştikçe güncellenir.
+- [Yayın ilkeleri](https://korayoner.dev/yayin-ilkeleri/): Finansal araç ve makalelerin kapsamı, resmî kaynakları, hesaplama kontrolleri ve düzeltme kayıtları. Koray Öner yayın ilkeleri ve iletişim.
+- [Yayımlanmış çalışmalar](https://korayoner.dev/yayinlar/): Koray Öner'in DOI'li çalışmaları: vergi kaması, dilim kayması, emeklilik finansmanı, tasarruf-yatırım haritası ve banka kârlılığı. Açık erişim, CC BY 4.0.

@@ -130,11 +130,25 @@ def _izsiz_ld(m):
     except ValueError:
         return m.group(0)
 
+    # Manifestten yazilan LD alanlari da kabuktur (scripts/sync-dates.mjs):
+    # dateModified, DOI'li yazinin ScholarlyArticle turu ve doi.org sameAs'i.
     def temizle(o):
         if isinstance(o, dict):
             if o.get("@type") == "BreadcrumbList":
                 return None
-            return {k: temizle(v) for k, v in o.items() if k != "breadcrumb"}
+            out = {}
+            for k, v in o.items():
+                if k in ("breadcrumb", "dateModified"):
+                    continue
+                if k == "@type" and v == "ScholarlyArticle":
+                    v = "Article"
+                if k == "sameAs":
+                    v = [x for x in (v if isinstance(v, list) else [v]) if "doi.org/" not in str(x)]
+                    if not v:
+                        continue
+                    v = v[0] if len(v) == 1 else v
+                out[k] = temizle(v)
+            return out
         if isinstance(o, list):
             return [x for x in (temizle(v) for v in o) if x is not None]
         return o

@@ -10,8 +10,10 @@
  *   4. Her URL'de tarihler birebir aynı: manifest updated = JSON-LD
  *      dateModified (hepsi) = görünen tarih (ana sayfa kartı, yazının
  *      ed-meta'sı, makale listesi) = sitemap lastmod = Atom updated (gün).
+ *   5. JSON-LD türleri: araç WebApplication (kategori, ücretsiz, dateModified),
+ *      yazı Article/ScholarlyArticle (yazar, iki tarih), DOI'li yazı sameAs DOI.
  * Uyarı:
- *   5. Yetim sayfa (hiçbir iç bağlantının göstermediği dizine açık sayfa).
+ *   6. Yetim sayfa (hiçbir iç bağlantının göstermediği dizine açık sayfa).
  *
  * Kullanım: node scripts/validate-site.mjs
  */
@@ -112,6 +114,45 @@ for (const p of M.sayfalar) {
   if (f.length) tarih.push(p.url.replace(SITE, "") + " updated " + U + " ≠ " + f.join(", "));
 }
 kirmizi("her URL'de tarihler birebir aynı", tarih);
+
+/* JSON-LD türleri manifestle tutarlı. Araç: WebApplication, uygulama
+   kategorisi, ücretsiz teklif ve dateModified. Yazı: Article ya da
+   ScholarlyArticle, yazar ve iki tarih. DOI'si yayinlar/yayin.js'te kayıtlı
+   yazı: ScholarlyArticle + sameAs DOI. Bilinçli istisnalar aşağıda. */
+const LD_ISTISNA = {
+  "https://korayoner.dev/doviz-kurlari/": "veri sayfası: Dataset (her gece şablondan yazılır)",
+  "https://korayoner.dev/maas-hesaplama/brut-net-tablosu/": "maaş aracının tablo alt sayfası; uygulama ana araçta"
+};
+const KATEGORI_ISTISNA = { "https://korayoner.dev/fatura-olusturma/": "BusinessApplication" };
+const DOI = Object.fromEntries((await import("node:module")).createRequire(import.meta.url)("../yayinlar/yayin.js").CALISMALAR
+  .filter((c) => c.sayfa).map((c) => [SITE + "/" + c.sayfa.replace(/\/$/, "") + "/", c.doi]));
+const ldHata = [];
+for (const p of M.sayfalar) {
+  if (p.noindex || LD_ISTISNA[p.url] || (p.type !== "arac" && p.type !== "makale")) continue;
+  const d = [];
+  for (const m of oku(p.dosya).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    try { const j = JSON.parse(m[1]); d.push(...(Array.isArray(j) ? j : j["@graph"] || [j])); } catch { ldHata.push(p.url + " geçersiz JSON-LD"); }
+  }
+  const yol = p.url.replace(SITE, "");
+  if (p.type === "arac") {
+    const n = d.find((x) => x && x["@type"] === "WebApplication");
+    if (!n) { ldHata.push(yol + " WebApplication yok"); continue; }
+    if (n.applicationCategory !== (KATEGORI_ISTISNA[p.url] || "FinanceApplication")) ldHata.push(yol + " applicationCategory " + n.applicationCategory);
+    if (!n.offers || String([].concat(n.offers)[0].price) !== "0") ldHata.push(yol + " offers.price 0 değil");
+    if (n.dateModified !== p.updated) ldHata.push(yol + " dateModified " + n.dateModified);
+  } else {
+    const n = d.find((x) => x && /^(Scholarly)?Article$/.test(x["@type"]) && String(x["@id"] || x.url || "").startsWith(p.url));
+    if (!n) { ldHata.push(yol + " Article yok"); continue; }
+    if (!n.author) ldHata.push(yol + " author yok");
+    if (String(n.datePublished || "").slice(0, 10) !== p.published.slice(0, 10)) ldHata.push(yol + " datePublished " + n.datePublished);
+    if (n.dateModified !== p.updated) ldHata.push(yol + " dateModified " + n.dateModified);
+    if (DOI[p.url]) {
+      if (n["@type"] !== "ScholarlyArticle") ldHata.push(yol + " DOI'li ama " + n["@type"]);
+      if (![].concat(n.sameAs || []).includes("https://doi.org/" + DOI[p.url])) ldHata.push(yol + " sameAs DOI yok");
+    }
+  }
+}
+kirmizi("JSON-LD türleri ve tarihleri manifestle tutarlı", ldHata);
 
 sari("yetim sayfa yok", [...indeks].filter((u) => u !== SITE + "/" && !gelen.has(u)));
 
