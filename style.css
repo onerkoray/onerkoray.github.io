@@ -2098,3 +2098,36 @@ section { padding: var(--bolum) 0; }
 @media (prefers-reduced-motion: reduce) {
   :root .site-header .theme-toggle, :root .site-header .palette > button { transition: none; }
 }
+
+/* ---- 16. Tek menü (7 Ekim 2026) ----
+   Genel menü her sayfada aynı altı öğedir (tools/menu.py yazar). Sayfanın
+   ait olduğu bölüm işaretlenir: sayfanın kendisi aria-current="page",
+   bölümün içi aria-current="true"; ikisi de mürekkep rengi ve alt çizgi. */
+:root .site-nav a[aria-current] { color: var(--text); font-weight: 600; }
+@media screen {
+  :root .site-nav a[aria-current]::after { transform: scaleX(1); }
+}
+
+/* "Bu sayfada": eski menülerdeki sayfa içi atlamalar (Hesapla, Nasıl
+   hesaplanır, S.S.S.) başlığın altında ince bir satırda durur. Yapışkan
+   değil; sayfa kaydıkça yerinde kalır. Dar ekranda yatay kayar. */
+.yerel-menu { border-bottom: 1px solid var(--border); }
+.yerel-menu .wrap {
+  display: flex; align-items: center; gap: 1.1rem; min-height: 44px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.yerel-menu .wrap::-webkit-scrollbar { display: none; }
+.yerel-menu__baslik {
+  font: 500 .7rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-muted); white-space: nowrap;
+}
+.yerel-menu ul { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+.yerel-menu a {
+  display: inline-block; padding-block: .55rem; white-space: nowrap;
+  color: var(--text-muted); text-decoration: none; font-size: .8125rem; font-weight: 500;
+}
+.yerel-menu a:is(:hover, :focus-visible) {
+  color: var(--text); text-decoration: underline; text-decoration-color: var(--brand);
+  text-decoration-thickness: 2px; text-underline-offset: 6px;
+}
+@media print { .yerel-menu { display: none; } }

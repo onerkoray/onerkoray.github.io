@@ -508,11 +508,12 @@ PAGE = """<!DOCTYPE html>
       </a>
       <nav class="site-nav" aria-label="Birincil">
         <ul>
-          <li><a href="../">Ana Sayfa</a></li>
-          <li><a href="../#projects">Araçlar</a></li>
+          <li><a href="../#projects" aria-current="true">Araçlar</a></li>
           <li><a href="../makaleler/">Makaleler</a></li>
-          <li><a href="#kurlar">Kurlar</a></li>
-          <li><a href="#sss">SSS</a></li>
+          <li><a href="../grafikler/">Grafikler</a></li>
+          <li><a href="../bordro/">Bordro Motoru</a></li>
+          <li><a href="../yayinlar/">Yayınlar</a></li>
+          <li><a href="../hakkimda/">Hakkımda</a></li>
         </ul>
       </nav>
       <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
@@ -521,6 +522,9 @@ PAGE = """<!DOCTYPE html>
       </button>
     </div>
   </header>
+  <nav class="yerel-menu" aria-label="Bu sayfada">
+    <div class="wrap"><span class="yerel-menu__baslik">Bu sayfada</span><ul><li><a href="#kurlar">Kurlar</a></li><li><a href="#sss">SSS</a></li></ul></div>
+  </nav>
 
   <main id="main">
     <nav class="breadcrumb wrap" aria-label="Konum">

@@ -90,6 +90,9 @@ ROBOTS = re.compile(r'<meta\s+name="robots"')
 # olarak karsilastirir; geriye fark kalmiyorsa degisiklik ozlu degildir.
 KABUK_BAS = re.compile(r'<header class="site-header"[^>]*>.*?</header>', re.S)
 KABUK_DIP = re.compile(r'<footer class="site-footer"[^>]*>.*?</footer>', re.S)
+# "Bu sayfada" satiri (tools/menu.py) menuden tasinan sayfa ici atlamalardir:
+# basligin parcasi gibi kabuktur, icerik degisikligi sayilmaz.
+KABUK_YEREL = re.compile(r'<nav class="yerel-menu"[^>]*>.*?</nav>', re.S)
 KABUK_BETIK = re.compile(
     r'<script src="[^"]*(?:tema-erken|script)[.]js(?:[?]v=[0-9a-f]+)?"(?: defer)?></script>')
 
@@ -97,6 +100,7 @@ KABUK_BETIK = re.compile(
 def _kabuksuz(metin):
     metin = KABUK_BAS.sub("", metin)
     metin = KABUK_DIP.sub("", metin)
+    metin = KABUK_YEREL.sub("", metin)
     metin = KABUK_BETIK.sub("", metin)
     metin = DAMGA.sub("", metin)
     return re.sub(r"\s+", " ", metin)

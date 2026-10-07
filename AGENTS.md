@@ -165,7 +165,8 @@ kalan maddeleri CI göremez. Onları elle geç.
 **Sayfa ve görsel**
 
 - [ ] Kabuk şablondan kuruldu, gövde ezberden yazılmadı. [CI: Makale kabuğu ve sınıfları]
-- [ ] Üst başlık site standardında: marka adı `brand-name`, menü Ana Sayfa · Araçlar · Makaleler ile başlıyor, `tema-erken.js` ve `script.js` yüklü. Menüye yazıyla ilgisiz bağlantı kopyalanmadı. [CI: Site başlığı tek standartta]
+- [ ] Üst başlık site standardında: marka adı `brand-name`, `tema-erken.js` ve `script.js` yüklü. [CI: Site başlığı tek standartta]
+- [ ] Menü her sayfada aynı altı öğe: Araçlar · Makaleler · Grafikler · Bordro Motoru · Yayınlar · Hakkımda. Menüyü elle yazma, `python tools/menu.py` yazar; sayfa içi atlamalar (Hesapla, S.S.S.) "Bu sayfada" satırına gider. [CI: Menü her sayfada aynı mı]
 - [ ] Form etiketi, giriş kutusu, buton, seçici, tablo ve grafik yazısı kendi ölçüsünü yazmıyor: `style.css`'teki `--type-*`, `--control-h`, `--secim-h`, `--tablo-pad-*` ve `.btn` / `.secim` sistemine düşüyor. [CI: Araç sayfalarında yazı ve bileşenler tek ölçekte]
 - [ ] Gövdede gerçek bir `<img>` var (Google Görseller). [CI: Görsel SEO regresyonları]
 - [ ] Bölüm 5'teki yasak dekor ve hareket kalıpları yok. [CI: Görsel ve hareket standardı]
