@@ -84,6 +84,8 @@ ROBOTS = re.compile(r'<meta\s+name="robots"')
 # Atom tarihleri icerik manifestinden (content.json) YAZILIYOR. Yazilan
 # tarih ozlu sayilirsa her senkron tarihi bugune iter ve dongu kurulur.
 TARIH_SATIRI = re.compile(r'"dateModified"\s*:|class="card-updated"|Güncelleme: <time|<lastmod>|<updated>|<published>')
+# Akis baglantilari ve isaretleri (scripts/apply-shell.mjs) site kabugudur.
+KABUK_SATIRI = re.compile(r'<link rel="alternate" type="application/atom\+xml"|<!-- AKIS:(?:BASLANGIC|BITIS) -->')
 
 
 # SITE KABUGU sayfanin icerigi degil. 26 Eylul 2026'da ust baslik 173
@@ -189,7 +191,7 @@ def _imzalar(h):
             continue
         if satir.startswith("+++") or satir.startswith("---"):
             continue
-        if GECERLILIK.search(satir) or DOGRULAMA.search(satir) or ROBOTS.search(satir) or TARIH_SATIRI.search(satir):
+        if GECERLILIK.search(satir) or DOGRULAMA.search(satir) or ROBOTS.search(satir) or TARIH_SATIRI.search(satir) or KABUK_SATIRI.search(satir):
             continue
         if satir.startswith(("+", "-")):
             # Ilk kez damga eklenmesi de yalnizca onbellek degisimidir.
@@ -305,7 +307,7 @@ def main():
     ap.add_argument("--liste", action="store_true")
     # Icerik manifesti (scripts/build-manifest.mjs) tarihleri buradan alir:
     # stdin'den satir satir yol ("x" klasor ya da "x/index.html"), stdout'a
-    # {yol: "YYYY-MM-DD"}. Ozlu degisim kurali tek yerde kalsin diye.
+    # {yol: {tarih: "YYYY-MM-DD", zaman: commit'in ISO zamani}}. Ozlu degisim kurali tek yerde kalsin diye.
     ap.add_argument("--tarih-json", action="store_true")
     args = ap.parse_args()
 
@@ -315,7 +317,9 @@ def main():
         for satir in sys.stdin.read().splitlines():
             yol = satir.strip()
             if yol:
-                cikti[yol] = anlamli_tarih(yol)[0]
+                iso, h = anlamli_tarih(yol)
+                zaman = git("log", "-1", "--format=%aI", h).strip() if h else ""
+                cikti[yol] = {"tarih": iso, "zaman": zaman}
         sys.stdout.write(json.dumps(cikti, ensure_ascii=False))
         return 0
 

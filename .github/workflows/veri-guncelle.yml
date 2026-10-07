@@ -42,8 +42,8 @@ jobs:
       - name: TÜFE serisi ve emekli zammı sayfası
         run: |
           python tools/tufe-guncelle.py
-          node tools/emekli-zammi-sayfa.js --sitemap
-          node tools/memur-zammi-sayfa.js --sitemap
+          node tools/emekli-zammi-sayfa.js
+          node tools/memur-zammi-sayfa.js
 
       # Grafikler sayfası: ay sonu kur, politika faizi ve Dünya Bankası
       # enflasyonu. Betik yazmadan önce çapraz doğrular (Dünya Bankası'nın
@@ -55,9 +55,9 @@ jobs:
       - name: Grafik verisi ve grafikler sayfası
         run: |
           python tools/grafik-verisi.py
-          node tools/grafikler-sayfa.js --sitemap
-          node tools/kira-sayfa.js --sitemap
-          node tools/varlik-sayfa.js --sitemap
+          node tools/grafikler-sayfa.js
+          node tools/kira-sayfa.js
+          node tools/varlik-sayfa.js
 
       # update_data.py doviz sayfasini SABLONDAN bastan yaziyor; sablonda
       # og:image:alt, twitter:description ve kunye blogu yok. Bunlari
@@ -94,4 +94,18 @@ jobs:
           git config user.email "onerkoray@users.noreply.github.com"
           git add -A
           git commit -m "Günlük veri güncellemesi ($(date -u +%Y-%m-%d))"
+
+          # İKİ ADIMLI AKIŞ: tarihler git geçmişinden türüyor, yani içerik
+          # commit'i var olmadan manifest bugünü göremez. İçerik commit'inden
+          # SONRA manifest, sayfa tarihleri, kartlar, makale listesi, sitemap
+          # ve akışlar tazelenir; değiştiyse ikinci commit. İkisi tek push.
+          node scripts/build-manifest.mjs
+          node scripts/sync-dates.mjs
+          python tools/arac-guncelleme.py
+          python tools/makale-listesi.py
+          node scripts/build-feeds.mjs
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "Manifest, tarihler ve akışlar ($(date -u +%Y-%m-%d))"
+          fi
           git push
