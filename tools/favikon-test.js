@@ -62,25 +62,23 @@ function token(ad) {
 }
 var MUREKKEP = token("text");      // #17201d
 var KAGIT = token("bg");           // #f5f7f6
-var VURGU = token("accent");       // #0e7c66
+var VURGU = token("marka");        // #0e7c66, paletten bağımsız marka yeşili
 dogru("--text okundu", !!MUREKKEP, String(MUREKKEP));
 dogru("--bg okundu", !!KAGIT, String(KAGIT));
-dogru("--accent okundu", !!VURGU, String(VURGU));
+dogru("--marka okundu", !!VURGU, String(VURGU));
 
 var ornek = oku("favicon.svg");
 dogru("kap rengi --text ile aynı", ornek.indexOf("fill: " + MUREKKEP) >= 0,
   "favicon.svg kap rengi style.css --text ile eşleşmiyor");
 dogru("sembol rengi --bg ile aynı", ornek.indexOf("stroke: " + KAGIT) >= 0,
   "favicon.svg sembol rengi style.css --bg ile eşleşmiyor");
-dogru("vurgu rengi --accent ile aynı", ornek.indexOf('fill="' + VURGU + '"') >= 0,
-  "favicon.svg vurgu rengi style.css --accent ile eşleşmiyor");
+dogru("vurgu rengi --marka ile aynı", ornek.indexOf('fill="' + VURGU + '"') >= 0,
+  "favicon.svg vurgu rengi style.css --marka ile eşleşmiyor");
 
-/* script.js'teki varsayilan, statik dosyadakiyle ayni olmali: ayrisirsa
-   varsayilan palette bile gereksiz bir data URI uretilir. */
+/* Favicon marka işaretidir: okurun seçtiği palet onu yeniden boyamaz
+   (7 Ekim 2026). Statik dosya tek doğru. */
 var js = oku("script.js");
-var m = js.match(/FV_VARSAYILAN\s*=\s*"(#[0-9a-f]{6})"/i);
-dogru("script.js FV_VARSAYILAN tanımlı", !!m);
-if (m) esit("FV_VARSAYILAN = --accent", m[1].toLowerCase(), VURGU);
+dogru("script.js favicon'u yeniden boyamıyor", !/FV_VARSAYILAN|faviconVurgusu|data:image\/svg\+xml/.test(js));
 
 /* ------------------------------------------------------------------ */
 console.log("\nHer favicon aynı sistemi kullanıyor (" + bizim.length + " dosya)");

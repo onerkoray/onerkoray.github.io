@@ -4,15 +4,17 @@
 :root {
   color-scheme: light dark;
   /* Renk paleti: --accent* değişkenleri data-accent ile değiştirilebilir.
-     Varsayılan YEŞİL — logo, favicon, araç kutucukları ve theme-color ile aynı
-     aile. Önceden varsayılan maviydi ve marka işaretiyle çelişiyordu.
-     Seçenekler 7 Ekim 2026'da kurumsal bir sete indirildi (yeşil, lacivert,
-     bordo, grafit): koyu, düşük doygunluklu tonlar. Turuncu, --dv-2/kayıp veri
-     rengiyle çakıştığı için; mor ve gül finans sitesinin diline uymadığı için
-     çıktı. Her ton beyaz ve koyu zeminde WCAG AA'yı geçer (vurgu/beyaz ≥ 5,1;
-     parlak/koyu ≥ 7,5). */
-  --accent: #0e7c66; --accent-strong: #0a5f4e;
-  --accent-bright: #2bb596; --accent-bright-2: #1f9c80; --accent-glow: #4fd3b4;
+     Seçenekler 7 Ekim 2026'da kurumsal bir sete indirildi (grafit, yeşil,
+     lacivert, bordo): koyu, düşük doygunluklu tonlar. Turuncu, --dv-2/kayıp
+     veri rengiyle çakıştığı için; mor ve gül finans sitesinin diline
+     uymadığı için çıktı. Her ton beyaz ve koyu zeminde WCAG AA'yı geçer
+     (vurgu/beyaz ≥ 5,1; parlak/koyu ≥ 7,5).
+     VARSAYILAN GRAFİT (site sahibinin kararı, 7 Ekim 2026), ikinci yeşil.
+     Logo, favicon ve paylaşım görselleri MARKA işaretidir ve paletten
+     bağımsız olarak yeşil kalır: --marka. */
+  --marka: #0e7c66;
+  --accent: #3d4b5c; --accent-strong: #2c3744;
+  --accent-bright: #a3b1c2; --accent-bright-2: #8a9aae; --accent-glow: #c9d3de;
   --brand: var(--accent); --brand-strong: var(--accent-strong); --brand-contrast: #fff;
   --bg: #f5f7f6; --surface: #fff; --surface-2: #eef3f0; --border: #dbe4df;
   --text: #17201d; --text-muted: #56605c; --focus: var(--accent);
@@ -154,10 +156,10 @@
   --dv-1-ink: #5b9be6;     --dv-2-ink: #f5843c;  --dv-3-ink: #5cbb9d;
 }
 
-/* ---- Seçilebilir renk paletleri (kurumsal set) ---- */
+/* ---- Seçilebilir renk paletleri (kurumsal set; varsayılan grafit :root'ta) ---- */
+:root[data-accent="yesil"]    { --accent:#0e7c66; --accent-strong:#0a5f4e; --accent-bright:#2bb596; --accent-bright-2:#1f9c80; --accent-glow:#4fd3b4; }
 :root[data-accent="lacivert"] { --accent:#1f4e8c; --accent-strong:#173c6c; --accent-bright:#7fa6dc; --accent-bright-2:#6390cc; --accent-glow:#a9c4ea; }
 :root[data-accent="bordo"]    { --accent:#8e2b3d; --accent-strong:#70202f; --accent-bright:#de8b99; --accent-bright-2:#cc6f80; --accent-glow:#efb8c1; }
-:root[data-accent="grafit"]   { --accent:#3d4b5c; --accent-strong:#2c3744; --accent-bright:#a3b1c2; --accent-bright-2:#8a9aae; --accent-glow:#c9d3de; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
