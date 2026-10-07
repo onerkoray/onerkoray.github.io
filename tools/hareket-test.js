@@ -99,7 +99,7 @@ css.forEach(function (p) {
 ok("hiçbir @keyframes 1,05'ten büyüğe çıkıp 1'e dönmüyor", sekme.length === 0, sekme.join("\n      "));
 
 console.log("\n5. Buzlu cam yalnız işlevsel katmanlarda");
-var CAM_IZINLI = [/^\.site-header$/, /^\.cmdk-backdrop$/, /^\.gr-hud-ic$/];
+var CAM_IZINLI = [/^\.site-header$/, /^\.ara-ortu$/, /^\.gr-hud-ic$/];  // .ara-ortu: arama paleti örtüsü (arama.js)
 var cam = [];
 css.forEach(function (p) {
   kurallar(oku(p)).forEach(function (k) {

@@ -102,6 +102,13 @@ function atom(a) {
   return out.join("\n") + "\n";
 }
 
+/* Arama paletinin boş sorgu listesi: manifestteki öne çıkanlar. */
+const TUR_ADI = { arac: "Araç", makale: "Makale", metodoloji: "Metodoloji", grafik: "Grafik", sayfa: "Sayfa" };
+function oneriler() {
+  const byUrl = Object.fromEntries(M.sayfalar.map((s) => [s.url, s]));
+  return JSON.stringify((M.oneCikanlar || []).filter((u) => byUrl[u]).map((u) => ({ url: u.replace(SITE, ""), title: byUrl[u].title, tur: TUR_ADI[byUrl[u].type] })), null, 1) + "\n";
+}
+
 function robots() {
   return ["User-agent: *", "Allow: /", "Disallow: /pagefind/", "",
     "Sitemap: " + SITE + "/sitemap.xml",
@@ -109,7 +116,7 @@ function robots() {
 }
 
 export function dosyalar() {
-  const d = { "sitemap.xml": sitemap(), "robots.txt": robots() };
+  const d = { "sitemap.xml": sitemap(), "robots.txt": robots(), "arama-oneriler.json": oneriler() };
   for (const a of AKISLAR) d[a.dosya] = atom(a);
   return d;
 }

@@ -1,4 +1,4 @@
-/* Ana sayfa katmanı — başlık küçülmesi, son kullanılanlar, komut paleti (bağımlılıksız). */
+/* Ana sayfa katmanı — başlık küçülmesi ve teknoloji paneli (bağımlılıksız). */
 (function () {
   "use strict";
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -27,83 +27,10 @@
   }
 
 
-  /* ---------- Son kullanılan araçlar (localStorage) ---------- */
-  var RECENT_KEY = "onerkoray.recent";
-  function getRecent() {
-    try { return JSON.parse(localStorage.getItem(RECENT_KEY) || "[]"); } catch (e) { return []; }
-  }
-  document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest(".project-card a");
-    if (!a) return;
-    var card = a.closest(".project-card");
-    var link = card && card.querySelector("h3 a");
-    if (!link) return;
-    var item = { href: link.getAttribute("href"), name: link.textContent.trim() };
-    var rec = getRecent().filter(function (r) { return r.href !== item.href; });
-    rec.unshift(item);
-    try { localStorage.setItem(RECENT_KEY, JSON.stringify(rec.slice(0, 5))); } catch (err) {}
-  });
-
-  /* ---------- Komut paleti (Ctrl+K veya /) ---------- */
-  var tools = [];
-  document.querySelectorAll(".project-card h3 a").forEach(function (a) {
-    tools.push({ name: a.textContent.trim(), href: a.getAttribute("href") });
-  });
-  var pb = el("div", "cmdk-backdrop");
-  pb.innerHTML = '<div class="cmdk" role="dialog" aria-modal="true" aria-label="Araç ara">' +
-    '<input type="text" id="pal-q" placeholder="Araç ara: maaş, kıdem, KDV, gümrük…" autocomplete="off">' +
-    '<ul id="pal-list"></ul>' +
-    '<div class="cmdk-foot"><span><kbd>↑↓</kbd> gezin</span><span><kbd>Enter</kbd> aç</span><span><kbd>Esc</kbd> kapat</span></div></div>';
-  document.body.appendChild(pb);
-  var palQ = $("#pal-q"), palList = $("#pal-list"), palIdx = 0, palItems = [];
-
-  function trFold(s) {
-    return s.toLocaleLowerCase("tr").replace(/ı/g, "i").replace(/ğ/g, "g").replace(/ü/g, "u")
-      .replace(/ş/g, "s").replace(/ö/g, "o").replace(/ç/g, "c");
-  }
-  function renderPal(q) {
-    var list;
-    if (!q) {
-      var rec = getRecent();
-      list = rec.length ? rec.map(function (r) { return { name: r.name, href: r.href, hint: "Son kullanılan" }; }) : tools.slice(0, 8);
-    } else {
-      var f = trFold(q);
-      list = tools.filter(function (t) { return trFold(t.name).indexOf(f) !== -1; });
-    }
-    palItems = list;
-    palIdx = 0;
-    palList.innerHTML = list.length
-      ? list.map(function (t, i) {
-          return '<li' + (i === 0 ? ' class="active"' : '') + '><a href="' + t.href + '">' + t.name +
-            (t.hint ? '<span class="p-hint">' + t.hint + "</span>" : "") + "</a></li>";
-        }).join("")
-      : '<li><a href="#projects">Sonuç yok — tüm araçları gör</a></li>';
-  }
-  function openPal() { pb.classList.add("open"); palQ.value = ""; renderPal(""); setTimeout(function () { palQ.focus(); }, 30); }
-  function closePal() { pb.classList.remove("open"); }
-  function movePal(d) {
-    var lis = palList.children;
-    if (!lis.length) return;
-    lis[palIdx] && lis[palIdx].classList.remove("active");
-    palIdx = (palIdx + d + lis.length) % lis.length;
-    lis[palIdx].classList.add("active");
-    lis[palIdx].scrollIntoView({ block: "nearest" });
-  }
-  palQ.addEventListener("input", function () { renderPal(palQ.value.trim()); });
-  pb.addEventListener("click", function (e) { if (e.target === pb) closePal(); });
-  document.addEventListener("keydown", function (e) {
-    var typing = /^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || "")) && e.target !== palQ;
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); openPal(); return; }
-    if (e.key === "/" && !typing && !pb.classList.contains("open")) { e.preventDefault(); openPal(); return; }
-    if (!pb.classList.contains("open")) return;
-    if (e.key === "Escape") closePal();
-    else if (e.key === "ArrowDown") { e.preventDefault(); movePal(1); }
-    else if (e.key === "ArrowUp") { e.preventDefault(); movePal(-1); }
-    else if (e.key === "Enter") {
-      var act = palList.children[palIdx] && palList.children[palIdx].querySelector("a");
-      if (act) { window.location.href = act.getAttribute("href"); }
-    }
-  });
+  /* Ana sayfaya özgü komut paleti (yalnız araç adlarında arıyordu) 7 Ekim
+     2026'da kalktı: Ctrl/Cmd+K ve "/" artık her sayfada site geneli aramayı
+     açıyor (arama.js). Paletin "son kullanılanlar" kaydı da yalnız onu
+     besliyordu; o da silindi. */
 })();
 
 /* ---- Hero teknoloji paneli: giriş animasyonu + tooltip ---- */
