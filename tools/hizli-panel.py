@@ -41,7 +41,9 @@ HARIC_KOK = {"yayin-ilkeleri", "decorpalette", "keymint", "dither-studio", "imag
              "node_modules", "_cekirdek", "bordro", "makaleler", "hakkimda",
              "iletisim", "gizlilik", "kullanim-kosullari",
              # Kişi sayfası (çalışma dizini): hakkımda gibi, yeni araç değil.
-             "koray-oner"}
+             "koray-oner",
+             # Katalog ve arama sayfaları (7 Ekim 2026): liste, araç değil.
+             "araclar", "ara", "scripts", "pagefind"}
 
 # İsteğe bağlı editoryal kısa başlıklar. Yeni sayfalar bu listeye kayıt
 # gerektirmez; HTML başlıkları doğrudan kullanılır ve kartta satıra sarılır.
