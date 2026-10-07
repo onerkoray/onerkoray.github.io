@@ -11,6 +11,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  # IndexNow adımı son başarılı yayının commit'ini çalışma API'sinden okur.
+  actions: read
 
 concurrency:
   group: pages
@@ -77,3 +79,24 @@ jobs:
       - uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346  # v5.0.1
         if: steps.sira.outputs.publish == 'true'
         id: deployment
+
+      # IndexNow: güncellenen sayfaları Bing/Yandex'e bildir. Karşılaştırma,
+      # son başarılı yayının commit'indeki content.json'a göre; yalnız dizine
+      # açık ve "updated"i değişen ya da yeni adresler gider. Betik canlı
+      # sitenin yeni tarihleri sunduğunu görmeden göndermez. Hata yayını
+      # düşürmez.
+      - name: IndexNow bildirimi
+        if: steps.sira.outputs.publish == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Yayınlamadan biten (publish=false) çalışma da "success" görünür ve
+          # head_sha'sı şimdiki HEAD olabilir: HEAD'den farklı ve onun atası
+          # olan en yeni çalışma alınır (fazlası gitse de zararsız).
+          ONCEKI=HEAD~1
+          for SHA in $(gh api "repos/$REPO/actions/workflows/pages.yml/runs?status=success&branch=main&per_page=20" --jq '.workflow_runs[].head_sha' 2>/dev/null || true); do
+            if [ "$SHA" != "$(git rev-parse HEAD)" ] && git merge-base --is-ancestor "$SHA" HEAD 2>/dev/null; then ONCEKI=$SHA; break; fi
+          done
+          node scripts/indexnow.mjs --onceki "$ONCEKI" --bekle 600

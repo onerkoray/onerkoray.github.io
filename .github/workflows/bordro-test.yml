@@ -1058,6 +1058,11 @@ jobs:
         # sayfadaki kartlardan scripts/build-pages.mjs ile yazılır.
         run: node scripts/build-pages.mjs --check
 
+      - name: llms.txt manifestle aynı mı
+        # Dil modelleri için site özeti (llmstxt.org biçimi); content.json'dan
+        # scripts/build-llms.mjs ile yazılır.
+        run: node scripts/build-llms.mjs --check
+
       - name: Site içi arama çalışıyor mu
         # Pagefind dizini manifestten kurulan kopyadan üretilir (geçici
         # klasöre) ve başsız Chrome'da sorgulanır: kıdem, SGK tavanı,
