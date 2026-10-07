@@ -35,6 +35,7 @@ HARIC = {
     "koray-oner",
     "bordro",
     "ara",
+    "araclar",
 }
 
 # Bordro Motoru'nu fiilen kullanan araçlar. Buraya yazılmayan sayfa, motoru

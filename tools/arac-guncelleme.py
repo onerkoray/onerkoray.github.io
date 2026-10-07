@@ -111,12 +111,48 @@ KABUK_BETIK = re.compile(
     r'<script src="[^"]*(?:tema-erken|script)[.]js(?:[?]v=[0-9a-f]+)?"(?: defer)?></script>')
 
 
+# Konum izi (gorunur nav.breadcrumb ve JSON-LD BreadcrumbList) ve manifestten
+# yazilan bloklar (akis baglantilari, arama modulu, ilgili icerik) da site
+# kabugudur: 7 Ekim 2026'da iz hiyerarsisi butun sitede tek kurala cekildi
+# (Arac > Metodoloji, Makaleler > Kategori > Yazi); okura sunulan icerik
+# degismedi.
+KABUK_IZ = re.compile(r'<nav class="breadcrumb[^"]*"[^>]*>.*?</nav>', re.S)
+KABUK_BLOK = re.compile(r'<!-- (AKIS|ARAMA|ILGILI):BASLANGIC -->.*?<!-- \1:BITIS -->', re.S)
+LD = re.compile(r'(<script type="application/ld\+json"[^>]*>)(.*?)(</script>)', re.S)
+
+
+def _izsiz_ld(m):
+    """JSON-LD'den BreadcrumbList dugumlerini ve onlara verilen referanslari
+    atar, kalanini kanonik (sirali, sikistirilmis) yazar."""
+    import json
+    try:
+        veri = json.loads(m.group(2))
+    except ValueError:
+        return m.group(0)
+
+    def temizle(o):
+        if isinstance(o, dict):
+            if o.get("@type") == "BreadcrumbList":
+                return None
+            return {k: temizle(v) for k, v in o.items() if k != "breadcrumb"}
+        if isinstance(o, list):
+            return [x for x in (temizle(v) for v in o) if x is not None]
+        return o
+    veri = temizle(veri)
+    if veri is None or veri == {} or (isinstance(veri, dict) and set(veri) <= {"@context"}):
+        return ""
+    return "<ld>" + json.dumps(veri, sort_keys=True, ensure_ascii=False, separators=(",", ":")) + "</ld>"
+
+
 def _kabuksuz(metin):
     metin = KABUK_BAS.sub("", metin)
     metin = KABUK_DIP.sub("", metin)
     metin = KABUK_YEREL.sub("", metin)
     metin = KABUK_BETIK.sub("", metin)
+    metin = KABUK_IZ.sub("", metin)
+    metin = KABUK_BLOK.sub("", metin)
     metin = DAMGA.sub("", metin)
+    metin = LD.sub(_izsiz_ld, metin)
     return re.sub(r"\s+", " ", metin)
 
 

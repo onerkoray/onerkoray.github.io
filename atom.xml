@@ -484,7 +484,7 @@
     <link href="https://korayoner.dev/teklif-karsilastirma/"/>
     <id>https://korayoner.dev/teklif-karsilastirma/</id>
     <published>2026-09-22T11:16:14+03:00</published>
-    <updated>2026-09-23T17:32:11+03:00</updated>
+    <updated>2026-09-23T17:26:12+03:00</updated>
     <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>İki iş teklifini yıllık toplam net üzerinden karşılaştırın. Ocakta önde görünen teklif yılda geride kalabilir; araç bunu ölçüp söyler.</summary>
   </entry>
@@ -494,7 +494,7 @@
     <link href="https://korayoner.dev/bordro-denetim/"/>
     <id>https://korayoner.dev/bordro-denetim/</id>
     <published>2026-09-22T10:40:14+03:00</published>
-    <updated>2026-09-23T17:32:11+03:00</updated>
+    <updated>2026-09-23T17:26:12+03:00</updated>
     <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Bordronuzdaki kesinti satırlarını beklenen tutarla karşılaştırın. Fark varsa o rakamı hangi kümülatif matrahın ürettiğini gösterir.</summary>
   </entry>
@@ -554,7 +554,7 @@
     <link href="https://korayoner.dev/beyanname-hesaplama/"/>
     <id>https://korayoner.dev/beyanname-hesaplama/</id>
     <published>2026-09-19T05:19:49+03:00</published>
-    <updated>2026-09-23T17:32:11+03:00</updated>
+    <updated>2026-09-21T19:42:57+03:00</updated>
     <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Beyanname vermem gerekir mi? Ücret, kira, menkul sermaye iradı ve serbest meslek gelirini birlikte değerlendirir, GVK m.86 sınırını uygular.</summary>
   </entry>
@@ -634,7 +634,7 @@
     <link href="https://korayoner.dev/cikis-takvimi/"/>
     <id>https://korayoner.dev/cikis-takvimi/</id>
     <published>2026-09-14T17:53:37+03:00</published>
-    <updated>2026-09-23T17:32:11+03:00</updated>
+    <updated>2026-09-23T17:26:12+03:00</updated>
     <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>İşten ne zaman ayrılmalı? Kıdem tavanı, ihbar kademesi ve ödenek süresi eşiklerini kendi tarihlerinize göre tarar; hangi günün kaç lira değiştirdiğini söyler.</summary>
   </entry>

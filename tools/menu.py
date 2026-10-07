@@ -45,7 +45,8 @@ ATLA = {".git", "node_modules", "_cekirdek", "_karsilastirma", "docs",
 
 # (etiket, kökten yol, bölüm anahtarı)
 MENU = [
-    ("Araçlar", "#projects", "araclar"),
+    # Araçlar kataloğu (/araclar/); ana sayfadaki #projects çapası da çalışır.
+    ("Araçlar", "araclar/", "araclar"),
     ("Makaleler", "makaleler/", "makaleler"),
     ("Grafikler", "grafikler/", "grafikler"),
     ("Bordro Motoru", "bordro/", "bordro"),
@@ -85,8 +86,9 @@ def goreli(yol):
 
 
 def bolum(gyol):
+    # Ana sayfa hiçbir bölüm değil: Araçlar artık kendi kataloğuna gidiyor.
     if gyol in ("index.html", "404.html"):
-        return "araclar" if gyol == "index.html" else None
+        return None
     ilk = gyol.split("/")[0]
     if gyol.count("/") == 0:
         return None            # kökteki diğer tekil sayfalar (doğrulama dosyaları vb.)
@@ -109,7 +111,7 @@ def menu_html(gyol, girinti):
             href = on + yol
         isaret = ""
         if anahtar == aktif:
-            kendisi = (gyol == "index.html" and anahtar == "araclar") or gyol == yol + "index.html"
+            kendisi = gyol == yol + "index.html"
             isaret = ' aria-current="%s"' % ("page" if kendisi else "true")
         satirlar.append(girinti + '    <li><a href="%s"%s>%s</a></li>' % (href, isaret, etiket))
     satirlar += [girinti + "  </ul>", girinti + "</nav>"]

@@ -82,7 +82,7 @@ dosyalar(KOK).forEach(function (tam) {
     var ogeler = [];
     var re = /<li><a [^>]*?href="([^"]*)"[^>]*>([\s\S]*?)<\/a><\/li>/g, m;
     while ((m = re.exec(h))) ogeler.push([m[2].replace(/<[^>]+>/g, "").trim(), cozumle(m[1], p)]);
-    var beklenen = [["Araçlar", "/#projects"], ["Makaleler", "/makaleler/"], ["Grafikler", "/grafikler/"],
+    var beklenen = [["Araçlar", "/araclar/"], ["Makaleler", "/makaleler/"], ["Grafikler", "/grafikler/"],
       ["Bordro Motoru", "/bordro/"], ["Yayınlar", "/yayinlar/"], ["Hakkımda", "/hakkimda/"], ["Ara", "/ara/"]];
     var ilk = ogeler.map(function (o) { return o.join(" "); }).join(" · ");
     var ist = beklenen.map(function (o) { return o.join(" "); }).join(" · ");

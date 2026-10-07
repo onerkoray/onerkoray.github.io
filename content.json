@@ -19,8 +19,8 @@
   "makale": 59,
   "metodoloji": 10,
   "grafik": 2,
-  "sayfa": 9,
-  "indekslenebilir": 142
+  "sayfa": 10,
+  "indekslenebilir": 143
  },
  "sayfalar": [
   {
@@ -77,6 +77,22 @@
    "imageTitle": "Sitede Ara — Koray Öner",
    "related": [],
    "noindex": true
+  },
+  {
+   "url": "https://korayoner.dev/araclar/",
+   "dosya": "araclar/index.html",
+   "type": "sayfa",
+   "parent": null,
+   "title": "Hesaplama Araçları: Maaş, Vergi, Kredi",
+   "description": "Maaş ve tazminat, vergi ve belge, kredi ve finans için ücretsiz, reklamsız hesaplama araçları; kategoriye göre, güncelleme tarihi ve metodolojisiyle.",
+   "category": null,
+   "published": "2026-10-07T11:57:14+03:00",
+   "updated": "2026-10-07",
+   "updatedAt": "2026-10-07T11:57:14+03:00",
+   "image": "https://korayoner.dev/images/araclar-koray-oner.png",
+   "imageTitle": "Hesaplama Araçları: Maaş, Vergi, Kredi — Koray Öner",
+   "related": [],
+   "noindex": false
   },
   {
    "url": "https://korayoner.dev/asgari-ucret-zam-senaryosu/",
@@ -155,8 +171,8 @@
    "description": "Beyanname vermem gerekir mi? Ücret, kira, menkul sermaye iradı ve serbest meslek gelirini birlikte değerlendirir, GVK m.86 sınırını uygular.",
    "category": "vergi-belge",
    "published": "2026-09-19T05:19:49+03:00",
-   "updated": "2026-09-23",
-   "updatedAt": "2026-09-23T17:32:11+03:00",
+   "updated": "2026-09-21",
+   "updatedAt": "2026-09-21T19:42:57+03:00",
    "image": "https://korayoner.dev/images/beyanname-hesaplama-koray-oner.png",
    "imageTitle": "Yıllık Gelir Vergisi Beyannamesi Hesaplama 2026 — Koray Öner",
    "related": [
@@ -269,7 +285,7 @@
    "category": "maas-tazminat",
    "published": "2026-09-22T10:40:14+03:00",
    "updated": "2026-09-23",
-   "updatedAt": "2026-09-23T17:32:11+03:00",
+   "updatedAt": "2026-09-23T17:26:12+03:00",
    "image": "https://korayoner.dev/images/bordro-denetim-koray-oner.png",
    "imageTitle": "Bordro Denetimi 2026 — Maaş Bordronuz Doğru mu? — Koray Öner",
    "related": [
@@ -337,7 +353,7 @@
    "category": "maas-tazminat",
    "published": "2026-09-14T17:53:37+03:00",
    "updated": "2026-09-23",
-   "updatedAt": "2026-09-23T17:32:11+03:00",
+   "updatedAt": "2026-09-23T17:26:12+03:00",
    "image": "https://korayoner.dev/images/cikis-takvimi-koray-oner.png",
    "imageTitle": "Çıkış Takvimi — İşten Ayrılma Tarihinin Bedeli — Koray Öner",
    "related": [
@@ -1753,7 +1769,8 @@
    "related": [
     "https://korayoner.dev/maas-hesaplama/",
     "https://korayoner.dev/kidem-tazminati-hesaplama/",
-    "https://korayoner.dev/issizlik-maasi-hesaplama/"
+    "https://korayoner.dev/issizlik-maasi-hesaplama/",
+    "https://korayoner.dev/araclar/"
    ],
    "noindex": false
   },
@@ -3157,7 +3174,7 @@
    "category": "maas-tazminat",
    "published": "2026-09-22T11:16:14+03:00",
    "updated": "2026-09-23",
-   "updatedAt": "2026-09-23T17:32:11+03:00",
+   "updatedAt": "2026-09-23T17:26:12+03:00",
    "image": "https://korayoner.dev/images/teklif-karsilastirma-koray-oner.png",
    "imageTitle": "İki İş Teklifi Karşılaştırma 2026 — Koray Öner",
    "related": [

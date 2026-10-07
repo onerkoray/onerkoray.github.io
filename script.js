@@ -32,18 +32,9 @@
   var yr = document.getElementById("year");
   if (yr) yr.textContent = new Date().getFullYear();
 
-  /* Alt sayfalarda (breadcrumb'lı) header menüsüne "Araçlar" kısayolu ekle:
-     kullanıcı araç listesine tek tıkla döner, önce ana sayfa tepesine gitmez. */
-  (function () {
-    var crumb = document.querySelector(".breadcrumb");
-    var navList = document.querySelector(".site-nav ul");
-    if (!crumb || !navList || navList.querySelector('a[href$="#projects"]')) return;
-    var li = document.createElement("li");
-    li.innerHTML = '<a href="/#projects">Araçlar</a>';
-    var home = navList.querySelector("li"); // "Ana Sayfa" öğesinden sonra
-    if (home && home.nextSibling) navList.insertBefore(li, home.nextSibling);
-    else navList.appendChild(li);
-  })();
+  /* Menü her sayfada aynı ve statik (tools/menu.py); eskiden alt sayfalara
+     buradan eklenen "Araçlar" kısayolu, menü /araclar/'a bağlanınca ikinci
+     bir "Araçlar" üretiyordu ve 7 Ekim 2026'da kaldırıldı. */
 
   /* Mark the actual page, without treating in-page anchors as page links. */
   document.querySelectorAll(".site-nav a").forEach(function (link) {

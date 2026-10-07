@@ -1053,6 +1053,11 @@ jobs:
         # <head>'deki Atom akışı bağlantıları content.json'dan yazılır.
         run: node scripts/apply-shell.mjs --check
 
+      - name: Katalog sayfaları manifestle aynı mı
+        # /araclar/ (bölümler, sayılar, kartlar, ItemList) content.json ve ana
+        # sayfadaki kartlardan scripts/build-pages.mjs ile yazılır.
+        run: node scripts/build-pages.mjs --check
+
       - name: Site içi arama çalışıyor mu
         # Pagefind dizini manifestten kurulan kopyadan üretilir (geçici
         # klasöre) ve başsız Chrome'da sorgulanır: kıdem, SGK tavanı,
