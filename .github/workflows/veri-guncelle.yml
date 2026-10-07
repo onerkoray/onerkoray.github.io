@@ -97,13 +97,11 @@ jobs:
 
           # İKİ ADIMLI AKIŞ: tarihler git geçmişinden türüyor, yani içerik
           # commit'i var olmadan manifest bugünü göremez. İçerik commit'inden
-          # SONRA manifest, sayfa tarihleri, kartlar, makale listesi, sitemap
-          # ve akışlar tazelenir; değiştiyse ikinci commit. İkisi tek push.
-          node scripts/build-manifest.mjs
-          node scripts/sync-dates.mjs
-          python tools/arac-guncelleme.py
-          python tools/makale-listesi.py
-          node scripts/build-feeds.mjs
+          # SONRA geçmişten türeyen bütün üreteçler (manifest, tarihler,
+          # sitemap, akışlar, /araclar/, izler, ilgili bloklar, llms.txt,
+          # kartlar, listeler, sayaçlar) sabit noktaya kadar koşar; değiştiyse
+          # ikinci commit. İkisi tek push.
+          node scripts/build-all.mjs
           if [ -n "$(git status --porcelain)" ]; then
             git add -A
             git commit -m "Manifest, tarihler ve akışlar ($(date -u +%Y-%m-%d))"

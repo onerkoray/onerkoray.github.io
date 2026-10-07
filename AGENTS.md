@@ -187,7 +187,7 @@ kalan maddeleri CI göremez. Onları elle geç.
 
 **Sonra**
 
-- [ ] İki adımlı akış: içerik commit'i → geçmişten türeyen üreteçler →
+- [ ] İki adımlı akış: içerik commit'i → geçmişten türeyen üreteçler (`node scripts/build-all.mjs`) →
       sitemap commit'i → CI'ın tamamı → tek push.
 - [ ] Sitenin görünümünü geniş ölçekte değiştiren iş, yayından önce
       önce/sonra görüntüsüyle site sahibine gösterildi.
