@@ -202,7 +202,7 @@ hepsi.filter(function (p) {
            orada gecerlidir; /yayinlar/ bu tipi kullaniyor. Liste eksikti,
            sayfa degil. */
         if ((t === "WebPage" || t === "ProfilePage" || t === "ContactPage" ||
-             t === "CollectionPage") && n.primaryImageOfPage) bulundu = true;
+             t === "CollectionPage" || t === "SearchResultsPage") && n.primaryImageOfPage) bulundu = true;
       });
     } catch (e) { /* sozdizimi ayri kontrol ediliyor */ }
   });
