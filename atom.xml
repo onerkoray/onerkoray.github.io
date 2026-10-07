@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Koray Öner — Ücretsiz Web Araçları</title>
-  <subtitle>Türkiye için ücretsiz, reklamsız hesaplama araçları: maaş, vergi, kredi ve daha fazlası.</subtitle>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
+  <title>Koray Öner — Araçlar ve Yazılar</title>
+  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için hesaplama araçları ve arkalarındaki mevzuatı anlatan yazılar.</subtitle>
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
-  <id>https://korayoner.dev/</id>
-  <updated>2026-10-07T08:17:58+03:00</updated>
-  <author><name>Koray Öner</name><uri>https://korayoner.dev/</uri></author>
+  <id>https://korayoner.dev/atom.xml</id>
+  <updated>2026-10-07T08:25:09+03:00</updated>
+  <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
 
   <entry>
     <title>Türkiye'de Sosyal Güvenliğin Dönüşümü</title>
     <link href="https://korayoner.dev/makaleler/turkiyede-sosyal-guvenligin-donusumu/"/>
     <id>https://korayoner.dev/makaleler/turkiyede-sosyal-guvenligin-donusumu/</id>
-    <updated>2026-10-07T08:17:58+03:00</updated>
+    <published>2026-10-07T08:17:58+03:00</published>
+    <updated>2026-10-07T08:25:09+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>1999 ve 2008 reformları ile 2023 düzenlemesi emekliliği nasıl değiştirdi? Aynı kariyer, üç kural: emeklilik yaşı, prim yılı ve aylık bağlama oranı, kanundan ölçüldü.</summary>
   </entry>
 
@@ -21,7 +23,9 @@
     <title>İŞKUR Gençlik Programı Ödeme Hesaplama</title>
     <link href="https://korayoner.dev/iskur-genclik-programi-hesaplama/"/>
     <id>https://korayoner.dev/iskur-genclik-programi-hesaplama/</id>
-    <updated>2026-10-06T07:05:16+03:00</updated>
+    <published>2026-10-06T07:05:16+03:00</published>
+    <updated>2026-10-06T07:11:17+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>İŞKUR Gençlik Programı ve NEET İşgücü Uyum Programı: günde 1.375 TL, ay ay ne kadar, 140 gün sınırı ne zaman dolar, hane geliri şartı ve emeklilik primi.</summary>
   </entry>
 
@@ -29,7 +33,9 @@
     <title>İŞKUR'dan 19 Bin TL: Gerçekte Ne Ödeniyor?</title>
     <link href="https://korayoner.dev/makaleler/iskur-19-bin-tl-gercekte-ne/"/>
     <id>https://korayoner.dev/makaleler/iskur-19-bin-tl-gercekte-ne/</id>
-    <updated>2026-10-06T07:05:16+03:00</updated>
+    <published>2026-10-06T07:05:16+03:00</published>
+    <updated>2026-10-06T07:11:17+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>Gençlere ayda 19 bin TL maaş değil: kamu kurumunda katılınan her gün için 1.375 TL. Kimler alır, ayda kaç gün, emekliliğe sayılır mı ve programlar nerede.</summary>
   </entry>
 
@@ -37,7 +43,9 @@
     <title>Engelli Araç ÖTV İstisnası Hesaplama 2026</title>
     <link href="https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/"/>
     <id>https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/</id>
+    <published>2026-10-04T13:54:52+03:00</published>
     <updated>2026-10-04T13:54:52+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Engelli raporuyla ÖTV'siz araç: 2.873.900 TL sınırı, %40 yerli katkı, 10 yıl kuralı. Uygun musunuz, ne kadar ödersiniz, MTV ve 5 yıl içinde satış.</summary>
   </entry>
 
@@ -45,7 +53,9 @@
     <title>Doğum Parası Ne Kadar? 24 Haftalık İzin Hesabı</title>
     <link href="https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/"/>
     <id>https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/</id>
+    <published>2026-10-03T20:35:35+03:00</published>
     <updated>2026-10-03T20:35:35+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Doğum izni 24 hafta, SGK 168 gün öder. 2026'da 60.000 TL brütte doğum parası 224.000 TL. Vergisiz olduğu için izin yılı bazı maaşlarda kayıp, bazılarında kazanç.</summary>
   </entry>
 
@@ -53,7 +63,9 @@
     <title>Rapor Parası Hesaplama 2026</title>
     <link href="https://korayoner.dev/rapor-parasi-hesaplama/"/>
     <id>https://korayoner.dev/rapor-parasi-hesaplama/</id>
-    <updated>2026-10-03T18:45:39+03:00</updated>
+    <published>2026-10-03T18:45:39+03:00</published>
+    <updated>2026-10-03T20:34:52+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>SGK rapor parası (geçici iş göremezlik ödeneği) ne kadar? Hastalık, iş kazası ve doğum raporu; son 12 ayın kazancından günlük ödenek ve raporlu ayda elinize geçen.</summary>
   </entry>
 
@@ -61,7 +73,9 @@
     <title>Ocak 2027'yi Meclis mi Belirleyecek?</title>
     <link href="https://korayoner.dev/makaleler/ocak-2027-meclis-mi-belirleyecek/"/>
     <id>https://korayoner.dev/makaleler/ocak-2027-meclis-mi-belirleyecek/</id>
+    <published>2026-10-03T16:30:21+03:00</published>
     <updated>2026-10-03T16:30:21+03:00</updated>
+    <category term="mevzuat" label="Mevzuat"/>
     <summary>Meclis 1 Ekim'de açıldı. Ocak 2027'de maaşa, aylığa ve vergiye dokunan 11 kalemin 7'si Meclis oyuna bağlı değil. Kim karar veriyor, bugün ne kesin?</summary>
   </entry>
 
@@ -69,7 +83,9 @@
     <title>2027 Bütçesinde Faiz ve Vergi</title>
     <link href="https://korayoner.dev/makaleler/butce-2027-faiz-vergi/"/>
     <id>https://korayoner.dev/makaleler/butce-2027-faiz-vergi/</id>
-    <updated>2026-10-02T05:29:54+03:00</updated>
+    <published>2026-10-02T05:29:54+03:00</published>
+    <updated>2026-10-03T16:12:57+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>OVP'ye göre 2027'de faiz gideri 3.975 milyar TL: her 100 TL verginin 19,97 TL'si. Oran beş yılın zirvesinde; bütçe açığının tamamına yakını faiz.</summary>
   </entry>
 
@@ -77,7 +93,9 @@
     <title>Emekli Çalışan Maaş Hesaplama 2026 (SGDP)</title>
     <link href="https://korayoner.dev/emekli-calisan-maas-hesaplama/"/>
     <id>https://korayoner.dev/emekli-calisan-maas-hesaplama/</id>
-    <updated>2026-10-02T04:28:22+03:00</updated>
+    <published>2026-10-02T04:28:22+03:00</published>
+    <updated>2026-10-02T08:29:42+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Emekli olup çalışanın net maaşı ve işverene maliyeti: SGDP %7,5 işçi, %22,5 işveren, işsizlik primi yok. Emekli olmayan çalışanla karşılaştırma, 2026.</summary>
   </entry>
 
@@ -85,7 +103,9 @@
     <title>Ne Zaman Emekli Olurum? Emeklilik Hesaplama</title>
     <link href="https://korayoner.dev/ne-zaman-emekli-olurum/"/>
     <id>https://korayoner.dev/ne-zaman-emekli-olurum/</id>
-    <updated>2026-09-30T10:23:53+03:00</updated>
+    <published>2026-09-30T10:23:53+03:00</published>
+    <updated>2026-09-30T10:29:59+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>EYT, 1999–2008 ya da 2008 sonrası: yaş, prim günü ve sigortalılık süresinden emeklilik tarihinizi, bağlayıcı şartı ve borçlanmanın etkisini hesaplar.</summary>
   </entry>
 
@@ -93,23 +113,19 @@
     <title>Maaş, Vergi ve Kredi Diyagramları</title>
     <link href="https://korayoner.dev/diyagramlar/"/>
     <id>https://korayoner.dev/diyagramlar/</id>
+    <published>2026-09-29T18:55:05+03:00</published>
     <updated>2026-09-29T18:55:05+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>İşverenin 100 lirası nereye gidiyor, net maaş yıl içinde neden düşüyor, kredi taksitinin ne kadarı faiz? Sitenin hesap motorlarından çizilen dört diyagram.</summary>
-  </entry>
-
-  <entry>
-    <title>Koray Öner — Araçlar, Yazılar ve Yayınlar</title>
-    <link href="https://korayoner.dev/koray-oner/"/>
-    <id>https://korayoner.dev/koray-oner/</id>
-    <updated>2026-09-29T17:59:13+03:00</updated>
-    <summary>Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 59 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.</summary>
   </entry>
 
   <entry>
     <title>Altın mı, Dolar mı, Mevduat mı? Getiri Hesabı</title>
     <link href="https://korayoner.dev/altin-mi-dolar-mi-mevduat-mi/"/>
     <id>https://korayoner.dev/altin-mi-dolar-mi-mevduat-mi/</id>
-    <updated>2026-09-28T18:06:55+03:00</updated>
+    <published>2026-09-28T18:06:55+03:00</published>
+    <updated>2026-10-05T21:15:44Z</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Aralık 2005'te 100.000 TL: altında 30,79 milyon TL, dolarda 3,64 milyon TL, mevduatta 2,37 milyon TL. Kendi tarihlerinizle, enflasyondan sonra hesaplayın.</summary>
   </entry>
 
@@ -117,7 +133,9 @@
     <title>Ekonomi Grafikleri: Enflasyon, Faiz, Kur</title>
     <link href="https://korayoner.dev/grafikler/"/>
     <id>https://korayoner.dev/grafikler/</id>
-    <updated>2026-09-26T12:57:20+03:00</updated>
+    <published>2026-09-26T12:57:20+03:00</published>
+    <updated>2026-10-05T21:15:44Z</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Türkiye'de fiyatlar, enflasyon, faiz, kur, altın, asgari ücret ve büyüme 2005'ten bugüne, G20 ile. TCMB, TÜİK, BIS ve Dünya Bankası verisi.</summary>
   </entry>
 
@@ -125,7 +143,9 @@
     <title>Asgari Ücretin İşverene Maliyeti 2020–2026</title>
     <link href="https://korayoner.dev/makaleler/asgari-ucretin-isverene-maliyeti/"/>
     <id>https://korayoner.dev/makaleler/asgari-ucretin-isverene-maliyeti/</id>
-    <updated>2026-09-26T00:17:23+03:00</updated>
+    <published>2026-09-26T00:17:23+03:00</published>
+    <updated>2026-09-26T00:20:37+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>2026'da asgari ücret işverene 40.874,63 TL'ye mal oluyor, çalışana 28.075,50 TL geçiyor: her 100 TL'nin 68,69'u. 2021'de 64,48'di. Yedi yılın maliyet tablosu.</summary>
   </entry>
 
@@ -133,7 +153,9 @@
     <title>Askerlik Borçlanması 2026 Ne Kadar?</title>
     <link href="https://korayoner.dev/makaleler/askerlik-borclanmasi-2026/"/>
     <id>https://korayoner.dev/makaleler/askerlik-borclanmasi-2026/</id>
-    <updated>2026-09-26T00:17:23+03:00</updated>
+    <published>2026-09-26T00:17:23+03:00</published>
+    <updated>2026-09-26T00:20:37+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Askerlik borçlanmasının bir günü 2026'da en az 495,45 TL; 2025'te 277,39 TL'ydi. 540 gün en az 267.543 TL. Oran %32'den %45'e çıktı; doğum borçlanması %32'de kaldı.</summary>
   </entry>
 
@@ -141,7 +163,9 @@
     <title>Kira Geliri İstisnası Sınırı 2026</title>
     <link href="https://korayoner.dev/makaleler/kira-geliri-istisnasi-siniri/"/>
     <id>https://korayoner.dev/makaleler/kira-geliri-istisnasi-siniri/</id>
-    <updated>2026-09-26T00:17:23+03:00</updated>
+    <published>2026-09-26T00:17:23+03:00</published>
+    <updated>2026-09-26T00:20:37+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Yılda 240.000 TL konut kirası alan ücretli, kira dahil brüt geliri 1.500.000 TL'yi aşınca 58.000 TL istisnayı kaybeder; kira vergisi 23.205'ten 31.300 TL'ye çıkar.</summary>
   </entry>
 
@@ -149,7 +173,9 @@
     <title>Kiraya Vermek İçin Ev Almak Mantıklı mı?</title>
     <link href="https://korayoner.dev/makaleler/kiraya-vermek-icin-ev-almak-mantikli-mi/"/>
     <id>https://korayoner.dev/makaleler/kiraya-vermek-icin-ev-almak-mantikli-mi/</id>
-    <updated>2026-09-26T00:17:23+03:00</updated>
+    <published>2026-09-26T00:17:23+03:00</published>
+    <updated>2026-09-26T00:20:37+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>5 milyon TL'lik konut ayda 20.000 TL kira getiriyor: brüt %4,8, net %3,96. Mevduatı yakalamak için konutun yılda en az %28,1 değer kazanması gerekiyor.</summary>
   </entry>
 
@@ -157,7 +183,9 @@
     <title>Kredi Vadesini Uzatmanın Bedeli</title>
     <link href="https://korayoner.dev/makaleler/kredi-vadesini-uzatmanin-bedeli/"/>
     <id>https://korayoner.dev/makaleler/kredi-vadesini-uzatmanin-bedeli/</id>
-    <updated>2026-09-26T00:17:23+03:00</updated>
+    <published>2026-09-26T00:17:23+03:00</published>
+    <updated>2026-09-26T00:20:37+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Aynı taksitle vadeyi uzatmak ne kadar fazla kredi getirir? 20.000 TL taksitle 36 ay 323.100, 60 ay 367.000 TL; vade ne olursa olsun tutar 385.579 TL'yi geçemez.</summary>
   </entry>
 
@@ -165,7 +193,9 @@
     <title>Mevduatta 32 Gün mü, 1 Yıl mı?</title>
     <link href="https://korayoner.dev/makaleler/mevduat-vade-secimi-32-gun-mu-1-yil-mi/"/>
     <id>https://korayoner.dev/makaleler/mevduat-vade-secimi-32-gun-mu-1-yil-mi/</id>
-    <updated>2026-09-26T00:17:23+03:00</updated>
+    <published>2026-09-26T00:17:23+03:00</published>
+    <updated>2026-09-26T00:20:37+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Aynı %37 brüt faizle 32 günlük vadeyi yenilemek yılda net %35,15, bir yıllık vade %31,45 getirir. Bir yıllık vadenin yetişmesi için faizin %41,36 olması gerekir.</summary>
   </entry>
 
@@ -173,7 +203,9 @@
     <title>SGK Prim İndirimi 2 Puana İndi</title>
     <link href="https://korayoner.dev/makaleler/sgk-prim-indirimi-2-puan/"/>
     <id>https://korayoner.dev/makaleler/sgk-prim-indirimi-2-puan/</id>
-    <updated>2026-09-26T00:17:23+03:00</updated>
+    <published>2026-09-26T00:17:23+03:00</published>
+    <updated>2026-09-26T00:20:37+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>İmalat dışı işverenin SGK prim indirimi 2025'te 4, 2026'da 2 puan; imalatta 5. Asgari ücretli başına yıllık ek yük 11.890,80 TL. Maaş düzeyine göre işveren maliyeti.</summary>
   </entry>
 
@@ -181,7 +213,9 @@
     <title>2026'da SGK Primlerinde Ne Değişti?</title>
     <link href="https://korayoner.dev/makaleler/sgk-primleri-2026-ne-degisti/"/>
     <id>https://korayoner.dev/makaleler/sgk-primleri-2026-ne-degisti/</id>
-    <updated>2026-09-26T00:17:23+03:00</updated>
+    <published>2026-09-26T00:17:23+03:00</published>
+    <updated>2026-09-26T00:20:37+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Asgari ücret %27 arttı; GSS primi %154, askerlik borçlanması %79, SGK tavanı %52 arttı. 7566 sayılı Kanunun 2026 prim değişiklikleri tek tabloda.</summary>
   </entry>
 
@@ -189,7 +223,9 @@
     <title>Vergi Borcunu Geç Ödemek Kârlı mı?</title>
     <link href="https://korayoner.dev/makaleler/vergi-borcunu-geciktirmek-karli-mi/"/>
     <id>https://korayoner.dev/makaleler/vergi-borcunu-geciktirmek-karli-mi/</id>
-    <updated>2026-09-26T00:17:23+03:00</updated>
+    <published>2026-09-26T00:17:23+03:00</published>
+    <updated>2026-09-26T00:20:37+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Gecikme zammı aylık %3,7, yıllık basit %44,4; enflasyon %31,5. Mart vadeli 100.000 TL vergiyi bir yıl geç ödemenin reel bedeli 2019'dan bu yana nasıl değişti?</summary>
   </entry>
 
@@ -197,7 +233,9 @@
     <title>2027 Vergi Dilimleri ve Asgari Ücret</title>
     <link href="https://korayoner.dev/makaleler/vergi-dilimleri-2027-asgari-ucret/"/>
     <id>https://korayoner.dev/makaleler/vergi-dilimleri-2027-asgari-ucret/</id>
-    <updated>2026-09-26T00:17:23+03:00</updated>
+    <published>2026-09-26T00:17:23+03:00</published>
+    <updated>2026-09-26T00:20:37+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Dilimler asgari ücretten her 10 puan geride kaldığında ikinci eşiği aşan ücretli yılda 2.800 TL, üçüncüyü aşan 14.800 TL fazla vergi öder. Asgari ücretli etkilenmez.</summary>
   </entry>
 
@@ -205,7 +243,9 @@
     <title>Bağ-Kur ve Borçlanma Hesaplama 2026</title>
     <link href="https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/"/>
     <id>https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/</id>
+    <published>2026-09-25T23:49:14+03:00</published>
     <updated>2026-09-25T23:49:14+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>2026 Bağ-Kur primi, isteğe bağlı sigorta primi, GSS primi ve askerlik ya da doğum borçlanması ne kadar? SGK 2026/2 Genelgesi oranlarıyla hesaplayın.</summary>
   </entry>
 
@@ -213,7 +253,9 @@
     <title>Faiz Dönüştürücü: Aylık, Yıllık, Bileşik Faiz</title>
     <link href="https://korayoner.dev/faiz-donusturucu/"/>
     <id>https://korayoner.dev/faiz-donusturucu/</id>
+    <published>2026-09-25T23:49:14+03:00</published>
     <updated>2026-09-25T23:49:14+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Aylık faiz yıllık kaç eder? Aylık, yıllık, bileşik ve günlük faizi çevirin; kredi faizine vergiyi, mevduata stopajı ekleyip reel karşılığı görün.</summary>
   </entry>
 
@@ -221,7 +263,9 @@
     <title>Gecikme Zammı Hesaplama 2026</title>
     <link href="https://korayoner.dev/gecikme-zammi-hesaplama/"/>
     <id>https://korayoner.dev/gecikme-zammi-hesaplama/</id>
+    <published>2026-09-25T23:49:14+03:00</published>
     <updated>2026-09-25T23:49:14+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Vadesinde ödenmeyen vergi borcu bugün ne kadar oldu? GİB oran tablosuyla gecikme zammı: her oran dönemi ayrı, tam ay ve gün hesabıyla, 2010'dan bugüne.</summary>
   </entry>
 
@@ -229,7 +273,9 @@
     <title>Kira Getirisi ve Amortisman Hesaplama</title>
     <link href="https://korayoner.dev/kira-getirisi-hesaplama/"/>
     <id>https://korayoner.dev/kira-getirisi-hesaplama/</id>
+    <published>2026-09-25T23:49:14+03:00</published>
     <updated>2026-09-25T23:49:14+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Yatırımlık konut ne kazandırır? Brüt ve net kira getirisi, kira vergisi, amortisman süresi ve mevduatı yakalamak için gereken yıllık değer artışı.</summary>
   </entry>
 
@@ -237,7 +283,9 @@
     <title>Ne Kadar Kredi Çekebilirim?</title>
     <link href="https://korayoner.dev/ne-kadar-kredi-cekebilirim/"/>
     <id>https://korayoner.dev/ne-kadar-kredi-cekebilirim/</id>
+    <published>2026-09-25T23:49:14+03:00</published>
     <updated>2026-09-25T23:49:14+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Maaşımla ne kadar kredi çekebilirim? Gelirinizden ayırabileceğiniz taksitten KKDF ve BSMV dahil çekilebilecek ihtiyaç, taşıt ya da konut kredisi tutarı.</summary>
   </entry>
 
@@ -245,7 +293,9 @@
     <title>Asgari Ücret Zammı Senaryosu 2027</title>
     <link href="https://korayoner.dev/asgari-ucret-zam-senaryosu/"/>
     <id>https://korayoner.dev/asgari-ucret-zam-senaryosu/</id>
-    <updated>2026-09-25T18:52:41+03:00</updated>
+    <published>2026-09-25T18:52:41+03:00</published>
+    <updated>2026-09-25T20:18:44+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>2027 asgari ücret zammı yüzde kaç olursa net ne olur? Zam ve dilim artışını girin: net asgari ücret, SGK tavanı, maaşınızın neti ve dilimler geride kalırsa kaybınız.</summary>
   </entry>
 
@@ -253,7 +303,9 @@
     <title>Enflasyon Hesaplama — Paranın Bugünkü Değeri</title>
     <link href="https://korayoner.dev/enflasyon-hesaplama/"/>
     <id>https://korayoner.dev/enflasyon-hesaplama/</id>
-    <updated>2026-09-25T18:52:41+03:00</updated>
+    <published>2026-09-25T18:52:41+03:00</published>
+    <updated>2026-09-25T20:18:44+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Geçmişteki bir tutar bugün kaç TL eder? 2005'ten bu yana aylık TÜFE ile iki tarih arası enflasyon, yıllık ortalama ve alım gücü kaybı.</summary>
   </entry>
 
@@ -261,7 +313,9 @@
     <title>Asgari Ücret Enflasyona Yenildi mi? 2020–2026</title>
     <link href="https://korayoner.dev/makaleler/asgari-ucret-enflasyona-yenildi-mi/"/>
     <id>https://korayoner.dev/makaleler/asgari-ucret-enflasyona-yenildi-mi/</id>
+    <published>2026-09-25T18:52:41+03:00</published>
     <updated>2026-09-25T18:52:41+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Net asgari ücretin 2020–2026 reel seyri: yıllık ortalama %47 arttı, ama her zamdan sonra yıl içinde %11–26 eridi. Aylık TÜFE ve resmî tutarlarla ölçüm.</summary>
   </entry>
 
@@ -269,7 +323,9 @@
     <title>Evi Çocuğa Bağışlamak mı, Miras mı? Vergi 2026</title>
     <link href="https://korayoner.dev/makaleler/bagis-mi-miras-mi-vergi/"/>
     <id>https://korayoner.dev/makaleler/bagis-mi-miras-mi-vergi/</id>
+    <published>2026-09-25T18:52:41+03:00</published>
     <updated>2026-09-25T18:52:41+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Aynı ev bağışla geçerse 146.653 TL, mirasla geçerse 929 TL vergi. 2026 tarifesiyle bağış ve miras karşılaştırması: fark neden bu kadar büyük, ne zaman küçülüyor?</summary>
   </entry>
 
@@ -277,7 +333,9 @@
     <title>Dolar mı TL Mevduat mı? Başabaş Kur Hesabı</title>
     <link href="https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/"/>
     <id>https://korayoner.dev/makaleler/dolar-mi-tl-mevduat-mi/</id>
+    <published>2026-09-25T18:52:41+03:00</published>
     <updated>2026-09-25T18:52:41+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Yıllık %37 TL faizinde 32 günlük vadede doların %2,61'den fazla artması gerekir. Başabaş kuru vade, stopaj ve kur makası nasıl değiştiriyor? Hesaplı karşılaştırma.</summary>
   </entry>
 
@@ -285,7 +343,9 @@
     <title>Fiyatlar Kaç Ayda İkiye Katlanıyor? 2005–2026</title>
     <link href="https://korayoner.dev/makaleler/fiyatlar-kac-ayda-ikiye-katlaniyor/"/>
     <id>https://korayoner.dev/makaleler/fiyatlar-kac-ayda-ikiye-katlaniyor/</id>
+    <published>2026-09-25T18:52:41+03:00</published>
     <updated>2026-09-25T18:52:41+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>2016'da fiyatların ikiye katlanması dokuz yıl sürüyordu, Ocak 2023'te 15 aya indi. Aylık TÜFE ile ölçüm: yıllık oran bu süreyi neden yanlış gösteriyor?</summary>
   </entry>
 
@@ -293,7 +353,9 @@
     <title>Miras Kalan Ev İçin Vergi Ödenir mi? 2026</title>
     <link href="https://korayoner.dev/makaleler/miras-kalan-ev-icin-vergi/"/>
     <id>https://korayoner.dev/makaleler/miras-kalan-ev-icin-vergi/</id>
+    <published>2026-09-25T18:52:41+03:00</published>
     <updated>2026-09-25T18:52:41+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Aynı 8 milyon TL'lik mirasta vergi sıfır da olabilir 120.000 TL de. 2026 veraset vergisinde aile yapısına göre vergisiz sınır ve emlak vergisi değerinin rolü.</summary>
   </entry>
 
@@ -301,7 +363,9 @@
     <title>Reel Maaş Hesaplama — Enflasyona Yenildi mi?</title>
     <link href="https://korayoner.dev/reel-maas-hesaplama/"/>
     <id>https://korayoner.dev/reel-maas-hesaplama/</id>
-    <updated>2026-09-25T18:52:41+03:00</updated>
+    <published>2026-09-25T18:52:41+03:00</published>
+    <updated>2026-09-25T20:18:44+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Maaşınız enflasyona yenildi mi? İki tarihteki netinizi TÜFE ile karşılaştırın: alım gücü değişimi, olması gereken maaş ve asgari ücretin kaç katı.</summary>
   </entry>
 
@@ -309,7 +373,9 @@
     <title>TL mi Döviz mi? Başabaş Kur Hesaplama</title>
     <link href="https://korayoner.dev/tl-mi-doviz-mi-hesaplama/"/>
     <id>https://korayoner.dev/tl-mi-doviz-mi-hesaplama/</id>
-    <updated>2026-09-25T18:52:41+03:00</updated>
+    <published>2026-09-25T18:52:41+03:00</published>
+    <updated>2026-09-25T20:18:44+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Parayı TL mevduatta mı döviz mevduatında mı tutmalı? Faiz, stopaj ve kur makasıyla başabaş kuru hesaplayın: dolar vade sonunda ne kadar artarsa döviz kazanır.</summary>
   </entry>
 
@@ -317,7 +383,9 @@
     <title>Veraset ve İntikal Vergisi Hesaplama 2026</title>
     <link href="https://korayoner.dev/veraset-ve-intikal-vergisi-hesaplama/"/>
     <id>https://korayoner.dev/veraset-ve-intikal-vergisi-hesaplama/</id>
-    <updated>2026-09-25T18:52:41+03:00</updated>
+    <published>2026-09-25T18:52:41+03:00</published>
+    <updated>2026-09-25T20:18:44+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Miras ve bağışta 2026 veraset ve intikal vergisi: mirasçı başına pay, istisna, matrah ve vergi. Eş, çocuk ve ana-baba için yasal paylarla, 6 taksit planıyla.</summary>
   </entry>
 
@@ -325,7 +393,9 @@
     <title>Dilim Kayması Hesaplama 2026</title>
     <link href="https://korayoner.dev/dilim-kaymasi-hesaplama/"/>
     <id>https://korayoner.dev/dilim-kaymasi-hesaplama/</id>
+    <published>2026-09-25T12:58:17+03:00</published>
     <updated>2026-09-25T12:58:17+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Vergi dilimleri enflasyonla büyüseydi maaşınızdan ne kadar gelir vergisi kesilirdi? 2026 tarifesini üç ölçütle kendi ücretinizde ölçün.</summary>
   </entry>
 
@@ -333,7 +403,9 @@
     <title>Kredi Kartı Borcu Kaç Ayda Biter? | Kart Borcu Rotası</title>
     <link href="https://korayoner.dev/kredi-karti-borcu-hesaplama/"/>
     <id>https://korayoner.dev/kredi-karti-borcu-hesaplama/</id>
+    <published>2026-09-24T16:16:24+03:00</published>
     <updated>2026-09-24T16:16:24+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Kredi kartı borcunuzu asgari ödeme, aylık bütçe ve hedef tarihle karşılaştırın. Ay ay kalan borcu, faiz ve vergiyi, gereken aylık ödemeyi görün.</summary>
   </entry>
 
@@ -341,7 +413,9 @@
     <title>Nakit Köprüsü: İşletme Sermayesi Hesabı</title>
     <link href="https://korayoner.dev/nakit-koprusu/"/>
     <id>https://korayoner.dev/nakit-koprusu/</id>
-    <updated>2026-09-24T08:21:30+03:00</updated>
+    <published>2026-09-24T08:21:30+03:00</published>
+    <updated>2026-09-24T08:55:46+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Kârlı işletme ne zaman nakitsiz kalır? 12 aylık satış, stok, tahsilat ve tedarikçi vadelerini birleştirin; gereken işletme sermayesini ve senaryoları hesaplayın.</summary>
   </entry>
 
@@ -349,7 +423,9 @@
     <title>Ocak 2027 Memur Zammı Hesaplama</title>
     <link href="https://korayoner.dev/memur-zammi-hesaplama/"/>
     <id>https://korayoner.dev/memur-zammi-hesaplama/</id>
-    <updated>2026-09-23T18:56:08+03:00</updated>
+    <published>2026-09-23T18:56:08+03:00</published>
+    <updated>2026-10-05T21:15:44Z</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Ocak 2027 memur ve memur emeklisi zammı en az %5,00. Temmuz–Eylül 2026 enflasyonu %5,56; senaryolar, enflasyon farkı eşiği ve maaşınızın yeni tutarı.</summary>
   </entry>
 
@@ -357,7 +433,9 @@
     <title>Ocak 2027 Emekli Zammı Hesaplama</title>
     <link href="https://korayoner.dev/emekli-zammi-hesaplama/"/>
     <id>https://korayoner.dev/emekli-zammi-hesaplama/</id>
-    <updated>2026-09-23T18:34:10+03:00</updated>
+    <published>2026-09-23T18:34:10+03:00</published>
+    <updated>2026-10-05T21:15:44Z</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Ocak 2027 SSK ve Bağ-Kur zammı için Temmuz–Eylül 2026 enflasyonu açıklandı: birikim %5,56. Kalan 3 ay için senaryolar ve aylığınızın yeni tutarı.</summary>
   </entry>
 
@@ -365,7 +443,9 @@
     <title>Emekli Promosyonunun Ekonomisi</title>
     <link href="https://korayoner.dev/makaleler/emekli-promosyonunun-ekonomisi/"/>
     <id>https://korayoner.dev/makaleler/emekli-promosyonunun-ekonomisi/</id>
-    <updated>2026-09-23T09:25:35+03:00</updated>
+    <published>2026-09-23T09:25:35+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Emekli promosyonlarını müşteri edinme maliyeti, net bugünkü değer, puan, kredi ve banka değiştirme maliyetiyle inceleyen ekonomik analiz.</summary>
   </entry>
 
@@ -373,7 +453,9 @@
     <title>Ciro artarken işletmenin nakdi neden azalır?</title>
     <link href="https://korayoner.dev/makaleler/ciro-artarken-nakit-neden-azalir/"/>
     <id>https://korayoner.dev/makaleler/ciro-artarken-nakit-neden-azalir/</id>
-    <updated>2026-09-22T18:36:20+03:00</updated>
+    <published>2026-09-22T18:36:20+03:00</published>
+    <updated>2026-09-23T22:12:23+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Eylül 2026 finansman ortamında ciro, kâr ve nakit ayrımı. Alacak, stok, ödeme vadeleri ve peşin indirimini sayısal örneklerle inceleyin.</summary>
   </entry>
 
@@ -381,7 +463,9 @@
     <title>Enflasyon düşerken fiyatlar neden düşmüyor?</title>
     <link href="https://korayoner.dev/makaleler/enflasyon-duserken-fiyatlar-neden-dusmuyor/"/>
     <id>https://korayoner.dev/makaleler/enflasyon-duserken-fiyatlar-neden-dusmuyor/</id>
-    <updated>2026-09-22T18:36:20+03:00</updated>
+    <published>2026-09-22T18:36:20+03:00</published>
+    <updated>2026-09-23T22:12:23+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Ağustos 2026 verileriyle enflasyon oranı, fiyat düzeyi ve baz etkisi. Üç bütçe senaryosunda nominal gelir ile satın alma gücünün farkı.</summary>
   </entry>
 
@@ -389,7 +473,9 @@
     <title>Başabaş ve Hedef Kâr Hesaplama</title>
     <link href="https://korayoner.dev/basabas-hesaplama/"/>
     <id>https://korayoner.dev/basabas-hesaplama/</id>
-    <updated>2026-09-22T18:15:53+03:00</updated>
+    <published>2026-09-22T18:15:53+03:00</published>
+    <updated>2026-09-23T17:32:11+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Kaç satışla giderlerinizi karşılıyorsunuz? Komisyon dahil başabaş adedi, hedef kâr, kapasite kontrolü ve gerekli satış fiyatını hesaplayın.</summary>
   </entry>
 
@@ -397,7 +483,9 @@
     <title>İki İş Teklifi Karşılaştırma 2026</title>
     <link href="https://korayoner.dev/teklif-karsilastirma/"/>
     <id>https://korayoner.dev/teklif-karsilastirma/</id>
-    <updated>2026-09-22T11:16:14+03:00</updated>
+    <published>2026-09-22T11:16:14+03:00</published>
+    <updated>2026-09-23T17:32:11+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>İki iş teklifini yıllık toplam net üzerinden karşılaştırın. Ocakta önde görünen teklif yılda geride kalabilir; araç bunu ölçüp söyler.</summary>
   </entry>
 
@@ -405,7 +493,9 @@
     <title>Bordro Denetimi 2026 — Maaş Bordronuz Doğru mu?</title>
     <link href="https://korayoner.dev/bordro-denetim/"/>
     <id>https://korayoner.dev/bordro-denetim/</id>
-    <updated>2026-09-22T10:40:14+03:00</updated>
+    <published>2026-09-22T10:40:14+03:00</published>
+    <updated>2026-09-23T17:32:11+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Bordronuzdaki kesinti satırlarını beklenen tutarla karşılaştırın. Fark varsa o rakamı hangi kümülatif matrahın ürettiğini gösterir.</summary>
   </entry>
 
@@ -413,7 +503,9 @@
     <title>Yılın En Düşük Maaşı Hangi Ay? 2026 Taraması</title>
     <link href="https://korayoner.dev/makaleler/yilin-en-dusuk-maasi-hangi-ay/"/>
     <id>https://korayoner.dev/makaleler/yilin-en-dusuk-maasi-hangi-ay/</id>
-    <updated>2026-09-21T16:54:08+03:00</updated>
+    <published>2026-09-21T16:54:08+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Aralık yılın en kötü ayı değil. 2026 parametreleriyle 5.670 brüt ücret tarandı: brütünüze göre netin dibe vurduğu ay mayıstan aralığa kadar değişiyor.</summary>
   </entry>
 
@@ -421,23 +513,19 @@
     <title>BES Devlet Katkısı Ne Kadar Değerli?</title>
     <link href="https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/"/>
     <id>https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/</id>
-    <updated>2026-09-21T10:01:42+03:00</updated>
+    <published>2026-09-21T10:01:42+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>Devlet katkısı 2026'da %30'dan %20'ye indi. Katkı akışla, fon gideri stokla orantılı olduğu için bir kesişim yılı var — indirim onu 25'ten 18'e çekti.</summary>
-  </entry>
-
-  <entry>
-    <title>Koray Öner — Yayımlanmış Çalışmalar</title>
-    <link href="https://korayoner.dev/yayinlar/"/>
-    <id>https://korayoner.dev/yayinlar/</id>
-    <updated>2026-09-21T08:39:36+03:00</updated>
-    <summary>Koray Öner'in DOI'li çalışmaları: vergi kaması, dilim kayması, emeklilik finansmanı, tasarruf-yatırım haritası ve banka kârlılığı. Açık erişim, CC BY 4.0.</summary>
   </entry>
 
   <entry>
     <title>Torba Yasa Beklentileri Tuttu mu? (2023–2026)</title>
     <link href="https://korayoner.dev/makaleler/torba-yasa-beklenti-tutuyor-mu/"/>
     <id>https://korayoner.dev/makaleler/torba-yasa-beklenti-tutuyor-mu/</id>
-    <updated>2026-09-21T07:45:40+03:00</updated>
+    <published>2026-09-21T07:45:40+03:00</published>
+    <updated>2026-10-03T16:29:45+03:00</updated>
+    <category term="mevzuat" label="Mevzuat"/>
     <summary>Tekrarlayan torba yasa beklentilerinin kaçı yasalaştı? Sekiz torba kanun Resmî Gazete künyeleriyle tarandı: gelen maddelerin tamamı tek bir yıla düşüyor.</summary>
   </entry>
 
@@ -445,7 +533,9 @@
     <title>Tasarruf Kimde, Finansman İhtiyacı Kimde?</title>
     <link href="https://korayoner.dev/makaleler/tasarruf-kimde-finansman-kimde/"/>
     <id>https://korayoner.dev/makaleler/tasarruf-kimde-finansman-kimde/</id>
-    <updated>2026-09-20T07:39:48+03:00</updated>
+    <published>2026-09-20T07:39:48+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Tasarrufun en büyük payını şirketler tutuyor, finansmana en çok ihtiyaç duyan KOBİ'ler. 2024'te KOBİ kredisi nominal %33,62 büyüdü, reel %7,45 küçüldü.</summary>
   </entry>
 
@@ -453,7 +543,9 @@
     <title>Kredi Tavanı Tutuyor mu? Banka Kârlılığı</title>
     <link href="https://korayoner.dev/makaleler/kredi-tavani-ve-banka-karliligi/"/>
     <id>https://korayoner.dev/makaleler/kredi-tavani-ve-banka-karliligi/</id>
-    <updated>2026-09-20T07:30:56+03:00</updated>
+    <published>2026-09-20T07:30:56+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Kredi büyümesine konan tavanlar yıllığa çevrildiğinde %6,7–33,1 aralığında; gerçekleşen büyüme %34,2. Aradaki farkın adı regülasyon takozu.</summary>
   </entry>
 
@@ -461,7 +553,9 @@
     <title>Yıllık Gelir Vergisi Beyannamesi Hesaplama 2026</title>
     <link href="https://korayoner.dev/beyanname-hesaplama/"/>
     <id>https://korayoner.dev/beyanname-hesaplama/</id>
-    <updated>2026-09-19T05:19:49+03:00</updated>
+    <published>2026-09-19T05:19:49+03:00</published>
+    <updated>2026-09-23T17:32:11+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Beyanname vermem gerekir mi? Ücret, kira, menkul sermaye iradı ve serbest meslek gelirini birlikte değerlendirir, GVK m.86 sınırını uygular.</summary>
   </entry>
 
@@ -469,7 +563,9 @@
     <title>SGK Prim Tavanı Neden 9 Kata Çıktı? 2026</title>
     <link href="https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/"/>
     <id>https://korayoner.dev/makaleler/sgk-prim-tavani-9-kat/</id>
-    <updated>2026-09-19T03:23:14+03:00</updated>
+    <published>2026-09-19T03:23:14+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>SGK prim tavanı 2026'da 7,5 kattan 9 kata çıktı: 297.270 TL. Kimi etkiliyor, ne kadara mal oluyor ve neden en yüksek ücretliler daha az kaybediyor?</summary>
   </entry>
 
@@ -477,7 +573,9 @@
     <title>Yeniden Değerleme Oranı Nedir, Neyi Belirler?</title>
     <link href="https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/"/>
     <id>https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/</id>
-    <updated>2026-09-18T21:14:55+03:00</updated>
+    <published>2026-09-18T21:14:55+03:00</published>
+    <updated>2026-09-25T12:57:41+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Yeniden değerleme oranı nedir? TÜFE değil, Yİ-ÜFE'nin ekim ortalaması. Ve hiçbir tutar tam olarak o oranla artmıyor: kanun kesirlerin atılmasına izin veriyor.</summary>
   </entry>
 
@@ -485,7 +583,9 @@
     <title>İkramiye Hangi Ay Ödenirse Daha Az Kesilir?</title>
     <link href="https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/"/>
     <id>https://korayoner.dev/makaleler/ikramiye-hangi-ay-odenmeli/</id>
-    <updated>2026-09-18T00:25:48+03:00</updated>
+    <published>2026-09-18T00:25:48+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>İkramiye hangi ay ödenirse daha az kesilir? 2026'da hiçbiri — net her ayda aynı. Fark eden şey ödeme sayısı, o da yalnızca SGK tavanı aşılırsa.</summary>
   </entry>
 
@@ -493,7 +593,9 @@
     <title>Asgari Ödersem Borcum Ne Zaman Biter?</title>
     <link href="https://korayoner.dev/makaleler/kredi-karti-asgari-odeme/"/>
     <id>https://korayoner.dev/makaleler/kredi-karti-asgari-odeme/</id>
-    <updated>2026-09-16T22:45:09+03:00</updated>
+    <published>2026-09-16T22:45:09+03:00</published>
+    <updated>2026-09-24T16:15:34+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Asgari ödersem kart borcum hiç bitmez mi? Türkiye'de bitiyor: asgari oran, borcun büyüme eşiğinin üç katından fazla. Faturası ise anaparanın beşte biri.</summary>
   </entry>
 
@@ -501,7 +603,9 @@
     <title>İki İşten Maaş Alan Beyanname Verir mi?</title>
     <link href="https://korayoner.dev/makaleler/iki-isten-maas-beyanname-siniri/"/>
     <id>https://korayoner.dev/makaleler/iki-isten-maas-beyanname-siniri/</id>
-    <updated>2026-09-16T07:18:07+03:00</updated>
+    <published>2026-09-16T07:18:07+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>2026 beyan sınırı 400.000 TL — brüt değil safi. İkinci iş aylık 39.215 TL'ye kadar beyansız; bir lira fazlası 37.500 TL vergi doğuruyor.</summary>
   </entry>
 
@@ -509,7 +613,9 @@
     <title>Dilim Kayması Gerçekten Oluyor mu? 2022–2026</title>
     <link href="https://korayoner.dev/makaleler/dilim-kaymasi-2022-2026/"/>
     <id>https://korayoner.dev/makaleler/dilim-kaymasi-2022-2026/</id>
-    <updated>2026-09-15T19:06:06+03:00</updated>
+    <published>2026-09-15T19:06:06+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Vergi dilimleri enflasyonun altında mı kaldı? 2022–2026 tam bordro ölçümü: dönem bütününde kayma yok, 2024'te başlıyor. Ve ilk dilim eşiği ücretliyi hiç etkilemiyor.</summary>
   </entry>
 
@@ -517,7 +623,9 @@
     <title>Peşin mi Taksit mi Hesaplama</title>
     <link href="https://korayoner.dev/pesin-mi-taksit-mi/"/>
     <id>https://korayoner.dev/pesin-mi-taksit-mi/</id>
-    <updated>2026-09-15T11:19:03+03:00</updated>
+    <published>2026-09-15T11:19:03+03:00</published>
+    <updated>2026-09-27T12:09:32+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Peşin fiyatı üç taksit teklifiyle karşılaştırın. Peşinat, ücret, net getiri, enflasyon ve bütçeyle bugünkü maliyeti ve başa baş getiri oranını hesaplayın.</summary>
   </entry>
 
@@ -525,7 +633,9 @@
     <title>Çıkış Takvimi — İşten Ayrılma Tarihinin Bedeli</title>
     <link href="https://korayoner.dev/cikis-takvimi/"/>
     <id>https://korayoner.dev/cikis-takvimi/</id>
-    <updated>2026-09-14T17:53:37+03:00</updated>
+    <published>2026-09-14T17:53:37+03:00</published>
+    <updated>2026-09-23T17:32:11+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>İşten ne zaman ayrılmalı? Kıdem tavanı, ihbar kademesi ve ödenek süresi eşiklerini kendi tarihlerinize göre tarar; hangi günün kaç lira değiştirdiğini söyler.</summary>
   </entry>
 
@@ -533,7 +643,9 @@
     <title>Serbest Meslek Makbuzunda Stopaj ve KDV</title>
     <link href="https://korayoner.dev/makaleler/serbest-meslek-makbuzu-stopaj-kdv/"/>
     <id>https://korayoner.dev/makaleler/serbest-meslek-makbuzu-stopaj-kdv/</id>
-    <updated>2026-09-14T17:32:15+03:00</updated>
+    <published>2026-09-14T17:32:15+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>100.000 TL brüt makbuzda hesabınıza yine 100.000 TL geçiyor — ama iki ayrı 20.000 içeriden geçti. Stopaj nihai vergi değil: 535.714 TL'ye kadar iade alırsınız.</summary>
   </entry>
 
@@ -541,7 +653,9 @@
     <title>Krediyi Erken Kapatmak Mantıklı mı?</title>
     <link href="https://korayoner.dev/makaleler/krediyi-erken-kapatmak-mantikli-mi/"/>
     <id>https://korayoner.dev/makaleler/krediyi-erken-kapatmak-mantikli-mi/</id>
-    <updated>2026-09-14T17:10:34+03:00</updated>
+    <published>2026-09-14T17:10:34+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Krediyi erken kapatmak mantıklı mı? 100.000 TL üzerinden mevduat karşılaştırması, erken ödeme tazminatı ve kalan taksitlerle doğru hesap yöntemi.</summary>
   </entry>
 
@@ -549,7 +663,9 @@
     <title>Vergi Dilimleri Asgari Ücrete Yetişemiyor</title>
     <link href="https://korayoner.dev/makaleler/vergi-dilimleri-asgari-ucrete-yetisemiyor/"/>
     <id>https://korayoner.dev/makaleler/vergi-dilimleri-asgari-ucrete-yetisemiyor/</id>
-    <updated>2026-09-14T12:35:42+03:00</updated>
+    <published>2026-09-14T12:35:42+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>2020'den 2026'ya asgari ücret 11,2 katına çıktı, ilk vergi dilimi 8,6 katına. Aynı katta maaş alan biri her yıl daha hızlı üst dilime tırmanıyor.</summary>
   </entry>
 
@@ -557,7 +673,9 @@
     <title>2026 MTV Ne Kadar? Tam Tarife Tablosu</title>
     <link href="https://korayoner.dev/makaleler/mtv-2026-ne-kadar/"/>
     <id>https://korayoner.dev/makaleler/mtv-2026-ne-kadar/</id>
-    <updated>2026-09-14T12:25:16+03:00</updated>
+    <published>2026-09-14T12:25:16+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>2026 MTV tutarları: motor hacmi ve yaşa göre tam tablo. Aynı araca tescil tarihine göre iki farklı tarife uygulanıyor — 1601 cm³ üstünde fark tam %10.</summary>
   </entry>
 
@@ -565,7 +683,9 @@
     <title>Fazla Mesai Zammı Yüzde Kaç?</title>
     <link href="https://korayoner.dev/makaleler/fazla-mesai-zammi-yuzde-kac/"/>
     <id>https://korayoner.dev/makaleler/fazla-mesai-zammi-yuzde-kac/</id>
-    <updated>2026-09-14T08:38:35+03:00</updated>
+    <published>2026-09-14T08:38:35+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Fazla mesai zammı %50 mi %25 mi? Oranı çalıştığınız saat değil sözleşmeniz belirler. Üç durumda ise fazladan çalıştığınız saat hiç fazla mesai sayılmaz.</summary>
   </entry>
 
@@ -573,7 +693,9 @@
     <title>ÖTV'nin Basamak Etkisi</title>
     <link href="https://korayoner.dev/makaleler/otv-basamak-etkisi/"/>
     <id>https://korayoner.dev/makaleler/otv-basamak-etkisi/</id>
-    <updated>2026-09-13T22:30:38+03:00</updated>
+    <published>2026-09-13T22:30:38+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>ÖTV kademeli değildir: eşik aşılınca üst oran matrahın tamamına uygulanır. Bu, araç fiyatlarında hiçbir aracın dolduramadığı boş aralıklar doğurur.</summary>
   </entry>
 
@@ -581,7 +703,9 @@
     <title>Yatırım Fizibilitesi: NBD ve İç Verim Oranı</title>
     <link href="https://korayoner.dev/yatirim-fizibilite-hesaplama/"/>
     <id>https://korayoner.dev/yatirim-fizibilite-hesaplama/</id>
-    <updated>2026-09-13T21:02:55+03:00</updated>
+    <published>2026-09-13T21:02:55+03:00</published>
+    <updated>2026-09-23T17:32:11+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Yatırımın net bugünkü değerini, iç verim oranını ve geri ödeme süresini hesaplayın. Yıllık nakit akışları, üç senaryo, grafik ve CSV raporuyla analiz edin.</summary>
   </entry>
 
@@ -589,7 +713,9 @@
     <title>Emekliliğin Finansal Matematiği</title>
     <link href="https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/"/>
     <id>https://korayoner.dev/makaleler/emekliligin-finansal-matematigi/</id>
-    <updated>2026-09-13T17:41:48+03:00</updated>
+    <published>2026-09-13T17:41:48+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>Nüfus yaşlanması, çalışma hayatı, emekli aylığı ve tasarruf göstergeleri hangi tanımlarla karşılaştırılabilir? OECD, TÜİK, SGK ve EGM verileriyle akademik inceleme.</summary>
   </entry>
 
@@ -597,7 +723,9 @@
     <title>Finansal İkiz</title>
     <link href="https://korayoner.dev/finansal-ikiz/"/>
     <id>https://korayoner.dev/finansal-ikiz/</id>
-    <updated>2026-09-13T15:30:16+03:00</updated>
+    <published>2026-09-13T15:30:16+03:00</published>
+    <updated>2026-09-21T07:45:28+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Finansal hayatınızın dijital ikizi: gelir, gider, varlık ve borçlarınızdan 20 yıllık servet projeksiyonu. Üç senaryo ve en etkili değişken.</summary>
   </entry>
 
@@ -605,7 +733,9 @@
     <title>Kişisel Enflasyon Hesaplama</title>
     <link href="https://korayoner.dev/kisisel-enflasyon/"/>
     <id>https://korayoner.dev/kisisel-enflasyon/</id>
-    <updated>2026-09-13T11:18:28+03:00</updated>
+    <published>2026-09-13T11:18:28+03:00</published>
+    <updated>2026-09-14T08:49:31+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Kendi harcamanızdan kişisel enflasyonunuzu hesaplayın: hangi kalem kaç puan ekledi, zammınız yetti mi? Resmî oran bir sepet ortalamasıdır, sizinki değil.</summary>
   </entry>
 
@@ -613,7 +743,9 @@
     <title>Nakit Akışı Analizi: Paranız Nereye Gidiyor?</title>
     <link href="https://korayoner.dev/nakit-akisi-analizi/"/>
     <id>https://korayoner.dev/nakit-akisi-analizi/</id>
-    <updated>2026-09-13T11:08:01+03:00</updated>
+    <published>2026-09-13T11:08:01+03:00</published>
+    <updated>2026-09-21T07:45:28+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>İşveren maliyetinden her gider kalemine kadar paranızın tüm akışı tek diyagramda. Her giderin ömür bedeli, tasarruf oranınız ve vergi kaması.</summary>
   </entry>
 
@@ -621,7 +753,9 @@
     <title>Prim ve İkramiye Vergisi: Ne Kadarı Kalır?</title>
     <link href="https://korayoner.dev/prim-ikramiye-vergisi/"/>
     <id>https://korayoner.dev/prim-ikramiye-vergisi/</id>
-    <updated>2026-09-13T10:25:55+03:00</updated>
+    <published>2026-09-13T10:25:55+03:00</published>
+    <updated>2026-09-21T07:45:28+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Prim, ikramiye ve bonusun net ne kadarı elinize geçer? Marjinal kesinti oranı, SGK tavanı etkisi ve hangi ayda almanın gerçekten fark ettiği — 2026 parametreleriyle.</summary>
   </entry>
 
@@ -629,7 +763,9 @@
     <title>Krediyi Erken Kapatmak mı, Yatırım mı?</title>
     <link href="https://korayoner.dev/erken-kapatma-analizi/"/>
     <id>https://korayoner.dev/erken-kapatma-analizi/</id>
-    <updated>2026-09-13T09:55:39+03:00</updated>
+    <published>2026-09-13T09:55:39+03:00</published>
+    <updated>2026-09-22T11:01:19+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Elinizdeki parayla krediyi kapatmak mı, yatırım yapmak mı? Kararın tersine döndüğü getiri eşiğini ve erken ödeme tazminatının yasal sınırını hesaplar.</summary>
   </entry>
 
@@ -637,7 +773,9 @@
     <title>Borç mu Kapatmalı, Birikim mi Yapmalı?</title>
     <link href="https://korayoner.dev/borc-mu-birikim-mi/"/>
     <id>https://korayoner.dev/borc-mu-birikim-mi/</id>
-    <updated>2026-09-12T17:53:11+03:00</updated>
+    <published>2026-09-12T17:53:11+03:00</published>
+    <updated>2026-09-14T08:49:31+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Fazladan paranız nereye gitmeli? Her hedefin vergi ve enflasyon sonrası gerçek getirisini hesaplar, acil durum fonu kısıtı altında aylık dağılımı çıkarır.</summary>
   </entry>
 
@@ -645,7 +783,9 @@
     <title>Borç Kapatma Planı ve Strateji Karşılaştırma</title>
     <link href="https://korayoner.dev/borc-kapatma-plani/"/>
     <id>https://korayoner.dev/borc-kapatma-plani/</id>
-    <updated>2026-09-12T15:40:02+03:00</updated>
+    <published>2026-09-12T15:40:02+03:00</published>
+    <updated>2026-09-14T08:49:31+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Birden çok borcu ay ay simüle eder; çığ, kartopu ve asgari ödeme stratejilerini yarıştırır. Hangi borca önce saldıracağınızı ve kurtulan faizi gösterir.</summary>
   </entry>
 
@@ -653,7 +793,9 @@
     <title>Kira Geliri Vergisi Hesaplama 2026</title>
     <link href="https://korayoner.dev/kira-geliri-vergisi-hesaplama/"/>
     <id>https://korayoner.dev/kira-geliri-vergisi-hesaplama/</id>
-    <updated>2026-09-12T15:28:16+03:00</updated>
+    <published>2026-09-12T15:28:16+03:00</published>
+    <updated>2026-09-19T00:10:03+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Kira geliri vergisi hesaplama: mesken istisnası, götürü ve gerçek gider karşılaştırması, işyeri stopaj mahsubu ve ödenecek vergi tek ekranda.</summary>
   </entry>
 
@@ -661,7 +803,9 @@
     <title>Emekli Aylığı Hesaplama 2026</title>
     <link href="https://korayoner.dev/emekli-ayligi-hesaplama/"/>
     <id>https://korayoner.dev/emekli-ayligi-hesaplama/</id>
-    <updated>2026-09-12T15:18:26+03:00</updated>
+    <published>2026-09-12T15:18:26+03:00</published>
+    <updated>2026-09-14T08:49:31+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Emekli aylığı hesaplama: prim gününüze ve kazancınıza göre aylık bağlama oranını (ABO), üç dönemin kısmi aylıklarını ve alt sınır aylığı hesaplayın.</summary>
   </entry>
 
@@ -669,7 +813,9 @@
     <title>Mevduat Faizi ve Enflasyon: Reel Getiri</title>
     <link href="https://korayoner.dev/makaleler/mevduat-faizi-enflasyon-reel-getiri/"/>
     <id>https://korayoner.dev/makaleler/mevduat-faizi-enflasyon-reel-getiri/</id>
-    <updated>2026-09-10T19:01:00+03:00</updated>
+    <published>2026-09-10T19:01:00+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Mevduatın reel getirisi nasıl hesaplanır? 100.000 TL ve 32 gün örneğinde net faiz, stopaj, enflasyon karşılaştırması ve satın alma gücü hesabını inceleyin.</summary>
   </entry>
 
@@ -677,7 +823,9 @@
     <title>Ücret mi Kâr Payı mı? Optimum Dağılım</title>
     <link href="https://korayoner.dev/ucret-kar-payi-optimizasyonu/"/>
     <id>https://korayoner.dev/ucret-kar-payi-optimizasyonu/</id>
-    <updated>2026-09-09T18:39:58+03:00</updated>
+    <published>2026-09-09T18:39:58+03:00</published>
+    <updated>2026-09-14T08:49:31+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Şirket ortağı gelirini ücret ve kâr payı arasında nasıl paylaştırmalı? Optimum ücreti hesaplar ve beyan eşiğindeki net kaybı uçurumunu gösterir.</summary>
   </entry>
 
@@ -685,7 +833,9 @@
     <title>Ücret–Kâr Payı Metodolojisi</title>
     <link href="https://korayoner.dev/ucret-kar-payi-optimizasyonu/metodoloji/"/>
     <id>https://korayoner.dev/ucret-kar-payi-optimizasyonu/metodoloji/</id>
+    <published>2026-09-09T18:39:58+03:00</published>
     <updated>2026-09-09T18:39:58+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Şirket ortağı için optimum ücret nasıl bulunur? Beyan eşiği uçurumu, ikiye bölmeyle çözüm, çekirdek tutarlılığı ve 34 test.</summary>
   </entry>
 
@@ -693,7 +843,9 @@
     <title>Vergi Kaması Hesaplama 2026</title>
     <link href="https://korayoner.dev/vergi-kamasi-hesaplama/"/>
     <id>https://korayoner.dev/vergi-kamasi-hesaplama/</id>
-    <updated>2026-09-09T18:39:58+03:00</updated>
+    <published>2026-09-09T18:39:58+03:00</published>
+    <updated>2026-09-25T20:50:06+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>İşveren maliyetinin ne kadarı vergi ve prim? Ortalama ve marjinal kamayı ücret ekseni boyunca hesaplar, zirveyi bulur ve kapalı formla doğrular.</summary>
   </entry>
 
@@ -701,7 +853,9 @@
     <title>Vergi Kaması Metodolojisi</title>
     <link href="https://korayoner.dev/vergi-kamasi-hesaplama/metodoloji/"/>
     <id>https://korayoner.dev/vergi-kamasi-hesaplama/metodoloji/</id>
-    <updated>2026-09-09T18:39:58+03:00</updated>
+    <published>2026-09-09T18:39:58+03:00</published>
+    <updated>2026-09-21T07:45:28+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Vergi kaması nasıl ölçüldü? OECD tanımı, marjinal oranın kapalı formdan türetilmesi, SGK tavanı zirvesi ve 39 test.</summary>
   </entry>
 
@@ -709,7 +863,9 @@
     <title>Vergi Kaması: Ücretin Gerçek Yükü 2026</title>
     <link href="https://korayoner.dev/makaleler/vergi-kamasi-ucretin-gercek-yuku/"/>
     <id>https://korayoner.dev/makaleler/vergi-kamasi-ucretin-gercek-yuku/</id>
-    <updated>2026-09-09T13:06:05+03:00</updated>
+    <published>2026-09-09T13:06:05+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>İşveren maliyetinin ne kadarı çalışana ulaşıyor? Kama asgari ücrette %31,3, SGK tavanında %51,0 ile zirve yapıp yüksek ücretlerde düşüyor. Hesaplanmış analiz.</summary>
   </entry>
 
@@ -717,7 +873,9 @@
     <title>Zam Nete Ne Kadar Yansır? 2026 Hesabı</title>
     <link href="https://korayoner.dev/makaleler/zam-net-maasa-ne-kadar-yansir/"/>
     <id>https://korayoner.dev/makaleler/zam-net-maasa-ne-kadar-yansir/</id>
-    <updated>2026-09-09T12:56:32+03:00</updated>
+    <published>2026-09-09T12:56:32+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>%30 brüt zam nete %26,5 yansıyor — ama her maaşta değil. 300.000 TL brütte aynı zam nete %31,8 yansıyor. 2026 rakamlarıyla hesaplanmış tam tablo.</summary>
   </entry>
 
@@ -725,7 +883,9 @@
     <title>Stopaj Nasıl Hesaplanır? Brütleştirme ve Mahsup</title>
     <link href="https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/"/>
     <id>https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/</id>
-    <updated>2026-09-09T07:38:53+03:00</updated>
+    <published>2026-09-09T07:38:53+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Stopaj brütten kesilir, netten eklenmez. Net 10.000 TL için %20 stopajda brüt 12.000 değil 12.500 TL'dir. Formül, tablo ve stopajın ne zaman nihai vergi olduğu.</summary>
   </entry>
 
@@ -733,7 +893,9 @@
     <title>Uzun Vadeli Yatırım Nasıl Yapılır? Reel Getiri</title>
     <link href="https://korayoner.dev/makaleler/uzun-vadeli-yatirim-nasil-yapilir/"/>
     <id>https://korayoner.dev/makaleler/uzun-vadeli-yatirim-nasil-yapilir/</id>
-    <updated>2026-09-09T07:38:53+03:00</updated>
+    <published>2026-09-09T07:38:53+03:00</published>
+    <updated>2026-09-29T21:49:39+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>%45 kazandıran yatırım %40 enflasyonda %5 değil %3,57 kazandırır; %15 stopajdan sonra ise reel olarak kaybettirir. Uzun vadeli yatırımın altı aritmetik kuralı.</summary>
   </entry>
 
@@ -741,7 +903,9 @@
     <title>Acil Durum Fonu Hesaplama: Kaç Ay Dayanırım?</title>
     <link href="https://korayoner.dev/finansal-emniyet-testi/"/>
     <id>https://korayoner.dev/finansal-emniyet-testi/</id>
-    <updated>2026-09-08T20:34:34+03:00</updated>
+    <published>2026-09-08T20:34:34+03:00</published>
+    <updated>2026-09-30T07:23:59+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>İşsiz kalırsanız birikim, kıdem, ihbar ve işsizlik ödeneğiyle kaç ay dayanırsınız? Enflasyonla artan giderleri ay ay yürütür, eksik acil durum fonunu hesaplar.</summary>
   </entry>
 
@@ -749,7 +913,9 @@
     <title>Dayanma Süresi Hesabı: Yöntem ve Dayanaklar</title>
     <link href="https://korayoner.dev/finansal-emniyet-testi/metodoloji/"/>
     <id>https://korayoner.dev/finansal-emniyet-testi/metodoloji/</id>
-    <updated>2026-09-08T20:34:34+03:00</updated>
+    <published>2026-09-08T20:34:34+03:00</published>
+    <updated>2026-09-29T21:49:39+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>İşsiz kalınca dayanma süresi nasıl hesaplanıyor? Kıdem, ihbar, işsizlik ödeneği ve GSS kuralları, fiyat artışı, eksik fon formülleri ve sınırlar.</summary>
   </entry>
 
@@ -757,7 +923,9 @@
     <title>Finansal Özgürlük (FIRE) Hesaplama</title>
     <link href="https://korayoner.dev/finansal-ozgurluk-hesaplama/"/>
     <id>https://korayoner.dev/finansal-ozgurluk-hesaplama/</id>
-    <updated>2026-09-08T19:26:45+03:00</updated>
+    <published>2026-09-08T19:26:45+03:00</published>
+    <updated>2026-09-14T08:49:31+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Planınız hangi olasılıkla tutar? Monte Carlo ile getiri ve enflasyonu birlikte rastgeleleştirir, başarı oranını ve sürdürülebilir çekimi hesaplar.</summary>
   </entry>
 
@@ -765,7 +933,9 @@
     <title>FIRE Simülasyonu Metodolojisi</title>
     <link href="https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/"/>
     <id>https://korayoner.dev/finansal-ozgurluk-hesaplama/metodoloji/</id>
-    <updated>2026-09-08T19:26:45+03:00</updated>
+    <published>2026-09-08T19:26:45+03:00</published>
+    <updated>2026-09-13T21:02:55+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Monte Carlo nasıl kuruldu? Getiri ve enflasyonun korelasyonlu üretimi, Student-t birim varyans tuzağı, sequence-of-returns ve 40 test.</summary>
   </entry>
 
@@ -773,7 +943,9 @@
     <title>Emekliye Yeni Maaş Sistemi mi Geldi?</title>
     <link href="https://korayoner.dev/makaleler/emekli-maasi-nasil-hesaplanir/"/>
     <id>https://korayoner.dev/makaleler/emekli-maasi-nasil-hesaplanir/</id>
-    <updated>2026-09-08T11:07:37+03:00</updated>
+    <published>2026-09-08T11:07:37+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>“Emekliye yeni maaş sistemi” haberlerini kontrol ettik: yürürlüğe girmiş bir değişiklik yok. Maaşı belirleyen dönem kırılmaları ise gerçek.</summary>
   </entry>
 
@@ -781,7 +953,9 @@
     <title>Zam Hesaplama ve Maaş Pazarlığı</title>
     <link href="https://korayoner.dev/zam-hesaplama/"/>
     <id>https://korayoner.dev/zam-hesaplama/</id>
-    <updated>2026-09-08T10:48:06+03:00</updated>
+    <published>2026-09-08T10:48:06+03:00</published>
+    <updated>2026-09-21T07:45:28+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Brüt zam oranı net zam oranı değildir. Zammın elinize ne geçeceğini, hedeflediğiniz net için brütte ne istemeniz gerektiğini hesaplayın.</summary>
   </entry>
 
@@ -789,7 +963,9 @@
     <title>Zam Hesabı Metodolojisi</title>
     <link href="https://korayoner.dev/zam-hesaplama/metodoloji/"/>
     <id>https://korayoner.dev/zam-hesaplama/metodoloji/</id>
-    <updated>2026-09-08T10:48:06+03:00</updated>
+    <published>2026-09-08T10:48:06+03:00</published>
+    <updated>2026-09-21T07:45:28+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Brüt zam oranı neden nete aynen yansımaz? Kümülatif matrah, SGK tavanı ve üç bölge. Pazarlık için geriye çözüm ve 40 test.</summary>
   </entry>
 
@@ -797,7 +973,9 @@
     <title>Ev Almak mı Kiralamak mı? Hesaplama</title>
     <link href="https://korayoner.dev/ev-almak-mi-kiralamak-mi/"/>
     <id>https://korayoner.dev/ev-almak-mi-kiralamak-mi/</id>
-    <updated>2026-09-08T10:10:02+03:00</updated>
+    <published>2026-09-08T10:10:02+03:00</published>
+    <updated>2026-09-14T08:49:31+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Peşinatı yatırsaydınız ne olurdu? Kira ile satın almayı fark yatırımı, masraflar ve enflasyonla karşılaştırır; başabaş yılını ve başabaş kirayı bulur.</summary>
   </entry>
 
@@ -805,7 +983,9 @@
     <title>Ev Almak mı Kiralamak mı — Metodoloji</title>
     <link href="https://korayoner.dev/ev-almak-mi-kiralamak-mi/metodoloji/"/>
     <id>https://korayoner.dev/ev-almak-mi-kiralamak-mi/metodoloji/</id>
-    <updated>2026-09-08T10:10:02+03:00</updated>
+    <published>2026-09-08T10:10:02+03:00</published>
+    <updated>2026-09-10T14:01:39+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Ev almakla kiralamayı dürüst karşılaştırmanın tek kuralı: fark yatırılır. Peşinatın fırsat maliyeti, geri dönmeyen masraflar, başabaş yılı ve 31 test.</summary>
   </entry>
 
@@ -813,7 +993,9 @@
     <title>BES ve Birikim Hesaplama — Reel Getiri</title>
     <link href="https://korayoner.dev/birikim-hesaplama/"/>
     <id>https://korayoner.dev/birikim-hesaplama/</id>
-    <updated>2026-09-08T09:49:22+03:00</updated>
+    <published>2026-09-08T09:49:22+03:00</published>
+    <updated>2026-09-21T09:49:28+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Nominal getiri yanıltır. Enflasyona göre reel getiri, BES devlet katkısı ve hak kazanma, hedefe ulaşmak için aylık katkı ve birikimin kaç yıl yeteceği — tek ekranda.</summary>
   </entry>
 
@@ -821,7 +1003,9 @@
     <title>Birikim Hesabı Metodolojisi</title>
     <link href="https://korayoner.dev/birikim-hesaplama/metodoloji/"/>
     <id>https://korayoner.dev/birikim-hesaplama/metodoloji/</id>
-    <updated>2026-09-08T09:49:22+03:00</updated>
+    <published>2026-09-08T09:49:22+03:00</published>
+    <updated>2026-09-21T09:49:28+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Reel getiri neden çıkarmayla değil Fisher denklemiyle bulunur? BES devlet katkısı, tavanı, hak kazanma ve stopaj nasıl hesaplanıyor? Formüller ve 67 test.</summary>
   </entry>
 
@@ -829,7 +1013,9 @@
     <title>Kredi Hesabı Metodolojisi</title>
     <link href="https://korayoner.dev/kredi-hesaplama/metodoloji/"/>
     <id>https://korayoner.dev/kredi-hesaplama/metodoloji/</id>
+    <published>2026-09-07T20:13:38+03:00</published>
     <updated>2026-09-07T20:13:38+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Kredi taksiti, KKDF ve BSMV, yıllık maliyet oranı ve erken kapama nasıl hesaplanıyor? Formüller, kuruş aritmetiği, 64 test ve oranların neden koda gömülmediği.</summary>
   </entry>
 
@@ -837,7 +1023,9 @@
     <title>Yıllık Maliyet Oranı Nedir?</title>
     <link href="https://korayoner.dev/makaleler/kredi-yillik-maliyet-orani/"/>
     <id>https://korayoner.dev/makaleler/kredi-yillik-maliyet-orani/</id>
-    <updated>2026-09-07T20:13:38+03:00</updated>
+    <published>2026-09-07T20:13:38+03:00</published>
+    <updated>2026-09-24T06:58:23+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Aylık %2,89 faizli kredide bankanın söylediği yıllık oran %34,68; gerçek maliyet %56,31. Farkı üreten üç şey ve iki teklifi doğru karşılaştırmanın yolu.</summary>
   </entry>
 
@@ -845,7 +1033,9 @@
     <title>Fatura Merkezi Metodolojisi</title>
     <link href="https://korayoner.dev/fatura-olusturma/metodoloji/"/>
     <id>https://korayoner.dev/fatura-olusturma/metodoloji/</id>
-    <updated>2026-09-07T11:41:54+03:00</updated>
+    <published>2026-09-07T11:41:54+03:00</published>
+    <updated>2026-09-07T13:43:29+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Fatura Merkezi nasıl hesaplıyor, veri nerede duruyor? Kuruş aritmetiği, iskonto dağıtımı, tevkifat, VKN ve IBAN doğrulaması, 159 test.</summary>
   </entry>
 
@@ -853,7 +1043,9 @@
     <title>KDV Tevkifatı Nedir? Faturaya Nasıl Yazılır</title>
     <link href="https://korayoner.dev/makaleler/kdv-tevkifati-nedir/"/>
     <id>https://korayoner.dev/makaleler/kdv-tevkifati-nedir/</id>
-    <updated>2026-09-07T11:41:54+03:00</updated>
+    <published>2026-09-07T11:41:54+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Tevkifat fatura toplamını değil tahsilatı değiştirir: 100.000 TL matrahta 5/10 ile ödenecek tutar 120.000 değil 110.000 TL olur. Adım adım.</summary>
   </entry>
 
@@ -861,7 +1053,9 @@
     <title>Proforma Fatura Nedir? Faturadan Farkı</title>
     <link href="https://korayoner.dev/makaleler/proforma-fatura-nedir/"/>
     <id>https://korayoner.dev/makaleler/proforma-fatura-nedir/</id>
-    <updated>2026-09-07T11:41:54+03:00</updated>
+    <published>2026-09-07T11:41:54+03:00</published>
+    <updated>2026-09-24T06:58:23+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Proforma muhasebe kaydı doğurmaz, KDV yaratmaz — ama kabul edilirse sözleşme kurar. Teklif, proforma, fatura ve irsaliye farkı tabloyla.</summary>
   </entry>
 
@@ -869,7 +1063,9 @@
     <title>Fatura ve Teklif Oluşturma Merkezi</title>
     <link href="https://korayoner.dev/fatura-olusturma/"/>
     <id>https://korayoner.dev/fatura-olusturma/</id>
-    <updated>2026-09-07T06:55:03+03:00</updated>
+    <published>2026-09-07T06:55:03+03:00</published>
+    <updated>2026-10-06T06:36:34+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti. Üyeliksiz; veriler tarayıcınızda kalır.</summary>
   </entry>
 
@@ -877,7 +1073,9 @@
     <title>Bordro Motoru — Metodoloji ve Parametreler</title>
     <link href="https://korayoner.dev/bordro/"/>
     <id>https://korayoner.dev/bordro/</id>
-    <updated>2026-09-07T00:00:00+03:00</updated>
+    <published>2026-09-07T00:00:00+03:00</published>
+    <updated>2026-10-06T07:11:17+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Koray Öner'in maaş araçlarını çalıştıran açık bordro motoru: 2020-2026 vergi dilimleri, asgari ücret, SGK tavanı, istisnalar, hesap adımları ve değişiklik günlüğü.</summary>
   </entry>
 
@@ -885,7 +1083,9 @@
     <title>Fazla Mesai Ücreti Hesaplama 2026</title>
     <link href="https://korayoner.dev/fazla-mesai-hesaplama/"/>
     <id>https://korayoner.dev/fazla-mesai-hesaplama/</id>
-    <updated>2026-09-07T00:00:00+03:00</updated>
+    <published>2026-09-07T00:00:00+03:00</published>
+    <updated>2026-09-23T17:26:12+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Fazla mesai ücreti: %50 ve %25 zamlı saatlerin brüt karşılığı ve — asıl önemlisi — elinize geçen net. Aynı mesai ocakta ve aralıkta farklı para bırakır.</summary>
   </entry>
 
@@ -893,7 +1093,9 @@
     <title>İşveren Maliyeti Hesaplama 2026</title>
     <link href="https://korayoner.dev/isveren-maliyeti-hesaplama/"/>
     <id>https://korayoner.dev/isveren-maliyeti-hesaplama/</id>
-    <updated>2026-09-07T00:00:00+03:00</updated>
+    <published>2026-09-07T00:00:00+03:00</published>
+    <updated>2026-09-25T20:50:06+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Çalışan işverene ne kadara mal oluyor? Brüt ya da net ücretten aylık ve yıllık maliyet, SGK işveren payı ve prim indirimi (imalat dışı 2, imalat 5 puan), 2026.</summary>
   </entry>
 
@@ -901,7 +1103,9 @@
     <title>İşsizlik Maaşı Ne Kadar? 2026 Tavan ve Süre</title>
     <link href="https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/"/>
     <id>https://korayoner.dev/makaleler/issizlik-maasi-ne-kadar/</id>
-    <updated>2026-09-06T18:56:16+03:00</updated>
+    <published>2026-09-06T18:56:16+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>2026'da işsizlik ödeneği en az 13.111,72 TL, en çok 26.223,44 TL net. Tavan 66.060 TL brütte doluyor ve net asgari ücretin 1.852 TL altında kalıyor.</summary>
   </entry>
 
@@ -909,7 +1113,9 @@
     <title>Net Maaşta mı, Brüt Maaşta mı Anlaşmalı? 2026</title>
     <link href="https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/"/>
     <id>https://korayoner.dev/makaleler/net-maas-mi-brut-maas-mi/</id>
-    <updated>2026-09-06T18:56:16+03:00</updated>
+    <published>2026-09-06T18:56:16+03:00</published>
+    <updated>2026-09-24T06:58:23+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Aynı rakamda anlaşan iki kişiden net anlaşan 720.000 TL, brüt anlaşan 669.758 TL alıyor. 2026 rakamlarıyla ay ay fark ve işverene maliyeti.</summary>
   </entry>
 
@@ -917,7 +1123,9 @@
     <title>İstifa Edince Kıdem Tazminatı Alınır mı? 2026</title>
     <link href="https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/"/>
     <id>https://korayoner.dev/makaleler/istifa-edince-kidem-tazminati/</id>
-    <updated>2026-09-06T18:02:49+03:00</updated>
+    <published>2026-09-06T18:02:49+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Gerekçesiz istifa eden kıdem alamaz — ama işçinin kendi ayrıldığı beş durumda kıdem doğar. 11 fesih türünün hak tablosu ve aynı ücrette 665.279 TL'lik fark.</summary>
   </entry>
 
@@ -925,7 +1133,9 @@
     <title>Kıdem Tazminatı Tavanı 2026 Ne Kadar?</title>
     <link href="https://korayoner.dev/makaleler/kidem-tazminati-tavani/"/>
     <id>https://korayoner.dev/makaleler/kidem-tazminati-tavani/</id>
-    <updated>2026-09-06T18:02:49+03:00</updated>
+    <published>2026-09-06T18:02:49+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Kıdem tazminatı tavanı Temmuz–Aralık 2026'da 73.729,87 TL. Tavanı aşan ücretlerde tazminat sabitleniyor: 90.000 TL ile 150.000 TL brüt aynı tazminatı veriyor.</summary>
   </entry>
 
@@ -933,7 +1143,9 @@
     <title>Asgari Ücret Nasıl Belirlenir? 2027 Takvimi</title>
     <link href="https://korayoner.dev/makaleler/asgari-ucret-nasil-belirlenir/"/>
     <id>https://korayoner.dev/makaleler/asgari-ucret-nasil-belirlenir/</id>
-    <updated>2026-09-06T07:55:54+03:00</updated>
+    <published>2026-09-06T07:55:54+03:00</published>
+    <updated>2026-09-24T06:58:23+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Asgari ücreti kim, nasıl ve ne zaman belirliyor? Komisyonun yapısı, aralık takvimi ve az bilinen bir gerçek: asgari ücret her çalışanın netini değiştirir.</summary>
   </entry>
 
@@ -941,7 +1153,9 @@
     <title>Şahıs mı, Limited mi? Gerçek Karşılaştırma</title>
     <link href="https://korayoner.dev/makaleler/sahis-mi-limited-mi/"/>
     <id>https://korayoner.dev/makaleler/sahis-mi-limited-mi/</id>
-    <updated>2026-09-06T07:55:54+03:00</updated>
+    <published>2026-09-06T07:55:54+03:00</published>
+    <updated>2026-09-25T20:50:06+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Tek bir eşik yok: kazanan gelir aralığı boyunca beş kez el değiştiriyor. Şahıs, limited ve maaşlı çalışmanın 2026 rakamlarıyla karşılaştırması.</summary>
   </entry>
 
@@ -949,7 +1163,9 @@
     <title>Maaşım Neden Düştü? Vergi Dilimi Etkisi</title>
     <link href="https://korayoner.dev/makaleler/maasim-neden-dustu/"/>
     <id>https://korayoner.dev/makaleler/maasim-neden-dustu/</id>
-    <updated>2026-09-06T06:40:02+03:00</updated>
+    <published>2026-09-06T06:40:02+03:00</published>
+    <updated>2026-09-23T21:30:49+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Net maaşınız yıl içinde neden azalıyor, hangi ayda hangi dilime geçiyorsunuz ve neden bazı aylarda tam tersine yükseliyor? 2026 rakamlarıyla ay ay anlatım.</summary>
   </entry>
 
@@ -957,7 +1173,9 @@
     <title>Şahıs mı Limited mi Maaşlı mı? 2026</title>
     <link href="https://korayoner.dev/calisma-bicimi-karsilastirma/"/>
     <id>https://korayoner.dev/calisma-bicimi-karsilastirma/</id>
-    <updated>2026-09-05T09:45:30+03:00</updated>
+    <published>2026-09-05T09:45:30+03:00</published>
+    <updated>2026-09-25T20:50:06+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Aynı parayı maaşlı, şahıs işletmesi veya limited şirket olarak kazansanız elinizde ne kalır? Vergi, prim ve gider dahil dört senaryoyu yan yana karşılaştırın.</summary>
   </entry>
 
@@ -965,7 +1183,9 @@
     <title>İşten Ayrılma Hesaplama 2026 — Çıkış Paketi</title>
     <link href="https://korayoner.dev/isten-ayrilma-hesaplama/"/>
     <id>https://korayoner.dev/isten-ayrilma-hesaplama/</id>
-    <updated>2026-09-05T09:08:33+03:00</updated>
+    <published>2026-09-05T09:08:33+03:00</published>
+    <updated>2026-09-14T12:58:37+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>İşten ayrılınca eline ne zaman ne geçer? Fesih türüne göre kıdem, ihbar, yıllık izin, son ay ücreti ve işsizlik maaşı — tek ekranda, ödeme takvimiyle.</summary>
   </entry>
 
@@ -973,7 +1193,9 @@
     <title>Torba Yasa 2026-2027: Ne Var, Ne Yok</title>
     <link href="https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/"/>
     <id>https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/</id>
-    <updated>2026-09-05T02:57:58+03:00</updated>
+    <published>2026-09-05T02:57:58+03:00</published>
+    <updated>2026-10-03T16:29:45+03:00</updated>
+    <category term="mevzuat" label="Mevzuat"/>
     <summary>Yeni torba yasada ne var? 1 Ekim 2026 itibarıyla sunulmuş teklif yok. 2026'da çıkan kanunlar, Ekim-Aralık takvimi, Ocak 2027 zammı ve 2027 asgari ücreti.</summary>
   </entry>
 
@@ -981,15 +1203,29 @@
     <title>Kademeli Emeklilik Son Durum 2026</title>
     <link href="https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/"/>
     <id>https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/</id>
-    <updated>2026-09-05T01:00:45+03:00</updated>
+    <published>2026-09-05T01:00:45+03:00</published>
+    <updated>2026-10-03T16:29:45+03:00</updated>
+    <category term="mevzuat" label="Mevzuat"/>
     <summary>Kademeli emeklilik yasalaştı mı? Teklifin TBMM'deki gerçek durumu, kimleri kapsadığı ve 1999-2008 arası sigortalılara şu an uygulanan yaş ve prim gün şartları.</summary>
+  </entry>
+
+  <entry>
+    <title>TCMB Döviz Kurları — 6 Ekim 2026</title>
+    <link href="https://korayoner.dev/doviz-kurlari/"/>
+    <id>https://korayoner.dev/doviz-kurlari/</id>
+    <published>2026-09-04T22:11:41+03:00</published>
+    <updated>2026-10-06T18:53:51Z</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
+    <summary>6 Ekim 2026 tarihli TCMB resmî döviz kurları: dolar 49,18 TL, euro 55,28 TL. Merkez Bankası efektif alış ve satış kurları, her iş günü güncellenir.</summary>
   </entry>
 
   <entry>
     <title>Kıdem ve İhbar Tazminatı Hesaplama 2026</title>
     <link href="https://korayoner.dev/kidem-tazminati-hesaplama/"/>
     <id>https://korayoner.dev/kidem-tazminati-hesaplama/</id>
-    <updated>2026-07-18T16:35:39+03:00</updated>
+    <published>2026-07-18T16:35:39+03:00</published>
+    <updated>2026-09-14T08:49:31+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>2026 kıdem tazminatı hesaplama: güncel tavan, giydirilmiş brüt ücret, damga vergisi ve ihbar tazminatıyla gün gün hesaplayın, PDF rapor alın.</summary>
   </entry>
 
@@ -997,7 +1233,9 @@
     <title>Gümrük Vergisi Hesaplama 2026 — Yurt Dışı</title>
     <link href="https://korayoner.dev/gumruk-vergisi-hesaplama/"/>
     <id>https://korayoner.dev/gumruk-vergisi-hesaplama/</id>
-    <updated>2026-07-18T09:34:44+03:00</updated>
+    <published>2026-07-18T09:34:44+03:00</published>
+    <updated>2026-09-14T13:46:58+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>2026 yurt dışı alışverişte ithalat maliyetini planlayın. Teklifteki vergi, kargo ve hizmet bedellerini ekleyin; telefon IMEI harcını hesaplayın.</summary>
   </entry>
 
@@ -1005,7 +1243,9 @@
     <title>MTV Hesaplama 2026 — Motorlu Taşıtlar Vergisi</title>
     <link href="https://korayoner.dev/mtv-hesaplama/"/>
     <id>https://korayoner.dev/mtv-hesaplama/</id>
-    <updated>2026-07-18T09:34:44+03:00</updated>
+    <published>2026-07-18T09:34:44+03:00</published>
+    <updated>2026-09-14T08:24:02+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>2026 MTV hesaplama: motor hacmi, yaş ve değere göre taşıt vergisi. Elektrikli araçta kW bantları, 2018 öncesi tescilde (I/A) tarifesi, taksitler ve projeksiyon.</summary>
   </entry>
 
@@ -1013,7 +1253,9 @@
     <title>Araç ÖTV Hesaplama 2026 — Anahtar Teslim Fiyat</title>
     <link href="https://korayoner.dev/otv-hesaplama/"/>
     <id>https://korayoner.dev/otv-hesaplama/</id>
-    <updated>2026-07-18T09:34:44+03:00</updated>
+    <published>2026-07-18T09:34:44+03:00</published>
+    <updated>2026-09-14T08:24:02+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Araç ÖTV hesaplama: matraha göre ÖTV, KDV ve anahtar teslim fiyat. Hibritte elektrik motor gücü, şarjlıda menzil ve emisyon koşullarıyla.</summary>
   </entry>
 
@@ -1021,7 +1263,9 @@
     <title>Serbest Meslek Makbuzu Hesaplama 2026</title>
     <link href="https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/"/>
     <id>https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/</id>
-    <updated>2026-07-18T09:08:00+03:00</updated>
+    <published>2026-07-18T09:08:00+03:00</published>
+    <updated>2026-09-13T18:14:26+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Serbest meslek makbuzu hesaplama: brütten nete, netten brüte; %20 stopaj, KDV ve KDV tevkifatı dahil, 2026 oranlarıyla. Ücretsiz.</summary>
   </entry>
 
@@ -1029,7 +1273,9 @@
     <title>İşsizlik Maaşı Hesaplama 2026</title>
     <link href="https://korayoner.dev/issizlik-maasi-hesaplama/"/>
     <id>https://korayoner.dev/issizlik-maasi-hesaplama/</id>
-    <updated>2026-07-17T23:08:46+03:00</updated>
+    <published>2026-07-17T23:08:46+03:00</published>
+    <updated>2026-09-13T21:40:02+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>İşsizlik maaşı hesaplama: son 4 aylık brüt kazanca ve prim gün sayısına göre aylık ödeneği, tavanı ve kaç ay alacağınızı hesaplayın.</summary>
   </entry>
 
@@ -1037,7 +1283,9 @@
     <title>Kredi Hesaplama ve Gerçek Maliyet</title>
     <link href="https://korayoner.dev/kredi-hesaplama/"/>
     <id>https://korayoner.dev/kredi-hesaplama/</id>
-    <updated>2026-07-17T23:08:46+03:00</updated>
+    <published>2026-07-17T23:08:46+03:00</published>
+    <updated>2026-09-14T08:49:31+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Bankanın ilan ettiği faiz ödeyeceğiniz maliyet değildir. KKDF, BSMV ve masraflarla yıllık maliyet oranı, ödeme planı, erken kapama ve ek ödeme senaryoları.</summary>
   </entry>
 
@@ -1045,7 +1293,9 @@
     <title>Vadeli Mevduat Faizi Hesaplama 2026</title>
     <link href="https://korayoner.dev/vadeli-mevduat-hesaplama/"/>
     <id>https://korayoner.dev/vadeli-mevduat-hesaplama/</id>
-    <updated>2026-07-17T23:08:46+03:00</updated>
+    <published>2026-07-17T23:08:46+03:00</published>
+    <updated>2026-09-13T18:14:26+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Vadeli mevduat faizi hesaplama: anapara, faiz oranı ve vadeye göre brüt faiz, stopaj kesintisi ve net getiri. Güncel stopaj oranlarıyla.</summary>
   </entry>
 
@@ -1053,15 +1303,29 @@
     <title>Kira Artışı Hesaplama — Ekim 2026: %31,49</title>
     <link href="https://korayoner.dev/kira-artisi-hesaplama/"/>
     <id>https://korayoner.dev/kira-artisi-hesaplama/</id>
-    <updated>2026-07-17T22:21:49+03:00</updated>
+    <published>2026-07-17T22:21:49+03:00</published>
+    <updated>2026-10-05T21:15:44Z</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Ekim 2026'da yenilenen kiralarda yasal azami artış %31,49. Yeni kiranızı, sözleşmeden bugüne yasal kiranızı ve 2022'den beri her ayın oranını görün.</summary>
+  </entry>
+
+  <entry>
+    <title>2026 Brüt–Net Maaş Tablosu</title>
+    <link href="https://korayoner.dev/maas-hesaplama/brut-net-tablosu/"/>
+    <id>https://korayoner.dev/maas-hesaplama/brut-net-tablosu/</id>
+    <published>2026-07-16T13:48:18+03:00</published>
+    <updated>2026-09-07T07:52:57+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
+    <summary>2026 brüt net maaş tablosu: 35.000 TL'den 500.000 TL'ye kadar brüt maaşların net karşılıkları ve her tutar için ay ay bordro dökümü.</summary>
   </entry>
 
   <entry>
     <title>Brüt Net Maaş Hesaplama 2026 — 12 Aylık Bordro</title>
     <link href="https://korayoner.dev/maas-hesaplama/"/>
     <id>https://korayoner.dev/maas-hesaplama/</id>
-    <updated>2026-07-16T13:16:17+03:00</updated>
+    <published>2026-07-16T13:16:17+03:00</published>
+    <updated>2026-10-02T07:37:16+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>2026 brüt net maaş hesaplama: vergi dilimleri, SGK tavanı ve asgari ücret istisnasıyla ay ay bordro. 2020-2026 geçmiş yıllar ve netten brüte dahil.</summary>
   </entry>
 
@@ -1069,7 +1333,9 @@
     <title>KDV Hesaplama — Dahil ve Hariç Tutar</title>
     <link href="https://korayoner.dev/kdv-hesaplama/"/>
     <id>https://korayoner.dev/kdv-hesaplama/</id>
-    <updated>2026-07-14T23:15:36+03:00</updated>
+    <published>2026-07-14T23:15:36+03:00</published>
+    <updated>2026-09-13T18:14:26+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.</summary>
   </entry>
 </feed>
