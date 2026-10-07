@@ -14,6 +14,7 @@
     if (btn) {
       var label = btn.querySelector(".theme-toggle-label");
       if (label) label.textContent = ETIKET[mode];
+      btn.title = "Tema: " + ETIKET[mode];
     }
   }
 
@@ -123,7 +124,7 @@
     var pal = document.createElement("div");
     pal.className = "palette";
     pal.innerHTML =
-      '<button class="theme-toggle palette-toggle" type="button" aria-expanded="false" aria-label="Renk paleti seç">' +
+      '<button class="theme-toggle palette-toggle" type="button" aria-expanded="false" aria-label="Renk paleti seç" title="Renk paleti">' +
       '<span class="palette-dot" aria-hidden="true"></span><span class="theme-toggle-label">Renk</span></button>' +
       '<div class="palette-pop" hidden>' +
       ACCENTS.map(function (a) {

@@ -93,13 +93,7 @@
      istek gönderiyordu. Site veri toplamadığını söylüyor; süs için IP
      adresini başka bir servise taşımak bu iddiayla bağdaşmıyordu. */
 
-  /* ---------- Header: canlı nokta + küçülme ---------- */
-  var nav = $(".site-nav");
-  if (nav) {
-    var dot = el("span", "live-dot", "Canlı");
-    dot.title = "Bu sayfadaki saat ve tarih bilgileri canlıdır";
-    nav.parentNode.insertBefore(dot, nav.nextSibling);
-  }
+  /* ---------- Header: küçülme ---------- */
   var header = $(".site-header");
   if (header) {
     var lastShrunk = false;

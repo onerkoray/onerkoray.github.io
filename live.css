@@ -18,11 +18,7 @@
 .live-card .lc-value { display: block; font-size: 1.02rem; font-weight: 800; letter-spacing: -.01em; color: var(--text); font-variant-numeric: tabular-nums; line-height: 1.25; }
 .live-card .lc-sub { display: block; font-size: .74rem; color: var(--text-muted); margin-top: .12rem; }
 
-/* ---- Header: canlı nokta + küçülme ---- */
-.live-dot { display: inline-flex; align-items: center; gap: .4rem; font-size: .72rem; font-weight: 700; color: var(--text-muted); white-space: nowrap; }
-.live-dot::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #22c07a; box-shadow: 0 0 0 0 rgba(34,192,122,.5); animation: livePulse 2.4s ease-out infinite; }
-@keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(34,192,122,.4); } 70% { box-shadow: 0 0 0 6px rgba(34,192,122,0); } 100% { box-shadow: 0 0 0 0 rgba(34,192,122,0); } }
-@media (max-width: 760px) { .live-dot { display: none; } }
+/* ---- Header: küçülme ---- */
 .site-header .header-inner { transition: padding .22s ease; }
 .site-header.is-shrunk .header-inner { padding-block: .35rem; }
 
@@ -59,7 +55,6 @@
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .live-dot::before { animation: none; }
 }
 @media (max-width: 640px) {
   .live-bar { grid-template-columns: repeat(2, 1fr); }
