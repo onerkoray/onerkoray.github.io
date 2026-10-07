@@ -68,7 +68,7 @@ MUREKKEP = "#17201d"
 KAGIT = "#f5f7f6"
 KOYU_MUREKKEP = "#e8eceb"
 KOYU_KAGIT = "#14181d"
-VARSAYILAN_VURGU = "#0e7c66"      # style.css --accent (yeşil)
+VARSAYILAN_VURGU = "#0e7c66"      # style.css --marka (yeşil; paletten bağımsız)
 YARICAP = 2                        # editoryal katmanla aynı
 
 # KeyMint 2026-09-13'te bu listeden CIKARILDI. Ayri urun muamelesi

@@ -13,6 +13,7 @@
     var renk = localStorage.getItem("onerkoray.accent");
     /* Eski paletten kalan seçim ilk boyamada da en yakın tona gider. */
     renk = { mavi: "lacivert", gul: "bordo" }[renk] || renk;
-    if (renk === "lacivert" || renk === "bordo" || renk === "grafit") kok.setAttribute("data-accent", renk);
+    /* Varsayılan grafit (öznitelik yok); diğer üç ton öznitelikle gelir. */
+    if (renk === "yesil" || renk === "lacivert" || renk === "bordo") kok.setAttribute("data-accent", renk);
   } catch (e) { /* depolama kapalıysa varsayılan tema kalır */ }
 })();
