@@ -812,30 +812,10 @@ def doviz_sayfasi_uret():
     return True
 
 
-def sitemap_lastmod_guncelle(yollar):
-    """Guncellenen sayfalarin sitemap lastmod degerini bugune ceker."""
-    p = os.path.join(ROOT, "sitemap.xml")
-    s = open(p, encoding="utf-8").read()
-    bugun = dt.date.today().isoformat()
-    degisti = False
-    for yol in yollar:
-        loc = "%s/%s/" % (SITE, yol)
-        if loc not in s:
-            # sitemap'te yoksa ekle
-            yeni = ('  <url><loc>%s</loc><lastmod>%s</lastmod>'
-                    "<changefreq>daily</changefreq><priority>0.8</priority></url>\n" % (loc, bugun))
-            s = s.replace("</urlset>", yeni + "</urlset>")
-            degisti = True
-            continue
-        pat = re.compile(r"(<loc>%s</loc>\s*\n?\s*<lastmod>)\d{4}-\d{2}-\d{2}(</lastmod>)"
-                         % re.escape(loc))
-        s2, n = pat.subn(r"\g<1>%s\g<2>" % bugun, s)
-        if n:
-            s, degisti = s2, True
-    if degisti:
-        open(p, "w", encoding="utf-8", newline="").write(s)
-        print("sitemap.xml: lastmod guncellendi")
-    return degisti
+# sitemap.xml artik icerik manifestinden uretiliyor (scripts/build-feeds.mjs):
+# lastmod, sayfanin ozlu son commit'inin tarihi. Gece akisi once icerigi
+# commit'liyor, sonra manifest/sitemap/akislari ikinci commit'le tazeliyor.
+# Burada elle lastmod basmak o kuralla carpisirdi.
 
 
 def main():
@@ -858,8 +838,6 @@ def main():
         print("HATA: doviz sayfasi uretilemedi: %s" % e, file=sys.stderr)
         return 1
 
-    if degisen:
-        sitemap_lastmod_guncelle(degisen)
     print("Bitti. Degisen sayfa: %s" % (", ".join(degisen) or "yok"))
     return 0
 

@@ -16,8 +16,8 @@
  *             kodu dahil), diğer sayfalarda dosyanın kendisi. Kural Python
  *             modülünde tek yerde durur; burada yeniden yazılmaz.
  *   published Bir kez yazılır ve korunur: önceki content.json → atom.xml'deki
- *             ilk ekleniş damgası → makalenin datePublished'ı → dosyanın ilk
- *             commit'i.
+ *             ilk ekleniş damgası → dosyanın ilk commit'i → şimdi (henüz
+ *             commit'lenmemiş sayfa).
  *
  * Bağımlılıksız Node (ESM). Kullanım:
  *   node scripts/build-manifest.mjs           # content.json yaz
@@ -48,7 +48,8 @@ const MAKALE_KAT = {
   "Bordro": "maas-tazminat", "Tazminat": "maas-tazminat", "Vergi": "vergi-belge",
   "Finans": "kredi-finans", "Mevzuat": "mevzuat", "Emeklilik ve sosyal güvenlik": "emeklilik-sosyal-guvenlik"
 };
-/* Grafik ve diyagramlar veri sayfası: makro finans göstergeleri. */
+/* Grafik ve diyagramlar veri sayfası: makro finans göstergeleri.
+   Bordro Motoru (/bordro/) motorun yöntem ve parametre sayfası: metodoloji. */
 const GRAFIK = new Set(["grafikler", "diyagramlar"]);
 
 const oku = (p) => readFileSync(p, "utf8");
@@ -75,7 +76,7 @@ function tur(dosya) {
   const p = dosya.split("/");
   if (dosya === "index.html") return "sayfa";
   if (p[0] === "makaleler") return p.length === 3 ? "makale" : "sayfa";
-  if (p[1] === "metodoloji") return "metodoloji";
+  if (p[1] === "metodoloji" || p[0] === "bordro") return "metodoloji";
   if (GRAFIK.has(p[0])) return "grafik";
   return ARAC_IKON[p[0]] ? "arac" : "sayfa";
 }
@@ -84,6 +85,7 @@ const MAKALE_JSON = Object.fromEntries(json(join(KOK, "tools", "makaleler.json")
 
 function kategori(dosya, t) {
   const p = dosya.split("/");
+  if (p[0] === "bordro") return "maas-tazminat";
   if (t === "arac" || t === "metodoloji") return ARAC_KAT[ARAC_IKON[p[0]]?.cat] || null;
   if (t === "makale") {
     const k = MAKALE_JSON[p[1]]?.kicker;
@@ -120,9 +122,26 @@ function eskiAtom() {
   }
   return m;
 }
+/* Bir sayfa yayımlanmadan güncellenmiş olamaz: updated, özlü commit tarihi,
+   ilk yayın damgası ve (yazılarda) datePublished'ın en geç olanı. */
+function guncel(g, yayin, dp) {
+  const aday = [];
+  if (g?.tarih) aday.push([g.tarih, g.zaman]);
+  if (yayin) aday.push([istanbulGunu(yayin), yayin]);
+  if (dp) aday.push([dp, dp + "T00:00:00+03:00"]);
+  aday.sort((a, b) => a[0].localeCompare(b[0]) || String(a[1]).localeCompare(String(b[1])));
+  const son = aday[aday.length - 1] || [null, null];
+  return { updated: son[0], updatedAt: son[1] };
+}
+function istanbulGunu(iso) { return new Date(new Date(iso).getTime() + 3 * 3600e3).toISOString().slice(0, 10); }
+function simdi() {
+  const d = new Date(Date.now() + 3 * 3600e3);
+  return d.toISOString().slice(0, 19) + "+03:00";
+}
 function ilkCommit(yol) {
   const s = execFileSync("git", ["log", "--diff-filter=A", "--follow", "--format=%cI", "--", yol], { cwd: KOK, encoding: "utf8" }).trim().split("\n");
-  return s[s.length - 1] || null;
+  const z = s[s.length - 1];
+  return z ? z.replace(/Z$/, "+00:00") : null;
 }
 
 function guncellemeler(yollar) {
@@ -141,14 +160,23 @@ export function uret() {
     const t = tur(dosya);
     const baslik = coz((s.match(/<title>([\s\S]*?)<\/title>/) || ["", ""])[1].trim()).replace(/\s*\|\s*Koray Öner$/, "");
     const noindex = /<meta\s+name="robots"\s+content="[^"]*noindex/.test(s);
-    const ld = [...s.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]).join("\n");
-    const dp = (ld.match(/"datePublished":\s*"([\d-]+)"/) || [])[1] || null;
+    const dp = (s.match(/"datePublished":\s*"(\d{4}-\d{2}-\d{2})/) || [])[1] || null;
     return { dosya, url, t, s, baslik, noindex, dp, tarihYolu: t === "arac" && dosya.split("/").length === 2 ? dosya.split("/")[0] : dosya };
   });
   const g = guncellemeler(kayit.map((k) => k.tarihYolu));
   const sayfa = kayit.map((k) => {
     const image = meta(k.s, "og:image");
-    const yayin = onceki[k.url]?.published || atom[k.url] || (k.dp ? k.dp + "T00:00:00+03:00" : null) || ilkCommit(k.dosya);
+    /* Yayın damgası bir kez yazılır: önceki manifest → eski atom.xml'deki
+       ilk ekleniş → dosyanın ilk commit'i → şimdi (henüz commit'lenmemiş
+       yeni sayfa). Gece yarısı damgası uydurulmaz. */
+    let yayin = onceki[k.url]?.published || atom[k.url] || ilkCommit(k.dosya) || simdi();
+    /* Eski beslemeden gelen gece yarısı damgası, ilk commit aynı (İstanbul)
+       günündeyse gerçek saatiyle düzeltilir; gün tutmuyorsa olduğu gibi
+       kalır (başka günün saatini yazmak uydurmak olurdu). */
+    if (/T00:00:00\+03:00$/.test(yayin)) {
+      const ilk = ilkCommit(k.dosya);
+      if (ilk && istanbulGunu(ilk) === yayin.slice(0, 10)) yayin = ilk;
+    }
     const imageTitle = image ? (/Koray Öner/.test(k.baslik) ? k.baslik : k.baslik + " — Koray Öner") : null;
     return {
       url: k.url, dosya: k.dosya, type: k.t,
@@ -156,7 +184,8 @@ export function uret() {
          sayfaları, metodoloji): üst aracın adresi. Sayaç yalnız üst araçları sayar. */
       parent: k.dosya.split("/").length > 2 && k.t !== "makale" ? SITE + "/" + k.dosya.split("/")[0] + "/" : null,
       title: k.baslik, description: meta(k.s, "description"),
-      category: kategori(k.dosya, k.t), published: yayin, updated: g[k.tarihYolu] || null,
+      category: kategori(k.dosya, k.t), published: yayin,
+      ...guncel(g[k.tarihYolu], yayin, k.dp),
       image, imageTitle, related: ilgili(k.s, k.url), noindex: k.noindex
     };
   });

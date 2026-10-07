@@ -104,14 +104,12 @@ function aylarTablosu(blokAdi, d) {
   ].join("\n");
 }
 
+/* sitemap.xml 7 Ekim 2026'dan beri içerik manifestinden üretiliyor
+   (scripts/build-feeds.mjs); lastmod sayfanın özlü son commit'inin tarihi.
+   Elle bugünü basmak o kuralla çarpışırdı. --sitemap bayrağı geriye uyum
+   için kabul ediliyor ve hiçbir şey yapmıyor. */
 function sitemapTazele(adres) {
-  var s = fs.readFileSync(HARITA, "utf8");
-  var bugun = new Date().toISOString().slice(0, 10);
-  var desen = new RegExp("(<loc>" + adres.replace(/[.*+?^${}()|[\]\\\/]/g, "\\$&") +
-    "</loc>\\s*<lastmod>)[^<]+(</lastmod>)");
-  if (!desen.test(s)) { console.error("sitemap.xml'de " + adres + " yok."); return false; }
-  var yeni = s.replace(desen, "$1" + bugun + "$2");
-  if (yeni !== s) { fs.writeFileSync(HARITA, yeni, "utf8"); console.log("sitemap lastmod → " + bugun); }
+  void adres;
   return true;
 }
 

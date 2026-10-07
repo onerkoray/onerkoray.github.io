@@ -746,7 +746,7 @@ jobs:
         # Besleme elle bakılıyordu ve sessizce bayatladı: üç yeni araç eksikti.
         # robots.txt'te Sitemap olarak duyurulduğu için eksik girdi, yeni sayfanın
         # bir keşif yolunu kaybetmesi demek.
-        run: python tools/besleme.py --check
+        run: node scripts/build-feeds.mjs --check
 
       - name: Çekirdek deposu tutarlı mı
         # Site 80'den fazla sayfada "hesap yöntemi ve testler herkese açık"
@@ -1049,6 +1049,10 @@ jobs:
         # Tarih otoritesi: tools/arac-guncelleme.py anlamli_tarih().
         run: node scripts/build-manifest.mjs --check
 
+      - name: Sayfa kabukları manifestle aynı mı
+        # <head>'deki Atom akışı bağlantıları content.json'dan yazılır.
+        run: node scripts/apply-shell.mjs --check
+
       - name: Menü her sayfada aynı mı
         # 7 Ekim 2026: 170 sayfada ~90 farklı üst menü vardı; makaleye girince
         # Grafikler kayboluyordu. Menü tools/menu.py'den yazılır, sayfa içi
@@ -1180,7 +1184,9 @@ jobs:
       # dogruluyor: tarama commit'leri ve yalnizca damga degisen
       # commit'ler sayilmiyor.
       - name: Sitemap lastmod tarihleri güncel mi
-        run: python tools/site-haritasi.py --check
+        run: |
+          node scripts/sync-dates.mjs --check
+          node scripts/validate-site.mjs
 
       # Ana sayfadaki "N arac" cumlesi elle yazilmisti ve eskimisti:
       # sayfada 43 kart dururken iki yerde birden "34 arac" yaziyordu.
