@@ -19,6 +19,10 @@
 # Uretecler ve testler: sayfalar bunlardan TURUYOR, bunlari YUKLEMIYOR.
 tools/
 
+# Manifest ve uretec betikleri: sayfalar bunlardan uretiliyor, yuklemiyor.
+scripts/
+content.json
+
 # npm paketinin ayna kopyasi (kendi .git'iyle birlikte ~920 KB).
 # Paket registry'den dagitiliyor, siteden degil.
 _cekirdek/
