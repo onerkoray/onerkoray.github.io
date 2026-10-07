@@ -1,0 +1,27 @@
+# Site içi arama dizini (Pagefind). Vercel derlemesinde ve CI'da:
+#   npx -y pagefind@1.5.2 --site .
+# Dizin depoya girmez (.gitignore); her dağıtımda yeniden üretilir.
+#
+# Yalnız data-pagefind-body taşıyan sayfalar dizine girer
+# (scripts/apply-shell.mjs yazar: dizine açık araç, yazı, metodoloji,
+# grafik ve kurumsal sayfalar; liste sayfaları hariç).
+#
+# Dizine girmeyenler: hesap formu ve canlı sonuç (.calc, form, output,
+# aria-live), "Bu aracı kim yaptı?" künyesi (.method), ilgili bağlantı
+# listeleri (.related), yasal uyarı (.disclaimer), gezinme ve konum izi,
+# grafiklerin SVG içi metni.
+site: .
+output_subdir: pagefind
+exclude_selectors:
+  - ".calc"
+  - "form"
+  - "output"
+  - "[aria-live]"
+  - ".method"
+  - ".related"
+  - ".disclaimer"
+  - "nav"
+  - ".breadcrumb"
+  - "svg"
+  - "script"
+  - "noscript"

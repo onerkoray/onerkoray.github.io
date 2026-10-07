@@ -1053,6 +1053,15 @@ jobs:
         # <head>'deki Atom akışı bağlantıları content.json'dan yazılır.
         run: node scripts/apply-shell.mjs --check
 
+      - name: Site içi arama çalışıyor mu
+        # Pagefind dizini manifestten kurulan kopyadan üretilir (geçici
+        # klasöre) ve başsız Chrome'da sorgulanır: kıdem, SGK tavanı,
+        # ikramiye, MTV 2026, emekli zammı, işsizlik, ÖTV ilk 5'te ilgili
+        # aracı ve en az bir yazıyı döndürmeli; diakritiksiz yazım aynı
+        # sonucu vermeli; palet klavyeyle tam kullanılabilmeli (Ctrl+K, "/",
+        # odak hapsi, Esc, canlı sonuç sayısı); paletin açılışı ≤ 60 KB.
+        run: node scripts/test-search.mjs
+
       - name: Menü her sayfada aynı mı
         # 7 Ekim 2026: 170 sayfada ~90 farklı üst menü vardı; makaleye girince
         # Grafikler kayboluyordu. Menü tools/menu.py'den yazılır, sayfa içi

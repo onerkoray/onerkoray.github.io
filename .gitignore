@@ -18,3 +18,6 @@ __pycache__/
 
 # Gözden geçirme kapısının kontak sayfaları (tools/kontak-sayfasi.py)
 _kontak/
+
+# Site içi arama dizini: derlemede üretilir (pagefind.yml)
+pagefind/

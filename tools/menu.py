@@ -14,8 +14,8 @@ ulaşamıyordu.
 
 KURAL
 -----
-  * Genel menü her sayfada aynı altı öğe, aynı sırada:
-        Araçlar · Makaleler · Grafikler · Bordro Motoru · Yayınlar · Hakkımda
+  * Genel menü her sayfada aynı yedi öğe, aynı sırada:
+        Araçlar · Makaleler · Grafikler · Bordro Motoru · Yayınlar · Hakkımda · Ara
     Ana sayfaya logo götürür; alt sayfalardaki konum izi "Ana Sayfa" ile
     başlar.
   * Sayfanın ait olduğu bölüm işaretlenir: sayfanın kendisiyse
@@ -51,6 +51,8 @@ MENU = [
     ("Bordro Motoru", "bordro/", "bordro"),
     ("Yayınlar", "yayinlar/", "yayinlar"),
     ("Hakkımda", "hakkimda/", "hakkimda"),
+    # Ara: JS ile arama paletini açar (Ctrl/Cmd+K, "/"); JS yoksa /ara/.
+    ("Ara", "ara/", "ara"),
 ]
 
 # Bölüm eşlemesi: kök klasör -> menü anahtarı. Listede olmayan her klasör
@@ -62,6 +64,7 @@ BOLUM = {
     "yayinlar": "yayinlar",
     "hakkimda": "hakkimda", "koray-oner": "hakkimda", "iletisim": "hakkimda",
     "yayin-ilkeleri": "hakkimda", "gizlilik": "hakkimda", "kullanim-kosullari": "hakkimda",
+    "ara": "ara",
 }
 
 NAV = re.compile(r'(?P<girinti>[ \t]*)<nav class="site-nav" aria-label="Birincil">.*?</nav>', re.S)

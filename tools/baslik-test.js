@@ -21,9 +21,9 @@
  *   2. marka bağlantısı aria-label="Koray Öner ana sayfa" taşıyor, ad
  *      <span class="brand-name"> içinde
  *   3. gezinme aria-label="Birincil"
- *   4. menü her sayfada aynı altı öğe, aynı sırada ve gerçekten oraya
+ *   4. menü her sayfada aynı yedi öğe, aynı sırada ve gerçekten oraya
  *      gidiyor: Araçlar · Makaleler · Grafikler · Bordro Motoru ·
- *      Yayınlar · Hakkımda (7 Ekim 2026; önceden yalnız ilk üç öğe
+ *      Yayınlar · Hakkımda · Ara (7 Ekim 2026; önceden yalnız ilk üç öğe
  *      sabitti, 170 sayfada ~90 farklı menü vardı)
  *   5. <head> içinde, ertelenmeden tema-erken.js (tema ilk boyamadan
  *      önce uygulanır, sayfa geçişinde açık/koyu yanıp sönmez)
@@ -83,10 +83,10 @@ dosyalar(KOK).forEach(function (tam) {
     var re = /<li><a [^>]*?href="([^"]*)"[^>]*>([\s\S]*?)<\/a><\/li>/g, m;
     while ((m = re.exec(h))) ogeler.push([m[2].replace(/<[^>]+>/g, "").trim(), cozumle(m[1], p)]);
     var beklenen = [["Araçlar", "/#projects"], ["Makaleler", "/makaleler/"], ["Grafikler", "/grafikler/"],
-      ["Bordro Motoru", "/bordro/"], ["Yayınlar", "/yayinlar/"], ["Hakkımda", "/hakkimda/"]];
+      ["Bordro Motoru", "/bordro/"], ["Yayınlar", "/yayinlar/"], ["Hakkımda", "/hakkimda/"], ["Ara", "/ara/"]];
     var ilk = ogeler.map(function (o) { return o.join(" "); }).join(" · ");
     var ist = beklenen.map(function (o) { return o.join(" "); }).join(" · ");
-    if (ilk !== ist) hata("menü her sayfada aynı altı öğe", p, ilk);
+    if (ilk !== ist) hata("menü her sayfada aynı yedi öğe", p, ilk);
     var harf = ogeler.reduce(function (t, o) { return t + Array.from(o[0]).length; }, 0);
     var genislik = Math.round(harf * 7.17 + (ogeler.length - 1) * 20);
     if (genislik > 680) hata("menü tek satıra sığıyor", p, genislik + " px");
@@ -113,7 +113,7 @@ dosyalar(KOK).forEach(function (tam) {
 
 console.log("Site başlığı tek standartta\n\n  taranan sayfa: " + sayfa + "\n");
 var IDDIALAR = ["header role=banner", "marka aria-label", "marka adı .brand-name", "gezinme aria-label Birincil",
-  "menü her sayfada aynı altı öğe", "tema-erken.js <head> içinde", "tema-erken.js ertelenmemeli",
+  "menü her sayfada aynı yedi öğe", "tema-erken.js <head> içinde", "tema-erken.js ertelenmemeli",
   "sitenin script.js'i yükleniyor", "tema düğmesini yalnız script.js dinliyor", "menü tek satıra sığıyor"];
 var kalan = 0;
 IDDIALAR.forEach(function (ad) {

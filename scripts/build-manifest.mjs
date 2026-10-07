@@ -191,9 +191,15 @@ export function uret() {
   });
   const indeks = sayfa.filter((s) => !s.noindex);
   const sayac = (t) => indeks.filter((s) => s.type === t && !(t === "arac" && s.parent)).length;
+  /* Öne çıkanlar: ana sayfadaki "Hızlı erişim" listesi. Arama paletinin
+     boş sorgu görünümü bunu kullanır. */
+  const ana = oku(join(KOK, "index.html"));
+  const hizli = (ana.match(/<aside class="hero-quick[\s\S]*?<\/aside>/) || [""])[0];
+  const oneCikanlar = [...hizli.matchAll(/<li><a href="([^"#]+)"/g)].map((m) => SITE + "/" + m[1].replace(/^\.?\//, ""));
   return {
     site: SITE,
     kategoriler: KATEGORILER,
+    oneCikanlar,
     sayaclar: { arac: sayac("arac"), makale: sayac("makale"), metodoloji: sayac("metodoloji"), grafik: sayac("grafik"), sayfa: sayac("sayfa"), indekslenebilir: indeks.length },
     sayfalar: sayfa.sort((a, b) => a.url.localeCompare(b.url))
   };
