@@ -152,37 +152,12 @@ html { scroll-behavior: smooth; }
   100%{outline-offset:3px;outline-color:var(--focus)}
 }
 
-/* Nav: Projeler sekmesi öne çıksın */
-.site-nav a.nav-featured{
-  color:var(--brand-strong);font-weight:700;position:relative;
-  padding:.3rem .75rem;border-radius:999px;
-  background:color-mix(in srgb, var(--brand) 12%, transparent);
-  border:1px solid color-mix(in srgb, var(--brand) 30%, transparent);
-  transition:background .2s ease,border-color .2s ease
-}
-.site-nav a.nav-featured::before{
-  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
-  background:var(--brand);margin-right:.45rem;vertical-align:.06em;
-  box-shadow:0 0 0 0 color-mix(in srgb, var(--brand) 50%, transparent);
-  animation:navDot 2.4s ease-out infinite
-}
-.site-nav a.nav-featured:hover{
-  background:color-mix(in srgb, var(--brand) 20%, transparent);
-  border-color:var(--brand);color:var(--brand-strong)
-}
-@keyframes navDot{
-  0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--brand) 45%, transparent)}
-  70%{box-shadow:0 0 0 6px transparent}
-  100%{box-shadow:0 0 0 0 transparent}
-}
-
 @media (prefers-reduced-motion: reduce) {
   .lang-bar span{transition:none}
   .lang-bar span:hover,.lang-bar span.is-active,.lang-bar span:focus-visible{transform:none}
   .tech-tags li:hover,.tech-tags li:focus-visible{transform:none}
   .tech-tags li{animation:none}
   .tech-panel :focus-visible,.lang-bar span:focus-visible{animation:none}
-  .site-nav a.nav-featured::before{animation:none}
 }
 
 /* Canlı bar: iki sütunun altında tam genişlik — panel ile simetrik */
