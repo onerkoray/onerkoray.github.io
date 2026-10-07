@@ -34,6 +34,7 @@ HARIC = {
     "yayin-ilkeleri", "gizlilik", "iletisim", "kullanim-kosullari", "hakkimda", "makaleler",
     "koray-oner",
     "bordro",
+    "ara",
 }
 
 # Bordro Motoru'nu fiilen kullanan araçlar. Buraya yazılmayan sayfa, motoru

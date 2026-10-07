@@ -411,6 +411,10 @@ SPEC = {
    "Mevzuatı motorla test eden, kaynaklı ve tarihli yazılar. Reklam yok, sponsor yok.",
    ["Kaynaklı", "Güncel"], "yazi"),
 
+ "ara": ("ara", "Sitede ara", "araç ve yazı",
+   "Araçlar, yazılar, metodoloji ve grafikler: türe ve kategoriye göre süzülür.",
+   ["Ctrl + K", "Diakritiksiz de bulur"], "marka"),
+
  "iletisim": ("iletisim", "İletişim", "ve geri bildirim",
    "Hata bildirimi, öneri ve iş birliği için doğrudan ulaşın.",
    ["Hata bildirimi", "Öneri"], "marka"),
