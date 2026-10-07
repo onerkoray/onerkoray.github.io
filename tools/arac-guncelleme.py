@@ -153,7 +153,10 @@ def _kabuksuz(metin):
     metin = KABUK_BLOK.sub("", metin)
     metin = DAMGA.sub("", metin)
     metin = LD.sub(_izsiz_ld, metin)
-    return re.sub(r"\s+", " ", metin)
+    # Etiketler arasi bosluk icerik degildir: kabuk blogu "</section></main>"
+    # arasina eklenip cikarilinca geriye kalan tek bosluk sayfayi "degisti"
+    # gostermesin (7 Ekim 2026, uc yazi).
+    return re.sub(r">\s+<", "><", re.sub(r"\s+", " ", metin))
 
 
 def yalniz_kabuk(h, yol):
