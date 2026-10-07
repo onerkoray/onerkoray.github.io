@@ -287,8 +287,9 @@ gecsin("takip katı nesirde", "<strong>1,53 katına</strong>");
 gecsin("regülasyon takozu adı geçiyor", "regülasyon takozu");
 /* VARLIK YETMIYOR: DOI sayfada birden fazla yerde geciyor (semada,
    karar kutusunda, kaynaklarda). Birini bozmak varlik kontrolunu
-   dusurmezdi -- mutasyon testi bunu gosterdi. */
-tamKez("DOI sayfada tam beş kez", "10.5281/zenodo.22852342", 5);
+   dusurmezdi -- mutasyon testi bunu gosterdi. Altincisi 7 Ekim 2026'dan
+   beri JSON-LD'deki sameAs (scripts/sync-dates.mjs). */
+tamKez("DOI sayfada tam altı kez", "10.5281/zenodo.22852342", 6);
 gecsin("çalışma CC BY 4.0 olarak anılıyor", "CC BY 4.0");
 gecsin("yuvarlama payı açıkça yazılmış", "0,02 puan");
 
