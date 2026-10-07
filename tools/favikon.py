@@ -12,7 +12,8 @@ NEDEN YENİDEN YAZILDI (2026-09-13)
    Araca özgü çizim, tam da görünmesi gereken boyutta kayboluyordu.
 
 2. YEŞİL, BEŞ PALETİN DÖRDÜYLE ÇELİŞİYORDU. Site vurgu rengi kullanıcı
-   tarafından seçiliyor (data-accent: yeşil, mavi, mor, turuncu, gül).
+   tarafından seçiliyordu (yeşil, mavi, mor, turuncu, gül); 7 Ekim 2026'dan
+   beri kurumsal set: yeşil, lacivert, bordo, grafit.
    "Gül" seçen biri pembe bir sitede yeşil sekme simgesi görüyordu.
 
 3. GRADYAN VE rx=14, style.css sonundaki editoryal katmanın siteden

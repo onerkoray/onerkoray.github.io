@@ -11,6 +11,8 @@
     var tema = localStorage.getItem("onerkoray.theme");
     if (tema === "light" || tema === "dark" || tema === "auto") kok.setAttribute("data-theme", tema);
     var renk = localStorage.getItem("onerkoray.accent");
-    if (renk && renk !== "yesil") kok.setAttribute("data-accent", renk);
+    /* Eski paletten kalan seçim ilk boyamada da en yakın tona gider. */
+    renk = { mavi: "lacivert", gul: "bordo" }[renk] || renk;
+    if (renk === "lacivert" || renk === "bordo" || renk === "grafit") kok.setAttribute("data-accent", renk);
   } catch (e) { /* depolama kapalıysa varsayılan tema kalır */ }
 })();

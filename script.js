@@ -55,13 +55,20 @@
 
   /* ---- Renk paleti seçici (header'a otomatik eklenir) ---- */
   var ACCENT_KEY = "onerkoray.accent";
+  /* Kurumsal set (7 Ekim 2026). Eski seçimler en yakın tona taşınır;
+     karşılığı olmayan (mor, turuncu) varsayılan yeşile döner. */
   var ACCENTS = [
     ["yesil", "#0e7c66", "Yeşil"],
-    ["mavi", "#2160b4", "Mavi"],
-    ["camgobegi", "#7652ad", "Mor"],
-    ["turuncu", "#bb5714", "Turuncu"],
-    ["gul", "#b0345c", "Gül"]
+    ["lacivert", "#1f4e8c", "Lacivert"],
+    ["bordo", "#8e2b3d", "Bordo"],
+    ["grafit", "#3d4b5c", "Grafit"]
   ];
+  var ESKI_ACCENT = { mavi: "lacivert", gul: "bordo" };
+  function kayitliAccent() {
+    var r = localStorage.getItem(ACCENT_KEY) || "yesil";
+    if (ESKI_ACCENT[r]) { r = ESKI_ACCENT[r]; localStorage.setItem(ACCENT_KEY, r); }
+    return ACCENTS.some(function (a) { return a[0] === r; }) ? r : "yesil";
+  }
   /* FAVICON VURGUSU SEÇİLEN PALETE UYAR.
      Faviconlar sayfanın CSS'ini göremez: ayrı bir belge olarak çizilirler,
      dolayısıyla --accent değişkeni oraya ulaşmaz. Tek yol, sayfa açılırken
@@ -108,7 +115,7 @@
     var secili = ACCENTS.filter(function (a) { return a[0] === (name || "yesil"); })[0];
     faviconVurgusu((secili || ACCENTS[0])[1]);
   }
-  applyAccent(localStorage.getItem(ACCENT_KEY) || "yesil");
+  applyAccent(kayitliAccent());
 
   /* Widget yoksa header'a enjekte et (tüm alt sayfalarda markup gerektirmez) */
   var headerInner = document.querySelector(".site-header .header-inner");
@@ -120,12 +127,12 @@
       '<span class="palette-dot" aria-hidden="true"></span><span class="theme-toggle-label">Renk</span></button>' +
       '<div class="palette-pop" hidden>' +
       ACCENTS.map(function (a) {
-        return '<button type="button" data-accent="' + a[0] + '" style="--sw:' + a[1] + '" aria-label="' + a[2] + ' tema"></button>';
+        return '<button type="button" data-accent="' + a[0] + '" style="--sw:' + a[1] + '" aria-label="' + a[2] + ' renk" title="' + a[2] + '"></button>';
       }).join("") +
       "</div>";
     var themeBtn = headerInner.querySelector("#themeToggle");
     headerInner.insertBefore(pal, themeBtn);
-    applyAccent(localStorage.getItem(ACCENT_KEY) || "yesil");
+    applyAccent(kayitliAccent());
   }
 
   var palToggle = document.querySelector(".palette-toggle");
