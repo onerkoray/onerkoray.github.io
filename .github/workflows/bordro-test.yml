@@ -1042,6 +1042,13 @@ jobs:
         # ağaçta 9 iddianın 8'inde kırmızıydı.
         run: node tools/baslik-test.js
 
+      - name: İçerik manifesti güncel mi
+        # content.json sitenin her sayfası için tek kaynak (tür, kategori,
+        # yayın/güncelleme tarihi, görsel, ilgili bağlantılar, noindex).
+        # Sitemap, Atom, llms.txt, katalog ve sayaçlar buradan üretilir.
+        # Tarih otoritesi: tools/arac-guncelleme.py anlamli_tarih().
+        run: node scripts/build-manifest.mjs --check
+
       - name: Menü her sayfada aynı mı
         # 7 Ekim 2026: 170 sayfada ~90 farklı üst menü vardı; makaleye girince
         # Grafikler kayboluyordu. Menü tools/menu.py'den yazılır, sayfa içi

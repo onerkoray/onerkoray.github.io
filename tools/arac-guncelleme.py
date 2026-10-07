@@ -79,6 +79,12 @@ DOGRULAMA = re.compile(r'<meta\s+name="google-site-verification"')
 # ana maas aracinin karti, hesabi degismedigi halde bugune kaydi.
 ROBOTS = re.compile(r'<meta\s+name="robots"')
 
+# Tarih alanlarinin KENDISI icerik degildir. 7 Ekim 2026'dan beri gorunen
+# "Guncellendi"/"Guncelleme:" satirlari, JSON-LD dateModified ve sitemap/
+# Atom tarihleri icerik manifestinden (content.json) YAZILIYOR. Yazilan
+# tarih ozlu sayilirsa her senkron tarihi bugune iter ve dongu kurulur.
+TARIH_SATIRI = re.compile(r'"dateModified"\s*:|class="card-updated"|Güncelleme: <time|<lastmod>|<updated>|<published>')
+
 
 # SITE KABUGU sayfanin icerigi degil. 26 Eylul 2026'da ust baslik 173
 # sayfada tek standarda cekildi: menuye Araclar/Makaleler eklendi, marka
@@ -183,7 +189,7 @@ def _imzalar(h):
             continue
         if satir.startswith("+++") or satir.startswith("---"):
             continue
-        if GECERLILIK.search(satir) or DOGRULAMA.search(satir) or ROBOTS.search(satir):
+        if GECERLILIK.search(satir) or DOGRULAMA.search(satir) or ROBOTS.search(satir) or TARIH_SATIRI.search(satir):
             continue
         if satir.startswith(("+", "-")):
             # Ilk kez damga eklenmesi de yalnizca onbellek degisimidir.
@@ -297,7 +303,21 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--liste", action="store_true")
+    # Icerik manifesti (scripts/build-manifest.mjs) tarihleri buradan alir:
+    # stdin'den satir satir yol ("x" klasor ya da "x/index.html"), stdout'a
+    # {yol: "YYYY-MM-DD"}. Ozlu degisim kurali tek yerde kalsin diye.
+    ap.add_argument("--tarih-json", action="store_true")
     args = ap.parse_args()
+
+    if args.tarih_json:
+        import json
+        cikti = {}
+        for satir in sys.stdin.read().splitlines():
+            yol = satir.strip()
+            if yol:
+                cikti[yol] = anlamli_tarih(yol)[0]
+        sys.stdout.write(json.dumps(cikti, ensure_ascii=False))
+        return 0
 
     mevcut = io.open(SAYFA, encoding="utf-8", newline="").read()
     yeni, kayit = sayfayi_uret(mevcut)
