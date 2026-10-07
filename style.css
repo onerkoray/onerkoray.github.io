@@ -5,7 +5,12 @@
   color-scheme: light dark;
   /* Renk paleti: --accent* değişkenleri data-accent ile değiştirilebilir.
      Varsayılan YEŞİL — logo, favicon, araç kutucukları ve theme-color ile aynı
-     aile. Önceden varsayılan maviydi ve marka işaretiyle çelişiyordu. */
+     aile. Önceden varsayılan maviydi ve marka işaretiyle çelişiyordu.
+     Seçenekler 7 Ekim 2026'da kurumsal bir sete indirildi (yeşil, lacivert,
+     bordo, grafit): koyu, düşük doygunluklu tonlar. Turuncu, --dv-2/kayıp veri
+     rengiyle çakıştığı için; mor ve gül finans sitesinin diline uymadığı için
+     çıktı. Her ton beyaz ve koyu zeminde WCAG AA'yı geçer (vurgu/beyaz ≥ 5,1;
+     parlak/koyu ≥ 7,5). */
   --accent: #0e7c66; --accent-strong: #0a5f4e;
   --accent-bright: #2bb596; --accent-bright-2: #1f9c80; --accent-glow: #4fd3b4;
   --brand: var(--accent); --brand-strong: var(--accent-strong); --brand-contrast: #fff;
@@ -149,12 +154,10 @@
   --dv-1-ink: #5b9be6;     --dv-2-ink: #f5843c;  --dv-3-ink: #5cbb9d;
 }
 
-/* ---- Seçilebilir renk paletleri ---- */
-:root[data-accent="mavi"]      { --accent:#2160b4; --accent-strong:#194e94; --accent-bright:#5b9be6; --accent-bright-2:#3f87d9; --accent-glow:#8ec1f2; }
-/* Keep the stored palette key so returning visitors retain their third choice. */
-:root[data-accent="camgobegi"] { --accent:#7652ad; --accent-strong:#5e3e90; --accent-bright:#b89ce5; --accent-bright-2:#a58ace; --accent-glow:#d2baf3; }
-:root[data-accent="turuncu"] { --accent:#bb5714; --accent-strong:#9a4610; --accent-bright:#e8905a; --accent-bright-2:#d97b3f; --accent-glow:#f3b98e; }
-:root[data-accent="gul"]     { --accent:#b0345c; --accent-strong:#92294b; --accent-bright:#e07399; --accent-bright-2:#d15a85; --accent-glow:#eda6c0; }
+/* ---- Seçilebilir renk paletleri (kurumsal set) ---- */
+:root[data-accent="lacivert"] { --accent:#1f4e8c; --accent-strong:#173c6c; --accent-bright:#7fa6dc; --accent-bright-2:#6390cc; --accent-glow:#a9c4ea; }
+:root[data-accent="bordo"]    { --accent:#8e2b3d; --accent-strong:#70202f; --accent-bright:#de8b99; --accent-bright-2:#cc6f80; --accent-glow:#efb8c1; }
+:root[data-accent="grafit"]   { --accent:#3d4b5c; --accent-strong:#2c3744; --accent-bright:#a3b1c2; --accent-bright-2:#8a9aae; --accent-glow:#c9d3de; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -261,7 +264,13 @@ a:hover { color: var(--brand); }
   padding: .45rem .8rem; cursor: pointer; font: inherit; font-size: var(--step--1);
 }
 .theme-toggle:hover { border-color: var(--brand); }
-.theme-toggle-icon { width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #ffd479, var(--brand)); }
+/* Tek renkli kontrast işareti (yarısı dolu daire): mürekkep renginde, her
+   temada aynı. Önceki sarı-yeşil gradyan top süstü, işlev söylemiyordu. */
+.theme-toggle-icon {
+  width: 13px; height: 13px; border-radius: 50%; flex: none;
+  border: 1.5px solid currentColor;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+}
 
 section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 .hero { position: relative; overflow: hidden; padding: clamp(3rem,2rem + 6vw,6rem) 0 clamp(2rem,1rem + 4vw,4rem); }
@@ -450,9 +459,11 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
    Renk paleti seçici (header)
    ========================================================================= */
 .palette { position: relative; }
+/* Düğme seçili rengi gösterir; gökkuşağı çarkı yerine tek, düz nokta. */
 .palette-dot {
-  width: 14px; height: 14px; border-radius: 50%;
-  background: conic-gradient(#0e7c66 0 72deg, #2160b4 0 144deg, #6a4fc0 0 216deg, #bb5714 0 288deg, #b0345c 0);
+  width: 13px; height: 13px; border-radius: 50%; flex: none;
+  background: var(--accent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 18%, transparent);
 }
 /* display:flex, UA'nin [hidden] kuralini eziyordu: acilir kutu her sayfada
    surekli aciktı ve mobilde menuyu kapatiyordu. */
@@ -464,12 +475,13 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   box-shadow: var(--shadow);
 }
 .palette-pop button {
-  width: 26px; height: 26px; border-radius: 50%; cursor: pointer;
-  border: 2px solid transparent; background: var(--sw, #0e7c66); padding: 0;
-  transition: transform .15s ease, border-color .15s ease;
+  width: 24px; height: 24px; border-radius: 50%; cursor: pointer; padding: 0;
+  border: 0; background: var(--sw, #0e7c66);
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px transparent;
+  transition: box-shadow .15s ease;
 }
-.palette-pop button:hover { transform: scale(1.15); }
-.palette-pop button[aria-pressed="true"] { border-color: var(--text); }
+.palette-pop button:hover { box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--border); }
+.palette-pop button[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--text); }
 
 /* =========================================================================
    Rozetler: Ücretsiz · Üyeliksiz · Reklamsız
@@ -933,7 +945,7 @@ pre.code-block code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas
 .okuma-cubugu {
   position: absolute; left: 0; right: 0; bottom: -1px; height: 3px;
   transform: scaleX(0); transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--brand), var(--brand-strong));
+  background: var(--brand);
   pointer-events: none;
 }
 
@@ -1555,21 +1567,19 @@ section { padding: var(--bolum) 0; }
 
 /* 14. Çalışma masası cilası — marka yeşilini korur, hiyerarşiyi güçlendirir. */
 .home-page .hero {
-  background:
-    radial-gradient(55rem 26rem at 4% 0%, color-mix(in srgb, var(--brand) 7%, transparent), transparent 72%),
-    linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 42%, transparent), transparent 78%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 42%, transparent), transparent 78%);
 }
 .home-page .hero-copy { max-width: 60rem; }
 .home-page .hero h1 { text-wrap: balance; }
 .home-page .hero-quick {
   position: relative;
   overflow: hidden;
-  border-color: color-mix(in srgb, var(--brand) 28%, var(--border));
-  box-shadow: 0 12px 30px color-mix(in srgb, var(--brand) 7%, transparent);
+  border-color: var(--border);
+  box-shadow: none;
 }
 .home-page .hero-quick::before {
   content: ""; position: absolute; inset: 0 0 auto; height: 3px;
-  background: linear-gradient(90deg, var(--brand), color-mix(in srgb, var(--brand) 20%, transparent));
+  background: var(--brand);
 }
 .home-page .section-head h2, .home-page .about > .wrap > h2, .home-page .contact > .wrap > h2 { font-size: var(--step-3); text-wrap: balance; }
 .home-page .section-head h2::before {
@@ -1623,8 +1633,8 @@ section { padding: var(--bolum) 0; }
   width: clamp(60px, 8vw, 72px); height: auto; aspect-ratio: 1;
   margin-bottom: 1.25rem; border-radius: 21px; color: var(--brand-strong);
   border: 1px solid color-mix(in srgb, var(--brand) 24%, var(--border));
-  background: linear-gradient(145deg, var(--surface) 15%, color-mix(in srgb, var(--brand) 10%, var(--surface)));
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--brand) 8%, transparent), inset 0 1px 0 var(--surface);
+  background: var(--surface);
+  box-shadow: none;
 }
 .tool-emblem::before {
   content: ""; position: absolute; inset: 5px; z-index: -1;
@@ -1668,7 +1678,7 @@ section { padding: var(--bolum) 0; }
   }
   :root .site-nav a::after {
     content: ""; position: absolute; inset-inline: 0; bottom: -2px; height: 2px;
-    pointer-events: none; background: linear-gradient(90deg, var(--brand), var(--accent-glow));
+    pointer-events: none; background: var(--brand);
     transform: scaleX(0); transform-origin: right;
     transition: transform .5s cubic-bezier(.22,1,.36,1);
   }
@@ -1705,10 +1715,10 @@ section { padding: var(--bolum) 0; }
   .site-nav a:hover { color: var(--brand-strong); }
   .btn { border-radius: var(--radius-control); }
   .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    background: var(--accent);
     color: #fff;
     border-color: var(--accent-strong);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 18%, transparent);
+    box-shadow: none;
   }
   .btn-primary:hover { background: var(--accent-strong); color: #fff; }
   .calc .panel, .calc form.panel {
@@ -1717,7 +1727,7 @@ section { padding: var(--bolum) 0; }
   }
   .sum-grid .sum-card {
     border-radius: var(--radius-inset);
-    background: linear-gradient(145deg, var(--surface), color-mix(in srgb, var(--brand) 5%, var(--surface)));
+    background: var(--surface);
   }
   .ed-article-hero {
     background: linear-gradient(180deg, color-mix(in srgb, var(--brand) 5%, var(--bg)), var(--bg));
