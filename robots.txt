@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /pagefind/
 
 Sitemap: https://korayoner.dev/sitemap.xml
 Sitemap: https://korayoner.dev/atom.xml
+Sitemap: https://korayoner.dev/makaleler/atom.xml
+Sitemap: https://korayoner.dev/araclar/atom.xml
