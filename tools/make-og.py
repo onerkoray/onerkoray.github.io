@@ -411,6 +411,10 @@ SPEC = {
    "Mevzuatı motorla test eden, kaynaklı ve tarihli yazılar. Reklam yok, sponsor yok.",
    ["Kaynaklı", "Güncel"], "yazi"),
 
+ "araclar": ("araclar", "Hesaplama", "araçları",
+   "Maaş, tazminat, vergi, SGK, emeklilik ve kredi: tarayıcıda çalışan, testli araçlar.",
+   ["Kategoriye göre", "Metodolojisiyle"], "marka"),
+
  "ara": ("ara", "Sitede ara", "araç ve yazı",
    "Araçlar, yazılar, metodoloji ve grafikler: türe ve kategoriye göre süzülür.",
    ["Ctrl + K", "Diakritiksiz de bulur"], "marka"),

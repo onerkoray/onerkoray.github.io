@@ -45,7 +45,7 @@
   <meta name="twitter:description" content="Kaynağı gösterilen, mevzuat değiştikçe güncellenen rehberler.">
   <meta name="twitter:image" content="https://korayoner.dev/images/makaleler-koray-oner.png">
 
-  <link rel="stylesheet" href="../style.css?v=7b423c6d">
+  <link rel="stylesheet" href="../style.css?v=81405dc2">
   <link rel="stylesheet" href="editoryal.css?v=bb214d90">
 
   <script type="application/ld+json">
@@ -121,7 +121,7 @@
       </a>
       <nav class="site-nav" aria-label="Birincil">
         <ul>
-          <li><a href="../#projects">Araçlar</a></li>
+          <li><a href="../araclar/">Araçlar</a></li>
           <li><a href="../makaleler/" aria-current="page">Makaleler</a></li>
           <li><a href="../grafikler/">Grafikler</a></li>
           <li><a href="../bordro/">Bordro Motoru</a></li>
@@ -139,7 +139,7 @@
 
   <main id="main">
     <nav class="breadcrumb wrap" aria-label="Konum">
-      <a href="../">Ana Sayfa</a> <span aria-hidden="true">/</span> <span>Makaleler</span>
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> Makaleler
     </nav>
 
     <section class="ed-hero" aria-labelledby="hero-title">
@@ -178,7 +178,17 @@
     <section class="content" aria-label="Yazılar">
       <div class="wrap">
         <!-- MAKALE-LISTESI:BASLANGIC -->
-        <article class="ed-lead">
+        <nav class="chips katalog-cipler" aria-label="Kategoriler" data-katalog-cipler>
+          <a class="chip" href="#yazilar" data-bolum="" aria-current="true">Tümü <span class="chip-sayi">59</span></a>
+          <a class="chip" href="#maas-tazminat" data-bolum="maas-tazminat">Maaş &amp; Tazminat <span class="chip-sayi">14</span></a>
+          <a class="chip" href="#vergi-belge" data-bolum="vergi-belge">Vergi &amp; Belge <span class="chip-sayi">19</span></a>
+          <a class="chip" href="#kredi-finans" data-bolum="kredi-finans">Kredi &amp; Finans <span class="chip-sayi">15</span></a>
+          <a class="chip" href="#emeklilik-sosyal-guvenlik" data-bolum="emeklilik-sosyal-guvenlik">Emeklilik &amp; Sosyal Güvenlik <span class="chip-sayi">7</span></a>
+          <a class="chip" href="#mevzuat" data-bolum="mevzuat">Mevzuat <span class="chip-sayi">4</span></a>
+        </nav>
+        <p class="katalog-durum" role="status" aria-live="polite"></p>
+        <div id="yazilar">
+        <article class="ed-lead" data-bolum-id="emeklilik-sosyal-guvenlik" data-yil="2026">
           <div>
             <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
             <h2 class="ed-title"><a href="turkiyede-sosyal-guvenligin-donusumu/">Türkiye'de sosyal güvenliğin dönüşümü: aynı kariyer, üç kural</a></h2>
@@ -198,30 +208,10 @@
               </a>
             </figure>
         </article>
-
-        <div class="ed-rule"><h2>Diğer yazılar</h2></div>
-        <ul class="ed-list">
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="iskur-19-bin-tl-gercekte-ne/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/iskur-19-bin-tl-gercekte-ne-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="GÜÇ programlarında Ağustos 2026 gerçekleşmesi: staj desteği %103,6, Geleceğim Meslekte %67,3, İŞKUR Gençlik %44,5, NEET İşgücü Uyum %36,2, İşe İlk Adım %0." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
-              <h3 class="ed-title"><a href="iskur-19-bin-tl-gercekte-ne/">İŞKUR'dan 19 bin TL: gerçekte ne ödeniyor?</a></h3>
-              <p class="ed-dek">Maaş değil: katılınan gün başına 1.375 TL. 19.250 TL ayda 14 gün, kişi başı tavan 192.500 TL, emekliliğe sayılmıyor. İşe İlk Adım ise henüz başlamadı.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>8 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-10-06">6 Ekim 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
+        <section class="ed-bolum" id="maas-tazminat" data-bolum-id="maas-tazminat" aria-labelledby="maas-tazminat-baslik">
+          <div class="ed-rule"><h2 id="maas-tazminat-baslik">Maaş &amp; Tazminat</h2></div>
+          <ul class="ed-list">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="dogum-parasi-ne-kadar/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/dogum-parasi-ne-kadar-kart.svg" width="800" height="500"
@@ -235,193 +225,13 @@
             <p class="ed-meta">
               <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
               <span class="ed-sep" aria-hidden="true">·</span>
-              <span>10 dk okuma</span>
+              <span>11 dk okuma</span>
               <span class="ed-sep" aria-hidden="true">·</span>
               <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
             </p>
             </div>
           </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="ocak-2027-meclis-mi-belirleyecek/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/ocak-2027-meclis-mi-belirleyecek-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Ocak 2027'de maaşa ve vergiye dokunan 11 kalemin 7'si Meclis oyuna bağlı değil, 4'ü bağlı: 2027 bütçesi, en düşük emekli aylığı, istisna düzenlemesi ve kademeli emeklilik." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Mevzuat</p>
-              <h3 class="ed-title"><a href="ocak-2027-meclis-mi-belirleyecek/">Ocak 2027'yi Meclis mi belirleyecek?</a></h3>
-              <p class="ed-dek">Maaşa, aylığa ve vergiye dokunan 11 kalemin 7'si Meclis oyuna bağlı değil; Meclis'teki 102 teklifin hiçbiri torba kanun değil.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>7 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="butce-2027-faiz-vergi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/butce-2027-faiz-vergi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Her 100 TL vergi gelirine karşılık faiz gideri: 2025'te 18,59, 2026'da 19,37, 2027'de 19,97 TL; 2028'de 19,58, 2029'da 18,92 TL." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="butce-2027-faiz-vergi/">2027 bütçesinde faiz: her 100 TL verginin kaçı faize gidiyor?</a></h3>
-              <p class="ed-dek">OVP'ye göre 19,97 TL: oran 2025'te 18,59'du, 2027'de beş yılın zirvesinde.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="torba-yasa-ne-var-ne-yok/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/torba-yasa-ne-var-ne-yok-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Torba yasa başlıklarının güncel durumunu gösteren işaret listesi" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Mevzuat</p>
-              <h3 class="ed-title"><a href="torba-yasa-ne-var-ne-yok/">Yakında çıkacak torba yasa: ne var, ne yok?</a></h3>
-              <p class="ed-dek">Sunulmuş bir teklif henüz yok. 2026'da hangi kanunlar çıktı, Ekim'de ne bekleniyor ve dolaşan listelerin hukuki durumu ne?</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>8 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="kademeli-emeklilik-son-durum/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/kademeli-emeklilik-son-durum-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Kademeli emeklilik teklifinin Meclis'teki durumunu gösteren işaret listesi" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Mevzuat</p>
-              <h3 class="ed-title"><a href="kademeli-emeklilik-son-durum/">Kademeli emeklilik son durum: yasalaştı mı, kimleri kapsıyor?</a></h3>
-              <p class="ed-dek">Kısa cevap: hayır. Teklif Plan ve Bütçe Komisyonu'nda bekliyor. Kimleri kapsıyor ve şu an hangi şartlar geçerli?</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>9 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="torba-yasa-beklenti-tutuyor-mu/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/torba-yasa-beklenti-tutuyor-mu-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Yıllara göre çıkan torba kanun sayısı ile beklenti listesinden gelen madde sayısının karşılaştırması" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Mevzuat</p>
-              <h3 class="ed-title"><a href="torba-yasa-beklenti-tutuyor-mu/">Torba yasa beklentileri tuttu mu?</a></h3>
-              <p class="ed-dek">Her yıl aynı başlıklar bekleniyor. 2023'ten bu yana sekiz torba kanun çıktı — beklenti listesinden gelen her madde tek bir yıla düşüyor.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>7 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="uzun-vadeli-yatirim-nasil-yapilir/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/uzun-vadeli-yatirim-nasil-yapilir-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Getiriyi doğru ölçmek, enstrüman seçmekten önemli: reel getiri, verginin bileşik etkisi ve sıra riski" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="uzun-vadeli-yatirim-nasil-yapilir/">Uzun vadeli yatırım nasıl yapılır?</a></h3>
-              <p class="ed-dek">%45 getiri %40 enflasyonda %5 değil %3,57'dir; stopajdan sonra reel kayba döner. Uzun vadeyi belirleyen altı aritmetik kural.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>7 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-29">29 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="vergi-borcunu-geciktirmek-karli-mi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/vergi-borcunu-geciktirmek-karli-mi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Mart vadeli 100.000 TL verginin bir yıl geç ödenmesinin enflasyondan arındırılmış bedeli: 2021 vadesinde eksi 26.019 TL, 2025 vadesinde artı 14.951 TL." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="vergi-borcunu-geciktirmek-karli-mi/">Vergi borcunu geciktirmek kârlı mı?</a></h3>
-              <p class="ed-dek">2021–2023'te geç ödeyen reel olarak kazandı; 2024'ten beri kaybediyor. 100.000 TL vergi, yedi yıl.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>3 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="kredi-vadesini-uzatmanin-bedeli/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/kredi-vadesini-uzatmanin-bedeli-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Aylık 20.000 TL taksitle çekilebilecek ihtiyaç kredisi vade uzadıkça 385.579 TL'lik tavana yaklaşıyor: 36 ayda 323.100, 60 ayda 367.000 TL." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="kredi-vadesini-uzatmanin-bedeli/">Kredi vadesini uzatmak ne kazandırır, ne kaybettirir?</a></h3>
-              <p class="ed-dek">Her ek yıl bir öncekinin kabaca yarısı kadar kredi getiriyor, ama aynı 240.000 TL'yi ödetiyor.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>3 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="kiraya-vermek-icin-ev-almak-mantikli-mi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/kiraya-vermek-icin-ev-almak-mantikli-mi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Konutun 10 yılda mevduatı yakalaması için gereken yıllık değer artışı: kira getirisiyle az, mevduat faiziyle çok değişiyor." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="kiraya-vermek-icin-ev-almak-mantikli-mi/">Kiraya vermek için ev almak mantıklı mı?</a></h3>
-              <p class="ed-dek">Brüt %4,8 kira getirisine karşı mevduat %31,45. Belirleyici olan kira değil, değer artışı.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>3 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="askerlik-borclanmasi-2026/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/askerlik-borclanmasi-2026-kart.svg" width="800" height="500"
@@ -441,7 +251,7 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="sgk-primleri-2026-ne-degisti/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/sgk-primleri-2026-ne-degisti-kart.svg" width="800" height="500"
@@ -455,13 +265,13 @@
             <p class="ed-meta">
               <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
               <span class="ed-sep" aria-hidden="true">·</span>
-              <span>2 dk okuma</span>
+              <span>3 dk okuma</span>
               <span class="ed-sep" aria-hidden="true">·</span>
               <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
             </p>
             </div>
           </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="sgk-prim-indirimi-2-puan/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/sgk-prim-indirimi-2-puan-kart.svg" width="800" height="500"
@@ -481,47 +291,7 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="vergi-dilimleri-2027-asgari-ucret/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/vergi-dilimleri-2027-asgari-ucret-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Dilimler asgari ücretten geride kaldıkça yıllık fazla vergi: 60.000 TL brütte her 10 puanda 2.800 TL, 200.000 TL brütte 14.800 TL." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="vergi-dilimleri-2027-asgari-ucret/">2027 vergi dilimleri asgari ücretten az artarsa maaşınızdan ne gider?</a></h3>
-              <p class="ed-dek">Her 10 puanlık fark: ikinci eşikte yılda 2.800 TL, üçüncüde 14.800 TL. Asgari ücretli etkilenmez.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>3 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="mevduat-vade-secimi-32-gun-mu-1-yil-mi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/mevduat-vade-secimi-32-gun-mu-1-yil-mi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Yıllık %37 brüt faizde vadeye göre stopaj sonrası yıllık getiri: 32 günü yenilemek %35,15, bir yıllık vade %31,45." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="mevduat-vade-secimi-32-gun-mu-1-yil-mi/">Mevduatta 32 gün mü, 1 yıl mı?</a></h3>
-              <p class="ed-dek">Aynı faizle 32 günü yenilemek %35,15, bir yıllık vade %31,45 getirir. Stopaj değil, bileşik faiz belirliyor.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>2 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="asgari-ucretin-isverene-maliyeti/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/asgari-ucretin-isverene-maliyeti-kart.svg" width="800" height="500"
@@ -541,87 +311,7 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="kira-geliri-istisnasi-siniri/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/kira-geliri-istisnasi-siniri-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="240.000 TL konut kirasında kira dışı brüt gelir 1.260.000 TL'yi 1 lira aşınca kira vergisi 23.205 TL'den 31.300 TL'ye sıçrıyor." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="kira-geliri-istisnasi-siniri/">Kira geliri istisnası: 1 lira fazla gelir, 8.095 TL fazla vergi</a></h3>
-              <p class="ed-dek">Kira dahil brüt gelir 1.500.000 TL'yi aşınca 58.000 TL istisna bütünüyle düşer.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>3 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="dolar-mi-tl-mevduat-mi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/dolar-mi-tl-mevduat-mi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Döviz mevduatının TL mevduatı geçmesi için gereken yıllık kur artışı 32 günlük vadede yüzde 34,1; vade 1 yılı aşıp TL stopajı yüzde 10'a inince eşik sıçrıyor." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="dolar-mi-tl-mevduat-mi/">Dolar mı TL mevduat mı? Kurun ne kadar artması gerekir</a></h3>
-              <p class="ed-dek">%37 TL faizinde 32 günde doların %2,61 artması gerekir. Vade, stopaj ve kur makası başabaşı nasıl değiştiriyor?</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>5 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="bagis-mi-miras-mi-vergi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/bagis-mi-miras-mi-vergi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Ebeveynden tek çocuğa geçen 3 milyon TL'lik malda bağış vergisi 146.653 TL, miras vergisi 929 TL; 20 milyonda 1.668.307 TL'ye karşı 594.643 TL." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="bagis-mi-miras-mi-vergi/">Evi çocuğa bağışlamak mı, miras bırakmak mı?</a></h3>
-              <p class="ed-dek">Aynı ev bağışla 146.653 TL, mirasla 929 TL vergi. İki yol, iki tarife, 2026 hesabı.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>4 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="miras-kalan-ev-icin-vergi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/miras-kalan-ev-icin-vergi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="8 milyon TL net terekede toplam veraset vergisi eş ve üç çocukta sıfır, yalnız anne ve baba mirasçıyken 120.000 TL." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="miras-kalan-ev-icin-vergi/">Miras kalan ev için vergi ödenir mi?</a></h3>
-              <p class="ed-dek">Aynı mirasta vergi sıfır da olabilir, 120.000 TL de. Belirleyen aile yapısı ve emlak vergisi değeri.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>4 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="asgari-ucret-enflasyona-yenildi-mi/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/asgari-ucret-enflasyona-yenildi-mi-kart.svg" width="800" height="500"
@@ -641,127 +331,7 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="fiyatlar-kac-ayda-ikiye-katlaniyor/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/fiyatlar-kac-ayda-ikiye-katlaniyor-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Fiyatların ikiye katlanma süresi Mart 2016'da 109 ay, Ocak 2023'te 15 ay, Ağustos 2026'da 29 ay." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="fiyatlar-kac-ayda-ikiye-katlaniyor/">Fiyatlar kaç ayda ikiye katlanıyor?</a></h3>
-              <p class="ed-dek">Dokuz yıldan 15 aya: aylık TÜFE ile fiyatların ikiye katlanma süresi ve yıllık oranın bu süreyi neden gecikmeli gösterdiği.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>4 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="yeniden-degerleme-orani-nedir/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/yeniden-degerleme-orani-nedir-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="2026 gelir vergisi dilimleri, her yıl tam yeniden değerleme uygulansaydı olacakları düzeyin %6 ile %13 arasında gerisinde." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="yeniden-degerleme-orani-nedir/">Yeniden değerleme oranı nedir, neyi belirler?</a></h3>
-              <p class="ed-dek">Enflasyon değil: Yİ-ÜFE'nin ekim ayı ortalaması. Ve hiçbir tutar tam olarak o oranla artmıyor — kanunun izin verdiği yuvarlama her yıl aşağı çalışıyor.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="sahis-mi-limited-mi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/sahis-mi-limited-mi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Gelir düzeyine göre en çok net bırakan çalışma biçimini gösteren renkli bant grafiği" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="sahis-mi-limited-mi/">Şahıs mı, limited mi, maaşlı mı? Tek bir eşik yok</a></h3>
-              <p class="ed-dek">Aynı gelirin şahıs işletmesi, limited şirket ve maaşlı çalışmada elde bıraktığı para — 2026 rakamlarıyla, kazananın nerede değiştiği dahil.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>7 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="kredi-karti-asgari-odeme/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/kredi-karti-asgari-odeme-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="50.000 TL kart borcunun yalnızca asgari ödenerek on iki ayda erimesi; %20 asgaride 5.752 TL, %40 asgaride 181 TL kalıyor." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="kredi-karti-asgari-odeme/">Asgari ödersem borcum ne zaman biter?</a></h3>
-              <p class="ed-dek">&quot;Asgari ödersen borç hiç bitmez&quot; cümlesi Türkiye için yanlış. Asgari oran, borcun büyümeye başlayacağı eşiğin üç katından fazla — ama maliyeti var.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-24">24 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="kredi-yillik-maliyet-orani/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/kredi-yillik-maliyet-orani-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Bankanın söylediği %34,68; ödeyeceğiniz %56,31 — aradaki 21,63 puanı üreten üç şey" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="kredi-yillik-maliyet-orani/">Yıllık maliyet oranı nedir, bankanın söylediği faiz neden yanıltır?</a></h3>
-              <p class="ed-dek">Aylık %2,89 faizli kredide ilan edilen yıllık oran %34,68; gerçek maliyet %56,31. 21,63 puanlık farkı üreten üç şey.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-24">24 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="proforma-fatura-nedir/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/proforma-fatura-nedir-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Proforma muhasebe kaydı doğurmaz ama kabul edilince sözleşme kurar; dört belgenin farkı tek tabloda" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="proforma-fatura-nedir/">Proforma fatura nedir, normal faturadan farkı ne?</a></h3>
-              <p class="ed-dek">Muhasebe kaydı doğurmaz, KDV yaratmaz, ödeme yükümlülüğü getirmez — ama imzalanınca bağlayabilir. Dört belgenin farkı tek tabloda.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-24">24 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="net-maas-mi-brut-maas-mi/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/net-maas-mi-brut-maas-mi-kart.svg" width="800" height="500"
@@ -781,7 +351,7 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="asgari-ucret-nasil-belirlenir/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/asgari-ucret-nasil-belirlenir-kart.svg" width="800" height="500"
@@ -801,67 +371,7 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="emekli-promosyonunun-ekonomisi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/emekli-promosyonunun-ekonomisi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Sade teklif 18.000 TL net fayda verirken koşullu teklif puanın kullanımına göre 15.800, 18.800 veya 21.800 TL bırakıyor." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="emekli-promosyonunun-ekonomisi/">Emekli promosyonunun ekonomisi: banka ne kazanır, emekliye ne kalır?</a></h3>
-              <p class="ed-dek">Emekli promosyonlarını müşteri edinme maliyeti, net bugünkü değer, puan, kredi ve banka değiştirme maliyetiyle inceleyen ekonomik analiz.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>9 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="enflasyon-duserken-fiyatlar-neden-dusmuyor/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/enflasyon-duserken-fiyatlar-neden-dusmuyor-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Sabit sepetin fiyatı başlangıçta 1.000 TL, ilk artışla 1.400 TL, daha düşük ikinci artışla 1.680 TL oluyor." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="enflasyon-duserken-fiyatlar-neden-dusmuyor/">Enflasyon düşerken fiyatlar neden düşmüyor?</a></h3>
-              <p class="ed-dek">Ağustos 2026 verileriyle enflasyon oranı, fiyat düzeyi ve baz etkisi. Üç bütçe senaryosunda nominal gelir ile satın alma gücünün farkı.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>5 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="ciro-artarken-nakit-neden-azalir/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/ciro-artarken-nakit-neden-azalir-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Artı 150.000 TL faaliyet kârından alacak, stok ve borç değişimlerine geçildiğinde eksi 150.000 TL nakit hareketi oluşuyor." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="ciro-artarken-nakit-neden-azalir/">Ciro artarken işletmenin nakdi neden azalır?</a></h3>
-              <p class="ed-dek">Eylül 2026 finansman ortamında ciro, kâr ve nakit ayrımı. Alacak, stok, ödeme vadeleri ve peşin indirimini sayısal örneklerle inceleyin.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="yilin-en-dusuk-maasi-hangi-ay/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/yilin-en-dusuk-maasi-hangi-ay-kart.svg" width="800" height="500"
@@ -881,127 +391,7 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="tasarruf-kimde-finansman-kimde/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/tasarruf-kimde-finansman-kimde-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Tasarrufun en büyük payı şirketlerde, finansman ihtiyacı KOBİ'lerde; 2024'te KOBİ kredisi nominal %33,62 büyüdü, reel %7,45 küçüldü." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="tasarruf-kimde-finansman-kimde/">Tasarruf kimde, finansman ihtiyacı kimde?</a></h3>
-              <p class="ed-dek">Ülke toplamı &quot;tasarruf yetersiz&quot; diyor. Ama tasarrufu yapan ile finansmana ihtiyaç duyan aynı birim değil — ve arada bir bileşim farkı var.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>5 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="kredi-tavani-ve-banka-karliligi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/kredi-tavani-ve-banka-karliligi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Kredi büyümesine konan tavanlar yıllığa çevrildiğinde %6,7–33,1 aralığında; gerçekleşen büyüme %34,2." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="kredi-tavani-ve-banka-karliligi/">Kredi tavanı tutuyor mu?</a></h3>
-              <p class="ed-dek">Sekiz haftalık sınırlar ılımlı görünüyor. Yıllığa çevrildiğinde keskinleşiyor — ve gerçekleşen büyüme en yüksek tavanı bile aşıyor.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>7 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="sgk-prim-tavani-9-kat/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/sgk-prim-tavani-9-kat-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Prim tavanı 2026'da asgari ücretin 7,5 katından 9 katına çıktı; etki 247.725 TL'nin üstünde başlıyor, 297.270 TL'de doyuyor." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
-              <h3 class="ed-title"><a href="sgk-prim-tavani-9-kat/">SGK prim tavanı 9 kata çıktı: kimin cebinden ne çıkıyor?</a></h3>
-              <p class="ed-dek">Yedi yıl 7,5 katta duran katsayı 2026'da 9'a çıktı. Etki keskin bir aralıkta ve şaşırtıcı yönde: tavandaki kişi, tavanın üç katını kazanandan daha çok kaybediyor.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>7 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="ikramiye-hangi-ay-odenmeli/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/ikramiye-hangi-ay-odenmeli-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Aynı ikramiye kaç ödemeye bölünürse yıllık net düşüyor; 6 ödemeden sonra değişmiyor çünkü her taksit prim tavanının altına iniyor." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="ikramiye-hangi-ay-odenmeli/">İkramiye hangi ay ödenirse daha az kesilir?</a></h3>
-              <p class="ed-dek">2026'da hiçbiri — on iki ayın hepsinde yıllık net kuruşu kuruşuna aynı. Fark eden şey ay değil, ikramiyenin kaç ödemeye bölündüğü; o da yalnızca SGK tavanı aşılırsa.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="iki-isten-maas-beyanname-siniri/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/iki-isten-maas-beyanname-siniri-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="İkinci işin beyanname doğurmadan kalabildiği aralık, asgari ücretin yalnızca 1,19 katında bitiyor; ötesinde bütün ücretler beyannameye giriyor." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="iki-isten-maas-beyanname-siniri/">İki işten maaş alan beyanname verir mi?</a></h3>
-              <p class="ed-dek">2026 sınırı 400.000 TL ve brüt değil safi tutarla ölçülüyor. İkinci iş aylık 39.215 TL brüte kadar beyansız; bir lira fazlası 37.500 TL vergi doğuruyor.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>8 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="krediyi-erken-kapatmak-mantikli-mi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/krediyi-erken-kapatmak-mantikli-mi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="100.000 TL borç ve 12 ay için aylık net getiri %2 olduğunda erken kapatma ile mevduatın dönem sonu birikimi eşitlenir." loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="krediyi-erken-kapatmak-mantikli-mi/">Krediyi erken kapatmak mı, mevduatta tutmak mı?</a></h3>
-              <p class="ed-dek">Krediyi erken kapatmak mantıklı mı? 100.000 TL üzerinden mevduat karşılaştırması, erken ödeme tazminatı ve kalan taksitlerle doğru hesap yöntemi.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="fazla-mesai-zammi-yuzde-kac/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/fazla-mesai-zammi-yuzde-kac-kart.svg" width="800" height="500"
@@ -1015,93 +405,13 @@
             <p class="ed-meta">
               <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
               <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="otv-basamak-etkisi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/otv-basamak-etkisi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Anahtar teslim fiyat ekseni üzerinde ÖTV eşiklerinin doğurduğu boş aralıklar; en genişi 594.000 TL" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="otv-basamak-etkisi/">ÖTV'nin basamak etkisi: araç fiyatlarındaki boş aralıklar</a></h3>
-              <p class="ed-dek">ÖTV kademeli değildir: eşik aşılınca üst oran matrahın tamamına uygulanır. Bu, araç fiyatlarında hiçbir aracın dolduramadığı boş aralıklar doğurur.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>8 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="emekliligin-finansal-matematigi/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/emekliligin-finansal-matematigi-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Aynı görünen üç çift sayı: bağımlılık oranı ile aktif/pasif, model ikame oranı ile gözlenen gelir, fon stoku ile yeni tasarruf" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
-              <h3 class="ed-title"><a href="emekliligin-finansal-matematigi/">Türkiye'de emekliliğin finansal matematiği</a></h3>
-              <p class="ed-dek">Nüfus yaşlanması, çalışma hayatı, emekli aylığı ve tasarruf göstergeleri hangi tanımlarla karşılaştırılabilir? OECD, TÜİK, SGK ve EGM verileriyle akademik inceleme.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>20 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="mevduat-faizi-enflasyon-reel-getiri/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/mevduat-reel-getiri-yatay.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Net dönem getirisi %3,2548; enflasyon %2, %3 ve %4 olduğunda reel getiri +%1,23, +%0,25 ve −%0,72" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Finans</p>
-              <h3 class="ed-title"><a href="mevduat-faizi-enflasyon-reel-getiri/">Mevduat faizi enflasyonu geçiyor mu?</a></h3>
-              <p class="ed-dek">Mevduatın reel getirisi nasıl hesaplanır? 100.000 TL ve 32 gün örneğinde net faiz, stopaj, enflasyon karşılaştırması ve satın alma gücü hesabını inceleyin.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
               <span>7 dk okuma</span>
               <span class="ed-sep" aria-hidden="true">·</span>
               <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
             </p>
             </div>
           </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="vergi-kamasi-ucretin-gercek-yuku/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/vergi-kamasi-ucretin-gercek-yuku-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="İşveren maliyetinin ne kadarı çalışana ulaşıyor? Kama tavanda %51,0 ile zirve yapıp düşüyor" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="vergi-kamasi-ucretin-gercek-yuku/">Vergi kaması: ücretin gerçek yükü</a></h3>
-              <p class="ed-dek">Ortalama kama SGK tavanında %51,0 ile zirve yapıp düşüyor. 1.000.000 TL brütte kama (%43,4), 100.000 TL'dekinden (%43,8) daha düşük.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>8 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="zam-net-maasa-ne-kadar-yansir/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/zam-net-maasa-ne-kadar-yansir-kart.svg" width="800" height="500"
@@ -1121,87 +431,7 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="stopaj-nasil-hesaplanir/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/stopaj-nasil-hesaplanir-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Brütten kesilir, nete eklenmez: net 10.000 TL için brüt 12.000 değil 12.500 TL" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="stopaj-nasil-hesaplanir/">Stopaj nasıl hesaplanır?</a></h3>
-              <p class="ed-dek">Stopaj brütten kesilir. Net 10.000 TL için %20 stopajda brüt 12.000 değil 12.500 TL. Brütleştirme formülü ve stopajın nihai vergi olup olmadığı.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>7 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="emekli-maasi-nasil-hesaplanir/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/emekli-maasi-nasil-hesaplanir-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="“Yeni sistem” haberini kontrol ettik: aynı içerik üç başlıkla dolaşıyor, yürürlükte değişen bir şey yok" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
-              <h3 class="ed-title"><a href="emekli-maasi-nasil-hesaplanir/">Emekliye "yeni maaş sistemi" mi geldi? Önce şu başlıklara bakın</a></h3>
-              <p class="ed-dek">Haberi kontrol ettik: yürürlüğe girmiş yeni bir sistem yok. Maaşı belirleyen dönem kırılmalarını ve kendi kaydınızı nasıl göreceğinizi anlatıyoruz.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="kdv-tevkifati-nedir/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/kdv-tevkifati-nedir-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="Tevkifat fatura toplamını değiştirmez; 100.000 TL matrahta 5/10 ile tahsil edilecek tutar 110.000 TL olur" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Vergi</p>
-              <h3 class="ed-title"><a href="kdv-tevkifati-nedir/">KDV tevkifatı nedir, faturaya nasıl yazılır?</a></h3>
-              <p class="ed-dek">Fatura toplamı değişmez, tahsil edilecek tutar değişir. 100.000 TL matrahta 5/10 tevkifatın adım adım hesabı.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>5 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
-            <figure class="ed-figure">
-              <a href="issizlik-maasi-ne-kadar/" tabindex="-1" aria-hidden="true">
-                <img class="ed-cover" src="../images/makale/issizlik-maasi-ne-kadar-kart.svg" width="800" height="500"
-                     sizes="(max-width: 700px) 100vw, 260px" alt="İşsizlik ödeneğinin tabanı 13.112 TL, tavanı 26.223 TL; ikisi de net asgari ücret olan 28.076 TL'nin altında" loading="lazy" decoding="async">
-              </a>
-            </figure>
-            <div>
-              <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
-              <h3 class="ed-title"><a href="issizlik-maasi-ne-kadar/">İşsizlik maaşı ne kadar? Tavanı net asgari ücretin altında</a></h3>
-              <p class="ed-dek">2026'da ödenek en çok 26.223,44 TL net. Bu, net asgari ücretin 1.852 TL altında — ve 66.060 TL brütten sonra herkes aynı tutarı alıyor.</p>
-            <p class="ed-meta">
-              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>6 dk okuma</span>
-              <span class="ed-sep" aria-hidden="true">·</span>
-              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
-            </p>
-            </div>
-          </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="kidem-tazminati-tavani/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/kidem-tazminati-tavani-kart.svg" width="800" height="500"
@@ -1215,13 +445,13 @@
             <p class="ed-meta">
               <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
               <span class="ed-sep" aria-hidden="true">·</span>
-              <span>8 dk okuma</span>
+              <span>9 dk okuma</span>
               <span class="ed-sep" aria-hidden="true">·</span>
               <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
             </p>
             </div>
           </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="istifa-edince-kidem-tazminati/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/istifa-edince-kidem-tazminati-kart.svg" width="800" height="500"
@@ -1235,13 +465,13 @@
             <p class="ed-meta">
               <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
               <span class="ed-sep" aria-hidden="true">·</span>
-              <span>8 dk okuma</span>
+              <span>9 dk okuma</span>
               <span class="ed-sep" aria-hidden="true">·</span>
               <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
             </p>
             </div>
           </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="maasim-neden-dustu/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/maasim-neden-dustu-kart.svg" width="800" height="500"
@@ -1261,7 +491,312 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
+          </ul>
+        </section>
+        <section class="ed-bolum" id="vergi-belge" data-bolum-id="vergi-belge" aria-labelledby="vergi-belge-baslik">
+          <div class="ed-rule"><h2 id="vergi-belge-baslik">Vergi &amp; Belge</h2></div>
+          <ul class="ed-list">
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="butce-2027-faiz-vergi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/butce-2027-faiz-vergi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Her 100 TL vergi gelirine karşılık faiz gideri: 2025'te 18,59, 2026'da 19,37, 2027'de 19,97 TL; 2028'de 19,58, 2029'da 18,92 TL." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="butce-2027-faiz-vergi/">2027 bütçesinde faiz: her 100 TL verginin kaçı faize gidiyor?</a></h3>
+              <p class="ed-dek">OVP'ye göre 19,97 TL: oran 2025'te 18,59'du, 2027'de beş yılın zirvesinde.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="vergi-borcunu-geciktirmek-karli-mi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/vergi-borcunu-geciktirmek-karli-mi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Mart vadeli 100.000 TL verginin bir yıl geç ödenmesinin enflasyondan arındırılmış bedeli: 2021 vadesinde eksi 26.019 TL, 2025 vadesinde artı 14.951 TL." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="vergi-borcunu-geciktirmek-karli-mi/">Vergi borcunu geciktirmek kârlı mı?</a></h3>
+              <p class="ed-dek">2021–2023'te geç ödeyen reel olarak kazandı; 2024'ten beri kaybediyor. 100.000 TL vergi, yedi yıl.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>3 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="vergi-dilimleri-2027-asgari-ucret/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/vergi-dilimleri-2027-asgari-ucret-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Dilimler asgari ücretten geride kaldıkça yıllık fazla vergi: 60.000 TL brütte her 10 puanda 2.800 TL, 200.000 TL brütte 14.800 TL." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="vergi-dilimleri-2027-asgari-ucret/">2027 vergi dilimleri asgari ücretten az artarsa maaşınızdan ne gider?</a></h3>
+              <p class="ed-dek">Her 10 puanlık fark: ikinci eşikte yılda 2.800 TL, üçüncüde 14.800 TL. Asgari ücretli etkilenmez.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>3 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="kira-geliri-istisnasi-siniri/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/kira-geliri-istisnasi-siniri-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="240.000 TL konut kirasında kira dışı brüt gelir 1.260.000 TL'yi 1 lira aşınca kira vergisi 23.205 TL'den 31.300 TL'ye sıçrıyor." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="kira-geliri-istisnasi-siniri/">Kira geliri istisnası: 1 lira fazla gelir, 8.095 TL fazla vergi</a></h3>
+              <p class="ed-dek">Kira dahil brüt gelir 1.500.000 TL'yi aşınca 58.000 TL istisna bütünüyle düşer.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>3 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="bagis-mi-miras-mi-vergi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/bagis-mi-miras-mi-vergi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Ebeveynden tek çocuğa geçen 3 milyon TL'lik malda bağış vergisi 146.653 TL, miras vergisi 929 TL; 20 milyonda 1.668.307 TL'ye karşı 594.643 TL." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="bagis-mi-miras-mi-vergi/">Evi çocuğa bağışlamak mı, miras bırakmak mı?</a></h3>
+              <p class="ed-dek">Aynı ev bağışla 146.653 TL, mirasla 929 TL vergi. İki yol, iki tarife, 2026 hesabı.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>4 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="miras-kalan-ev-icin-vergi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/miras-kalan-ev-icin-vergi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="8 milyon TL net terekede toplam veraset vergisi eş ve üç çocukta sıfır, yalnız anne ve baba mirasçıyken 120.000 TL." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="miras-kalan-ev-icin-vergi/">Miras kalan ev için vergi ödenir mi?</a></h3>
+              <p class="ed-dek">Aynı mirasta vergi sıfır da olabilir, 120.000 TL de. Belirleyen aile yapısı ve emlak vergisi değeri.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>4 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="yeniden-degerleme-orani-nedir/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/yeniden-degerleme-orani-nedir-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="2026 gelir vergisi dilimleri, her yıl tam yeniden değerleme uygulansaydı olacakları düzeyin %6 ile %13 arasında gerisinde." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="yeniden-degerleme-orani-nedir/">Yeniden değerleme oranı nedir, neyi belirler?</a></h3>
+              <p class="ed-dek">Enflasyon değil: Yİ-ÜFE'nin ekim ayı ortalaması. Ve hiçbir tutar tam olarak o oranla artmıyor — kanunun izin verdiği yuvarlama her yıl aşağı çalışıyor.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="sahis-mi-limited-mi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/sahis-mi-limited-mi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Gelir düzeyine göre en çok net bırakan çalışma biçimini gösteren renkli bant grafiği" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="sahis-mi-limited-mi/">Şahıs mı, limited mi, maaşlı mı? Tek bir eşik yok</a></h3>
+              <p class="ed-dek">Aynı gelirin şahıs işletmesi, limited şirket ve maaşlı çalışmada elde bıraktığı para — 2026 rakamlarıyla, kazananın nerede değiştiği dahil.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>7 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="proforma-fatura-nedir/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/proforma-fatura-nedir-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Proforma muhasebe kaydı doğurmaz ama kabul edilince sözleşme kurar; dört belgenin farkı tek tabloda" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="proforma-fatura-nedir/">Proforma fatura nedir, normal faturadan farkı ne?</a></h3>
+              <p class="ed-dek">Muhasebe kaydı doğurmaz, KDV yaratmaz, ödeme yükümlülüğü getirmez — ama imzalanınca bağlayabilir. Dört belgenin farkı tek tabloda.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-24">24 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="ikramiye-hangi-ay-odenmeli/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/ikramiye-hangi-ay-odenmeli-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Aynı ikramiye kaç ödemeye bölünürse yıllık net düşüyor; 6 ödemeden sonra değişmiyor çünkü her taksit prim tavanının altına iniyor." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="ikramiye-hangi-ay-odenmeli/">İkramiye hangi ay ödenirse daha az kesilir?</a></h3>
+              <p class="ed-dek">2026'da hiçbiri — on iki ayın hepsinde yıllık net kuruşu kuruşuna aynı. Fark eden şey ay değil, ikramiyenin kaç ödemeye bölündüğü; o da yalnızca SGK tavanı aşılırsa.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="iki-isten-maas-beyanname-siniri/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/iki-isten-maas-beyanname-siniri-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="İkinci işin beyanname doğurmadan kalabildiği aralık, asgari ücretin yalnızca 1,19 katında bitiyor; ötesinde bütün ücretler beyannameye giriyor." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="iki-isten-maas-beyanname-siniri/">İki işten maaş alan beyanname verir mi?</a></h3>
+              <p class="ed-dek">2026 sınırı 400.000 TL ve brüt değil safi tutarla ölçülüyor. İkinci iş aylık 39.215 TL brüte kadar beyansız; bir lira fazlası 37.500 TL vergi doğuruyor.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>8 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="otv-basamak-etkisi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/otv-basamak-etkisi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Anahtar teslim fiyat ekseni üzerinde ÖTV eşiklerinin doğurduğu boş aralıklar; en genişi 594.000 TL" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="otv-basamak-etkisi/">ÖTV'nin basamak etkisi: araç fiyatlarındaki boş aralıklar</a></h3>
+              <p class="ed-dek">ÖTV kademeli değildir: eşik aşılınca üst oran matrahın tamamına uygulanır. Bu, araç fiyatlarında hiçbir aracın dolduramadığı boş aralıklar doğurur.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>9 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="vergi-kamasi-ucretin-gercek-yuku/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/vergi-kamasi-ucretin-gercek-yuku-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="İşveren maliyetinin ne kadarı çalışana ulaşıyor? Kama tavanda %51,0 ile zirve yapıp düşüyor" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="vergi-kamasi-ucretin-gercek-yuku/">Vergi kaması: ücretin gerçek yükü</a></h3>
+              <p class="ed-dek">Ortalama kama SGK tavanında %51,0 ile zirve yapıp düşüyor. 1.000.000 TL brütte kama (%43,4), 100.000 TL'dekinden (%43,8) daha düşük.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>8 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="stopaj-nasil-hesaplanir/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/stopaj-nasil-hesaplanir-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Brütten kesilir, nete eklenmez: net 10.000 TL için brüt 12.000 değil 12.500 TL" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="stopaj-nasil-hesaplanir/">Stopaj nasıl hesaplanır?</a></h3>
+              <p class="ed-dek">Stopaj brütten kesilir. Net 10.000 TL için %20 stopajda brüt 12.000 değil 12.500 TL. Brütleştirme formülü ve stopajın nihai vergi olup olmadığı.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>7 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="kdv-tevkifati-nedir/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/kdv-tevkifati-nedir-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Tevkifat fatura toplamını değiştirmez; 100.000 TL matrahta 5/10 ile tahsil edilecek tutar 110.000 TL olur" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Vergi</p>
+              <h3 class="ed-title"><a href="kdv-tevkifati-nedir/">KDV tevkifatı nedir, faturaya nasıl yazılır?</a></h3>
+              <p class="ed-dek">Fatura toplamı değişmez, tahsil edilecek tutar değişir. 100.000 TL matrahta 5/10 tevkifatın adım adım hesabı.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="mtv-2026-ne-kadar/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/mtv-2026-ne-kadar-kart.svg" width="800" height="500"
@@ -1281,7 +816,7 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="vergi-dilimleri-asgari-ucrete-yetisemiyor/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/vergi-dilimleri-asgari-ucrete-yetisemiyor-kart.svg" width="800" height="500"
@@ -1301,7 +836,7 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="serbest-meslek-makbuzu-stopaj-kdv/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/serbest-meslek-makbuzu-stopaj-kdv-kart.svg" width="800" height="500"
@@ -1315,13 +850,13 @@
             <p class="ed-meta">
               <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
               <span class="ed-sep" aria-hidden="true">·</span>
-              <span>4 dk okuma</span>
+              <span>5 dk okuma</span>
               <span class="ed-sep" aria-hidden="true">·</span>
               <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
             </p>
             </div>
           </li>
-          <li class="ed-item">
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="dilim-kaymasi-2022-2026/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/dilim-kaymasi-2022-2026-kart.svg" width="800" height="500"
@@ -1341,7 +876,417 @@
             </p>
             </div>
           </li>
-          <li class="ed-item">
+          </ul>
+        </section>
+        <section class="ed-bolum" id="kredi-finans" data-bolum-id="kredi-finans" aria-labelledby="kredi-finans-baslik">
+          <div class="ed-rule"><h2 id="kredi-finans-baslik">Kredi &amp; Finans</h2></div>
+          <ul class="ed-list">
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="uzun-vadeli-yatirim-nasil-yapilir/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/uzun-vadeli-yatirim-nasil-yapilir-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Getiriyi doğru ölçmek, enstrüman seçmekten önemli: reel getiri, verginin bileşik etkisi ve sıra riski" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="uzun-vadeli-yatirim-nasil-yapilir/">Uzun vadeli yatırım nasıl yapılır?</a></h3>
+              <p class="ed-dek">%45 getiri %40 enflasyonda %5 değil %3,57'dir; stopajdan sonra reel kayba döner. Uzun vadeyi belirleyen altı aritmetik kural.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>7 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-29">29 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="kredi-vadesini-uzatmanin-bedeli/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/kredi-vadesini-uzatmanin-bedeli-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Aylık 20.000 TL taksitle çekilebilecek ihtiyaç kredisi vade uzadıkça 385.579 TL'lik tavana yaklaşıyor: 36 ayda 323.100, 60 ayda 367.000 TL." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="kredi-vadesini-uzatmanin-bedeli/">Kredi vadesini uzatmak ne kazandırır, ne kaybettirir?</a></h3>
+              <p class="ed-dek">Her ek yıl bir öncekinin kabaca yarısı kadar kredi getiriyor, ama aynı 240.000 TL'yi ödetiyor.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>3 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="kiraya-vermek-icin-ev-almak-mantikli-mi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/kiraya-vermek-icin-ev-almak-mantikli-mi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Konutun 10 yılda mevduatı yakalaması için gereken yıllık değer artışı: kira getirisiyle az, mevduat faiziyle çok değişiyor." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="kiraya-vermek-icin-ev-almak-mantikli-mi/">Kiraya vermek için ev almak mantıklı mı?</a></h3>
+              <p class="ed-dek">Brüt %4,8 kira getirisine karşı mevduat %31,45. Belirleyici olan kira değil, değer artışı.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>3 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="mevduat-vade-secimi-32-gun-mu-1-yil-mi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/mevduat-vade-secimi-32-gun-mu-1-yil-mi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Yıllık %37 brüt faizde vadeye göre stopaj sonrası yıllık getiri: 32 günü yenilemek %35,15, bir yıllık vade %31,45." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="mevduat-vade-secimi-32-gun-mu-1-yil-mi/">Mevduatta 32 gün mü, 1 yıl mı?</a></h3>
+              <p class="ed-dek">Aynı faizle 32 günü yenilemek %35,15, bir yıllık vade %31,45 getirir. Stopaj değil, bileşik faiz belirliyor.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>2 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-26">26 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="dolar-mi-tl-mevduat-mi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/dolar-mi-tl-mevduat-mi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Döviz mevduatının TL mevduatı geçmesi için gereken yıllık kur artışı 32 günlük vadede yüzde 34,1; vade 1 yılı aşıp TL stopajı yüzde 10'a inince eşik sıçrıyor." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="dolar-mi-tl-mevduat-mi/">Dolar mı TL mevduat mı? Kurun ne kadar artması gerekir</a></h3>
+              <p class="ed-dek">%37 TL faizinde 32 günde doların %2,61 artması gerekir. Vade, stopaj ve kur makası başabaşı nasıl değiştiriyor?</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>5 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="fiyatlar-kac-ayda-ikiye-katlaniyor/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/fiyatlar-kac-ayda-ikiye-katlaniyor-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Fiyatların ikiye katlanma süresi Mart 2016'da 109 ay, Ocak 2023'te 15 ay, Ağustos 2026'da 29 ay." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="fiyatlar-kac-ayda-ikiye-katlaniyor/">Fiyatlar kaç ayda ikiye katlanıyor?</a></h3>
+              <p class="ed-dek">Dokuz yıldan 15 aya: aylık TÜFE ile fiyatların ikiye katlanma süresi ve yıllık oranın bu süreyi neden gecikmeli gösterdiği.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>4 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-25">25 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="kredi-karti-asgari-odeme/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/kredi-karti-asgari-odeme-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="50.000 TL kart borcunun yalnızca asgari ödenerek on iki ayda erimesi; %20 asgaride 5.752 TL, %40 asgaride 181 TL kalıyor." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="kredi-karti-asgari-odeme/">Asgari ödersem borcum ne zaman biter?</a></h3>
+              <p class="ed-dek">&quot;Asgari ödersen borç hiç bitmez&quot; cümlesi Türkiye için yanlış. Asgari oran, borcun büyümeye başlayacağı eşiğin üç katından fazla — ama maliyeti var.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-24">24 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="kredi-yillik-maliyet-orani/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/kredi-yillik-maliyet-orani-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Bankanın söylediği %34,68; ödeyeceğiniz %56,31 — aradaki 21,63 puanı üreten üç şey" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="kredi-yillik-maliyet-orani/">Yıllık maliyet oranı nedir, bankanın söylediği faiz neden yanıltır?</a></h3>
+              <p class="ed-dek">Aylık %2,89 faizli kredide ilan edilen yıllık oran %34,68; gerçek maliyet %56,31. 21,63 puanlık farkı üreten üç şey.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-24">24 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="emekli-promosyonunun-ekonomisi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/emekli-promosyonunun-ekonomisi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Sade teklif 18.000 TL net fayda verirken koşullu teklif puanın kullanımına göre 15.800, 18.800 veya 21.800 TL bırakıyor." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="emekli-promosyonunun-ekonomisi/">Emekli promosyonunun ekonomisi: banka ne kazanır, emekliye ne kalır?</a></h3>
+              <p class="ed-dek">Emekli promosyonlarını müşteri edinme maliyeti, net bugünkü değer, puan, kredi ve banka değiştirme maliyetiyle inceleyen ekonomik analiz.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>9 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="enflasyon-duserken-fiyatlar-neden-dusmuyor/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/enflasyon-duserken-fiyatlar-neden-dusmuyor-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Sabit sepetin fiyatı başlangıçta 1.000 TL, ilk artışla 1.400 TL, daha düşük ikinci artışla 1.680 TL oluyor." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="enflasyon-duserken-fiyatlar-neden-dusmuyor/">Enflasyon düşerken fiyatlar neden düşmüyor?</a></h3>
+              <p class="ed-dek">Ağustos 2026 verileriyle enflasyon oranı, fiyat düzeyi ve baz etkisi. Üç bütçe senaryosunda nominal gelir ile satın alma gücünün farkı.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>5 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="ciro-artarken-nakit-neden-azalir/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/ciro-artarken-nakit-neden-azalir-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Artı 150.000 TL faaliyet kârından alacak, stok ve borç değişimlerine geçildiğinde eksi 150.000 TL nakit hareketi oluşuyor." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="ciro-artarken-nakit-neden-azalir/">Ciro artarken işletmenin nakdi neden azalır?</a></h3>
+              <p class="ed-dek">Eylül 2026 finansman ortamında ciro, kâr ve nakit ayrımı. Alacak, stok, ödeme vadeleri ve peşin indirimini sayısal örneklerle inceleyin.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="tasarruf-kimde-finansman-kimde/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/tasarruf-kimde-finansman-kimde-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Tasarrufun en büyük payı şirketlerde, finansman ihtiyacı KOBİ'lerde; 2024'te KOBİ kredisi nominal %33,62 büyüdü, reel %7,45 küçüldü." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="tasarruf-kimde-finansman-kimde/">Tasarruf kimde, finansman ihtiyacı kimde?</a></h3>
+              <p class="ed-dek">Ülke toplamı &quot;tasarruf yetersiz&quot; diyor. Ama tasarrufu yapan ile finansmana ihtiyaç duyan aynı birim değil — ve arada bir bileşim farkı var.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>5 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="kredi-tavani-ve-banka-karliligi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/kredi-tavani-ve-banka-karliligi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Kredi büyümesine konan tavanlar yıllığa çevrildiğinde %6,7–33,1 aralığında; gerçekleşen büyüme %34,2." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="kredi-tavani-ve-banka-karliligi/">Kredi tavanı tutuyor mu?</a></h3>
+              <p class="ed-dek">Sekiz haftalık sınırlar ılımlı görünüyor. Yıllığa çevrildiğinde keskinleşiyor — ve gerçekleşen büyüme en yüksek tavanı bile aşıyor.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>7 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="krediyi-erken-kapatmak-mantikli-mi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/krediyi-erken-kapatmak-mantikli-mi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="100.000 TL borç ve 12 ay için aylık net getiri %2 olduğunda erken kapatma ile mevduatın dönem sonu birikimi eşitlenir." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="krediyi-erken-kapatmak-mantikli-mi/">Krediyi erken kapatmak mı, mevduatta tutmak mı?</a></h3>
+              <p class="ed-dek">Krediyi erken kapatmak mantıklı mı? 100.000 TL üzerinden mevduat karşılaştırması, erken ödeme tazminatı ve kalan taksitlerle doğru hesap yöntemi.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="mevduat-faizi-enflasyon-reel-getiri/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/mevduat-reel-getiri-yatay.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Net dönem getirisi %3,2548; enflasyon %2, %3 ve %4 olduğunda reel getiri +%1,23, +%0,25 ve −%0,72" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Finans</p>
+              <h3 class="ed-title"><a href="mevduat-faizi-enflasyon-reel-getiri/">Mevduat faizi enflasyonu geçiyor mu?</a></h3>
+              <p class="ed-dek">Mevduatın reel getirisi nasıl hesaplanır? 100.000 TL ve 32 gün örneğinde net faiz, stopaj, enflasyon karşılaştırması ve satın alma gücü hesabını inceleyin.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>8 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          </ul>
+        </section>
+        <section class="ed-bolum" id="emeklilik-sosyal-guvenlik" data-bolum-id="emeklilik-sosyal-guvenlik" aria-labelledby="emeklilik-sosyal-guvenlik-baslik">
+          <div class="ed-rule"><h2 id="emeklilik-sosyal-guvenlik-baslik">Emeklilik &amp; Sosyal Güvenlik</h2></div>
+          <ul class="ed-list">
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="iskur-19-bin-tl-gercekte-ne/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/iskur-19-bin-tl-gercekte-ne-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="GÜÇ programlarında Ağustos 2026 gerçekleşmesi: staj desteği %103,6, Geleceğim Meslekte %67,3, İŞKUR Gençlik %44,5, NEET İşgücü Uyum %36,2, İşe İlk Adım %0." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
+              <h3 class="ed-title"><a href="iskur-19-bin-tl-gercekte-ne/">İŞKUR'dan 19 bin TL: gerçekte ne ödeniyor?</a></h3>
+              <p class="ed-dek">Maaş değil: katılınan gün başına 1.375 TL. 19.250 TL ayda 14 gün, kişi başı tavan 192.500 TL, emekliliğe sayılmıyor. İşe İlk Adım ise henüz başlamadı.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>8 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-10-06">6 Ekim 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="sgk-prim-tavani-9-kat/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/sgk-prim-tavani-9-kat-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Prim tavanı 2026'da asgari ücretin 7,5 katından 9 katına çıktı; etki 247.725 TL'nin üstünde başlıyor, 297.270 TL'de doyuyor." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
+              <h3 class="ed-title"><a href="sgk-prim-tavani-9-kat/">SGK prim tavanı 9 kata çıktı: kimin cebinden ne çıkıyor?</a></h3>
+              <p class="ed-dek">Yedi yıl 7,5 katta duran katsayı 2026'da 9'a çıktı. Etki keskin bir aralıkta ve şaşırtıcı yönde: tavandaki kişi, tavanın üç katını kazanandan daha çok kaybediyor.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>7 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="emekliligin-finansal-matematigi/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/emekliligin-finansal-matematigi-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Aynı görünen üç çift sayı: bağımlılık oranı ile aktif/pasif, model ikame oranı ile gözlenen gelir, fon stoku ile yeni tasarruf" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
+              <h3 class="ed-title"><a href="emekliligin-finansal-matematigi/">Türkiye'de emekliliğin finansal matematiği</a></h3>
+              <p class="ed-dek">Nüfus yaşlanması, çalışma hayatı, emekli aylığı ve tasarruf göstergeleri hangi tanımlarla karşılaştırılabilir? OECD, TÜİK, SGK ve EGM verileriyle akademik inceleme.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>20 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="emekli-maasi-nasil-hesaplanir/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/emekli-maasi-nasil-hesaplanir-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="“Yeni sistem” haberini kontrol ettik: aynı içerik üç başlıkla dolaşıyor, yürürlükte değişen bir şey yok" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
+              <h3 class="ed-title"><a href="emekli-maasi-nasil-hesaplanir/">Emekliye "yeni maaş sistemi" mi geldi? Önce şu başlıklara bakın</a></h3>
+              <p class="ed-dek">Haberi kontrol ettik: yürürlüğe girmiş yeni bir sistem yok. Maaşı belirleyen dönem kırılmalarını ve kendi kaydınızı nasıl göreceğinizi anlatıyoruz.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="issizlik-maasi-ne-kadar/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/issizlik-maasi-ne-kadar-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="İşsizlik ödeneğinin tabanı 13.112 TL, tavanı 26.223 TL; ikisi de net asgari ücret olan 28.076 TL'nin altında" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Emeklilik ve sosyal güvenlik</p>
+              <h3 class="ed-title"><a href="issizlik-maasi-ne-kadar/">İşsizlik maaşı ne kadar? Tavanı net asgari ücretin altında</a></h3>
+              <p class="ed-dek">2026'da ödenek en çok 26.223,44 TL net. Bu, net asgari ücretin 1.852 TL altında — ve 66.060 TL brütten sonra herkes aynı tutarı alıyor.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>6 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-09-23">23 Eylül 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
             <figure class="ed-figure">
               <a href="bes-devlet-katkisi-ne-kadar-degerli/" tabindex="-1" aria-hidden="true">
                 <img class="ed-cover" src="../images/makale/bes-devlet-katkisi-ne-kadar-degerli-kart.svg" width="800" height="500"
@@ -1361,7 +1306,94 @@
             </p>
             </div>
           </li>
-        </ul>
+          </ul>
+        </section>
+        <section class="ed-bolum" id="mevzuat" data-bolum-id="mevzuat" aria-labelledby="mevzuat-baslik">
+          <div class="ed-rule"><h2 id="mevzuat-baslik">Mevzuat</h2></div>
+          <ul class="ed-list">
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="ocak-2027-meclis-mi-belirleyecek/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/ocak-2027-meclis-mi-belirleyecek-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Ocak 2027'de maaşa ve vergiye dokunan 11 kalemin 7'si Meclis oyuna bağlı değil, 4'ü bağlı: 2027 bütçesi, en düşük emekli aylığı, istisna düzenlemesi ve kademeli emeklilik." loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Mevzuat</p>
+              <h3 class="ed-title"><a href="ocak-2027-meclis-mi-belirleyecek/">Ocak 2027'yi Meclis mi belirleyecek?</a></h3>
+              <p class="ed-dek">Maaşa, aylığa ve vergiye dokunan 11 kalemin 7'si Meclis oyuna bağlı değil; Meclis'teki 102 teklifin hiçbiri torba kanun değil.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>7 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="torba-yasa-ne-var-ne-yok/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/torba-yasa-ne-var-ne-yok-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Torba yasa başlıklarının güncel durumunu gösteren işaret listesi" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Mevzuat</p>
+              <h3 class="ed-title"><a href="torba-yasa-ne-var-ne-yok/">Yakında çıkacak torba yasa: ne var, ne yok?</a></h3>
+              <p class="ed-dek">Sunulmuş bir teklif henüz yok. 2026'da hangi kanunlar çıktı, Ekim'de ne bekleniyor ve dolaşan listelerin hukuki durumu ne?</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>8 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="kademeli-emeklilik-son-durum/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/kademeli-emeklilik-son-durum-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Kademeli emeklilik teklifinin Meclis'teki durumunu gösteren işaret listesi" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Mevzuat</p>
+              <h3 class="ed-title"><a href="kademeli-emeklilik-son-durum/">Kademeli emeklilik son durum: yasalaştı mı, kimleri kapsıyor?</a></h3>
+              <p class="ed-dek">Kısa cevap: hayır. Teklif Plan ve Bütçe Komisyonu'nda bekliyor. Kimleri kapsıyor ve şu an hangi şartlar geçerli?</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>9 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
+            </p>
+            </div>
+          </li>
+          <li class="ed-item" data-yil="2026">
+            <figure class="ed-figure">
+              <a href="torba-yasa-beklenti-tutuyor-mu/" tabindex="-1" aria-hidden="true">
+                <img class="ed-cover" src="../images/makale/torba-yasa-beklenti-tutuyor-mu-kart.svg" width="800" height="500"
+                     sizes="(max-width: 700px) 100vw, 260px" alt="Yıllara göre çıkan torba kanun sayısı ile beklenti listesinden gelen madde sayısının karşılaştırması" loading="lazy" decoding="async">
+              </a>
+            </figure>
+            <div>
+              <p class="ed-kicker">Mevzuat</p>
+              <h3 class="ed-title"><a href="torba-yasa-beklenti-tutuyor-mu/">Torba yasa beklentileri tuttu mu?</a></h3>
+              <p class="ed-dek">Her yıl aynı başlıklar bekleniyor. 2023'ten bu yana sekiz torba kanun çıktı — beklenti listesinden gelen her madde tek bir yıla düşüyor.</p>
+            <p class="ed-meta">
+              <span class="ed-author"><img src="../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async">Koray Öner</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>8 dk okuma</span>
+              <span class="ed-sep" aria-hidden="true">·</span>
+              <span>Güncelleme: <time datetime="2026-10-03">3 Ekim 2026</time></span>
+            </p>
+            </div>
+          </li>
+          </ul>
+        </section>
+        </div>
         <!-- MAKALE-LISTESI:BITIS -->
       </div>
     </section>
@@ -1373,7 +1405,7 @@
           <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — 12 aylık bordro dökümü.</li>
           <li><a href="../kidem-tazminati-hesaplama/">Kıdem ve İhbar Tazminatı</a> — güncel tavanla.</li>
           <li><a href="../issizlik-maasi-hesaplama/">İşsizlik Maaşı Hesaplama</a> — ödenek ve süre.</li>
-          <li><a href="../">Tüm araçlar</a></li>
+          <li><a href="../araclar/">Tüm araçlar</a></li>
         </ul>
       </div>
     </section>
@@ -1395,6 +1427,7 @@
     </div>
   </footer>
 
-  <script src="../script.js?v=dc8bc405" defer></script>
+  <script src="../script.js?v=9465d26e" defer></script>
+  <script type="module" src="../katalog.js?v=e96dba10"></script>
 </body>
 </html>

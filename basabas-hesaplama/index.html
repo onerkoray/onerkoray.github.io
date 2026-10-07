@@ -14,9 +14,9 @@
 <link rel="icon" href="../favicon.ico?v=2b4519b9" sizes="32x32"><link rel="icon" href="favicon.svg?v=87d95f73" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3b5acc4e">
 <meta property="og:type" content="website"><meta property="og:title" content="Başabaş ve Hedef Kâr Hesaplama"><meta property="og:description" content="Kaç satışla giderlerinizi karşılıyorsunuz? Komisyon dahil başabaş adedi, hedef kâr, kapasite kontrolü ve gerekli satış fiyatını hesaplayın."><meta property="og:url" content="https://korayoner.dev/basabas-hesaplama/"><meta property="og:site_name" content="Koray Öner"><meta property="og:locale" content="tr_TR">
 <meta property="og:image" content="https://korayoner.dev/images/basabas-hesaplama-koray-oner.png"><meta property="og:image:alt" content="Koray Öner finansal hesaplama araçları"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Başabaş ve Hedef Kâr Hesaplama"><meta name="twitter:description" content="Kaç satışla giderlerinizi karşılıyorsunuz? Komisyon dahil başabaş adedi, hedef kâr, kapasite kontrolü ve gerekli satış fiyatını hesaplayın."><meta name="twitter:image" content="https://korayoner.dev/images/basabas-hesaplama-koray-oner.png">
-<link rel="stylesheet" href="../style.css?v=7b423c6d"><link rel="stylesheet" href="style.css?v=2af2326d"><script src="../onay.js?v=f7307c52" defer></script>
+<link rel="stylesheet" href="../style.css?v=81405dc2"><link rel="stylesheet" href="style.css?v=2af2326d"><script src="../onay.js?v=f7307c52" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "image": "https://korayoner.dev/images/basabas-hesaplama-koray-oner.png", "name": "Başabaş ve Hedef Kâr Hesaplama", "url": "https://korayoner.dev/basabas-hesaplama/", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "inLanguage": "tr", "description": "Kaç satışla giderlerinizi karşılıyorsunuz? Komisyon dahil başabaş adedi, hedef kâr, kapasite kontrolü ve gerekli satış fiyatını hesaplayın.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "author": {"@type": "Person", "@id": "https://korayoner.dev/#oner-koray", "name": "Koray Öner", "url": "https://korayoner.dev/"}}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Başabaş ve Hedef Kâr", "item": "https://korayoner.dev/basabas-hesaplama/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" }, { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" }, { "@type": "ListItem", "position": 3, "name": "Başabaş ve Hedef Kâr", "item": "https://korayoner.dev/basabas-hesaplama/" }]}</script>
 </head><body class="calculator-page basabas-page"><a class="skip-link" href="#main">İçeriğe geç</a>
 <header class="site-header" role="banner">
     <div class="wrap header-inner">
@@ -26,7 +26,7 @@
       </a>
       <nav class="site-nav" aria-label="Birincil">
         <ul>
-          <li><a href="../#projects" aria-current="true">Araçlar</a></li>
+          <li><a href="../araclar/" aria-current="true">Araçlar</a></li>
           <li><a href="../makaleler/">Makaleler</a></li>
           <li><a href="../grafikler/">Grafikler</a></li>
           <li><a href="../bordro/">Bordro Motoru</a></li>
@@ -45,7 +45,10 @@
     <div class="wrap"><span class="yerel-menu__baslik">Bu sayfada</span><ul><li><a href="#hesapla">Hesapla</a></li><li><a href="#nasil">Nasıl hesaplanır</a></li></ul></div>
   </nav>
   <main id="main">
-<nav class="breadcrumb wrap" aria-label="Konum"><a href="../">Ana Sayfa</a> › Başabaş ve Hedef Kâr</nav>
+<nav class="breadcrumb wrap" aria-label="Konum">
+  <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span>
+  <a href="../araclar/">Araçlar</a> <span aria-hidden="true">›</span> Başabaş ve Hedef Kâr
+</nav>
 <section class="hero"><div class="wrap hero-inner"><p class="eyebrow">İşletme hesabı · Maliyet · Fiyatlama</p><h1>Kaç satıştan sonra kârdasınız?</h1><p class="lede">Ciro tek başına yetmez. Sabit gideri, birim maliyeti ve komisyonu birlikte hesaplayın; <strong>başabaş noktanızı ve hedef kârın gerektirdiği satış adedini</strong> görün.</p><p class="muted">Başabaş ve Hedef Kâr Hesaplama · Aylık plan · KDV hariç tutarlar</p></div></section>
 <div class="wrap be-layout" id="hesapla">
 <form id="be-form" class="be-panel" novalidate><h2>Bir ayın satış planı</h2><p class="be-note">Tek ürün veya aynı birim ekonomisine sahip hizmet için. Tüm alanları aynı ay ve aynı satış birimiyle doldurun.</p>
@@ -69,6 +72,19 @@
 <h3>Planlanan ayın dökümü</h3><dl class="be-ledger" id="be-ledger"></dl><button type="button" id="be-export" class="btn">CSV raporunu indir</button>
 </section><noscript><p>Hesaplama için JavaScript gerekir. Formüller ve örnek aşağıdadır.</p></noscript></div></div>
 <section class="content" id="nasil"><div class="wrap prose"><h2>Başabaş nasıl hesaplanır?</h2><p><strong>Birim katkı = satış fiyatı × (1 − komisyon oranı) − birim değişken gider.</strong> Bu tutar önce sabit gideri karşılar; geriye kalan faaliyet kârıdır.</p><p><strong>Başabaş adedi = sabit gider / birim katkı.</strong> Parçalı ürün satılmadığı varsayıldığı için gereken adet yukarı yuvarlanır. Hedef kâr için paya hedeflenen kâr da eklenir. Katkı sıfır veya negatifken pozitif gider ya da kâr hedefi satış artırılarak karşılanamaz.</p><p><strong>Gereken fiyat = [birim değişken gider + (sabit gider + hedef kâr) / planlanan adet] / (1 − komisyon oranı).</strong> Fiyat yukarı doğru kuruşa tamamlanır. Sıfır satış veya %100 komisyonla fiyat çözümü gösterilmez.</p><h3>Örnek: aylık 60.000 TL gider</h3><p>500 TL fiyat, 250 TL birim gider ve %10 komisyonla satış başına 200 TL katkı kalır. Başabaş için 300 adet; 30.000 TL hedef kâr için 450 adet satış gerekir. 400 adet satış 20.000 TL faaliyet kârı üretir.</p><h3>Güvenlik payı neyi gösterir?</h3><p>Planlanan adet ile kesirli başabaş adedi arasındaki farkın planlanan adede oranıdır. Örnekte %25: sabit varsayımlarla satışlar dörtte bir azalınca kâr sıfırlanır. Negatif değer, planın başabaşın altında olduğunu gösterir; satış veya katkı sıfırsa oran gösterilmez.</p><h3>Modelin sınırları</h3><p>Tüm tutarlar KDV hariç ve aynı aylık döneme aittir. Fiyat ile birim gider hacim boyunca sabit kabul edilir; kapasite aşımında sonuç yalnızca matematiksel plandır. Kademeli komisyon, iadeler, vadeler, stok finansmanı, gelir/kurumlar vergisi ve kredi giderleri ayrıca modellenmez. Birden fazla farklı ürün varsa tek ürün sonucunu toplam işinize uygulamayın. Sıfır sabit giderde sıfır satış başabaştır; negatif katkıda sonraki satışlar zarar üretir.</p><p>Para girişleri kuruşa, komisyon oranı baz puana çevrilir. Adet ve gerekli fiyat yukarı yuvarlanır; diğer ara hesaplar yuvarlanmaz. Tek tek komisyonların ödeme sırasında yuvarlandığı sistemlerde kuruş farkları oluşabilir.</p><h2 id="kaynak-title">Yöntem kaynakları</h2><p><a href="https://legacy.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs/break-even-point" rel="noopener">SBA — başabaş analizi</a> ve <a href="https://openstax.org/books/principles-managerial-accounting/pages/3-2-calculate-a-break-even-point-in-units-and-dollars" rel="noopener">OpenStax — maliyet, hacim ve kâr ilişkisi</a>. Bu araçtaki komisyon ve kapasite senaryoları bu temel modelin açıkça belirtilen uzantılarıdır.</p><p><a href="hesap.js?v=ab66b2e7">Hesap motoru</a> · <a href="test.js?v=a03d7d8f">Doğrulama testleri</a> · Hazırlayan <a href="../hakkimda/" rel="author">Koray Öner</a></p><h2>İlgili araçlar</h2><p><a href="../yatirim-fizibilite-hesaplama/">Yatırım fizibilitesi</a> · <a href="../kdv-hesaplama/">KDV hesabı</a> · <a href="../fatura-olusturma/">Fatura oluşturma</a></p></div></section>
+
+    <!-- ILGILI:BASLANGIC -->
+    <section class="related ilgili-uretilen" aria-labelledby="ilgili-baslik">
+      <div class="wrap prose">
+        <h2 id="ilgili-baslik">Bu konudaki yazılar</h2>
+        <ul>
+          <li><a href="../makaleler/ciro-artarken-nakit-neden-azalir/">Ciro artarken işletmenin nakdi neden azalır?</a></li>
+          <li><a href="../makaleler/mevduat-faizi-enflasyon-reel-getiri/">Mevduat faizi enflasyonu geçiyor mu?</a></li>
+          <li><a href="../makaleler/emekli-promosyonunun-ekonomisi/">Emekli promosyonunun ekonomisi: banka ne kazanır, emekliye ne kalır?</a></li>
+        </ul>
+      </div>
+    </section>
+    <!-- ILGILI:BITIS -->
 
   <!-- METODOLOJI-BLOGU:BASLANGIC -->
   <section class="method" aria-labelledby="metod-title">
@@ -105,4 +121,4 @@
       <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
         </ul>
     </div>
-  </footer><script src="hesap.js?v=ab66b2e7" defer></script><script src="script.js?v=49320dd5" defer></script><script src="../script.js?v=dc8bc405" defer></script></body></html>
+  </footer><script src="hesap.js?v=ab66b2e7" defer></script><script src="script.js?v=49320dd5" defer></script><script src="../script.js?v=9465d26e" defer></script></body></html>

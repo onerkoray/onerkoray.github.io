@@ -99,6 +99,8 @@ function kategori(dosya, t) {
 /* Elle verilmiş ilgili bağlantılar: "İlgili …" başlıklı bölümdeki listeler. */
 function ilgili(s, url) {
   const out = [];
+  /* Üretilen blok (scripts/build-pages.mjs) elle verilmiş bağlantı değildir. */
+  s = s.replace(/<!-- ILGILI:BASLANGIC -->[\s\S]*?<!-- ILGILI:BITIS -->/g, "");
   const re = /<h2[^>]*>\s*İlgili[^<]*<\/h2>([\s\S]*?)(?=<h2\b|<\/section>|<!-- METODOLOJI)/g;
   let m;
   while ((m = re.exec(s))) {

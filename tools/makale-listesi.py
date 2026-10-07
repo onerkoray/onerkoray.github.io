@@ -182,6 +182,53 @@ def liste_blogu(yazilar, onek, kok, bas, bit, mansetli=True):
     return "\n".join(p)
 
 
+def kategori_blogu(yazilar, kategoriler, bas, bit):
+    """/makaleler/: manşet (en yeni yazı) + kategori bölümleri.
+
+    Bölüm kimlikleri content.json'daki kategori anahtarlarıdır (#vergi-belge);
+    yazıların iz satırı ve /araclar/ aynı çapalara bağlanır. Çipler gerçek
+    çapalardır, JS yoksa bölüme kaydırır; katalog.js varsa süzer. Yıl
+    süzgeci yalnız birden fazla yayın yılı olduğunda çıkar: tek seçenekli
+    süzgeç okura bir şey söylemez.
+    """
+    lead, kalan = yazilar[0], yazilar[1:]
+    sira = [k for k in kategoriler if any(y["kategori"] == k for y in kalan)]
+    yillar = sorted({y["yil"] for y in yazilar}, reverse=True)
+    p = [bas]
+    p.append('        <nav class="chips katalog-cipler" aria-label="Kategoriler" data-katalog-cipler>')
+    p.append('          <a class="chip" href="#yazilar" data-bolum="" aria-current="true">Tümü '
+             '<span class="chip-sayi">%d</span></a>' % len(yazilar))
+    for k in sira:
+        n = sum(1 for y in yazilar if y["kategori"] == k)
+        p.append('          <a class="chip" href="#%s" data-bolum="%s">%s <span class="chip-sayi">%d</span></a>'
+                 % (k, k, kategoriler[k].replace("&", "&amp;"), n))
+    p.append("        </nav>")
+    if len(yillar) > 1:
+        p.append('        <nav class="chips katalog-cipler katalog-yil" aria-label="Yayın yılı" data-katalog-yil>')
+        p.append('          <a class="chip" href="#yazilar" data-yil="" aria-current="true">Her yıl</a>')
+        for yil in yillar:
+            p.append('          <a class="chip" href="#yazilar" data-yil="%s">%s</a>' % (yil, yil))
+        p.append("        </nav>")
+    p.append('        <p class="katalog-durum" role="status" aria-live="polite"></p>')
+    p.append('        <div id="yazilar">')
+    p.append(mansett(lead, "", "../").rstrip("\n")
+             .replace('<article class="ed-lead">',
+                      '<article class="ed-lead" data-bolum-id="%s" data-yil="%s">' % (lead["kategori"], lead["yil"]), 1))
+    for k in sira:
+        grup = [y for y in kalan if y["kategori"] == k]
+        p.append('        <section class="ed-bolum" id="%s" data-bolum-id="%s" aria-labelledby="%s-baslik">' % (k, k, k))
+        p.append('          <div class="ed-rule"><h2 id="%s-baslik">%s</h2></div>' % (k, kategoriler[k].replace("&", "&amp;")))
+        p.append('          <ul class="ed-list">')
+        for y in grup:
+            p.append(satir(y, "", "../").rstrip("\n")
+                     .replace('<li class="ed-item">', '<li class="ed-item" data-yil="%s">' % y["yil"], 1))
+        p.append("          </ul>")
+        p.append("        </section>")
+    p.append("        </div>")
+    p.append("        " + bit)
+    return "\n".join(p)
+
+
 def uygula(icerik, bas, bit, yeni):
     i, j = icerik.find(bas), icerik.find(bit)
     if i == -1 or j == -1:
@@ -195,9 +242,15 @@ def main():
     yazilar = [yazi_bilgisi(k) for k in kayitlar]
     # En yeni güncelleme önce; eşitlikte manifest sırası korunur
     yazilar.sort(key=lambda y: y["guncelleme"], reverse=True)
+    # Kategori ve yayın yılı tek kaynaktan: content.json
+    icerik = json.loads(oku("content.json"))
+    sayfa = {s["dosya"]: s for s in icerik["sayfalar"]}
+    for y in yazilar:
+        s = sayfa["makaleler/%s/index.html" % y["slug"]]
+        y["kategori"], y["yil"] = s["category"], s["published"][:4]
 
     isler = [
-        (LISTE_SAYFA, LBAS, LBIT, liste_blogu(yazilar, "", "../", LBAS, LBIT, True)),
+        (LISTE_SAYFA, LBAS, LBIT, kategori_blogu(yazilar, icerik["kategoriler"], LBAS, LBIT)),
         (ANA_SAYFA, ABAS, ABIT,
          liste_blogu(yazilar[:3], "makaleler/", "", ABAS, ABIT, False)),
     ]

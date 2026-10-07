@@ -31,18 +31,18 @@ import sys
 
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SAYFA = os.path.join(KOK, "koray-oner", "index.html")
-ADRES = "https://korayoner.dev/koray-oner/"
+SITE = "https://korayoner.dev"
+ADRES = SITE + "/koray-oner/"
 KISI = "https://korayoner.dev/#oner-koray"
 AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos",
          "Eylül", "Ekim", "Kasım", "Aralık"]
 ALANLAR = [
-    ("maas", "Maaş, tazminat ve emeklilik", "Brütten nete maaş, kıdem ve ihbar, işsizlik maaşı, emekli aylığı ve zamları, SGK primleri.",
-     ("Bordro", "Tazminat", "Emeklilik ve sosyal güvenlik")),
-    ("vergi", "Vergi ve belge", "Gelir vergisi beyannamesi, KDV ve tevkifat, stopaj, kira geliri, veraset, MTV ve ÖTV, fatura.",
-     ("Vergi", "Mevzuat")),
-    ("finans", "Kredi ve hane finansı", "Kredi maliyeti, mevduat, enflasyon, kira artışı, birikim ve finansal karar araçları.",
-     ("Finans",)),
-    ("genel", "Genel araçlar", "Finans dışında geliştirilmiş, günlük kullanım için küçük araçlar.", ()),
+    ("maas-tazminat", "Maaş, tazminat ve emeklilik", "Brütten nete maaş, kıdem ve ihbar, işsizlik maaşı, emekli aylığı ve zamları, SGK primleri.",
+     ("maas-tazminat", "emeklilik-sosyal-guvenlik")),
+    ("vergi-belge", "Vergi ve belge", "Gelir vergisi beyannamesi, KDV ve tevkifat, stopaj, kira geliri, veraset, MTV ve ÖTV, fatura.",
+     ("vergi-belge", "mevzuat")),
+    ("kredi-finans", "Kredi ve hane finansı", "Kredi maliyeti, mevduat, enflasyon, kira artışı, birikim ve finansal karar araçları.",
+     ("kredi-finans",)),
 ]
 
 
@@ -77,39 +77,45 @@ def ilk_ekleme(yol):
     return t[-1] if t else None
 
 
+def manifest():
+    return json.load(io.open(os.path.join(KOK, "content.json"), encoding="utf-8"))
+
+
+M = manifest()
+
+
 def araclar():
+    """Ana sayfada kartı olan araçlar; ad ve kısa açıklama karttan, alan ve
+    tarih content.json'dan (kategori anahtarı, ilk yayın günü)."""
     s = oku("index.html")
-    liste = []
-    for cat, g in re.findall(r'<li class="project-card(?![^"]*--(?:soon|grafik))[^"]*" data-cat="([a-z]+)"[^>]*>([\s\S]*?)</li>', s):
+    kart = {}
+    for g in re.findall(r'<li class="project-card(?![^"]*--(?:soon|grafik))[^"]*"[^>]*>([\s\S]*?)</li>', s):
         m = re.search(r'<h3><a href="([^"#]+)">([^<]+)</a></h3>', g)
-        if not m:
+        if m:
+            acik = re.findall(r"<p>([\s\S]*?)</p>", g)
+            kart[m.group(1).strip("./").rstrip("/") + "/"] = (
+                html.unescape(m.group(2)).strip(),
+                re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", acik[0]))).strip() if acik else "")
+    liste = []
+    for x in M["sayfalar"]:
+        yol = x["url"].replace(SITE + "/", "")
+        if x["type"] != "arac" or x.get("parent") or x.get("noindex") or yol not in kart:
             continue
-        yol = m.group(1).rstrip("/")
-        p = yol + "/index.html"
-        if not os.path.exists(os.path.join(KOK, p)):
-            continue
-        acik = re.findall(r"<p>([\s\S]*?)</p>", g)
-        tarih = ilk_ekleme(p)
-        liste.append({"alan": cat, "yol": yol + "/", "ad": html.unescape(m.group(2)).strip(),
-                      "aciklama": re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", acik[0]))).strip() if acik else "",
-                      "tarih": tarih})
+        liste.append({"alan": x["category"], "yol": yol, "ad": kart[yol][0], "aciklama": kart[yol][1],
+                      "tarih": x["published"][:10]})
     return liste
 
 
 def yazilar():
-    konu = {x["slug"]: x.get("kicker", "") for x in json.load(io.open(os.path.join(KOK, "tools", "makaleler.json"), encoding="utf-8"))}
     liste = []
-    for d in sorted(os.listdir(os.path.join(KOK, "makaleler"))):
-        p = "makaleler/%s/index.html" % d
-        if not os.path.exists(os.path.join(KOK, p)) or d not in konu:
+    for x in M["sayfalar"]:
+        if x["type"] != "makale":
             continue
-        t = oku(p)
-        dp = re.search(r'"datePublished":\s*"([^"]+)"', t)
+        t = oku(x["dosya"])
         h1 = re.search(r"<h1[^>]*>([\s\S]*?)</h1>", t)
-        if not dp or not h1:
-            continue
-        liste.append({"yol": "makaleler/%s/" % d, "baslik": re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", h1.group(1)))).strip(),
-                      "tarih": dp.group(1)[:10], "konu": konu[d]})
+        liste.append({"yol": x["url"].replace(SITE + "/", ""), "kategori": x["category"],
+                      "baslik": re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", h1.group(1)))).strip(),
+                      "tarih": x["published"][:10], "konu": M["kategoriler"][x["category"]]})
     return sorted(liste, key=lambda x: (x["tarih"], x["yol"]), reverse=True)
 
 
@@ -237,7 +243,7 @@ def govde():
         liste = [a for a in ar if a["alan"] == kod]
         if not liste:
             continue
-        ilgili = [y for y in yz if y["konu"] in konular]
+        ilgili = [y for y in yz if y["kategori"] in konular]
         p.append('''
           <article class="kd-alan" aria-labelledby="alan-%s">
             <h3 id="alan-%s">%s</h3>
@@ -264,7 +270,7 @@ def govde():
         <div>
           <h2 id="son-arac-title">Son eklenen araçlar</h2>
           <ol class="kd-akis">%s</ol>
-          <p><a href="../#projects">Bütün araçlar (%d)</a></p>
+          <p><a href="../araclar/">Bütün araçlar (%d)</a></p>
         </div>
       </div>
     </section>''' % (
@@ -302,6 +308,8 @@ def govde():
       </div>
     </section>''' % (ad_c, n_ci, ad_c))
 
+    p.append(harita())
+
     p.append('''
     <section class="content kd-bolum" id="kanallar" aria-labelledby="kanal-title">
       <div class="wrap">
@@ -317,6 +325,73 @@ def govde():
       </div>
     </section>''')
     return "\n".join(p), ar, yz, yy, n_arac, n_yazi, n_yayin
+
+
+def kisa_ad(x):
+    """Sayfanın izdeki adı: BreadcrumbList'in son öğesi (scripts/build-pages.mjs
+    görünür izle aynı tutar)."""
+    for m in re.finditer(r'<script type="application/ld\+json">([\s\S]*?)</script>', oku(x["dosya"])):
+        try:
+            d = json.loads(m.group(1))
+        except ValueError:
+            continue
+        for n in d if isinstance(d, list) else d.get("@graph", [d]):
+            if isinstance(n, dict) and n.get("@type") == "BreadcrumbList":
+                return n["itemListElement"][-1]["name"]
+    return x["title"]
+
+
+TR_SIRA = str.maketrans({"ç": "c~", "ğ": "g~", "ı": "h~", "i": "i", "ö": "o~", "ş": "s~", "ü": "u~",
+                         "Ç": "c~", "Ğ": "g~", "I": "h~", "İ": "i", "Ö": "o~", "Ş": "s~", "Ü": "u~"})
+
+
+def tr_anahtar(x):
+    return kisa_ad(x).translate(TR_SIRA).lower()
+
+
+def harita():
+    """HTML site haritası: dizine açık her sayfa, manifestten. JS gerekmez;
+    sitemap.xml'in okura açık karşılığı. Eksik sayfa olursa üretim durur."""
+    acik = [x for x in M["sayfalar"] if not x.get("noindex") and x["url"] not in (SITE + "/", ADRES)]
+    yazildi = set()
+
+    def li(x, ic=""):
+        yazildi.add(x["url"])
+        return '<li><a href="../%s">%s</a>%s</li>' % (x["url"].replace(SITE + "/", ""), kacis(kisa_ad(x)), ic)
+
+    def cocuklar(x):
+        c = sorted((y for y in acik if y.get("parent") == x["url"]), key=lambda y: y["url"])
+        return ("<ul>%s</ul>" % "".join(li(y) for y in c)) if c else ""
+
+    gruplar = []
+    for kod, baslik, _, _ in ALANLAR:
+        ar = sorted((x for x in acik if x["type"] == "arac" and not x.get("parent") and x["category"] == kod), key=tr_anahtar)
+        if ar:
+            gruplar.append(("Araçlar · " + M["kategoriler"][kod], "".join(li(x, cocuklar(x)) for x in ar)))
+    for kod, ad in M["kategoriler"].items():
+        yz = sorted((x for x in acik if x["type"] == "makale" and x["category"] == kod), key=lambda x: x["published"], reverse=True)
+        if yz:
+            gruplar.append(("Yazılar · " + ad, "".join(li(x) for x in yz)))
+    gr = [x for x in acik if x["type"] == "grafik"]
+    gruplar.append(("Grafikler ve yöntem", "".join(li(x) for x in sorted(gr, key=lambda x: x["url"]))
+                    + "".join(li(x, cocuklar(x)) for x in acik if x["type"] == "metodoloji" and not x.get("parent"))))
+    gruplar.append(("Site", "".join(li(x) for x in acik if x["type"] == "sayfa")))
+    eksik = [x["url"] for x in acik if x["url"] not in yazildi]
+    if eksik:
+        raise SystemExit("Site haritasında yeri olmayan sayfa: " + ", ".join(eksik))
+    return '''
+    <section class="content kd-bolum" id="harita" aria-labelledby="harita-title">
+      <div class="wrap">
+        <h2 id="harita-title">Bütün sayfalar</h2>
+        <p class="kd-aciklama">Sitedeki dizine açık %d sayfanın tamamı (bu sayfa ve ana sayfa dışında), içerik manifestinden üretilir. Arama ya da JavaScript gerekmez.</p>
+        <div class="kd-harita">%s
+        </div>
+      </div>
+    </section>''' % (len(acik), "".join('''
+          <div>
+            <h3>%s</h3>
+            <ul>%s</ul>
+          </div>''' % (kacis(b), i) for b, i in gruplar))
 
 
 def json_ld(ar, yz, yy):
