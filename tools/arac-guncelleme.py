@@ -117,7 +117,7 @@ KABUK_BETIK = re.compile(
 # (Arac > Metodoloji, Makaleler > Kategori > Yazi); okura sunulan icerik
 # degismedi.
 KABUK_IZ = re.compile(r'<nav class="breadcrumb[^"]*"[^>]*>.*?</nav>', re.S)
-KABUK_BLOK = re.compile(r'<!-- (AKIS|ARAMA|ILGILI):BASLANGIC -->.*?<!-- \1:BITIS -->', re.S)
+KABUK_BLOK = re.compile(r'<!-- (AKIS|ARAMA|ILGILI|DIL-DAGILIMI):BASLANGIC -->.*?<!-- \1:BITIS -->', re.S)
 LD = re.compile(r'(<script type="application/ld\+json"[^>]*>)(.*?)(</script>)', re.S)
 
 

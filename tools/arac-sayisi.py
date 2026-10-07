@@ -41,9 +41,13 @@ def kart_sayisi(s):
 def main():
     kontrol = "--check" in sys.argv
     s = io.open(SAYFA, encoding="utf-8").read()
-    n = kart_sayisi(s)
-    if n < 5:
-        print("Araç kartı bulunamadı (%d) — denetim anlamsız." % n, file=sys.stderr)
+    # Sayı içerik manifestinden (content.json sayaclar.arac); kart sayısı
+    # yalnız tutarlılık bekçisi: ikisi ayrışırsa ya kart ya manifest eksik.
+    import json
+    n = json.load(io.open(os.path.join(KOK, "content.json"), encoding="utf-8"))["sayaclar"]["arac"]
+    kart = kart_sayisi(s)
+    if kart != n:
+        print("Manifestte %d araç, ana sayfada %d kart: biri eksik." % (n, kart), file=sys.stderr)
         return 1
 
     ham = s
