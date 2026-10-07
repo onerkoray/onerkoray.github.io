@@ -19,6 +19,9 @@
   <link rel="alternate" type="application/atom+xml" title="Koray Öner — Araçlar ve Yazılar" href="/atom.xml">
   <link rel="alternate" type="application/atom+xml" title="Koray Öner — Hesaplama Araçları" href="/araclar/atom.xml">
   <!-- AKIS:BITIS -->
+  <!-- ARAMA:BASLANGIC -->
+  <script type="module" src="/arama.js?v=4cf46d2f"></script>
+  <!-- ARAMA:BITIS -->
 
   <!-- ESKI MULKUN SAHIPLIK DOGRULAMASI. Bu etiket korayoner.dev icin degil,
        https://onerkoray.github.io/ mulku icin duruyor: o adres buraya 301
@@ -56,8 +59,8 @@
   <meta name="twitter:description" content="Koray Öner'in sitesi: maaş, vergi, SGK, kira ve kredi için testli, ücretsiz hesaplama araçları; mevzuat yazıları, yayımlanmış çalışmalar ve sosyal hesaplar.">
   <meta name="twitter:image" content="https://korayoner.dev/images/koray-oner-kapak.png">
 
-  <link rel="stylesheet" href="style.css?v=4728d6e2">
-  <link rel="stylesheet" href="live.css?v=b1a89fc6">
+  <link rel="stylesheet" href="style.css?v=7b423c6d">
+  <link rel="stylesheet" href="live.css?v=72c4c6d4">
   <link rel="stylesheet" href="makaleler/editoryal.css?v=bb214d90">
   <link rel="stylesheet" href="home.css?v=3cf90971">
 
@@ -90,6 +93,14 @@
       "inLanguage": "tr",
       "publisher": {
         "@id": "https://korayoner.dev/#oner-koray"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://korayoner.dev/ara/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
       }
     },
     {
@@ -1285,6 +1296,7 @@
           <li><a href="bordro/">Bordro Motoru</a></li>
           <li><a href="yayinlar/">Yayınlar</a></li>
           <li><a href="hakkimda/">Hakkımda</a></li>
+          <li><a href="ara/">Ara</a></li>
         </ul>
       </nav>
       <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
@@ -2267,7 +2279,7 @@
   </footer>
 
   <script src="script.js?v=dc8bc405" defer></script>
-  <script src="live.js?v=900a2390" defer></script>
+  <script src="live.js?v=000efed5" defer></script>
   <script src="home.js?v=ec738a9a" defer></script>
 </body>
 </html>

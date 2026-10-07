@@ -1,0 +1,27 @@
+[
+ {
+  "url": "/maas-hesaplama/",
+  "title": "Brüt Net Maaş Hesaplama 2026 — 12 Aylık Bordro",
+  "tur": "Araç"
+ },
+ {
+  "url": "/isten-ayrilma-hesaplama/",
+  "title": "İşten Ayrılma Hesaplama 2026 — Çıkış Paketi",
+  "tur": "Araç"
+ },
+ {
+  "url": "/kidem-tazminati-hesaplama/",
+  "title": "Kıdem ve İhbar Tazminatı Hesaplama 2026",
+  "tur": "Araç"
+ },
+ {
+  "url": "/kredi-hesaplama/",
+  "title": "Kredi Hesaplama ve Gerçek Maliyet",
+  "tur": "Araç"
+ },
+ {
+  "url": "/kdv-hesaplama/",
+  "title": "KDV Hesaplama — Dahil ve Hariç Tutar",
+  "tur": "Araç"
+ }
+]

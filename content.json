@@ -7,6 +7,13 @@
   "emeklilik-sosyal-guvenlik": "Emeklilik & Sosyal Güvenlik",
   "mevzuat": "Mevzuat"
  },
+ "oneCikanlar": [
+  "https://korayoner.dev/maas-hesaplama/",
+  "https://korayoner.dev/isten-ayrilma-hesaplama/",
+  "https://korayoner.dev/kidem-tazminati-hesaplama/",
+  "https://korayoner.dev/kredi-hesaplama/",
+  "https://korayoner.dev/kdv-hesaplama/"
+ ],
  "sayaclar": {
   "arac": 61,
   "makale": 59,
@@ -54,6 +61,22 @@
     "https://korayoner.dev/makaleler/mevduat-faizi-enflasyon-reel-getiri/"
    ],
    "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/ara/",
+   "dosya": "ara/index.html",
+   "type": "sayfa",
+   "parent": null,
+   "title": "Sitede Ara",
+   "description": "Koray Öner'in hesaplama araçlarında, yazılarında, metodoloji ve grafik sayfalarında arama: türe ve kategoriye göre süzün, en yeniye göre sıralayın.",
+   "category": null,
+   "published": "2026-10-07T11:29:07+03:00",
+   "updated": "2026-10-07",
+   "updatedAt": "2026-10-07T11:29:07+03:00",
+   "image": "https://korayoner.dev/images/koray-oner-kapak.png",
+   "imageTitle": "Sitede Ara — Koray Öner",
+   "related": [],
+   "noindex": true
   },
   {
    "url": "https://korayoner.dev/asgari-ucret-zam-senaryosu/",
