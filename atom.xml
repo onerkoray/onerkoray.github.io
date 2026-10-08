@@ -5,7 +5,7 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-10-07T19:19:12Z</updated>
+  <updated>2026-10-08T19:16:00Z</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
 
@@ -134,7 +134,7 @@
     <link href="https://korayoner.dev/grafikler/"/>
     <id>https://korayoner.dev/grafikler/</id>
     <published>2026-09-26T12:57:20+03:00</published>
-    <updated>2026-10-05T21:15:44Z</updated>
+    <updated>2026-10-08T19:16:00Z</updated>
     <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Türkiye'de fiyatlar, enflasyon, faiz, kur, altın, asgari ücret ve büyüme 2005'ten bugüne, G20 ile. TCMB, TÜİK, BIS ve Dünya Bankası verisi.</summary>
   </entry>
@@ -1210,13 +1210,13 @@
   </entry>
 
   <entry>
-    <title>TCMB Döviz Kurları — 7 Ekim 2026</title>
+    <title>TCMB Döviz Kurları — 8 Ekim 2026</title>
     <link href="https://korayoner.dev/doviz-kurlari/"/>
     <id>https://korayoner.dev/doviz-kurlari/</id>
     <published>2026-09-04T22:11:41+03:00</published>
-    <updated>2026-10-07T19:19:12Z</updated>
+    <updated>2026-10-08T19:16:00Z</updated>
     <category term="kredi-finans" label="Kredi &amp; Finans"/>
-    <summary>7 Ekim 2026 tarihli TCMB resmî döviz kurları: dolar 49,20 TL, euro 55,09 TL. Merkez Bankası efektif alış ve satış kurları, her iş günü güncellenir.</summary>
+    <summary>8 Ekim 2026 tarihli TCMB resmî döviz kurları: dolar 49,22 TL, euro 55,05 TL. Merkez Bankası efektif alış ve satış kurları, her iş günü güncellenir.</summary>
   </entry>
 
   <entry>
