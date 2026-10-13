@@ -16,11 +16,11 @@
  ],
  "sayaclar": {
   "arac": 61,
-  "makale": 59,
+  "makale": 60,
   "metodoloji": 10,
   "grafik": 2,
   "sayfa": 10,
-  "indekslenebilir": 143
+  "indekslenebilir": 144
  },
  "sayfalar": [
   {
@@ -87,8 +87,8 @@
    "description": "Maaş ve tazminat, vergi ve belge, kredi ve finans için ücretsiz, reklamsız hesaplama araçları; kategoriye göre, güncelleme tarihi ve metodolojisiyle.",
    "category": null,
    "published": "2026-10-07T11:57:14+03:00",
-   "updated": "2026-10-09",
-   "updatedAt": "2026-10-09T18:48:25Z",
+   "updated": "2026-10-12",
+   "updatedAt": "2026-10-12T21:44:27Z",
    "image": "https://korayoner.dev/images/araclar-koray-oner.png",
    "imageTitle": "Hesaplama Araçları: Maaş, Vergi, Kredi — Koray Öner",
    "related": [],
@@ -1169,11 +1169,11 @@
    "type": "sayfa",
    "parent": null,
    "title": "Koray Öner — Araçlar, Yazılar ve Yayınlar",
-   "description": "Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 59 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
+   "description": "Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 60 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
    "category": null,
    "published": "2026-09-29T17:59:13+03:00",
-   "updated": "2026-10-07",
-   "updatedAt": "2026-10-07T13:00:58+03:00",
+   "updated": "2026-10-13",
+   "updatedAt": "2026-10-13T00:00:00+03:00",
    "image": "https://korayoner.dev/images/hakkimda-koray-oner.jpg",
    "imageTitle": "Koray Öner — Araçlar, Yazılar ve Yayınlar",
    "related": [],
@@ -2592,6 +2592,22 @@
     "https://korayoner.dev/makaleler/sahis-mi-limited-mi/",
     "https://korayoner.dev/ucret-kar-payi-optimizasyonu/"
    ],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/makaleler/sgk-devlet-katkisi-kalkti/",
+   "dosya": "makaleler/sgk-devlet-katkisi-kalkti/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "SGK'ya Devlet Katkısı Kalktı: Ne Değişti?",
+   "description": "Hazine 1 Ağustos 2026'dan beri SGK'ya primlerin dörtte biri oranında katkı ödemiyor. Prim, emekli aylığı ve teşvikler aynı; değişen bütçe satırı. 2025 fazlası katkısız 852,9 milyar TL açık.",
+   "category": "emeklilik-sosyal-guvenlik",
+   "published": "2026-10-13T06:02:21+03:00",
+   "updated": "2026-10-13",
+   "updatedAt": "2026-10-13T06:02:21+03:00",
+   "image": "https://korayoner.dev/images/makale/sgk-devlet-katkisi-kalkti.png",
+   "imageTitle": "SGK'ya Devlet Katkısı Kalktı: Ne Değişti? — Koray Öner",
+   "related": [],
    "noindex": false
   },
   {

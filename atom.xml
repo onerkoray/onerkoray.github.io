@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Araçlar ve Yazılar</title>
-  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 61 hesaplama aracı ve arkalarındaki mevzuatı anlatan 59 yazı.</subtitle>
+  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 61 hesaplama aracı ve arkalarındaki mevzuatı anlatan 60 yazı.</subtitle>
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-10-12T21:43:42Z</updated>
+  <updated>2026-10-13T06:02:21+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>SGK'ya Devlet Katkısı Kalktı: Ne Değişti?</title>
+    <link href="https://korayoner.dev/makaleler/sgk-devlet-katkisi-kalkti/"/>
+    <id>https://korayoner.dev/makaleler/sgk-devlet-katkisi-kalkti/</id>
+    <published>2026-10-13T06:02:21+03:00</published>
+    <updated>2026-10-13T06:02:21+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
+    <summary>Hazine 1 Ağustos 2026'dan beri SGK'ya primlerin dörtte biri oranında katkı ödemiyor. Prim, emekli aylığı ve teşvikler aynı; değişen bütçe satırı. 2025 fazlası katkısız 852,9 milyar TL açık.</summary>
+  </entry>
 
   <entry>
     <title>Türkiye'de Sosyal Güvenliğin Dönüşümü</title>
