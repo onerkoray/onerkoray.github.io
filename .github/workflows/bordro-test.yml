@@ -624,6 +624,12 @@ jobs:
       - name: İŞKUR yazısı ve aracı hesaptan üretilmiş mi
         run: node tools/iskur-yazisi.js --check
 
+      # SGK devlet katkısı yazısı (7590 s.K. m.15): SGK Aylık Bülten Mali
+      # İstatistikler Temmuz 2026 tablolarından betikle çıkarılmış veri ve
+      # bordro motorunun prim oranları; her rakam sayfada aranır.
+      - name: SGK devlet katkısı yazısının sayıları
+        run: node makaleler/sgk-devlet-katkisi-kalkti/sayi-testi.js
+
       # Sosyal güvenliğin dönüşümü (araştırma yazısı): model sigortalı 1985–2025
       # girişleri için emeklilik tarihi ve aylık bağlama oranı çekirdeklerinden
       # hesaplanır; test aynı kuralları kanun metninden bağımsız kurar
