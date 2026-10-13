@@ -2274,6 +2274,35 @@ function sgkKatkisizDenge() {
   return s + "</svg>";
 }
 
+/* Ocak 2027 artışı toplam aylığa göre: taban sabit ya da zamla artarsa (yazının taban.js'inden). */
+var TBN = require(path.join(KOK, "makaleler", "en-dusuk-emekli-ayligi-ocak-2027", "taban.js"));
+function tabanOcak2027() {
+  var z = TBN.ocak2027().senaryolar[1].oran, esik = TBN.esik(z), T0 = TBN.BUGUNKU_TABAN;
+  if (Math.round(z * 10000) !== 1017 || Math.round(esik) !== 21379 || T0 !== 23552) throw new Error("taban kapağı yazıyla ayrıştı");
+  var SOL = 66, SAG = 548, UST = 96, ALT = 296, X0 = 10000, X1 = 35000, Y0 = 0, Y1 = 4000;
+  function x(a) { return SOL + (a - X0) / (X1 - X0) * (SAG - SOL); }
+  function y(v) { return ALT - (v - Y0) / (Y1 - Y0) * (ALT - UST); }
+  function cizgi(tabanArtisi) {
+    // Artış toplam aylığın parçalı doğrusal işlevi; kırılmalar eşik ve taban.
+    var nok = [X0, esik, T0, X1];
+    return nok.map(function (a, i) { return (i ? "L" : "M") + x(a).toFixed(1) + " " + y(TBN.ocakOdemesi(a, z, tabanArtisi).artis).toFixed(1); }).join(" ");
+  }
+  var s = baslikSatirlari("Ocak 2027 zammı kime yansır?", "Ek ödeme dahil toplam aylığa göre aylık artış · senaryo: zam %10,17",
+    "Taban 23.552 TL'de kalırsa toplam aylığı 21.379 TL'nin altında olana Ocak artışı sıfır; taban zam oranında artarsa tabandakiler de 2.394 TL artış alır.");
+  s += anahtarKutu(24, R.s1, "taban zam oranında artarsa") + anahtarKutu(250, R.s2, "taban 23.552 TL'de kalırsa");
+  s += izgaraY(SOL, SAG, y, [0, 1000, 2000, 3000, 4000], function (v) { return v === 0 ? "0" : nf0.format(v); });
+  s += '<path d="M' + x(T0).toFixed(1) + " " + UST + " V" + ALT + '" stroke="' + R.ikincil + '" stroke-width="1" stroke-dasharray="3 3"/>';
+  s += '<text x="' + (x(T0) + 5).toFixed(1) + '" y="' + (UST + 10) + '" font-size="12" fill="' + R.ikincil + '">taban 23.552</text>';
+  s += '<path fill="none" stroke="' + R.s1 + '" stroke-width="3" stroke-linejoin="round" d="' + cizgi(z) + '"/>';
+  s += '<path fill="none" stroke="' + R.s2 + '" stroke-width="3" stroke-linejoin="round" d="' + cizgi(0) + '"/>';
+  s += cubukEtiket(x(15500), y(TBN.ocakOdemesi(15000, z, z).artis) - 10, "+" + nf0.format(TBN.ocakOdemesi(15000, z, z).artis));
+  s += cubukEtiket(x(15500), y(0) - 10, "0");
+  s += cubukEtiket(x(esik) - 30, y(0) - 10, nf0.format(esik));
+  [10000, 15000, 20000, 25000, 30000, 35000].forEach(function (a) { s += altYazi(x(a), ALT + 20, nf0.format(a)); });
+  s += altYazi((SOL + SAG) / 2, ALT + 40, "Aralık 2026'da ek ödeme dahil toplam aylık (TL)");
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
   "vergi-borcunu-geciktirmek-karli-mi": {
     kicker: "Vergi · Borç",
@@ -2316,6 +2345,12 @@ var KAPAKLAR = {
     baslik: "Türkiye'de sosyal güvenliğin dönüşümü",
     alt: "Bir gün arayla sigortalı olan iki kişi: 18 yıl fark",
     cizim: sgEmeklilikYasi
+  },
+  "en-dusuk-emekli-ayligi-ocak-2027": {
+    kicker: "Sosyal güvenlik · Emekli aylığı",
+    baslik: "Ocak zammı en düşük aylığa yansır mı?",
+    alt: "Taban 23.552 TL'de kalırsa 21.379 TL'nin altındaki aylığa zam yok",
+    cizim: tabanOcak2027
   },
   "sgk-devlet-katkisi-kalkti": {
     kicker: "Sosyal güvenlik · SGK",

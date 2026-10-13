@@ -630,6 +630,12 @@ jobs:
       - name: SGK devlet katkısı yazısının sayıları
         run: node makaleler/sgk-devlet-katkisi-kalkti/sayi-testi.js
 
+      # En düşük emekli aylığı ve Ocak 2027 zammı: zam oranları emekli zammı
+      # motorundan (Eylül 2026'ya kesilmiş TÜFE serisi), taban tutarları 5510
+      # ek m.19 dipnotlarından; her rakam sayfada aranır.
+      - name: En düşük emekli aylığı yazısının sayıları
+        run: node makaleler/en-dusuk-emekli-ayligi-ocak-2027/sayi-testi.js
+
       # Sosyal güvenliğin dönüşümü (araştırma yazısı): model sigortalı 1985–2025
       # girişleri için emeklilik tarihi ve aylık bağlama oranı çekirdeklerinden
       # hesaplanır; test aynı kuralları kanun metninden bağımsız kurar

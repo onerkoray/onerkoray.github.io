@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=f7307c52" defer></script>
+  <meta charset="UTF-8">
+  <script src="../../tema-erken.js?v=a2f32851"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ocak 2027 Zammı En Düşük Emekli Aylığına Yansır mı?</title>
+  <meta name="description" content="Taban 23.552 TL kanunla değişmezse Ocak zammı tabandakine yansımaz: zam %10,17 olursa 21.379 TL altındaki aylığa artış yok. 2019'dan beri 15 dönemin hesabı.">
+  <meta name="gecerlilik" content="2026-11-05 | Ekim 2026 TÜFE açıklandı: taban.js VERI_AYI ilerletilmeli, Ocak 2027 birikimi ve senaryolar güncellenmeli; tabanı değiştiren kanun teklifi geldi mi kontrol edilmeli">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/">
+  <!-- AKIS:BASLANGIC -->
+  <link rel="alternate" type="application/atom+xml" title="Koray Öner — Araçlar ve Yazılar" href="/atom.xml">
+  <link rel="alternate" type="application/atom+xml" title="Koray Öner — Yazılar" href="/makaleler/atom.xml">
+  <!-- AKIS:BITIS -->
+  <!-- ARAMA:BASLANGIC -->
+  <script type="module" src="/arama.js?v=4cf46d2f"></script>
+  <!-- ARAMA:BITIS -->
+
+  <link rel="icon" href="../../favicon.ico?v=2b4519b9" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3b5acc4e">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Ocak 2027 zammı en düşük emekli aylığına yansır mı?">
+  <meta property="og:description" content="Ocak zammı kendi aylığa uygulanır, taban sabit tutardır. Zam %10,17 senaryosunda kime ne yansır, taban 2019'dan beri zamla birlikte arttı mı?">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/en-dusuk-emekli-ayligi-ocak-2027.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ocak 2027 artışı toplam aylığa göre: taban sabit kalırsa ve zamla artarsa">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Ocak 2027 zammı en düşük emekli aylığına yansır mı?">
+  <meta name="twitter:description" content="Ocak zammı kendi aylığa uygulanır, taban sabit tutardır. Zam %10,17 senaryosunda kime ne yansır, taban 2019'dan beri zamla birlikte arttı mı?">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/en-dusuk-emekli-ayligi-ocak-2027.png">
+
+  <link rel="stylesheet" href="../../style.css?v=81405dc2">
+  <link rel="stylesheet" href="../editoryal.css?v=bb214d90">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/",
+        "url": "https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/",
+        "name": "Ocak 2027 zammı en düşük emekli aylığına yansır mı?",
+        "isPartOf": {
+          "@id": "https://korayoner.dev/#website"
+        },
+        "inLanguage": "tr",
+        "primaryImageOfPage": "https://korayoner.dev/images/makale/en-dusuk-emekli-ayligi-ocak-2027.png"
+      },
+      {
+        "@type": "Article",
+        "@id": "https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/#article",
+        "headline": "Ocak 2027 zammı en düşük emekli aylığına yansır mı?",
+        "description": "5510 sayılı Kanunun 55 inci maddesindeki Ocak 2027 artışı ile ek 19 uncu maddedeki en düşük aylık (23.552 TL) ilişkisi: zammın yansımadığı aylık sınırı, senaryolar, 2019'dan beri on beş zam dönemi ve taban kararları, kanun dipnotlarından ve TÜFE serisinden hesaplandı.",
+        "inLanguage": "tr",
+        "datePublished": "2026-10-13",
+        "dateModified": "2026-10-13",
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "mainEntityOfPage": "https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/",
+        "image": "https://korayoner.dev/images/makale/en-dusuk-emekli-ayligi-ocak-2027.png",
+        "isPartOf": {
+          "@id": "https://korayoner.dev/#website"
+        },
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "En düşük emekli aylığı"
+          },
+          {
+            "@type": "Thing",
+            "name": "Emekli zammı"
+          },
+          {
+            "@type": "Thing",
+            "name": "5510 sayılı Kanun ek madde 19"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/#sss",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "En düşük emekli aylığı Ocak 2027'de kendiliğinden artar mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. En düşük aylık 5510 sayılı Kanunun ek 19 uncu maddesinde yazılı sabit bir tutar, bugün 23.552 TL. Artması için yeni bir kanun hükmü gerekir; 2019'dan beri her artışı ayrı bir kanunla yapıldı."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Taban artmazsa Ocak zammı bana yansır mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ek ödeme dahil kendi aylığınız zamla 23.552 TL'yi geçerse geçen kısım kadar yansır. Zam %10,17 olursa toplam aylığı 21.379 TL'nin altında olana hiç yansımaz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ocak 2027 emekli zammı ne kadar olacak?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Temmuz–Eylül 2026 TÜFE'si açıklandı ve birikim %5,56. Ekim, Kasım ve Aralık'a göre değişecek; bu üç ay 2025'in aynı ayları gibi giderse %10,17, her biri %1 olursa %8,76, her biri %2 olursa %12,02. Kesin oran, Aralık enflasyonu Ocak 2027'nin ilk günlerinde açıklanınca belli olur."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Geçmişte taban kaç kez artmadı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "2019'dan bu yana 15 zam döneminin 6'sında: Temmuz 2019, Ocak 2020, Temmuz 2020, Ocak 2021, Temmuz 2021 ve Temmuz 2023. Bunlardan ikisinden önce taban Nisan'da artırılmıştı (Nisan 2020 ve Nisan 2023)."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
+        "name": "Koray Öner",
+        "alternateName": "Koray Oner",
+        "url": "https://korayoner.dev/",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerv/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://onerkoray.medium.com/",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://metu.academia.edu/KorayOner",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Makaleler", "item": "https://korayoner.dev/makaleler/"}, {"@type": "ListItem", "position": 3, "name": "Ocak 2027 zammı en düşük emekli aylığına yansır mı?", "item": "https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/"}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../../logo.svg?v=339f0ca2" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../../araclar/">Araçlar</a></li>
+          <li><a href="../../makaleler/" aria-current="true">Makaleler</a></li>
+          <li><a href="../../grafikler/">Grafikler</a></li>
+          <li><a href="../../bordro/">Bordro Motoru</a></li>
+          <li><a href="../../yayinlar/">Yayınlar</a></li>
+          <li><a href="../../hakkimda/">Hakkımda</a></li>
+          <li><a href="../../ara/">Ara</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+
+    <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">›</span>
+      <a href="../../makaleler/">Makaleler</a> <span aria-hidden="true">›</span> Ocak 2027 zammı en düşük emekli aylığına yansır mı?
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Sosyal güvenlik · Emekli aylığı</p>
+        <h1 id="hero-title">Ocak 2027 zammı en düşük emekli aylığına yansır mı?</h1>
+        <p class="ed-standfirst">Kendiliğinden yansımaz. SSK ve Bağ-Kur emeklisinin Ocak zammı kişinin <strong>kendi aylığına</strong> uygulanır; en düşük aylık ise kanunda yazılı sabit bir tutar, bugün <strong>23.552 TL</strong>. Kanun değişmezse, zamlı aylığı bu tutarı geçmeyen dosyanın ödemesi aynı kalır. Kalan üç ay geçen yılın aynı ayları gibi giderse Ocak zammı %10,17 olur; o durumda ek ödeme dahil toplam aylığı <strong>21.379 TL'nin altında</strong> olan hiçbir artış almaz. 2019'dan bu yana taban zammın olduğu 15 dönemin 9'unda kanunla yükseltildi, 6'sında yükseltilmedi.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-10-13">13 Ekim 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <section class="content"><div class="wrap prose ed-body">
+          <!-- LEAD-GORSEL:BASLANGIC -->
+          <figure class="ed-veri-gorseli">
+            <img src="../../images/makale/en-dusuk-emekli-ayligi-ocak-2027-kart.svg"
+                 width="800" height="500" decoding="async"
+                 alt="Ocak 2027'de aylık artış, ek ödeme dahil toplam aylığa göre, zam %10,17 senaryosunda: taban 23.552 TL'de kalırsa 21.379 TL'nin altındaki aylığa artış yok; taban zam oranında artarsa tabandakiler de 2.394 TL artış alır.">
+            <figcaption>Senaryo: Ekim–Aralık 2026 TÜFE'si 2025'in aynı aylarıyla aynı (%2,55, %0,87, %0,89). Temmuz–Eylül 2026 açıklandı: %5,56. Hesap: 5510 m.55 ve ek m.19; sitenin emekli zammı motoru.</figcaption>
+          </figure>
+          <!-- LEAD-GORSEL:BITIS -->
+
+      <div class="legal-note verdict">
+        <h2 id="kisa-cevap">Kısa cevap</h2>
+        <p><strong>Zam kime uygulanır?</strong> SSK ve Bağ-Kur aylıkları Ocak'ta Temmuz–Aralık TÜFE değişimi kadar artar (5510 s.K. m.55). Artış, kişinin kendi bağlanmış aylığına ve ona bağlı ek ödemeye uygulanır.</p>
+        <p><strong>En düşük aylık nasıl işler?</strong> 5510 sayılı Kanunun ek 19 uncu maddesi, ek ödeme dahil aylık toplamının dosya başına 23.552 TL'den az olamayacağını söyler; aradaki farkı Hazine öder. Bu tutar bir formülle değil, her seferinde bir kanunla değişir.</p>
+        <p><strong>Ocak'ta ne olur?</strong> Taban kanunla yükseltilmezse, zamlı toplam aylığı 23.552 TL'yi geçmeyen dosya yine 23.552 TL alır. Taban zam oranında yükseltilirse tabandakiler de aynı oranda artış alır. 13 Ekim 2026 itibarıyla TBMM'ye sunulmuş, tabanı değiştiren bir teklif görünmüyor.</p>
+      </div>
+
+      <h2 id="mekanizma">Zam neden tabandakine yansımıyor?</h2>
+      <p>Tabandaki bir emeklinin ödemesi iki parçadır: kendi aylığı (ek ödeme dahil) ve 23.552 TL'ye tamamlayan Hazine farkı. Ocak zammı yalnız ilk parçayı büyütür; ikinci parça aynı oranda küçülür, toplam değişmez. Kendi aylığı zamla 23.552 TL'yi geçtiği andan itibaren zam ödemeye yansımaya başlar.</p>
+      <p>Bu yüzden zammın yansımadığı sınır toplam aylıktır: 23.552 ÷ (1 + zam). Ocak zammının üç senaryosu için:</p>
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption>Ocak 2027 zammı ve taban sabit kalırsa zammın hiç yansımadığı toplam aylık sınırı</caption>
+          <thead><tr><th scope="col">Senaryo (Ekim–Aralık)</th><th scope="col">Ocak zammı</th><th scope="col">Bu tutarın altında artış yok</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Her ay %1</th><td>%8,76</td><td>21.655 TL</td></tr>
+            <tr><th scope="row">2025'in aynı ayları</th><td>%10,17</td><td>21.379 TL</td></tr>
+            <tr><th scope="row">Her ay %2</th><td>%12,02</td><td>21.025 TL</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Senaryolar tahmin değil. Temmuz, Ağustos ve Eylül açıklandı ve birikim %5,56'da kesinleşti; kalan üç ay için yalnız varsayım yapılabilir. Ocak zammı, TÜİK Aralık 2026 enflasyonunu Ocak'ın ilk günlerinde açıkladığında kesinleşir.</p>
+
+      <h2 id="ornekler">Aylığınıza göre Ocak'ta ne olur?</h2>
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption>Zam %10,17 senaryosunda Ocak 2027 ödemesi, TL (ek ödeme dahil toplam aylığa göre)</caption>
+          <thead><tr><th scope="col">Aralık'ta toplam aylık</th><th scope="col">Aralık'ta ödenen</th><th scope="col">Ocak, taban sabit</th><th scope="col">Artış</th><th scope="col">Ocak, taban %10,17 artarsa</th><th scope="col">Artış</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">15.000</th><td>23.552</td><td>23.552</td><td>0</td><td>25.946</td><td>+2.394</td></tr>
+            <tr><th scope="row">20.000</th><td>23.552</td><td>23.552</td><td>0</td><td>25.946</td><td>+2.394</td></tr>
+            <tr><th scope="row">21.500</th><td>23.552</td><td>23.686</td><td>+134</td><td>25.946</td><td>+2.394</td></tr>
+            <tr><th scope="row">23.552</th><td>23.552</td><td>25.946</td><td>+2.394</td><td>25.946</td><td>+2.394</td></tr>
+            <tr><th scope="row">25.000</th><td>25.000</td><td>27.541</td><td>+2.541</td><td>27.541</td><td>+2.541</td></tr>
+            <tr><th scope="row">30.000</th><td>30.000</td><td>33.050</td><td>+3.050</td><td>33.050</td><td>+3.050</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Toplam aylığı 23.552 TL ve üstünde olanın Ocak'ı tabanın kararından etkilenmez. 21.379 ile 23.552 TL arasındakiler zammın bir kısmını alır. Altındakiler için Ocak'taki tek değişiklik, kanun çıkarsa tabanın kendisi.</p>
+      <p>Kendi aylığınızın hangi aralıkta olduğunu <a href="../../emekli-zammi-hesaplama/">emekli zammı aracında</a> taban tamamlamasından önceki tutarla hesaplayabilirsiniz; araç tabanı bilerek hesaba katmaz.</p>
+
+      <h2 id="gecmis">Taban geçmişte zamla birlikte arttı mı?</h2>
+      <p>En düşük aylık 2019'da 1.000 TL olarak kondu. O günden beri 11 kez değişti, her seferinde ayrı bir kanunla. 55. maddenin işlediği 15 zam döneminde taban 9 kez yükseldi, 6 kez yerinde kaldı:</p>
+      <div class="table-scroll">
+        <table class="data-table">
+          <caption>Zam dönemi, 55. madde oranı ve en düşük aylık (5510 ek m.19), TL</caption>
+          <thead><tr><th scope="col">Zam dönemi</th><th scope="col">55. madde oranı</th><th scope="col">Taban</th><th scope="col">Tabanın artışı</th><th scope="col">Kanun</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Temmuz 2019</th><td>%5,01</td><td>1.000</td><td>artmadı</td><td>—</td></tr>
+            <tr><th scope="row">Ocak 2020</th><td>%6,49</td><td>1.000</td><td>artmadı</td><td>—</td></tr>
+            <tr><th scope="row">Temmuz 2020</th><td>%5,74</td><td>1.500</td><td>artmadı</td><td>—</td></tr>
+            <tr><th scope="row">Ocak 2021</th><td>%8,35</td><td>1.500</td><td>artmadı</td><td>—</td></tr>
+            <tr><th scope="row">Temmuz 2021</th><td>%8,46</td><td>1.500</td><td>artmadı</td><td>—</td></tr>
+            <tr><th scope="row">Ocak 2022</th><td>%25,46</td><td>1.500 → 2.500</td><td>%66,67</td><td>7351</td></tr>
+            <tr><th scope="row">Temmuz 2022</th><td>%42,34</td><td>2.500 → 3.500</td><td>%40,00</td><td>7417</td></tr>
+            <tr><th scope="row">Ocak 2023</th><td>%15,39</td><td>3.500 → 5.500</td><td>%57,14</td><td>7431</td></tr>
+            <tr><th scope="row">Temmuz 2023</th><td>%19,78</td><td>7.500</td><td>artmadı</td><td>—</td></tr>
+            <tr><th scope="row">Ocak 2024</th><td>%37,57</td><td>7.500 → 10.000</td><td>%33,33</td><td>7495</td></tr>
+            <tr><th scope="row">Temmuz 2024</th><td>%24,73</td><td>10.000 → 12.500</td><td>%25,00</td><td>7524</td></tr>
+            <tr><th scope="row">Ocak 2025</th><td>%15,75</td><td>12.500 → 14.469</td><td>%15,75</td><td>7539</td></tr>
+            <tr><th scope="row">Temmuz 2025</th><td>%16,67</td><td>14.469 → 16.881</td><td>%16,67</td><td>7553</td></tr>
+            <tr><th scope="row">Ocak 2026</th><td>%12,20</td><td>16.881 → 20.000</td><td>%18,48</td><td>7573</td></tr>
+            <tr><th scope="row">Temmuz 2026</th><td>%17,75</td><td>20.000 → 23.552</td><td>%17,76</td><td>7590</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>İki karar bir zam dönemine denk gelmedi: Nisan 2020'de 1.500 TL'ye (7226) ve Nisan 2023'te 7.500 TL'ye (7447). Yani Temmuz 2023'te taban artmadı ama üç ay önce %36,4 artmıştı. 2025'ten bu yana taban her dönem en az zam oranı kadar yükseldi; Ocak 2025, Temmuz 2025 ve Temmuz 2026'da tam zam oranında.</p>
+      <p>Ocak kararlarının takvimi de belli: 7351, 7431, 7495, 7539 ve 7573 sayılı kanunlar Ocak'ın 12'si ile 31'i arasında kabul edildi ve Ocak ödeme döneminden geçerli sayıldı.</p>
+
+      <h2 id="2019">2019'da tabanda olan biri bugün nerede?</h2>
+      <p>2019'da kendi aylığı tam 1.000 TL olan, yani tabanın tam sınırında duran bir emekliyi düşünelim. Taban hiç artmasaydı ve aylığı yalnız 55. maddeyle büyüseydi, Temmuz 2026'da kendi aylığı <strong>10.501 TL</strong> olurdu: 15 dönemin zamlarının birikimi 10,50 kat. Aynı sürede taban 23,55 katına çıktı. Bu emeklinin kendi aylığı bugün tabanın yalnız <strong>%44,6</strong>'sı.</p>
+      <p>Bunun anlamı: tabandaki birine bugüne kadar zammı yansıtan, kendi aylığı değil tabanın kararıydı. Taban bundan sonra dondurulsa, bu kişinin kendi aylığı her dönem %10,17 artışla tabanı ancak 9 dönem sonra, yani dört buçuk yılda geçer; o zamana kadar ödemesi değişmez.</p>
+
+      <h2 id="kesin-olmayan">Ne bilinmiyor?</h2>
+      <p>Ocak 2027'de tabanın yükselip yükselmeyeceği. Taban bir formüle bağlı değil, her artışı ayrı bir kanun maddesi. <a href="../ocak-2027-meclis-mi-belirleyecek/">Ocak 2027'yi belirleyen kalemler</a> yazısında da anlatıldığı gibi, 13 Ekim 2026 itibarıyla sunulmuş bir teklif görünmüyor. Geçmiş, tabanın son altı dönemdir yükseltildiğini gösteriyor; bir sonrakinin de yükseltileceğini göstermiyor. Tabandaki emekli sayısını da SGK'nın yayımladığı tablolarda bulamadık; bu yüzden yazı kişi sayısı vermiyor.</p>
+
+      <h2 id="varsayim">Varsayımlar ve sınırlar</h2>
+      <ul>
+        <li>55. madde oranı TÜİK'in aylık TÜFE değişimlerinin bileşiği; TCMB'nin yayımladığı seriden Eylül 2026'ya kadar. Resmî ilan endeksten yapılır, 0,01 puanlık fark olabilir (Temmuz 2026'da taban, ilk altı ayın enflasyonu olarak ilan edilen %17,76 oranında artırıldı).</li>
+        <li>Bazı dönemlerde 55. maddenin üstüne kanunla ek artış verildi; tablo yalnız 55. maddenin oranını gösterir. 4/c (memur) emeklileri bu kurala değil memur maaş artışına bağlıdır.</li>
+        <li>"Toplam aylık", ek ödeme dahil ve taban tamamlaması hariç tutardır; ek ödeme aylığın yüzdesi olduğu için aylıkla aynı oranda artar. Ölüm aylığında taban hak sahiplerinin hisse oranına göre uygulanır; örnekler tek hak sahipli malullük ve yaşlılık aylığıdır.</li>
+        <li>2019 örneği, kendi aylığı 1.000 TL olan ve her dönem yalnız 55. madde oranıyla artan varsayımsal bir dosyadır.</li>
+      </ul>
+
+      <h2 id="kaynaklar">Kaynaklar</h2>
+      <ul>
+        <li><a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5510.pdf" rel="noopener">5510 sayılı Kanun</a>, m.55 ve ek m.19; tutar değişikliklerinin dipnotları ve yürürlük tablosu (Mevzuat Bilgi Sistemi, 13 Ekim 2026'da okundu)</li>
+        <li><a href="https://www.resmigazete.gov.tr/eskiler/2026/07/20260731-2.htm" rel="noopener">7590 sayılı Kanun</a>, m.16: tabanın 23.552 TL'ye çıkması (Resmî Gazete, 31 Temmuz 2026)</li>
+        <li><a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5454.pdf" rel="noopener">5454 sayılı Kanun</a>, m.1: ek ödeme</li>
+        <li>TÜFE aylık değişimleri: <a href="https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Enflasyon+Verileri/Tuketici+Fiyatlari" rel="noopener">TCMB, Tüketici Fiyatları</a> (TÜİK verisi)</li>
+      </ul>
+      <p>Rakamlar yazının modülünden (<code>taban.js</code>) gelir; modül zam oranlarını sitenin emekli zammı motorundan Eylül 2026'ya kesilmiş TÜFE serisiyle hesaplar. Grafik bu modülden çizilir ve otomatik testle denetlenir.</p>
+
+      <h2>Sık sorulan sorular</h2>
+      <details><summary>En düşük emekli aylığı Ocak 2027'de kendiliğinden artar mı?</summary><p>Hayır. En düşük aylık 5510 sayılı Kanunun ek 19 uncu maddesinde yazılı sabit bir tutar, bugün 23.552 TL. Artması için yeni bir kanun hükmü gerekir; 2019'dan beri her artışı ayrı bir kanunla yapıldı.</p></details>
+      <details><summary>Taban artmazsa Ocak zammı bana yansır mı?</summary><p>Ek ödeme dahil kendi aylığınız zamla 23.552 TL'yi geçerse geçen kısım kadar yansır. Zam %10,17 olursa toplam aylığı 21.379 TL'nin altında olana hiç yansımaz.</p></details>
+      <details><summary>Ocak 2027 emekli zammı ne kadar olacak?</summary><p>Temmuz–Eylül 2026 TÜFE'si açıklandı ve birikim %5,56. Ekim, Kasım ve Aralık'a göre değişecek; bu üç ay 2025'in aynı ayları gibi giderse %10,17, her biri %1 olursa %8,76, her biri %2 olursa %12,02. Kesin oran, Aralık enflasyonu Ocak 2027'nin ilk günlerinde açıklanınca belli olur.</p></details>
+      <details><summary>Geçmişte taban kaç kez artmadı?</summary><p>2019'dan bu yana 15 zam döneminin 6'sında: Temmuz 2019, Ocak 2020, Temmuz 2020, Ocak 2021, Temmuz 2021 ve Temmuz 2023. Bunlardan ikisinden önce taban Nisan'da artırılmıştı (Nisan 2020 ve Nisan 2023).</p></details>
+    </div></section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../../koray-oner/">Koray Öner: çalışma dizini</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+<script src="../tablo.js?v=de093bf6" defer></script>
+<script src="../../script.js?v=9465d26e" defer></script>
+</body>
+</html>
