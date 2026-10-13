@@ -97,10 +97,12 @@ EK_BOLUMLER = {
         "ad": "Makaleler",
         "svg": '<path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/>',
     },
-    # Bordro: metodoloji merkezi. Açık çekirdeği temsilen katmanlar.
+    # Bordro: vergi dilimlerinin hesaplandığı yer. Sembol, sitenin "Dilim"
+    # işaretinin sekme hali (bordro/dilim.svg): tarifenin basamakları.
+    # 13 Ekim 2026'ya kadar açık çekirdeği temsilen katmanlardı.
     "bordro": {
         "ad": "Bordro Motoru metodolojisi",
-        "svg": '<path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M2 14l10 5 10-5"/>',
+        "svg": '<path d="M2 20h5v-5h5v-5h5V5h5"/>',
     },
 
     # KeyMint alt araçları. Bunlar card-icons.json'da yok çünkü ana araç
@@ -206,11 +208,14 @@ def uret():
         if not yerel_favicon_kullaniyor(slug):
             continue
         cikti[slug] = ciz(baslik(slug) or tanim["ad"], tanim["svg"])
-    # Kök marka: </> işareti. Aynı kabı kullanır ki hakkımda, iletişim ve
+    # Kök marka: "Tavan" işareti (logo.svg'nin sekme hali): biriken bir
+    # tutar kanuni sınıra dayanır. 13 Ekim 2026'ya kadar </> kod simgesiydi;
+    # yapay zekâ görsellerinde çok yaygın olduğu ve siteye ait bir şey
+    # söylemediği için değişti. Aynı kabı kullanır ki hakkımda, iletişim ve
     # yasal sayfalar da aynı aileden görünsün.
     cikti[""] = ciz("Koray Öner",
-                    '<path d="M8 6 3 12l5 6"/><path d="M16 6l5 6-5 6"/>'
-                    '<path d="M14.5 4 9.5 20"/>')
+                    '<path d="M2 3.5h20"/>'
+                    '<path d="M3 20c4.5-.8 6.5-4.4 8.5-8 1.6-2.8 3.8-3.4 10.5-3.4"/>')
     return cikti
 
 

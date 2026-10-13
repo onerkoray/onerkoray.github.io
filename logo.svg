@@ -1,17 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Koray Öner">
+  <!-- Tavan: biriken bir tutar (kümülatif matrah) kanuni sınıra, SGK prim
+       tavanına dayanır. Eğri 10 saniyede tavana uzanır ve geri çekilir;
+       en az üçte ikisi hep çizilidir, işaret hiçbir karede boşalmaz.
+       "Hareketi azalt" açıkken ve hareketsiz çizimde eğri tamdır. -->
   <style>
-    @keyframes koLeft { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-.8px); } }
-    @keyframes koRight { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(.8px); } }
-    @keyframes koSlash { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-2deg); } }
-    .ko-left { animation: koLeft 7.2s ease-in-out infinite; }
-    .ko-right { animation: koRight 7.2s ease-in-out infinite; }
-    .ko-slash { animation: koSlash 7.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-    @media (prefers-reduced-motion: reduce) { .ko-left, .ko-right, .ko-slash { animation: none; } }
+    @keyframes ko-tavan { 0%, 10% { stroke-dashoffset: 20; } 90%, 100% { stroke-dashoffset: 0; } }
+    .ko-egri { animation: ko-tavan 10s cubic-bezier(.45, 0, .55, 1) infinite alternate; }
+    @media (prefers-reduced-motion: reduce) { .ko-egri { animation: none; } }
   </style>
   <rect x="1" y="1" width="62" height="62" rx="4" fill="#f7faf8" stroke="#d9e3de" stroke-width="1.5"/>
-  <g fill="none" stroke="#0c7561" stroke-width="4" stroke-linecap="square" stroke-linejoin="round">
-    <path class="ko-left" d="M23 17.5 10 32 23 46.5"/>
-    <path class="ko-right" d="M41 17.5 54 32 41 46.5"/>
-  </g>
-  <path class="ko-slash" d="M37.5 15 26.5 49" fill="none" stroke="#20332d" stroke-width="3.6" stroke-linecap="square"/>
+  <path d="M10 17H54" stroke="#0c7561" stroke-width="4"/>
+  <path class="ko-egri" d="M12 50C23 48 28 39 33 30C37 24 42 23.5 54 23.5" fill="none" stroke="#20332d" stroke-width="5.5" stroke-linecap="round" pathLength="58" stroke-dasharray="58" stroke-dashoffset="0"/>
+  <circle cx="12" cy="50" r="4.6" fill="#20332d"/>
 </svg>
