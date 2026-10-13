@@ -2250,6 +2250,30 @@ function sgEmeklilikYasi() {
   return s + "</svg>";
 }
 
+/* SGK dengesi, katkılı ve katkısız (yazının SGK Tablo 28 anlık görüntüsünden). */
+var SGKK = require(path.join(KOK, "makaleler", "sgk-devlet-katkisi-kalkti", "katki.js"));
+function sgkKatkisizDenge() {
+  var S = SGKK.seri(2009, 2025), son = S[S.length - 1];
+  if (Math.round(son.denge * 1000) !== 6 || Math.round(son.katkisiz * 1000) !== -153 || SGKK.fazlaYillari().join() !== "2025") throw new Error("SGK katkı kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 520, UST = 92, ALT = 300, X0 = 2009, X1 = 2025, Y0 = -40, Y1 = 5;
+  function x(t) { return SOL + (t - X0) / (X1 - X0) * (SAG - SOL); }
+  function y(v) { return ALT - (v - Y0) / (Y1 - Y0) * (ALT - UST); }
+  function cizgi(alan) { return S.map(function (r, i) { return (i ? "L" : "M") + x(r.yil).toFixed(1) + " " + y(r[alan] * 100).toFixed(1); }).join(" "); }
+  function yz(o) { return (o < 0 ? "−" : "+") + "%" + Math.abs(o * 100).toFixed(1).replace(".", ","); }
+  var s = baslikSatirlari("Fazla, katkının içinde", "SGK gelir-gider dengesi, giderin yüzdesi · 2009–2025",
+    "SGK dengesi giderin yüzdesi olarak: 2009'da %-26,9, 2025'te %+0,6. Devlet katkısı gelir sayılmasa 2009'da %-37,1, 2025'te %-15,3.");
+  s += anahtarKutu(24, R.s1, "SGK'nın açıkladığı denge") + anahtarKutu(250, R.s2, "devlet katkısı sayılmasa");
+  s += izgaraY(SOL, SAG, y, [-40, -30, -20, -10, 0], function (v) { return (v < 0 ? "−" : "") + "%" + Math.abs(v); });
+  s += '<path d="M' + SOL + " " + y(0).toFixed(1) + " H" + SAG + '" stroke="' + R.ikincil + '" stroke-width="1.2"/>';
+  s += '<path fill="none" stroke="' + R.s1 + '" stroke-width="3" stroke-linejoin="round" d="' + cizgi("denge") + '"/>';
+  s += '<path fill="none" stroke="' + R.s2 + '" stroke-width="3" stroke-linejoin="round" d="' + cizgi("katkisiz") + '"/>';
+  s += '<text x="' + (SAG + 8) + '" y="' + (y(son.denge * 100) - 2).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">' + yz(son.denge) + "</text>";
+  s += '<text x="' + (SAG + 8) + '" y="' + (y(son.katkisiz * 100) + 5).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">' + yz(son.katkisiz) + "</text>";
+  [2009, 2013, 2017, 2021, 2025].forEach(function (t) { s += altYazi(x(t), ALT + 20, String(t)); });
+  s += altYazi((SOL + SAG) / 2, ALT + 40, "iki çizgi arasındaki fark: devlet katkısı");
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
   "vergi-borcunu-geciktirmek-karli-mi": {
     kicker: "Vergi · Borç",
@@ -2292,6 +2316,12 @@ var KAPAKLAR = {
     baslik: "Türkiye'de sosyal güvenliğin dönüşümü",
     alt: "Bir gün arayla sigortalı olan iki kişi: 18 yıl fark",
     cizim: sgEmeklilikYasi
+  },
+  "sgk-devlet-katkisi-kalkti": {
+    kicker: "Sosyal güvenlik · SGK",
+    baslik: "SGK'ya devlet katkısı kalktı",
+    alt: "2025'in fazlası katkının içindeydi: katkısız 852,9 milyar TL açık",
+    cizim: sgkKatkisizDenge
   },
   "iskur-19-bin-tl-gercekte-ne": {
     kicker: "Sosyal güvenlik · İŞKUR",
