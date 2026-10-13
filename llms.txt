@@ -133,7 +133,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 ## Yazılar: Emeklilik & Sosyal Güvenlik
 
-- [SGK'ya devlet katkısı kalktı: ne değişti, ne değişmedi?](https://korayoner.dev/makaleler/sgk-devlet-katkisi-kalkti/): Hazine 1 Ağustos 2026'dan beri SGK'ya primlerin dörtte biri oranında katkı ödemiyor. Prim, emekli aylığı ve teşvikler aynı; değişen bütçe satırı. 2025 fazlası katkısız 852,9 milyar TL açık.
+- [SGK'ya devlet katkısı kalktı: ne değişti, ne değişmedi?](https://korayoner.dev/makaleler/sgk-devlet-katkisi-kalkti/): Hazine 1 Ağustos 2026'dan beri SGK'ya primlerin dörtte biri kadar katkı ödemiyor. Prim, emekli aylığı ve teşvikler aynı; 2025 fazlası katkısız 852,9 milyar TL açık.
 - [Türkiye'de sosyal güvenliğin dönüşümü: aynı kariyer, üç kural](https://korayoner.dev/makaleler/turkiyede-sosyal-guvenligin-donusumu/): 1999 ve 2008 reformları ile 2023 düzenlemesi emekliliği nasıl değiştirdi? Aynı kariyer, üç kural: emeklilik yaşı, prim yılı ve aylık bağlama oranı, kanundan ölçüldü.
 - [İŞKUR'dan 19 bin TL: gerçekte ne ödeniyor?](https://korayoner.dev/makaleler/iskur-19-bin-tl-gercekte-ne/): Gençlere ayda 19 bin TL maaş değil: kamu kurumunda katılınan her gün için 1.375 TL. Kimler alır, ayda kaç gün, emekliliğe sayılır mı ve programlar nerede.
 - [BES devlet katkısı ne kadar değerli?](https://korayoner.dev/makaleler/bes-devlet-katkisi-ne-kadar-degerli/): Devlet katkısı 2026'da %30'dan %20'ye indi. Katkı akışla, fon gideri stokla orantılı olduğu için bir kesişim yılı var — indirim onu 25'ten 18'e çekti.
