@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Dilim: gelir vergisi tarifesinin basamakları">
+  <!-- Dilim: üç basamak bir gelir vergisi tarifesi, yeşil nokta bir maaşın
+       yıl içinde o tarifede ilerleyişi. Nokta 9 saniyede basamakları çıkar
+       ve iner; köşelerde yön değiştirir, sıçramaz. "Hareketi azalt"
+       açıkken ilk basamakta durur. -->
+  <style>
+    @keyframes ko-dilim {
+      0%, 8% { transform: translate(0, 0); }
+      22% { transform: translate(12px, 0); }
+      30% { transform: translate(12px, -10px); }
+      44% { transform: translate(24px, -10px); }
+      52% { transform: translate(24px, -20px); }
+      66%, 100% { transform: translate(36px, -20px); }
+    }
+    .ko-nokta { animation: ko-dilim 9s cubic-bezier(.45, 0, .55, 1) infinite alternate; }
+    @media (prefers-reduced-motion: reduce) { .ko-nokta { animation: none; } }
+  </style>
+  <rect x="1" y="1" width="62" height="62" rx="4" fill="#f7faf8" stroke="#d9e3de" stroke-width="1.5"/>
+  <path d="M10 48H22V38H34V28H46V18H54" fill="none" stroke="#20332d" stroke-width="5.5" stroke-linecap="square" stroke-linejoin="miter"/>
+  <circle class="ko-nokta" cx="15" cy="40" r="5.6" fill="#0c7561"/>
+</svg>

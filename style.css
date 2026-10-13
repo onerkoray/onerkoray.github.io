@@ -2244,3 +2244,5 @@ html.ara-acik { overflow: hidden; }
    hemen ardından geliyorsa onun devamıdır: ikinci bir şerit açılmaz. */
 .related + .ilgili-uretilen { padding-top: 0; border-top: 0; margin-top: 0; }
 .related:has(+ .ilgili-uretilen) { padding-bottom: 1.5rem; }
+/* Bölüm işareti (bordro/dilim.svg): sitenin "Dilim" işareti, kendi karosuyla. */
+.bolum-isareti { display: block; width: 56px; height: 56px; margin: .4rem 0 .9rem; }
