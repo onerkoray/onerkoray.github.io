@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
       <image:title>Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları</image:title>
@@ -31,7 +31,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/hakkimda/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/hakkimda-koray-oner.jpg</image:loc>
       <image:title>Koray Öner Kimdir? — Yazılım Geliştirici | Hakkımda</image:title>
@@ -71,7 +71,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/makaleler-koray-oner.png</image:loc>
       <image:title>Makaleler — Emeklilik, Bordro ve Vergi — Koray Öner</image:title>
