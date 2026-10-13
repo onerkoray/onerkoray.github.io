@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Araçlar ve Yazılar</title>
-  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 61 hesaplama aracı ve arkalarındaki mevzuatı anlatan 60 yazı.</subtitle>
+  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 61 hesaplama aracı ve arkalarındaki mevzuatı anlatan 61 yazı.</subtitle>
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-10-13T06:23:22+03:00</updated>
+  <updated>2026-10-13T10:15:07+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Ocak 2027 Zammı En Düşük Emekli Aylığına Yansır mı?</title>
+    <link href="https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/"/>
+    <id>https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/</id>
+    <published>2026-10-13T10:15:07+03:00</published>
+    <updated>2026-10-13T10:15:07+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
+    <summary>Taban 23.552 TL kanunla değişmezse Ocak zammı tabandakine yansımaz: zam %10,17 olursa 21.379 TL altındaki aylığa artış yok. 2019'dan beri 15 dönemin hesabı.</summary>
+  </entry>
 
   <entry>
     <title>SGK'ya Devlet Katkısı Kalktı: Ne Değişti?</title>

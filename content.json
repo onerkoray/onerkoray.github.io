@@ -16,11 +16,11 @@
  ],
  "sayaclar": {
   "arac": 61,
-  "makale": 60,
+  "makale": 61,
   "metodoloji": 10,
   "grafik": 2,
   "sayfa": 10,
-  "indekslenebilir": 144
+  "indekslenebilir": 145
  },
  "sayfalar": [
   {
@@ -1169,7 +1169,7 @@
    "type": "sayfa",
    "parent": null,
    "title": "Koray Öner — Araçlar, Yazılar ve Yayınlar",
-   "description": "Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 60 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
+   "description": "Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 61 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
    "category": null,
    "published": "2026-09-29T17:59:13+03:00",
    "updated": "2026-10-13",
@@ -2026,6 +2026,22 @@
     "https://korayoner.dev/makaleler/uzun-vadeli-yatirim-nasil-yapilir/",
     "https://korayoner.dev/makaleler/"
    ],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/",
+   "dosya": "makaleler/en-dusuk-emekli-ayligi-ocak-2027/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "Ocak 2027 Zammı En Düşük Emekli Aylığına Yansır mı?",
+   "description": "Taban 23.552 TL kanunla değişmezse Ocak zammı tabandakine yansımaz: zam %10,17 olursa 21.379 TL altındaki aylığa artış yok. 2019'dan beri 15 dönemin hesabı.",
+   "category": "emeklilik-sosyal-guvenlik",
+   "published": "2026-10-13T10:15:07+03:00",
+   "updated": "2026-10-13",
+   "updatedAt": "2026-10-13T10:15:07+03:00",
+   "image": "https://korayoner.dev/images/makale/en-dusuk-emekli-ayligi-ocak-2027.png",
+   "imageTitle": "Ocak 2027 Zammı En Düşük Emekli Aylığına Yansır mı? — Koray Öner",
+   "related": [],
    "noindex": false
   },
   {
