@@ -205,6 +205,9 @@ jobs:
       - name: Emeklilik makalesi sayı doğrulaması
         run: node tools/makale-emeklilik-test.js
 
+      - name: İşsizlik sigortası fonu makalesi sayı doğrulaması
+        run: node makaleler/issizlik-sigortasi-primi-nereye-gidiyor/sayi-testi.js
+
       # MTV'de UC TARIFE var ve ucu de farkli davraniyor: (I) deger
       # kademeli (2018 sonrasi tescil), (I/A) kademesiz (2018 oncesi) ve
       # motosiklet. Arac uzun sure 2018 oncesi araclari (I)'in ilk

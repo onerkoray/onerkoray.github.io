@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+"use strict";
+var assert = require("node:assert/strict");
+var S = require("../../tools/makale-sayi.js");
+var M = require("./prim.js");
+var B = S.bordro();
+var t = S.yazi(__dirname);
+var a = M.model(60000, 36);
+
+assert.equal(a.primGunu, 1080);
+assert.equal(a.isciAy + a.isverenAy + a.devletAy, 2100);
+assert.equal(a.devletAy, a.isciAy / 2);
+assert.equal(B.parametre(2025).issizlik.devletPayi, 0.01);
+assert.equal(M.oranlar.devlet, 0.005);
+assert.equal(a.fonPrimToplam, 75600);
+assert.equal(a.fonPrimToplam, a.isciToplam + a.isverenToplam + a.devletToplam);
+assert.equal(a.netOdenek, 23817.84);
+assert.equal(a.enCokNet, 238178.4);
+assert.equal(M.model(60000, 19).hakAy, 0);
+assert.equal(M.model(60000, 20).hakAy, 6);
+assert.equal(M.model(60000, 29).hakAy, 6);
+assert.equal(M.model(60000, 30).hakAy, 8);
+assert.equal(M.model(60000, 35).hakAy, 8);
+assert.equal(M.model(60000, 36).hakAy, 10);
+assert.equal(M.model(60000, 36).hakGun, 300);
+assert.equal(M.model(M.sgkTavan * 2, 36).matrah, M.sgkTavan);
+assert.throws(function () { M.model(10000, 36); }, RangeError);
+
+t.gecsin("üç yıllık işçi payı", S.tl(a.isciToplam) + " TL");
+t.gecsin("üç yıllık işveren payı", S.tl(a.isverenToplam) + " TL");
+t.gecsin("üç yıllık devlet payı", S.tl(a.devletToplam) + " TL");
+t.gecsin("üç yıllık fon primi", S.tl(a.fonPrimToplam) + " TL");
+t.gecsin("aylık net ödenek", S.tl(a.netOdenek) + " TL");
+t.gecsin("on aylık azami ödenek", S.tl(a.enCokNet) + " TL");
+t.gecsin("brüt ödenek", S.tl(a.brutOdenek) + " TL");
+t.gecsin("asgari ücret", S.tam(M.asgariBrut) + " TL");
+t.gecsin("tavan", S.tam(M.sgkTavan) + " TL");
+t.gecsin("20 ay eşiği", "20 ay / 600 gün → 6 ay");
+t.gecsin("30 ay eşiği", "30 ay / 900 gün → 8 ay");
+t.gecsin("36 ay eşiği", "36 ay / 1.080 gün → 10 ay");
+t.bitir();

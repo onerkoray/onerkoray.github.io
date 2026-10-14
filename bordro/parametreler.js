@@ -99,6 +99,7 @@
   };
 
   var ISSIZLIK_VARSAYILAN = {
+    devletPayi: 0.01,   // 4447 m.49; 2026/Mayıs'tan itibaren 11258 sayılı Kararla %0,5
     oran: 0.40,           // son 4 ayın prime esas kazanç ortalamasının %40'ı
     tavanOrani: 0.80,     // ödenek, brüt asgari ücretin %80'ini aşamaz
     basvuruGunu: 30,      // fesihten itibaren İŞKUR'a başvuru süresi
@@ -148,7 +149,7 @@
       donemler: [
         { ay: 1, asgariBrut: 33030.00, asgariNet: 28075.50, sgkTavan: 297270.00 }
       ],
-      issizlik: ISSIZLIK_VARSAYILAN,
+      issizlik: Object.assign({}, ISSIZLIK_VARSAYILAN, { devletPayi: 0.005 }),
       fazlaMesai: FAZLA_MESAI_VARSAYILAN,
       kidemTavanlari: [
         { ay: 1, tutar: 64948.77 },

@@ -2303,7 +2303,58 @@ function tabanOcak2027() {
   return s + "</svg>";
 }
 
+/* İşsizlik sigortası fonu: aynı 2026 kurallarıyla 36 aylık sabit ücret
+   senaryosunun primi ve yalnız koşullar sağlanırsa alınabilecek üst ödeme.
+   Seri kişisel hesap bakiyesi değildir; grafikte bu sınır açık yazılıdır. */
+function issizlikPrimHavuzu() {
+  var M = require(path.join(KOK, "makaleler", "issizlik-sigortasi-primi-nereye-gidiyor", "prim.js"));
+  var a = M.model(60000, 36), W = 600, H = 360, x = 28, tam = 500;
+  var olcek = function (v) { return v / a.enCokNet * tam; };
+  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Sabit 2026 kurallarıyla 36 ayda toplam fon primi ve koşullu azami işsizlik ödeneği">';
+  s += '<text x="28" y="34" font-size="20" font-weight="700" fill="' + R.murekkep + '">Prim, kişisel birikim hesabı değil</text>';
+  s += '<text x="28" y="57" font-size="13" fill="' + R.ikincil + '">60.000 TL brüt · 36 ay · sabit 2026 kuralları</text>';
+  s += '<text x="28" y="99" font-size="14" fill="' + R.murekkep + '">Fona giren primler</text>';
+  var cx = x;
+  [[a.isciToplam, R.s1], [a.isverenToplam, R.s2], [a.devletToplam, R.s3]].forEach(function (p) {
+    var bw = olcek(p[0]); s += '<rect x="' + cx.toFixed(1) + '" y="111" width="' + bw.toFixed(1) + '" height="48" fill="' + p[1] + '"/>'; cx += bw;
+  });
+  s += '<text x="' + (cx + 10).toFixed(1) + '" y="142" font-size="16" font-weight="700" fill="' + R.murekkep + '">' + nf0.format(a.fonPrimToplam) + ' TL</text>';
+  s += '<text x="28" y="205" font-size="14" fill="' + R.murekkep + '">Hak kazanılırsa en çok 10 aylık net ödenek</text>';
+  s += '<rect x="28" y="217" width="' + tam + '" height="48" fill="' + R.marka + '"/>';
+  s += '<text x="' + (x + tam - 12) + '" y="248" font-size="17" font-weight="700" text-anchor="end" fill="white">' + nf0.format(a.enCokNet) + ' TL</text>';
+  var yuzde = function (n) { return '%' + (n * 100).toLocaleString('tr-TR', { maximumFractionDigits: 1 }); };
+  var legend = [[R.s1, 'İşçi ' + yuzde(M.oranlar.isci), nf0.format(a.isciToplam)],
+    [R.s2, 'İşveren ' + yuzde(M.oranlar.isveren), nf0.format(a.isverenToplam)],
+    [R.s3, 'Devlet ' + yuzde(M.oranlar.devlet), nf0.format(a.devletToplam)]];
+  legend.forEach(function (d, i) { var xx = 28 + i * 187; s += '<rect x="' + xx + '" y="295" width="10" height="10" fill="' + d[0] + '"/><text x="' + (xx + 16) + '" y="305" font-size="12" fill="' + R.murekkep + '">' + d[1] + ' · ' + d[2] + ' TL</text>'; });
+  s += '<text x="28" y="340" font-size="12" fill="' + R.ikincil + '">Ödenek otomatik değil; prim toplamından mahsup edilmez.</text>';
+  return s + '</svg>';
+}
+
+function issizlikHakEsikleri() {
+  var M = require(path.join(KOK, "makaleler", "issizlik-sigortasi-primi-nereye-gidiyor", "prim.js"));
+  var aylar = [19, 20, 29, 30, 35, 36], W = 600, H = 280;
+  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Son üç yılda prim günü eşiğine göre ödenek süresi: 600 günde 6, 900 günde 8, 1080 günde 10 ay">';
+  s += '<text x="25" y="32" font-size="18" font-weight="700" fill="' + R.murekkep + '">Hak süresi eşiklerde artar</text>';
+  s += '<text x="25" y="53" font-size="12" fill="' + R.ikincil + '">Diğer hak koşulları sağlanmış varsayımıyla · son 3 yıl</text>';
+  aylar.forEach(function (ay, i) {
+    var x = 25 + i * 92, hak = M.model(60000, ay).hakAy;
+    s += '<rect x="' + x + '" y="91" width="78" height="106" fill="' + (hak ? R.marka : R.izgara) + '" opacity="' + (hak ? '1' : '.65') + '"/>';
+    s += '<text x="' + (x + 39) + '" y="136" text-anchor="middle" font-size="24" font-weight="700" fill="' + (hak ? '#fff' : R.murekkep) + '">' + hak + '</text>';
+    s += '<text x="' + (x + 39) + '" y="157" text-anchor="middle" font-size="12" fill="' + (hak ? '#fff' : R.ikincil) + '">ay</text>';
+    s += '<text x="' + (x + 39) + '" y="220" text-anchor="middle" font-size="13" fill="' + R.murekkep + '">' + ay + ' ay</text>';
+    s += '<text x="' + (x + 39) + '" y="239" text-anchor="middle" font-size="11" fill="' + R.ikincil + '">' + nf0.format(ay * 30) + ' gün</text>';
+  });
+  return s + '</svg>';
+}
+
 var KAPAKLAR = {
+  "issizlik-sigortasi-primi-nereye-gidiyor": {
+    kicker: "Sosyal Güvenlik",
+    baslik: "İşsizlik primi nereye gidiyor?",
+    alt: "Prim kişisel bakiye değil, ortak risk havuzu",
+    cizim: issizlikPrimHavuzu
+  },
   "vergi-borcunu-geciktirmek-karli-mi": {
     kicker: "Vergi · Borç",
     baslik: "Vergi borcunu geciktirmek kârlı mı?",
@@ -3322,12 +3373,27 @@ function kartSvgYaz(slug) {
   var hedef = path.join(CIKTI, slug + "-kart.svg");
   fs.writeFileSync(hedef, kartSvg(slug), "utf8");
   console.log("   " + path.basename(hedef).padEnd(42) + fs.statSync(hedef).size + " bayt");
+  if (slug === "issizlik-sigortasi-primi-nereye-gidiyor") {
+    hedef = path.join(CIKTI, slug + "-esik.svg");
+    fs.writeFileSync(hedef, issizlikEsikSvg(), "utf8");
+    console.log("   " + path.basename(hedef).padEnd(42) + fs.statSync(hedef).size + " bayt");
+  }
   if (afisGovdede(slug)) {
     hedef = path.join(CIKTI, slug + "-afis.svg");
     fs.writeFileSync(hedef, afisSvg(slug), "utf8");
     console.log("   " + path.basename(hedef).padEnd(42) + fs.statSync(hedef).size + " bayt");
   }
   return true;
+}
+
+function issizlikEsikSvg() {
+  var ic = issizlikHakEsikleri();
+  var govde = ic.replace(/^<svg[^>]*>/, "").replace(/<\/svg>$/, "");
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400" role="img" aria-label="600, 900 ve 1080 prim gününde ödenek süresi sırasıyla 6, 8 ve 10 aya çıkar">' +
+    '<style>text{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif}</style>' +
+    '<rect width="800" height="400" fill="' + R.zemin + '"/>' +
+    '<rect width="8" height="400" fill="' + R.marka + '"/>' +
+    '<svg x="34" y="30" width="732" height="340" viewBox="0 0 600 280">' + govde + '</svg></svg>\n';
 }
 
 function chromeBul() {
@@ -3389,6 +3455,7 @@ function main() {
       if (!ayni(path.join(CIKTI, s + "-kart.svg"), kartSvg(s))) bozuk.push(s + "-kart.svg");
       if (afisGovdede(s) && !ayni(path.join(CIKTI, s + "-afis.svg"), afisSvg(s))) bozuk.push(s + "-afis.svg");
     });
+    if (!ayni(path.join(CIKTI, "issizlik-sigortasi-primi-nereye-gidiyor-esik.svg"), issizlikEsikSvg())) bozuk.push("issizlik-sigortasi-primi-nereye-gidiyor-esik.svg");
     fs.readdirSync(CIKTI).forEach(function (f) {
       var m = /^(.+)-afis\.svg$/.exec(f);
       if (m && !(KAPAKLAR[m[1]] && afisGovdede(m[1]))) bozuk.push(f + " (hiçbir gövde istemiyor)");
