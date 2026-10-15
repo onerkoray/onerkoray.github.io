@@ -5,16 +5,16 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-10-14T06:31:50+03:00</updated>
+  <updated>2026-10-15T14:49:51+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
 
   <entry>
-    <title>İşsizlik Sigortası Primi Nereye Gidiyor? Fon, Hak ve Ödenek</title>
+    <title>İşsizlik Primi Nereye Gidiyor? Fon ve Ödenek</title>
     <link href="https://korayoner.dev/makaleler/issizlik-sigortasi-primi-nereye-gidiyor/"/>
     <id>https://korayoner.dev/makaleler/issizlik-sigortasi-primi-nereye-gidiyor/</id>
     <published>2026-10-14T06:31:50+03:00</published>
-    <updated>2026-10-14T06:31:50+03:00</updated>
+    <updated>2026-10-15T14:49:51+03:00</updated>
     <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>Maaştan kesilen işsizlik sigortası primi kişisel birikim mi? 2026 oranlarıyla işçi, işveren ve devlet katkısını; hak kazanma eşiklerini ve ödeneği hesaplıyoruz.</summary>
   </entry>
@@ -1224,9 +1224,9 @@
     <link href="https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/"/>
     <id>https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/</id>
     <published>2026-09-05T02:57:58+03:00</published>
-    <updated>2026-10-03T16:29:45+03:00</updated>
+    <updated>2026-10-15T14:49:51+03:00</updated>
     <category term="mevzuat" label="Mevzuat"/>
-    <summary>Yeni torba yasada ne var? 1 Ekim 2026 itibarıyla sunulmuş teklif yok. 2026'da çıkan kanunlar, Ekim-Aralık takvimi, Ocak 2027 zammı ve 2027 asgari ücreti.</summary>
+    <summary>Yeni torba yasada ne var? TBMM'nin 15 Ekim 2026'da taranan teklif listesinde yeni bir çok konulu torba kanun yok. Yürürlükteki kanunlar ve Ekim-Aralık takvimi.</summary>
   </entry>
 
   <entry>
@@ -1234,7 +1234,7 @@
     <link href="https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/"/>
     <id>https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/</id>
     <published>2026-09-05T01:00:45+03:00</published>
-    <updated>2026-10-03T16:29:45+03:00</updated>
+    <updated>2026-10-15T14:49:51+03:00</updated>
     <category term="mevzuat" label="Mevzuat"/>
     <summary>Kademeli emeklilik yasalaştı mı? Teklifin TBMM'deki gerçek durumu, kimleri kapsadığı ve 1999-2008 arası sigortalılara şu an uygulanan yaş ve prim gün şartları.</summary>
   </entry>
