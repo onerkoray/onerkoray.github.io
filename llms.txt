@@ -1,6 +1,6 @@
 # Koray Öner — korayoner.dev
 
-> Türkiye'de maaş, vergi, SGK, emeklilik ve hane finansı için ücretsiz hesaplama araçları ve bu hesapların kuralını anlatan yazılar. 61 araç, 61 yazı. Hesaplar tarayıcıda yapılır; hesap içeren her yazının rakamları sitenin hesap motorlarından testle yeniden üretilir.
+> Türkiye'de maaş, vergi, SGK, emeklilik ve hane finansı için ücretsiz hesaplama araçları ve bu hesapların kuralını anlatan yazılar. 61 araç, 62 yazı. Hesaplar tarayıcıda yapılır; hesap içeren her yazının rakamları sitenin hesap motorlarından testle yeniden üretilir.
 
 Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değiştikçe sayfalar güncellenir; her sayfanın güncelleme tarihi site haritasında (https://korayoner.dev/sitemap.xml) ve akışlarda aynıdır. Yazar ve sorumlu: Koray Öner.
 
@@ -133,6 +133,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 ## Yazılar: Emeklilik & Sosyal Güvenlik
 
+- [İşsizlik sigortası primi nereye gidiyor? Fon, hak ve ödenek hesabı](https://korayoner.dev/makaleler/issizlik-sigortasi-primi-nereye-gidiyor/): Maaştan kesilen işsizlik sigortası primi kişisel birikim mi? 2026 oranlarıyla işçi, işveren ve devlet katkısını; hak kazanma eşiklerini ve ödeneği hesaplıyoruz.
 - [Ocak 2027 zammı en düşük emekli aylığına yansır mı?](https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/): Taban 23.552 TL kanunla değişmezse Ocak zammı tabandakine yansımaz: zam %10,17 olursa 21.379 TL altındaki aylığa artış yok. 2019'dan beri 15 dönemin hesabı.
 - [SGK'ya devlet katkısı kalktı: ne değişti, ne değişmedi?](https://korayoner.dev/makaleler/sgk-devlet-katkisi-kalkti/): Hazine 1 Ağustos 2026'dan beri SGK'ya primlerin dörtte biri kadar katkı ödemiyor. Prim, emekli aylığı ve teşvikler aynı; 2025 fazlası katkısız 852,9 milyar TL açık.
 - [Türkiye'de sosyal güvenliğin dönüşümü: aynı kariyer, üç kural](https://korayoner.dev/makaleler/turkiyede-sosyal-guvenligin-donusumu/): 1999 ve 2008 reformları ile 2023 düzenlemesi emekliliği nasıl değiştirdi? Aynı kariyer, üç kural: emeklilik yaşı, prim yılı ve aylık bağlama oranı, kanundan ölçüldü.
@@ -172,7 +173,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 - [Gizlilik Politikası](https://korayoner.dev/gizlilik/): Bu sitede hangi veriler işleniyor, hangi çerezler kullanılıyor ve haklarınız neler? Hesaplama verileriniz cihazınızdan çıkmaz.
 - [Hakkımda](https://korayoner.dev/hakkimda/): Koray Öner kimdir? Serbest çalışan yazılım geliştirici. Bordro ve vergi araçlarındaki her sayıyı yasal parametreden türetip her değişiklikte yeniden doğruluyor.
 - [İletişim](https://korayoner.dev/iletisim/): Koray Öner ile iletişim: hata bildirimi, yeni araç önerisi, işbirliği ve KVKK başvuruları için doğru kanallar.
-- [Koray Öner](https://korayoner.dev/koray-oner/): Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 61 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.
+- [Koray Öner](https://korayoner.dev/koray-oner/): Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 62 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.
 - [Kullanım Koşulları](https://korayoner.dev/kullanim-kosullari/): Hesaplama araçlarının kapsamı, doğruluk taahhüdü, sorumluluk sınırları ve lisans bilgileri. Araçlar bilgilendirme amaçlıdır.
 - [2026 Brüt–Net Tablosu](https://korayoner.dev/maas-hesaplama/brut-net-tablosu/): 2026 brüt net maaş tablosu: 35.000 TL'den 500.000 TL'ye kadar brüt maaşların net karşılıkları ve her tutar için ay ay bordro dökümü.
 - [Makaleler](https://korayoner.dev/makaleler/): Emeklilik, bordro, tazminat ve vergi konularında kaynağı gösterilen, güncel tutulan rehberler. Mevzuat değiştikçe güncellenir.

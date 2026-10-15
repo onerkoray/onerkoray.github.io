@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Yazılar</title>
-  <subtitle>Bordro, vergi, sosyal güvenlik ve kişisel finans üzerine, hesabı ve kaynağı verilen 61 yazı.</subtitle>
+  <subtitle>Bordro, vergi, sosyal güvenlik ve kişisel finans üzerine, hesabı ve kaynağı verilen 62 yazı.</subtitle>
   <link href="https://korayoner.dev/makaleler/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/makaleler/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/makaleler/atom.xml</id>
-  <updated>2026-10-13T10:22:59+03:00</updated>
+  <updated>2026-10-14T06:31:50+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>İşsizlik Sigortası Primi Nereye Gidiyor? Fon, Hak ve Ödenek</title>
+    <link href="https://korayoner.dev/makaleler/issizlik-sigortasi-primi-nereye-gidiyor/"/>
+    <id>https://korayoner.dev/makaleler/issizlik-sigortasi-primi-nereye-gidiyor/</id>
+    <published>2026-10-14T06:31:50+03:00</published>
+    <updated>2026-10-14T06:31:50+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
+    <summary>Maaştan kesilen işsizlik sigortası primi kişisel birikim mi? 2026 oranlarıyla işçi, işveren ve devlet katkısını; hak kazanma eşiklerini ve ödeneği hesaplıyoruz.</summary>
+  </entry>
 
   <entry>
     <title>Ocak 2027 Zammı En Düşük Emekli Aylığına Yansır mı?</title>

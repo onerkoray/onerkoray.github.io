@@ -16,11 +16,11 @@
  ],
  "sayaclar": {
   "arac": 61,
-  "makale": 61,
+  "makale": 62,
   "metodoloji": 10,
   "grafik": 2,
   "sayfa": 10,
-  "indekslenebilir": 145
+  "indekslenebilir": 146
  },
  "sayfalar": [
   {
@@ -1169,11 +1169,11 @@
    "type": "sayfa",
    "parent": null,
    "title": "Koray Öner — Araçlar, Yazılar ve Yayınlar",
-   "description": "Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 61 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
+   "description": "Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 62 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
    "category": null,
    "published": "2026-09-29T17:59:13+03:00",
-   "updated": "2026-10-13",
-   "updatedAt": "2026-10-13T10:22:59+03:00",
+   "updated": "2026-10-14",
+   "updatedAt": "2026-10-14T00:00:00+03:00",
    "image": "https://korayoner.dev/images/hakkimda-koray-oner.jpg",
    "imageTitle": "Koray Öner — Araçlar, Yazılar ve Yayınlar",
    "related": [],
@@ -2167,6 +2167,22 @@
     "https://korayoner.dev/bordro/",
     "https://korayoner.dev/makaleler/"
    ],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/makaleler/issizlik-sigortasi-primi-nereye-gidiyor/",
+   "dosya": "makaleler/issizlik-sigortasi-primi-nereye-gidiyor/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "İşsizlik Sigortası Primi Nereye Gidiyor? Fon, Hak ve Ödenek",
+   "description": "Maaştan kesilen işsizlik sigortası primi kişisel birikim mi? 2026 oranlarıyla işçi, işveren ve devlet katkısını; hak kazanma eşiklerini ve ödeneği hesaplıyoruz.",
+   "category": "emeklilik-sosyal-guvenlik",
+   "published": "2026-10-14T06:31:50+03:00",
+   "updated": "2026-10-14",
+   "updatedAt": "2026-10-14T06:31:50+03:00",
+   "image": "https://korayoner.dev/images/makale/issizlik-sigortasi-primi-nereye-gidiyor.png",
+   "imageTitle": "İşsizlik Sigortası Primi Nereye Gidiyor? Fon, Hak ve Ödenek — Koray Öner",
+   "related": [],
    "noindex": false
   },
   {
