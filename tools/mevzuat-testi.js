@@ -43,6 +43,7 @@ var path = require("path");
 var KOK = path.join(__dirname, "..");
 var TORBA = path.join(KOK, "makaleler", "torba-yasa-ne-var-ne-yok", "index.html");
 var KADEME = path.join(KOK, "makaleler", "kademeli-emeklilik-son-durum", "index.html");
+var TEKLIF = require(path.join(KOK, "makaleler", "torba-yasa-ne-var-ne-yok", "teklif-sayimi.js"));
 
 /* Bugün: testin kendisi zamana bağlı olduğu için dışarıdan verilebiliyor.
    Böylece "1 Ekim'de ne olacak" sorusu o günü beklemeden sınanabiliyor:
@@ -73,6 +74,15 @@ function ad(p) { return path.basename(path.dirname(p)); }
 
 console.log("Mevzuat takvimi yazıları — iddia doğrulaması");
 console.log("Bugün: " + BUGUN + "\n");
+
+/* TBMM kesitinden türeyen sayı iki yazıda da aynı olmalı. */
+(function () {
+  var sayi = String(TEKLIF.toplam);
+  gecer("TBMM eski kesiti aralıksız bitiyor", TEKLIF.once.length > 0 && TEKLIF.once[TEKLIF.once.length - 1].esas === "2/3905");
+  gecer("TBMM yeni kesiti aralıksız başlıyor", TEKLIF.yeni[0] === "2/3906" && TEKLIF.yeni.at(-1) === "2/3949");
+  gecer("torba yazısı TBMM kesitindeki toplamı kullanıyor", oku(TORBA).includes(sayi + " kanun teklifi"));
+  gecer("kademeli yazısı TBMM kesitindeki toplamı kullanıyor", oku(KADEME).includes(sayi + " teklifin"));
+})();
 
 /* ------------------------------------------------------------------ 1 */
 IFADELER.forEach(function (x) {
