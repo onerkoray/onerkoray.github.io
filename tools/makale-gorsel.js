@@ -2348,7 +2348,65 @@ function issizlikHakEsikleri() {
   return s + '</svg>';
 }
 
+/* Aynı nominal taksit tutarı için ilk ödeme gününün bugünkü değeri nasıl
+   değiştirdiği: iki seri ve peşin fiyat referans çizgisi. */
+function pesinTaksitGrafigi() {
+  var M = require(path.join(KOK, "makaleler", "pesin-indirim-mi-taksit-mi", "hesap.js"));
+  var p = M.ornek(), W = 600, H = 360, sol = 57, sag = 552, alt = 290;
+  var x = function (r) { return sol + r / 0.06 * (sag - sol); };
+  var y = function (v) { return alt - (v - 9000) / 3500 * 188; };
+  var cizgi = function (ilk) {
+    var pts = [];
+    for (var i = 0; i <= 60; i++) {
+      var r = i / 1000;
+      pts.push((i ? "L" : "M") + x(r).toFixed(1) + " " + y(M.bugunkuDeger(p.taksit, p.adet, r, ilk)).toFixed(1));
+    }
+    return pts.join(" ");
+  };
+  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Altı taksidin bugünkü değeri ile peşin fiyat, ilk ödeme gününe göre yüzde 3,10 veya 4,42 aylık net getiride eşitlenir">';
+  s += '<text x="28" y="36" font-size="19" font-weight="700" fill="' + R.murekkep + '">İlk taksit günü, karar eşiğini değiştirir</text>';
+  s += '<text x="28" y="59" font-size="13" fill="' + R.ikincil + '">10.800 TL peşin veya 6 × 2.000 TL · temsili teklif</text>';
+  s += '<line x1="' + sol + '" y1="' + y(p.pesin).toFixed(1) + '" x2="' + sag + '" y2="' + y(p.pesin).toFixed(1) + '" stroke="' + R.marka + '" stroke-width="2" stroke-dasharray="6 5"/>';
+  s += '<path fill="none" stroke="' + R.s1 + '" stroke-width="3" d="' + cizgi(1) + '"/>';
+  s += '<path fill="none" stroke="' + R.s2 + '" stroke-width="3" d="' + cizgi(0) + '"/>';
+  [[p.esikSonrakiAy, R.s1, "%3,10", -12], [p.esikBugun, R.s2, "%4,42", 19]].forEach(function (a) {
+    s += '<circle cx="' + x(a[0]).toFixed(1) + '" cy="' + y(p.pesin).toFixed(1) + '" r="5" fill="' + a[1] + '"/>';
+    s += '<text x="' + x(a[0]).toFixed(1) + '" y="' + (y(p.pesin) + a[3]).toFixed(1) + '" text-anchor="middle" font-size="13" font-weight="700" fill="' + a[1] + '">' + a[2] + '</text>';
+  });
+  s += '<text x="' + sag + '" y="' + (y(p.pesin) - 9).toFixed(1) + '" text-anchor="end" font-size="13" fill="' + R.marka + '">peşin ' + nf0.format(p.pesin) + ' TL</text>';
+  [0, 2, 4, 6].forEach(function (n) { s += '<text x="' + x(n / 100).toFixed(1) + '" y="315" text-anchor="middle" font-size="13" fill="' + R.ikincil + '">%' + n + '</text>'; });
+  s += '<text x="' + sag + '" y="344" text-anchor="end" font-size="13" fill="' + R.ikincil + '">aylık net fırsat getirisi</text>';
+  s += '<rect x="34" y="75" width="12" height="5" fill="' + R.s1 + '"/><text x="52" y="82" font-size="12" fill="' + R.murekkep + '">ilk taksit gelecek ay</text>';
+  s += '<rect x="235" y="75" width="12" height="5" fill="' + R.s2 + '"/><text x="253" y="82" font-size="12" fill="' + R.murekkep + '">ilk taksit bugün</text>';
+  return s + '</svg>';
+}
+
+function pesinTaksitTakvimSvg() {
+  var p = require(path.join(KOK, "makaleler", "pesin-indirim-mi-taksit-mi", "hesap.js")).ornek();
+  var W = 800, H = 340, s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Altı taksitin ilki bugün veya bir ay sonra alınır; toplam aynı fakat zaman çizelgesi farklıdır">';
+  s += '<style>text{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif}</style><rect width="800" height="340" fill="' + R.zemin + '"/><rect width="8" height="340" fill="' + R.marka + '"/>';
+  s += '<text x="36" y="43" font-size="21" font-weight="700" fill="' + R.murekkep + '">Aynı toplam, farklı ödeme başlangıcı</text>';
+  [0, 1].forEach(function (ilk, satir) {
+    var yy = 113 + satir * 123, renk = ilk ? R.s1 : R.s2;
+    s += '<text x="37" y="' + (yy - 17) + '" font-size="15" font-weight="700" fill="' + R.murekkep + '">' + (ilk ? 'İlk taksit gelecek ay' : 'İlk taksit bugün') + '</text>';
+    s += '<line x1="72" y1="' + yy + '" x2="733" y2="' + yy + '" stroke="' + R.izgara + '" stroke-width="3"/>';
+    for (var i = 0; i < p.adet; i++) {
+      var xx = 80 + (i + ilk) * 92;
+      s += '<circle cx="' + xx + '" cy="' + yy + '" r="8" fill="' + renk + '"/>';
+      s += '<text x="' + xx + '" y="' + (yy + 30) + '" text-anchor="middle" font-size="13" fill="' + R.murekkep + '">' + (i + ilk) + '. ay</text>';
+    }
+  });
+  s += '<text x="763" y="320" text-anchor="end" font-size="14" fill="' + R.ikincil + '">Her noktada ' + nf0.format(p.taksit) + ' TL ödeme · toplam ' + nf0.format(p.taksit * p.adet) + ' TL</text>';
+  return s + '</svg>\n';
+}
+
 var KAPAKLAR = {
+  "pesin-indirim-mi-taksit-mi": {
+    kicker: "Kredi & Finans",
+    baslik: "Peşin indirim mi, taksit mi?",
+    alt: "İlk ödeme günü eşik oranını değiştirir",
+    cizim: pesinTaksitGrafigi
+  },
   "issizlik-sigortasi-primi-nereye-gidiyor": {
     kicker: "Sosyal Güvenlik",
     baslik: "İşsizlik primi nereye gidiyor?",
@@ -3378,6 +3436,11 @@ function kartSvgYaz(slug) {
     fs.writeFileSync(hedef, issizlikEsikSvg(), "utf8");
     console.log("   " + path.basename(hedef).padEnd(42) + fs.statSync(hedef).size + " bayt");
   }
+  if (slug === "pesin-indirim-mi-taksit-mi") {
+    hedef = path.join(CIKTI, slug + "-takvim.svg");
+    fs.writeFileSync(hedef, pesinTaksitTakvimSvg(), "utf8");
+    console.log("   " + path.basename(hedef).padEnd(42) + fs.statSync(hedef).size + " bayt");
+  }
   if (afisGovdede(slug)) {
     hedef = path.join(CIKTI, slug + "-afis.svg");
     fs.writeFileSync(hedef, afisSvg(slug), "utf8");
@@ -3456,6 +3519,7 @@ function main() {
       if (afisGovdede(s) && !ayni(path.join(CIKTI, s + "-afis.svg"), afisSvg(s))) bozuk.push(s + "-afis.svg");
     });
     if (!ayni(path.join(CIKTI, "issizlik-sigortasi-primi-nereye-gidiyor-esik.svg"), issizlikEsikSvg())) bozuk.push("issizlik-sigortasi-primi-nereye-gidiyor-esik.svg");
+    if (!ayni(path.join(CIKTI, "pesin-indirim-mi-taksit-mi-takvim.svg"), pesinTaksitTakvimSvg())) bozuk.push("pesin-indirim-mi-taksit-mi-takvim.svg");
     fs.readdirSync(CIKTI).forEach(function (f) {
       var m = /^(.+)-afis\.svg$/.exec(f);
       if (m && !(KAPAKLAR[m[1]] && afisGovdede(m[1]))) bozuk.push(f + " (hiçbir gövde istemiyor)");
