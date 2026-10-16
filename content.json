@@ -16,11 +16,11 @@
  ],
  "sayaclar": {
   "arac": 61,
-  "makale": 62,
+  "makale": 63,
   "metodoloji": 10,
   "grafik": 2,
   "sayfa": 10,
-  "indekslenebilir": 146
+  "indekslenebilir": 147
  },
  "sayfalar": [
   {
@@ -1169,11 +1169,11 @@
    "type": "sayfa",
    "parent": null,
    "title": "Koray Öner — Araçlar, Yazılar ve Yayınlar",
-   "description": "Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 62 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
+   "description": "Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 63 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
    "category": null,
    "published": "2026-09-29T17:59:13+03:00",
-   "updated": "2026-10-15",
-   "updatedAt": "2026-10-15T14:37:37+03:00",
+   "updated": "2026-10-16",
+   "updatedAt": "2026-10-16T00:00:00+03:00",
    "image": "https://korayoner.dev/images/hakkimda-koray-oner.jpg",
    "imageTitle": "Koray Öner — Araçlar, Yazılar ve Yayınlar",
    "related": [],
@@ -2557,6 +2557,22 @@
     "https://korayoner.dev/kdv-hesaplama/",
     "https://korayoner.dev/makaleler/"
    ],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/makaleler/pesin-indirim-mi-taksit-mi/",
+   "dosya": "makaleler/pesin-indirim-mi-taksit-mi/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "Peşin İndirim mi Faizsiz Taksit mi?",
+   "description": "Peşin indirimi ile faizsiz taksiti aynı tarihe taşıyarak karşılaştırın. Altı taksitli örnekte ilk ödeme günü kararın eşik oranını %3,10’dan %4,42’ye çıkarıyor.",
+   "category": "kredi-finans",
+   "published": "2026-10-16T05:00:01+03:00",
+   "updated": "2026-10-16",
+   "updatedAt": "2026-10-16T05:00:01+03:00",
+   "image": "https://korayoner.dev/images/makale/pesin-indirim-mi-taksit-mi.png",
+   "imageTitle": "Peşin İndirim mi Faizsiz Taksit mi? — Koray Öner",
+   "related": [],
    "noindex": false
   },
   {
