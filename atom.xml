@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Araçlar ve Yazılar</title>
-  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 61 hesaplama aracı ve arkalarındaki mevzuatı anlatan 62 yazı.</subtitle>
+  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 61 hesaplama aracı ve arkalarındaki mevzuatı anlatan 63 yazı.</subtitle>
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-10-15T17:45:21Z</updated>
+  <updated>2026-10-16T05:00:01+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Peşin İndirim mi Faizsiz Taksit mi?</title>
+    <link href="https://korayoner.dev/makaleler/pesin-indirim-mi-taksit-mi/"/>
+    <id>https://korayoner.dev/makaleler/pesin-indirim-mi-taksit-mi/</id>
+    <published>2026-10-16T05:00:01+03:00</published>
+    <updated>2026-10-16T05:00:01+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
+    <summary>Peşin indirimi ile faizsiz taksiti aynı tarihe taşıyarak karşılaştırın. Altı taksitli örnekte ilk ödeme günü kararın eşik oranını %3,10’dan %4,42’ye çıkarıyor.</summary>
+  </entry>
 
   <entry>
     <title>İşsizlik Primi Nereye Gidiyor? Fon ve Ödenek</title>
@@ -1240,13 +1250,13 @@
   </entry>
 
   <entry>
-    <title>TCMB Döviz Kurları — 15 Ekim 2026</title>
+    <title>TCMB Döviz Kurları — 13 Ekim 2026</title>
     <link href="https://korayoner.dev/doviz-kurlari/"/>
     <id>https://korayoner.dev/doviz-kurlari/</id>
     <published>2026-09-04T22:11:41+03:00</published>
-    <updated>2026-10-15T17:45:21Z</updated>
+    <updated>2026-10-13T19:51:11Z</updated>
     <category term="kredi-finans" label="Kredi &amp; Finans"/>
-    <summary>15 Ekim 2026 tarihli TCMB resmî döviz kurları: dolar 49,42 TL, euro 55,41 TL. Merkez Bankası efektif alış ve satış kurları, her iş günü güncellenir.</summary>
+    <summary>13 Ekim 2026 tarihli TCMB resmî döviz kurları: dolar 49,37 TL, euro 55,21 TL. Merkez Bankası efektif alış ve satış kurları, her iş günü güncellenir.</summary>
   </entry>
 
   <entry>
