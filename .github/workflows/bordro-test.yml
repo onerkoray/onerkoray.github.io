@@ -207,6 +207,8 @@ jobs:
 
       - name: İşsizlik sigortası fonu makalesi sayı doğrulaması
         run: node makaleler/issizlik-sigortasi-primi-nereye-gidiyor/sayi-testi.js
+      - name: Peşin indirim ve taksit makalesi sayı doğrulaması
+        run: node makaleler/pesin-indirim-mi-taksit-mi/sayi-testi.js
 
       # MTV'de UC TARIFE var ve ucu de farkli davraniyor: (I) deger
       # kademeli (2018 sonrasi tescil), (I/A) kademesiz (2018 oncesi) ve
