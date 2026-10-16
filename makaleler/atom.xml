@@ -5,7 +5,7 @@
   <link href="https://korayoner.dev/makaleler/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/makaleler/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/makaleler/atom.xml</id>
-  <updated>2026-10-16T05:27:26+03:00</updated>
+  <updated>2026-10-16T05:42:32+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
 
@@ -14,7 +14,7 @@
     <link href="https://korayoner.dev/makaleler/pesin-indirim-mi-taksit-mi/"/>
     <id>https://korayoner.dev/makaleler/pesin-indirim-mi-taksit-mi/</id>
     <published>2026-10-16T05:00:01+03:00</published>
-    <updated>2026-10-16T05:27:26+03:00</updated>
+    <updated>2026-10-16T05:42:32+03:00</updated>
     <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Peşin indirimi ile faizsiz taksiti aynı tarihe taşıyarak karşılaştırın. Altı taksitli örnekte ilk ödeme günü kararın eşik oranını %3,10’dan %4,42’ye çıkarıyor.</summary>
   </entry>
