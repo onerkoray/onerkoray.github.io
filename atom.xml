@@ -5,7 +5,7 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-10-16T17:23:20Z</updated>
+  <updated>2026-10-17T15:07:49+00:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
 
@@ -124,9 +124,9 @@
     <link href="https://korayoner.dev/makaleler/butce-2027-faiz-vergi/"/>
     <id>https://korayoner.dev/makaleler/butce-2027-faiz-vergi/</id>
     <published>2026-10-02T05:29:54+03:00</published>
-    <updated>2026-10-03T16:12:57+03:00</updated>
+    <updated>2026-10-17T15:07:49+00:00</updated>
     <category term="vergi-belge" label="Vergi &amp; Belge"/>
-    <summary>OVP'ye göre 2027'de faiz gideri 3.975 milyar TL: her 100 TL verginin 19,97 TL'si. Oran beş yılın zirvesinde; bütçe açığının tamamına yakını faiz.</summary>
+    <summary>2027 bütçe teklifine göre faiz ödeneği 3.975 milyar TL: her 100 TL verginin 19,97 TL'si. Rakamlar OVP ile aynı; açık 3.868 milyar TL, tamamına yakını faiz.</summary>
   </entry>
 
   <entry>
@@ -164,7 +164,7 @@
     <link href="https://korayoner.dev/altin-mi-dolar-mi-mevduat-mi/"/>
     <id>https://korayoner.dev/altin-mi-dolar-mi-mevduat-mi/</id>
     <published>2026-09-28T18:06:55+03:00</published>
-    <updated>2026-10-05T21:15:44Z</updated>
+    <updated>2026-10-05T21:15:44+00:00</updated>
     <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Aralık 2005'te 100.000 TL: altında 30,79 milyon TL, dolarda 3,64 milyon TL, mevduatta 2,37 milyon TL. Kendi tarihlerinizle, enflasyondan sonra hesaplayın.</summary>
   </entry>
@@ -174,7 +174,7 @@
     <link href="https://korayoner.dev/grafikler/"/>
     <id>https://korayoner.dev/grafikler/</id>
     <published>2026-09-26T12:57:20+03:00</published>
-    <updated>2026-10-08T19:16:00Z</updated>
+    <updated>2026-10-08T19:16:00+00:00</updated>
     <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Türkiye'de fiyatlar, enflasyon, faiz, kur, altın, asgari ücret ve büyüme 2005'ten bugüne, G20 ile. TCMB, TÜİK, BIS ve Dünya Bankası verisi.</summary>
   </entry>
@@ -464,7 +464,7 @@
     <link href="https://korayoner.dev/memur-zammi-hesaplama/"/>
     <id>https://korayoner.dev/memur-zammi-hesaplama/</id>
     <published>2026-09-23T18:56:08+03:00</published>
-    <updated>2026-10-05T21:15:44Z</updated>
+    <updated>2026-10-05T21:15:44+00:00</updated>
     <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Ocak 2027 memur ve memur emeklisi zammı en az %5,00. Temmuz–Eylül 2026 enflasyonu %5,56; senaryolar, enflasyon farkı eşiği ve maaşınızın yeni tutarı.</summary>
   </entry>
@@ -474,7 +474,7 @@
     <link href="https://korayoner.dev/emekli-zammi-hesaplama/"/>
     <id>https://korayoner.dev/emekli-zammi-hesaplama/</id>
     <published>2026-09-23T18:34:10+03:00</published>
-    <updated>2026-10-05T21:15:44Z</updated>
+    <updated>2026-10-05T21:15:44+00:00</updated>
     <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>Ocak 2027 SSK ve Bağ-Kur zammı için Temmuz–Eylül 2026 enflasyonu açıklandı: birikim %5,56. Kalan 3 ay için senaryolar ve aylığınızın yeni tutarı.</summary>
   </entry>
@@ -1254,7 +1254,7 @@
     <link href="https://korayoner.dev/doviz-kurlari/"/>
     <id>https://korayoner.dev/doviz-kurlari/</id>
     <published>2026-09-04T22:11:41+03:00</published>
-    <updated>2026-10-16T17:23:20Z</updated>
+    <updated>2026-10-16T17:23:20+00:00</updated>
     <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>16 Ekim 2026 tarihli TCMB resmî döviz kurları: dolar 49,45 TL, euro 55,62 TL. Merkez Bankası efektif alış ve satış kurları, her iş günü güncellenir.</summary>
   </entry>
@@ -1344,7 +1344,7 @@
     <link href="https://korayoner.dev/kira-artisi-hesaplama/"/>
     <id>https://korayoner.dev/kira-artisi-hesaplama/</id>
     <published>2026-07-17T22:21:49+03:00</published>
-    <updated>2026-10-05T21:15:44Z</updated>
+    <updated>2026-10-05T21:15:44+00:00</updated>
     <category term="kredi-finans" label="Kredi &amp; Finans"/>
     <summary>Ekim 2026'da yenilenen kiralarda yasal azami artış %31,49. Yeni kiranızı, sözleşmeden bugüne yasal kiranızı ve 2022'den beri her ayın oranını görün.</summary>
   </entry>

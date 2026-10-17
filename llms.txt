@@ -93,7 +93,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 ## Yazılar: Vergi & Belge
 
-- [2027 bütçesinde faiz: her 100 TL verginin kaçı faize gidiyor?](https://korayoner.dev/makaleler/butce-2027-faiz-vergi/): OVP'ye göre 2027'de faiz gideri 3.975 milyar TL: her 100 TL verginin 19,97 TL'si. Oran beş yılın zirvesinde; bütçe açığının tamamına yakını faiz.
+- [2027 bütçesinde faiz: her 100 TL verginin kaçı faize gidiyor?](https://korayoner.dev/makaleler/butce-2027-faiz-vergi/): 2027 bütçe teklifine göre faiz ödeneği 3.975 milyar TL: her 100 TL verginin 19,97 TL'si. Rakamlar OVP ile aynı; açık 3.868 milyar TL, tamamına yakını faiz.
 - [2027 vergi dilimleri asgari ücretten az artarsa maaşınızdan ne gider?](https://korayoner.dev/makaleler/vergi-dilimleri-2027-asgari-ucret/): Dilimler asgari ücretten her 10 puan geride kaldığında ikinci eşiği aşan ücretli yılda 2.800 TL, üçüncüyü aşan 14.800 TL fazla vergi öder. Asgari ücretli etkilenmez.
 - [Vergi borcunu geciktirmek kârlı mı?](https://korayoner.dev/makaleler/vergi-borcunu-geciktirmek-karli-mi/): Gecikme zammı aylık %3,7, yıllık basit %44,4; enflasyon %31,5. Mart vadeli 100.000 TL vergiyi bir yıl geç ödemenin reel bedeli 2019'dan bu yana nasıl değişti?
 - [Kira geliri istisnası: 1 lira fazla gelir, 8.095 TL fazla vergi](https://korayoner.dev/makaleler/kira-geliri-istisnasi-siniri/): Yılda 240.000 TL konut kirası alan ücretli, kira dahil brüt geliri 1.500.000 TL'yi aşınca 58.000 TL istisnayı kaybeder; kira vergisi 23.205'ten 31.300 TL'ye çıkar.
