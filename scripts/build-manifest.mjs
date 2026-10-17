@@ -213,7 +213,23 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const yeni = JSON.stringify(uret(), null, 1) + "\n";
   const eski = existsSync(CIKTI) ? oku(CIKTI) : "";
   if (process.argv.includes("--check")) {
-    if (yeni !== eski) { console.error("content.json bayat — 'node scripts/build-manifest.mjs' çalıştırın."); process.exit(1); }
+    if (yeni !== eski) {
+      console.error("content.json bayat — 'node scripts/build-manifest.mjs' çalıştırın.");
+      /* Hangi sayfanın hangi alanı farklı: CI'da yerelde üretilemeyen
+         farkı görmek için (ilk 10). */
+      try {
+        const a = Object.fromEntries(JSON.parse(eski).sayfalar.map((s) => [s.url, s]));
+        let n = 0;
+        for (const s of JSON.parse(yeni).sayfalar) {
+          const o = a[s.url] || {};
+          for (const k of Object.keys(s)) {
+            if (JSON.stringify(s[k]) !== JSON.stringify(o[k]) && n++ < 10)
+              console.error("  " + s.url + " " + k + ": " + JSON.stringify(o[k]) + " → " + JSON.stringify(s[k]));
+          }
+        }
+      } catch (e) { console.error("  fark okunamadı: " + e.message); }
+      process.exit(1);
+    }
     console.log("content.json güncel.");
   } else {
     if (yeni !== eski) writeFileSync(CIKTI, yeni);
