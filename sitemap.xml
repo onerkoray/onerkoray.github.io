@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
       <image:title>Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları</image:title>
@@ -15,7 +15,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/araclar/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/araclar-koray-oner.png</image:loc>
       <image:title>Hesaplama Araçları: Maaş, Vergi, Kredi — Koray Öner</image:title>
@@ -71,7 +71,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/makaleler-koray-oner.png</image:loc>
       <image:title>Makaleler — Emeklilik, Bordro ve Vergi — Koray Öner</image:title>
@@ -735,7 +735,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/butce-2027-faiz-vergi/</loc>
-    <lastmod>2026-10-03</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/makale/butce-2027-faiz-vergi.png</image:loc>
       <image:title>2027 Bütçesinde Faiz ve Vergi — Koray Öner</image:title>
