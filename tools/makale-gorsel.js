@@ -2060,12 +2060,16 @@ function ocakMeclis() {
 }
 
 function butceFaizVergi() {
-  var d = BUTCE.YILLAR.map(function (y) { var x = BUTCE.yil(y); return { yil: y, oran: 100 * x.faiz / x.vergi, durum: x.durum }; });
+  /* 2027 bütçe teklifi geldiyse 2027 sütunu tekliften, diğer yıllar OVP'den. */
+  var d = BUTCE.YILLAR.map(function (y) {
+    var x = y === 2027 && BUTCE.teklifVar() ? BUTCE.yil(y, "teklif") : BUTCE.yil(y);
+    return { yil: y, oran: 100 * x.faiz / x.vergi, durum: x.durum };
+  });
   var z = d.reduce(function (m, x) { return x.oran > m.oran ? x : m; });
   if (z.yil !== 2027 || Math.abs(z.oran - 19.97) > 0.005) throw new Error("bütçe kapağı yazıyla ayrıştı");
   var SOL = 58, SAG = 578, UST = 104, ALT = 280, UV = 25;
   function y(v) { return ALT - (ALT - UST) * v / UV; }
-  var s = baslikSatirlari("Her 100 TL verginin kaçı faize?", "Merkezî yönetim faiz gideri ÷ genel bütçe vergi gelirleri · OVP 2027-2029",
+  var s = baslikSatirlari("Her 100 TL verginin kaçı faize?", "Merkezî yönetim faiz gideri ÷ genel bütçe vergi gelirleri · OVP 2027-2029" + (BUTCE.teklifVar() ? ", 2027 bütçe teklifi" : ""),
     "Her 100 TL vergi gelirine karşılık faiz gideri: 2025'te 18,59, 2026'da 19,37, 2027'de 19,97, 2028'de 19,58, 2029'da 18,92 TL");
   s += izgaraY(SOL, SAG, y, [0, 5, 10, 15, 20, 25], function (v) { return v + " TL"; });
   var gen = (SAG - SOL) / d.length, w = 58;
@@ -2074,7 +2078,7 @@ function butceFaizVergi() {
     s += '<rect x="' + (cx - w / 2).toFixed(1) + '" y="' + y(x.oran).toFixed(1) + '" width="' + w + '" height="' + (ALT - y(x.oran)).toFixed(1) + '" rx="3" fill="' + renk + '"/>' +
       cubukEtiket(cx, y(x.oran) - 8, x.oran.toFixed(2).replace(".", ","), x.yil === 2027 ? 15 : 13) +
       altYazi(cx, ALT + 20, String(x.yil)) +
-      altYazi(cx, ALT + 36, x.yil === 2025 ? "gerçekleşme" : x.yil === 2026 ? "tahmin" : "program");
+      altYazi(cx, ALT + 36, x.yil === 2025 ? "gerçekleşme" : x.yil === 2026 ? "tahmin" : x.durum === "teklif" ? "teklif" : "program");
   });
   return s + "</svg>";
 }

@@ -60,13 +60,38 @@
   var KAYNAK = {
     ovp: "Orta Vadeli Program (2027-2029), Tablo 1.1 ve 1.6 — Resmî Gazete 06.09.2026, 33362 (1. mükerrer), Cumhurbaşkanı Kararı 11752",
     ovpUrl: "https://www.resmigazete.gov.tr/eskiler/2026/09/20260906M1-1.pdf",
-    teklif: null,
-    teklifUrl: null
+    teklif: "2027 Yılı Merkezi Yönetim Bütçe Kanunu Teklifi, TBMM'ye 16.10.2026'da sunuldu — 2027 Yılı Bütçe Gerekçesi, Tablo 1 Merkezi Yönetim Bütçe Dengesi (milyon TL)",
+    teklifUrl: "https://www.sbb.gov.tr/wp-content/uploads/2026/10/2027-Butce-Gerekcesi.pdf",
+    teklifSayfa: "https://www.sbb.gov.tr/2027-yili-merkezi-yonetim-butce-kanunu-teklifi-ve-bagli-cetveller-2027-yili-butce-gerekcesi-ile-2026-yillik-ekonomik-rapor/",
+    teklifTarihi: "2026-10-16"
   };
 
   /* 2027 Merkezî Yönetim Bütçe Kanunu Teklifi: OVP ile aynı adlar, milyar TL,
      yalnız 2027. Sunulunca doldurulur ve KAYNAK.teklif yazılır. */
-  var TEKLIF = null;
+  /* Bütçe Gerekçesi Tablo 1'deki milyon TL tutarlar, milyar TL'ye bölünmüş
+     (üç ondalık = milyon TL'nin kendisi). Gelirler NET: ret ve iadeler ile
+     düzenleyici kurumların gelirden ayrılan payları hariç, OVP Tablo 1.6
+     ile aynı tanım. Giderler hazine yardımı ve gelirden ayrılan paylar
+     hariç NET. digerGelir = toplam gelir − genel bütçe vergi gelirleri,
+     OVP'nin "diğer gelirler" satırıyla aynı tanım. */
+  var TEKLIF = {
+    harcamalar:         27276.087,
+    faizHaricHarcama:   23301.087,
+    personel:           6318.534,
+    sgkDevletPrimi:     798.466,
+    malHizmet:          2184.277,
+    cariTransfer:       10240.062,
+    sermayeGideri:      1854.783,
+    sermayeTransferi:   750.372,
+    borcVerme:          612.952,
+    yedekOdenek:        541.642,
+    faiz:               3975.000,
+    gelirler:           23408.000,
+    vergi:              19906.044,
+    digerGelir:         3501.956,
+    denge:              -3868.087,
+    faizDisiDenge:      106.913
+  };
 
   function indeks(yil) {
     var i = YILLAR.indexOf(Number(yil));
