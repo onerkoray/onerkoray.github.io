@@ -396,6 +396,10 @@ def main():
             if yol:
                 iso, h = anlamli_tarih(yol)
                 zaman = git("log", "-1", "--format=%aI", h).strip() if h else ""
+                # Yeni git (2.55) UTC saatini "Z" ile yaziyor, eskisi
+                # "+00:00" ile; manifest makineden bagimsiz kalsin.
+                if zaman.endswith("Z"):
+                    zaman = zaman[:-1] + "+00:00"
                 cikti[yol] = {"tarih": iso, "zaman": zaman}
         sys.stdout.write(json.dumps(cikti, ensure_ascii=False))
         return 0
