@@ -114,10 +114,10 @@
     return d.toISOString().slice(0, 10);
   }
 
-  /* Ocak 2027 emekli zammının KESİNLEŞEN kısmı: açıklanmış Temmuz ve
-     Ağustos 2026. Kalan dört ay ne olursa olsun zam bunun altına inmez
-     (aylık TÜFE negatif olmadıkça). */
-  var KESIN_AYLAR = ["2026-07", "2026-08"];
+  /* Ocak 2027 emekli zammının KESİNLEŞEN kısmı: açıklanmış Temmuz, Ağustos
+     ve Eylül 2026 (Eylül 5 Ekim'de açıklandı). Kalan üç ay ne olursa olsun
+     zam bunun altına inmez (aylık TÜFE negatif olmadıkça). */
+  var KESIN_AYLAR = ["2026-07", "2026-08", "2026-09"];
   function kesinAylar() {
     return KESIN_AYLAR.map(function (a) {
       var v = Tufe.aylar[a];
@@ -131,8 +131,8 @@
 
   /* Memur: Ocak 2027 = (1 + fark) × (1 + 2027 ilk yarı oranı) − 1;
      fark = max(0, (1 + Tem–Ara TÜFE) / (1 + 2026 ikinci yarı oranı) − 1).
-     Taban = sözleşme oranı. Farkın doğması için Eylül–Aralık'ta gereken
-     birikim: (1 + ikinci yarı oranı) / (1 + Temmuz–Ağustos) − 1. */
+     Taban = sözleşme oranı. Farkın doğması için kalan aylarda gereken
+     birikim: (1 + ikinci yarı oranı) / (1 + açıklanmış aylar) − 1. */
   function memurTaban() { return TS.oranlar["2027-1"]; }
   function memurIkinciYari() { return TS.oranlar["2026-2"]; }
   function farkEsigi() { return (1 + memurIkinciYari()) / (1 + emekliTaban()) - 1; }
@@ -202,7 +202,32 @@
     };
   }
 
+  /* 17 Ekim 2026 taraması: 3 Ekim anlık görüntüsünden sonra listeye giren
+     47 kayıt (teklifler-2026-10-17.json). 30'u TBMM teklif sorgusundan,
+     16'sı Gelen Kâğıtlar No 3, 5 ve 7'den; liste toplamı 149 = 102 + 47.
+     Sınıflama burada yalnız teklif başlığına bakar. */
+  var YENI_TEKLIFLER = (typeof module === "object" && module.exports)
+    ? require("./teklifler-2026-10-17.json") : [];
+  var YENI_TARAMA_TARIHI = "2026-10-17";
+  function yeniTaramaOzeti() {
+    var mv = YENI_TEKLIFLER.filter(function (t) { return t.esas.indexOf("2/") === 0; });
+    var cok = mv.filter(function (t) { return t.imza > 3; });
+    var no = function (t) { return +t.esas.split("/")[1]; };
+    return {
+      toplam: TEKLIFLER.length + YENI_TEKLIFLER.length,
+      eklenen: YENI_TEKLIFLER.length,
+      milletvekili: mv.length,
+      ilkEsas: "2/" + Math.min.apply(null, mv.map(no)), sonEsas: "2/" + Math.max.apply(null, mv.map(no)),
+      butce: YENI_TEKLIFLER.filter(function (t) { return t.esas.indexOf("1/") === 0; })[0] || null,
+      enFazlaUcImzali: mv.length - cok.length,
+      cokImzali: cok,
+      mali: mv.filter(function (t) { return MALI_KANUN.test(t.baslik); }).length,
+      komisyonda: YENI_TEKLIFLER.filter(function (t) { return t.durum === "KOMİSYONDA"; }).length
+    };
+  }
+
   return {
+    YENI_TEKLIFLER: YENI_TEKLIFLER, YENI_TARAMA_TARIHI: YENI_TARAMA_TARIHI, yeniTaramaOzeti: yeniTaramaOzeti,
     MERCI: MERCI, KALEMLER: KALEMLER, KESIN_AYLAR: KESIN_AYLAR.slice(),
     TEKLIFLER: TEKLIFLER, TARAMA_TARIHI: TARAMA_TARIHI, ORNEK_TORBA: ORNEK_TORBA, teklifOzeti: teklifOzeti,
     AZ_IMZA: AZ_IMZA, COK_IMZA: COK_IMZA, dorduncuYil: dorduncuYil,

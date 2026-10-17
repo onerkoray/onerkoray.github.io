@@ -42,28 +42,42 @@ K.KALEMLER.forEach(function (k, i) {
 /* 2 — Bütçe takvimi (Anayasa m.161). */
 var son = K.butceSonGun(2027);
 t.dogru("bütçe son günü 17 Ekim 2026", son === "2026-10-17", son);
-t.gecsin("bütçe son günü metinde", "en geç " + tarih(son));
+t.gecsin("bütçe son günü metinde", "son gün " + tarih(son));
+/* 2027 bütçe teklifi sunuldu: tarih bütçe modülünün kaynağından. */
+var BU = require(path.join(S.KOK, "finans", "butce.js"));
+var sunus = BU.KAYNAK.teklifTarihi;
+t.dogru("teklif son günden önce", sunus <= son, sunus);
+t.gecsin("kısa cevap: teklif sunuldu", "teklif " + tarih(sunus) + "'da, son günden bir gün önce Meclis'e sunuldu");
+t.gecsin("tablo: teklif sunuldu", "Teklif " + tarih(sunus) + "'da sunuldu");
+t.gecsin("SSS: teklif sunuldu", "Teklif " + tarih(sunus) + "'da sunuldu; Anayasa m.161'e göre son gün 17 Ekim'di");
+t.gecmesin("bayat 'en geç' cümlesi", "teklif en geç 17 Ekim 2026'da gelir");
+t.dogru("gecerlilik ileri alındı", /name="gecerlilik" content="2026-11-04 \|/.test(t.html));
+t.dogru("yayın tarihi korunuyor", /"datePublished": "2026-10-03"/.test(t.html));
+t.gecsin("güncelleme satırı", "Güncelleme: 17 Ekim 2026");
 var d4 = K.dorduncuYil();
 t.dogru("geçen yılın bütçe teklifi 1/280", d4.butceTeklifi && d4.butceTeklifi.esas === "1/280");
 t.gecsin("geçen yıl bütçe tarihi", "(" + d4.butceTeklifi.esas + ") " + tarih(d4.butceTeklifi.gelis));
 t.dogru("geçen yıl da süre içinde", d4.butceTeklifi.gelis <= K.butceSonGun(2026), d4.butceTeklifi.gelis);
 
-/* 3 — Emekli zammının kesin kısmı: motorun kendi dönem hesabıyla aynı. */
-var ka = K.kesinAylar();
-t.gecsin("Temmuz TÜFE", "Temmuz " + yz(ka[0].oran));
-t.gecsin("Ağustos TÜFE", "Ağustos " + yz(ka[1].oran));
+/* 3 — Emekli zammının kesin kısmı: motorun kendi dönem hesabıyla aynı.
+ * Açıklanmış aylar KESIN_AYLAR'dan; motorun dönemi Temmuz'dan başlar. */
+var ka = K.kesinAylar(), AYAD = { "07": "Temmuz", "08": "Ağustos", "09": "Eylül", "10": "Ekim", "11": "Kasım", "12": "Aralık" };
+t.dogru("açıklanmış üç ay", ka.length === 3, ka.length);
+ka.forEach(function (a) { t.gecsin(a.ay + " TÜFE", AYAD[a.ay.slice(5)] + " " + yz(a.oran)); });
 var taban = K.emekliTaban();
 var donem = EZ.donem(2027, 1);
-var motorIki = donem.aylar.slice(0, 2).reduce(function (b, a) { return b * (1 + a.oran); }, 1) - 1;
-t.yakin("taban = motorun Temmuz–Ağustos birikimi", taban, motorIki, 1e-12);
-t.dogru("dönemin ilk iki ayı Temmuz ve Ağustos", donem.aylar[0].ay === 7 && donem.aylar[1].ay === 8);
-t.gecsin("emekli en az", "en az " + yz(taban));
-t.gecsin("SSS emekli", "SSK ve Bağ-Kur için en az " + yz(taban));
+var motorKesin = donem.aylar.slice(0, ka.length).reduce(function (b, a) { return b * (1 + a.oran); }, 1) - 1;
+t.yakin("taban = motorun açıklanmış aylar birikimi", taban, motorKesin, 1e-12);
+t.dogru("dönemin ilk ayları Temmuz–Eylül", donem.aylar[0].ay === 7 && donem.aylar[1].ay === 8 && donem.aylar[2].ay === 9);
+t.gecsin("emekli en az", "SSK ve Bağ-Kur zammı en az " + yz(taban));
+t.gecsin("üçünün bileşiği", "Üçünün bileşiği " + yz(taban) + ". Kalan üç ayın");
+t.gecsin("SSS emekli", "SSK ve Bağ-Kur için en az " + yz(taban) + ". Ocak zammı");
+t.gecsin("SSS emekli payı", "bunun " + yz(taban) + "'sını oluşturuyor");
 
 /* 4 — Memur. */
 t.gecsin("memur taban", "Memur zammı en az " + yz(K.memurTaban(), 0));
 t.gecsin("2026 ikinci yarı oranı", "o dönemin " + yz(K.memurIkinciYari(), 0) + "'lik");
-t.gecsin("fark eşiği", "birikiminin " + yz(K.farkEsigi()) + "'ü aşması");
+t.gecsin("fark eşiği", "Temmuz–Eylül'ün " + yz(taban) + "'sından sonra farkın doğması için Ekim–Aralık birikiminin " + yz(K.farkEsigi()) + "'yı aşması");
 t.yakin("fark eşiği tanımı", (1 + K.emekliTaban()) * (1 + K.farkEsigi()), 1 + K.memurIkinciYari(), 1e-12);
 
 /* 5 — MTV 2026. */
@@ -75,7 +89,7 @@ t.dogru("MTV payı Cumhurbaşkanı bandında (%20–%150)", K.mtvYdoPayi() >= 0.
 /* 6 — 5. Yasama Yılı teklifleri (3 Ekim anlık görüntüsü). */
 var o = K.teklifOzeti();
 t.yakin("102 teklif", o.sayi, 102, 0);
-t.gecsin("teklif sayısı metinde", "kayıtlı " + o.sayi + " kanun teklifi");
+t.gecsin("teklif sayısı metinde", "Yasama Yılı'na kayıtlı " + o.sayi + " teklif var");
 t.gecsin("geliş aralığı", tarih(o.ilkGelis).replace(" 2026", "") + " ile " + tarih(o.sonGelis).replace(" 2026", "") + " arasında");
 t.dogru("hepsi komisyonda", o.komisyonda === o.sayi);
 t.gecsin("tek imzalı", o.tekImzali + "'ü tek milletvekilinin teklifi");
@@ -84,6 +98,27 @@ t.gecsin("mali teklifler", o.mali + "'u vergi, prim ya da emeklilik kanunlarına
 t.dogru("mali tekliflerin hepsi tek imzalı", o.maliEnCokImza === 1, o.maliEnCokImza);
 t.gecsin("SSS mali", "102 teklifin " + o.mali + "'u");
 t.gecsin("örnek torba imza", K.ORNEK_TORBA.esas + " esas numaralı torba teklif " + K.ORNEK_TORBA.imza + " imzayla");
+
+/* 6b — 17 Ekim taraması: 3 Ekim'den sonra giren kayıtlar. */
+var y = K.yeniTaramaOzeti();
+t.yakin("liste toplamı 149", y.toplam, 149, 0);
+t.dogru("eklenenler = milletvekili + bütçe", y.eklenen === y.milletvekili + 1);
+t.dogru("bütçe teklifi 1/282, 16 Ekim", y.butce && y.butce.esas === "1/282" && y.butce.gelis === BU.KAYNAK.teklifTarihi);
+t.dogru("yeni esaslar aralıksız", +y.sonEsas.split("/")[1] - +y.ilkEsas.split("/")[1] + 1 === y.milletvekili);
+t.dogru("3 Ekim listesi yeni aralıktan önce biter", Math.max.apply(null, K.TEKLIFLER.map(function (x) { return +x.esas.split("/")[1]; })) + 1 === +y.ilkEsas.split("/")[1]);
+t.dogru("hepsi komisyonda (17 Ekim)", y.komisyonda === y.eklenen);
+var ucUstu = K.TEKLIFLER.filter(function (x) { return x.imza > 3; }).length + y.cokImzali.length;
+t.gecsin("kısa cevap 17 Ekim", "listesinde " + y.toplam + " kayıt: " + (o.sayi + y.milletvekili) + " milletvekili teklifi ve 2027 bütçe teklifi");
+t.yakin("üçten fazla imzalı iki", ucUstu, 2, 0);
+t.gecsin("kısa cevap imza", "yalnız ikisi üçten fazla imzalı");
+t.gecsin("güncelleme paragrafı", "kayıt sayısı " + y.toplam + "'a çıktı. 3 Ekim'den sonra giren " + y.eklenen + " kaydın " + y.milletvekili +
+  "'sı milletvekili teklifi (" + y.ilkEsas + "–" + y.sonEsas + "), biri 16 Ekim'de gelen 2027 bütçe teklifi (" + y.butce.esas + ")");
+t.gecsin("en fazla üç imzalı", y.milletvekili + " teklifin " + y.enFazlaUcImzali + "'i en fazla üç imzalı; başlığına göre " + y.mali + "'u vergi");
+t.dogru("tek çok imzalı teklif", y.cokImzali.length === 1 && y.cokImzali[0].esas === "2/3939");
+t.gecsin("2/3939", y.cokImzali[0].imza + " imzalı " + y.cokImzali[0].esas + " ve yalnız tasfiyesine karar verilen yatırım fonlarını");
+t.dogru("2/3939 başlığı yatırım fonları", /Yatırım Fonları/.test(y.cokImzali[0].baslik));
+t.gecsin("SSS yeni teklifler", "Sonra gelen " + y.milletvekili + " teklifin başlığına göre " + y.mali + "'u bu kanunlara dokunuyor; hepsi tek imzalı");
+t.dogru("yeni mali tekliflerin hepsi tek imzalı", K.YENI_TEKLIFLER.filter(function (x) { return x.esas[0] === "2" && /Katma Değer|Sosyal Sigortalar|İşsizlik Sigortası|Harçlar/.test(x.baslik); }).every(function (x) { return x.imza === 1; }));
 
 /* 7 — 4. Yasama Yılı: imza sayısı ve kanunlaşma. */
 t.yakin("4. yıl milletvekili teklifi", d4.toplam, 533, 0);
