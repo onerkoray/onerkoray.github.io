@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
       <image:title>Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları</image:title>
@@ -43,18 +43,18 @@
   </url>
   <url>
     <loc>https://korayoner.dev/iletisim/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/iletisim-koray-oner.png</image:loc>
-      <image:title>İletişim — Koray Öner | Hata Bildirimi, Öneri ve İşbirliği</image:title>
+      <image:title>İletişim: Hata Bildirimi, Öneri ve İşbirliği — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://korayoner.dev/koray-oner/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/hakkimda-koray-oner.jpg</image:loc>
-      <image:title>Koray Öner — Araçlar, Yazılar ve Yayınlar</image:title>
+      <image:title>Çalışma Dizini: Araçlar, Yazılar ve Yayınlar — Koray Öner</image:title>
     </image:image>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-portre.jpg</image:loc>
@@ -90,7 +90,7 @@
     <lastmod>2026-10-19</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
-      <image:title>Koray Öner — Yayımlanmış Çalışmalar</image:title>
+      <image:title>Yayımlanmış Çalışmalar (DOI) — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
