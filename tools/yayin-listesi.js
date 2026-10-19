@@ -74,6 +74,15 @@ function liste() {
         Y.LISANS.url + "\" rel=\"noopener license\">" + Y.LISANS.ad +
         "</a></p>");
 
+      if (c.pdf) {
+        if (!fs.existsSync(path.join(KOK, c.pdf))) {
+          throw new Error("Tam metin PDF bulunamadi: " + c.pdf);
+        }
+        satir.push("            <p class=\"ed-yayin-kunye\"><a href=\"../" +
+          esc(c.pdf) + "\" type=\"application/pdf\">Tam metin PDF</a> " +
+          "&middot; Zenodo'daki özgün dosyanın değişmemiş kopyası.</p>");
+      }
+
       if (!c.sayfa) {
         satir.push("            <p class=\"ed-yayin-baglanti\">" +
           "Bu çalışmayı anlatan bir site yazısı henüz yok.</p>");
@@ -104,8 +113,7 @@ function liste() {
       }
       if (c.ozetDiliFarkli) {
         satir.push("            <p class=\"ed-yayin-not\">" +
-          "Zenodo kaydı dili Türkçe diyor ama özet İngilizce; " +
-          "düzeltilecek.</p>");
+          "Tam metin Türkçe; Zenodo kaydında İngilizce özet bulunur.</p>");
       }
       if (c.ozetSorunlu) {
         satir.push("            <p class=\"ed-yayin-not\">" +
@@ -143,6 +151,10 @@ function ldjson() {
       "sameAs": Y.adres(c)
     };
     if (c.sayfa) eser.subjectOf = KOKADRES + c.sayfa + "/";
+    if (c.pdf) eser.encoding = {
+      "@type": "MediaObject", "encodingFormat": "application/pdf",
+      "contentUrl": KOKADRES + c.pdf
+    };
     return { "@type": "ListItem", "position": i + 1, "item": eser };
   });
 
@@ -185,10 +197,30 @@ function sayiYaz(s) {
   return s.replace(SAYI_KALIBI, "$1" + SAYI_YAZI[Y.CALISMALAR.length] + "$3");
 }
 
+function bibtex() {
+  function alan(s) { return String(s).replace(/[{}]/g, ""); }
+  return Y.yeniden().map(function (c) {
+    return "@misc{Oner" + c.tarih.replace(/-/g, "") + "_" + c.doi.split(".").pop() + ",\n" +
+      "  author = {Öner, Koray},\n" +
+      "  title = {" + alan(c.baslik) + "},\n" +
+      "  year = {" + Y.yil(c) + "},\n" +
+      "  publisher = {Zenodo},\n" +
+      "  howpublished = {Working paper},\n" +
+      "  doi = {" + c.doi + "},\n" +
+      "  url = {" + Y.adres(c) + "}\n}";
+  }).join("\n\n") + "\n";
+}
+
 function main() {
   var kontrol = process.argv.indexOf("--check") !== -1;
   var s = fs.readFileSync(SAYFA, "utf8");
   var degisen = 0;
+  var bibYol = path.join(KOK, "yayinlar", "koray-oner.bib");
+  var bib = bibtex();
+  if (!fs.existsSync(bibYol) || fs.readFileSync(bibYol, "utf8") !== bib) {
+    degisen++;
+    if (!kontrol) fs.writeFileSync(bibYol, bib, "utf8");
+  }
   var sayili = sayiYaz(s);
   if (sayili !== s) { degisen++; if (!kontrol) s = sayili; }
   for (var k = 0; k < ISARETLER.length; k++) {
