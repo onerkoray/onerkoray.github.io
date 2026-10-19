@@ -7,23 +7,11 @@
  * sitedeki yazılardan değil. Sebep: site yazıları çalışmayı ANLATIYOR;
  * çalışmanın kendisi Zenodo'da duruyor ve kanonik künye oradadır.
  *
- * İKİ BAŞLIK NEDEN FARKLI YAZILIYOR
- * ---------------------------------
- * İki kayıtta alt başlık, ana başlığa ayraçsız yapışmış:
- *   22819842  "...Finansal Haritası Tasarruf, Yatırım..."
- *   22819909  "...Finansal Matematiği Nüfus yaşlanması..."
- * Bu bir Zenodo tarafı hatasıdır ve düzeltilecektir. Sitede okunabilir
- * biçim gösteriliyor; `zenodoBaslik` alanı kaydın BUGÜNKÜ hâlini olduğu
- * gibi saklıyor. Test ikisinin yalnızca ayraçla ayrıldığını doğruluyor —
- * yani site, Zenodo'da olmayan bir şey uydurmuyor. Zenodo düzeltilince
- * iki alan eşitlenecek ve test bunu söyleyecek.
- *
- * BİR KAYITTA ÖZET YANLIŞ
- * -----------------------
- * 22818390 "Endekslemenin Aritmetiği" başlığını taşıyor ama Zenodo'daki
- * özeti vergi kaması / prim tavanı çalışmasını anlatıyor: "dilim kayması",
- * "endeksleme" ve "tarife" kelimeleri özette HİÇ geçmiyor. Bu kayıt
- * işaretlendi; özet düzeltilene kadar sitede Zenodo özeti gösterilmiyor.
+ * 19 Ekim 2026'da Zenodo kayıtlarıyla yeniden karşılaştırıldı:
+ * 22819842 ve 22819909 başlık ayraçları, 22818390 özeti artık doğru.
+ * Önceki düzeltme uyarıları bu nedenle kaldırıldı. İki Türkçe çalışmanın
+ * İngilizce kayıt özeti bulunması bir hata olarak sunulmuyor.
+ * pdf alanları, Zenodo dosyalarıyla MD5 eşleşen değişmemiş tam metinlerdir.
  *
  * TÜRETİLEBİLİR HİÇBİR ŞEY SAKLANMIYOR
  * ------------------------------------
@@ -49,6 +37,7 @@
   var CALISMALAR = [
     {
       doi: "10.5281/zenodo.22819021",
+      pdf: "yayinlar/dosyalar/22819021.pdf",
       tarih: "2026-09-09",
       baslik: "Ücret Üzerindeki Zorunlu Yükün Biçimi: Türkiye'de Vergi " +
         "Kamasının Prim Tavanında Kırılması (2026 Parametreleriyle Bir " +
@@ -62,11 +51,11 @@
     },
     {
       doi: "10.5281/zenodo.22819842",
+      pdf: "yayinlar/dosyalar/22819842.pdf",
       tarih: "2026-09-10",
       baslik: "OECD Verileriyle Türkiye Ekonomisinin Finansal Haritası: " +
         "Tasarruf, Yatırım, Borçluluk ve Sermaye Akımları",
-      zenodoBaslik: "OECD Verileriyle Türkiye Ekonomisinin Finansal " +
-        "Haritası Tasarruf, Yatırım, Borçluluk ve Sermaye Akımları",
+      zenodoBaslik: null,
       sayfa: "makaleler/tasarruf-kimde-finansman-kimde",
       kendiDoi: false,
       ozetSorunlu: false,
@@ -74,11 +63,11 @@
     },
     {
       doi: "10.5281/zenodo.22819909",
+      pdf: "yayinlar/dosyalar/22819909.pdf",
       tarih: "2026-09-13",
       baslik: "Türkiye'de Emekliliğin Finansal Matematiği: Nüfus " +
         "yaşlanması, çalışma hayatı, gelir ve tasarruf ilişkileri",
-      zenodoBaslik: "Türkiye'de Emekliliğin Finansal Matematiği Nüfus " +
-        "yaşlanması, çalışma hayatı, gelir ve tasarruf ilişkileri",
+      zenodoBaslik: null,
       sayfa: "makaleler/emekliligin-finansal-matematigi",
       kendiDoi: true,
       ozetSorunlu: false,
@@ -86,6 +75,7 @@
     },
     {
       doi: "10.5281/zenodo.22818390",
+      pdf: "yayinlar/dosyalar/22818390.pdf",
       tarih: "2026-09-15",
       baslik: "Endekslemenin Aritmetiği: Türkiye'de Ücret Vergisi " +
         "Tarifesinde Dilim Kayması (2022–2026 Dönemi İçin Bir Ölçüm ve " +
@@ -95,11 +85,12 @@
       /* 2026-09-25: yöntem kişiye uygulanabilir bir araç oldu. */
       arac: { yol: "dilim-kaymasi-hesaplama", ad: "Dilim Kayması Hesaplama" },
       kendiDoi: true,
-      ozetSorunlu: true,
+      ozetSorunlu: false,
       ozetDiliFarkli: false
     },
     {
       doi: "10.5281/zenodo.22852165",
+      pdf: "yayinlar/dosyalar/22852165.pdf",
       tarih: "2026-09-20",
       baslik: "Akış ve Stok: BES Devlet Katkısının Efektif Getirisi ve " +
         "2026 İndiriminin Ufuk Etkisi (Eşleşme, Hak Ediş ve Fon " +
@@ -113,6 +104,7 @@
     },
     {
       doi: "10.5281/zenodo.22852342",
+      pdf: "yayinlar/dosyalar/22852342.pdf",
       tarih: "2026-09-20",
       baslik: "Faiz Oranı Değişimlerinin Banka Kârlılığı ve Kredi " +
         "Büyümesine Etkisi: Türkiye'de Fiyat ve Miktar Araçlarının " +
@@ -129,6 +121,7 @@
        söylüyor. */
     {
       doi: "10.5281/zenodo.22972368",
+      pdf: "yayinlar/dosyalar/22972368.pdf",
       tarih: "2026-09-26",
       baslik: "Yüksek Enflasyon Ortamında Sermaye Yapısı Kararları ve " +
         "Finansal Kaldıracın Ölçümü: TMS 29 Uygulamasının Kuramsal ve " +
@@ -141,6 +134,7 @@
     },
     {
       doi: "10.5281/zenodo.22972569",
+      pdf: "yayinlar/dosyalar/22972569.pdf",
       tarih: "2026-09-26",
       baslik: "Gelişmekte Olan Hisse Senedi Piyasalarında Yatırımcı " +
         "Duyarlılığı ve Arbitraj Sınırları: Borsa İstanbul İçin Kuramsal " +

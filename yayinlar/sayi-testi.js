@@ -130,17 +130,17 @@ if (itemList) {
 
 /* ---------------------------------------------------------------- 3
    Ö3: bilinen sorunlar yazılı mı? */
-gecer("başlık farkı olan 2 kayıt", Y.baslikFarki().length === 2,
+gecer("19 Ekim kontrolü: başlık farkları giderilmiş", Y.baslikFarki().length === 0,
   String(Y.baslikFarki().length));
 Y.baslikFarki().forEach(function (c) {
   gecer("Zenodo başlığı sayfada yazılı: " + c.doi,
     kacKez(c.zenodoBaslik) >= 1);
 });
-gecsin("başlık notu açıklanmış", "alt başlık ayraçsız görünüyor");
+gecer("eski başlık düzeltme vaadi kaldırılmış", kacKez("alt başlık ayraçsız görünüyor") === 0);
 
-gecer("özeti sorunlu 1 kayıt", Y.ozetiSorunlu().length === 1,
+gecer("19 Ekim kontrolü: yanlış kayıt özeti giderilmiş", Y.ozetiSorunlu().length === 0,
   String(Y.ozetiSorunlu().length));
-gecsin("özet notu açıklanmış", "başka bir çalışmayı");
+gecer("eski özet düzeltme vaadi kaldırılmış", kacKez("başka bir çalışmayı") === 0);
 
 /* ---------------------------------------------------------------- 4
    Ö4: site başlığı Zenodo'dakinden yalnızca ayraçla ayrılıyor mu? */
@@ -161,7 +161,27 @@ gecer("KONTROL: farklı metinler eşit sayılmıyor",
    Dil ALANI altisinda da dolu -- eksik olan alan degil, ozetin dili. */
 gecer("özet dili uyuşmayan 2 kayıt", Y.ozetDiliFarkli().length === 2,
   String(Y.ozetDiliFarkli().length));
-gecsin("dil notu açıklanmış", "dili Türkçe diyor ama özet İngilizce");
+gecsin("İngilizce özet bilgisi açıklanmış", "Zenodo kaydında İngilizce özet bulunur");
+
+/* Tam metin bağlantısı sessizce 404'e ya da başka dosya türüne dönüşmemeli. */
+Y.CALISMALAR.forEach(function (c) {
+  gecer("PDF adresi yerel yayın klasöründe: " + c.doi,
+    /^yayinlar\/dosyalar\/\d+\.pdf$/.test(c.pdf || ""));
+  if (!c.pdf) return;
+  var dosya = path.join(__dirname, "..", c.pdf);
+  gecer("PDF dosyası var: " + c.doi, fs.existsSync(dosya));
+  if (!fs.existsSync(dosya)) return;
+  var veri = fs.readFileSync(dosya);
+  gecer("PDF başlığı ve Scholar boyut sınırı: " + c.doi,
+    veri.subarray(0, 5).toString() === "%PDF-" && veri.length < 5000000);
+  gecsin("doğrudan PDF bağlantısı: " + c.doi, 'href="../' + c.pdf + '"');
+  if (itemList) {
+    var eser = itemList.itemListElement.find(function (o) { return o.item.identifier.value === c.doi; });
+    gecer("JSON-LD aynı PDF'ye bağlı: " + c.doi, !!eser && !!eser.item.encoding &&
+      eser.item.encoding.contentUrl === "https://korayoner.dev/" + c.pdf);
+  }
+});
+gecsin("atıf dışa aktarımı erişilebilir", 'href="koray-oner.bib"');
 
 /* SAYFASIZLIK: sabit sayı değil ilişki.
    Önce "sayfası olmayan 1 çalışma" yazıyordu; BES yazısı çıkınca
