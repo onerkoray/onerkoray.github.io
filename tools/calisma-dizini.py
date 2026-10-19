@@ -197,8 +197,8 @@ def govde():
     p.append('''
     <section class="hero kd-hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Çalışma dizini</p>
-        <h1 id="hero-title">Koray Öner</h1>
+        <p class="eyebrow">Koray Öner</p>
+        <h1 id="hero-title">Çalışma dizini</h1>
         <figure class="portre portre--kucuk kd-portre">
           <div class="portre-cerceve">
             <picture>
@@ -406,7 +406,7 @@ def json_ld(ar, yz, yy):
         ogeler.append({"@type": "ScholarlyArticle", "headline": c["baslik"], "url": "https://doi.org/" + c["doi"],
                        "datePublished": c["tarih"], "author": {"@id": KISI}})
     veri = {"@context": "https://schema.org", "@graph": [
-        {"@type": "CollectionPage", "@id": ADRES + "#sayfa", "url": ADRES, "name": "Koray Öner — Araçlar, Yazılar ve Yayınlar",
+        {"@type": "CollectionPage", "@id": ADRES + "#sayfa", "url": ADRES, "name": "Çalışma dizini: araçlar, yazılar ve yayınlar",
          "inLanguage": "tr", "about": {"@id": KISI}, "author": {"@id": KISI},
          "primaryImageOfPage": "https://korayoner.dev/images/hakkimda-koray-oner.jpg",
          "isPartOf": {"@id": "https://korayoner.dev/#website"},
@@ -415,7 +415,7 @@ def json_ld(ar, yz, yy):
                         "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": o} for i, o in enumerate(ogeler)]}},
         {"@type": "BreadcrumbList", "@id": ADRES + "#breadcrumb", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"},
-            {"@type": "ListItem", "position": 2, "name": "Koray Öner", "item": ADRES}]}]}
+            {"@type": "ListItem", "position": 2, "name": "Çalışma dizini", "item": ADRES}]}]}
     return '<script type="application/ld+json">' + json.dumps(veri, ensure_ascii=False) + "</script>"
 
 
