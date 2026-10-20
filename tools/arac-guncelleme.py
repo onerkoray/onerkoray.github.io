@@ -217,12 +217,35 @@ SINIF_NITELIGI = re.compile(r'\sclass="[^"]*"')
 STIL_BAGLANTISI = re.compile(r'^\s*<link rel="stylesheet" href="[^"]*"\s*/?>\s*$')
 
 
+# Adres durumu altyapisi hesap degildir. 20 Ekim 2026'da uc arac ve site
+# aramasi girdiyi sorgu dizesinden (?kira=...) # sonrasina tasidi (durum.js,
+# ayak izi kapisi). Hesap ve metin ayniydi; uc aracin karti yine de bugune
+# kayiyordu. Elenen: durum.js betik satiri, durumu okuyan/yazan cagrilar ve
+# yalnizca ? -> # farki olan site ici adres.
+ADRES_DURUMU = re.compile(
+    r'^\s*<script src="[^"]*durum[.]js(?:[?]v=[0-9a-f]+)?"(?: defer)?></script>\s*$'
+    r'|Durum[.](?:oku|yaz)\('
+    r'|new URLSearchParams\((?:window[.])?location[.]search\)'
+    r'|history[.]replaceState\(null, "", location[.]pathname \+ \(s \? "[?]" \+ s'
+    r'|^\s*var s = q[.]toString\(\);\s*$')
+SITE_ICI_SORU = re.compile(r'(korayoner[.]dev/[a-z0-9-]+/)[?#]')
+# Ayni gun ana sayfanin SearchAction isaretlemesi kaldirildi (?q= sablonu
+# tasiyordu; Google site baglantilari arama kutusunu Kasim 2024'te kaldirdi).
+# Okura gorunmeyen bu blok ve yalnizca JSON ayracindan olusan satirlar icerik
+# degildir.
+GORUNMEZ_ISARET = re.compile(
+    r'^\s*(?:"potentialAction": \{|"@type": "(?:SearchAction|EntryPoint)",|"target": \{'
+    r'|"urlTemplate": "[^"]*search_term_string[^"]*"|"query-input": "[^"]*"'
+    r'|[{}\[\],]+)\s*$')
+
+
 def _gezinmesiz(satir):
     """None: satir yalnizca gezinme ya da stil baglantisi; yoksa site ici
     baglantilari ve sinif nitelikleri silinmis hali."""
-    if BAGLANTI_MADDESI.match(satir) or STIL_BAGLANTISI.match(satir):
+    if (BAGLANTI_MADDESI.match(satir) or STIL_BAGLANTISI.match(satir) or ADRES_DURUMU.search(satir)
+            or GORUNMEZ_ISARET.match(satir)):
         return None
-    return SINIF_NITELIGI.sub("", IC_BAGLANTI.sub("", satir))
+    return SINIF_NITELIGI.sub("", IC_BAGLANTI.sub("", SITE_ICI_SORU.sub(r"\1?", satir)))
 
 
 # Tarih senkronunun (scripts/sync-dates.mjs) yazdigi parcalar: kunyedeki
