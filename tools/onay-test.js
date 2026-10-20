@@ -89,7 +89,9 @@ function sahteOrtam(secenek) {
   });
 
   var pencere = {
-    location: { hostname: o.host || "korayoner.dev" },
+    /* Eski bir paylaşım bağlantısıyla gelmiş gibi: sorgu dizesi ve # dolu. */
+    location: { hostname: o.host || "korayoner.dev", origin: "https://korayoner.dev",
+      pathname: "/kira-artisi-hesaplama/", search: "?kira=98765", hash: "#tarih=1999-01" },
     navigator: o.navigator || {},
     localStorage: depoVar ? {
       getItem: function (a) {
@@ -138,6 +140,17 @@ dogru("gtag betigi", /googletagmanager\.com\/gtag\/js\?id=G-/.test(o1.eklenenBet
 dogru("config cagrisi", (o1.pencere.dataLayer || []).some(function (a) {
   return a[0] === "config";
 }));
+/* Analitiğe giden adres yalnız yol: girilen tutar (98765) ve # durumu
+   hiçbir ölçüm çağrısında görünmemeli. "set" geçmiş değişikliğiyle gelen
+   sonraki sayfa görüntülemelerini de kapsıyor. */
+var olcumCagrilari = JSON.stringify((o1.pencere.dataLayer || []).map(function (a) { return Array.prototype.slice.call(a); }));
+dogru("olcum adresi yalniz yol (set)", (o1.pencere.dataLayer || []).some(function (a) {
+  return a[0] === "set" && a[1] && a[1].page_location === "https://korayoner.dev/kira-artisi-hesaplama/";
+}));
+dogru("config de ayni temiz adresi tasiyor", (o1.pencere.dataLayer || []).some(function (a) {
+  return a[0] === "config" && a[2] && a[2].page_location === "https://korayoner.dev/kira-artisi-hesaplama/";
+}));
+dogru("girilen tutar olcume gitmiyor", olcumCagrilari.indexOf("98765") < 0 && olcumCagrilari.indexOf("1999-01") < 0);
 
 console.log("\nTARAYICI RET DIYORSA OLCULMEZ");
 /* GPC bazi yargi alanlarinda baglayici; DNT degil ama acikca ifade

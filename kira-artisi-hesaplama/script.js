@@ -53,7 +53,7 @@
   var ALANLAR = { tur: "in-type", kira: "in-rent", tarih: "in-date", oran: "in-agreed",
     gtur: "g-type", baslangic: "g-start", ilk: "g-rent", goran: "g-agreed" };
   function adresOku() {
-    var q = new URLSearchParams(location.search);
+    var q = Durum.oku();
     Object.keys(ALANLAR).forEach(function (k) { if (q.has(k)) el(ALANLAR[k]).value = q.get(k); });
   }
   function adresYaz() {
@@ -62,8 +62,7 @@
       var e = el(ALANLAR[k]);
       if (e.value !== e.defaultValue && !(e.tagName === "SELECT" && e.selectedOptions[0] && e.selectedOptions[0].defaultSelected)) q.set(k, e.value);
     });
-    var s = q.toString();
-    history.replaceState(null, "", location.pathname + (s ? "?" + s : "") + location.hash);
+    Durum.yaz(q);
   }
 
   /* ---- grafik imleci ----------------------------------------------------------- */

@@ -252,6 +252,20 @@ ve ana sayfadaki saat, selam ve dünya saatleri şeridi bu yüzden 7 Ekim
 5. Geniş görsel değişiklik ayrıca önce/sonra görüntüsüyle site sahibine
    gösterilir (bölüm 4, "Sonra").
 
+**Ayak izi neredeyse sıfır.** Site sahibinin kuralı (20 Ekim 2026). Her yeni
+özellik üç sorudan geçer:
+
+- Ziyaretçide: girdiği bir şey cihazından çıkıyor mu, ondan bir şey isteniyor mu?
+  Araç girdisi adreste yalnız `#` ile durur (`durum.js`); sorgu dizesi kurulmaz.
+  Üyelik, e-posta toplayan bülten, yorum, bildirim izni yok. Ölçüm yalnız sayfa
+  yolunu görür (`onay.js`). Dış kaynak (betik, yazı tipi, gömme, görsel) yalnız
+  izin listesinden; eklemek site sahibinin kararı.
+- İçerikte: sayfalar arasında kalıp okunuyor mu? Yazılara ortak paragraf
+  konmaz; olay yazıları kendi kurgusuyla yazılır, yalnız rakam motordan gelir.
+- Kimlikte: iletisim@korayoner.dev dışında kişisel bilgi ya da yeni hesap yok.
+
+[CI: Ayak izi kapısı]
+
 **Bitti demeden.** "Tamam" demek, workflow'daki CI komutlarının tamamının
 yerelde koşulup çıktısının görülmesi demektir. Seçilmiş bir alt küme yeşil
 diye iş bitmiş sayılmaz. Oran, tarih ve kanun gibi değişen bilgi ezberden
