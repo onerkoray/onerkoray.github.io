@@ -204,57 +204,29 @@ a:hover { color: var(--brand); }
 .site-header.is-scrolled { border-bottom-color: var(--border); box-shadow: 0 6px 24px rgba(16,24,20,.06); }
 .header-inner { display: flex; align-items: center; gap: 1.5rem; padding: .7rem 0; }
 .brand { display: inline-flex; align-items: center; gap: .6rem; color: var(--text); text-decoration: none; font-weight: 700; }
-.brand-mark {
-  display: block; inline-size: 30px; block-size: 30px; border-radius: 2px;
-  transition: transform .3s ease-out;
-}
-.brand:hover .brand-mark, .brand:focus-visible .brand-mark { transform: translateY(-1px) scale(1.04); }
-@media (prefers-reduced-motion: reduce) {
-  .brand-mark { transition: none; }
-  .brand:hover .brand-mark, .brand:focus-visible .brand-mark { transform: none; }
-}
+/* Logo hover'da büyümez: dönüşüm onu bitmap katmanına alıyor, tarayıcı
+   katmanı yeniden çizmeden ölçekliyordu; yakınlaştırınca eğri pikselleniyordu
+   (20 Ekim 2026). Üzerine gelmenin işareti adın altındaki tavan çizgisi. */
+.brand-mark { display: block; inline-size: 30px; block-size: 30px; border-radius: 2px; }
+/* Marka adı sabit mürekkep: bir finans kaynağında ad kıpırdamaz. Renk dalgası
+   kaldırıldı, kodu da (bölüm 5). */
 .brand-name {
-  position: relative;
+  position: relative; color: var(--text);
   font-size: 1.35rem; font-weight: 800; letter-spacing: -.03em; white-space: nowrap;
-
-  /* Geniş renk bandı adı birlikte tarar; mürekkep renkleri yazıyı korur.
-     Karo ve hareket mesafesi eşittir: döngü başında renk sıçraması olmaz. */
-  background-image: linear-gradient(90deg,
-      var(--text) 0%,
-      var(--text) 15%,
-      var(--brand-strong) 30%,
-      var(--brand) 45%,
-      var(--brand-strong) 60%,
-      var(--text) 75%,
-      var(--text) 100%);
-  background-size: 200% 100%;
-  background-repeat: repeat-x;
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  animation: markaDalga 6.5s linear infinite;
 }
-@keyframes markaDalga {
-  from { background-position: 200% 0; }
-  to { background-position: 0% 0; }
-}
+/* Alt çizgi logodaki tavan çizgisinin kendisi: aynı yeşil, düz, kesin uçlu. */
 .brand-name::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -.12em; height: 2px;
-  background: linear-gradient(90deg, var(--brand-strong), var(--brand), transparent);
-  transform: scaleX(.15); transform-origin: left; opacity: 0;
-  transition: transform .65s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+  background: var(--marka);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .45s cubic-bezier(.22,1,.36,1);
 }
-.brand:focus-visible .brand-name::after { transform: scaleX(1); opacity: 1; }
+.brand:focus-visible .brand-name::after { transform: scaleX(1); }
 @media (hover: hover) and (pointer: fine) {
-  .brand:hover .brand-name::after { transform: scaleX(1); opacity: 1; }
+  .brand:hover .brand-name::after { transform: scaleX(1); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .brand-name { animation: none; background-image: none; color: var(--text); }
   .brand-name::after { transition: none; }
-}
-/* background-clip:text desteklenmiyorsa yazı saydam kalırdı; o durumda
-   düz mürekkep rengine dönülüyor. Marka adının görünmemesi, hareketin
-   olmamasından çok daha kötü. */
-@supports not ((background-clip: text) or (-webkit-background-clip: text)) {
-  .brand-name { background-image: none; color: var(--text); animation: none; }
 }
 .site-nav { margin-left: auto; }
 .site-nav ul { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
@@ -2056,10 +2028,6 @@ section { padding: var(--bolum) 0; }
   font-family: var(--font-body); text-transform: none; letter-spacing: 0;
   font-size: .8125rem; font-weight: 500;
 }
-
-/* Marka adı sabit mürekkep. Renk dalgası her 6,5 saniyede adı boyuyordu;
-   bir finans kaynağında ad kıpırdamaz. Üzerine gelince çizgi kalır. */
-:root .brand-name { animation: none; background-image: none; color: var(--text); }
 
 /* Başlık denetimleri (renk, tema): yazılı ve kenarlıklı iki kutu, menüden
    daha ağır duruyordu. Artık 40 px kare, kenarsız simge düğmeleri; menüden
