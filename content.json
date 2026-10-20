@@ -19,8 +19,8 @@
   "makale": 63,
   "metodoloji": 10,
   "grafik": 2,
-  "sayfa": 10,
-  "indekslenebilir": 147
+  "sayfa": 11,
+  "indekslenebilir": 148
  },
  "sayfalar": [
   {
@@ -498,6 +498,22 @@
    "noindex": false
   },
   {
+   "url": "https://korayoner.dev/en/",
+   "dosya": "en/index.html",
+   "type": "sayfa",
+   "parent": null,
+   "title": "Koray Öner — Turkish Payroll, Tax and Pension Tools",
+   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 61 free calculators for Turkish payroll, tax and pensions, 63 tested articles and 8 papers with a DOI.",
+   "category": null,
+   "published": "2026-10-20T07:35:08+03:00",
+   "updated": "2026-10-20",
+   "updatedAt": "2026-10-20T07:35:08+03:00",
+   "image": "https://korayoner.dev/images/en-koray-oner.png",
+   "imageTitle": "Koray Öner — Turkish Payroll, Tax and Pension Tools",
+   "related": [],
+   "noindex": false
+  },
+  {
    "url": "https://korayoner.dev/enflasyon-hesaplama/",
    "dosya": "enflasyon-hesaplama/index.html",
    "type": "arac",
@@ -893,8 +909,8 @@
    "description": "Koray Öner kimdir? Serbest çalışan yazılım geliştirici. Bordro ve vergi araçlarındaki her sayıyı yasal parametreden türetip her değişiklikte yeniden doğruluyor.",
    "category": null,
    "published": "2026-07-28T23:19:23+03:00",
-   "updated": "2026-10-17",
-   "updatedAt": "2026-10-17T20:00:44+03:00",
+   "updated": "2026-10-20",
+   "updatedAt": "2026-10-20T07:35:08+03:00",
    "image": "https://korayoner.dev/images/hakkimda-koray-oner.jpg",
    "imageTitle": "Koray Öner Kimdir? — Yazılım Geliştirici | Hakkımda",
    "related": [],
