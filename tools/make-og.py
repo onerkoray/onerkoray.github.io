@@ -419,6 +419,11 @@ SPEC = {
    "Araçlar, yazılar, metodoloji ve grafikler: türe ve kategoriye göre süzülür.",
    ["Ctrl + K", "Diakritiksiz de bulur"], "marka"),
 
+ # İngilizce tanıtım (2026-10-20): hakkımda'nın İngilizce karşılığı, kendi kartıyla.
+ "en": ("en", "Koray Öner", "in English",
+   "Free calculators for Turkish payroll, tax and pensions, and the research behind them.",
+   ["Payroll", "Tax", "Pensions"], "marka"),
+
  "iletisim": ("iletisim", "İletişim", "ve geri bildirim",
    "Hata bildirimi, öneri ve iş birliği için doğrudan ulaşın.",
    ["Hata bildirimi", "Öneri"], "marka"),

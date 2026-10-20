@@ -1235,6 +1235,11 @@ jobs:
       - name: Hakkımda sayfasının sayıları güncel mi
         run: python tools/hakkimda-rakamlar.py --check
 
+      # /en/ hakkımda'nın İngilizce karşılığı (hreflang ile bağlı); araç,
+      # yazı ve kontrol sayıları ile DOI'li yayın listesi aynı kaynaklardan.
+      - name: İngilizce tanıtım sayfası güncel mi
+        run: python tools/en-sayfa.py --check
+
       - name: Marka ikonları favicon.svg ile uyumlu mu
         run: |
           pip install --quiet pillow

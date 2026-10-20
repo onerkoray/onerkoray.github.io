@@ -141,7 +141,9 @@ var beklenenKok = ["gizlilik/index.html", "hakkimda/index.html",
   /* Site içi arama sayfası (2026-10-07): bir araç değil, sitenin kendisi. */
   "ara/index.html",
   /* Araç kataloğu (2026-10-07): bütün araçların listesi, tek bir araç değil. */
-  "araclar/index.html"];
+  "araclar/index.html",
+  /* İngilizce tanıtım (2026-10-20): hakkımda'nın İngilizce karşılığı. */
+  "en/index.html"];
 var fazla = kokeDusen.filter(function (p) { return beklenenKok.indexOf(p) < 0; });
 dogru("kök markaya yalnızca hak eden sayfalar düşüyor", fazla.length === 0,
   "beklenmeyen: " + fazla.slice(0, 8).join(", "));

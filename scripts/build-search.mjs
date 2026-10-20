@@ -34,7 +34,9 @@ const arg = (ad, v) => { const i = process.argv.indexOf(ad); return i > 0 ? proc
 const CIKTI = arg("--output", join(KOK, "pagefind"));
 
 export const TUR_ADI = { arac: "Araç", makale: "Makale", metodoloji: "Metodoloji", grafik: "Grafik", sayfa: "Sayfa" };
-const LISTE = new Set(["/", "/makaleler/", "/araclar/", "/koray-oner/", "/ara/"].map((u) => M.site + u));
+/* /en/: İngilizce tanıtım. lang="en" Pagefind'da ayrı bir dil dizini açardı;
+   Türkçe aramada yeri yok (2026-10-20). */
+const LISTE = new Set(["/", "/makaleler/", "/araclar/", "/koray-oner/", "/ara/", "/en/"].map((u) => M.site + u));
 export const arananir = (p) => !p.noindex && !LISTE.has(p.url);
 const esc = (x) => String(x == null ? "" : x).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 

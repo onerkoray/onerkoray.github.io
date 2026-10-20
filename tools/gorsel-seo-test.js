@@ -200,8 +200,8 @@ hepsi.filter(function (p) {
              t === "TechArticle") && n.image) bulundu = true;
         /* CollectionPage da WebPage'in alt tipidir ve primaryImageOfPage
            orada gecerlidir; /yayinlar/ bu tipi kullaniyor. Liste eksikti,
-           sayfa degil. */
-        if ((t === "WebPage" || t === "ProfilePage" || t === "ContactPage" ||
+           sayfa degil. /en/ AboutPage: profil sayfasi tek (hakkimda). */
+        if ((t === "WebPage" || t === "ProfilePage" || t === "ContactPage" || t === "AboutPage" ||
              t === "CollectionPage" || t === "SearchResultsPage") && n.primaryImageOfPage) bulundu = true;
       });
     } catch (e) { /* sozdizimi ayri kontrol ediliyor */ }
