@@ -126,6 +126,12 @@ DOSYALAR = [
     ("ne-zaman-emekli-olurum/test.js",    "emeklilik-tarihi/test.js"),
     ("engelli-arac-otv-istisnasi-hesaplama/hesap.js", "engelli-arac/hesap.js"),
     ("engelli-arac-otv-istisnasi-hesaplama/test.js",  "engelli-arac/test.js"),
+    # Engelli araç çekirdeği ÖTV ve MTV tarifelerini ve endeksleme
+    # serilerini çağırıyor; 4 Ekim'de bunlar pakete alınmadan eklendi ve
+    # paket 20 Ekim'e kadar bozuk üretiliyordu (--check görmüyordu).
+    ("otv-hesaplama/tarife.js",           "otv/tarife.js"),
+    ("mtv-hesaplama/tarife.js",           "mtv/tarife.js"),
+    ("finans/endeksleme-serileri.js",     "finans/endeksleme-serileri.js"),
     ("iskur-genclik-programi-hesaplama/hesap.js", "iskur-guc/hesap.js"),
     ("iskur-genclik-programi-hesaplama/test.js",  "iskur-guc/test.js"),
     ("bordro/rapor.js",                   "bordro/rapor.js"),
@@ -148,6 +154,8 @@ YOL_DUZELTME = [
     # "kredi-hesaplama", pakette "kredi" -- yol duzeltilmezse paketlenmis
     # test dosya bulamiyor. (Ilk pakette tam bunu yakaladi.)
     ('require("../kredi-hesaplama/hesap.js")', 'require("../kredi/hesap.js")'),
+    ('require("../otv-hesaplama/tarife.js")', 'require("../otv/tarife.js")'),
+    ('require("../mtv-hesaplama/tarife.js")', 'require("../mtv/tarife.js")'),
     # Zam cekirdegi bordro motorunu cagiriyor; pakette klasor adi ayni
     # ('bordro') oldugu icin yol degismiyor ama kural burada dursun.
     # Ayni gerekce vergi kamasi (../bordro/motor.js) ve ucret-kar payi
@@ -507,6 +515,23 @@ def eksikler():
     return yok
 
 
+def cozulmeyenler():
+    """Paketlenen dosyalardaki goreli require yollarinin pakette karsiligi
+    var mi? --check paketi kurmadan bunu statik olarak dogrular; yoksa
+    eksik bir bagimlilik ancak paket uretilirken (yayin gunu) ortaya cikar."""
+    hedefler = set(h for _, h in DOSYALAR)
+    eksik = []
+    for kaynak, hedef in DOSYALAR:
+        icerik = io.open(kaynak, encoding="utf-8").read()
+        for eski, yeni in YOL_DUZELTME:
+            icerik = icerik.replace(eski, yeni)
+        for yol in re.findall(r"""require\(\s*["'](\.{1,2}/[^"']+)["']\s*\)""", icerik):
+            cozum = os.path.normpath(os.path.join(os.path.dirname(hedef), yol)).replace(os.sep, "/")
+            if cozum not in hedefler:
+                eksik.append("%s -> %s" % (hedef, yol))
+    return eksik
+
+
 def main():
     kontrol = "--check" in sys.argv
 
@@ -515,6 +540,13 @@ def main():
         print("Çekirdeğe girmesi gereken dosya bulunamadı:", file=sys.stderr)
         for k in yok:
             print("  - " + k, file=sys.stderr)
+        return 1
+
+    cozulmez = cozulmeyenler()
+    if cozulmez:
+        print("Paketlenen dosyaların istediği modül pakette yok:", file=sys.stderr)
+        for c in cozulmez:
+            print("  - " + c, file=sys.stderr)
         return 1
 
     # Site, cekirdek deposuna dogru adresle baglaniyor mu?
