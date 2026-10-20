@@ -64,6 +64,7 @@ BOLUM = {
     "bordro": "bordro",
     "yayinlar": "yayinlar",
     "hakkimda": "hakkimda", "koray-oner": "hakkimda", "iletisim": "hakkimda",
+    "en": "hakkimda",          # /en/ hakkımda'nın İngilizce karşılığı
     "yayin-ilkeleri": "hakkimda", "gizlilik": "hakkimda", "kullanim-kosullari": "hakkimda",
     "ara": "ara",
 }
