@@ -212,10 +212,11 @@ def uret():
     # tutar kanuni sınıra dayanır. 13 Ekim 2026'ya kadar </> kod simgesiydi;
     # yapay zekâ görsellerinde çok yaygın olduğu ve siteye ait bir şey
     # söylemediği için değişti. Aynı kabı kullanır ki hakkımda, iletişim ve
-    # yasal sayfalar da aynı aileden görünsün.
+    # yasal sayfalar da aynı aileden görünsün. Eğri tek kübik (20 Ekim 2026):
+    # iki parçalıyken birleşme noktasında eğim kırılıyordu.
     cikti[""] = ciz("Koray Öner",
                     '<path d="M2 3.5h20"/>'
-                    '<path d="M3 20c4.5-.8 6.5-4.4 8.5-8 1.6-2.8 3.8-3.4 10.5-3.4"/>')
+                    '<path d="M3 20c6.7-.4 8.5-11.4 19-11.4"/>')
     return cikti
 
 
