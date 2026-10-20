@@ -42,6 +42,8 @@ HARIC_KOK = {"yayin-ilkeleri", "decorpalette", "keymint", "dither-studio", "imag
              "iletisim", "gizlilik", "kullanim-kosullari",
              # Kişi sayfası (çalışma dizini): hakkımda gibi, yeni araç değil.
              "koray-oner",
+             # İngilizce tanıtım (20 Ekim 2026): hakkımda'nın karşılığı.
+             "en",
              # Katalog ve arama sayfaları (7 Ekim 2026): liste, araç değil.
              "araclar", "ara", "scripts", "pagefind"}
 

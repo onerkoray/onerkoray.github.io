@@ -33,6 +33,7 @@ BIT = "<!-- METODOLOJI-BLOGU:BITIS -->"
 HARIC = {
     "yayin-ilkeleri", "gizlilik", "iletisim", "kullanim-kosullari", "hakkimda", "makaleler",
     "koray-oner",
+    "en",          # İngilizce tanıtım (hakkımda'nın karşılığı), araç değil
     "bordro",
     "ara",
     "araclar",
