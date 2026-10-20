@@ -79,7 +79,7 @@ console.log("Bugün: " + BUGUN + "\n");
 (function () {
   var sayi = String(TEKLIF.toplam);
   gecer("TBMM eski kesiti aralıksız bitiyor", TEKLIF.once.length > 0 && TEKLIF.once[TEKLIF.once.length - 1].esas === "2/3905");
-  gecer("TBMM yeni kesiti aralıksız başlıyor", TEKLIF.yeni[0] === "2/3906" && TEKLIF.yeni.at(-1) === "2/3949");
+  gecer("TBMM yeni kesiti aralıksız başlıyor", TEKLIF.yeni[0] === "2/3906" && TEKLIF.yeni.at(-1) === "2/3960" && TEKLIF.butce[0] === "1/282");
   gecer("torba yazısı TBMM kesitindeki toplamı kullanıyor", oku(TORBA).includes(sayi + " kanun teklifi"));
   gecer("kademeli yazısı TBMM kesitindeki toplamı kullanıyor", oku(KADEME).includes(sayi + " teklifin"));
 })();
