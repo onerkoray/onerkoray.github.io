@@ -140,7 +140,7 @@ async function guncelle() {
     durum.textContent = r.toplam ? r.toplam + " sonuç" + (r.toplam > 8 ? ", ilk 8'i gösteriliyor" : "") : "Sonuç yok";
   } catch (err) {
     if (no !== sayac) return;
-    liste.innerHTML = '<li role="none" class="ara-bos">Arama dizini yüklenemedi. <a href="/ara/?q=' + encodeURIComponent(q) + '">Arama sayfasını açın</a> ya da <a href="/koray-oner/">dizine</a> bakın.</li>';
+    liste.innerHTML = '<li role="none" class="ara-bos">Arama dizini yüklenemedi. <a href="/ara/#q=' + encodeURIComponent(q) + '">Arama sayfasını açın</a> ya da <a href="/koray-oner/">dizine</a> bakın.</li>';
     durum.textContent = "Arama yüklenemedi";
   }
   secimiBagla();
@@ -197,7 +197,11 @@ async function aramaSayfasi(kok) {
   const form = kok.querySelector("form"), q = kok.querySelector("#ara-sayfa-q");
   const turSec = kok.querySelector("#ara-tur"), katSec = kok.querySelector("#ara-kategori"), siraSec = kok.querySelector("#ara-sira");
   const sonuc = kok.querySelector("#ara-sonuclar"), say = kok.querySelector("#ara-sayac");
-  const p = new URLSearchParams(location.search);
+  /* Aranan kelime de ziyaretçi girdisi: adreste yalnız # sonrasında durur
+     (durum.js). JS'siz form ?q= ile gelir; ilk okumada # biçimine çevrilir. */
+  await import("/durum.js");
+  const Durum = window.Durum;
+  const p = Durum.oku();
   q.value = p.get("q") || "";
   if (p.get("tur")) turSec.value = p.get("tur");
   if (p.get("kategori")) katSec.value = p.get("kategori");
@@ -209,7 +213,7 @@ async function aramaSayfasi(kok) {
     if (turSec.value) u.set("tur", turSec.value);
     if (katSec.value) u.set("kategori", katSec.value);
     if (siraSec.value) u.set("sira", siraSec.value);
-    history.replaceState(null, "", location.pathname + (u.toString() ? "?" + u : ""));
+    Durum.yaz(u);
     const filters = {};
     if (turSec.value) filters["tür"] = turSec.value;
     if (katSec.value) filters.kategori = katSec.value;

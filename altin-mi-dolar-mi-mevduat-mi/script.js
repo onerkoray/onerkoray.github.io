@@ -43,7 +43,7 @@
 
   /* ---- adres çubuğu: hesabı paylaşılabilir kılar ----------------------------- */
   function adresOku() {
-    var q = new URLSearchParams(location.search), v = G.VARSAYILAN;
+    var q = Durum.oku(), v = G.VARSAYILAN;
     el("in-tutar").value = q.get("tutar") || String(v.tutar);
     var bas = q.get("bas"), son = q.get("son");
     ayYaz("bas", /^\d{4}-\d{2}$/.test(bas || "") && bas >= V.ILK && bas <= V.SON ? bas : v.bas);
@@ -58,8 +58,7 @@
     if (bas !== v.bas) q.set("bas", bas);
     if (son !== v.son) q.set("son", son);
     if (sure !== v.sure) q.set("sure", sure);
-    var s = q.toString();
-    history.replaceState(null, "", location.pathname + (s ? "?" + s : "") + location.hash);
+    Durum.yaz(q);
   }
 
   /* ---- süre düğmeleri ---------------------------------------------------------- */

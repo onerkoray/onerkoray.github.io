@@ -948,6 +948,14 @@ jobs:
         # ("Konum") denetler.
         run: node tools/iz-test.js
 
+      - name: Ayak izi kapısı
+        # Site sahibinin kuralı (20 Ekim 2026): ziyaretçide ve içerikte iz yok.
+        # Araç girdisi adreste yalnız # ile (durum.js; sorgu dizesi sunucuya ve
+        # analitiğe gider); izin listesi dışında dış kaynak yok; yazılar birbirinin
+        # cümlesini taşımıyor (ortak pay ve en uzun ortak dizi). Üç kapı mutasyonla
+        # sınandı: ? yazan satır, izinsiz dış betik, iki yazıya kopyalanmış paragraf.
+        run: node tools/ayak-izi-test.js
+
       - name: Emekli zammı motoru
         # 5510 m.55: aylıklar önceki altı ayın TÜFE değişimi kadar artar. Test,
         # seriden açıklanmış dört resmî artışı (Ocak 2024 %37,57 · Temmuz 2024

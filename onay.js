@@ -101,7 +101,13 @@
     root.dataLayer = root.dataLayer || [];
     root.gtag = function () { root.dataLayer.push(arguments); };
     root.gtag("js", new Date());
-    root.gtag("config", OLCUM, { anonymize_ip: true });
+    /* Ölçüm yalnız sayfanın YOLUNU görür. Varsayılan page_location tam
+       adrestir; sorgu dizesi (eski ?kira=... bağlantıları) ve # sonrası
+       ziyaretçinin girdiği tutarları taşıyabilir. "set" sonraki her olaya
+       da uygulanır (geçmiş değişikliğiyle gelen sayfa görüntülemeleri dahil). */
+    var temiz = { page_location: root.location.origin + root.location.pathname };
+    root.gtag("set", temiz);
+    root.gtag("config", OLCUM, { anonymize_ip: true, page_location: temiz.page_location });
     var e = document.createElement("script");
     e.async = true;
     e.src = "https://www.googletagmanager.com/gtag/js?id=" + OLCUM;

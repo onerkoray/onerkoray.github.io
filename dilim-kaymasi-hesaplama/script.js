@@ -79,7 +79,7 @@
 
   /* Paylaşım bağlantısıyla gelen durum. Geçersiz değer sessizce atlanır. */
   (function adrestenOku() {
-    var q = new URLSearchParams(window.location.search);
+    var q = Durum.oku();
     var yil = parseInt(q.get("yil"), 10);
     if (D.yillar().indexOf(yil) !== -1) yilSec.value = String(yil);
     else yilSec.value = String(D.yillar()[D.yillar().length - 1]);
@@ -235,7 +235,7 @@
 
   function paylasimMetni(r) {
     var g = r.girdi;
-    var adres = "https://korayoner.dev/dilim-kaymasi-hesaplama/?brut=" + Math.round(g.brut) +
+    var adres = "https://korayoner.dev/dilim-kaymasi-hesaplama/#brut=" + Math.round(g.brut) +
       "&yil=" + g.yil + "&baz=" + g.baz + "&olcut=" + g.olcut;
     var cumle = Math.abs(r.fark) < ESIK
       ? ek(g.yil, "de") + " aylık " + tl0(g.brut) + " brütte dilim kayması yok."
