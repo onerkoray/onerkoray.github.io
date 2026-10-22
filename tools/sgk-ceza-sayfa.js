@@ -40,6 +40,8 @@ function alanlar() {
   var mphb = h({ fiil: "mphbAsil", sigortali: 1 });
   var mphbTavan = h({ fiil: "mphbAsil", sigortali: 10 });
   if (!mphbTavan.tavanUygulandi && mphbTavan.teblig !== 2 * au) throw new Error("Beyanname tavanı 10 sigortalıda değil.");
+  /* SSS örneği: Mart 2026'da işe başlayan, altı ay kayıt dışı, bilanço. */
+  var kd = C.hesapla({ fiil: "kayitDisi", yil: 2026, ay: 3, sigortali: 1, aySayisi: 6, defter: "bilanco" });
   return {
     au: tl(au),
     iseK30: tl(k30.pesin), iseK: tl(k.pesin),
@@ -50,7 +52,9 @@ function alanlar() {
     kat: String(Math.round(y[y.length - 1].tutar / y[0].tutar)),
     birGun: tl(k.pesin - k30.pesin),
     on30: tl(h({ fiil: "iseGiris", sigortali: 10, kendiliginden30: true }).pesin),
-    onTespit: tl(h({ fiil: "iseGiris", sigortali: 10, iseGiris: "tespit" }).pesin)
+    onTespit: tl(h({ fiil: "iseGiris", sigortali: 10, iseGiris: "tespit" }).pesin),
+    ucteBir: tl(Math.floor(au / 3)),
+    kdTeblig: tl(kd.teblig), kdPesin: tl(kd.pesin)
   };
 }
 
@@ -67,8 +71,13 @@ function tablo() {
     ["Beyanname (asıl) geç, sigortalı başına", { fiil: "mphbAsil", sigortali: 1 }, "1/5; en çok 2 kat (10 sigortalı)", false],
     ["Ek beyanname, sigortalı başına", { fiil: "mphbEk", sigortali: 1 }, "1/8; en çok 2 kat (16 sigortalı)", false],
     ["Eksik gün için istenen ek beyanname, bir ay geçti", { fiil: "mphbResen", sigortali: 1 }, "1/2; en çok 2 kat (4 sigortalı)", false],
-    ["Denetimde bildirilmemiş sigortalı, bilanço", { fiil: "mphbTespit", sigortali: 1, defter: "bilanco" }, "kişi başı 1, en çok 3 kat", false],
+    ["Meslek adı ve kodu gerçeğe aykırı, sigortalı başına", { fiil: "meslekKodu", sigortali: 1 }, "1/10; en çok 1 kat (10 sigortalı)", false],
+    ["Çalışılmadığına dair bildirim geç, sigortalı başına", { fiil: "gio", sigortali: 1 }, "1/10; hiç yapılmazsa 1/2", false],
+    ["Denetimde bildirilmemiş sigortalı, bilanço", { fiil: "mphbTespit", sigortali: 1, defter: "bilanco" }, "kişi başı 1, en çok 3 kat (işletme 1/2 ve 2, defter yok 1/3 ve 1)", false],
+    ["Denetimde yalnız kazanç eksik", { fiil: "pekTespit", eksikPek: 1 }, "eksik tutar kadar; en az 1/10 (tablodaki), en çok 2 kat", false],
     ["Defter ve belge ibraz etmeme, bilanço", { fiil: "defterIbraz", defter: "bilanco" }, "12 kat (işletme 6, defter yok 3)", false],
+    ["Geçersiz defter ayı ya da ücret bordrosu, her biri", { fiil: "kayitGecersiz", defter: "bilanco", gecersizBordro: 1 }, "1/2; toplamı ibraz cezasını aşamaz", false],
+    ["Kurumun istediği bilgi ve belge geç", { fiil: "bilgiBelge" }, "2 kat; hiç verilmezse 5", false],
     ["Eksik işçilik, ay başına", { fiil: "eksikIscilik", aySayisi: 1 }, "2 kat", false]
   ];
   var p = ['<div class="table-scroll">', '<table class="data-table data-table--text pc-tablo">',
