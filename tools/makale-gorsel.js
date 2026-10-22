@@ -2404,7 +2404,68 @@ function pesinTaksitTakvimSvg() {
   return s + '</svg>\n';
 }
 
+/* Geç işe giriş bildirgesinin beş yolu (SGK ceza aracının çekirdeğinden). */
+var SGKC = require(path.join(KOK, "sgk-idari-para-cezasi-hesaplama", "hesap.js"));
+function sgkCezaYollari() {
+  var Y = SGKC.yollar({ fiil: "iseGiris", yil: 2026, ay: 10, sigortali: 1 });
+  if (Y.length !== 5 || Y[0].tutar !== 6193 || Y[4].tutar !== 123862) throw new Error("SGK ceza kapağı yazıyla ayrıştı");
+  var KISA = { k30: ["30 gün içinde kendiliğinden", "15 günde ödendi"], k: ["30 gün geçti", "15 günde ödendi"],
+    kGec: ["30 gün geçti", "ceza 15 günde ödenmedi"], tespit: ["Denetimde bulundu", "15 günde ödendi"],
+    tekrar: ["Bir yıl içinde yine bulundu", "15 günde ödendi"] };
+  var SOL = 214, SAG = 500, UST = 100, SATIR = 46;
+  function x(v) { return SOL + v / 125000 * (SAG - SOL); }
+  var s = baslikSatirlari("Aynı gecikme, beş fatura", "Geç verilen tek işe giriş bildirgesi için ödenen SGK cezası · Ekim 2026",
+    "Geç işe giriş bildirgesinin cezası: 30 gün içinde kendiliğinden verilip 15 günde ödenirse 6.193 TL, denetimde bulunursa 49.545 TL, bir yıl içinde yine bulunursa 123.862 TL.");
+  s += anahtarKutu(24, R.s1, "işveren kendisi verdi") + anahtarKutu(220, R.s2, "SGK tespit etti");
+  Y.forEach(function (r, i) {
+    var cy = UST + i * SATIR + 14, k = KISA[r.durum];
+    s += '<text x="' + (SOL - 10) + '" y="' + (cy - 2) + '" font-size="13" font-weight="700" fill="' + R.murekkep + '" text-anchor="end">' + esc(k[0]) + "</text>";
+    s += '<text x="' + (SOL - 10) + '" y="' + (cy + 14) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">' + esc(k[1]) + "</text>";
+    s += '<rect x="' + SOL + '" y="' + (cy - 9) + '" width="' + Math.max(2, x(r.tutar) - SOL).toFixed(1) + '" height="18" rx="3" fill="' + (r.durum === "tespit" || r.durum === "tekrar" ? R.s2 : R.s1) + '"/>';
+    s += '<text x="' + (x(r.tutar) + 8).toFixed(1) + '" y="' + (cy + 5) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">' + nf0.format(r.tutar) + " TL</text>";
+  });
+  s += altYazi((SOL + SAG) / 2, 342, "brüt asgari ücret 33.030 TL · 5510 s.K. m.102");
+  return s + "</svg>";
+}
+
+/* Ekim'in aylık değişimine göre yıllık Yİ-ÜFE ve yeniden değerleme oranı. */
+var YDO26 = require(path.join(KOK, "makaleler", "yeniden-degerleme-orani-2026", "oran.js"));
+function ydoEkimDuyarliligi() {
+  var a = YDO26.aralik();
+  if (Math.round(a.alt.oran * 100) !== 2768 || Math.round(a.ust.oran * 100) !== 2801) throw new Error("YDO 2026 kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 500, UST = 96, ALT = 300, X0 = -1, X1 = 5, Y0 = 22, Y1 = 32;
+  function x(v) { return SOL + (v - X0) / (X1 - X0) * (SAG - SOL); }
+  function y(v) { return ALT - (v - Y0) / (Y1 - Y0) * (ALT - UST); }
+  var n = [];
+  for (var v = X0; v <= X1 + 1e-9; v += 0.25) n.push(YDO26.senaryo(v));
+  function cizgi(alan) { return n.map(function (r, i) { return (i ? "L" : "M") + x(r.aylik).toFixed(1) + " " + y(r[alan]).toFixed(1); }).join(" "); }
+  function yz(o) { return "%" + o.toFixed(2).replace(".", ","); }
+  var s = baslikSatirlari("Ekim ne gelirse gelsin oran dar bir aralıkta", "Ekim 2026'nın aylık Yİ-ÜFE değişimine göre",
+    "Ekim'in aylık değişimi −%1'den %5'e çıkarken Ekim'in yıllık Yİ-ÜFE'si %24,1'den %31,6'ya çıkıyor, yeniden değerleme oranı yalnız %27,52'den %28,22'ye.");
+  s += anahtarKutu(24, R.s2, "Ekim'in yıllık Yİ-ÜFE'si") + anahtarKutu(230, R.s1, "yeniden değerleme oranı");
+  s += izgaraY(SOL, SAG, y, [22, 24, 26, 28, 30, 32], function (v) { return "%" + v; });
+  [a.alt.aylik, a.ust.aylik].forEach(function (v) { s += '<path d="M' + x(v).toFixed(1) + " " + UST + " V" + ALT + '" stroke="' + R.ikincil + '" stroke-width="1" stroke-dasharray="3 4"/>'; });
+  s += '<path fill="none" stroke="' + R.s2 + '" stroke-width="3" stroke-linejoin="round" d="' + cizgi("ekimYillik") + '"/>';
+  s += '<path fill="none" stroke="' + R.s1 + '" stroke-width="3" stroke-linejoin="round" d="' + cizgi("oran") + '"/>';
+  s += '<text x="' + (SAG + 8) + '" y="' + (y(a.ust.oran) + 5).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">' + yz(a.alt.oran) + "–" + yz(a.ust.oran).slice(1) + "</text>";
+  [-1, 0, 1, 2, 3, 4, 5].forEach(function (v) { s += altYazi(x(v), ALT + 20, (v < 0 ? "−" : "") + "%" + Math.abs(v)); });
+  s += altYazi((SOL + SAG) / 2, ALT + 40, "kesikli çizgiler: son 24 ayın en yavaş ve en hızlı ayı");
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "ise-giris-bildirgesi-gecikirse-ceza": {
+    kicker: "Bordro · SGK",
+    baslik: "İşe giriş bildirgesi gecikirse SGK cezası ne kadar?",
+    alt: "Aynı eksik: 6.193 TL ile 123.862 TL arası",
+    cizim: sgkCezaYollari
+  },
+  "yeniden-degerleme-orani-2026": {
+    kicker: "Vergi · Yeniden değerleme",
+    baslik: "2026 yeniden değerleme oranı neredeyse belli",
+    alt: "On iki ayın on biri açıklandı: %27,68 ile %28,01 arası",
+    cizim: ydoEkimDuyarliligi
+  },
   "pesin-indirim-mi-taksit-mi": {
     kicker: "Kredi & Finans",
     baslik: "Peşin indirim mi, taksit mi?",
