@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
       <image:title>Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları</image:title>
@@ -59,7 +59,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/koray-oner/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/hakkimda-koray-oner.jpg</image:loc>
       <image:title>Çalışma Dizini: Araçlar, Yazılar ve Yayınlar — Koray Öner</image:title>
@@ -534,6 +534,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/sgk-idari-para-cezasi-hesaplama-koray-oner.png</image:loc>
+      <image:title>SGK İdari Para Cezası Hesaplama 2026 — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/teklif-karsilastirma/</loc>
     <lastmod>2026-09-23</lastmod>
     <image:image>
@@ -854,6 +862,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/makaleler/ise-giris-bildirgesi-gecikirse-ceza/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/ise-giris-bildirgesi-gecikirse-ceza.png</image:loc>
+      <image:title>İşe Giriş Bildirgesi Gecikirse SGK Cezası — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/makaleler/iskur-19-bin-tl-gercekte-ne/</loc>
     <lastmod>2026-10-06</lastmod>
     <image:image>
@@ -1171,6 +1187,14 @@
     <image:image>
       <image:loc>https://korayoner.dev/images/makale/vergi-kamasi-ucretin-gercek-yuku.png</image:loc>
       <image:title>Vergi Kaması: Ücretin Gerçek Yükü 2026 — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/yeniden-degerleme-orani-2026/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/yeniden-degerleme-orani-2026.png</image:loc>
+      <image:title>2026 Yeniden Değerleme Oranı Ne Olacak? — Koray Öner</image:title>
     </image:image>
   </url>
   <url>

@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Araçlar ve Yazılar</title>
-  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 61 hesaplama aracı ve arkalarındaki mevzuatı anlatan 63 yazı.</subtitle>
+  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 62 hesaplama aracı ve arkalarındaki mevzuatı anlatan 65 yazı.</subtitle>
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-10-20T09:14:25+03:00</updated>
+  <updated>2026-10-22T15:40:15+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>İşe Giriş Bildirgesi Gecikirse SGK Cezası</title>
+    <link href="https://korayoner.dev/makaleler/ise-giris-bildirgesi-gecikirse-ceza/"/>
+    <id>https://korayoner.dev/makaleler/ise-giris-bildirgesi-gecikirse-ceza/</id>
+    <published>2026-10-22T15:40:15+03:00</published>
+    <updated>2026-10-22T15:40:15+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
+    <summary>Kanundaki ceza bir asgari ücret, 33.030 TL. Ödenen tutar aynı eksik için 6.193 TL ile 123.862 TL arasında: farkı kimin fark ettiği ve ne zaman ödendiği belirliyor.</summary>
+  </entry>
+
+  <entry>
+    <title>2026 Yeniden Değerleme Oranı Ne Olacak?</title>
+    <link href="https://korayoner.dev/makaleler/yeniden-degerleme-orani-2026/"/>
+    <id>https://korayoner.dev/makaleler/yeniden-degerleme-orani-2026/</id>
+    <published>2026-10-22T15:40:15+03:00</published>
+    <updated>2026-10-22T15:40:15+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
+    <summary>Oranı belirleyen on iki ayın on biri açıklandı. Ekim'de üretici fiyatları ne kadar artarsa artsın oran dar bir aralıkta: 2027 vergi dilimleri ve MTV'ye etkisiyle.</summary>
+  </entry>
+
+  <entry>
+    <title>SGK İdari Para Cezası Hesaplama 2026</title>
+    <link href="https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/"/>
+    <id>https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/</id>
+    <published>2026-10-22T15:40:15+03:00</published>
+    <updated>2026-10-22T15:40:15+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
+    <summary>İşe giriş, işten ayrılış, işyeri bildirgesi, muhtasar ve denetim cezaları: 5510 m.102'ye göre tebliğ edilecek tutar, 30 ve 15 gün indirimleri, tavanlar.</summary>
+  </entry>
 
   <entry>
     <title>Peşin İndirim mi Faizsiz Taksit mi?</title>

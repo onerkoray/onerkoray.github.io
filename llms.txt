@@ -1,6 +1,6 @@
 # Koray Öner — korayoner.dev
 
-> Türkiye'de maaş, vergi, SGK, emeklilik ve hane finansı için ücretsiz hesaplama araçları ve bu hesapların kuralını anlatan yazılar. 61 araç, 63 yazı. Hesaplar tarayıcıda yapılır; hesap içeren her yazının rakamları sitenin hesap motorlarından testle yeniden üretilir.
+> Türkiye'de maaş, vergi, SGK, emeklilik ve hane finansı için ücretsiz hesaplama araçları ve bu hesapların kuralını anlatan yazılar. 62 araç, 65 yazı. Hesaplar tarayıcıda yapılır; hesap içeren her yazının rakamları sitenin hesap motorlarından testle yeniden üretilir.
 
 Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değiştikçe sayfalar güncellenir; her sayfanın güncelleme tarihi site haritasında (https://korayoner.dev/sitemap.xml) ve akışlarda aynıdır. Yazar ve sorumlu: Koray Öner.
 
@@ -26,6 +26,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 - [Prim ve İkramiye Vergisi](https://korayoner.dev/prim-ikramiye-vergisi/): Prim, ikramiye ve bonusun net ne kadarı elinize geçer? Marjinal kesinti oranı, SGK tavanı etkisi ve hangi ayda almanın gerçekten fark ettiği — 2026 parametreleriyle.
 - [Rapor Parası Hesaplama](https://korayoner.dev/rapor-parasi-hesaplama/): SGK rapor parası (geçici iş göremezlik ödeneği) ne kadar? Hastalık, iş kazası ve doğum raporu; son 12 ayın kazancından günlük ödenek ve raporlu ayda elinize geçen.
 - [Reel Maaş Hesaplama](https://korayoner.dev/reel-maas-hesaplama/): Maaşınız enflasyona yenildi mi? İki tarihteki netinizi TÜFE ile karşılaştırın: alım gücü değişimi, olması gereken maaş ve asgari ücretin kaç katı.
+- [SGK İdari Para Cezası Hesaplama](https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/): İşe giriş, işten ayrılış, işyeri bildirgesi, muhtasar ve denetim cezaları: 5510 m.102'ye göre tebliğ edilecek tutar, 30 ve 15 gün indirimleri, tavanlar.
 - [Teklif Karşılaştırma](https://korayoner.dev/teklif-karsilastirma/): İki iş teklifini yıllık toplam net üzerinden karşılaştırın. Ocakta önde görünen teklif yılda geride kalabilir; araç bunu ölçüp söyler.
 - [Ücret–Kâr Payı Optimizasyonu](https://korayoner.dev/ucret-kar-payi-optimizasyonu/): Şirket ortağı gelirini ücret ve kâr payı arasında nasıl paylaştırmalı? Optimum ücreti hesaplar ve beyan eşiğindeki net kaybı uçurumunu gösterir.
 - [Zam Hesaplama](https://korayoner.dev/zam-hesaplama/): Brüt zam oranı net zam oranı değildir. Zammın elinize ne geçeceğini, hedeflediğiniz net için brütte ne istemeniz gerektiğini hesaplayın.
@@ -76,6 +77,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 ## Yazılar: Maaş & Tazminat
 
+- [İşe Giriş Bildirgesi Gecikirse SGK Cezası](https://korayoner.dev/makaleler/ise-giris-bildirgesi-gecikirse-ceza/): Kanundaki ceza bir asgari ücret, 33.030 TL. Ödenen tutar aynı eksik için 6.193 TL ile 123.862 TL arasında: farkı kimin fark ettiği ve ne zaman ödendiği belirliyor.
 - [Doğum parası ne kadar? 24 haftalık iznin hesabı](https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/): Doğum izni 24 hafta, SGK 168 gün öder. 2026'da 60.000 TL brütte doğum parası 224.000 TL. Vergisiz olduğu için izin yılı bazı maaşlarda kayıp, bazılarında kazanç.
 - [2026'da SGK primlerinde ne değişti?](https://korayoner.dev/makaleler/sgk-primleri-2026-ne-degisti/): Asgari ücret %27 arttı; GSS primi %154, askerlik borçlanması %79, SGK tavanı %52 arttı. 7566 sayılı Kanunun 2026 prim değişiklikleri tek tabloda.
 - [SGK prim indirimi 2 puana indi: işverene maliyeti ne?](https://korayoner.dev/makaleler/sgk-prim-indirimi-2-puan/): İmalat dışı işverenin SGK prim indirimi 2025'te 4, 2026'da 2 puan; imalatta 5. Asgari ücretli başına yıllık ek yük 11.890,80 TL. Maaş düzeyine göre işveren maliyeti.
@@ -93,6 +95,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 ## Yazılar: Vergi & Belge
 
+- [2026 Yeniden Değerleme Oranı Ne Olacak?](https://korayoner.dev/makaleler/yeniden-degerleme-orani-2026/): Oranı belirleyen on iki ayın on biri açıklandı. Ekim'de üretici fiyatları ne kadar artarsa artsın oran dar bir aralıkta: 2027 vergi dilimleri ve MTV'ye etkisiyle.
 - [2027 bütçesinde faiz: her 100 TL verginin kaçı faize gidiyor?](https://korayoner.dev/makaleler/butce-2027-faiz-vergi/): 2027 bütçe teklifine göre faiz ödeneği 3.975 milyar TL: her 100 TL verginin 19,97 TL'si. Rakamlar OVP ile aynı; açık 3.868 milyar TL, tamamına yakını faiz.
 - [2027 vergi dilimleri asgari ücretten az artarsa maaşınızdan ne gider?](https://korayoner.dev/makaleler/vergi-dilimleri-2027-asgari-ucret/): Dilimler asgari ücretten her 10 puan geride kaldığında ikinci eşiği aşan ücretli yılda 2.800 TL, üçüncüyü aşan 14.800 TL fazla vergi öder. Asgari ücretli etkilenmez.
 - [Vergi borcunu geciktirmek kârlı mı?](https://korayoner.dev/makaleler/vergi-borcunu-geciktirmek-karli-mi/): Gecikme zammı aylık %3,7, yıllık basit %44,4; enflasyon %31,5. Mart vadeli 100.000 TL vergiyi bir yıl geç ödemenin reel bedeli 2019'dan bu yana nasıl değişti?
@@ -171,11 +174,11 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 - [Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları](https://korayoner.dev/): Koray Öner'in sitesi: maaş, vergi, SGK, kira ve kredi için testli, ücretsiz hesaplama araçları; mevzuat yazıları, yayımlanmış çalışmalar ve sosyal hesaplar.
 - [Araçlar](https://korayoner.dev/araclar/): Maaş ve tazminat, vergi ve belge, kredi ve finans için ücretsiz, reklamsız hesaplama araçları; kategoriye göre, güncelleme tarihi ve metodolojisiyle.
-- [Koray Öner — Turkish Payroll, Tax and Pension Tools](https://korayoner.dev/en/): Koray Öner (Koray Oner), software developer in Türkiye: 61 free calculators for Turkish payroll, tax and pensions, 63 tested articles and 8 papers with a DOI.
+- [Koray Öner — Turkish Payroll, Tax and Pension Tools](https://korayoner.dev/en/): Koray Öner (Koray Oner), software developer in Türkiye: 62 free calculators for Turkish payroll, tax and pensions, 65 tested articles and 8 papers with a DOI.
 - [Gizlilik Politikası](https://korayoner.dev/gizlilik/): Bu sitede hangi veriler işleniyor, hangi çerezler kullanılıyor ve haklarınız neler? Hesaplama verileriniz cihazınızdan çıkmaz.
 - [Hakkımda](https://korayoner.dev/hakkimda/): Koray Öner kimdir? Serbest çalışan yazılım geliştirici. Bordro ve vergi araçlarındaki her sayıyı yasal parametreden türetip her değişiklikte yeniden doğruluyor.
 - [İletişim](https://korayoner.dev/iletisim/): Koray Öner ile iletişim: hata bildirimi, yeni araç önerisi, işbirliği ve KVKK başvuruları için doğru kanallar.
-- [Çalışma dizini](https://korayoner.dev/koray-oner/): Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 63 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.
+- [Çalışma dizini](https://korayoner.dev/koray-oner/): Koray Öner'in çalışmaları tek yerde: 62 hesaplama aracı, 65 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.
 - [Kullanım Koşulları](https://korayoner.dev/kullanim-kosullari/): Hesaplama araçlarının kapsamı, doğruluk taahhüdü, sorumluluk sınırları ve lisans bilgileri. Araçlar bilgilendirme amaçlıdır.
 - [2026 Brüt–Net Tablosu](https://korayoner.dev/maas-hesaplama/brut-net-tablosu/): 2026 brüt net maaş tablosu: 35.000 TL'den 500.000 TL'ye kadar brüt maaşların net karşılıkları ve her tutar için ay ay bordro dökümü.
 - [Makaleler](https://korayoner.dev/makaleler/): Emeklilik, bordro, tazminat ve vergi konularında kaynağı gösterilen, güncel tutulan rehberler. Mevzuat değiştikçe güncellenir.

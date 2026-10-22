@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Hesaplama Araçları</title>
-  <subtitle>Tarayıcıda çalışan, reklamsız ve üyeliksiz 61 maaş, vergi, SGK ve kredi hesaplama aracı.</subtitle>
+  <subtitle>Tarayıcıda çalışan, reklamsız ve üyeliksiz 62 maaş, vergi, SGK ve kredi hesaplama aracı.</subtitle>
   <link href="https://korayoner.dev/araclar/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/araclar/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/araclar/atom.xml</id>
-  <updated>2026-10-16T17:23:20+00:00</updated>
+  <updated>2026-10-22T15:40:15+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>SGK İdari Para Cezası Hesaplama 2026</title>
+    <link href="https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/"/>
+    <id>https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/</id>
+    <published>2026-10-22T15:40:15+03:00</published>
+    <updated>2026-10-22T15:40:15+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
+    <summary>İşe giriş, işten ayrılış, işyeri bildirgesi, muhtasar ve denetim cezaları: 5510 m.102'ye göre tebliğ edilecek tutar, 30 ve 15 gün indirimleri, tavanlar.</summary>
+  </entry>
 
   <entry>
     <title>İŞKUR Gençlik Programı Ödeme Hesaplama</title>
