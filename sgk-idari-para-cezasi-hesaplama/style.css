@@ -72,3 +72,19 @@
 .pc-yol.pc-secili .pc-yol-cubuk span { background: var(--dv-1); }
 .pc-tablo td, .pc-tablo th { vertical-align: top; }
 .pc-tablo td:nth-child(n+3) { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.pc-onay { display: flex; align-items: flex-start; gap: .55rem; font-weight: 600; cursor: pointer; }
+.pc-onay input { margin-top: .2rem; inline-size: auto; }
+.pc-tarihler { border-top: 1px solid var(--border); padding-top: 1rem; }
+.pc-tarihler > summary {
+  display: flex; align-items: center; flex-wrap: wrap; gap: .55rem; cursor: pointer; margin-bottom: .8rem;
+  font: 700 var(--step-1)/1.2 var(--font-display, inherit); list-style: none;
+}
+.pc-tarihler > summary::-webkit-details-marker { display: none; }
+.pc-tarihler > summary .pc-kucuk { font-family: var(--font-body, inherit); }
+.pc-tarihler:not([open]) > summary { margin-bottom: 0; }
+.pc-tarihler[hidden] { display: none; }
+.pc-alan input:disabled, .pc-alan select:disabled { opacity: .7; }
+.pc-sureler .pc-ara { border-bottom: 0; padding-bottom: 0; }
+.pc-sureler .pc-ara dt { font: 600 .72rem/1.3 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+.pc-dokum { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: .9rem; }
