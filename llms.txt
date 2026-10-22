@@ -77,7 +77,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 ## Yazılar: Maaş & Tazminat
 
-- [İşe Giriş Bildirgesi Gecikirse SGK Cezası](https://korayoner.dev/makaleler/ise-giris-bildirgesi-gecikirse-ceza/): Kanundaki ceza bir asgari ücret, 33.030 TL. Ödenen tutar aynı eksik için 6.193 TL ile 123.862 TL arasında: farkı kimin fark ettiği ve ne zaman ödendiği belirliyor.
+- [İşe giriş bildirgesi gecikirse SGK cezası ne kadar?](https://korayoner.dev/makaleler/ise-giris-bildirgesi-gecikirse-ceza/): Kanundaki ceza bir asgari ücret, 33.030 TL. Ödenen tutar aynı eksik için 6.193 TL ile 123.862 TL arasında: farkı kimin fark ettiği ve ne zaman ödendiği belirliyor.
 - [Doğum parası ne kadar? 24 haftalık iznin hesabı](https://korayoner.dev/makaleler/dogum-parasi-ne-kadar/): Doğum izni 24 hafta, SGK 168 gün öder. 2026'da 60.000 TL brütte doğum parası 224.000 TL. Vergisiz olduğu için izin yılı bazı maaşlarda kayıp, bazılarında kazanç.
 - [2026'da SGK primlerinde ne değişti?](https://korayoner.dev/makaleler/sgk-primleri-2026-ne-degisti/): Asgari ücret %27 arttı; GSS primi %154, askerlik borçlanması %79, SGK tavanı %52 arttı. 7566 sayılı Kanunun 2026 prim değişiklikleri tek tabloda.
 - [SGK prim indirimi 2 puana indi: işverene maliyeti ne?](https://korayoner.dev/makaleler/sgk-prim-indirimi-2-puan/): İmalat dışı işverenin SGK prim indirimi 2025'te 4, 2026'da 2 puan; imalatta 5. Asgari ücretli başına yıllık ek yük 11.890,80 TL. Maaş düzeyine göre işveren maliyeti.
@@ -95,7 +95,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 ## Yazılar: Vergi & Belge
 
-- [2026 Yeniden Değerleme Oranı Ne Olacak?](https://korayoner.dev/makaleler/yeniden-degerleme-orani-2026/): Oranı belirleyen on iki ayın on biri açıklandı. Ekim'de üretici fiyatları ne kadar artarsa artsın oran dar bir aralıkta: 2027 vergi dilimleri ve MTV'ye etkisiyle.
+- [2026 yeniden değerleme oranı Ekim verisi gelmeden neredeyse belli](https://korayoner.dev/makaleler/yeniden-degerleme-orani-2026/): Oranı belirleyen on iki ayın on biri açıklandı. Ekim'de üretici fiyatları ne kadar artarsa artsın oran dar bir aralıkta: 2027 vergi dilimleri ve MTV'ye etkisiyle.
 - [2027 bütçesinde faiz: her 100 TL verginin kaçı faize gidiyor?](https://korayoner.dev/makaleler/butce-2027-faiz-vergi/): 2027 bütçe teklifine göre faiz ödeneği 3.975 milyar TL: her 100 TL verginin 19,97 TL'si. Rakamlar OVP ile aynı; açık 3.868 milyar TL, tamamına yakını faiz.
 - [2027 vergi dilimleri asgari ücretten az artarsa maaşınızdan ne gider?](https://korayoner.dev/makaleler/vergi-dilimleri-2027-asgari-ucret/): Dilimler asgari ücretten her 10 puan geride kaldığında ikinci eşiği aşan ücretli yılda 2.800 TL, üçüncüyü aşan 14.800 TL fazla vergi öder. Asgari ücretli etkilenmez.
 - [Vergi borcunu geciktirmek kârlı mı?](https://korayoner.dev/makaleler/vergi-borcunu-geciktirmek-karli-mi/): Gecikme zammı aylık %3,7, yıllık basit %44,4; enflasyon %31,5. Mart vadeli 100.000 TL vergiyi bir yıl geç ödemenin reel bedeli 2019'dan bu yana nasıl değişti?
