@@ -13,6 +13,7 @@
 
 var S = require("../../tools/makale-sayi.js");
 var C = require("../../sgk-idari-para-cezasi-hesaplama/hesap.js");
+var B = require("../../bordro/motor.js");
 var t = S.yazi(__dirname);
 
 function tl(v) { return S.tam(v) + " TL"; }
@@ -21,7 +22,7 @@ function h(g) { return C.hesapla(Object.assign({}, O, g)); }
 var au = C.asgari(2026, 10);
 
 /* 1 — Kanundaki tutar: bir brüt asgari ücret. */
-t.yakin("2026 brüt asgari ücret", au, 33030, 0);
+t.yakin("asgari ücret bordro parametresinden", au, B.donem(B.parametre(2026), 10).asgariBrut, 0);
 t.gecsin("33.030 TL", tl(au));
 t.gecsin("m.102/1-a", "m.102/1-a");
 

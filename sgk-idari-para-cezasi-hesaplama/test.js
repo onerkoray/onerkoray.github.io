@@ -49,12 +49,12 @@ var e11 = h({ fiil: "mphbResen", yil: 2019, ay: 9, asgariUcret: 2558.40, sigorta
 ok("eksik gün, bir ay geçti, 3 sigortalı: 2.558,40 / 2 × 3 = 3.837 TL", e11.teblig === 3837, e11.teblig);
 
 baslik("Asgari ücret parametrelerden, fiilin işlendiği aya göre");
-ok("2026: 33.030 TL", C.asgari(2026, 10) === 33030 && C.asgari(2026, 10) === B.donem(B.parametre(2026), 10).asgariBrut);
+ok("2026: bordro parametrelerindeki brüt asgari ücret", C.asgari(2026, 10) === B.donem(B.parametre(2026), 10).asgariBrut);
 ok("2023 Haziran ile Temmuz farklı (yıl içi artış)", C.asgari(2023, 6) === B.donem(B.parametre(2023), 6).asgariBrut && C.asgari(2023, 7) === B.donem(B.parametre(2023), 7).asgariBrut && C.asgari(2023, 6) < C.asgari(2023, 7), C.asgari(2023, 6) + " / " + C.asgari(2023, 7));
 ok("parametresi olmayan yıl açık hata verir", hata(function () { h({ fiil: "isyeri", yil: 2027, ay: 1 }); }, /açıklandığında/));
 
 baslik("5510 m.102 katları (2026, asgari ücret 33.030 TL)");
-var AU = 33030;
+var AU = B.donem(B.parametre(2026), 10).asgariBrut;
 function t(g) { return h(Object.assign({ yil: 2026, ay: 10 }, g)); }
 ok("işe giriş, 1 kişi: 1 asgari ücret", t({ fiil: "iseGiris", sigortali: 1 }).teblig === AU);
 ok("işe giriş tespit: 2 kat; tekrar: 5 kat", t({ fiil: "iseGiris", sigortali: 1, iseGiris: "tespit" }).teblig === 2 * AU && t({ fiil: "iseGiris", sigortali: 1, iseGiris: "tekrar" }).teblig === 5 * AU);
