@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=b4bd0136" defer></script>
+  <meta charset="UTF-8">
+  <script src="../tema-erken.js?v=a2f32851"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SGK İdari Para Cezası Hesaplama 2026 | Koray Öner</title>
+  <meta name="description" content="İşe giriş, işten ayrılış, işyeri bildirgesi, muhtasar ve denetim cezaları: 5510 m.102'ye göre tebliğ edilecek tutar, 30 ve 15 gün indirimleri, tavanlar.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="gecerlilik" content="2027-01-15 | 2027 brüt asgari ücreti bordro/parametreler.js'e girildi mi? Girildiyse 'node tools/sgk-ceza-sayfa.js' ile sayfadaki 2026 tutarlarını (data-s, SGK-TABLO) 2027'ye taşı; SGK'nın 2027 idari para cezası duyurusu ve 2020/8 Genelge değişiklikleri yeniden okunmalı.">
+  <link rel="canonical" href="https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/">
+  <!-- AKIS:BASLANGIC -->
+  <link rel="alternate" type="application/atom+xml" title="Koray Öner — Araçlar ve Yazılar" href="/atom.xml">
+  <link rel="alternate" type="application/atom+xml" title="Koray Öner — Hesaplama Araçları" href="/araclar/atom.xml">
+  <!-- AKIS:BITIS -->
+  <!-- ARAMA:BASLANGIC -->
+  <script type="module" src="/arama.js?v=744a2d64"></script>
+  <!-- ARAMA:BITIS -->
+
+  <link rel="icon" href="../favicon.ico?v=73d21711" sizes="32x32">
+  <link rel="icon" href="favicon.svg?v=33dc4571" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=76038ce5">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="SGK idari para cezası: tutar, indirim, tavan">
+  <meta property="og:description" content="Aynı eksik, kimin ve ne zaman fark ettiğine göre 20 kata kadar farklı fatura çıkarıyor. 5510 m.102 ve SGK 2020/8 Genelgesi örnekleriyle testli hesap.">
+  <meta property="og:url" content="https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/sgk-idari-para-cezasi-hesaplama-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SGK idari para cezası hesaplama">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="SGK idari para cezası: tutar, indirim, tavan">
+  <meta name="twitter:description" content="İşe giriş, işten ayrılış, muhtasar ve denetim cezaları; 30 gün içinde kendiliğinden verme ve 15 günde ödeme indirimleri birlikte.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/sgk-idari-para-cezasi-hesaplama-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=7a832907">
+  <link rel="stylesheet" href="style.css?v=00000000">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "dateModified": "2026-10-22",
+        "image": "https://korayoner.dev/images/sgk-idari-para-cezasi-hesaplama-koray-oner.png",
+        "@id": "https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/#app",
+        "name": "SGK İdari Para Cezası Hesaplama",
+        "url": "https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "featureList": "5510 sayılı Kanun m.102: işe giriş bildirgesi (geç, tespit, bir yıl içinde yeniden tespit), işten ayrılış bildirgesi ve aylık tavanı, işyeri bildirgesi, muhtasar ve prim hizmet beyannamesi (asıl, ek, eksik gün), denetimde tespit edilen kayıt dışı sigortalı, defter ve belge ibrazı, eksik işçilik; fiilin işlendiği aydaki brüt asgari ücret; 30 gün içinde kendiliğinden verme ile dörtte bir indirimi; 15 gün içinde peşin ödeme ile dörtte bir indirim; kuruş atma; aynı fiilin bütün yollarının karşılaştırması",
+        "description": "SGK'nın idari para cezasını 5510 sayılı Kanunun 102. maddesine ve SGK'nın 2020/8 sayılı İdari Para Cezası Genelgesine göre hesaplar: tebliğ edilecek tutar, indirim şartları ve 15 gün içinde ödenecek tutar."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "SGK İdari Para Cezası Hesaplama",
+            "item": "https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "İşe giriş bildirgesi geç verilirse ceza ne kadar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sigortalı başına bir aylık brüt asgari ücret: 2026'da 33.030 TL. Bildirge süresi bittikten sonraki 30 gün içinde kendiliğinden verilir ve ceza tebliğden sonraki 15 gün içinde ödenirse 6.193 TL tahsil edilir. 30 gün geçmişse yalnız peşin ödeme indirimi kalır: 24.772 TL."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Denetimde bulunursa ne değişir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ceza iki katına çıkar ve kendiliğinden verme indirimi uygulanmaz: sigortalı başına 66.060 TL, 15 gün içinde ödenirse 49.545 TL. İlk tespitten sonraki bir yıl içinde aynı işyerinde yeniden tespit edilirse beş katı: 165.150 TL."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Muhtasar ve prim hizmet beyannamesi geç verilirse?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Asıl beyanname için sigortalı başına asgari ücretin beşte biri (6.606 TL), işyeri ve dönem başına en çok iki asgari ücret (66.060 TL). Tavana 10 sigortalıda ulaşılır; 10 kişilik ve 500 kişilik işyerinin cezası aynıdır. Beyannamede kendiliğinden verme indirimi yok, yalnız peşin ödeme indirimi var. Nisan 2026 döneminden itibaren prim günü ve kazancı sıfır olan geç beyannameler de cezalı (SGK 2026/9 sayılı Genelge)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hangi tarihin asgari ücreti esas alınır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Fiilin işlendiği tarihteki aylık brüt asgari ücret; cezanın tebliğ edildiği ya da ödendiği tarihinki değil. Aralık 2026'da işlenen bir fiil, Ocak 2027'de tebliğ edilse de 2026 asgari ücretiyle hesaplanır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ceza 15 gün içinde ödenmezse?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "İndirimlerin ikisi de kaybolur. Tebliğ edilen tutarın tamamı, 5510 sayılı Kanunun 89. maddesine göre hesaplanan gecikme cezası ve gecikme zammıyla birlikte tahsil edilir. İtiraz 15 gün içinde SGK'ya yapılır ve takibi durdurur; reddedilirse 30 gün içinde idare mahkemesine gidilebilir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Verilerim bir yere gönderiliyor mu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Hesap tarayıcınızda yapılır. Paylaşmak için adres çubuğundaki bağlantıyı kopyalayabilirsiniz; girdiler adresin # kısmında durur ve hiçbir sunucuya gitmez."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
+        "name": "Koray Öner",
+        "url": "https://korayoner.dev/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=55d1915b" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../araclar/" aria-current="true">Araçlar</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
+          <li><a href="../grafikler/">Grafikler</a></li>
+          <li><a href="../bordro/">Bordro Motoru</a></li>
+          <li><a href="../yayinlar/">Yayınlar</a></li>
+          <li><a href="../hakkimda/">Hakkımda</a></li>
+          <li><a href="../ara/">Ara</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+  <nav class="yerel-menu" aria-label="Bu sayfada">
+    <div class="wrap"><span class="yerel-menu__baslik">Bu sayfada</span><ul><li><a href="#hesapla">Hesapla</a></li><li><a href="#tablo">Tutarlar</a></li><li><a href="#indirim">İndirimler</a></li><li><a href="#sss">S.S.S.</a></li></ul></div>
+  </nav>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span>
+      <a href="../araclar/">Araçlar</a> <span aria-hidden="true">›</span> SGK İdari Para Cezası Hesaplama
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">5510 s.K. m.102 · brüt asgari ücret <span data-s="au">33.030 TL</span></p>
+        <h1>SGK idari para cezası: ne kadar, ne kadara iner?</h1>
+        <p class="lede">
+          SGK cezasının tutarını fiil kadar zaman belirliyor. Geç verilen bir işe giriş bildirgesi
+          <strong>30 gün içinde kendiliğinden verilir ve ceza 15 gün içinde ödenirse <span data-s="iseK30">6.193 TL</span></strong>;
+          aynı eksik denetimde bulunursa <span data-s="iseTespit">49.545 TL</span>, bir yıl içinde yeniden bulunursa
+          <span data-s="iseTekrar">123.862 TL</span>. Araç, tebliğ edilecek cezayı, hangi indirimin uygulanacağını ve
+          ödenecek tutarı hesaplar.
+        </p>
+        <p class="muted kunye-satiri">
+          Kurallar 5510 s.K. m.102'den ve SGK'nın 2020/8 sayılı Genelgesinden ·
+          asgari ücret <a href="../bordro/">bordro parametrelerinden</a> ·
+          yazı: <a href="../makaleler/ise-giris-bildirgesi-gecikirse-ceza/">aynı eksik, beş fatura</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-label="SGK idari para cezası hesaplayıcısı">
+      <div class="wrap">
+        <div class="pc-duzen">
+          <form class="pc-form" id="pc-form" novalidate>
+            <fieldset class="pc-grup">
+              <legend><span class="pc-no">1</span> Fiil</legend>
+              <div class="pc-grid">
+                <div class="pc-alan pc-genis">
+                  <label for="c-fiil">Ne oldu?</label>
+                  <select id="c-fiil">
+                    <optgroup label="Bildirgeler">
+                      <option value="iseGiris" selected>İşe giriş bildirgesi geç verildi ya da hiç verilmedi</option>
+                      <option value="istenCikis">İşten ayrılış bildirgesi geç verildi</option>
+                      <option value="isyeri">İşyeri bildirgesi geç verildi</option>
+                    </optgroup>
+                    <optgroup label="Muhtasar ve prim hizmet beyannamesi">
+                      <option value="mphbAsil">Beyanname (asıl) süresinde verilmedi</option>
+                      <option value="mphbEk">Ek beyanname verildi (gün ya da kazanç artışı, yeni sigortalı)</option>
+                      <option value="mphbResen">Eksik gün belgesi için istenen ek beyanname bir ayda verilmedi</option>
+                    </optgroup>
+                    <optgroup label="Denetim">
+                      <option value="mphbTespit">Denetimde bildirilmemiş sigortalı bulundu</option>
+                      <option value="defterIbraz">Defter ve belgeler istenen sürede ibraz edilmedi</option>
+                      <option value="eksikIscilik">Eksik işçilik tespit edildi</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <div class="pc-alan pc-genis" data-alan="giris">
+                  <label for="c-giris">Kim fark etti?</label>
+                  <select id="c-giris">
+                    <option value="gec">İşveren, kendisi geç verdi</option>
+                    <option value="tespit">SGK denetimi ya da başka bir kurumun bilgisi</option>
+                    <option value="tekrar">Bir yıl içinde ikinci kez tespit edildi</option>
+                  </select>
+                </div>
+                <div class="pc-alan" data-alan="sigortali">
+                  <label for="c-sig">Sigortalı sayısı</label>
+                  <input type="text" inputmode="numeric" id="c-sig" value="1">
+                </div>
+                <div class="pc-alan" data-alan="defter">
+                  <label for="c-defter">İşverenin defteri</label>
+                  <select id="c-defter">
+                    <option value="bilanco">Bilanço esası (ya da kamu idaresi)</option>
+                    <option value="diger">İşletme hesabı ya da serbest meslek defteri</option>
+                    <option value="yok">Defter tutmakla yükümlü değil</option>
+                  </select>
+                </div>
+                <div class="pc-alan" data-alan="aySayisi">
+                  <label for="c-aysay">Eksik işçiliğin mal edildiği ay sayısı</label>
+                  <input type="text" inputmode="numeric" id="c-aysay" value="1">
+                </div>
+                <div class="pc-alan">
+                  <label for="c-tarih">Fiilin işlendiği ay</label>
+                  <input type="month" id="c-tarih" value="2026-10" min="2020-01" aria-describedby="c-tarih-not">
+                  <small id="c-tarih-not">Ceza o aydaki brüt asgari ücretten hesaplanır; bildirimin yasal süresinin bittiği ay.</small>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="pc-grup" data-alan="kendiliginden">
+              <legend><span class="pc-no">2</span> Ne zaman verildi?</legend>
+              <div class="pc-grid">
+                <div class="pc-alan pc-genis">
+                  <label for="c-kend">Bildirge, süresi bittikten sonraki 30 gün içinde ve SGK fark etmeden verildi mi?</label>
+                  <select id="c-kend" aria-describedby="c-kend-not">
+                    <option value="evet">Evet, 30 gün içinde kendiliğinden verildi</option>
+                    <option value="hayir">Hayır, 30 gün geçti</option>
+                  </select>
+                  <small id="c-kend-not">Bu indirim yalnız bildirgelerde var (m.102/2); beyannamede ve denetim cezalarında yok.</small>
+                </div>
+              </div>
+            </fieldset>
+            <p class="pc-hata" id="c-hata" role="alert"></p>
+          </form>
+
+          <aside class="pc-sonuc" id="pc-sonuc" aria-live="polite" aria-labelledby="pc-cevap-bas">
+            <div class="pc-ust-satir">
+              <p class="pc-ust" id="pc-cevap-bas">Tebliğden sonra 15 gün içinde öderseniz</p>
+              <span class="pc-rozet" id="o-rozet"></span>
+            </div>
+            <p class="pc-cevap" id="o-pesin">—</p>
+            <p class="pc-alt" id="o-alt"></p>
+            <dl class="pc-kalemler" id="o-kalemler"></dl>
+            <figure class="pc-yollar">
+              <figcaption class="pc-ust">Aynı fiil, farklı yollar</figcaption>
+              <ol id="o-yollar"></ol>
+            </figure>
+            <p class="pc-not" id="o-not"></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <article class="content" id="kurallar">
+      <div class="wrap prose">
+        <h2 id="tablo">2026 tutarları</h2>
+        <p>Bütün tutarlar aylık brüt asgari ücretin katı ya da kesri. Tablo, Ekim 2026'da işlenen bir fiil için tebliğ edilecek cezayı ve 15 gün içinde ödenirse tahsil edilecek tutarı gösterir. Kuruş atılır.</p>
+<!-- SGK-TABLO:BASLANGIC -->
+<div class="table-scroll">
+<table class="data-table data-table--text pc-tablo">
+<caption>SGK idari para cezaları, Ekim 2026 (brüt asgari ücret 33.030 TL)</caption>
+<thead><tr><th scope="col">Fiil</th><th scope="col">Kural</th><th scope="col">Tebliğ</th><th scope="col">15 günde ödenirse</th><th scope="col">30 gün içinde kendiliğinden + 15 gün</th></tr></thead>
+<tbody>
+<tr><th scope="row">İşe giriş bildirgesi geç (kendiliğinden)</th><td>1 sigortalı</td><td>33.030 TL</td><td>24.772 TL</td><td>6.193 TL</td></tr>
+<tr><th scope="row">İşe giriş, denetimde tespit</th><td>1 sigortalı, 2 kat</td><td>66.060 TL</td><td>49.545 TL</td><td>uygulanmaz</td></tr>
+<tr><th scope="row">İşe giriş, bir yıl içinde yeniden tespit</th><td>1 sigortalı, 5 kat</td><td>165.150 TL</td><td>123.862 TL</td><td>uygulanmaz</td></tr>
+<tr><th scope="row">İşten ayrılış bildirgesi geç</th><td>1 sigortalı, 1/10; aylık tavan 12 / 6 / 3</td><td>3.303 TL</td><td>2.477 TL</td><td>619 TL</td></tr>
+<tr><th scope="row">İşyeri bildirgesi geç, bilanço</th><td>3 kat</td><td>99.090 TL</td><td>74.317 TL</td><td>18.579 TL</td></tr>
+<tr><th scope="row">İşyeri bildirgesi geç, işletme defteri</th><td>2 kat</td><td>66.060 TL</td><td>49.545 TL</td><td>12.386 TL</td></tr>
+<tr><th scope="row">İşyeri bildirgesi geç, defter yok</th><td>1 kat</td><td>33.030 TL</td><td>24.772 TL</td><td>6.193 TL</td></tr>
+<tr><th scope="row">Beyanname (asıl) geç, sigortalı başına</th><td>1/5; en çok 2 kat (10 sigortalı)</td><td>6.606 TL</td><td>4.954 TL</td><td>uygulanmaz</td></tr>
+<tr><th scope="row">Ek beyanname, sigortalı başına</th><td>1/8; en çok 2 kat (16 sigortalı)</td><td>4.128 TL</td><td>3.096 TL</td><td>uygulanmaz</td></tr>
+<tr><th scope="row">Eksik gün için istenen ek beyanname, bir ay geçti</th><td>1/2; en çok 2 kat (4 sigortalı)</td><td>16.515 TL</td><td>12.386 TL</td><td>uygulanmaz</td></tr>
+<tr><th scope="row">Denetimde bildirilmemiş sigortalı, bilanço</th><td>kişi başı 1, en çok 3 kat</td><td>33.030 TL</td><td>24.772 TL</td><td>uygulanmaz</td></tr>
+<tr><th scope="row">Defter ve belge ibraz etmeme, bilanço</th><td>12 kat (işletme 6, defter yok 3)</td><td>396.360 TL</td><td>297.270 TL</td><td>uygulanmaz</td></tr>
+<tr><th scope="row">Eksik işçilik, ay başına</th><td>2 kat</td><td>66.060 TL</td><td>49.545 TL</td><td>uygulanmaz</td></tr>
+</tbody>
+</table>
+</div>
+<!-- SGK-TABLO:BITIS -->
+
+        <h2 id="indirim">İki indirim, ikisi de ödemeye bağlı</h2>
+        <p><strong>Kendiliğinden verme (m.102/2).</strong> Bildirge, yasal süresi bittikten sonraki 30 gün içinde ve SGK bir tespit yapmadan verilirse, ceza tebliğden sonraki 15 gün içinde ödendiği takdirde dörtte bir tutar üzerinden uygulanır. İndirim yalnız işe giriş, işten ayrılış ve işyeri bildirgelerinde (ayrıca (g), (h) bentlerinde) var. Muhtasar ve prim hizmet beyannamesi bu listede yok.</p>
+        <p><strong>Peşin ödeme (m.102/5).</strong> Hangi ceza olursa olsun, tebliğden itibaren 15 gün içinde itiraz edilmeden ya da dava açılmadan ödenirse dörtte üçü tahsil edilir. Peşin ödemek dava açma hakkını kaldırmaz.</p>
+        <p>İki şart birlikte gerçekleşirse SGK tebliğ ettiği tutarın dörtte birinin dörtte üçünü tahsil eder: tebliğin <strong>%18,75</strong>'i. 15 gün kaçırılırsa iki indirim de gider; ceza tamamıyla ve 5510 m.89'a göre gecikme cezası ve gecikme zammıyla tahsil edilir.</p>
+
+        <h2 id="sss">Sık sorulan sorular</h2>
+        <h3>İşe giriş bildirgesi geç verilirse ceza ne kadar?</h3>
+        <p>Sigortalı başına bir aylık brüt asgari ücret: 2026'da <span data-s="au">33.030 TL</span>. Bildirge süresi bittikten sonraki 30 gün içinde kendiliğinden verilir ve ceza tebliğden sonraki 15 gün içinde ödenirse <span data-s="iseK30">6.193 TL</span> tahsil edilir. 30 gün geçmişse yalnız peşin ödeme indirimi kalır: <span data-s="iseK">24.772 TL</span>.</p>
+        <h3>Denetimde bulunursa ne değişir?</h3>
+        <p>Ceza iki katına çıkar ve kendiliğinden verme indirimi uygulanmaz: sigortalı başına <span data-s="iseTespitTeblig">66.060 TL</span>, 15 gün içinde ödenirse <span data-s="iseTespit">49.545 TL</span>. İlk tespitten sonraki bir yıl içinde aynı işyerinde yeniden tespit edilirse beş katı: <span data-s="iseTekrarTeblig">165.150 TL</span>.</p>
+        <h3>Muhtasar ve prim hizmet beyannamesi geç verilirse?</h3>
+        <p>Asıl beyanname için sigortalı başına asgari ücretin beşte biri (<span data-s="mphbKisi">6.606 TL</span>), işyeri ve dönem başına en çok iki asgari ücret (<span data-s="ikiAu">66.060 TL</span>). Tavana 10 sigortalıda ulaşılır; 10 kişilik ve 500 kişilik işyerinin cezası aynıdır. Beyannamede kendiliğinden verme indirimi yok, yalnız peşin ödeme indirimi var. Nisan 2026 döneminden itibaren prim günü ve kazancı sıfır olan geç beyannameler de cezalı (SGK 2026/9 sayılı Genelge).</p>
+        <h3>Hangi tarihin asgari ücreti esas alınır?</h3>
+        <p>Fiilin işlendiği tarihteki aylık brüt asgari ücret; cezanın tebliğ edildiği ya da ödendiği tarihinki değil. Aralık 2026'da işlenen bir fiil, Ocak 2027'de tebliğ edilse de 2026 asgari ücretiyle hesaplanır.</p>
+        <h3>Ceza 15 gün içinde ödenmezse?</h3>
+        <p>İndirimlerin ikisi de kaybolur. Tebliğ edilen tutarın tamamı, 5510 sayılı Kanunun 89. maddesine göre hesaplanan gecikme cezası ve gecikme zammıyla birlikte tahsil edilir. İtiraz 15 gün içinde SGK'ya yapılır ve takibi durdurur; reddedilirse 30 gün içinde idare mahkemesine gidilebilir.</p>
+        <h3>Verilerim bir yere gönderiliyor mu?</h3>
+        <p>Hayır. Hesap tarayıcınızda yapılır. Paylaşmak için adres çubuğundaki bağlantıyı kopyalayabilirsiniz; girdiler adresin # kısmında durur ve hiçbir sunucuya gitmez.</p>
+<!-- SSS:BITIS -->
+
+        <h2>Varsayımlar ve sınırlar</h2>
+        <ul>
+          <li>Aynı işyerinde aynı dönem için birden çok ek beyanname verildiğinde üst sınır, önceki cezalar düşülerek paylaştırılır (Genelge 2.6.2.2). Araç tek beyanname için hesaplar.</li>
+          <li>İşten ayrılış bildirgesinde aylık tavan, bir takvim ayında işlenen bütün geç bildirimlerin toplamına uygulanır. Araç girilen sigortalıların aynı ayda olduğunu varsayar.</li>
+          <li>(c) bendi (2019 öncesi aylık prim ve hizmet belgesi), (g), (h), (i), (k), (l), (n) bentleri, gecikme cezası ve gecikme zammı hesaplanmaz.</li>
+          <li>Asgari ücret 2020–2026 için sitenin bordro parametrelerinden okunur; parametresi olmayan yıl için araç sonuç vermez.</li>
+        </ul>
+
+        <h2 id="kaynak-title">Kaynaklar</h2>
+        <ul>
+          <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5510.pdf" rel="noopener">5510 sayılı Kanun</a> m.102 (idari para cezaları ve itiraz), m.89 (gecikme cezası ve zammı); mevzuat.gov.tr güncel metni, 22 Ekim 2026'da okundu</li>
+          <li>Sosyal Güvenlik Kurumu, 2020/8 sayılı İdari Para Cezası Genelgesi; tutar örnekleri ve iki indirimin birlikte uygulanışı</li>
+          <li>Sosyal Güvenlik Kurumu, 2026/9 sayılı Genelge (9 Nisan 2026): sıfır gün ve sıfır kazançlı geç beyannamelere ceza uygulanmaması istisnası kaldırıldı</li>
+          <li>Brüt asgari ücret: sitenin <a href="../bordro/">bordro motoru</a> parametreleri (Asgari Ücret Tespit Komisyonu kararları)</li>
+        </ul>
+      </div>
+    </article>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili</h2>
+        <ul>
+          <li><a href="../makaleler/ise-giris-bildirgesi-gecikirse-ceza/">İşe giriş bildirgesi gecikirse SGK cezası ne kadar?</a> (yazı)</li>
+          <li><a href="../isveren-maliyeti-hesaplama/">İşveren maliyeti hesaplama</a></li>
+          <li><a href="../bordro-denetim/">Bordro denetimi</a></li>
+          <li><a href="../bag-kur-ve-borclanma-hesaplama/">Bağ-Kur ve borçlanma hesaplama</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ILGILI:BASLANGIC -->
+    <!-- ILGILI:BITIS -->
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../koray-oner/">Çalışma dizini</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js?v=30221606" defer></script>
+  <script src="../bordro/motor.js?v=2de19617" defer></script>
+  <script src="../durum.js?v=00000000" defer></script>
+  <script src="hesap.js?v=00000000" defer></script>
+  <script src="script.js?v=00000000" defer></script>
+  <script src="../script.js?v=9465d26e" defer></script>
+</body>
+</html>

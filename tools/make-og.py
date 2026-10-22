@@ -279,6 +279,10 @@ SPEC = {
    "Günde 1.375 TL, 140 gün sınırı, ay ay cep harçlığı ve hane geliri şartı.",
    ["Gençlik ve NEET programı", "Testli takvim"], "bordro"),
 
+ "sgk-idari-para-cezasi-hesaplama": ("sgk-idari-para-cezasi-hesaplama", "SGK İdari", "Para Cezası 2026",
+   "İşe giriş, işten ayrılış, muhtasar, denetim: tebliğ edilen ceza ve 30 gün ile 15 gün indirimleri.",
+   ["5510 m.102", "Genelge örnekleriyle testli"], "bordro"),
+
  "rapor-parasi-hesaplama": ("rapor-parasi-hesaplama", "Rapor Parası", "Hesaplama",
    "Hastalık, iş kazası, doğum: günlük ödenek, ödenmeyen iki gün, raporlu ayda ele geçen.",
    ["5510 m.17–18", "Bordro motoruyla testli"], "bordro"),

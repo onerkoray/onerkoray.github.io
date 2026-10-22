@@ -635,6 +635,23 @@ jobs:
       - name: SGK devlet katkısı yazısının sayıları
         run: node makaleler/sgk-devlet-katkisi-kalkti/sayi-testi.js
 
+      # SGK idari para cezası (5510 m.102): çekirdek, SGK 2020/8 Genelgesinin
+      # on bir sayısal örneğini o yılların asgari ücretiyle yeniden hesaplar;
+      # aracın tablosu, SSS yapısal verisi ve yazının rakamları çekirdekten.
+      - name: SGK idari para cezası aracı
+        run: node sgk-idari-para-cezasi-hesaplama/test.js
+      - name: SGK ceza aracı ve yazısı hesaptan üretilmiş mi
+        run: node tools/sgk-ceza-sayfa.js --check
+      - name: İşe giriş cezası yazısının sayıları
+        run: node makaleler/ise-giris-bildirgesi-gecikirse-ceza/sayi-testi.js
+
+      # 2026 yeniden değerleme oranı (VUK mük. 298/B): Yİ-ÜFE anlık
+      # görüntüsüyle 2021-2025 ilan edilen oranlar birebir; Ekim senaryoları.
+      - name: Yeniden değerleme 2026 yazısı hesaptan üretilmiş mi
+        run: node tools/ydo-2026-yazisi.js --check
+      - name: Yeniden değerleme 2026 yazısının sayıları
+        run: node makaleler/yeniden-degerleme-orani-2026/sayi-testi.js
+
       # En düşük emekli aylığı ve Ocak 2027 zammı: zam oranları emekli zammı
       # motorundan (Eylül 2026'ya kesilmiş TÜFE serisi), taban tutarları 5510
       # ek m.19 dipnotlarından; her rakam sayfada aranır.

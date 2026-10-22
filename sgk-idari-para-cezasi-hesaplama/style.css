@@ -1,0 +1,74 @@
+/* SGK idari para cezası — araca özgü stiller.
+   Bileşenler sitenin standardında (calculator-page). Yol çubukları --dv-1;
+   seçili yol koyu, ötekiler aynı rengin açık tonu. Oran çubuğun uzunluğu,
+   sayı yanında; renk tek başına anlam taşımaz. */
+
+.kunye-satiri { margin: .9rem 0 0; font-size: var(--type-metadata, .85rem); }
+.pc-form { min-inline-size: 0; }
+.pc-duzen {
+  display: grid; gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); align-items: start;
+}
+.pc-duzen > * { min-inline-size: 0; }
+@media (max-width: 960px) { .pc-duzen { grid-template-columns: 1fr; } }
+@media (min-width: 961px) { .pc-sonuc { position: sticky; top: 84px; } }
+
+.pc-grup { border: 0; margin: 0 0 1.5rem; padding: 0; min-inline-size: 0; }
+.pc-grup legend {
+  display: flex; align-items: center; gap: .55rem; padding: 0; margin-bottom: .8rem;
+  font: 700 var(--step-1)/1.2 var(--font-display, inherit);
+}
+.pc-no {
+  display: inline-grid; place-items: center; inline-size: 1.7rem; block-size: 1.7rem; border-radius: 50%;
+  font: 700 .8rem/1 var(--font-mono); color: var(--brand-contrast, #fff); background: var(--brand);
+}
+.pc-grid { display: grid; gap: .9rem 1rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.pc-genis { grid-column: 1 / -1; }
+.pc-alan { display: flex; flex-direction: column; gap: .35rem; min-inline-size: 0; }
+.pc-alan[hidden] { display: none; }
+.pc-alan label, .pc-etiket { font-weight: 600; }
+.pc-alan :is(input, select) { inline-size: 100%; font-variant-numeric: tabular-nums; }
+.pc-alan small { font-size: var(--type-metadata, .8rem); color: var(--text-muted); line-height: 1.45; }
+.pc-secimler { display: flex; flex-wrap: wrap; gap: .4rem; }
+.pc-hata { margin: 0; font-weight: 600; color: var(--dv-loss-ink); }
+.pc-hata:empty { display: none; }
+
+.pc-sonuc {
+  border: 1px solid var(--border); border-radius: var(--radius-card); background: var(--surface);
+  padding: 1.25rem; box-shadow: var(--shadow-card); transition: opacity .2s ease;
+}
+.pc-sonuc.pc-bayat { opacity: .45; }
+.pc-ust-satir { display: flex; justify-content: space-between; align-items: center; gap: .75rem; }
+.pc-ust { margin: 0; font: 600 .72rem/1.3 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+.pc-rozet { display: inline-block; padding: .14rem .55rem; border-radius: 999px; font: 700 .72rem/1.4 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; }
+.pc-rozet:empty { display: none; }
+.pc-iyi { color: var(--dv-gain-ink); background: color-mix(in srgb, var(--dv-gain) 16%, transparent); }
+.pc-kotu { color: var(--dv-loss-ink); background: color-mix(in srgb, var(--dv-loss) 14%, transparent); }
+.pc-cevap { margin: .3rem 0 0; font: 800 clamp(2.1rem, 1.6rem + 2.2vw, 3rem)/1.05 var(--font-display); letter-spacing: -.03em; font-variant-numeric: tabular-nums; color: var(--text); }
+.pc-alt { margin: .45rem 0 0; color: var(--text-muted); font-size: .95rem; font-variant-numeric: tabular-nums; }
+
+
+.pc-kalemler { margin: 1rem 0 0; display: grid; gap: 0; }
+.pc-kalemler div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .5rem 0; border-bottom: 1px solid var(--border); font-size: .92rem; }
+.pc-kalemler dt { color: var(--text-muted); }
+.pc-kalemler dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+.pc-kalemler .pc-ana :is(dt, dd) { color: var(--text); font-weight: 700; }
+.pc-kucuk { font-size: .78rem; font-weight: 500; color: var(--text-muted); }
+.pc-not { margin: .8rem 0 0; font-size: .82rem; line-height: 1.5; color: var(--text-muted); }
+.pc-not:empty { display: none; }
+
+@media (prefers-reduced-motion: reduce) { .pc-sonuc { transition: none; } }
+@media print { .pc-sonuc { position: static; } }
+
+.pc-yollar { margin: 1.1rem 0 0; }
+.pc-yollar figcaption { margin-bottom: .5rem; }
+.pc-yollar ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.pc-yol { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem .75rem; font-size: .86rem; }
+.pc-yol-ad { color: var(--text-muted); line-height: 1.35; }
+.pc-yol-tutar { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; color: var(--text); }
+.pc-yol-cubuk { grid-column: 1 / -1; block-size: 6px; border-radius: 3px; background: var(--dv-grid); overflow: hidden; }
+.pc-yol-cubuk span { display: block; block-size: 100%; border-radius: 3px; background: color-mix(in srgb, var(--dv-1) 40%, var(--surface)); }
+.pc-yol.pc-secili .pc-yol-ad { color: var(--text); font-weight: 600; }
+.pc-yol.pc-secili .pc-yol-cubuk span { background: var(--dv-1); }
+.pc-tablo td, .pc-tablo th { vertical-align: top; }
+.pc-tablo td:nth-child(n+3) { white-space: nowrap; font-variant-numeric: tabular-nums; }
