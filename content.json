@@ -15,12 +15,12 @@
   "https://korayoner.dev/kdv-hesaplama/"
  ],
  "sayaclar": {
-  "arac": 61,
-  "makale": 63,
+  "arac": 62,
+  "makale": 65,
   "metodoloji": 10,
   "grafik": 2,
   "sayfa": 11,
-  "indekslenebilir": 148
+  "indekslenebilir": 151
  },
  "sayfalar": [
   {
@@ -32,8 +32,8 @@
    "description": "Koray Öner'in sitesi: maaş, vergi, SGK, kira ve kredi için testli, ücretsiz hesaplama araçları; mevzuat yazıları, yayımlanmış çalışmalar ve sosyal hesaplar.",
    "category": null,
    "published": "2026-07-14T22:46:21+03:00",
-   "updated": "2026-10-20",
-   "updatedAt": "2026-10-20T12:34:14+03:00",
+   "updated": "2026-10-22",
+   "updatedAt": "2026-10-22T15:40:15+03:00",
    "image": "https://korayoner.dev/images/koray-oner-kapak.png",
    "imageTitle": "Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları",
    "related": [],
@@ -503,7 +503,7 @@
    "type": "sayfa",
    "parent": null,
    "title": "Koray Öner — Turkish Payroll, Tax and Pension Tools",
-   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 61 free calculators for Turkish payroll, tax and pensions, 63 tested articles and 8 papers with a DOI.",
+   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 62 free calculators for Turkish payroll, tax and pensions, 65 tested articles and 8 papers with a DOI.",
    "category": null,
    "published": "2026-10-20T07:35:08+03:00",
    "updated": "2026-10-20",
@@ -1185,11 +1185,11 @@
    "type": "sayfa",
    "parent": null,
    "title": "Çalışma Dizini: Araçlar, Yazılar ve Yayınlar",
-   "description": "Koray Öner'in çalışmaları tek yerde: 61 hesaplama aracı, 63 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
+   "description": "Koray Öner'in çalışmaları tek yerde: 62 hesaplama aracı, 65 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
    "category": null,
    "published": "2026-09-29T17:59:13+03:00",
-   "updated": "2026-10-20",
-   "updatedAt": "2026-10-20T12:34:14+03:00",
+   "updated": "2026-10-22",
+   "updatedAt": "2026-10-22T00:00:00+03:00",
    "image": "https://korayoner.dev/images/hakkimda-koray-oner.jpg",
    "imageTitle": "Çalışma Dizini: Araçlar, Yazılar ve Yayınlar — Koray Öner",
    "related": [],
@@ -2147,6 +2147,22 @@
    "noindex": false
   },
   {
+   "url": "https://korayoner.dev/makaleler/ise-giris-bildirgesi-gecikirse-ceza/",
+   "dosya": "makaleler/ise-giris-bildirgesi-gecikirse-ceza/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "İşe Giriş Bildirgesi Gecikirse SGK Cezası",
+   "description": "Kanundaki ceza bir asgari ücret, 33.030 TL. Ödenen tutar aynı eksik için 6.193 TL ile 123.862 TL arasında: farkı kimin fark ettiği ve ne zaman ödendiği belirliyor.",
+   "category": "maas-tazminat",
+   "published": "2026-10-22T15:40:15+03:00",
+   "updated": "2026-10-22",
+   "updatedAt": "2026-10-22T15:40:15+03:00",
+   "image": "https://korayoner.dev/images/makale/ise-giris-bildirgesi-gecikirse-ceza.png",
+   "imageTitle": "İşe Giriş Bildirgesi Gecikirse SGK Cezası — Koray Öner",
+   "related": [],
+   "noindex": false
+  },
+  {
    "url": "https://korayoner.dev/makaleler/iskur-19-bin-tl-gercekte-ne/",
    "dosya": "makaleler/iskur-19-bin-tl-gercekte-ne/index.html",
    "type": "makale",
@@ -2920,6 +2936,22 @@
    "noindex": false
   },
   {
+   "url": "https://korayoner.dev/makaleler/yeniden-degerleme-orani-2026/",
+   "dosya": "makaleler/yeniden-degerleme-orani-2026/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "2026 Yeniden Değerleme Oranı Ne Olacak?",
+   "description": "Oranı belirleyen on iki ayın on biri açıklandı. Ekim'de üretici fiyatları ne kadar artarsa artsın oran dar bir aralıkta: 2027 vergi dilimleri ve MTV'ye etkisiyle.",
+   "category": "vergi-belge",
+   "published": "2026-10-22T15:40:15+03:00",
+   "updated": "2026-10-22",
+   "updatedAt": "2026-10-22T15:40:15+03:00",
+   "image": "https://korayoner.dev/images/makale/yeniden-degerleme-orani-2026.png",
+   "imageTitle": "2026 Yeniden Değerleme Oranı Ne Olacak? — Koray Öner",
+   "related": [],
+   "noindex": false
+  },
+  {
    "url": "https://korayoner.dev/makaleler/yeniden-degerleme-orani-nedir/",
    "dosya": "makaleler/yeniden-degerleme-orani-nedir/index.html",
    "type": "makale",
@@ -3241,6 +3273,27 @@
     "https://korayoner.dev/maas-hesaplama/",
     "https://korayoner.dev/makaleler/stopaj-nasil-hesaplanir/",
     "https://korayoner.dev/kdv-hesaplama/"
+   ],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/sgk-idari-para-cezasi-hesaplama/",
+   "dosya": "sgk-idari-para-cezasi-hesaplama/index.html",
+   "type": "arac",
+   "parent": null,
+   "title": "SGK İdari Para Cezası Hesaplama 2026",
+   "description": "İşe giriş, işten ayrılış, işyeri bildirgesi, muhtasar ve denetim cezaları: 5510 m.102'ye göre tebliğ edilecek tutar, 30 ve 15 gün indirimleri, tavanlar.",
+   "category": "maas-tazminat",
+   "published": "2026-10-22T15:40:15+03:00",
+   "updated": "2026-10-22",
+   "updatedAt": "2026-10-22T15:40:15+03:00",
+   "image": "https://korayoner.dev/images/sgk-idari-para-cezasi-hesaplama-koray-oner.png",
+   "imageTitle": "SGK İdari Para Cezası Hesaplama 2026 — Koray Öner",
+   "related": [
+    "https://korayoner.dev/makaleler/ise-giris-bildirgesi-gecikirse-ceza/",
+    "https://korayoner.dev/isveren-maliyeti-hesaplama/",
+    "https://korayoner.dev/bordro-denetim/",
+    "https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/"
    ],
    "noindex": false
   },
