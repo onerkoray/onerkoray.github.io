@@ -13,6 +13,7 @@
 var S = require("../../tools/makale-sayi.js");
 var O = require("./oran.js");
 var Y = require("../../tools/ydo-2026-yazisi.js");
+var B = require("../../bordro/motor.js");
 var t = S.yazi(__dirname);
 var E = O.VERI.endeks;
 
@@ -71,7 +72,7 @@ t.gecsin("dördü", "Beş yılın dördünde");
 
 /* 4 — Dilim penceresi: 2026 tarifesi × (1 + oran), %5 aşağısı. */
 var d = O.dilimPenceresi(a.alt.oran, a.ust.oran);
-[190000, 400000, 1500000, 5300000].forEach(function (v, i) {
+B.parametre(2026).dilimler.filter(function (x) { return x[0] !== null; }).map(function (x) { return x[0]; }).forEach(function (v, i) {
   t.yakin((i + 1) + ". eşik 2026", d[i].tutar2026, v, 0);
   t.yakin((i + 1) + ". eşik üst", d[i].hamUst, v * (1 + a.ust.oran / 100), 1e-6);
   t.yakin((i + 1) + ". eşik en az", d[i].enAz, v * (1 + a.alt.oran / 100) * 0.95, 1e-6);
