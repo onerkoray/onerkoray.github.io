@@ -93,6 +93,8 @@ function sahteOrtam(secenek) {
     location: { hostname: o.host || "korayoner.dev", origin: "https://korayoner.dev",
       pathname: "/kira-artisi-hesaplama/", search: "?kira=98765", hash: "#tarih=1999-01" },
     navigator: o.navigator || {},
+    /* Boş an hemen gelir; etiketin ne zaman istendiğini "load" belirler. */
+    requestIdleCallback: function (f) { f(); },
     localStorage: depoVar ? {
       getItem: function (a) {
         return Object.prototype.hasOwnProperty.call(kutu, a) ? kutu[a] : null;
@@ -101,6 +103,11 @@ function sahteOrtam(secenek) {
       removeItem: function (a) { delete kutu[a]; }
     } : null
   };
+  if (o.yukleniyor) {
+    /* Sayfa henüz yüklenmedi: "load" dinleyicisi elle tetiklenir. */
+    pencere.yukDinleyici = null;
+    pencere.addEventListener = function (t, f) { if (t === "load") pencere.yukDinleyici = f; };
+  }
   if (!depoVar) {
     /* Gizli sekme: erisimin kendisi PATLAR, null donmez. */
     Object.defineProperty(pencere, "localStorage", {
@@ -241,6 +248,19 @@ esit("once kapali", o10.eklenenBetikler.length, 0);
 K10.ver(true);
 esit("acinca basladi", o10.eklenenBetikler.length, 1);
 esit("durum kabul", K10.durum(), "kabul");
+
+console.log("\nEtiket sayfa yuklendikten sonra istenir, olcum kaybolmaz");
+/* 177 KB'lik etiket ilk boyamayla yarışmasın: "load"dan önce istenmez,
+   ama sayfa görüntüleme çağrıları o ana kadar dataLayer'da bekler. */
+var o11 = sahteOrtam({ yukleniyor: true });
+kapiYukle(o11);
+esit("load oncesi etiket yok", o11.eklenenBetikler.length, 0);
+dogru("config zaten kuyrukta", (o11.pencere.dataLayer || []).some(function (a) {
+  return a[0] === "config";
+}));
+dogru("load dinleniyor", typeof o11.pencere.yukDinleyici === "function");
+if (o11.pencere.yukDinleyici) o11.pencere.yukDinleyici();
+esit("load sonrasi etiket", o11.eklenenBetikler.length, 1);
 
 if (hata) { console.error("\n" + hata + " kontrol basarisiz."); process.exit(1); }
 console.log("\n" + gecen + " gecti, 0 kaldi. (olcum tercihi kontrolleri)");
