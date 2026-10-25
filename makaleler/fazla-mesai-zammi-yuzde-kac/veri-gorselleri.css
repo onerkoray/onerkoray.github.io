@@ -57,8 +57,8 @@
   font-variant-numeric: tabular-nums;
 }
 
-.fm-oran--dusuk { color: var(--dv-1); }
-.fm-oran--yuksek { color: var(--dv-2); }
+.fm-oran--dusuk { color: var(--dv-1-ink); }
+.fm-oran--yuksek { color: var(--dv-2-ink); }
 
 .fm-saat {
   font-size: var(--step--1);

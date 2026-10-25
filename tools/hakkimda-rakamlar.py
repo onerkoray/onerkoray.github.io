@@ -134,7 +134,7 @@ def dil_dagilimi():
     sira = sorted(yuzde.items(), key=lambda t: -t[1])
     g = "            "
     ic = ['          <div class="lang-wrap">',
-          g + '<div class="lang-bar" role="img" aria-label="Bu sitenin deposunda dil dağılımı: %s">'
+          g + '<div class="lang-bar" role="group" aria-label="Bu sitenin deposunda dil dağılımı: %s">'
           % ", ".join("%s %%%d" % (ad, v) for ad, v in sira)]
     ic += [g + '  <span data-lang="%s" data-pct="%d" style="flex-grow:%d"></span>' % (ad, v, v) for ad, v in sira]
     ic += [g + "</div>", g + '<ul class="lang-legend">']
