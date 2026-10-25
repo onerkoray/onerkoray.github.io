@@ -424,7 +424,11 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
      böyleydi; diğerlerinde renk düğmesi ada yapışık kalıyordu). */
   .palette { margin-left: auto; }
   .palette + .theme-toggle { margin-left: 0; }
+  /* Arama düğmesi (arama.js ekler) yalnız menünün kaydığı genişlikte. */
+  .site-header .ara-dugme { display: inline-flex; }
 }
+.ara-dugme { display: none; }
+.ara-dugme svg { flex: none; }
 @media (max-width: 680px) {
   .theme-toggle-label { display: none; }
 }
@@ -2061,6 +2065,9 @@ section { padding: var(--bolum) 0; }
      ayırıcı çizgiye gerek kalmaz. */
   :root .site-header .palette { margin-inline-start: auto; padding-inline-start: 0; border-inline-start: 0; }
   :root .site-header .palette + .theme-toggle { margin-inline-start: -.75rem; }
+  /* Arama düğmesi varsa grubu o başlatır; palet ona simge aralığıyla yapışır. */
+  :root .site-header .ara-dugme { margin-inline-start: auto; }
+  :root .site-header .ara-dugme + .palette { margin-inline-start: -.75rem; }
 }
 :root .site-header .palette-dot { width: 15px; height: 15px; }
 @media (prefers-reduced-motion: reduce) {

@@ -180,10 +180,8 @@
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></div>
         <h1 id="hero-title">Brüt Net Maaş Hesaplama 2026</h1>
         <p class="lede">
-          Güncel gelir vergisi dilimleri, SGK tavanı, asgari ücret istisnası ve damga vergisiyle
-          net maaşınızı <strong>ay ay, 12 aylık bordro dökümü</strong> hâlinde hesaplayın. Netten brüte de
-          çevirir ve <strong>2020'ye kadar geçmiş bordro yıllarını</strong> da hesaplar — her yıl kendi
-          vergi tarifesi, asgari ücreti ve istisna rejimiyle. Kayıt yok, reklam yok; her şey tarayıcınızda çalışır.
+          Net maaşınızı <strong>ay ay, 12 aylık bordro dökümü</strong> hâlinde hesaplar; netten brüte de çevirir.
+          Her şey tarayıcınızda çalışır.
         </p>
       </div>
     </section>
@@ -191,6 +189,26 @@
     <section id="hesapla" class="calc" aria-labelledby="calc-title">
       <div class="wrap">
         <h2 id="calc-title" class="visually-hidden">Maaş hesaplama aracı</h2>
+
+        <div class="tabs" role="tablist" aria-label="Hesaplama yönü">
+          <button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" class="tab">Brütten nete</button>
+          <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" class="tab" tabindex="-1">Netten brüte</button>
+        </div>
+
+        <form id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="panel">
+          <p class="panel-q">
+            <label for="in-gross">Aylık brüt maaş</label>
+            <input type="text" id="in-gross" inputmode="decimal" value="50000" aria-label="Aylık brüt maaş"> TL
+          </p>
+        </form>
+
+        <form id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="panel" hidden>
+          <p class="panel-q">
+            <label for="in-net">Hedef aylık net maaş (Ocak)</label>
+            <input type="text" id="in-net" inputmode="decimal" placeholder="örn. 60000" aria-label="Hedef aylık net maaş"> TL
+          </p>
+          <output class="rs-note" id="net-out" aria-live="polite"></output>
+        </form>
 
         <div class="year-row">
           <label for="in-year">Bordro yılı</label>
@@ -213,26 +231,6 @@
         </div>
 
         <div id="pk-alan"></div>
-        <div class="tabs" role="tablist" aria-label="Hesaplama yönü">
-          <button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" class="tab">Brütten nete</button>
-          <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" class="tab" tabindex="-1">Netten brüte</button>
-        </div>
-
-        <form id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="panel">
-          <p class="panel-q">
-            <label for="in-gross">Aylık brüt maaş</label>
-            <input type="text" id="in-gross" inputmode="decimal" value="50000" aria-label="Aylık brüt maaş"> TL
-          </p>
-        </form>
-
-        <form id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="panel" hidden>
-          <p class="panel-q">
-            <label for="in-net">Hedef aylık net maaş (Ocak)</label>
-            <input type="text" id="in-net" inputmode="decimal" placeholder="örn. 60000" aria-label="Hedef aylık net maaş"> TL
-          </p>
-          <output class="rs-note" id="net-out" aria-live="polite"></output>
-        </form>
-
         <p id="rs-status" class="rs-note" role="status" aria-live="polite"></p>
         <div id="results" class="rs-surface" hidden>
           <div class="year-row"><label for="rs-month">Kırılımını görmek istediğiniz ay</label><select id="rs-month"></select></div>
