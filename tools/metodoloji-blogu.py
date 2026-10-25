@@ -22,6 +22,7 @@ Kullanım:
 import io
 import os
 import re
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,8 +52,65 @@ MOTORLU = {
 }
 
 MOTOR_SURUMU = "1.3.0"
-MOTOR_TARIHI = "2026-09-05"
-MOTOR_TARIHI_TR = "5 Eylül 2026"
+# Motorlu araçların hesap ve parametre dosyaları. 25 Ekim 2026'ya kadar burada
+# elle yazılmış bir "son gözden geçirme" tarihi (5 Eylül) duruyordu ve
+# parametreler o tarihten sonra beş kez değişmişti. Tarih artık git'ten.
+MOTOR_DOSYALARI = ("bordro/parametreler.js", "bordro/motor.js")
+
+AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz",
+         "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
+# Sayfanın yüklediği ama hesap ya da parametre taşımayan ortak betikler.
+ORTAK_BETIK = {"onay.js", "tema-erken.js", "script.js", "durum.js", "arama.js",
+               "sonuc-yuzeyi.js", "katalog.js", "home.js", "live.js", "tablo.js"}
+HESAP_ADI = re.compile(r"parametre|tarife|hesap|motor|seri|veri")
+_GIT = {}
+
+
+def git_tarihi(yol):
+    """Dosyanın son commit tarihi (YYYY-AA-GG); izlenmiyorsa None."""
+    if yol not in _GIT:
+        r = subprocess.run(["git", "log", "-1", "--format=%cs", "--", yol], cwd=ROOT,
+                           capture_output=True, text=True, encoding="utf-8")
+        _GIT[yol] = r.stdout.strip() or None
+    return _GIT[yol]
+
+
+def uzun(iso):
+    y, a, g = iso.split("-")
+    return "%d %s %s" % (int(g), AYLAR[int(a) - 1], y)
+
+
+def hesap_dosyalari(sayfa, html, motorlu):
+    """Sayfanın hesabını ve yasal parametrelerini taşıyan dosyalar (kök göreli)."""
+    if motorlu:
+        return list(MOTOR_DOSYALARI)
+    dizin = os.path.dirname(sayfa)
+    yerel = []
+    for src in re.findall(r'<script[^>]*\ssrc="([^"?#]+\.js)', html):
+        if src.startswith(("http", "/")):
+            continue
+        tam = os.path.normpath(os.path.join(dizin, src))
+        goreli = os.path.relpath(tam, ROOT).replace(os.sep, "/")
+        if goreli.startswith("..") or not os.path.isfile(tam):
+            continue
+        if "/" not in goreli and goreli in ORTAK_BETIK:
+            continue
+        yerel.append(goreli)
+    hesap = [y for y in yerel if HESAP_ADI.search(os.path.basename(y)) or y.startswith(("bordro/", "finans/"))]
+    return hesap or yerel
+
+
+def hesap_tarihi(sayfa, html, motorlu):
+    tarihler = [t for t in (git_tarihi(y) for y in hesap_dosyalari(sayfa, html, motorlu)) if t]
+    return max(tarihler) if tarihler else None
+
+
+def zaman(iso):
+    return "<time datetime=\"%s\">%s</time>" % (iso, uzun(iso))
+
+
+GOZDEN = re.compile(r'(<span class="updated">)(?:Parametreler en son [^<]*? tarihinde gözden geçirildi\.'
+                    r'|Hesap ve parametreler en son <time datetime="[\d-]+">[^<]*</time> tarihinde güncellendi\.)(</span>)')
 
 
 def hedefler():
@@ -81,17 +139,15 @@ def kaynak_basligi(html):
 
 
 def gozden_gecirme(html):
-    """Sayfanın kendi beyan ettiği son gözden geçirme tarihi, varsa."""
-    m = re.search(r'class="updated">Parametreler en son (.*?) tarihinde', html)
-    return m.group(1) if m else None
+    """Sayfada parametre tarihi cümlesi var mı (eski ya da yeni biçim)."""
+    return bool(GOZDEN.search(html))
 
 
 def satir(etiket, deger):
     return "            <div><dt>%s</dt><dd>%s</dd></div>" % (etiket, deger)
 
 
-def blok(html, kok, motorlu):
-    tarih = gozden_gecirme(html)
+def blok(html, kok, motorlu, tarih=None):
     baslik = kaynak_basligi(html) or "Veri kaynakları"
     hesaplayici = motorlu or 'id="kaynak-title"' in html
 
@@ -106,7 +162,7 @@ def blok(html, kok, motorlu):
         satirlar = [
             satir("Geliştiren", "<a href=\"%shakkimda/\" rel=\"author\">Koray Öner</a>" % kok),
             satir("Hesaplama çekirdeği", "<a href=\"%sbordro/\">Bordro Motoru %s</a>" % (kok, MOTOR_SURUMU)),
-            satir("Son gözden geçirme", "<time datetime=\"%s\">%s</time>" % (MOTOR_TARIHI, MOTOR_TARIHI_TR)),
+            satir("Hesap ve parametreler", zaman(tarih)),
             satir("Değişiklik günlüğü", "<a href=\"%sbordro/#gunluk\">Yayımlanıyor</a>" % kok),
         ]
     # Bölüm kimliğine bakılır, metnine değil: bloğun kendisi de "Veri kaynakları"
@@ -169,7 +225,7 @@ def blok(html, kok, motorlu):
             satir("Yöntem", "Sayfadaki <em>%s</em> bölümü" % baslik),
         ]
         if tarih:
-            satirlar.append(satir("Son gözden geçirme", tarih))
+            satirlar.append(satir("Hesap ve parametreler", zaman(tarih)))
         satirlar.append(satir("Kaynak kod",
                               "<a href=\"https://github.com/onerkoray/hesap-cekirdegi\" rel=\"noopener\">GitHub</a>"))
     else:
@@ -242,7 +298,13 @@ def main():
             html = f.read()
         kok = "../" * derinlik
         motorlu = ad in MOTORLU
-        yeni = uygula(html, blok(html, kok, motorlu))
+        cumle = gozden_gecirme(html)
+        tarih = hesap_tarihi(sayfa, html, motorlu) if (motorlu or cumle) else None
+        if cumle and tarih:
+            html2 = GOZDEN.sub(lambda m: m.group(1) + "Hesap ve parametreler en son %s tarihinde güncellendi." % zaman(tarih) + m.group(2), html)
+        else:
+            html2 = html
+        yeni = uygula(html2, blok(html2, kok, motorlu, tarih))
         if yeni is None:
             atlanan.append(os.path.relpath(sayfa, ROOT))
             continue

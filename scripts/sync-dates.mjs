@@ -91,8 +91,10 @@ export function esitle(html, sayfa) {
   const D = yay && yay.slice(0, 10) > sayfa.updated ? yay.slice(0, 10) : sayfa.updated;
   let s = html.replace(/("dateModified":\s*")[\d-]+(?:T[^"]*)?(")/g, "$1" + D + "$2");
   if (sayfa.type === "arac") s = webAppTarih(s, D);
+  if (sayfa.type === "arac" || sayfa.type === "metodoloji") s = aracBylineEsitle(s, D);
   if (sayfa.type !== "makale") return s;
   s = doiYaz(s, sayfa);
+  s = yaziGuncelleme(s, D);
   if (!yay) return s;
   const m = s.match(/(<p class="ed-meta">)([\s\S]*?)(<\/p>)/);
   if (!m) return bylineEsitle(s, yay.slice(0, 10), D);
@@ -110,6 +112,25 @@ export function esitle(html, sayfa) {
   }
   meta = meta.replace(/\s*$/, "\n" + girinti.slice(2));
   return s.replace(m[0], m[1] + meta + m[3]);
+}
+
+/* Araç ve metodoloji künyesi: "Hazırlayan … · Güncelleme: <tarih> · …".
+   25 Ekim 2026'ya kadar tarih elle yazılıydı ve kart ile JSON-LD'den
+   ayrışmıştı (maaş aracında 5 Eylül / 2 Ekim). Artık manifestten. */
+const AY_DESEN = AYLAR.join("|");
+const BYLINE_GUN = new RegExp('Güncelleme: (?:<time datetime="[\\d-]+">)?\\d{1,2} (?:' + AY_DESEN + ") \\d{4}(?:</time>)?");
+function aracBylineEsitle(s, D) {
+  const m = s.match(/<p class="byline[^"]*">[\s\S]*?<\/p>/);
+  if (!m || !BYLINE_GUN.test(m[0])) return s;
+  return s.replace(m[0], m[0].replace(BYLINE_GUN, 'Güncelleme: <time datetime="' + D + '">' + uzun(D) + "</time>"));
+}
+
+/* Yazı sonundaki "Bu yazı en son … tarihinde gözden geçirildi." cümlesi de
+   elle yazılıydı; künyedeki güncelleme tarihiyle aynı kaynaktan yazılır. */
+const YAZI_SON = new RegExp("Bu yazı en son (?:<strong>|<time datetime=\"[\\d-]+\">)?\\d{1,2} (?:" + AY_DESEN +
+  ") \\d{4}(?:</strong>|</time>)? tarihinde (?:gözden geçirildi|güncellendi)\\.", "g");
+function yaziGuncelleme(s, D) {
+  return s.replace(YAZI_SON, 'Bu yazı en son <time datetime="' + D + '">' + uzun(D) + "</time> tarihinde güncellendi.");
 }
 
 /* Eski biçim: <p class="byline muted">Hazırlayan … · <time>yayın</time></p>.
