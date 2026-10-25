@@ -16,11 +16,11 @@
  ],
  "sayaclar": {
   "arac": 62,
-  "makale": 65,
+  "makale": 66,
   "metodoloji": 10,
   "grafik": 2,
   "sayfa": 11,
-  "indekslenebilir": 151
+  "indekslenebilir": 152
  },
  "sayfalar": [
   {
@@ -503,7 +503,7 @@
    "type": "sayfa",
    "parent": null,
    "title": "Koray Öner — Turkish Payroll, Tax and Pension Tools",
-   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 62 free calculators for Turkish payroll, tax and pensions, 65 tested articles and 8 papers with a DOI.",
+   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 62 free calculators for Turkish payroll, tax and pensions, 66 tested articles and 8 papers with a DOI.",
    "category": null,
    "published": "2026-10-20T07:35:08+03:00",
    "updated": "2026-10-22",
@@ -1185,11 +1185,11 @@
    "type": "sayfa",
    "parent": null,
    "title": "Çalışma Dizini: Araçlar, Yazılar ve Yayınlar",
-   "description": "Koray Öner'in çalışmaları tek yerde: 62 hesaplama aracı, 65 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
+   "description": "Koray Öner'in çalışmaları tek yerde: 62 hesaplama aracı, 66 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
    "category": null,
    "published": "2026-09-29T17:59:13+03:00",
-   "updated": "2026-10-22",
-   "updatedAt": "2026-10-22T15:48:09+03:00",
+   "updated": "2026-10-25",
+   "updatedAt": "2026-10-25T00:00:00+03:00",
    "image": "https://korayoner.dev/images/hakkimda-koray-oner.jpg",
    "imageTitle": "Çalışma Dizini: Araçlar, Yazılar ve Yayınlar — Koray Öner",
    "related": [],
@@ -2261,6 +2261,22 @@
     "https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/",
     "https://korayoner.dev/makaleler/"
    ],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/makaleler/katilim-bankaciligi-yuzde-15-hedefi/",
+   "dosya": "makaleler/katilim-bankaciligi-yuzde-15-hedefi/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "Katılım Bankacılığı %15 Hedefi Tuttu mu?",
+   "description": "2015'te konan hedef: 2025'te bankacılığın %15'i. Gerçekleşen %9,22. Hedefin TL karşılığı ise enflasyonla kendiliğinden aşıldı. BDDK verisiyle ölçüm ve dünyadaki yer.",
+   "category": "kredi-finans",
+   "published": "2026-10-25T20:35:08+03:00",
+   "updated": "2026-10-25",
+   "updatedAt": "2026-10-25T20:35:08+03:00",
+   "image": "https://korayoner.dev/images/makale/katilim-bankaciligi-yuzde-15-hedefi.png",
+   "imageTitle": "Katılım Bankacılığı %15 Hedefi Tuttu mu? — Koray Öner",
+   "related": [],
    "noindex": false
   },
   {

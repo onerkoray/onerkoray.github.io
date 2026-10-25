@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Araçlar ve Yazılar</title>
-  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 62 hesaplama aracı ve arkalarındaki mevzuatı anlatan 65 yazı.</subtitle>
+  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 62 hesaplama aracı ve arkalarındaki mevzuatı anlatan 66 yazı.</subtitle>
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-10-22T17:00:06+03:00</updated>
+  <updated>2026-10-25T20:35:08+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Katılım Bankacılığı %15 Hedefi Tuttu mu?</title>
+    <link href="https://korayoner.dev/makaleler/katilim-bankaciligi-yuzde-15-hedefi/"/>
+    <id>https://korayoner.dev/makaleler/katilim-bankaciligi-yuzde-15-hedefi/</id>
+    <published>2026-10-25T20:35:08+03:00</published>
+    <updated>2026-10-25T20:35:08+03:00</updated>
+    <category term="kredi-finans" label="Kredi &amp; Finans"/>
+    <summary>2015'te konan hedef: 2025'te bankacılığın %15'i. Gerçekleşen %9,22. Hedefin TL karşılığı ise enflasyonla kendiliğinden aşıldı. BDDK verisiyle ölçüm ve dünyadaki yer.</summary>
+  </entry>
 
   <entry>
     <title>İşe Giriş Bildirgesi Gecikirse SGK Cezası</title>
