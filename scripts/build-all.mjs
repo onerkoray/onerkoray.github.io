@@ -30,6 +30,7 @@ const ZINCIR = [
   ["python", "tools/hakkimda-rakamlar.py"],
   ["python", "tools/calisma-dizini.py"],
   ["python", "tools/en-sayfa.py"],
+  ["python", "tools/metodoloji-blogu.py"],
   ["python", "tools/menu.py"],
   ["python", "tools/stil-damgasi.py"]
 ];
