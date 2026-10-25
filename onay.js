@@ -108,10 +108,27 @@
     var temiz = { page_location: root.location.origin + root.location.pathname };
     root.gtag("set", temiz);
     root.gtag("config", OLCUM, { anonymize_ip: true, page_location: temiz.page_location });
-    var e = document.createElement("script");
-    e.async = true;
-    e.src = "https://www.googletagmanager.com/gtag/js?id=" + OLCUM;
-    document.head.appendChild(e);
+    sayfaAcilinca(function () {
+      var e = document.createElement("script");
+      e.async = true;
+      e.src = "https://www.googletagmanager.com/gtag/js?id=" + OLCUM;
+      document.head.appendChild(e);
+    });
+  }
+
+  /* Google etiketi 177 KB; DOMContentLoaded'da istenince sayfanın kendi
+     betikleriyle yarışıyor ve mobilde ilk boyamayı geciktiriyordu
+     (Lighthouse, 26 Ekim 2026: maaş aracı LCP 3,2 sn, TBT 590 ms).
+     Sayfa yüklendikten sonra, ilk boş anda istenir. Ölçüm kaybı yok:
+     yukarıdaki js/set/config çağrıları dataLayer'da bekler, etiket
+     gelince aynen gönderilir. */
+  function sayfaAcilinca(f) {
+    function bosta() {
+      if (root.requestIdleCallback) root.requestIdleCallback(f, { timeout: 2000 });
+      else setTimeout(f, 1);
+    }
+    if (document.readyState === "complete" || !root.addEventListener) bosta();
+    else root.addEventListener("load", bosta, { once: true });
   }
 
   /* Onay geri alınınca Google'ın bıraktığı çerezler de gider. Yalnızca
