@@ -248,6 +248,23 @@ function baslat() {
       ac(a);
     });
   });
+  /* Dar ekranda menü ikinci satırda yatay kayar ve "Ara" sağda gizli kalır
+     (teknik denetim, 25 Ekim 2026: 390 pikselde görünmüyor). Başlığa tema
+     düğmesi kılığında bir arama düğmesi; görünürlüğü style.css'te, yalnız
+     menünün kaydığı genişlikte. */
+  const ust = document.querySelector(".site-header .header-inner");
+  const tema = ust && ust.querySelector("#themeToggle");
+  if (tema && !ust.querySelector(".ara-dugme") && location.pathname !== "/ara/") {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "theme-toggle ara-dugme";
+    b.setAttribute("aria-label", "Sitede ara");
+    b.setAttribute("aria-haspopup", "dialog");
+    b.setAttribute("aria-keyshortcuts", "Control+K");
+    b.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span class="theme-toggle-label">Ara</span>';
+    b.addEventListener("click", () => ac(b));
+    ust.insertBefore(b, ust.querySelector(".palette") || tema);
+  }
   document.addEventListener("keydown", (e) => {
     const yaziyor = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName || "") || e.target.isContentEditable;
     if ((e.ctrlKey || e.metaKey) && !e.altKey && e.key.toLowerCase() === "k") { e.preventDefault(); ac(); return; }
