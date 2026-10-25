@@ -250,8 +250,19 @@ def _gezinmesiz(satir):
 
 # Tarih senkronunun (scripts/sync-dates.mjs) yazdigi parcalar: kunyedeki
 # yayin/guncelleme zamani, "·" ayiricisi ve JSON-LD dateModified.
+#
+# 25 Ekim 2026: araç künyesindeki "Güncelleme: 5 Eylül 2026" ve parametre /
+# yazı tarihi cümleleri elle yazılıydı; artık sync-dates ve metodoloji-blogu
+# yazıyor. Eski düz biçim ile yeni <time> biçimi aynı tarih parçası sayılır,
+# yoksa geçiş commit'i 70 sayfanın tarihini bugüne kaydırırdı.
+_AY = "(?:Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık)"
 TARIH_PARCASI = re.compile(
-    r'<span>Güncelleme: <time datetime="[\d-]+">[^<]*</time></span>'
+    r'Parametreler en son \d{1,2} ' + _AY + r' \d{4} tarihinde gözden geçirildi\.'
+    r'|Hesap ve parametreler en son <time datetime="[\d-]+">[^<]*</time> tarihinde güncellendi\.'
+    r'|Bu yazı en son (?:<strong>|<time datetime="[\d-]+">)?\d{1,2} ' + _AY + r' \d{4}(?:</strong>|</time>)? tarihinde (?:gözden geçirildi|güncellendi)\.'
+    r'|<dt>(?:Son gözden geçirme|Hesap ve parametreler)</dt><dd>(?:<time datetime="[\d-]+">)?[^<]*(?:</time>)?</dd>'
+    r'|(?<=Güncelleme: )\d{1,2} ' + _AY + r' \d{4}'
+    r'|<span>Güncelleme: <time datetime="[\d-]+">[^<]*</time></span>'
     r'|<span(?: class="ed-sep")? aria-hidden="true">·</span>'   # sinif niteligi once siliniyor
     r'|<time datetime="[\d-]+">[^<]*</time>'
     r'|"dateModified":\s*"[^"]*",?'
