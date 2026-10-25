@@ -112,7 +112,7 @@
   border-radius: 999px;
   border: 1px solid currentColor;
 }
-.dk-rozet--fazla { color: var(--dv-2); }
+.dk-rozet--fazla { color: var(--dv-2-ink); }
 .dk-rozet--lehine { color: var(--dv-1); }
 .dk-rozet--notr { color: var(--text-muted); }
 

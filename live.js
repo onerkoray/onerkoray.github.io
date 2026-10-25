@@ -65,6 +65,7 @@
   }
   slices.forEach(function (s) {
     s.setAttribute("tabindex", "0");
+    s.setAttribute("role", "img");
     s.setAttribute("aria-label", s.getAttribute("data-lang") + " yüzde " + s.getAttribute("data-pct"));
     s.addEventListener("mouseenter", function () { showTip(s); });
     s.addEventListener("mouseleave", hideTip);

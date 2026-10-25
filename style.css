@@ -742,7 +742,7 @@ table.payroll th, table.payroll td {
   border-bottom: 1px solid var(--border, rgba(127,127,127,.2));
   white-space: nowrap;
 }
-table.payroll thead th { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; opacity: .7; }
+table.payroll thead th { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); }
 table.payroll tbody th { text-align: left; font-weight: 600; }
 table.payroll tbody tr:nth-child(even) { background: rgba(127,127,127,.05); }
 

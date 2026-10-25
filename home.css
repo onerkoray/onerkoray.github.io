@@ -76,7 +76,7 @@
 .home-page .directory-panel .chip:hover { color: var(--brand-strong); background: var(--surface-2); }
 .home-page .chip-count {
   font: 500 .7rem var(--font-mono); font-variant-numeric: tabular-nums;
-  opacity: .8; border-left: 1px solid var(--border); padding-left: .5rem;
+  border-left: 1px solid var(--border); padding-left: .5rem;
 }
 .home-page .directory-panel .directory-status {
   align-self: center; margin: 0; padding: 0; border: 0;
