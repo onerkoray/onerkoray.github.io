@@ -310,7 +310,6 @@
     var tepe = fiyat.reduce(function (a, b) { return b.yillik > a.yillik ? b : a; });
 
     var faiz = faizAylik(fiyat, G.politikaFaizi);
-    var faizSon = faiz[faiz.length - 1];
     var sonKarar = G.politikaFaizi[G.politikaFaizi.length - 1];
     var negatif = negatifDonemler(faiz);
     var enUzun = negatif.reduce(function (a, b) { return b.ay > a.ay ? b : a; });
@@ -380,9 +379,11 @@
         sonKatlanma: katlar[katlar.length - 1],
         ilkKatlanma: katlar[0],
 
-        faiz: faizSon.faiz,
+        /* "Bugün": son kararın oranı ve son yıllık TÜFE. Ay sonu serisinin
+           son elemanı, karar son TÜFE ayından sonra geldiyse eski oranı verir. */
+        faiz: sonKarar[1],
         faizTarih: sonKarar[0],
-        reelSon: faizSon.reel,
+        reelSon: 100 * ((1 + sonKarar[1] / 100) / (1 + son.yillik / 100) - 1),
         reelFaizDip: { ay: dip.ay, deger: dip.reel, faiz: dip.faiz, tufe: dip.tufe },
         negatifAy: negatifAy,
         faizAySayisi: faiz.length,
