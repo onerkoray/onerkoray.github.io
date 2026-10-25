@@ -2453,7 +2453,38 @@ function ydoEkimDuyarliligi() {
   return s + "</svg>";
 }
 
+/* Katılım bankalarının sektör payı 2005–2026 ve TKBB'nin 2025 için %15 hedefi (BDDK). */
+var KATB = require(path.join(KOK, "makaleler", "katilim-bankaciligi-yuzde-15-hedefi", "katilim.js"));
+function katilimPayHedef() {
+  var S = KATB.seri(), p25 = KATB.pay(2025);
+  if (Math.round(p25 * 100) !== 922) throw new Error("Katılım kapağı yazıyla ayrıştı");
+  var SOL = 58, SAG = 486, UST = 96, ALT = 300, X0 = 2005, X1 = 2027, Y0 = 0, Y1 = 16;
+  function x(t) { return SOL + (t - X0) / (X1 - X0) * (SAG - SOL); }
+  function y(v) { return ALT - (v - Y0) / (Y1 - Y0) * (ALT - UST); }
+  function zaman(r) { return r.aralik ? r.yil + 1 : r.yil + (+r.ay.slice(5)) / 12; }   // Aralık sonu = yılın bitişi
+  var s = baslikSatirlari("Hedef %15, gerçekleşen %9,22", "Katılım bankalarının sektör aktiflerindeki payı, Aralık sonları ve Ağustos 2026 · BDDK",
+    "Katılım bankalarının Türk bankacılık sektörü aktiflerindeki payı 2005'te %2,4, hedefin konduğu 2015'te %5,1, 2025'te %9,22; 2025 hedefi %15'ti.");
+  s += anahtarKutu(24, R.s1, "katılım bankalarının payı") + anahtarKutu(250, R.s2, "TKBB 2025 hedefi", true);
+  s += izgaraY(SOL, SAG, y, [0, 4, 8, 12, 16], function (v) { return "%" + v; });
+  s += '<path d="M' + x(2015 + 1).toFixed(1) + " " + y(5.1).toFixed(1) + " L" + x(2026).toFixed(1) + " " + y(15).toFixed(1) + '" stroke="' + R.s2 + '" stroke-width="2" stroke-dasharray="5 4" fill="none"/>';
+  s += '<circle cx="' + x(2026).toFixed(1) + '" cy="' + y(15).toFixed(1) + '" r="4.5" fill="' + R.s2 + '"/>';
+  s += '<text x="' + (x(2026) + 8).toFixed(1) + '" y="' + (y(15) + 5).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">%15</text>';
+  s += '<path fill="none" stroke="' + R.s1 + '" stroke-width="3" stroke-linejoin="round" d="' + S.map(function (r, i) { return (i ? "L" : "M") + x(zaman(r)).toFixed(1) + " " + y(r.pay).toFixed(1); }).join(" ") + '"/>';
+  var son25 = S.filter(function (r) { return r.ay === "2025-12"; })[0];
+  s += '<circle cx="' + x(2026).toFixed(1) + '" cy="' + y(son25.pay).toFixed(1) + '" r="4.5" fill="' + R.s1 + '"/>';
+  s += '<text x="' + (x(2026) + 8).toFixed(1) + '" y="' + (y(son25.pay) + 5).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">%9,22</text>';
+  [2006, 2011, 2016, 2021, 2026].forEach(function (t) { s += altYazi(x(t), ALT + 20, String(t - 1)); });
+  s += altYazi((SOL + SAG) / 2, ALT + 40, "kesikli çizgi: 2015'ten %15'e düz yol");
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "katilim-bankaciligi-yuzde-15-hedefi": {
+    kicker: "Finans · Katılım bankacılığı",
+    baslik: "Katılım bankacılığı 2025'te %15 olacaktı: ne oldu?",
+    alt: "BDDK verisiyle: %9,22. TL hedefi enflasyonla aşıldı",
+    cizim: katilimPayHedef
+  },
   "ise-giris-bildirgesi-gecikirse-ceza": {
     kicker: "Bordro · SGK",
     baslik: "İşe giriş bildirgesi gecikirse SGK cezası ne kadar?",

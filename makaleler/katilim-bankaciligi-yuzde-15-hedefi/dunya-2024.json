@@ -1,0 +1,18 @@
+{
+ "kaynak": "ICD - LSEG Islamic Finance Development Report 2025; aktaran Türkiye Katılım Bankaları Birliği, 2025 Faaliyet Raporu, s.44 (İslami Bankacılık Varlıkları, İlk 10 Ülke, 2024)",
+ "yil": 2024,
+ "birim": "milyar ABD doları",
+ "toplamMilyar": 4318,
+ "ulkeler": [
+  {"ulke": "İran", "milyar": 2012},
+  {"ulke": "Suudi Arabistan", "milyar": 913},
+  {"ulke": "Malezya", "milyar": 312},
+  {"ulke": "BAE", "milyar": 306},
+  {"ulke": "Kuveyt", "milyar": 180},
+  {"ulke": "Bahreyn", "milyar": 153},
+  {"ulke": "Katar", "milyar": 88},
+  {"ulke": "Türkiye", "milyar": 75},
+  {"ulke": "Endonezya", "milyar": 59},
+  {"ulke": "Bangladeş", "milyar": 50}
+ ]
+}

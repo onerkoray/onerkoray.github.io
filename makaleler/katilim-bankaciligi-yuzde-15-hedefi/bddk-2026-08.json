@@ -1,0 +1,233 @@
+{
+ "kaynak": "BDDK Aylık Bülten, gelişmiş sorgu: Bilanço - Toplam Aktifler (Toplam), taraf Mevduat / Katılım / Kalkınma ve Yatırım; https://www.bddk.org.tr/BultenAylik/",
+ "indirildi": "2026-10-25",
+ "birim": {
+  "TL": "milyon TL",
+  "USD": "milyon ABD doları"
+ },
+ "not": "Katılım bankaları bültende 2005'ten itibaren yer alıyor (5411 sayılı Bankacılık Kanunu öncesi özel finans kurumları). Yıllar Aralık sonu; son satır en son ay. Bülten her ayı izleyen ayın ilk günü (TSİ 00:00) zaman damgasıyla verir.",
+ "TL": {
+  "2005-12": {
+   "mevduat": 384096.918,
+   "katilim": 9945.428,
+   "kalkinma": 12866.556
+  },
+  "2006-12": {
+   "mevduat": 470634.573,
+   "katilim": 13751.581,
+   "kalkinma": 15344.682
+  },
+  "2007-12": {
+   "mevduat": 543272.473,
+   "katilim": 19445.323,
+   "kalkinma": 18888.112
+  },
+  "2008-12": {
+   "mevduat": 683823.259,
+   "katilim": 25770.126,
+   "kalkinma": 22942.766
+  },
+  "2009-12": {
+   "mevduat": 773357.133,
+   "katilim": 33628.037,
+   "kalkinma": 27028.83
+  },
+  "2010-12": {
+   "mevduat": 932370.675,
+   "katilim": 43338.699,
+   "kalkinma": 30957.677
+  },
+  "2011-12": {
+   "mevduat": 1119910.655,
+   "katilim": 56148.335,
+   "kalkinma": 41636.32
+  },
+  "2012-12": {
+   "mevduat": 1247653.13,
+   "katilim": 70279.383,
+   "kalkinma": 52757.588
+  },
+  "2013-12": {
+   "mevduat": 1566190.401,
+   "katilim": 96074.733,
+   "kalkinma": 70135.691
+  },
+  "2014-12": {
+   "mevduat": 1805437.99,
+   "katilim": 104319.069,
+   "kalkinma": 84571.463
+  },
+  "2015-12": {
+   "mevduat": 2130600.515,
+   "katilim": 120182.94,
+   "kalkinma": 106648.538
+  },
+  "2016-12": {
+   "mevduat": 2455365.616,
+   "katilim": 132873.839,
+   "kalkinma": 142797.242
+  },
+  "2017-12": {
+   "mevduat": 2922703.527,
+   "katilim": 160136.495,
+   "kalkinma": 175002.381
+  },
+  "2018-12": {
+   "mevduat": 3403304.611,
+   "katilim": 206930.723,
+   "kalkinma": 257190.27
+  },
+  "2019-12": {
+   "mevduat": 3904022.142,
+   "katilim": 284459.0,
+   "kalkinma": 302336.482
+  },
+  "2020-12": {
+   "mevduat": 5281461.781,
+   "katilim": 437145.513,
+   "kalkinma": 387834.22
+  },
+  "2021-12": {
+   "mevduat": 7882808.925,
+   "katilim": 717338.446,
+   "kalkinma": 615315.468
+  },
+  "2022-12": {
+   "mevduat": 12340649.482,
+   "katilim": 1187615.417,
+   "kalkinma": 819125.306
+  },
+  "2023-12": {
+   "mevduat": 20167420.404,
+   "katilim": 2041175.868,
+   "kalkinma": 1343971.418
+  },
+  "2024-12": {
+   "mevduat": 28125383.732,
+   "katilim": 2659680.151,
+   "kalkinma": 1882617.881
+  },
+  "2025-12": {
+   "mevduat": 39727578.198,
+   "katilim": 4327035.686,
+   "kalkinma": 2892184.359
+  },
+  "2026-08": {
+   "mevduat": 46688030.601,
+   "katilim": 5345523.453,
+   "kalkinma": 3712037.032
+  }
+ },
+ "USD": {
+  "2005-12": {
+   "mevduat": 285062.82,
+   "katilim": 7410.227,
+   "kalkinma": 9572.445
+  },
+  "2006-12": {
+   "mevduat": 335558.353,
+   "katilim": 9747.999,
+   "kalkinma": 10896.965
+  },
+  "2007-12": {
+   "mevduat": 467853.781,
+   "katilim": 16688.384,
+   "kalkinma": 16214.083
+  },
+  "2008-12": {
+   "mevduat": 450093.219,
+   "katilim": 16989.462,
+   "kalkinma": 15145.596
+  },
+  "2009-12": {
+   "mevduat": 519677.299,
+   "katilim": 22362.769,
+   "kalkinma": 18035.542
+  },
+  "2010-12": {
+   "mevduat": 608425.677,
+   "katilim": 28073.419,
+   "kalkinma": 20031.875
+  },
+  "2011-12": {
+   "mevduat": 596668.696,
+   "katilim": 29513.96,
+   "kalkinma": 21935.082
+  },
+  "2012-12": {
+   "mevduat": 704272.77,
+   "katilim": 39450.837,
+   "kalkinma": 29651.395
+  },
+  "2013-12": {
+   "mevduat": 736324.206,
+   "katilim": 45017.69,
+   "kalkinma": 33037.81
+  },
+  "2014-12": {
+   "mevduat": 778484.716,
+   "katilim": 44910.947,
+   "kalkinma": 36478.489
+  },
+  "2015-12": {
+   "mevduat": 735306.815,
+   "katilim": 41416.847,
+   "kalkinma": 36687.928
+  },
+  "2016-12": {
+   "mevduat": 700031.847,
+   "katilim": 37702.078,
+   "kalkinma": 40610.431
+  },
+  "2017-12": {
+   "mevduat": 774163.721,
+   "katilim": 42258.367,
+   "kalkinma": 46329.413
+  },
+  "2018-12": {
+   "mevduat": 646628.588,
+   "katilim": 39238.187,
+   "kalkinma": 48972.153
+  },
+  "2019-12": {
+   "mevduat": 659178.061,
+   "katilim": 47883.573,
+   "kalkinma": 50928.114
+  },
+  "2020-12": {
+   "mevduat": 714583.471,
+   "katilim": 59264.232,
+   "kalkinma": 52650.454
+  },
+  "2021-12": {
+   "mevduat": 596456.367,
+   "katilim": 54417.061,
+   "kalkinma": 46813.212
+  },
+  "2022-12": {
+   "mevduat": 660389.329,
+   "katilim": 63548.464,
+   "kalkinma": 43942.851
+  },
+  "2023-12": {
+   "mevduat": 687033.665,
+   "katilim": 69351.294,
+   "kalkinma": 45762.388
+  },
+  "2024-12": {
+   "mevduat": 800734.281,
+   "katilim": 75696.533,
+   "kalkinma": 53455.035
+  },
+  "2025-12": {
+   "mevduat": 928489.321,
+   "katilim": 101173.026,
+   "kalkinma": 67494.509
+  },
+  "2026-08": {
+   "mevduat": 971274.018,
+   "katilim": 111177.248,
+   "kalkinma": 77122.909
+  }
+ }
+}

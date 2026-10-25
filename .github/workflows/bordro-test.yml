@@ -652,6 +652,13 @@ jobs:
       - name: Yeniden değerleme 2026 yazısının sayıları
         run: node makaleler/yeniden-degerleme-orani-2026/sayi-testi.js
 
+      # Katılım bankacılığı %15 hedefi: BDDK Aylık Bülten anlık görüntüsü;
+      # Aralık 2025 TKBB raporuyla, 2012 ve 2019 güncelleme raporuyla aynı.
+      - name: Katılım bankacılığı yazısı hesaptan üretilmiş mi
+        run: node tools/katilim-yazisi.js --check
+      - name: Katılım bankacılığı yazısının sayıları
+        run: node makaleler/katilim-bankaciligi-yuzde-15-hedefi/sayi-testi.js
+
       # En düşük emekli aylığı ve Ocak 2027 zammı: zam oranları emekli zammı
       # motorundan (Eylül 2026'ya kesilmiş TÜFE serisi), taban tutarları 5510
       # ek m.19 dipnotlarından; her rakam sayfada aranır.
