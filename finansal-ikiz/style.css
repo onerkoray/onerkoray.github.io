@@ -177,7 +177,7 @@
 .fi-sayim-0 { color: var(--dv-2-ink); border-color: var(--dv-2); }
 .fi-sayim-ufuk { font-size: .8rem; font-weight: 600; color: var(--text-muted); }
 .fi-sayim small { display: block; font: 500 .58rem var(--font-mono);
-  letter-spacing: .06em; text-transform: uppercase; opacity: .75; margin-top: .15rem; }
+  letter-spacing: .06em; text-transform: uppercase; margin-top: .15rem; }
 
 @media (max-width: 560px) {
   .fi-hedef { grid-template-columns: 1fr; }

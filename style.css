@@ -818,7 +818,7 @@ pre.code-block code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas
   font-size: .72rem;
   text-transform: uppercase;
   letter-spacing: .05em;
-  opacity: .65;
+  color: var(--text-muted);
   margin: 0;
 }
 .method-meta dd { margin: 2px 0 0; font-weight: 600; }
@@ -1799,7 +1799,7 @@ section { padding: var(--bolum) 0; }
 }
 .eg-alt { margin: .8rem 0 0; font-size: .78rem; line-height: 1.6; color: var(--text-muted); }
 .eg-tablo { margin: .7rem 0 0; font-size: .78rem; }
-.eg-tablo summary { cursor: pointer; color: var(--text-muted); }
+.eg-tablo summary { cursor: pointer; color: var(--text-muted); padding-block: .3rem; }
 .eg-tablo summary:hover { color: var(--text); }
 .eg-tablo table { width: 100%; border-collapse: collapse; margin-top: .5rem; }
 .eg-tablo th, .eg-tablo td {

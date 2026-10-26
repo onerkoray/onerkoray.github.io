@@ -195,20 +195,20 @@
           <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" class="tab" tabindex="-1">Netten brüte</button>
         </div>
 
-        <form id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="panel">
+        <div id="panel-1" role="tabpanel" aria-labelledby="tab-1"><form class="panel">
           <p class="panel-q">
             <label for="in-gross">Aylık brüt maaş</label>
             <input type="text" id="in-gross" inputmode="decimal" value="50000" aria-label="Aylık brüt maaş"> TL
           </p>
-        </form>
+        </form></div>
 
-        <form id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="panel" hidden>
+        <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden><form class="panel">
           <p class="panel-q">
             <label for="in-net">Hedef aylık net maaş (Ocak)</label>
             <input type="text" id="in-net" inputmode="decimal" placeholder="örn. 60000" aria-label="Hedef aylık net maaş"> TL
           </p>
           <output class="rs-note" id="net-out" aria-live="polite"></output>
-        </form>
+        </form></div>
 
         <div class="year-row">
           <label for="in-year">Bordro yılı</label>

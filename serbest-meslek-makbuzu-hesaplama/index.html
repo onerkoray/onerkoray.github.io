@@ -212,23 +212,23 @@
           </fieldset>
         </div>
 
-        <form id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="panel">
+        <div id="panel-1" role="tabpanel" aria-labelledby="tab-1"><form class="panel">
           <p class="panel-q">
             <label for="p1-brut">Brüt ücret (KDV hariç)</label>
             <input type="number" id="p1-brut" inputmode="decimal" step="any" value="10000" aria-label="Brüt ücret"> TL
           </p>
           <div class="breakdown" id="p1-out" aria-live="polite"></div>
-        </form>
+        </form></div>
 
-        <form id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="panel" hidden>
+        <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden><form class="panel">
           <p class="panel-q">
             <label for="p2-net">Elinize geçmesini istediğiniz net</label>
             <input type="number" id="p2-net" inputmode="decimal" step="any" value="10000" aria-label="Net tahsilat"> TL
           </p>
           <div class="breakdown" id="p2-out" aria-live="polite"></div>
-        </form>
+        </form></div>
 
-        <form id="panel-3" role="tabpanel" aria-labelledby="tab-3" class="panel" hidden>
+        <div id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden><form class="panel">
           <p class="panel-q">
             <label for="p3-kazanc">Yıllık serbest meslek kazancı (gider sonrası net kâr)</label>
             <input type="number" id="p3-kazanc" inputmode="decimal" step="any" value="600000" aria-label="Yıllık kazanç"> TL
@@ -238,7 +238,7 @@
             <input type="number" id="p3-stopaj" inputmode="decimal" step="any" value="0" aria-label="Kesilen stopaj"> TL
           </p>
           <div class="breakdown" id="p3-out" aria-live="polite"></div>
-        </form>
+        </form></div>
 
         <p class="opts-note muted" id="opts-note">Oranlar makbuz (brüt/net) hesaplarını etkiler. Yıllık gelir vergisi sekmesi 2026 ücret dışı tarifesini kullanır.</p>
       </div>

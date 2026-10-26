@@ -176,7 +176,7 @@
           <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" class="tab" tabindex="-1">Telefon (IMEI harcı)</button>
         </div>
 
-        <form id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="panel">
+        <div id="panel-1" role="tabpanel" aria-labelledby="tab-1"><form class="panel">
           <p class="legal-note"><strong>Vergi tutarı otomatik tahmin edilmez.</strong> Genel e-ticaret siparişleri normal ithalat prosedürüne tabidir. Vergi; GTİP, menşe, kıymet ve ithalat koşullarına bağlıdır. Önce taşıyıcıdan veya gümrük müşavirinden döküm alın; aşağıda yalnızca bilinen tutarları toplayın.</p>
           <div class="fld-grid">
             <p class="panel-q"><label for="g-bedel">Ürün bedeli</label><input type="number" id="g-bedel" min="0" step="any" value="50"></p>
@@ -188,9 +188,9 @@
           </div>
           <p class="muted-note">Aynı masrafı iki kez eklemeyin. Vergi dökümü ve diğer tutarlar bilinmeden toplam maliyet gösterilmez. Bu hesap, ithalatın mümkün olduğunu veya verginin doğruluğunu onaylamaz.</p>
           <div class="breakdown" id="g-out" aria-live="polite"></div>
-        </form>
+        </form></div>
 
-        <form id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="panel" hidden>
+        <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden><form class="panel">
           <div class="fld-grid">
             <p class="panel-q">
               <label for="t-fiyat">Telefonun yurt dışı fiyatı</label>
@@ -214,7 +214,7 @@
             </p>
           </div>
           <div class="breakdown" id="t-out" aria-live="polite"></div>
-        </form>
+        </form></div>
       </div>
     </section>
 
