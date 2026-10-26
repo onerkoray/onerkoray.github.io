@@ -144,4 +144,9 @@
   });
 
   recalc();
+
+  // Hesap yazarken yapılıyor; Enter formu gönderip sayfayı yenilemesin.
+  document.querySelectorAll("form.panel").forEach(function (f) {
+    f.addEventListener("submit", function (e) { e.preventDefault(); recalc(); });
+  });
 })();

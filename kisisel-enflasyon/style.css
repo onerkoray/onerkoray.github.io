@@ -117,7 +117,7 @@
 .ke-cubuk { position: absolute; top: 0; height: 10px; border-radius: 2px; }
 .ke-arti { background: var(--dv-2); }
 .ke-eksi { background: var(--dv-1); }
-.ke-disarida { opacity: .45; }
+.ke-disarida, .ke-disarida th { color: var(--text-muted); }
 .ke-rozet {
   font: 500 .6rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase;
   padding: .1rem .4rem; border-radius: 999px; margin-inline-start: .4rem;
