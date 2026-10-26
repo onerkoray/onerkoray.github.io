@@ -5,7 +5,7 @@
   <link href="https://korayoner.dev/araclar/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/araclar/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/araclar/atom.xml</id>
-  <updated>2026-10-25T22:56:01+03:00</updated>
+  <updated>2026-10-26T08:07:04+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
 
@@ -534,7 +534,7 @@
     <link href="https://korayoner.dev/gumruk-vergisi-hesaplama/"/>
     <id>https://korayoner.dev/gumruk-vergisi-hesaplama/</id>
     <published>2026-07-18T09:34:44+03:00</published>
-    <updated>2026-09-14T13:46:58+03:00</updated>
+    <updated>2026-10-26T08:07:04+03:00</updated>
     <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>2026 yurt dışı alışverişte ithalat maliyetini planlayın. Teklifteki vergi, kargo ve hizmet bedellerini ekleyin; telefon IMEI harcını hesaplayın.</summary>
   </entry>
@@ -544,7 +544,7 @@
     <link href="https://korayoner.dev/mtv-hesaplama/"/>
     <id>https://korayoner.dev/mtv-hesaplama/</id>
     <published>2026-07-18T09:34:44+03:00</published>
-    <updated>2026-09-14T08:24:02+03:00</updated>
+    <updated>2026-10-26T08:07:04+03:00</updated>
     <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>2026 MTV hesaplama: motor hacmi, yaş ve değere göre taşıt vergisi. Elektrikli araçta kW bantları, 2018 öncesi tescilde (I/A) tarifesi, taksitler ve projeksiyon.</summary>
   </entry>
@@ -564,7 +564,7 @@
     <link href="https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/"/>
     <id>https://korayoner.dev/serbest-meslek-makbuzu-hesaplama/</id>
     <published>2026-07-18T09:08:00+03:00</published>
-    <updated>2026-09-13T18:14:26+03:00</updated>
+    <updated>2026-10-26T08:07:04+03:00</updated>
     <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Serbest meslek makbuzu hesaplama: brütten nete, netten brüte; %20 stopaj, KDV ve KDV tevkifatı dahil, 2026 oranlarıyla. Ücretsiz.</summary>
   </entry>
@@ -624,7 +624,7 @@
     <link href="https://korayoner.dev/maas-hesaplama/"/>
     <id>https://korayoner.dev/maas-hesaplama/</id>
     <published>2026-07-16T13:16:17+03:00</published>
-    <updated>2026-10-25T22:56:01+03:00</updated>
+    <updated>2026-10-26T08:07:04+03:00</updated>
     <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
     <summary>2026 brüt net maaş hesaplama: vergi dilimleri, SGK tavanı ve asgari ücret istisnasıyla ay ay bordro. 2020-2026 geçmiş yıllar ve netten brüte dahil.</summary>
   </entry>
@@ -634,7 +634,7 @@
     <link href="https://korayoner.dev/kdv-hesaplama/"/>
     <id>https://korayoner.dev/kdv-hesaplama/</id>
     <published>2026-07-14T23:15:36+03:00</published>
-    <updated>2026-09-13T18:14:26+03:00</updated>
+    <updated>2026-10-26T08:07:04+03:00</updated>
     <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.</summary>
   </entry>
