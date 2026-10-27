@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
       <image:title>Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları</image:title>
@@ -539,6 +539,14 @@
     <image:image>
       <image:loc>https://korayoner.dev/images/sgk-idari-para-cezasi-hesaplama-koray-oner.png</image:loc>
       <image:title>SGK İdari Para Cezası Hesaplama 2026 — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/sigortalilik-statuleri/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/sigortalilik-statuleri-koray-oner.png</image:loc>
+      <image:title>4/a, 4/b, 4/c Emeklilik Şartları 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>

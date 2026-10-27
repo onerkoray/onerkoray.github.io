@@ -15,12 +15,12 @@
   "https://korayoner.dev/kdv-hesaplama/"
  ],
  "sayaclar": {
-  "arac": 62,
+  "arac": 63,
   "makale": 66,
   "metodoloji": 10,
   "grafik": 2,
   "sayfa": 11,
-  "indekslenebilir": 152
+  "indekslenebilir": 153
  },
  "sayfalar": [
   {
@@ -32,8 +32,8 @@
    "description": "Koray Öner'in sitesi: maaş, vergi, SGK, kira ve kredi için testli, ücretsiz hesaplama araçları; mevzuat yazıları, yayımlanmış çalışmalar ve sosyal hesaplar.",
    "category": null,
    "published": "2026-07-14T22:46:21+03:00",
-   "updated": "2026-10-25",
-   "updatedAt": "2026-10-25T20:57:56+03:00",
+   "updated": "2026-10-27",
+   "updatedAt": "2026-10-27T19:15:22+03:00",
    "image": "https://korayoner.dev/images/koray-oner-kapak.png",
    "imageTitle": "Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları",
    "related": [],
@@ -503,7 +503,7 @@
    "type": "sayfa",
    "parent": null,
    "title": "Koray Öner — Turkish Payroll, Tax and Pension Tools",
-   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 62 free calculators for Turkish payroll, tax and pensions, 66 tested articles and 8 papers with a DOI.",
+   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 63 free calculators for Turkish payroll, tax and pensions, 66 tested articles and 8 papers with a DOI.",
    "category": null,
    "published": "2026-10-20T07:35:08+03:00",
    "updated": "2026-10-25",
@@ -1185,7 +1185,7 @@
    "type": "sayfa",
    "parent": null,
    "title": "Çalışma Dizini: Araçlar, Yazılar ve Yayınlar",
-   "description": "Koray Öner'in çalışmaları tek yerde: 62 hesaplama aracı, 66 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
+   "description": "Koray Öner'in çalışmaları tek yerde: 63 hesaplama aracı, 66 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
    "category": null,
    "published": "2026-09-29T17:59:13+03:00",
    "updated": "2026-10-25",
@@ -3310,6 +3310,27 @@
     "https://korayoner.dev/isveren-maliyeti-hesaplama/",
     "https://korayoner.dev/bordro-denetim/",
     "https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/"
+   ],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/sigortalilik-statuleri/",
+   "dosya": "sigortalilik-statuleri/index.html",
+   "type": "arac",
+   "parent": null,
+   "title": "4/a, 4/b, 4/c Emeklilik Şartları 2026",
+   "description": "4/a, 4/b, 4/c ve isteğe bağlı sigorta: kim hangi statüde, giriş tarihine göre emeklilik yaşı, prim günü ve 2026 primi. Kanun metninden, testli.",
+   "category": "maas-tazminat",
+   "published": "2026-10-27T19:15:22+03:00",
+   "updated": "2026-10-27",
+   "updatedAt": "2026-10-27T19:15:22+03:00",
+   "image": "https://korayoner.dev/images/sigortalilik-statuleri-koray-oner.png",
+   "imageTitle": "4/a, 4/b, 4/c Emeklilik Şartları 2026 — Koray Öner",
+   "related": [
+    "https://korayoner.dev/ne-zaman-emekli-olurum/",
+    "https://korayoner.dev/emekli-ayligi-hesaplama/",
+    "https://korayoner.dev/bag-kur-ve-borclanma-hesaplama/",
+    "https://korayoner.dev/makaleler/turkiyede-sosyal-guvenligin-donusumu/"
    ],
    "noindex": false
   },
