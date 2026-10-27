@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../onay.js?v=46274afb" defer></script>
+  <meta charset="UTF-8">
+  <script src="../tema-erken.js?v=a2f32851"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>4/a, 4/b, 4/c Emeklilik Şartları 2026 | Koray Öner</title>
+  <meta name="description" content="4/a, 4/b, 4/c ve isteğe bağlı sigorta: kim hangi statüde, giriş tarihine göre emeklilik yaşı, prim günü ve 2026 primi. Kanun metninden, testli.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="gecerlilik" content="2027-01-15 | 2027 bordro parametreleri (asgari ücret, PEK sınırları, prim oranları) girildi mi? Girildiyse 'node tools/statu-sayfa.js' ile sayfadaki 2026 prim tutarlarını yenile; 5510 m.28, m.4 ve m.50-53 ile 'kademeli emeklilik' düzenlemesi yeniden okunmalı.">
+  <link rel="canonical" href="https://korayoner.dev/sigortalilik-statuleri/">
+  <!-- AKIS:BASLANGIC -->
+  <link rel="alternate" type="application/atom+xml" title="Koray Öner — Araçlar ve Yazılar" href="/atom.xml">
+  <link rel="alternate" type="application/atom+xml" title="Koray Öner — Hesaplama Araçları" href="/araclar/atom.xml">
+  <!-- AKIS:BITIS -->
+  <!-- ARAMA:BASLANGIC -->
+  <script type="module" src="/arama.js?v=9daf8e8d"></script>
+  <!-- ARAMA:BITIS -->
+
+  <link rel="icon" href="../favicon.ico?v=73d21711" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=76038ce5">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Sigortalılık statüleri: 4/a, 4/b, 4/c">
+  <meta property="og:description" content="Çalışma biçiminiz statünüzü, ilk giriş tarihiniz emeklilik şartınızı belirler. Memurun 2008 sınırı neden beş ay sonra? 5510, 5434 ve 4447 metninden.">
+  <meta property="og:url" content="https://korayoner.dev/sigortalilik-statuleri/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/sigortalilik-statuleri-koray-oner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="4/a, 4/b ve 4/c için emeklilik dönemleri şeridi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Sigortalılık statüleri: 4/a, 4/b, 4/c">
+  <meta name="twitter:description" content="Çalışma biçiminiz statünüzü, ilk giriş tarihiniz emeklilik şartınızı belirler. Memurun 2008 sınırı neden beş ay sonra? 5510, 5434 ve 4447 metninden.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/sigortalilik-statuleri-koray-oner.png">
+
+  <link rel="stylesheet" href="../style.css?v=85e3ea92">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "dateModified": "2026-10-27",
+        "image": "https://korayoner.dev/images/sigortalilik-statuleri-koray-oner.png",
+        "@id": "https://korayoner.dev/sigortalilik-statuleri/#app",
+        "name": "Sigortalılık Statüleri ve Emeklilik Şartları",
+        "url": "https://korayoner.dev/sigortalilik-statuleri/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "featureList": "Statü bulucu (5510 m.4, m.50, m.53 çakışma kuralı); 4/a, 4/b, 4/c için ilk sigortalılık tarihine göre emeklilik yaşı, prim günü ve hizmet süresi (EYT, 1999–2008 geçiş, 2008 sonrası); isteğe bağlı sigorta şartları ve primi; 4/a, 4/b ve isteğe bağlı 2026 prim oranları ve tutarları",
+        "description": "Sosyal güvenlikte 4/a (hizmet akdi), 4/b (bağımsız çalışan), 4/c (kamu görevlisi) ve isteğe bağlı sigortalılığın kapsamını ve emeklilik şartlarını 5510, 5434 ve 4447 sayılı kanunların metnine göre açıklar; hangi statüde olduğunuzu birkaç soruyla bulur."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Sigortalılık Statüleri",
+            "item": "https://korayoner.dev/sigortalilik-statuleri/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "4/a, 4/b ve 4/c arasındaki fark nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Çalışma biçimidir. 4/a bir işverene hizmet akdiyle bağlı çalışanlardır (eski SSK). 4/b kendi adına ve hesabına bağımsız çalışanlardır: esnaf, serbest meslek, şirket ortağı, çiftçi, muhtar (eski Bağ-Kur). 4/c kamu idarelerinde kadrolu ya da sözleşmeli çalışanlardır: memurlar (eski Emekli Sandığı). Dayanak 5510 sayılı Kanun'un 4. maddesidir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "2008'den sonra sigortalı olan kaç günle emekli olur?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "4/a'da 7.200 prim günü, 4/b ve 4/c'de 9.000 prim günü; yaş 58 / 60 (kadın / erkek). Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar. İkinci yol yaşa üç yıl ekleyip 5.400 günle emekliliktir; 4/a'da bu gün sayısı ilk giriş yılına göre 4.600–5.400 arasındadır (5510 m.28)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Memurlar için 2008 sınırı neden Ekim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "4/a ve 4/b için geçiş hükmü 30 Nisan 2008'de bitti (5510 m.108/b). 4/c'de ise 5510 sayılı Kanun 1 Ekim 2008'de yürürlüğe girdi (m.108/d); o tarihe kadar memur olanlara 5434 sayılı Kanun uygulanır. 8 Eylül 1999 ile 30 Eylül 2008 arasında memur olanlarda şart yaş 58 / 60 (kadın / erkek) ve fiilî hizmet 25 yıldır (4447 s.K. m.23)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hem işçi hem esnafsam hangi statüdeyim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "4/a. Hizmet akdiyle çalışma ile bağımsız çalışma aynı anda olursa 4/a esas alınır; yazılı taleple 4/b kapsamında da prim ödenebilir. Memurluk varsa her durumda önce 4/c esas alınır (5510 m.53/1)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "İsteğe bağlı sigorta hangi statü sayılır, primi ne kadar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ödenen süreler 4/b sayılır (5510 m.51). Prim seçilen kazancın %33'üdür; 2026'da en az 10.899,90 TL, en çok 98.099,10 TL aylık. 18 yaşını doldurmak, zorunlu sigortalı olmamak ve kendi sigortalılığından aylık almıyor olmak gerekir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Birden fazla statüde çalıştım; hangisinden emekli olurum?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "2008 sonrası ilk kez sigortalı olanlarda en çok sigortalılığın geçtiği statüden; süreler eşitse son statüden (5510 m.53). 2008 öncesi girişlerde mülga 2829 sayılı Kanun hükümleri uygulanır; bu sayfa o birleştirme hesabını yapmıyor."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kamuda işçiyim; memur mu sayılırım?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Kamuda hizmet akdiyle çalışan işçiler 4/a'dır. 657 sayılı Kanun'un 4/C maddesine göre çalışan geçici personel de 4/a hükümlerine tabidir (5510 m.4/2-f). 4/c, kadrolu memurlar ile 4/B sözleşmeli personeli kapsar."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="calculator-page">
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../logo.svg?v=55d1915b" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../araclar/" aria-current="true">Araçlar</a></li>
+          <li><a href="../makaleler/">Makaleler</a></li>
+          <li><a href="../grafikler/">Grafikler</a></li>
+          <li><a href="../bordro/">Bordro Motoru</a></li>
+          <li><a href="../yayinlar/">Yayınlar</a></li>
+          <li><a href="../hakkimda/">Hakkımda</a></li>
+          <li><a href="../ara/">Ara</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+  <nav class="yerel-menu" aria-label="Bu sayfada">
+    <div class="wrap"><span class="yerel-menu__baslik">Bu sayfada</span><ul><li><a href="#hesapla">Statü bulucu</a></li><li><a href="#donemler">Dönemler</a></li><li><a href="#karsilastirma">Karşılaştırma</a></li><li><a href="#statuler">Statüler</a></li><li><a href="#sss">S.S.S.</a></li></ul></div>
+  </nav>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span>
+      <a href="../araclar/">Araçlar</a> <span aria-hidden="true">›</span> Sigortalılık Statüleri
+    </nav>
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">5510 s.K. m.4 · 4/a · 4/b · 4/c · isteğe bağlı sigorta</p>
+        <h1>Sigortalılık statüleri: 4/a, 4/b, 4/c ve emeklilik şartları</h1>
+        <!-- STATU-OZET:BASLANGIC -->
+<p class="lede">Hangi statüde olduğunuzu unvanınız değil <strong>çalışma biçiminiz</strong> belirler: bir işverene bağlı ücretli çalışan 4/a, kendi adına çalışan 4/b, kamuda kadrolu ya da sözleşmeli çalışan 4/c'dir. Emeklilik şartı statüye ve ilk sigortalılık tarihine göre değişir: 2008 sonrası girenlerde 4/a 7.200 prim günü, 4/b ve 4/c 9.000 prim günü ister.</p>
+<!-- STATU-OZET:BITIS -->
+        <p class="muted kunye-satiri">
+          Kurallar 5510, 5434 ve 4447 sayılı kanunların metninden ·
+          4/a ve 4/b şartları <a href="../ne-zaman-emekli-olurum/">emeklilik tarihi motorundan</a> ·
+          primler <a href="../bordro/">bordro parametrelerinden</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="hesapla" class="calc" aria-labelledby="sb-baslik">
+      <div class="wrap">
+        <div class="sb-duzen">
+          <form class="sb-form" id="sb-form" novalidate>
+            <h2 id="sb-baslik">Hangi statüdesiniz?</h2>
+            <fieldset class="sb-grup">
+              <legend>Şu an nasıl çalışıyorsunuz? Birden fazlası olabilir.</legend>
+              <label class="sb-sec" for="sb-ucretli"><input type="checkbox" id="sb-ucretli" name="faaliyet" value="ucretli" checked>
+                <span><strong>Bir işverene bağlı, ücretle</strong><small>Özel sektörde iş sözleşmesiyle</small></span></label>
+              <label class="sb-sec" for="sb-bagimsiz"><input type="checkbox" id="sb-bagimsiz" name="faaliyet" value="bagimsiz">
+                <span><strong>Kendi adıma</strong><small>Esnaf, serbest meslek, şirket ortağı, çiftçi, muhtar</small></span></label>
+              <label class="sb-sec" for="sb-kamu-var"><input type="checkbox" id="sb-kamu-var" name="faaliyet" value="kamu">
+                <span><strong>Bir kamu kurumunda</strong><small>Bakanlık, belediye, üniversite, kamu iktisadi teşebbüsü</small></span></label>
+            </fieldset>
+            <fieldset class="sb-grup" id="sb-kamu" hidden>
+              <legend>Kamudaki görevinizin türü</legend>
+              <label class="sb-sec" for="sb-k-kadro"><input type="radio" id="sb-k-kadro" name="kamu" value="kadro" checked>
+                <span><strong>Kadrolu memur</strong></span></label>
+              <label class="sb-sec" for="sb-k-sozlesmeli"><input type="radio" id="sb-k-sozlesmeli" name="kamu" value="sozlesmeli">
+                <span><strong>Sözleşmeli personel</strong><small>657 s.K. 4/B</small></span></label>
+              <label class="sb-sec" for="sb-k-isci"><input type="radio" id="sb-k-isci" name="kamu" value="isci">
+                <span><strong>Kamu işçisi</strong><small>İş sözleşmesiyle</small></span></label>
+              <label class="sb-sec" for="sb-k-gecici"><input type="radio" id="sb-k-gecici" name="kamu" value="gecici">
+                <span><strong>Geçici personel</strong><small>657 s.K. 4/C</small></span></label>
+            </fieldset>
+            <fieldset class="sb-grup" id="sb-istege" hidden>
+              <legend>Şu an sigortalı bir işiniz yoksa: isteğe bağlı sigorta şartları</legend>
+              <label class="sb-sec" for="sb-yas18"><input type="checkbox" id="sb-yas18" name="yas18" checked>
+                <span><strong>18 yaşını doldurdum</strong></span></label>
+              <label class="sb-sec" for="sb-ikamet"><input type="checkbox" id="sb-ikamet" name="ikamet" checked>
+                <span><strong>Türkiye'de yaşıyorum</strong></span></label>
+              <label class="sb-sec" for="sb-aylik"><input type="checkbox" id="sb-aylik" name="aylik">
+                <span><strong>Kendi sigortalılığımdan aylık alıyorum</strong><small>Emekli ya da malullük aylığı</small></span></label>
+            </fieldset>
+          </form>
+          <aside class="sb-sonuc" id="sb-sonuc" aria-live="polite" aria-labelledby="sb-sonuc-baslik">
+            <p class="sb-etiket" id="sb-sonuc-baslik">Statünüz</p>
+            <p class="sb-statu" id="sb-statu">4/a</p>
+            <p class="sb-ad" id="sb-ad">Hizmet akdiyle çalışanlar</p>
+            <ul class="sb-gerekce" id="sb-gerekce"><li>Bir işverene bağlı, ücret karşılığı çalışma 4/a'dır.</li></ul>
+            <p class="st-dayanak" id="sb-dayanak">5510 s.K. m.4/1-a</p>
+            <p class="sb-git" id="sb-git"><a href="#s-4a">Kapsam, emeklilik şartları ve prim <span aria-hidden="true">↓</span></a></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <article class="content" id="kurallar">
+      <div class="wrap">
+        <div class="prose">
+          <h2 id="donemler">Üç statü, üç dönem</h2>
+          <p>Emeklilik şartını iki şey belirler: statünüz ve <strong>ilk sigortalılık tarihiniz</strong>. 8 Eylül 1999 sınırı üç statüde
+            ortak: bu tarihten önce sigortalı olanlar EYT kapsamındadır ve yaş şartı aranmaz. İkinci sınır ise ortak değil. 4/a ve 4/b
+            için geçiş hükmü 30 Nisan 2008'de biter; 4/c'de 5510 sayılı Kanun 1 Ekim 2008'de yürürlüğe girdiği için memurlarda sınır beş ay
+            sonradır. Mayıs–Eylül 2008 arasında ilk kez memur olan biri bu yüzden 5434'e tabidir; aynı aylarda işe giren bir işçi ise 5510'a.</p>
+        </div>
+        <!-- STATU-SERIT:BASLANGIC -->
+<figure class="ss-figur"><div class="ss-kaydir"><svg class="ss-svg" viewBox="0 0 960 330" width="960" height="330" role="img" aria-labelledby="ss-baslik"><title id="ss-baslik">Üç statünün emeklilik dönemleri: 8 Eylül 1999 sınırı hepsinde ortak; 2008 sınırı 4/a ve 4/b için 30 Nisan, 4/c için 30 Eylül</title><defs><pattern id="ss-tara" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><path d="M0 0 V7"/></pattern></defs><text class="ss-ad" x="0" y="94">4/a</text><text class="ss-eski" x="0" y="112">SSK</text><text class="ss-ad" x="0" y="170">4/b</text><text class="ss-eski" x="0" y="188">Bağ-Kur</text><text class="ss-ad" x="0" y="246">4/c</text><text class="ss-eski" x="0" y="264">Emekli Sandığı</text><g class="ss-parca ss-eyt" style="--s:0"><rect class="ss-zemin" x="150.0" y="70" width="191.3" height="54"/><rect class="ss-tarama" x="150.0" y="70" width="191.3" height="54" fill="url(#ss-tara)"/><text class="ss-yazi" x="160.0" y="92">Yaş aranmaz</text><text class="ss-yazi ss-yazi--alt" x="160.0" y="111">20/25 yıl · 5.000–5.975 gün</text></g><g class="ss-parca ss-gecis" style="--s:0"><rect class="ss-zemin" x="341.3" y="70" width="170.8" height="54"/><rect class="ss-tarama" x="341.3" y="70" width="170.8" height="54" fill="url(#ss-tara)"/><text class="ss-yazi" x="351.3" y="92">58/60 yaş</text><text class="ss-yazi ss-yazi--alt" x="351.3" y="111">7.000 gün</text></g><g class="ss-parca ss-yeni" style="--s:0"><rect class="ss-zemin" x="512.0" y="70" width="428.0" height="54"/><rect class="ss-tarama" x="512.0" y="70" width="428.0" height="54" fill="url(#ss-tara)"/><text class="ss-yazi" x="522.0" y="92">58/60 yaş</text><text class="ss-yazi ss-yazi--alt" x="522.0" y="111">7.200 gün</text></g><g class="ss-parca ss-eyt" style="--s:1"><rect class="ss-zemin" x="150.0" y="146" width="191.3" height="54"/><rect class="ss-tarama" x="150.0" y="146" width="191.3" height="54" fill="url(#ss-tara)"/><text class="ss-yazi" x="160.0" y="168">Yaş aranmaz</text><text class="ss-yazi ss-yazi--alt" x="160.0" y="187">20/25 tam yıl</text></g><g class="ss-parca ss-gecis" style="--s:1"><rect class="ss-zemin" x="341.3" y="146" width="170.8" height="54"/><rect class="ss-tarama" x="341.3" y="146" width="170.8" height="54" fill="url(#ss-tara)"/><text class="ss-yazi" x="351.3" y="168">58/60 yaş</text><text class="ss-yazi ss-yazi--alt" x="351.3" y="187">25 tam yıl</text></g><g class="ss-parca ss-yeni" style="--s:1"><rect class="ss-zemin" x="512.0" y="146" width="428.0" height="54"/><rect class="ss-tarama" x="512.0" y="146" width="428.0" height="54" fill="url(#ss-tara)"/><text class="ss-yazi" x="522.0" y="168">58/60 yaş</text><text class="ss-yazi ss-yazi--alt" x="522.0" y="187">9.000 gün</text></g><g class="ss-parca ss-eyt" style="--s:2"><rect class="ss-zemin" x="150.0" y="222" width="191.3" height="54"/><rect class="ss-tarama" x="150.0" y="222" width="191.3" height="54" fill="url(#ss-tara)"/><text class="ss-yazi" x="160.0" y="244">Yaş aranmaz</text><text class="ss-yazi ss-yazi--alt" x="160.0" y="263">20/25 yıl</text></g><g class="ss-parca ss-gecis" style="--s:2"><rect class="ss-zemin" x="341.3" y="222" width="179.0" height="54"/><rect class="ss-tarama" x="341.3" y="222" width="179.0" height="54" fill="url(#ss-tara)"/><text class="ss-yazi" x="351.3" y="244">58/60 yaş</text><text class="ss-yazi ss-yazi--alt" x="351.3" y="263">25 yıl</text></g><g class="ss-parca ss-yeni" style="--s:2"><rect class="ss-zemin" x="520.3" y="222" width="419.7" height="54"/><rect class="ss-tarama" x="520.3" y="222" width="419.7" height="54" fill="url(#ss-tara)"/><text class="ss-yazi" x="530.3" y="244">58/60 yaş</text><text class="ss-yazi ss-yazi--alt" x="530.3" y="263">9.000 gün</text></g><path class="ss-sinir" d="M341.3 56 V282"/><text class="ss-tarih" x="341.3" y="48" text-anchor="middle">8 Eylül 1999</text><path class="ss-sinir" d="M512.0 56 V218"/><text class="ss-tarih" x="512.0" y="48" text-anchor="end">30 Nisan 2008</text><path class="ss-sinir ss-sinir--4c" d="M520.3 218 V282"/><text class="ss-tarih ss-tarih--4c" x="520.3" y="298" text-anchor="start">30 Eylül 2008 · 4/c beş ay sonra</text><text class="ss-yil" x="150.0" y="324" text-anchor="middle">1990</text><path class="ss-cetvel" d="M150.0 304 v6"/><text class="ss-yil" x="347.5" y="324" text-anchor="middle">2000</text><path class="ss-cetvel" d="M347.5 304 v6"/><text class="ss-yil" x="545.0" y="324" text-anchor="middle">2010</text><path class="ss-cetvel" d="M545.0 304 v6"/><text class="ss-yil" x="742.5" y="324" text-anchor="middle">2020</text><path class="ss-cetvel" d="M742.5 304 v6"/><text class="ss-yil" x="940.0" y="324" text-anchor="middle">2030</text><path class="ss-cetvel" d="M940.0 304 v6"/><path class="ss-taban" d="M150 304 H940"/></svg></div><figcaption><span class="ss-lejant"><span class="ss-eyt">1999 öncesi giriş</span><span class="ss-gecis">1999–2008 geçiş</span><span class="ss-yeni">2008 sonrası (5510)</span></span> Her parçada o dönemde girenlerin tam emeklilik şartı, kadın / erkek. Şerit, ilk sigortalılık tarihine göre okunur.</figcaption></figure>
+<!-- STATU-SERIT:BITIS -->
+
+        <div class="prose">
+          <h2 id="karsilastirma">Karşılaştırma: hangi dönemde, hangi şart?</h2>
+          <p>Tablodaki her satır, o dönemde ilk kez sigortalı olanlar içindir. "Tam emeklilik" çoğu kişinin hedeflediği yol;
+            "diğer yollar" daha az prim günüyle ama daha ileri yaşta emekliliktir. Kendi tarihinizi görmek için
+            <a href="../ne-zaman-emekli-olurum/">emeklilik tarihi aracını</a> kullanabilirsiniz.</p>
+        </div>
+        <!-- STATU-TABLO:BASLANGIC -->
+<div class="table-scroll"><table class="data-table data-table--text st-tablo"><caption>Emeklilik şartları, ilk sigortalılık tarihine göre. Kadın ve erkekte farklı olan sayılar &ldquo;kadın / erkek&rdquo; biçiminde.</caption><thead><tr><th scope="col">İlk giriş</th><th scope="col">Tam emeklilik</th><th scope="col">Diğer yollar</th></tr></thead><tbody class="st-grup"><tr><th scope="rowgroup" colspan="3" class="st-grup-bas"><a href="#s-4a">4/a</a> Hizmet akdiyle çalışanlar</th></tr><tr><th scope="row">8 Eylül 1999'dan önce</th><td><div class="st-yol"><p class="st-yol-ad">Yaşa bakılmaksızın (EYT)</p><ul><li>Sigortalılık süresi 20 / 25 yıl</li><li>5.000–5.975 prim günü <span class="st-not">23 Mayıs 2002'deki sigortalılık süresine göre (506 s.K. Geçici m.81/B tablosu)</span></li></ul><p class="st-dayanak">506 s.K. Geçici m.81/B, 5510 s.K. Geçici m.95</p></div></td><td><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaştan (15 yıl, 3.600 gün)</p><ul><li>Sigortalılık süresi 15 yıl</li><li>3.600 prim günü</li><li>Yaş 50–58 / 55–60 <span class="st-not">Şartların tamamlandığı tarihe göre kademeli</span></li></ul><p class="st-dayanak">506 s.K. Geçici m.81/C</p></div></td></tr><tr><th scope="row">8 Eylül 1999 – 30 Nisan 2008</th><td><div class="st-yol"><p class="st-yol-ad">Yaş ve 7.000 gün</p><ul><li>Yaş 58 / 60</li><li>7.000 prim günü</li></ul><p class="st-dayanak">5510 s.K. Geçici m.9/1</p></div></td><td><div class="st-yol"><p class="st-yol-ad">Yaş, 25 yıl ve 4.500 gün</p><ul><li>Yaş 58 / 60</li><li>Sigortalılık süresi 25 yıl</li><li>4.500 prim günü</li></ul><p class="st-dayanak">5510 s.K. Geçici m.9/1</p></div></td></tr><tr><th scope="row">1 Mayıs 2008 ve sonrası</th><td><div class="st-yol"><p class="st-yol-ad">Yaş ve 7.200 gün</p><ul><li>7.200 prim günü</li><li>Yaş 58 / 60 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/2</p></div></td><td><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaşa 3 yıl eklenerek, 4.600–5.400 gün</p><ul><li>4.600–5.400 prim günü <span class="st-not">İlk giriş yılına göre (Geçici m.6/7-b)</span></li><li>Yaş 61 / 63 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/3, Geçici m.6/7-b</p></div></td></tr></tbody><tbody class="st-grup"><tr><th scope="rowgroup" colspan="3" class="st-grup-bas"><a href="#s-4b">4/b</a> Kendi adına bağımsız çalışanlar</th></tr><tr><th scope="row">8 Eylül 1999'dan önce</th><td><div class="st-yol"><p class="st-yol-ad">Yaşa bakılmaksızın (EYT)</p><ul><li>20 / 25 tam yıl prim (7.200 / 9.000 gün)</li></ul><p class="st-dayanak">1479 s.K. Geçici m.10/2, 5510 s.K. Geçici m.95</p></div></td><td><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaştan (15 tam yıl)</p><ul><li>15 tam yıl prim (5.400 gün)</li><li>Yaş 50–56 / 55–58 <span class="st-not">Şartların tamamlandığı tarihe göre kademeli</span></li></ul><p class="st-dayanak">1479 s.K. Geçici m.10/3</p></div></td></tr><tr><th scope="row">8 Eylül 1999 – 30 Nisan 2008</th><td><div class="st-yol"><p class="st-yol-ad">Yaş ve 25 tam yıl</p><ul><li>Yaş 58 / 60</li><li>25 tam yıl prim (9.000 gün)</li></ul><p class="st-dayanak">5510 s.K. Geçici m.9/2</p></div></td><td><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaş ve 15 tam yıl</p><ul><li>Yaş 60 / 62</li><li>15 tam yıl prim (5.400 gün)</li></ul><p class="st-dayanak">5510 s.K. Geçici m.9/2</p></div></td></tr><tr><th scope="row">1 Mayıs 2008 ve sonrası</th><td><div class="st-yol"><p class="st-yol-ad">Yaş ve 9.000 gün</p><ul><li>9.000 prim günü</li><li>Yaş 58 / 60 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/2</p></div></td><td><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaşa 3 yıl eklenerek, 5.400 gün</p><ul><li>5.400 prim günü</li><li>Yaş 61 / 63 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/3</p></div></td></tr></tbody><tbody class="st-grup"><tr><th scope="rowgroup" colspan="3" class="st-grup-bas"><a href="#s-4c">4/c</a> Kamu idarelerinde kadrolu ve sözleşmeli çalışanlar</th></tr><tr><th scope="row">8 Eylül 1999'dan önce</th><td><div class="st-yol"><p class="st-yol-ad">Yaşa bakılmaksızın (EYT)</p><ul><li>Fiilî hizmet 20 / 25 yıl</li></ul><p class="st-dayanak">5434 s.K. Geçici m.205, 5510 s.K. Geçici m.95</p></div></td><td></td></tr><tr><th scope="row">8 Eylül 1999 – 30 Eylül 2008</th><td><div class="st-yol"><p class="st-yol-ad">Yaş ve 25 hizmet yılı</p><ul><li>Yaş 58 / 60</li><li>Fiilî hizmet 25 yıl</li></ul><p class="st-dayanak">mülga 5434 s.K. m.39/b (4447 s.K. m.23 ile)</p></div></td><td><div class="st-yol st-yol--kismi"><p class="st-yol-ad">61 yaş ve 15 hizmet yılı</p><ul><li>Yaş 61</li><li>Fiilî hizmet 15 yıl</li></ul><p class="st-dayanak">mülga 5434 s.K. m.39/c-d (4447 s.K. m.23 ile)</p></div></td></tr><tr><th scope="row">1 Ekim 2008 ve sonrası</th><td><div class="st-yol"><p class="st-yol-ad">Yaş ve 9.000 gün</p><ul><li>9.000 prim günü</li><li>Yaş 58 / 60 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/2</p></div></td><td><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaşa 3 yıl eklenerek, 5.400 gün</p><ul><li>5.400 prim günü</li><li>Yaş 61 / 63 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/3</p></div></td></tr></tbody></table></div>
+<!-- STATU-TABLO:BITIS -->
+
+        <div class="prose">
+          <h2 id="statuler">Statüler tek tek</h2>
+        </div>
+        <div class="sd-liste">
+        <!-- STATU-DETAY:BASLANGIC -->
+<section class="sd-statu" id="s-4a" aria-labelledby="s-4a-bas"><p class="sd-ust">5510 s.K. m.4/1-a · eski adıyla SSK</p><h3 id="s-4a-bas">4/a: Hizmet akdiyle çalışanlar</h3><p>Bir ya da birden fazla işverene bağlı, ücret karşılığı çalışanlar.</p><h4>Kimler bu statüdedir?</h4><ul><li>Özel sektörde ve kamuda hizmet akdiyle (iş sözleşmesiyle) çalışanlar</li><li>İşçi sendikalarının yönetimine seçilenler</li><li>Bir işverene bağlı çalışan sanatçılar, düşünürler ve yazarlar</li><li>Hizmet akdiyle çalışan yabancılar (sözleşmeli ülke vatandaşları hariç)</li><li>Kamu idarelerinde ders ücretiyle görev alanlar, usta öğreticiler ve 657 s.K. 4/C geçici personel</li><li>İŞKUR toplum yararına program katılımcıları</li></ul><p class="st-dayanak">5510 s.K. m.4/1-a ve m.4/2</p><h4>Emeklilik şartları</h4><div class="sd-donemler"><div class="sd-donem sd-eyt"><p class="sd-donem-ad">8 Eylül 1999'dan önce</p><div class="st-yol"><p class="st-yol-ad">Yaşa bakılmaksızın (EYT)</p><ul><li>Sigortalılık süresi 20 / 25 yıl</li><li>5.000–5.975 prim günü <span class="st-not">23 Mayıs 2002'deki sigortalılık süresine göre (506 s.K. Geçici m.81/B tablosu)</span></li></ul><p class="st-dayanak">506 s.K. Geçici m.81/B, 5510 s.K. Geçici m.95</p></div><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaştan (15 yıl, 3.600 gün)</p><ul><li>Sigortalılık süresi 15 yıl</li><li>3.600 prim günü</li><li>Yaş 50–58 / 55–60 <span class="st-not">Şartların tamamlandığı tarihe göre kademeli</span></li></ul><p class="st-dayanak">506 s.K. Geçici m.81/C</p></div></div><div class="sd-donem sd-gecis"><p class="sd-donem-ad">8 Eylül 1999 – 30 Nisan 2008</p><div class="st-yol"><p class="st-yol-ad">Yaş ve 7.000 gün</p><ul><li>Yaş 58 / 60</li><li>7.000 prim günü</li></ul><p class="st-dayanak">5510 s.K. Geçici m.9/1</p></div><div class="st-yol"><p class="st-yol-ad">Yaş, 25 yıl ve 4.500 gün</p><ul><li>Yaş 58 / 60</li><li>Sigortalılık süresi 25 yıl</li><li>4.500 prim günü</li></ul><p class="st-dayanak">5510 s.K. Geçici m.9/1</p></div></div><div class="sd-donem sd-yeni"><p class="sd-donem-ad">1 Mayıs 2008 ve sonrası</p><div class="st-yol"><p class="st-yol-ad">Yaş ve 7.200 gün</p><ul><li>7.200 prim günü</li><li>Yaş 58 / 60 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/2</p></div><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaşa 3 yıl eklenerek, 4.600–5.400 gün</p><ul><li>4.600–5.400 prim günü <span class="st-not">İlk giriş yılına göre (Geçici m.6/7-b)</span></li><li>Yaş 61 / 63 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/3, Geçici m.6/7-b</p></div></div></div><p>Aylık için çalışılan işten ayrılıp yazılı istekte bulunmak gerekir. <span class="st-dayanak">5510 s.K. m.28</span></p><p class="sd-prim"><strong>Prim (2026):</strong> çalışan payı %15, işveren payı %23,75; işveren SGK payından 2 puan (imalatta 5 puan) indirim uygulanabilir. Kazanç 33.030,00 TL ile 297.270,00 TL arasında. <span class="st-dayanak">5510 s.K. m.81; 4447 s.K. m.49</span></p><p class="sd-git"><a href="../ne-zaman-emekli-olurum/">Kendi emeklilik tarihinizi hesaplayın <span aria-hidden="true">→</span></a></p></section><section class="sd-statu" id="s-4b" aria-labelledby="s-4b-bas"><p class="sd-ust">5510 s.K. m.4/1-b · eski adıyla Bağ-Kur</p><h3 id="s-4b-bas">4/b: Kendi adına bağımsız çalışanlar</h3><p>Hizmet akdi olmadan, kendi adına ve hesabına çalışanlar.</p><h4>Kimler bu statüdedir?</h4><ul><li>Ticari kazanç ya da serbest meslek kazancı nedeniyle gerçek veya basit usulde gelir vergisi mükellefi olanlar</li><li>Gelir vergisinden muaf olup esnaf ve sanatkâr siciline kayıtlı olanlar</li><li>Anonim şirketlerin yönetim kurulu üyesi ortakları, diğer şirketlerin tüm ortakları</li><li>Tarımsal faaliyette bulunanlar</li><li>Köy ve mahalle muhtarları</li><li>6132 s.K.'ya tabi jokey ve antrenörler</li></ul><p class="st-dayanak">5510 s.K. m.4/1-b ve m.4/3</p><h4>Emeklilik şartları</h4><div class="sd-donemler"><div class="sd-donem sd-eyt"><p class="sd-donem-ad">8 Eylül 1999'dan önce</p><div class="st-yol"><p class="st-yol-ad">Yaşa bakılmaksızın (EYT)</p><ul><li>20 / 25 tam yıl prim (7.200 / 9.000 gün)</li></ul><p class="st-dayanak">1479 s.K. Geçici m.10/2, 5510 s.K. Geçici m.95</p></div><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaştan (15 tam yıl)</p><ul><li>15 tam yıl prim (5.400 gün)</li><li>Yaş 50–56 / 55–58 <span class="st-not">Şartların tamamlandığı tarihe göre kademeli</span></li></ul><p class="st-dayanak">1479 s.K. Geçici m.10/3</p></div></div><div class="sd-donem sd-gecis"><p class="sd-donem-ad">8 Eylül 1999 – 30 Nisan 2008</p><div class="st-yol"><p class="st-yol-ad">Yaş ve 25 tam yıl</p><ul><li>Yaş 58 / 60</li><li>25 tam yıl prim (9.000 gün)</li></ul><p class="st-dayanak">5510 s.K. Geçici m.9/2</p></div><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaş ve 15 tam yıl</p><ul><li>Yaş 60 / 62</li><li>15 tam yıl prim (5.400 gün)</li></ul><p class="st-dayanak">5510 s.K. Geçici m.9/2</p></div></div><div class="sd-donem sd-yeni"><p class="sd-donem-ad">1 Mayıs 2008 ve sonrası</p><div class="st-yol"><p class="st-yol-ad">Yaş ve 9.000 gün</p><ul><li>9.000 prim günü</li><li>Yaş 58 / 60 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/2</p></div><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaşa 3 yıl eklenerek, 5.400 gün</p><ul><li>5.400 prim günü</li><li>Yaş 61 / 63 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/3</p></div></div></div><p>Aylık için faaliyete son verip vermeyeceğini beyan edip yazılı istekte bulunmak ve talep tarihinde GSS dahil prim borcu olmamak gerekir. <span class="st-dayanak">5510 s.K. m.28</span></p><p class="sd-prim"><strong>Prim (2026):</strong> beyan edilen kazancın %35,75'i; düzenli ödeyenlere %30,75. En az 11.808,23 TL (indirimli 10.156,73 TL), en çok 106.274,03 TL aylık. <span class="st-dayanak">5510 s.K. m.81, m.82</span></p><p class="sd-git"><a href="../ne-zaman-emekli-olurum/">Kendi emeklilik tarihinizi hesaplayın <span aria-hidden="true">→</span></a></p></section><section class="sd-statu" id="s-4c" aria-labelledby="s-4c-bas"><p class="sd-ust">5510 s.K. m.4/1-c · eski adıyla Emekli Sandığı</p><h3 id="s-4c-bas">4/c: Kamu idarelerinde kadrolu ve sözleşmeli çalışanlar</h3><p>Kamu idarelerinde kadroda ya da sözleşmeli çalışıp 4/a'ya tabi olmayanlar: memurlar.</p><h4>Kimler bu statüdedir?</h4><ul><li>Kamu idarelerinde kadro ve pozisyonlarda sürekli çalışan memurlar</li><li>657 s.K. 4/B sözleşmeli personel ve açıktan vekil atananlar</li><li>Seçim ya da atamayla göreve gelip memur gibi emeklilik hakkı tanınanlar</li><li>Cumhurbaşkanı yardımcıları, bakanlar, milletvekilleri ve belediye başkanları</li><li>Harp okulu, polis ve jandarma okulu öğrencileri ile subay ve astsubay adayları</li></ul><p class="st-dayanak">5510 s.K. m.4/1-c ve m.4/4</p><h4>Emeklilik şartları</h4><div class="sd-donemler"><div class="sd-donem sd-eyt"><p class="sd-donem-ad">8 Eylül 1999'dan önce</p><div class="st-yol"><p class="st-yol-ad">Yaşa bakılmaksızın (EYT)</p><ul><li>Fiilî hizmet 20 / 25 yıl</li></ul><p class="st-dayanak">5434 s.K. Geçici m.205, 5510 s.K. Geçici m.95</p></div></div><div class="sd-donem sd-gecis"><p class="sd-donem-ad">8 Eylül 1999 – 30 Eylül 2008</p><div class="st-yol"><p class="st-yol-ad">Yaş ve 25 hizmet yılı</p><ul><li>Yaş 58 / 60</li><li>Fiilî hizmet 25 yıl</li></ul><p class="st-dayanak">mülga 5434 s.K. m.39/b (4447 s.K. m.23 ile)</p></div><div class="st-yol st-yol--kismi"><p class="st-yol-ad">61 yaş ve 15 hizmet yılı</p><ul><li>Yaş 61</li><li>Fiilî hizmet 15 yıl</li></ul><p class="st-dayanak">mülga 5434 s.K. m.39/c-d (4447 s.K. m.23 ile)</p></div></div><div class="sd-donem sd-yeni"><p class="sd-donem-ad">1 Ekim 2008 ve sonrası</p><div class="st-yol"><p class="st-yol-ad">Yaş ve 9.000 gün</p><ul><li>9.000 prim günü</li><li>Yaş 58 / 60 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/2</p></div><div class="st-yol st-yol--kismi"><p class="st-yol-ad">Yaşa 3 yıl eklenerek, 5.400 gün</p><ul><li>5.400 prim günü</li><li>Yaş 61 / 63 <span class="st-not">Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar (m.28/2-b)</span></li></ul><p class="st-dayanak">5510 s.K. m.28/3</p></div></div></div><p>Aylık için istek üzerine yetkili makamdan emekliye sevk onayı alınıp kurumla ilişiğin kesilmesi gerekir. <span class="st-dayanak">5510 s.K. m.28</span></p><p class="sd-prim"><strong>Prim:</strong> emekli keseneği ve kurum karşılığı maaştan kurumca kesilip ödenir; bu sayfa o tutarı hesaplamıyor.</p></section><section class="sd-statu" id="s-istege" aria-labelledby="s-istege-bas"><p class="sd-ust">5510 s.K. m.50</p><h3 id="s-istege-bas">İsteğe bağlı: Kendi isteğiyle prim ödeyenler</h3><p>Zorunlu sigortalı olmadan, uzun vadeli sigorta kollarına ve GSS'ye kendi isteğiyle prim ödeyenler.</p><h4>Kimler isteğe bağlı sigortalı olabilir?</h4><ul><li>Türkiye'de ikamet etmek (ya da sözleşmesiz bir ülkede yaşayan Türk vatandaşı olmak)</li><li>Zorunlu sigortalı olacak şekilde çalışmamak; ya da ay içinde 30 günden az veya tam gün çalışmamak</li><li>Kendi sigortalılığından aylık almıyor olmak</li><li>18 yaşını doldurmuş olmak</li><li>SGK'ya isteğe bağlı sigorta dilekçesiyle başvurmak</li></ul><p class="st-dayanak">5510 s.K. m.50/2</p><h4>Emeklilikte nasıl sayılır?</h4><p>İsteğe bağlı prim ödenen süreler 4/b sigortalılık süresi sayılır. Tek istisna: ay içinde 30 günden az çalışan bir sigortalı eksik günleri isteğe bağlı primle tamamlarsa, o günler 4/a sayılır. Primi ait olduğu aydan sonraki 12 ay içinde ödenmeyen süre sigortalılıktan sayılmaz.</p><p class="st-dayanak">5510 s.K. m.51/3 ve son fıkra, m.52/3</p><p class="sd-prim"><strong>Prim (2026):</strong> seçilen kazancın %33'ü (malullük, yaşlılık ve ölüm %21, genel sağlık sigortası %12). En az 10.899,90 TL, en çok 98.099,10 TL aylık. <span class="st-dayanak">5510 s.K. m.52</span></p></section>
+<!-- STATU-DETAY:BITIS -->
+        </div>
+
+        <div class="prose">
+          <h2 id="cakisma">Birden fazla işte çalışıyorsanız</h2>
+          <p>Aynı anda iki statüye girecek şekilde çalışmak mümkündür; ama aynı anda iki statüde sigortalı olunmaz. 5510 sayılı Kanun'un
+            53. maddesi sırayı koyar: 4/c ile başka bir statü çakışırsa önce <strong>4/c</strong>; 4/a ile 4/b çakışırsa <strong>4/a</strong>
+            esas alınır. 4/a'sı esas alınan kişi yazılı talepte bulunursa, esas alınmayan 4/b faaliyeti için de prim ödeyebilir; bu primler
+            iş kazası yönünden 4/b, emeklilik yönünden 4/a sayılır.</p>
+          <p>Emeklilikte hangi statünün şartının uygulanacağı ayrı bir sorudur. 2008 sonrası ilk kez sigortalı olanlarda en çok sigortalılığın
+            geçtiği statü, süreler eşitse son statü esas alınır. 2008 öncesi girişlerde mülga 2829 sayılı Kanun hükümleri uygulanır; bu sayfa
+            o birleştirme hesabını yapmıyor.</p>
+          <p class="st-dayanak">5510 s.K. m.53; Geçici m.4</p>
+
+          <h2 id="sss">Sık sorulan sorular</h2>
+<!-- SSS:BASLANGIC -->
+<h3>4/a, 4/b ve 4/c arasındaki fark nedir?</h3>
+<p>Çalışma biçimidir. 4/a bir işverene hizmet akdiyle bağlı çalışanlardır (eski SSK). 4/b kendi adına ve hesabına bağımsız çalışanlardır: esnaf, serbest meslek, şirket ortağı, çiftçi, muhtar (eski Bağ-Kur). 4/c kamu idarelerinde kadrolu ya da sözleşmeli çalışanlardır: memurlar (eski Emekli Sandığı). Dayanak 5510 sayılı Kanun'un 4. maddesidir.</p>
+<h3>2008'den sonra sigortalı olan kaç günle emekli olur?</h3>
+<p>4/a'da 7.200 prim günü, 4/b ve 4/c'de 9.000 prim günü; yaş 58 / 60 (kadın / erkek). Gün şartı 1 Ocak 2036 ve sonrasında dolarsa yaş kademeli olarak 65'e çıkar. İkinci yol yaşa üç yıl ekleyip 5.400 günle emekliliktir; 4/a'da bu gün sayısı ilk giriş yılına göre 4.600–5.400 arasındadır (5510 m.28).</p>
+<h3>Memurlar için 2008 sınırı neden Ekim?</h3>
+<p>4/a ve 4/b için geçiş hükmü 30 Nisan 2008'de bitti (5510 m.108/b). 4/c'de ise 5510 sayılı Kanun 1 Ekim 2008'de yürürlüğe girdi (m.108/d); o tarihe kadar memur olanlara 5434 sayılı Kanun uygulanır. 8 Eylül 1999 ile 30 Eylül 2008 arasında memur olanlarda şart yaş 58 / 60 (kadın / erkek) ve fiilî hizmet 25 yıldır (4447 s.K. m.23).</p>
+<h3>Hem işçi hem esnafsam hangi statüdeyim?</h3>
+<p>4/a. Hizmet akdiyle çalışma ile bağımsız çalışma aynı anda olursa 4/a esas alınır; yazılı taleple 4/b kapsamında da prim ödenebilir. Memurluk varsa her durumda önce 4/c esas alınır (5510 m.53/1).</p>
+<h3>İsteğe bağlı sigorta hangi statü sayılır, primi ne kadar?</h3>
+<p>Ödenen süreler 4/b sayılır (5510 m.51). Prim seçilen kazancın %33'üdür; 2026'da en az 10.899,90 TL, en çok 98.099,10 TL aylık. 18 yaşını doldurmak, zorunlu sigortalı olmamak ve kendi sigortalılığından aylık almıyor olmak gerekir.</p>
+<h3>Birden fazla statüde çalıştım; hangisinden emekli olurum?</h3>
+<p>2008 sonrası ilk kez sigortalı olanlarda en çok sigortalılığın geçtiği statüden; süreler eşitse son statüden (5510 m.53). 2008 öncesi girişlerde mülga 2829 sayılı Kanun hükümleri uygulanır; bu sayfa o birleştirme hesabını yapmıyor.</p>
+<h3>Kamuda işçiyim; memur mu sayılırım?</h3>
+<p>Hayır. Kamuda hizmet akdiyle çalışan işçiler 4/a'dır. 657 sayılı Kanun'un 4/C maddesine göre çalışan geçici personel de 4/a hükümlerine tabidir (5510 m.4/2-f). 4/c, kadrolu memurlar ile 4/B sözleşmeli personeli kapsar.</p>
+<!-- SSS:BITIS -->
+
+          <h2>Varsayımlar ve sınırlar</h2>
+          <ul>
+            <li>Şartlar ilk sigortalılık tarihine göre verilir. 4/a ve 4/b'de borçlanma bu tarihi geri çekebilir; bunu kişisel olarak <a href="../ne-zaman-emekli-olurum/">emeklilik tarihi aracı</a> hesaplar.</li>
+            <li>4/c'de 1999–2008 dönemi için 4447 sayılı Kanun'un 23. maddesiyle getirilen yol (25 fiilî hizmet yılı, kadın 58, erkek 60 yaş) ve yaş haddi ya da kesenek iadesi almamış olma hallerindeki 61 yaş, 15 yıl yolu gösterilir. Fiilî hizmet süresi zammı (yıpranma) ve özel kanunlardaki yaş hadleri kapsam dışıdır.</li>
+            <li>Bu sürümde 5. madde kapsamındakiler (çırak, stajyer, kursiyer), tarımda 4/b, ev hizmetlerinde 10 günden az çalışma, yurt dışı borçlanma, malullük ve 2008 öncesi farklı statülerin birleştirilmesi yok.</li>
+            <li>4/c'de emekli keseneği ve kurum karşılığı hesaplanmaz. 4/a, 4/b ve isteğe bağlı prim tutarları, sitenin bordro parametrelerindeki yılın prime esas kazanç sınırlarıyla hesaplanır.</li>
+            <li>SGK'nın hizmet dökümü ve tahsis kararı esastır. Bu sayfa kanun metnini açıklar; kişisel hukuki görüş değildir.</li>
+          </ul>
+
+          <h2 id="kaynak-title">Kaynaklar</h2>
+          <ul>
+            <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5510.pdf" rel="noopener">5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu</a>: m.4 (statüler), m.28 (yaşlılık aylığı şartları), m.50–52 (isteğe bağlı sigorta), m.53 (sigortalılık hallerinin birleşmesi), m.108 (yürürlük), Geçici m.4, m.9 ve m.95</li>
+            <li><a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.3.5434.pdf" rel="noopener">5434 sayılı T.C. Emekli Sandığı Kanunu</a>: Geçici m.205 (1999 öncesi iştirakçiler)</li>
+            <li><a href="https://www.resmigazete.gov.tr/arsiv/23810.pdf" rel="noopener">4447 sayılı Kanun</a>, Resmî Gazete 8 Eylül 1999, sayı 23810 (mükerrer): m.23 ile 5434 sayılı Kanun'un 39. maddesinde yapılan değişiklik</li>
+            <li>506 sayılı Kanun Geçici m.81 ve 1479 sayılı Kanun Geçici m.10: 1999 öncesi 4/a ve 4/b şartları, <a href="../ne-zaman-emekli-olurum/">emeklilik tarihi motoru</a> üzerinden</li>
+            <li>Prime esas kazanç sınırları ve prim oranları: sitenin <a href="../bordro/">bordro motoru</a> parametreleri</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <section class="related">
+      <div class="wrap prose">
+        <h2>İlgili</h2>
+        <ul>
+          <li><a href="../ne-zaman-emekli-olurum/">Ne zaman emekli olurum?</a> (4/a ve 4/b için kişisel tarih)</li>
+          <li><a href="../emekli-ayligi-hesaplama/">Emekli aylığı hesaplama</a></li>
+          <li><a href="../bag-kur-ve-borclanma-hesaplama/">Bağ-Kur, isteğe bağlı sigorta ve borçlanma</a></li>
+          <li><a href="../makaleler/turkiyede-sosyal-guvenligin-donusumu/">Türkiye'de sosyal güvenliğin dönüşümü</a> (yazı)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ILGILI:BASLANGIC -->
+    <section class="related ilgili-uretilen" aria-labelledby="ilgili-baslik">
+      <div class="wrap prose">
+        <h2 id="ilgili-baslik">Bu konudaki yazılar</h2>
+        <ul>
+          <li><a href="../makaleler/ise-giris-bildirgesi-gecikirse-ceza/">İşe giriş bildirgesi gecikirse SGK cezası ne kadar?</a></li>
+          <li><a href="../makaleler/fazla-mesai-zammi-yuzde-kac/">Fazla mesai zammı yüzde kaç?</a></li>
+          <li><a href="../makaleler/dogum-parasi-ne-kadar/">Doğum parası ne kadar? 24 haftalık iznin hesabı</a></li>
+        </ul>
+      </div>
+    </section>
+    <!-- ILGILI:BITIS -->
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Kaynaklar</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Kaynaklar</em> bölümü</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../hakkimda/">Hakkımda</a></li>
+        <li><a href="../makaleler/">Makaleler</a></li>
+        <li><a href="../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../koray-oner/">Çalışma dizini</a></li>
+        <li><a href="../iletisim/">İletişim</a></li>
+        <li><a href="../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../kullanim-kosullari/">Kullanım Koşulları</a></li>
+      <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+        </ul>
+    </div>
+  </footer>
+
+  <script src="../bordro/parametreler.js" defer></script>
+  <script src="../bordro/motor.js" defer></script>
+  <script src="../bordro/sgk-prim.js" defer></script>
+  <script src="../bordro/emeklilik-parametreleri.js" defer></script>
+  <script src="../ne-zaman-emekli-olurum/hesap.js" defer></script>
+  <script src="statu.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="../script.js?v=9465d26e" defer></script>
+</body>
+</html>

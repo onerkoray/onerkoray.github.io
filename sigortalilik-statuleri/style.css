@@ -1,0 +1,110 @@
+/* Sigortalılık statüleri — sayfaya özgü stiller.
+   Dönemlerin rengi --dv-1..3 (1999 öncesi, geçiş, 2008 sonrası); renk tek
+   başına anlam taşımaz, her parçada dönemin şartı yazılı ve lejant var. */
+
+.kunye-satiri { margin: .9rem 0 0; font-size: var(--type-metadata, .85rem); }
+.st-dayanak { margin: .35rem 0 0; font: 500 var(--type-label)/1.45 var(--font-mono); color: var(--text-muted); }
+.st-not { display: block; font-size: var(--type-metadata); color: var(--text-muted); }
+
+/* ---------------- statü bulucu ---------------- */
+
+.sb-duzen {
+  display: grid; gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start;
+}
+.sb-duzen > * { min-inline-size: 0; }
+@media (max-width: 900px) { .sb-duzen { grid-template-columns: 1fr; } }
+@media (min-width: 901px) { .sb-sonuc { position: sticky; top: 84px; } }
+.sb-form h2 { margin: 0 0 1rem; }
+.sb-grup { border: 0; margin: 0 0 1.4rem; padding: 0; min-inline-size: 0; }
+.sb-grup[hidden] { display: none; }
+.sb-grup legend { padding: 0; margin-bottom: .7rem; font-weight: 700; font-size: var(--type-form-label); }
+.sb-sec {
+  display: flex; align-items: flex-start; gap: .75rem; margin-bottom: .5rem;
+  min-height: var(--control-h); padding: .7rem .9rem; cursor: pointer;
+  border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+}
+.sb-sec:has(input:checked) { border-color: var(--text); box-shadow: inset 3px 0 0 var(--text); }
+.sb-sec input { flex: none; inline-size: 1.15rem; block-size: 1.15rem; margin: .15rem 0 0; accent-color: var(--text); }
+.sb-sec span { display: flex; flex-direction: column; gap: .1rem; font-size: var(--type-form-control); }
+.sb-sec small { font-size: var(--type-metadata); color: var(--text-muted); line-height: 1.4; }
+
+.sb-sonuc {
+  padding: 1.4rem 1.4rem 1.2rem; background: var(--surface);
+  border: 1px solid var(--border); border-top: 3px solid var(--text);
+}
+.sb-etiket { margin: 0; font: 600 var(--type-label)/1.4 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); }
+.sb-statu { margin: .2rem 0 0; font: 800 clamp(2.6rem, 2rem + 2.5vw, 3.6rem)/1 var(--font-display); letter-spacing: -.04em; }
+.sb-ad { margin: .35rem 0 .9rem; font-weight: 700; font-size: var(--type-card-title); }
+.sb-gerekce { margin: 0; padding-left: 1.1rem; color: var(--text-muted); }
+.sb-gerekce li + li { margin-top: .35rem; }
+.sb-git { margin: .9rem 0 0; font-weight: 600; font-size: var(--type-metadata); }
+.sb-git[hidden] { display: none; }
+.sb-sonuc--yok .sb-statu { color: var(--text-muted); }
+
+/* ---------------- dönem şeridi ---------------- */
+
+.ss-figur { margin: 1.5rem 0 2.5rem; }
+.ss-kaydir { overflow-x: auto; }
+.ss-svg { display: block; inline-size: 100%; min-inline-size: 640px; block-size: auto; overflow: visible; }
+.ss-eyt { --c: var(--dv-1); }
+.ss-gecis { --c: var(--dv-2); }
+.ss-yeni { --c: var(--dv-3); }
+.ss-zemin { fill: color-mix(in srgb, var(--c) 16%, var(--surface)); stroke: var(--c); stroke-width: 1.5; }
+#ss-tara path { stroke: color-mix(in srgb, var(--text) 9%, transparent); stroke-width: 1; }
+.ss-tarama { pointer-events: none; }
+.ss-yazi { font: 700 13px var(--font-body); fill: var(--text); }
+.ss-yazi--alt { font: 500 11px var(--font-mono); fill: var(--text-muted); }
+.ss-ad { font: 800 20px var(--font-display); fill: var(--text); }
+.ss-eski { font: 500 11px var(--font-mono); fill: var(--text-muted); letter-spacing: .04em; }
+.ss-sinir { stroke: var(--text); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.ss-sinir--4c { stroke-dasharray: none; stroke-width: 2.5; }
+.ss-tarih { font: 600 12px var(--font-mono); fill: var(--text); }
+.ss-tarih--4c { font-weight: 700; }
+.ss-yil { font: 500 11px var(--font-mono); fill: var(--text-muted); }
+.ss-cetvel, .ss-taban { stroke: var(--text-muted); stroke-width: 1; }
+.ss-figur figcaption { margin-top: .75rem; font-size: var(--type-metadata); color: var(--text-muted); }
+.ss-lejant { display: inline-flex; flex-wrap: wrap; gap: .3rem 1rem; margin-right: .5rem; font: 500 var(--type-label)/1.4 var(--font-mono); }
+.ss-lejant span::before {
+  content: ""; display: inline-block; inline-size: .75em; block-size: .75em; margin-inline-end: .35em; vertical-align: -.05em;
+  border-radius: 2px; background: color-mix(in srgb, var(--c) 30%, var(--surface)); border: 1px solid var(--c);
+}
+
+/* Bir kez kurulur: her şerit soldan sağa dolar, değerini aşmaz. */
+.ss-hazir .ss-parca { transform: scaleX(0); transform-box: fill-box; transform-origin: 0 50%; }
+.ss-oynat .ss-parca { transform: scaleX(1); transition: transform .8s cubic-bezier(.25, .8, .3, 1) calc(var(--s) * .15s); }
+
+/* ---------------- karşılaştırma tablosu ---------------- */
+
+.st-tablo { margin: 1rem 0 2.5rem; }
+.st-tablo caption { caption-side: top; text-align: left; margin-bottom: .6rem; font-size: var(--type-metadata); color: var(--text-muted); }
+.st-tablo th[scope="row"] { white-space: nowrap; vertical-align: top; }
+.st-tablo td { vertical-align: top; min-inline-size: 15rem; }
+.st-grup-bas { background: var(--surface-2); font-size: var(--type-card-description); }
+.st-grup-bas a { margin-inline-end: .4rem; font-weight: 800; }
+.st-yol + .st-yol { margin-top: .9rem; padding-top: .9rem; border-top: 1px dashed var(--border); }
+.st-yol-ad { margin: 0 0 .25rem; font-weight: 700; }
+.st-yol ul { margin: 0; padding-left: 1rem; }
+.st-yol--kismi .st-yol-ad { color: var(--text-muted); }
+
+/* ---------------- statü bölümleri ---------------- */
+
+.sd-liste { display: grid; gap: 1.5rem; margin: 1rem 0 2.5rem; }
+.sd-statu { padding: clamp(1.1rem, 2.5vw, 1.75rem); background: var(--surface); border: 1px solid var(--border); scroll-margin-top: 6rem; }
+.sd-ust { margin: 0; font: 600 var(--type-label)/1.4 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+.sd-statu h3 { margin: .35rem 0 .5rem; font-size: clamp(1.3rem, 1.1rem + 1vw, 1.7rem); letter-spacing: -.02em; }
+.sd-statu h4 { margin: 1.4rem 0 .5rem; font-size: var(--type-card-description); }
+.sd-statu > p, .sd-statu > ul { max-inline-size: 70ch; }
+.sd-donemler { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin-bottom: 1rem; }
+.sd-donem { padding: .9rem 1rem; border: 1px solid var(--border); border-top: 3px solid var(--c); background: var(--bg); }
+.sd-eyt { --c: var(--dv-1); }
+.sd-gecis { --c: var(--dv-2); }
+.sd-yeni { --c: var(--dv-3); }
+.sd-donem-ad { margin: 0 0 .6rem; font: 600 var(--type-label)/1.4 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
+.sd-prim { margin-top: 1rem; padding: .8rem 1rem; background: var(--surface-2); }
+.sd-git { margin: 1rem 0 0; font-weight: 600; font-size: var(--type-metadata); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ss-hazir .ss-parca { transform: none; }
+  .ss-oynat .ss-parca { transition: none; }
+}

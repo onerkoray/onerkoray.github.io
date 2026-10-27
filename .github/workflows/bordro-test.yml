@@ -642,6 +642,12 @@ jobs:
         run: node sgk-idari-para-cezasi-hesaplama/test.js
       - name: SGK ceza aracı ve yazısı hesaptan üretilmiş mi
         run: node tools/sgk-ceza-sayfa.js --check
+      # Statü sayfası: 4/a ve 4/b şartları emeklilik tarihi motorundan, 4/c
+      # 5434 Geçici m.205 ve 4447 m.23 metninden; sayfa blokları motordan.
+      - name: Sigortalılık statüleri motoru
+        run: node sigortalilik-statuleri/test.js
+      - name: Statü sayfası motordan üretilmiş mi
+        run: node tools/statu-sayfa.js --check
       - name: İşe giriş cezası yazısının sayıları
         run: node makaleler/ise-giris-bildirgesi-gecikirse-ceza/sayi-testi.js
 
