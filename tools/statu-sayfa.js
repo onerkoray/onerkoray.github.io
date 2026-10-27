@@ -149,7 +149,7 @@ function serit() {
 function tablo() {
   var satirlar = ["4a", "4b", "4c"].map(function (s) {
     var b = birlesik(s);
-    return '<tbody class="st-grup"><tr><th scope="rowgroup" colspan="3" class="st-grup-bas"><a href="#s-' + s + '">' + AD[s] + "</a> " +
+    return '<tbody><tr><th scope="rowgroup" colspan="3" class="st-grup-bas"><a href="#s-' + s + '">' + AD[s] + "</a> " +
       esc(T.statuler[s].baslik) + "</th></tr>" +
       b.map(function (d) {
         return '<tr><th scope="row">' + esc(d.donem.ad) + "</th><td>" + yolHtml(d.yollar[0], true) + "</td><td>" +
