@@ -2478,7 +2478,76 @@ function katilimPayHedef() {
   return s + "</svg>";
 }
 
+var OCAKZ = require(path.join(KOK, "makaleler", "ocak-2027-emekli-zammi", "ocak.js"));
+function ocakYuzde(v) { return "%" + (Math.round(v * 10000) / 100).toFixed(2).replace(".", ","); }
+
+/* Emekli: Temmuz–Eylül kesin birikim, Ekim–Aralık üç senaryo yelpazesi. */
+function ocakEmekliYelpaze() {
+  var d = OCAKZ.donem(), sen = OCAKZ.senaryolar();
+  var bilinen = d.aylar.filter(function (a) { return a.oran != null; });
+  var SOL = 58, SAG = 430, UST = 96, ALT = 300, Y1 = 12;
+  function x(i) { return SOL + i / 6 * (SAG - SOL); }
+  function y(v) { return ALT - v * 100 / Y1 * (ALT - UST); }
+  var s = baslikSatirlari("Üç ay kesin, üç ay senaryo",
+    "Temmuz–Aralık 2026 TÜFE birikimi = Ocak 2027 SSK ve Bağ-Kur zammı · TÜİK",
+    "Temmuz–Eylül 2026'da TÜFE " + ocakYuzde(d.birikim) + " birikti; Ekim–Aralık senaryolarına göre Ocak zammı " +
+      ocakYuzde(sen[2].emekli) + " ile " + ocakYuzde(sen[0].emekli) + " arasında.");
+  s += anahtarKutu(24, R.s1, "açıklanan aylar") + anahtarKutu(220, R.s2, "senaryo", true);
+  s += izgaraY(SOL, SAG, y, [0, 0.04, 0.08, 0.12], function (v) { return "%" + Math.round(v * 100); });
+  var b = 0, yol = "M" + x(0).toFixed(1) + " " + y(0).toFixed(1);
+  bilinen.forEach(function (a, i) { b = (1 + b) * (1 + a.oran) - 1; yol += " L" + x(i + 1).toFixed(1) + " " + y(b).toFixed(1); });
+  s += '<path fill="none" stroke="' + R.s1 + '" stroke-width="3" stroke-linejoin="round" d="' + yol + '"/>';
+  s += '<circle cx="' + x(bilinen.length).toFixed(1) + '" cy="' + y(b).toFixed(1) + '" r="4.5" fill="' + R.s1 + '"/>';
+  s += '<text x="' + (x(bilinen.length) - 6).toFixed(1) + '" y="' + (y(b) - 10).toFixed(1) + '" text-anchor="end" font-size="13" font-weight="800" fill="' + R.murekkep + '">' + ocakYuzde(b) + "</text>";
+  sen.forEach(function (sc) {
+    var yy = y(sc.emekli);
+    s += '<path d="M' + x(bilinen.length).toFixed(1) + " " + y(b).toFixed(1) + " L" + x(6).toFixed(1) + " " + yy.toFixed(1) +
+      '" stroke="' + R.s2 + '" stroke-width="2" stroke-dasharray="5 4" fill="none"/>';
+    s += '<circle cx="' + x(6).toFixed(1) + '" cy="' + yy.toFixed(1) + '" r="4" fill="' + R.s2 + '"/>';
+    s += '<text x="' + (x(6) + 8).toFixed(1) + '" y="' + (yy + 5).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">' + ocakYuzde(sc.emekli) + "</text>";
+  });
+  ["Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"].forEach(function (a, i) { s += altYazi(x(i), ALT + 20, a); });
+  s += altYazi((SOL + SAG) / 2, ALT + 40, "kesikli: OVP tahmini · geçen yılın ayları · son üç ayın hızı");
+  return s + "</svg>";
+}
+
+/* Memur: her senaryoda SSK/Bağ-Kur ve memur zammı yan yana. */
+function ocakMemurFark() {
+  var sen = OCAKZ.senaryolar();
+  var SOL = 58, SAG = 486, UST = 96, ALT = 300, Y1 = 12;
+  function y(v) { return ALT - v * 100 / Y1 * (ALT - UST); }
+  var genis = (SAG - SOL) / sen.length, cubuk = 34;
+  var s = baslikSatirlari("Memur her senaryoda geride",
+    "Ocak 2027 zammı, üç senaryo: SSK ve Bağ-Kur ile memur ve memur emeklisi",
+    "Üç senaryoda memur zammı SSK ve Bağ-Kur zammının yaklaşık iki puan altında: " +
+      sen.map(function (x) { return ocakYuzde(x.memur) + "'e karşı " + ocakYuzde(x.emekli); }).join("; ") + ".");
+  s += anahtarKutu(24, R.s1, "SSK ve Bağ-Kur") + anahtarKutu(220, R.s2, "memur");
+  s += izgaraY(SOL, SAG, y, [0, 0.04, 0.08, 0.12], function (v) { return "%" + Math.round(v * 100); });
+  var KISA = ["son üç ayın hızı", "geçen yılın ayları", "OVP tahmini"];
+  sen.forEach(function (sc, i) {
+    var mx = SOL + genis * (i + 0.5);
+    [[sc.emekli, R.s1, -cubuk - 3], [sc.memur, R.s2, 3]].forEach(function (c) {
+      s += '<rect x="' + (mx + c[2]).toFixed(1) + '" y="' + y(c[0]).toFixed(1) + '" width="' + cubuk + '" height="' + (ALT - y(c[0])).toFixed(1) + '" rx="2" fill="' + c[1] + '"/>';
+      s += '<text x="' + (mx + c[2] + cubuk / 2).toFixed(1) + '" y="' + (y(c[0]) - 7).toFixed(1) + '" text-anchor="middle" font-size="12" font-weight="800" fill="' + R.murekkep + '">' + ocakYuzde(c[0]) + "</text>";
+    });
+    s += altYazi(mx, ALT + 20, KISA[i]);
+  });
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "ocak-2027-emekli-zammi": {
+    kicker: "Emeklilik · Ocak 2027",
+    baslik: "Ocak 2027 emekli zammı ne kadar olacak?",
+    alt: "Üç ay kesin, üç ay senaryo",
+    cizim: ocakEmekliYelpaze
+  },
+  "ocak-2027-memur-zammi": {
+    kicker: "Memur · Ocak 2027",
+    baslik: "Ocak 2027 memur zammı ne kadar olacak?",
+    alt: "Yüzde 5 ve enflasyon farkı",
+    cizim: ocakMemurFark
+  },
   "katilim-bankaciligi-yuzde-15-hedefi": {
     kicker: "Finans · Katılım bankacılığı",
     baslik: "Katılım bankacılığı 2025'te %15 olacaktı: ne oldu?",

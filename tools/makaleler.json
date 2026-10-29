@@ -1,5 +1,17 @@
 [
   {
+    "slug": "ocak-2027-emekli-zammi",
+    "kicker": "Emeklilik ve sosyal güvenlik",
+    "alt": "Temmuz–Eylül 2026 TÜFE birikimi düz çizgiyle; Ekim–Aralık için üç senaryo kesikli çizgilerle Aralık'ta Ocak 2027 SSK ve Bağ-Kur zammına ulaşıyor.",
+    "altyazi": "Senaryolar: son üç ayın hızı, Ekim–Aralık 2025'in oranları, OVP'nin 2026 yıl sonu tahmini. Kaynak: TÜİK aylık TÜFE (TCMB tablosu); kural 5510 m.55."
+  },
+  {
+    "slug": "ocak-2027-memur-zammi",
+    "kicker": "Bordro",
+    "alt": "Üç senaryoda Ocak 2027 zammı: SSK ve Bağ-Kur çubuğu ile memur çubuğu yan yana; memur her senaryoda yaklaşık iki puan geride.",
+    "altyazi": "Memur zammı = (1 + enflasyon farkı) × 1,05 − 1; fark Temmuz–Aralık enflasyonunun %7'yi aşan kısmı. Kaynak: TÜİK aylık TÜFE; Kamu Görevlileri Hakem Kurulu kararı."
+  },
+  {
     "slug": "katilim-bankaciligi-yuzde-15-hedefi",
     "kicker": "Finans",
     "alt": "Katılım bankalarının Türk bankacılık sektörü aktiflerindeki payı, Aralık sonları: 2005'te %2,4, hedefin konduğu 2015'te %5,1, 2025'te %9,22. Kesikli çizgi 2015'ten 2025 hedefi %15'e düz yol.",
