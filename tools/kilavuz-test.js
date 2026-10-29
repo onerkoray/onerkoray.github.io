@@ -69,8 +69,7 @@ function denetle(metin, akis, bugun, testler) {
 
 /* Başka bir testçe kapsanan yazılar: yazı → o testin workflow'daki yolu. */
 var DOLAYLI = {
-  "emekliligin-finansal-matematigi": "tools/makale-emeklilik-test.js",
-  "kademeli-emeklilik-son-durum": "tools/mevzuat-testi.js"
+  "emekliligin-finansal-matematigi": "tools/makale-emeklilik-test.js"
 };
 /* Hesaplanmış rakam taşımayan yazılar ve gerekçesi. Buraya eklemek bir
    iddiadır: yazıya hesap girerse test de girmelidir. */

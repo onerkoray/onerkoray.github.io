@@ -23,6 +23,11 @@ function y2(v) { return "%" + (Math.round(v * 10000) / 100).toFixed(2).replace("
 function puan(v) { return (Math.round(v * 10000) / 100).toFixed(2).replace(".", ",") + " puan"; }
 function tl(v) { return Math.round(v).toLocaleString("tr-TR") + " TL"; }
 function tarih(d) { return ORTAK.uzunTarih(d); }
+/* Bulunma eki yılın okunuşuna göre: 2026'da, 2027'de, 2023'te. */
+function tarihte(d) {
+  var y = d.getUTCFullYear() % 10;
+  return tarih(d) + ({ 0: "'da", 1: "'de", 2: "'de", 3: "'te", 4: "'te", 5: "'te", 6: "'da", 7: "'de", 8: "'de", 9: "'da" })[y];
+}
 
 var d = O.donem();
 var bilinen = d.aylar.filter(function (a) { return a.oran != null; });
@@ -65,7 +70,7 @@ function emekliGovde() {
     "Altı ayın üçü açıklandı: " + bilinen.map(function (a) { return a.ad.split(" ")[0] + " " + y2(a.oran); }).join(", ") +
     "; birikim <strong>" + y2(d.birikim) + "</strong>. Bu kısım kesin; kalan üç ayda fiyatlar düşmedikçe zam bunun altına inmez.</p>\n" +
     "<p>Kalan üç ay için TÜİK serisinden ve resmî tahminden kurulan üç senaryo zammı <strong>" + y2(aralikEmekli[0]) + " ile " + y2(aralikEmekli[1]) +
-    "</strong> arasına koyuyor. Kesin oran " + tarih(sonAciklama) + "'te, Aralık TÜFE'siyle belli olacak.</p>\n</div>");
+    "</strong> arasına koyuyor. Kesin oran " + tarihte(sonAciklama) + ", Aralık TÜFE'siyle belli olacak.</p>\n</div>");
   h.push('<h2 id="kesin">Kesin olan: üç ay</h2>\n<p>Zam, aylık oranların toplamı değil bileşiği: her ay bir öncekinin üstüne eklenir. ' +
     "Temmuz–Eylül'ün bileşiği " + y2(d.birikim) + ".</p>\n" + bilinenTablo());
   h.push('<h2 id="senaryolar">Kalan üç ay için üç senaryo</h2>\n<p>Bunlar tahmin değil, varsayımı açık hesaplar. İkisi doğrudan TÜİK serisinden: ' +
@@ -106,23 +111,23 @@ function memurGovde() {
     "<p>Örnek: Orta Vadeli Program'ın yıl sonu tahmini tutarsa altı aylık enflasyon " + y2(ovp.emekli) + " olur; fark " + y2(ovp.fark) +
     ", zam " + y2(ovp.memur) + ". Fark iki ondalıkla ilan edilir ve öyle uygulanır.</p>");
   h.push('<h2 id="fark">Fark neredeyse kesin</h2>\n<p>Temmuz–Eylül birikimi (' + y2(d.birikim) + ") henüz " + y2(TS_ONCEKI) + "'nin altında. Aradaki boşluk, kalan üç ayda toplam " +
-    y2(esik) + "; ayda ortalama " + y2(Math.pow(1 + esik, 1 / 3) - 1) + ". Son üç ayın aylık ortalaması " + y2(O.sonUcAyHizi(d)) + "; bu hız sürerse eşik daha Ekim'de aşılır.</p>\n" +
-    bilinenTablo());
+    y2(esik) + "; ayda ortalama " + y2(Math.pow(1 + esik, 1 / 3) - 1) + ". Son üç ayın aylık ortalaması " + y2(O.sonUcAyHizi(d)) + "; bu hız sürerse eşik daha Ekim'de aşılır.</p>");
   h.push('<h2 id="senaryolar">Üç senaryo: memur ve emekli yan yana</h2>\n' +
     tablo("Ocak 2027 zammı, üç senaryo", ["Senaryo", "Temmuz–Aralık enflasyonu", "Enflasyon farkı", "Memur zammı", "SSK ve Bağ-Kur zammı", "Aradaki fark"],
       sen.map(function (s) { return [s.ad, y2(s.emekli), y2(s.fark), "<strong>" + y2(s.memur) + "</strong>", y2(s.emekli), puan(s.emekli - s.memur)]; })) +
     "\n<p>Neden hep geride? Memur zammı, aynı altı aylık enflasyonun (1 + " + y2(TS_YENI) + ") ÷ (1 + " + y2(TS_ONCEKI) + ") = " +
     CARPAN.toFixed(4).replace(".", ",") + " katı: toplu sözleşmenin Ocak oranı bir önceki yarının oranından iki puan düşük. " +
     "Emekli zammında böyle bir indirim yok; o doğrudan altı aylık enflasyona eşit.</p>");
-  h.push('<h2 id="duyarlilik">Kalan üç ay her ay aynı oranda artarsa</h2>\n' +
+  h.push('<h2 id="duyarlilik">Ekim–Aralık sabit hızla giderse</h2>\n' +
     tablo("Ekim–Aralık aylık oranına göre memur zammı", ["Ekim–Aralık her ay", "Memur zammı", "SSK ve Bağ-Kur zammı"],
       duy.map(function (s, i) { return [y2(O.DUYARLILIK[i]), y2(s.memur), y2(s.emekli)]; })));
   h.push('<h2 id="maas">Maaşınıza etkisi</h2>\n<p>Memur maaşı kadroya, dereceye ve ek göstergeye göre değişir; oran ise herkes için aynı. Örnek maaşlarla:</p>\n' +
     tablo("Ocak 2027'de yeni maaş", ["Bugünkü maaş"].concat(sen.map(function (s) { return s.ad; })),
       ornekler.map(function (a) { return [tl(a)].concat(sen.map(function (s) { return tl(Z.yeniAylik(a, s.memur)); })); })) +
     "\n<p>Aynı oran 4/c kapsamındaki memur emeklilerinin aylığına da uygulanır.</p>");
-  h.push('<h2 id="takvim">Ne zaman belli olacak?</h2>\n<p>TÜİK kalan ayları şu günlerde açıklayacak: ' + takvimMetni() +
-    ". Aralık verisiyle fark ve zam kesinleşir; sitedeki <a href=\"../../memur-zammi-hesaplama/\">memur zammı aracı</a> her açıklamanın ertesi günü kendiliğinden güncellenir.</p>");
+  h.push('<h2 id="takvim">Fark hangi gün kesinleşir?</h2>\n<p>Farkı belirleyecek üç rakam kaldı. ' +
+    takvim.map(function (t) { return tarihte(t.tarih) + " " + t.ad.split(" ")[0] + " oranı"; }).join(", ") +
+    " yayımlanacak. Son rakamla fark ve zam kesinleşir; sitedeki <a href=\"../../memur-zammi-hesaplama/\">memur zammı aracı</a> her açıklamanın ertesi günü kendiliğinden güncellenir.</p>");
   return h.join("\n\n");
 }
 
