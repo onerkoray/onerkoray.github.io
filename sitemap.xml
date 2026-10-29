@@ -59,7 +59,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/koray-oner/</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/hakkimda-koray-oner.jpg</image:loc>
       <image:title>Çalışma Dizini: Araçlar, Yazılar ve Yayınlar — Koray Öner</image:title>
@@ -911,7 +911,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/makale/kademeli-emeklilik-son-durum.png</image:loc>
       <image:title>Kademeli Emeklilik Son Durum 2026 — Koray Öner</image:title>
@@ -1046,11 +1046,27 @@
     </image:image>
   </url>
   <url>
+    <loc>https://korayoner.dev/makaleler/ocak-2027-emekli-zammi/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/ocak-2027-emekli-zammi.png</image:loc>
+      <image:title>Ocak 2027 Emekli Zammı Ne Kadar Olacak? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://korayoner.dev/makaleler/ocak-2027-meclis-mi-belirleyecek/</loc>
     <lastmod>2026-10-17</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/makale/ocak-2027-meclis-mi-belirleyecek.png</image:loc>
       <image:title>Ocak 2027'yi Meclis mi Belirleyecek? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/ocak-2027-memur-zammi/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/ocak-2027-memur-zammi.png</image:loc>
+      <image:title>Ocak 2027 Memur Zammı Ne Kadar Olacak? — Koray Öner</image:title>
     </image:image>
   </url>
   <url>
