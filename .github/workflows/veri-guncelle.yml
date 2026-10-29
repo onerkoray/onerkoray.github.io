@@ -45,8 +45,9 @@ jobs:
           node tools/emekli-zammi-sayfa.js
           node tools/memur-zammi-sayfa.js
           node tools/ocak-zam-yazisi.js
+          node tools/yillik-program-yazisi.js
           # Seriye bağlı kapaklar (SVG, Chrome'suz): TÜFE gelince çizim de yenilenir.
-          node tools/makale-gorsel.js --svg ocak-2027-emekli-zammi ocak-2027-memur-zammi en-dusuk-emekli-ayligi-ocak-2027
+          node tools/makale-gorsel.js --svg ocak-2027-emekli-zammi ocak-2027-memur-zammi en-dusuk-emekli-ayligi-ocak-2027 yillik-program-2027
 
       # Grafikler sayfası: ay sonu kur, politika faizi ve Dünya Bankası
       # enflasyonu. Betik yazmadan önce çapraz doğrular (Dünya Bankası'nın

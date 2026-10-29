@@ -1,0 +1,285 @@
+{
+  "kaynak": {
+    "ad": "2027 Yılı Cumhurbaşkanlığı Yıllık Programı",
+    "resmiGazete": "27 Ekim 2026, sayı 33413 (Mükerrer), Karar sayısı 11934",
+    "rgUrl": "https://www.resmigazete.gov.tr/eskiler/2026/10/20261027M1-1.pdf",
+    "sbbUrl": "https://www.sbb.gov.tr/wp-content/uploads/2026/10/2027-yilli-cumhurbaskanligi-yillik-programi.pdf",
+    "okundu": "2026-10-29",
+    "not": "Sayfa numaraları belgenin basılı sayfa numaralarıdır (PDF sayfası = basılı + 17)."
+  },
+  "hedefler": {
+    "sayfa": 12,
+    "buyume": {
+      "2026": 3.3,
+      "2027": 4.2,
+      "metinSayfa": 11
+    },
+    "tufeYilSonu": {
+      "2024": 44.4,
+      "2026": 28.4,
+      "2027": 21.0,
+      "metinSayfa": 39
+    },
+    "istihdamArtisBin": {
+      "2027": 657,
+      "metinSayfa": 16
+    },
+    "genelDevletGelir": {
+      "2025": 32.1,
+      "2026": 31.9,
+      "2027": 31.4,
+      "sayfa": 108
+    },
+    "genelDevletHarcama": {
+      "2025": 34.2,
+      "2026": 34.6,
+      "2027": 34.7,
+      "sayfa": 108
+    },
+    "genelDevletDenge": {
+      "2025": -2.1,
+      "2026": -2.7,
+      "2027": -3.3,
+      "sayfa": 108
+    },
+    "kamuYatirimi2027MilyonTL": {
+      "deger": 3483143,
+      "sayfa": 25
+    }
+  },
+  "gecmisHedefler": [
+    {
+      "program": 2022,
+      "hedef": 9.8,
+      "sayfa": "2022 Yıllık Programı, PDF s.48",
+      "url": "https://www.sbb.gov.tr/wp-content/uploads/2021/10/2022-Yili-Cumhurbaskanligi-Yillik-Programi.pdf"
+    },
+    {
+      "program": 2024,
+      "hedef": 33.0,
+      "sayfa": "2024 Yıllık Programı, PDF s.50",
+      "url": "https://www.sbb.gov.tr/wp-content/uploads/2023/10/2024-Yili-Cumhurbaskanligi-Yillik-Programi.pdf"
+    },
+    {
+      "program": 2026,
+      "hedef": 16.0,
+      "sayfa": "2026 Yıllık Programı, PDF s.53",
+      "url": "https://www.sbb.gov.tr/wp-content/uploads/2025/10/2026-Yili-Cumhurbaskanligi-Yillik-Programi.pdf"
+    },
+    {
+      "program": 2027,
+      "hedef": 21.0,
+      "sayfa": "2027 Yıllık Programı, s.39",
+      "url": null
+    }
+  ],
+  "sgk": {
+    "sayfa": 72,
+    "birim": "milyon TL, cari fiyatlarla",
+    "yillar": [
+      "2024",
+      "2025",
+      "2026",
+      "2027"
+    ],
+    "durum": [
+      "gerçekleşme",
+      "gerçekleşme",
+      "gerçekleşme tahmini",
+      "program"
+    ],
+    "gelirler": [
+      3852256,
+      5442361,
+      7194210,
+      7889588
+    ],
+    "prim": [
+      2823137,
+      4063566,
+      5701895,
+      7085442
+    ],
+    "digerGelir": [
+      1029119,
+      1378795,
+      1492314,
+      804145
+    ],
+    "giderler": [
+      3863532,
+      5406620,
+      7296707,
+      9844714
+    ],
+    "sigortaOdemeleri": [
+      2700861,
+      3822640,
+      5208599,
+      7198366
+    ],
+    "saglik": [
+      980870,
+      1353134,
+      1816447,
+      2339013
+    ],
+    "yatirim": [
+      883,
+      287,
+      1967,
+      1975
+    ],
+    "digerGider": [
+      180918,
+      230560,
+      269694,
+      305361
+    ],
+    "fark": [
+      -11277,
+      35741,
+      -102497,
+      -1955126
+    ],
+    "butceTransferi": [
+      1436651,
+      1931724,
+      2075889,
+      3450000
+    ],
+    "farkGsyh": [
+      0.0,
+      0.1,
+      -0.1,
+      -1.8
+    ],
+    "butceTransferiGsyh": [
+      3.2,
+      3.1,
+      2.4,
+      3.1
+    ],
+    "metin2027": "2027 yılında SGK'nın toplam gelirlerinin 7.889,6 milyar TL, toplam giderlerinin 9.844,7 milyar TL ve gelir-gider farkının 1.955,1 milyar TL olması öngörülmüştür.",
+    "metin2027Sayfa": 73,
+    "devletKatkisi": "devlet katkısının Ağustos ayından itibaren kaldırılmasının da etkisiyle SGK toplam gelirlerinin GSYH'ya oranının önceki yıla göre 0,2 puan azalarak yüzde 8,4'e gerilemesi beklenmektedir.",
+    "devletKatkisiSayfa": 71
+  },
+  "isf": {
+    "sayfa": 73,
+    "yillar": [
+      "2024",
+      "2025",
+      "2026",
+      "2027"
+    ],
+    "gelirler": [
+      335987,
+      526047,
+      685645,
+      767851
+    ],
+    "prim": [
+      162185,
+      259160,
+      335903,
+      419388
+    ],
+    "giderler": [
+      173966,
+      256539,
+      382739,
+      616029
+    ],
+    "sigortaGideri": [
+      35178,
+      65176,
+      91031,
+      122254
+    ],
+    "fonVarligi": [
+      358972,
+      628479,
+      931386,
+      1083208
+    ]
+  },
+  "aktifPasif": {
+    "sayfa": 110,
+    "2022": 2.0,
+    "2025": 1.62,
+    "ciraksiz2022": 1.84,
+    "ciraksiz2025": 1.49,
+    "hedefDosyaBazinda": {
+      "2025": 1.6,
+      "2026": 1.6,
+      "2027": 1.6,
+      "sayfa": 115
+    },
+    "primTahsilatOrani": {
+      "2025": 86,
+      "2026": 87,
+      "2027": 88,
+      "sayfa": 115
+    },
+    "sosyalSigortaKapsami": {
+      "2025": 90,
+      "2026": 90,
+      "2027": 91,
+      "sayfa": 115
+    }
+  },
+  "tedbirler": [
+    {
+      "no": "406.2",
+      "sayfa": 112,
+      "metin": "Aylık bağlama sistemi kişilerin daha çok istihdamda kalmasını teşvik edecek ve mali yük getirmeyecek şekilde yeniden düzenlenecektir."
+    },
+    {
+      "no": "406.1",
+      "sayfa": 112,
+      "metin": "Sosyal güvenlik sisteminde hakkaniyeti ve aktüeryal dengeyi güçlendirecek reformlar hayata geçirilecektir."
+    },
+    {
+      "no": "394.1",
+      "sayfa": 105,
+      "metin": "Prime esas kazanç bildirimlerine yönelik denetimler etkinleştirilecektir."
+    },
+    {
+      "no": "408.2",
+      "sayfa": 113,
+      "metin": "Prime esas kazancı bir önceki aya göre yüzde 20'den fazla azalan sigortalılara kısa mesaj yoluyla uyarı gönderilecektir."
+    },
+    {
+      "no": "401.1",
+      "sayfa": 107,
+      "metin": "Vergi mevzuatında yer alan istisna, muafiyet ve indirimlerin etkinliği gözden geçirilecektir."
+    },
+    {
+      "no": "407.1",
+      "sayfa": 113,
+      "metin": "Yaşlı bakım hizmetlerinin finansmanı için bakım sigortası kurulacaktır."
+    },
+    {
+      "no": "404.3",
+      "sayfa": 112,
+      "metin": "Düşük gelirli esnaf, sanatkâr, çiftçiler ve mevsimlik çalışanlar gibi gruplara özel sosyal sigorta programları oluşturulacaktır."
+    }
+  ],
+  "yururluk2026": {
+    "sayfa": 108,
+    "asgariBrut": 33030,
+    "asgariNet": 28075.5,
+    "asgariArtis": 27,
+    "tavanKatsayisi": 9,
+    "borclanmaOrani": 45,
+    "gssOrani": 6,
+    "tesvikImalatDisi": 2,
+    "emekliOcak": 12.2,
+    "emekliTemmuz": 17.8,
+    "memurEmekliOcak": 18.6,
+    "memurEmekliTemmuz": 13.5,
+    "enDusukAylik": 23552,
+    "devletKatkisiKaldirildi": "2026-08-01"
+  }
+}
