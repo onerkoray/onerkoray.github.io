@@ -2535,7 +2535,43 @@ function ocakMemurFark() {
   return s + "</svg>";
 }
 
+var YPRG = require(path.join(KOK, "makaleler", "yillik-program-2027", "program.js"));
+function ypYuzde(v) { return "%" + v.toFixed(1).replace(".", ","); }
+
+/* Yıllık Program: her programın kendi yılı için enflasyon hedefi ve gerçekleşen. */
+function ypIsabet() {
+  var ist = YPRG.isabet();
+  var SOL = 58, SAG = 486, UST = 96, ALT = 300, Y1 = 70;
+  function y(v) { return ALT - v / Y1 * (ALT - UST); }
+  var genis = (SAG - SOL) / ist.length, cubuk = 34;
+  var s = baslikSatirlari("Hedef her yıl aşıldı",
+    "Yıllık Programın yıl sonu enflasyon hedefi ve gerçekleşen · TÜİK, SBB",
+    "Yıllık Programların yıl sonu TÜFE hedefi ve gerçekleşen: " + ist.map(function (r) {
+      var g = r.gerceklesen != null ? r.gerceklesen : r.tahmin;
+      return r.program + " hedef " + ypYuzde(r.hedef) + (g != null ? ", " + (r.tahmin != null ? "tahmin " : "gerçekleşen ") + ypYuzde(g) : ", henüz yok");
+    }).join("; ") + ".");
+  s += anahtarKutu(24, R.s1, "program hedefi") + anahtarKutu(220, R.s2, "gerçekleşen");
+  s += izgaraY(SOL, SAG, y, [0, 20, 40, 60], function (v) { return "%" + v; });
+  ist.forEach(function (r, i) {
+    var mx = SOL + genis * (i + 0.5), g = r.gerceklesen != null ? r.gerceklesen : r.tahmin;
+    var cub = [[r.hedef, R.s1, g == null ? -cubuk / 2 : -cubuk - 3]];
+    if (g != null) cub.push([g, R.s2, 3]);
+    cub.forEach(function (c) {
+      s += '<rect x="' + (mx + c[2]).toFixed(1) + '" y="' + y(c[0]).toFixed(1) + '" width="' + cubuk + '" height="' + (ALT - y(c[0])).toFixed(1) + '" rx="2" fill="' + c[1] + '"/>';
+      s += '<text x="' + (mx + c[2] + cubuk / 2).toFixed(1) + '" y="' + (y(c[0]) - 7).toFixed(1) + '" text-anchor="middle" font-size="12" font-weight="800" fill="' + R.murekkep + '">' + ypYuzde(c[0]) + "</text>";
+    });
+    s += altYazi(mx, ALT + 20, String(r.program) + (r.tahmin != null ? " (tahmin)" : g == null ? " (hedef)" : ""));
+  });
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "yillik-program-2027": {
+    kicker: "Kamu maliyesi · 2027",
+    baslik: "2027 Yıllık Programı: emekli, maaş ve SGK",
+    alt: "Hedef %21; geçmiş hedefler her yıl aşıldı",
+    cizim: ypIsabet
+  },
   "ocak-2027-emekli-zammi": {
     kicker: "Emeklilik · Ocak 2027",
     baslik: "Ocak 2027 emekli zammı ne kadar olacak?",

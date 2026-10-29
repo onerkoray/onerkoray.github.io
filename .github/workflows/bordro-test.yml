@@ -676,6 +676,11 @@ jobs:
         run: node makaleler/ocak-2027-emekli-zammi/sayi-testi.js
       - name: Ocak 2027 memur zammı yazısının sayıları
         run: node makaleler/ocak-2027-memur-zammi/sayi-testi.js
+      # 2027 Yıllık Programı: tablolar program.json'dan (sayfa numaralı), hesap ve grafik üreteçten.
+      - name: Yıllık Program yazısı hesaptan üretilmiş mi
+        run: node tools/yillik-program-yazisi.js --check
+      - name: Yıllık Program yazısının sayıları
+        run: node makaleler/yillik-program-2027/sayi-testi.js
 
       # En düşük emekli aylığı ve Ocak 2027 zammı: zam oranları emekli zammı
       # motorundan (Eylül 2026'ya kesilmiş TÜFE serisi), taban tutarları 5510
