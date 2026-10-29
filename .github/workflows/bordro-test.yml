@@ -664,6 +664,18 @@ jobs:
         run: node tools/katilim-yazisi.js --check
       - name: Katılım bankacılığı yazısının sayıları
         run: node makaleler/katilim-bankaciligi-yuzde-15-hedefi/sayi-testi.js
+      # Kademeli emeklilik: "bir günün bedeli" emeklilik tarihi motorundan.
+      - name: Kademeli emeklilik yazısı hesaptan üretilmiş mi
+        run: node tools/kademeli-yazisi.js --check
+      - name: Kademeli emeklilik yazısının sayıları
+        run: node makaleler/kademeli-emeklilik-son-durum/sayi-testi.js
+      # Ocak 2027 zammı: gövde TÜFE serisinden; seri gece yenilenince yeniden üretilir.
+      - name: Ocak 2027 zam yazıları hesaptan üretilmiş mi
+        run: node tools/ocak-zam-yazisi.js --check
+      - name: Ocak 2027 emekli zammı yazısının sayıları
+        run: node makaleler/ocak-2027-emekli-zammi/sayi-testi.js
+      - name: Ocak 2027 memur zammı yazısının sayıları
+        run: node makaleler/ocak-2027-memur-zammi/sayi-testi.js
 
       # En düşük emekli aylığı ve Ocak 2027 zammı: zam oranları emekli zammı
       # motorundan (Eylül 2026'ya kesilmiş TÜFE serisi), taban tutarları 5510
