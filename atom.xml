@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Araçlar ve Yazılar</title>
-  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 63 hesaplama aracı ve arkalarındaki mevzuatı anlatan 66 yazı.</subtitle>
+  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 63 hesaplama aracı ve arkalarındaki mevzuatı anlatan 68 yazı.</subtitle>
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-10-27T19:44:46+03:00</updated>
+  <updated>2026-10-29T09:01:32+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Ocak 2027 Emekli Zammı Ne Kadar Olacak?</title>
+    <link href="https://korayoner.dev/makaleler/ocak-2027-emekli-zammi/"/>
+    <id>https://korayoner.dev/makaleler/ocak-2027-emekli-zammi/</id>
+    <published>2026-10-29T09:01:32+03:00</published>
+    <updated>2026-10-29T09:01:32+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
+    <summary>SSK ve Bağ-Kur Ocak 2027 zammının yarısı Temmuz–Eylül TÜFE'siyle kesinleşti. Kalan üç ay için TÜİK serisinden üç senaryo ve aylığınıza etkisi.</summary>
+  </entry>
+
+  <entry>
+    <title>Ocak 2027 Memur Zammı Ne Kadar Olacak?</title>
+    <link href="https://korayoner.dev/makaleler/ocak-2027-memur-zammi/"/>
+    <id>https://korayoner.dev/makaleler/ocak-2027-memur-zammi/</id>
+    <published>2026-10-29T09:01:32+03:00</published>
+    <updated>2026-10-29T09:01:32+03:00</updated>
+    <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
+    <summary>Memur ve memur emeklisinin Ocak 2027 zammı: toplu sözleşmedeki %5 ve enflasyon farkı. Fark neredeyse kesin; üç senaryoda zam ve maaşa etkisi.</summary>
+  </entry>
 
   <entry>
     <title>4/a, 4/b, 4/c Emeklilik Şartları 2026</title>
@@ -1294,7 +1314,7 @@
     <link href="https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/"/>
     <id>https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/</id>
     <published>2026-09-05T01:00:45+03:00</published>
-    <updated>2026-10-20T09:14:25+03:00</updated>
+    <updated>2026-10-29T09:01:32+03:00</updated>
     <category term="mevzuat" label="Mevzuat"/>
     <summary>Kademeli emeklilik yasalaştı mı? Teklifin TBMM'deki gerçek durumu, kimleri kapsadığı ve 1999-2008 arası sigortalılara şu an uygulanan yaş ve prim gün şartları.</summary>
   </entry>

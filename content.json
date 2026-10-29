@@ -16,11 +16,11 @@
  ],
  "sayaclar": {
   "arac": 63,
-  "makale": 66,
+  "makale": 68,
   "metodoloji": 10,
   "grafik": 2,
   "sayfa": 11,
-  "indekslenebilir": 153
+  "indekslenebilir": 155
  },
  "sayfalar": [
   {
@@ -503,7 +503,7 @@
    "type": "sayfa",
    "parent": null,
    "title": "Koray Öner — Turkish Payroll, Tax and Pension Tools",
-   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 63 free calculators for Turkish payroll, tax and pensions, 66 tested articles and 8 papers with a DOI.",
+   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 63 free calculators for Turkish payroll, tax and pensions, 68 tested articles and 8 papers with a DOI.",
    "category": null,
    "published": "2026-10-20T07:35:08+03:00",
    "updated": "2026-10-27",
@@ -1185,11 +1185,11 @@
    "type": "sayfa",
    "parent": null,
    "title": "Çalışma Dizini: Araçlar, Yazılar ve Yayınlar",
-   "description": "Koray Öner'in çalışmaları tek yerde: 63 hesaplama aracı, 66 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
+   "description": "Koray Öner'in çalışmaları tek yerde: 63 hesaplama aracı, 68 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
    "category": null,
    "published": "2026-09-29T17:59:13+03:00",
-   "updated": "2026-10-27",
-   "updatedAt": "2026-10-27T19:29:04+03:00",
+   "updated": "2026-10-29",
+   "updatedAt": "2026-10-29T00:00:00+03:00",
    "image": "https://korayoner.dev/images/hakkimda-koray-oner.jpg",
    "imageTitle": "Çalışma Dizini: Araçlar, Yazılar ve Yayınlar — Koray Öner",
    "related": [],
@@ -2249,8 +2249,8 @@
    "description": "Kademeli emeklilik yasalaştı mı? Teklifin TBMM'deki gerçek durumu, kimleri kapsadığı ve 1999-2008 arası sigortalılara şu an uygulanan yaş ve prim gün şartları.",
    "category": "mevzuat",
    "published": "2026-09-05T01:00:45+03:00",
-   "updated": "2026-10-20",
-   "updatedAt": "2026-10-20T09:14:25+03:00",
+   "updated": "2026-10-29",
+   "updatedAt": "2026-10-29T09:01:32+03:00",
    "image": "https://korayoner.dev/images/makale/kademeli-emeklilik-son-durum.png",
    "imageTitle": "Kademeli Emeklilik Son Durum 2026 — Koray Öner",
    "related": [
@@ -2569,6 +2569,22 @@
    "noindex": false
   },
   {
+   "url": "https://korayoner.dev/makaleler/ocak-2027-emekli-zammi/",
+   "dosya": "makaleler/ocak-2027-emekli-zammi/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "Ocak 2027 Emekli Zammı Ne Kadar Olacak?",
+   "description": "SSK ve Bağ-Kur Ocak 2027 zammının yarısı Temmuz–Eylül TÜFE'siyle kesinleşti. Kalan üç ay için TÜİK serisinden üç senaryo ve aylığınıza etkisi.",
+   "category": "emeklilik-sosyal-guvenlik",
+   "published": "2026-10-29T09:01:32+03:00",
+   "updated": "2026-10-29",
+   "updatedAt": "2026-10-29T09:01:32+03:00",
+   "image": "https://korayoner.dev/images/makale/ocak-2027-emekli-zammi.png",
+   "imageTitle": "Ocak 2027 Emekli Zammı Ne Kadar Olacak? — Koray Öner",
+   "related": [],
+   "noindex": false
+  },
+  {
    "url": "https://korayoner.dev/makaleler/ocak-2027-meclis-mi-belirleyecek/",
    "dosya": "makaleler/ocak-2027-meclis-mi-belirleyecek/index.html",
    "type": "makale",
@@ -2581,6 +2597,22 @@
    "updatedAt": "2026-10-17T17:32:44+00:00",
    "image": "https://korayoner.dev/images/makale/ocak-2027-meclis-mi-belirleyecek.png",
    "imageTitle": "Ocak 2027'yi Meclis mi Belirleyecek? — Koray Öner",
+   "related": [],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/makaleler/ocak-2027-memur-zammi/",
+   "dosya": "makaleler/ocak-2027-memur-zammi/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "Ocak 2027 Memur Zammı Ne Kadar Olacak?",
+   "description": "Memur ve memur emeklisinin Ocak 2027 zammı: toplu sözleşmedeki %5 ve enflasyon farkı. Fark neredeyse kesin; üç senaryoda zam ve maaşa etkisi.",
+   "category": "maas-tazminat",
+   "published": "2026-10-29T09:01:32+03:00",
+   "updated": "2026-10-29",
+   "updatedAt": "2026-10-29T09:01:32+03:00",
+   "image": "https://korayoner.dev/images/makale/ocak-2027-memur-zammi.png",
+   "imageTitle": "Ocak 2027 Memur Zammı Ne Kadar Olacak? — Koray Öner",
    "related": [],
    "noindex": false
   },
