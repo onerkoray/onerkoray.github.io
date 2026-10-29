@@ -1,6 +1,6 @@
 # Koray Öner — korayoner.dev
 
-> Türkiye'de maaş, vergi, SGK, emeklilik ve hane finansı için ücretsiz hesaplama araçları ve bu hesapların kuralını anlatan yazılar. 63 araç, 68 yazı. Hesaplar tarayıcıda yapılır; hesap içeren her yazının rakamları sitenin hesap motorlarından testle yeniden üretilir.
+> Türkiye'de maaş, vergi, SGK, emeklilik ve hane finansı için ücretsiz hesaplama araçları ve bu hesapların kuralını anlatan yazılar. 63 araç, 69 yazı. Hesaplar tarayıcıda yapılır; hesap içeren her yazının rakamları sitenin hesap motorlarından testle yeniden üretilir.
 
 Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değiştikçe sayfalar güncellenir; her sayfanın güncelleme tarihi site haritasında (https://korayoner.dev/sitemap.xml) ve akışlarda aynıdır. Yazar ve sorumlu: Koray Öner.
 
@@ -140,6 +140,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 ## Yazılar: Emeklilik & Sosyal Güvenlik
 
+- [2027 Yıllık Programı: emekli, maaş ve SGK için ne diyor?](https://korayoner.dev/makaleler/yillik-program-2027/): Resmî Gazete'deki 2027 Yıllık Programı sitenin hesaplarıyla: %21 hedefi zamma nasıl yansır, SGK'da primler neden yetmiyor, hedefler geçmişte tuttu mu?
 - [Ocak 2027 emekli zammı ne kadar olacak?](https://korayoner.dev/makaleler/ocak-2027-emekli-zammi/): SSK ve Bağ-Kur Ocak 2027 zammının yarısı Temmuz–Eylül TÜFE'siyle kesinleşti. Kalan üç ay için TÜİK serisinden üç senaryo ve aylığınıza etkisi.
 - [İşsizlik sigortası primi nereye gidiyor? Fon, hak ve ödenek hesabı](https://korayoner.dev/makaleler/issizlik-sigortasi-primi-nereye-gidiyor/): Maaştan kesilen işsizlik sigortası primi kişisel birikim mi? 2026 oranlarıyla işçi, işveren ve devlet katkısını; hak kazanma eşiklerini ve ödeneği hesaplıyoruz.
 - [Ocak 2027 zammı en düşük emekli aylığına yansır mı?](https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/): Taban 23.552 TL kanunla değişmezse Ocak zammı tabandakine yansımaz: zam %10,17 olursa 21.379 TL altındaki aylığa artış yok. 2019'dan beri 15 dönemin hesabı.
@@ -178,11 +179,11 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 - [Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları](https://korayoner.dev/): Koray Öner'in sitesi: maaş, vergi, SGK, kira ve kredi için testli, ücretsiz hesaplama araçları; mevzuat yazıları, yayımlanmış çalışmalar ve sosyal hesaplar.
 - [Araçlar](https://korayoner.dev/araclar/): Maaş ve tazminat, vergi ve belge, kredi ve finans için ücretsiz, reklamsız hesaplama araçları; kategoriye göre, güncelleme tarihi ve metodolojisiyle.
-- [Koray Öner — Turkish Payroll, Tax and Pension Tools](https://korayoner.dev/en/): Koray Öner (Koray Oner), software developer in Türkiye: 63 free calculators for Turkish payroll, tax and pensions, 68 tested articles and 8 papers with a DOI.
+- [Koray Öner — Turkish Payroll, Tax and Pension Tools](https://korayoner.dev/en/): Koray Öner (Koray Oner), software developer in Türkiye: 63 free calculators for Turkish payroll, tax and pensions, 69 tested articles and 8 papers with a DOI.
 - [Gizlilik Politikası](https://korayoner.dev/gizlilik/): Bu sitede hangi veriler işleniyor, hangi çerezler kullanılıyor ve haklarınız neler? Hesaplama verileriniz cihazınızdan çıkmaz.
 - [Hakkımda](https://korayoner.dev/hakkimda/): Koray Öner kimdir? Serbest çalışan yazılım geliştirici. Bordro ve vergi araçlarındaki her sayıyı yasal parametreden türetip her değişiklikte yeniden doğruluyor.
 - [İletişim](https://korayoner.dev/iletisim/): Koray Öner ile iletişim: hata bildirimi, yeni araç önerisi, işbirliği ve KVKK başvuruları için doğru kanallar.
-- [Çalışma dizini](https://korayoner.dev/koray-oner/): Koray Öner'in çalışmaları tek yerde: 63 hesaplama aracı, 68 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.
+- [Çalışma dizini](https://korayoner.dev/koray-oner/): Koray Öner'in çalışmaları tek yerde: 63 hesaplama aracı, 69 testli yazı, 8 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.
 - [Kullanım Koşulları](https://korayoner.dev/kullanim-kosullari/): Hesaplama araçlarının kapsamı, doğruluk taahhüdü, sorumluluk sınırları ve lisans bilgileri. Araçlar bilgilendirme amaçlıdır.
 - [2026 Brüt–Net Tablosu](https://korayoner.dev/maas-hesaplama/brut-net-tablosu/): 2026 brüt net maaş tablosu: 35.000 TL'den 500.000 TL'ye kadar brüt maaşların net karşılıkları ve her tutar için ay ay bordro dökümü.
 - [Makaleler](https://korayoner.dev/makaleler/): Emeklilik, bordro, tazminat ve vergi konularında kaynağı gösterilen, güncel tutulan rehberler. Mevzuat değiştikçe güncellenir.
