@@ -26,7 +26,7 @@
    faizi), G20'nin 16 ülkesi ve euro bölgesi. Doğrulama: BIS'in Türkiye
    satırları sitenin kendi serileriyle tutmalı — faiz, TCMB tablosundan
    türetilen ay sonu faiziyle her ay AYNI; enflasyon, TÜİK yıllık TÜFE'siyle
-   her ay 0,05 puan içinde. 2026-09-26: 196 ayda fark 0, 260 ayda fark yok.
+   her ay 0,10 puan içinde (BIS baz değişiminde seriyi yeniden kurdu, 2026-11-04).
 
 5. ALTIN — Dünya Bankası emtia fiyatları (Pink Sheet), aylık ortalama ons
    fiyatı (ABD doları). Dosyanın adresi her ay değişir; emtia sayfasından

@@ -53,7 +53,7 @@ t.gecsin("SSS: teklif sunuldu", "Teklif " + tarih(sunus) + "'da sunuldu; Anayasa
 t.gecmesin("bayat 'en geç' cümlesi", "teklif en geç 17 Ekim 2026'da gelir");
 t.dogru("gecerlilik ileri alındı", /name="gecerlilik" content="2026-12-05 \|/.test(t.html));
 t.dogru("yayın tarihi korunuyor", /"datePublished": "2026-10-03"/.test(t.html));
-t.gecsin("güncelleme satırı", "Güncelleme: 17 Ekim 2026");
+t.gecsin("güncelleme satırı", "Güncelleme: 4 Kasım 2026");
 var d4 = K.dorduncuYil();
 t.dogru("geçen yılın bütçe teklifi 1/280", d4.butceTeklifi && d4.butceTeklifi.esas === "1/280");
 t.gecsin("geçen yıl bütçe tarihi", "(" + d4.butceTeklifi.esas + ") " + tarih(d4.butceTeklifi.gelis));
