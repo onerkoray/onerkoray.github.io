@@ -1,5 +1,17 @@
 [
   {
+    "slug": "emekliye-ilave-iyilestirme-ocak-2027",
+    "kicker": "Emeklilik ve sosyal güvenlik",
+    "alt": "Aylık ve gelir ödemesi artışında yasal zam ve dosya artışının açıklamadığı pay: 2025'te %−0,4, 2026'da %1,4, 2027 Programı'nda %8,2.",
+    "altyazi": "2027 için çizgi, Ocak ve Temmuz zamları ile dosya artışı varsayımlarının aralığı. Kaynak: 2027 Yıllık Programı Tablo I:46 ve II:1; TÜİK TÜFE'si."
+  },
+  {
+    "slug": "bir-yil-daha-calismak-aylik",
+    "kicker": "Emeklilik ve sosyal güvenlik",
+    "alt": "Prim günü 7.200'den 10.800'e çıkarken ödenen aylık: 100.000 TL kazançla 40.000'den 60.000 TL'ye, 60.000 TL kazançla 24.000'den 36.000 TL'ye; asgari brütten prim ödeyen 23.552 TL'lik tabanda kalıyor.",
+    "altyazi": "Bugünkü kural, 2009 girişli, ortalama kazanç sabit. Hesap: 5510 m.29 ve sitenin emeklilik motoru."
+  },
+  {
     "slug": "yillik-program-2027",
     "kicker": "Emeklilik ve sosyal güvenlik",
     "alt": "Yıllık Programların kendi yılları için koyduğu yıl sonu enflasyon hedefi ve gerçekleşen yıllık TÜFE yan yana; 2027 için yalnız hedef.",
@@ -8,8 +20,8 @@
   {
     "slug": "ocak-2027-emekli-zammi",
     "kicker": "Emeklilik ve sosyal güvenlik",
-    "alt": "Temmuz–Eylül 2026 TÜFE birikimi düz çizgiyle; Ekim–Aralık için üç senaryo kesikli çizgilerle Aralık'ta Ocak 2027 SSK ve Bağ-Kur zammına ulaşıyor.",
-    "altyazi": "Senaryolar: son üç ayın hızı, Ekim–Aralık 2025'in oranları, OVP'nin 2026 yıl sonu tahmini. Kaynak: TÜİK aylık TÜFE (TCMB tablosu); kural 5510 m.55."
+    "alt": "Temmuz 2026'dan bugüne açıklanan TÜFE birikimi düz çizgiyle; kalan aylar için üç senaryo kesikli çizgilerle Aralık'ta Ocak 2027 SSK ve Bağ-Kur zammına ulaşıyor.",
+    "altyazi": "Senaryolar: açıklanan ayların hızı, 2025'in aynı aylarının oranları, OVP'nin 2026 yıl sonu tahmini. Kaynak: TÜİK aylık TÜFE (TCMB tablosu); kural 5510 m.55."
   },
   {
     "slug": "ocak-2027-memur-zammi",
@@ -50,8 +62,8 @@
   {
     "slug": "en-dusuk-emekli-ayligi-ocak-2027",
     "kicker": "Emeklilik ve sosyal güvenlik",
-    "alt": "Ocak 2027'de aylık artış, ek ödeme dahil toplam aylığa göre, zam %10,17 senaryosunda: taban 23.552 TL'de kalırsa 21.379 TL'nin altındaki aylığa artış yok; taban zam oranında artarsa tabandakiler de 2.394 TL artış alır.",
-    "altyazi": "Senaryo: Ekim–Aralık 2026 TÜFE'si 2025'in aynı aylarıyla aynı (%2,55, %0,87, %0,89). Temmuz–Eylül 2026 açıklandı: %5,56. Hesap: 5510 m.55 ve ek m.19; sitenin emekli zammı motoru."
+    "alt": "Ocak 2027'de aylık artış, ek ödeme dahil toplam aylığa göre, zam %10,20 senaryosunda: taban 23.552 TL'de kalırsa 21.373 TL'nin altındaki aylığa artış yok; taban zam oranında artarsa tabandakiler de 2.402 TL artış alır.",
+    "altyazi": "Senaryo: Kasım ve Aralık 2026 TÜFE'si 2025'in aynı aylarıyla aynı (%0,87, %0,89). Temmuz–Ekim 2026 açıklandı: %8,28. Hesap: 5510 m.55 ve ek m.19; sitenin emekli zammı motoru."
   },
   {
     "slug": "sgk-devlet-katkisi-kalkti",

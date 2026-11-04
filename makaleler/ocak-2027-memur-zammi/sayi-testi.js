@@ -37,9 +37,13 @@ var onceki = TS["2026-2"], yeni = TS["2027-1"];
 t.gecsin("toplu sözleşme Ocak oranı", "toplu sözleşmedeki " + y2(yeni));
 t.gecsin("toplu sözleşme önceki yarı", y2(onceki) + "'yi aşan");
 
-var esik = (1 + onceki) / (1 + kesin) - 1;
+var esik = Math.max(0, (1 + onceki) / (1 + kesin) - 1);
 t.yakin("fark eşiği modülle aynı", O.farkEsigi(), esik, 1e-12);
-t.gecsin("fark eşiği", "toplam " + y2(esik) + " artış");
+if (esik > 0) t.gecsin("fark eşiği", "toplam " + y2(esik) + " artış");
+else {
+  t.gecsin("fark doğdu", "fark doğdu");
+  t.gecsin("kesin alt sınır", y2(zam(kesin, onceki, yeni).zam));
+}
 
 var sen = O.senaryolar();
 sen.forEach(function (s) {

@@ -2,7 +2,7 @@
 /*
  * "Ocak 2027 zammı en düşük emekli aylığına yansır mı?" yazısının sayıları.
  * Her değer yazının modülünden (taban.js) gelir: zam oranları sitenin emekli
- * zammı motorundan (5510 m.55), Eylül 2026'ya kesilmiş TÜFE serisiyle; taban
+ * zammı motorundan (5510 m.55), Ekim 2026'ya kesilmiş TÜFE serisiyle; taban
  * tutarları 5510 ek m.19'un kanun dipnotlarından. Test önce modülü bağımsız
  * aritmetikle ve motorun doğrulanmış resmî oranlarıyla sınar, sonra her
  * rakamın sayfada göründüğünü doğrular.
@@ -19,14 +19,14 @@ function yz(o, b) { return "%" + S.yuzde(o, b == null ? 2 : b); }
 function tl(v) { return S.tam(v); }
 function htmlde(ad, x) { t.dogru(ad, t.html.indexOf(x) !== -1, "HTML'de yok: " + x); }
 
-/* 0 — Motor ve kesilmiş seri: açıklanmış resmî oranları veriyor, Eylül'de bitiyor. */
+/* 0 — Motor ve kesilmiş seri: açıklanmış resmî oranları veriyor, Ekim'de bitiyor. */
 var D = K.donemler();
 function oran(ad) { return D.filter(function (d) { return d.ad === ad; })[0].zam; }
 t.yakin("Ocak 2024 %37,57", oran("Ocak 2024"), 0.3757, 0.00005);
 t.yakin("Temmuz 2024 %24,73", oran("Temmuz 2024"), 0.2473, 0.00005);
 t.yakin("Ocak 2025 %15,75", oran("Ocak 2025"), 0.1575, 0.00005);
 t.yakin("Temmuz 2025 %16,67", oran("Temmuz 2025"), 0.1667, 0.00005);
-t.dogru("seri Eylül 2026'da kesik", K.SERI.sonAy === "2026-09" && !K.SERI.aylar["2026-10"]);
+t.dogru("seri Ekim 2026'da kesik", K.SERI.sonAy === "2026-10" && !K.SERI.aylar["2026-11"]);
 t.dogru("15 zam dönemi, Temmuz 2019 → Temmuz 2026", D.length === 15 && D[0].ad === "Temmuz 2019" && D[14].ad === "Temmuz 2026");
 
 /* 1 — Taban geçmişi: tutarlar artan, bugünkü 23.552, 11 değişiklik. */
@@ -70,7 +70,7 @@ t.gecsin("tabanın %44,6'sı", yz(m.tabanOrani, 1));
 
 /* 3 — Ocak 2027. */
 var o = K.ocak2027();
-t.dogru("üç ay açıklandı", o.donem.aciklananSayisi === 3 && o.eksik === 3);
+t.dogru("dört ay açıklandı", o.donem.aciklananSayisi === 4 && o.eksik === 2);
 t.gecsin("kesin birikim", yz(o.kesinBirikim) + "'da kesinleşti");
 var gy = o.senaryolar[1];
 t.gecsin("geçen yılın ayları", gy.aylar.map(function (x) { return yz(x); }).join(", ").replace(/, (%[^,]+)$/, ", $1"));
@@ -91,4 +91,4 @@ t.gecsin("geçme dönemi", K.gecmeDonemi(m.kendiAyligi, z) + " dönem sonra");
 t.yakin("taban zamlı artış = taban × zam", K.ocakOdemesi(15000, z, z).artis, 23552 * z, 1e-6);
 htmlde("kart alt metni", "tabandakiler de " + tl(23552 * z) + " TL artış alır");
 
-t.bitir("Kaynak: 5510 m.55 ve ek m.19, TÜFE Eylül 2026'ya kadar.");
+t.bitir("Kaynak: 5510 m.55 ve ek m.19, TÜFE Ekim 2026'ya kadar.");

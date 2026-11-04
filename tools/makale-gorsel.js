@@ -2282,7 +2282,7 @@ function sgkKatkisizDenge() {
 var TBN = require(path.join(KOK, "makaleler", "en-dusuk-emekli-ayligi-ocak-2027", "taban.js"));
 function tabanOcak2027() {
   var z = TBN.ocak2027().senaryolar[1].oran, esik = TBN.esik(z), T0 = TBN.BUGUNKU_TABAN;
-  if (Math.round(z * 10000) !== 1017 || Math.round(esik) !== 21379 || T0 !== 23552) throw new Error("taban kapağı yazıyla ayrıştı");
+  if (Math.round(z * 10000) !== 1020 || Math.round(esik) !== 21373 || T0 !== 23552) throw new Error("taban kapağı yazıyla ayrıştı");
   var SOL = 66, SAG = 548, UST = 96, ALT = 296, X0 = 10000, X1 = 35000, Y0 = 0, Y1 = 4000;
   function x(a) { return SOL + (a - X0) / (X1 - X0) * (SAG - SOL); }
   function y(v) { return ALT - (v - Y0) / (Y1 - Y0) * (ALT - UST); }
@@ -2291,8 +2291,8 @@ function tabanOcak2027() {
     var nok = [X0, esik, T0, X1];
     return nok.map(function (a, i) { return (i ? "L" : "M") + x(a).toFixed(1) + " " + y(TBN.ocakOdemesi(a, z, tabanArtisi).artis).toFixed(1); }).join(" ");
   }
-  var s = baslikSatirlari("Ocak 2027 zammı kime yansır?", "Ek ödeme dahil toplam aylığa göre aylık artış · senaryo: zam %10,17",
-    "Taban 23.552 TL'de kalırsa toplam aylığı 21.379 TL'nin altında olana Ocak artışı sıfır; taban zam oranında artarsa tabandakiler de 2.394 TL artış alır.");
+  var s = baslikSatirlari("Ocak 2027 zammı kime yansır?", "Ek ödeme dahil toplam aylığa göre aylık artış · senaryo: zam %10,20",
+    "Taban 23.552 TL'de kalırsa toplam aylığı 21.373 TL'nin altında olana Ocak artışı sıfır; taban zam oranında artarsa tabandakiler de 2.402 TL artış alır.");
   s += anahtarKutu(24, R.s1, "taban zam oranında artarsa") + anahtarKutu(250, R.s2, "taban 23.552 TL'de kalırsa");
   s += izgaraY(SOL, SAG, y, [0, 1000, 2000, 3000, 4000], function (v) { return v === 0 ? "0" : nf0.format(v); });
   s += '<path d="M' + x(T0).toFixed(1) + " " + UST + " V" + ALT + '" stroke="' + R.ikincil + '" stroke-width="1" stroke-dasharray="3 3"/>';
@@ -2488,9 +2488,9 @@ function ocakEmekliYelpaze() {
   var SOL = 58, SAG = 430, UST = 96, ALT = 300, Y1 = 12;
   function x(i) { return SOL + i / 6 * (SAG - SOL); }
   function y(v) { return ALT - v * 100 / Y1 * (ALT - UST); }
-  var s = baslikSatirlari("Üç ay kesin, üç ay senaryo",
+  var s = baslikSatirlari("Açıklanan aylar kesin, kalanı senaryo",
     "Temmuz–Aralık 2026 TÜFE birikimi = Ocak 2027 SSK ve Bağ-Kur zammı · TÜİK",
-    "Temmuz–Eylül 2026'da TÜFE " + ocakYuzde(d.birikim) + " birikti; Ekim–Aralık senaryolarına göre Ocak zammı " +
+    "Açıklanan aylarda TÜFE " + ocakYuzde(d.birikim) + " birikti; kalan aylar için senaryolara göre Ocak zammı " +
       ocakYuzde(sen[2].emekli) + " ile " + ocakYuzde(sen[0].emekli) + " arasında.");
   s += anahtarKutu(24, R.s1, "açıklanan aylar") + anahtarKutu(220, R.s2, "senaryo", true);
   s += izgaraY(SOL, SAG, y, [0, 0.04, 0.08, 0.12], function (v) { return "%" + Math.round(v * 100); });
@@ -2507,7 +2507,7 @@ function ocakEmekliYelpaze() {
     s += '<text x="' + (x(6) + 8).toFixed(1) + '" y="' + (yy + 5).toFixed(1) + '" font-size="13" font-weight="800" fill="' + R.murekkep + '">' + ocakYuzde(sc.emekli) + "</text>";
   });
   ["Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"].forEach(function (a, i) { s += altYazi(x(i), ALT + 20, a); });
-  s += altYazi((SOL + SAG) / 2, ALT + 40, "kesikli: OVP tahmini · geçen yılın ayları · son üç ayın hızı");
+  s += altYazi((SOL + SAG) / 2, ALT + 40, "kesikli: OVP tahmini · geçen yılın ayları · açıklanan ayların hızı");
   return s + "</svg>";
 }
 
@@ -2523,7 +2523,7 @@ function ocakMemurFark() {
       sen.map(function (x) { return ocakYuzde(x.memur) + "'e karşı " + ocakYuzde(x.emekli); }).join("; ") + ".");
   s += anahtarKutu(24, R.s1, "SSK ve Bağ-Kur") + anahtarKutu(220, R.s2, "memur");
   s += izgaraY(SOL, SAG, y, [0, 0.04, 0.08, 0.12], function (v) { return "%" + Math.round(v * 100); });
-  var KISA = ["son üç ayın hızı", "geçen yılın ayları", "OVP tahmini"];
+  var KISA = ["açıklanan ayların hızı", "geçen yılın ayları", "OVP tahmini"];
   sen.forEach(function (sc, i) {
     var mx = SOL + genis * (i + 0.5);
     [[sc.emekli, R.s1, -cubuk - 3], [sc.memur, R.s2, 3]].forEach(function (c) {
@@ -2565,7 +2565,65 @@ function ypIsabet() {
   return s + "</svg>";
 }
 
+var IYI = require(path.join(KOK, "makaleler", "emekliye-ilave-iyilestirme-ocak-2027", "iyilestirme.js"));
+var BYIL = require(path.join(KOK, "makaleler", "bir-yil-daha-calismak-aylik", "bir-yil.js"));
+
+/* İlave iyileştirme: yasal zam ve dosya artışının açıklamadığı pay. */
+function iyiKalinti() {
+  var rows = IYI.ayristirma(), ar = IYI.aralik();
+  var SOL = 58, SAG = 486, UST = 96, ALT = 296, Y0 = -2, Y1 = 12;
+  function y(v) { return ALT - (v - Y0) / (Y1 - Y0) * (ALT - UST); }
+  function yz(v) { return (v < 0 ? "%−" : "%") + Math.abs(v).toFixed(1).replace(".", ","); }
+  var s = baslikSatirlari("Program, yasal zamdan fazlasını yazıyor",
+    "Aylık ödemesinde yasal zam ve dosya artışının açıklamadığı pay · SBB, TÜİK",
+    "Sigorta ödemesi artışından yasal zam ve dosya etkisi çıkınca kalan pay: " + rows.map(function (r) { return r.yil + " " + yz(r.kalinti * 100); }).join(", ") + ".");
+  s += izgaraY(SOL, SAG, y, [0, 4, 8, 12], function (v) { return "%" + v; });
+  var genis = (SAG - SOL) / rows.length, c = 62;
+  rows.forEach(function (r, i) {
+    var mx = SOL + genis * (i + 0.5), v = r.kalinti * 100, ust = Math.max(v, 0), boy = Math.abs(v);
+    s += '<rect x="' + (mx - c / 2).toFixed(1) + '" y="' + y(ust).toFixed(1) + '" width="' + c + '" height="' + (y(ust - boy) - y(ust)).toFixed(1) + '" rx="2" fill="' + (r.yil === 2027 ? R.s2 : R.s1) + '"/>';
+    if (r.yil === 2027) {
+      var wx = mx + c / 2 + 12, a = y(ar.alt.kalinti * 100), b = y(ar.ust.kalinti * 100);
+      s += '<path d="M' + wx + " " + a.toFixed(1) + " V" + b.toFixed(1) + " M" + (wx - 4) + " " + a.toFixed(1) + " h8 M" + (wx - 4) + " " + b.toFixed(1) + ' h8" stroke="' + R.murekkep + '" stroke-width="1.5" fill="none"/>';
+    }
+    s += '<text x="' + mx.toFixed(1) + '" y="' + (v < 0 ? y(v) + 16 : y(v) - 7).toFixed(1) + '" text-anchor="middle" font-size="13" font-weight="800" fill="' + R.murekkep + '">' + yz(v) + "</text>";
+    s += altYazi(mx, ALT + 34, String(r.yil) + (r.yil === 2027 ? " (Program)" : r.yil === 2026 ? " (tahmin)" : ""));
+  });
+  return s + "</svg>";
+}
+
+/* Bir yıl daha: prim gününe göre ödenen aylık. */
+function birYilGun() {
+  var SOL = 66, SAG = 500, UST = 96, ALT = 306, X0 = 7200, X1 = 10800, Y1 = 60000, K = BYIL.KAZANCLAR;
+  function x(v) { return SOL + (v - X0) / (X1 - X0) * (SAG - SOL); }
+  function y(v) { return ALT - v / Y1 * (ALT - UST); }
+  function bin(v) { return v.toLocaleString("tr-TR"); }
+  var s = baslikSatirlari("360 gün daha: aylık %5 artar, tabanda artmaz",
+    "Prim gününe göre ödenen aylık, TL · 5510 m.29, ortalama kazanç sabit",
+    "7.200 günden 10.800 güne aylık: 100.000 TL kazançla 40.000'den 60.000'e, 60.000 TL kazançla 24.000'den 36.000'e; asgari brütle taban " + bin(BYIL.taban()) + " TL'de sabit.");
+  s += izgaraY(SOL, SAG, y, [0, 20000, 40000, 60000], bin);
+  function hat(k, renk, kesik) {
+    return '<path d="M' + x(7200).toFixed(1) + " " + y(BYIL.aylik(7200, k).odenenAylik).toFixed(1) + " L" + x(10800).toFixed(1) + " " + y(BYIL.aylik(10800, k).odenenAylik).toFixed(1) + '" stroke="' + renk + '" stroke-width="2.5" fill="none"' + (kesik ? ' stroke-dasharray="6 4"' : "") + "/>";
+  }
+  s += hat(K[2], R.s1) + hat(K[1], R.s2) + hat(K[0], R.murekkep, true);
+  s += anahtarKutu(24, R.s1, "kazanç 100.000") + anahtarKutu(170, R.s2, "kazanç 60.000") + anahtarKutu(310, R.murekkep, "asgari brüt: tabanda", true);
+  [7200, 9000, 10800].forEach(function (g) { s += altYazi(x(g), ALT + 22, bin(g) + " gün"); });
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "emekliye-ilave-iyilestirme-ocak-2027": {
+    kicker: "Emeklilik · Ocak 2027",
+    baslik: "Emekliye ilave iyileştirme: rakam yok, hesap var",
+    alt: "Program'da yasal zamın açıklamadığı pay büyüdü",
+    cizim: iyiKalinti
+  },
+  "bir-yil-daha-calismak-aylik": {
+    kicker: "Emeklilik · Bugünkü kural",
+    baslik: "Bir yıl daha çalışmak aylığı ne kadar artırır?",
+    alt: "360 gün: %5 artış, 20 yılda geri dönüş",
+    cizim: birYilGun
+  },
   "yillik-program-2027": {
     kicker: "Kamu maliyesi · 2027",
     baslik: "2027 Yıllık Programı: emekli, maaş ve SGK",
@@ -2575,7 +2633,7 @@ var KAPAKLAR = {
   "ocak-2027-emekli-zammi": {
     kicker: "Emeklilik · Ocak 2027",
     baslik: "Ocak 2027 emekli zammı ne kadar olacak?",
-    alt: "Üç ay kesin, üç ay senaryo",
+    alt: "Açıklanan aylar kesin, kalanı senaryo",
     cizim: ocakEmekliYelpaze
   },
   "ocak-2027-memur-zammi": {
@@ -2598,8 +2656,8 @@ var KAPAKLAR = {
   },
   "yeniden-degerleme-orani-2026": {
     kicker: "Vergi · Yeniden değerleme",
-    baslik: "2026 yeniden değerleme oranı neredeyse belli",
-    alt: "On iki ayın on biri açıklandı: %27,68 ile %28,01 arası",
+    baslik: "2026 yeniden değerleme oranı: hesap %27,83",
+    alt: "Ekim, önceden hesaplanan aralığın içinde kaldı",
     cizim: ydoEkimDuyarliligi
   },
   "pesin-indirim-mi-taksit-mi": {
@@ -2659,7 +2717,7 @@ var KAPAKLAR = {
   "en-dusuk-emekli-ayligi-ocak-2027": {
     kicker: "Sosyal güvenlik · Emekli aylığı",
     baslik: "Ocak zammı en düşük aylığa yansır mı?",
-    alt: "Taban 23.552 TL'de kalırsa 21.379 TL'nin altındaki aylığa zam yok",
+    alt: "Taban 23.552 TL'de kalırsa 21.373 TL'nin altındaki aylığa zam yok",
     cizim: tabanOcak2027
   },
   "sgk-devlet-katkisi-kalkti": {

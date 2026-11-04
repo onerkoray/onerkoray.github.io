@@ -62,7 +62,10 @@ function senaryolar() {
 function alanlar() {
   var a = O.aralik(), g21 = O.geriyeDonuk(2021), d = O.dilimPenceresi(a.alt.oran, a.ust.oran);
   var b = ufeBandi(), m1 = O.mtvOrnek(a.alt.oran), m2 = O.mtvOrnek(a.ust.oran);
+  var k = O.kesin();
   return {
+    kesinOran: yz(k.oran), ekimAylik: yz(k.aylik), ekimYillik: yz(k.yillik),
+    dilim1Kesin: nf.format(Math.round(O.dilimPenceresi(k.oran, k.oran)[0].hamAlt)) + " TL",
     oranAlt: yz(a.alt.oran), oranUst: yz(a.ust.oran), oran0: yz(O.senaryo(0).oran),
     altAylik: yz(a.alt.aylik), ustAylik: yz(a.ust.aylik), altAy: ayAdi(a.altAy), ustAy: ayAdi(a.ustAy),
     duyar: puan(O.duyarlilik()),

@@ -16,8 +16,8 @@
  * gelsin oranın kalacağı aralığın hesabı.
  *
  * Veri: yi-ufe-2026-09.json (TCMB EVDS TP.TUFE1YI.T1, TÜİK Yİ-ÜFE 2003=100,
- * 22 Ekim 2026'da indirildi). Ekim 2026 endeksi TÜİK'in 3 Kasım 2026
- * bülteniyle gelir; o gün anlık görüntü yenilenir ve senaryo kesinleşir.
+ * 22 Ekim 2026'da indirildi). Ekim 2026 endeksi 3 Kasım bülteniyle geldi ve
+ * ayrı kayıtta (ekim2026) duruyor: aralık analizi Ekim'siz kalır, kesin() onu kullanır.
  */
 (function (kok, fabrika) {
   if (typeof module === "object" && module.exports) {
@@ -108,6 +108,13 @@
     });
   }
 
+  /** Ekim açıklandıktan sonraki kesin hesap (resmî oran tebliğle ilan edilir). */
+  function kesin() {
+    var e = V.ekim2026.endeks, ek = {};
+    ek["2026-10"] = e;
+    return { oran: oran(2026, ek), aylik: (e / E["2026-09"] - 1) * 100, yillik: (e / E["2025-10"] - 1) * 100 };
+  }
+
   /** MTV örneği: 1301–1600 cm³, 1–3 yaş, (I) tarifesinin ilk kademesi. */
   function mtvOrnek(oranYuzde) {
     var t = M.TARIFE_I[1].satir[0][0];
@@ -117,6 +124,6 @@
   return {
     VERI: V, KESIR_PAYI: KESIR_PAYI, donem: donem, oran: oran, ilan: ilan, senaryo: senaryo,
     duyarlilik: duyarlilik, sonIkiYil: sonIkiYil, aralik: aralik, bilinenPay: bilinenPay, geriyeDonuk: geriyeDonuk,
-    dilimPenceresi: dilimPenceresi, mtvOrnek: mtvOrnek
+    dilimPenceresi: dilimPenceresi, mtvOrnek: mtvOrnek, kesin: kesin
   };
 });

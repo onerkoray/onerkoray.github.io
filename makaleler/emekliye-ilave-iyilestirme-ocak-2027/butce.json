@@ -1,0 +1,15 @@
+{
+  "kaynak": {
+    "sunum": "Çalışma ve Sosyal Güvenlik Bakanlığı, TBMM Plan ve Bütçe Komisyonu 2027 bütçe sunumu, 3 Kasım 2026",
+    "url": "https://www.csgb.gov.tr/cgm/haberler/03112026/",
+    "okundu": "2026-11-04",
+    "dosya": "2027 Yılı Cumhurbaşkanlığı Yıllık Programı, Tablo II:1, s.111"
+  },
+  "birim": "bin TL",
+  "bakanlik": { "toplam": 2395824844, "merkez": 7512634, "sgk": 2266365277, "iskur": 121946933, "aktarim": 2388312210 },
+  "aylikDosya": {
+    "2023": { "kamu": 2298014, "hizmet": 10237035, "bagimsiz": 2701073, "sandik": 110204 },
+    "2024": { "toplam": 15985769 },
+    "2025": { "kamu": 2364774, "hizmet": 11082322, "bagimsiz": 2757329, "sandik": 117115, "toplam": 16321540 }
+  }
+}
