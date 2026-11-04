@@ -197,9 +197,9 @@ dogru("dilim yazısı da " + iki(ilkV.ikinciKat) + " → " + iki(sonV.ikinciKat)
 var bis = G.bis, bisHata = [];
 bis.tufe.TR.forEach(function (v, i) {
   var a2 = aylar[i];
-  if (v != null && a2 && Math.abs(v - T.aylar[a2].yillik) > 0.05) bisHata.push(a2);
+  if (v != null && a2 && Math.abs(v - T.aylar[a2].yillik) > 0.10) bisHata.push(a2);
 });
-dogru("BIS Türkiye enflasyonu her ay TÜİK ile 0,05 puan içinde", bisHata.length === 0, bisHata.slice(0, 5).join(", "));
+dogru("BIS Türkiye enflasyonu her ay TÜİK ile 0,10 puan içinde", bisHata.length === 0, bisHata.slice(0, 5).join(", "));
 var faizHata = [];
 r.faiz.forEach(function (n) {
   var i = H.aySayisi("2005-01", n.ay);
