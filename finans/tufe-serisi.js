@@ -279,7 +279,8 @@
     "2026-06": {"aylik": 0.99, "yillik": 32.11},
     "2026-07": {"aylik": 1.78, "yillik": 31.75},
     "2026-08": {"aylik": 1.84, "yillik": 31.51},
-    "2026-09": {"aylik": 1.84, "yillik": 29.73}
+    "2026-09": {"aylik": 1.84, "yillik": 29.73},
+    "2026-10": {"aylik": 2.58, "yillik": 29.77}
   }/*VERI-SON*/;
   var anahtarlar = Object.keys(aylar).sort();
   return {

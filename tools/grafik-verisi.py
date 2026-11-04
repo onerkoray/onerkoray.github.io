@@ -42,11 +42,15 @@
 7. KİRA ARTIŞ ORANI — TÜFE'nin 12 aylık ortalamalara göre değişimi (TBK
    m.344). Aylık değişimlerin yuvarlanmış hâlinden zincirlemek eski
    aylarda 0,01 puan sapıyordu (Ağustos 2024 resmî %65,93, zincir 65,92).
-   Bu yüzden BIS'in tam hassasiyetli TÜFE ENDEKSİ (WS_LONG_CPI, 628)
-   kullanılır. Doğrulama: endeksten türeyen aylık değişim TÜİK'le HER ay
-   aynı (2026-09-27: 260/260), yıllık değişim 2007'den bu yana her ay
-   aynı; açıklanmış beş kira oranı çapa olarak tutmalı. Çıktı:
+   Bu yüzden TÜFE ENDEKSİ kullanılır: TCMB EVDS'den, Aralık 2025'e kadar
+   2003=100 (TP.FE.OKTG01), sonrası 2025=100 (TP.TUKFIY2025.GENEL) ile
+   zincirlenir. Doğrulama: endeksten türeyen aylık ve yıllık değişim TÜİK'le
+   HER ay aynı; açıklanmış beş kira oranı çapa olarak tutmalı. Çıktı:
    finans/kira-tufe.js.
+   Ekim 2026'ya kadar kaynak BIS WS_LONG_CPI idi. BIS, TÜİK'in baz yılı
+   değişiminden sonra seriyi yeniden kurdu: aylık değişim TÜİK'ten 0,07
+   puana kadar ayrıldı, kira oranları 0,01 kaydı ve gece işi 28 Ekim'den
+   itibaren reddetti. Reddetmesi doğruydu; eşik gevşetilmedi, kaynak değişti.
 
 8. TL MEVDUAT FAİZİ — TCMB, "Mevduat Faiz Oranları (Akım)", 1 aya kadar
    vadeli TL mevduat (TP.TRY.MT01), haftalık verinin aylık ortalaması.
@@ -89,7 +93,10 @@ MEVDUAT_HEDEF = os.path.join(KOK, "finans", "mevduat-faizi.js")
 MEVDUAT_SERI = "TP.TRY.MT01"
 MEVDUAT_ILK = "2005-01"
 MEVDUAT_URL = "https://evds3.tcmb.gov.tr/igmevdsms-dis/fe"
-KIRA_GECICI_EN_COK = 2       # BIS gecikirse TCMB ile en çok bu kadar ay uzatılır
+KIRA_GECICI_EN_COK = 2       # EVDS gecikirse TCMB ile en çok bu kadar ay uzatılır
+KIRA_SERI_ESKI = "TP.FE.OKTG01"          # TÜFE 2003=100, Aralık 2025'te biter
+KIRA_SERI_YENI = "TP.TUKFIY2025.GENEL"   # TÜFE 2025=100
+KIRA_BAZ_AYI = "2025-12"
 KIRA_ILK = "2008-12"          # 2010'da başlayan bir sözleşmenin yenilemesine yeter
 # Açıklanmış resmî oranlar (veri ayı → 12 aylık ortalama % değişim).
 KIRA_CAPA = {"2022-12": 72.31, "2024-06": 65.07, "2024-07": 65.93, "2025-12": 34.88, "2026-08": 31.79}
@@ -124,6 +131,9 @@ BIS_ALANLAR = [
     ("AU", "Avustralya"),
 ]
 BIS_ILK = "2005-01"
+# Türkiye satırı karşılaştırma grafiği içindir, yasal oran taşımaz. BIS'in
+# 2026'da yeniden kurduğu seri TÜİK'ten yıllıkta 0,06 puana kadar ayrılıyor.
+BIS_TR_TUFE_ESIK = 0.10
 BIS_URL = "https://stats.bis.org/api/v1/data/%s/M.%s%s?startPeriod=" + BIS_ILK + "&format=csv"
 
 EMTIA_SAYFA = "https://www.worldbank.org/en/research/commodity-markets"
@@ -421,7 +431,7 @@ def bis_dogrula(bis, kararlar):
         t = bis["tufe"]["TR"][i]
         if t is not None and ay in tufe:
             tufe_sinanan += 1
-            if abs(t - tufe[ay]) > 0.05:
+            if abs(t - tufe[ay]) > BIS_TR_TUFE_ESIK:
                 hata.append("BIS TR TÜFE %s = %.2f, TÜİK %.2f" % (ay, t, tufe[ay]))
     if faiz_sinanan < 190 or tufe_sinanan < 250:
         hata.append("BIS Türkiye satırı az sınandı (faiz %d ay, TÜFE %d ay)" % (faiz_sinanan, tufe_sinanan))
@@ -539,11 +549,34 @@ def makro_dogrula(makro):
 
 
 # ------------------------------------------------------------------ 7) kira
+def evds_aylik(seri):
+    govde = json.dumps({
+        "type": "json", "series": seri, "aggregationTypes": "avg", "formulas": "0",
+        "startDate": "01-01-2003", "endDate": dt.date.today().strftime("%d-%m-%Y"),
+        "frequency": "5", "decimalSeperator": ".", "decimal": "4", "dateFormat": "0",
+        "lang": "tr", "yon": "0", "sira": "0", "ozelFormuller": [],
+        "groupSeperator": False, "isRaporSayfasi": False}).encode("utf-8")
+    istek = urllib.request.Request(MEVDUAT_URL, data=govde, method="POST", headers={
+        "User-Agent": UA, "Content-Type": "application/json",
+        "Origin": "https://evds3.tcmb.gov.tr", "Referer": "https://evds3.tcmb.gov.tr/"})
+    with urllib.request.urlopen(istek, timeout=90) as y:
+        veri = json.loads(y.read().decode("utf-8"))
+    alan = seri.replace(".", "_")
+    return {x["Tarih"]: float(str(x[alan]).replace(",", "")) for x in veri.get("items", [])
+            if x.get("Tarih") and x.get(alan) not in (None, "", "ND")}
+
+
 def kira_endeks_cek():
-    import csv
-    metin = al("https://stats.bis.org/api/v1/data/WS_LONG_CPI/M.TR.628?startPeriod=2003-01&format=csv", 120).decode("utf-8")
-    return {r["TIME_PERIOD"]: float(r["OBS_VALUE"]) for r in csv.DictReader(io.StringIO(metin))
-            if r.get("OBS_VALUE") and r["OBS_VALUE"] != "NaN"}
+    """2003=100 serisi Aralık 2025'te biter; sonrası 2025=100 serisinin oranıyla
+    aynı tabana zincirlenir. 2025=100 serisinin eski yılları iki ondalıkta
+    kaba kalır (2005 değerleri 3–4 düzeyinde), bu yüzden tek başına kullanılmaz."""
+    eski = evds_aylik(KIRA_SERI_ESKI)
+    yeni = evds_aylik(KIRA_SERI_YENI)
+    endeks = {a: v for a, v in eski.items() if a <= KIRA_BAZ_AYI}
+    for a, v in yeni.items():
+        if a > KIRA_BAZ_AYI:
+            endeks[a] = eski[KIRA_BAZ_AYI] * v / yeni[KIRA_BAZ_AYI]
+    return endeks
 
 
 def kira_tufe():
@@ -553,16 +586,16 @@ def kira_tufe():
 
 
 def kira_uzat(endeks, tufe):
-    """BIS, TÜİK'in ayın 3'ündeki açıklamasını birkaç gün ya da hafta geç
-    yayımlayabilir; kira oranını arayan okur ise tam o gün geliyor. BIS'te
+    """Endeks kaynağı, TÜİK'in ayın 3'ündeki açıklamasını gecikmeli
+    yayımlayabilir; kira oranını arayan okur ise tam o gün geliyor. Endekste
     henüz olmayan aylar, sitenin TCMB'den aynı gün çektiği aylık değişimle
     (finans/tufe-serisi.js) zincirlenerek GEÇİCİ olarak eklenir. Aylık
     değişim iki basamağa yuvarlı olduğundan tek halkanın oran üzerindeki
     etkisi binde bir puanın altında; yine de bu aylar "gecici" diye
-    işaretlenir ve BIS gelince sessizce BIS değeriyle değiştirilir.
-    Geriye dönük ölçüm (2026-09-27): BIS'in son 1, 2 ya da 3 ayı silinip
-    uzatıldığında her ay BIS'le birebir aynı; 6 ayda 0,01 sapıyor. Bu
-    yüzden en çok KIRA_GECICI_EN_COK ay uzatılır; BIS daha geç kalırsa
+    işaretlenir ve endeks gelince sessizce onun değeriyle değiştirilir.
+    Geriye dönük ölçüm (2026-09-27): son 1, 2 ya da 3 ay silinip uzatıldığında
+    her ay endeksle birebir aynı; 6 ayda 0,01 sapıyor. Bu yüzden en çok
+    KIRA_GECICI_EN_COK ay uzatılır; endeks daha geç kalırsa
     oran eskir ve tools/kira-sayfa.js --check bayatlığı söyler."""
     uzun = dict(endeks)
     gecici = []
@@ -593,7 +626,7 @@ def kira_oranlari(endeks):
 
 
 def kira_dogrula(endeks, oran, tufe):
-    """endeks: yalnız BIS'ten gelen aylar (geçici uzatma sınanmaz)."""
+    """endeks: yalnız kaynaktan gelen aylar (geçici uzatma sınanmaz)."""
     hata = []
     ay = sorted(endeks)
     aylik = yillik = 0
@@ -603,11 +636,11 @@ def kira_dogrula(endeks, oran, tufe):
         if i >= 1:
             aylik += 1
             if abs(round(100 * (endeks[a] / endeks[ay[i - 1]] - 1), 2) - tufe[a]["aylik"]) > 0.001:
-                hata.append("BIS TR endeksi %s aylık değişimi TÜİK'ten farklı" % a)
+                hata.append("TÜFE endeksi %s aylık değişimi TÜİK'ten farklı" % a)
         if i >= 12 and a >= "2007-01":
             yillik += 1
             if abs(round(100 * (endeks[a] / endeks[ay[i - 12]] - 1), 2) - tufe[a]["yillik"]) > 0.001:
-                hata.append("BIS TR endeksi %s yıllık değişimi TÜİK'ten farklı" % a)
+                hata.append("TÜFE endeksi %s yıllık değişimi TÜİK'ten farklı" % a)
     if aylik < 250 or yillik < 220:
         hata.append("kira endeksi az sınandı (aylık %d, yıllık %d)" % (aylik, yillik))
     for a, v in KIRA_CAPA.items():
@@ -625,12 +658,12 @@ def kira_yaz(oran, gecici):
  * Kira artış oranı: TÜFE'nin 12 aylık ortalamalara göre değişimi — ÜRETİLİR.
  *
  * Anahtar VERİ AYI: "2026-08" → Eylül 2026'da yenilenen kiraya uygulanan oran.
- * Kaynak: BIS WS_LONG_CPI (TÜİK TÜFE endeksi, tam hassasiyet); üreteç
+ * Kaynak: TÜİK TÜFE endeksi, TCMB EVDS (2003=100 ve 2025=100 zinciri); üreteç
  * tools/grafik-verisi.py. Endeksin aylık değişimi TÜİK'le her ay aynı,
  * açıklanmış kira oranları çapa olarak sınanır.
  *
- * gecici: BIS'te henüz olmayan, TCMB'nin aylık değişimiyle zincirlenen
- * aylar. BIS yayımlayınca onun değeriyle değişir.
+ * gecici: endekste henüz olmayan, TCMB'nin aylık değişimiyle zincirlenen
+ * aylar. Endeks yayımlanınca onun değeriyle değişir.
  *
  * Lisans: MIT — Koray Öner, https://korayoner.dev/
  */
@@ -822,7 +855,7 @@ def main():
            if a in kira and kira[a] != eski_kira[a] and a not in eski_gecici]
     h7 += ["kira oranı geri gitti: %s artık yok" % a for a in eski_kira if a not in kira]
     if gecici:
-        print("Kira: BIS %s'te; %s TCMB aylık değişimiyle geçici eklendi." % (max(endeks), ", ".join(gecici)))
+        print("Kira: endeks %s'te; %s TCMB aylık değişimiyle geçici eklendi." % (max(endeks), ", ".join(gecici)))
     mevduat = mevduat_cek()
     h8 = mevduat_dogrula(mevduat, kararlar)
     eski_mevduat = mevduat_oku() or {}

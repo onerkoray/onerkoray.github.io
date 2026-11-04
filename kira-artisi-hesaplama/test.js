@@ -2,7 +2,7 @@
 /*!
  * Kira artışı aracının testi — oran, hukuk sınırları, zincir ve sayfa.
  *
- * Oran serisi (finans/kira-tufe.js) BIS'in tam hassasiyetli TÜFE
+ * Oran serisi (finans/kira-tufe.js) EVDS'nin TÜFE
  * endeksinden türüyor. Burada ikinci bir yoldan, sitenin kendi TÜFE
  * serisinin (finans/tufe-serisi.js, TÜİK'in yuvarlanmış aylık değişimleri)
  * zincirlenmesiyle yeniden hesaplanır. Aylık değişimler iki basamağa

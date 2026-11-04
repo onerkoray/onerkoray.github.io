@@ -2,12 +2,12 @@
  * Kira artış oranı: TÜFE'nin 12 aylık ortalamalara göre değişimi — ÜRETİLİR.
  *
  * Anahtar VERİ AYI: "2026-08" → Eylül 2026'da yenilenen kiraya uygulanan oran.
- * Kaynak: BIS WS_LONG_CPI (TÜİK TÜFE endeksi, tam hassasiyet); üreteç
+ * Kaynak: TÜİK TÜFE endeksi, TCMB EVDS (2003=100 ve 2025=100 zinciri); üreteç
  * tools/grafik-verisi.py. Endeksin aylık değişimi TÜİK'le her ay aynı,
  * açıklanmış kira oranları çapa olarak sınanır.
  *
- * gecici: BIS'te henüz olmayan, TCMB'nin aylık değişimiyle zincirlenen
- * aylar. BIS yayımlayınca onun değeriyle değişir.
+ * gecici: endekste henüz olmayan, TCMB'nin aylık değişimiyle zincirlenen
+ * aylar. Endeks yayımlanınca onun değeriyle değişir.
  *
  * Lisans: MIT — Koray Öner, https://korayoner.dev/
  */
@@ -232,9 +232,10 @@
     "2026-06": 32.03,
     "2026-07": 31.9,
     "2026-08": 31.79,
-    "2026-09": 31.49
+    "2026-09": 31.49,
+    "2026-10": 31.23
   }/*VERI-SON*/;
-  var gecici = /*GECICI*/["2026-09"]/*GECICI-SON*/;
+  var gecici = /*GECICI*/[]/*GECICI-SON*/;
   var aylar = Object.keys(oranlar).sort();
   return { oranlar: oranlar, gecici: gecici, ilkAy: aylar[0], sonAy: aylar[aylar.length - 1] };
 });
