@@ -51,7 +51,7 @@ t.gecsin("kısa cevap: teklif sunuldu", "teklif " + tarih(sunus) + "'da, son gü
 t.gecsin("tablo: teklif sunuldu", "Teklif " + tarih(sunus) + "'da sunuldu");
 t.gecsin("SSS: teklif sunuldu", "Teklif " + tarih(sunus) + "'da sunuldu; Anayasa m.161'e göre son gün 17 Ekim'di");
 t.gecmesin("bayat 'en geç' cümlesi", "teklif en geç 17 Ekim 2026'da gelir");
-t.dogru("gecerlilik ileri alındı", /name="gecerlilik" content="2026-11-04 \|/.test(t.html));
+t.dogru("gecerlilik ileri alındı", /name="gecerlilik" content="2026-12-05 \|/.test(t.html));
 t.dogru("yayın tarihi korunuyor", /"datePublished": "2026-10-03"/.test(t.html));
 t.gecsin("güncelleme satırı", "Güncelleme: 17 Ekim 2026");
 var d4 = K.dorduncuYil();
@@ -62,7 +62,7 @@ t.dogru("geçen yıl da süre içinde", d4.butceTeklifi.gelis <= K.butceSonGun(2
 /* 3 — Emekli zammının kesin kısmı: motorun kendi dönem hesabıyla aynı.
  * Açıklanmış aylar KESIN_AYLAR'dan; motorun dönemi Temmuz'dan başlar. */
 var ka = K.kesinAylar(), AYAD = { "07": "Temmuz", "08": "Ağustos", "09": "Eylül", "10": "Ekim", "11": "Kasım", "12": "Aralık" };
-t.dogru("açıklanmış üç ay", ka.length === 3, ka.length);
+t.dogru("açıklanmış dört ay", ka.length === 4, ka.length);
 ka.forEach(function (a) { t.gecsin(a.ay + " TÜFE", AYAD[a.ay.slice(5)] + " " + yz(a.oran)); });
 var taban = K.emekliTaban();
 var donem = EZ.donem(2027, 1);
@@ -70,14 +70,15 @@ var motorKesin = donem.aylar.slice(0, ka.length).reduce(function (b, a) { return
 t.yakin("taban = motorun açıklanmış aylar birikimi", taban, motorKesin, 1e-12);
 t.dogru("dönemin ilk ayları Temmuz–Eylül", donem.aylar[0].ay === 7 && donem.aylar[1].ay === 8 && donem.aylar[2].ay === 9);
 t.gecsin("emekli en az", "SSK ve Bağ-Kur zammı en az " + yz(taban));
-t.gecsin("üçünün bileşiği", "Üçünün bileşiği " + yz(taban) + ". Kalan üç ayın");
+t.gecsin("dördünün bileşiği", "Dördünün bileşiği " + yz(taban) + ". Kalan iki ayın");
 t.gecsin("SSS emekli", "SSK ve Bağ-Kur için en az " + yz(taban) + ". Ocak zammı");
 t.gecsin("SSS emekli payı", "bunun " + yz(taban) + "'sını oluşturuyor");
 
 /* 4 — Memur. */
-t.gecsin("memur taban", "Memur zammı en az " + yz(K.memurTaban(), 0));
+t.gecsin("memur taban", "Memur zammı en az " + yz(K.memurTaban()));
 t.gecsin("2026 ikinci yarı oranı", "o dönemin " + yz(K.memurIkinciYari(), 0) + "'lik");
-t.gecsin("fark eşiği", "Temmuz–Eylül'ün " + yz(taban) + "'sından sonra farkın doğması için Ekim–Aralık birikiminin " + yz(K.farkEsigi()) + "'yı aşması");
+t.dogru("fark doğdu", K.farkEsigi() < 0, K.farkEsigi());
+t.gecsin("fark cümlesi", "Temmuz–Ekim birikimi " + yz(taban) + " ile bu oranı aştı");
 t.yakin("fark eşiği tanımı", (1 + K.emekliTaban()) * (1 + K.farkEsigi()), 1 + K.memurIkinciYari(), 1e-12);
 
 /* 5 — MTV 2026. */

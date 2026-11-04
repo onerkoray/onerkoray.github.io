@@ -45,6 +45,14 @@ t.yakin("üst uç", a.ust.oran, oran(a.ust.aylik), 1e-9);
 t.gecsin("alt uç sayfada", yz(a.alt.oran));
 t.gecsin("üst uç sayfada", yz(a.ust.oran));
 t.gecsin("aralık cümlesi", yz(a.alt.oran) + " ile " + yz(a.ust.oran));
+/* Ekim açıklandı: kesin hesap bağımsız kurulur ve aralığın içinde kalmalı. */
+var ekim = require("./yi-ufe-2026-09.json").ekim2026.endeks;
+var kesinOran = ((bilinen + ekim) / payda - 1) * 100;
+t.yakin("kesin oran modülle aynı", O.kesin().oran, kesinOran, 1e-9);
+t.gecsin("kesin oran sayfada", "Hesap: " + yz(kesinOran));
+t.gecsin("Ekim aylık", "aylık " + yz((ekim / E["2026-09"] - 1) * 100));
+t.gecsin("Ekim yıllık", "yıllık " + yz((ekim / E["2025-10"] - 1) * 100));
+t.dogru("gerçekleşen aralığın içinde", kesinOran >= a.alt.oran && kesinOran <= a.ust.oran);
 t.gecsin("en yavaş ay", yz(a.alt.aylik) + " , Aralık 2024");
 t.gecsin("en hızlı ay", yz(a.ust.aylik) + " , Nisan 2026");
 t.gecsin("Ekim sıfır", "hiç artmasa bile " + yz(oran(0)));
@@ -80,7 +88,7 @@ B.parametre(2026).dilimler.filter(function (x) { return x[0] !== null; }).map(fu
   t.gecsin((i + 1) + ". eşik en az sayfada", S.tam(Math.ceil(d[i].enAz)));
 });
 t.gecsin("birinci dilim farkı", S.tam(Math.round(d[0].hamUst - d[0].hamAlt)) + " TL fark");
-t.gecsin("SSS 243 bin", "en çok 243 bin TL");
+t.gecsin("SSS birinci dilim", Math.round(190000 * (1 + kesinOran / 100)).toLocaleString("tr-TR") + " TL");
 t.dogru("243 bin doğru", Math.floor(d[0].hamUst / 1000) === 243);
 
 /* 5 — MTV: tarife modülünden. */
@@ -101,6 +109,6 @@ t.dogru("aralık bandın içinde", a.alt.oran > b.min && a.ust.oran < b.max);
 t.gecsin("ÜFE bandı sayfada", yz(b.min) + " ile " + yz(b.max));
 
 /* 7 — Takvim: TÜİK Ekim bülteni 3 Kasım 2026. */
-t.gecsin("3 Kasım", "3 Kasım 2026");
+t.gecsin("3 Kasım", "3 Kasım'da");
 
 t.bitir();

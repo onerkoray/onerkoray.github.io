@@ -114,10 +114,10 @@
     return d.toISOString().slice(0, 10);
   }
 
-  /* Ocak 2027 emekli zammının KESİNLEŞEN kısmı: açıklanmış Temmuz, Ağustos
-     ve Eylül 2026 (Eylül 5 Ekim'de açıklandı). Kalan üç ay ne olursa olsun
-     zam bunun altına inmez (aylık TÜFE negatif olmadıkça). */
-  var KESIN_AYLAR = ["2026-07", "2026-08", "2026-09"];
+  /* Ocak 2027 emekli zammının KESİNLEŞEN kısmı: açıklanmış Temmuz–Ekim 2026
+     (Ekim 3 Kasım'da açıklandı). Kalan iki ay ne olursa olsun zam bunun
+     altına inmez (aylık TÜFE negatif olmadıkça). */
+  var KESIN_AYLAR = ["2026-07", "2026-08", "2026-09", "2026-10"];
   function kesinAylar() {
     return KESIN_AYLAR.map(function (a) {
       var v = Tufe.aylar[a];
@@ -131,9 +131,12 @@
 
   /* Memur: Ocak 2027 = (1 + fark) × (1 + 2027 ilk yarı oranı) − 1;
      fark = max(0, (1 + Tem–Ara TÜFE) / (1 + 2026 ikinci yarı oranı) − 1).
-     Taban = sözleşme oranı. Farkın doğması için kalan aylarda gereken
-     birikim: (1 + ikinci yarı oranı) / (1 + açıklanmış aylar) − 1. */
-  function memurTaban() { return TS.oranlar["2027-1"]; }
+     Taban, açıklanmış aylarla doğan fark ve sözleşme oranıdır. Fark doğmadan
+     önce kalan aylarda gereken birikim: (1 + ikinci yarı oranı) / (1 + açıklanmış aylar) − 1. */
+  function memurTaban() {
+    var fark = Math.max(0, (1 + emekliTaban()) / (1 + memurIkinciYari()) - 1);
+    return (1 + fark) * (1 + TS.oranlar["2027-1"]) - 1;
+  }
   function memurIkinciYari() { return TS.oranlar["2026-2"]; }
   function farkEsigi() { return (1 + memurIkinciYari()) / (1 + emekliTaban()) - 1; }
 

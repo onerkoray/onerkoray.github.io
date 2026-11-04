@@ -48,9 +48,19 @@ function tablo(baslik, basliklar, satirlar) {
     }).join("\n") + "\n</tbody></table></div>";
 }
 
+/* Açıklanan ve kalan aylar veriden okunur: her TÜİK açıklamasında metin de ilerler. */
+var ACIK = bilinen.length, KALAN = eksik.length;
+var SAYI = { 1: "bir", 2: "iki", 3: "üç", 4: "dört", 5: "beş", 6: "altı" };
+var BELIRTME = { 1: "biri", 2: "ikisi", 3: "üçü", 4: "dördü", 5: "beşi" };
+function ayAdi(a) { return a.ad.split(" ")[0]; }
+var ACIK_ARALIK = ayAdi(bilinen[0]) + "–" + ayAdi(bilinen[ACIK - 1]);
+var KALAN_ARALIK = KALAN ? (KALAN === 1 ? ayAdi(eksik[0]) : ayAdi(eksik[0]) + "–" + ayAdi(eksik[KALAN - 1])) : "";
+var KALAN_AY = SAYI[KALAN] + " ay";
+var ALT_SINIR = Z.memurZammi(d.birikim, O.ZAM_YILI, O.ZAM_AYI);
+
 function bilinenTablo() {
   var b = 0;
-  return tablo("Açıklanan aylar: Temmuz–Eylül 2026 TÜFE", ["Ay", "Aylık", "Birikim"],
+  return tablo("Açıklanan aylar: " + ACIK_ARALIK + " 2026 TÜFE", ["Ay", "Aylık", "Birikim"],
     bilinen.map(function (a) { b = (1 + b) * (1 + a.oran) - 1; return [a.ad, y2(a.oran), y2(b)]; }));
 }
 
@@ -67,21 +77,21 @@ function emekliGovde() {
   var h = [];
   h.push('<div class="legal-note verdict">\n<h2 id="kisa-cevap">Kısa cevap</h2>\n' +
     "<p><strong>Ocak 2027'de SSK ve Bağ-Kur aylıklarına yapılacak zam, Temmuz–Aralık 2026 enflasyonuna eşit</strong> (5510 sayılı Kanun m.55). " +
-    "Altı ayın üçü açıklandı: " + bilinen.map(function (a) { return a.ad.split(" ")[0] + " " + y2(a.oran); }).join(", ") +
-    "; birikim <strong>" + y2(d.birikim) + "</strong>. Bu kısım kesin; kalan üç ayda fiyatlar düşmedikçe zam bunun altına inmez.</p>\n" +
-    "<p>Kalan üç ay için TÜİK serisinden ve resmî tahminden kurulan üç senaryo zammı <strong>" + y2(aralikEmekli[0]) + " ile " + y2(aralikEmekli[1]) +
+    "Altı ayın " + BELIRTME[ACIK] + " açıklandı: " + bilinen.map(function (a) { return ayAdi(a) + " " + y2(a.oran); }).join(", ") +
+    "; birikim <strong>" + y2(d.birikim) + "</strong>. Bu kısım kesin; kalan " + KALAN_AY + "da fiyatlar düşmedikçe zam bunun altına inmez.</p>\n" +
+    "<p>Kalan " + KALAN_AY + " için TÜİK serisinden ve resmî tahminden kurulan üç senaryo zammı <strong>" + y2(aralikEmekli[0]) + " ile " + y2(aralikEmekli[1]) +
     "</strong> arasına koyuyor. Kesin oran " + tarihte(sonAciklama) + ", Aralık TÜFE'siyle belli olacak.</p>\n</div>");
-  h.push('<h2 id="kesin">Kesin olan: üç ay</h2>\n<p>Zam, aylık oranların toplamı değil bileşiği: her ay bir öncekinin üstüne eklenir. ' +
-    "Temmuz–Eylül'ün bileşiği " + y2(d.birikim) + ".</p>\n" + bilinenTablo());
-  h.push('<h2 id="senaryolar">Kalan üç ay için üç senaryo</h2>\n<p>Bunlar tahmin değil, varsayımı açık hesaplar. İkisi doğrudan TÜİK serisinden: ' +
-    "son üç ayın hızının sürmesi ve geçen yılın aynı aylarının (" + gecen.map(y2).join(", ") + ") tekrarlanması. Üçüncüsü hükümetin Orta Vadeli " +
+  h.push('<h2 id="kesin">Kesin olan: ' + SAYI[ACIK] + " ay</h2>\n<p>Zam, aylık oranların toplamı değil bileşiği: her ay bir öncekinin üstüne eklenir. " +
+    "Açıklanan ayların bileşiği " + y2(d.birikim) + ".</p>\n" + bilinenTablo());
+  h.push('<h2 id="senaryolar">Kalan ' + KALAN_AY + ' için üç senaryo</h2>\n<p>Bunlar tahmin değil, varsayımı açık hesaplar. İkisi doğrudan TÜİK serisinden: ' +
+    "açıklanan ayların hızının sürmesi ve geçen yılın aynı aylarının (" + gecen.map(y2).join(", ") + ") tekrarlanması. Üçüncüsü hükümetin Orta Vadeli " +
     "Program'daki 2026 yıl sonu tahmini (" + y2(O.OVP_YIL_SONU) + "): ilk yarının " + y2(O.ilkYari()) + "'lik birikimi düşülünce ikinci yarıya ne kaldığını gösterir.</p>\n" +
-    tablo("Ocak 2027 SSK ve Bağ-Kur zammı, üç senaryo", ["Senaryo", "Ekim–Aralık aylık ortalama", "Ocak zammı"],
+    tablo("Ocak 2027 SSK ve Bağ-Kur zammı, üç senaryo", ["Senaryo", KALAN_ARALIK + " aylık ortalama", "Ocak zammı"],
       sen.map(function (s) { return [s.ad, y2(s.kalanAylik), "<strong>" + y2(s.emekli) + "</strong>"]; })) +
-    "\n<p>OVP senaryosunun Ekim–Aralık için ima ettiği aylık hız (" + y2(sen[2].kalanAylik) + "), son üç ayın hızının (" + y2(sen[0].kalanAylik) + ") epey altında. " +
-    "Yıl sonu tahmini tutacaksa son çeyrekte fiyat artışının belirgin biçimde yavaşlaması gerekiyor.</p>");
-  h.push('<h2 id="duyarlilik">Her yarım puan ne değiştirir?</h2>\n<p>Kalan üç ayın aylık ortalaması yarım puan değişince zam yaklaşık <strong>' + puan(adim) + "</strong> değişiyor.</p>\n" +
-    tablo("Kalan üç ay her ay aynı oranda artarsa", ["Ekim–Aralık her ay", "Ocak zammı"],
+    "\n<p>OVP senaryosunun " + KALAN_ARALIK + " için ima ettiği aylık hız (" + y2(sen[2].kalanAylik) + "), geçen yılın aynı aylarının ortalamasının (" + y2(sen[1].kalanAylik) + ") ve açıklanan ayların hızının (" + y2(sen[0].kalanAylik) + ") altında. " +
+    "Yıl sonu tahmininin tutması için fiyat artışının yılın kalanında belirgin biçimde yavaşlaması gerekiyor.</p>");
+  h.push('<h2 id="duyarlilik">Her yarım puan ne değiştirir?</h2>\n<p>Kalan ' + KALAN_AY + "ın aylık ortalaması yarım puan değişince zam yaklaşık <strong>" + puan(adim) + "</strong> değişiyor.</p>\n" +
+    tablo("Kalan " + KALAN_AY + " her ay aynı oranda artarsa", [KALAN_ARALIK + " her ay", "Ocak zammı"],
       duy.map(function (s, i) { return [y2(O.DUYARLILIK[i]), y2(s.emekli)]; })));
   h.push('<h2 id="aylik">Aylığınıza etkisi</h2>\n<p>Zam bugünkü aylığın üstüne ilan edilen oranla eklenir. Örnek aylıklarla:</p>\n' +
     tablo("Ocak 2027'de yeni aylık", ["Bugünkü aylık"].concat(sen.map(function (s) { return s.ad; })),
@@ -89,7 +99,7 @@ function emekliGovde() {
     '\n<p>En düşük aylığı alanlar için tablo farklı: taban tutar kanunla belirlenir ve Ocak zammı tabandakine kendiliğinden yansımaz. Ayrıntısı ' +
     '<a href="../en-dusuk-emekli-ayligi-ocak-2027/">Ocak 2027 zammı en düşük emekli aylığına yansır mı?</a> yazısında.</p>');
   h.push('<h2 id="takvim">Ne zaman belli olacak?</h2>\n<p>TÜİK kalan ayları şu günlerde açıklayacak: ' + takvimMetni() +
-    ". Son açıklamayla zam kesinleşir; sitedeki <a href=\"../../emekli-zammi-hesaplama/\">emekli zammı aracı</a> her açıklamanın ertesi günü kendiliğinden güncellenir.</p>");
+    ". Son açıklamayla zam kesinleşir; sitedeki <a href=\"../../emekli-zammi-hesaplama/\">emekli zammı aracı</a> her açıklamanın ertesi günü kendiliğinden güncellenir. Bakanlığın yasal zamın üstüne çalıştığını açıkladığı iyileştirme bu rakamlara dahil değil; bilinenler <a href=\"../emekliye-ilave-iyilestirme-ocak-2027/\">ilave iyileştirme yazısında</a>.</p>");
   return h.join("\n\n");
 }
 
@@ -99,34 +109,40 @@ function memurGovde() {
   var esik = O.farkEsigi();
   var ornekler = [60000, 80000, 100000];
   var ovp = sen[2];
+  var kesin = esik <= 0;     // birikim toplu sözleşme oranını aştıysa fark doğmuştur
   var h = [];
   h.push('<div class="legal-note verdict">\n<h2 id="kisa-cevap">Kısa cevap</h2>\n' +
     "<p><strong>Memur ve memur emeklilerinin Ocak 2027 zammı iki parçalı:</strong> toplu sözleşmedeki " + y2(TS_YENI) + " ile 2026'nın ikinci yarısına ait " +
     "enflasyon farkı. Fark, Temmuz–Aralık enflasyonunun toplu sözleşmedeki " + y2(TS_ONCEKI) + "'yi aşan kısmı.</p>\n" +
-    "<p>Temmuz–Eylül'de " + y2(d.birikim) + " birikti. Farkın doğması için kalan üç ayda toplam <strong>" + y2(esik) + "</strong> artış yetiyor; fark neredeyse kesin. " +
+    "<p>" + ACIK_ARALIK + " arasında " + y2(d.birikim) + " birikti. " +
+    (kesin ? "Bu oran " + y2(TS_ONCEKI) + "'yi geçtiği için <strong>fark doğdu</strong>: yılın kalanında fiyatlar düşmedikçe zam en az <strong>" + y2(ALT_SINIR.toplam) + "</strong>. "
+      : "Farkın doğması için kalan " + KALAN_AY + "da toplam <strong>" + y2(esik) + "</strong> artış yetiyor. ") +
     "Üç senaryoda memur zammı <strong>" + y2(aralikMemur[0]) + " ile " + y2(aralikMemur[1]) + "</strong> arasında; her senaryoda SSK ve Bağ-Kur zammının yaklaşık iki puan altında.</p>\n</div>");
   h.push("<h2 id=\"formul\">Zam nasıl hesaplanıyor?</h2>\n<p>Toplu sözleşme 2026'nın ikinci yarısı için " + y2(TS_ONCEKI) + ", 2027'nin ilk yarısı için " + y2(TS_YENI) +
     " artış öngörüyor. Altı aylık enflasyon " + y2(TS_ONCEKI) + "'yi aşarsa aşan kısım Ocak'ta fark olarak eklenir:</p>\n" +
     "<ul><li>fark = (1 + Temmuz–Aralık enflasyonu) ÷ (1 + " + y2(TS_ONCEKI) + ") − 1</li><li>zam = (1 + fark) × (1 + " + y2(TS_YENI) + ") − 1</li></ul>\n" +
     "<p>Örnek: Orta Vadeli Program'ın yıl sonu tahmini tutarsa altı aylık enflasyon " + y2(ovp.emekli) + " olur; fark " + y2(ovp.fark) +
     ", zam " + y2(ovp.memur) + ". Fark iki ondalıkla ilan edilir ve öyle uygulanır.</p>");
-  h.push('<h2 id="fark">Fark neredeyse kesin</h2>\n<p>Temmuz–Eylül birikimi (' + y2(d.birikim) + ") henüz " + y2(TS_ONCEKI) + "'nin altında. Aradaki boşluk, kalan üç ayda toplam " +
-    y2(esik) + "; ayda ortalama " + y2(Math.pow(1 + esik, 1 / 3) - 1) + ". Son üç ayın aylık ortalaması " + y2(O.sonUcAyHizi(d)) + "; bu hız sürerse eşik daha Ekim'de aşılır.</p>");
+  h.push(kesin
+    ? '<h2 id="fark">Fark doğdu, tutarı kaldı</h2>\n<p>' + ACIK_ARALIK + " birikimi (" + y2(d.birikim) + ") toplu sözleşmedeki " + y2(TS_ONCEKI) + "'yi aştı. Yıl bugünkü birikimle bitse bile fark " +
+      y2(ALT_SINIR.fark) + ", zam " + y2(ALT_SINIR.toplam) + " olurdu. Bundan sonra açıklanacak her ay farkı büyütür.</p>"
+    : '<h2 id="fark">Fark için ne gerekiyor?</h2>\n<p>' + ACIK_ARALIK + " birikimi (" + y2(d.birikim) + ") henüz " + y2(TS_ONCEKI) + "'nin altında. Aradaki boşluk, kalan " + KALAN_AY + "da toplam " +
+      y2(esik) + " artış.</p>");
   h.push('<h2 id="senaryolar">Üç senaryo: memur ve emekli yan yana</h2>\n' +
     tablo("Ocak 2027 zammı, üç senaryo", ["Senaryo", "Temmuz–Aralık enflasyonu", "Enflasyon farkı", "Memur zammı", "SSK ve Bağ-Kur zammı", "Aradaki fark"],
       sen.map(function (s) { return [s.ad, y2(s.emekli), y2(s.fark), "<strong>" + y2(s.memur) + "</strong>", y2(s.emekli), puan(s.emekli - s.memur)]; })) +
     "\n<p>Neden hep geride? Memur zammı, aynı altı aylık enflasyonun (1 + " + y2(TS_YENI) + ") ÷ (1 + " + y2(TS_ONCEKI) + ") = " +
     CARPAN.toFixed(4).replace(".", ",") + " katı: toplu sözleşmenin Ocak oranı bir önceki yarının oranından iki puan düşük. " +
     "Emekli zammında böyle bir indirim yok; o doğrudan altı aylık enflasyona eşit.</p>");
-  h.push('<h2 id="duyarlilik">Ekim–Aralık sabit hızla giderse</h2>\n' +
-    tablo("Ekim–Aralık aylık oranına göre memur zammı", ["Ekim–Aralık her ay", "Memur zammı", "SSK ve Bağ-Kur zammı"],
+  h.push('<h2 id="duyarlilik">' + KALAN_ARALIK + ' sabit hızla giderse</h2>\n' +
+    tablo(KALAN_ARALIK + " aylık oranına göre memur zammı", [KALAN_ARALIK + " her ay", "Memur zammı", "SSK ve Bağ-Kur zammı"],
       duy.map(function (s, i) { return [y2(O.DUYARLILIK[i]), y2(s.memur), y2(s.emekli)]; })));
   h.push('<h2 id="maas">Maaşınıza etkisi</h2>\n<p>Memur maaşı kadroya, dereceye ve ek göstergeye göre değişir; oran ise herkes için aynı. Örnek maaşlarla:</p>\n' +
     tablo("Ocak 2027'de yeni maaş", ["Bugünkü maaş"].concat(sen.map(function (s) { return s.ad; })),
       ornekler.map(function (a) { return [tl(a)].concat(sen.map(function (s) { return tl(Z.yeniAylik(a, s.memur)); })); })) +
     "\n<p>Aynı oran 4/c kapsamındaki memur emeklilerinin aylığına da uygulanır.</p>");
-  h.push('<h2 id="takvim">Fark hangi gün kesinleşir?</h2>\n<p>Farkı belirleyecek üç rakam kaldı. ' +
-    takvim.map(function (t) { return tarihte(t.tarih) + " " + t.ad.split(" ")[0] + " oranı"; }).join(", ") +
+  h.push('<h2 id="takvim">Fark hangi gün kesinleşir?</h2>\n<p>Farkı belirleyecek ' + SAYI[KALAN] + " rakam kaldı. " +
+    takvim.map(function (t) { return tarihte(t.tarih) + " " + ayAdi(t) + " oranı"; }).join(", ") +
     " yayımlanacak. Son rakamla fark ve zam kesinleşir; sitedeki <a href=\"../../memur-zammi-hesaplama/\">memur zammı aracı</a> her açıklamanın ertesi günü kendiliğinden güncellenir.</p>");
   return h.join("\n\n");
 }

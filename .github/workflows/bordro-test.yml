@@ -681,6 +681,13 @@ jobs:
         run: node tools/yillik-program-yazisi.js --check
       - name: Yıllık Program yazısının sayıları
         run: node makaleler/yillik-program-2027/sayi-testi.js
+      # Kasım 2026 sosyal güvenlik yazıları: gövde ve grafik modüllerden üretilir.
+      - name: Kasım sosyal güvenlik yazıları hesaptan üretilmiş mi
+        run: node tools/sgk-kasim-yazilari.js --check
+      - name: İlave iyileştirme yazısının sayıları
+        run: node makaleler/emekliye-ilave-iyilestirme-ocak-2027/sayi-testi.js
+      - name: Bir yıl daha çalışmak yazısının sayıları
+        run: node makaleler/bir-yil-daha-calismak-aylik/sayi-testi.js
 
       # En düşük emekli aylığı ve Ocak 2027 zammı: zam oranları emekli zammı
       # motorundan (Eylül 2026'ya kesilmiş TÜFE serisi), taban tutarları 5510

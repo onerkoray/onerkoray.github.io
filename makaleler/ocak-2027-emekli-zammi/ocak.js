@@ -8,7 +8,7 @@
  * Aylık TÜFE serisi TÜİK'in, TCMB'nin tablosundan gece güncellenir.
  *
  * Tahmin yapılmaz. Açıklanmamış aylar için dört işaretli senaryo:
- *   son üç ayın hızı sürerse · geçen yılın aynı ayları tekrarlanırsa ·
+ *   açıklanan ayların hızı sürerse · geçen yılın aynı ayları tekrarlanırsa ·
  *   OVP'nin 2026 yıl sonu tahmini tutarsa · sabit aylık oranlar (duyarlılık)
  *
  * Lisans: MIT — Koray Öner
@@ -45,8 +45,8 @@ function senaryolar() {
   var d = donem();
   var hiz = sonUcAyHizi(d), gecen = Z.gecenYilAyniAylar(d, T);
   return [
-    sonuc("Son üç ayın hızı sürerse", "Ekim–Aralık her ay, Temmuz–Eylül ortalaması kadar", Z.senaryo(d, hiz), d),
-    sonuc("Geçen yılın aynı ayları", "Ekim–Aralık 2025'in aylık oranları tekrarlanırsa", Z.senaryo(d, gecen), d),
+    sonuc("Açıklanan ayların hızı sürerse", "Kalan aylar, açıklanan ayların ortalaması kadar", Z.senaryo(d, hiz), d),
+    sonuc("Geçen yılın aynı ayları", "Kalan aylar, 2025'in aynı aylarının oranlarıyla", Z.senaryo(d, gecen), d),
     sonuc("OVP tahmini tutarsa", "2026 yıl sonu enflasyon %28,4 olursa", yilSonundan(OVP_YIL_SONU), d)
   ];
 }
@@ -56,7 +56,7 @@ function duyarlilik() {
   return DUYARLILIK.map(function (m) { return sonuc("Ayda " + m, "", Z.senaryo(d, m), d); });
 }
 
-/* Memura enflasyon farkı çıkması için kalan üç ayda gereken toplam artış. */
+/* Memura enflasyon farkı çıkması için kalan aylarda gereken toplam artış (doğduysa 0). */
 function farkEsigi() { return Z.farkEsigi(donem()); }
 
 module.exports = {

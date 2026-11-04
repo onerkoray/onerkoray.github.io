@@ -19,7 +19,7 @@ var KOK = path.join(__dirname, "..", "..");
 var Z = require(path.join(KOK, "finans", "emekli-zammi-motoru.js"));
 var T = require(path.join(KOK, "finans", "tufe-serisi.js"));
 
-var VERI_AYI = "2026-09";
+var VERI_AYI = "2026-10";
 /* Seriyi yazının veri ayına kes. */
 var SERI = (function () {
   var aylar = {};
@@ -92,9 +92,9 @@ function ocak2027() {
   return {
     donem: d, kesinBirikim: d.birikim, eksik: d.eksikSayisi,
     senaryolar: [
-      { ad: "Kalan üç ay her biri %1", oran: Z.senaryo(d, 0.01) },
-      { ad: "Kalan üç ay geçen yılın aynı aylarıyla", oran: Z.senaryo(d, gy), aylar: gy },
-      { ad: "Kalan üç ay her biri %2", oran: Z.senaryo(d, 0.02) }
+      { ad: "Kalan aylar her biri %1", oran: Z.senaryo(d, 0.01) },
+      { ad: "Kalan aylar geçen yılın aynı aylarıyla", oran: Z.senaryo(d, gy), aylar: gy },
+      { ad: "Kalan aylar her biri %2", oran: Z.senaryo(d, 0.02) }
     ]
   };
 }
