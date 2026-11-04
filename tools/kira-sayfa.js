@@ -148,7 +148,9 @@ function uret(s) {
   s = yerDegistir(s, /(<meta property="og:description" content=")[^"]*(")/, "$1" + kacis(aciklama) + "$2", "og:description", degisen);
   s = yerDegistir(s, /(<meta name="twitter:title" content=")[^"]*(")/, "$1" + kacis(baslik) + "$2", "twitter:title", degisen);
   s = yerDegistir(s, /(<meta name="twitter:description" content=")[^"]*(")/, "$1" + kacis(aciklama) + "$2", "twitter:description", degisen);
-  s = yerDegistir(s, /("dateModified": ")[^"]*(")/, "$1" + d.sonAciklama + "$2", "dateModified", degisen);
+  /* Tarihin sahibi sync-dates: veri açıklamadan sonraki gün gelirse commit tarihi ileride kalır. */
+  var tarih = (/"dateModified": "([^"]*)"/.exec(s) || [])[1] || "";
+  if (tarih < d.sonAciklama) s = yerDegistir(s, /("dateModified": ")[^"]*(")/, "$1" + d.sonAciklama + "$2", "dateModified", degisen);
   s = yerDegistir(s, /(<input type="date" id="in-date" value=")[^"]*(")/, "$1" + d.sonYenilemeAyi + "-01$2", "in-date", degisen);
 
   var liste = sss(d);
