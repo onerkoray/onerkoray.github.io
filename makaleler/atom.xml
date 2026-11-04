@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Yazılar</title>
-  <subtitle>Bordro, vergi, sosyal güvenlik ve kişisel finans üzerine, hesabı ve kaynağı verilen 69 yazı.</subtitle>
+  <subtitle>Bordro, vergi, sosyal güvenlik ve kişisel finans üzerine, hesabı ve kaynağı verilen 71 yazı.</subtitle>
   <link href="https://korayoner.dev/makaleler/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/makaleler/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/makaleler/atom.xml</id>
-  <updated>2026-10-29T14:23:18+03:00</updated>
+  <updated>2026-11-04T14:46:17+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Bir Yıl Daha Çalışmak Aylığı Ne Kadar Artırır?</title>
+    <link href="https://korayoner.dev/makaleler/bir-yil-daha-calismak-aylik/"/>
+    <id>https://korayoner.dev/makaleler/bir-yil-daha-calismak-aylik/</id>
+    <published>2026-11-04T14:46:17+03:00</published>
+    <updated>2026-11-04T14:46:17+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
+    <summary>Bugünkü kuralla 360 gün daha prim aylığı %5 artırır, ertelenen 12 aylık 20 yılda geri gelir; düşük kazançta artış sıfır. Program'ın reform başlığı için hesap.</summary>
+  </entry>
+
+  <entry>
+    <title>Emekliye İlave İyileştirme: Ocak 2027 Hesabı</title>
+    <link href="https://korayoner.dev/makaleler/emekliye-ilave-iyilestirme-ocak-2027/"/>
+    <id>https://korayoner.dev/makaleler/emekliye-ilave-iyilestirme-ocak-2027/</id>
+    <published>2026-11-04T14:46:17+03:00</published>
+    <updated>2026-11-04T14:46:17+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
+    <summary>Bakanlık Ocak 2027 için yasal zamın üstüne iyileştirme çalışıyor; rakam yok. Program'daki pay, bin liranın faturası ve seyyanen, oran, taban farkı hesaplandı.</summary>
+  </entry>
 
   <entry>
     <title>2027 Yıllık Programı: Emekli, Maaş ve SGK</title>
     <link href="https://korayoner.dev/makaleler/yillik-program-2027/"/>
     <id>https://korayoner.dev/makaleler/yillik-program-2027/</id>
     <published>2026-10-29T14:23:18+03:00</published>
-    <updated>2026-10-29T14:23:18+03:00</updated>
+    <updated>2026-11-04T14:46:17+03:00</updated>
     <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>Resmî Gazete'deki 2027 Yıllık Programı sitenin hesaplarıyla: %21 hedefi zamma nasıl yansır, SGK'da primler neden yetmiyor, hedefler geçmişte tuttu mu?</summary>
   </entry>
@@ -24,9 +44,9 @@
     <link href="https://korayoner.dev/makaleler/ocak-2027-emekli-zammi/"/>
     <id>https://korayoner.dev/makaleler/ocak-2027-emekli-zammi/</id>
     <published>2026-10-29T09:01:32+03:00</published>
-    <updated>2026-10-29T09:22:18+03:00</updated>
+    <updated>2026-11-04T14:46:17+03:00</updated>
     <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
-    <summary>SSK ve Bağ-Kur Ocak 2027 zammının yarısı Temmuz–Eylül TÜFE'siyle kesinleşti. Kalan üç ay için TÜİK serisinden üç senaryo ve aylığınıza etkisi.</summary>
+    <summary>SSK ve Bağ-Kur Ocak 2027 zammının büyük kısmı açıklanan aylarla kesinleşti. Kalan aylar için TÜİK serisinden üç senaryo ve aylığınıza etkisi.</summary>
   </entry>
 
   <entry>
@@ -34,9 +54,9 @@
     <link href="https://korayoner.dev/makaleler/ocak-2027-memur-zammi/"/>
     <id>https://korayoner.dev/makaleler/ocak-2027-memur-zammi/</id>
     <published>2026-10-29T09:01:32+03:00</published>
-    <updated>2026-10-29T09:22:18+03:00</updated>
+    <updated>2026-11-04T14:46:17+03:00</updated>
     <category term="maas-tazminat" label="Maaş &amp; Tazminat"/>
-    <summary>Memur ve memur emeklisinin Ocak 2027 zammı: toplu sözleşmedeki %5 ve enflasyon farkı. Fark neredeyse kesin; üç senaryoda zam ve maaşa etkisi.</summary>
+    <summary>Memur ve memur emeklisinin Ocak 2027 zammı: toplu sözleşmedeki %5 ve enflasyon farkı. Fark doğdu; üç senaryoda zam ve maaşa etkisi.</summary>
   </entry>
 
   <entry>
@@ -60,13 +80,13 @@
   </entry>
 
   <entry>
-    <title>2026 Yeniden Değerleme Oranı Ne Olacak?</title>
+    <title>2026 Yeniden Değerleme Oranı: Hesap %27,83</title>
     <link href="https://korayoner.dev/makaleler/yeniden-degerleme-orani-2026/"/>
     <id>https://korayoner.dev/makaleler/yeniden-degerleme-orani-2026/</id>
     <published>2026-10-22T15:40:15+03:00</published>
-    <updated>2026-10-22T15:40:15+03:00</updated>
+    <updated>2026-11-04T14:46:17+03:00</updated>
     <category term="vergi-belge" label="Vergi &amp; Belge"/>
-    <summary>Oranı belirleyen on iki ayın on biri açıklandı. Ekim'de üretici fiyatları ne kadar artarsa artsın oran dar bir aralıkta: 2027 vergi dilimleri ve MTV'ye etkisiyle.</summary>
+    <summary>TÜİK Ekim verisiyle 2026 yeniden değerleme oranının hesabı %27,83; resmî tebliğ bekleniyor. 2027 vergi dilimleri ve MTV'ye etkisi, Ekim gelmeden yapılan aralık.</summary>
   </entry>
 
   <entry>
@@ -94,9 +114,9 @@
     <link href="https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/"/>
     <id>https://korayoner.dev/makaleler/en-dusuk-emekli-ayligi-ocak-2027/</id>
     <published>2026-10-13T10:15:07+03:00</published>
-    <updated>2026-10-13T10:22:59+03:00</updated>
+    <updated>2026-11-04T14:46:17+03:00</updated>
     <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
-    <summary>Taban 23.552 TL kanunla değişmezse Ocak zammı tabandakine yansımaz: zam %10,17 olursa 21.379 TL altındaki aylığa artış yok. 2019'dan beri 15 dönemin hesabı.</summary>
+    <summary>Taban 23.552 TL kanunla değişmezse Ocak zammı tabandakine yansımaz: zam %10,20 olursa 21.373 TL altındaki aylığa artış yok. 2019'dan beri 15 dönemin hesabı.</summary>
   </entry>
 
   <entry>
@@ -144,7 +164,7 @@
     <link href="https://korayoner.dev/makaleler/ocak-2027-meclis-mi-belirleyecek/"/>
     <id>https://korayoner.dev/makaleler/ocak-2027-meclis-mi-belirleyecek/</id>
     <published>2026-10-03T16:30:21+03:00</published>
-    <updated>2026-10-17T17:32:44+00:00</updated>
+    <updated>2026-11-04T14:46:17+03:00</updated>
     <category term="mevzuat" label="Mevzuat"/>
     <summary>Meclis 1 Ekim'de açıldı. Ocak 2027'de maaşa, aylığa ve vergiye dokunan 11 kalemin 7'si Meclis oyuna bağlı değil. Kim karar veriyor, bugün ne kesin?</summary>
   </entry>
@@ -684,7 +704,7 @@
     <link href="https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/"/>
     <id>https://korayoner.dev/makaleler/torba-yasa-ne-var-ne-yok/</id>
     <published>2026-09-05T02:57:58+03:00</published>
-    <updated>2026-10-20T09:14:25+03:00</updated>
+    <updated>2026-11-04T14:46:17+03:00</updated>
     <category term="mevzuat" label="Mevzuat"/>
     <summary>Yeni torba yasada ne var? TBMM'nin 20 Ekim 2026'da taranan teklif listesinde yeni bir çok konulu torba kanun yok. Yürürlükteki kanunlar ve Ekim-Aralık takvimi.</summary>
   </entry>
