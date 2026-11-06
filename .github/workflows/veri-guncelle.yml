@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: veri-guncelle
@@ -111,3 +112,28 @@ jobs:
             git commit -m "Manifest, tarihler ve akışlar ($(date -u +%Y-%m-%d))"
           fi
           git push
+
+      # Bildirim yalnız push testlerinde vardı; bu iş 28 Ekim-4 Kasım 2026'da
+      # bir hafta düştü ve kimse görmedi. Tek takip issue'su açılır, sonraki
+      # düşüşler ona yorum düşer, yeşile dönünce kapanır.
+      - name: Düşerse takip issue'su aç
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KOSU: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          baslik="Gece veri işi düşüyor"
+          no=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$baslik in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$no" ]; then
+            gh issue comment "$no" --repo "$GITHUB_REPOSITORY" --body "Yine düştü: $KOSU"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$baslik" --body "Araçlar eski seriyle hesap yapıyor. Koşu: $KOSU. Yeşile dönen ilk koşuda bu issue kapanır."
+          fi
+
+      - name: Yeşile dönünce issue'yu kapat
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          no=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "Gece veri işi düşüyor in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$no" ]; then gh issue close "$no" --repo "$GITHUB_REPOSITORY" --comment "Gece işi yeşile döndü."; fi

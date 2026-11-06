@@ -110,3 +110,6 @@
 
 @media (prefers-reduced-motion: reduce) { .dy-sonuc { transition: none; } }
 @media print { .dy-sonuc { position: static; } }
+
+/* Odak yalnız ekran okuyucuya duyurmak için taşınır; şerit tıklanabilir değil. */
+#ay-alan:focus { outline: none; }

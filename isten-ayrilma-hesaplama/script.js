@@ -174,6 +174,8 @@
 
   /* ---------- hesap ---------- */
 
+  var sonGirdi = null;
+
   function hesapla() {
     fesihNotu();
 
@@ -200,7 +202,7 @@
 
     msg.hidden = true;
 
-    var r = C.hesapla({
+    sonGirdi = {
       iseGiris: giris,
       cikis: cikis,
       ciplakBrut: brut,
@@ -213,7 +215,8 @@
       /* Yaş dışı emeklilikte hangi şartın arandığını belirler; boş
          bırakılırsa motor bunu uyarı olarak söyler, sessizce varsaymaz. */
       sigortaBaslangici: el("in-sigorta").value || null
-    });
+    };
+    var r = C.hesapla(sonGirdi);
 
     ozetCiz(r);
     haklarCiz(r);
@@ -230,6 +233,11 @@
     });
   elFesih.addEventListener("change", hesapla);
   el("in-ihbar-calisildi").addEventListener("change", hesapla);
+
+  /* Aktarım yalnız bu tıklamayla yazılır; depo kapalıysa bağlantı boş form açar. */
+  el("btn-dayanma").addEventListener("click", function () {
+    try { window.CikisAktarim.yaz(window.sessionStorage, sonGirdi); } catch (e) { /* yoksay */ }
+  });
 
   hesapla();
 })();
