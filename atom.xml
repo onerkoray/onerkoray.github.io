@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Araçlar ve Yazılar</title>
-  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 64 hesaplama aracı ve arkalarındaki mevzuatı anlatan 71 yazı.</subtitle>
+  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 64 hesaplama aracı ve arkalarındaki mevzuatı anlatan 72 yazı.</subtitle>
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-11-06T06:13:07+03:00</updated>
+  <updated>2026-11-06T07:25:51+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>2025 Kesin Hesabı: Bütçe ve Borç Sınırı</title>
+    <link href="https://korayoner.dev/makaleler/kesin-hesap-2025-sayistay/"/>
+    <id>https://korayoner.dev/makaleler/kesin-hesap-2025-sayistay/</id>
+    <published>2026-11-06T07:25:51+03:00</published>
+    <updated>2026-11-06T07:25:51+03:00</updated>
+    <category term="vergi-belge" label="Vergi &amp; Belge"/>
+    <summary>Sayıştay'ın raporlarıyla hesap: harcama ödeneğin %0,1 altında, net borçlanma limiti ise yıl içinde 1,94 trilyondan 2,73 trilyon TL'ye çıktı. 2027 için ne söyler?</summary>
+  </entry>
 
   <entry>
     <title>Mali Takvim 2027: Zam, Vergi ve Veri Tarihleri</title>
