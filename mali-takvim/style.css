@@ -1,6 +1,5 @@
 /* Mali takvim — ay grupları ve gün sütunu; renk yalnız sıradaki satırı işaretler. */
 
-.mt-eylem { margin: 1.25rem 0 0; }
 .prose .mt-ay { margin: 1.75rem 0 0; padding: 0; }
 .mt-ay h3 { margin: 0 0 .5rem; font-size: var(--type-section, 1.15rem); }
 .mt-liste { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
@@ -8,10 +7,46 @@
 .mt-olay[hidden], .mt-ay[hidden] { display: none; }
 .mt-gun { font: 650 1.35rem/1.2 var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text); }
 .mt-icerik > p { margin: 0; }
+.mt-ad { color: var(--text); }
 .mt-icerik > p + p { margin-top: .25rem; color: var(--text-muted); }
 .mt-tur { margin-left: .35rem; font: 500 var(--type-label, .75rem)/1 var(--font-mono); color: var(--text-muted); }
 .mt-sirada .mt-gun { color: var(--brand-strong); }
-.mt-sirada .mt-ad strong::after { content: " · sıradaki"; font-weight: 500; color: var(--brand-strong); }
 .mt-bekleyen { margin: .75rem 0 2.5rem; padding-left: 1.1rem; }
 .mt-bekleyen li + li { margin-top: .5rem; }
 .mt-bag { font-size: var(--type-metadata, .85rem); }
+
+/* Panel: sıradaki tarih, son veri, süzgeç ve yıl şeridi. Tür renkleri veri
+   serisi tokenlarıdır; renk tek başına anlam taşımaz, her satırda tür yazılı. */
+.mt-panel { padding-block: 0 1.5rem; }
+.mt-panel[hidden] { display: none; }
+.mt-kartlar { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1rem; }
+.mt-kart { padding: 1.25rem 1.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-control, 10px); }
+.mt-kart p { margin: 0; }
+.mt-etiket { font: 500 var(--type-label, .75rem)/1.3 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+.mt-sayi { margin-top: .35rem !important; font-size: clamp(2.6rem, 6vw, 3.6rem); font-weight: 700; line-height: 1.05; font-variant-numeric: tabular-nums; color: var(--text); }
+.mt-birim { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
+.mt-ilk-ad { margin-top: .5rem !important; font-weight: 650; }
+.mt-ilk-alt { margin-top: .2rem !important; font-size: var(--type-metadata, .85rem); color: var(--text-muted); }
+.mt-ilk-bag { margin-top: .4rem !important; font-size: var(--type-metadata, .85rem); }
+.mt-suzgec-satir { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: center; justify-content: space-between; margin-top: 1.25rem; }
+.mt-suzgec { display: flex; flex-wrap: wrap; gap: .4rem; }
+.mt-serit-kap { margin-top: 1rem; overflow-x: auto; }
+.mt-serit { display: grid; grid-template-columns: repeat(14, minmax(2.6rem, 1fr)); gap: .25rem; min-width: 38rem; }
+.mt-serit-ay { display: flex; flex-direction: column; justify-content: flex-end; gap: .3rem; height: 5.5rem; padding: .3rem .2rem; background: none; border: 0; border-bottom: 2px solid var(--border); border-radius: 0; color: var(--text-muted); cursor: pointer; font: inherit; }
+.mt-serit-ay:hover:not(:disabled) { border-bottom-color: var(--brand); color: var(--text); }
+.mt-serit-ay:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.mt-serit-ay:disabled { cursor: default; }
+.mt-serit-simdi { border-bottom-color: var(--text); color: var(--text); font-weight: 650; }
+.mt-serit-gecti { opacity: .45; }
+.mt-yigin { display: flex; flex-direction: column-reverse; gap: 2px; }
+.mt-cizgi { display: block; height: 7px; border-radius: 1px; transition: opacity .18s ease; }
+.mt-cizgi.mt-tur-veri, .mt-tur-veri::before { background: var(--dv-1); }
+.mt-cizgi.mt-tur-vergi, .mt-tur-vergi::before { background: var(--dv-2); }
+.mt-cizgi.mt-tur-yururluk, .mt-tur-yururluk::before { background: var(--dv-3); }
+.mt-sonuk { opacity: .14; }
+.mt-serit-ad { font: 500 var(--type-label, .75rem)/1 var(--font-mono); text-align: center; }
+.mt-tur::before { content: ""; display: inline-block; width: .55em; height: .55em; margin-right: .3em; border-radius: 1px; }
+.mt-lejant { display: flex; flex-wrap: wrap; gap: .25rem .9rem; margin: .6rem 0 0; font-size: var(--type-metadata, .85rem); }
+.mt-lejant .mt-tur { margin-left: 0; }
+.mt-icerik > p.mt-canli { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+@media (max-width: 700px) { .mt-kartlar { grid-template-columns: 1fr; } }

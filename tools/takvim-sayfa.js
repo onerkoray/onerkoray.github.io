@@ -26,7 +26,7 @@ function liste() {
     aylar[ay].forEach(function (o) {
       var bag = o.araclar.map(function (a) { return '<a href="../' + a.yol + '">' + a.ad + "</a>"; }).join(" · ");
       h.push('<li class="mt-olay" data-tarih="' + o.tarih + '"><time class="mt-gun" datetime="' + o.tarih + '">' + gunAdi(o.tarih) + "</time>" +
-        '<div class="mt-icerik"><p class="mt-ad"><strong>' + o.ad + '</strong> <span class="mt-tur">' + ETIKET[o.tur] + "</span></p><p>" + o.etki + "</p>" +
+        '<div class="mt-icerik"><p class="mt-ad"><strong>' + o.ad + '</strong> <span class="mt-tur mt-tur-' + o.tur + '">' + ETIKET[o.tur] + "</span></p><p>" + o.etki + "</p>" +
         (bag ? '<p class="mt-bag">' + bag + "</p>" : "") + "</div></li>");
     });
     h.push("</ol>\n</section>");

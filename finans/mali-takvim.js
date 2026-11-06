@@ -22,6 +22,9 @@
 
   var AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
   var ILK = "2026-11", SON = "2027-12";   // takvim penceresi; gecerlilik bildirimi yenilemeyi hatırlatır
+  var KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+  var KIMLER = [{ kod: "calisan", ad: "Çalışan" }, { kod: "emekli", ad: "Emekli" }, { kod: "memur", ad: "Memur" },
+    { kod: "kira", ad: "Kira" }, { kod: "arac", ad: "Araç" }, { kod: "emlak", ad: "Emlak" }, { kod: "beyan", ad: "Beyan" }];
 
   function iki(n) { return (n < 10 ? "0" : "") + n; }
   function ayAdi(ay) { var p = ay.split("-"); return AYLAR[+p[1] - 1] + " " + p[0]; }
@@ -47,10 +50,10 @@
 
   function tufeOlayi(veriAy) {
     var ay = +veriAy.slice(5), o = { tarih: V.aciklamaTarihi(veriAy), tur: "veri", ad: ayAdi(veriAy) + " enflasyonu (TÜİK)",
-      etki: "Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.", araclar: [ARAC.kira, ARAC.enflasyon] };
-    if (ay === 12) { o.etki = "Ocak zammının oranı bu veriyle kesinleşir: SSK ve Bağ-Kur aylıkları ile memur enflasyon farkı."; o.araclar = [ARAC.emekli, ARAC.memur]; }
-    if (ay === 6) { o.etki = "Temmuz zammının oranı bu veriyle kesinleşir: SSK ve Bağ-Kur aylıkları ile memur enflasyon farkı."; o.araclar = [ARAC.emekli, ARAC.memur]; }
-    if (ay === 10) { o.etki = "Yeniden değerleme oranının hesabı bu ayın üretici fiyatlarıyla tamamlanır."; o.araclar = [ARAC.ydo, ARAC.kira]; }
+      etki: "Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.", araclar: [ARAC.kira, ARAC.enflasyon], kim: ["kira"], veriAy: veriAy };
+    if (ay === 12) { o.etki = "Ocak zammının oranı bu veriyle kesinleşir: SSK ve Bağ-Kur aylıkları ile memur enflasyon farkı."; o.araclar = [ARAC.emekli, ARAC.memur]; o.kim = ["emekli", "memur"]; }
+    if (ay === 6) { o.etki = "Temmuz zammının oranı bu veriyle kesinleşir: SSK ve Bağ-Kur aylıkları ile memur enflasyon farkı."; o.araclar = [ARAC.emekli, ARAC.memur]; o.kim = ["emekli", "memur"]; }
+    if (ay === 10) { o.etki = "Yeniden değerleme oranının hesabı bu ayın üretici fiyatlarıyla tamamlanır."; o.araclar = [ARAC.ydo, ARAC.kira]; o.kim = ["kira", "calisan"]; }
     return o;
   }
 
@@ -61,17 +64,17 @@
       if (o.tarih.slice(0, 7) > SON) break;
       if (o.tarih.slice(0, 7) >= ILK) l.push(o);
     }
-    l.push({ tarih: "2027-01-01", tur: "yururluk", ad: "2027 asgari ücreti, vergi dilimleri ve SGK tavanı", etki: "Yeni yıl parametreleri bordroya girer; net maaşlar bu tarihten itibaren değişir.", araclar: [ARAC.maas] });
-    l.push({ tarih: "2027-01-01", tur: "yururluk", ad: "Kıdem tazminatı tavanı (Ocak)", etki: "Tavan yılda iki kez yenilenir; çıkış tarihi hesabı değiştirebilir.", araclar: [ARAC.kidem] });
-    l.push({ tarih: "2027-07-01", tur: "yururluk", ad: "Kıdem tazminatı tavanı (Temmuz)", etki: "Tavan memur katsayısıyla yenilenir.", araclar: [ARAC.kidem] });
-    l.push({ tarih: sonGun(2027, 1), tur: "vergi", ad: "MTV 1. taksit son günü", etki: "Motorlu taşıtlar vergisi Ocak ve Temmuz'da iki eşit taksitte ödenir (197 s.K. m.10).", araclar: [ARAC.mtv] });
-    l.push({ tarih: sonGun(2027, 7), tur: "vergi", ad: "MTV 2. taksit son günü", etki: "Yılın ikinci taksiti (197 s.K. m.10).", araclar: [ARAC.mtv] });
-    l.push({ tarih: sonGun(2026, 11), tur: "vergi", ad: "Emlak vergisi 2. taksit son günü", etki: "İkinci taksit Kasım içinde ödenir (1319 s.K. m.30).", araclar: [] });
-    l.push({ tarih: sonGun(2027, 5), tur: "vergi", ad: "Emlak vergisi 1. taksit son günü", etki: "Birinci taksit Mart, Nisan ve Mayıs aylarında ödenir (1319 s.K. m.30).", araclar: [] });
-    l.push({ tarih: sonGun(2027, 11), tur: "vergi", ad: "Emlak vergisi 2. taksit son günü", etki: "İkinci taksit Kasım içinde ödenir (1319 s.K. m.30).", araclar: [] });
-    l.push({ tarih: "2027-03-25", tur: "vergi", ad: "Yıllık gelir vergisi beyannamesi", etki: "2026 gelirleri için kanundaki son gün Mart'ın 25'i (GVK m.92). İdare süreyi uzatabilir.", araclar: [ARAC.beyan] });
-    l.push({ tarih: sonGun(2027, 3), tur: "vergi", ad: "Gelir vergisi 1. taksit son günü", etki: "Yıllık beyanla tahakkuk eden vergi Mart ve Temmuz'da iki eşit taksitte ödenir (GVK m.117).", araclar: [ARAC.beyan] });
-    l.push({ tarih: sonGun(2027, 7), tur: "vergi", ad: "Gelir vergisi 2. taksit son günü", etki: "Yıllık beyanla tahakkuk eden verginin ikinci taksiti (GVK m.117).", araclar: [ARAC.beyan] });
+    l.push({ tarih: "2027-01-01", tur: "yururluk", ad: "2027 asgari ücreti, vergi dilimleri ve SGK tavanı", etki: "Yeni yıl parametreleri bordroya girer; net maaşlar bu tarihten itibaren değişir.", araclar: [ARAC.maas], kim: ["calisan"] });
+    l.push({ tarih: "2027-01-01", tur: "yururluk", ad: "Kıdem tazminatı tavanı (Ocak)", etki: "Tavan yılda iki kez yenilenir; çıkış tarihi hesabı değiştirebilir.", araclar: [ARAC.kidem], kim: ["calisan"] });
+    l.push({ tarih: "2027-07-01", tur: "yururluk", ad: "Kıdem tazminatı tavanı (Temmuz)", etki: "Tavan memur katsayısıyla yenilenir.", araclar: [ARAC.kidem], kim: ["calisan"] });
+    l.push({ tarih: sonGun(2027, 1), tur: "vergi", ad: "MTV 1. taksit son günü", etki: "Motorlu taşıtlar vergisi Ocak ve Temmuz'da iki eşit taksitte ödenir (197 s.K. m.10).", araclar: [ARAC.mtv], kim: ["arac"] });
+    l.push({ tarih: sonGun(2027, 7), tur: "vergi", ad: "MTV 2. taksit son günü", etki: "Yılın ikinci taksiti (197 s.K. m.10).", araclar: [ARAC.mtv], kim: ["arac"] });
+    l.push({ tarih: sonGun(2026, 11), tur: "vergi", ad: "Emlak vergisi 2. taksit son günü", etki: "İkinci taksit Kasım içinde ödenir (1319 s.K. m.30).", araclar: [], kim: ["emlak"] });
+    l.push({ tarih: sonGun(2027, 5), tur: "vergi", ad: "Emlak vergisi 1. taksit son günü", etki: "Birinci taksit Mart, Nisan ve Mayıs aylarında ödenir (1319 s.K. m.30).", araclar: [], kim: ["emlak"] });
+    l.push({ tarih: sonGun(2027, 11), tur: "vergi", ad: "Emlak vergisi 2. taksit son günü", etki: "İkinci taksit Kasım içinde ödenir (1319 s.K. m.30).", araclar: [], kim: ["emlak"] });
+    l.push({ tarih: "2027-03-25", tur: "vergi", ad: "Yıllık gelir vergisi beyannamesi", etki: "2026 gelirleri için kanundaki son gün Mart'ın 25'i (GVK m.92). İdare süreyi uzatabilir.", araclar: [ARAC.beyan], kim: ["beyan"] });
+    l.push({ tarih: sonGun(2027, 3), tur: "vergi", ad: "Gelir vergisi 1. taksit son günü", etki: "Yıllık beyanla tahakkuk eden vergi Mart ve Temmuz'da iki eşit taksitte ödenir (GVK m.117).", araclar: [ARAC.beyan], kim: ["beyan"] });
+    l.push({ tarih: sonGun(2027, 7), tur: "vergi", ad: "Gelir vergisi 2. taksit son günü", etki: "Yıllık beyanla tahakkuk eden verginin ikinci taksiti (GVK m.117).", araclar: [ARAC.beyan], kim: ["beyan"] });
     return l.sort(function (x, y) { return x.tarih < y.tarih ? -1 : x.tarih > y.tarih ? 1 : x.ad < y.ad ? -1 : 1; });
   }
 
@@ -81,6 +84,47 @@
     { ad: "2027 asgari ücreti", not: "Bakanlığın 3 Kasım sunumuna göre Tespit Komisyonu Aralık'ta toplanıyor.", arac: ARAC.maas },
     { ad: "Emekliye ilave iyileştirme", not: "Bakanlık çalışmayı duyurdu; oran, tutar ve tarih yok.", arac: { ad: "Bilinenler", yol: "makaleler/emekliye-ilave-iyilestirme-ocak-2027/" } }
   ];
+
+  function gunFarki(a, b) { return Math.round((Date.parse(b) - Date.parse(a)) / 864e5); }
+  function tarihAdi(iso) { var p = iso.split("-"); return (+p[2]) + " " + AYLAR[+p[1] - 1] + " " + p[0]; }
+  function filtre(liste, kim) { return kim ? liste.filter(function (o) { return o.kim.indexOf(kim) >= 0; }) : liste; }
+  function yaklasan(liste, bugun) { return liste.filter(function (o) { return o.tarih >= bugun; }); }
+  function yuzde(v) { return "%" + v.toFixed(2).replace(".", ","); }
+
+  /* Pencerenin her ayı: o ayın olayları ve bugüne göre yeri. */
+  function serit(liste, bugun) {
+    var h = [], a = +ILK.slice(0, 4) * 12 + (+ILK.slice(5) - 1), son = +SON.slice(0, 4) * 12 + (+SON.slice(5) - 1);
+    for (; a <= son; a++) {
+      var ay = Math.floor(a / 12) + "-" + iki(a % 12 + 1);
+      h.push({ ay: ay, kisa: KISA[a % 12], simdi: ay === bugun.slice(0, 7), gecti: ay < bugun.slice(0, 7),
+        olaylar: liste.filter(function (o) { return o.tarih.slice(0, 7) === ay; }) });
+    }
+    return h;
+  }
+
+  /* Olayın bugünkü durumu sitenin serilerinden: açıklandıysa sonuç, açıklanmadıysa birikim. */
+  function canli(o, k) {
+    if (!o.veriAy || !k.T) return null;
+    var v = k.T.aylar[o.veriAy];
+    if (v) return "Açıklandı: aylık " + yuzde(v.aylik) + ", yıllık " + yuzde(v.yillik) + ".";
+    var ay = +o.veriAy.slice(5), yil = +o.veriAy.slice(0, 4);
+    if ((ay === 12 || ay === 6) && k.Z) {
+      var d = ay === 12 ? k.Z.donem(yil + 1, 1, k.T) : k.Z.donem(yil, 7, k.T);
+      return d.aciklananSayisi ? "Bugüne kadar " + yuzde(d.birikim * 100) + " birikti, " + d.aciklananSayisi + " ay açıklandı." : null;
+    }
+    if (k.KT) { var son = Object.keys(k.KT.oranlar).sort().pop(); return "Güncel kira artış oranı " + yuzde(k.KT.oranlar[son]) + "."; }
+    return null;
+  }
+
+  /* Üst kart: son açıklanan ay ve ondan türeyen iki rakam. */
+  function sonVeri(k) {
+    if (!k.T || !k.T.aylar[k.T.sonAy]) return null;
+    var v = k.T.aylar[k.T.sonAy], parca = ["Aylık " + yuzde(v.aylik)];
+    if (k.Z) { var y = +k.T.sonAy.slice(0, 4), m = +k.T.sonAy.slice(5), d = m >= 7 ? k.Z.donem(y + 1, 1, k.T) : k.Z.donem(y, 7, k.T);
+      parca.push((m >= 7 ? "Ocak" : "Temmuz") + " zammı birikimi " + yuzde(d.birikim * 100)); }
+    if (k.KT) parca.push("Kira oranı " + yuzde(k.KT.oranlar[Object.keys(k.KT.oranlar).sort().pop()]));
+    return { ay: k.T.sonAy, ayAdi: ayAdi(k.T.sonAy), yillik: yuzde(v.yillik), alt: parca.join(" · ") };
+  }
 
   function kacis(s) { return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,"); }
 
@@ -96,5 +140,6 @@
     return s.join("\r\n") + "\r\n";
   }
 
-  return { ILK: ILK, SON: SON, BEKLEYENLER: BEKLEYENLER, sonGun: sonGun, olaylar: olaylar, ics: ics, ayAdi: ayAdi };
+  return { ILK: ILK, SON: SON, KIMLER: KIMLER, BEKLEYENLER: BEKLEYENLER, sonGun: sonGun, olaylar: olaylar, ics: ics, ayAdi: ayAdi, tarihAdi: tarihAdi,
+    gunFarki: gunFarki, filtre: filtre, yaklasan: yaklasan, serit: serit, canli: canli, sonVeri: sonVeri };
 });

@@ -93,7 +93,7 @@ async function main() {
   async function ac(yol) {
     var y = new Promise(function (r) { yuklendi = r; });
     await gonder("Page.navigate", { url: kok + "/" + yol });
-    await y;
+    await Promise.race([y, bekle(20000).then(function () { throw new Error("Sayfa yüklenmedi: " + yol); })]);
     await bekle(250);
     await gonder("Runtime.evaluate", { expression: YARDIM });
   }
@@ -206,6 +206,21 @@ async function main() {
     await ac("mali-takvim/");
     ok("tam bir sıradaki satır var", await js("document.querySelectorAll('.mt-sirada').length") === 1);
     ok("geçmiş satır ekranda yok", await js("Array.prototype.filter.call(document.querySelectorAll('.mt-olay'),function(l){return l.offsetParent!==null&&l.getAttribute('data-tarih')<new Date().toISOString().slice(0,10)}).length") === 0);
+    ok("sayaç doldu", /^(\d+|Bugün|Yarın)$/.test(await js("__m('mt-sayac')")), await js("__m('mt-sayac')"));
+    ok("son veri kartı TÜFE'yle aynı", (await js("__m('mt-son-deger')")) === "%" + T.aylar[T.sonAy].yillik.toFixed(2).replace(".", ","));
+    ok("14 aylık şerit", await js("document.querySelectorAll('.mt-serit-ay').length") === 14);
+    var hepsi = await js("document.querySelectorAll('.mt-olay:not([hidden])').length");
+    await js("document.querySelector('#mt-suzgec [data-kim=emekli]').click()");
+    var emekli = await js("document.querySelectorAll('.mt-olay:not([hidden])').length");
+    ok("süzgeç satırları azaltır", emekli > 0 && emekli < hepsi, emekli + " / " + hepsi);
+    ok("süzgeç adreste yalnız #", (await js("location.search + location.hash")) === "#emekli");
+    ok("sıradaki süzgece uyar", /zam/i.test(await js("document.querySelector('.mt-sirada').textContent")));
+    ok("dosya düğmesi sayıyı söyler", (await js("__m('mt-indir')")) === "Takvime ekle (" + emekli + " tarih)", await js("__m('mt-indir')"));
+    ok("Aralık satırı canlı birikim taşıyor", /birikti|Açıklandı/.test(await js("(document.querySelector('.mt-sirada .mt-canli')||{}).textContent||''")));
+    /* Yalnız # değişirse yükleme olayı gelmez; önce başka sayfaya gidilir. */
+    await ac("enflasyon-hesaplama/");
+    await ac("mali-takvim/#arac");
+    ok("adresteki süzgeç açılışta uygulanır", await js("document.querySelector('#mt-suzgec [data-kim=arac]').getAttribute('aria-pressed')") === "true");
 
     ok("sayfalarda yakalanmamış hata yok", hatalar.length === 0, hatalar.join(" | "));
   } catch (e) {
