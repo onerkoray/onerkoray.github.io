@@ -5,7 +5,7 @@
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-11-06T07:25:51+03:00</updated>
+  <updated>2026-11-06T08:33:20+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
 
@@ -24,7 +24,7 @@
     <link href="https://korayoner.dev/mali-takvim/"/>
     <id>https://korayoner.dev/mali-takvim/</id>
     <published>2026-11-06T05:59:45+03:00</published>
-    <updated>2026-11-06T06:05:23+03:00</updated>
+    <updated>2026-11-06T08:33:20+03:00</updated>
     <category term="vergi-belge" label="Vergi &amp; Belge"/>
     <summary>Enflasyon açıklamaları, Ocak ve Temmuz zamları, MTV, emlak ve gelir vergisi son günleri. Hangi tarihin hangi hesabı değiştirdiği, takvime eklenebilir.</summary>
   </entry>
