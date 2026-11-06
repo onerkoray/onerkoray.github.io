@@ -25,7 +25,7 @@
   <!-- ARAMA:BITIS -->
 
   <link rel="icon" href="../favicon.ico?v=73d21711" sizes="32x32">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.svg?v=a3e28772" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=76038ce5">
 
   <meta property="og:type" content="website">
@@ -46,7 +46,7 @@
   <meta name="twitter:image" content="https://korayoner.dev/images/mali-takvim-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=85e3ea92">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=a0e6b8f8">
 
   <script type="application/ld+json">
   {
@@ -132,7 +132,10 @@
   <main id="main">
     <section class="hero hero-tight" aria-labelledby="hero-title">
       <div class="wrap">
-        <nav class="breadcrumb" aria-label="Konum"><a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span> <a href="../araclar/">Araçlar</a> <span aria-hidden="true">›</span> Mali Takvim</nav>
+        <nav class="breadcrumb" aria-label="Konum">
+          <a href="../">Ana Sayfa</a> <span aria-hidden="true">›</span>
+          <a href="../araclar/">Araçlar</a> <span aria-hidden="true">›</span> Mali Takvim
+        </nav>
         <h1 id="hero-title">Mali takvim: zam, vergi ve veri tarihleri</h1>
         <p class="lede">Maaşınızı, aylığınızı, kiranızı ve vergi ödemenizi değiştiren tarihler tek listede. Her tarih, etkilediği hesaba bağlı. Geçen tarihler listeden kendiliğinden düşer.</p>
         <p class="mt-eylem"><button type="button" class="btn btn-primary" id="mt-indir">Takvime ekle (.ics)</button></p>
@@ -253,6 +256,28 @@
         <p><strong>Sınır:</strong> Resmî tatiller ve idarenin süre uzatmaları hesaba katılmadı. Ödeme yapmadan önce son günü GİB ya da belediyenizden doğrulayın. Tarihi ilan edilmemiş olaylara tarih yazılmadı.</p>
       </div>
     </section>
+
+  <!-- METODOLOJI-BLOGU:BASLANGIC -->
+  <section class="method" aria-labelledby="metod-title">
+    <div class="wrap">
+      <div class="method-card">
+        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
+             alt="Koray Öner" loading="lazy" decoding="async">
+        <div class="method-body">
+          <h2 id="metod-title">Bu aracı kim yaptı?</h2>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
+          <dl class="method-meta">
+            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
+            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
+            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- METODOLOJI-BLOGU:BITIS -->
+
   </main>
 
     <section class="related">
@@ -271,35 +296,13 @@
       <div class="wrap prose">
         <h2 id="ilgili-baslik">Bu konudaki yazılar</h2>
         <ul>
-          <li><a href="../makaleler/turkiyede-sosyal-guvenligin-donusumu/">Türkiye'de sosyal güvenliğin dönüşümü: aynı kariyer, üç kural</a></li>
-          <li><a href="../makaleler/istifa-edince-kidem-tazminati/">İstifa edince kıdem tazminatı alınır mı?</a></li>
-          <li><a href="../makaleler/sgk-primleri-2026-ne-degisti/">2026'da SGK primlerinde ne değişti?</a></li>
+          <li><a href="../makaleler/yeniden-degerleme-orani-2026/">2026 yeniden değerleme oranı: Ekim verisiyle hesap %27,83</a></li>
+          <li><a href="../makaleler/emekliye-ilave-iyilestirme-ocak-2027/">Emekliye ilave iyileştirme: Ocak 2027 için ne biliniyor, ne hesaplanır?</a></li>
+          <li><a href="../makaleler/vergi-borcunu-geciktirmek-karli-mi/">Vergi borcunu geciktirmek kârlı mı?</a></li>
         </ul>
       </div>
     </section>
     <!-- ILGILI:BITIS -->
-
-  <!-- METODOLOJI-BLOGU:BASLANGIC -->
-  <section class="method" aria-labelledby="metod-title">
-    <div class="wrap">
-      <div class="method-card">
-        <img class="method-portrait" src="../images/koray-oner-portre-360.webp" width="84" height="84"
-             alt="Koray Öner" loading="lazy" decoding="async">
-        <div class="method-body">
-          <h2 id="metod-title">Bu aracı kim yaptı, nasıl hesaplıyor?</h2>
-          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kullanılan oran ve tutarların dayandığı mevzuat ile resmî kaynaklar bu sayfadaki <em>Kaynaklar</em> bölümünde tek tek belirtilir. Ücret ve bordro hesaplarında kullanılan ortak çekirdek olan <a href="../bordro/">Bordro Motoru</a> ise metodolojisi, parametreleri ve değişiklik günlüğüyle birlikte açık yayımlanır.</p>
-          <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
-          <dl class="method-meta">
-            <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
-            <div><dt>Yöntem</dt><dd>Sayfadaki <em>Kaynaklar</em> bölümü</dd></div>
-            <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- METODOLOJI-BLOGU:BITIS -->
-
   </main>
 
   <footer class="site-footer" role="contentinfo">
@@ -318,9 +321,9 @@
     </div>
   </footer>
 
-  <script src="../finans/veri-durumu.js" defer></script>
-  <script src="../finans/mali-takvim.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="../finans/veri-durumu.js?v=51319390" defer></script>
+  <script src="../finans/mali-takvim.js?v=64bfbf4e" defer></script>
+  <script src="script.js?v=a34ffec2" defer></script>
   <script src="../script.js?v=9465d26e" defer></script>
 </body>
 </html>
