@@ -60,6 +60,9 @@
     });
   });
 
+  /* İşten Ayrılma Paketi'nden gelen, bu formda alanı olmayan girdiler. */
+  var aktarilan = {};
+
   function girdi() {
     var g = {
       cikis: $("d-cikis").value, iseGiris: $("d-giris").value, fesihTuru: fesih.value,
@@ -67,7 +70,9 @@
       nakit: sayi($("d-nakit")), yatirim: sayi($("d-yatirim")),
       zorunluGider: sayi($("d-zorunlu")), istegeBagliGider: sayi($("d-istege")), kisintiOrani: sayi($("d-kisinti")),
       borcTaksiti: sayi($("d-borc")), digerGelir: sayi($("d-diger")), gss: $("d-gss").value,
-      enflasyonYillik: sayi($("d-enf"))
+      enflasyonYillik: sayi($("d-enf")),
+      giydirmeEkleri: aktarilan.giydirmeEkleri, ihbarSuresiCalisildi: aktarilan.ihbarSuresiCalisildi,
+      son4AyBrutOrtalama: aktarilan.son4AyBrutOrtalama, sigortaBaslangici: aktarilan.sigortaBaslangici
     };
     var tutar = sayi($("k-tutar"));
     if (tutar > 0) {
@@ -264,5 +269,27 @@
     });
   }
 
+  /* İşten Ayrılma Paketi'nden gelindiyse form o girdilerle açılır (finans/cikis-aktarim.js). */
+  function aktarimAl() {
+    var v = null;
+    try { v = window.CikisAktarim.al(window.sessionStorage); } catch (e) { return; }
+    if (!v) return;
+    $("d-brut").value = nf.format(v.ciplakBrut);
+    fesih.value = v.fesihTuru;
+    $("d-giris").value = v.iseGiris;
+    $("d-cikis").value = v.cikis;
+    $("d-prim").value = String(v.son3YilPrimGunu);
+    $("d-izin").value = String(v.kullanilmayanIzinGunu);
+    aktarilan = v;
+    var kap = $("ay-alan");
+    kap.innerHTML = '<div class="pk-serit"><p class="pk-metin"><strong>İşten Ayrılma Paketi\'nden aktarıldı:</strong> ' +
+      "brüt maaş, fesih türü, işe giriş ve çıkış tarihi, prim ve izin günü. Ek ödemeler, ihbar seçimi ve son 4 ay ortalaması " +
+      "da hesaba girdi. Birikim ve gider alanları örnek; kendi rakamlarınızı yazın.</p>" +
+      '<button type="button" class="pk-dugme" id="ay-kaldir">Aktarımı kaldır</button></div>';
+    $("ay-kaldir").addEventListener("click", function () { aktarilan = {}; kap.innerHTML = ""; hesapla(); });
+    kap.focus();
+  }
+
+  aktarimAl();
   hesapla();
 })();

@@ -82,7 +82,8 @@
       iseGiris: g.iseGiris, cikis: g.cikis, fesihTuru: g.fesihTuru || "isveren",
       ciplakBrut: sayi(g.ciplakBrut), giydirmeEkleri: sayi(g.giydirmeEkleri),
       son3YilPrimGunu: sayi(g.son3YilPrimGunu), kullanilmayanIzinGunu: sayi(g.kullanilmayanIzinGunu),
-      ihbarSuresiCalisildi: !!g.ihbarSuresiCalisildi
+      ihbarSuresiCalisildi: !!g.ihbarSuresiCalisildi,
+      son4AyBrutOrtalama: g.son4AyBrutOrtalama, sigortaBaslangici: g.sigortaBaslangici
     });
   }
 

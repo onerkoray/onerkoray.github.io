@@ -718,6 +718,10 @@ jobs:
 
       - name: Dayanma süresi çekirdeği testleri
         run: node finansal-emniyet-testi/test.js
+      - name: Çıkış aktarımı iki araçta aynı paketi veriyor mu
+        run: node finans/cikis-aktarim-test.js
+      - name: Veri durumu takvimi ve metni
+        run: node finans/veri-durumu-test.js
 
       - name: Dayanma süresi sayfası hesaptan üretilmiş mi
         # Örnek hane, metindeki GSS primi ve ödenek tavanı, SSS yapısal
@@ -1141,6 +1145,13 @@ jobs:
         # Dil modelleri için site özeti (llmstxt.org biçimi); content.json'dan
         # scripts/build-llms.mjs ile yazılır.
         run: node scripts/build-llms.mjs --check
+
+      - name: Yayınlanan formlar tarayıcıda doğru sonuca varıyor mu
+        # Motor testleri formu görmez: alan ID'si değişirse ya da "1.234,56"
+        # yanlış okunursa araç makul görünen yanlış rakam gösterir. Maaş,
+        # emeklilik tarihi, beyanname, kredi, fatura ve çıkış aktarımı başsız
+        # Chrome'da doldurulur, ekran motorun rakamıyla karşılaştırılır.
+        run: node tools/form-test.js
 
       - name: Site içi arama çalışıyor mu
         # Pagefind dizini manifestten kurulan kopyadan üretilir (geçici
