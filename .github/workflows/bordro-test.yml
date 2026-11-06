@@ -722,6 +722,10 @@ jobs:
         run: node finans/cikis-aktarim-test.js
       - name: Veri durumu takvimi ve metni
         run: node finans/veri-durumu-test.js
+      - name: Kesin hesap yazısı hesaptan üretilmiş mi
+        run: node tools/kesin-hesap-yazisi.js --check
+      - name: Kesin hesap yazısının sayıları
+        run: node makaleler/kesin-hesap-2025-sayistay/sayi-testi.js
       - name: Mali takvim kuralları
         run: node mali-takvim/test.js
       - name: Mali takvim sayfası kuraldan üretilmiş mi

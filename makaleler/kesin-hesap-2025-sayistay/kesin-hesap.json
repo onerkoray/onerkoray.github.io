@@ -1,0 +1,387 @@
+{
+ "kaynak": {
+  "bildirim": "Sayıştay, 2025 Yılı Genel Uygunluk Bildirimi, Eylül 2026",
+  "url": "https://www.sayistay.gov.tr/reports/18QJvjVQWz-2025-yili-genel-uygunluk-bildirimi",
+  "disDenetim": "https://www.sayistay.gov.tr/reports/5pokKr4oDW-2025-yili-dis-denetim-genel-degerlendirme-raporu",
+  "bildirim2024": "https://www.sayistay.gov.tr/reports/5pokK2moDW-2024-yili-genel-uygunluk-bildirimi",
+  "bildirim2023": "https://www.sayistay.gov.tr/reports/47o8yM4gy6-2023-yili-genel-uygunluk-bildirimi",
+  "okundu": "2026-11-06"
+ },
+ "birim": "TL",
+ "konsolide": {
+  "baslangic": 16034404907000.0,
+  "yilSonu": 16768957447076.73,
+  "kullanilmayan": 753510180161.56,
+  "brutGider": 16015447266915.17,
+  "brutGelir": 14100981628205.54,
+  "netGider": 14640419465858.98,
+  "netGelir": 12826875456859.39,
+  "netAcik": -1813544008999.59,
+  "faiz": 2054382091713.28
+ },
+ "genelButce": {
+  "odenek": 14605800967000.0,
+  "gider": 14475371407125.09,
+  "gelirTahmin": 12670431309000.0,
+  "gelir": 12532984529699.34,
+  "vergiTahmin": 11138752778000.0,
+  "vergi": 11049827430515.1
+ },
+ "yedek": {
+  "baslangic": 111675992000.0,
+  "toplam": 172729583717.0,
+  "dusulen": 97522596754.0,
+  "kalan": 75206986963.0,
+  "aktarilan": 260106719187.0
+ },
+ "borcStoku": {
+  "2024": 9207300393093.33,
+  "2025": 13602338770224.96
+ },
+ "limit": {
+  "2023": {
+   "odenek": 4423341574000.0,
+   "gelir": 3762439808000.0,
+   "artis": 2,
+   "ek": 1457288394030.0,
+   "son": 2185932591045.0,
+   "ekKanun": "7456",
+   "ic": 861061936668.61,
+   "dis": 100150979213.71,
+   "net": 961212915882.32
+  },
+  "2024": {
+   "odenek": 11007879053000.0,
+   "gelir": 8353029549000.0,
+   "artis": 0,
+   "ek": 0,
+   "son": 2654849504000.0,
+   "ekKanun": null,
+   "ic": 1494554522661.37,
+   "dis": 121486135608.02,
+   "net": 1616040658269.39
+  },
+  "2025": {
+   "odenek": 14605800967000.0,
+   "gelir": 12670431309000.0,
+   "artis": 2,
+   "ek": 595000000000.0,
+   "son": 2728745047945.0,
+   "ekKanun": "7566",
+   "ic": 2527371544438.07,
+   "dis": 142919874529.76,
+   "net": 2670291418967.83
+  }
+ },
+ "bulgu": {
+  "tbmm": {
+   "mali": 278,
+   "mevzuat": 783,
+   "icKontrol": 41,
+   "toplam": 1102
+  },
+  "mahalli": {
+   "mali": 2675,
+   "mevzuat": 6821,
+   "icKontrol": 185,
+   "toplam": 9681
+  },
+  "tum": 10783
+ },
+ "genelToplam": {
+  "ad": "Genel Toplam",
+  "baslangic": 14605800967000.0,
+  "toplam": 15045658934668.87,
+  "gider": 14475371407125.09,
+  "kullanilmayan": 570287527543.78
+ },
+ "kurumlar": [
+  {
+   "ad": "Türkiye Büyük Millet Meclisi",
+   "baslangic": 17817190000.0,
+   "toplam": 15685238000.0,
+   "gider": 15464925337.06,
+   "kullanilmayan": 220312662.94
+  },
+  {
+   "ad": "Cumhurbaşkanlığı",
+   "baslangic": 16928146000.0,
+   "toplam": 16469914000.0,
+   "gider": 15808690159.22,
+   "kullanilmayan": 661223840.78
+  },
+  {
+   "ad": "Anayasa Mahkemesi Başkanlığı",
+   "baslangic": 789466000.0,
+   "toplam": 787664000.0,
+   "gider": 703495989.21,
+   "kullanilmayan": 84168010.79
+  },
+  {
+   "ad": "Yargıtay Başkanlığı",
+   "baslangic": 4010716000.0,
+   "toplam": 3943768000.0,
+   "gider": 3766960530.15,
+   "kullanilmayan": 176807469.85
+  },
+  {
+   "ad": "Danıştay Başkanlığı",
+   "baslangic": 2389043000.0,
+   "toplam": 2446543000.0,
+   "gider": 2394271928.65,
+   "kullanilmayan": 52271071.35
+  },
+  {
+   "ad": "Hâkimler ve Savcılar Kurulu",
+   "baslangic": 1187203000.0,
+   "toplam": 1201373000.0,
+   "gider": 1183755759.09,
+   "kullanilmayan": 17617240.91
+  },
+  {
+   "ad": "Sayıştay",
+   "baslangic": 3259505000.0,
+   "toplam": 3545305000.0,
+   "gider": 3446201078.16,
+   "kullanilmayan": 99103921.84
+  },
+  {
+   "ad": "Adalet Bakanlığı",
+   "baslangic": 280275802000.0,
+   "toplam": 287447639480.63,
+   "gider": 285626834460.32,
+   "kullanilmayan": 1820805020.31
+  },
+  {
+   "ad": "Milli Savunma Bakanlığı",
+   "baslangic": 623899190000.0,
+   "toplam": 839516834464.2,
+   "gider": 614807132550.95,
+   "kullanilmayan": 224709701913.25
+  },
+  {
+   "ad": "İçişleri Bakanlığı",
+   "baslangic": 96401694000.0,
+   "toplam": 109766342140.01,
+   "gider": 106919712693.65,
+   "kullanilmayan": 2846629446.36
+  },
+  {
+   "ad": "Dışişleri Bakanlığı",
+   "baslangic": 39035706000.0,
+   "toplam": 40178332160.0,
+   "gider": 36845248723.72,
+   "kullanilmayan": 3333083436.28
+  },
+  {
+   "ad": "Hazine ve Maliye Bakanlığı",
+   "baslangic": 6598875177000.0,
+   "toplam": 6788116613793.86,
+   "gider": 6743202684874.08,
+   "kullanilmayan": 44913928919.78
+  },
+  {
+   "ad": "Milli Eğitim Bakanlığı",
+   "baslangic": 1451715540000.0,
+   "toplam": 1506726643947.16,
+   "gider": 1444973363886.74,
+   "kullanilmayan": 61753280060.42
+  },
+  {
+   "ad": "Sağlık Bakanlığı",
+   "baslangic": 1020317291000.0,
+   "toplam": 1137527185563.41,
+   "gider": 1122846617797.11,
+   "kullanilmayan": 14680567766.3
+  },
+  {
+   "ad": "Ulaştırma ve Altyapı Bakanlığı",
+   "baslangic": 479273718000.0,
+   "toplam": 537336915618.92,
+   "gider": 512616895025.8,
+   "kullanilmayan": 24720020593.12
+  },
+  {
+   "ad": "Aile ve Sosyal Hizmetler Bakanlığı",
+   "baslangic": 407010627000.0,
+   "toplam": 413518574145.75,
+   "gider": 407728275427.65,
+   "kullanilmayan": 5790298718.1
+  },
+  {
+   "ad": "Enerji ve Tabii Kaynaklar Bakanlığı",
+   "baslangic": 45332020000.0,
+   "toplam": 45292163013.0,
+   "gider": 42537274488.08,
+   "kullanilmayan": 2754888524.92
+  },
+  {
+   "ad": "Kültür ve Turizm Bakanlığı",
+   "baslangic": 53202392000.0,
+   "toplam": 73939521348.62,
+   "gider": 67119931223.32,
+   "kullanilmayan": 6819590125.3
+  },
+  {
+   "ad": "Sanayi ve Teknoloji Bakanlığı",
+   "baslangic": 124497913000.0,
+   "toplam": 137451302977.13,
+   "gider": 135193591294.68,
+   "kullanilmayan": 2257711682.45
+  },
+  {
+   "ad": "Çevre, Şehircilik ve İklim Değişikliği Bakanlığı",
+   "baslangic": 219294468000.0,
+   "toplam": 375247425173.28,
+   "gider": 360259279425.76,
+   "kullanilmayan": 14988145747.52
+  },
+  {
+   "ad": "Ticaret Bakanlığı",
+   "baslangic": 56233383000.0,
+   "toplam": 58160294158.01,
+   "gider": 57557408127.8,
+   "kullanilmayan": 602886030.21
+  },
+  {
+   "ad": "Gençlik ve Spor Bakanlığı",
+   "baslangic": 231922274000.0,
+   "toplam": 241421666583.11,
+   "gider": 239075596435.97,
+   "kullanilmayan": 2346070147.14
+  },
+  {
+   "ad": "Tarım ve Orman Bakanlığı",
+   "baslangic": 438122123000.0,
+   "toplam": 487940042807.94,
+   "gider": 479204405658.12,
+   "kullanilmayan": 8735637149.82
+  },
+  {
+   "ad": "Milli Güvenlik Kurulu Genel Sekreterliği",
+   "baslangic": 380778000.0,
+   "toplam": 420169000.0,
+   "gider": 415505279.14,
+   "kullanilmayan": 4663720.86
+  },
+  {
+   "ad": "Milli İstihbarat Teşkilatı Başkanlığı",
+   "baslangic": 28896461000.0,
+   "toplam": 36435655383.93,
+   "gider": 36307747195.81,
+   "kullanilmayan": 127908188.12
+  },
+  {
+   "ad": "Jandarma Genel Komutanlığı",
+   "baslangic": 261262624000.0,
+   "toplam": 291633635288.85,
+   "gider": 276916794615.4,
+   "kullanilmayan": 14716840673.45
+  },
+  {
+   "ad": "Sahil Güvenlik Komutanlığı",
+   "baslangic": 16766308000.0,
+   "toplam": 16408452388.61,
+   "gider": 16043082246.18,
+   "kullanilmayan": 365370142.43
+  },
+  {
+   "ad": "Emniyet Genel Müdürlüğü",
+   "baslangic": 416426543000.0,
+   "toplam": 451856902881.42,
+   "gider": 418948737408.21,
+   "kullanilmayan": 32908165473.21
+  },
+  {
+   "ad": "Diyanet İşleri Başkanlığı",
+   "baslangic": 130119153000.0,
+   "toplam": 130154024609.61,
+   "gider": 129701090665.96,
+   "kullanilmayan": 452933943.65
+  },
+  {
+   "ad": "Afet ve Acil Durum Yönetimi Başkanlığı",
+   "baslangic": 266923268000.0,
+   "toplam": 243119510869.72,
+   "gider": 242922640569.86,
+   "kullanilmayan": 196870299.86
+  },
+  {
+   "ad": "Gelir İdaresi Başkanlığı",
+   "baslangic": 47519639000.0,
+   "toplam": 54796570322.51,
+   "gider": 53052284554.91,
+   "kullanilmayan": 1744285767.6
+  },
+  {
+   "ad": "Tapu ve Kadastro Genel Müdürlüğü",
+   "baslangic": 11172157000.0,
+   "toplam": 14976443888.4,
+   "gider": 14375753343.53,
+   "kullanilmayan": 600690544.87
+  },
+  {
+   "ad": "Meteoroloji Genel Müdürlüğü",
+   "baslangic": 4873426000.0,
+   "toplam": 4891792000.0,
+   "gider": 4525695143.18,
+   "kullanilmayan": 366096856.82
+  },
+  {
+   "ad": "Göç İdaresi Başkanlığı",
+   "baslangic": 36205532000.0,
+   "toplam": 41180136627.0,
+   "gider": 38234365754.5,
+   "kullanilmayan": 2945770872.5
+  },
+  {
+   "ad": "Avrupa Birliği Başkanlığı",
+   "baslangic": 6797254000.0,
+   "toplam": 9844909071.73,
+   "gider": 9779647921.05,
+   "kullanilmayan": 65261150.68
+  },
+  {
+   "ad": "Devlet Arşivleri Başkanlığı",
+   "baslangic": 1217806000.0,
+   "toplam": 1195965000.0,
+   "gider": 1045986340.06,
+   "kullanilmayan": 149978659.94
+  },
+  {
+   "ad": "İletişim Başkanlığı",
+   "baslangic": 6155014000.0,
+   "toplam": 7058848000.0,
+   "gider": 6888147514.84,
+   "kullanilmayan": 170700485.16
+  },
+  {
+   "ad": "Milli Saraylar İdaresi Başkanlığı",
+   "baslangic": 3113542000.0,
+   "toplam": 8335645065.06,
+   "gider": 8305635784.61,
+   "kullanilmayan": 30009280.45
+  },
+  {
+   "ad": "Strateji ve Bütçe Başkanlığı",
+   "baslangic": 290238912000.0,
+   "toplam": 80431745302.0,
+   "gider": 4788157269.77,
+   "kullanilmayan": 75643588032.23
+  },
+  {
+   "ad": "Çalışma ve Sosyal Güvenlik Bakanlığı",
+   "baslangic": 865536500000.0,
+   "toplam": 528848273595.0,
+   "gider": 513468158087.0,
+   "kullanilmayan": 15380115508.0
+  },
+  {
+   "ad": "İklim Değişikliği Başkanlığı",
+   "baslangic": 405463000.0,
+   "toplam": 402953000.0,
+   "gider": 369424555.79,
+   "kullanilmayan": 33528444.21
+  }
+ ]
+}
