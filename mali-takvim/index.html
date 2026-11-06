@@ -137,9 +137,32 @@
           <a href="../araclar/">Araçlar</a> <span aria-hidden="true">›</span> Mali Takvim
         </nav>
         <h1 id="hero-title">Mali takvim: zam, vergi ve veri tarihleri</h1>
-        <p class="lede">Maaşınızı, aylığınızı, kiranızı ve vergi ödemenizi değiştiren tarihler tek listede. Her tarih, etkilediği hesaba bağlı. Geçen tarihler listeden kendiliğinden düşer.</p>
-        <p class="mt-eylem"><button type="button" class="btn btn-primary" id="mt-indir">Takvime ekle (.ics)</button></p>
-        <p class="muted">Dosya tarayıcınızda kurulur, hiçbir yere gönderilmez.</p>
+        <p class="lede">Maaşınızı, aylığınızı, kiranızı ve vergi ödemenizi değiştiren tarihler tek listede. Size göre süzün: her tarih etkilediği hesaba bağlı, açıklanan veriler satırlara kendiliğinden işlenir.</p>
+      </div>
+    </section>
+
+    <section class="mt-panel" id="mt-panel" aria-label="Takvim paneli" hidden>
+      <div class="wrap">
+        <div class="mt-kartlar">
+          <div class="mt-kart" aria-live="polite">
+            <p class="mt-etiket">Sıradaki</p>
+            <p class="mt-sayi"><span id="mt-sayac">—</span> <span class="mt-birim" id="mt-sayac-birim"></span></p>
+            <p class="mt-ilk-ad" id="mt-ilk-ad"></p>
+            <p class="mt-ilk-alt"><span id="mt-ilk-tarih"></span> · <span id="mt-ilk-etki"></span></p>
+            <p class="mt-ilk-bag" id="mt-ilk-bag"></p>
+          </div>
+          <div class="mt-kart">
+            <p class="mt-etiket">Son veri · <span id="mt-son-ay"></span></p>
+            <p class="mt-sayi"><span id="mt-son-deger">—</span> <span class="mt-birim">yıllık enflasyon</span></p>
+            <p class="mt-ilk-alt" id="mt-son-alt"></p>
+          </div>
+        </div>
+        <div class="mt-suzgec-satir">
+          <div class="mt-suzgec" id="mt-suzgec" role="group" aria-label="Kime göre süz"></div>
+          <button type="button" class="btn btn-primary" id="mt-indir">Takvime ekle</button>
+        </div>
+        <div class="mt-serit-kap"><div class="mt-serit" id="mt-serit" role="group" aria-label="Aylara git"></div></div>
+        <p class="mt-lejant"><span class="mt-tur mt-tur-veri">Veri</span> <span class="mt-tur mt-tur-vergi">Vergi</span> <span class="mt-tur mt-tur-yururluk">Yürürlük</span> <span class="muted">Takvim dosyası tarayıcınızda kurulur, hiçbir yere gönderilmez.</span></p>
       </div>
     </section>
 
@@ -158,96 +181,96 @@
 <section class="mt-ay" data-ay="2026-11">
 <h3>Kasım 2026</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2026-11-03"><time class="mt-gun" datetime="2026-11-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Ekim 2026 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Yeniden değerleme oranının hesabı bu ayın üretici fiyatlarıyla tamamlanır.</p><p class="mt-bag"><a href="../makaleler/yeniden-degerleme-orani-2026/">Yeniden değerleme oranı</a> · <a href="../kira-artisi-hesaplama/">Kira artışı</a></p></div></li>
-<li class="mt-olay" data-tarih="2026-11-30"><time class="mt-gun" datetime="2026-11-30">30</time><div class="mt-icerik"><p class="mt-ad"><strong>Emlak vergisi 2. taksit son günü</strong> <span class="mt-tur">Vergi</span></p><p>İkinci taksit Kasım içinde ödenir (1319 s.K. m.30).</p></div></li>
+<li class="mt-olay" data-tarih="2026-11-03"><time class="mt-gun" datetime="2026-11-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Ekim 2026 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Yeniden değerleme oranının hesabı bu ayın üretici fiyatlarıyla tamamlanır.</p><p class="mt-bag"><a href="../makaleler/yeniden-degerleme-orani-2026/">Yeniden değerleme oranı</a> · <a href="../kira-artisi-hesaplama/">Kira artışı</a></p></div></li>
+<li class="mt-olay" data-tarih="2026-11-30"><time class="mt-gun" datetime="2026-11-30">30</time><div class="mt-icerik"><p class="mt-ad"><strong>Emlak vergisi 2. taksit son günü</strong> <span class="mt-tur mt-tur-vergi">Vergi</span></p><p>İkinci taksit Kasım içinde ödenir (1319 s.K. m.30).</p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2026-12">
 <h3>Aralık 2026</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2026-12-03"><time class="mt-gun" datetime="2026-12-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Kasım 2026 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2026-12-03"><time class="mt-gun" datetime="2026-12-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Kasım 2026 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-01">
 <h3>Ocak 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-01-01"><time class="mt-gun" datetime="2027-01-01">1</time><div class="mt-icerik"><p class="mt-ad"><strong>2027 asgari ücreti, vergi dilimleri ve SGK tavanı</strong> <span class="mt-tur">Yürürlük</span></p><p>Yeni yıl parametreleri bordroya girer; net maaşlar bu tarihten itibaren değişir.</p><p class="mt-bag"><a href="../asgari-ucret-zam-senaryosu/">2027'de maaşım</a></p></div></li>
-<li class="mt-olay" data-tarih="2027-01-01"><time class="mt-gun" datetime="2027-01-01">1</time><div class="mt-icerik"><p class="mt-ad"><strong>Kıdem tazminatı tavanı (Ocak)</strong> <span class="mt-tur">Yürürlük</span></p><p>Tavan yılda iki kez yenilenir; çıkış tarihi hesabı değiştirebilir.</p><p class="mt-bag"><a href="../kidem-tazminati-hesaplama/">Kıdem ve ihbar</a></p></div></li>
-<li class="mt-olay" data-tarih="2027-01-04"><time class="mt-gun" datetime="2027-01-04">4</time><div class="mt-icerik"><p class="mt-ad"><strong>Aralık 2026 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Ocak zammının oranı bu veriyle kesinleşir: SSK ve Bağ-Kur aylıkları ile memur enflasyon farkı.</p><p class="mt-bag"><a href="../emekli-zammi-hesaplama/">Emekli zammı</a> · <a href="../memur-zammi-hesaplama/">Memur zammı</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-01-01"><time class="mt-gun" datetime="2027-01-01">1</time><div class="mt-icerik"><p class="mt-ad"><strong>2027 asgari ücreti, vergi dilimleri ve SGK tavanı</strong> <span class="mt-tur mt-tur-yururluk">Yürürlük</span></p><p>Yeni yıl parametreleri bordroya girer; net maaşlar bu tarihten itibaren değişir.</p><p class="mt-bag"><a href="../asgari-ucret-zam-senaryosu/">2027'de maaşım</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-01-01"><time class="mt-gun" datetime="2027-01-01">1</time><div class="mt-icerik"><p class="mt-ad"><strong>Kıdem tazminatı tavanı (Ocak)</strong> <span class="mt-tur mt-tur-yururluk">Yürürlük</span></p><p>Tavan yılda iki kez yenilenir; çıkış tarihi hesabı değiştirebilir.</p><p class="mt-bag"><a href="../kidem-tazminati-hesaplama/">Kıdem ve ihbar</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-01-04"><time class="mt-gun" datetime="2027-01-04">4</time><div class="mt-icerik"><p class="mt-ad"><strong>Aralık 2026 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Ocak zammının oranı bu veriyle kesinleşir: SSK ve Bağ-Kur aylıkları ile memur enflasyon farkı.</p><p class="mt-bag"><a href="../emekli-zammi-hesaplama/">Emekli zammı</a> · <a href="../memur-zammi-hesaplama/">Memur zammı</a></p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-02">
 <h3>Şubat 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-02-01"><time class="mt-gun" datetime="2027-02-01">1</time><div class="mt-icerik"><p class="mt-ad"><strong>MTV 1. taksit son günü</strong> <span class="mt-tur">Vergi</span></p><p>Motorlu taşıtlar vergisi Ocak ve Temmuz'da iki eşit taksitte ödenir (197 s.K. m.10).</p><p class="mt-bag"><a href="../mtv-hesaplama/">MTV hesaplama</a></p></div></li>
-<li class="mt-olay" data-tarih="2027-02-03"><time class="mt-gun" datetime="2027-02-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Ocak 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-02-01"><time class="mt-gun" datetime="2027-02-01">1</time><div class="mt-icerik"><p class="mt-ad"><strong>MTV 1. taksit son günü</strong> <span class="mt-tur mt-tur-vergi">Vergi</span></p><p>Motorlu taşıtlar vergisi Ocak ve Temmuz'da iki eşit taksitte ödenir (197 s.K. m.10).</p><p class="mt-bag"><a href="../mtv-hesaplama/">MTV hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-02-03"><time class="mt-gun" datetime="2027-02-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Ocak 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-03">
 <h3>Mart 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-03-03"><time class="mt-gun" datetime="2027-03-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Şubat 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
-<li class="mt-olay" data-tarih="2027-03-25"><time class="mt-gun" datetime="2027-03-25">25</time><div class="mt-icerik"><p class="mt-ad"><strong>Yıllık gelir vergisi beyannamesi</strong> <span class="mt-tur">Vergi</span></p><p>2026 gelirleri için kanundaki son gün Mart'ın 25'i (GVK m.92). İdare süreyi uzatabilir.</p><p class="mt-bag"><a href="../beyanname-hesaplama/">Beyanname hesaplama</a></p></div></li>
-<li class="mt-olay" data-tarih="2027-03-31"><time class="mt-gun" datetime="2027-03-31">31</time><div class="mt-icerik"><p class="mt-ad"><strong>Gelir vergisi 1. taksit son günü</strong> <span class="mt-tur">Vergi</span></p><p>Yıllık beyanla tahakkuk eden vergi Mart ve Temmuz'da iki eşit taksitte ödenir (GVK m.117).</p><p class="mt-bag"><a href="../beyanname-hesaplama/">Beyanname hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-03-03"><time class="mt-gun" datetime="2027-03-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Şubat 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-03-25"><time class="mt-gun" datetime="2027-03-25">25</time><div class="mt-icerik"><p class="mt-ad"><strong>Yıllık gelir vergisi beyannamesi</strong> <span class="mt-tur mt-tur-vergi">Vergi</span></p><p>2026 gelirleri için kanundaki son gün Mart'ın 25'i (GVK m.92). İdare süreyi uzatabilir.</p><p class="mt-bag"><a href="../beyanname-hesaplama/">Beyanname hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-03-31"><time class="mt-gun" datetime="2027-03-31">31</time><div class="mt-icerik"><p class="mt-ad"><strong>Gelir vergisi 1. taksit son günü</strong> <span class="mt-tur mt-tur-vergi">Vergi</span></p><p>Yıllık beyanla tahakkuk eden vergi Mart ve Temmuz'da iki eşit taksitte ödenir (GVK m.117).</p><p class="mt-bag"><a href="../beyanname-hesaplama/">Beyanname hesaplama</a></p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-04">
 <h3>Nisan 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-04-05"><time class="mt-gun" datetime="2027-04-05">5</time><div class="mt-icerik"><p class="mt-ad"><strong>Mart 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-04-05"><time class="mt-gun" datetime="2027-04-05">5</time><div class="mt-icerik"><p class="mt-ad"><strong>Mart 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-05">
 <h3>Mayıs 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-05-03"><time class="mt-gun" datetime="2027-05-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Nisan 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
-<li class="mt-olay" data-tarih="2027-05-31"><time class="mt-gun" datetime="2027-05-31">31</time><div class="mt-icerik"><p class="mt-ad"><strong>Emlak vergisi 1. taksit son günü</strong> <span class="mt-tur">Vergi</span></p><p>Birinci taksit Mart, Nisan ve Mayıs aylarında ödenir (1319 s.K. m.30).</p></div></li>
+<li class="mt-olay" data-tarih="2027-05-03"><time class="mt-gun" datetime="2027-05-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Nisan 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-05-31"><time class="mt-gun" datetime="2027-05-31">31</time><div class="mt-icerik"><p class="mt-ad"><strong>Emlak vergisi 1. taksit son günü</strong> <span class="mt-tur mt-tur-vergi">Vergi</span></p><p>Birinci taksit Mart, Nisan ve Mayıs aylarında ödenir (1319 s.K. m.30).</p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-06">
 <h3>Haziran 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-06-03"><time class="mt-gun" datetime="2027-06-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Mayıs 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-06-03"><time class="mt-gun" datetime="2027-06-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Mayıs 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-07">
 <h3>Temmuz 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-07-01"><time class="mt-gun" datetime="2027-07-01">1</time><div class="mt-icerik"><p class="mt-ad"><strong>Kıdem tazminatı tavanı (Temmuz)</strong> <span class="mt-tur">Yürürlük</span></p><p>Tavan memur katsayısıyla yenilenir.</p><p class="mt-bag"><a href="../kidem-tazminati-hesaplama/">Kıdem ve ihbar</a></p></div></li>
-<li class="mt-olay" data-tarih="2027-07-05"><time class="mt-gun" datetime="2027-07-05">5</time><div class="mt-icerik"><p class="mt-ad"><strong>Haziran 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Temmuz zammının oranı bu veriyle kesinleşir: SSK ve Bağ-Kur aylıkları ile memur enflasyon farkı.</p><p class="mt-bag"><a href="../emekli-zammi-hesaplama/">Emekli zammı</a> · <a href="../memur-zammi-hesaplama/">Memur zammı</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-07-01"><time class="mt-gun" datetime="2027-07-01">1</time><div class="mt-icerik"><p class="mt-ad"><strong>Kıdem tazminatı tavanı (Temmuz)</strong> <span class="mt-tur mt-tur-yururluk">Yürürlük</span></p><p>Tavan memur katsayısıyla yenilenir.</p><p class="mt-bag"><a href="../kidem-tazminati-hesaplama/">Kıdem ve ihbar</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-07-05"><time class="mt-gun" datetime="2027-07-05">5</time><div class="mt-icerik"><p class="mt-ad"><strong>Haziran 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Temmuz zammının oranı bu veriyle kesinleşir: SSK ve Bağ-Kur aylıkları ile memur enflasyon farkı.</p><p class="mt-bag"><a href="../emekli-zammi-hesaplama/">Emekli zammı</a> · <a href="../memur-zammi-hesaplama/">Memur zammı</a></p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-08">
 <h3>Ağustos 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-08-02"><time class="mt-gun" datetime="2027-08-02">2</time><div class="mt-icerik"><p class="mt-ad"><strong>Gelir vergisi 2. taksit son günü</strong> <span class="mt-tur">Vergi</span></p><p>Yıllık beyanla tahakkuk eden verginin ikinci taksiti (GVK m.117).</p><p class="mt-bag"><a href="../beyanname-hesaplama/">Beyanname hesaplama</a></p></div></li>
-<li class="mt-olay" data-tarih="2027-08-02"><time class="mt-gun" datetime="2027-08-02">2</time><div class="mt-icerik"><p class="mt-ad"><strong>MTV 2. taksit son günü</strong> <span class="mt-tur">Vergi</span></p><p>Yılın ikinci taksiti (197 s.K. m.10).</p><p class="mt-bag"><a href="../mtv-hesaplama/">MTV hesaplama</a></p></div></li>
-<li class="mt-olay" data-tarih="2027-08-03"><time class="mt-gun" datetime="2027-08-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Temmuz 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-08-02"><time class="mt-gun" datetime="2027-08-02">2</time><div class="mt-icerik"><p class="mt-ad"><strong>Gelir vergisi 2. taksit son günü</strong> <span class="mt-tur mt-tur-vergi">Vergi</span></p><p>Yıllık beyanla tahakkuk eden verginin ikinci taksiti (GVK m.117).</p><p class="mt-bag"><a href="../beyanname-hesaplama/">Beyanname hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-08-02"><time class="mt-gun" datetime="2027-08-02">2</time><div class="mt-icerik"><p class="mt-ad"><strong>MTV 2. taksit son günü</strong> <span class="mt-tur mt-tur-vergi">Vergi</span></p><p>Yılın ikinci taksiti (197 s.K. m.10).</p><p class="mt-bag"><a href="../mtv-hesaplama/">MTV hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-08-03"><time class="mt-gun" datetime="2027-08-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Temmuz 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-09">
 <h3>Eylül 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-09-03"><time class="mt-gun" datetime="2027-09-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Ağustos 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-09-03"><time class="mt-gun" datetime="2027-09-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Ağustos 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-10">
 <h3>Ekim 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-10-04"><time class="mt-gun" datetime="2027-10-04">4</time><div class="mt-icerik"><p class="mt-ad"><strong>Eylül 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-10-04"><time class="mt-gun" datetime="2027-10-04">4</time><div class="mt-icerik"><p class="mt-ad"><strong>Eylül 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-11">
 <h3>Kasım 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-11-03"><time class="mt-gun" datetime="2027-11-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Ekim 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Yeniden değerleme oranının hesabı bu ayın üretici fiyatlarıyla tamamlanır.</p><p class="mt-bag"><a href="../makaleler/yeniden-degerleme-orani-2026/">Yeniden değerleme oranı</a> · <a href="../kira-artisi-hesaplama/">Kira artışı</a></p></div></li>
-<li class="mt-olay" data-tarih="2027-11-30"><time class="mt-gun" datetime="2027-11-30">30</time><div class="mt-icerik"><p class="mt-ad"><strong>Emlak vergisi 2. taksit son günü</strong> <span class="mt-tur">Vergi</span></p><p>İkinci taksit Kasım içinde ödenir (1319 s.K. m.30).</p></div></li>
+<li class="mt-olay" data-tarih="2027-11-03"><time class="mt-gun" datetime="2027-11-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Ekim 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Yeniden değerleme oranının hesabı bu ayın üretici fiyatlarıyla tamamlanır.</p><p class="mt-bag"><a href="../makaleler/yeniden-degerleme-orani-2026/">Yeniden değerleme oranı</a> · <a href="../kira-artisi-hesaplama/">Kira artışı</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-11-30"><time class="mt-gun" datetime="2027-11-30">30</time><div class="mt-icerik"><p class="mt-ad"><strong>Emlak vergisi 2. taksit son günü</strong> <span class="mt-tur mt-tur-vergi">Vergi</span></p><p>İkinci taksit Kasım içinde ödenir (1319 s.K. m.30).</p></div></li>
 </ol>
 </section>
 <section class="mt-ay" data-ay="2027-12">
 <h3>Aralık 2027</h3>
 <ol class="mt-liste">
-<li class="mt-olay" data-tarih="2027-12-03"><time class="mt-gun" datetime="2027-12-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Kasım 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
+<li class="mt-olay" data-tarih="2027-12-03"><time class="mt-gun" datetime="2027-12-03">3</time><div class="mt-icerik"><p class="mt-ad"><strong>Kasım 2027 enflasyonu (TÜİK)</strong> <span class="mt-tur mt-tur-veri">Veri</span></p><p>Kira artış oranı ve reel maaş hesapları bu veriyle yenilenir.</p><p class="mt-bag"><a href="../kira-artisi-hesaplama/">Kira artışı</a> · <a href="../enflasyon-hesaplama/">Enflasyon hesaplama</a></p></div></li>
 </ol>
 </section>
 <!-- TAKVIM-LISTE:BITIS -->
@@ -321,7 +344,11 @@
     </div>
   </footer>
 
-  <script src="../finans/veri-durumu.js?v=51319390" defer></script>
+  <script src="../finans/tufe-serisi.js" defer></script>
+  <script src="../finans/kira-tufe.js" defer></script>
+  <script src="../finans/toplu-sozlesme.js" defer></script>
+  <script src="../finans/emekli-zammi-motoru.js" defer></script>
+  <script src="../finans/veri-durumu.js" defer></script>
   <script src="../finans/mali-takvim.js?v=64bfbf4e" defer></script>
   <script src="script.js?v=a34ffec2" defer></script>
   <script src="../script.js?v=9465d26e" defer></script>
