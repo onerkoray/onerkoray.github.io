@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <script src="../tema-erken.js?v=a2f32851"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Asgari Ücret Zammı Senaryosu 2027 | Koray Öner</title>
+  <title>2027'de Maaşım Ne Olur? Asgari Ücret Senaryosu | Koray Öner</title>
   <meta name="description" content="2027 asgari ücret zammı yüzde kaç olursa net ne olur? Zam ve dilim artışını girin: net asgari ücret, SGK tavanı, maaşınızın neti ve dilimler geride kalırsa kaybınız.">
   <meta name="gecerlilik" content="2027-01-15 | 2027 asgari ücreti ve gelir vergisi tarifesi açıklandı mı? Açıklandıysa 2027 bordro/parametreler.js'e girilmeli; bu araç kendiliğinden 2028 senaryosuna döner, sayfa metni ve SSS örneği güncellenmeli.">
   <meta name="author" content="Koray Öner">
@@ -147,7 +147,7 @@
     <section class="hero">
       <div class="wrap hero-inner">
         <p class="eyebrow">Bordro · Senaryo</p>
-        <h1 id="hero-title">Asgari ücret zammı senaryosu: 2027'de net ne olur?</h1>
+        <h1 id="hero-title">2027'de maaşım ne olur? Asgari ücret ve zam senaryosu</h1>
         <p class="lede">2027 asgari ücreti ve vergi dilimleri henüz açıklanmadı.
           Bu araç tahmin yapmaz: zam oranını ve dilimlerin artışını siz
           girersiniz, araç 2027 bordrosunu 2026'yla aynı motorla hesaplar. Net
@@ -169,7 +169,7 @@
             </p>
             <p class="panel-q">
               <label for="as-tarife">Vergi dilimlerinin artışı (%)</label>
-              <input id="as-tarife" type="text" inputmode="decimal" autocomplete="off" value="25">
+              <input id="as-tarife" type="text" inputmode="decimal" autocomplete="off" value="27,83">
             </p>
             <p class="panel-q">
               <label for="as-brut">2026 aylık brüt maaşınız (TL)</label>
@@ -179,8 +179,12 @@
               <label for="as-ucret">Maaşınızın zammı (%)</label>
               <input id="as-ucret" type="text" inputmode="decimal" autocomplete="off" placeholder="asgari ücret kadar">
             </p>
+            <p class="panel-q">
+              <label for="as-enf">Beklenen enflasyon (%)</label>
+              <input id="as-enf" type="text" inputmode="decimal" autocomplete="off" value="30">
+            </p>
           </div>
-          <p class="muted-note as-ornek" id="as-ornek">Oranlar senaryodur, tahmin değildir. Dilimler kanunen yeniden değerleme oranıyla artar; o oran kasım başında belli olur. Brüt alanını boş bırakırsanız yalnızca asgari ücret hesaplanır.</p>
+          <p class="muted-note as-ornek" id="as-ornek">Oranlar senaryodur, tahmin değildir. Dilimler kanunen yeniden değerleme oranıyla artar; Ekim verisiyle hesap %27,83, resmî oran tebliğle ilan edilir. Enflasyon alanı açıklanan son yıllık TÜFE ile açılır. Brüt alanını boş bırakırsanız yalnızca asgari ücret hesaplanır.</p>
         </form>
 
         <div id="as-sonuc" aria-live="polite"></div>
@@ -333,6 +337,7 @@
   <script src="../bordro/parametreler.js?v=30221606" defer></script>
   <script src="../bordro/motor.js?v=2de19617" defer></script>
   <script src="../bordro/asgari-senaryo.js?v=0a5469b8" defer></script>
+  <script src="../finans/tufe-serisi.js" defer></script>
   <script src="script.js?v=6ae79de8" defer></script>
   <script src="../script.js?v=9465d26e" defer></script>
 </body>

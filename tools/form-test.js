@@ -199,6 +199,14 @@ async function main() {
     await ac("kira-artisi-hesaplama/");
     ok("kira sayfası son ayı gösteriyor", /Veri: TÜİK TÜFE/.test(await js("(document.querySelector('[data-veri-durumu]')||{}).textContent")));
 
+    console.log("Senaryo ve takvim");
+    await ac("asgari-ucret-zam-senaryosu/");
+    ok("koruyan zam kartı görünüyor", /Alım gücünü koruyan/.test(await js("__m('as-sonuc')")));
+    ok("enflasyon alanı TÜFE ile açılıyor", (await js("document.getElementById('as-enf').value")) === String(T.aylar[T.sonAy].yillik).replace(".", ","));
+    await ac("mali-takvim/");
+    ok("tam bir sıradaki satır var", await js("document.querySelectorAll('.mt-sirada').length") === 1);
+    ok("geçmiş satır gizli", await js("Array.prototype.every.call(document.querySelectorAll('.mt-olay:not([hidden])'),function(l){return l.getAttribute('data-tarih')>=new Date().toISOString().slice(0,10)})") === true);
+
     ok("sayfalarda yakalanmamış hata yok", hatalar.length === 0, hatalar.join(" | "));
   } catch (e) {
     kalan++;

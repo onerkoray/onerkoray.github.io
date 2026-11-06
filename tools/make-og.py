@@ -291,6 +291,10 @@ SPEC = {
    "EYT, 1999–2008 ya da 2008 sonrası: en erken tarih, bağlayıcı şart, borçlanmanın etkisi.",
    ["5510 m.28", "Kanun metniyle testli"], "bordro"),
 
+ "mali-takvim": ("mali-takvim", "Mali", "Takvim",
+   "Zam günleri, enflasyon açıklamaları ve vergi son tarihleri tek listede.",
+   ["Kuraldan türetilir", "Takvime eklenebilir"], "bordro"),
+
  "sigortalilik-statuleri": ("sigortalilik-statuleri", "Sigortalılık", "Statüleri",
    "4/a, 4/b, 4/c ve isteğe bağlı: kim hangi statüde, hangi şartla emekli olur.",
    ["5510 m.4, m.28", "Kanun metniyle testli"], "bordro"),

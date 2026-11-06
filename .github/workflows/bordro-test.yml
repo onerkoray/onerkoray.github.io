@@ -722,6 +722,10 @@ jobs:
         run: node finans/cikis-aktarim-test.js
       - name: Veri durumu takvimi ve metni
         run: node finans/veri-durumu-test.js
+      - name: Mali takvim kuralları
+        run: node mali-takvim/test.js
+      - name: Mali takvim sayfası kuraldan üretilmiş mi
+        run: node tools/takvim-sayfa.js --check
 
       - name: Dayanma süresi sayfası hesaptan üretilmiş mi
         # Örnek hane, metindeki GSS primi ve ödenek tavanı, SSS yapısal
