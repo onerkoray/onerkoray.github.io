@@ -205,7 +205,7 @@ async function main() {
     ok("enflasyon alanı TÜFE ile açılıyor", (await js("document.getElementById('as-enf').value")) === String(T.aylar[T.sonAy].yillik).replace(".", ","));
     await ac("mali-takvim/");
     ok("tam bir sıradaki satır var", await js("document.querySelectorAll('.mt-sirada').length") === 1);
-    ok("geçmiş satır gizli", await js("Array.prototype.every.call(document.querySelectorAll('.mt-olay:not([hidden])'),function(l){return l.getAttribute('data-tarih')>=new Date().toISOString().slice(0,10)})") === true);
+    ok("geçmiş satır ekranda yok", await js("Array.prototype.filter.call(document.querySelectorAll('.mt-olay'),function(l){return l.offsetParent!==null&&l.getAttribute('data-tarih')<new Date().toISOString().slice(0,10)}).length") === 0);
 
     ok("sayfalarda yakalanmamış hata yok", hatalar.length === 0, hatalar.join(" | "));
   } catch (e) {
