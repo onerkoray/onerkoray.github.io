@@ -222,6 +222,18 @@ async function main() {
     await ac("mali-takvim/#arac");
     ok("adresteki süzgeç açılışta uygulanır", await js("document.querySelector('#mt-suzgec [data-kim=arac]').getAttribute('aria-pressed')") === "true");
 
+    console.log("Koyu tema");
+    await gonder("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: "dark" }] });
+    await ac("mali-takvim/");
+    var renk = await js("(function(){var c=getComputedStyle(document.getElementById('mt-indir'));return [c.color,c.backgroundColor]})()");
+    function lum(r) {
+      var c = r.match(/[\d.]+/g).slice(0, 3).map(function (x) { x = x / 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); });
+      return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    }
+    var la = lum(renk[0]), lb = lum(renk[1]), kr = (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+    ok("birincil düğme kontrastı ≥ 4,5", kr >= 4.5, kr.toFixed(2) + " " + renk.join(" / "));
+    await gonder("Emulation.setEmulatedMedia", { features: [] });
+
     ok("sayfalarda yakalanmamış hata yok", hatalar.length === 0, hatalar.join(" | "));
   } catch (e) {
     kalan++;

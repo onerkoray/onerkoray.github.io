@@ -24,7 +24,7 @@
 .rota-advanced { margin-top: 1.25rem; padding: .85rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .rota-advanced summary { cursor: pointer; font-weight: 700; color: var(--brand-strong); }
 .rota-advanced .rota-fields { margin-top: 1rem; }
-.rota-primary { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.3rem; padding: .9rem 1rem; border: 1px solid var(--brand-strong); border-radius: 2px; background: var(--brand-strong); color: #fff; font: 700 .97rem var(--font-body); cursor: pointer; transition: background .2s, transform .2s; }
+.rota-primary { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.3rem; padding: .9rem 1rem; border: 1px solid var(--brand-strong); border-radius: 2px; background: var(--brand-strong); color: var(--brand-contrast); font: 700 .97rem var(--font-body); cursor: pointer; transition: background .2s, transform .2s; }
 .rota-primary:hover { background: var(--brand); transform: translateY(-1px); }
 .rota-primary span { font-size: 1.3rem; line-height: 1; }
 .rota-privacy { margin: .8rem 0 0; color: var(--text-muted); font-size: .76rem; line-height: 1.45; }

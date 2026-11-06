@@ -141,5 +141,41 @@ hepsi.forEach(function (p) {
 dogru("KONTROL: sitede yüzlerce görsel var", gorselSayisi > 100,
   String(gorselSayisi));
 
+/* Marka zemini üstündeki yazı. 6 Kasım 2026'ya kadar koyu temada marka rengi
+   açılıyor, yazı beyaz kalıyordu: bütün birincil düğmelerde kontrast 2,2–2,6.
+   Oran token düzeyinde hesaplanır; sayfadaki ölçüm tools/form-test.js'te. */
+var css = fs.readFileSync(path.join(KOK, "style.css"), "utf8");
+function parlaklik(h) {
+  var c = [1, 3, 5].map(function (i) { return parseInt(h.slice(i, i + 2), 16) / 255; }).map(function (x) {
+    return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+function kontrast(a, b) {
+  var x = parlaklik(a), y = parlaklik(b);
+  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+}
+var koyuYazi = (/--brand: var\(--accent-bright\);[^}]*?--brand-contrast: (#[0-9a-fA-F]{6})/.exec(css) || [])[1];
+dogru("koyu temada marka yazısı tanımlı", !!koyuYazi);
+var paletler = [["grafit", /:root[^{]*\{[^}]*?--accent: (#[0-9a-fA-F]{6})[^}]*?--accent-bright: (#[0-9a-fA-F]{6})/.exec(css)]];
+["yesil", "lacivert", "bordo"].forEach(function (p) {
+  paletler.push([p, new RegExp('data-accent="' + p + '"\\]\\s*\\{[^}]*?--accent:\\s*(#[0-9a-fA-F]{6})[^}]*?--accent-bright:\\s*(#[0-9a-fA-F]{6})').exec(css)]);
+});
+paletler.forEach(function (p) {
+  dogru(p[0] + " paleti okundu", !!p[1]);
+  if (!p[1]) return;
+  var acik = kontrast(p[1][1], "#ffffff"), koyu = kontrast(p[1][2], koyuYazi || "#ffffff");
+  dogru(p[0] + ": açık temada marka üstü yazı ≥ 4,5", acik >= 4.5, acik.toFixed(2));
+  dogru(p[0] + ": koyu temada marka üstü yazı ≥ 4,5", koyu >= 4.5, koyu.toFixed(2));
+});
+var sabit = [];
+[path.join(KOK, "style.css")].concat(fs.readdirSync(KOK).map(function (d) { return path.join(KOK, d, "style.css"); }).filter(function (f) { return fs.existsSync(f); })).forEach(function (f) {
+  var m, re = /([^{}]+)\{([^{}]*)\}/g, t = fs.readFileSync(f, "utf8");
+  while ((m = re.exec(t))) {
+    if (/background(-color)?:\s*var\(--brand\b/.test(m[2]) && /(^|[;\s])color:\s*(#fff\b|#ffffff\b|white\b)/.test(m[2])) sabit.push(path.basename(path.dirname(f)) + " " + m[1].trim().slice(0, 50));
+  }
+});
+dogru("marka zemininde sabit beyaz yazı yok", sabit.length === 0, sabit.join(" | "));
+
 console.log("\n" + gecen + " gecti, " + hata + " kaldi. (erişilebilirlik)");
 process.exit(hata ? 1 : 0);
