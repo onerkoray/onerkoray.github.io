@@ -41,6 +41,10 @@
     var v = parseFloat(t.replace(/\s/g, "").replace(/\.(?=\d{3}(\D|$))/g, "").replace(",", "."));
     return isFinite(v) ? v : NaN;
   }
+  /* Varsayılan: açıklanan son yıllık TÜFE. Okur değiştirebilir. */
+  var T = window.TufeSerisi;
+  if (T && T.aylar[T.sonAy]) $("as-enf").value = String(T.aylar[T.sonAy].yillik).replace(".", ",");
+
   function gecisler(g) {
     return g.length ? g.map(function (x) { return AYLAR[x.ay - 1] + " (" + oran(x.oran) + ")"; }).join(", ") : "yok";
   }
@@ -86,6 +90,14 @@
           '<div class="as-kart"><span class="as-kart-ad">Dilimler asgari ücret kadar artsaydı</span><span class="as-kart-deger">' + (Math.abs(u.endeksFarki) < 0.005 ? "fark yok" : isaretliTl(u.endeksFarki)) + "</span>" +
           '<span class="as-kart-alt">' + (Math.abs(u.endeksFarki) < 0.005 ? "Dilimler asgari ücretle aynı oranda artıyor." : "Yıllık netinizdeki fark.") + "</span></div>" +
           "</div>");
+        var enf = sayi("as-enf");
+        if (enf !== null && !isNaN(enf)) {
+          var kz = A.koruyanZam(g, enf / 100);
+          h.push('<div class="as-kartlar"><div class="as-kart"><span class="as-kart-ad">Alım gücünü koruyan brüt zam</span>' +
+            '<span class="as-kart-deger">' + oran(kz.zam) + "</span>" +
+            '<span class="as-kart-alt">Yıllık netiniz ' + tl(kz.hedefNet) + " olur, yani " + r.baz + " netinden " + oran(enf / 100) +
+            " fazla. Zammınız bu oranın altındaysa alım gücünüz düşer.</span></div></div>");
+        }
         var e = ['<div class="table-scroll"><table class="data-table as-tablo"><caption>Yıllık netinizdeki değişimin kaynakları (sıralı ayrıştırma)</caption>',
           '<thead><tr><th scope="col">Adım</th><th scope="col">Yıllık nete etkisi</th></tr></thead><tbody>'];
         u.etkiler.forEach(function (x) { e.push("<tr><th scope=\"row\">" + x.ad + "</th><td>" + isaretliTl(x.net) + "</td></tr>"); });

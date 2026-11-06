@@ -118,5 +118,12 @@ gecer("brüt 0 reddedilir", atar(function () { A.hesapla({ asgariArtis: 0.1, tar
 /* Bu yılın parametreleri değişmedi */
 gecer("baz parametreler değişmedi", JSON.stringify(P) === once);
 
+/* Alım gücünü koruyan zam: çözülen oranla hedef net tutmalı, enflasyon artınca zam artmalı. */
+var KZ = { asgariArtis: 0.25, tarifeArtis: 0.2783, brut: 60000 };
+var kz = A.koruyanZam(KZ, 0.30), Qz = A.parametre(0.25, 0.2783);
+gecer("koruyan zamla hedef net tutuyor", Math.abs(A.yil12(60000 * (1 + kz.zam), Qz).toplam.net - kz.hedefNet) < 0.5, kz.zam);
+gecer("enflasyon artınca gereken zam artar", A.koruyanZam(KZ, 0.40).zam > kz.zam);
+gecer("enflasyon sıfırsa zam gerekmeyebilir", A.koruyanZam(KZ, -0.5).zam === 0);
+
 console.log(gecen + " geçti, " + kalan + " kaldı. (asgari ücret zammı senaryosu)");
 process.exit(kalan ? 1 : 0);

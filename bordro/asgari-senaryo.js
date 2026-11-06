@@ -144,5 +144,18 @@
     return r;
   }
 
-  return { surum: "1.0.0", bazYil: bazYil, parametre: parametre, hesapla: hesapla, yil12: yil12, asgariDilimi: asgariDilimi };
+  /* Yıllık netin alım gücünü koruyan brüt zam: hedef yıl neti, baz yıl neti × (1 + enflasyon)
+     olacak oran. Net brütle birlikte arttığı için ikiye bölmeyle çözülür. */
+  function koruyanZam(girdi, enflasyon) {
+    var g = dogrula(girdi), P = B.parametre(bazYil()), Q = parametre(g.asgariArtis, g.tarifeArtis);
+    var hedef = yil12(g.brut, P).toplam.net * (1 + enflasyon), alt = 0, ust = 5;
+    if (yil12(g.brut, Q).toplam.net >= hedef) return { zam: 0, hedefNet: hedef };
+    for (var i = 0; i < 60; i++) {
+      var orta = (alt + ust) / 2;
+      if (yil12(g.brut * (1 + orta), Q).toplam.net < hedef) alt = orta; else ust = orta;
+    }
+    return { zam: ust, hedefNet: hedef };
+  }
+
+  return { surum: "1.0.0", bazYil: bazYil, parametre: parametre, hesapla: hesapla, koruyanZam: koruyanZam, yil12: yil12, asgariDilimi: asgariDilimi };
 });
