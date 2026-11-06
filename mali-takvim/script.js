@@ -120,7 +120,7 @@
 
     $("mt-indir").textContent = "Takvime ekle (" + gelecek.length + " tarih)";
     $("mt-indir").disabled = !gelecek.length;
-    var adres = location.pathname + location.search + (kim ? "#" + kim : "");
+    var adres = location.pathname + (kim ? "#" + kim : "");
     try { history.replaceState(null, "", adres); } catch (e) { /* yoksay */ }
   }
 
