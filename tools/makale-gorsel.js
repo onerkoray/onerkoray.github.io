@@ -2611,7 +2611,38 @@ function birYilGun() {
   return s + "</svg>";
 }
 
+var KESH = require(path.join(KOK, "makaleler", "kesin-hesap-2025-sayistay", "kesin.js"));
+
+/* Kesin hesap: üç yılda kanundaki limit, yıl sonu limiti ve gerçekleşen. */
+function kesinLimit() {
+  var L = KESH.limitler(), SOL = 52, SAG = 576, UST = 104, ALT = 300, Y1 = 3;
+  function y(v) { return ALT - v / Y1 * (ALT - UST); }
+  function tr(v) { return (v / 1e12).toFixed(2).replace(".", ","); }
+  var s = baslikSatirlari("Kanundaki sınır yıl içinde büyüdü",
+    "Net borçlanma limiti ve gerçekleşen, trilyon TL · Sayıştay",
+    "Net borçlanma: " + L.map(function (r) { return r.yil + " kanunda " + tr(r.ham) + ", yıl sonu sınır " + tr(r.son) + ", gerçekleşen " + tr(r.net); }).join("; ") + " trilyon TL.");
+  s += anahtarKutu(24, R.s3, "kanundaki limit") + anahtarKutu(170, R.s1, "yıl sonu limiti") + anahtarKutu(310, R.s2, "gerçekleşen");
+  s += izgaraY(SOL, SAG, y, [0, 1, 2, 3], function (v) { return String(v); });
+  var genis = (SAG - SOL) / L.length, c = 40;
+  L.forEach(function (r, i) {
+    var mx = SOL + genis * (i + 0.5);
+    [[r.ham, R.s3, -c * 1.5 - 3], [r.son, R.s1, -c / 2], [r.net, R.s2, c / 2 + 3]].forEach(function (b) {
+      var v = b[0] / 1e12;
+      s += '<rect x="' + (mx + b[2]).toFixed(1) + '" y="' + y(v).toFixed(1) + '" width="' + c + '" height="' + (ALT - y(v)).toFixed(1) + '" rx="2" fill="' + b[1] + '"/>';
+      s += '<text x="' + (mx + b[2] + c / 2).toFixed(1) + '" y="' + (y(v) - 6).toFixed(1) + '" text-anchor="middle" font-size="11" font-weight="800" fill="' + R.murekkep + '">' + tr(b[0]) + "</text>";
+    });
+    s += altYazi(mx, ALT + 22, String(r.yil));
+  });
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "kesin-hesap-2025-sayistay": {
+    kicker: "Kamu maliyesi · 2025",
+    baslik: "2025 kesin hesabı: bütçe tuttu, sınır genişledi",
+    alt: "Net borçlanma limiti 1,94 trilyondan 2,73 trilyon TL'ye",
+    cizim: kesinLimit
+  },
   "emekliye-ilave-iyilestirme-ocak-2027": {
     kicker: "Emeklilik · Ocak 2027",
     baslik: "Emekliye ilave iyileştirme: rakam yok, hesap var",
