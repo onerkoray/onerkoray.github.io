@@ -121,13 +121,13 @@
      Denetim: node tools/veri-renkleri.js --check
      ======================================================================== */
   /* Kategorik — sabit sıra, döngü yok. 9. seri üretilmez; "Diğer"e katlanır. */
-  --dv-1: #2a78d6;  --dv-2: #e06a2a;  --dv-3: #1baf7a;
+  --dv-1: #4b64ae;  --dv-2: #ca653c;  --dv-3: #33a182;
   /* Diverging — polarite (kazanç/kayıp, güvenli/batık). Nötr orta yok:
      sıfır çizgisi --dv-axis ile çiziliyor. */
   --dv-gain: #44a386;  --dv-loss: #ec6100;
   /* Mürekkep adımları — metin 4,5:1 ister, işaret 3:1. Ayrı tutuldu. */
   --dv-gain-ink: #157056;  --dv-loss-ink: #b34806;
-  --dv-1-ink: #1f5fae;     --dv-2-ink: #b34806;  --dv-3-ink: #157056;
+  --dv-1-ink: #5171bb;     --dv-2-ink: #b55934;  --dv-3-ink: #19846b;
   /* Bağlam ve çerçeve */
   --dv-mute: color-mix(in srgb, var(--text) 26%, transparent);
   --dv-grid: var(--border);
@@ -142,7 +142,7 @@
     /* Koyu zeminde yalnizca MUREKKEP adimlari degisir; isaretler
        (--dv-1..3, gain/loss) iki zeminde de dogrulandi. */
     --dv-gain-ink: #5cbb9d;  --dv-loss-ink: #f5843c;
-    --dv-1-ink: #5b9be6;     --dv-2-ink: #f5843c;  --dv-3-ink: #5cbb9d;
+    --dv-1-ink: #6284ce;     --dv-2-ink: #c66843;  --dv-3-ink: #379a7f;
   }
 }
 :root[data-theme="dark"] {
@@ -153,7 +153,7 @@
   /* Koyu zeminde yalnizca MUREKKEP adimlari degisir; isaretler
      (--dv-1..3, gain/loss) iki zeminde de dogrulandi. */
   --dv-gain-ink: #5cbb9d;  --dv-loss-ink: #f5843c;
-  --dv-1-ink: #5b9be6;     --dv-2-ink: #f5843c;  --dv-3-ink: #5cbb9d;
+  --dv-1-ink: #6284ce;     --dv-2-ink: #c66843;  --dv-3-ink: #379a7f;
 }
 
 /* ---- Seçilebilir renk paletleri (kurumsal set; varsayılan grafit :root'ta) ---- */
