@@ -324,3 +324,27 @@
   :root .home-page .project-card[data-cat] .karo::before { animation: none; transition: none; }
   :root .home-page .project-card[data-cat]:is(:hover, :focus-within) .karo::before { transform: none; }
 }
+
+/* ---- Gündem şeridi: sıradaki tarihler ve son veri (tools/gundem.js) ---- */
+.gn-serit { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1rem; margin: 0 0 2.5rem; }
+.gn-kart { padding: 1.15rem 1.3rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card, 12px); }
+.gn-kart p { margin: 0; }
+.gn-etiket { font: 500 var(--type-label, .75rem)/1.3 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+.gn-olaylar { list-style: none; margin: .7rem 0 0; padding: 0; }
+#gn-tarih:not(.gn-hazir) .gn-olaylar { display: none; }
+.gn-olaylar li { display: grid; grid-template-columns: 4.2rem minmax(0, 1fr) auto; gap: .75rem; align-items: baseline; padding: .45rem 0; border-top: 1px solid var(--border); }
+.gn-olaylar li[hidden] { display: none; }
+.gn-olaylar li:first-child { border-top: 0; }
+.gn-gun { font: 650 1.05rem/1.2 var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text); }
+.gn-olaylar li:first-child .gn-gun { color: var(--brand-strong); }
+.gn-olaylar time { font-size: var(--type-metadata, .85rem); color: var(--text-muted); white-space: nowrap; }
+.gn-sayi { margin-top: .35rem !important; font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 700; line-height: 1.05; font-variant-numeric: tabular-nums; color: var(--text); }
+.gn-birim { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
+.gn-alt { margin-top: .6rem !important; font-size: var(--type-metadata, .85rem); color: var(--text-muted); }
+.tumu-satir { margin: 1.5rem 0 0; text-align: center; }
+.tumu-satir:has(> [hidden]) { display: none; }
+@media (max-width: 760px) {
+  .gn-serit { grid-template-columns: 1fr; }
+  .gn-olaylar li { grid-template-columns: 3.6rem minmax(0, 1fr); }
+  .gn-olaylar time { grid-column: 2; }
+}

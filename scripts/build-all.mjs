@@ -27,6 +27,7 @@ const ZINCIR = [
   ["node", "scripts/build-llms.mjs"],
   ["python", "tools/arac-guncelleme.py"],
   ["python", "tools/makale-listesi.py"],
+  ["node", "tools/gundem.js"],
   ["python", "tools/hakkimda-rakamlar.py"],
   ["python", "tools/calisma-dizini.py"],
   ["python", "tools/en-sayfa.py"],

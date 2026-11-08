@@ -123,6 +123,22 @@
   var cards = Array.prototype.slice.call(document.querySelectorAll(".project-card[data-tags]"));
   if (cards.length && (search || chips.length)) {
     var activeCat = "hepsi";
+    /* Ana sayfa öne çıkan araçlarla açılır; arama, kategori ya da düğme bütün listeyi gösterir.
+       Kartların hepsi sayfada durur: iç bağlantılar ve arama dizini bundan etkilenmez. */
+    var tumu = document.getElementById("tumu-goster");
+    var oneCikan = cards.filter(function (c) { return c.hasAttribute("data-one"); }).length;
+    var acik = !tumu || !oneCikan;
+    if (tumu && oneCikan) {
+      tumu.hidden = false;
+      tumu.textContent = "Tüm araçları göster (" + cards.length + ")";
+      tumu.addEventListener("click", function () {
+        acik = true;
+        applyFilter();
+        var ilk = cards.filter(function (c) { return !c.hasAttribute("data-one"); })[0];
+        var a = ilk && ilk.querySelector("a");
+        if (a) a.focus();
+      });
+    }
     function normalizeSearch(text) {
       return text.toLocaleLowerCase("tr").replace(/ı/g, "i").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
@@ -135,10 +151,12 @@
         var okCat = activeCat === "hepsi" || cat === activeCat;
         var haystack = normalizeSearch(tags + " " + card.textContent);
         var okText = !q || q.split(/\s+/).every(function (word) { return haystack.indexOf(word) !== -1; });
-        var show = okCat && okText;
+        var kisa = !acik && !q && activeCat === "hepsi" && !card.hasAttribute("data-one");
+        var show = okCat && okText && !kisa;
         card.classList.toggle("is-hidden", !show);
         if (show) visible++;
       });
+      if (tumu) tumu.hidden = acik || !!q || activeCat !== "hepsi";
       var empty = document.getElementById("no-results");
       if (empty) empty.hidden = visible > 0;
       var status = document.getElementById("directory-status");

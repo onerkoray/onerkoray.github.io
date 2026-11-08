@@ -252,7 +252,7 @@ def main():
     isler = [
         (LISTE_SAYFA, LBAS, LBIT, kategori_blogu(yazilar, icerik["kategoriler"], LBAS, LBIT)),
         (ANA_SAYFA, ABAS, ABIT,
-         liste_blogu(yazilar[:3], "makaleler/", "", ABAS, ABIT, False)),
+         liste_blogu(yazilar[:5], "makaleler/", "", ABAS, ABIT, True)),
     ]
 
     degisen = []
