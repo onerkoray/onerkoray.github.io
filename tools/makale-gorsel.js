@@ -9,7 +9,9 @@
  * Bu ayrım iki bölümü ilk bakışta ayırır.
  *
  * Renk: kategorik seriler dataviz doğrulayıcısından geçirilmiş üçlüdür
- * (#2a78d6 / #eb6834 / #1baf7a — krem zeminde tüm kontroller PASS).
+ * (#4b64ae çivit / #ca653c kiremit / #33a182 petrol — krem ve koyu zeminde
+ * bütün kontroller PASS; 8 Kasım 2026'da Excel varsayılanı gibi duran
+ * mavi-turuncu-yeşilin yerine geldi).
  * Marka yeşili #0e7c66 kategorik seri olarak KULLANILMAZ: kroma tabanının
  * altında kalıyor ve veri işareti olarak gri okunuyor. Tek serili grafiklerde
  * ise ayırt etme sorunu olmadığı ve kontrastı daha iyi olduğu için kullanılır.
@@ -55,9 +57,9 @@ var R = {
   ikincil: "#56605c",
   izgara: "#e2ddd2",
   marka: "#0e7c66",     // tek serili işaretler
-  s1: "#2a78d6",        // kategorik 1 — çalışan
-  s2: "#eb6834",        // kategorik 2 — şahıs
-  s3: "#1baf7a"         // kategorik 3 — limited
+  s1: "#4b64ae",        // kategorik 1 — çivit
+  s2: "#ca653c",        // kategorik 2 — kiremit
+  s3: "#33a182"         // kategorik 3 — petrol
 };
 
 var nf0 = new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 });
@@ -1670,12 +1672,12 @@ var CIVI = "2026-08";
 function anahtarKutu(x, renk, metin, kesik) {
   return (kesik
     ? '<path d="M' + x + " 77.5 h12" + '" stroke="' + renk + '" stroke-width="2" stroke-dasharray="4 3"/>'
-    : '<rect x="' + x + '" y="72" width="11" height="11" rx="2" fill="' + renk + '"/>') +
+    : '<circle cx="' + (x + 5) + '" cy="77.5" r="4.5" fill="' + renk + '"/>') +
     '<text x="' + (x + 17) + '" y="82" font-size="12" fill="' + R.ikincil + '">' + metin + "</text>";
 }
 function baslikSatirlari(baslik, alt, etiket) {
   return '<svg viewBox="0 0 600 360" width="600" height="360" role="img" aria-label="' + etiket + '">' +
-    '<text x="24" y="34" font-size="16" font-weight="700" fill="' + R.murekkep + '">' + esc(baslik) + "</text>" +
+    '<text x="24" y="34" font-size="18" font-weight="700" font-family="Georgia,\'Times New Roman\',serif" fill="' + R.murekkep + '">' + esc(baslik) + "</text>" +
     '<text x="24" y="56" font-size="13" fill="' + R.ikincil + '">' + esc(alt) + "</text>";
 }
 function ayKisa(a) {
@@ -1866,7 +1868,7 @@ var GMS = require(path.join(KOK, "bordro", "gmsi-motor.js"));
 
 function izgaraY(SOL, SAG, y, degerler, yazi) {
   return degerler.map(function (v, i) {
-    return '<path d="M' + SOL + " " + y(v).toFixed(1) + " H" + SAG + '" stroke="' + (i === 0 ? R.ikincil : R.izgara) + '" stroke-width="1"/>' +
+    return '<path d="M' + SOL + " " + y(v).toFixed(1) + " H" + SAG + '" stroke="' + (i === 0 ? R.ikincil : R.izgara) + '" stroke-width="1"' + (i === 0 ? "" : ' stroke-dasharray="1 4" stroke-linecap="round"') + "/>" +
       '<text x="' + (SOL - 8) + '" y="' + (y(v) + 4).toFixed(1) + '" font-size="12" fill="' + R.ikincil + '" text-anchor="end">' + yazi(v) + "</text>";
   }).join("");
 }
@@ -3678,12 +3680,12 @@ function kartSvg(slug) {
   var vb = /^<svg[^>]*viewBox="([^"]+)"/.exec(ic);
   if (!vb) throw new Error(slug + ": çizimde viewBox yok");
   var etiket = /^<svg[^>]*aria-label="([^"]*)"/.exec(ic);
-  var govde = ic.replace(/^<svg[^>]*>/, "").replace(/<\/svg>$/, "");
+  var govde = ic.replace(/^<svg[^>]*>/, "").replace(/<\/svg>$/, "").replace(/font-weight="800"/g, 'font-weight="650"');
   return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img"' +
     (etiket ? ' aria-label="' + etiket[1] + '"' : "") + ">" +
     "<style>text{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif}</style>" +
     '<rect width="800" height="500" fill="' + R.zemin + '"/>' +
-    '<rect width="8" height="500" fill="' + R.marka + '"/>' +
+    '<rect width="4" height="500" fill="' + R.marka + '"/>' +
     '<svg x="34" y="30" width="732" height="440" viewBox="' + vb[1] + '">' + govde + "</svg></svg>\n";
 }
 
@@ -3741,7 +3743,7 @@ function kartSvgYaz(slug) {
 
 function issizlikEsikSvg() {
   var ic = issizlikHakEsikleri();
-  var govde = ic.replace(/^<svg[^>]*>/, "").replace(/<\/svg>$/, "");
+  var govde = ic.replace(/^<svg[^>]*>/, "").replace(/<\/svg>$/, "").replace(/font-weight="800"/g, 'font-weight="650"');
   return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400" role="img" aria-label="600, 900 ve 1080 prim gününde ödenek süresi sırasıyla 6, 8 ve 10 aya çıkar">' +
     '<style>text{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif}</style>' +
     '<rect width="800" height="400" fill="' + R.zemin + '"/>' +
