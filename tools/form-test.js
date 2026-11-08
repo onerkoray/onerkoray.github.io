@@ -222,6 +222,21 @@ async function main() {
     await ac("mali-takvim/#arac");
     ok("adresteki süzgeç açılışta uygulanır", await js("document.querySelector('#mt-suzgec [data-kim=arac]').getAttribute('aria-pressed')") === "true");
 
+    console.log("Ana sayfa");
+    await ac("");
+    var gorunen = await js("document.querySelectorAll('.project-card[data-tags]:not(.is-hidden)').length");
+    ok("öne çıkan 12 araç görünüyor", gorunen === 12, gorunen);
+    ok("bütün kartlar sayfada", await js("document.querySelectorAll('.project-card[data-tags]').length") >= 60);
+    await js("__y('tool-search-input','beyanname')");
+    ok("arama gizli araçları da bulur", /Beyanname/i.test(await js("Array.prototype.map.call(document.querySelectorAll('.project-card[data-tags]:not(.is-hidden) h3'),function(h){return h.textContent}).join('|')")));
+    await js("__y('tool-search-input','')");
+    await js("document.getElementById('tumu-goster').click()");
+    ok("düğme bütün araçları açar", await js("document.querySelectorAll('.project-card[data-tags]:not(.is-hidden)').length") === await js("document.querySelectorAll('.project-card[data-tags]').length"));
+    ok("gündem araçlardan önce", await js("document.getElementById('makaleler').compareDocumentPosition(document.getElementById('projects')) & 4") === 4);
+    ok("sıradaki tarihler görünüyor", await js("document.querySelectorAll('#gn-tarih li:not([hidden])').length") === 3);
+    ok("geçmiş tarih gösterilmiyor", await js("Array.prototype.every.call(document.querySelectorAll('#gn-tarih li:not([hidden])'),function(l){return l.getAttribute('data-tarih')>=new Date().toISOString().slice(0,10)})") === true);
+    ok("son veri TÜFE'yle aynı", (await js("document.querySelector('.gn-sayi').firstChild.textContent.trim()")) === "%" + T.aylar[T.sonAy].yillik.toFixed(2).replace(".", ","));
+
     console.log("Koyu tema");
     await gonder("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: "dark" }] });
     await ac("mali-takvim/");

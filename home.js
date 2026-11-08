@@ -54,3 +54,21 @@
     chip.appendChild(badge);
   });
 })();
+
+/* Gündem şeridi: geçen tarihleri gizler, sıradaki üç tarihe kalan günü yazar (tools/gundem.js). */
+(function () {
+  "use strict";
+  var kap = document.getElementById("gn-tarih");
+  if (!kap) return;
+  function iki(n) { return (n < 10 ? "0" : "") + n; }
+  var d = new Date(), bugun = d.getFullYear() + "-" + iki(d.getMonth() + 1) + "-" + iki(d.getDate());
+  var gelen = Array.prototype.filter.call(kap.querySelectorAll("li[data-tarih]"), function (l) {
+    return l.getAttribute("data-tarih") >= bugun;
+  }).slice(0, 3);
+  gelen.forEach(function (l) {
+    var g = Math.round((Date.parse(l.getAttribute("data-tarih")) - Date.parse(bugun)) / 864e5);
+    l.querySelector(".gn-gun").textContent = g === 0 ? "Bugün" : g === 1 ? "Yarın" : g + " gün";
+    l.hidden = false;
+  });
+  if (gelen.length) kap.classList.add("gn-hazir");
+})();

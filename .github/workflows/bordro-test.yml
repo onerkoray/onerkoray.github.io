@@ -726,6 +726,8 @@ jobs:
         run: node tools/kesin-hesap-yazisi.js --check
       - name: Kesin hesap yazısının sayıları
         run: node makaleler/kesin-hesap-2025-sayistay/sayi-testi.js
+      - name: Ana sayfa gündem şeridi takvimden ve seriden üretilmiş mi
+        run: node tools/gundem.js --check
       - name: Mali takvim kuralları
         run: node mali-takvim/test.js
       - name: Mali takvim sayfası kuraldan üretilmiş mi
