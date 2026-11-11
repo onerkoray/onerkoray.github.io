@@ -2,8 +2,8 @@
  * "İŞKUR'dan 19 bin TL: gerçekte ne ödeniyor?" yazısının hesabı.
  *
  * İki kaynak:
- *   - guc-2026-08.json: GÜÇ portalının (guc.iskur.gov.tr) Ağustos 2026
- *     göstergeleri, 6 Ekim 2026'da okunan anlık görüntü;
+ *   - guc-2026-10.json: GÜÇ portalının (guc.iskur.gov.tr) Ekim 2026
+ *     göstergeleri, 11 Kasım 2026'da okunan anlık görüntü;
  *   - iskur-genclik-programi-hesaplama/hesap.js: günlük tutar, 140 gün,
  *     haftalık düzen ve hane geliri kuralları (İŞKUR program sayfaları).
  * Bu dosya yalnız senaryoyu ve oranları kurar; yasal sayı yazmaz.
@@ -13,7 +13,7 @@
 var path = require("path");
 var KOK = path.join(__dirname, "..", "..");
 var I = require(path.join(KOK, "iskur-genclik-programi-hesaplama", "hesap.js"));
-var VERI = require("./guc-2026-08.json");
+var VERI = require("./guc-2026-10.json");
 
 var BASLANGIC = "2026-11-02";   // örnek: kasım başında başlayan iki genç
 

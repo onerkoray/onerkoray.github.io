@@ -2203,13 +2203,14 @@ function dogumYilFarki() {
 var GUC = require(path.join(KOK, "makaleler", "iskur-19-bin-tl-gercekte-ne", "guc.js"));
 function gucHedef() {
   var d = GUC.VERI.programlar.slice().sort(function (a, b) { return GUC.oran(b) - GUC.oran(a); });
-  if (Math.round(GUC.oran(GUC.program("staj")) * 1000) !== 1036 || Math.round(GUC.oran(GUC.program("niup")) * 1000) !== 362) throw new Error("İŞKUR kapağı yazıyla ayrıştı");
+  function gy(o) { return "%" + (o * 100).toFixed(1).replace(".", ","); }
+  var OZET = "GÜÇ programlarında " + GUC.VERI.donem + " gerçekleşmesi: staj desteği " + gy(GUC.oran(GUC.program("staj"))) + ", Geleceğim Meslekte " + gy(GUC.oran(GUC.program("meslek"))) +
+    ", İŞKUR Gençlik " + gy(GUC.oran(GUC.program("genclik"))) + ", NEET İşgücü Uyum " + gy(GUC.oran(GUC.program("niup"))) + ", İşe İlk Adım %0";
   var AD = { staj: "Staj desteği", meslek: "Geleceğim Meslekte", genclik: "Gençlik Programı", niup: "NEET Uyum", ilkadim: "İşe İlk Adım" };
-  var SOL = 168, SAG = 520, UST = 92, SATIR = 46, MAX = 1.1;
+  var SOL = 168, SAG = 520, UST = 92, SATIR = 46, MAX = 1.2;
   function x(o) { return SOL + (SAG - SOL) * Math.min(o, MAX) / MAX; }
   var ALT = UST + d.length * SATIR;
-  var s = baslikSatirlari("Yıllık hedefe ne kadar ulaşıldı?", "GÜÇ programları · yararlanan genç ÷ yıllık hedef · Ağustos 2026",
-    "GÜÇ programlarında Ağustos 2026 gerçekleşmesi: staj desteği %103,6, Geleceğim Meslekte %67,3, İŞKUR Gençlik %44,5, NEET İşgücü Uyum %36,2, İşe İlk Adım %0");
+  var s = baslikSatirlari("Yıllık hedefe ne kadar ulaşıldı?", "GÜÇ programları · yararlanan genç ÷ yıllık hedef · " + GUC.VERI.donem, OZET);
   [0, 0.5, 1].forEach(function (o) {
     s += '<path d="M' + x(o).toFixed(1) + " " + (UST - 6) + " V" + ALT + '" stroke="' + (o === 1 ? R.ikincil : R.izgara) + '" stroke-width="1"' + (o === 1 ? ' stroke-dasharray="4 3"' : "") + "/>";
     s += altYazi(x(o), ALT + 18, "%" + Math.round(o * 100));
