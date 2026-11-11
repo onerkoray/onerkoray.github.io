@@ -1092,8 +1092,7 @@ h3 { letter-spacing: -.015em; line-height: 1.25; }
    Sitenin GERÇEK verileri artık tasarımın parçası. Uydurma etiket yok:
    araç sayısı, test sayısı, lisans, kategori — hepsi zaten vardı, sadece
    düz cümlenin içinde saklıydı. */
-.eyebrow, .sec-no, .hero-spec, .card-badges span, .project-links,
-.breadcrumb, .method-meta dt, .hq-yeni em, .ed-kicker, .chip, .mono-link {
+.eyebrow, .sec-no, .hero-spec, .card-badges span, .project-links, .breadcrumb, .method-meta dt, .ed-kicker, .chip, .mono-link {
   font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -1278,22 +1277,8 @@ section { padding: var(--bolum) 0; }
    Site kutudan hairline'a geçmişti, bu panel geçmemişti: kendi zemini,
    bulanıklığı ve kenarlığıyla geçmiş tasarımdan kalmış gibi duruyordu.
    İçerik, sıralama ve bağlantılar aynı — değişen yalnızca kabuk. */
-:root .hero-quick {
-  background: none; border: 0; border-radius: 0; box-shadow: none;
-  -webkit-backdrop-filter: none; backdrop-filter: none;
-  padding: .2rem 0 .2rem 1.6rem;
-  border-inline-start: 1px solid var(--rule);
-}
-:root .hero-quick a { border-radius: 2px; }
 /* Tek sütuna düşen dar ekranda dikey kural anlamsız olurdu; ayırıcı üste
    geçiyor. Kırılma noktası live.css'teki mevcut hero kırılmasıyla aynı. */
-@media (max-width: 900px) {
-  :root .hero-quick {
-    padding: 1.4rem 0 .2rem;
-    border-inline-start: 0; border-block-start: 1px solid var(--rule);
-  }
-}
-
 /* 12.3 HEADER YARDIMCI KONTROLLERİ.
    Asıl tutarsızlık yuvarlaklıkta değil YAZI DİLİNDEYDİ: gezinme mono ve
    büyük harfken hemen yanındaki iki denetim normal cümle yazısıydı.
@@ -1441,11 +1426,6 @@ section { padding: var(--bolum) 0; }
 @media (prefers-reduced-motion: reduce) { :root .home-page .hero .reveal { animation: none; } }
 .home-page .hero .lede { max-width: 38rem; font-size: 1.1rem; line-height: 1.65; }
 .home-page .hero-spec { flex-wrap: wrap; }
-.home-page .hero-quick { border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; background: var(--surface); }
-.topic-index { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-block: 1rem 2.5rem; }
-.topic-index a { display: flex; flex-direction: column; gap: .6rem; padding: 1.2rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); text-decoration: none; color: var(--text); }
-.topic-index a:hover, .topic-index a:focus-visible { border-color: var(--brand); background: var(--surface-2); }
-.topic-index span { color: var(--text-muted); font-size: .88rem; line-height: 1.5; }
 .home-page .projects { padding-block: 2rem; }
 .home-page .project-card { border-radius: 14px; overflow: hidden; }
 .home-page .project-grid { gap: var(--space-grid); }
@@ -1530,10 +1510,7 @@ section { padding: var(--bolum) 0; }
 .site-nav a { white-space: nowrap; }
 .legal-note a { text-underline-offset: .2em; }
 @media (max-width: 640px) {
-  .topic-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .topic-index a { padding: 1rem; }
   .home-page .hero-inner { gap: 1.5rem; }
-  .home-page .hero-quick { padding: 1rem; }
   .calculator-page .hero { padding-block: .75rem 1rem; }
   .calculator-page .hero .eyebrow { margin-bottom: .5rem; }
   .calculator-page .tool-icon { display: none; }
@@ -1547,16 +1524,6 @@ section { padding: var(--bolum) 0; }
 }
 .home-page .hero-copy { max-width: 60rem; }
 .home-page .hero h1 { text-wrap: balance; }
-.home-page .hero-quick {
-  position: relative;
-  overflow: hidden;
-  border-color: var(--border);
-  box-shadow: none;
-}
-.home-page .hero-quick::before {
-  content: ""; position: absolute; inset: 0 0 auto; height: 3px;
-  background: var(--brand);
-}
 .home-page .section-head h2, .home-page .about > .wrap > h2, .home-page .contact > .wrap > h2 { font-size: var(--step-3); text-wrap: balance; }
 .home-page .section-head h2::before {
   content: ""; display: inline-block; width: 2.6rem; height: .18rem;
@@ -2221,3 +2188,10 @@ html.ara-acik { overflow: hidden; }
 .related:has(+ .ilgili-uretilen) { padding-bottom: 1.5rem; }
 /* Bölüm işareti (bordro/dilim.svg): sitenin "Dilim" işareti, kendi karosuyla. */
 .bolum-isareti { display: block; width: 56px; height: 56px; margin: .4rem 0 .9rem; }
+
+/* Sayfalar arası geçiş: aynı sitede gezinirken kısa çapraz geçiş. Destekleyen
+   tarayıcıda çalışır, desteklemeyende sayfa her zamanki gibi açılır. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .16s; animation-timing-function: ease-out; }
+}

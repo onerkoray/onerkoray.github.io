@@ -224,6 +224,18 @@ async function main() {
 
     console.log("Ana sayfa");
     await ac("");
+    var ny = B.hesaplaYil(100000, B.sonYil());
+    await js("__y('na-brut','100.000')");
+    ok("net maaş aleti Ocak netini motorla aynı verir", (await js("__m('na-net')")) === new Intl.NumberFormat("tr-TR").format(Math.round(ny.aylar[0].net)), await js("__m('na-net')"));
+    ok("alet yıllık neti motorla aynı verir", (await js("__m('na-yillik')")) === new Intl.NumberFormat("tr-TR").format(Math.round(ny.toplam.net)) + " TL");
+    ok("kaydırıcı girdiyle eşleşir", (await js("document.getElementById('na-kaydirac').value")) === "100000");
+    await js("(function(){var k=document.getElementById('na-kaydirac');k.value='200000';k.dispatchEvent(new Event('input',{bubbles:true}))})()");
+    ok("kaydırıcı hesabı günceller", (await js("__m('na-net')")) === new Intl.NumberFormat("tr-TR").format(Math.round(B.hesaplaYil(200000, B.sonYil()).aylar[0].net)));
+    ok("çizgide 12 ay ve okuma var", await js("document.querySelectorAll('#na-cizim .na-nokta-ay').length") === 12 && /Aralık/.test(await js("__m('na-okuma')")));
+    await js("document.querySelectorAll('#na-cizim .na-bolge')[6].dispatchEvent(new PointerEvent('pointerenter'))");
+    ok("aya gelince o ay okunur", /^Temmuz:/.test(await js("__m('na-okuma')")), await js("__m('na-okuma')"));
+    await js("document.querySelectorAll('#gn-cizim .gn-bolge')[23].dispatchEvent(new PointerEvent('pointerenter'))");
+    ok("gündem grafiği son ayı okur", (await js("__m('gn-okuma')")).indexOf("%" + T.aylar[T.sonAy].yillik.toFixed(2).replace(".", ",")) >= 0, await js("__m('gn-okuma')"));
     var gorunen = await js("document.querySelectorAll('.project-card[data-tags]:not(.is-hidden)').length");
     ok("öne çıkan 12 araç görünüyor", gorunen === 12, gorunen);
     ok("bütün kartlar sayfada", await js("document.querySelectorAll('.project-card[data-tags]').length") >= 60);
@@ -233,9 +245,15 @@ async function main() {
     await js("document.getElementById('tumu-goster').click()");
     ok("düğme bütün araçları açar", await js("document.querySelectorAll('.project-card[data-tags]:not(.is-hidden)').length") === await js("document.querySelectorAll('.project-card[data-tags]').length"));
     ok("gündem araçlardan önce", await js("document.getElementById('makaleler').compareDocumentPosition(document.getElementById('projects')) & 4") === 4);
-    ok("sıradaki tarihler görünüyor", await js("document.querySelectorAll('#gn-tarih li:not([hidden])').length") === 3);
+    ok("sıradaki tarihler görünüyor", await js("document.querySelectorAll('#gn-tarih li:not([hidden])').length") === 4);
     ok("geçmiş tarih gösterilmiyor", await js("Array.prototype.every.call(document.querySelectorAll('#gn-tarih li:not([hidden])'),function(l){return l.getAttribute('data-tarih')>=new Date().toISOString().slice(0,10)})") === true);
     ok("son veri TÜFE'yle aynı", (await js("document.querySelector('.gn-sayi').firstChild.textContent.trim()")) === "%" + T.aylar[T.sonAy].yillik.toFixed(2).replace(".", ","));
+
+    await gonder("Emulation.setDeviceMetricsOverride", { width: 390, height: 800, deviceScaleFactor: 1, mobile: true });
+    await ac("");
+    ok("telefonda yatay taşma yok", await js("document.documentElement.scrollWidth") <= 390, await js("document.documentElement.scrollWidth"));
+    ok("telefonda alet ekrana sığıyor", await js("document.getElementById('net-alet').getBoundingClientRect().right") <= 390);
+    await gonder("Emulation.clearDeviceMetricsOverride");
 
     console.log("Koyu tema");
     await gonder("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: "dark" }] });
