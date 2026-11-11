@@ -4,7 +4,7 @@
  *   Yazı (makaleler/iskur-19-bin-tl-gercekte-ne/):
  *     ISK-HARITA  beş program: kim, ne alır, durumu (diyagram)
  *     ISK-AYLAR   aynı gün başlayan iki gencin ay ay cep harçlığı
- *     ISK-HEDEF   Ağustos 2026 hedef ve gerçekleşme
+ *     ISK-HEDEF   Ekim 2026 hedef ve gerçekleşme
  *     data-s alanları
  *   Araç (iskur-genclik-programi-hesaplama/):
  *     data-s alanları ve SSS yapısal verisi (GÖRÜNEN metinden)
@@ -57,7 +57,7 @@ function haritaSvg() {
     '<title id="ih-t">GÜÇ kapsamındaki beş program</title>',
     '<desc id="ih-d">' + esc(satir.map(function (s) {
       var pr = G.program(s[0]);
-      return s[1] + " (" + s[2] + "): " + s[3] + ", " + s[4] + ", Ağustos 2026'da " + nf.format(pr.gerceklesen) + " genç";
+      return s[1] + " (" + s[2] + "): " + s[3] + ", " + s[4] + ", Ekim 2026'da " + nf.format(pr.gerceklesen) + " genç";
     }).join("; ") + ". 1.375 TL günlük ödeme yalnız ilk iki programda.") + "</desc>"];
   p.push('<text class="kucuk" x="0" y="12">KİM</text><text class="kucuk" x="' + KX + '" y="12">PROGRAM</text><text class="kucuk" x="' + DX + '" y="12">AĞUSTOS 2026</text>');
   satir.forEach(function (s, i) {
@@ -122,7 +122,7 @@ function hedefSvg() {
   var MAX = 1.1;
   function x(o) { return SOL + Math.min(o, MAX) / MAX * (SAG - SOL); }
   var p = ['<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-labelledby="ie-t ie-d">',
-    '<title id="ie-t">GÜÇ programlarında hedef ve gerçekleşme, Ağustos 2026</title>',
+    '<title id="ie-t">GÜÇ programlarında hedef ve gerçekleşme, Ekim 2026</title>',
     '<desc id="ie-d">' + esc(d.map(function (s) { return s.ad + ": " + nf.format(s.gerceklesen) + " / " + nf.format(s.hedef) + ", " + yuzde(G.oran(s)); }).join("; ")) + "</desc>"];
   [0, 0.25, 0.5, 0.75, 1].forEach(function (o) {
     p.push('<path class="' + (o === 1 ? "esik" : "izgara") + '" d="M' + x(o).toFixed(1) + " " + UST + " V" + (UST + d.length * SATIR) + '"/>');
@@ -166,11 +166,11 @@ function alanlar() {
 function bloklar() {
   var o = G.ornekler();
   return {
-    "ISK-HARITA": figur("ih", "Kim hangi programa girer?", "GÜÇ kapsamındaki beş program; Ağustos 2026 itibarıyla yararlanan genç sayısı.", haritaSvg(),
+    "ISK-HARITA": figur("ih", "Kim hangi programa girer?", "GÜÇ kapsamındaki beş program; Ekim 2026 itibarıyla yararlanan genç sayısı.", haritaSvg(),
       "Vurgulu iki program, sosyal medyada \"19 bin TL\" diye birleştirilen günlük 1.375 TL'nin ödendiği programlar. Kaynak: İŞKUR program sayfaları ve GÜÇ portalı, 6 Ekim 2026'da okundu."),
     "ISK-AYLAR": figur("ia", "İki genç, ay ay", "2 Kasım 2026'da başlayan bir üniversiteli (haftada 3 gün) ve bir NEET programı katılımcısı.", aylarSvg(),
       "Sütunlar her ayın katılım günü × 1.375 TL. Kesikli çizgi İŞKUR'un açıkladığı aylık 19.250 TL. NEET programında ilk dört hafta 5 gün; toplam " + o.iup.toplamGun + " güne ulaşıp " + tl(o.iup.toplam) + " ediyor. 2027 ayları 2026 tutarıyla."),
-    "ISK-HEDEF": figur("ie", "Hedefe ne kadar ulaşıldı?", "Ağustos 2026; yararlanan genç sayısı ÷ programın yıllık hedefi.", hedefSvg(),
+    "ISK-HEDEF": figur("ie", "Hedefe ne kadar ulaşıldı?", "Ekim 2026; yararlanan genç sayısı ÷ programın yıllık hedefi.", hedefSvg(),
       "Gençlik Programı için 2025-2026 öğretim yılı. Kesikli çizgi hedefin tamamı. Kaynak: GÜÇ portalı (guc.iskur.gov.tr) göstergeleri.")
   };
 }
