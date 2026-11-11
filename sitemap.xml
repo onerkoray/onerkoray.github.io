@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
       <image:title>Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları</image:title>
@@ -103,7 +103,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/altin-mi-dolar-mi-mevduat-mi/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/altin-mi-dolar-mi-mevduat-mi-koray-oner.png</image:loc>
       <image:title>Altın mı, Dolar mı, Mevduat mı? Getiri Hesabı — Koray Öner</image:title>
@@ -711,7 +711,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/grafikler/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/grafikler-koray-oner.png</image:loc>
       <image:title>Ekonomi Grafikleri: Enflasyon, Faiz, Kur — Koray Öner</image:title>
@@ -935,7 +935,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/makale/kademeli-emeklilik-son-durum.png</image:loc>
       <image:title>Kademeli Emeklilik Son Durum 2026 — Koray Öner</image:title>
