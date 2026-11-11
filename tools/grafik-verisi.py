@@ -859,8 +859,15 @@ def main():
     mevduat = mevduat_cek()
     h8 = mevduat_dogrula(mevduat, kararlar)
     eski_mevduat = mevduat_oku() or {}
+    # Seri haftalık yayımlanır: ayın son haftaları gecikmeli gelir, en son kayıtlı
+    # ay bu yüzden geçicidir ve tamamlanınca değişebilir (Ekim 2026: 42,74 -> 42,60;
+    # bu yüzden gece işi 5-9 Kasım arasında düştü). Önceki aylar değişemez.
+    son_mevduat = max(eski_mevduat) if eski_mevduat else None
+    for a in eski_mevduat:
+        if a == son_mevduat and a in mevduat and abs(mevduat[a] - eski_mevduat[a]) > 0.05:
+            print("Mevduat: %s geçici değeri tamamlandı (%.4f -> %.4f)." % (a, eski_mevduat[a], mevduat[a]))
     h8 += ["geçmiş mevduat oranı değişti: %s (%.4f -> %.4f)" % (a, eski_mevduat[a], mevduat[a])
-           for a in eski_mevduat if a in mevduat and abs(mevduat[a] - eski_mevduat[a]) > 0.05]
+           for a in eski_mevduat if a != son_mevduat and a in mevduat and abs(mevduat[a] - eski_mevduat[a]) > 0.05]
     h8 += ["mevduat oranı geri gitti: %s artık yok" % a for a in eski_mevduat if a not in mevduat]
     hata = h1 + h2 + h3 + h4 + h5 + h6 + h7 + h8
     if hata:
