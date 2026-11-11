@@ -25,7 +25,29 @@ var BAS = "<!-- ANA-GUNDEM:BASLANGIC -->", BIT = "<!-- ANA-GUNDEM:BITIS -->";
 
 function kac(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
+/* Son 24 ayın yıllık enflasyonu: çizgi, alan ve her ay için görünmez okuma bölgesi. */
+function grafik() {
+  var aylar = Object.keys(T.aylar).sort().slice(-24), d = aylar.map(function (a) { return T.aylar[a].yillik; });
+  var W = 360, H = 96, SOL = 4, SAG = 356, UST = 14, ALT = 78, enAz = Math.min.apply(null, d), enCok = Math.max.apply(null, d), ar = enCok - enAz || 1;
+  function x(i) { return SOL + (SAG - SOL) * i / (aylar.length - 1); }
+  function y(v) { return ALT - (v - enAz) / ar * (ALT - UST); }
+  function yz(v) { return "%" + v.toFixed(2).replace(".", ","); }
+  var yol = d.map(function (v, i) { return (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1); }).join(" ");
+  var s = '<svg id="gn-cizim" viewBox="0 0 ' + W + " " + H + '" data-alt="' + ALT + '" role="img" aria-label="Yıllık enflasyon: ' + M.ayAdi(aylar[0]) + " " + yz(d[0]) +
+    ", " + M.ayAdi(aylar[aylar.length - 1]) + " " + yz(d[d.length - 1]) + '.">';
+  s += '<path class="gn-alan" d="' + yol + " L" + x(d.length - 1).toFixed(1) + " " + ALT + " L" + x(0).toFixed(1) + " " + ALT + ' Z"/><path class="gn-cizgi" d="' + yol + '"/>';
+  s += '<path class="gn-imlec" d=""/><circle class="gn-son" r="4" cx="' + x(d.length - 1).toFixed(1) + '" cy="' + y(d[d.length - 1]).toFixed(1) + '"/><circle class="gn-vurgu" r="5"/>';
+  s += '<text x="' + SOL + '" y="' + (H - 4) + '">' + M.ayAdi(aylar[0]) + '</text><text x="' + SAG + '" y="' + (H - 4) + '" text-anchor="end">' + M.ayAdi(aylar[aylar.length - 1]) + "</text>";
+  var gen = (SAG - SOL) / (aylar.length - 1);
+  aylar.forEach(function (a, i) {
+    s += '<rect class="gn-bolge" x="' + (x(i) - gen / 2).toFixed(1) + '" y="0" width="' + gen.toFixed(1) + '" height="' + H + '" data-x="' + x(i).toFixed(1) + '" data-y="' + y(d[i]).toFixed(1) +
+      '" data-ad="' + M.ayAdi(a) + '" data-deger="' + yz(d[i]) + '" data-aylik="' + yz(T.aylar[a].aylik) + '"/>';
+  });
+  return { svg: s + "</svg>", ilk: M.ayAdi(aylar[0]), ilkDeger: yz(d[0]) };
+}
+
 function blok() {
+  var gr = grafik();
   var son = M.sonVeri({ T: T, Z: Z, KT: KT });
   var tarihler = M.olaylar().map(function (o) {
     var hedef = o.araclar.length ? o.araclar[0].yol : "mali-takvim/";
@@ -45,6 +67,8 @@ function blok() {
     '          <div class="gn-kart">',
     '            <p class="gn-etiket">Son veri · ' + son.ayAdi + "</p>",
     '            <p class="gn-sayi">' + son.yillik + ' <span class="gn-birim">yıllık enflasyon</span></p>',
+    '            <div class="gn-grafik">' + gr.svg + "</div>",
+    '            <p class="gn-okuma" id="gn-okuma">' + "İki yıl önce " + gr.ilkDeger + " idi. Ayların üzerine gelin.</p>",
     '            <p class="gn-alt">' + son.alt + ' · <a href="enflasyon-hesaplama/">Enflasyon hesaplama</a></p>',
     "          </div>",
     "        </div>",

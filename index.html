@@ -1367,28 +1367,44 @@
         <div class="hero-copy">
           <p class="eyebrow reveal">Bordro &middot; Vergi &middot; SGK &middot; Emeklilik</p>
           <h1 id="hero-title" class="reveal" style="--reveal-delay:80ms">Koray Öner<br><span class="accent">Hesap araçları.</span></h1>
-          <p class="lede reveal" style="--reveal-delay:160ms">Türkiye’de maaş, vergi, SGK, emeklilik ve kredi hesaplarını yapan açık kaynak araçlar geliştiriyor, arkalarındaki mevzuatı yazılarla açıklıyorum. Araçlar ücretsiz, reklamsız ve üyeliksiz; girdiğiniz tutarlar tarayıcınızda kalır.</p>
+          <p class="lede reveal" style="--reveal-delay:160ms">Türkiye’de maaş, vergi, SGK ve emeklilik hesaplarını yapan açık kaynak araçlar ve arkalarındaki mevzuatı açıklayan yazılar. Reklamsız ve üyeliksiz; girdiğiniz tutarlar tarayıcınızda kalır.</p>
           <div class="hero-actions reveal" style="--reveal-delay:200ms">
             <a class="btn btn-primary" href="#makaleler">G&uuml;ndemi oku</a>
-            <a class="btn" href="#projects">Ara&ccedil;lara g&ouml;z at</a>
+            <a class="btn" href="#projects">64 araca g&ouml;z at</a>
           </div>
-          <p class="hero-note reveal" style="--reveal-delay:240ms">
-            <svg class="hero-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 5h8M8 9h8M8 13h4" stroke-linecap="round"/><path d="M14 21H5a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9" stroke-linejoin="round"/><path d="m14 17 3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><strong>64 araç, açık hesap yöntemi.</strong><small>Üyelik ve reklam olmadan. Kaynak kodları MIT lisansıyla açık.</small></span>
-          </p>
+          <aside class="hero-quick" aria-labelledby="quick-title">
+            <h2 id="quick-title">Sık kullanılan</h2>
+            <ul>
+            <li><a href="maas-hesaplama/"><span>Brüt–net maaş</span></a></li>
+            <li><a href="isten-ayrilma-hesaplama/"><span>İşten ayrılma paketi</span></a></li>
+            <li><a href="kidem-tazminati-hesaplama/"><span>Kıdem ve ihbar</span></a></li>
+            <li><a href="kredi-hesaplama/"><span>Kredi</span></a></li>
+            <li><a href="kdv-hesaplama/"><span>KDV</span></a></li>
+            </ul>
+          </aside>
         </div>
 
-        <aside class="hero-quick reveal" style="--reveal-delay:300ms" aria-labelledby="quick-title">
-          <h2 id="quick-title">Hızlı erişim</h2>
-          <ul>
-            <li><a href="maas-hesaplama/"><span>Br&uuml;t Net Maa&#351; Hesaplama</span><small>12 ayl&#305;k bordro d&ouml;k&uuml;m&uuml;, netten br&uuml;te</small></a></li>
-            <li><a href="isten-ayrilma-hesaplama/"><span>&#304;&#351;ten Ayr&#305;lma Paketi</span><small>K&#305;dem, ihbar, izin ve i&#351;sizlik maa&#351;&#305;</small></a></li>
-            <li><a href="kidem-tazminati-hesaplama/"><span>K&#305;dem ve &#304;hbar Tazminat&#305;</span><small>G&uuml;ncel tavanla, g&uuml;n g&uuml;n</small></a></li>
-            <li><a href="kredi-hesaplama/"><span>Kredi Hesaplama</span><small>Ger&ccedil;ek y&#305;ll&#305;k maliyet ve &ouml;deme plan&#305;</small></a></li>
-            <li><a href="kdv-hesaplama/"><span>KDV Hesaplama</span><small>KDV dahil ve hari&ccedil; tutar</small></a></li>
-          </ul>
-          <p class="hero-quick__foot"><a href="araclar/">T&uuml;m ara&ccedil;lar &rarr;</a></p>
-        </aside>
+        <section class="net-alet" id="net-alet" aria-labelledby="na-baslik">
+          <p class="na-etiket" id="na-baslik">Net maaş <span id="na-yil"></span></p>
+          <div class="na-girdi">
+            <label for="na-brut">Aylık brüt maaş</label>
+            <span class="na-kutu"><input id="na-brut" type="text" inputmode="numeric" autocomplete="off" value="60.000"><span aria-hidden="true">TL</span></span>
+          </div>
+          <input id="na-kaydirac" type="range" min="33000" max="400000" step="500" value="60000" aria-label="Brüt maaşı kaydırarak değiştir">
+          <p class="na-sonuc"><span id="na-net">—</span> <span class="na-birim">TL net, Ocak</span></p>
+          <div class="na-grafik">
+            <svg id="na-cizim" viewBox="0 0 360 132" role="img" aria-labelledby="na-cizim-ad"><title id="na-cizim-ad">Net maaşın 12 ay boyunca seyri</title></svg>
+          </div>
+          <p class="na-okuma" id="na-okuma" aria-live="polite">&nbsp;</p>
+          <div class="na-serit" id="na-serit" aria-hidden="true"><i class="na-p na-p-net"></i><i class="na-p na-p-sgk"></i><i class="na-p na-p-vergi"></i></div>
+          <dl class="na-dokum">
+            <div><dt><i class="na-nokta na-p-net"></i>Yıllık net</dt><dd id="na-yillik">—</dd></div>
+            <div><dt><i class="na-nokta na-p-sgk"></i>SGK ve işsizlik</dt><dd id="na-sgk">—</dd></div>
+            <div><dt><i class="na-nokta na-p-vergi"></i>Gelir ve damga vergisi</dt><dd id="na-vergi">—</dd></div>
+          </dl>
+          <p class="na-alt"><a href="maas-hesaplama/">12 aylık bordro dökümü</a> · <a href="asgari-ucret-zam-senaryosu/">2027'de ne olur?</a></p>
+        </section>
+
         <nav class="hero-latest" aria-labelledby="latest-title">
           <h2 id="latest-title">Son eklenenler</h2>
           <ul class="hq-yeni">
@@ -1399,13 +1415,6 @@
         </nav>
       </div>
     </section>
-
-    <nav class="wrap topic-index" aria-label="Konu dizini">
-      <a href="maas-hesaplama/"><strong>Maaş ve bordro</strong><span>Net maaşınızı ve kesintileri görün →</span></a>
-      <a href="isten-ayrilma-hesaplama/"><strong>İşten ayrılma</strong><span>Tazminat ve hakları birlikte hesaplayın →</span></a>
-      <a href="makaleler/"><strong>Finansı anlayın</strong><span>Örneklerle açıklanan finans makaleleri →</span></a>
-      <a href="yayin-ilkeleri/"><strong>Kaynaklar ve güvenilirlik</strong><span>Kapsam, yöntem ve düzeltme kayıtları →</span></a>
-    </nav>
 
     <!-- MAKALELER -->
     <section id="makaleler" class="articles" aria-labelledby="articles-title">
@@ -1451,6 +1460,8 @@
           <div class="gn-kart">
             <p class="gn-etiket">Son veri · Ekim 2026</p>
             <p class="gn-sayi">%29,77 <span class="gn-birim">yıllık enflasyon</span></p>
+            <div class="gn-grafik"><svg id="gn-cizim" viewBox="0 0 360 96" data-alt="78" role="img" aria-label="Yıllık enflasyon: Kasım 2024 %47,09, Ekim 2026 %29,77."><path class="gn-alan" d="M4.0 14.0 L19.3 24.0 L34.6 32.3 L49.9 43.6 L65.2 47.1 L80.5 48.0 L95.8 57.1 L111.1 58.4 L126.4 64.0 L141.7 66.1 L157.0 64.9 L172.3 66.4 L187.7 73.1 L203.0 73.7 L218.3 74.6 L233.6 71.4 L248.9 73.8 L264.2 68.3 L279.5 67.4 L294.8 69.2 L310.1 70.6 L325.4 71.4 L340.7 78.0 L356.0 77.9 L356.0 78 L4.0 78 Z"/><path class="gn-cizgi" d="M4.0 14.0 L19.3 24.0 L34.6 32.3 L49.9 43.6 L65.2 47.1 L80.5 48.0 L95.8 57.1 L111.1 58.4 L126.4 64.0 L141.7 66.1 L157.0 64.9 L172.3 66.4 L187.7 73.1 L203.0 73.7 L218.3 74.6 L233.6 71.4 L248.9 73.8 L264.2 68.3 L279.5 67.4 L294.8 69.2 L310.1 70.6 L325.4 71.4 L340.7 78.0 L356.0 77.9"/><path class="gn-imlec" d=""/><circle class="gn-son" r="4" cx="356.0" cy="77.9"/><circle class="gn-vurgu" r="5"/><text x="4" y="92">Kasım 2024</text><text x="356" y="92" text-anchor="end">Ekim 2026</text><rect class="gn-bolge" x="-3.7" y="0" width="15.3" height="96" data-x="4.0" data-y="14.0" data-ad="Kasım 2024" data-deger="%47,09" data-aylik="%2,24"/><rect class="gn-bolge" x="11.7" y="0" width="15.3" height="96" data-x="19.3" data-y="24.0" data-ad="Aralık 2024" data-deger="%44,38" data-aylik="%1,03"/><rect class="gn-bolge" x="27.0" y="0" width="15.3" height="96" data-x="34.6" data-y="32.3" data-ad="Ocak 2025" data-deger="%42,12" data-aylik="%5,03"/><rect class="gn-bolge" x="42.3" y="0" width="15.3" height="96" data-x="49.9" data-y="43.6" data-ad="Şubat 2025" data-deger="%39,05" data-aylik="%2,27"/><rect class="gn-bolge" x="57.6" y="0" width="15.3" height="96" data-x="65.2" data-y="47.1" data-ad="Mart 2025" data-deger="%38,10" data-aylik="%2,46"/><rect class="gn-bolge" x="72.9" y="0" width="15.3" height="96" data-x="80.5" data-y="48.0" data-ad="Nisan 2025" data-deger="%37,86" data-aylik="%3,00"/><rect class="gn-bolge" x="88.2" y="0" width="15.3" height="96" data-x="95.8" data-y="57.1" data-ad="Mayıs 2025" data-deger="%35,41" data-aylik="%1,53"/><rect class="gn-bolge" x="103.5" y="0" width="15.3" height="96" data-x="111.1" data-y="58.4" data-ad="Haziran 2025" data-deger="%35,05" data-aylik="%1,37"/><rect class="gn-bolge" x="118.8" y="0" width="15.3" height="96" data-x="126.4" data-y="64.0" data-ad="Temmuz 2025" data-deger="%33,52" data-aylik="%2,06"/><rect class="gn-bolge" x="134.1" y="0" width="15.3" height="96" data-x="141.7" data-y="66.1" data-ad="Ağustos 2025" data-deger="%32,95" data-aylik="%2,04"/><rect class="gn-bolge" x="149.4" y="0" width="15.3" height="96" data-x="157.0" data-y="64.9" data-ad="Eylül 2025" data-deger="%33,29" data-aylik="%3,23"/><rect class="gn-bolge" x="164.7" y="0" width="15.3" height="96" data-x="172.3" data-y="66.4" data-ad="Ekim 2025" data-deger="%32,87" data-aylik="%2,55"/><rect class="gn-bolge" x="180.0" y="0" width="15.3" height="96" data-x="187.7" data-y="73.1" data-ad="Kasım 2025" data-deger="%31,07" data-aylik="%0,87"/><rect class="gn-bolge" x="195.3" y="0" width="15.3" height="96" data-x="203.0" data-y="73.7" data-ad="Aralık 2025" data-deger="%30,89" data-aylik="%0,89"/><rect class="gn-bolge" x="210.6" y="0" width="15.3" height="96" data-x="218.3" data-y="74.6" data-ad="Ocak 2026" data-deger="%30,65" data-aylik="%4,84"/><rect class="gn-bolge" x="225.9" y="0" width="15.3" height="96" data-x="233.6" data-y="71.4" data-ad="Şubat 2026" data-deger="%31,53" data-aylik="%2,96"/><rect class="gn-bolge" x="241.2" y="0" width="15.3" height="96" data-x="248.9" data-y="73.8" data-ad="Mart 2026" data-deger="%30,87" data-aylik="%1,94"/><rect class="gn-bolge" x="256.5" y="0" width="15.3" height="96" data-x="264.2" data-y="68.3" data-ad="Nisan 2026" data-deger="%32,37" data-aylik="%4,18"/><rect class="gn-bolge" x="271.8" y="0" width="15.3" height="96" data-x="279.5" data-y="67.4" data-ad="Mayıs 2026" data-deger="%32,61" data-aylik="%1,71"/><rect class="gn-bolge" x="287.1" y="0" width="15.3" height="96" data-x="294.8" data-y="69.2" data-ad="Haziran 2026" data-deger="%32,11" data-aylik="%0,99"/><rect class="gn-bolge" x="302.4" y="0" width="15.3" height="96" data-x="310.1" data-y="70.6" data-ad="Temmuz 2026" data-deger="%31,75" data-aylik="%1,78"/><rect class="gn-bolge" x="317.7" y="0" width="15.3" height="96" data-x="325.4" data-y="71.4" data-ad="Ağustos 2026" data-deger="%31,51" data-aylik="%1,84"/><rect class="gn-bolge" x="333.0" y="0" width="15.3" height="96" data-x="340.7" data-y="78.0" data-ad="Eylül 2026" data-deger="%29,73" data-aylik="%1,84"/><rect class="gn-bolge" x="348.3" y="0" width="15.3" height="96" data-x="356.0" data-y="77.9" data-ad="Ekim 2026" data-deger="%29,77" data-aylik="%2,58"/></svg></div>
+            <p class="gn-okuma" id="gn-okuma">İki yıl önce %47,09 idi. Ayların üzerine gelin.</p>
             <p class="gn-alt">Aylık %2,58 · Ocak zammı birikimi %8,28 · Kira oranı %31,23 · <a href="enflasyon-hesaplama/">Enflasyon hesaplama</a></p>
           </div>
         </div>
@@ -2452,6 +2463,8 @@
 
   <script src="script.js?v=8f50aa7c" defer></script>
   <script src="live.js?v=5740cf9e" defer></script>
+  <script src="bordro/parametreler.js" defer></script>
+  <script src="bordro/motor.js" defer></script>
   <script src="home.js?v=16dc8f2f" defer></script>
 </body>
 </html>
