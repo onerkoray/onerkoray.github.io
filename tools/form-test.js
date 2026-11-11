@@ -82,6 +82,8 @@ async function main() {
     var x = JSON.parse(m.data);
     if (x.id && bekleyen[x.id]) { bekleyen[x.id](x.result); delete bekleyen[x.id]; }
     if (x.method === "Page.loadEventFired" && yuklendi) { yuklendi(); yuklendi = null; }
+    /* Sayfa geçişi test gezinmesiyle yarıda kesilince tarayıcı bunu söz reddi olarak bildirir; sayfa hatası değildir. */
+    if (x.method === "Runtime.exceptionThrown" && /ViewTransition|Transition was (aborted|skipped)/.test(JSON.stringify(x.params.exceptionDetails))) return;
     if (x.method === "Runtime.exceptionThrown") hatalar.push(x.params.exceptionDetails.text + " " + ((x.params.exceptionDetails.exception || {}).description || ""));
   });
   function gonder(yontem, p) {

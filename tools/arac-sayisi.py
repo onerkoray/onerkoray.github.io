@@ -26,7 +26,7 @@ SAYFA = os.path.join(KOK, "index.html")
 
 # Sayının geçtiği yerler. Her biri "N araç" ile başlayan farklı bir cümle.
 KALIPLAR = [
-    re.compile(r'(<strong>)(\d+)( araç, açık hesap yöntemi\.</strong>)'),
+    re.compile(r'(href="#projects">)(\d+)( araca g&ouml;z at</a>)'),
     re.compile(r'(aria-atomic="true">)(\d+)( araç · kategori seçin veya arayın</p>)'),
 ]
 
