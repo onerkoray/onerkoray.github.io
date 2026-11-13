@@ -169,34 +169,35 @@
     </div>
   </header>
   <nav class="yerel-menu" aria-label="Bu sayfada">
-    <div class="wrap"><span class="yerel-menu__baslik">Bu sayfada</span><ul><li><a href="#yaklasim">Yaklaşımım</a></li><li><a href="#araclar">Ne yayınlıyorum</a></li><li><a href="#profiller">Profiller</a></li></ul></div>
+    <div class="wrap"><span class="yerel-menu__baslik">Bu sayfada</span><ul><li><a href="#isler">Ne yapıyorum</a></li><li><a href="#dogrulama">Yöntem</a></li><li><a href="#deneyim">Deneyim</a></li><li><a href="#ilkeler">İlkeler</a></li><li><a href="#profiller">Profiller</a></li></ul></div>
   </nav>
 
   <main id="main">
-    <section class="hero">
-      <div class="wrap hero-inner">
-        <p class="eyebrow">Hakkımda</p>
-        <h1>Koray Öner kimdir?</h1>
-        <p class="lede">
-          Serbest çalışan bir yazılım geliştiriciyim. İşimin büyük bölümü tek bir soruya
-          bağlanıyor: <strong>bir hesabın doğru olduğunu nasıl bilirsiniz?</strong> Bu sitede
-          yayınladığım araç ve makalelerdeki her sayı yasal parametrelerden türetiliyor,
-          her değişiklikte yeniden hesaplanıyor ve doğrulanmadan yayına çıkmıyor.
-        </p>
-        <p class="kd-yonlendir"><a href="../en/" hreflang="en" lang="en">In English: about Koray Öner and this site</a></p>
-      </div>
-    </section>
-
-    <section class="about" aria-labelledby="ozet-title">
-      <div class="wrap prose">
-        <h2 id="ozet-title">Kısaca</h2>
-        <figure class="portre">
+    <section class="hero hk-hero">
+      <div class="wrap hk-hero__izgara">
+        <div class="hk-hero__metin">
+          <p class="eyebrow">Hakkımda</p>
+          <h1>Koray Öner kimdir?</h1>
+          <p class="lede">
+            Serbest çalışan bir yazılım geliştiriciyim. Türkiye'de bordro, vergi, SGK ve
+            emeklilik hesaplarını yürürlükteki mevzuattan türeten araçlar ve bu hesapları
+            açıklayan yazılar yayınlıyorum.
+          </p>
+          <p class="hk-tez">
+            İşimin merkezinde tek bir soru var: <strong>bir hesabın doğru olduğunu nasıl
+            bilirsiniz?</strong> Bu sitede cevabı bir söz değil, bir düzen. Her sayı yasal
+            parametrelerden hesaplanıyor, her değişiklikte yeniden doğrulanıyor ve testten
+            geçmeden yayına çıkmıyor.
+          </p>
+          <p class="kd-yonlendir"><a href="../en/" hreflang="en" lang="en">In English: about Koray Öner and this site</a></p>
+        </div>
+        <figure class="portre hk-portre">
           <div class="portre-cerceve">
             <picture>
               <source srcset="../images/koray-oner-portre.webp" type="image/webp">
               <img src="../images/koray-oner-portre.jpg" width="320" height="320"
                    alt="Koray Öner — yazılım geliştirici"
-                   loading="lazy" decoding="async">
+                   decoding="async">
             </picture>
           </div>
           <figcaption class="portre-etiket">
@@ -204,73 +205,129 @@
             <span class="portre-rol">Yazılım geliştirici</span>
           </figcaption>
         </figure>
-        <p>
-          Modern web teknolojileriyle hızlı, erişilebilir ve kullanıcı dostu uygulamalar
-          geliştiriyorum. Şu anda <strong>serbest (freelance) olarak proje geliştiriyorum</strong>;
-          yeni işbirliklerine ve açık kaynak katkılarına açığım.
-        </p>
-        <p>
-          Kariyerim boyunca <strong>profesyonel kurumsal araçların geliştirilmesinde Türkiye'de ve
-          yurt dışında birçok projede</strong> yer aldım. Kurumsal yazılımda bir hesabın yanlış
-          olmasının bedeli yüksektir ve hata çoğu zaman sessizdir: ekran açılır, tablo hizalı
-          görünür, yalnızca sonuç yanlıştır. Bu sitede kurduğum doğrulama düzeni o alışkanlıktan
-          geliyor.
+      </div>
+      <div class="wrap">
+        <dl class="kunye hk-kunye" aria-label="Künye">
+          <div><dt>Çalışma</dt><dd>Serbest yazılım geliştirici</dd></div>
+          <div><dt>Alan</dt><dd>Bordro, vergi, SGK, emeklilik ve hane finansı hesapları</dd></div>
+          <div><dt>Açık kaynak</dt><dd><a href="https://www.npmjs.com/package/hesap-cekirdegi" rel="noopener">hesap-cekirdegi</a> · MIT lisansı</dd></div>
+          <div><dt>Araştırmacı kimliği</dt><dd><a href="https://orcid.org/0009-0005-8730-3577" rel="noopener me">ORCID 0009-0005-8730-3577</a></dd></div>
+          <div><dt>İletişim</dt><dd><a href="mailto:iletisim@korayoner.dev">iletisim@korayoner.dev</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="isler" class="hk-bolum" aria-labelledby="isler-title">
+      <div class="wrap">
+        <header class="hk-bas">
+          <p class="hk-etiket">Çalışma</p>
+          <h2 id="isler-title">Ne yapıyorum</h2>
+          <p>
+            Dört iş aynı kaynaktan besleniyor: yasal parametrelerin tutulduğu tek dosya ve
+            onu kullanan hesap motorları. Bir oran değiştiğinde araç, yazı ve test birlikte değişir.
+          </p>
+        </header>
+        <div class="hk-isler">
+          <div class="hk-is">
+            <h3>Hesaplama araçları</h3>
+            <p>
+              Brüt-net maaş, kıdem ve ihbar tazminatı, emeklilik tarihi, SGK primi, araç
+              vergileri, kira artışı. Her araç ilgili yılın tarifesiyle tarayıcıda çalışır ve
+              sonucun hangi adımlarla bulunduğunu sayfada gösterir.
+            </p>
+            <p class="hk-is__bag"><a href="../araclar/">Araçlar</a></p>
+          </div>
+          <div class="hk-is">
+            <h3>Testli yazılar</h3>
+            <p>
+              Konusunu mevzuat takviminden alan yazılar: zam dönemi, beyan ayı, tavan değişimi.
+              Yazıdaki her tutar sitenin motorlarıyla yeniden hesaplanır; sayfadaki değerle
+              tutmazsa yayın durur.
+            </p>
+            <p class="hk-is__bag"><a href="../makaleler/">Makaleler</a></p>
+          </div>
+          <div class="hk-is">
+            <h3>Araştırma</h3>
+            <p>
+              Yöntemini ayrıntısıyla anlatan çalışmalar Zenodo'da DOI ile kalıcı kayda geçiyor
+              ve ORCID kimliğine bağlanıyor. <a href="../makaleler/dilim-kaymasi-2022-2026/">Dilim
+              kayması</a> gibi bazı yöntemler, sitede kişiye uygulanan bir araca dönüşüyor.
+            </p>
+            <p class="hk-is__bag"><a href="../yayinlar/">Yayınlar</a></p>
+          </div>
+          <div class="hk-is">
+            <h3>Açık hesap çekirdeği</h3>
+            <p>
+              Bordro, tazminat, emeklilik, kira geliri, vergi ve kredi hesaplarının çekirdeği
+              npm'de <code>hesap-cekirdegi</code> adıyla yayında. Bağımlılığı yok; testleri kendi
+              bilgisayarınızda çalıştırabilirsiniz.
+            </p>
+            <p class="hk-is__bag"><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a> · <a href="../bordro/">Bordro Motoru</a></p>
+          </div>
+        </div>
+        <p class="hero-actions">
+          <a class="btn btn-primary" href="../#projects">Tüm araçları gör</a>
+          <a class="btn btn-ghost" href="../koray-oner/">Bütün çalışmaların dizini</a>
         </p>
       </div>
     </section>
 
-    <section id="dogrulama" class="about" aria-labelledby="dogrulama-title">
-      <div class="wrap prose">
-        <h2 id="dogrulama-title">Bir hesabın doğru olduğunu nasıl biliyorum?</h2>
-        <p>
-          İnternetteki hesaplama araçlarının çoğu size bir sayı verir ve o sayının nereden
-          geldiğini söylemez. Mevzuat değiştiğinde de kimse haber vermez — araç çalışmaya
-          devam eder, yalnızca yanlış cevap verir. Bu sitedeki araçları, bu iki sorunu
-          yapısal olarak engelleyecek şekilde kuruyorum.
-        </p>
-        <ul>
+    <section id="dogrulama" class="hk-bolum hk-bolum--zemin" aria-labelledby="dogrulama-title">
+      <div class="wrap">
+        <header class="hk-bas">
+          <p class="hk-etiket">Yöntem</p>
+          <h2 id="dogrulama-title">Bir hesabın doğru olduğunu nasıl biliyorum?</h2>
+          <p>
+            İnternetteki hesaplama araçlarının çoğu bir sayı verir, o sayının nereden geldiğini
+            söylemez. Mevzuat değiştiğinde de kimse haber vermez: araç çalışmaya devam eder,
+            yalnızca yanlış cevap verir. Bu sitedeki düzen bu iki sorunu yapısal olarak engelliyor.
+          </p>
+        </header>
+        <ul class="hk-yontem">
           <li>
-            <strong>Yasal parametreler tek bir yerde.</strong> Vergi dilimleri, asgari ücret,
-            SGK tavanı ve kıdem tavanı gibi değerler tek bir dosyada tutuluyor. Bir aracın ya
-            da makalenin bu sayılardan kendi kopyasını taşıması bir denetimle engelleniyor:
-            kopya, güncellenmeyi unutulan şeydir.
+            <h3>Yasal parametreler tek yerde</h3>
+            <p>Vergi dilimleri, asgari ücret, SGK tavanı ve kıdem tavanı tek bir dosyada tutuluyor.
+            Bir aracın ya da yazının bu sayılardan kendi kopyasını taşıması bir denetimle
+            engelleniyor: kopya, güncellenmesi unutulan şeydir.</p>
           </li>
           <li>
-            <strong>Makalelerdeki sayılar da test ediliyor.</strong> Bir yazıda geçen her tutar,
-            testte yeniden hesaplanıp sayfadaki değerle karşılaştırılıyor. Tablolar HTML'den
-            ayrıştırılıp hücre hücre denetleniyor; bir hücrenin bozulması testi düşürüyor.
+            <h3>Yazılardaki sayılar da test ediliyor</h3>
+            <p>Bir yazıda geçen her tutar testte yeniden hesaplanıp sayfadaki değerle
+            karşılaştırılıyor. Tablolar HTML'den ayrıştırılıp hücre hücre denetleniyor; tek bir
+            hücrenin bozulması derlemeyi düşürüyor.</p>
           </li>
           <li>
-            <strong>Tarihe bağlı iddiaların son kullanma tarihi var.</strong> "Şu an yürürlükte
-            değil" gibi bir cümle, ne zaman yeniden kontrol edilmesi gerektiğini sayfanın
-            kendisine yazıyor. Tarih geldiğinde derleme kırmızıya dönüyor ve yazı ben fark
-            edeyim diye beklemiyor.
+            <h3>Tarihe bağlı iddiaların son kullanma tarihi var</h3>
+            <p>"Şu an yürürlükte değil" gibi bir cümle, ne zaman yeniden kontrol edileceğini
+            sayfanın kendisine yazıyor. Tarih geldiğinde derleme kırmızıya dönüyor; yazı fark
+            edilmeyi beklemiyor.</p>
           </li>
           <li>
-            <strong>Testlerin kendisi de sınanıyor.</strong> Yeni bir test yazdığımda, koda
-            kasıtlı hatalar yerleştirip testin bunları gerçekten yakaladığını ölçüyorum.
-            Yakalamıyorsa test değil, dekordur.
+            <h3>Testlerin kendisi de sınanıyor</h3>
+            <p>Yeni bir testten sonra koda kasıtlı hatalar yerleştirip testin bunları gerçekten
+            yakaladığını ölçüyorum. Yakalamıyorsa test değil, dekordur.</p>
           </li>
           <li>
-            <strong>Hesap çekirdeği açık.</strong> Bordro ve vergi hesaplarının çekirdeği
-            <a href="https://www.npmjs.com/package/hesap-cekirdegi" rel="noopener">npm'de
-            <code>hesap-cekirdegi</code></a> adıyla ve
+            <h3>Hesap çekirdeği açık</h3>
+            <p>Bordro ve vergi hesaplarının çekirdeği
+            <a href="https://www.npmjs.com/package/hesap-cekirdegi" rel="noopener">npm'de</a> ve
             <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub'da</a>
-            yayında. Hangi yasal parametreyle, hangi adımlarla hesaplandığı incelenebilir ve
-            testler kendi bilgisayarınızda çalıştırılabilir.
+            yayında. Hangi parametreyle, hangi adımlarla hesaplandığı incelenebilir.</p>
           </li>
         </ul>
-        <p>
-          Özetle: bir hesabın doğruluğunu iddia ediyorsanız, o iddianın <strong>denetlenebilir
-          olması</strong> gerektiğini düşünüyorum. Bu sayfadaki hiçbir cümle de bunun istisnası
-          değil — aşağıdaki sayılar elle yazılmıyor, depodan sayılıyor.
+        <p class="hk-sonuc">
+          Bir hesabın doğruluğunu iddia ediyorsanız, o iddia <strong>denetlenebilir</strong>
+          olmalı. Bu sayfa da istisna değil: aşağıdaki sayılar elle yazılmıyor, depodan sayılıyor.
         </p>
       </div>
     </section>
 
-    <section id="rakamlar" class="about" aria-labelledby="rakamlar-title">
-      <div class="wrap prose">
-        <h2 id="rakamlar-title">Sayılarla</h2>
+    <section id="rakamlar" class="hk-bolum hk-rakamlar" aria-labelledby="rakamlar-title">
+      <div class="wrap">
+        <header class="hk-bas">
+          <p class="hk-etiket">Ölçü</p>
+          <h2 id="rakamlar-title">Sayılarla</h2>
+        </header>
 <!-- HAKKIMDA-RAKAMLAR:BASLANGIC -->
         <ul>
           <li><strong>64</strong> ücretsiz hesaplama aracı</li>
@@ -285,57 +342,92 @@
       </div>
     </section>
 
-    <section id="yaklasim" class="about" aria-labelledby="yaklasim-title">
-      <div class="wrap prose">
-        <h2 id="yaklasim-title">Nasıl çalışıyorum</h2>
-        <p>
-          Projelerimde ağırlıklı olarak <strong>saf HTML, CSS ve JavaScript</strong> kullanıyorum —
-          hiçbir çatıya veya sunucuya bağımlı olmadan. Bu bilinçli bir tercih: bağımlılığı olmayan
-          bir araç yıllar sonra da açılır, hızlı yüklenir ve bakımı kolaydır. Hesaplar tarayıcıda
-          çalıştığı için girdiğiniz tutarlar cihazınızdan çıkmıyor.
-        </p>
-        <p>
-          Erişilebilirliği sonradan eklenen bir özellik değil, baştan gelen bir gereklilik olarak
-          ele alıyorum. Klavyeyle kullanım, ekran okuyucu uyumu ve yeterli renk kontrastı (WCAG)
-          her araçta gözetiliyor; bunlar da elle değil, derlemedeki denetimlerle kontrol ediliyor.
-        </p>
-        <ul class="skills">
-          <li>Frontend Geliştirme</li>
-          <li>Backend ve API Tasarımı</li>
-          <li>Kullanıcı Deneyimi (UX)</li>
-          <li>Teknik SEO</li>
-          <li>Web Performansı</li>
-          <li>Erişilebilirlik (WCAG)</li>
-          <li>DevOps ve Otomasyon</li>
-          <li>Yapay Zekâ ve Makine Öğrenmesi</li>
-          <li>Açık Kaynak</li>
-          <li>Vergi ve Bordro Hesaplayıcıları</li>
-        </ul>
+    <section id="deneyim" class="hk-bolum" aria-labelledby="deneyim-title">
+      <div class="wrap hk-iki">
+        <header class="hk-bas">
+          <p class="hk-etiket">Deneyim</p>
+          <h2 id="deneyim-title">Kurumsal yazılımdan mevzuat hesaplarına</h2>
+          <p>
+            Kariyerim boyunca Türkiye'de ve yurt dışında, kurumların iş süreçlerinde kullanılan
+            profesyonel araçların geliştirildiği birçok projede yer aldım. O işlerden kalan
+            alışkanlık şu: kurumsal yazılımda hata çoğu zaman sessizdir. Ekran açılır, tablo
+            hizalı görünür, yalnızca sonuç yanlıştır.
+          </p>
+          <p>
+            Bu sitedeki doğrulama düzeni o alışkanlığın bireysel hesaplara uygulanmış hâli.
+            Bugün serbest çalışıyorum; proje işbirliklerine ve açık kaynak katkılarına açığım.
+          </p>
+        </header>
+        <dl class="hk-yetkinlik">
+          <div>
+            <dt>Arayüz ve erişilebilirlik</dt>
+            <dd>Çatıya ve sunucuya bağlı olmayan HTML, CSS ve JavaScript. Klavyeyle kullanım,
+            ekran okuyucu uyumu ve WCAG renk kontrastı her derlemede ölçülüyor.</dd>
+          </div>
+          <div>
+            <dt>Hesap motorları ve test</dt>
+            <dd>Mevzuattan türeyen, birbirini çağıran hesap motorları; sayıyı sayfadan okuyup
+            yeniden hesaplayan testler; testi kasıtlı hatayla sınayan denemeler.</dd>
+          </div>
+          <div>
+            <dt>Veri hatları</dt>
+            <dd>TCMB, TÜİK ve Dünya Bankası verisini her gece çeken, kaynakları birbiriyle
+            karşılaştıran ve grafiğe çeviren otomasyon.</dd>
+          </div>
+          <div>
+            <dt>Teknik SEO ve performans</dt>
+            <dd>Yapısal veri, site haritası ve tarih tutarlılığı; sayfa ağırlığı ve yükleme
+            davranışı. Her biri bir denetim adımıyla sabitlenmiş.</dd>
+          </div>
+          <div>
+            <dt>Diğer alanlar</dt>
+            <dd>Backend ve API tasarımı, DevOps ve otomasyon, yapay zekâ ve makine öğrenmesi.</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
-    <section id="araclar" class="about" aria-labelledby="araclar-title">
-      <div class="wrap prose">
-        <h2 id="araclar-title">Ne yayınlıyorum</h2>
-        <p>
-          Araçların önemli bir bölümü Türkiye'deki güncel mevzuat parametreleriyle çalışan
-          <strong>bordro, vergi ve finans hesaplayıcıları</strong>. Yanlarında, hesabın
-          arkasındaki kuralı anlatan ve her sayısı sınanan makaleler var — bazıları
-          <a href="../makaleler/dilim-kaymasi-2022-2026/">akademik ölçüde</a>, kaynakçasıyla
-          birlikte. DOI ile kalıcı kaydı bulunanları
-          <a href="../yayinlar/">yayımlanmış çalışmalar</a> sayfasında topladım.
-        </p>
-        <p>
-          Araçlar ve makaleler <strong>ücretsiz, reklamsız ve üyeliksiz</strong>; kaynak kodları
-          MIT lisansıyla açık. Nasıl çalıştıklarını ve hangi kaynaklara dayandıklarını
-          <a href="../yayin-ilkeleri/">yayın ilkelerinde</a>, veriye dair tercihleri
-          <a href="../gizlilik/">gizlilik sayfasında</a> ayrıntılı yazdım.
-        </p>
-        <p class="hero-actions">
-          <a class="btn btn-primary" href="../#projects">Tüm araçları gör</a>
-          <a class="btn btn-ghost" href="../makaleler/">Makaleleri oku</a>
-          <a class="btn btn-ghost" href="../koray-oner/">Bütün çalışmaların dizini</a>
-        </p>
+    <section id="ilkeler" class="hk-bolum hk-bolum--zemin" aria-labelledby="ilkeler-title">
+      <div class="wrap">
+        <header class="hk-bas">
+          <p class="hk-etiket">İlkeler</p>
+          <h2 id="ilkeler-title">Yayın ilkeleri, kısaca</h2>
+          <p>Ayrıntısı ve düzeltme günlüğü <a href="../yayin-ilkeleri/">yayın ilkeleri</a> sayfasında.</p>
+        </header>
+        <dl class="hk-ilkeler">
+          <div>
+            <dt>Bağımsızlık</dt>
+            <dd>Araçlar ve yazılar ücretsiz, reklamsız ve üyeliksiz. Sponsorlu içerik,
+            bağlantı satışı ya da misafir yazı yok.</dd>
+          </div>
+          <div>
+            <dt>Kaynak</dt>
+            <dd>Her iddianın yanında birincil kaynak: Resmî Gazete, GİB, SGK, TÜİK, TCMB.
+            <a href="../yayin-ilkeleri/#kaynaklar">Kaynak kuralı</a></dd>
+          </div>
+          <div>
+            <dt>Düzeltme</dt>
+            <dd>Bulunan hata, düzeltme tarihiyle birlikte günlüğe yazılır; sessizce değiştirilmez.
+            <a href="../yayin-ilkeleri/#duzeltmeler">Düzeltme günlüğü</a></dd>
+          </div>
+          <div>
+            <dt>Gizlilik</dt>
+            <dd>Hesap tarayıcıda çalışır; girdiğiniz tutar cihazınızdan çıkmaz. Kaydetmeyi
+            seçtiğiniz fatura arşivi ve Finansal İkiz profili de yalnız kendi tarayıcınızda durur.
+            <a href="../gizlilik/">Gizlilik</a></dd>
+          </div>
+          <div>
+            <dt>Yapay zekâ</dt>
+            <dd>Kod, taslak ve görsel hazırlarken yapay zekâ ajanlarıyla çalışıyorum. Yapay zekâ
+            bilgi kaynağı değil: rakamlar testle yeniden hesaplanır, sorumluluk bende.
+            <a href="../yayin-ilkeleri/#yapay-zeka">Açıklama</a></dd>
+          </div>
+          <div>
+            <dt>Açık kod</dt>
+            <dd>Sitenin ve hesap çekirdeğinin kaynak kodu MIT lisansıyla
+            <a href="https://github.com/onerkoray" rel="noopener">GitHub'da</a>.</dd>
+          </div>
+        </dl>
         <p class="legal-note">
           Araçlar yalnızca genel bilgilendirme amaçlıdır; mali müşavirlik, hukuki danışmanlık veya
           resmî kurum görüşü yerine geçmez. Bağlayıcı kararlar öncesinde yetkili kurumların resmî
@@ -344,39 +436,55 @@
       </div>
     </section>
 
-    <section id="profiller" class="contact" aria-labelledby="profiller-title">
-      <div class="wrap prose">
-        <h2 id="profiller-title">Profillerim</h2>
-        <p>
-          Geliştirdiğim projeleri inceleyebilir, yeni çalışmalarımı takip edebilir ve açık kaynak
-          dünyasında birlikte daha faydalı yazılımlar üretmeye katkı sağlayabilirsiniz.
-          Akademik künyem için kalıcı araştırmacı kimliğim
-          <a href="https://orcid.org/0009-0005-8730-3577" rel="noopener me">ORCID iD
-          0009-0005-8730-3577</a> — yayın ve atıfların aynı kişiye bağlanmasını
-          sağlayan kalıcı numara.
-        </p>
-        <p class="hero-actions">
-          <a class="btn btn-primary" href="https://www.linkedin.com/in/korayoner/" rel="noopener me">LinkedIn'de bağlan</a>
-          <a class="btn btn-ghost" href="https://github.com/onerkoray" rel="noopener me">GitHub'da takip et</a>
-        </p>
-        <ul class="social-list" aria-label="Sosyal medya ve profesyonel profiller">
-          <li><a href="https://www.linkedin.com/in/korayoner/" rel="noopener me">LinkedIn</a></li>
-          <li><a href="https://github.com/onerkoray" rel="noopener me">GitHub</a></li>
-          <li><a href="https://orcid.org/0009-0005-8730-3577" rel="noopener me">ORCID iD 0009-0005-8730-3577</a></li>
-          <li><a href="https://ssrn.com/author=13261728" rel="noopener me">SSRN — araştırma ön baskıları</a></li>
-          <li><a href="https://authors.repec.org/pro/pko1242/" rel="noopener me">RePEc — araştırmacı profili</a></li>
-          <li><a href="https://www.facebook.com/korayoner.dev/" rel="noopener me">Facebook sayfası</a></li>
-          <li><a href="https://www.tiktok.com/@korayonerdev" rel="noopener me">TikTok</a></li>
-          <li><a href="https://tr.pinterest.com/onerkoray/" rel="noopener me">Pinterest</a></li>
-          <li><a href="https://x.com/korayonerdev" rel="noopener me">X</a></li>
-          <li><a href="https://www.instagram.com/korayonerdev/" rel="noopener me">Instagram</a></li>
-          <li><a href="https://www.youtube.com/@onerkoray" rel="noopener me">YouTube</a></li>
-          <li><a href="https://korayoner.substack.com/" rel="noopener me">Substack</a></li>
-          <li><a href="https://medium.com/@onerkoray" rel="noopener me">Medium</a></li>
-          <li><a href="https://www.xing.com/profile/Koray_Oener015108" rel="noopener me">Xing</a></li>
-          <li><a href="https://independent.academia.edu/Koray%C3%96ner3" rel="noopener me">Academia</a></li>
-          <li><a href="https://500px.com/p/korayoner" rel="noopener me">500px</a></li>
-        </ul>
+    <section id="profiller" class="hk-bolum" aria-labelledby="profiller-title">
+      <div class="wrap">
+        <header class="hk-bas">
+          <p class="hk-etiket">Profiller</p>
+          <h2 id="profiller-title">Başka yerlerde</h2>
+          <p>
+            Aynı kimliğin platformlardaki kayıtları. Araştırma kayıtları
+            <a href="https://orcid.org/0009-0005-8730-3577" rel="noopener me">ORCID iD 0009-0005-8730-3577</a> numarasına bağlı: yayın ve
+            atıfların aynı kişiye bağlanmasını sağlayan kalıcı numara.
+          </p>
+        </header>
+        <div class="hk-profiller">
+          <div>
+            <h3>Araştırma</h3>
+            <ul>
+              <li><a href="https://orcid.org/0009-0005-8730-3577" rel="noopener me">ORCID</a><span>kalıcı araştırmacı kimliği</span></li>
+              <li><a href="https://ssrn.com/author=13261728" rel="noopener me">SSRN</a><span>araştırma ön baskıları</span></li>
+              <li><a href="https://authors.repec.org/pro/pko1242/" rel="noopener me">RePEc</a><span>iktisat araştırmacı profili</span></li>
+              <li><a href="https://independent.academia.edu/Koray%C3%96ner3" rel="noopener me">Academia</a><span>çalışma arşivi</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Kod ve yazı</h3>
+            <ul>
+              <li><a href="https://github.com/onerkoray" rel="noopener me">GitHub</a><span>kaynak kod ve hesap çekirdeği</span></li>
+              <li><a href="https://korayoner.substack.com/" rel="noopener me">Substack</a><span>yazılar</span></li>
+              <li><a href="https://medium.com/@onerkoray" rel="noopener me">Medium</a><span>yazılar</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Mesleki ağ</h3>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/korayoner/" rel="noopener me">LinkedIn</a><span>mesleki profil</span></li>
+              <li><a href="https://www.xing.com/profile/Koray_Oener015108" rel="noopener me">Xing</a><span>mesleki profil</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Kanallar</h3>
+            <ul>
+              <li><a href="https://www.youtube.com/@onerkoray" rel="noopener me">YouTube</a><span>araçları anlatan kısa videolar</span></li>
+              <li><a href="https://x.com/korayonerdev" rel="noopener me">X</a><span>yeni araç ve yazı duyuruları</span></li>
+              <li><a href="https://www.instagram.com/korayonerdev/" rel="noopener me">Instagram</a></li>
+              <li><a href="https://www.facebook.com/korayoner.dev/" rel="noopener me">Facebook</a></li>
+              <li><a href="https://www.tiktok.com/@korayonerdev" rel="noopener me">TikTok</a></li>
+              <li><a href="https://tr.pinterest.com/onerkoray/" rel="noopener me">Pinterest</a></li>
+              <li><a href="https://500px.com/p/korayoner" rel="noopener me">500px</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   </main>

@@ -260,9 +260,6 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
 
 .about { background: var(--surface-2); border-block: 1px solid var(--border); }
 .prose { max-width: 68ch; margin-inline: auto; }
-.skills { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; margin: 1.5rem 0 0; padding: 0; }
-.skills li { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: .4rem .9rem; font-size: var(--step--1); font-weight: 600; transition: transform .2s ease, border-color .2s ease, color .2s ease, background .2s ease; cursor: default; }
-.skills li:hover { transform: translateY(-3px); border-color: var(--brand); color: var(--brand-strong); background: color-mix(in srgb, var(--brand) 8%, var(--surface)); }
 
 .section-head { max-width: 60ch; margin-bottom: 2rem; }
 .section-head p { color: var(--text-muted); margin: 0; }
@@ -380,6 +377,109 @@ section { padding: clamp(2.5rem,1.5rem + 4vw,4.5rem) 0; }
   .portre-cerceve::before, .portre-cerceve::after { transition: none; }
 }
 
+
+/* ------------------------------------------------------------------ künye
+   Hakkımda sayfası ve ana sayfa künyesi.
+
+   ROZET BULUTU KALDIRILDI (13 Kasım 2026). "Frontend Geliştirme",
+   "Teknik SEO" gibi hap rozetleri ve 16 bağlantılık hap listesi bir
+   özgeçmiş şablonu gibi okunuyordu: her öğe aynı ağırlıkta, hiçbiri neyle
+   kanıtlandığını söylemiyordu. Yerine tanım listeleri geldi: solda mono
+   etiket, sağda ne olduğu ve nerede görüldüğü. Kart yok; ayrım kılcal
+   çizgiyle, portredeki sergi montajıyla aynı dil. */
+.kunye {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  column-gap: 1.5rem; margin: 1.75rem 0 0; padding: 0;
+  border-bottom: 1px solid var(--rule);
+}
+.kunye > div { min-width: 0; padding-block: .8rem .9rem; border-top: 1px solid var(--rule); }
+.kunye dt, .hk-etiket, .hk-ilkeler dt, .hk-profiller h3 {
+  font-family: var(--font-mono); font-size: var(--type-label); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .09em; color: var(--text-muted);
+}
+.kunye dt { margin: 0 0 .3rem; }
+.kunye dd { margin: 0; font-size: var(--step--1); font-weight: 600; color: var(--text); overflow-wrap: anywhere; }
+.kunye-giris { font-size: var(--step-1); line-height: 1.45; color: var(--text); }
+
+.hk-hero__izgara {
+  display: grid; grid-template-columns: minmax(0, 1fr) 260px;
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: start;
+}
+.hk-hero .lede { max-width: 50ch; }
+.hk-tez { max-width: 60ch; margin-top: 1.25rem; }
+.hk-portre { float: none; margin: 0; inline-size: 100%; }
+.hk-kunye { margin-top: clamp(2.25rem, 4vw, 3.25rem); }
+
+.hk-bolum { border-top: 1px solid var(--border); }
+.hk-bolum--zemin { background: var(--surface-2); }
+.hk-bas { max-width: 62ch; margin-bottom: clamp(1.75rem, 3vw, 2.5rem); }
+.hk-bas h2 { margin-bottom: .8rem; }
+.hk-bas p { color: var(--text-muted); }
+.hk-bas p:last-child { margin-bottom: 0; }
+.hk-etiket { color: var(--brand-strong); margin: 0 0 .75rem; }
+
+.hk-isler, .hk-ilkeler {
+  display: grid; column-gap: clamp(1.5rem, 4vw, 3.5rem); margin: 0;
+  border-bottom: 1px solid var(--rule);
+}
+.hk-isler { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hk-is { display: flex; flex-direction: column; padding-block: 1.4rem 1.5rem; border-top: 1px solid var(--rule); }
+.hk-is h3 { font-size: var(--step-1); margin: 0 0 .6rem; }
+.hk-is p { margin: 0 0 1rem; color: var(--text-muted); max-width: 52ch; }
+.hk-is .hk-is__bag { margin: auto 0 0; font-size: var(--step--1); font-weight: 600; color: var(--text); }
+
+.hk-yontem { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--rule); }
+.hk-yontem li {
+  display: grid; grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  gap: .4rem clamp(1.5rem, 4vw, 3.5rem); padding-block: 1.2rem; border-top: 1px solid var(--rule);
+}
+.hk-yontem h3 { font-size: var(--step-0); margin: 0; }
+.hk-yontem p { margin: 0; color: var(--text-muted); max-width: 62ch; }
+.hk-sonuc { max-width: 62ch; margin: 1.75rem 0 0; }
+
+.hk-rakamlar ul {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); column-gap: 1.5rem;
+}
+.hk-rakamlar li { padding-block: .9rem 1.1rem; border-top: 2px solid var(--text); font-size: var(--step--1); color: var(--text-muted); }
+.hk-rakamlar li strong {
+  display: block; margin-bottom: .4rem; white-space: nowrap;
+  font: 700 var(--step-2)/1.1 var(--font-display); letter-spacing: var(--tracking-title);
+  font-variant-numeric: tabular-nums; color: var(--text);
+}
+.hk-rakamlar .legal-note { max-width: 62ch; margin-top: 1.25rem; padding: 0; background: none; border: 0; }
+
+.hk-iki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+.hk-iki .hk-bas { margin-bottom: 0; }
+.hk-yetkinlik { margin: 0; border-bottom: 1px solid var(--rule); }
+.hk-yetkinlik > div { padding-block: 1rem 1.1rem; border-top: 1px solid var(--rule); }
+.hk-yetkinlik dt { font-weight: 700; margin: 0 0 .3rem; }
+.hk-yetkinlik dd { margin: 0; color: var(--text-muted); }
+
+.hk-ilkeler { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.hk-ilkeler > div { padding-block: 1.1rem 1.3rem; border-top: 1px solid var(--rule); }
+.hk-ilkeler dt { color: var(--text); margin: 0 0 .45rem; }
+.hk-ilkeler dd { margin: 0; color: var(--text-muted); }
+.hk-ilkeler dd a { font-weight: 600; white-space: nowrap; }
+
+.hk-profiller { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem clamp(1.5rem, 3vw, 2.5rem); }
+.hk-profiller h3 { color: var(--text); margin: 0; padding-bottom: .6rem; border-bottom: 2px solid var(--text); }
+.hk-profiller ul { list-style: none; margin: 0; padding: 0; }
+.hk-profiller li { display: flex; flex-direction: column; gap: .1rem; padding-block: .6rem; border-bottom: 1px solid var(--rule); }
+.hk-profiller a { font-weight: 600; }
+.hk-profiller span { font-size: var(--type-metadata); color: var(--text-muted); }
+
+@media (max-width: 52rem) {
+  .hk-hero__izgara, .hk-iki { grid-template-columns: 1fr; }
+  .hk-portre { max-inline-size: 220px; }
+  .hk-ilkeler, .hk-profiller { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 40rem) {
+  .hk-isler, .hk-ilkeler, .hk-yontem li { grid-template-columns: 1fr; }
+}
+@media (max-width: 26rem) {
+  .hk-profiller { grid-template-columns: 1fr; }
+}
 
 .social-list { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; margin: 1rem 0 0; padding: 0; }
 .social-list a {
@@ -1157,9 +1257,8 @@ section { padding: var(--bolum) 0; }
 .card-badges span:last-child { border-inline-end: 0; }
 
 /* ---- 5. Pill sıfırlama ---- */
-.badges li, .skills li, .social-list a, .theme-toggle,
+.badges li, .social-list a, .theme-toggle,
 .tool-search, .palette-pop, .tech-tags li { border-radius: 2px; }
-.skills li:hover { transform: none; }
 .site-header.is-scrolled { box-shadow: none; }
 /* Filtreler: dolu yeşil pill sayfanın en yüksek kontrastlı öğesiydi —
    bir filtrenin araçlardan baskın olması hiyerarşiyi ters çeviriyordu. */
