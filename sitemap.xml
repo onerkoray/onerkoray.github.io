@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
       <image:title>Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları</image:title>
@@ -39,7 +39,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/hakkimda/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/hakkimda-koray-oner.jpg</image:loc>
       <image:title>Koray Öner Kimdir? — Yazılım Geliştirici | Hakkımda</image:title>
@@ -903,7 +903,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/iskur-19-bin-tl-gercekte-ne/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/makale/iskur-19-bin-tl-gercekte-ne.png</image:loc>
       <image:title>İŞKUR'dan 19 Bin TL: Gerçekte Ne Ödeniyor? — Koray Öner</image:title>
