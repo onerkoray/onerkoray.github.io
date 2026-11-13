@@ -89,3 +89,59 @@
     bekle = setTimeout(olc, 150);
   });
 })();
+
+/* Okuma katmanı: üstte ilerleme çizgisi, geniş ekranda kenarda "Bu yazıda"
+   dizini. Dizin sayfadaki h2[id] başlıklarından kurulur; okunan bölüm
+   işaretlenir. Geniş tablo ya da grafik dizinin hizasına gelince dizin
+   kenara çekilir, içeriğin üstüne binmez. */
+(function () {
+  "use strict";
+  var govde = document.querySelector(".ed-body");
+  if (!govde) return;
+  var basliklar = Array.prototype.filter.call(govde.querySelectorAll("h2[id]"), function (h) { return h.textContent.trim(); });
+
+  var cizgi = document.createElement("div");
+  cizgi.className = "ed-ilerleme";
+  cizgi.setAttribute("aria-hidden", "true");
+  document.body.appendChild(cizgi);
+
+  var dizin = null, baglar = [];
+  if (basliklar.length >= 4) {
+    dizin = document.createElement("nav");
+    dizin.className = "ed-dizin";
+    dizin.setAttribute("aria-label", "Bu yazıda");
+    var ad = document.createElement("p");
+    ad.textContent = "Bu yazıda";
+    var ol = document.createElement("ol");
+    basliklar.forEach(function (h) {
+      var li = document.createElement("li"), a = document.createElement("a");
+      a.href = "#" + h.id;
+      a.textContent = h.textContent.trim();
+      li.appendChild(a); ol.appendChild(li); baglar.push(a);
+    });
+    dizin.appendChild(ad); dizin.appendChild(ol);
+    document.body.appendChild(dizin);
+  }
+
+  var genisler = govde.querySelectorAll(".tablo-genis, .table-scroll, .ed-grafik, figure"), bekliyor = false;
+  function olc() {
+    bekliyor = false;
+    var r = govde.getBoundingClientRect(), boy = r.height - window.innerHeight;
+    var oran = boy > 0 ? Math.min(1, Math.max(0, -r.top / boy)) : 0;
+    cizgi.style.transform = "scaleX(" + oran.toFixed(4) + ")";
+    if (!dizin) return;
+    var etkin = -1;
+    basliklar.forEach(function (h, i) { if (h.getBoundingClientRect().top < window.innerHeight * 0.3) etkin = i; });
+    baglar.forEach(function (a, i) { if (i === etkin) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+    var d = dizin.getBoundingClientRect(), cakisiyor = r.top > window.innerHeight * 0.6 || r.bottom < d.bottom;
+    for (var i = 0; i < genisler.length && !cakisiyor; i++) {
+      var g = genisler[i].getBoundingClientRect();
+      if (g.right > d.left - 8 && g.bottom > d.top && g.top < d.bottom) cakisiyor = true;
+    }
+    dizin.classList.toggle("ed-dizin-gizli", cakisiyor);
+  }
+  function iste() { if (!bekliyor) { bekliyor = true; window.requestAnimationFrame(olc); } }
+  window.addEventListener("scroll", iste, { passive: true });
+  window.addEventListener("resize", iste);
+  olc();
+})();
