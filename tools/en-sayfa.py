@@ -99,17 +99,24 @@ def govde():
     n_arac, n_yazi, n_ci = H.arac_sayisi(), H.makale_sayisi(), H.ci_komut_sayisi()
     yy = yayinlar()
     paket = cekirdek()
+    y0, y1 = H.parametre_yillari()
+    n_gec = H.gecerlilik_sayisi()
     p = []
     p.append('''
-    <section class="hero kd-hero" aria-labelledby="hero-title">
-      <div class="wrap hero-inner">
-        <p class="eyebrow">In English</p>
-        <h1 id="hero-title">Koray Öner</h1>
-        <figure class="portre portre--kucuk kd-portre">
+    <section class="hero hk-hero" aria-labelledby="hero-title">
+      <div class="wrap hk-hero__izgara">
+        <div class="hk-hero__metin">
+          <p class="eyebrow">In English</p>
+          <h1 id="hero-title">Koray Öner</h1>
+          <p class="lede">Koray Öner (also written Koray Oner) is a freelance software developer in Türkiye. He builds calculators for Turkish payroll, income tax, social security (SGK) and pensions that derive every figure from the legislation in force, and writes the articles that explain the rules behind them.</p>
+          <p class="hk-tez">One question sits at the centre of the work: <strong>how do you know a calculation is right?</strong> On this site the answer is a system, not a promise. Every figure is computed from legal parameters, recomputed on every change and published only after it passes its tests. The site is in Turkish; this page is an overview in English.</p>
+          <p class="kd-yonlendir">Türkçe: <a href="../hakkimda/" hreflang="tr" lang="tr">Hakkımda</a> · <a href="../koray-oner/" hreflang="tr" lang="tr">Çalışma dizini</a></p>
+        </div>
+        <figure class="portre hk-portre">
           <div class="portre-cerceve">
             <picture>
-              <source srcset="../images/koray-oner-portre-360.webp" type="image/webp">
-              <img src="../images/koray-oner-portre.jpg" width="160" height="160"
+              <source srcset="../images/koray-oner-portre.webp" type="image/webp">
+              <img src="../images/koray-oner-portre.jpg" width="320" height="320"
                    alt="Koray Öner, software developer" decoding="async">
             </picture>
           </div>
@@ -118,55 +125,195 @@ def govde():
             <span class="portre-rol">Software developer</span>
           </figcaption>
         </figure>
-        <p class="lede">Koray Öner (also written Koray Oner) is a freelance software developer in Türkiye. He builds free, open-source calculators for Turkish payroll, income tax, social security (SGK) and pensions, and writes the articles that explain the rules behind them. This site, korayoner.dev, is where they live. The site itself is in Turkish; this page is a short overview in English.</p>
-        <p class="kd-yonlendir">Türkçe: <a href="../hakkimda/" hreflang="tr" lang="tr">Hakkımda</a> · <a href="../koray-oner/" hreflang="tr" lang="tr">Çalışma dizini</a></p>
-        <dl class="kd-sayilar">
-          <div><dt>Calculators</dt><dd>%d</dd></div>
-          <div><dt>Articles</dt><dd>%d</dd></div>
-          <div><dt>Papers with a DOI</dt><dd>%d</dd></div>
-          <div><dt>Automated checks</dt><dd>%d</dd></div>
+      </div>
+      <div class="wrap">
+        <dl class="kunye hk-kunye" aria-label="Profile">
+          <div><dt>Work</dt><dd>Freelance software developer</dd></div>
+          <div><dt>Field</dt><dd>Turkish payroll, tax, social security and pensions</dd></div>
+          <div><dt>Open source</dt><dd><a href="https://www.npmjs.com/package/%s" rel="noopener">%s</a> · MIT licence</dd></div>
+          <div><dt>Researcher ID</dt><dd><a href="https://orcid.org/0009-0005-8730-3577" rel="noopener me">ORCID 0009-0005-8730-3577</a></dd></div>
+          <div><dt>Contact</dt><dd><a href="mailto:iletisim@korayoner.dev">iletisim@korayoner.dev</a></dd></div>
         </dl>
       </div>
-    </section>''' % (n_arac, n_yazi, len(yy), n_ci))
+    </section>''' % (paket, paket))
 
     p.append('''
-    <section class="content kd-bolum" id="what" aria-labelledby="what-title">
-      <div class="wrap prose">
-        <h2 id="what-title">What the site does</h2>
-        <p>Turkish payroll, tax and pension rules change at least once a year: the minimum wage, the income tax brackets and the social security ceiling each January, pensions every January and July. The calculators on this site apply the rules of each year, so a salary, a severance payment or a pension can be computed for the year it belongs to, not only for today.</p>
-        <ul>
-          <li>The calculators run in your browser. The amounts you enter are not sent to a server, and there is no sign-up and no advertising.</li>
-          <li>Every legal parameter (brackets, ceilings, exemptions, rates) is read from a single source file and checked against the official text.</li>
-          <li>Articles answer one question with the site's own calculation, and state their assumptions in the text.</li>
+    <section id="work" class="hk-bolum" aria-labelledby="work-title">
+      <div class="wrap">
+        <header class="hk-bas">
+          <p class="hk-etiket">Work</p>
+          <h2 id="work-title">What he does</h2>
+          <p>Four kinds of work fed by one source: a single file of legal parameters and the calculation engines that use it. When a rate changes, the calculator, the article and the test change together.</p>
+        </header>
+        <div class="hk-isler">
+          <div class="hk-is">
+            <h3>Calculators</h3>
+            <p>Gross-to-net salary, severance and notice pay, retirement date, social security contributions, vehicle taxes, rent increases. Each runs in the browser with the tariff of the year in question and shows the steps behind the result.</p>
+            <p class="hk-is__bag"><a href="../araclar/" hreflang="tr" lang="tr">All %d calculators</a></p>
+          </div>
+          <div class="hk-is">
+            <h3>Tested articles</h3>
+            <p>Articles that take their subject from the legislative calendar: wage rounds, the tax return month, ceiling changes. Every amount in an article is recomputed by the site's engines; if it does not match the page, publication stops.</p>
+            <p class="hk-is__bag"><a href="../makaleler/" hreflang="tr" lang="tr">All %d articles</a></p>
+          </div>
+          <div class="hk-is">
+            <h3>Research</h3>
+            <p>Papers that set out a method in full are deposited on Zenodo with a permanent DOI and linked to ORCID. Some methods, such as <a href="../dilim-kaymasi-hesaplama/" hreflang="tr">tax bracket creep</a>, become a calculator that applies them to an individual wage.</p>
+            <p class="hk-is__bag"><a href="#research">%d papers with a DOI</a></p>
+          </div>
+          <div class="hk-is">
+            <h3>Open calculation core</h3>
+            <p>The core for payroll, severance, pensions, rental income, taxes and loans is published on npm as <code>%s</code>. It has no dependencies, runs the same in the browser and in Node.js, and is the code the calculators on this site use.</p>
+            <p class="hk-is__bag"><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a> · <a href="../bordro/" hreflang="tr" lang="tr">Payroll engine</a></p>
+          </div>
+        </div>
+      </div>
+    </section>''' % (n_arac, n_yazi, len(yy), paket))
+
+    p.append('''
+    <section id="method" class="hk-bolum hk-bolum--zemin" aria-labelledby="method-title">
+      <div class="wrap">
+        <header class="hk-bas">
+          <p class="hk-etiket">Method</p>
+          <h2 id="method-title">How the numbers are checked</h2>
+          <p>Most online calculators give you a number without saying where it came from. When the law changes, nobody tells you: the tool keeps working and simply gives the wrong answer. The site is built to rule out both problems structurally.</p>
+        </header>
+        <ul class="hk-yontem">
+          <li>
+            <h3>Legal parameters in one place</h3>
+            <p>Income tax brackets, the minimum wage, the social security ceiling and the severance ceiling live in a single file. A check stops any calculator or article from carrying its own copy: a copy is what someone forgets to update.</p>
+          </li>
+          <li>
+            <h3>Article figures are tested too</h3>
+            <p>Every amount in an article is recomputed in a test and compared with the value on the page. Tables are parsed from the HTML and checked cell by cell; a single broken cell fails the build.</p>
+          </li>
+          <li>
+            <h3>Dated claims expire</h3>
+            <p>A sentence such as "not yet in force" writes its own recheck date into the page. When the date arrives the build turns red; the article does not wait to be noticed.</p>
+          </li>
+          <li>
+            <h3>The tests are tested</h3>
+            <p>After a new test is written, deliberate errors are planted in the code to measure whether the test really catches them. A test that does not is decoration.</p>
+          </li>
+          <li>
+            <h3>Primary sources</h3>
+            <p>The Official Gazette (Resmî Gazete), the Revenue Administration (GİB), the Social Security Institution (SGK), TurkStat (TÜİK) and the Central Bank (TCMB).</p>
+          </li>
         </ul>
       </div>
     </section>''')
 
     p.append('''
-    <section class="content kd-bolum" id="checks" aria-labelledby="checks-title">
-      <div class="wrap prose">
-        <h2 id="checks-title">How the numbers are checked</h2>
-        <p>Sources are primary: the Official Gazette (Resmî Gazete), the Revenue Administration (GİB), the Social Security Institution (SGK), TurkStat (TÜİK) and the Central Bank (TCMB). Every number in an article that contains a calculation is reproduced by an automated test from the site's own calculation engines; %d checks run on every change. Claims that depend on a date carry an expiry date, and the build fails when it passes. Corrections are logged on the <a href="../yayin-ilkeleri/" hreflang="tr" lang="tr">publishing principles</a> page (in Turkish).</p>
-        <p>AI agents help write code, drafts and charts. They are not a source of facts: the figures are recomputed by tests, and the responsibility is Koray Öner's.</p>
-      </div>
-    </section>''' % n_ci)
-
-    p.append('''
-    <section class="content kd-bolum" id="start" aria-labelledby="start-title">
+    <section id="numbers" class="hk-bolum hk-rakamlar" aria-labelledby="numbers-title">
       <div class="wrap">
-        <h2 id="start-title">Where to start</h2>
-        <p class="kd-aciklama">Selected calculators. The pages are in Turkish; the numbers speak for themselves.</p>
-        <ul class="kd-kanallar">%s
+        <header class="hk-bas">
+          <p class="hk-etiket">Measure</p>
+          <h2 id="numbers-title">In numbers</h2>
+        </header>
+        <ul>
+          <li><strong>%d</strong> free calculators</li>
+          <li><strong>%d</strong> articles, every figure pinned by a test</li>
+          <li><strong>%d</strong> automated checks on every change</li>
+          <li><strong>%s–%s</strong> payroll parameters verified</li>
+          <li><strong>%d</strong> pages that carry their own recheck date</li>
         </ul>
-        <p><a href="../araclar/" hreflang="tr" lang="tr">All %d calculators</a> · <a href="../makaleler/" hreflang="tr" lang="tr">All %d articles</a></p>
+        <p class="legal-note">These numbers are not typed by hand; they are counted from the repository on every build.</p>
       </div>
-    </section>''' % ("".join('\n          <li><a href="../%s/" hreflang="tr">%s</a><span>%s</span></li>' % (s, kacis(a), kacis(d)) for s, a, d in ARACLAR), n_arac, n_yazi))
+    </section>''' % (n_arac, n_yazi, n_ci, y0, y1, n_gec))
 
     p.append('''
-    <section class="content kd-bolum" id="research" aria-labelledby="research-title">
+    <section id="experience" class="hk-bolum" aria-labelledby="experience-title">
+      <div class="wrap hk-iki">
+        <header class="hk-bas">
+          <p class="hk-etiket">Experience</p>
+          <h2 id="experience-title">From enterprise software to statutory calculations</h2>
+          <p>Over his career Koray Öner has worked on many projects building professional tools for organisations, in Türkiye and abroad. The habit those projects leave behind: in enterprise software an error is usually silent. The screen opens, the table lines up, only the result is wrong.</p>
+          <p>The verification system on this site is that habit applied to personal finance. He now works freelance and is open to project collaboration and open-source contributions.</p>
+        </header>
+        <dl class="hk-yetkinlik">
+          <div>
+            <dt>Interfaces and accessibility</dt>
+            <dd>HTML, CSS and JavaScript with no framework or server dependency. Keyboard use, screen reader support and WCAG colour contrast are measured on every build.</dd>
+          </div>
+          <div>
+            <dt>Calculation engines and testing</dt>
+            <dd>Engines derived from the legislation that call one another; tests that read a figure off the page and recompute it; deliberate-error runs that test the tests.</dd>
+          </div>
+          <div>
+            <dt>Data pipelines</dt>
+            <dd>Automation that pulls TCMB, TÜİK and World Bank data every night, compares the sources with one another and turns them into charts.</dd>
+          </div>
+          <div>
+            <dt>Technical SEO and performance</dt>
+            <dd>Structured data, sitemaps and date consistency; page weight and loading behaviour. Each is pinned by a check.</dd>
+          </div>
+          <div>
+            <dt>Other areas</dt>
+            <dd>Backend and API design, DevOps and automation, artificial intelligence and machine learning.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>''')
+
+    p.append('''
+    <section id="principles" class="hk-bolum hk-bolum--zemin" aria-labelledby="principles-title">
       <div class="wrap">
-        <h2 id="research-title">Research with a DOI</h2>
-        <p class="kd-aciklama">Papers deposited on Zenodo with a permanent DOI, all linked to ORCID <a href="https://orcid.org/0009-0005-8730-3577" rel="noopener me">0009-0005-8730-3577</a>. The papers are written in Turkish; titles are given as published.</p>
+        <header class="hk-bas">
+          <p class="hk-etiket">Principles</p>
+          <h2 id="principles-title">Publishing principles, in brief</h2>
+          <p>The full text and the corrections log are on the <a href="../yayin-ilkeleri/" hreflang="tr" lang="tr">publishing principles</a> page (in Turkish).</p>
+        </header>
+        <dl class="hk-ilkeler">
+          <div>
+            <dt>Independence</dt>
+            <dd>Calculators and articles are free, ad-free and need no sign-up. No sponsored content, no link sales, no guest posts.</dd>
+          </div>
+          <div>
+            <dt>Sources</dt>
+            <dd>Every claim sits next to a primary source and a check date. <a href="../yayin-ilkeleri/#kaynaklar" hreflang="tr" lang="tr">Source rule</a></dd>
+          </div>
+          <div>
+            <dt>Corrections</dt>
+            <dd>An error that is found is logged with the date of the correction, never changed silently. <a href="../yayin-ilkeleri/#duzeltmeler" hreflang="tr" lang="tr">Corrections log</a></dd>
+          </div>
+          <div>
+            <dt>Privacy</dt>
+            <dd>Calculations run in your browser; the amounts you enter do not leave your device. An invoice archive or Financial Twin profile you choose to save stays in your own browser. <a href="../gizlilik/" hreflang="tr" lang="tr">Privacy</a></dd>
+          </div>
+          <div>
+            <dt>AI</dt>
+            <dd>AI agents help write code, drafts and charts. They are not a source of facts: the figures are recomputed by tests, and the responsibility is Koray Öner's. <a href="../yayin-ilkeleri/#yapay-zeka" hreflang="tr" lang="tr">Disclosure</a></dd>
+          </div>
+          <div>
+            <dt>Open code</dt>
+            <dd>The source of the site and of the calculation core is on <a href="https://github.com/onerkoray" rel="noopener">GitHub</a> under the MIT licence.</dd>
+          </div>
+        </dl>
+        <p class="legal-note">The calculators are for general information only. They do not replace advice from a certified accountant, a lawyer or an official authority.</p>
+      </div>
+    </section>''')
+
+    p.append('''
+    <section id="start" class="hk-bolum" aria-labelledby="start-title">
+      <div class="wrap">
+        <header class="hk-bas">
+          <p class="hk-etiket">Calculators</p>
+          <h2 id="start-title">Where to start</h2>
+          <p>Selected calculators. The pages are in Turkish; the numbers speak for themselves.</p>
+        </header>
+        <ul class="hk-yontem">%s
+        </ul>
+      </div>
+    </section>''' % "".join('\n          <li><h3><a href="../%s/" hreflang="tr">%s</a></h3><p>%s</p></li>' % (s, kacis(a), kacis(d)) for s, a, d in ARACLAR))
+
+    p.append('''
+    <section id="research" class="hk-bolum hk-bolum--zemin" aria-labelledby="research-title">
+      <div class="wrap">
+        <header class="hk-bas">
+          <p class="hk-etiket">Research</p>
+          <h2 id="research-title">Papers with a DOI</h2>
+          <p>Deposited on Zenodo with a permanent DOI, all linked to ORCID 0009-0005-8730-3577. The papers are written in Turkish; titles are given as published.</p>
+        </header>
         <ol class="kd-yayinlar">%s</ol>
       </div>
     </section>''' % "".join(
@@ -174,27 +321,54 @@ def govde():
             c["tarih"], tarih_en(c["tarih"]), c["doi"], kacis(c["baslik"])) for c in yy))
 
     p.append('''
-    <section class="content kd-bolum" id="open-source" aria-labelledby="oss-title">
-      <div class="wrap prose">
-        <h2 id="oss-title">Open source</h2>
-        <p>The calculation core for payroll, severance, pensions, rental income, taxes and loans is published on npm as <strong>%s</strong> under the MIT licence. It has no dependencies, runs the same in the browser and in Node.js, and is the code the calculators on this site use. Source: <a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a> · <a href="https://www.npmjs.com/package/%s" rel="noopener">npm</a>.</p>
-      </div>
-    </section>''' % (paket, paket))
-
-    p.append('''
-    <section class="content kd-bolum" id="elsewhere" aria-labelledby="elsewhere-title">
+    <section id="elsewhere" class="hk-bolum" aria-labelledby="elsewhere-title">
       <div class="wrap">
-        <h2 id="elsewhere-title">Elsewhere and contact</h2>
-        <ul class="kd-kanallar">
-          <li><a href="https://orcid.org/0009-0005-8730-3577" rel="noopener me">ORCID</a><span>research identity</span></li>
-          <li><a href="https://github.com/onerkoray" rel="noopener me">GitHub</a><span>source code and the calculation core</span></li>
-          <li><a href="https://www.youtube.com/@onerkoray" rel="noopener me">YouTube</a><span>short videos on the calculators (Turkish)</span></li>
-          <li><a href="https://x.com/korayonerdev" rel="noopener me">X</a><span>announcements of new tools and articles</span></li>
-          <li><a href="https://www.linkedin.com/in/korayoner/" rel="noopener me">LinkedIn</a><span>collaboration</span></li>
-        </ul>
-        <p>Email: <a href="mailto:iletisim@korayoner.dev">iletisim@korayoner.dev</a>. Error reports and questions are welcome in English or Turkish.</p>
+        <header class="hk-bas">
+          <p class="hk-etiket">Profiles</p>
+          <h2 id="elsewhere-title">Elsewhere and contact</h2>
+          <p>Email: <a href="mailto:iletisim@korayoner.dev">iletisim@korayoner.dev</a>. Error reports and questions are welcome in English or Turkish.</p>
+        </header>
+        <div class="hk-profiller">
+          <div>
+            <h3>Research</h3>
+            <ul>
+              <li><a href="https://orcid.org/0009-0005-8730-3577" rel="noopener me">ORCID</a><span>permanent researcher ID</span></li>
+              <li><a href="https://ssrn.com/author=13261728" rel="noopener me">SSRN</a><span>preprints</span></li>
+              <li><a href="https://authors.repec.org/pro/pko1242/" rel="noopener me">RePEc</a><span>economics author profile</span></li>
+              <li><a href="https://independent.academia.edu/Koray%C3%96ner3" rel="noopener me">Academia</a><span>paper archive</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Code and writing</h3>
+            <ul>
+              <li><a href="https://github.com/onerkoray" rel="noopener me">GitHub</a><span>source code and the calculation core</span></li>
+              <li><a href="https://korayoner.substack.com/" rel="noopener me">Substack</a><span>writing</span></li>
+              <li><a href="https://medium.com/@onerkoray" rel="noopener me">Medium</a><span>writing</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Professional</h3>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/korayoner/" rel="noopener me">LinkedIn</a><span>professional profile</span></li>
+              <li><a href="https://www.xing.com/profile/Koray_Oener015108" rel="noopener me">Xing</a><span>professional profile</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Channels</h3>
+            <ul>
+              <li><a href="https://www.youtube.com/@onerkoray" rel="noopener me">YouTube</a><span>short videos on the calculators (Turkish)</span></li>
+              <li><a href="https://x.com/korayonerdev" rel="noopener me">X</a><span>new tools and articles</span></li>
+              <li><a href="https://www.instagram.com/korayonerdev/" rel="noopener me">Instagram</a></li>
+              <li><a href="https://www.facebook.com/korayoner.dev/" rel="noopener me">Facebook</a></li>
+              <li><a href="https://www.tiktok.com/@korayonerdev" rel="noopener me">TikTok</a></li>
+              <li><a href="https://tr.pinterest.com/onerkoray/" rel="noopener me">Pinterest</a></li>
+              <li><a href="https://500px.com/p/korayoner" rel="noopener me">500px</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>''')
+
     return "\n".join(p), n_arac, n_yazi, len(yy)
 
 
