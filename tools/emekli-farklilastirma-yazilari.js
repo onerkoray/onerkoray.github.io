@@ -16,11 +16,14 @@ var fs = require("fs");
 var path = require("path");
 var KOK = path.dirname(__dirname);
 var Y = require(path.join(KOK, "makaleler", "emekli-yas-haritasi-2025", "yas.js"));
+var I = require(path.join(KOK, "makaleler", "emekliye-ilave-iyilestirme-ocak-2027", "iyilestirme.js"));
 var G = require(path.join(KOK, "makaleler", "prim-gunune-gore-emekli-artisi", "gun.js"));
 
 function v1(x) { return x.toFixed(1).replace(".", ","); }
 function y1(o) { return "%" + v1(o * 100); }
 function tl(x) { return Math.round(x).toLocaleString("tr-TR"); }
+var AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+function tarihAd(iso) { return AYLAR[+iso.slice(5, 7) - 1] + " " + iso.slice(0, 4); }
 function mly(x) { return (Math.round(x / 1e8) / 10).toLocaleString("tr-TR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }); } // TL → milyar, bir ondalık
 function mln(x) { return (Math.round(x / 1e4) / 100).toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); } // kişi → milyon, iki ondalık
 var KAPSAM_AD = { "4a": "4/a (SSK)", "4b": "4/b (Bağ-Kur)", "4c": "4/c (memur)" };
@@ -133,7 +136,7 @@ function yasGovde() {
     "<p>4/a'da ortanca " + o["4a"].ortanca + ", 4/b ve 4/c'de " + o["4b"].ortanca + ". SSK emeklilerinin " + y1(o["4a"].alti55) + "'i 55'in altında; Bağ-Kur'da bu pay " + y1(o["4b"].alti55) + ", memurda " + y1(o["4c"].alti55) + ". Yaş eşiği yükseldikçe pay 4/b ve 4/c'ye kayar.</p>");
 
   out.push('<h2 id="tasarimlar">Aynı bütçe, üç dağıtım</h2>\n' +
-    "<p>Karşılaştırmayı adil kılmak için bütçe sabit tutuldu: her yaşlılık aylığı alana ayda 1.000 TL eşit artış. Bunun yıllık maliyeti " + tl(N) + " kişi × 1.000 TL × 12 = <strong>" + mly(maliyet) + " milyar TL</strong>. 1.000 TL bir tahmin değil, ölçü birimi; gerçek tutar ne olursa oranlar aynı kalır. Üç <strong>varsayımsal</strong> dağıtım:</p>\n<ul>" +
+    "<p>Karşılaştırmayı adil kılmak için bütçe sabit tutuldu: her yaşlılık aylığı alana ayda 1.000 TL eşit artış. Bunun yıllık maliyeti " + tl(N) + " kişi × 1.000 TL × 12 = <strong>" + mly(maliyet) + " milyar TL</strong>. 1.000 TL bir tahmin değil, ölçü birimi; gerçek tutar ne olursa oranlar aynı kalır. <a href=\"../emekliye-ilave-iyilestirme-ocak-2027/\">İlave iyileştirme yazısında</a> aynı 1.000 TL'yi yılda " + mly(I.seyyanenMaliyeti() * 1e6) + " milyar TL bulmuştuk; fark sayılan birimde. Orada malullük ve ölüm aylıkları dahil " + mln(I.dosya(2025)) + " milyon dosya, burada yalnız yaşlılık aylığı alan kişi sayıldı. Üç <strong>varsayımsal</strong> dağıtım:</p>\n<ul>" +
     "<li><strong>Eşit:</strong> herkese 1.000 TL.</li>" +
     "<li><strong>Yalnız 65 ve üzeri:</strong> aynı para yalnız " + tl(T.yalniz65.kisi) + " kişiye; kişi başı " + tl(T.yalniz65.tutar) + " TL. " + tl(T.yalniz65.disarida) + " kişi hiç almaz.</li>" +
     "<li><strong>Kademeli 1:2:3:</strong> 55 altı bir pay, 55–64 iki pay, 65 ve üzeri üç pay. Bir pay " + tl(T.kademeli.birim) + " TL.</li></ul>\n" +
@@ -184,7 +187,7 @@ function gunGovde() {
   out.push('<div class="legal-note verdict">\n<h2 id="kisa-cevap">Kısa cevap</h2>\n' +
     "<p><strong>Gün eşiği de oran da belli değil.</strong> Artışın prim ödeme gün sayısına göre farklılaşması bir yaklaşım olarak dile getirildi; metin Aralık'ta bekleniyor.</p>\n" +
     "<p><strong>Kanun herkesten aynı günü istemedi.</strong> 4/a'da tam aylık için aranan gün ilk girişe göre değişiyor: 1999 öncesinde " + tl(enAzE) + " ile " + tl(enCokE) + ", 1999–2008 arasında " + tl(s[1].erkek.tam) + ", 2008 sonrasında " + tl(s[3].erkek.tam) + ". 1999 öncesi girişli yaş şartıyla " + tl(s[0].erkek.kismi) + " günle de bağlanabiliyordu.</p>\n" +
-    "<p><strong>Bu kuralla emekli olan kalabalık.</strong> 2025 sonunda 4/a'da yaşlılık aylığı alanların " + mln(a4.toplam) + " milyonu (" + y1(a4.pay) + ") 58 (kadın) ve 60 (erkek) yaşın altındaydı. 1999 sonrası girişli bu yaşta yaşlılık aylığı alamaz. Dolayısıyla bu grup, yıpranma istisnası dışında, 1999 öncesi kurallarla bağlanmış. " + tl(E) + " günlük bir eşik, kanunun en azını ödeyip emekli olanı " + tl(E - enCokE) + " ile " + tl(E - enAzE) + " gün geride bırakır.</p>\n</div>");
+    "<p><strong>Bu kuralla emekli olan kalabalık.</strong> 2025 sonunda 4/a'da yaşlılık aylığı alanların " + mln(a4.toplam) + " milyonu (" + y1(a4.pay) + ") 58 (kadın) ve 60 (erkek) yaşın altındaydı. 1999 sonrası girişli, engellilik, maden, erken yaşlanma ve yıpranma gibi özel hükümler dışında, bu yaşta yaşlılık aylığı alamaz. Bu yüzden grubun büyük bölümü 1999 öncesi kurallarla bağlanmış. 7.200 gün şartıyla tam aylık alan ise henüz yok: 1 Mayıs 2008'de giren, yılda 360 gün ödese bile 7.200'e " + tarihAd(G.ilk7200()) + "'te ulaşır. " + tl(E) + " günlük bir eşik, kanunun en azını ödeyip emekli olanı " + tl(E - enCokE) + " ile " + tl(E - enAzE) + " gün geride bırakır.</p>\n</div>");
 
   out.push('<h2 id="gundem">Gündemde ne var?</h2>\n' +
     "<p>Hazine ve Maliye Bakanlığı, 2027 bütçesinin TBMM Plan ve Bütçe Komisyonu'ndaki 5 Kasım oturumunda ek artışın yaş ve prim ödeme gün sayısına göre ayrışmasını doğru bulduğunu söyledi. Komisyon tutanağına göre bu ayrım seyyanen bir artışta da gözetilecek. Gün sınırı, kademe ya da tutar verilmedi. Yaş boyutunu <a href=\"../emekli-yas-haritasi-2025/\">emeklilerin yaş haritası</a> yazısında SGK verisiyle ölçtük. Bu yazı prim gününe bakıyor.</p>\n" +
@@ -204,11 +207,12 @@ function gunGovde() {
     "<p>Erkekte 1980'den önce girenler " + tl(enAzE) + " günle, 1999'da 8 Eylül'den önce girenler " + tl(enCokE) + " günle tam aylığa hak kazanıyor. 8 Eylül 1999'da sınır " + tl(s[1].erkek.tam) + " güne sıçrıyor, 2008 Mayıs'ında " + tl(s[3].erkek.tam) + "'e çıkıyor. 4/b'de (Bağ-Kur) 1999 öncesinin tam aylık şartı gün değil tam yıl: kadın 20, erkek 25 yıl, yani 7.200 ve 9.000 gün.</p>");
 
   out.push('<h2 id="kac-kisi">Bu kurallarla emekli olan kaç kişi?</h2>\n' +
-    "<p>SGK prim gününe göre emekli dağılımı yayımlamıyor. Ama yaş tablosundan bir alt sınır çıkarılabilir. 1999 sonrası girişlinin yaşlılık aylığı için en erken yaşı kadında 58, erkekte 60. 2025 sonunda bu yaşların altında aylık alan biri, yıpranma (fiili hizmet zammı) istisnası dışında, 1999 öncesi kurallarla bağlanmış olmalı.</p>\n" +
+    "<p>SGK prim gününe göre emekli dağılımı yayımlamıyor. Ama yaş tablosundan bir alt sınır çıkarılabilir. 1999 sonrası girişlinin yaşlılık aylığı için en erken yaşı kadında 58, erkekte 60. 2025 sonunda bu yaşların altında aylık alan biri, özel hükümler (engelli sigortalı, yeraltı maden, erken yaşlanma, fiili hizmet zammı) dışında, 1999 öncesi kurallarla bağlanmış olmalı.</p>\n" +
     tablo("58 (kadın) / 60 (erkek) yaşın altında yaşlılık aylığı alanlar, 2025 sonu", ["Kapsam", "Erkek", "Kadın", "Toplam", "Kapsam içindeki payı"], [
       ["4/a (SSK)", tl(a4.erkek), tl(a4.kadin), tl(a4.toplam), y1(a4.pay)],
       ["4/b (Bağ-Kur)", tl(b4.erkek), tl(b4.kadin), tl(b4.toplam), y1(b4.pay)]]) + "\n" +
-    "<p>Bu bir alt sınır: 1999 öncesi girişli olup 2025'te 58/60'ı geçmiş emekliler de aynı kurallarla bağlandı ama tabloda ayırt edilemiyor. Yine de 4/a yaşlılık aylıklarının en az yarıya yakını, emekli olmak için 7.200'den az gün gereken bir kurala tabiydi.</p>");
+    "<p>Bu bir tahmin ve iki yöne sapar. Özel hükümlerle erken bağlananlar sayıyı büyütür. 1999 öncesi girişli olup 2025'te 58/60'ı geçmiş emekliler ise aynı kurallarla bağlandığı hâlde tabloda ayırt edilemez ve sayıyı küçültür. Yine de 4/a yaşlılık aylıklarının yaklaşık yarısı, emekli olmak için 7.200'den az gün isteyen bir kurala tabiydi; geri kalanın çoğu da 7.000 günlük 1999–2008 kuralına.</p>\n" +
+    "<p>4/b satırı ters okunur: 1999 öncesi Bağ-Kur'lunun tam aylık şartı kadında 7.200, erkekte 9.000 gündü. Bu grup 7.200 günlük bir eşiği kanun gereği zaten geçmiş olur.</p>");
 
   out.push('<h2 id="esik">Gün eşiği koyan bir kural ne yapar?</h2>\n' +
     "<p>Örnek olsun diye <strong>varsayımsal</strong> bir kural: " + tl(E) + " günü aşana ek artış, altında kalana yok. " + tl(E) + " bugün 4/a için tam aylığın şartı, o yüzden akla ilk gelen sınır. Kanunun en azını ödeyip emekli olan biri bu eşiğe göre şöyle durur:</p>\n" +
@@ -228,7 +232,7 @@ function gunGovde() {
   out.push('<h2 id="varsayim">Varsayımlar ve sınırlar</h2>\n<ul>' +
     "<li>Gün eşiği örneği <strong>varsayımsaldır</strong>; açıklanmış bir sınır değil.</li>" +
     "<li>Gün şartları 4/a tam yaşlılık aylığı içindir. Grafik her yılın 1 Haziran girişini ve girişte 20 yaşı varsayar. 18 yaşından önce başlayanda süre 18. yaştan sayılır ve satır kayabilir.</li>" +
-    "<li>Yaş sınırının altında aylık alanlar alt sınırdır. Fiili hizmet zammıyla (yıpranma) yaşı inen 1999 sonrası girişliler tabloda ayrılamaz; sayı bu kadar küçülebilir.</li>" +
+    "<li>Yaş sınırının altında aylık alanlar bir tahmindir. Engelli sigortalı, yeraltı maden, erken yaşlanma ve fiili hizmet zammı hükümleriyle erken bağlanan 1999 sonrası girişliler ayrılamaz (sayıyı büyütür); 58/60'ı geçmiş 1999 öncesi girişliler de ayrılamaz (küçültür).</li>" +
     "<li>Kendi emeklilik tarihiniz ve gün şartınız için <a href=\"../../ne-zaman-emekli-olurum/\">ne zaman emekli olurum</a> aracına bakın.</li></ul>");
   out.push('<h2 id="kaynaklar">Kaynaklar</h2>\n<ul>' +
     '<li><a href="https://www.tbmm.gov.tr/Tutanaklar/TutanakGoster/5487" rel="noopener">TBMM Plan ve Bütçe Komisyonu tutanağı</a>, 5 Kasım 2026, s.74 (incelenmemiş tutanak)</li>' +
@@ -239,7 +243,7 @@ function gunGovde() {
   out.push("<h2>Sık sorulan sorular</h2>\n" +
     "<details><summary>Emekli zammı prim gününe göre mi verilecek?</summary><p>Karar yok. 5 Kasım 2026'daki Komisyon oturumunda artışın yaş ve prim ödeme gün sayısına göre ayrışmasının doğru olacağı söylendi. Gün sınırı ve tutar açıklanmadı.</p></details>\n" +
     "<details><summary>EYT'li kaç günle emekli olabiliyordu?</summary><p>4/a'da 1999 öncesi girişli tam aylık için " + tl(enAzE) + " ile " + tl(enCokE) + " gün; sayı 23 Mayıs 2002'deki sigortalılık süresine göre değişir. 15 yıl ve yaş şartıyla " + tl(s[0].erkek.kismi) + " günle de bağlanılabiliyordu.</p></details>\n" +
-    "<details><summary>Prim gününe göre kaç emekli var?</summary><p>SGK bu dağılımı yayımlamıyor. Bu yüzden prim gününe bağlı bir artışın maliyeti dışarıdan hesaplanamaz. Yaş tablosundan çıkan alt sınır: 4/a'da " + tl(a4.toplam) + " kişi 1999 öncesi kurallarla bağlanmış.</p></details>");
+    "<details><summary>Prim gününe göre kaç emekli var?</summary><p>SGK bu dağılımı yayımlamıyor. Bu yüzden prim gününe bağlı bir artışın maliyeti dışarıdan hesaplanamaz. Yaş tablosundan çıkan tahmin: 4/a'da " + tl(a4.toplam) + " kişinin büyük bölümü 1999 öncesi kurallarla bağlanmış.</p></details>");
 
   return out.join("\n\n");
 }

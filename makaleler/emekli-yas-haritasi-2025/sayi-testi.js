@@ -42,6 +42,8 @@ M.bantlar().forEach(function (b) {
 var c = 0, med;
 for (a = 0; a <= 100; a++) { c += d[a]; if (c >= N / 2) { med = a; break; } }
 t.dogru("ortanca", med === M.ortanca(), med);
+t.dogru("30 yaş altında yaşlılık aylığı yok", aralik(0, 29) === 0, aralik(0, 29));
+t.gecsin("30 altı sayfada", "30 yaş altında yaşlılık aylığı alan yok");
 /* "Sol omuz 43'te başlıyor": 4/a'da 43 yaşındaki yaşlılık aylığı alan 42'dekinin üç katından fazla. */
 var a4 = function (i) { return V["4a"].erkek[i] + V["4a"].kadin[i]; };
 t.dogru("sol omuz 43", a4(43) > 3 * a4(42) && a4(42) < 2 * a4(41), a4(41) + " " + a4(42) + " " + a4(43));
@@ -83,6 +85,9 @@ t.gecsin("maliyet sayfada", (Math.round(12000 * N / 1e8) / 10).toLocaleString("t
 t.gecsin("yalnız 65 kişi başı", "kişi başı " + tl(1000 * N / n65) + " TL");
 t.gecsin("dışarıda", tl(N - n65) + " kişi hiç almaz");
 t.gecsin("bir pay", "Bir pay " + tl(birim) + " TL");
+var IY = require("../emekliye-ilave-iyilestirme-ocak-2027/iyilestirme.js");
+t.yakin("dosya maliyeti", IY.seyyanenMaliyeti() * 1e6, 1000 * 12 * IY.dosya(2025), 1e-3);
+t.gecsin("iki maliyet", "aynı 1.000 TL'yi yılda " + (Math.round(12000 * IY.dosya(2025) / 1e8) / 10).toLocaleString("tr-TR", { minimumFractionDigits: 1 }) + " milyar TL bulmuştuk");
 
 /* 5 — Kapsam ortalamaları elle. */
 function ort(k, f) { var s = 0, n = 0; for (var i = 0; i <= 100; i++) { var x = V[k].erkek[i] + V[k].kadin[i]; s += x * f(i); n += x; } return s / n; }
