@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="auto">
+<head>
+  <!-- Ölçüm onay kapısı: onay gelmeden analitik yüklenmez -->
+  <script src="../../onay.js?v=46274afb" defer></script>
+  <meta charset="UTF-8">
+  <script src="../../tema-erken.js?v=a2f32851"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yaşa Göre Emekli Artışı Kime Gider? Emeklilerin Yaş Haritası | Koray Öner</title>
+  <meta name="description" content="SGK 2025 verisiyle 12,25 milyon emeklinin yaşı: ortanca 62; 65 üstü payı SSK'da %31,7, Bağ-Kur'da %61,1, memurda %61,5. Aynı bütçeyle üç yaş dağıtımı.">
+  <meta name="gecerlilik" content="2026-12-20 | Emekli iyileştirmesinin kanun teklifi TBMM'ye geldi mi? Geldiyse seçilen yaş sınırlarıyla tasarımları yeniden kur. SGK 2026 yıllığı yayımlandıysa yas-2025.json'u yenile; 'node tools/emekli-farklilastirma-yazilari.js' ve sayi-testi birlikte okunmalı.">
+  <meta name="author" content="Koray Öner">
+  <link rel="author" href="https://github.com/onerkoray">
+  <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://korayoner.dev/makaleler/emekli-yas-haritasi-2025/">
+  <!-- AKIS:BASLANGIC -->
+  <link rel="alternate" type="application/atom+xml" title="Koray Öner — Araçlar ve Yazılar" href="/atom.xml">
+  <link rel="alternate" type="application/atom+xml" title="Koray Öner — Yazılar" href="/makaleler/atom.xml">
+  <!-- AKIS:BITIS -->
+  <!-- ARAMA:BASLANGIC -->
+  <script type="module" src="/arama.js?v=9daf8e8d"></script>
+  <!-- ARAMA:BITIS -->
+
+  <link rel="icon" href="../../favicon.ico?v=73d21711" sizes="32x32">
+  <link rel="icon" href="../favicon.svg?v=76f0fde1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=76038ce5">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Koray Öner">
+  <meta property="og:title" content="Yaşa göre emekli artışı kime gider?">
+  <meta property="og:description" content="Yaşa göre artış kapsamlar arasında da para kaydırır: aynı bütçe yalnız 65 üstüne giderse SSK ortalaması 791, Bağ-Kur 1.525, memur 1.536 TL.">
+  <meta property="og:url" content="https://korayoner.dev/makaleler/emekli-yas-haritasi-2025/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://korayoner.dev/images/makale/emekli-yas-haritasi-2025.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Yaşa göre emekli artışı kime gider? Emeklilerin yaş haritası">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@korayonerdev">
+  <meta name="twitter:creator" content="@korayonerdev">
+  <meta name="twitter:title" content="Yaşa göre emekli artışı kime gider?">
+  <meta name="twitter:description" content="Yaşa göre artış kapsamlar arasında da para kaydırır: aynı bütçe yalnız 65 üstüne giderse SSK ortalaması 791, Bağ-Kur 1.525, memur 1.536 TL.">
+  <meta name="twitter:image" content="https://korayoner.dev/images/makale/emekli-yas-haritasi-2025.png">
+
+  <link rel="stylesheet" href="../../style.css?v=d5916d0a">
+  <link rel="stylesheet" href="../editoryal.css?v=76a58e18">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://korayoner.dev/#website",
+        "url": "https://korayoner.dev/",
+        "name": "Koray Öner",
+        "alternateName": "korayoner.dev",
+        "inLanguage": "tr",
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://korayoner.dev/makaleler/emekli-yas-haritasi-2025/",
+        "url": "https://korayoner.dev/makaleler/emekli-yas-haritasi-2025/",
+        "name": "Yaşa göre emekli artışı kime gider? Emeklilerin yaş haritası",
+        "isPartOf": {
+          "@id": "https://korayoner.dev/#website"
+        },
+        "inLanguage": "tr",
+        "primaryImageOfPage": "https://korayoner.dev/images/makale/emekli-yas-haritasi-2025.png"
+      },
+      {
+        "@type": "Article",
+        "@id": "https://korayoner.dev/makaleler/emekli-yas-haritasi-2025/#article",
+        "headline": "Yaşa göre emekli artışı kime gider? Emeklilerin yaş haritası",
+        "description": "SGK 2025 verisiyle 12,25 milyon emeklinin yaşı: ortanca 62; 65 üstü payı SSK'da %31,7, Bağ-Kur'da %61,1, memurda %61,5. Aynı bütçeyle üç yaş dağıtımı.",
+        "inLanguage": "tr",
+        "datePublished": "2026-11-16",
+        "dateModified": "2026-11-16",
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "mainEntityOfPage": "https://korayoner.dev/makaleler/emekli-yas-haritasi-2025/",
+        "image": "https://korayoner.dev/images/makale/emekli-yas-haritasi-2025.png",
+        "isPartOf": {
+          "@id": "https://korayoner.dev/#website"
+        },
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Emekli aylığı"
+          },
+          {
+            "@type": "Thing",
+            "name": "Yaşlılık aylığı"
+          },
+          {
+            "@type": "Thing",
+            "name": "Sosyal Güvenlik Kurumu"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://korayoner.dev/#oner-koray",
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
+        "name": "Koray Öner",
+        "alternateName": "Koray Oner",
+        "url": "https://korayoner.dev/",
+        "sameAs": [
+          "https://github.com/onerkoray",
+          "https://www.linkedin.com/in/korayoner/",
+          "https://x.com/korayonerdev",
+          "https://www.instagram.com/korayonerdev/",
+          "https://www.youtube.com/@onerkoray",
+          "https://korayoner.substack.com/",
+          "https://substack.com/@korayoner",
+          "https://medium.com/@onerkoray",
+          "https://www.xing.com/profile/Koray_Oener015108",
+          "https://independent.academia.edu/Koray%C3%96ner3",
+          "https://500px.com/p/korayoner",
+          "https://orcid.org/0009-0005-8730-3577",
+          "https://ssrn.com/author=13261728",
+          "https://authors.repec.org/pro/pko1242/",
+          "https://www.facebook.com/korayoner.dev/",
+          "https://www.tiktok.com/@korayonerdev",
+          "https://tr.pinterest.com/onerkoray/"
+        ]
+      }
+    ]
+  }
+  </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/"}, {"@type": "ListItem", "position": 2, "name": "Makaleler", "item": "https://korayoner.dev/makaleler/"}, {"@type": "ListItem", "position": 3, "name": "Emeklilik & Sosyal Güvenlik", "item": "https://korayoner.dev/makaleler/#emeklilik-sosyal-guvenlik"}, {"@type": "ListItem", "position": 4, "name": "Yaşa göre emekli artışı kime gider? Emeklilerin yaş haritası", "item": "https://korayoner.dev/makaleler/emekli-yas-haritasi-2025/"}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="../../" aria-label="Koray Öner ana sayfa">
+        <img class="brand-mark" src="../../logo.svg?v=55d1915b" width="32" height="32" alt="" aria-hidden="true">
+        <span class="brand-name">Koray Öner</span>
+      </a>
+      <nav class="site-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="../../araclar/">Araçlar</a></li>
+          <li><a href="../../makaleler/" aria-current="true">Makaleler</a></li>
+          <li><a href="../../grafikler/">Grafikler</a></li>
+          <li><a href="../../bordro/">Bordro Motoru</a></li>
+          <li><a href="../../yayinlar/">Yayınlar</a></li>
+          <li><a href="../../hakkimda/">Hakkımda</a></li>
+          <li><a href="../../ara/">Ara</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Temayı değiştir">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Sistem</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb wrap" aria-label="Konum">
+      <a href="../../">Ana Sayfa</a> <span aria-hidden="true">›</span>
+      <a href="../../makaleler/">Makaleler</a> <span aria-hidden="true">›</span>
+      <a href="../../makaleler/#emeklilik-sosyal-guvenlik">Emeklilik &amp; Sosyal Güvenlik</a> <span aria-hidden="true">›</span> Yaşa göre emekli artışı kime gider? Emeklilerin yaş haritası
+    </nav>
+
+    <section class="ed-article-hero" aria-labelledby="hero-title">
+      <div class="wrap prose">
+        <p class="ed-kicker">Emeklilik · Ocak 2027</p>
+        <h1 id="hero-title">Yaşa göre emekli artışı kime gider? Emeklilerin yaş haritası</h1>
+        <p class="ed-standfirst">Emekliye ek artışın yaşa göre ayrışabileceği Meclis'te söylendi, ama kural yok. SGK'nın 2025 yaş tablosu, böyle bir kuralın kime gideceğini bugünden gösteriyor.</p>
+        <p class="ed-meta">
+          <span class="ed-author"><img src="../../images/koray-oner-portre-360.webp" width="24" height="24" alt="" loading="lazy" decoding="async"><a href="../../hakkimda/">Koray Öner</a></span>
+          <span class="ed-sep" aria-hidden="true">·</span>
+          <time datetime="2026-11-16">16 Kasım 2026</time>
+        </p>
+      </div>
+    </section>
+
+    <section class="content"><div class="wrap prose ed-body">
+          <!-- LEAD-GORSEL:BASLANGIC -->
+          <figure class="ed-veri-gorseli">
+            <img src="../../images/makale/emekli-yas-haritasi-2025-kart.svg"
+                 width="800" height="500" decoding="async"
+                 alt="Herkese eşit 1.000 TL yerine aynı bütçe yalnız 65 yaş ve üzerine verilirse kişi başı ortalama artış: SSK emeklisinde 791, Bağ-Kur'da 1.525, memurda 1.536 TL.">
+            <figcaption>Varsayımsal dağıtım, bütçe sabit. Kaynak: SGK İstatistik Yıllığı 2025, yaşlılık aylığı alanların yaşa göre dağılımı (Tablo 2.7, 2.21, 2.33).</figcaption>
+          </figure>
+          <!-- LEAD-GORSEL:BITIS -->
+
+<!-- YASHARITA-GOVDE:BASLANGIC -->
+<div class="legal-note verdict">
+<h2 id="kisa-cevap">Kısa cevap</h2>
+<p><strong>Kural henüz yok.</strong> Ek artışın yaşa ve prim ödeme gün sayısına göre ayrışabileceği TBMM Plan ve Bütçe Komisyonu'ndaki bütçe görüşmelerinde dile getirildi. Hangi yaşın ne alacağı, oran ya da tutar açıklanmadı. Çalışmanın Aralık'ta bitmesi bekleniyor.</p>
+<p><strong>Yaş haritası belli.</strong> SGK'nın 2025 yıllığına göre yıl sonunda 12,25 milyon kişi yaşlılık aylığı alıyordu. Ortanca yaş 62. Bu kişilerin %41,9'i 60 yaşın altında, %40,1'i 65 ve üzerinde.</p>
+<p><strong>Yaş kuralı fonları kapsamlar arasında da kaydırır.</strong> 65 ve üzerinin payı 4/a'da %31,7, 4/b'de %61,1, 4/c'de %61,5. Herkese eşit 1.000 TL'nin bütçesi yalnız 65 ve üzerine verilirse kişi başı 2.497 TL olur. O zaman SSK emeklisinin ortalaması 791 TL'ye iner; Bağ-Kur'da 1.525, memurda 1.536 TL'ye çıkar.</p>
+</div>
+
+<h2 id="ne-soylendi">Ne söylendi, ne söylenmedi?</h2>
+<p>2027 bütçesinin Komisyon görüşmelerinde iki kurum emekliler için konuştu. Çalışma ve Sosyal Güvenlik Bakanlığı 3 Kasım'da yasal zamların üstüne bir iyileştirme üzerinde çalışıldığını söyledi; bu konuyu <a href="../emekliye-ilave-iyilestirme-ocak-2027/">ilave iyileştirme yazısında</a> ölçtük. Hazine ve Maliye Bakanlığı 5 Kasım'daki oturumda üç şey söyledi. Komisyonun <a href="https://www.tbmm.gov.tr/Tutanaklar/TutanakGoster/5487">5 Kasım tutanağına</a> (s.74, incelenmemiş tutanak) göre düzenleme tüm emeklileri kapsayacak. Artışın yaşa ve prim ödeme gün sayısına göre farklılaşması daha adil bulunuyor. Artış seyyanen olsa bile bu ayrım gözetilecek. Rakam verilmedi; nihai çalışmanın büyük ihtimalle Aralık'ta yapılıp bütçeden hemen sonra Meclis'e getirileceği söylendi.</p>
+<p>Söylenmeyenler daha çok: yaş sınırları, kademe sayısı, oran ya da tutar ve yürürlük tarihi. Bu yazı bunların hiçbirini tahmin etmiyor. Yaptığı şey, yaşa bağlanacak herhangi bir kuralın kime dokunacağını bugünkü veriyle göstermek.</p>
+
+<h2 id="harita">Emekliler kaç yaşında?</h2>
+<p>SGK İstatistik Yıllığı her kapsam için aylık alanları tek yaşa göre veriyor. Aşağıda yalnız yaşlılık aylığı alanlar var: 4/a, 4/b (tarım dahil) ve 4/c toplamı. En kalabalık tek yaş 60; o yaşta 495.249 kişi aylık alıyor.</p>
+<div class="table-scroll"><table class="data-table">
+<caption>Yaşlılık aylığı alanlar, yaş grubuna göre, 2025 sonu</caption>
+<thead><tr><th scope="col">Yaş</th><th scope="col" class="num">Kişi</th><th scope="col" class="num">Pay</th></tr></thead>
+<tbody>
+<tr><th scope="row">50 altı</th><td class="num">1.386.119</td><td class="num">%11,3</td></tr>
+<tr><th scope="row">50–54</th><td class="num">1.783.468</td><td class="num">%14,6</td></tr>
+<tr><th scope="row">55–59</th><td class="num">1.963.349</td><td class="num">%16,0</td></tr>
+<tr><th scope="row">60–64</th><td class="num">2.213.206</td><td class="num">%18,1</td></tr>
+<tr><th scope="row">65–69</th><td class="num">1.915.251</td><td class="num">%15,6</td></tr>
+<tr><th scope="row">70–74</th><td class="num">1.399.577</td><td class="num">%11,4</td></tr>
+<tr><th scope="row">75 ve üzeri</th><td class="num">1.593.749</td><td class="num">%13,0</td></tr>
+<tr><th scope="row">Toplam</th><td class="num">12.254.719</td><td class="num">%100,0</td></tr>
+</tbody></table></div>
+<figure class="ed-grafik" aria-labelledby="yas-dagilim-b">
+<p class="ed-grafik-baslik" id="yas-dagilim-b">Ortanca emekli 62 yaşında; 60 altı %41,9</p>
+<p class="ed-grafik-alt">Tek yaşa göre yaşlılık aylığı alan kişi. Renkler aşağıdaki kademeli tasarımın üç yaş grubu.</p>
+<div class="ed-grafik-kap"><svg viewBox="0 0 640 300" role="img" aria-labelledby="yas-dagilim-t yas-dagilim-d"><title id="yas-dagilim-t">Yaşlılık aylığı alanlar, tek yaşa göre, 2025 sonu</title><desc id="yas-dagilim-d">Toplam 12.254.719 kişi; ortanca yaş 62; 55 altı %25,9, 55–64 %34,1, 65 ve üzeri %40,1. En kalabalık yaş 60 (495.249 kişi).</desc><path class="sifir" d="M56 250.0 H620"/><text x="48" y="254.0" text-anchor="end">0 bin</text><path class="izgara" d="M56 204.0 H620"/><text x="48" y="208.0" text-anchor="end">100 bin</text><path class="izgara" d="M56 158.0 H620"/><text x="48" y="162.0" text-anchor="end">200 bin</text><path class="izgara" d="M56 112.0 H620"/><text x="48" y="116.0" text-anchor="end">300 bin</text><path class="izgara" d="M56 66.0 H620"/><text x="48" y="70.0" text-anchor="end">400 bin</text><path class="izgara" d="M56 20.0 H620"/><text x="48" y="24.0" text-anchor="end">500 bin</text><rect class="seri-1" x="56.6" y="250.0" width="6.7" height="0.0"/><rect class="seri-1" x="64.5" y="250.0" width="6.7" height="0.0"/><rect class="seri-1" x="72.5" y="250.0" width="6.7" height="0.0"/><rect class="seri-1" x="80.4" y="250.0" width="6.7" height="0.0"/><rect class="seri-1" x="88.4" y="250.0" width="6.7" height="0.0"/><rect class="seri-1" x="96.3" y="249.9" width="6.7" height="0.1"/><rect class="seri-1" x="104.3" y="249.8" width="6.7" height="0.2"/><rect class="seri-1" x="112.2" y="249.5" width="6.7" height="0.5"/><rect class="seri-1" x="120.1" y="249.2" width="6.7" height="0.8"/><rect class="seri-1" x="128.1" y="248.5" width="6.7" height="1.5"/><rect class="seri-1" x="136.0" y="247.6" width="6.7" height="2.4"/><rect class="seri-1" x="144.0" y="246.1" width="6.7" height="3.9"/><rect class="seri-1" x="151.9" y="244.0" width="6.7" height="6.0"/><rect class="seri-1" x="159.9" y="228.6" width="6.7" height="21.4"/><rect class="seri-1" x="167.8" y="199.6" width="6.7" height="50.4"/><rect class="seri-1" x="175.8" y="172.3" width="6.7" height="77.7"/><rect class="seri-1" x="183.7" y="153.2" width="6.7" height="96.8"/><rect class="seri-1" x="191.6" y="135.1" width="6.7" height="114.9"/><rect class="seri-1" x="199.6" y="122.8" width="6.7" height="127.2"/><rect class="seri-1" x="207.5" y="116.1" width="6.7" height="133.9"/><rect class="seri-1" x="215.5" y="106.7" width="6.7" height="143.3"/><rect class="seri-1" x="223.4" y="84.8" width="6.7" height="165.2"/><rect class="seri-1" x="231.4" y="82.6" width="6.7" height="167.4"/><rect class="seri-1" x="239.3" y="78.9" width="6.7" height="171.1"/><rect class="seri-1" x="247.2" y="76.6" width="6.7" height="173.4"/><rect class="seri-2" x="255.2" y="68.9" width="6.7" height="181.1"/><rect class="seri-2" x="263.1" y="71.2" width="6.7" height="178.8"/><rect class="seri-2" x="271.1" y="74.4" width="6.7" height="175.6"/><rect class="seri-2" x="279.0" y="87.5" width="6.7" height="162.5"/><rect class="seri-2" x="287.0" y="44.9" width="6.7" height="205.1"/><rect class="seri-2" x="294.9" y="22.2" width="6.7" height="227.8"/><rect class="seri-2" x="302.9" y="31.6" width="6.7" height="218.4"/><rect class="seri-2" x="310.8" y="50.9" width="6.7" height="199.1"/><rect class="seri-2" x="318.7" y="51.8" width="6.7" height="198.2"/><rect class="seri-2" x="326.7" y="75.5" width="6.7" height="174.5"/><rect class="seri-3" x="334.6" y="30.1" width="6.7" height="219.9"/><rect class="seri-3" x="342.6" y="67.6" width="6.7" height="182.4"/><rect class="seri-3" x="350.5" y="91.3" width="6.7" height="158.7"/><rect class="seri-3" x="358.5" y="109.8" width="6.7" height="140.2"/><rect class="seri-3" x="366.4" y="70.1" width="6.7" height="179.9"/><rect class="seri-3" x="374.3" y="79.3" width="6.7" height="170.7"/><rect class="seri-3" x="382.3" y="105.9" width="6.7" height="144.1"/><rect class="seri-3" x="390.2" y="123.4" width="6.7" height="126.6"/><rect class="seri-3" x="398.2" y="137.9" width="6.7" height="112.1"/><rect class="seri-3" x="406.1" y="159.8" width="6.7" height="90.2"/><rect class="seri-3" x="414.1" y="132.5" width="6.7" height="117.5"/><rect class="seri-3" x="422.0" y="158.6" width="6.7" height="91.4"/><rect class="seri-3" x="430.0" y="172.6" width="6.7" height="77.4"/><rect class="seri-3" x="437.9" y="183.5" width="6.7" height="66.5"/><rect class="seri-3" x="445.8" y="193.1" width="6.7" height="56.9"/><rect class="seri-3" x="453.8" y="191.5" width="6.7" height="58.5"/><rect class="seri-3" x="461.7" y="204.6" width="6.7" height="45.4"/><rect class="seri-3" x="469.7" y="212.9" width="6.7" height="37.1"/><rect class="seri-3" x="477.6" y="214.5" width="6.7" height="35.5"/><rect class="seri-3" x="485.6" y="223.6" width="6.7" height="26.4"/><rect class="seri-3" x="493.5" y="224.0" width="6.7" height="26.0"/><rect class="seri-3" x="501.4" y="229.8" width="6.7" height="20.2"/><rect class="seri-3" x="509.4" y="232.3" width="6.7" height="17.7"/><rect class="seri-3" x="517.3" y="236.4" width="6.7" height="13.6"/><rect class="seri-3" x="525.3" y="239.8" width="6.7" height="10.2"/><rect class="seri-3" x="533.2" y="242.7" width="6.7" height="7.3"/><rect class="seri-3" x="541.2" y="242.5" width="6.7" height="7.5"/><rect class="seri-3" x="549.1" y="242.9" width="6.7" height="7.1"/><rect class="seri-3" x="557.1" y="245.9" width="6.7" height="4.1"/><rect class="seri-3" x="565.0" y="247.6" width="6.7" height="2.4"/><rect class="seri-3" x="572.9" y="248.3" width="6.7" height="1.7"/><rect class="seri-3" x="580.9" y="248.9" width="6.7" height="1.1"/><rect class="seri-3" x="588.8" y="249.3" width="6.7" height="0.7"/><rect class="seri-3" x="596.8" y="249.5" width="6.7" height="0.5"/><rect class="seri-3" x="604.7" y="249.7" width="6.7" height="0.3"/><rect class="seri-3" x="612.7" y="249.9" width="6.7" height="0.1"/><text class="kucuk" x="60.0" y="268" text-anchor="middle">30</text><text class="kucuk" x="139.4" y="268" text-anchor="middle">40</text><text class="kucuk" x="218.8" y="268" text-anchor="middle">50</text><text class="kucuk" x="258.6" y="268" text-anchor="middle">55</text><text class="kucuk" x="298.3" y="268" text-anchor="middle">60</text><text class="kucuk" x="338.0" y="268" text-anchor="middle">65</text><text class="kucuk" x="377.7" y="268" text-anchor="middle">70</text><text class="kucuk" x="457.2" y="268" text-anchor="middle">80</text><text class="kucuk" x="536.6" y="268" text-anchor="middle">90</text><text class="kucuk" x="616.0" y="268" text-anchor="middle">100</text><path class="esik" d="M314.2 20 V250"/><text class="esik-yazi" x="320.2" y="32">ortanca 62</text><text class="deger" x="103.7" y="60">55 altı %25,9</text><text class="deger" x="103.7" y="78">55–64 %34,1</text><text class="deger" x="103.7" y="96">65 ve üzeri %40,1</text></svg></div>
+<figcaption>Kaynak: SGK İstatistik Yıllığı 2025, Tablo 2.7, 2.21 ve 2.33; yalnız yaşlılık aylığı sütunları. 30 yaş altında yaşlılık aylığı alan yok.</figcaption>
+</figure>
+<p>Dağılımın sol omzu dikkat çekiyor: 43 ile 60 yaş arası, normalde emekli olunmayacak yaşlar. Bu, 1999 öncesi girişliler için yaş şartının 2023'te kaldırılmasının izi (5510 Geçici m.95). O kuşak yaşa göre bir artışta en genç grubu oluşturuyor. Aynı kuşağın kanunen daha az prim günüyle emekli olabildiği de doğru; bunu <a href="../prim-gunune-gore-emekli-artisi/">prim günü yazısında</a> ayrıca hesapladık.</p>
+
+<h2 id="kapsam">SSK, Bağ-Kur ve memur emeklisinin yaşı farklı</h2>
+<p>Yaşa bağlanan bir kural, kapsamlar arasında da bir dağıtım kararıdır. Çünkü üç kapsamın yaş yapısı birbirinden çok farklı:</p>
+<div class="table-scroll"><table class="data-table">
+<caption>Kapsama göre yaşlılık aylığı alanlar, 2025 sonu</caption>
+<thead><tr><th scope="col">Kapsam</th><th scope="col" class="num">Kişi</th><th scope="col" class="num">Ortanca yaş</th><th scope="col" class="num">55 altı</th><th scope="col" class="num">65 ve üzeri</th></tr></thead>
+<tbody>
+<tr><th scope="row">4/a (SSK)</th><td class="num">8.784.149</td><td class="num">59</td><td class="num">%32,0</td><td class="num">%31,7</td></tr>
+<tr><th scope="row">4/b (Bağ-Kur)</th><td class="num">1.791.204</td><td class="num">67</td><td class="num">%11,2</td><td class="num">%61,1</td></tr>
+<tr><th scope="row">4/c (memur)</th><td class="num">1.679.366</td><td class="num">67</td><td class="num">%9,3</td><td class="num">%61,5</td></tr>
+</tbody></table></div>
+<p>4/a'da ortanca 59, 4/b ve 4/c'de 67. SSK emeklilerinin %32,0'i 55'in altında; Bağ-Kur'da bu pay %11,2, memurda %9,3. Yaş eşiği yükseldikçe pay 4/b ve 4/c'ye kayar.</p>
+
+<h2 id="tasarimlar">Aynı bütçe, üç dağıtım</h2>
+<p>Karşılaştırmayı adil kılmak için bütçe sabit tutuldu: her yaşlılık aylığı alana ayda 1.000 TL eşit artış. Bunun yıllık maliyeti 12.254.719 kişi × 1.000 TL × 12 = <strong>147,1 milyar TL</strong>. 1.000 TL bir tahmin değil, ölçü birimi; gerçek tutar ne olursa oranlar aynı kalır. Üç <strong>varsayımsal</strong> dağıtım:</p>
+<ul><li><strong>Eşit:</strong> herkese 1.000 TL.</li><li><strong>Yalnız 65 ve üzeri:</strong> aynı para yalnız 4.908.577 kişiye; kişi başı 2.497 TL. 7.346.142 kişi hiç almaz.</li><li><strong>Kademeli 1:2:3:</strong> 55 altı bir pay, 55–64 iki pay, 65 ve üzeri üç pay. Bir pay 467 TL.</li></ul>
+<div class="table-scroll"><table class="data-table">
+<caption>Kişi başı aylık artış, TL (aynı bütçe)</caption>
+<thead><tr><th scope="col">Yaş grubu</th><th scope="col" class="num">Kişi</th><th scope="col" class="num">Eşit</th><th scope="col" class="num">Yalnız 65+</th><th scope="col" class="num">Kademeli 1:2:3</th></tr></thead>
+<tbody>
+<tr><th scope="row">55 altı</th><td class="num">3.169.587</td><td class="num">1.000</td><td class="num">0</td><td class="num">467</td></tr>
+<tr><th scope="row">55–64</th><td class="num">4.176.555</td><td class="num">1.000</td><td class="num">0</td><td class="num">934</td></tr>
+<tr><th scope="row">65 ve üzeri</th><td class="num">4.908.577</td><td class="num">1.000</td><td class="num">2.497</td><td class="num">1.401</td></tr>
+</tbody></table></div>
+<div class="table-scroll"><table class="data-table">
+<caption>Kapsamın ortalama aylık artışı, TL (aynı bütçe)</caption>
+<thead><tr><th scope="col">Kapsam</th><th scope="col" class="num">Eşit</th><th scope="col" class="num">Yalnız 65+</th><th scope="col" class="num">Kademeli 1:2:3</th></tr></thead>
+<tbody>
+<tr><th scope="row">4/a (SSK)</th><td class="num">1.000</td><td class="num">791</td><td class="num">932</td></tr>
+<tr><th scope="row">4/b (Bağ-Kur)</th><td class="num">1.000</td><td class="num">1.525</td><td class="num">1.167</td></tr>
+<tr><th scope="row">4/c (memur)</th><td class="num">1.000</td><td class="num">1.536</td><td class="num">1.178</td></tr>
+</tbody></table></div>
+<p>Eşit dağıtımda her kapsamın ortalaması 1.000 TL. Yaş ağırlığı arttıkça 4/a'nın ortalaması düşer, 4/b ve 4/c'ninki yükselir. Bunun nedeni kapsamlara göre bir tercih değil, yaş yapısı. Ama sonuç, kuralın adı ne olursa olsun, kapsamlar arası bir aktarımdır.</p>
+
+<h2 id="yasin-soylemedigi">Yaş neyi söylemez?</h2>
+<ul><li><strong>Aylığın düzeyini.</strong> Tabandaki emekli her yaşta var. Yaş, ihtiyacın değil, sigortalılık geçmişinin bir göstergesi. 65 yaşındaki yüksek aylıklı da, 50 yaşındaki taban aylıklı da kendi grubunun tutarını alır.</li><li><strong>Hak sahiplerini.</strong> Malullük ve ölüm aylığı alanlar bu tablolara girmedi. 2025 sonunda yaşlılık dışında aylık alan 4,57 milyon kişi daha var; ölüm aylığı alanların bir kısmı çocuk. Yaşa bağlı bir kuralın onlara nasıl uygulanacağı ayrı bir karar.</li><li><strong>Dosya sayısını.</strong> Burada kişi sayıldı. Birden fazla aylığı olan kişi ödemede birden fazla dosya demek; bütçe hesabı dosya üzerinden yapılırsa rakam büyür.</li></ul>
+
+<h2 id="takvim">Bundan sonra</h2>
+<ul><li><strong>Aralık:</strong> Çalışmanın tamamlanması ve bütçe sonrası bir kanun teklifi bekleniyor. Metin gelince bu yazı seçilen yaş sınırlarıyla yeniden hesaplanır.</li><li><strong>4 Ocak 2027:</strong> Aralık TÜFE'si ile yasal zam kesinleşir; <a href="../ocak-2027-emekli-zammi/">Ocak 2027 emekli zammı</a> yazısı kendini günceller.</li><li><strong>Kendi aylığınız:</strong> <a href="../../emekli-zammi-hesaplama/">emekli zammı hesaplama</a> aracı yalnız yasal zamı hesaplar; açıklanmamış bir iyileştirmeyi eklemez.</li></ul>
+
+<h2 id="varsayim">Varsayımlar ve sınırlar</h2>
+<ul><li>Üç dağıtım da <strong>varsayımsaldır</strong>; hiçbiri açıklanmış bir kural değil. Ölçü birimi ayda 1.000 TL eşit artıştır.</li><li>Veri 2025 yıl sonu kişi sayısıdır. 2026'da bağlanan ve ölen emekliler dahil değil; oranlar yıl içinde yavaş değişir.</li><li>Yalnız yaşlılık aylığı alanlar sayıldı. Malullük ve ölüm aylığı alanlar ile vatani görev ödemeleri dışarıda.</li><li>Yaş, tablonun tek yaş satırıdır; kuralın yaşı hangi tarihe göre sayacağı bilinmiyor.</li></ul>
+
+<h2 id="kaynaklar">Kaynaklar</h2>
+<ul><li><a href="https://www.sgk.gov.tr/Istatistik/Yillik/fcd5e59b-6af9-4d90-a451-ee7500eb1cb4/" rel="noopener">SGK İstatistik Yıllığı 2025</a>, Bölüm 2: Tablo 2.7 (4/a), 2.21 (4/b) ve 2.33 (4/c), yaşa ve cinsiyete göre aylık alanlar (16 Kasım 2026'da indirildi)</li><li><a href="https://www.tbmm.gov.tr/Tutanaklar/TutanakGoster/5487" rel="noopener">TBMM Plan ve Bütçe Komisyonu tutanağı</a>, 5 Kasım 2026, Hazine ve Maliye Bakanlığı bütçesi, s.74 (incelenmemiş tutanak)</li><li><a href="https://www.csgb.gov.tr/cgm/haberler/03112026/" rel="noopener">Çalışma ve Sosyal Güvenlik Bakanlığı, 2027 bütçe sunumu</a>, TBMM Plan ve Bütçe Komisyonu, 3 Kasım 2026</li><li>5510 sayılı Kanun Geçici m.95: <a href="https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=5510&amp;MevzuatTur=1&amp;MevzuatTertip=5" rel="noopener">mevzuat.gov.tr</a></li></ul>
+
+<h2>Sık sorulan sorular</h2>
+<details><summary>Emekli zammı yaşa göre mi verilecek?</summary><p>Henüz kural yok. Hazine ve Maliye Bakanlığı 5 Kasım 2026'da artışın yaşa ve prim ödeme gün sayısına göre farklılaşmasının doğru olacağını söyledi. Yaş sınırı, oran ve tutar açıklanmadı; metnin Aralık'ta gelmesi bekleniyor.</p></details>
+<details><summary>Kaç emekli 65 yaşın üstünde?</summary><p>SGK'nın 2025 yıl sonu verisine göre 4.908.577 kişi. Bu, yaşlılık aylığı alanların %40,1'i.</p></details>
+<details><summary>Yaşa göre artış Bağ-Kur ve memur emeklisine daha çok mu gider?</summary><p>Yaş yapısı nedeniyle evet. 65 ve üzerinin payı 4/a'da %31,7, 4/b'de %61,1, 4/c'de %61,5. Yaşı yüksek kapsamın kişi başı ortalaması yükselir.</p></details>
+<!-- YASHARITA-GOVDE:BITIS -->
+    </div></section>
+    <!-- ILGILI:BASLANGIC -->
+    <section class="related ilgili-uretilen" aria-labelledby="ilgili-baslik">
+      <div class="wrap prose">
+        <h2 id="ilgili-baslik">Bu yazıyla ilgili araçlar</h2>
+        <ul>
+          <li><a href="../../emekli-zammi-hesaplama/">Emekli Zammı Hesaplama</a></li>
+          <li><a href="../../emekli-ayligi-hesaplama/">Emekli Aylığı Hesaplama</a></li>
+        </ul>
+        <h2>Okumaya devam</h2>
+        <ul>
+          <li><a href="../../makaleler/prim-gunune-gore-emekli-artisi/">Prim gününe göre emekli artışı: kanun herkesten aynı günü istemedi</a></li>
+          <li><a href="../../makaleler/emekliye-ilave-iyilestirme-ocak-2027/">Emekliye ilave iyileştirme: rakam yok, hesap var</a></li>
+        </ul>
+      </div>
+    </section>
+    <!-- ILGILI:BITIS -->
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-legal">
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
+        <li><a href="../../hakkimda/">Hakkımda</a></li>
+        <li><a href="../">Makaleler</a></li>
+        <li><a href="../../yayinlar/">Yayımlanmış çalışmalar</a></li>
+        <li><a href="../../koray-oner/">Çalışma dizini</a></li>
+        <li><a href="../../iletisim/">İletişim</a></li>
+        <li><a href="../../gizlilik/">Gizlilik Politikası &amp; KVKK</a></li>
+        <li><a href="../../kullanim-kosullari/">Kullanım Koşulları</a></li>
+        <li><a href="/yayin-ilkeleri/">Yayın ilkeleri ve kaynaklar</a></li>
+      </ul>
+    </div>
+  </footer>
+<script src="../tablo.js?v=bc4525cb" defer></script>
+<script src="../../script.js?v=8f50aa7c" defer></script>
+</body>
+</html>

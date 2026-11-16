@@ -2639,7 +2639,69 @@ function kesinLimit() {
   return s + "</svg>";
 }
 
+var YASH = require(path.join(KOK, "makaleler", "emekli-yas-haritasi-2025", "yas.js"));
+var PGUN = require(path.join(KOK, "makaleler", "prim-gunune-gore-emekli-artisi", "gun.js"));
+
+/* Yaş haritası: aynı bütçe yalnız 65 ve üzerine giderse kapsamın ortalaması. */
+function yasKapsamKayma() {
+  var F = YASH.tutarFonksiyonlari(), K = YASH.KAPSAMLAR, AD = { "4a": "SSK (4/a)", "4b": "Bağ-Kur (4/b)", "4c": "Memur (4/c)" };
+  var v = K.map(function (k) { return YASH.kapsamOrtalamasi(k, F.yalniz65); });
+  var SOL = 60, SAG = 576, UST = 104, ALT = 300, Y1 = 2000;
+  function y(t) { return ALT - t / Y1 * (ALT - UST); }
+  var s = baslikSatirlari("Yaşa göre artış kapsamlar arasında kayar",
+    "Aynı bütçe yalnız 65 yaş ve üzerine: kişi başı ortalama, TL/ay",
+    "Herkese eşit 1.000 TL yerine aynı bütçe yalnız 65 ve üzerine verilirse ortalama artış: " + K.map(function (k, i) { return AD[k] + " " + nf0.format(Math.round(v[i])); }).join(", ") + " TL.");
+  s += anahtarKutu(24, R.s1, "yalnız 65 ve üzeri") + anahtarKutu(200, R.murekkep, "herkese eşit 1.000 TL", true);
+  s += izgaraY(SOL, SAG, y, [0, 500, 1000, 1500, 2000], function (t) { return nf0.format(t); });
+  var genis = (SAG - SOL) / K.length, c = 74;
+  K.forEach(function (k, i) {
+    var mx = SOL + genis * (i + 0.5);
+    s += '<rect x="' + (mx - c / 2).toFixed(1) + '" y="' + y(v[i]).toFixed(1) + '" width="' + c + '" height="' + (ALT - y(v[i])).toFixed(1) + '" rx="2" fill="' + R.s1 + '"/>';
+    s += cubukEtiket(mx, y(v[i]) - 8, nf0.format(Math.round(v[i])));
+    s += altYazi(mx, ALT + 22, AD[k]);
+  });
+  s += '<path d="M' + SOL + " " + y(1000).toFixed(1) + " H" + SAG + '" stroke="' + R.murekkep + '" stroke-width="1.5" stroke-dasharray="6 4"/>';
+  return s + "</svg>";
+}
+
+/* Prim günü: 4/a tam aylığın aradığı en az gün, ilk girişe göre. */
+function primGunEsigi() {
+  var SOL = 66, SAG = 576, UST = 104, ALT = 300, X0 = 1975, X1 = 2012, Y0 = 4500, Y1 = 7500;
+  function x(t) { return SOL + (t - X0) / (X1 - X0) * (SAG - SOL); }
+  function y(t) { return ALT - (t - Y0) / (Y1 - Y0) * (ALT - UST); }
+  var b = PGUN.tablolar.b81.erkek.satirlar, sn = PGUN.sinirlar();
+  var s = baslikSatirlari("Kanun herkesten aynı günü istemedi",
+    "4/a tam aylık için en az prim günü, ilk giriş yılına göre",
+    "En az prim günü: 1999 öncesi girişte " + nf0.format(b[0][1]) + " ile " + nf0.format(b[b.length - 1][1]) + ", 1999–2008 " + nf0.format(sn[1].erkek.tam) + ", 2008 sonrası " + nf0.format(sn[3].erkek.tam) + " gün.");
+  s += anahtarKutu(24, R.s1, "erkek") + anahtarKutu(110, R.s2, "kadın") + anahtarKutu(196, R.murekkep, "varsayımsal eşik " + nf0.format(PGUN.ESIK), true);
+  s += izgaraY(SOL, SAG, y, [4500, 5500, 6500, 7500], function (t) { return nf0.format(t); });
+  function hat(cins) {
+    var p = [];
+    PGUN.seri(cins, X0, X1).forEach(function (r, i) {
+      var xx = x(+r.giris.slice(0, 4)), yy = y(r.tam);
+      p.push(i ? "H" + xx.toFixed(1) : "M" + xx.toFixed(1) + " " + yy.toFixed(1)); p.push("V" + yy.toFixed(1));
+    });
+    return p.join(" ");
+  }
+  s += '<path d="M' + SOL + " " + y(PGUN.ESIK).toFixed(1) + " H" + SAG + '" stroke="' + R.murekkep + '" stroke-width="1.5" stroke-dasharray="6 4"/>';
+  s += '<path d="' + hat("erkek") + '" stroke="' + R.s1 + '" stroke-width="2.5" fill="none"/><path d="' + hat("kadin") + '" stroke="' + R.s2 + '" stroke-width="2.5" fill="none"/>';
+  [1975, 1985, 1995, 2005].forEach(function (t) { s += altYazi(x(t), ALT + 22, String(t)); });
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "emekli-yas-haritasi-2025": {
+    kicker: "Emeklilik · Ocak 2027",
+    baslik: "Yaşa göre emekli artışı kime gider?",
+    alt: "65 üstü payı SSK'da düşük, Bağ-Kur ve memurda yüksek",
+    cizim: yasKapsamKayma
+  },
+  "prim-gunune-gore-emekli-artisi": {
+    kicker: "Emeklilik · Ocak 2027",
+    baslik: "Prim gününe göre emekli artışı",
+    alt: "Aranan gün girişe göre 5.000 ile 7.200 arasında",
+    cizim: primGunEsigi
+  },
   "kesin-hesap-2025-sayistay": {
     kicker: "Kamu maliyesi · 2025",
     baslik: "2025 kesin hesabı: bütçe tuttu, sınır genişledi",

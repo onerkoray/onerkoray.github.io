@@ -688,6 +688,13 @@ jobs:
         run: node makaleler/emekliye-ilave-iyilestirme-ocak-2027/sayi-testi.js
       - name: Bir yıl daha çalışmak yazısının sayıları
         run: node makaleler/bir-yil-daha-calismak-aylik/sayi-testi.js
+      # Yaşa ve prim gününe göre emekli artışı (16 Kasım 2026): SGK 2025 yaş tablosu ve gün şartları.
+      - name: Emekli farklılaştırma yazıları hesaptan üretilmiş mi
+        run: node tools/emekli-farklilastirma-yazilari.js --check
+      - name: Emeklilerin yaş haritası yazısının sayıları
+        run: node makaleler/emekli-yas-haritasi-2025/sayi-testi.js
+      - name: Prim gününe göre emekli artışı yazısının sayıları
+        run: node makaleler/prim-gunune-gore-emekli-artisi/sayi-testi.js
 
       # En düşük emekli aylığı ve Ocak 2027 zammı: zam oranları emekli zammı
       # motorundan (Eylül 2026'ya kesilmiş TÜFE serisi), taban tutarları 5510
