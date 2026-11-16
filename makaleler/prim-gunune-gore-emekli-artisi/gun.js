@@ -8,8 +8,9 @@
  *   2. SGK İstatistik Yıllığı 2025 yaş tablosu (yaş yazısıyla aynı dosya).
  *      1999 sonrası girişlinin yaşlılık aylığı için en az yaş 58 (kadın) /
  *      60 (erkek); 2025 sonunda bu yaşın altında aylık alan 4/a emeklisi bu
- *      kurallarla bağlanmış olamaz. Fiili hizmet zammıyla yaşı inenler
- *      (yıpranma) istisnadır; sayıya karışırlar, ayrıştırılamaz.
+ *      kurallarla bağlanmış olamaz; istisna özel hükümlerdir (engelli
+ *      sigortalı, yeraltı maden, erken yaşlanma, fiili hizmet zammı). Onlar
+ *      sayıya karışır, ayrıştırılamaz: sayı bir tahmindir, alt sınır değil.
  *
  * Tasarımlar VARSAYIMSALDIR: düzenlemenin metni yok.
  */
@@ -57,11 +58,14 @@ function yasAlti(kapsam) {
   return { erkek: e, kadin: k, toplam: e + k, kapsamToplam: n, pay: (e + k) / n };
 }
 
+/* 1 Mayıs 2008 girişli, yılda 360 gün ödese 7.200 güne hangi gün ulaşır? */
+function ilk7200() { return H.yardimci.gunTarihi(0, 7200, 360, "2008-05-01").tarih; }
+
 /* Varsayımsal eşik: kanunun en azını ödeyip emekli olan biri eşiğin
    neresinde kalır? (gereken − eşik; eksi = eşiğin altında) */
 function esikFarki(giris, cinsiyet) { return gerekenGun(giris, cinsiyet).tam - ESIK; }
 
 module.exports = {
   BUGUN: BUGUN, YAS_SINIRI: YAS_SINIRI, ESIK: ESIK, tablolar: H.tablolar,
-  gerekenGun: gerekenGun, seri: seri, sinirlar: sinirlar, yasAlti: yasAlti, esikFarki: esikFarki
+  gerekenGun: gerekenGun, ilk7200: ilk7200, seri: seri, sinirlar: sinirlar, yasAlti: yasAlti, esikFarki: esikFarki
 };

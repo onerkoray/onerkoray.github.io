@@ -61,7 +61,12 @@ t.dogru("4/b altında", M.yasAlti("4b").toplam === Bb.top, Bb.top);
 t.dogru("4/a satırı", t.html.indexOf('<th scope="row">4/a (SSK)</th><td class="num">' + tl(A.e) + '</td><td class="num">' + tl(A.k) + '</td><td class="num">' + tl(A.top) + '</td><td class="num">' + y1(A.pay) + "</td>") >= 0);
 t.dogru("4/b satırı", t.html.indexOf('<th scope="row">4/b (Bağ-Kur)</th><td class="num">' + tl(Bb.e) + '</td><td class="num">' + tl(Bb.k) + '</td><td class="num">' + tl(Bb.top) + '</td><td class="num">' + y1(Bb.pay) + "</td>") >= 0);
 t.gecsin("kısa cevap kişi", mln(A.top) + " milyonu (" + y1(A.pay) + ")");
-t.gecsin("SSS kişi", "4/a'da " + tl(A.top) + " kişi 1999 öncesi kurallarla bağlanmış");
+t.gecsin("SSS kişi", "4/a'da " + tl(A.top) + " kişinin büyük bölümü 1999 öncesi kurallarla bağlanmış");
+/* 7.200 günle tam aylık henüz yok: 1 Mayıs 2008 girişi 240 ayda (20 yıl) ulaşır. */
+t.dogru("ilk 7200", M.ilk7200() === "2028-05-31", M.ilk7200());
+t.gecsin("ilk 7200 sayfada", "7.200'e Mayıs 2028'te ulaşır");
+t.gecsin("tahmin, alt sınır değil", "Bu bir tahmin ve iki yöne sapar");
+t.gecsin("4/b ters", "4/b satırı ters okunur");
 
 /* 5 — Meta ve görsel metni (elle yazılmış alanlar) hesapla aynı. */
 var meta = /<meta name="description" content="([^"]*)"/.exec(t.html)[1];
