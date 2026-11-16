@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Yazılar</title>
-  <subtitle>Bordro, vergi, sosyal güvenlik ve kişisel finans üzerine, hesabı ve kaynağı verilen 72 yazı.</subtitle>
+  <subtitle>Bordro, vergi, sosyal güvenlik ve kişisel finans üzerine, hesabı ve kaynağı verilen 74 yazı.</subtitle>
   <link href="https://korayoner.dev/makaleler/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/makaleler/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/makaleler/atom.xml</id>
-  <updated>2026-11-11T07:00:23+03:00</updated>
+  <updated>2026-11-16T08:16:37+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>Yaşa Göre Emekli Artışı Kime Gider? Emeklilerin Yaş Haritası</title>
+    <link href="https://korayoner.dev/makaleler/emekli-yas-haritasi-2025/"/>
+    <id>https://korayoner.dev/makaleler/emekli-yas-haritasi-2025/</id>
+    <published>2026-11-16T08:16:37+03:00</published>
+    <updated>2026-11-16T08:16:37+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
+    <summary>SGK 2025 verisiyle 12,25 milyon emeklinin yaşı: ortanca 62; 65 üstü payı SSK'da %31,7, Bağ-Kur'da %61,1, memurda %61,5. Aynı bütçeyle üç yaş dağıtımı.</summary>
+  </entry>
+
+  <entry>
+    <title>Prim Gününe Göre Emekli Artışı: Kanun Herkesten Aynı Günü İstemedi</title>
+    <link href="https://korayoner.dev/makaleler/prim-gunune-gore-emekli-artisi/"/>
+    <id>https://korayoner.dev/makaleler/prim-gunune-gore-emekli-artisi/</id>
+    <published>2026-11-16T08:16:37+03:00</published>
+    <updated>2026-11-16T08:16:37+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
+    <summary>4/a'da emeklilik için aranan gün girişe göre 3.600 ile 7.200 arası. 2025'te SSK emeklilerinin %48,6'sı 58/60 yaş altında, 1999 öncesi kurala tabi.</summary>
+  </entry>
 
   <entry>
     <title>2025 Kesin Hesabı: Bütçe ve Borç Sınırı</title>
@@ -34,7 +54,7 @@
     <link href="https://korayoner.dev/makaleler/emekliye-ilave-iyilestirme-ocak-2027/"/>
     <id>https://korayoner.dev/makaleler/emekliye-ilave-iyilestirme-ocak-2027/</id>
     <published>2026-11-04T14:46:17+03:00</published>
-    <updated>2026-11-04T14:46:17+03:00</updated>
+    <updated>2026-11-16T08:16:37+03:00</updated>
     <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>Bakanlık Ocak 2027 için yasal zamın üstüne iyileştirme çalışıyor; rakam yok. Program'daki pay, bin liranın faturası ve seyyanen, oran, taban farkı hesaplandı.</summary>
   </entry>
