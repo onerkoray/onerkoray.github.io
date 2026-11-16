@@ -63,7 +63,9 @@ function uzunTarih(iso) { const p = String(iso).split("-"); return p.length === 
    ilk sonuçlar içinde öne alınır; geri kalan sıra Pagefind'ındır. Pagefind
    uzun sayfalarda çok geçen kelimeyi öne koyuyordu ("emekli zammı"
    sorgusunda Emekli Zammı Hesaplama altıncıydı). Kelime sonu ekleri için
-   karşılaştırma kökün en az dört harfiyle yapılır (zammı ~ zamm; "zaman" eşleşmez). */
+   karşılaştırma kökün en az dört harfiyle yapılır (zammı ~ zamm; "zaman" eşleşmez).
+   Pencere sınırın 6 fazlası: 16 Kasım 2026'da yeni bir emekli yazısı aracı
+   Pagefind'da 10. sıraya itti ve +4'lük pencerenin dışında bıraktı. */
 function baslikEsler(baslik, kelimeler) {
   const b = normalize(baslik).split(/[^a-z0-9]+/).filter(Boolean);
   return kelimeler.every((w) => b.some((t) => t.startsWith(w.slice(0, Math.max(4, w.length - 2))) || (w.startsWith(t) && t.length >= 4)));
@@ -74,7 +76,7 @@ export async function sorgula(q, secenek = {}) {
   const nq = q == null ? null : normalize(q);
   const r = await pf.search(nq, { filters: secenek.filters, sort: secenek.sort });
   const sinir = secenek.sinir || 8;
-  const veri = await Promise.all(r.results.slice(0, sinir + (nq && !secenek.sort ? 4 : 0)).map((x) => x.data()));
+  const veri = await Promise.all(r.results.slice(0, sinir + (nq && !secenek.sort ? 6 : 0)).map((x) => x.data()));
   let sonuclar = veri.map((d, i) => ({
     url: d.url, baslik: (d.meta && d.meta.title) || d.url, aciklama: d.meta && d.meta.description, alinti: d.excerpt,
     tur: d.filters && d.filters["tür"] && d.filters["tür"][0], guncelleme: d.meta && d.meta["güncelleme"], sira: i
