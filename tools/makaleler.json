@@ -12,6 +12,18 @@
     "altyazi": "2027 için çizgi, Ocak ve Temmuz zamları ile dosya artışı varsayımlarının aralığı. Kaynak: 2027 Yıllık Programı Tablo I:46 ve II:1; TÜİK TÜFE'si."
   },
   {
+    "slug": "emekli-yas-haritasi-2025",
+    "kicker": "Emeklilik ve sosyal güvenlik",
+    "alt": "Herkese eşit 1.000 TL yerine aynı bütçe yalnız 65 yaş ve üzerine verilirse kişi başı ortalama artış: SSK emeklisinde 791, Bağ-Kur'da 1.525, memurda 1.536 TL.",
+    "altyazi": "Varsayımsal dağıtım, bütçe sabit. Kaynak: SGK İstatistik Yıllığı 2025, yaşlılık aylığı alanların yaşa göre dağılımı (Tablo 2.7, 2.21, 2.33)."
+  },
+  {
+    "slug": "prim-gunune-gore-emekli-artisi",
+    "kicker": "Emeklilik ve sosyal güvenlik",
+    "alt": "4/a tam yaşlılık aylığı için kanunun aradığı en az prim günü ilk girişe göre: 1999 öncesinde 5.000 ile 5.975, 1999–2008 arasında 7.000, 2008 sonrasında 7.200 gün.",
+    "altyazi": "Her yılın 1 Haziran girişi, girişte 20 yaş. Hesap: 506 s.K. Geçici m.81, 5510 s.K. Geçici m.9 ve m.28; sitenin emeklilik tarihi çekirdeği."
+  },
+  {
     "slug": "bir-yil-daha-calismak-aylik",
     "kicker": "Emeklilik ve sosyal güvenlik",
     "alt": "Prim günü 7.200'den 10.800'e çıkarken ödenen aylık: 100.000 TL kazançla 40.000'den 60.000 TL'ye, 60.000 TL kazançla 24.000'den 36.000 TL'ye; asgari brütten prim ödeyen 23.552 TL'lik tabanda kalıyor.",
