@@ -142,7 +142,7 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 ## Yazılar: Emeklilik & Sosyal Güvenlik
 
-- [Prim gününe göre emekli artışı: kanun herkesten aynı günü istemedi](https://korayoner.dev/makaleler/prim-gunune-gore-emekli-artisi/): 4/a'da emeklilik için aranan gün girişe göre 3.600 ile 7.200 arası. 2025'te SSK emeklilerinin %48,6'sı 58/60 yaş altında, 1999 öncesi kurala tabi.
+- [Prim gününe göre emekli artışı: kanun herkesten aynı günü istemedi](https://korayoner.dev/makaleler/prim-gunune-gore-emekli-artisi/): 4/a'da emeklilik için aranan gün girişe göre 3.600 ile 7.200 arası. 2025'te SSK emeklilerinin %48,6'sı 58/60 yaş altında, çoğu 1999 öncesi kurala tabi.
 - [Yaşa göre emekli artışı kime gider? Emeklilerin yaş haritası](https://korayoner.dev/makaleler/emekli-yas-haritasi-2025/): SGK 2025 verisiyle 12,25 milyon emeklinin yaşı: ortanca 62; 65 üstü payı SSK'da %31,7, Bağ-Kur'da %61,1, memurda %61,5. Aynı bütçeyle üç yaş dağıtımı.
 - [Emekliye ilave iyileştirme: Ocak 2027 için ne biliniyor, ne hesaplanır?](https://korayoner.dev/makaleler/emekliye-ilave-iyilestirme-ocak-2027/): Bakanlık Ocak 2027 için yasal zamın üstüne iyileştirme çalışıyor; rakam yok. Program'daki pay, bin liranın faturası ve seyyanen, oran, taban farkı hesaplandı.
 - [Bir yıl daha çalışmak emekli aylığını ne kadar artırır?](https://korayoner.dev/makaleler/bir-yil-daha-calismak-aylik/): Bugünkü kuralla 360 gün daha prim aylığı %5 artırır, ertelenen 12 aylık 20 yılda geri gelir; düşük kazançta artış sıfır. Program'ın reform başlığı için hesap.
