@@ -166,6 +166,24 @@ def main():
         except AttributeError:
             pass
     kontrol = "--check" in sys.argv
+    if "--yeni-ay-var-mi" in sys.argv:
+        # Veri günü yoklaması: TCMB tablosunda depodakinden yeni bir ay var mı?
+        # Yalnız okur, yazmaz. GITHUB_OUTPUT varsa "yeni=1/0" yazar; ağ
+        # hatasında "0" (sonraki yoklama yeniden dener, iş kırmızıya dönmez).
+        try:
+            seri = ayristir(cek())
+        except Exception as e:  # noqa: BLE001 — yoklama sessizce bir sonrakine bırakır
+            print("Yoklama: TCMB tablosu okunamadı (%s); sonraki yoklamada denenir." % e)
+            seri = {}
+        eski = mevcut()
+        yeni = bool(seri) and max(seri) > max(eski or {"0000-00": 0})
+        print("Yoklama: depo %s, TCMB %s -> %s" % (max(eski) if eski else "-", max(seri) if seri else "-",
+                                                   "YENİ AY" if yeni else "yeni ay yok"))
+        cikti = os.environ.get("GITHUB_OUTPUT")
+        if cikti:
+            with io.open(cikti, "a", encoding="utf-8") as f:
+                f.write("yeni=%d\n" % (1 if yeni else 0))
+        return 0
     seri = ayristir(cek())
     eski = mevcut()
     hatalar = dogrula(seri, eski)

@@ -5,6 +5,15 @@ name: Günlük veri güncelleme
 on:
   schedule:
     - cron: "10 13 * * 1-5"
+    # VERİ GÜNÜ YOKLAMASI (17 Kasım 2026). TÜİK enflasyonu ayın 3'ünde
+    # 10:00'da açıklar (hafta sonuysa ilk iş günü). Günlük iş GitHub
+    # kuyruğunda 7 saate kadar gecikiyor (Kasım 2026'da 20:09–20:45 UTC);
+    # açıklamadan sonraki ~13 saat site eski rakamı gösteriyordu. Ayın
+    # 3–6'sında 07:23–13:53 UTC arası yarım saatte bir yalnız "TCMB
+    # tablosunda yeni ay var mı" diye bakılır; varsa tam güncelleme koşar,
+    # yoksa iş ilk adımdan sonra biter. Dakika 23/53: saat başı kuyruğu
+    # en kalabalık, o yüzden kaydırıldı.
+    - cron: "23,53 7-13 3-6 * *"
   workflow_dispatch: {}      # elle de tetiklenebilir
 
 permissions:
@@ -27,10 +36,24 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Yoklama tetiklemesinde yeni ay yoksa sonraki bütün adımlar atlanır
+      # (koşu yeşil biter, issue açılmaz). Günlük iş ve elle tetikleme her
+      # zaman tam koşar.
+      - name: Veri günü yoklaması
+        id: yokla
+        run: |
+          if [ "${{ github.event.schedule }}" = "23,53 7-13 3-6 * *" ]; then
+            python tools/tufe-guncelle.py --yeni-ay-var-mi
+          else
+            echo "yeni=1" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Kaynakları test et
+        if: steps.yokla.outputs.yeni == '1'
         run: python tools/update_data.py --check
 
       - name: Sayfaları yeniden üret
+        if: steps.yokla.outputs.yeni == '1'
         run: python tools/update_data.py
 
       # TÜFE serisi TCMB'nin Tüketici Fiyatları tablosundan. Betik yazmadan
@@ -41,6 +64,7 @@ jobs:
       # sayfasıyla aynı model). Etiket/damga adımlarından ÖNCE: dönem
       # ilerleyince <title> değişir, favicon ve damga ondan türer.
       - name: TÜFE serisi ve emekli zammı sayfası
+        if: steps.yokla.outputs.yeni == '1'
         run: |
           python tools/tufe-guncelle.py
           node tools/emekli-zammi-sayfa.js
@@ -58,6 +82,7 @@ jobs:
       # Kira artışı sayfası aynı adımda: oranlar grafik-verisi.py'nin
       # yazdığı finans/kira-tufe.js'ten; TÜİK ayın 3'ünde açıklar.
       - name: Grafik verisi ve grafikler sayfası
+        if: steps.yokla.outputs.yeni == '1'
         run: |
           python tools/grafik-verisi.py
           node tools/grafikler-sayfa.js
@@ -75,6 +100,7 @@ jobs:
       # update_data.py'den SONRA, stil-damgasi'ndan ONCE calismali: damga
       # dosyanin iceriginden turuyor, once damgalanirsa damga bayat kalir.
       - name: Ortak etiket ve künyeleri tamamla
+        if: steps.yokla.outputs.yeni == '1'
         run: |
           python tools/paylasim-meta.py
           python tools/metodoloji-blogu.py
@@ -84,12 +110,15 @@ jobs:
       # Bot'un urettigi commit push edilmeden once kendi kurallarindan
       # gecsin: kirik bir sayfa main'e girmesin.
       - name: Hızlı erişim panelini tazele
+        if: steps.yokla.outputs.yeni == '1'
         run: python tools/hizli-panel.py
 
       - name: Üretilen sayfaları denetle
+        if: steps.yokla.outputs.yeni == '1'
         run: python tools/sayfa-denetimi.py --check
 
       - name: Değişiklik varsa commit et
+        if: steps.yokla.outputs.yeni == '1'
         run: |
           if [ -z "$(git status --porcelain)" ]; then
             echo "Değişiklik yok, commit atlanıyor."
@@ -131,7 +160,7 @@ jobs:
           fi
 
       - name: Yeşile dönünce issue'yu kapat
-        if: success()
+        if: success() && steps.yokla.outputs.yeni == '1'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
