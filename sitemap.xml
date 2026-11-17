@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://korayoner.dev/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/koray-oner-kapak.png</image:loc>
       <image:title>Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları</image:title>
@@ -711,7 +711,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/grafikler/</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/grafikler-koray-oner.png</image:loc>
       <image:title>Ekonomi Grafikleri: Enflasyon, Faiz, Kur — Koray Öner</image:title>
