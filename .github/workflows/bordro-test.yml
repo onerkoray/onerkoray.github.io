@@ -688,6 +688,11 @@ jobs:
         run: node makaleler/emekliye-ilave-iyilestirme-ocak-2027/sayi-testi.js
       - name: Bir yıl daha çalışmak yazısının sayıları
         run: node makaleler/bir-yil-daha-calismak-aylik/sayi-testi.js
+      # Ocak 2027 panosu (17 Kasım 2026): satırlar seriden ve parametrelerden.
+      - name: Ocak 2027 panosu güncel mi
+        run: node tools/ocak-2027-sayfa.js --check
+      - name: Ocak 2027 panosu testleri
+        run: node ocak-2027/test.js
       # Yaşa ve prim gününe göre emekli artışı (16 Kasım 2026): SGK 2025 yaş tablosu ve gün şartları.
       - name: Emekli farklılaştırma yazıları hesaptan üretilmiş mi
         run: node tools/emekli-farklilastirma-yazilari.js --check
