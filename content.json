@@ -19,8 +19,8 @@
   "makale": 74,
   "metodoloji": 10,
   "grafik": 2,
-  "sayfa": 11,
-  "indekslenebilir": 162
+  "sayfa": 12,
+  "indekslenebilir": 163
  },
  "sayfalar": [
   {
@@ -3304,6 +3304,22 @@
     "https://korayoner.dev/makaleler/kademeli-emeklilik-son-durum/",
     "https://korayoner.dev/makaleler/turkiyede-sosyal-guvenligin-donusumu/"
    ],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/ocak-2027/",
+   "dosya": "ocak-2027/index.html",
+   "type": "sayfa",
+   "parent": null,
+   "title": "Ocak 2027 Zam ve Vergi Panosu",
+   "description": "Emekli ve memur zammı, asgari ücret, vergi dilimleri, SGK tavanı, en düşük emekli aylığı: her kalem kesin mi, senaryo mu, bekleniyor mu? Veri geldikçe kendili",
+   "category": null,
+   "published": "2026-11-17T11:47:03+03:00",
+   "updated": "2026-11-17",
+   "updatedAt": "2026-11-17T11:47:03+03:00",
+   "image": "https://korayoner.dev/images/bordro-koray-oner.png",
+   "imageTitle": "Ocak 2027 Zam ve Vergi Panosu — Koray Öner",
+   "related": [],
    "noindex": false
   },
   {

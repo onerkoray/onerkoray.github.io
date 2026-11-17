@@ -193,5 +193,6 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 - [Kullanım Koşulları](https://korayoner.dev/kullanim-kosullari/): Hesaplama araçlarının kapsamı, doğruluk taahhüdü, sorumluluk sınırları ve lisans bilgileri. Araçlar bilgilendirme amaçlıdır.
 - [2026 Brüt–Net Tablosu](https://korayoner.dev/maas-hesaplama/brut-net-tablosu/): 2026 brüt net maaş tablosu: 35.000 TL'den 500.000 TL'ye kadar brüt maaşların net karşılıkları ve her tutar için ay ay bordro dökümü.
 - [Makaleler](https://korayoner.dev/makaleler/): Emeklilik, bordro, tazminat ve vergi konularında kaynağı gösterilen, güncel tutulan rehberler. Mevzuat değiştikçe güncellenir.
+- [Ocak 2027 panosu](https://korayoner.dev/ocak-2027/): Emekli ve memur zammı, asgari ücret, vergi dilimleri, SGK tavanı, en düşük emekli aylığı: her kalem kesin mi, senaryo mu, bekleniyor mu? Veri geldikçe kendili
 - [Yayın ilkeleri](https://korayoner.dev/yayin-ilkeleri/): Finansal araç ve makalelerin kapsamı, resmî kaynakları, hesaplama kontrolleri ve düzeltme kayıtları. Koray Öner yayın ilkeleri ve iletişim.
 - [Yayımlanmış çalışmalar](https://korayoner.dev/yayinlar/): Koray Öner'in DOI'li çalışmaları: vergi kaması, dilim kayması, emeklilik finansmanı, tasarruf-yatırım haritası ve banka kârlılığı. Açık erişim, CC BY 4.0.
