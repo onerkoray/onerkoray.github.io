@@ -2294,3 +2294,26 @@ html.ara-acik { overflow: hidden; }
   @view-transition { navigation: auto; }
   ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .16s; animation-timing-function: ease-out; }
 }
+
+/* ---- Ocak 2027 panosu (17 Kasım 2026) ------------------------------------
+   Durum hapı yalnız renkle değil yazıyla da söyler. Renkler veri tokenlarından:
+   kesin = kazanç yeşili, hesaplandı = 1. seri, senaryo = 2. seri, bekleniyor = soluk. */
+.op-wrap { max-width: 980px; }
+.op-sayac { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; list-style: none; padding: 0; margin: 0 0 1.25rem; }
+.op-sayac li { display: inline-flex; align-items: center; gap: .5rem; }
+.op-sayac b { font-variant-numeric: tabular-nums; font-size: 1.1rem; }
+.op-durum {
+  display: inline-block; padding: .1rem .5rem; border-radius: 2px; border: 1px solid currentColor;
+  font-family: var(--font-mono); font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
+}
+.op-durum--kesin { color: var(--dv-gain-ink); }
+.op-durum--hesaplandi { color: var(--dv-1-ink); }
+.op-durum--senaryo { color: var(--dv-2-ink); }
+.op-durum--bekleniyor { color: var(--text-muted); border-style: dashed; }
+.op-veri { border-left: 3px solid var(--dv-2); padding: .25rem 0 .25rem 1rem; margin: 0 0 1.5rem; }
+.op-veri p { margin: 0 0 .4rem; }
+.op-veri-etiket { font-family: var(--font-mono); font-size: .68rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--text-muted); }
+.op-tablo tbody tr.op-not td { padding-top: 0; font-size: var(--step--1); color: var(--text-muted); border-top: 0; }
+.op-tablo tbody tr:nth-child(4n+3), .op-tablo tbody tr:nth-child(4n+4) { background: color-mix(in srgb, var(--text) 4%, transparent); }
+.op-tablo tbody tr:nth-child(4n+1), .op-tablo tbody tr:nth-child(4n+2) { background: transparent; }
+.op-aciklama { font-size: var(--step--1); color: var(--text-muted); margin-top: 1rem; line-height: 2; }
