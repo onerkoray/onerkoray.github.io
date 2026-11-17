@@ -37,6 +37,7 @@ var Ortak = require(path.join(__dirname, "zam-sayfa-ortak.js"));
 var T = require(path.join(KOK, "finans", "tufe-serisi.js"));
 var G = require(path.join(KOK, "finans", "grafik-verisi.js"));
 var B = require(path.join(KOK, "bordro", "motor.js"));
+var E = require(path.join(KOK, "finans", "emekli-taban.js"));
 
 var AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz",
   "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
@@ -49,7 +50,7 @@ var SIRA_YAZI = ["", "birinci", "ikinci", "üçüncü", "dördüncü", "beşinci
    zaten kutu genişliğinde yeniden çizer; bu, ilk boyamanın ölçeği. */
 var GENISLIK = { fiyat: 1000, enflasyon: 1000, isi: 1000, faiz: 540, reel: 540, kur: 540, reelKur: 540,
   birikim: 1000, asgari: 1000, vergi: 1000, dunyaEnf: 540, dunyaReel: 540, dunyaSeri: 1000,
-  kisiBasi: 540, buyume: 540, issizlik: 540, cari: 540 };
+  kisiBasi: 540, buyume: 540, issizlik: 540, cari: 540, taban: 540, tabanOran: 540 };
 var ZAMAN_VARSAYILAN = "2015-01";
 
 var sayi = Cizim.sayi;
@@ -108,6 +109,20 @@ function sayilar(r) {
     katSayisiYazi: SAYI_YAZI[o.katSayisi],
     ilkKatSure: String(o.ilkKatlanma.sure),
     sonKatSure: String(o.sonKatlanma.sure),
+
+    tabanSon: sayi(r.emekliOzet.son.taban),
+    tabanSonOran: sayi(r.emekliOzet.son.oran, 1),
+    tabanIlkAyDa: ayDa(r.emekliOzet.ilk.ay),
+    tabanIlkAyDan: ayUzun(r.emekliOzet.ilk.ay),
+    tabanIlkOran: sayi(r.emekliOzet.ilk.oran, 1),
+    tabanIlkReel: sayi(r.emekliOzet.ilk.reel),
+    tabanReelTepe: sayi(r.emekliOzet.reelTepe.reel),
+    tabanReelTepeAy: ayUzun(r.emekliOzet.reelTepe.ay),
+    tabanOranTepe: sayi(r.emekliOzet.oranTepe.oran, 1),
+    tabanOranTepeAy: ayUzun(r.emekliOzet.oranTepe.ay),
+    tabanDonemBasAy: ayUzun(r.emekliOzet.donemBas.ay),
+    tabanDonemErime: sayi(100 * r.emekliOzet.donemErime, 1),
+    tabanDegisim: String(r.emekliOzet.degisimSayisi),
 
     sonTufe: sayi(o.sonTufe, 2),
     tepeTufe: sayi(o.tepeTufe.deger, 2),
@@ -270,6 +285,11 @@ function tablolar(r) {
       r.asgari.filter(function (n, i, a) { return !i || n.net !== a[i - 1].net; }).map(function (n) {
         return [ayUzun(n.ay), sayi(n.brut, 2), sayi(n.net, 2), "$" + sayi(n.usd), sayi(n.reel) + " TL"];
       })),
+    emekli: tablo("En düşük emekli aylığı, değiştiği dönemler (5510 s.K. ek m.19)",
+      ["Dönem", "Kanun", "Tutar (TL)", ayUzun(son) + " fiyatlarıyla", "Net asgari ücrete oranı"],
+      r.emekli.filter(function (n, i, a) { return !i || n.taban !== a[i - 1].taban; }).map(function (n) {
+        return [ayUzun(n.ay), String(n.kanun), sayi(n.taban), sayi(n.reel) + " TL", "%" + sayi(n.oran, 1)];
+      })),
     dunya: tablo("Enflasyon ve reel politika faizi, " + ayUzun(r.dunyaAy.enfAy) + " (BIS)",
       ["Ekonomi", "Yıllık enflasyon", "Politika faizi", "Reel faiz"],
       r.dunyaAy.enf.map(function (u) {
@@ -411,7 +431,7 @@ function blokDegistir(s, ad, icerik, degisen) {
 }
 
 function uret(s) {
-  var r = H.hesapla(T, G, B);
+  var r = H.hesapla(T, G, B, E);
   var degisen = [];
   var deger = sayilar(r);
   var eksik = [];

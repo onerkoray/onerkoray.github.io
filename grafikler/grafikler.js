@@ -2,12 +2,19 @@
  * Grafikler sayfası — tarayıcı katmanı.
  *
  * Sayfa JS'siz de tamdır: grafikler üreteçten statik SVG olarak gelir.
- * Bu dosya dört şey ekler:
+ * Bu dosya altı şey ekler:
  *   1. kutu genişliğinde yeniden çizim (telefonda yazı küçülmesin),
  *   2. imleç ve ipucu (fare, dokunma, klavye: ← → Home End),
  *   3. seçenekler (log/doğrusal, dolar/TL) ve zaman makinesi,
  *   4. hareket: grafik görünür alana girince çizilir; fiyat ve kur
- *      grafiğinde çizginin ucunu değeri sayan bir nokta izler.
+ *      grafiğinde çizginin ucunu değeri sayan bir nokta izler,
+ *   5. dönem seçici: aylık grafikler son 10, 5 ya da 2 yılı gösterir; endeks
+ *      grafikleri dönem başında 100'e çekilir. Başlıklar tüm dönemi anlatmayı
+ *      sürdürür; her grafik gösterdiği dönemi kendi üstünde yazar,
+ *   6. bağlı okuma ve ülke seçici: bir aylık grafikte gezilen ay, ekrandaki
+ *      öteki aylık grafiklerde de işaretlenir; dünya grafiğinde karşılaştırılan
+ *      ekonomileri okur seçer.
+ * Seçimler adreste yalnız # sonrasında durur (durum.js): #donem=5&ulke=BR,US.
  * Hareket azaltma tercihi olan okur hiçbir animasyon görmez. İlk açılışta
  * zaten görünen grafikler sabit kalır: dinlenme hali tam çizimdir.
  *
@@ -18,10 +25,17 @@
   var H = window.GrafikHesap, Tn = window.GrafikTanim, C = window.GrafikCizim;
   if (!H || !Tn || !C || !window.TufeSerisi || !window.GrafikVerisi || !window.Bordro) return;
 
-  var r = H.hesapla(window.TufeSerisi, window.GrafikVerisi, window.Bordro);
+  var r = H.hesapla(window.TufeSerisi, window.GrafikVerisi, window.Bordro, window.EmekliTaban);
   var sayi = C.sayi, ayEtiket = C.ayEtiket;
   var azHareket = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var secenek = { fiyat: { olcek: "log" }, asgari: { birim: "usd" } };
+  var secenek = { fiyat: { olcek: "log" }, asgari: { birim: "usd" }, dunyaSeri: {} };
+  var donemYil = null;                 // null: tüm dönem; 10 | 5 | 2
+  var DONEMLER = [null, 10, 5, 2];
+  function donemBas() {
+    if (!donemYil) return null;
+    return aydan(C.ayIndeksi(r.sonAy) - donemYil * 12 + 1);
+  }
+  function donemAdi(y) { return y ? "Son " + y + " yıl" : "Tüm dönem"; }
   var cizimler = {};
   var seciliAy = null;
   var SVGNS = "http://www.w3.org/2000/svg";
@@ -38,6 +52,7 @@
   }
   var FIYAT = harita(r.fiyat), FAIZ = harita(r.faiz), KUR = harita(r.kur), ASGARI = harita(r.asgari);
   var BIRIKIM = harita(r.birikim), VERGI = harita(r.vergi, "yil");
+  var EMEKLI = r.emekli ? harita(r.emekli) : {};
   var MAKRO = {};
   ["kisiBasi", "buyume", "issizlik", "cari"].forEach(function (k) { MAKRO[k] = harita(r.makro[k], "yil"); });
   function yuzdeYil(k, yil, etiket, ondalik) {
@@ -82,11 +97,22 @@
         ["gr-i-bir", ayEtiket(r.sonAy) + " TL'si", sayi(n.reel) + " TL"]] };
     },
     dunyaSeri: function (ay) {
-      var satir = r.dunyaAy.seriler.map(function (s) {
-        var n = s.nokta.filter(function (p) { return p.ay === ay; })[0];
-        return n ? [s.kod === "TR" ? "gr-i-iki" : "gr-i-soluk", s.ad, n.deger == null ? "yayımlanmadı" : yuzde(n.deger, 1)] : null;
+      var c = cizimler.dunyaSeri; if (!c) return null;
+      var satir = c.tanim.seriler.slice().reverse().map(function (s) {
+        var n = s.noktalar.filter(function (p) { return p.x === ay; })[0];
+        return n ? [seriRengi(s.sinif), s.ad, n.y == null ? "yayımlanmadı" : yuzde(n.y, 1)] : null;
       }).filter(Boolean);
       return satir.length ? { baslik: ayEtiket(ay), satir: satir } : null;
+    },
+    taban: function (ay) {
+      var n = EMEKLI[ay]; if (!n) return null;
+      return { baslik: ayEtiket(ay), satir: [["", "En düşük aylık", sayi(n.taban) + " TL"],
+        ["gr-i-bir", ayEtiket(r.sonAy) + " TL'si", sayi(n.reel) + " TL"], ["gr-i-iki", "Net asgari ücrete oranı", yuzde(n.oran, 1)]] };
+    },
+    tabanOran: function (ay) {
+      var n = EMEKLI[ay]; if (!n) return null;
+      return { baslik: ayEtiket(ay), satir: [["gr-i-iki", "Oran", yuzde(n.oran, 1)], ["", "En düşük aylık", sayi(n.taban) + " TL"],
+        ["", "Net asgari ücret", sayi(n.net, 2) + " TL"]] };
     },
     birikim: function (ay) {
       var n = BIRIKIM[ay]; if (!n) return null;
@@ -114,6 +140,11 @@
     }
   };
 
+  function seriRengi(sinif) {
+    return /gr-s-iki/.test(sinif) ? "gr-i-iki" : /gr-s-soluk/.test(sinif) ? "gr-i-soluk" :
+      /gr-s-uc/.test(sinif) ? "gr-i-uc" : "gr-i-bir";
+  }
+
   /* ---- çiz ve bağla --------------------------------------------------------- */
   function kutuGenisligi(kap) { return Math.round(kap.querySelector(".gr-tuval").clientWidth); }
 
@@ -121,7 +152,21 @@
     var ad = kap.getAttribute("data-kap");
     var W = kutuGenisligi(kap);
     if (W < 200) return null;
-    var c = Tn.ciz(ad, r, W, secenek[ad]);
+    var sec = {}, kaynak = secenek[ad] || {}, bas = donemBas();
+    Object.keys(kaynak).forEach(function (k) { sec[k] = kaynak[k]; });
+    if (bas) sec.bas = bas;
+    var c = Tn.ciz(ad, r, W, sec);
+    var rozet = kap.querySelector(".gr-donem-rozet");
+    if (c.tanim.donem) {
+      if (!rozet) {
+        rozet = document.createElement("p");
+        rozet.className = "gr-donem-rozet";
+        kap.querySelector(".gr-sekil-ust").appendChild(rozet);
+      }
+      rozet.textContent = donemAdi(donemYil) + " · " + ayEtiket(c.tanim.donem) + "–" + ayEtiket(r.sonAy) +
+        (c.tanim.baz ? " · dönem başı = 100" : "");
+      kap.classList.add("gr-sekil--donem");
+    } else { if (rozet) rozet.parentNode.removeChild(rozet); kap.classList.remove("gr-sekil--donem"); }
     var tuval = kap.querySelector(".gr-tuval");
     var eski = tuval.querySelector("svg");
     var gecici = document.createElement("div");
@@ -157,6 +202,22 @@
     return p.matrixTransform(svg.getScreenCTM().inverse());
   }
 
+  /* Bağlı okuma: bir grafikte gezilen ay (ya da yıl), ekranda görünen ve aynı
+     zaman birimini kullanan öteki grafiklerde de gösterilir. */
+  var imlecler = {};
+  function ekranda(kap) {
+    var b = kap.getBoundingClientRect();
+    return b.bottom > 0 && b.top < window.innerHeight;
+  }
+  function yayinla(kimden, yil, xv) {
+    Object.keys(imlecler).forEach(function (ad) {
+      var m = imlecler[ad];
+      if (ad === kimden || m.yil !== yil) return;
+      if (xv == null) m.gizle();
+      else if (ekranda(m.kap)) m.goster(xv);
+    });
+  }
+
   function baglaImlec(c) {
     var svg = c.el, t = c.tanim, ad = c.ad;
     var yil = t.x && t.x.tip === "yil";
@@ -165,10 +226,13 @@
     var kutu = ipucuKutusu(c.kap);
     var konum = null;
     svg.setAttribute("tabindex", "0");
+    imlecler[ad] = { yil: yil, kap: c.kap, goster: function (xv) { goster(xv, true); }, gizle: function () { gizle(true); } };
 
-    function goster(xv) {
+    function goster(xv, distan) {
+      if (distan && (xv < xmin || xv > xmax)) { gizle(true); return; }
       xv = Math.max(xmin, Math.min(xmax, xv));
       konum = xv;
+      if (!distan) yayinla(ad, yil, xv);
       var anahtar = yil ? xv : aydan(xv);
       var icerik = IPUCU[ad](anahtar);
       if (!icerik) return;
@@ -179,14 +243,22 @@
         t.seriler.forEach(function (s) {
           var n = s.noktalar.filter(function (p) { return c.xDeger(p.x) === xv; })[0];
           if (!n || n.y == null) return;
-          var sinif = /gr-s-iki/.test(s.sinif) ? "gr-i-iki" : /gr-s-soluk/.test(s.sinif) ? "gr-i-soluk" :
-            /gr-s-uc/.test(s.sinif) ? "gr-i-uc" : "gr-i-bir";
+          var sinif = seriRengi(s.sinif);
           parca.push('<circle class="' + sinif + '" cx="' + px + '" cy="' + c.y(n.y) + '" r="4.5"/>');
         });
       }
       imlec.innerHTML = parca.join("");
       if (ad === "fiyat") secimCiz();
-      kutu.innerHTML = "<b>" + icerik.baslik + "</b>" + icerik.satir.filter(Boolean).map(function (s) {
+      var satirlar = icerik.satir.filter(Boolean);
+      if (t.donem && t.baz) {
+        /* Dönem görünümü: eksen dönem başı = 100; ipucu asıl değerin yanında bunu da söyler. */
+        t.seriler.forEach(function (s) {
+          if (/gr-s-soluk/.test(s.sinif)) return;
+          var n = s.noktalar.filter(function (p) { return c.xDeger(p.x) === xv; })[0];
+          if (n && n.y != null) satirlar.push([seriRengi(s.sinif), s.ad + ", dönem başından", "×" + sayi(n.y / 100, 2)]);
+        });
+      }
+      kutu.innerHTML = "<b>" + icerik.baslik + "</b>" + satirlar.map(function (s) {
         return '<span><i class="' + s[0] + '">' + s[1] + "</i>" + s[2] + "</span>";
       }).join("");
       kutu.hidden = false;
@@ -197,10 +269,11 @@
       kutu.style.top = (H0 + 8) * olcek + "px";
       kutu.style.transform = "translate(-50%, 0)";
     }
-    function gizle() {
+    function gizle(distan) {
       imlec.innerHTML = "";
       kutu.hidden = true;
       if (ad === "fiyat") secimCiz();
+      if (distan !== true) yayinla(ad, yil, null);
     }
     function isaretciden(e) {
       var p = svgNokta(svg, e);
@@ -209,8 +282,8 @@
     }
     svg.addEventListener("pointermove", isaretciden);
     svg.addEventListener("pointerdown", isaretciden);
-    svg.addEventListener("pointerleave", gizle);
-    svg.addEventListener("blur", gizle);
+    svg.addEventListener("pointerleave", function () { gizle(); });
+    svg.addEventListener("blur", function () { gizle(); });
     svg.addEventListener("focus", function () { goster(xmax); });
     svg.addEventListener("keydown", function (e) {
       var adim = { ArrowLeft: -1, ArrowRight: 1, PageDown: -12, PageUp: 12 }[e.key];
@@ -256,9 +329,13 @@
       c.el.insertBefore(g, c.el.querySelector(".gr-imlec"));
     }
     var n = FIYAT[seciliAy]; if (!n) return;
+    /* Dönem görünümünde seçilen ay aralığın dışındaysa işaret çizilmez;
+       içindeyse değer dönem başı = 100 ölçeğine çevrilir. */
+    if (c.tanim.donem && seciliAy < c.tanim.donem) { g.innerHTML = ""; return; }
+    var deger = n.endeks * (c.tanim.carpan ? c.tanim.carpan[0] : 1);
     var px = c.x(c.xDeger(seciliAy));
-    g.innerHTML = '<line class="gr-secili" x1="' + px + '" x2="' + px + '" y1="' + c.y(n.endeks) + '" y2="' +
-      (+c.el.getAttribute("height") - c.kenar.alt) + '"/><circle class="gr-i-iki" cx="' + px + '" cy="' + c.y(n.endeks) + '" r="5"/>';
+    g.innerHTML = '<line class="gr-secili" x1="' + px + '" x2="' + px + '" y1="' + c.y(deger) + '" y2="' +
+      (+c.el.getAttribute("height") - c.kenar.alt) + '"/><circle class="gr-i-iki" cx="' + px + '" cy="' + c.y(deger) + '" r="5"/>';
   }
   function zamanGuncelle() {
     var ay = r.fiyat[+zamanGirdi.value].ay;
@@ -293,7 +370,7 @@
     var yollar = [].slice.call(c.el.querySelectorAll(".gr-cizgi"));
     if (!yollar.length) return;
     var boy = yollar.map(function (p) { return p.getTotalLength(); });
-    var iz = IZLEYICI[c.ad], izYol = iz && yollar[iz.seri], izG = null, izMetin = null;
+    var iz = c.tanim.donem ? null : IZLEYICI[c.ad], izYol = iz && yollar[iz.seri], izG = null, izMetin = null;
     if (izYol) {
       izG = document.createElementNS(SVGNS, "g");
       izG.setAttribute("class", "gr-izci");
@@ -349,6 +426,38 @@
     window.requestAnimationFrame(kare);
   }
 
+  /* ---- adres durumu: #donem=5&ulke=BR,US ---------------------------------------- */
+  var ULKE_SINIR = Tn.YUVA.length;
+  var ULKE_VARSAYILAN = r.dunyaAy ? r.dunyaAy.seriler.slice(1).map(function (s) { return s.kod; }) : [];
+  var ulkeler = ULKE_VARSAYILAN.map(function (k, i) { return { kod: k, yuva: i }; });
+  var ulkeDokunuldu = false;
+  function durumOku() {
+    if (!window.Durum) return;
+    var d = window.Durum.oku();
+    var y = +d.get("donem");
+    if (DONEMLER.indexOf(y) > 0) donemYil = y;
+    if (d.has("ulke") && r.dunyaAy) {
+      var gecerli = r.dunyaAy.alanlar.map(function (a) { return a.kod; });
+      var secilen = d.get("ulke").split(",").filter(function (k, i, dizi) {
+        return k !== "TR" && gecerli.indexOf(k) >= 0 && dizi.indexOf(k) === i;
+      }).slice(0, ULKE_SINIR);
+      ulkeler = secilen.map(function (k, i) { return { kod: k, yuva: i }; });
+      ulkeDokunuldu = true;
+    }
+  }
+  function durumYaz() {
+    if (!window.Durum) return;
+    var d = new URLSearchParams();
+    if (donemYil) d.set("donem", String(donemYil));
+    if (ulkeDokunuldu) d.set("ulke", ulkeler.map(function (u) { return u.kod; }).join(","));
+    window.Durum.yaz(d);
+  }
+  durumOku();
+  /* Statik sayfa dört ülkeyi gri çizer; okur seçince (ya da adres bir seçim
+     taşıyorsa) her ülke kendi çizgisini alır. */
+  function ulkeUygula() { secenek.dunyaSeri = ulkeDokunuldu ? { ulkeler: ulkeler } : {}; }
+  ulkeUygula();
+
   /* ---- kurulum ------------------------------------------------------------------ */
   var kaplar = [].slice.call(document.querySelectorAll(".gr-sekil[data-kap]"));
   kaplar.forEach(ciz);
@@ -376,7 +485,7 @@
   }
 
   /* seçenek düğmeleri */
-  [].forEach.call(document.querySelectorAll(".gr-secim button"), function (d) {
+  [].forEach.call(document.querySelectorAll(".gr-secim button[data-secenek]"), function (d) {
     d.addEventListener("click", function () {
       var kap = d.closest(".gr-sekil"), ad = kap.getAttribute("data-kap");
       secenek[ad][d.getAttribute("data-secenek")] = d.getAttribute("data-deger");
@@ -385,6 +494,97 @@
       if (!azHareket) { hazirla(kap); window.requestAnimationFrame(function () { oynat(kap); }); }
     });
   });
+
+  /* ---- dönem seçici ---------------------------------------------------------------
+     Bütün [data-donem] düğmeleri aynı durumu gösterir (giriş ve alt şerit). */
+  var donemDugmeleri = [].slice.call(document.querySelectorAll("button[data-donem]"));
+  var donemDongu = document.querySelector("button[data-donem-dongu]");
+  var donemDurum = document.getElementById("gr-donem-durum");
+  function donemGoster() {
+    donemDugmeleri.forEach(function (b) {
+      b.setAttribute("aria-pressed", String((+b.getAttribute("data-donem") || null) === donemYil));
+    });
+    if (donemDongu) donemDongu.querySelector("span").textContent = donemYil ? donemYil + " yıl" : "Tümü";
+    document.documentElement.classList.toggle("gr-donemli", !!donemYil);
+    if (donemDurum) {
+      donemDurum.textContent = donemYil
+        ? "Aylık grafikler " + ayEtiket(donemBas()) + "–" + ayEtiket(r.sonAy) + " dönemini gösteriyor. Yıllık grafikler ve başlıklardaki rakamlar tüm dönemi anlatır."
+        : "Bütün grafikler tüm dönemi gösteriyor.";
+    }
+  }
+  function donemSec(y) {
+    if (y === donemYil) return;
+    donemYil = y;
+    donemGoster();
+    durumYaz();
+    kaplar.forEach(function (k) {
+      k.classList.remove("gr-hazir"); k.classList.add("gr-oynat");
+      ciz(k);
+      if (!azHareket && cizimler[k.getAttribute("data-kap")] && k.querySelector(".gr-cizgi") && ekranda(k)) {
+        hazirla(k); window.requestAnimationFrame(function () { oynat(k); });
+      }
+    });
+  }
+  donemDugmeleri.forEach(function (b) {
+    b.addEventListener("click", function () { donemSec(+b.getAttribute("data-donem") || null); });
+  });
+  if (donemDongu) {
+    donemDongu.addEventListener("click", function () {
+      donemSec(DONEMLER[(DONEMLER.indexOf(donemYil) + 1) % DONEMLER.length]);
+    });
+  }
+  donemGoster();
+
+  /* ---- ülke seçici (dünya enflasyon serisi) ---------------------------------------- */
+  var ulkeKutu = document.querySelector(".gr-ulkeler");
+  if (ulkeKutu && r.dunyaAy) {
+    var ulkeDurum = ulkeKutu.querySelector(".gr-ulke-durum");
+    var liste = ulkeKutu.querySelector(".gr-ulke-liste");
+    r.dunyaAy.alanlar.filter(function (a) { return a.kod !== "TR"; })
+      .sort(function (a, b) { return a.ad.localeCompare(b.ad, "tr"); })
+      .forEach(function (a) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("data-ulke", a.kod);
+        b.textContent = a.ad;
+        liste.appendChild(b);
+      });
+    var ulkeDugmeleri = [].slice.call(liste.querySelectorAll("button"));
+    var ulkeGoster = function () {
+      ulkeDugmeleri.forEach(function (b) {
+        var u = ulkeler.filter(function (x) { return x.kod === b.getAttribute("data-ulke"); })[0];
+        b.setAttribute("aria-pressed", String(!!u));
+        if (u && ulkeDokunuldu) b.setAttribute("data-yuva", String(u.yuva)); else b.removeAttribute("data-yuva");
+      });
+      var soluk = document.querySelector('[data-kap="dunyaSeri"] .gr-lejant .gr-l-soluk');
+      if (soluk) soluk.hidden = ulkeDokunuldu;
+    };
+    liste.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("button[data-ulke]");
+      if (!b) return;
+      var kod = b.getAttribute("data-ulke");
+      var var_ = ulkeler.filter(function (x) { return x.kod === kod; })[0];
+      if (var_) {
+        ulkeler = ulkeler.filter(function (x) { return x.kod !== kod; });   // kalanların yuvası (rengi) değişmez
+        ulkeDurum.textContent = b.textContent + " çıkarıldı.";
+      } else if (ulkeler.length >= ULKE_SINIR) {
+        ulkeDurum.textContent = "En çok " + ULKE_SINIR + " ekonomi karşılaştırılır; önce birini çıkarın.";
+        return;
+      } else {
+        var bos = 0;
+        while (ulkeler.some(function (x) { return x.yuva === bos; })) bos++;
+        ulkeler.push({ kod: kod, yuva: bos });
+        ulkeDurum.textContent = b.textContent + " eklendi.";
+      }
+      ulkeDokunuldu = true;
+      ulkeUygula(); ulkeGoster(); durumYaz();
+      var kap = document.querySelector('.gr-sekil[data-kap="dunyaSeri"]');
+      kap.classList.remove("gr-hazir"); kap.classList.add("gr-oynat");
+      ciz(kap);
+    });
+    ulkeKutu.hidden = false;
+    ulkeGoster();
+  }
 
   /* yeniden boyutlandırma: yalnız genişlik değişince, animasyonsuz */
   var sonGenislik = window.innerWidth, zamanlayici = null;

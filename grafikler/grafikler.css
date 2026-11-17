@@ -33,7 +33,7 @@
 
 .gr-fihrist {
   list-style: none; padding: 0; margin: clamp(1.5rem, 1rem + 2vw, 2.25rem) 0 0;
-  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
+  display: grid; grid-template-columns: repeat(8, minmax(0, 1fr));
   border-top: 1px solid var(--text); border-bottom: 1px solid var(--border);
 }
 .gr-fihrist li + li { border-left: 1px solid var(--border); }
@@ -350,3 +350,58 @@ text.gr-isi-4, text.gr-isi-5, text.gr-isi-6 { fill: #fff; }
   .gr-hud, .gr-secim, .gr-zaman input { display: none !important; }
   .gr-tablo[open] { break-inside: avoid; }
 }
+
+/* ---- dönem seçici, ülke seçici (17 Kasım 2026) ---------------------------
+   Dönem: giriş bölümünde dört düğme, alt şeritte tek döngü düğmesi; ikisi
+   aynı durumu gösterir. Dönem seçiliyken her aylık grafik kendi üstünde
+   gösterdiği aralığı yazar (.gr-donem-rozet): başlıklar tüm dönemi
+   anlatmayı sürdürür, okur ikisini karıştırmasın. */
+.gr-donem { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem .9rem; margin-top: 1.1rem; }
+.gr-donem-ad, .gr-ulke-ad {
+  font-family: var(--font-mono); font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .09em;
+  color: var(--text-muted); margin: 0;
+}
+.gr-donem-durum { margin: 0; font-size: .82rem; color: var(--text-muted); flex: 1 1 18rem; }
+.gr-donem-rozet {
+  flex-basis: 100%; margin: 0; font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--dv-2-ink);
+}
+.gr-oz--alt { margin-top: 1.25rem; }
+
+.gr-ulkeler { display: grid; gap: .5rem; margin: 0 0 .75rem; }
+.gr-ulkeler[hidden] { display: none; }
+.gr-ulke-liste { display: flex; flex-wrap: wrap; gap: .35rem; }
+.gr-ulke-liste button {
+  display: inline-flex; align-items: center; gap: .4rem; min-height: 30px; padding: 0 .6rem;
+  font: inherit; font-size: .8rem; color: var(--text-muted); background: none; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 2px;
+}
+.gr-ulke-liste button:hover { color: var(--text); border-color: var(--text-muted); }
+.gr-ulke-liste button[aria-pressed="true"] { color: var(--text); border-color: var(--text); font-weight: 600; }
+.gr-ulke-liste button[aria-pressed="true"]::before {
+  content: ""; width: 14px; height: 0; border-top: 3px solid var(--dv-mute);
+}
+.gr-ulke-liste button[data-yuva="0"]::before { border-top-color: var(--dv-1); }
+.gr-ulke-liste button[data-yuva="1"]::before { border-top-color: var(--dv-3); }
+.gr-ulke-liste button[data-yuva="2"]::before { border-top: 3px dashed var(--dv-1); }
+.gr-ulke-liste button[data-yuva="3"]::before { border-top: 3px dashed var(--dv-3); }
+.gr-ulke-durum { margin: 0; min-height: 1.2em; font-size: .78rem; color: var(--text-muted); }
+.gr-s-kesik { stroke-dasharray: 6 4; }
+.gr-lejant li[hidden] { display: none; }
+/* Dönem görünümünde katlanma işaretleri çizilmez; onları anlatan dipnot da gizlenir. */
+.gr-sekil--donem .gr-yalniz-tum { display: none; }
+
+.gr-hud-donem {
+  display: inline-flex; align-items: center; gap: .45rem; height: 34px; padding: 0 .8rem; margin-left: 4px;
+  font: inherit; font-size: .78rem; color: var(--text); background: none; cursor: pointer;
+  border: 0; border-left: 1px solid var(--border); border-radius: 0; white-space: nowrap;
+}
+.gr-hud-donem b { font-family: var(--font-mono); font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+.gr-donemli .gr-hud-donem span { color: var(--dv-2-ink); font-weight: 700; }
+.gr-hud-ic { overflow-x: auto; scrollbar-width: none; }
+.gr-hud-ic::-webkit-scrollbar { display: none; }
+@media (max-width: 760px) {
+  .gr-hud-donem b { display: none; }
+  .gr-hud-donem { padding: 0 .6rem; }
+}
+@media print { .gr-donem, .gr-ulkeler { display: none !important; } }

@@ -202,6 +202,17 @@
     return seri;
   }
 
+  /* ---- VIII. En düşük emekli aylığı (5510 ek m.19) -------------------------
+     Aylık seri: tutar, bugünün fiyatlarıyla değeri ve aynı ayın net asgari
+     ücretine oranı. Asgari ücret serisiyle aynı aylar (Ocak 2020'den). */
+  function emekliSerisi(asgari, Taban) {
+    return asgari.map(function (n) {
+      var t = Taban.donem(n.ay);
+      return { ay: n.ay, taban: t.tutar, kanun: t.kanun, reel: t.tutar * n.reel / n.net,
+        oran: 100 * t.tutar / n.net, net: n.net };
+    });
+  }
+
   /* ---- V-b. Vergi eşikleri ve asgari ücret --------------------------------- */
   function vergiEsikleri(Bordro, sonYil) {
     var seri = [];
@@ -261,11 +272,16 @@
         var a = bis.alanlar.filter(function (x) { return x[0] === k; })[0];
         return { kod: k, ad: a[1], sonAy: bisAy(bis, sonGozlem(bis.faiz[k])) };
       }),
-      seriler: ["TR", "BR", "RU", "US", "XM"].map(function (k) {
-        var a = bis.alanlar.filter(function (x) { return x[0] === k; })[0];
-        return { kod: k, ad: a[1], nokta: bis.tufe[k].map(function (v, i) { return { ay: bisAy(bis, i), deger: v }; }) };
-      })
+      seriler: DUNYA_VARSAYILAN.map(function (k) { return dunyaSerisi(bis, k); }),
+      alanlar: bis.alanlar.map(function (a) { return { kod: a[0], ad: a[1] }; })
     };
+  }
+  /* Bir ekonominin aylık yıllık enflasyon serisi (BIS). */
+  var DUNYA_VARSAYILAN = ["TR", "BR", "RU", "US", "XM"];
+  function dunyaSerisi(bis, k) {
+    var a = bis.alanlar.filter(function (x) { return x[0] === k; })[0];
+    if (!a) return null;
+    return { kod: k, ad: a[1], nokta: bis.tufe[k].map(function (v, i) { return { ay: bisAy(bis, i), deger: v }; }) };
   }
 
   /* ---- VII. Büyüme ve gelir (Dünya Bankası, yıllık) ------------------------- */
@@ -303,7 +319,7 @@
   }
 
   /* ---- Hepsi ------------------------------------------------------------ */
-  function hesapla(T, G, Bordro) {
+  function hesapla(T, G, Bordro, Taban) {
     var fiyat = fiyatEndeksi(T);
     var son = fiyat[fiyat.length - 1];
     var katlar = ikiyeKatlanmalar(fiyat);
@@ -320,6 +336,22 @@
     var kurSon = kur[kur.length - 1], kurIlk = kur[0];
 
     var asgari = asgariSerisi(fiyat, G.kur, Bordro);
+    var emekli = Taban ? emekliSerisi(asgari, Taban) : null;
+    var emekliOzet = null;
+    if (emekli) {
+      var eSon = emekli[emekli.length - 1], eIlk = emekli[0];
+      var eDonemBas = eIlk;
+      emekli.forEach(function (n, i) { if (i && n.taban !== emekli[i - 1].taban) eDonemBas = n; });
+      emekliOzet = {
+        son: eSon, ilk: eIlk, donemBas: eDonemBas,
+        reelTepe: emekli.reduce(function (a, b) { return b.reel > a.reel ? b : a; }),
+        reelDip: emekli.reduce(function (a, b) { return b.reel < a.reel ? b : a; }),
+        oranTepe: emekli.reduce(function (a, b) { return b.oran > a.oran ? b : a; }),
+        oranDip: emekli.reduce(function (a, b) { return b.oran < a.oran ? b : a; }),
+        donemErime: 1 - eSon.reel / eDonemBas.reel,
+        degisimSayisi: emekli.filter(function (n, i) { return i && n.taban !== emekli[i - 1].taban; }).length
+      };
+    }
     var usdTepe = asgari.reduce(function (a, b) { return b.usd > a.usd ? b : a; });
     var usdDip = asgari.reduce(function (a, b) { return b.usd < a.usd ? b : a; });
     var reelTepe = asgari.reduce(function (a, b) { return b.reel > a.reel ? b : a; });
@@ -364,6 +396,9 @@
       faiz: faiz,
       kur: kur,
       asgari: asgari,
+      emekli: emekli,
+      emekliOzet: emekliOzet,
+      ulkeSerisi: function (k) { return G.bis ? dunyaSerisi(G.bis, k) : null; },
       siralama: siralama,
       dunya: dunyaSerileri(G, ["TUR", "ARG", "BRA", "RUS", "USA", "EMU"]),
       isi: isi,
@@ -458,6 +493,8 @@
     birikim: birikim,
     vergiEsikleri: vergiEsikleri,
     dunyaAylik: dunyaAylik,
+    dunyaSerisi: dunyaSerisi,
+    emekliSerisi: emekliSerisi,
     GRAM_ONS: GRAM_ONS,
     ayAdi: ayAdi,
     aySayisi: aySayisi,
