@@ -253,8 +253,59 @@ Object.keys(EK).forEach(function (y2) {
   dogru("ek " + y2 + EK[y2], Uretec.bulunma(+y2) === EK[y2], Uretec.bulunma(+y2));
 });
 
+/* ---- VIII. en düşük emekli aylığı ------------------------------------------- */
+var E = require(path.join(KOK, "finans", "emekli-taban.js"));
+var EP = require(path.join(KOK, "bordro", "emeklilik-parametreleri.js"));
+var Tn = require("./tanimlar.js");
+var re = H.hesapla(T, G, B, E), e = re.emekli, eo = re.emekliOzet;
+dogru("emekli serisi asgari ücretle aynı aylar", e.length === re.asgari.length && e[0].ay === re.asgari[0].ay);
+/* Taban, kanun listesinden elle: ayın geçerli tutarı = donem ≤ ay olan son kayıt. */
+var elle = e.every(function (n) {
+  var t = null;
+  for (var i = 0; i < E.TABAN.length; i++) if (E.TABAN[i].donem <= n.ay) t = E.TABAN[i].tutar;
+  return t === n.taban;
+});
+dogru("taban tutarı kanun listesinden aynı", elle);
+dogru("taban listesi artan ve tarih sıralı", E.TABAN.every(function (x, i) { return !i || (x.tutar > E.TABAN[i - 1].tutar && x.donem > E.TABAN[i - 1].donem); }));
+/* Bordro çekirdeğindeki kısa tablo ortak dönemlerde aynı tutarı vermeli. */
+var ortakTamam = EP.altSinirTablosu.every(function (x) { var t = E.donem(x.gecerli.slice(0, 7)); return t && t.tutar === x.tutar && t.donem === x.gecerli.slice(0, 7); });
+dogru("çekirdek altSinirTablosu ile tek kaynak uyumlu", ortakTamam);
+/* Oran ve reel değer ikinci yoldan: net asgari bordro parametresinden, endeks zincirinden. */
+var oranTamam = e.every(function (n) {
+  var yil = +n.ay.slice(0, 4), m = +n.ay.slice(5, 7), d = null;
+  B.parametre(yil).donemler.forEach(function (x) { if (x.ay <= m) d = x; });
+  return yakin(n.oran, 100 * n.taban / d.asgariNet, 1e-9) && yakin(n.reel, n.taban * endeks[son] / endeks[n.ay], 1e-6);
+});
+dogru("oran = taban ÷ net asgari, reel = taban × endeks oranı", oranTamam);
+var degisim = 0;
+for (var ei = 1; ei < e.length; ei++) if (e[ei].taban !== e[ei - 1].taban) degisim++;
+dogru("değişim sayısı " + degisim, eo.degisimSayisi === degisim);
+var tepeO = e.reduce(function (a, b) { return b.oran > a.oran ? b : a; });
+dogru("oran tepesi " + tepeO.ay, eo.oranTepe.ay === tepeO.ay);
+var sonDegisim = e.filter(function (n, i) { return i && n.taban !== e[i - 1].taban; }).pop();
+dogru("son artıştan beri erime", yakin(eo.donemErime, 1 - eo.son.reel / sonDegisim.reel, 1e-12));
+
+/* ---- dönem görünümü ve ülke seçimi (tarayıcı katmanının hesabı) ------------- */
+var d5 = Tn.ciz("fiyat", re, 1000, { bas: "2021-11" }).tanim;
+var ilk5 = d5.seriler[0].noktalar[0];
+dogru("dönem: endeks ilk ayda 100", ilk5.x === "2021-11" && yakin(ilk5.y, 100, 1e-9));
+var son5 = d5.seriler[0].noktalar[d5.seriler[0].noktalar.length - 1];
+dogru("dönem: son değer = endeks oranı × 100", yakin(son5.y, 100 * endeks[son] / endeks["2021-11"], 1e-6));
+dogru("dönem: katlanma işaretleri çizilmez", d5.isaretler.length === 0);
+var d2 = Tn.ciz("enflasyon", re, 1000, { bas: "2024-11" }).tanim;
+dogru("dönem: endeks olmayan grafik ölçeklenmez", d2.seriler[0].noktalar[0].y === re.fiyat.filter(function (n) { return n.ay === "2024-11"; })[0].yillik);
+dogru("dönem: ekseni bütün değerleri kapsar", d2.seriler[0].noktalar.every(function (n) { return n.y >= d2.y.min && n.y <= d2.y.max; }));
+dogru("dönem: aria etiketi dönemi söyler", /Gösterilen dönem: Kas 2024–/.test(d2.etiket));
+var dv = Tn.ciz("vergi", re, 1000, { bas: "2024-11" }).tanim;
+dogru("dönem: yıllık grafik değişmez", !dv.donem && dv.seriler[0].noktalar.length === re.vergi.length);
+var du = Tn.ciz("dunyaSeri", re, 1000, { ulkeler: [{ kod: "JP", yuva: 1 }, { kod: "AR", yuva: 0 }] }).tanim;
+dogru("ülke: renk yuvadan, sıradan değil", du.seriler[0].ad === "Japonya" && du.seriler[0].sinif === Tn.YUVA[1] && du.seriler[1].sinif === Tn.YUVA[0]);
+dogru("ülke: Türkiye her zaman en üstte çizilir", du.seriler[du.seriler.length - 1].kod === "TR");
+dogru("ülke: eksen bütün değerleri kapsar", du.seriler.every(function (s) { return s.noktalar.every(function (n) { return n.y == null || (n.y >= du.y.min && n.y <= du.y.max); }); }));
+
 /* ---- sayfa ------------------------------------------------------------------- */
 var sayfa = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
+dogru("başlık: taban oranı ilk ay ve bugün", sayfa.indexOf('%<span data-s="tabanIlkOran">' + Uretec.sayilar(re).tabanIlkOran + '</span>, bugün %<span data-s="tabanSonOran">' + Uretec.sayilar(re).tabanSonOran + "</span>") >= 0);
 dogru("sayfa seriden üretilmiş halinde", Uretec.uret(sayfa).s === sayfa);
 var bos = (sayfa.match(/<!-- GR[A-Z-]*(:[a-zA-Z]+)?:BASLANGIC --><!-- GR/g) || []).length;
 dogru("üretilen blokların hiçbiri boş değil", bos === 0, bos + " boş blok");
