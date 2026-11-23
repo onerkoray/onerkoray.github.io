@@ -85,7 +85,9 @@ ROBOTS = re.compile(r'<meta\s+name="robots"')
 # tarih ozlu sayilirsa her senkron tarihi bugune iter ve dongu kurulur.
 TARIH_SATIRI = re.compile(r'"dateModified"\s*:|class="card-updated"|<lastmod>|<updated>|<published>'
                           # Yasal metinlerin "Son guncelleme" satiri (scripts/sync-dates.mjs yazar).
-                          r'|Son güncelleme: <time datetime=')
+                          # Eski elle yazilmis bicim (<time>'siz) de tarih satiridir: biri
+                          # digerine cevrilince sayfa "degisti" sayilmasin.
+                          r'|Son güncelleme: (?:<time datetime=|\d)')
 # Akis baglantilari ve isaretleri (scripts/apply-shell.mjs) site kabugudur.
 KABUK_SATIRI = re.compile(r'<link rel="alternate" type="application/atom\+xml"|<!-- (?:AKIS|ARAMA):(?:BASLANGIC|BITIS) -->'
                           r'|<script type="module" src="/arama\.js'
