@@ -83,7 +83,9 @@ ROBOTS = re.compile(r'<meta\s+name="robots"')
 # "Guncellendi"/"Guncelleme:" satirlari, JSON-LD dateModified ve sitemap/
 # Atom tarihleri icerik manifestinden (content.json) YAZILIYOR. Yazilan
 # tarih ozlu sayilirsa her senkron tarihi bugune iter ve dongu kurulur.
-TARIH_SATIRI = re.compile(r'"dateModified"\s*:|class="card-updated"|<lastmod>|<updated>|<published>')
+TARIH_SATIRI = re.compile(r'"dateModified"\s*:|class="card-updated"|<lastmod>|<updated>|<published>'
+                          # Yasal metinlerin "Son guncelleme" satiri (scripts/sync-dates.mjs yazar).
+                          r'|Son güncelleme: <time datetime=')
 # Akis baglantilari ve isaretleri (scripts/apply-shell.mjs) site kabugudur.
 KABUK_SATIRI = re.compile(r'<link rel="alternate" type="application/atom\+xml"|<!-- (?:AKIS|ARAMA):(?:BASLANGIC|BITIS) -->'
                           r'|<script type="module" src="/arama\.js'

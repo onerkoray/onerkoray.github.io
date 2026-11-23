@@ -262,5 +262,14 @@ dogru("load dinleniyor", typeof o11.pencere.yukDinleyici === "function");
 if (o11.pencere.yukDinleyici) o11.pencere.yukDinleyici();
 esit("load sonrasi etiket", o11.eklenenBetikler.length, 1);
 
+console.log("\nCerez Rehberi 5.9 onlemleri etikette (gizlilik sayfasi bunlari yaziyor)");
+var cfg = ((o11.pencere.dataLayer || []).filter(function (a) { return a[0] === "config"; })[0] || [])[2] || {};
+esit("Google Sinyalleri kapali", cfg.allow_google_signals, false);
+esit("reklam kisisellestirme kapali", cfg.allow_ad_personalization_signals, false);
+esit("cerez omru 13 ay (395 gun)", cfg.cookie_expires, 395 * 86400);
+var GZ = require("fs").readFileSync(require("path").join(__dirname, "..", "gizlilik", "index.html"), "utf8");
+dogru("gizlilik sayfasi 13 ay diyor", GZ.indexOf("<strong>13 ay</strong>") >= 0);
+dogru("gizlilik sayfasi Sinyalleri kapali diyor", GZ.indexOf("Google Sinyalleri ve reklam kişiselleştirmesi kodda kapalıdır") >= 0);
+
 if (hata) { console.error("\n" + hata + " kontrol basarisiz."); process.exit(1); }
 console.log("\n" + gecen + " gecti, 0 kaldi. (olcum tercihi kontrolleri)");

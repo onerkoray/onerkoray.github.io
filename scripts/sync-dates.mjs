@@ -92,6 +92,7 @@ export function esitle(html, sayfa) {
   let s = html.replace(/("dateModified":\s*")[\d-]+(?:T[^"]*)?(")/g, "$1" + D + "$2");
   if (sayfa.type === "arac") s = webAppTarih(s, D);
   if (sayfa.type === "arac" || sayfa.type === "metodoloji") s = aracBylineEsitle(s, D);
+  if (sayfa.type === "sayfa") s = s.replace(YASAL_GUN, 'Son güncelleme: <time datetime="' + D + '">' + uzun(D) + "</time>");
   if (sayfa.type !== "makale") return s;
   s = doiYaz(s, sayfa);
   s = yaziGuncelleme(s, D);
@@ -118,6 +119,11 @@ export function esitle(html, sayfa) {
    25 Ekim 2026'ya kadar tarih elle yazılıydı ve kart ile JSON-LD'den
    ayrışmıştı (maaş aracında 5 Eylül / 2 Ekim). Artık manifestten. */
 const AY_DESEN = AYLAR.join("|");
+/* Yasal metinlerin (gizlilik, kullanım koşulları) "Son güncelleme" tarihi.
+   Elle yazılıyordu ve kullanım koşullarında manifestin on gün gerisindeydi;
+   artık içerik değişikliğinin git tarihinden. Yürürlük tarihi elle kalır:
+   o bir olgu, bir tazelik damgası değil. */
+const YASAL_GUN = new RegExp('Son güncelleme: (?:<time datetime="[\\d-]+">)?\\d{1,2} (?:' + AY_DESEN + ") \\d{4}(?:</time>)?");
 const BYLINE_GUN = new RegExp('Güncelleme: (?:<time datetime="[\\d-]+">)?\\d{1,2} (?:' + AY_DESEN + ") \\d{4}(?:</time>)?");
 function aracBylineEsitle(s, D) {
   const m = s.match(/<p class="byline[^"]*">[\s\S]*?<\/p>/);

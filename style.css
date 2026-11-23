@@ -810,7 +810,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 .hero-inner .article-meta { margin-top: 1rem; }
 
 /* Metin ağırlıklı tablolarda sağa yaslama okunmuyor: sola çek */
-.data-table--text th, .data-table--text td { text-align: left; white-space: normal; }
+.data-table--text th, .data-table--text td { text-align: left; white-space: normal; vertical-align: top; }
 
 /* ---------- Paylasilabilir ozet karti ----------
    Kapaklar yalnizca og:image icinde yasarken hicbir sayfada render edilmiyor,

@@ -107,7 +107,20 @@
        da uygulanır (geçmiş değişikliğiyle gelen sayfa görüntülemeleri dahil). */
     var temiz = { page_location: root.location.origin + root.location.pathname };
     root.gtag("set", temiz);
-    root.gtag("config", OLCUM, { anonymize_ip: true, page_location: temiz.page_location });
+    /* KVKK Çerez Rehberi (Temmuz 2025) §5.9: birinci taraf analitiğin açık
+       rıza gerektirmeyen çerez sayılabilmesi için çapraz takip olmamalı ve
+       çerez ömrü makul olmalı. Sinyaller ve reklam kişiselleştirme burada,
+       mülk ayarından bağımsız olarak kapalı; çerez ömrü 13 ay (Google'ın
+       varsayılanı 2 yıl). Sayfa görüntüleme sayısı değişmez; 13 aydan uzun
+       aradan sonra dönen ziyaretçi yeni kullanıcı sayılır. gizlilik/
+       sayfası bu üç ayarı yazıyor; tools/onay-test.js sabitliyor. */
+    root.gtag("config", OLCUM, {
+      anonymize_ip: true,
+      page_location: temiz.page_location,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      cookie_expires: 34128000
+    });
     sayfaAcilinca(function () {
       var e = document.createElement("script");
       e.async = true;

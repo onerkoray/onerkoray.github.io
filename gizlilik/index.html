@@ -134,121 +134,166 @@
           ve üçüncü taraflarla paylaşılmaz — bütün hesaplama tarayıcınızın içinde yapılır. Kaydetmeyi
           seçtiğiniz içerik yalnız kendi tarayıcınızda durur (<a href="#cerezler">3.1</a>).
         </p>
-        <p class="muted">Son güncelleme: 6 Kasım 2026 · Yürürlük tarihi: 4 Eylül 2026</p>
+        <p class="muted">Son güncelleme: <time datetime="2026-11-06">6 Kasım 2026</time> · Yürürlük tarihi: 4 Eylül 2026</p>
       </div>
     </section>
 
     <article class="content">
       <div class="wrap prose">
 
-        <h2 id="veri-sorumlusu">1. Veri sorumlusu</h2>
+        <h2 id="bir-bakista">Bir bakışta</h2>
+        <p>
+          Bu sitede kişisel veri dört yerde doğabilir. Aşağıdaki tablo hepsini sayar; ayrıntısı
+          ilgili bölümde.
+        </p>
+        <div class="table-wrap">
+          <table class="data-table data-table--text">
+            <caption>Sitede işlenen veriler, amacı, hukuki sebebi ve alıcısı</caption>
+            <thead>
+              <tr><th scope="col">Veri</th><th scope="col">Amaç</th><th scope="col">Hukuki sebep</th><th scope="col">Kime ulaşır, nerede</th><th scope="col">Süre</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Araçlara girdiğiniz tutar ve tarihler</th>
+                <td>Hesabı yapmak</td>
+                <td>İşleme yok: cihazınızdan çıkmaz (<a href="#hesaplama-verileri">2</a>)</td>
+                <td>Hiçbir yere</td>
+                <td>Sekme kapanınca; saklamayı seçtiğiniz araçlarda siz silene kadar</td>
+              </tr>
+              <tr>
+                <th scope="row">Ölçüm: sayfa yolu, yönlendiren, cihaz ve tarayıcı, yaklaşık konum, rastgele çerez kimliği</th>
+                <td>Kullanım istatistiği</td>
+                <td>KVKK m.5/2-f, meşru menfaat (<a href="#amac-hukuki-sebep">5</a>)</td>
+                <td>Google LLC, ABD (<a href="#cerezler">3.2</a>)</td>
+                <td>Olay verisi 14 ay, çerez 13 ay</td>
+              </tr>
+              <tr>
+                <th scope="row">Sunucu erişim kaydı: IP adresi, istenen adres, tarayıcı bilgisi, zaman</th>
+                <td>Siteyi sunmak ve korumak</td>
+                <td>KVKK m.5/2-f, meşru menfaat</td>
+                <td>Vercel Inc., ABD (<a href="#ucuncu-taraf">4</a>)</td>
+                <td>Sağlayıcının kendi süresi</td>
+              </tr>
+              <tr>
+                <th scope="row">E-posta: adınız, adresiniz, mesajınız</th>
+                <td>Sorunuzu ya da başvurunuzu yanıtlamak</td>
+                <td>m.5/2-f; KVKK başvurusunda m.5/2-ç, hukuki yükümlülük</td>
+                <td>ImprovMX (yönlendirme) ve posta kutusu sağlayıcısı, yurt dışı (<a href="#e-posta">4.1</a>)</td>
+                <td><a href="#saklama">6</a>'da</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Özel nitelikli kişisel veri (sağlık, din, biyometrik vb.) işlenmez; hakkınızda otomatik
+          bir karar verilmez; veri satılmaz ve reklam için kullanılmaz.
+        </p>
+
+        <h2 id="veri-sorumlusu">1. Veri sorumlusu ve kapsam</h2>
         <p>
           Bu site gerçek kişi olarak <strong>Koray Öner</strong> tarafından, ticari amaç gütmeden ve
-          reklam içermeden işletilmektedir. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK)
-          anlamında veri sorumlusu Koray Öner'dir.
+          reklam içermeden işletilir. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK)
+          anlamında veri sorumlusu Koray Öner'dir. Bu metin, KVKK m.10 ve Aydınlatma
+          Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ
+          uyarınca hazırlanan aydınlatma metnidir.
         </p>
         <p>
-          İletişim adresi: <a href="mailto:iletisim@korayoner.dev">iletisim@korayoner.dev</a>
+          İletişim ve başvuru adresi: <a href="mailto:iletisim@korayoner.dev">iletisim@korayoner.dev</a>
         </p>
-        <p>
-          Bu metinle ilgili her türlü soru ve başvurunuz için
-          <a href="../iletisim/">İletişim sayfasını</a> kullanabilirsiniz.
+        <p id="kapsam">
+          Metin iki adresi kapsar: <strong>korayoner.dev</strong> ve
+          <strong>veri.korayoner.dev</strong> (Türkiye Verisi). İkincisinde ölçüm ve çerez yoktur;
+          farkı <a href="#veri-sitesi">8</a>'de.
         </p>
 
         <h2 id="hesaplama-verileri">2. Hesaplama araçlarına girdiğiniz veriler</h2>
         <p>
           Sitedeki bütün hesaplayıcılar (maaş, kıdem tazminatı, kredi, KDV, MTV, ÖTV, gümrük vergisi,
-          işsizlik maaşı, vadeli mevduat, kira artışı, yaş, final notu ve diğerleri)
+          işsizlik maaşı, vadeli mevduat, kira artışı ve diğerleri)
           <strong>tamamen istemci tarafında</strong>, yani sizin tarayıcınızda çalışan JavaScript ile
           hesap yapar.
         </p>
         <ul>
-          <li>Girdiğiniz tutarlar ve tarihler <strong>hiçbir sunucuya gönderilmez</strong>.</li>
-          <li>Bu veriler <strong>kaydedilmez, saklanmaz ve loglanmaz</strong>.</li>
-          <li>Sayfayı kapattığınızda girdileriniz kaybolur — belgelerinizi
-          bilerek tarayıcınızda saklayan araçlar bunun istisnasıdır ve
-          <a href="#cerezler">3.1</a>'de tek tek sayılmıştır.</li>
-          <li>Bu nedenle söz konusu veriler bakımından KVKK anlamında bir <em>veri işleme</em> faaliyeti gerçekleşmez.</li>
+          <li>Girdiğiniz tutarlar ve tarihler <strong>hiçbir sunucuya gönderilmez</strong>,
+          kaydedilmez ve loglanmaz.</li>
+          <li>Bir hesabı paylaşmak için adres çubuğuna yazılan girdiler yalnızca <code>#</code>
+          işaretinden sonra durur. Tarayıcılar <code>#</code> sonrasını sunucuya göndermez; ölçüm
+          de bu kısmı görmez (<a href="#cerezler">3.2</a>).</li>
+          <li>Sayfayı kapattığınızda girdileriniz kaybolur. Saklamayı sizin seçtiğiniz araçlar
+          bunun istisnasıdır ve <a href="#cerezler">3.1</a>'de tek tek sayılmıştır.</li>
+          <li>Bu nedenle söz konusu veriler bakımından KVKK anlamında bir <em>veri işleme</em>
+          faaliyeti gerçekleşmez: veri sorumlusu bu verilere hiçbir aşamada erişmez.</li>
         </ul>
         <p>
-          Doğrulamak isterseniz: kaynak kod tamamen açıktır ve
+          Doğrulamak isterseniz: kaynak kod açıktır ve
           <a href="https://github.com/onerkoray" rel="noopener">GitHub üzerinde</a> incelenebilir.
-          Tarayıcınızın geliştirici araçlarındaki “Ağ (Network)” sekmesinden de hesaplama sırasında
+          Tarayıcınızın geliştirici araçlarındaki “Ağ (Network)” sekmesinden hesaplama sırasında
           hiçbir istek gitmediğini kendiniz görebilirsiniz.
         </p>
 
-        <h2 id="cerezler">3. Çerezler ve yerel depolama</h2>
-        <p>Bu sitede iki tür teknoloji kullanılır:</p>
+        <h2 id="cerezler">3. Çerezler ve tarayıcıda saklanan veriler</h2>
 
-        <h3>3.1. Yerel depolama (localStorage — çerez değildir)</h3>
+        <h3 id="yerel-depolama">3.1. Tarayıcı depolaması (çerez değildir, cihazınızdan çıkmaz)</h3>
         <p>
-          Tarayıcınızın yerel depolama alanında (<code>localStorage</code>) tutulan veriler
-          <strong>cihazınızdan çıkmaz ve tarafımıza iletilmez</strong>. İki tür kayıt vardır.
-        </p>
-        <p>
-          <strong>Sekme içi aktarım (sessionStorage):</strong> İşten Ayrılma Paketi'nde “Bu parayla
-          kaç ay dayanırım?” bağlantısına tıklarsanız girdileriniz sonraki aracın formunu doldurmak
-          için aynı sekmede tutulur ve okunur okunmaz silinir.
-        </p>
-        <p><strong>Site geneli tercihler:</strong></p>
-        <ul>
-          <li><strong>Tema tercihi</strong> — açık / koyu / otomatik görünüm.</li>
-          <li><strong>Vurgu rengi tercihi</strong> — seçtiğiniz renk paleti.</li>
-          <li><strong>Son kullandığınız araçlar</strong> — yalnızca ana sayfada kısayol göstermek için, en fazla 5 kayıt.</li>
-        </ul>
-        <p>
-          <strong>Araç içeriği (yalnızca ilgili araçlarda):</strong> Bazı araçlar, işlerine
-          yarayabilmek için girdiğiniz içeriği aynı tarayıcıda saklar. Bu içerik yine
-          sunucuya gönderilmez, ama sayfayı kapattığınızda <em>silinmez</em>:
+          Aşağıdakiler tarayıcınızın kendi depolama alanında (<code>localStorage</code>,
+          <code>sessionStorage</code>) durur, sunucuya gönderilmez ve tarafımıza iletilmez.
+          Kurum'un çerez rehberi de kullanıcının açıkça seçtiği tercihlerin hatırlanmasını açık
+          rıza gerektirmeyen kullanım sayar.
         </p>
         <ul>
-          <li>
-            <strong><a href="../fatura-olusturma/">Fatura Oluşturma</a></strong> — üzerinde
-            çalıştığınız belge ve kayıtlı belgeleriniz: firma bilgileriniz, yüklediğiniz logo,
-            fatura kalemleri ve <strong>müşteri defteriniz</strong>. Müşteri kayıtları
-            üçüncü kişilere ait ad/unvan, vergi veya kimlik numarası ve adres içerebilir;
-            bu verilerin sorumluluğu sizdedir. Araç içindeki <strong>“Temizle”</strong>
-            düğmesiyle hepsini silebilirsiniz. Ortak kullanılan bir bilgisayarda bu adımı
-            atlamayın.
-          </li>
-          <li>
-            <strong>DecorPalette</strong> — kaydettiğiniz renk paletleri.
-          </li>
+          <li><strong>Tema</strong> (açık / koyu / otomatik) ve <strong>renk paleti</strong> tercihi.</li>
+          <li><strong>Ölçüm tercihiniz</strong>: aşağıdaki denetimde ölçümü kapattıysanız bu karar.</li>
+          <li><strong>Finansal profil</strong> (maaş, borç, birikim gibi alanlar; ad, TCKN,
+          IBAN içermez): yalnızca <a href="../finansal-ikiz/">Finansal İkiz</a>'deki “Profilimi
+          bu cihazda sakla” kutusunu işaretlerseniz kalıcıdır; işaretlemezseniz sekme kapanınca
+          silinir, işareti kaldırdığınızda saklanan profil de silinir.</li>
+          <li><strong><a href="../fatura-olusturma/">Fatura Oluşturma</a></strong>: üzerinde
+          çalıştığınız belge, kayıtlı belgeleriniz, firma bilgileriniz, logonuz ve
+          <strong>müşteri defteriniz</strong>. Müşteri kayıtları üçüncü kişilere ait ad/unvan,
+          vergi veya kimlik numarası ve adres içerebilir; bu kayıtlar sizin cihazınızda ve sizin
+          sorumluluğunuzdadır. Araçtaki <strong>“Temizle”</strong> düğmesi hepsini siler; ortak
+          kullanılan bir bilgisayarda bu adımı atlamayın.</li>
+          <li><strong>Sekme içi aktarım</strong> (<code>sessionStorage</code>): İşten Ayrılma
+          Paketi'nde “Bu parayla kaç ay dayanırım?” bağlantısına tıklarsanız girdiler sonraki aracın
+          formunu doldurmak için aynı sekmede tutulur ve okunur okunmaz silinir.</li>
         </ul>
         <p>
-          Tarayıcınızın ayarlarından site verilerini temizleyerek bu kayıtların tamamını
-          istediğiniz an silebilirsiniz.
+          Tarayıcınızın ayarlarından site verilerini temizleyerek bu kayıtların tamamını istediğiniz
+          an silebilirsiniz.
         </p>
 
-        <h3>3.2. Analitik çerezler (Google Analytics 4)</h3>
+        <h3 id="analitik">3.2. Ölçüm çerezleri (Google Analytics 4)</h3>
         <p>
-          Ziyaretçi sayısını ve hangi araçların kullanıldığını anlamak için
-          <strong>Google Analytics 4</strong> (ölçüm kimliği: <code>G-2GNZPW1LPT</code>) kullanılır.
-          Bu hizmet tarayıcınıza çerez yerleştirir ve şu verileri işler:
+          Hangi sayfaların ve araçların kullanıldığını anlamak için
+          <strong>Google Analytics 4</strong> kullanılır. Ölçüm kimliği <code>G-2GNZPW1LPT</code>;
+          aynı Google etiketi, sitenin eski adresine ait ikinci bir rapor akışına
+          (<code>G-S3QSJJ3FFY</code>) da aynı veriyi gönderir. Google etiketi tarayıcınıza
+          <code>_ga</code> ve <code>_ga_</code> ile başlayan birinci taraf çerezleri yerleştirir.
+          Bu çerezler rastgele bir kimlik taşır, adınızı ya da e-postanızı değil; ömürleri
+          <strong>13 ay</strong> ile sınırlıdır.
         </p>
+        <p>İşlenen veriler:</p>
         <ul>
-          <li>Ziyaret edilen sayfalar, ziyaret süresi ve site içi gezinme</li>
-          <li>Yönlendiren kaynak (örneğin bir arama motoru veya sosyal ağ)</li>
-          <li>Yaklaşık konum (ülke/şehir düzeyinde), cihaz, işletim sistemi ve tarayıcı bilgisi</li>
-          <li>Kısaltılmış (anonimleştirilmiş) IP adresi</li>
+          <li>Ziyaret edilen sayfanın <strong>yalnızca yolu</strong> (örneğin
+          <code>/maas-hesaplama/</code>). Adresin <code>?</code> ve <code>#</code> sonrası, yani
+          girdiğiniz tutarları taşıyabilecek kısım, ölçüme gönderilmeden kesilir.</li>
+          <li>Ziyaret süresi, site içi gezinme ve yönlendiren kaynak (örneğin bir arama motoru).</li>
+          <li>Cihaz türü, işletim sistemi, tarayıcı ve dil.</li>
+          <li>Yaklaşık konum (ülke ve şehir). Google'ın
+          <a href="https://support.google.com/analytics/answer/2763052" rel="noopener">açıklamasına</a>
+          göre Google Analytics 4, konumu tahmin etmek için kullandığı IP adresini kaydetmez ve
+          saklamaz.</li>
         </ul>
         <p>
-          Bu veriler <strong>kimliğinizi belirlemek için kullanılmaz</strong>, satılmaz ve reklam
-          amacıyla üçüncü taraflara aktarılmaz. Reklam kişiselleştirme ve Google Sinyalleri
-          özellikleri açık değildir. Verilerin işlenmesi Google LLC (ABD) altyapısında gerçekleşir;
-          bu, KVKK m.9 anlamında yurt dışına aktarım niteliği taşır.
+          Google Sinyalleri ve reklam kişiselleştirmesi kodda kapalıdır; ölçüm başka sitelerdeki
+          gezinmenizle birleştirilmez ve reklam için kullanılmaz.
         </p>
         <p>
-          <strong>Ölçümü tek düğmeyle kapatabilirsiniz.</strong> Aşağıdaki denetim
-          Google Analytics'i bu tarayıcı için kapatır ve kapattığınızda Google'ın
-          bıraktığı <code>_ga</code> ve <code>_gid</code> çerezleri de silinir.
-          Kararınız cihazınızda saklanır; istediğiniz an geri açabilirsiniz.
-        </p>
-        <p>
-          Tarayıcınız <strong>Global Privacy Control</strong> ya da
-          <strong>Do Not Track</strong> sinyali gönderiyorsa ölçüm zaten yapılmaz;
-          bu sinyaller açık bir ret beyanı sayılır ve ayrıca bir şey yapmanız
-          gerekmez.
+          <strong>Ölçümü tek düğmeyle kapatabilirsiniz.</strong> Aşağıdaki denetim Google
+          Analytics'i bu tarayıcı için kapatır ve Google'ın bıraktığı <code>_ga</code> çerezlerini
+          siler. Kararınız cihazınızda saklanır; istediğiniz an geri açabilirsiniz.
+          Tarayıcınız <strong>Global Privacy Control</strong> ya da <strong>Do Not Track</strong>
+          sinyali gönderiyorsa ölçüm hiç başlamaz; bu sinyal ret beyanı sayılır.
         </p>
 
         <div class="onay-denetim" id="onay-denetim">
@@ -259,99 +304,227 @@
         </div>
 
         <p>
-          Bunlardan bağımsız olarak Google'ın resmî
+          Bunlardan bağımsız olarak Google'ın
           <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Analytics Devre Dışı Bırakma eklentisini</a>
-          kurabilir ya da tarayıcınızın izleme engelleme özelliğini kullanabilirsiniz. Site, analitik
+          kurabilir ya da tarayıcınızın izleme engelleme özelliğini kullanabilirsiniz. Site, ölçüm
           olmadan da eksiksiz çalışır.
         </p>
 
-        <h2 id="ucuncu-taraf">4. Üçüncü taraf servisler</h2>
+        <h2 id="ucuncu-taraf">4. Verinin ulaştığı hizmet sağlayıcılar</h2>
         <p>
-          Bazı sayfalar, işlevini yerine getirebilmek için dış servislere istek gönderir. Bu, teknik
-          olarak IP adresinizin ilgili servise ulaşması anlamına gelir:
+          Bir sayfayı açmak, teknik olarak IP adresinizin o sayfayı sunan sunucuya ulaşması
+          demektir. Sitenin çalıştığı ya da tarayıcınızın doğrudan bağlandığı hizmetler şunlardır;
+          başka hiçbir dış sunucuya bağlanılmaz (sitenin içerik güvenliği politikası bunu
+          tarayıcı düzeyinde zorlar):
         </p>
         <ul>
           <li>
-            <strong>Serbest piyasa altın verisi</strong> (<code>finans.truncgil.com</code>) —
-            yalnızca <a href="../doviz-kurlari/">TCMB Döviz Kurları</a> sayfasındaki altın ve
-            gümüş bölümünde, gün içi fiyatları tazelemek için kullanılır. Merkez Bankası altın
-            fiyatı yayımlamadığı için bu veri <strong>bağımsız bir servisten</strong> gelir ve
-            istek tarayıcınızdan gönderildiği için IP adresiniz o servise ulaşır. Sayfadaki
-            fiyatlar bu istek gitmese de görünür; istek yalnızca değerleri tazeler.
+            <strong>Vercel Inc. (ABD)</strong>: korayoner.dev ve veri.korayoner.dev'i barındıran
+            yer sağlayıcı. Her istek için IP adresi, istenen adres, tarayıcı bilgisi ve zaman
+            sunucu kaydına düşer; amaç siteyi sunmak ve kötüye kullanımı önlemek.
+            <a href="https://vercel.com/legal/privacy-policy" rel="noopener">Vercel gizlilik politikası</a>.
           </li>
           <li>
-            <strong>Barındırma altyapısı</strong> — site statik olarak barındırılır; sağlayıcı,
-            altyapı güvenliği amacıyla sunucu erişim kayıtları tutabilir.
+            <strong>Google LLC (ABD)</strong>: Google Analytics ölçümü (<a href="#analitik">3.2</a>).
+            Google bu veriyi site sahibi adına, veri işleyen sıfatıyla işler.
+            <a href="https://business.safety.google/adsprocessorterms/" rel="noopener">Google veri işleme şartları</a>.
           </li>
           <li>
-            <strong>Google Analytics / Google Tag Manager</strong> — yukarıda 3.2'de açıklanmıştır.
+            <strong>GitHub Inc. (ABD)</strong>: yalnızca sitenin eski adresleri
+            (onerkoray.github.io, korayoner.github.io) açılırsa; bu adresler GitHub Pages'te durur ve
+            ziyaretçiyi korayoner.dev'e yönlendirir.
+          </li>
+          <li>
+            <strong>Serbest piyasa altın verisi</strong> (<code>finans.truncgil.com</code>):
+            yalnızca <a href="../doviz-kurlari/">TCMB Döviz Kurları</a> sayfasındaki altın ve gümüş
+            bölümünde, gün içi fiyatları tazelemek için tarayıcınızdan istek gider ve IP adresiniz o
+            servise ulaşır. Bu servisten tarafımıza veri gelmez; fiyatlar istek gitmese de görünür.
           </li>
         </ul>
         <p>
-          Bu sitede reklam ağı, sosyal medya izleme pikseli, ısı haritası, oturum kaydı veya
-          parmak izi (fingerprinting) teknolojisi <strong>kullanılmamaktadır</strong>.
+          Bu sitede reklam ağı, sosyal medya izleme pikseli, ısı haritası, oturum kaydı, gömülü
+          video ya da parmak izi (fingerprinting) <strong>yoktur</strong>. Yazı tipleri sitenin
+          kendi sunucusundan yüklenir; tek dış betik Google etiketidir.
+        </p>
+
+        <h3 id="e-posta">4.1. E-posta yazışmaları</h3>
+        <p>
+          <code>iletisim@korayoner.dev</code> adresine yazdığınızda adınız, e-posta adresiniz ve
+          mesajınız, alan adının e-posta yönlendirme hizmeti <strong>ImprovMX</strong> üzerinden
+          site sahibinin posta kutusuna iletilir; her iki hizmetin sunucuları yurt dışındadır.
+          Bu veri yalnızca size yanıt vermek, bildirdiğiniz hatayı düzeltmek ya da KVKK
+          başvurunuzu sonuçlandırmak için kullanılır; liste, bülten ya da pazarlama için
+          kullanılmaz ve kimseyle paylaşılmaz. Bir hata bildirimi düzeltildiğinde kimliğiniz
+          değil yalnızca düzeltilen hata yayımlanır.
+        </p>
+
+        <h3 id="yurt-disi">4.2. Yurt dışına aktarım</h3>
+        <p>
+          Yukarıdaki sağlayıcıların sunucuları Türkiye dışındadır; ölçüm, sunucu kaydı ve
+          e-posta verisinin bu sağlayıcılara ulaşması KVKK m.9 anlamında yurt dışına
+          aktarımdır. Aktarılan veri yalnızca tabloda sayılan veridir ve yalnızca orada yazan
+          amaçla aktarılır. Kişisel Verileri Koruma Kurulu, bu sağlayıcıların bulunduğu ülkeler
+          hakkında henüz yeterlilik kararı vermemiştir. Ölçüm aktarımını istemiyorsanız
+          <a href="#analitik">3.2</a>'deki denetimle durdurabilirsiniz.
         </p>
 
         <h2 id="amac-hukuki-sebep">5. İşleme amacı ve hukuki sebep</h2>
         <p>
-          Analitik veriler yalnızca sitenin kullanım istatistiklerini ölçmek ve içeriği geliştirmek
-          amacıyla, KVKK m.5/2-f uyarınca <em>veri sorumlusunun meşru menfaati</em> hukuki sebebine
-          dayanılarak işlenir. Tercih verileri (tema, renk, son kullanılan araçlar) cihazınızda kalır
-          ve tarafımıza aktarılmaz.
+          <strong>Ölçüm</strong> yalnızca sitenin kullanım istatistiğini çıkarmak, hangi araç ve
+          yazının işe yaradığını görmek ve hataları bulmak amacıyla, KVKK m.5/2-f uyarınca
+          <em>veri sorumlusunun meşru menfaati</em> hukuki sebebine dayanılarak işlenir.
+        </p>
+        <p>
+          Kişisel Verileri Koruma Kurumu'nun
+          <a href="https://www.kvkk.gov.tr/Icerik/7353/Cerez-Uygulamalari-Hakkinda-Rehber" rel="noopener">Çerez Uygulamaları Hakkında Rehberi</a>
+          (Temmuz 2025, bölüm 5.9), amacı sitenin işleyişini ve kitlesini ölçmekle sınırlı birinci
+          taraf analitik çerezlerin açık rıza gerektirmeyen çerezler arasında
+          değerlendirilebileceğini söyler ve bunun için önlemler sayar. Bu sitede o önlemlerin
+          karşılığı:
+        </p>
+        <ul>
+          <li><strong>Amaçla sınırlı veri:</strong> ölçüme adresin yalnızca yolu gider; girdiler,
+          sorgu dizesi ve <code>#</code> sonrası gitmez.</li>
+          <li><strong>IP maskeleme:</strong> Google Analytics 4 IP adresini kaydetmez ve
+          saklamaz.</li>
+          <li><strong>Çapraz takip yok:</strong> Google Sinyalleri ve reklam kişiselleştirme
+          sinyalleri etikette kapalıdır.</li>
+          <li><strong>Makul çerez ömrü:</strong> 13 ay (Google'ın varsayılanı 2 yıl).</li>
+          <li><strong>Ret her zaman mümkün:</strong> tek düğmeyle kapatma, çerezlerin silinmesi ve
+          GPC/DNT sinyaline otomatik uyum.</li>
+        </ul>
+        <p>
+          <strong>Sunucu erişim kaydı</strong> siteyi sunmak ve güvenliğini sağlamak için,
+          m.5/2-f uyarınca işlenir. <strong>E-posta yazışması</strong> sorunuzu yanıtlamak için
+          m.5/2-f'ye; KVKK başvurusunun sonuçlandırılması ise Kanun'un veri sorumlusuna yüklediği
+          yükümlülük olarak m.5/2-ç'ye dayanır.
+        </p>
+        <p>
+          Veri, sitenin işleyişi sırasında otomatik yollarla (Google etiketi, sunucu) ya da
+          bize yazdığınızda sizin gönderdiğiniz e-postayla toplanır.
         </p>
 
         <h2 id="saklama">6. Saklama süresi</h2>
-        <p>
-          Google Analytics'te kullanıcı ve etkinlik verileri için saklama süresi 14 ay olarak
-          uygulanır; sürenin sonunda veriler otomatik olarak silinir. Bireysel olmayan toplu
-          istatistikler süresiz saklanabilir. Tarayıcınızdaki tercih kayıtları ise siz silene kadar
-          cihazınızda kalır.
-        </p>
+        <ul>
+          <li><strong>Ölçüm:</strong> Google Analytics'te kullanıcı ve olay verisi 14 ay saklanır,
+          sonra Google tarafından otomatik silinir. Kimseye bağlanamayan toplu sayılar (örneğin
+          “Ekim'de maaş aracı kaç kez açıldı”) kişisel veri değildir ve süresiz kalabilir.</li>
+          <li><strong>Çerezler:</strong> <code>_ga</code> çerezleri tarayıcınızda en çok 13 ay
+          kalır; siz daha önce silebilirsiniz.</li>
+          <li><strong>Sunucu kaydı:</strong> Vercel'in kendi saklama süresince.</li>
+          <li><strong>E-posta:</strong> yazışma sonuçlandığında gereğinden uzun tutulmaz. KVKK
+          başvurusu ve yanıtı, Kurul'a şikâyet süresi (m.14, başvurudan en geç 60 gün) ve olası
+          bir uyuşmazlıkta ispat için saklanır.</li>
+          <li><strong>Tarayıcıdaki kayıtlar:</strong> siz silene kadar cihazınızda.</li>
+        </ul>
 
-        <h2 id="haklariniz">7. Haklarınız</h2>
+        <h2 id="haklariniz">7. Haklarınız ve başvuru</h2>
         <p>KVKK m.11 uyarınca veri sorumlusuna başvurarak şu haklara sahipsiniz:</p>
         <ul>
-          <li>Kişisel verinizin işlenip işlenmediğini öğrenme ve buna ilişkin bilgi talep etme</li>
+          <li>Kişisel verinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme</li>
           <li>İşleme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
           <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
           <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme</li>
-          <li>Silinmesini veya yok edilmesini isteme</li>
-          <li>Otomatik sistemlerle analiz sonucu aleyhinize bir sonuç doğmasına itiraz etme</li>
-          <li>Kanuna aykırı işleme nedeniyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
+          <li>m.7'deki şartlarla silinmesini veya yok edilmesini isteme</li>
+          <li>Düzeltme ve silme işlemlerinin aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
+          <li>Münhasıran otomatik sistemlerle analiz sonucu aleyhinize bir sonuç doğmasına itiraz etme</li>
+          <li>Kanuna aykırı işleme nedeniyle zarara uğrarsanız zararın giderilmesini talep etme</li>
+        </ul>
+
+        <h3 id="basvuru">Nasıl başvurulur</h3>
+        <p>
+          Başvurunuzu Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ'deki
+          yollardan biriyle iletebilirsiniz:
+        </p>
+        <ul>
+          <li><strong>E-posta:</strong> <a href="mailto:iletisim@korayoner.dev">iletisim@korayoner.dev</a>
+          adresine, güvenli elektronik imza ya da mobil imza ile imzalı olarak ya da kayıtlı
+          elektronik posta (KEP) adresinizden. İmzasız e-postayla gelen talepler de
+          yanıtlanır.</li>
+          <li><strong>Islak imzalı yazılı başvuru:</strong> posta adresi, e-postayla talep
+          edildiğinde bildirilir.</li>
         </ul>
         <p>
+          Tebliğ'e göre başvuruda adınız soyadınız, imzanız (yazılı başvuruda), T.C. kimlik
+          numaranız (yabancılar için uyruk ve pasaport ya da kimlik numarası), tebligata esas
+          adresiniz, varsa bildirime esas e-posta ve telefonunuz ile talebinizin konusu yer alır.
+          Bu bilgiler yalnızca başvurunuzu sonuçlandırmak için kullanılır.
+        </p>
+        <p>
+          <strong>Ölçüm verisi için pratik not:</strong> Google Analytics'teki veri adınıza değil
+          tarayıcınızdaki rastgele kimliğe bağlıdır; site sahibi bu kimliği sizinle eşleştiremez.
+          Silinmesini istiyorsanız tarayıcınızdaki <code>_ga</code> çerezinin değerini başvurunuza
+          ekleyin; o kimliğe bağlı veri Google Analytics'in kullanıcı silme aracıyla silinir.
+          Daha basit yol: <a href="#analitik">3.2</a>'deki denetimle ölçümü kapatmak çerezi
+          hemen siler ve yeni veri doğmaz.
+        </p>
+        <p>
+          Başvurunuz en geç <strong>30 gün</strong> içinde ve <strong>ücretsiz</strong> olarak
+          sonuçlandırılır (KVKK m.13). Başvurunuz reddedilir, yanıt yetersiz bulunur ya da süresinde
+          yanıt verilmezse, yanıtı öğrendiğiniz tarihten itibaren 30 ve her hâlde başvuru
+          tarihinden itibaren 60 gün içinde
+          <a href="https://www.kvkk.gov.tr/" rel="noopener">Kişisel Verileri Koruma Kurulu'na</a>
+          şikâyette bulunabilirsiniz (KVKK m.14).
+        </p>
+        <p>
           Avrupa Birliği'nde bulunuyorsanız GDPR kapsamındaki erişim, düzeltme, silme, işlemeyi
-          kısıtlama, veri taşınabilirliği ve itiraz haklarınız da geçerlidir.
-        </p>
-        <p>
-          Taleplerinizi <a href="../iletisim/">İletişim sayfasındaki</a> kanallardan iletebilirsiniz;
-          başvurunuz en geç 30 gün içinde sonuçlandırılır.
+          kısıtlama, veri taşınabilirliği ve itiraz haklarınızı da aynı adrese yazarak
+          kullanabilirsiniz.
         </p>
 
-        <h2 id="cocuklar">8. Çocukların gizliliği</h2>
+        <h2 id="veri-sitesi">8. veri.korayoner.dev (Türkiye Verisi)</h2>
         <p>
-          Bu site 13 yaşın altındaki çocuklara yönelik değildir ve bilerek onlardan kişisel veri
-          toplamaz.
+          Veri sitesinde <strong>ölçüm, çerez ve dış betik yoktur</strong>; sayfalar yalnızca
+          sitenin kendi sunucusuna bağlanır. Orada kişisel veri yalnızca Vercel'in sunucu erişim
+          kaydında doğar (<a href="#ucuncu-taraf">4</a>). Gezgin ve karşılaştırma ekranlarında
+          seçtiğiniz göstergeler adres çubuğunda <code>#</code> sonrasında durur ve sunucuya
+          gitmez; tema tercihiniz tarayıcınızda saklanır.
         </p>
 
-        <h2 id="guvenlik">9. Güvenlik</h2>
+        <h2 id="cocuklar">9. Çocuklar</h2>
         <p>
-          Site tamamen HTTPS üzerinden sunulur. Güvenlik açığı bildirimlerinizi
-          <a href="../.well-known/security.txt">security.txt</a> dosyasındaki adresten
+          Site çocuklara yönelik değildir ve bilerek onlardan kişisel veri toplamaz.
+        </p>
+
+        <h2 id="guvenlik">10. Güvenlik</h2>
+        <p>
+          Site yalnızca HTTPS üzerinden sunulur ve alan adı tarayıcıların HSTS ön yükleme
+          listesindedir. İçerik güvenliği politikası, tarayıcının bu metinde sayılanlar dışında
+          hiçbir dış sunucuya bağlanmasına izin vermez. Güvenlik açığı bildirimlerinizi
+          <a href="../.well-known/security.txt">security.txt</a> dosyasındaki adrese
           iletebilirsiniz.
         </p>
 
-        <h2 id="degisiklikler">10. Bu metindeki değişiklikler</h2>
+        <h2 id="verbis">11. Veri Sorumluları Sicili ve künye</h2>
         <p>
-          Bu politika, sitenin işleyişi veya mevzuat değiştiğinde güncellenir. Güncellemeler bu
-          sayfada yayımlanır ve yukarıdaki “Son güncelleme” tarihi yenilenir.
+          Veri sorumlusu, çalışanı olmayan ve ana faaliyeti özel nitelikli kişisel veri işleme
+          olmayan bir gerçek kişidir. Bu nedenle Kişisel Verileri Koruma Kurulu'nun 2018/87 ve
+          2023/1154 sayılı kararlarındaki istisna kapsamında Veri Sorumluları Siciline (VERBİS)
+          kayıt yükümlülüğü bulunmaz. İstisna, bu metindeki aydınlatma ve başvuru
+          yükümlülüklerini kaldırmaz.
+        </p>
+        <p>
+          5651 sayılı Kanun kapsamında içerik sağlayıcı: Koray Öner (gerçek kişi),
+          <a href="mailto:iletisim@korayoner.dev">iletisim@korayoner.dev</a>. Yer sağlayıcı:
+          Vercel Inc.
+        </p>
+
+        <h2 id="degisiklikler">12. Bu metindeki değişiklikler</h2>
+        <p>
+          Metin, sitenin işleyişi ya da mevzuat değiştiğinde güncellenir ve yukarıdaki “Son
+          güncelleme” tarihi yenilenir. Sitenin veri akışını değiştiren her değişiklik (yeni bir
+          dış hizmet, yeni bir saklama) önce bu metne işlenir; sitenin içerik güvenliği
+          politikasına eklenen her dış sunucunun burada yazılı olduğu otomatik olarak denetlenir.
+          Önceki sürümler <a href="https://github.com/onerkoray/onerkoray.github.io/commits/main/gizlilik/index.html" rel="noopener">değişiklik geçmişinde</a>
+          okunabilir.
         </p>
 
         <div class="legal-note" role="note" aria-label="Özet">
           <h3>Tek cümlelik özet</h3>
           <p>
-            Hesaplarınız cihazınızda kalır; sitede yalnızca kimliğinizi belirlemeyen anonim ziyaret
-            istatistikleri toplanır ve bunu tarayıcı ayarlarınızdan dilediğiniz an kapatabilirsiniz.
+            Hesaplarınız cihazınızda kalır; sitede yalnızca kimliğinize bağlanmayan ziyaret
+            istatistikleri toplanır ve bunu bu sayfadaki tek düğmeyle dilediğiniz an
+            kapatabilirsiniz.
           </p>
         </div>
       </div>
