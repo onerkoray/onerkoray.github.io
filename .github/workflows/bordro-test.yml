@@ -700,6 +700,13 @@ jobs:
         run: node makaleler/emekli-yas-haritasi-2025/sayi-testi.js
       - name: Prim gününe göre emekli artışı yazısının sayıları
         run: node makaleler/prim-gunune-gore-emekli-artisi/sayi-testi.js
+      # 23 Kasım 2026 gündemi: torba teklifin SGK maddeleri ve Enflasyon Raporu 2026-IV.
+      - name: Kasım 2026 gündem yazıları hesaptan üretilmiş mi
+        run: node tools/kasim-2026-gundem-yazilari.js --check
+      - name: Torba teklif SGK yazısının sayıları
+        run: node makaleler/torba-teklif-gss-borcu-istihdam-tesviki/sayi-testi.js
+      - name: Enflasyon Raporu 2026-IV reel faiz yazısının sayıları
+        run: node makaleler/enflasyon-raporu-2026-iv-reel-faiz/sayi-testi.js
 
       # En düşük emekli aylığı ve Ocak 2027 zammı: zam oranları emekli zammı
       # motorundan (Eylül 2026'ya kesilmiş TÜFE serisi), taban tutarları 5510

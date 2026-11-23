@@ -434,5 +434,17 @@
     "kicker": "Emeklilik ve sosyal güvenlik",
     "alt": "Yıllık katkı arttıkça efektif eşleşme oranının tavandan sonra hiperbolik biçimde erimesi",
     "altyazi": "Devlet katkısı katkı akışıyla, fon gideri birikim stokuyla orantılı; ikisi aynı hızda büyümediği için bir kesişim yılı var."
+  },
+  {
+    "slug": "torba-teklif-gss-borcu-istihdam-tesviki",
+    "kicker": "Emeklilik ve sosyal güvenlik",
+    "alt": "2026 asgari ücretinde işverene aylık maliyet: teşviksiz 40.214,03 TL, 4447 sayılı Kanun geçici 10. madde teşvikiyle 33.690,60 TL.",
+    "altyazi": "Hesap: 2026 brüt asgari ücret 33.030 TL, işveren payı %21,75, 5510 m.81/ı indirimi imalat dışında 2 puan; teşvik 4447 s.K. geçici m.10, işsizlik sigortası işveren payı kapsam dışında."
+  },
+  {
+    "slug": "enflasyon-raporu-2026-iv-reel-faiz",
+    "kicker": "Finans",
+    "alt": "Politika faizi %36 ile reel faiz: ekim TÜFE'sine göre %4,8, 2026 sonu tahminine göre %5,0, 2027 sonu tahminine göre %12,4.",
+    "altyazi": "Hesap: (1 + faiz) / (1 + enflasyon) − 1. Faiz: PPK 22 Ekim 2026; enflasyon: TÜİK ekim TÜFE ve TCMB Enflasyon Raporu 2026-IV tahminleri."
   }
 ]

@@ -2689,7 +2689,67 @@ function primGunEsigi() {
   return s + "</svg>";
 }
 
+
+var TORBA = require(path.join(KOK, "makaleler", "torba-teklif-gss-borcu-istihdam-tesviki", "teklif.js"));
+var nf1 = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+var ER26 = require(path.join(KOK, "makaleler", "enflasyon-raporu-2026-iv-reel-faiz", "oran.js"));
+
+/* Torba teklif: asgari ücretli çalışanın işverene aylık maliyeti, teşviksiz ve teşvikli. */
+function torbaTesvikMaliyet() {
+  var b = TORBA.ASGARI_BRUT, m0 = TORBA.isverenMaliyeti(b, false, false), m1 = TORBA.isverenMaliyeti(b, false, true);
+  var nf2 = new Intl.NumberFormat("tr-TR", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  var SOL = 70, SAG = 576, UST = 104, ALT = 300, Y1 = 45000;
+  function y(v) { return ALT - v / Y1 * (ALT - UST); }
+  var s = baslikSatirlari("İstihdam teşviki işverenin maliyetini düşürür",
+    "2026 asgari ücretli bir çalışanın işverene aylık maliyeti, TL",
+    "İşverene aylık maliyet: teşviksiz " + nf2.format(Math.round(m0)) + " TL, 4447 geçici 10 teşvikiyle " + nf2.format(Math.round(m1)) + " TL.");
+  s += anahtarKutu(24, R.s1, "teşviksiz") + anahtarKutu(120, R.s2, "teşvikli") + anahtarKutu(206, R.murekkep, "brüt ücret " + nf2.format(b), true);
+  s += izgaraY(SOL, SAG, y, [0, 15000, 30000, 45000], function (v) { return nf0.format(v); });
+  var genis = (SAG - SOL) / 2, c = 110;
+  [[m0, R.s1, "Teşviksiz"], [m1, R.s2, "Teşvikli"]].forEach(function (r, i) {
+    var mx = SOL + genis * (i + 0.5);
+    s += '<rect x="' + (mx - c / 2).toFixed(1) + '" y="' + y(r[0]).toFixed(1) + '" width="' + c + '" height="' + (ALT - y(r[0])).toFixed(1) + '" rx="2" fill="' + r[1] + '"/>';
+    s += cubukEtiket(mx, y(r[0]) - 8, nf2.format(Math.round(r[0])));
+    s += altYazi(mx, ALT + 22, r[2]);
+  });
+  s += '<path d="M' + SOL + " " + y(b).toFixed(1) + " H" + SAG + '" stroke="' + R.murekkep + '" stroke-width="1.5" stroke-dasharray="6 4"/>';
+  return s + "</svg>";
+}
+
+/* Enflasyon Raporu 2026-IV: aynı politika faizinin üç enflasyona göre reel karşılığı. */
+function erReelFaiz() {
+  var f = ER26.PPK.faiz, H = ER26.TAHMIN;
+  var v = [[ER26.gerceklesen(), "Ekim TÜFE " + nf1.format(ER26.EKIM_TUFE)], [ER26.reel(f, H[2026]), "2026 sonu tahmini"], [ER26.ileriye(), "2027 sonu tahmini"]];
+  var SOL = 60, SAG = 576, UST = 104, ALT = 300, Y1 = 15;
+  function y(t) { return ALT - t / Y1 * (ALT - UST); }
+  var s = baslikSatirlari("Aynı faiz, üç ayrı reel faiz",
+    "Politika faizi %" + f + ", hangi enflasyona göre? Reel faiz, %",
+    "Politika faizi %" + f + " ile reel faiz: " + v.map(function (r) { return r[1] + " göre %" + nf1.format(r[0]); }).join(", ") + ".");
+  s += anahtarKutu(24, R.s1, "geçmişe göre (ex post)") + anahtarKutu(200, R.s2, "TCMB tahminine göre (ex ante)");
+  s += izgaraY(SOL, SAG, y, [0, 5, 10, 15], function (t) { return "%" + nf0.format(t); });
+  var genis = (SAG - SOL) / 3, c = 90;
+  v.forEach(function (r, i) {
+    var mx = SOL + genis * (i + 0.5);
+    s += '<rect x="' + (mx - c / 2).toFixed(1) + '" y="' + y(r[0]).toFixed(1) + '" width="' + c + '" height="' + (ALT - y(r[0])).toFixed(1) + '" rx="2" fill="' + (i ? R.s2 : R.s1) + '"/>';
+    s += cubukEtiket(mx, y(r[0]) - 8, "%" + nf1.format(r[0]));
+    s += altYazi(mx, ALT + 22, r[1]);
+  });
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "torba-teklif-gss-borcu-istihdam-tesviki": {
+    kicker: "Sosyal güvenlik",
+    baslik: "Torba teklifte SGK",
+    alt: "İstihdam teşviki 2028'e uzuyor, 2017 öncesi GSS borcu siliniyor",
+    cizim: torbaTesvikMaliyet
+  },
+  "enflasyon-raporu-2026-iv-reel-faiz": {
+    kicker: "Faiz ve enflasyon",
+    baslik: "Faiz %36, 2027 tahmini %21",
+    alt: "Aynı faiz, hangi enflasyona göre %4,8 ya da %12,4",
+    cizim: erReelFaiz
+  },
   "emekli-yas-haritasi-2025": {
     kicker: "Emeklilik · Ocak 2027",
     baslik: "Yaşa göre emekli artışı kime gider?",
