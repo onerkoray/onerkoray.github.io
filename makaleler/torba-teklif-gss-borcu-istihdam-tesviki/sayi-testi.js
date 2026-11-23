@@ -19,9 +19,10 @@ function v2(x) { return x.toLocaleString("tr-TR", { minimumFractionDigits: 2, ma
 function tl(x) { return Math.round(x).toLocaleString("tr-TR"); }
 function yakin(a, b) { return Math.abs(a - b) < 1e-6; }
 
-/* 1 — 2026 ham değerleri (bordro parametreleri; 7566 s.K.). */
-var BRUT = 33030, ISV = 0.2175, IND = 0.02, IND_IM = 0.05, ISZ = 0.02, GSS = 0.06;
-t.dogru("asgari brüt 33.030", M.ASGARI_BRUT === BRUT && P.donemler[0].asgariBrut === BRUT, M.ASGARI_BRUT);
+/* 1 — 2026 değerleri. Asgari ücret parametre dosyasından okunur (tek kaynak;
+   tools/parametre-kopyasi.js kopyayı yasaklar); oranlar 7566 s.K.'dan elle. */
+var BRUT = P.donemler[0].asgariBrut, ISV = 0.2175, IND = 0.02, IND_IM = 0.05, ISZ = 0.02, GSS = 0.06;
+t.dogru("asgari brüt modülle aynı ve yıl başı dönemi", M.ASGARI_BRUT === BRUT && P.donemler[0].ay === 1, M.ASGARI_BRUT);
 t.dogru("işveren payı %21,75", P.oranlar.sgkIsveren === ISV);
 t.dogru("m.81/ı imalat dışı 2, imalat 5", P.oranlar.sgkIsverenIndirim === IND && P.oranlar.sgkIsverenIndirimImalat === IND_IM);
 t.dogru("işsizlik işveren %2", P.oranlar.issizlikIsveren === ISZ);

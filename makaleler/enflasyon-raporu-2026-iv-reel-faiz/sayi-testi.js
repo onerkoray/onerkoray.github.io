@@ -50,10 +50,13 @@ t.dogru("kısa cevap ileri", t.html.indexOf("reel faiz %" + v1(ex) + ".</strong>
 t.gecsin("kısa cevap geçmiş", "ekim %29,8) göre ise yalnız %" + v1(ep));
 t.gecsin("fiyat düzeyi", v2(fe) + " TL olacaktı, yeni yola göre " + v2(fy) + " TL: fiyat düzeyi %" + v1((fy / fe - 1) * 100) + " daha yüksek");
 t.gecsin("mevduat eşiği", "brüt yıllık faiz en az %" + v1(bb));
-t.dogru("tahmin tablosu 2027", t.html.indexOf('<th scope="row">2027</th><td class="num">%21,0</td><td class="num">%21,0</td><td class="num">%15,0</td>') >= 0);
+t.dogru("tahmin tablosu 2027", t.html.indexOf('<th scope="row">2027</th><td class="num">%21</td><td class="num">%21</td><td class="num">%15</td>') >= 0);
 t.dogru("reel tablo", t.html.indexOf('<td class="num">%' + v1(ep) + "</td>") >= 0 && t.html.indexOf('<td class="num">%' + v1(e26) + "</td>") >= 0);
 t.dogru("başabaş tablosu", t.html.indexOf('<td class="num">%' + v2(bb) + "</td>") >= 0 && t.html.indexOf('<td class="num">%' + v2(bb26) + "</td>") >= 0);
-t.gecsin("hedef farkı", "hedefin (%24,0) 5,5 puan üstünde");
+t.gecsin("hedef farkı", "hedefin (%24) 5,5 puan üstünde");
+t.gecsin("ek uyumu", "2027 ara hedefi %15'ten %21'e, 2028'inki %9'dan %13,5'e");
+t.gecsin("faiz adımı", "%37'den %36'ya indirildi");
+t.gecmesin("gereksiz ondalık yok", "%36,0");
 t.gecsin("aralık yok", "tahmin aralığı paylaşmıyor");
 t.dogru("veri sitesi", t.html.indexOf("https://veri.korayoner.dev/hesap/reel-politika-faizi") >= 0);
 

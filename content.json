@@ -16,11 +16,11 @@
  ],
  "sayaclar": {
   "arac": 64,
-  "makale": 74,
+  "makale": 76,
   "metodoloji": 10,
   "grafik": 2,
   "sayfa": 12,
-  "indekslenebilir": 163
+  "indekslenebilir": 165
  },
  "sayfalar": [
   {
@@ -503,7 +503,7 @@
    "type": "sayfa",
    "parent": null,
    "title": "Koray Öner — Turkish Payroll, Tax and Pension Tools",
-   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 64 free calculators for Turkish payroll, tax and pensions, 74 tested articles and 10 papers with a DOI.",
+   "description": "Koray Öner (Koray Oner), software developer in Türkiye: 64 free calculators for Turkish payroll, tax and pensions, 76 tested articles and 10 papers with a DOI.",
    "category": null,
    "published": "2026-10-20T07:35:08+03:00",
    "updated": "2026-11-23",
@@ -1185,7 +1185,7 @@
    "type": "sayfa",
    "parent": null,
    "title": "Çalışma Dizini: Araçlar, Yazılar ve Yayınlar",
-   "description": "Koray Öner'in çalışmaları tek yerde: 64 hesaplama aracı, 74 testli yazı, 10 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
+   "description": "Koray Öner'in çalışmaları tek yerde: 64 hesaplama aracı, 76 testli yazı, 10 DOI'li yayın ve açık kaynak hesap çekirdeği; alanlara ve tarihe göre.",
    "category": null,
    "published": "2026-09-29T17:59:13+03:00",
    "updated": "2026-11-23",
@@ -2125,6 +2125,22 @@
    "noindex": false
   },
   {
+   "url": "https://korayoner.dev/makaleler/enflasyon-raporu-2026-iv-reel-faiz/",
+   "dosya": "makaleler/enflasyon-raporu-2026-iv-reel-faiz/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "Enflasyon Raporu 2026-IV: Reel Faiz Ne Diyor?",
+   "description": "TCMB 2027 sonu enflasyon tahmini %21, politika faizi %36: ileriye dönük reel faiz %12,4, geçmişe göre %4,8. Ara hedef yükselişi 2028 fiyat düzeyini %9,6 artırıyor.",
+   "category": "kredi-finans",
+   "published": "2026-11-23T10:22:43+03:00",
+   "updated": "2026-11-23",
+   "updatedAt": "2026-11-23T10:22:43+03:00",
+   "image": "https://korayoner.dev/images/makale/enflasyon-raporu-2026-iv-reel-faiz.png",
+   "imageTitle": "Enflasyon Raporu 2026-IV: Reel Faiz Ne Diyor? — Koray Öner",
+   "related": [],
+   "noindex": false
+  },
+  {
    "url": "https://korayoner.dev/makaleler/fazla-mesai-zammi-yuzde-kac/",
    "dosya": "makaleler/fazla-mesai-zammi-yuzde-kac/index.html",
    "type": "makale",
@@ -2903,6 +2919,22 @@
    "updatedAt": "2026-09-23T21:30:49+03:00",
    "image": "https://korayoner.dev/images/makale/tasarruf-kimde-finansman-kimde.png",
    "imageTitle": "Tasarruf Kimde, Finansman İhtiyacı Kimde? — Koray Öner",
+   "related": [],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/makaleler/torba-teklif-gss-borcu-istihdam-tesviki/",
+   "dosya": "makaleler/torba-teklif-gss-borcu-istihdam-tesviki/index.html",
+   "type": "makale",
+   "parent": null,
+   "title": "Torba Teklifte SGK: GSS Borcu ve Teşvik",
+   "description": "2/4042 sayılı teklif: 2017 öncesi 60/g GSS borcu silinecek, kadın ve genç istihdamı teşviki 2028'e uzayacak. Teşvik asgari ücrette ayda 6.523,43 TL.",
+   "category": "emeklilik-sosyal-guvenlik",
+   "published": "2026-11-23T10:22:43+03:00",
+   "updated": "2026-11-23",
+   "updatedAt": "2026-11-23T10:22:43+03:00",
+   "image": "https://korayoner.dev/images/makale/torba-teklif-gss-borcu-istihdam-tesviki.png",
+   "imageTitle": "Torba Teklifte SGK: GSS Borcu ve Teşvik — Koray Öner",
    "related": [],
    "noindex": false
   },

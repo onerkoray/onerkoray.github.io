@@ -21,6 +21,9 @@ function v1(x) { return x.toLocaleString("tr-TR", { minimumFractionDigits: 1, ma
 function v2(x) { return x.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 function y1(x) { return "%" + v1(x); }
 function y2(x) { return "%" + v2(x); }
+/* Veri olarak gelen oran (faiz, tahmin, ara hedef, prim oranı): gereksiz ",0" yazılmaz ("%15'ten %21'e"). */
+function yp(x) { return "%" + x.toLocaleString("tr-TR", { maximumFractionDigits: 2 }); }
+function pn(x) { return x.toLocaleString("tr-TR", { maximumFractionDigits: 2 }); }
 function tl(x) { return Math.round(x).toLocaleString("tr-TR"); }
 function tl2(x) { return v2(x); }
 var AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
@@ -55,7 +58,7 @@ function teklifGovde() {
     "<p>Teklif " + gun(K.gelis) + " itibarıyla komisyon aşamasında. Kanunlaşması için Genel Kurul'da kabul edilmesi ve Resmî Gazete'de yayımlanması gerekiyor.</p>");
 
   out.push('<h2 id="tesvik">İstihdam teşviki işverene ne kazandırır?</h2>\n' +
-    "<p>4447 sayılı Kanun'un geçici 10. maddesi 2011'den beri var; teklif yalnız süresini uzatıyor. Kural şu: işe alınan kişi önceki altı ayda sigortalı olmamalı ve işyerinin bir önceki yıl ortalamasına ek istihdam sağlamalı. O zaman işverenin sigorta primi hissesini fon öder. Önce herkese uygulanan genel indirim (5510 m.81/ı; 2026'da imalat dışında " + v1(T.ORANLAR.sgkIsverenIndirim * 100) + ", imalatta " + v1(T.ORANLAR.sgkIsverenIndirimImalat * 100) + " puan) düşülür, teşvik kalan işveren hissesini karşılar. İşsizlik sigortası işveren payı (" + y1(T.ORANLAR.issizlikIsveren * 100) + ") kapsam dışında.</p>\n" +
+    "<p>4447 sayılı Kanun'un geçici 10. maddesi 2011'den beri var; teklif yalnız süresini uzatıyor. Kural şu: işe alınan kişi önceki altı ayda sigortalı olmamalı ve işyerinin bir önceki yıl ortalamasına ek istihdam sağlamalı. O zaman işverenin sigorta primi hissesini fon öder. Önce herkese uygulanan genel indirim (5510 m.81/ı; 2026'da imalat dışında " + pn(T.ORANLAR.sgkIsverenIndirim * 100) + ", imalatta " + pn(T.ORANLAR.sgkIsverenIndirimImalat * 100) + " puan) düşülür, teşvik kalan işveren hissesini karşılar. İşsizlik sigortası işveren payı (" + yp(T.ORANLAR.issizlikIsveren * 100) + ") kapsam dışında.</p>\n" +
     tablo("2026 asgari ücretinde (" + tl2(b) + " TL brüt) aylık", ["", "İmalat dışı", "İmalat"], [
       ["İşverenin sigorta primi oranı (indirim sonrası)", y2(T.tesvikOrani(false) * 100), y2(T.tesvikOrani(true) * 100)],
       ["Fonun ödediği teşvik", tl2(t) + " TL", tl2(ti) + " TL"],
@@ -80,7 +83,7 @@ function teklifGovde() {
       ["Kapsamdaki kişi (açıklama)", T.GSS_ACIKLAMA.kisi.toLocaleString("tr-TR")],
       ["Toplam borç (açıklama)", tl(T.GSS_ACIKLAMA.tutar) + " TL"],
       ["Kişi başı ortalama", tl2(kb) + " TL"],
-      ["2026'da 60/g GSS primi (asgari ücretin " + y1(T.GSS_60G_ORANI * 100) + "'sı)", tl2(g60) + " TL/ay"],
+      ["2026'da 60/g GSS primi (asgari ücretin " + yp(T.GSS_60G_ORANI * 100) + "'sı)", tl2(g60) + " TL/ay"],
       ["Ortalama borç kaç aylık prime denk", v1(kb / g60) + " ay"]]) + "\n" +
     "<p>Kişi sayısı ve tutar teklif metninde değil, teklif sahiplerinin açıklamasında. Ortalama, borçların çoğunun küçük olduğunu söylemez: dağılım yayımlanmadığı için kaç kişinin borcunun ortalamanın çok üstünde olduğu bilinmiyor. Ödemiş olan geri alamıyor; bu yüzden düzenleme borcunu ödeyenle ödemeyen arasında fark yaratıyor.</p>");
 
@@ -115,34 +118,34 @@ function raporGovde() {
   var fe = R.fiyatDuzeyi(A.eski), fy = R.fiyatDuzeyi(A.yeni);
 
   out.push('<div class="legal-note verdict">\n<h2 id="kisa-cevap">Kısa cevap</h2>\n' +
-    "<p><strong>TCMB'nin kendi tahminiyle reel faiz " + y1(ex) + ".</strong> Politika faizi " + y1(P.faiz) + "; Merkez Bankası 2027 sonu için " + y1(H[2027]) + " enflasyon tahmin ediyor. Bugünkü faiz bu tahmine göre ileriye dönük olarak enflasyonun " + y1(ex) + " üstünde. Geçmiş 12 ayın enflasyonuna (ekim " + y1(R.EKIM_TUFE) + ") göre ise yalnız " + y1(ep) + ".</p>\n" +
-    "<p><strong>Hedef yolu yukarı kaydı.</strong> 2027 ara hedefi " + y1(A.eski[2027]) + "'ten " + y1(A.yeni[2027]) + "'e, 2028'inki " + y1(A.eski[2028]) + "'dan " + y1(A.yeni[2028]) + "'e çıktı. 2026 sonunda 100 TL olan bir sepet eski yola göre 2028 sonunda " + v2(fe) + " TL olacaktı, yeni yola göre " + v2(fy) + " TL: fiyat düzeyi " + y1(R.duzeyFarki()) + " daha yüksek.</p>\n" +
+    "<p><strong>TCMB'nin kendi tahminiyle reel faiz " + y1(ex) + ".</strong> Politika faizi " + yp(P.faiz) + "; Merkez Bankası 2027 sonu için " + yp(H[2027]) + " enflasyon tahmin ediyor. Bugünkü faiz bu tahmine göre ileriye dönük olarak enflasyonun " + y1(ex) + " üstünde. Geçmiş 12 ayın enflasyonuna (ekim " + yp(R.EKIM_TUFE) + ") göre ise yalnız " + y1(ep) + ".</p>\n" +
+    "<p><strong>Hedef yolu yukarı kaydı.</strong> 2027 ara hedefi " + yp(A.eski[2027]) + "'ten " + yp(A.yeni[2027]) + "'e, 2028'inki " + yp(A.eski[2028]) + "'dan " + yp(A.yeni[2028]) + "'e çıktı. 2026 sonunda 100 TL olan bir sepet eski yola göre 2028 sonunda " + v2(fe) + " TL olacaktı, yeni yola göre " + v2(fy) + " TL: fiyat düzeyi " + y1(R.duzeyFarki()) + " daha yüksek.</p>\n" +
     "<p><strong>Mevduatta eşik " + y1(bb) + ".</strong> 6 ay vadeli, yılda iki kez yenilenen bir TL mevduatın %" + v1(s) + " stopajdan sonra 2027 tahmini kadar getiri sağlaması için brüt yıllık faiz en az " + y1(bb) + " olmalı.</p>\n</div>");
 
   out.push('<h2 id="rapor">Raporda ne değişti?</h2>\n' +
-    "<p>TCMB yılda dört kez Enflasyon Raporu yayımlıyor; dördüncüsü " + gun(R.RAPOR.tarih) + "'de çıktı. Ekim ayında yıllık tüketici enflasyonu " + y1(R.EKIM_TUFE) + "'e geriledi ama bir önceki raporun öngördüğü seviyenin biraz üzerinde kaldı. Raporun gösterdiği sebep enerji fiyatları ve Türk lirası cinsinden ithalat fiyatları varsayımındaki artış.</p>\n" +
+    "<p>TCMB yılda dört kez Enflasyon Raporu yayımlıyor; dördüncüsü " + gun(R.RAPOR.tarih) + "'de çıktı. Ekim ayında yıllık tüketici enflasyonu " + yp(R.EKIM_TUFE) + "'e geriledi ama bir önceki raporun öngördüğü seviyenin biraz üzerinde kaldı. Raporun gösterdiği sebep enerji fiyatları ve Türk lirası cinsinden ithalat fiyatları varsayımındaki artış.</p>\n" +
     tablo("TCMB enflasyon tahminleri ve ara hedefler, yıl sonu", ["Yıl", "Tahmin (ER 2026-IV)", "Ara hedef (yeni)", "Ara hedef (önceki)"], [
-      ["2026", y1(H[2026]), y1(A.yeni[2026]), y1(A.eski[2026])],
-      ["2027", y1(H[2027]), y1(A.yeni[2027]), y1(A.eski[2027])],
-      ["2028", y1(H[2028]), y1(A.yeni[2028]), y1(A.eski[2028])],
-      ["2029", y1(H[2029]), "—", "—"]]) + "\n" +
-    "<p>2026 tahmini (" + y1(H[2026]) + ") hedefin (" + y1(A.yeni[2026]) + ") " + v1(H[2026] - A.yeni[2026]) + " puan üstünde; 2027 ve 2028'de tahmin ve yeni ara hedef aynı. Orta vadeli hedef değişmedi: " + y1(H.ortaVade) + ". TCMB ikinci rapordan beri tahmin aralığı paylaşmıyor; belirsizliği aralık yerine risklerin anlatımıyla veriyor. Bu yüzden tabloda tek bir sayı var, bir aralık değil.</p>");
+      ["2026", yp(H[2026]), yp(A.yeni[2026]), yp(A.eski[2026])],
+      ["2027", yp(H[2027]), yp(A.yeni[2027]), yp(A.eski[2027])],
+      ["2028", yp(H[2028]), yp(A.yeni[2028]), yp(A.eski[2028])],
+      ["2029", yp(H[2029]), "—", "—"]]) + "\n" +
+    "<p>2026 tahmini (" + yp(H[2026]) + ") hedefin (" + yp(A.yeni[2026]) + ") " + v1(H[2026] - A.yeni[2026]) + " puan üstünde; 2027 ve 2028'de tahmin ve yeni ara hedef aynı. Orta vadeli hedef değişmedi: " + yp(H.ortaVade) + ". TCMB ikinci rapordan beri tahmin aralığı paylaşmıyor; belirsizliği aralık yerine risklerin anlatımıyla veriyor. Bu yüzden tabloda tek bir sayı var, bir aralık değil.</p>");
 
   out.push('<h2 id="reel-faiz">Reel faiz hangi enflasyona göre?</h2>\n' +
     "<p>Reel faiz, nominal faizin enflasyondan arındırılmış hâlidir: (1 + faiz) / (1 + enflasyon) − 1. Sonuç hangi enflasyonun kullanıldığına göre çok değişiyor:</p>\n" +
-    tablo("Politika faizi " + y1(P.faiz) + " ile reel faiz", ["Kullanılan enflasyon", "Enflasyon", "Reel faiz"], [
-      ["Geçmiş 12 ay (ekim TÜFE)", y1(R.EKIM_TUFE), y1(ep)],
-      ["2026 sonu tahmini", y1(H[2026]), y1(R.reel(P.faiz, H[2026]))],
-      ["2027 sonu tahmini", y1(H[2027]), y1(ex)]]) + "\n" +
+    tablo("Politika faizi " + yp(P.faiz) + " ile reel faiz", ["Kullanılan enflasyon", "Enflasyon", "Reel faiz"], [
+      ["Geçmiş 12 ay (ekim TÜFE)", yp(R.EKIM_TUFE), y1(ep)],
+      ["2026 sonu tahmini", yp(H[2026]), y1(R.reel(P.faiz, H[2026]))],
+      ["2027 sonu tahmini", yp(H[2027]), y1(ex)]]) + "\n" +
     "<p>Geçmişe göre ölçülen (<em>ex post</em>) reel faiz, bugünkü faizin geçen yılın enflasyonuna göre konumunu söyler. Para politikasının duruşu için bakılan ise ileriye dönük (<em>ex ante</em>) reel faizdir: borç alan ve verenin önündeki yıl için beklediği enflasyona göre. Enflasyon düşerken ikisi arasındaki fark büyür. Aylık seyri <a href=\"https://veri.korayoner.dev/hesap/reel-politika-faizi\">Türkiye Verisi'ndeki reel politika faizi</a> sayfasında BIS verisiyle izlenebilir.</p>\n" +
-    "<p>Faiz " + gun(P.tarih) + "'de " + y1(P.onceki) + "'den " + y1(P.faiz) + "'ya indirildi; bir sonraki karar " + gun(P.sonraki) + "'da. TCMB, adımların enflasyonun gidişatına göre toplantı bazında belirleneceğini söylüyor. Faiz indirilirse ileriye dönük reel faiz, tahmin aynı kaldıkça aynı oranda daralır.</p>");
+    "<p>Faiz " + gun(P.tarih) + "'de " + yp(P.onceki) + "'den " + yp(P.faiz) + "'ya indirildi; bir sonraki karar " + gun(P.sonraki) + "'da. TCMB, adımların enflasyonun gidişatına göre toplantı bazında belirleneceğini söylüyor. Faiz indirilirse ileriye dönük reel faiz, tahmin aynı kaldıkça yaklaşık aynı ölçüde daralır.</p>");
 
   out.push('<h2 id="hane">Hane bütçesi için ne demek?</h2>\n' +
     "<p><strong>Maaş.</strong> 2026 sonundan 2028 sonuna kadar alım gücünü korumak için gereken toplam artış eski ara hedeflere göre " + y1(fe - 100) + " idi; yeni ara hedeflere göre " + y1(fy - 100) + ". Bu, ücret ve emekli aylığı pazarlıklarında bakılacak eşiğin yükseldiği anlamına geliyor.</p>\n" +
     "<p><strong>Mevduat.</strong> Getirisinin enflasyonu karşılaması için gereken brüt faiz, stopaj ve vade yapısına bağlı:</p>\n" +
     tablo("6 ay vadeli TL mevduat, yılda iki kez yenilenir, stopaj %" + v1(s), ["Karşılanacak enflasyon", "Gereken brüt yıllık faiz"], [
-      ["2027 sonu tahmini " + y1(H[2027]), y2(bb)],
-      ["2026 sonu tahmini " + y1(H[2026]), y2(bb26)]]) + "\n" +
+      ["2027 sonu tahmini " + yp(H[2027]), y2(bb)],
+      ["2026 sonu tahmini " + yp(H[2026]), y2(bb26)]]) + "\n" +
     "<p>Hesap, faizin her 6 ayda bir anaparaya eklendiğini ve stopajın her vadede kesildiğini varsayar. Kendi mevduatınızın net getirisini <a href=\"../../faiz-donusturucu/\">faiz dönüştürücü</a> ile, enflasyona göre gerçek değişimini <a href=\"../../enflasyon-hesaplama/\">enflasyon hesaplama</a> aracıyla bulabilirsiniz.</p>\n" +
     "<p><strong>Kredi.</strong> İleriye dönük reel faizin yüksek olması, bugün alınan TL kredinin geri ödemesinin TCMB'nin tahmini tutarsa alım gücü olarak pahalı kalacağını gösterir. Tahmin yukarı saparsa borçlu lehine, aşağı saparsa aleyhine işler.</p>");
 
@@ -160,8 +163,8 @@ function raporGovde() {
     '<li>Aylık reel politika faizi: <a href="https://veri.korayoner.dev/hesap/reel-politika-faizi">Türkiye Verisi</a> (BIS politika faizi ve TÜFE)</li></ul>');
 
   out.push("<h2>Sık sorulan sorular</h2>\n" +
-    "<details><summary>TCMB 2027 sonu enflasyon tahmini kaç?</summary><p>" + gun(R.RAPOR.tarih) + " tarihli Enflasyon Raporu'nda 2027 sonu tahmini " + y1(H[2027]) + "; ara hedef de " + y1(A.yeni[2027]) + "'e yükseltildi. 2026 sonu tahmini " + y1(H[2026]) + ".</p></details>\n" +
-    "<details><summary>Reel faiz pozitif mi?</summary><p>Evet. Politika faizi " + y1(P.faiz) + "; ekim TÜFE'sine göre reel faiz " + y1(ep) + ", TCMB'nin 2027 tahminine göre " + y1(ex) + ".</p></details>\n" +
+    "<details><summary>TCMB 2027 sonu enflasyon tahmini kaç?</summary><p>" + gun(R.RAPOR.tarih) + " tarihli Enflasyon Raporu'nda 2027 sonu tahmini " + yp(H[2027]) + "; ara hedef de " + yp(A.yeni[2027]) + "'e yükseltildi. 2026 sonu tahmini " + yp(H[2026]) + ".</p></details>\n" +
+    "<details><summary>Reel faiz pozitif mi?</summary><p>Evet. Politika faizi " + yp(P.faiz) + "; ekim TÜFE'sine göre reel faiz " + y1(ep) + ", TCMB'nin 2027 tahminine göre " + y1(ex) + ".</p></details>\n" +
     "<details><summary>Bir sonraki faiz kararı ne zaman?</summary><p>" + gun(P.sonraki) + ". Karar sonrasında bu yazının hesapları yeni faizle güncellenir.</p></details>");
   return out.join("\n\n");
 }
