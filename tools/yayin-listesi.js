@@ -67,7 +67,7 @@ function liste() {
       satir.push("            <p class=\"ed-yayin-baslik\"><a href=\"" +
         Y.adres(c) + "\" rel=\"noopener\">" + esc(c.baslik) + "</a></p>");
 
-      var kunye = "Öner, K. (" + Y.yil(c) + "). " + Y.TUR + ". Zenodo. " +
+      var kunye = "Öner, K. (" + Y.yil(c) + "). " + Y.tur(c) + ". Zenodo. " +
         c.doi;
       satir.push("            <p class=\"ed-yayin-kunye\">" + esc(kunye) +
         " &middot; " + tarih(c.tarih) + " &middot; <a href=\"" +
@@ -205,7 +205,7 @@ function bibtex() {
       "  title = {" + alan(c.baslik) + "},\n" +
       "  year = {" + Y.yil(c) + "},\n" +
       "  publisher = {Zenodo},\n" +
-      "  howpublished = {Working paper},\n" +
+      "  howpublished = {" + Y.tur(c) + "},\n" +
       "  doi = {" + c.doi + "},\n" +
       "  url = {" + Y.adres(c) + "}\n}";
   }).join("\n\n") + "\n";

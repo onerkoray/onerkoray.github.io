@@ -52,8 +52,10 @@ console.log("Yayın listesi — künye denetimi\n");
 
 /* ---------------------------------------------------------------- 1
    Ö1: iki yönlü kapsama */
-/* ORCID 0009-0005-8730-3577 ile 2026-09-27'de karşılaştırıldı: 8 kayıt. */
-gecer("modülde 8 çalışma", Y.CALISMALAR.length === 8,
+/* ORCID 0009-0005-8730-3577 ile 2026-11-23'te karşılaştırıldı: modüldeki
+   10 Zenodo DOI'si ORCID'de kayıtlı (ORCID'de ayrıca SSRN sürümleri,
+   Hesap Çekirdeği yazılımı ve 23771234 var; bu sayfanın kapsamı dışında). */
+gecer("modülde 10 çalışma", Y.CALISMALAR.length === 10,
   String(Y.CALISMALAR.length));
 var SAYI_YAZI = ["sıfır", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz", "on"];
 gecer("paylaşım açıklamaları çalışma sayısını doğru söylüyor",
@@ -165,9 +167,13 @@ gecsin("İngilizce özet bilgisi açıklanmış", "Zenodo kaydında İngilizce �
 
 /* Tam metin bağlantısı sessizce 404'e ya da başka dosya türüne dönüşmemeli. */
 Y.CALISMALAR.forEach(function (c) {
+  /* PDF'siz kayıt yalnız gerekçesi açıkça yazılmışsa (pdfYok) kabul edilir. */
+  if (!c.pdf) {
+    gecer("PDF yok ama gerekçesi yazılı: " + c.doi, typeof c.pdfYok === "string" && c.pdfYok.length > 10);
+    return;
+  }
   gecer("PDF adresi yerel yayın klasöründe: " + c.doi,
-    /^yayinlar\/dosyalar\/\d+\.pdf$/.test(c.pdf || ""));
-  if (!c.pdf) return;
+    /^yayinlar\/dosyalar\/\d+\.pdf$/.test(c.pdf));
   var dosya = path.join(__dirname, "..", c.pdf);
   gecer("PDF dosyası var: " + c.doi, fs.existsSync(dosya));
   if (!fs.existsSync(dosya)) return;
@@ -194,10 +200,10 @@ gecsin("atıf dışa aktarımı erişilebilir", 'href="koray-oner.bib"');
   gecer("sayfasız çalışma sayısı ile not sayısı aynı",
     sayfasiz === not, sayfasiz + " çalışma vs " + not + " not");
 
-  /* KONTROL: eşitliğin boş yere (ikisi de sıfır) geçmediği: 2026-09-27
-     itibarıyla iki yeni çalışmanın yazısı yok, not iki kez görünmeli.
+  /* KONTROL: eşitliğin boş yere (ikisi de sıfır) geçmediği: 2026-11-23
+     itibarıyla dört çalışmanın yazısı yok, not dört kez görünmeli.
      Yazıları çıkınca bu sayı düşer ve test bunu söyler. */
-  gecer("KONTROL: sayfasız iki çalışma notla gösteriliyor", sayfasiz === 2 && not === 2,
+  gecer("KONTROL: sayfasız dört çalışma notla gösteriliyor", sayfasiz === 4 && not === 4,
     sayfasiz + " / " + not);
   gecer("KONTROL: her çalışmanın bağlantı satırı sayfada",
     kacKez("ed-yayin-baglanti") === Y.CALISMALAR.length,

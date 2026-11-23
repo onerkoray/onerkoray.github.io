@@ -13,6 +13,11 @@
  * İngilizce kayıt özeti bulunması bir hata olarak sunulmuyor.
  * pdf alanları, Zenodo dosyalarıyla MD5 eşleşen değişmemiş tam metinlerdir.
  *
+ * 23 Kasım 2026: 24446986 ve 24446973 eklendi (Zenodo kaydından; tür
+ * "Preprint", öncekiler "Working paper"; tür artık çalışma başına `tur`).
+ * Bu ikisinin yerel PDF kopyası yok (pdf: null): künye DOI ile Zenodo'ya
+ * bağlanır.
+ *
  * TÜRETİLEBİLİR HİÇBİR ŞEY SAKLANMIYOR
  * ------------------------------------
  * Modülde ham künye var. Yıla göre gruplama, sıralama, DOI adresi ve
@@ -144,10 +149,41 @@
       kendiDoi: false,
       ozetSorunlu: false,
       ozetDiliFarkli: false
+    },
+    /* 22 Kasım 2026, Zenodo türü Preprint. */
+    {
+      doi: "10.5281/zenodo.24446973",
+      pdf: null,
+      pdfYok: "yerel kopya henüz alınmadı; tam metin Zenodo kaydında",
+      tarih: "2026-11-22",
+      tur: "Preprint",
+      baslik: "Faktör Hayvanat Bahçesi ve Tekrarlanabilirlik Tartışması: " +
+        "Hisse Senedi Getiri Anomalilerinin Güvenilirliği ve Küçük " +
+        "Piyasalar İçin Çıkarımlar",
+      zenodoBaslik: null,
+      sayfa: null,
+      kendiDoi: false,
+      ozetSorunlu: false,
+      ozetDiliFarkli: false
+    },
+    {
+      doi: "10.5281/zenodo.24446986",
+      pdf: null,
+      pdfYok: "yerel kopya henüz alınmadı; tam metin Zenodo kaydında",
+      tarih: "2026-11-22",
+      tur: "Preprint",
+      baslik: "Faiz Oranı Riski, Mevduat İmtiyazı ve Banka Kırılganlığı: " +
+        "Vade Dönüşümünün Ekonomisi Üzerine Analitik Bir İnceleme",
+      zenodoBaslik: null,
+      sayfa: null,
+      kendiDoi: false,
+      ozetSorunlu: false,
+      ozetDiliFarkli: false
     }
   ];
 
-  /* Hepsi aynı türde ve lisansta; tekrar etmemek için burada duruyor. */
+  /* Varsayılan tür; farklı olan çalışma kendi `tur` alanını taşır.
+     Lisans hepsinde aynı. */
   var TUR = "Working paper";
   var LISANS = { ad: "CC BY 4.0", url: "https://creativecommons.org/licenses/by/4.0/" };
 
@@ -156,6 +192,7 @@
   function yil(c) { return parseInt(c.tarih.slice(0, 4), 10); }
 
   function adres(c) { return DOI_KOK + c.doi; }
+  function tur(c) { return c.tur || TUR; }
 
   /* Yeniden eskiye. Kaynak dizi tarih sırasında; kopyalanıp ters
      çevriliyor ki çağıran diziyi bozmasın. */
@@ -213,6 +250,7 @@
     CALISMALAR: CALISMALAR,
     yil: yil,
     adres: adres,
+    tur: tur,
     yeniden: yeniden,
     yillar: yillar,
     yilinCalismalari: yilinCalismalari,
