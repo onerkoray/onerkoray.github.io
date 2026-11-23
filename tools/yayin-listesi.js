@@ -64,14 +64,15 @@ function liste() {
     Y.yilinCalismalari(yil).forEach(function (c) {
       var satir = [];
       satir.push("          <li>");
-      satir.push("            <p class=\"ed-yayin-baslik\"><a href=\"" +
+      satir.push("            <p class=\"ed-yayin-baslik\"" +
+        (Y.dil(c) !== "tr" ? " lang=\"" + Y.dil(c) + "\"" : "") + "><a href=\"" +
         Y.adres(c) + "\" rel=\"noopener\">" + esc(c.baslik) + "</a></p>");
 
       var kunye = "Öner, K. (" + Y.yil(c) + "). " + Y.tur(c) + ". Zenodo. " +
         c.doi;
       satir.push("            <p class=\"ed-yayin-kunye\">" + esc(kunye) +
         " &middot; " + tarih(c.tarih) + " &middot; <a href=\"" +
-        Y.LISANS.url + "\" rel=\"noopener license\">" + Y.LISANS.ad +
+        Y.lisans(c).url + "\" rel=\"noopener license\">" + Y.lisans(c).ad +
         "</a></p>");
 
       if (c.pdf) {
@@ -83,7 +84,14 @@ function liste() {
           "&middot; Zenodo'daki özgün dosyanın değişmemiş kopyası.</p>");
       }
 
-      if (!c.sayfa) {
+      /* Yazılım kaydının "anlatan yazısı" yok; yerine kaynak kodu var. */
+      if (c.kod) {
+        satir.push("            <p class=\"ed-yayin-baglanti\">Kaynak kodu: " +
+          "<a href=\"" + esc(c.kod.github) + "\" rel=\"noopener\">GitHub</a> &middot; " +
+          "<a href=\"" + esc(c.kod.npm) + "\" rel=\"noopener\">npm</a>. " +
+          "Sitedeki araçların hesap çekirdeği.</p>");
+      }
+      if (!c.sayfa && !c.kod) {
         satir.push("            <p class=\"ed-yayin-baglanti\">" +
           "Bu çalışmayı anlatan bir site yazısı henüz yok.</p>");
       }
@@ -136,20 +144,25 @@ function liste() {
 function ldjson() {
   var ogeler = Y.yeniden().map(function (c, i) {
     var eser = {
-      "@type": "ScholarlyArticle",
+      "@type": Y.schemaTur(c),
       "@id": Y.adres(c),
       "name": c.baslik,
       "headline": c.baslik,
       "datePublished": c.tarih,
-      "inLanguage": "tr",
+      "inLanguage": Y.dil(c),
       "author": { "@id": KISI },
       "publisher": { "@type": "Organization", "name": "Zenodo" },
-      "license": Y.LISANS.url,
+      "license": Y.lisans(c).url,
       "identifier": {
         "@type": "PropertyValue", "propertyID": "DOI", "value": c.doi
       },
       "sameAs": Y.adres(c)
     };
+    if (c.kod) {
+      eser.codeRepository = c.kod.github;
+      eser.programmingLanguage = "JavaScript";
+      eser.version = c.surum;
+    }
     if (c.sayfa) eser.subjectOf = KOKADRES + c.sayfa + "/";
     if (c.pdf) eser.encoding = {
       "@type": "MediaObject", "encodingFormat": "application/pdf",
@@ -200,12 +213,16 @@ function sayiYaz(s) {
 function bibtex() {
   function alan(s) { return String(s).replace(/[{}]/g, ""); }
   return Y.yeniden().map(function (c) {
-    return "@misc{Oner" + c.tarih.replace(/-/g, "") + "_" + c.doi.split(".").pop() + ",\n" +
+    var yazilim = Y.schemaTur(c) === "SoftwareSourceCode";
+    return (yazilim ? "@software{Oner" : "@misc{Oner") +
+      c.tarih.replace(/-/g, "") + "_" + c.doi.split(".").pop() + ",\n" +
       "  author = {Öner, Koray},\n" +
       "  title = {" + alan(c.baslik) + "},\n" +
       "  year = {" + Y.yil(c) + "},\n" +
       "  publisher = {Zenodo},\n" +
-      "  howpublished = {" + Y.tur(c) + "},\n" +
+      (yazilim ? "  version = {" + c.surum + "},\n" +
+        "  license = {" + Y.lisans(c).ad + "},\n"
+        : "  howpublished = {" + Y.tur(c) + "},\n") +
       "  doi = {" + c.doi + "},\n" +
       "  url = {" + Y.adres(c) + "}\n}";
   }).join("\n\n") + "\n";

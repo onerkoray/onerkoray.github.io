@@ -52,12 +52,13 @@ console.log("Yayın listesi — künye denetimi\n");
 
 /* ---------------------------------------------------------------- 1
    Ö1: iki yönlü kapsama */
-/* ORCID 0009-0005-8730-3577 ile 2026-11-23'te karşılaştırıldı: modüldeki
-   10 Zenodo DOI'si ORCID'de kayıtlı (ORCID'de ayrıca SSRN sürümleri,
-   Hesap Çekirdeği yazılımı ve 23771234 var; bu sayfanın kapsamı dışında). */
-gecer("modülde 10 çalışma", Y.CALISMALAR.length === 10,
+/* ORCID 0009-0005-8730-3577 ile 2026-11-23'te karşılaştırıldı: ORCID'deki
+   her Zenodo DOI'si (12) modülde var. ORCID'de ayrıca figshare ve SSRN
+   kayıtları var; bunlar listedeki çalışmaların başka depolardaki kopyaları. */
+gecer("modülde 12 çalışma", Y.CALISMALAR.length === 12,
   String(Y.CALISMALAR.length));
-var SAYI_YAZI = ["sıfır", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz", "on"];
+var SAYI_YAZI = ["sıfır", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz", "on",
+  "on bir", "on iki", "on üç", "on dört", "on beş"];
 gecer("paylaşım açıklamaları çalışma sayısını doğru söylüyor",
   kacKez("DOI ile kalıcı kaydı bulunan " + SAYI_YAZI[Y.CALISMALAR.length] + " çalışma") === 2,
   "sayfada '" + SAYI_YAZI[Y.CALISMALAR.length] + " çalışma' iki kez geçmeli");
@@ -116,10 +117,27 @@ if (itemList) {
   gecer("her eser Person'a bağlı", yazarsiz.length === 0,
     String(yazarsiz.length) + " eserde bağ yok");
 
+  /* Tür modülden: çalışma metni ScholarlyArticle, yazılım
+     SoftwareSourceCode. Lisans da eser başına. */
   var tipsiz = itemList.itemListElement.filter(function (o) {
-    return !o.item || o.item["@type"] !== "ScholarlyArticle";
+    var c = o.item && Y.calisma(o.item.identifier.value);
+    return !c || o.item["@type"] !== Y.schemaTur(c) ||
+      o.item.license !== Y.lisans(c).url || o.item.inLanguage !== Y.dil(c);
   });
-  gecer("her eser ScholarlyArticle", tipsiz.length === 0);
+  gecer("her eserin türü, lisansı ve dili modülle aynı", tipsiz.length === 0,
+    String(tipsiz.length));
+  var yazilimlar = itemList.itemListElement.filter(function (o) {
+    return o.item["@type"] === "SoftwareSourceCode";
+  });
+  gecer("KONTROL: tek yazılım kaydı, MIT ve kod deposuyla",
+    yazilimlar.length === 1 &&
+    yazilimlar[0].item.license === "https://opensource.org/licenses/MIT" &&
+    yazilimlar[0].item.codeRepository === "https://github.com/onerkoray/hesap-cekirdegi",
+    String(yazilimlar.length));
+  gecer("KONTROL: makaleler hâlâ ScholarlyArticle",
+    itemList.itemListElement.filter(function (o) {
+      return o.item["@type"] === "ScholarlyArticle";
+    }).length === Y.CALISMALAR.length - 1);
 
   /* Sıralama iddiası: yeniden eskiye. */
   var tarihler = itemList.itemListElement.map(function (o) {
@@ -195,15 +213,16 @@ gecsin("atıf dışa aktarımı erişilebilir", 'href="koray-oner.bib"');
    artık şu: modülde sayfası olmayan kaç çalışma varsa, sayfada o kadar
    "henüz yok" notu olmalı. Bugün ikisi de sıfır. */
 (function () {
-  var sayfasiz = Y.CALISMALAR.filter(function (c) { return !c.sayfa; }).length;
+  /* Yazılım kaydının anlatan yazısı değil kaynak kodu bağlantısı var. */
+  var sayfasiz = Y.CALISMALAR.filter(function (c) { return !c.sayfa && !c.kod; }).length;
   var not = kacKez("site yazısı henüz yok");
   gecer("sayfasız çalışma sayısı ile not sayısı aynı",
     sayfasiz === not, sayfasiz + " çalışma vs " + not + " not");
 
   /* KONTROL: eşitliğin boş yere (ikisi de sıfır) geçmediği: 2026-11-23
-     itibarıyla dört çalışmanın yazısı yok, not dört kez görünmeli.
+     itibarıyla beş çalışmanın yazısı yok, not beş kez görünmeli.
      Yazıları çıkınca bu sayı düşer ve test bunu söyler. */
-  gecer("KONTROL: sayfasız dört çalışma notla gösteriliyor", sayfasiz === 4 && not === 4,
+  gecer("KONTROL: sayfasız beş çalışma notla gösteriliyor", sayfasiz === 5 && not === 5,
     sayfasiz + " / " + not);
   gecer("KONTROL: her çalışmanın bağlantı satırı sayfada",
     kacKez("ed-yayin-baglanti") === Y.CALISMALAR.length,
@@ -225,6 +244,9 @@ gecsin("atıf dışa aktarımı erişilebilir", 'href="koray-oner.bib"');
    Sayfa iddiaları */
 gecsin("working paper olduğu söylenmiş", "hakemli dergi yayını değildir");
 gecsin("lisans yazılı", "CC BY 4.0");
+gecsin("yazılım lisansı yazılı", 'href="https://opensource.org/licenses/MIT" rel="noopener license">MIT</a>');
+gecsin("yazılımın kaynak kodu bağlantısı", 'Kaynak kodu: <a href="https://github.com/onerkoray/hesap-cekirdegi"');
+gecsin("İngilizce başlık işaretli", 'class="ed-yayin-baslik" lang="en"');
 gecsin("ORCID sayfada", "0009-0005-8730-3577");
 gecsin("iki ilişki türü anlatılmış", "bağımsız olarak yeniden üreten");
 

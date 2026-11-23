@@ -97,7 +97,11 @@ def govde():
         if SITE + "/" + slug + "/" not in adresler:
             raise SystemExit("/en/ listesindeki araç sitede yok ya da dizine kapalı: " + slug)
     n_arac, n_yazi, n_ci = H.arac_sayisi(), H.makale_sayisi(), H.ci_komut_sayisi()
-    yy = yayinlar()
+    # "Papers" listesi yalnız çalışma metinleri; yazılım kaydı çekirdek
+    # kartında Zenodo arşivi olarak bağlanır.
+    tum = yayinlar()
+    yy = [c for c in tum if c.get("schemaTur", "ScholarlyArticle") == "ScholarlyArticle"]
+    yazilim = [c for c in tum if c.get("schemaTur") == "SoftwareSourceCode"]
     paket = cekirdek()
     y0, y1 = H.parametre_yillari()
     n_gec = H.gecerlilik_sayisi()
@@ -164,11 +168,12 @@ def govde():
           <div class="hk-is">
             <h3>Open calculation core</h3>
             <p>The core for payroll, severance, pensions, rental income, taxes and loans is published on npm as <code>%s</code>. It has no dependencies, runs the same in the browser and in Node.js, and is the code the calculators on this site use.</p>
-            <p class="hk-is__bag"><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a> · <a href="../bordro/" hreflang="tr" lang="tr">Payroll engine</a></p>
+            <p class="hk-is__bag"><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a> · %s<a href="../bordro/" hreflang="tr" lang="tr">Payroll engine</a></p>
           </div>
         </div>
       </div>
-    </section>''' % (n_arac, n_yazi, len(yy), paket))
+    </section>''' % (n_arac, n_yazi, len(yy), paket,
+                     "".join('<a href="https://doi.org/%s" rel="noopener">Zenodo archive</a> · ' % c["doi"] for c in yazilim)))
 
     p.append('''
     <section id="method" class="hk-bolum hk-bolum--zemin" aria-labelledby="method-title">

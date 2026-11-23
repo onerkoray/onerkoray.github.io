@@ -16,7 +16,13 @@
  * 23 Kasım 2026: 24446986 ve 24446973 eklendi (Zenodo kaydından; tür
  * "Preprint", öncekiler "Working paper"; tür artık çalışma başına `tur`).
  * Bu ikisinin yerel PDF kopyası yok (pdf: null): künye DOI ile Zenodo'ya
- * bağlanır.
+ * bağlanır. Site sahibinin kararı: yeni kayıtlarda yerel kopya tutulmaz.
+ *
+ * 23 Kasım 2026: ORCID'de olup listede olmayan iki kayıt eklendi:
+ * 23771234 (Working paper, hanehalkı bütçesi) ve 23718278 (Hesap
+ * Çekirdeği yazılımı: tür Software, lisans MIT, dil İngilizce, şema
+ * SoftwareSourceCode). Figshare ve SSRN kayıtları listedeki çalışmaların
+ * başka depolardaki kopyaları; ayrıca listelenmiyor.
  *
  * TÜRETİLEBİLİR HİÇBİR ŞEY SAKLANMIYOR
  * ------------------------------------
@@ -150,11 +156,49 @@
       ozetSorunlu: false,
       ozetDiliFarkli: false
     },
+    /* 20 Ekim 2026, Zenodo türü Software: npm paketinin (1.3.0) değişmemiş
+       arşivi. Lisansı, dili ve şema türü çalışma metinlerinden farklı. */
+    {
+      doi: "10.5281/zenodo.23718278",
+      pdf: null,
+      pdfYok: "yazılım kaydı; Zenodo'daki dosya npm paketinin değişmemiş arşivi",
+      tarih: "2026-10-20",
+      tur: "Software",
+      schemaTur: "SoftwareSourceCode",
+      lisans: { ad: "MIT", url: "https://opensource.org/licenses/MIT" },
+      dil: "en",
+      surum: "1.3.0",
+      kod: {
+        github: "https://github.com/onerkoray/hesap-cekirdegi",
+        npm: "https://www.npmjs.com/package/hesap-cekirdegi"
+      },
+      baslik: "Hesap Çekirdeği: Payroll, Tax and Financial Calculation " +
+        "Software for Türkiye (v1.3.0)",
+      zenodoBaslik: null,
+      sayfa: null,
+      kendiDoi: false,
+      ozetSorunlu: false,
+      ozetDiliFarkli: false
+    },
+    /* 29 Ekim 2026, Zenodo türü Working paper (sürüm 1.1). */
+    {
+      doi: "10.5281/zenodo.23771234",
+      pdf: null,
+      pdfYok: "tam metin Zenodo kaydında; yerel kopya tutulmuyor, DOI bağlantısı yeterli",
+      tarih: "2026-10-29",
+      baslik: "Türkiye'de Hanehalkı Bütçesinin Konuta Kayışı ve Fiyat " +
+        "Şoklarına Duyarlılık",
+      zenodoBaslik: null,
+      sayfa: null,
+      kendiDoi: false,
+      ozetSorunlu: false,
+      ozetDiliFarkli: false
+    },
     /* 22 Kasım 2026, Zenodo türü Preprint. */
     {
       doi: "10.5281/zenodo.24446973",
       pdf: null,
-      pdfYok: "yerel kopya henüz alınmadı; tam metin Zenodo kaydında",
+      pdfYok: "tam metin Zenodo kaydında; yerel kopya tutulmuyor, DOI bağlantısı yeterli",
       tarih: "2026-11-22",
       tur: "Preprint",
       baslik: "Faktör Hayvanat Bahçesi ve Tekrarlanabilirlik Tartışması: " +
@@ -169,7 +213,7 @@
     {
       doi: "10.5281/zenodo.24446986",
       pdf: null,
-      pdfYok: "yerel kopya henüz alınmadı; tam metin Zenodo kaydında",
+      pdfYok: "tam metin Zenodo kaydında; yerel kopya tutulmuyor, DOI bağlantısı yeterli",
       tarih: "2026-11-22",
       tur: "Preprint",
       baslik: "Faiz Oranı Riski, Mevduat İmtiyazı ve Banka Kırılganlığı: " +
@@ -182,8 +226,8 @@
     }
   ];
 
-  /* Varsayılan tür; farklı olan çalışma kendi `tur` alanını taşır.
-     Lisans hepsinde aynı. */
+  /* Varsayılanlar; farklı olan çalışma kendi `tur`, `lisans`, `dil` ve
+     `schemaTur` alanını taşır (bugün yalnız yazılım kaydı). */
   var TUR = "Working paper";
   var LISANS = { ad: "CC BY 4.0", url: "https://creativecommons.org/licenses/by/4.0/" };
 
@@ -193,6 +237,9 @@
 
   function adres(c) { return DOI_KOK + c.doi; }
   function tur(c) { return c.tur || TUR; }
+  function lisans(c) { return c.lisans || LISANS; }
+  function dil(c) { return c.dil || "tr"; }
+  function schemaTur(c) { return c.schemaTur || "ScholarlyArticle"; }
 
   /* Yeniden eskiye. Kaynak dizi tarih sırasında; kopyalanıp ters
      çevriliyor ki çağıran diziyi bozmasın. */
@@ -251,6 +298,9 @@
     yil: yil,
     adres: adres,
     tur: tur,
+    lisans: lisans,
+    dil: dil,
+    schemaTur: schemaTur,
     yeniden: yeniden,
     yillar: yillar,
     yilinCalismalari: yilinCalismalari,

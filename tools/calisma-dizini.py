@@ -289,8 +289,9 @@ def govde():
         <ol class="kd-yayinlar">%s</ol>
       </div>
     </section>''' % "".join(
-        '<li><time datetime="%s">%s</time><a href="https://doi.org/%s" rel="noopener">%s</a>%s</li>' % (
-            c["tarih"], uzun_tarih(c["tarih"]), c["doi"], kacis(c["baslik"]),
+        '<li><time datetime="%s">%s</time><a href="https://doi.org/%s" rel="noopener"%s>%s</a>%s</li>' % (
+            c["tarih"], uzun_tarih(c["tarih"]), c["doi"],
+            (' lang="%s"' % c["dil"]) if c.get("dil", "tr") != "tr" else "", kacis(c["baslik"]),
             (' <span>Sitede anlatan yazı: <a href="../%s/">oku</a></span>' % c["sayfa"]) if c.get("sayfa") else "") for c in yy))
 
     p.append('''
@@ -403,7 +404,7 @@ def json_ld(ar, yz, yy):
         ogeler.append({"@type": "Article", "headline": y["baslik"], "url": "https://korayoner.dev/" + y["yol"],
                        "datePublished": y["tarih"], "author": {"@id": KISI}})
     for c in yy:
-        ogeler.append({"@type": "ScholarlyArticle", "headline": c["baslik"], "url": "https://doi.org/" + c["doi"],
+        ogeler.append({"@type": c.get("schemaTur", "ScholarlyArticle"), "headline": c["baslik"], "url": "https://doi.org/" + c["doi"],
                        "datePublished": c["tarih"], "author": {"@id": KISI}})
     veri = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "@id": ADRES + "#sayfa", "url": ADRES, "name": "Çalışma dizini: araçlar, yazılar ve yayınlar",
