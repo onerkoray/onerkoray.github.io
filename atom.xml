@@ -1266,7 +1266,7 @@
     <published>2026-09-07T06:55:03+03:00</published>
     <updated>2026-10-06T06:36:34+03:00</updated>
     <category term="vergi-belge" label="Vergi &amp; Belge"/>
-    <summary>Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti. Üyeliksiz; veriler tarayıcınızda kalır.</summary>
+    <summary>Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti.</summary>
   </entry>
 
   <entry>
@@ -1536,6 +1536,6 @@
     <published>2026-07-14T23:15:36+03:00</published>
     <updated>2026-10-26T08:07:04+03:00</updated>
     <category term="vergi-belge" label="Vergi &amp; Belge"/>
-    <summary>KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.</summary>
+    <summary>KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında KDV hesaplama.</summary>
   </entry>
 </feed>

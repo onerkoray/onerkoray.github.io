@@ -37,10 +37,10 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 - [Beyanname hesaplama](https://korayoner.dev/beyanname-hesaplama/): Beyanname vermem gerekir mi? Ücret, kira, menkul sermaye iradı ve serbest meslek gelirini birlikte değerlendirir, GVK m.86 sınırını uygular.
 - [Dilim Kayması Hesaplama](https://korayoner.dev/dilim-kaymasi-hesaplama/): Vergi dilimleri enflasyonla büyüseydi maaşınızdan ne kadar gelir vergisi kesilirdi? 2026 tarifesini üç ölçütle kendi ücretinizde ölçün.
 - [Engelli Araç ÖTV İstisnası Hesaplama](https://korayoner.dev/engelli-arac-otv-istisnasi-hesaplama/): Engelli raporuyla ÖTV'siz araç: 2.873.900 TL sınırı, %40 yerli katkı, 10 yıl kuralı. Uygun musunuz, ne kadar ödersiniz, MTV ve 5 yıl içinde satış.
-- [Fatura ve Teklif Merkezi](https://korayoner.dev/fatura-olusturma/): Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti. Üyeliksiz; veriler tarayıcınızda kalır.
+- [Fatura ve Teklif Merkezi](https://korayoner.dev/fatura-olusturma/): Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti.
 - [Gecikme Zammı Hesaplama](https://korayoner.dev/gecikme-zammi-hesaplama/): Vadesinde ödenmeyen vergi borcu bugün ne kadar oldu? GİB oran tablosuyla gecikme zammı: her oran dönemi ayrı, tam ay ve gün hesabıyla, 2010'dan bugüne.
 - [Gümrük Vergisi Hesaplama](https://korayoner.dev/gumruk-vergisi-hesaplama/): 2026 yurt dışı alışverişte ithalat maliyetini planlayın. Teklifteki vergi, kargo ve hizmet bedellerini ekleyin; telefon IMEI harcını hesaplayın.
-- [KDV Hesaplama](https://korayoner.dev/kdv-hesaplama/): KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.
+- [KDV Hesaplama](https://korayoner.dev/kdv-hesaplama/): KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında KDV hesaplama.
 - [Kira Geliri Vergisi Hesaplama](https://korayoner.dev/kira-geliri-vergisi-hesaplama/): Kira geliri vergisi hesaplama: mesken istisnası, götürü ve gerçek gider karşılaştırması, işyeri stopaj mahsubu ve ödenecek vergi tek ekranda.
 - [Mali Takvim](https://korayoner.dev/mali-takvim/): Enflasyon açıklamaları, Ocak ve Temmuz zamları, MTV, emlak ve gelir vergisi son günleri. Hangi tarihin hangi hesabı değiştirdiği, takvime eklenebilir.
 - [MTV Hesaplama](https://korayoner.dev/mtv-hesaplama/): 2026 MTV hesaplama: motor hacmi, yaş ve değere göre taşıt vergisi. Elektrikli araçta kW bantları, 2018 öncesi tescilde (I/A) tarifesi, taksitler ve projeksiyon.
@@ -185,8 +185,8 @@ Kaynaklar birincildir (Resmî Gazete, GİB, SGK, TÜİK, TCMB). Mevzuat değişt
 
 ## Optional
 
-- [Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları](https://korayoner.dev/): Koray Öner'in sitesi: maaş, vergi, SGK, kira ve kredi için testli, ücretsiz hesaplama araçları; mevzuat yazıları, yayımlanmış çalışmalar ve sosyal hesaplar.
-- [Araçlar](https://korayoner.dev/araclar/): Maaş ve tazminat, vergi ve belge, kredi ve finans için ücretsiz, reklamsız hesaplama araçları; kategoriye göre, güncelleme tarihi ve metodolojisiyle.
+- [Koray Öner — Maaş, Vergi ve Finans Hesaplama Araçları](https://korayoner.dev/): Koray Öner'in sitesi: maaş, vergi, SGK, kira ve kredi için testli hesaplama araçları; mevzuat yazıları, yayımlanmış çalışmalar ve sosyal hesaplar.
+- [Araçlar](https://korayoner.dev/araclar/): Maaş ve tazminat, vergi ve belge, kredi ve finans için hesaplama araçları; kategoriye göre, güncelleme tarihi ve metodolojisiyle.
 - [Koray Öner — Turkish Payroll, Tax and Pension Tools](https://korayoner.dev/en/): Koray Öner (Koray Oner), software developer in Türkiye: 64 free calculators for Turkish payroll, tax and pensions, 76 tested articles and 11 papers with a DOI.
 - [Gizlilik Politikası](https://korayoner.dev/gizlilik/): Bu sitede hangi veriler işleniyor, hangi çerezler kullanılıyor ve haklarınız neler? Hesaplama verileriniz cihazınızdan çıkmaz.
 - [Hakkımda](https://korayoner.dev/hakkimda/): Koray Öner kimdir? Serbest çalışan yazılım geliştirici. Bordro ve vergi araçlarındaki her sayıyı yasal parametreden türetip her değişiklikte yeniden doğruluyor.
