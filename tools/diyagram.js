@@ -335,8 +335,8 @@ function boruHatti() {
       cip: ["tablolar", "JSON-LD", "--check"] },
     { k: "arac", ad: "Araç", alt: araclar.length + " araç",
       baslik: "Siz aynı çekirdeği kullanırsınız.",
-      metin: araclar.length + " araç aynı motoru yükler. Hesap tarayıcınızda çalışır; girdiğiniz tutar cihazınızdan çıkmaz.",
-      cip: ["tarayıcıda hesap", "sunucuya veri yok"], href: "#ekosistem", link: "Araç listesi" }
+      metin: araclar.length + " araç aynı motoru yükler; aynı girdi her araçta aynı sonucu verir.",
+      cip: ["tek çekirdek", "aynı sonuç"], href: "#ekosistem", link: "Araç listesi" }
   ];
   function iki(i) { return (i < 9 ? "0" : "") + (i + 1); }
   var serit =

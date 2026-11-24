@@ -36,7 +36,7 @@
   <meta property="og:image" content="https://korayoner.dev/images/kisisel-enflasyon-koray-oner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz kişisel enflasyon hesaplama aracı">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen kişisel enflasyon hesaplama aracı">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@korayonerdev">
   <meta name="twitter:creator" content="@korayonerdev">
@@ -62,10 +62,18 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "tr",
         "isAccessibleForFree": true,
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "author": { "@id": "https://korayoner.dev/#oner-koray" },
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
-        "description": "Kullanıcının kendi harcama kalemlerinden Laspeyres yöntemiyle kişisel enflasyon oranını, kalem bazlı katkı ayrıştırmasını ve gelir artışının reel karşılığını hesaplayan ücretsiz araç."
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "description": "Kullanıcının kendi harcama kalemlerinden Laspeyres yöntemiyle kişisel enflasyon oranını, kalem bazlı katkı ayrıştırmasını ve gelir artışının reel karşılığını hesaplayan araç."
       },
       {
         "@type": "WebSite",
@@ -74,7 +82,9 @@
         "name": "Koray Öner",
         "alternateName": "korayoner.dev",
         "inLanguage": "tr",
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
       },
       {
         "@type": "WebPage",
@@ -83,22 +93,43 @@
         "url": "https://korayoner.dev/kisisel-enflasyon/",
         "name": "Kişisel Enflasyon: Sizin Sepetiniz Ne Kadar Pahalandı?",
         "inLanguage": "tr",
-        "isPartOf": { "@id": "https://korayoner.dev/#website" },
-        "breadcrumb": { "@id": "https://korayoner.dev/kisisel-enflasyon/#breadcrumb" }
+        "isPartOf": {
+          "@id": "https://korayoner.dev/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://korayoner.dev/kisisel-enflasyon/#breadcrumb"
+        }
       },
       {
         "@type": "BreadcrumbList",
         "@id": "https://korayoner.dev/kisisel-enflasyon/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" },
-          { "@type": "ListItem", "position": 3, "name": "Kişisel Enflasyon", "item": "https://korayoner.dev/kisisel-enflasyon/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Kişisel Enflasyon",
+            "item": "https://korayoner.dev/kisisel-enflasyon/"
+          }
         ]
       },
       {
         "@type": "Person",
         "@id": "https://korayoner.dev/#oner-koray",
-        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
         "name": "Koray Öner",
         "url": "https://korayoner.dev/",
         "jobTitle": "Yazılım Geliştirici"
@@ -106,12 +137,46 @@
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "Kişisel enflasyon nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Resmî enflasyon, ülke genelini temsil eden bir sepetin ortalama fiyat artışıdır. Sizin sepetiniz o ortalama değildir: gelirinin yarısını kiraya veren biriyle kendi evinde oturan birinin enflasyonu aynı olamaz. Kişisel enflasyon, kendi harcama paylarınızla ağırlıklandırılmış fiyat artışıdır." } },
-          { "@type": "Question", "name": "Bu araç resmî TÜFE verisi kullanıyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır ve bu bilinçli. Araç hiçbir enflasyon serisi taşımaz; tüm veri sizin kendi harcamanızdır. Resmî oranı karşılaştırma için kendiniz girersiniz. Yayımlanan her parametrenin doğrulanabilir bir kaynağı olması gerektiği için, doğrulanmamış bir endeks tablosu siteye konmaz." } },
-          { "@type": "Question", "name": "Harcamam arttıysa enflasyonum bu mudur?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Harcamanızdaki artış hem fiyat hem de miktar değişimini içerir: daha ucuz eve taşınmak harcamanızı düşürür ama kiralar yine de artmıştır. Araç ikisini ayırır — miktarı değişen kalemleri işaretlersiniz, fiyat endeksi yalnızca sabit kalanlardan kurulur, aradaki fark 'sepet etkisi' olarak raporlanır." } },
-          { "@type": "Question", "name": "Neden geçen yılın ağırlıkları kullanılıyor?", "acceptedAnswer": { "@type": "Answer", "text": "Laspeyres yöntemi taban dönem ağırlıklarını kullanır; resmî endekslerin de yaptığı budur. Bugünün paylarıyla ağırlıklandırmak (Paasche), hızlı pahalanan kalemin payı büyüdüğü için bu tür sepetlerde daha yüksek bir oran verir. İki yöntem farklı sorulara cevap verir; araç hangisini kullandığını açıkça yazar." } },
-          { "@type": "Question", "name": "Zammım enflasyonu karşıladı mı?", "acceptedAnswer": { "@type": "Answer", "text": "Araç bunu bölme yöntemiyle hesaplar: reel değişim = (1+zam)/(1+enflasyon)−1. Çıkarma yüksek oranlarda puanlarca sapar. Ayrıca zammın kişisel enflasyonunuzu tam karşılaması için gereken tutarı ve aradaki açığı da verir." } },
-          { "@type": "Question", "name": "Verilerim bir yere gönderiliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bütün hesap tarayıcınızın içinde çalışır; girdiğiniz harcama ve gelir bilgileri hiçbir sunucuya gönderilmez ve kaydedilmez." } }
+          {
+            "@type": "Question",
+            "name": "Kişisel enflasyon nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Resmî enflasyon, ülke genelini temsil eden bir sepetin ortalama fiyat artışıdır. Sizin sepetiniz o ortalama değildir: gelirinin yarısını kiraya veren biriyle kendi evinde oturan birinin enflasyonu aynı olamaz. Kişisel enflasyon, kendi harcama paylarınızla ağırlıklandırılmış fiyat artışıdır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bu araç resmî TÜFE verisi kullanıyor mu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır ve bu bilinçli. Araç hiçbir enflasyon serisi taşımaz; tüm veri sizin kendi harcamanızdır. Resmî oranı karşılaştırma için kendiniz girersiniz. Yayımlanan her parametrenin doğrulanabilir bir kaynağı olması gerektiği için, doğrulanmamış bir endeks tablosu siteye konmaz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Harcamam arttıysa enflasyonum bu mudur?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Harcamanızdaki artış hem fiyat hem de miktar değişimini içerir: daha ucuz eve taşınmak harcamanızı düşürür ama kiralar yine de artmıştır. Araç ikisini ayırır — miktarı değişen kalemleri işaretlersiniz, fiyat endeksi yalnızca sabit kalanlardan kurulur, aradaki fark 'sepet etkisi' olarak raporlanır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Neden geçen yılın ağırlıkları kullanılıyor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Laspeyres yöntemi taban dönem ağırlıklarını kullanır; resmî endekslerin de yaptığı budur. Bugünün paylarıyla ağırlıklandırmak (Paasche), hızlı pahalanan kalemin payı büyüdüğü için bu tür sepetlerde daha yüksek bir oran verir. İki yöntem farklı sorulara cevap verir; araç hangisini kullandığını açıkça yazar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Zammım enflasyonu karşıladı mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Araç bunu bölme yöntemiyle hesaplar: reel değişim = (1+zam)/(1+enflasyon)−1. Çıkarma yüksek oranlarda puanlarca sapar. Ayrıca zammın kişisel enflasyonunuzu tam karşılaması için gereken tutarı ve aradaki açığı da verir."
+            }
+          }
         ]
       }
     ]
@@ -156,7 +221,7 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Ücretsiz · Reklamsız · Veriniz tarayıcıdan çıkmaz</p>
+        <p class="eyebrow">Kredi &amp; Finans</p>
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 20V9"/><path d="M12 20V5"/><path d="M18 20v-9"/><path d="M4.5 12h3"/></svg></div>
         <h1 id="hero-title">Sizin Sepetiniz Ne Kadar Pahalandı?</h1>
         <p class="lede">
@@ -349,7 +414,6 @@
           <details><summary>Harcamam arttıysa enflasyonum bu mudur?</summary><p>Hayır. Harcama değişimi hem fiyatı hem miktarı içerir. Araç ikisini ayırır: fiyat endeksi, harcama değişimi ve aradaki sepet etkisi.</p></details>
           <details><summary>Neden geçen yılın ağırlıkları?</summary><p>Laspeyres yöntemi taban dönem ağırlığı kullanır; resmî endekslerin yaptığı da budur. Bugünün paylarıyla (Paasche) hesaplamak farklı bir soruyu cevaplar.</p></details>
           <details><summary>Zammım enflasyonu karşıladı mı?</summary><p>Bölmeyle hesaplanır: (1+zam)/(1+enflasyon)−1. %30 zam ve %40 enflasyonda kayıp 10 puan değil %7,14'tür.</p></details>
-          <details><summary>Verilerim gönderiliyor mu?</summary><p>Hayır, hesap tamamen tarayıcınızda çalışır.</p></details>
         </div>
       </div>
     </section>
@@ -357,7 +421,7 @@
     <section class="related">
       <div class="wrap prose">
         <h2>İlgili araçlar</h2>
-        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <p>Koray Öner tarafından geliştirilen diğer araçlara göz atın:</p>
         <ul>
           <li><a href="../finansal-ikiz/">Finansal İkiz</a> — bütün bu parçaları tek modelde birleştiren yaşam boyu simülasyon.</li>
           <li><a href="../enflasyon-hesaplama/">Enflasyon Hesaplama</a> — resmî TÜFE ile iki tarih arası enflasyon ve paranın bugünkü değeri.</li>
@@ -409,7 +473,7 @@
   </main>
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; resmî istatistik yerine geçmez.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak. Bilgilendirme amaçlıdır; resmî istatistik yerine geçmez.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

@@ -135,8 +135,7 @@
              tur: document.getElementById("tk-b-tur").value, tutar: bt }
       });
       ciz(r);
-      mesaj.textContent = "Hesap tarayıcınızda yapıldı; girdiğiniz tutarlar " +
-        "hiçbir yere gönderilmedi.";
+      mesaj.textContent = "Hesap güncellendi.";
     } catch (e) {
       cikti.innerHTML = "";
       mesaj.textContent = e.message;

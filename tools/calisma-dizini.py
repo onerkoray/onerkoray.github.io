@@ -212,7 +212,7 @@ def govde():
             <span class="portre-rol">Yazılım geliştirici</span>
           </figcaption>
         </figure>
-        <p class="lede">Türkiye'de maaş, vergi, SGK, emeklilik ve hane finansı için ücretsiz hesap araçları geliştiriyor; hesabın arkasındaki kuralı anlatan, her rakamı testle sabitlenmiş yazılar ve DOI ile kalıcı kaydı olan çalışmalar yayımlıyor. Bu sayfa hepsinin dizini: ne yapıldı, ne zaman, hangi alanda.</p>
+        <p class="lede">Türkiye'de maaş, vergi, SGK, emeklilik ve hane finansı için hesap araçları geliştiriyor; hesabın arkasındaki kuralı anlatan, her rakamı testle sabitlenmiş yazılar ve DOI ile kalıcı kaydı olan çalışmalar yayımlıyor. Bu sayfa hepsinin dizini: ne yapıldı, ne zaman, hangi alanda.</p>
         <p class="kd-yonlendir">Kim olduğu için <a href="../hakkimda/">hakkımda</a>, ulaşmak için <a href="../iletisim/">iletişim</a> sayfası.</p>
         <dl class="kd-sayilar">
           <div><dt>Hesaplama aracı</dt><dd>%d</dd></div>

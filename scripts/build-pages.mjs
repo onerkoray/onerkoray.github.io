@@ -79,7 +79,7 @@ function araclar() {
   const out = [];
   out.push('        <div class="section-head katalog-bas">',
     '          <h1 id="katalog-baslik">Hesaplama araçları</h1>',
-    "          <p>" + liste.length + " araç: hepsi ücretsiz, reklamsız ve üyeliksiz; hesap tarayıcınızda yapılır. Her kartta son güncelleme tarihi ve hesabın nasıl yapıldığını anlatan metodoloji bağlantısı var.</p>",
+    "          <p>" + liste.length + " araç. Her kartta son güncelleme tarihi ve hesabın nasıl yapıldığını anlatan metodoloji bağlantısı var.</p>",
     "        </div>",
     '        <nav class="chips katalog-cipler" aria-label="Kategoriler" data-katalog-cipler>',
     '          <a class="chip" href="#tum-araclar" data-bolum="" aria-current="true">Tümü <span class="chip-sayi">' + liste.length + "</span></a>");

@@ -95,7 +95,7 @@
       }
       h.push(notlar.map(function (n) { return '<p class="muted-note">' + n + "</p>"; }).join(""));
       cikti.innerHTML = h.join("");
-      mesaj.textContent = "Hesap tarayıcınızda yapıldı; girdiğiniz tutarlar hiçbir yere gönderilmedi.";
+      mesaj.textContent = "Hesap güncellendi.";
     } catch (e) {
       mesaj.textContent = e.message;
     }

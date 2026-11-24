@@ -36,7 +36,7 @@
   <meta property="og:image" content="https://korayoner.dev/images/finansal-ikiz-koray-oner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz finansal simülasyon aracı Finansal İkiz">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen finansal simülasyon aracı Finansal İkiz">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@korayonerdev">
   <meta name="twitter:creator" content="@korayonerdev">
@@ -62,10 +62,18 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "tr",
         "isAccessibleForFree": true,
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "author": { "@id": "https://korayoner.dev/#oner-koray" },
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
-        "description": "Gelir, gider, varlık ve borçlardan oluşan finansal profili ay ay yürüterek 20 yıllık servet projeksiyonu üreten; belirsizliği üç senaryoyla gösteren ücretsiz simülasyon aracı."
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "description": "Gelir, gider, varlık ve borçlardan oluşan finansal profili ay ay yürüterek 20 yıllık servet projeksiyonu üreten; belirsizliği üç senaryoyla gösteren simülasyon aracı."
       },
       {
         "@type": "WebSite",
@@ -74,7 +82,9 @@
         "name": "Koray Öner",
         "alternateName": "korayoner.dev",
         "inLanguage": "tr",
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
       },
       {
         "@type": "WebPage",
@@ -83,22 +93,43 @@
         "url": "https://korayoner.dev/finansal-ikiz/",
         "name": "Finansal İkiz",
         "inLanguage": "tr",
-        "isPartOf": { "@id": "https://korayoner.dev/#website" },
-        "breadcrumb": { "@id": "https://korayoner.dev/finansal-ikiz/#breadcrumb" }
+        "isPartOf": {
+          "@id": "https://korayoner.dev/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://korayoner.dev/finansal-ikiz/#breadcrumb"
+        }
       },
       {
         "@type": "BreadcrumbList",
         "@id": "https://korayoner.dev/finansal-ikiz/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" },
-          { "@type": "ListItem", "position": 3, "name": "Finansal İkiz", "item": "https://korayoner.dev/finansal-ikiz/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Finansal İkiz",
+            "item": "https://korayoner.dev/finansal-ikiz/"
+          }
         ]
       },
       {
         "@type": "Person",
         "@id": "https://korayoner.dev/#oner-koray",
-        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
         "name": "Koray Öner",
         "url": "https://korayoner.dev/",
         "jobTitle": "Yazılım Geliştirici"
@@ -106,14 +137,70 @@
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "Finansal İkiz nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Gelirinizi, giderinizi, varlıklarınızı ve borçlarınızı tek bir modele dönüştürüp ay ay yürüten, 20 yıllık servet projeksiyonu üreten bir simülasyondur. Tek bir hesap değil: kredi bittiğinde serbest kalan taksit, giderlerin enflasyonla büyümesi, ücretin yılda bir sıçraması ve varlıkların getirisi aynı modelde birlikte çalışır." } },
-          { "@type": "Question", "name": "Neden Monte Carlo değil, üç senaryo?", "acceptedAnswer": { "@type": "Answer", "text": "P10/P50/P90 bantlı bir yelpazenin anlamlı olması için getirinin ve enflasyonun dağılımını bilmek gerekir. Türkiye'de o seri yok: son on yılda yıllık enflasyon tek haneden %60'ın üzerine çıkıp geri indi. Böyle bir seride dağılım uydurup ondan binlerce yol üretmek, uydurmayı bilimsel görünen bir grafiğe çevirmek olur. Üç senaryoda bandın sahibi model değil sizsiniz: varsayımlar görünür ve değiştirilebilir." } },
-          { "@type": "Question", "name": "Verilerim nereye gidiyor?", "acceptedAnswer": { "@type": "Answer", "text": "Hiçbir yere. Bütün hesap tarayıcınızda çalışır. Profilinizi cihazınızda saklamak isterseniz bunu açıkça onaylamanız gerekir; onay vermezseniz veri yalnızca sekme açık kaldığı sürece yaşar. Onayı geri aldığınızda saklanan veri de silinir. Ad, e-posta, TCKN, IBAN gibi alanlar modelde hiç yok." } },
-          { "@type": "Question", "name": "Gelecek yılların vergi tarifesi nereden geliyor?", "acceptedAnswer": { "@type": "Answer", "text": "Uydurulmuyor. Tarifenin enflasyonla endekslendiği varsayılıyor — Türkiye'de fiilen olan budur. Gelecekteki nominal maaş bugünün parasına indirgenir, net/brüt oranı bugünkü tarifeyle o reel seviyede hesaplanıp nominale uygulanır. Tarife enflasyonun altında endekslenirse gerçek net buradakinden düşük çıkar; yani model bu tarafta iyimserdir." } },
-          { "@type": "Question", "name": "Band neden bu kadar geniş?", "acceptedAnswer": { "@type": "Answer", "text": "Çünkü 20 yıllık bir projeksiyon gerçekten o kadar belirsizdir. Bandın genişliği bir kusur değil, sonucun varsayımlara ne kadar duyarlı olduğunun ölçüsüdür. Dar bir band gösteren herhangi bir araç, sahip olmadığı bir kesinliği satıyordur." } },
-          { "@type": "Question", "name": "Hedeflerde 2/3 tutuyor ne demek, olasılık mı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır, bir sayımdır. Hedef üç senaryoda ayrı ayrı sınanır ve kaçında tuttuğu yazılır. Bunu yüzdeye çevirmek, elimizde olmayan bir dağılımı varmış gibi göstermek olurdu; üç senaryo bir örneklem değil, kullanıcının seçtiği üç varsayım kümesidir. Bir Monte Carlo simülasyonu yüzde verebilir çünkü orada bir dağılım varsayılmıştır." } },
-          { "@type": "Question", "name": "Olay tutarlarını hangi yılın parasıyla girmeliyim?", "acceptedAnswer": { "@type": "Answer", "text": "Bugünün parasıyla. Model tutarı olayın yılına taşır. Girilen rakamı nominal kabul etmek, yüksek enflasyonda olayı yıllar geçtikçe görünmez kılardı: %30 enflasyonda beş yıl sonraki 1.000.000 TL bugünün parasıyla 269.000 TL'ye iner ve grafikte neredeyse iz bırakmazdı." } },
-          { "@type": "Question", "name": "Tükenme çizgisi ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "Bir senaryoda varlıklarınız bittiğinde model açığı biriktirmeye devam eder. Gerçek hayatta kimse eksi bakiyeyle yaşamaz; harcamasını keser ya da borçlanır. O yüzden tükenmeden sonraki çizgi kesikli çiziliyor ve servet değil, kapatmanız gereken açığın büyüklüğü anlamına geliyor." } }
+          {
+            "@type": "Question",
+            "name": "Finansal İkiz nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Gelirinizi, giderinizi, varlıklarınızı ve borçlarınızı tek bir modele dönüştürüp ay ay yürüten, 20 yıllık servet projeksiyonu üreten bir simülasyondur. Tek bir hesap değil: kredi bittiğinde serbest kalan taksit, giderlerin enflasyonla büyümesi, ücretin yılda bir sıçraması ve varlıkların getirisi aynı modelde birlikte çalışır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Neden Monte Carlo değil, üç senaryo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "P10/P50/P90 bantlı bir yelpazenin anlamlı olması için getirinin ve enflasyonun dağılımını bilmek gerekir. Türkiye'de o seri yok: son on yılda yıllık enflasyon tek haneden %60'ın üzerine çıkıp geri indi. Böyle bir seride dağılım uydurup ondan binlerce yol üretmek, uydurmayı bilimsel görünen bir grafiğe çevirmek olur. Üç senaryoda bandın sahibi model değil sizsiniz: varsayımlar görünür ve değiştirilebilir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Profilim nerede saklanıyor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yalnızca “Profilimi bu cihazda sakla” kutusunu işaretlerseniz bu tarayıcının yerel deposunda. İşaretlemezseniz sekme kapanınca silinir; işareti kaldırınca saklanan profil de silinir. Ad, e-posta, TCKN, IBAN gibi alanlar modelde yok."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Gelecek yılların vergi tarifesi nereden geliyor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Uydurulmuyor. Tarifenin enflasyonla endekslendiği varsayılıyor — Türkiye'de fiilen olan budur. Gelecekteki nominal maaş bugünün parasına indirgenir, net/brüt oranı bugünkü tarifeyle o reel seviyede hesaplanıp nominale uygulanır. Tarife enflasyonun altında endekslenirse gerçek net buradakinden düşük çıkar; yani model bu tarafta iyimserdir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Band neden bu kadar geniş?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Çünkü 20 yıllık bir projeksiyon gerçekten o kadar belirsizdir. Bandın genişliği bir kusur değil, sonucun varsayımlara ne kadar duyarlı olduğunun ölçüsüdür. Dar bir band gösteren herhangi bir araç, sahip olmadığı bir kesinliği satıyordur."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hedeflerde 2/3 tutuyor ne demek, olasılık mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır, bir sayımdır. Hedef üç senaryoda ayrı ayrı sınanır ve kaçında tuttuğu yazılır. Bunu yüzdeye çevirmek, elimizde olmayan bir dağılımı varmış gibi göstermek olurdu; üç senaryo bir örneklem değil, kullanıcının seçtiği üç varsayım kümesidir. Bir Monte Carlo simülasyonu yüzde verebilir çünkü orada bir dağılım varsayılmıştır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Olay tutarlarını hangi yılın parasıyla girmeliyim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bugünün parasıyla. Model tutarı olayın yılına taşır. Girilen rakamı nominal kabul etmek, yüksek enflasyonda olayı yıllar geçtikçe görünmez kılardı: %30 enflasyonda beş yıl sonraki 1.000.000 TL bugünün parasıyla 269.000 TL'ye iner ve grafikte neredeyse iz bırakmazdı."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Tükenme çizgisi ne demek?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bir senaryoda varlıklarınız bittiğinde model açığı biriktirmeye devam eder. Gerçek hayatta kimse eksi bakiyeyle yaşamaz; harcamasını keser ya da borçlanır. O yüzden tükenmeden sonraki çizgi kesikli çiziliyor ve servet değil, kapatmanız gereken açığın büyüklüğü anlamına geliyor."
+            }
+          }
         ]
       }
     ]
@@ -158,7 +245,7 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Ücretsiz · Reklamsız · Veriniz cihazınızdan çıkmaz</p>
+        <p class="eyebrow">Kredi &amp; Finans</p>
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c5 0 9-6 18-9"/><path d="M3 12c5 0 9 6 18 9"/><path d="M3 12h18" stroke-dasharray="3 3"/></svg></div>
         <h1 id="hero-title">Finansal İkiz</h1>
         <p class="lede">
@@ -180,8 +267,8 @@
       <div class="wrap">
         <h2 id="profil-title">Profiliniz</h2>
         <p class="bolum-not">
-          Bu sayfadaki her sayı sizin girdiğiniz veridir. Hiçbiri sunucuya
-          gitmez; cihazınızda saklamak isterseniz aşağıdan açıkça
+          Bu sayfadaki her sayı sizin girdiğiniz veridir. Bu tarayıcıda
+          saklamak isterseniz aşağıdan açıkça
           onaylamanız gerekir.
         </p>
 
@@ -600,8 +687,7 @@
             <li><strong>Enflasyon, getiri ve ücret artışı</strong> — kaynak yok: bunlar <em>sizin varsayımınız</em>. Araç hiçbir tahmin serisi taşımaz.</li>
           </ul>
           <p>
-            <strong>Gizlilik:</strong> hesabın tamamı tarayıcınızda çalışır.
-            Profil ancak siz onaylarsanız cihazınıza yazılır, onayı geri
+            <strong>Saklama:</strong> Profil ancak siz onaylarsanız bu tarayıcıya yazılır, onayı geri
             alınca silinir. Modelde ad, e-posta, TCKN, IBAN gibi alanlar
             <em>yoktur</em> — girilse bile şemaya alınmaz.
           </p>
@@ -623,7 +709,7 @@
         <div class="faq-list">
           <details><summary>Finansal İkiz nedir?</summary><p>Gelir, gider, varlık ve borçlarınızı tek bir modele dönüştürüp ay ay yürüten, 20 yıllık servet projeksiyonu üreten bir simülasyon. Kredi bittiğinde serbest kalan taksit, giderlerin enflasyonla büyümesi ve ücretin yılda bir sıçraması aynı modelde birlikte çalışır.</p></details>
           <details><summary>Neden Monte Carlo değil?</summary><p>Anlamlı bir olasılık bandı için getirinin ve enflasyonun dağılımını bilmek gerekir; Türkiye'de o seri yok. Üç senaryoda bandın sahibi model değil sizsiniz.</p></details>
-          <details><summary>Verilerim nereye gidiyor?</summary><p>Hiçbir yere. Saklama açıkça onay ister; onay geri alınınca veri silinir. Ad, e-posta, TCKN, IBAN modelde hiç yok.</p></details>
+          <details><summary>Profilim nerede saklanıyor?</summary><p>Yalnızca “Profilimi bu cihazda sakla” kutusunu işaretlerseniz bu tarayıcının yerel deposunda. İşaretlemezseniz sekme kapanınca silinir; işareti kaldırınca saklanan profil de silinir. Ad, e-posta, TCKN, IBAN gibi alanlar modelde yok.</p></details>
           <details><summary>Gelecek yılların vergisi nereden geliyor?</summary><p>Uydurulmuyor: tarifenin enflasyonla endekslendiği varsayılıyor. Tarife enflasyonun altında endekslenirse gerçek net buradakinden düşük çıkar.</p></details>
           <details><summary>Band neden bu kadar geniş?</summary><p>Çünkü 20 yıllık projeksiyon gerçekten o kadar belirsizdir. Dar bir band gösteren araç, sahip olmadığı bir kesinliği satıyordur.</p></details>
           <details><summary>“2/3 tutuyor” ne demek, olasılık mı?</summary><p>Hayır. Üç senaryonun ikisinde hedefin tuttuğu anlamına gelir — bir sayımdır, olasılık değil. Üç senaryo bir örneklem değil, sizin seçtiğiniz üç varsayım kümesi.</p></details>
@@ -685,7 +771,7 @@
   </main>
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

@@ -61,7 +61,7 @@
 650000
 750000</textarea><small>Her satır bir yıl; 1–30 yıl. Binlik ayırıcı kullanmayın. Giderler ve vergiler sonrası net tutarı yazın; ek yatırım için negatif değer girebilirsiniz.</small>
 <label for="terminal">Son yıl ek satış / hurda değeri (TL)</label><input id="terminal" type="number" min="0" max="1000000000000" step="any" value="200000" required><small>Son nakit akışına ayrıca eklenir. Akışa zaten dahil ettiyseniz 0 yazın.</small>
-<div class="investment-actions"><button type="submit" class="btn btn-primary">Analiz et →</button><button id="example" type="button" class="btn">Örneğe dön</button></div><p id="error" class="investment-error" role="alert" hidden></p><p class="investment-note">Girdiler bu sayfada işlenir; kaydedilmez veya paylaşılmaz.</p>
+<div class="investment-actions"><button type="submit" class="btn btn-primary">Analiz et →</button><button id="example" type="button" class="btn">Örneğe dön</button></div><p id="error" class="investment-error" role="alert" hidden></p>
 <p id="status" role="status" aria-live="polite" class="investment-note"></p></form>
 <div><section id="result" class="investment-panel" aria-labelledby="result-title" hidden><h2 id="result-title">Yatırımın finansal görünümü</h2>
 <div class="investment-summary"><span>Net bugünkü değer (NBD)</span><strong id="npv"></strong><p id="verdict"></p></div>
@@ -100,11 +100,10 @@
              alt="Koray Öner" loading="lazy" decoding="async">
         <div class="method-body">
           <h2 id="metod-title">Bu aracı kim yaptı?</h2>
-          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Ücretsizdir, reklam içermez ve bütün işlem tarayıcınızda yapılır — girdiğiniz veriler hiçbir yere gönderilmez. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
+          <p>Bu aracı <a href="../hakkimda/" rel="author"><strong>Koray Öner</strong></a> geliştirdi ve sürdürüyor. Kaynak kodu herkese açıktır; <a href="../">diğer araçlara</a> buradan ulaşabilirsiniz.</p>
           <p><a href="/yayin-ilkeleri/">Yayın ilkeleri, kapsam ve düzeltmeler</a></p>
           <dl class="method-meta">
             <div><dt>Geliştiren</dt><dd><a href="../hakkimda/" rel="author">Koray Öner</a></dd></div>
-            <div><dt>Çalışma yeri</dt><dd>Tarayıcınız — sunucuya veri gitmez</dd></div>
             <div><dt>Kaynak kod</dt><dd><a href="https://github.com/onerkoray/hesap-cekirdegi" rel="noopener">GitHub</a></dd></div>
           </dl>
         </div>
@@ -115,7 +114,7 @@
 
   </main><footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; sonuçlar girdiğiniz varsayımlara bağlıdır.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak. Bilgilendirme amaçlıdır; sonuçlar girdiğiniz varsayımlara bağlıdır.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

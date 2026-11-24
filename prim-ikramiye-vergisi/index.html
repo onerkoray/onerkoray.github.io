@@ -36,7 +36,7 @@
   <meta property="og:image" content="https://korayoner.dev/images/prim-ikramiye-vergisi-koray-oner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz prim ve ikramiye vergisi hesaplama aracı">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen prim ve ikramiye vergisi hesaplama aracı">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@korayonerdev">
   <meta name="twitter:creator" content="@korayonerdev">
@@ -62,10 +62,18 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "tr",
         "isAccessibleForFree": true,
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "author": { "@id": "https://korayoner.dev/#oner-koray" },
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
-        "description": "Prim, ikramiye, bonus ve tek seferlik ek ödemelerin net ne kadarının elinize geçtiğini marjinal olarak hesaplayan; SGK tavanı etkisini, zamanlamayı ve bölme kararını ölçen ücretsiz araç."
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "description": "Prim, ikramiye, bonus ve tek seferlik ek ödemelerin net ne kadarının elinize geçtiğini marjinal olarak hesaplayan; SGK tavanı etkisini, zamanlamayı ve bölme kararını ölçen araç."
       },
       {
         "@type": "WebSite",
@@ -74,7 +82,9 @@
         "name": "Koray Öner",
         "alternateName": "korayoner.dev",
         "inLanguage": "tr",
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
       },
       {
         "@type": "WebPage",
@@ -83,22 +93,43 @@
         "url": "https://korayoner.dev/prim-ikramiye-vergisi/",
         "name": "Prim ve İkramiye Vergisi: Ne Kadarı Elinize Geçer?",
         "inLanguage": "tr",
-        "isPartOf": { "@id": "https://korayoner.dev/#website" },
-        "breadcrumb": { "@id": "https://korayoner.dev/prim-ikramiye-vergisi/#breadcrumb" }
+        "isPartOf": {
+          "@id": "https://korayoner.dev/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://korayoner.dev/prim-ikramiye-vergisi/#breadcrumb"
+        }
       },
       {
         "@type": "BreadcrumbList",
         "@id": "https://korayoner.dev/prim-ikramiye-vergisi/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" },
-          { "@type": "ListItem", "position": 3, "name": "Prim ve İkramiye Vergisi", "item": "https://korayoner.dev/prim-ikramiye-vergisi/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Prim ve İkramiye Vergisi",
+            "item": "https://korayoner.dev/prim-ikramiye-vergisi/"
+          }
         ]
       },
       {
         "@type": "Person",
         "@id": "https://korayoner.dev/#oner-koray",
-        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
         "name": "Koray Öner",
         "url": "https://korayoner.dev/",
         "jobTitle": "Yazılım Geliştirici"
@@ -106,12 +137,46 @@
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "İkramiyemi Aralık ayında alsam daha az mı vergi öderim?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Gelir vergisi kümülatif matrah üzerinden hesaplandığı için yılın toplam vergisi yalnızca yılın toplam matrahına bağlıdır; ödemenin hangi aya denk geldiği bu toplamı değiştirmez. Aylık vergi artışları teleskopik olarak toplanır. Yaygın olan 'ikramiyeni yıl sonuna bırak' tavsiyesi gelir vergisi açısından yanlıştır." } },
-          { "@type": "Question", "name": "O zaman ay hiç mi fark etmiyor?", "acceptedAnswer": { "@type": "Answer", "text": "Maaşınız yıl boyunca sabitse fark etmez. Ama yıl içinde zam aldıysanız fark eder — gelir vergisi yüzünden değil, SGK tavanı yüzünden. Tavan aylıktır: ödemeyi taban ücretinizin zaten yüksek olduğu bir aya koyarsanız ödemenin daha büyük kısmı tavanın üstünde kalır ve ondan prim kesilmez." } },
-          { "@type": "Question", "name": "Primi tek seferde mi almalı, taksitle mi?", "acceptedAnswer": { "@type": "Answer", "text": "Net eline geçen açısından tek seferde almak daha avantajlıdır. Bölerek alınca her parça SGK tavanının altında kalır ve tamamından prim kesilir. 100.000 TL maaş ve 300.000 TL ödeme örneğinde ölçülen fark 11.249 TL'dir. Buna karşılık tavan üstü kazanç emeklilik matrahınıza da girmez." } },
-          { "@type": "Question", "name": "Ortalama vergi oranımla hesaplayabilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır ve hata tek yönlü de değildir. SGK tavanının altındaki bir maaşta ek ödemenin efektif kesintisi ortalamanızın üstündedir (artan oranlı tarife baskın); tavanın üstündeki bir maaşta ise altındadır, çünkü ek ödemeden hiç prim kesilmez. Doğru cevap marjinal hesaptır: ödemeli ve ödemesiz yılın farkı." } },
-          { "@type": "Question", "name": "Ödeme büyüdükçe elde kalan oran hep düşer mi?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Elde kalan oran önce artar, sonra azalır. İki kuvvet ters yönde çalışır: ödeme büyüdükçe daha fazlası SGK tavanının üstünde kalır (prim yükü oransal olarak düşer), ama üst vergi dilimlerine girilir (gelir vergisi yükü oransal olarak artar). Bu yüzden bir tepe noktası vardır." } },
-          { "@type": "Question", "name": "Verilerim bir yere gönderiliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bütün hesap tarayıcınızın içinde çalışır; girdiğiniz tutarlar hiçbir sunucuya gönderilmez ve kaydedilmez." } }
+          {
+            "@type": "Question",
+            "name": "İkramiyemi Aralık ayında alsam daha az mı vergi öderim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Gelir vergisi kümülatif matrah üzerinden hesaplandığı için yılın toplam vergisi yalnızca yılın toplam matrahına bağlıdır; ödemenin hangi aya denk geldiği bu toplamı değiştirmez. Aylık vergi artışları teleskopik olarak toplanır. Yaygın olan 'ikramiyeni yıl sonuna bırak' tavsiyesi gelir vergisi açısından yanlıştır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O zaman ay hiç mi fark etmiyor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Maaşınız yıl boyunca sabitse fark etmez. Ama yıl içinde zam aldıysanız fark eder — gelir vergisi yüzünden değil, SGK tavanı yüzünden. Tavan aylıktır: ödemeyi taban ücretinizin zaten yüksek olduğu bir aya koyarsanız ödemenin daha büyük kısmı tavanın üstünde kalır ve ondan prim kesilmez."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Primi tek seferde mi almalı, taksitle mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Net eline geçen açısından tek seferde almak daha avantajlıdır. Bölerek alınca her parça SGK tavanının altında kalır ve tamamından prim kesilir. 100.000 TL maaş ve 300.000 TL ödeme örneğinde ölçülen fark 11.249 TL'dir. Buna karşılık tavan üstü kazanç emeklilik matrahınıza da girmez."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ortalama vergi oranımla hesaplayabilir miyim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır ve hata tek yönlü de değildir. SGK tavanının altındaki bir maaşta ek ödemenin efektif kesintisi ortalamanızın üstündedir (artan oranlı tarife baskın); tavanın üstündeki bir maaşta ise altındadır, çünkü ek ödemeden hiç prim kesilmez. Doğru cevap marjinal hesaptır: ödemeli ve ödemesiz yılın farkı."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ödeme büyüdükçe elde kalan oran hep düşer mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Elde kalan oran önce artar, sonra azalır. İki kuvvet ters yönde çalışır: ödeme büyüdükçe daha fazlası SGK tavanının üstünde kalır (prim yükü oransal olarak düşer), ama üst vergi dilimlerine girilir (gelir vergisi yükü oransal olarak artar). Bu yüzden bir tepe noktası vardır."
+            }
+          }
         ]
       }
     ]
@@ -156,7 +221,7 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Ücretsiz · Reklamsız · Veriniz tarayıcıdan çıkmaz</p>
+        <p class="eyebrow">Maaş &amp; Tazminat</p>
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 6h14"/><path d="M8 21v-7"/><path d="M12 21v-11"/><path d="M16 21v-4"/></svg></div>
         <h1 id="hero-title">Prim ve İkramiye Vergisi: Ne Kadarı Elinize Geçer?</h1>
         <p class="lede">
@@ -382,7 +447,6 @@
           <details><summary>Tek seferde mi, taksitle mi?</summary><p>Net için tek seferde. Bölünce her parça tavanın altında kalır ve tamamından prim kesilir; ölçülen fark 300.000 TL'lik bir ödemede 11.249 TL.</p></details>
           <details><summary>Ortalama vergi oranımla hesaplayabilir miyim?</summary><p>Hayır, ve hatanın yönü sabit değil: tavanın altında marjinal oran ortalamanın üstünde, üstünde ise altındadır.</p></details>
           <details><summary>Ödeme büyüdükçe elde kalan oran hep düşer mi?</summary><p>Hayır, önce artar sonra azalır. SGK tavanı rahatlatır, tarife bastırır; arada bir tepe noktası vardır.</p></details>
-          <details><summary>Verilerim gönderiliyor mu?</summary><p>Hayır, hesap tamamen tarayıcınızda çalışır.</p></details>
         </div>
       </div>
     </section>
@@ -390,7 +454,7 @@
     <section class="related">
       <div class="wrap prose">
         <h2>İlgili araçlar</h2>
-        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <p>Koray Öner tarafından geliştirilen diğer araçlara göz atın:</p>
         <ul>
           <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — 12 aylık bordro dökümü ve dilim geçişleri.</li>
           <li><a href="../zam-hesaplama/">Zam Hesaplama</a> — brüt zam nete ne kadar yansır?</li>
@@ -440,7 +504,7 @@
   </main>
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı tutar için bordronuza ve mali müşavirinize danışın.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı tutar için bordronuza ve mali müşavirinize danışın.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

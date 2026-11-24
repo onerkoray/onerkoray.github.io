@@ -7,7 +7,7 @@
   <script src="../tema-erken.js?v=a2f32851"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KDV Hesaplama — Dahil ve Hariç Tutar | Koray Öner</title>
-  <meta name="description" content="KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında, ücretsiz ve reklamsız KDV hesaplama.">
+  <meta name="description" content="KDV hesaplama aracı: KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. %1, %10 ve %20 oranlarıyla anında KDV hesaplama.">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
@@ -30,18 +30,18 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Koray Öner">
   <meta property="og:title" content="KDV Hesaplama — KDV Dahil ve Hariç Tutar Aracı">
-  <meta property="og:description" content="KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın. Anında, ücretsiz ve reklamsız.">
+  <meta property="og:description" content="KDV hariç tutara KDV ekleyin veya KDV dahil tutardan KDV'yi ayırın.">
   <meta property="og:url" content="https://korayoner.dev/kdv-hesaplama/">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:image" content="https://korayoner.dev/images/kdv-hesaplama-koray-oner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz araç">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen araç">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@korayonerdev">
   <meta name="twitter:creator" content="@korayonerdev">
   <meta name="twitter:title" content="KDV Hesaplama Aracı">
-  <meta name="twitter:description" content="KDV dahil/hariç tutar hesaplama — ücretsiz ve hızlı.">
+  <meta name="twitter:description" content="KDV dahil/hariç tutar hesaplama.">
   <meta name="twitter:image" content="https://korayoner.dev/images/kdv-hesaplama-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=2db5cabe">
@@ -62,16 +62,28 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "tr",
         "isAccessibleForFree": true,
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "description": "Ücretsiz KDV hesaplama aracı: KDV ekleme ve KDV dahil tutardan KDV ayırma.",
-        "author": { "@id": "https://korayoner.dev/#oner-koray" },
-        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "description": "KDV hesaplama aracı: KDV ekleme ve KDV dahil tutardan KDV ayırma.",
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "creator": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
       },
       {
         "@type": "Person",
         "@id": "https://korayoner.dev/#oner-koray",
-        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
         "name": "Koray Öner",
         "alternateName": "Koray Oner",
         "image": "https://korayoner.dev/images/koray-oner-portre.jpg",
@@ -100,9 +112,24 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" },
-          { "@type": "ListItem", "position": 3, "name": "KDV Hesaplama", "item": "https://korayoner.dev/kdv-hesaplama/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "KDV Hesaplama",
+            "item": "https://korayoner.dev/kdv-hesaplama/"
+          }
         ]
       },
       {
@@ -110,18 +137,61 @@
         "name": "KDV nasıl hesaplanır?",
         "description": "KDV hariç bir tutara KDV eklemenin adımları.",
         "step": [
-          { "@type": "HowToStep", "position": 1, "name": "Matrahı girin", "text": "KDV hariç tutarı (matrah) yazın, örneğin 1.000 TL." },
-          { "@type": "HowToStep", "position": 2, "name": "KDV oranını seçin", "text": "Ürün veya hizmete uygulanan oranı seçin: %1, %10 veya %20." },
-          { "@type": "HowToStep", "position": 3, "name": "Hesaplayın", "text": "Matrahı orana göre çarpın: 1.000 × 20 ÷ 100 = 200 TL KDV; KDV dahil toplam 1.200 TL." }
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Matrahı girin",
+            "text": "KDV hariç tutarı (matrah) yazın, örneğin 1.000 TL."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "KDV oranını seçin",
+            "text": "Ürün veya hizmete uygulanan oranı seçin: %1, %10 veya %20."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Hesaplayın",
+            "text": "Matrahı orana göre çarpın: 1.000 × 20 ÷ 100 = 200 TL KDV; KDV dahil toplam 1.200 TL."
+          }
         ]
       },
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "KDV nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "KDV hariç tutarı KDV oranıyla çarpıp 100'e bölersiniz. 1.000 TL matraha %20 KDV: 1.000 × 20 ÷ 100 = 200 TL." } },
-          { "@type": "Question", "name": "KDV dahil tutardan KDV nasıl ayrılır?", "acceptedAnswer": { "@type": "Answer", "text": "KDV dahil tutarı (1 + oran/100) değerine bölerek matrahı bulur, farkı KDV olarak alırsınız. 1.200 ÷ 1,20 = 1.000 TL matrah, 200 TL KDV." } },
-          { "@type": "Question", "name": "Türkiye'de KDV oranları nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Genel KDV oranı %20'dir. Bazı ürün ve hizmetlerde %10 ve %1 gibi indirimli oranlar uygulanır." } },
-          { "@type": "Question", "name": "KDV dahil ne demek?", "acceptedAnswer": { "@type": "Answer", "text": "Fiyatın içinde KDV'nin de bulunduğu anlamına gelir; etiket fiyatı ödenecek son tutardır." } }
+          {
+            "@type": "Question",
+            "name": "KDV nasıl hesaplanır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "KDV hariç tutarı KDV oranıyla çarpıp 100'e bölersiniz. 1.000 TL matraha %20 KDV: 1.000 × 20 ÷ 100 = 200 TL."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "KDV dahil tutardan KDV nasıl ayrılır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "KDV dahil tutarı (1 + oran/100) değerine bölerek matrahı bulur, farkı KDV olarak alırsınız. 1.200 ÷ 1,20 = 1.000 TL matrah, 200 TL KDV."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Türkiye'de KDV oranları nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Genel KDV oranı %20'dir. Bazı ürün ve hizmetlerde %10 ve %1 gibi indirimli oranlar uygulanır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "KDV dahil ne demek?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Fiyatın içinde KDV'nin de bulunduğu anlamına gelir; etiket fiyatı ödenecek son tutardır."
+            }
+          }
         ]
       }
     ]
@@ -166,13 +236,12 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Ücretsiz · Reklamsız · Anında sonuç</p>
+        <p class="eyebrow">Vergi &amp; Belge</p>
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="m15 9-6 6"/><path d="M9.4 9.4h.01M14.6 14.6h.01"/></svg></div>
         <h1 id="hero-title">KDV Hesaplama</h1>
         <p class="lede">
           KDV hariç tutara KDV ekleyin ya da KDV dahil tutardan KDV’yi ayırın. %1, %10 ve %20
-          oranlarıyla matrah, KDV tutarı ve toplam anında hesaplanır. Kayıt yok, reklam yok — her şey
-          tarayıcınızda çalışır.
+          oranlarıyla matrah, KDV tutarı ve toplam anında hesaplanır.
         </p>
       </div>
     </section>
@@ -303,8 +372,6 @@
           <details><summary>KDV hariç ne demek?</summary><p>Fiyata henüz KDV eklenmediği anlamına gelir; ödemede üzerine ilgili oranda KDV eklenir.</p></details>
           <details><summary>%20 KDV nasıl eklenir?</summary><p>Tutarı 1,20 ile çarparsınız. 500 TL × 1,20 = 600 TL, yani 100 TL KDV eklenmiş olur.</p></details>
           <details><summary>Matrah nedir?</summary><p>Matrah, KDV’nin üzerinden hesaplandığı KDV hariç tutardır.</p></details>
-          <details><summary>Bu araç ücretli mi?</summary><p>Hayır, tamamen ücretsizdir; kayıt veya üyelik gerektirmez, reklam içermez.</p></details>
-          <details><summary>Verilerim saklanıyor mu?</summary><p>Hayır. Bütün hesaplamalar cihazınızda yapılır; girdiğiniz tutarlar hiçbir yere gönderilmez.</p></details>
           <details><summary>Farklı bir oran girebilir miyim?</summary><p>Evet. Hazır oranların yanındaki “Diğer” alanına dilediğiniz oranı yazabilirsiniz.</p></details>
         </div>
       </div>
@@ -313,7 +380,7 @@
     <section class="related">
       <div class="wrap prose">
         <h2>İlgili araçlar</h2>
-        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlar:</p>
+        <p>Koray Öner tarafından geliştirilen diğer araçlar:</p>
         <ul>
           <li><a href="../kira-geliri-vergisi-hesaplama/">Kira Geliri Vergisi Hesaplama 2026</a> — mesken istisnası, götürü ve gerçek gider karşılaştırması.</li>
           <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama 2026</a> — 12 aylık bordro dökümü ve netten brüte.</li>
@@ -364,7 +431,7 @@
   </main>
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

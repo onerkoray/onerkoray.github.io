@@ -318,6 +318,25 @@ def _imzalar(h):
     return tablo
 
 
+# BEYAN EDILMIS TARIH-NOTR DUZELTME. Elekler ayni degisikligin kac sayfada
+# tekrarlandigina bakar; sayfadan sayfaya farkli cumlelerle yapilan bir site
+# geneli duzeltmeyi taniyamaz. 24 Kasim 2026'da araç sayfalarindan
+# "ucretsiz / verileriniz cihazinizdan cikmaz" vaatleri kaldirildi: her
+# sayfada baska bir cumle, hicbir hesap ya da bilgi degismedi; elek 60 aracin
+# kartini bugune kaydirirdi. Commit mesajinda "Tarih-nötr: <gerekce>" satiri
+# bu commit'i tarih kaydirmayan bir duzeltme olarak beyan eder. Gerekce zorunlu
+# (en az 20 karakter). Yalniz icerigi degistirmeyen duzeltmelerde kullanilir;
+# yeni bilgi, rakam ya da hesap tasiyan commit'te kullanilmaz (AGENTS.md).
+TARIH_NOTR = re.compile(r"^Tarih-nötr:\s*\S.{19,}$", re.M)
+_NOTR = {}
+
+
+def tarih_notr(h):
+    if h not in _NOTR:
+        _NOTR[h] = bool(TARIH_NOTR.search(git("log", "-1", "--format=%B", h) or ""))
+    return _NOTR[h]
+
+
 def ozlu_degisim(h, yol):
     """Commit bu sayfaya GERCEK bir degisiklik getirdi mi?
 
@@ -343,6 +362,8 @@ def ozlu_degisim(h, yol):
        kalinca sayfalarin yeniden taranmasi icin hicbir sinyal kalmadi.
        Sekle bakan kural ayni commit'in icinde ikisini ayirabiliyor.
     """
+    if tarih_notr(h):
+        return False
     tablo = _imzalar(h)
     # Cagiranlardan biri dosya yolu ("x/index.html"), digeri klasor ("x")
     # veriyor; ikisi de karsilanmali.

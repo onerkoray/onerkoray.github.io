@@ -36,12 +36,12 @@
   <meta property="og:image" content="https://korayoner.dev/images/vadeli-mevduat-hesaplama-koray-oner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz vadeli mevduat faizi hesaplama aracı">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen vadeli mevduat faizi hesaplama aracı">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@korayonerdev">
   <meta name="twitter:creator" content="@korayonerdev">
   <meta name="twitter:title" content="Vadeli Mevduat Faizi Hesaplama 2026">
-  <meta name="twitter:description" content="Brüt faiz, stopaj ve net getiri — ücretsiz mevduat hesaplama.">
+  <meta name="twitter:description" content="Brüt faiz, stopaj ve net getiri.">
   <meta name="twitter:image" content="https://korayoner.dev/images/vadeli-mevduat-hesaplama-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=2db5cabe">
@@ -62,16 +62,28 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "tr",
         "isAccessibleForFree": true,
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "description": "Anapara, yıllık faiz oranı ve vadeye göre brüt faiz, stopaj ve net getiri hesaplayan ücretsiz araç.",
-        "author": { "@id": "https://korayoner.dev/#oner-koray" },
-        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "description": "Anapara, yıllık faiz oranı ve vadeye göre brüt faiz, stopaj ve net getiri hesaplayan araç.",
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "creator": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
       },
       {
         "@type": "Person",
         "@id": "https://korayoner.dev/#oner-koray",
-        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
         "name": "Koray Öner",
         "alternateName": "Koray Oner",
         "image": "https://korayoner.dev/images/koray-oner-portre.jpg",
@@ -100,9 +112,24 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" },
-          { "@type": "ListItem", "position": 3, "name": "Vadeli Mevduat Faizi Hesaplama", "item": "https://korayoner.dev/vadeli-mevduat-hesaplama/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Vadeli Mevduat Faizi Hesaplama",
+            "item": "https://korayoner.dev/vadeli-mevduat-hesaplama/"
+          }
         ]
       },
       {
@@ -110,19 +137,69 @@
         "name": "Vadeli mevduat faizi nasıl hesaplanır?",
         "description": "Net mevduat getirisini üç adımda hesaplama.",
         "step": [
-          { "@type": "HowToStep", "position": 1, "name": "Anaparayı girin", "text": "Yatıracağınız tutarı yazın." },
-          { "@type": "HowToStep", "position": 2, "name": "Faiz ve vadeyi girin", "text": "Bankanın yıllık brüt faiz oranını ve vadeyi (gün) girin." },
-          { "@type": "HowToStep", "position": 3, "name": "Stopajı seçin", "text": "Vadeye uygun stopaj oranını seçin; araç brüt faizi, stopajı ve net getiriyi hesaplar." }
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Anaparayı girin",
+            "text": "Yatıracağınız tutarı yazın."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Faiz ve vadeyi girin",
+            "text": "Bankanın yıllık brüt faiz oranını ve vadeyi (gün) girin."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Stopajı seçin",
+            "text": "Vadeye uygun stopaj oranını seçin; araç brüt faizi, stopajı ve net getiriyi hesaplar."
+          }
         ]
       },
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "Vadeli mevduat faizi nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "Brüt faiz = anapara × yıllık faiz oranı × (vade günü ÷ 365). Bu tutardan stopaj düşülür, kalan net faiz anaparaya eklenir. Örneğin 100.000 TL, yıllık %45 faiz, 32 gün: brüt faiz ≈ 3.945 TL." } },
-          { "@type": "Question", "name": "Mevduat stopajı ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "TL vadeli mevduatta stopaj, vadeye göre değişir ve Cumhurbaşkanı kararıyla belirlenir: genellikle 6 aya kadar daha yüksek, 1 yıl ve üzeri vadelerde daha düşüktür. Güncel oranı bankanızdan teyit edin." } },
-          { "@type": "Question", "name": "Faiz bileşik mi hesaplanıyor?", "acceptedAnswer": { "@type": "Answer", "text": "Tek vade için faiz basit yöntemle (gün esaslı) hesaplanır. Vade sonunda faizi anaparaya ekleyip yeniden yatırırsanız bileşik getiri elde edersiniz." } },
-          { "@type": "Question", "name": "Yıllık faiz oranı ile gerçek getiri aynı mı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bankalar yıllık faiz açıklar ama getiri, vade gününüz kadar ve stopaj düşülerek gerçekleşir. Kısa vadede net getiri, yıllık orandan belirgin biçimde düşüktür." } },
-          { "@type": "Question", "name": "Bu hesaplama kesin mi?", "acceptedAnswer": { "@type": "Answer", "text": "Bilgilendirme amaçlıdır. Bankaların gün sayımı, stopaj uygulaması ve promosyon oranları nihai tutarı değiştirebilir." } }
+          {
+            "@type": "Question",
+            "name": "Vadeli mevduat faizi nasıl hesaplanır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Brüt faiz = anapara × yıllık faiz oranı × (vade günü ÷ 365). Bu tutardan stopaj düşülür, kalan net faiz anaparaya eklenir. Örneğin 100.000 TL, yıllık %45 faiz, 32 gün: brüt faiz ≈ 3.945 TL."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Mevduat stopajı ne kadar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "TL vadeli mevduatta stopaj, vadeye göre değişir ve Cumhurbaşkanı kararıyla belirlenir: genellikle 6 aya kadar daha yüksek, 1 yıl ve üzeri vadelerde daha düşüktür. Güncel oranı bankanızdan teyit edin."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Faiz bileşik mi hesaplanıyor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tek vade için faiz basit yöntemle (gün esaslı) hesaplanır. Vade sonunda faizi anaparaya ekleyip yeniden yatırırsanız bileşik getiri elde edersiniz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Yıllık faiz oranı ile gerçek getiri aynı mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Bankalar yıllık faiz açıklar ama getiri, vade gününüz kadar ve stopaj düşülerek gerçekleşir. Kısa vadede net getiri, yıllık orandan belirgin biçimde düşüktür."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bu hesaplama kesin mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bilgilendirme amaçlıdır. Bankaların gün sayımı, stopaj uygulaması ve promosyon oranları nihai tutarı değiştirebilir."
+            }
+          }
         ]
       }
     ]
@@ -167,13 +244,12 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Ücretsiz · Reklamsız · Anında sonuç</p>
+        <p class="eyebrow">Kredi &amp; Finans</p>
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
         <h1 id="hero-title">Vadeli Mevduat Faizi Hesaplama 2026</h1>
         <p class="lede">
           Anaparanızı, yıllık faiz oranını ve vadeyi girin; <strong>brüt faizi</strong>, kesilen
           <strong>stopajı</strong> ve elinize geçecek <strong>net getiriyi</strong> anında görün.
-          Gün esaslı hesaplama tamamen tarayıcınızda yapılır.
         </p>
       </div>
     </section>
@@ -275,7 +351,6 @@
           <details><summary>Faiz bileşik mi hesaplanır?</summary><p>Tek vade için basit (gün esaslı) hesaplanır. Vade sonunda faizi anaparaya ekleyip yenilerseniz bileşik getiri olur.</p></details>
           <details><summary>Kısa vadede neden az kazanıyorum?</summary><p>Yıllık faiz yalnızca vade günü kadar işler. 32 günlük mevduat, yıllık oranın yaklaşık 32/365'i kadar getiri sağlar.</p></details>
           <details><summary>Enflasyonu yener mi?</summary><p>Bu araç nominal getiriyi gösterir. Reel getiri = (1 + net dönem getiri oranı) ÷ (1 + aynı dönemin enflasyon oranı) − 1. Oranları ondalık olarak kullanın; yıllık enflasyonu kısa vade getirisiyle doğrudan karşılaştırmayın. <a href="../makaleler/mevduat-faizi-enflasyon-reel-getiri/">Mevduatın reel getirisini 32 günlük örnekle inceleyin.</a></p></details>
-          <details><summary>Verilerim kaydediliyor mu?</summary><p>Hayır. Tüm hesaplama tarayıcınızda yapılır; girdiğiniz tutarlar hiçbir yere gönderilmez.</p></details>
         </div>
       </div>
     </section>
@@ -283,7 +358,7 @@
     <section class="related">
       <div class="wrap prose">
         <h2>İlgili araçlar</h2>
-        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <p>Koray Öner tarafından geliştirilen diğer araçlara göz atın:</p>
         <ul>
           <li><a href="../altin-mi-dolar-mi-mevduat-mi/">Altın mı, dolar mı, mevduat mı?</a> — 2005'ten bu yana aynı tutarın her birinde, enflasyondan sonra ne olduğu.</li>
 <li><a href="../faiz-donusturucu/">Faiz Dönüştürücü</a> — mevduat netini kredi faizi ve enflasyonla aynı ölçüde karşılaştırın.</li>
@@ -335,7 +410,7 @@
   </main>
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı teklif değildir.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı teklif değildir.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

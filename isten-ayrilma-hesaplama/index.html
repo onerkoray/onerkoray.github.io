@@ -64,18 +64,34 @@
         "isAccessibleForFree": true,
         "dateModified": "2026-11-06",
         "softwareVersion": "1.0.0",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "description": "Fesih türüne göre kıdem tazminatı, ihbar tazminatı, kullanılmayan yıllık izin ücreti, son ay ücreti ve işsizlik ödeneğini birlikte hesaplayan, ödemelerin takvimini çıkaran ücretsiz araç.",
-        "isBasedOn": { "@id": "https://korayoner.dev/bordro/#motor" },
-        "author": { "@id": "https://korayoner.dev/#oner-koray" },
-        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
-        "maintainer": { "@id": "https://korayoner.dev/#oner-koray" },
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "description": "Fesih türüne göre kıdem tazminatı, ihbar tazminatı, kullanılmayan yıllık izin ücreti, son ay ücreti ve işsizlik ödeneğini birlikte hesaplayan, ödemelerin takvimini çıkaran araç.",
+        "isBasedOn": {
+          "@id": "https://korayoner.dev/bordro/#motor"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "creator": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "maintainer": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
       },
       {
         "@type": "Person",
         "@id": "https://korayoner.dev/#oner-koray",
-        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
         "name": "Koray Öner",
         "alternateName": "Koray Oner",
         "image": "https://korayoner.dev/images/koray-oner-portre.jpg",
@@ -104,9 +120,24 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" },
-          { "@type": "ListItem", "position": 3, "name": "İşten Ayrılma Hesaplama", "item": "https://korayoner.dev/isten-ayrilma-hesaplama/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "İşten Ayrılma Hesaplama",
+            "item": "https://korayoner.dev/isten-ayrilma-hesaplama/"
+          }
         ]
       },
       {
@@ -114,24 +145,105 @@
         "name": "İşten ayrılırken hangi ödemeler alınır?",
         "description": "İş sözleşmesi sona erdiğinde doğan hakların fesih türüne göre belirlenmesi ve hesaplanması.",
         "step": [
-          { "@type": "HowToStep", "position": 1, "name": "Fesih türünü belirleyin", "text": "Kıdem, ihbar ve işsizlik ödeneğinin doğup doğmadığı tamamen sözleşmenin nasıl sona erdiğine bağlıdır. İstifada üçü de doğmazken işveren feshinde üçü de doğar." },
-          { "@type": "HowToStep", "position": 2, "name": "Giydirilmiş brüt ücreti bulun", "text": "Kıdem ve ihbar tazminatı çıplak ücret üzerinden değil, yol, yemek, ikramiye gibi süreklilik arz eden ek ödemelerin aylığa düşen tutarı eklenmiş giydirilmiş brüt ücret üzerinden hesaplanır." },
-          { "@type": "HowToStep", "position": 3, "name": "Kıdem tazminatını hesaplayın", "text": "Her tam yıl için bir aylık giydirilmiş brüt ücret ödenir; tutar fesih tarihindeki kıdem tavanıyla sınırlıdır. Kıdem tazminatından gelir vergisi kesilmez, yalnızca binde 7,59 damga vergisi kesilir." },
-          { "@type": "HowToStep", "position": 4, "name": "İhbar ve izin alacaklarını ekleyin", "text": "İhbar tazminatı kıdeme göre 2 ila 8 haftalık ücrettir. Kullanılmayan yıllık izin ücreti çıplak ücret üzerinden hesaplanır. Her ikisinden de gelir vergisi ve damga vergisi kesilir." },
-          { "@type": "HowToStep", "position": 5, "name": "İşsizlik ödeneğini ve takvimi çıkarın", "text": "Son 4 ayın prime esas kazanç ortalamasının %40'ı ödenir; tutar brüt asgari ücretin %80'ini aşamaz. Süre, son üç yıldaki prim gün sayısına göre 180, 240 veya 300 gündür. Fesihten itibaren 30 gün içinde İŞKUR'a başvurulmalıdır." }
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Fesih türünü belirleyin",
+            "text": "Kıdem, ihbar ve işsizlik ödeneğinin doğup doğmadığı tamamen sözleşmenin nasıl sona erdiğine bağlıdır. İstifada üçü de doğmazken işveren feshinde üçü de doğar."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Giydirilmiş brüt ücreti bulun",
+            "text": "Kıdem ve ihbar tazminatı çıplak ücret üzerinden değil, yol, yemek, ikramiye gibi süreklilik arz eden ek ödemelerin aylığa düşen tutarı eklenmiş giydirilmiş brüt ücret üzerinden hesaplanır."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Kıdem tazminatını hesaplayın",
+            "text": "Her tam yıl için bir aylık giydirilmiş brüt ücret ödenir; tutar fesih tarihindeki kıdem tavanıyla sınırlıdır. Kıdem tazminatından gelir vergisi kesilmez, yalnızca binde 7,59 damga vergisi kesilir."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "İhbar ve izin alacaklarını ekleyin",
+            "text": "İhbar tazminatı kıdeme göre 2 ila 8 haftalık ücrettir. Kullanılmayan yıllık izin ücreti çıplak ücret üzerinden hesaplanır. Her ikisinden de gelir vergisi ve damga vergisi kesilir."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 5,
+            "name": "İşsizlik ödeneğini ve takvimi çıkarın",
+            "text": "Son 4 ayın prime esas kazanç ortalamasının %40'ı ödenir; tutar brüt asgari ücretin %80'ini aşamaz. Süre, son üç yıldaki prim gün sayısına göre 180, 240 veya 300 gündür. Fesihten itibaren 30 gün içinde İŞKUR'a başvurulmalıdır."
+          }
         ]
       },
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "İstifa edersem kıdem tazminatı alabilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Kural olarak hayır. Haklı bir nedene dayanmayan istifada kıdem ve ihbar tazminatı doğmaz, işsizlik ödeneği de bağlanmaz. Ücretin ödenmemesi, sigortasız çalıştırılma veya mobbing gibi hâllerde İş Kanunu m.24 uyarınca haklı nedenle fesih söz konusu olur ve kıdem tazminatı ile işsizlik ödeneği hakkı doğar." } },
-          { "@type": "Question", "name": "Kıdem tazminatından hangi vergiler kesilir?", "acceptedAnswer": { "@type": "Answer", "text": "Kıdem tazminatı gelir vergisinden istisnadır; yalnızca binde 7,59 damga vergisi kesilir. İhbar tazminatı ise ücret sayıldığı için hem gelir vergisine hem damga vergisine tabidir; bu yüzden aynı brüt tutarda ihbarın neti kıdemin netinden belirgin biçimde düşüktür." } },
-          { "@type": "Question", "name": "2026 kıdem tazminatı tavanı ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "1 Ocak - 30 Haziran 2026 döneminde 64.948,77 TL, 1 Temmuz - 31 Aralık 2026 döneminde 73.729,87 TL'dir. Tavan, fesih tarihinin içinde bulunduğu altı aylık döneme göre belirlenir ve her tam kıdem yılı için ödenecek tutarı sınırlar." } },
-          { "@type": "Question", "name": "İşsizlik maaşı ne zaman yatmaya başlar?", "acceptedAnswer": { "@type": "Answer", "text": "Fesihten itibaren 30 gün içinde İŞKUR'a başvurmanız gerekir. Başvuru, izleyen ayın sonuna kadar sonuçlandırılır ve ödemeler her ayın 5'inde yapılır. Uygulamada ilk ödeme genellikle başvuru ayını izleyen ayın 5'inde yatar. 30 günlük süre kaçırılırsa gecikilen süre toplam ödenek süresinden düşülür." } },
-          { "@type": "Question", "name": "Giydirilmiş brüt ücret nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Çıplak brüt ücrete, süreklilik arz eden yol, yemek, yakacak yardımı, ikramiye ve düzenli primler gibi ek menfaatlerin aylığa düşen tutarının eklenmesiyle bulunan ücrettir. Kıdem ve ihbar tazminatı bu ücret üzerinden hesaplanır; kullanılmayan yıllık izin ücreti ise çıplak ücret üzerinden hesaplanır." } },
-          { "@type": "Question", "name": "İhbar süresi çalışırsam ihbar tazminatı alır mıyım?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. İhbar tazminatı, ihbar süresine uyulmadan yapılan fesihlerde bu sürenin ücretinin peşin ödenmesidir. İhbar süresi boyunca çalışmaya devam ettiyseniz süre fiilen kullanılmış olur ve ayrıca tazminat ödenmez." } },
-          { "@type": "Question", "name": "Kullanılmayan yıllık izin ücretinden SGK primi kesilir mi?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. İş sözleşmesinin sona ermesi üzerine ödenen kullanılmayan yıllık izin ücreti prime esas kazanca dahil edilmez; SGK primi kesilmez. Ancak ücret sayıldığı için gelir vergisi ve damga vergisi kesintisi yapılır." } },
-          { "@type": "Question", "name": "Emekli olursam işsizlik maaşı alabilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. İşsizlik ödeneği yalnızca kendi istek ve kusuru dışında işsiz kalanlara bağlanır. Emeklilik, askerlik ve evlilik nedeniyle ayrılmada kıdem tazminatı doğar ama işsizlik ödeneği bağlanmaz." } }
+          {
+            "@type": "Question",
+            "name": "İstifa edersem kıdem tazminatı alabilir miyim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kural olarak hayır. Haklı bir nedene dayanmayan istifada kıdem ve ihbar tazminatı doğmaz, işsizlik ödeneği de bağlanmaz. Ücretin ödenmemesi, sigortasız çalıştırılma veya mobbing gibi hâllerde İş Kanunu m.24 uyarınca haklı nedenle fesih söz konusu olur ve kıdem tazminatı ile işsizlik ödeneği hakkı doğar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kıdem tazminatından hangi vergiler kesilir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kıdem tazminatı gelir vergisinden istisnadır; yalnızca binde 7,59 damga vergisi kesilir. İhbar tazminatı ise ücret sayıldığı için hem gelir vergisine hem damga vergisine tabidir; bu yüzden aynı brüt tutarda ihbarın neti kıdemin netinden belirgin biçimde düşüktür."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "2026 kıdem tazminatı tavanı ne kadar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "1 Ocak - 30 Haziran 2026 döneminde 64.948,77 TL, 1 Temmuz - 31 Aralık 2026 döneminde 73.729,87 TL'dir. Tavan, fesih tarihinin içinde bulunduğu altı aylık döneme göre belirlenir ve her tam kıdem yılı için ödenecek tutarı sınırlar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "İşsizlik maaşı ne zaman yatmaya başlar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Fesihten itibaren 30 gün içinde İŞKUR'a başvurmanız gerekir. Başvuru, izleyen ayın sonuna kadar sonuçlandırılır ve ödemeler her ayın 5'inde yapılır. Uygulamada ilk ödeme genellikle başvuru ayını izleyen ayın 5'inde yatar. 30 günlük süre kaçırılırsa gecikilen süre toplam ödenek süresinden düşülür."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Giydirilmiş brüt ücret nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Çıplak brüt ücrete, süreklilik arz eden yol, yemek, yakacak yardımı, ikramiye ve düzenli primler gibi ek menfaatlerin aylığa düşen tutarının eklenmesiyle bulunan ücrettir. Kıdem ve ihbar tazminatı bu ücret üzerinden hesaplanır; kullanılmayan yıllık izin ücreti ise çıplak ücret üzerinden hesaplanır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "İhbar süresi çalışırsam ihbar tazminatı alır mıyım?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. İhbar tazminatı, ihbar süresine uyulmadan yapılan fesihlerde bu sürenin ücretinin peşin ödenmesidir. İhbar süresi boyunca çalışmaya devam ettiyseniz süre fiilen kullanılmış olur ve ayrıca tazminat ödenmez."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kullanılmayan yıllık izin ücretinden SGK primi kesilir mi?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. İş sözleşmesinin sona ermesi üzerine ödenen kullanılmayan yıllık izin ücreti prime esas kazanca dahil edilmez; SGK primi kesilmez. Ancak ücret sayıldığı için gelir vergisi ve damga vergisi kesintisi yapılır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Emekli olursam işsizlik maaşı alabilir miyim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. İşsizlik ödeneği yalnızca kendi istek ve kusuru dışında işsiz kalanlara bağlanır. Emeklilik, askerlik ve evlilik nedeniyle ayrılmada kıdem tazminatı doğar ama işsizlik ödeneği bağlanmaz."
+            }
+          }
         ]
       }
     ]
@@ -176,7 +288,7 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">2026 parametreleriyle · Ücretsiz · Reklamsız</p>
+        <p class="eyebrow">2026 parametreleriyle</p>
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div>
         <h1 id="hero-title">İşten Ayrılma Paketi Hesaplama</h1>
         <p class="lede">
@@ -428,7 +540,6 @@
           <details><summary>İhbar süresi çalışırsam ihbar tazminatı alır mıyım?</summary><p>Hayır. İhbar tazminatı, ihbar süresine uyulmadan yapılan fesihlerde bu sürenin ücretinin peşin ödenmesidir. Süreyi çalışarak geçirdiyseniz süre fiilen kullanılmış olur.</p></details>
           <details><summary>Yıllık izin ücretinden SGK primi kesilir mi?</summary><p>Hayır. Sözleşmenin sona ermesi üzerine ödenen kullanılmayan yıllık izin ücreti prime esas kazanca dahil edilmez. Ancak gelir vergisi ve damga vergisi kesilir.</p></details>
           <details><summary>Emekli olursam işsizlik maaşı alabilir miyim?</summary><p>Hayır. İşsizlik ödeneği yalnızca kendi istek ve kusuru dışında işsiz kalanlara bağlanır. Emeklilik, askerlik ve evlilik nedeniyle ayrılmada kıdem doğar ama ödenek bağlanmaz.</p></details>
-          <details><summary>Bu araç ücretli mi, verilerim saklanıyor mu?</summary><p>Tamamen ücretsizdir, reklam içermez. Bütün hesaplamalar cihazınızda yapılır; girdiğiniz tutarlar ve tarihler hiçbir yere gönderilmez.</p></details>
         </div>
       </div>
     </section>
@@ -447,7 +558,7 @@
           <li><a href="../maas-hesaplama/">Brüt Net Maaş Hesaplama</a> — 2020-2026 arası her bordro yılı için 12 aylık döküm.</li>
           <li><a href="../bordro/">Bordro Motoru</a> — bu hesabın açık çekirdeği: parametreler, metodoloji ve değişiklik günlüğü.</li>
         </ul>
-        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlar:</p>
+        <p>Koray Öner tarafından geliştirilen diğer araçlar:</p>
         <ul>
           <li><a href="../makaleler/kademeli-emeklilik-son-durum/">Kademeli emeklilik son durum</a> — güncel yaş ve prim şartları (makale).</li>
           <li><a href="../serbest-meslek-makbuzu-hesaplama/">Serbest Meslek Makbuzu Hesaplama</a> — stopaj ve KDV dahil brüt/net.</li>
@@ -495,7 +606,7 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

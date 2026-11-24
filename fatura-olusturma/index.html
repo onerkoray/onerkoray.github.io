@@ -7,7 +7,7 @@
   <script src="../tema-erken.js?v=a2f32851"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fatura ve Teklif Oluşturma Merkezi | Koray Öner</title>
-  <meta name="description" content="Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti. Üyeliksiz; veriler tarayıcınızda kalır.">
+  <meta name="description" content="Teklif hazırlayın, tek tuşla faturaya çevirin. KDV, iskonto, tevkifat, müşteri defteri, belge arşivi ve tahsilat özeti.">
   <meta name="author" content="Koray Öner">
   <link rel="author" href="https://github.com/onerkoray">
   <meta name="theme-color" content="#0e7c66" media="(prefers-color-scheme: light)">
@@ -30,7 +30,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Koray Öner">
   <meta property="og:title" content="Fatura ve Teklif Merkezi">
-  <meta property="og:description" content="Teklif ver, faturaya çevir, tahsilatı takip et. Belge arşivi ve özet tarayıcında; üyelik yok, veri dışarı çıkmıyor.">
+  <meta property="og:description" content="Teklif ver, faturaya çevir, tahsilatı takip et. Belge arşivi ve yıllık özetle.">
   <meta property="og:url" content="https://korayoner.dev/fatura-olusturma/">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:image" content="https://korayoner.dev/images/fatura-olusturma-koray-oner.png">
@@ -61,18 +61,41 @@
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
         "inLanguage": "tr",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "author": { "@id": "https://korayoner.dev/#oner-koray" },
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
         "featureList": "Teklif hazırlama, teklifi faturaya çevirme, belge arşivi, tahsilat durumu takibi, müşteri defteri, ürün ve hizmet kataloğu, yıllık özet ve analitik, KDV oranları, satır ve genel iskonto, KDV tevkifatı, tutar yazıyla, VKN/TCKN ve IBAN doğrulaması, çok para birimi, dört belge şablonu, A4 PDF çıktısı, tam yedek alma ve geri yükleme",
-        "description": "Teklif hazırlayıp tek tuşla faturaya çevirmenizi, belgelerinizi arşivlemenizi, tahsilat durumunu izlemenizi ve yıllık özet almanızı sağlar. Sunucu yoktur; bütün belgeler ve müşteri defteri kullanıcının tarayıcısında kalır."
+        "description": "Teklif hazırlayıp tek tuşla faturaya çevirmenizi, belgelerinizi arşivlemenizi, tahsilat durumunu izlemenizi ve yıllık özet almanızı sağlar. Belgeler ve müşteri defteri tarayıcının yerel deposunda saklanır."
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" },
-          { "@type": "ListItem", "position": 3, "name": "Fatura ve Teklif Merkezi", "item": "https://korayoner.dev/fatura-olusturma/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Fatura ve Teklif Merkezi",
+            "item": "https://korayoner.dev/fatura-olusturma/"
+          }
         ]
       },
       {
@@ -81,49 +104,75 @@
           {
             "@type": "Question",
             "name": "Bu araçla oluşturulan belge yasal bir fatura mıdır?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Türkiye'de yasal fatura ya matbu (anlaşmalı matbaada bastırılmış, seri ve sıra numaralı) belge olarak ya da e-Fatura/e-Arşiv Fatura olarak GİB sistemi üzerinden düzenlenir. Bir PDF'i kendiniz üretmekle fatura düzenlemiş olmazsınız. Bu araç proforma fatura, teklif, ön bilgilendirme belgesi ve fatura taslağı üretir; kesilecek asıl faturanın tutarlarını önceden görmek, müşteriye fiyat sunmak ve kendi kaydınızı tutmak için kullanılır." }
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. Türkiye'de yasal fatura ya matbu (anlaşmalı matbaada bastırılmış, seri ve sıra numaralı) belge olarak ya da e-Fatura/e-Arşiv Fatura olarak GİB sistemi üzerinden düzenlenir. Bir PDF'i kendiniz üretmekle fatura düzenlemiş olmazsınız. Bu araç proforma fatura, teklif, ön bilgilendirme belgesi ve fatura taslağı üretir; kesilecek asıl faturanın tutarlarını önceden görmek, müşteriye fiyat sunmak ve kendi kaydınızı tutmak için kullanılır."
+            }
           },
           {
             "@type": "Question",
             "name": "Proforma fatura nedir, normal faturadan farkı nedir?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Proforma fatura, satış gerçekleşmeden önce alıcıya verilen ve teklif niteliği taşıyan belgedir. Muhasebe kaydına konu olmaz, KDV doğurmaz ve ödeme yükümlülüğü yaratmaz; fiyatı, miktarı, teslim ve ödeme koşullarını yazılı hale getirir. Asıl fatura, mal teslim edildikten veya hizmet ifa edildikten sonra düzenlenir ve vergisel sonuç doğuran belge odur." }
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Proforma fatura, satış gerçekleşmeden önce alıcıya verilen ve teklif niteliği taşıyan belgedir. Muhasebe kaydına konu olmaz, KDV doğurmaz ve ödeme yükümlülüğü yaratmaz; fiyatı, miktarı, teslim ve ödeme koşullarını yazılı hale getirir. Asıl fatura, mal teslim edildikten veya hizmet ifa edildikten sonra düzenlenir ve vergisel sonuç doğuran belge odur."
+            }
           },
           {
             "@type": "Question",
             "name": "Faturada tutarın yazıyla yazılması zorunlu mu?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Türkiye'de faturada tutarın hem rakamla hem yazıyla gösterilmesi yerleşik uygulamadır ve Vergi Usul Kanunu'nun fatura nizamına ilişkin düzenlemeleriyle uyumludur. Amacı rakamın sonradan değiştirilmesini zorlaştırmaktır: 1.000 TL'yi 11.000 TL yapmak kolaydır, ama yazıyla yazılmış tutarı da tutarlı biçimde değiştirmek gerekir. Bu araç yazıyla karşılığı otomatik üretir; 'bir bin' değil 'bin', 'bir yüz' değil 'yüz' gibi Türkçe kuralları uygular." }
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Türkiye'de faturada tutarın hem rakamla hem yazıyla gösterilmesi yerleşik uygulamadır ve Vergi Usul Kanunu'nun fatura nizamına ilişkin düzenlemeleriyle uyumludur. Amacı rakamın sonradan değiştirilmesini zorlaştırmaktır: 1.000 TL'yi 11.000 TL yapmak kolaydır, ama yazıyla yazılmış tutarı da tutarlı biçimde değiştirmek gerekir. Bu araç yazıyla karşılığı otomatik üretir; 'bir bin' değil 'bin', 'bir yüz' değil 'yüz' gibi Türkçe kuralları uygular."
+            }
           },
           {
             "@type": "Question",
             "name": "KDV tevkifatı nedir, faturaya nasıl yansır?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Kısmi KDV tevkifatında, hesaplanan KDV'nin bir kısmını satıcı değil alıcı doğrudan vergi dairesine öder. Örneğin 100.000 TL matrahlı, %20 KDV'li bir işlemde KDV 20.000 TL'dir; 5/10 tevkifat uygulanırsa 10.000 TL'yi alıcı beyan eder, satıcı yalnızca 10.000 TL KDV tahsil eder ve faturada ödenecek tutar 110.000 TL olur. Fatura toplamı değişmez, tahsil edilecek tutar değişir. Yapı işleri, temizlik, danışmanlık ve yemek hizmeti gibi işlerde 2/10 ile 9/10 arasında oranlar uygulanır." }
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kısmi KDV tevkifatında, hesaplanan KDV'nin bir kısmını satıcı değil alıcı doğrudan vergi dairesine öder. Örneğin 100.000 TL matrahlı, %20 KDV'li bir işlemde KDV 20.000 TL'dir; 5/10 tevkifat uygulanırsa 10.000 TL'yi alıcı beyan eder, satıcı yalnızca 10.000 TL KDV tahsil eder ve faturada ödenecek tutar 110.000 TL olur. Fatura toplamı değişmez, tahsil edilecek tutar değişir. Yapı işleri, temizlik, danışmanlık ve yemek hizmeti gibi işlerde 2/10 ile 9/10 arasında oranlar uygulanır."
+            }
           },
           {
             "@type": "Question",
             "name": "İskonto KDV'den önce mi sonra mı düşülür?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Önce. İskonto matrahı azaltır; KDV, iskonto düşüldükten sonraki tutar üzerinden hesaplanır. Bu ayrım özellikle KDV oranı karışık faturalarda önemlidir: %20 ve %1 oranlı kalemleri olan bir faturada genel iskontoyu toplamdan düşmek KDV'yi yanlış hesaplar. Bu araç genel iskontoyu satırların ara toplamına orantılı biçimde dağıtır, böylece her oranın matrahı doğru azalır." }
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Önce. İskonto matrahı azaltır; KDV, iskonto düşüldükten sonraki tutar üzerinden hesaplanır. Bu ayrım özellikle KDV oranı karışık faturalarda önemlidir: %20 ve %1 oranlı kalemleri olan bir faturada genel iskontoyu toplamdan düşmek KDV'yi yanlış hesaplar. Bu araç genel iskontoyu satırların ara toplamına orantılı biçimde dağıtır, böylece her oranın matrahı doğru azalır."
+            }
           },
           {
             "@type": "Question",
-            "name": "Girdiğim firma ve müşteri bilgileri bir sunucuya gidiyor mu?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Fatura tamamen tarayıcınızda oluşturulur; hiçbir alan sunucuya gönderilmez. Firma bilgileriniz ve müşteri defteriniz yalnızca sizin tarayıcınızın yerel deposunda (localStorage) saklanır ve dilediğiniz an temizlenebilir. Faturayı JSON olarak indirip başka bir cihazda geri yükleyebilirsiniz." }
+            "name": "Belgelerim ve müşteri defterim nerede saklanıyor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bu tarayıcının yerel deposunda (localStorage). Başka bir cihazda görünmez; tarayıcı verilerini temizlerseniz silinir. Ortak bilgisayarda “Temizle” düğmesini kullanın. Faturayı JSON olarak indirip başka bir cihazda geri yükleyebilirsiniz."
+            }
           },
           {
             "@type": "Question",
             "name": "Döviz cinsinden fatura düzenleyebilir miyim?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Evet, USD, EUR ve GBP seçilebilir. Yurt içi işlemlerde döviz üzerinden düzenlenen faturalarda Türk Lirası karşılığının da gösterilmesi gerekir; araç, girdiğiniz kur üzerinden TL karşılığını belgeye otomatik yazar. Kur alanına Türkiye Cumhuriyet Merkez Bankası'nın ilgili günkü kuru girilir; güncel kurlara döviz kurları sayfasından bakabilirsiniz." }
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Evet, USD, EUR ve GBP seçilebilir. Yurt içi işlemlerde döviz üzerinden düzenlenen faturalarda Türk Lirası karşılığının da gösterilmesi gerekir; araç, girdiğiniz kur üzerinden TL karşılığını belgeye otomatik yazar. Kur alanına Türkiye Cumhuriyet Merkez Bankası'nın ilgili günkü kuru girilir; güncel kurlara döviz kurları sayfasından bakabilirsiniz."
+            }
           },
           {
             "@type": "Question",
             "name": "PDF nasıl indiriliyor?",
-            "acceptedAnswer": { "@type": "Answer", "text": "PDF indir düğmesi tarayıcının yazdırma penceresini açar; hedef olarak 'PDF olarak kaydet' seçilir. Sayfa A4 için hazırlanmıştır ve çıktıda yalnızca fatura belgesi yer alır, site menüsü ve formlar çıkmaz. Tarayıcının yazdırma ayarlarında 'Arka plan grafikleri' seçeneğini açık bırakmak, renkli şablonların doğru basılması için gereklidir." }
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "PDF indir düğmesi tarayıcının yazdırma penceresini açar; hedef olarak 'PDF olarak kaydet' seçilir. Sayfa A4 için hazırlanmıştır ve çıktıda yalnızca fatura belgesi yer alır, site menüsü ve formlar çıkmaz. Tarayıcının yazdırma ayarlarında 'Arka plan grafikleri' seçeneğini açık bırakmak, renkli şablonların doğru basılması için gereklidir."
+            }
           }
         ]
       },
       {
         "@type": "Person",
         "@id": "https://korayoner.dev/#oner-koray",
-        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
         "name": "Koray Öner",
         "url": "https://korayoner.dev/"
       }
@@ -172,7 +221,7 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Ücretsiz · Üyeliksiz · Tarayıcıda kalır</p>
+        <p class="eyebrow">Vergi &amp; Belge</p>
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M10 7h4"/><path d="M9 11h6"/><path d="M9 15h4"/></svg></div>
         <h1 id="hero-title">Fatura ve Teklif Merkezi</h1>
         <p class="lede">
@@ -180,7 +229,7 @@
           Belgeleriniz arşivde durur, tahsilat durumunu işaretlersiniz, yıl sonunda
           kaç teklifin işe döndüğünü ve ortalama kaç günde tahsil ettiğinizi görürsünüz.
           KDV tevkifatı, tutar yazıyla, müşteri defteri ve ürün kataloğu dahil.
-          <strong>Sunucu yok: bütün belgeler sizin tarayıcınızda kalır.</strong>
+          <strong>Belgeler bu tarayıcının yerel deposunda saklanır.</strong>
         </p>
         <p class="lede lede-uyari">
           Bu araç <strong>proforma fatura, teklif ve fatura taslağı</strong> üretir.
@@ -286,7 +335,7 @@
                   <p class="alan alan-genis">
                     <label for="in-logo">Logo (isteğe bağlı)</label>
                     <input type="file" id="in-logo" accept="image/png,image/jpeg,image/svg+xml,image/webp">
-                    <span class="alan-not">Logo yalnızca sizin tarayıcınızda saklanır, hiçbir yere yüklenmez. En fazla 1 MB.</span>
+                    <span class="alan-not">Logo bu tarayıcıda saklanır. En fazla 1 MB.</span>
                   </p>
                 </div>
                 <p class="blok-aksiyon">
@@ -667,10 +716,9 @@
           aracı stopaj ve KDV tevkifatını makbuz mantığıyla hesaplar.
         </p>
 
-        <h2 id="gizlilik">Verileriniz nereye gidiyor?</h2>
+        <h2 id="gizlilik">Belgeleriniz nerede duruyor?</h2>
         <p>
-          Hiçbir yere. Fatura tarayıcınızda oluşur; ne kalem açıklamaları ne müşteri bilgisi
-          ne de logo sunucuya gönderilir — bu sitede zaten böyle bir uç nokta yok. Firma
+          Firma
           bilgileriniz ve müşteri defteriniz <strong>yalnızca bu tarayıcının yerel deposunda</strong>
           durur. Ortak kullanılan bir bilgisayardaysanız işiniz bittiğinde "Temizle" düğmesini
           kullanın. Faturayı JSON olarak indirip başka bir cihazda geri yükleyebilirsiniz.
@@ -708,7 +756,7 @@
           <details><summary>İskonto KDV'den önce mi düşülür?</summary><p>Önce. KDV, iskonto düşüldükten sonraki matrahtan hesaplanır. Genel iskonto bu araçta satırlara orantılı dağıtılır; oranlar karışıksa doğru sonuç ancak böyle çıkar.</p></details>
           <details><summary>KDV tevkifatı ödenecek tutarı nasıl değiştirir?</summary><p>Fatura toplamı aynı kalır, tahsil edilecek KDV azalır. 100.000 TL matrah + %20 KDV'de 5/10 tevkifatla ödenecek tutar 120.000 değil 110.000 TL olur; kalan 10.000 TL'yi alıcı vergi dairesine öder.</p></details>
           <details><summary>Tutar yazıyla otomatik mi yazılıyor?</summary><p>Evet. "1.000 TL" için <em>bin lira</em>, "100 TL" için <em>yüz lira</em>, "1.000.000 TL" için <em>bir milyon lira</em> yazar — bu üç kural ayrı ayrı test edilmiştir.</p></details>
-          <details><summary>Girdiğim bilgiler bir sunucuya gidiyor mu?</summary><p>Hayır. Her şey tarayıcınızda kalır; firma bilgisi ve müşteri defteri yalnızca yerel depoda saklanır. Ortak bilgisayarda "Temizle" düğmesini kullanın.</p></details>
+          <details><summary>Belgelerim ve müşteri defterim nerede saklanıyor?</summary><p>Bu tarayıcının yerel deposunda (localStorage). Başka bir cihazda görünmez; tarayıcı verilerini temizlerseniz silinir. Ortak bilgisayarda “Temizle” düğmesini kullanın. Faturayı JSON olarak indirip başka bir cihazda geri yükleyebilirsiniz.</p></details>
           <details><summary>Dolar veya euro cinsinden fatura kesebilir miyim?</summary><p>Evet. USD, EUR ve GBP seçilebilir; girdiğiniz TCMB kuruyla TL karşılığı belgeye otomatik yazılır. Yurt içi işlemlerde TL karşılığının gösterilmesi gerekir.</p></details>
           <details><summary>PDF nasıl indiriliyor, yazı tipi bozuluyor mu?</summary><p>"PDF olarak indir" tarayıcının yazdırma penceresini açar; hedefi "PDF olarak kaydet" seçin. Sayfa A4'e göre hazırlanmıştır ve sistem yazı tipleri kullanır, dışarıdan font yüklenmez. Renkli şablonlar için "Arka plan grafikleri" seçeneğini açık bırakın.</p></details>
           <details><summary>Faturayı sonra düzenleyebilir miyim?</summary><p>Evet. Yazdıklarınız tarayıcıda taslak olarak saklanır ve sayfayı kapatıp açtığınızda geri gelir. Kalıcı arşiv için "Faturayı kaydet (.json)" ile indirip istediğiniz zaman geri yükleyin.</p></details>
@@ -739,7 +787,7 @@
         <ul>
           <li><a href="../makaleler/proforma-fatura-nedir/">Proforma fatura nedir, normal faturadan farkı ne?</a></li>
           <li><a href="../makaleler/kdv-tevkifati-nedir/">KDV tevkifatı nedir, faturaya nasıl yazılır?</a></li>
-          <li><a href="../makaleler/serbest-meslek-makbuzu-stopaj-kdv/">Serbest meslek makbuzunda stopaj ve KDV: elinizde ne kalıyor?</a></li>
+          <li><a href="../makaleler/stopaj-nasil-hesaplanir/">Stopaj nasıl hesaplanır?</a></li>
         </ul>
       </div>
     </section>
@@ -769,7 +817,7 @@
   </main>
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yasal fatura için mali müşavirinize veya e-Belge entegratörünüze başvurun.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak. Bilgilendirme amaçlıdır; yasal fatura için mali müşavirinize veya e-Belge entegratörünüze başvurun.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

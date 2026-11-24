@@ -48,7 +48,7 @@ def dogru(ad, kosul, detay=""):
 _SAYAC = [0]
 
 
-def commit(dosyalar, icerik=None):
+def commit(dosyalar, icerik=None, mesaj=""):
     """Sahte bir 'git show' ciktisi kurar ve commit karmasini dondurur.
 
     dosyalar: {yol: [(isaret, satir), ...]}
@@ -69,6 +69,8 @@ def commit(dosyalar, icerik=None):
     icerik = icerik or {}
 
     def sahte_git(*a, **k):                # test cift yonlusu
+        if a[:1] == ("log",) and "--format=%B" in a:
+            return mesaj
         if len(a) == 2 and a[0] == "show" and ":" in a[1]:
             rev, yol = a[1].split(":", 1)
             ikili = icerik.get(yol)
@@ -80,8 +82,8 @@ def commit(dosyalar, icerik=None):
     return h
 
 
-def degisti(dosyalar, yol, icerik=None):
-    return A.ozlu_degisim(commit(dosyalar, icerik), yol)
+def degisti(dosyalar, yol, icerik=None, mesaj=""):
+    return A.ozlu_degisim(commit(dosyalar, icerik, mesaj), yol)
 
 
 print("Tarama commit'i ayirt etme kurali\n")
@@ -259,6 +261,17 @@ dogru("KONTROL: baglanti satirinda metin degisirse ozlu sayilir",
           ("-", '<p>Oran %20. <a href="../a/">A</a></p>'),
           ("+", '<p>Oran %18. <a href="../a/">A</a></p>')]},
           "x/index.html"))
+
+# --- Beyan edilmis tarih-notr duzeltme ---------------------------------------
+VAAT = {"x/index.html": [("-", "<p>Ücretsiz · Reklamsız · Veriniz tarayıcıdan çıkmaz</p>")]}
+dogru("Tarih-nötr beyanli commit ozlu sayilmaz",
+      not degisti(VAAT, "x/index.html",
+                  mesaj="Vaatler kaldırıldı\n\nTarih-nötr: içerik ve hesap değişmedi, yalnız vaat cümlesi çıktı\n"))
+dogru("KONTROL: ayni degisiklik beyansiz ozlu sayilir", degisti(VAAT, "x/index.html", mesaj="Vaatler kaldırıldı\n"))
+dogru("KONTROL: gerekcesiz beyan gecersiz",
+      degisti(VAAT, "x/index.html", mesaj="Vaatler kaldırıldı\n\nTarih-nötr: evet\n"))
+dogru("KONTROL: mesaj govdesinin icindeki ifade beyan sayilmaz",
+      degisti(VAAT, "x/index.html", mesaj="Not: Tarih-nötr: satiri burada yok, cumle icinde gecti\n"))
 
 print("\n%d gecti, %d kaldi. (tarama commit'i kurali)" % (gecen[0], hata[0]))
 sys.exit(1 if hata[0] else 0)

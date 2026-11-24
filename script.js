@@ -214,7 +214,7 @@
     foot.className = "report-foot";
     foot.setAttribute("aria-hidden", "true");
     foot.textContent = "Bu rapor " + location.host + location.pathname +
-      " adresindeki ücretsiz araçla bilgilendirme amaçlı oluşturulmuştur. · © Koray Öner";
+      " adresindeki araçla bilgilendirme amaçlı oluşturulmuştur. · © Koray Öner";
     calcWrap.appendChild(foot);
     if (typeof window.buildReportInputs !== "function") {
       window.buildReportInputs = function () {

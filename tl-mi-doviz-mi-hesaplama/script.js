@@ -118,7 +118,7 @@
       dl.push("</dl>");
       h.push(dl.join(""));
       cikti.innerHTML = h.join(""); etiketle(cikti);
-      mesaj.textContent = "Hesap tarayıcınızda yapıldı; girdiğiniz tutarlar hiçbir yere gönderilmedi.";
+      mesaj.textContent = "Hesap güncellendi.";
     } catch (e) {
       mesaj.textContent = e.message;
     }

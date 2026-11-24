@@ -36,7 +36,7 @@
   <meta property="og:image" content="https://korayoner.dev/images/borc-mu-birikim-mi-koray-oner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz borç ve birikim önceliklendirme aracı">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen borç ve birikim önceliklendirme aracı">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@korayonerdev">
   <meta name="twitter:creator" content="@korayonerdev">
@@ -62,10 +62,18 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "tr",
         "isAccessibleForFree": true,
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "author": { "@id": "https://korayoner.dev/#oner-koray" },
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
-        "description": "Aylık artan paranın borç kapatma, acil durum fonu ve mevduat arasında nasıl bölüneceğini, her hedefin vergi ve enflasyon sonrası gerçek getirisini hesaplayarak belirleyen ücretsiz araç."
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "description": "Aylık artan paranın borç kapatma, acil durum fonu ve mevduat arasında nasıl bölüneceğini, her hedefin vergi ve enflasyon sonrası gerçek getirisini hesaplayarak belirleyen araç."
       },
       {
         "@type": "WebSite",
@@ -74,7 +82,9 @@
         "name": "Koray Öner",
         "alternateName": "korayoner.dev",
         "inLanguage": "tr",
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
       },
       {
         "@type": "WebPage",
@@ -83,22 +93,43 @@
         "url": "https://korayoner.dev/borc-mu-birikim-mi/",
         "name": "Borç mu Kapatmalı, Birikim mi Yapmalı?",
         "inLanguage": "tr",
-        "isPartOf": { "@id": "https://korayoner.dev/#website" },
-        "breadcrumb": { "@id": "https://korayoner.dev/borc-mu-birikim-mi/#breadcrumb" }
+        "isPartOf": {
+          "@id": "https://korayoner.dev/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://korayoner.dev/borc-mu-birikim-mi/#breadcrumb"
+        }
       },
       {
         "@type": "BreadcrumbList",
         "@id": "https://korayoner.dev/borc-mu-birikim-mi/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" },
-          { "@type": "ListItem", "position": 3, "name": "Borç mu, Birikim mi?", "item": "https://korayoner.dev/borc-mu-birikim-mi/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Borç mu, Birikim mi?",
+            "item": "https://korayoner.dev/borc-mu-birikim-mi/"
+          }
         ]
       },
       {
         "@type": "Person",
         "@id": "https://korayoner.dev/#oner-koray",
-        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
         "name": "Koray Öner",
         "url": "https://korayoner.dev/",
         "jobTitle": "Yazılım Geliştirici"
@@ -106,12 +137,46 @@
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "Önce borç mu kapatmalı, birikim mi yapmalı?", "acceptedAnswer": { "@type": "Answer", "text": "Çoğu durumda cevap aritmetikle belirlenir. Borç kapatmanın getirisi, borcun faiz oranına eşittir ve bu getiri risksiz, vergisiz ve anlıktır. Aylık %3,75 faizli bir kredi kartı borcu yıllık bileşikte %55'in üzerine karşılık gelir; bu getiriyi veren risksiz bir yatırım yoktur. Tek istisna asgari acil durum tamponudur: tampon yokken gelen bir şok doğrudan karta biner." } },
-          { "@type": "Question", "name": "Borç kapatmak neden bir yatırım sayılıyor?", "acceptedAnswer": { "@type": "Answer", "text": "Ödemediğiniz her faiz, kazandığınız getiriyle aynı şeydir. Üstelik üç üstünlüğü vardır: getiri garantilidir (piyasa riski yok), vergi kesilmez (mevduat faizinden stopaj kesilir) ve anında gerçekleşir (vade beklemezsiniz)." } },
-          { "@type": "Question", "name": "Mevduatın gerçek getirisi nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "Brüt faizden önce stopaj düşülür (vadeye göre %17,5, %15 veya %10), sonra kalan net getiri enflasyondan arındırılır. Arındırma çıkarma değil bölmedir: (1+net) ÷ (1+enflasyon) − 1. Yüksek enflasyonda iki yöntem arasındaki fark büyüktür." } },
-          { "@type": "Question", "name": "Acil durum fonu ne kadar olmalı?", "acceptedAnswer": { "@type": "Answer", "text": "Yaygın ölçü 3-6 aylık zorunlu giderdir. Bu araç fonu bir yatırım gibi yarıştırmaz, bir kısıt olarak ele alır: en az bir aylık tampon en pahalı borcun bile önündedir, hedefin kalanı ise pahalı borçtan sonra gelir." } },
-          { "@type": "Question", "name": "Ucuz kredimi erken kapatmalı mıyım?", "acceptedAnswer": { "@type": "Answer", "text": "Kredinin yıllık getirisi mevduatın net getirisinin altındaysa, aynı parayı mevduatta tutmak matematiksel olarak daha kazançlıdır. Araç bu durumda parayı mevduata yönlendirir ve erken kapatmanın kaç puan pahalıya geldiğini ayrıca söyler; borçsuz olmayı tercih etmek sizin kararınız, ama bedeli sayıyla görünür." } },
-          { "@type": "Question", "name": "Verilerim bir yere gönderiliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bütün hesap tarayıcınızın içinde çalışır. Girdiğiniz tutarlar hiçbir sunucuya gönderilmez, kaydedilmez ve sayfayı kapattığınızda kaybolur." } }
+          {
+            "@type": "Question",
+            "name": "Önce borç mu kapatmalı, birikim mi yapmalı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Çoğu durumda cevap aritmetikle belirlenir. Borç kapatmanın getirisi, borcun faiz oranına eşittir ve bu getiri risksiz, vergisiz ve anlıktır. Aylık %3,75 faizli bir kredi kartı borcu yıllık bileşikte %55'in üzerine karşılık gelir; bu getiriyi veren risksiz bir yatırım yoktur. Tek istisna asgari acil durum tamponudur: tampon yokken gelen bir şok doğrudan karta biner."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Borç kapatmak neden bir yatırım sayılıyor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ödemediğiniz her faiz, kazandığınız getiriyle aynı şeydir. Üstelik üç üstünlüğü vardır: getiri garantilidir (piyasa riski yok), vergi kesilmez (mevduat faizinden stopaj kesilir) ve anında gerçekleşir (vade beklemezsiniz)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Mevduatın gerçek getirisi nasıl hesaplanır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Brüt faizden önce stopaj düşülür (vadeye göre %17,5, %15 veya %10), sonra kalan net getiri enflasyondan arındırılır. Arındırma çıkarma değil bölmedir: (1+net) ÷ (1+enflasyon) − 1. Yüksek enflasyonda iki yöntem arasındaki fark büyüktür."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Acil durum fonu ne kadar olmalı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yaygın ölçü 3-6 aylık zorunlu giderdir. Bu araç fonu bir yatırım gibi yarıştırmaz, bir kısıt olarak ele alır: en az bir aylık tampon en pahalı borcun bile önündedir, hedefin kalanı ise pahalı borçtan sonra gelir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ucuz kredimi erken kapatmalı mıyım?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kredinin yıllık getirisi mevduatın net getirisinin altındaysa, aynı parayı mevduatta tutmak matematiksel olarak daha kazançlıdır. Araç bu durumda parayı mevduata yönlendirir ve erken kapatmanın kaç puan pahalıya geldiğini ayrıca söyler; borçsuz olmayı tercih etmek sizin kararınız, ama bedeli sayıyla görünür."
+            }
+          }
         ]
       }
     ]
@@ -156,7 +221,7 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Ücretsiz · Reklamsız · Veriniz tarayıcıdan çıkmaz</p>
+        <p class="eyebrow">Kredi &amp; Finans</p>
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 11 5 5"/><path d="M12 11l7-6"/><circle cx="4.5" cy="4" r="1.8"/><circle cx="19.5" cy="4" r="1.8"/></svg></div>
         <h1 id="hero-title">Borç mu Kapatmalı, Birikim mi Yapmalı?</h1>
         <p class="lede">
@@ -308,7 +373,6 @@
           Sonuç bir <strong>başlangıç noktasıdır</strong>, bağlayıcı bir tavsiye değil.
         </p>
         <p>
-          Hesabın tamamı tarayıcınızda çalışır; girdiğiniz tutarlar sunucuya gitmez.
           Kod ve testleri
           <a href="https://github.com/onerkoray/hesap-cekirdegi/blob/main/finans/dagitim-motor.js" rel="noopener">açık</a>.
         </p>
@@ -347,7 +411,6 @@
           <details><summary>Mevduatın gerçek getirisi nasıl bulunur?</summary><p>Brütten stopaj düşülür, kalan net enflasyondan arındırılır: (1+net) ÷ (1+enflasyon) − 1. Çıkarma yapmak yanıltır.</p></details>
           <details><summary>Acil durum fonu ne kadar olmalı?</summary><p>Yaygın ölçü 3–6 aylık zorunlu gider. Araç en az bir aylık tamponu her şeyin önüne alır, kalanını pahalı borçtan sonraya koyar.</p></details>
           <details><summary>Ucuz kredimi erken kapatmalı mıyım?</summary><p>Getirisi mevduat netinin altındaysa hayır — araç parayı mevduata yönlendirir ve erken kapatmanın kaç puan pahalıya geldiğini söyler. Tercih sizin, ama bedeli görünür.</p></details>
-          <details><summary>Verilerim gönderiliyor mu?</summary><p>Hayır, hesap tamamen tarayıcınızda çalışır.</p></details>
         </div>
       </div>
     </section>
@@ -355,7 +418,7 @@
     <section class="related">
       <div class="wrap prose">
         <h2>İlgili araçlar</h2>
-        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <p>Koray Öner tarafından geliştirilen diğer araçlara göz atın:</p>
         <ul>
           <li><a href="../nakit-akisi-analizi/">Nakit Akışı Analizi</a> — paranızın tüm akışı tek diyagramda ve her giderin ömür bedeli.</li>
           <li><a href="../erken-kapatma-analizi/">Krediyi Erken Kapatmak mı, Yatırım mı?</a> — toplu para için kararın döndüğü getiri eşiği ve erken ödeme tazminatının yasal sınırı.</li>
@@ -407,7 +470,7 @@
   </main>
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak. Bilgilendirme amaçlıdır; yatırım tavsiyesi değildir.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

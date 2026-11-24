@@ -36,7 +36,7 @@
   <meta property="og:image" content="https://korayoner.dev/images/erken-kapatma-analizi-koray-oner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen ücretsiz erken kredi kapatma analiz aracı">
+  <meta property="og:image:alt" content="Koray Öner tarafından geliştirilen erken kredi kapatma analiz aracı">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@korayonerdev">
   <meta name="twitter:creator" content="@korayonerdev">
@@ -62,10 +62,18 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "tr",
         "isAccessibleForFree": true,
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "author": { "@id": "https://korayoner.dev/#oner-koray" },
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" },
-        "description": "Elde bulunan parayla krediyi erken kapatmak ile aynı parayı yatırıma yönlendirmeyi karşılaştıran, kararın döndüğü getiri eşiğini ve erken ödeme tazminatının yasal sınırını hesaplayan ücretsiz araç."
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "description": "Elde bulunan parayla krediyi erken kapatmak ile aynı parayı yatırıma yönlendirmeyi karşılaştıran, kararın döndüğü getiri eşiğini ve erken ödeme tazminatının yasal sınırını hesaplayan araç."
       },
       {
         "@type": "WebSite",
@@ -74,7 +82,9 @@
         "name": "Koray Öner",
         "alternateName": "korayoner.dev",
         "inLanguage": "tr",
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
       },
       {
         "@type": "WebPage",
@@ -83,22 +93,43 @@
         "url": "https://korayoner.dev/erken-kapatma-analizi/",
         "name": "Krediyi Erken Kapatmak mı, Yatırım mı?",
         "inLanguage": "tr",
-        "isPartOf": { "@id": "https://korayoner.dev/#website" },
-        "breadcrumb": { "@id": "https://korayoner.dev/erken-kapatma-analizi/#breadcrumb" }
+        "isPartOf": {
+          "@id": "https://korayoner.dev/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://korayoner.dev/erken-kapatma-analizi/#breadcrumb"
+        }
       },
       {
         "@type": "BreadcrumbList",
         "@id": "https://korayoner.dev/erken-kapatma-analizi/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" },
-          { "@type": "ListItem", "position": 3, "name": "Erken Kapatma Analizi", "item": "https://korayoner.dev/erken-kapatma-analizi/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Erken Kapatma Analizi",
+            "item": "https://korayoner.dev/erken-kapatma-analizi/"
+          }
         ]
       },
       {
         "@type": "Person",
         "@id": "https://korayoner.dev/#oner-koray",
-        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
         "name": "Koray Öner",
         "url": "https://korayoner.dev/",
         "jobTitle": "Yazılım Geliştirici"
@@ -106,12 +137,46 @@
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "İhtiyaç kredisinde erken ödeme cezası var mı?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. 6502 sayılı Tüketici Kanunu'nun 27. maddesi uyarınca tüketici kredilerinde erken ödeme tazminatı alınamaz; banka gerekli faiz indirimini yapmak zorundadır. Piyasadaki pek çok hesaplayıcı ihtiyaç kredisine de %2 tazminat uyguluyor; bu yanlıştır." } },
-          { "@type": "Question", "name": "Konut kredisinde erken ödeme tazminatı ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "Yalnızca sabit faizli sözleşmelerde istenebilir (TKHK m.37). Kredinin kapanmasına 36 aydan fazla süre varsa erken ödenen anaparanın en çok %2'si, 36 ay ve altındaysa en çok %1'i. Değişken faizli konut kredisinde tazminat istenemez. Ayrıca tazminat, sağlanan faiz indirimini aşamaz." } },
-          { "@type": "Question", "name": "Krediyi kapatmak mı, yatırım yapmak mı daha kârlı?", "acceptedAnswer": { "@type": "Answer", "text": "Krediyi kapatmak, o kredinin faiz oranını risksiz ve vergisiz kazanmak demektir. Yatırımın vergi sonrası net getirisi bu oranın üzerindeyse yatırım, altındaysa kapatma kazanır. Araç bu eşiği tam olarak hesaplar; erken ödeme tazminatı varsa eşik kapatma aleyhine kayar." } },
-          { "@type": "Question", "name": "Kısmi ödeme mi, tamamını kapatmak mı?", "acceptedAnswer": { "@type": "Answer", "text": "Araç bunu ısı haritasında gösterir: erken ödenen tutar ile yatırım getirisinin her bileşimi için hangi tarafın kazandığını hesaplar. Tazminat oranı sabit olduğu için kısmi ödemede de aynı oranda uygulanır." } },
-          { "@type": "Question", "name": "Serbest kalan taksit ne oluyor?", "acceptedAnswer": { "@type": "Answer", "text": "Kredi erken bittiğinde her ay ödediğiniz taksit serbest kalır. Bu aracın hesabında o para yatırıma yönlendirilir. Serbest kalan taksidi hesaba katmayan bir karşılaştırma, erken kapatmayı haksız yere kaybettirir." } },
-          { "@type": "Question", "name": "Verilerim bir yere gönderiliyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Hayır. Bütün hesap tarayıcınızın içinde çalışır; girdiğiniz tutarlar hiçbir sunucuya gönderilmez ve kaydedilmez." } }
+          {
+            "@type": "Question",
+            "name": "İhtiyaç kredisinde erken ödeme cezası var mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hayır. 6502 sayılı Tüketici Kanunu'nun 27. maddesi uyarınca tüketici kredilerinde erken ödeme tazminatı alınamaz; banka gerekli faiz indirimini yapmak zorundadır. Piyasadaki pek çok hesaplayıcı ihtiyaç kredisine de %2 tazminat uyguluyor; bu yanlıştır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Konut kredisinde erken ödeme tazminatı ne kadar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yalnızca sabit faizli sözleşmelerde istenebilir (TKHK m.37). Kredinin kapanmasına 36 aydan fazla süre varsa erken ödenen anaparanın en çok %2'si, 36 ay ve altındaysa en çok %1'i. Değişken faizli konut kredisinde tazminat istenemez. Ayrıca tazminat, sağlanan faiz indirimini aşamaz."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Krediyi kapatmak mı, yatırım yapmak mı daha kârlı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Krediyi kapatmak, o kredinin faiz oranını risksiz ve vergisiz kazanmak demektir. Yatırımın vergi sonrası net getirisi bu oranın üzerindeyse yatırım, altındaysa kapatma kazanır. Araç bu eşiği tam olarak hesaplar; erken ödeme tazminatı varsa eşik kapatma aleyhine kayar."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kısmi ödeme mi, tamamını kapatmak mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Araç bunu ısı haritasında gösterir: erken ödenen tutar ile yatırım getirisinin her bileşimi için hangi tarafın kazandığını hesaplar. Tazminat oranı sabit olduğu için kısmi ödemede de aynı oranda uygulanır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Serbest kalan taksit ne oluyor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Kredi erken bittiğinde her ay ödediğiniz taksit serbest kalır. Bu aracın hesabında o para yatırıma yönlendirilir. Serbest kalan taksidi hesaba katmayan bir karşılaştırma, erken kapatmayı haksız yere kaybettirir."
+            }
+          }
         ]
       }
     ]
@@ -156,7 +221,7 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Ücretsiz · Reklamsız · Veriniz tarayıcıdan çıkmaz</p>
+        <p class="eyebrow">Kredi &amp; Finans</p>
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13"/><path d="M3 12h8"/><path d="M3 17h4"/><path d="M16 14l5 5"/><path d="M21 14l-5 5"/></svg></div>
         <h1 id="hero-title">Krediyi Erken Kapatmak mı, Yatırım mı?</h1>
         <p class="lede">
@@ -336,7 +401,6 @@
           <details><summary>Kapatmak mı, yatırım mı daha kârlı?</summary><p>Krediyi kapatmak, o kredinin faizini risksiz ve vergisiz kazanmaktır. Yatırımın net getirisi bu oranın üstündeyse yatırım, altındaysa kapatma kazanır.</p></details>
           <details><summary>Kısmi ödeme mi, tamamı mı?</summary><p>Isı haritası her tutar ve getiri bileşimi için hangi tarafın kazandığını gösterir.</p></details>
           <details><summary>Serbest kalan taksit ne oluyor?</summary><p>Kredi erken bittiğinde taksit serbest kalır ve bu hesapta yatırıma yönlendirilir. Bunu atlayan karşılaştırmalar erken kapatmayı haksız yere kaybettirir.</p></details>
-          <details><summary>Verilerim gönderiliyor mu?</summary><p>Hayır, hesap tamamen tarayıcınızda çalışır.</p></details>
         </div>
       </div>
     </section>
@@ -344,7 +408,7 @@
     <section class="related">
       <div class="wrap prose">
         <h2>İlgili araçlar</h2>
-        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlara göz atın:</p>
+        <p>Koray Öner tarafından geliştirilen diğer araçlara göz atın:</p>
         <ul>
           <li><a href="../finansal-ikiz/">Finansal İkiz</a> — bütün bu parçaları tek modelde birleştiren yaşam boyu simülasyon.</li>
           <li><a href="../kredi-hesaplama/">Kredi Hesaplama ve Gerçek Maliyet</a> — taksit, ödeme planı ve toplam maliyet.</li>
@@ -395,7 +459,7 @@
   </main>
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı tutar için bankanıza danışın.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak. Bilgilendirme amaçlıdır; bağlayıcı tutar için bankanıza danışın.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

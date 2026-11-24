@@ -41,7 +41,7 @@
   <meta name="twitter:site" content="@korayonerdev">
   <meta name="twitter:creator" content="@korayonerdev">
   <meta name="twitter:title" content="Araç ÖTV Hesaplama 2026">
-  <meta name="twitter:description" content="ÖTV + KDV ve anahtar teslim fiyat — ücretsiz ve hızlı.">
+  <meta name="twitter:description" content="ÖTV + KDV ve anahtar teslim fiyat.">
   <meta name="twitter:image" content="https://korayoner.dev/images/otv-hesaplama-koray-oner.png">
 
   <link rel="stylesheet" href="../style.css?v=2db5cabe">
@@ -61,16 +61,28 @@
         "operatingSystem": "Any (web browser)",
         "inLanguage": "tr",
         "isAccessibleForFree": true,
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
-        "description": "Ücretsiz araç ÖTV hesaplama aracı: motor hacmi ve matraha göre ÖTV oranı, KDV ve anahtar teslim fiyat; elektrikli ve hibrit dilimleri dahil.",
-        "author": { "@id": "https://korayoner.dev/#oner-koray" },
-        "creator": { "@id": "https://korayoner.dev/#oner-koray" },
-        "publisher": { "@id": "https://korayoner.dev/#oner-koray" }
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        },
+        "description": "ÖTV hesaplama aracı: motor hacmi ve matraha göre ÖTV oranı, KDV ve anahtar teslim fiyat; elektrikli ve hibrit dilimleri dahil.",
+        "author": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "creator": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        },
+        "publisher": {
+          "@id": "https://korayoner.dev/#oner-koray"
+        }
       },
       {
         "@type": "Person",
         "@id": "https://korayoner.dev/#oner-koray",
-        "mainEntityOfPage": { "@id": "https://korayoner.dev/hakkimda/#profilepage" },
+        "mainEntityOfPage": {
+          "@id": "https://korayoner.dev/hakkimda/#profilepage"
+        },
         "name": "Koray Öner",
         "alternateName": "Koray Oner",
         "image": "https://korayoner.dev/images/koray-oner-portre.jpg",
@@ -99,19 +111,69 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://korayoner.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Araçlar", "item": "https://korayoner.dev/araclar/" },
-          { "@type": "ListItem", "position": 3, "name": "Araç ÖTV Hesaplama", "item": "https://korayoner.dev/otv-hesaplama/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "https://korayoner.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Araçlar",
+            "item": "https://korayoner.dev/araclar/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Araç ÖTV Hesaplama",
+            "item": "https://korayoner.dev/otv-hesaplama/"
+          }
         ]
       },
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "Araçta ÖTV nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "ÖTV, aracın vergisiz fiyatı (matrah) üzerinden motor hacmi ve matrah dilimine göre yüzde olarak hesaplanır. KDV ise matrah + ÖTV toplamının %20'sidir. Anahtar teslim fiyat = matrah + ÖTV + KDV." } },
-          { "@type": "Question", "name": "1600 cm³ altı araçlarda ÖTV oranı kaç?", "acceptedAnswer": { "@type": "Answer", "text": "1400 cm³ altı araçlarda matraha göre %70-%90; 1401-1600 cm³ araçlarda %75-%100 arasında değişir (Temmuz 2025'te güncellenen dilimlere göre)." } },
-          { "@type": "Question", "name": "Elektrikli araçlarda ÖTV kaç?", "acceptedAnswer": { "@type": "Answer", "text": "Motor gücü 160 kW altındaki elektrikli araçlarda matraha göre %25 veya %55; 160 kW üzerinde %65 veya %75'tir." } },
-          { "@type": "Question", "name": "ÖTV matrahı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Aracın ÖTV ve KDV hariç satış fiyatıdır. ÖTV bu tutar üzerinden, KDV ise ÖTV eklenmiş tutar üzerinden hesaplanır — yani vergiden de vergi alınır." } },
-          { "@type": "Question", "name": "Hibrit araçlarda ÖTV avantajı var mı?", "acceptedAnswer": { "@type": "Answer", "text": "Koşullu olarak var. 1600 cm³ e kadar hibritler için kanunda ayrı satır yoktur; içten yanmalı tarifesinden vergilenirler. 1601-2000 cm³ arasında yalnızca elektrik motoru 50 kW ı geçen ve hacmi 1800 cm³ ü geçmeyen araçlar hibrit satırına girer (%70 veya %80); koşul sağlanmazsa %150 uygulanır. 2000 cm³ üstünde elektrik motoru 100 kW ı geçen ve hacmi 2500 cm³ ü geçmeyenler %150 veya %170, diğerleri %220 öder. Şarj edilebilir hibritlerde ise CO2 emisyonu 25 g/km nin altında ve menzil 70 km ve üzerinde olmak şartıyla 1600 cm³ e kadar %45, 1601-1800 cm³ için %85 uygulanır." } }
+          {
+            "@type": "Question",
+            "name": "Araçta ÖTV nasıl hesaplanır?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ÖTV, aracın vergisiz fiyatı (matrah) üzerinden motor hacmi ve matrah dilimine göre yüzde olarak hesaplanır. KDV ise matrah + ÖTV toplamının %20'sidir. Anahtar teslim fiyat = matrah + ÖTV + KDV."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "1600 cm³ altı araçlarda ÖTV oranı kaç?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "1400 cm³ altı araçlarda matraha göre %70-%90; 1401-1600 cm³ araçlarda %75-%100 arasında değişir (Temmuz 2025'te güncellenen dilimlere göre)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Elektrikli araçlarda ÖTV kaç?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Motor gücü 160 kW altındaki elektrikli araçlarda matraha göre %25 veya %55; 160 kW üzerinde %65 veya %75'tir."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "ÖTV matrahı nedir?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Aracın ÖTV ve KDV hariç satış fiyatıdır. ÖTV bu tutar üzerinden, KDV ise ÖTV eklenmiş tutar üzerinden hesaplanır — yani vergiden de vergi alınır."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hibrit araçlarda ÖTV avantajı var mı?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Koşullu olarak var. 1600 cm³ e kadar hibritler için kanunda ayrı satır yoktur; içten yanmalı tarifesinden vergilenirler. 1601-2000 cm³ arasında yalnızca elektrik motoru 50 kW ı geçen ve hacmi 1800 cm³ ü geçmeyen araçlar hibrit satırına girer (%70 veya %80); koşul sağlanmazsa %150 uygulanır. 2000 cm³ üstünde elektrik motoru 100 kW ı geçen ve hacmi 2500 cm³ ü geçmeyenler %150 veya %170, diğerleri %220 öder. Şarj edilebilir hibritlerde ise CO2 emisyonu 25 g/km nin altında ve menzil 70 km ve üzerinde olmak şartıyla 1600 cm³ e kadar %45, 1601-1800 cm³ için %85 uygulanır."
+            }
+          }
         ]
       }
     ]
@@ -157,14 +219,14 @@
 
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <p class="eyebrow">Ücretsiz · Reklamsız · Güncel dilimler</p>
+        <p class="eyebrow">Güncel dilimler</p>
         <div class="tool-logo tool-emblem" aria-hidden="true"><svg focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3H5a2 2 0 0 0-2 2v7l9 9a1.4 1.4 0 0 0 2 0l7-7a1.4 1.4 0 0 0 0-2z"/><circle cx="8" cy="8" r="1.2"/></svg></div>
         <h1 id="hero-title">Araç ÖTV Hesaplama</h1>
         <p class="lede">
           Sıfır araçta <strong>ÖTV + KDV</strong> ne kadar? Motor hacmi (veya elektrikli araçta motor
           gücü) ve vergisiz fiyatı girin; ÖTV dilimi, ÖTV tutarı, KDV ve <strong>anahtar teslim
           fiyat</strong> anında hesaplansın. Fiyatın ne kadarının vergi olduğunu görsel vergi yükü
-          analiziyle görün. Kayıt yok, reklam yok — her şey tarayıcınızda çalışır.
+          analiziyle görün.
         </p>
       </div>
     </section>
@@ -350,8 +412,6 @@
           <details><summary>ÖTV matrahı nedir?</summary><p>Aracın ÖTV ve KDV hariç fiyatıdır; ithalatta gümrük kıymeti, yerli üretimde fabrika çıkış fiyatı esas alınır.</p></details>
           <details><summary>Neden KDV, ÖTV'nin üzerinden alınıyor?</summary><p>Kanun gereği KDV matrahına ÖTV dahildir; bu yüzden toplam vergi yükü, oranların basit toplamından daha yüksektir.</p></details>
           <details><summary>Matrah dilim sınırında ne olur?</summary><p>Matrah bir üst dilime geçince tüm matraha üst oran uygulanır — gelir vergisindeki gibi kademeli değildir. Bu yüzden dilim sınırının hemen altındaki fiyatlar avantajlıdır.</p></details>
-          <details><summary>Bu araç ücretli mi?</summary><p>Hayır, tamamen ücretsizdir; kayıt veya üyelik gerektirmez, reklam içermez.</p></details>
-          <details><summary>Verilerim saklanıyor mu?</summary><p>Hayır. Bütün hesaplamalar cihazınızda yapılır; girdiğiniz tutarlar hiçbir yere gönderilmez.</p></details>
         </div>
       </div>
     </section>
@@ -359,7 +419,7 @@
     <section class="related">
       <div class="wrap prose">
         <h2>İlgili araçlar</h2>
-        <p>Koray Öner tarafından geliştirilen diğer ücretsiz araçlar:</p>
+        <p>Koray Öner tarafından geliştirilen diğer araçlar:</p>
         <ul>
           <li><a href="../makaleler/otv-basamak-etkisi/">ÖTV'nin basamak etkisi</a> — eşiklerin doğurduğu boş fiyat aralıkları ve tarifenin tersine döndüğü yer.</li>
           <li><a href="../engelli-arac-otv-istisnasi-hesaplama/">Engelli Araç ÖTV İstisnası</a> — engelli raporuyla ÖTV'siz araç: sınır, yerli katkı, on yıl kuralı.</li>
@@ -409,7 +469,7 @@
   </main>
   <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-legal">
-      <p class="muted">© <span id="year">2026</span> Koray Öner · Ücretsiz ve açık kaynak.</p>
+      <p class="muted">© <span id="year">2026</span> Koray Öner · Açık kaynak.</p>
       <ul class="footer-links" aria-label="Yasal ve kurumsal bağlantılar">
         <li><a href="../hakkimda/">Hakkımda</a></li>
         <li><a href="../makaleler/">Makaleler</a></li>

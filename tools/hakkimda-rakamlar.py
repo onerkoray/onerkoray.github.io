@@ -91,7 +91,7 @@ def gecerlilik_sayisi():
 def uret():
     ilk, son = parametre_yillari()
     satirlar = [
-        ("%d" % arac_sayisi(), "ücretsiz hesaplama aracı"),
+        ("%d" % arac_sayisi(), "hesaplama aracı"),
         ("%d" % makale_sayisi(), "makale — her sayısı testle sabitlenmiş"),
         ("%d" % ci_komut_sayisi(), "otomatik kontrol, her değişiklikte"),
         ("%s–%s" % (ilk, son), "yılları için doğrulanmış bordro parametreleri"),

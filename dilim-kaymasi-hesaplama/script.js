@@ -335,7 +335,7 @@
         matrisTablosu(r, m) + paylasim(r);
       grafikBlok.hidden = false;
       grafik(r);
-      mesaj.textContent = "Hesap tarayıcınızda yapıldı; girdiğiniz tutar hiçbir yere gönderilmedi.";
+      mesaj.textContent = "Hesap güncellendi.";
     } catch (e) {
       cikti.innerHTML = "";
       grafikBlok.hidden = true;
