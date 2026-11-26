@@ -1,13 +1,8 @@
 {
- "guncelleme": "2026-11-25",
+ "guncelleme": "2026-11-26",
  "kaynak": "TCMB gunluk bulten",
  "aciklama": "Doviz satis kuru, 1 birim karsiligi TL.",
  "kayitlar": [
-  {
-   "tarih": "2026-08-27",
-   "USD": 48.1331,
-   "EUR": 56.0582
-  },
   {
    "tarih": "2026-08-28",
    "USD": 48.1598,
@@ -317,6 +312,11 @@
    "tarih": "2026-11-25",
    "USD": 50.6441,
    "EUR": 55.3967
+  },
+  {
+   "tarih": "2026-11-26",
+   "USD": 50.6777,
+   "EUR": 55.5968
   }
  ]
 }
