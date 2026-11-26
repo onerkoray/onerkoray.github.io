@@ -446,5 +446,11 @@
     "kicker": "Finans",
     "alt": "Politika faizi %36 ile reel faiz: ekim TÜFE'sine göre %4,8, 2026 sonu tahminine göre %5,0, 2027 sonu tahminine göre %12,4.",
     "altyazi": "Hesap: (1 + faiz) / (1 + enflasyon) − 1. Faiz: PPK 22 Ekim 2026; enflasyon: TÜİK ekim TÜFE ve TCMB Enflasyon Raporu 2026-IV tahminleri."
+  },
+  {
+    "slug": "sgk-kapsami-agustos-2026",
+    "kicker": "Emeklilik ve sosyal güvenlik",
+    "alt": "Sosyal sigorta kapsamındaki değişim, Ağustos 2025'ten Ağustos 2026'ya: aktif sigortalı −99.601, aylık ya da gelir alan +231.995, bağımlı −1.657.966, özel sandıklar +3.270; toplam −1.522.302 kişi.",
+    "altyazi": "Kaynak: SGK Aylık İstatistik Bülteni, Sigortalı İstatistikleri Ağustos 2025 ve Ağustos 2026, Tablo 3. Bağımlı sayısı Ocak 2026'dan beri yeni yöntemle hesaplanıyor."
   }
 ]

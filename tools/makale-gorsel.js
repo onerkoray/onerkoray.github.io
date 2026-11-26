@@ -2737,7 +2737,38 @@ function erReelFaiz() {
   return s + "</svg>";
 }
 
+/* SGK kapsamı, Ağustos 2025 → Ağustos 2026: değişim bileşen bileşen (yazının kapsam.js'inden). */
+var SKP = require(path.join(KOK, "makaleler", "sgk-kapsami-agustos-2026", "kapsam.js"));
+function sgkKapsamKoprusu() {
+  var d = SKP.yillik();
+  if (d.kapsam !== -1522302 || d.bagimli !== -1657966 || d.aktif !== -99601 || d.pasifKisi !== 231995 || d.ozelSandik !== 3270) throw new Error("SGK kapsam kapağı yazıyla ayrıştı");
+  var v = [[d.aktif, "Aktif", R.s1], [d.pasifKisi, "Aylık alan", R.s1], [d.bagimli, "Bağımlı", R.s2], [d.ozelSandik, "Özel sandık", R.s1], [d.kapsam, "Toplam", R.murekkep]];
+  var SOL = 70, SAG = 576, UST = 104, ALT = 300, Y0 = -2000000, Y1 = 400000;
+  function y(t) { return ALT - (t - Y0) / (Y1 - Y0) * (ALT - UST); }
+  var s = baslikSatirlari("1,52 milyonun 1,66 milyonu bağımlı",
+    "Sosyal sigorta kapsamında değişim, Ağustos 2025 → Ağustos 2026, kişi",
+    "Değişim: aktif " + isaretliBin(d.aktif) + ", aylık alan " + isaretliBin(d.pasifKisi) + ", bağımlı " + isaretliBin(d.bagimli) +
+      ", özel sandık " + isaretliBin(d.ozelSandik) + ", toplam " + isaretliBin(d.kapsam) + " kişi.");
+  s += anahtarKutu(24, R.s1, "kapsamın öteki bileşenleri") + anahtarKutu(216, R.s2, "bağımlı: Ocak 2026'da yöntem değişti");
+  /* İlk değer düz çizilir: sıfır ekseni. */
+  s += izgaraY(SOL, SAG, y, [0, -600000, -1200000, -1800000], function (t) { return t ? "−" + nf1.format(-t / 1e6) + " mn" : "0"; });
+  var genis = (SAG - SOL) / v.length, c = 62;
+  v.forEach(function (r, i) {
+    var mx = SOL + genis * (i + 0.5), ust = Math.min(y(r[0]), y(0)), boy = Math.max(Math.abs(y(r[0]) - y(0)), 1.5);
+    s += '<rect x="' + (mx - c / 2).toFixed(1) + '" y="' + ust.toFixed(1) + '" width="' + c + '" height="' + boy.toFixed(1) + '" rx="2" fill="' + r[2] + '"/>';
+    s += cubukEtiket(mx, r[0] >= 0 ? y(r[0]) - 8 : y(r[0]) + 18, isaretliBin(r[0]), 12);
+    s += altYazi(mx, r[0] >= 0 ? y(0) + 18 : y(0) - 8, r[1]);
+  });
+  return s + "</svg>";
+}
+
 var KAPAKLAR = {
+  "sgk-kapsami-agustos-2026": {
+    kicker: "Sosyal güvenlik · SGK",
+    baslik: "Kapsam 1,5 milyon azaldı mı?",
+    alt: "Düşüşün tamamı yöntemi değişen bağımlı sayısında; ücretli sigortalı 295 bin arttı",
+    cizim: sgkKapsamKoprusu
+  },
   "torba-teklif-gss-borcu-istihdam-tesviki": {
     kicker: "Sosyal güvenlik",
     baslik: "Torba teklifte SGK",

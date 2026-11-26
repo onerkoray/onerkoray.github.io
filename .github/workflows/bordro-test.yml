@@ -707,6 +707,9 @@ jobs:
         run: node makaleler/torba-teklif-gss-borcu-istihdam-tesviki/sayi-testi.js
       - name: Enflasyon Raporu 2026-IV reel faiz yazısının sayıları
         run: node makaleler/enflasyon-raporu-2026-iv-reel-faiz/sayi-testi.js
+      # 26 Kasım 2026: SGK Ağustos 2026 bülteni, kapsam ve aktif/pasif.
+      - name: SGK kapsamı Ağustos 2026 yazısının sayıları
+        run: node makaleler/sgk-kapsami-agustos-2026/sayi-testi.js
 
       # En düşük emekli aylığı ve Ocak 2027 zammı: zam oranları emekli zammı
       # motorundan (Eylül 2026'ya kesilmiş TÜFE serisi), taban tutarları 5510
