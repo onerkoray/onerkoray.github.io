@@ -19,8 +19,8 @@
   "makale": 77,
   "metodoloji": 10,
   "grafik": 2,
-  "sayfa": 12,
-  "indekslenebilir": 166
+  "sayfa": 14,
+  "indekslenebilir": 168
  },
  "sayfalar": [
   {
@@ -3785,6 +3785,38 @@
     "https://korayoner.dev/makaleler/",
     "https://korayoner.dev/iletisim/"
    ],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/yayinlar/faiz-orani-riski-ve-banka-kirilganligi/",
+   "dosya": "yayinlar/faiz-orani-riski-ve-banka-kirilganligi/index.html",
+   "type": "sayfa",
+   "parent": "https://korayoner.dev/yayinlar/",
+   "title": "Faiz Oranı Riski, Mevduat İmtiyazı ve Banka Kırılganlığı: Vade Dönüşümünün Ekonomisi Üzerine Analitik Bir İnceleme",
+   "description": "Faiz oranı riski, mevduat çıkışı ve banka kırılganlığı arasındaki ilişkiyi inceleyen açık erişimli ön baskı.",
+   "category": null,
+   "published": "2026-11-26T21:42:06+03:00",
+   "updated": "2026-11-26",
+   "updatedAt": "2026-11-26T21:42:06+03:00",
+   "image": "https://korayoner.dev/images/koray-oner-kapak.png",
+   "imageTitle": "Faiz Oranı Riski, Mevduat İmtiyazı ve Banka Kırılganlığı: Vade Dönüşümünün Ekonomisi Üzerine Analitik Bir İnceleme — Koray Öner",
+   "related": [],
+   "noindex": false
+  },
+  {
+   "url": "https://korayoner.dev/yayinlar/faktor-hayvanat-bahcesi/",
+   "dosya": "yayinlar/faktor-hayvanat-bahcesi/index.html",
+   "type": "sayfa",
+   "parent": "https://korayoner.dev/yayinlar/",
+   "title": "Faktör Hayvanat Bahçesi ve Tekrarlanabilirlik Tartışması: Hisse Senedi Getiri Anomalilerinin Güvenilirliği ve Küçük Piyasalar İçin Çıkarımlar",
+   "description": "Hisse senedi getiri anomalilerinin tekrarlanabilirliğini ve küçük piyasalar için sonuçlarını inceleyen açık erişimli ön baskı.",
+   "category": null,
+   "published": "2026-11-26T21:42:06+03:00",
+   "updated": "2026-11-26",
+   "updatedAt": "2026-11-26T21:42:06+03:00",
+   "image": "https://korayoner.dev/images/koray-oner-kapak.png",
+   "imageTitle": "Faktör Hayvanat Bahçesi ve Tekrarlanabilirlik Tartışması: Hisse Senedi Getiri Anomalilerinin Güvenilirliği ve Küçük Piyasalar İçin Çıkarımlar — Koray Öner",
+   "related": [],
    "noindex": false
   },
   {
