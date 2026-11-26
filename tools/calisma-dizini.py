@@ -318,10 +318,9 @@ def govde():
         <ul class="kd-kanallar">
           <li><a href="https://github.com/onerkoray" rel="noopener me">GitHub</a><span>kaynak kod ve hesap çekirdeği</span></li>
           <li><a href="https://orcid.org/0009-0005-8730-3577" rel="noopener me">ORCID</a><span>akademik kimlik</span></li>
-          <li><a href="https://www.youtube.com/@onerkoray" rel="noopener me">YouTube</a><span>araçları anlatan kısa videolar</span></li>
-          <li><a href="https://x.com/korayonerdev" rel="noopener me">X</a><span>yeni araç ve yazı duyuruları</span></li>
-          <li><a href="https://korayoner.substack.com/" rel="noopener me">Substack</a><span>yazılar</span></li>
+          <li><a href="https://ssrn.com/author=13261728" rel="noopener me">SSRN</a><span>ön baskılar</span></li>
           <li><a href="https://www.linkedin.com/in/korayoner/" rel="noopener me">LinkedIn</a><span>iş birliği</span></li>
+          <li><a href="../hakkimda/#profiller">Tüm profiller</a><span>araştırma ve açık kaynak</span></li>
         </ul>
       </div>
     </section>''')
