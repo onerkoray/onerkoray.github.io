@@ -15,7 +15,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/araclar/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/araclar-koray-oner.png</image:loc>
       <image:title>Hesaplama Araçları: Maaş, Vergi, Kredi — Koray Öner</image:title>
@@ -59,7 +59,7 @@
   </url>
   <url>
     <loc>https://korayoner.dev/koray-oner/</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/hakkimda-koray-oner.jpg</image:loc>
       <image:title>Çalışma Dizini: Araçlar, Yazılar ve Yayınlar — Koray Öner</image:title>
@@ -1175,10 +1175,18 @@
   </url>
   <url>
     <loc>https://korayoner.dev/makaleler/sgk-devlet-katkisi-kalkti/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <image:image>
       <image:loc>https://korayoner.dev/images/makale/sgk-devlet-katkisi-kalkti.png</image:loc>
       <image:title>SGK'ya Devlet Katkısı Kalktı: Ne Değişti? — Koray Öner</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://korayoner.dev/makaleler/sgk-kapsami-agustos-2026/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <image:image>
+      <image:loc>https://korayoner.dev/images/makale/sgk-kapsami-agustos-2026.png</image:loc>
+      <image:title>SGK Kapsamı 1,5 Milyon Azaldı mı? Ağustos 2026 — Koray Öner</image:title>
     </image:image>
   </url>
   <url>

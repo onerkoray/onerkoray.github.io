@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="tr">
   <title>Koray Öner — Araçlar ve Yazılar</title>
-  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 64 hesaplama aracı ve arkalarındaki mevzuatı anlatan 76 yazı.</subtitle>
+  <subtitle>Türkiye'de maaş, vergi, SGK, emeklilik ve kredi için 64 hesaplama aracı ve arkalarındaki mevzuatı anlatan 77 yazı.</subtitle>
   <link href="https://korayoner.dev/atom.xml" rel="self" type="application/atom+xml"/>
   <link href="https://korayoner.dev/" rel="alternate" type="text/html"/>
   <id>https://korayoner.dev/atom.xml</id>
-  <updated>2026-11-25T22:29:11+00:00</updated>
+  <updated>2026-11-26T14:37:00+03:00</updated>
   <author><name>Koray Öner</name><uri>https://korayoner.dev/hakkimda/</uri></author>
   <icon>https://korayoner.dev/favicon.svg</icon>
+
+  <entry>
+    <title>SGK Kapsamı 1,5 Milyon Azaldı mı? Ağustos 2026</title>
+    <link href="https://korayoner.dev/makaleler/sgk-kapsami-agustos-2026/"/>
+    <id>https://korayoner.dev/makaleler/sgk-kapsami-agustos-2026/</id>
+    <published>2026-11-26T14:37:00+03:00</published>
+    <updated>2026-11-26T14:37:00+03:00</updated>
+    <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
+    <summary>SGK'nın Ağustos 2026 tablosunda kapsam bir yılda 1,52 milyon kişi azaldı; düşüşün tamamı yöntemi değişen bağımlı sayısında. Ücretli sigortalı 295 bin arttı.</summary>
+  </entry>
 
   <entry>
     <title>Enflasyon Raporu 2026-IV: Reel Faiz Ne Diyor?</title>
@@ -204,7 +214,7 @@
     <link href="https://korayoner.dev/makaleler/sgk-devlet-katkisi-kalkti/"/>
     <id>https://korayoner.dev/makaleler/sgk-devlet-katkisi-kalkti/</id>
     <published>2026-10-13T06:02:21+03:00</published>
-    <updated>2026-10-13T06:23:22+03:00</updated>
+    <updated>2026-11-26T14:05:34+03:00</updated>
     <category term="emeklilik-sosyal-guvenlik" label="Emeklilik &amp; Sosyal Güvenlik"/>
     <summary>Hazine 1 Ağustos 2026'dan beri SGK'ya primlerin dörtte biri kadar katkı ödemiyor. Prim, emekli aylığı ve teşvikler aynı; 2025 fazlası katkısız 852,9 milyar TL açık.</summary>
   </entry>
