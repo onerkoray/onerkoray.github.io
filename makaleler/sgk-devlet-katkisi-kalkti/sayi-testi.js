@@ -2,8 +2,8 @@
 /*
  * "SGK'ya devlet katkısı kalktı" yazısının sayıları.
  * Her değer yazının modülünden (katki.js) gelir; modül SGK Aylık Bülten
- * Mali İstatistikler Temmuz 2026 tablolarından betikle çıkarılmış veri
- * dosyasını (sgk-mali-2026-07.json) ve bordro motorunun 2026 prim oranlarını
+ * Mali İstatistikler Ağustos 2026 tablolarından betikle çıkarılmış veri
+ * dosyasını (sgk-mali-2026-08.json) ve bordro motorunun 2026 prim oranlarını
  * okur. Test önce veriyi kendi toplamlarıyla ve bağımsız aritmetikle sınar,
  * sonra her rakamın sayfada göründüğünü doğrular.
  *
@@ -27,12 +27,13 @@ K.VERI.yillikBinTL.forEach(function (r) {
   t.yakin(r.yil + " gelir toplamı", r.prim + r.devletKatkisi + r.diger, r.gelir, 2);
   t.yakin(r.yil + " denge", r.gelir - r.gider, r.denge, 2);
 });
-var ay = K.VERI.aylik2026MilyonTL, top = K.VERI.toplam2026OcakTemmuzMilyonTL;
+var ay = K.VERI.aylik2026MilyonTL, top = K.VERI.toplam2026MilyonTL;
 ["prim", "devletKatkisi", "gelir", "gider", "acik"].forEach(function (k) {
-  t.yakin("2026 Ocak–Temmuz " + k + " = ayların toplamı", ay.reduce(function (s, a) { return s + a[k]; }, 0), top[k], 0.5);
+  t.yakin("2026 Ocak–Ağustos " + k + " = ayların toplamı", ay.reduce(function (s, a) { return s + a[k]; }, 0), top[k], 0.5);
 });
 /* Tablo 28'in 2026 satırı (bin TL) ile Tablo 30'un toplamı (milyon TL) aynı katkıyı söylüyor. */
-t.yakin("Tablo 28 ve 30 katkı", 379741920.9 / 1e3, top.devletKatkisi, 1);
+t.yakin("Tablo 28 ve 30 katkı", 503583920.9 / 1e3, top.devletKatkisi, 1);
+t.dogru("veri Ağustos'a kadar", K.VERI.sonAy === 8 && ay.length === 8);
 t.dogru("katkı 2008'de başladı", K.yil(2007).devletKatkisi === 0 && K.yil(2008).devletKatkisi > 0);
 
 /* 1 — 2025: fazla, katkı, katkısız açık. */
@@ -81,14 +82,21 @@ t.yakin("kalan = bütçe − gerçekleşen", z.kalanKatki, z.butceKatki - z.gerc
 t.yakin("katkısız bütçe açığı = açık + katkı", z.katkisizButceAcigi, z.butceAcik + z.butceKatki, 0);
 t.gecsin("2026 bütçe katkı", mlyM(z.butceKatki) + " milyar TL");
 t.gecsin("2026 açık finansmanı", mlyM(z.butceAcikFinansmani) + " milyar TL açık finansmanı");
-t.gecsin("Ocak–Temmuz katkı", mlyM(z.gerceklesenKatki) + " milyar TL");
+t.gecsin("Ocak–Ağustos katkı", "Ocak–Ağustos'ta katkı satırına yazılan tutar " + mlyM(z.gerceklesenKatki) + " milyar TL");
 t.gecsin("gerçekleşme oranı", yz(z.gerceklesenKatki / z.butceKatki));
 t.gecsin("kalan katkı", mlyM(z.kalanKatki) + " milyar TL");
 t.gecsin("katkısız bütçe açığı", mlyM(z.katkisizButceAcigi) + " milyar TL");
-t.gecsin("Ocak–Temmuz açık", mlyM(z.ocakTemmuzAcik) + " milyar TL");
+t.gecsin("Ocak–Ağustos açık", "Ocak–Ağustos'un " + mlyM(z.donemAcik) + " milyar TL");
 t.dogru("Mart ve Nisan katkı sıfır", z.aylar[2].devletKatkisi === 0 && z.aylar[3].devletKatkisi === 0);
 t.dogru("açık finansmanı satırı sıfır", z.aylar.every(function (a) { return a.acikFinansmani === 0; }));
-t.gecsin("Temmuz katkı", "Temmuz'da " + mlyM(z.aylar[6].devletKatkisi) + " milyar TL");
+t.gecsin("Ağustos katkı", "Ağustos'ta da " + mlyM(z.aylar[7].devletKatkisi) + " milyar TL katkı yazıldı");
+t.gecsin("Temmuz satırı", mlyM(z.aylar[6].devletKatkisi));
+t.dogru("Ağustos katkısı sıfır değil", z.aylar[7].devletKatkisi > 0);
+/* Bayat ifadeler kalmamalı. */
+t.gecmesin("eski kalan", "782,5");
+t.gecmesin("eski dönem açığı", "69,5 milyar");
+t.gecmesin("eski beklenti", "Ağustos ve Eylül verileri yayımlandığında");
+t.gecmesin("eski son ay iddiası", "kuralın geçerli olduğu son ayın");
 z.aylar.forEach(function (a) {
   hucre(a.ad + " prim", mlyM(a.prim));
   hucre(a.ad + " katkı", mlyM(a.devletKatkisi));
@@ -118,4 +126,4 @@ t.gecsin("en düşük aylık", "23.552 TL");
 var EP = require("../../bordro/emeklilik-parametreleri.js");
 t.dogru("site en düşük aylığı 23.552 kullanıyor", JSON.stringify(EP).indexOf("23552") !== -1);
 
-t.bitir("Kaynak: SGK Mali İstatistikler Temmuz 2026, 7590 s.K.");
+t.bitir("Kaynak: SGK Mali İstatistikler Ağustos 2026, 7590 s.K.");

@@ -1,8 +1,8 @@
 {
  "kaynak": {
-  "ad": "SGK Aylık İstatistik Bülteni, Mali İstatistikler, Temmuz 2026 (Tablo 28, 30, 31)",
+  "ad": "SGK Aylık İstatistik Bülteni, Mali İstatistikler, Ağustos 2026 (Tablo 28, 30, 31)",
   "adres": "https://www.sgk.gov.tr/Istatistik/Aylik/fcd5e59b-6af9-4d90-a451-ee7500eb1cb4/",
-  "okundu": "2026-10-13",
+  "okundu": "2026-11-26",
   "not": "Nakit hareketler tablosuna dayalı geçici gerçekleşmeler. Tablo 28 ve 31 bin TL, Tablo 30 milyon TL."
  },
  "yillikBinTL": [
@@ -335,20 +335,37 @@
    "saglik": 146294.30343785998,
    "acik": 16333.549044169951,
    "acikFinansmani": 0.0
+  },
+  {
+   "ay": 8,
+   "ad": "Ağustos",
+   "gelir": 669534.25108527,
+   "prim": 482164.0379046402,
+   "yapilandirma": 648.2095938198242,
+   "devletKatkisi": 123841.99999999999,
+   "ekOdemeGelir": 19426.2798249,
+   "faturali": 32411.718565900006,
+   "digerGelir": 11042.005196010017,
+   "gider": 684353.4857240458,
+   "emekliAyligi": 471910.4870753298,
+   "saglik": 169705.02879924,
+   "acik": -14819.234638775815,
+   "acikFinansmani": 0.0
   }
  ],
- "toplam2026OcakTemmuzMilyonTL": {
-  "gelir": 4035643.189908109,
-  "prim": 3061636.29316526,
-  "yapilandirma": 5951.766535498902,
-  "devletKatkisi": 379741.92085863,
-  "ekOdemeGelir": 113731.80133588999,
-  "faturali": 378464.15756098996,
-  "digerGelir": 96117.25045183986,
-  "gider": 4105118.59800344,
-  "emekliAyligi": 2818271.9660991505,
-  "saglik": 928215.3539181935,
-  "acik": -69475.40809533116,
+ "sonAy": 8,
+ "toplam2026MilyonTL": {
+  "gelir": 4705177.440993379,
+  "prim": 3543800.3310699,
+  "yapilandirma": 6599.976129318727,
+  "devletKatkisi": 503583.92085863,
+  "ekOdemeGelir": 133158.08116079,
+  "faturali": 410875.87612688995,
+  "digerGelir": 107159.25564784987,
+  "gider": 4789472.0837274855,
+  "emekliAyligi": 3290182.4531744802,
+  "saglik": 1097920.3827174334,
+  "acik": -84294.64273410663,
   "acikFinansmani": 0.0
  },
  "butce2026MilyonTL": {
@@ -457,5 +474,5 @@
    "gsyhOrani": 3.1
   }
  ],
- "transfer2026OcakTemmuzBinTL": 1124427260.34515
+ "transfer2026BinTL": 1363891628.50671
 }

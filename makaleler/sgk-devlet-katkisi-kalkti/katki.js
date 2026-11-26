@@ -2,9 +2,9 @@
  * "SGK'ya devlet katkısı kalktı" yazısının hesabı.
  *
  * İki kaynak:
- *   - sgk-mali-2026-07.json: SGK Aylık İstatistik Bülteni, Mali İstatistikler,
- *     Temmuz 2026 (Tablo 28, 30, 31), 13 Ekim 2026'da indirilen Excel'den
- *     elle değil betikle çıkarıldı;
+ *   - sgk-mali-2026-08.json: SGK Aylık İstatistik Bülteni, Mali İstatistikler,
+ *     Ağustos 2026 (Tablo 28, 30, 31), 26 Kasım 2026'da indirilen Excel'den
+ *     elle değil betikle çıkarıldı (ilk sürüm Temmuz 2026 tablosuyla);
  *   - bordro/parametreler.js: 2026 prim oranları ve asgari ücret.
  * Kaldırılan hüküm (5510 m.81, üçüncü fıkra): Devlet, Kurumun ay itibarıyla
  * tahsil ettiği malullük, yaşlılık ve ölüm sigortaları ile genel sağlık
@@ -17,7 +17,7 @@
 var path = require("path");
 var KOK = path.join(__dirname, "..", "..");
 var P = require(path.join(KOK, "bordro", "parametreler.js"));
-var VERI = require("./sgk-mali-2026-07.json");
+var VERI = require("./sgk-mali-2026-08.json");
 
 var KATKI_PAYI = 1 / 4;          // kaldırılan fıkranın "dörtte biri"
 var MILYAR = 1e6;                // bin TL → milyar TL bölen (Tablo 28 ve 31)
@@ -42,14 +42,14 @@ function fazlaYillari() { return VERI.yillikBinTL.filter(function (r) { return r
 /* Katkının bütçeden SGK'ya giden toplam transfer içindeki payı. */
 function katkiTransferPayi(y) { return yil(y).devletKatkisi / transfer(y).transfer; }
 
-/* 2026: bütçede öngörülen katkı, Ocak–Temmuz gerçekleşen ve kalan (milyon TL). */
+/* 2026: bütçede öngörülen katkı, yılbaşından son aya gerçekleşen ve kalan (milyon TL). */
 function y2026() {
-  var B = VERI.butce2026MilyonTL, T = VERI.toplam2026OcakTemmuzMilyonTL;
+  var B = VERI.butce2026MilyonTL, T = VERI.toplam2026MilyonTL;
   return {
     butceKatki: B.devletKatkisi, butceAcikFinansmani: B.acikFinansmani, butceAcik: -B.acik,
     gerceklesenKatki: T.devletKatkisi, kalanKatki: B.devletKatkisi - T.devletKatkisi,
     katkisizButceAcigi: -B.acik + B.devletKatkisi,
-    ocakTemmuzAcik: -T.acik, aylar: VERI.aylik2026MilyonTL
+    donemAcik: -T.acik, sonAy: VERI.sonAy, aylar: VERI.aylik2026MilyonTL
   };
 }
 
