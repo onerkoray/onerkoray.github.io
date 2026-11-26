@@ -214,19 +214,25 @@ gecsin("atıf dışa aktarımı erişilebilir", 'href="koray-oner.bib"');
    "henüz yok" notu olmalı. Bugün ikisi de sıfır. */
 (function () {
   /* Yazılım kaydının anlatan yazısı değil kaynak kodu bağlantısı var. */
-  var sayfasiz = Y.CALISMALAR.filter(function (c) { return !c.sayfa && !c.kod; }).length;
+  var yayinSayfalari = Y.CALISMALAR.filter(function (c) { return c.yayinSayfasi; });
+  var sayfasiz = Y.CALISMALAR.filter(function (c) { return !c.sayfa && !c.kod && !c.yayinSayfasi; }).length;
   var not = kacKez("site yazısı henüz yok");
   gecer("sayfasız çalışma sayısı ile not sayısı aynı",
     sayfasiz === not, sayfasiz + " çalışma vs " + not + " not");
 
-  /* KONTROL: eşitliğin boş yere (ikisi de sıfır) geçmediği: 2026-11-23
-     itibarıyla beş çalışmanın yazısı yok, not beş kez görünmeli.
-     Yazıları çıkınca bu sayı düşer ve test bunu söyler. */
-  gecer("KONTROL: sayfasız beş çalışma notla gösteriliyor", sayfasiz === 5 && not === 5,
+  gecer("KONTROL: üç çalışma henüz ayrı bir sayfaya bağlı değil", sayfasiz === 3 && not === 3,
     sayfasiz + " / " + not);
-  gecer("KONTROL: her çalışmanın bağlantı satırı sayfada",
-    kacKez("ed-yayin-baglanti") === Y.CALISMALAR.length,
+  gecer("KONTROL: ayrı yayın sayfası dışındaki bağlantı satırları görünüyor",
+    kacKez("ed-yayin-baglanti") === Y.CALISMALAR.length - yayinSayfalari.length,
     String(kacKez("ed-yayin-baglanti")));
+  yayinSayfalari.forEach(function (c) {
+    gecsin("yayın sayfası listeden erişilebilir: " + c.doi, 'href="../' + c.yayinSayfasi + '"');
+    var sayfa = fs.readFileSync(path.join(__dirname, "..", c.yayinSayfasi, "index.html"), "utf8");
+    gecer("Scholar PDF adresi kayıtla aynı: " + c.doi,
+      sayfa.includes('name="citation_pdf_url" content="https://korayoner.dev/' + c.pdf + '"') &&
+      sayfa.includes('name="citation_doi" content="' + c.doi + '"') &&
+      !/<meta[^>]*content="[^"]*\bnoindex\b/i.test(sayfa));
+  });
 
   /* Yöntemi araç olan çalışmalar: modülde "arac" alanı kaçsa sayfada o
      kadar araç bağlantısı, her biri doğru adrese. */

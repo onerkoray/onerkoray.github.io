@@ -66,11 +66,17 @@ function liste() {
       satir.push("          <li>");
       satir.push("            <p class=\"ed-yayin-baslik\"" +
         (Y.dil(c) !== "tr" ? " lang=\"" + Y.dil(c) + "\"" : "") + "><a href=\"" +
-        Y.adres(c) + "\" rel=\"noopener\">" + esc(c.baslik) + "</a></p>");
+        (c.yayinSayfasi ? "../" + esc(c.yayinSayfasi) : Y.adres(c)) +
+        "\" rel=\"noopener\">" + esc(c.baslik) + "</a></p>");
 
       var kunye = "Öner, K. (" + Y.yil(c) + "). " + Y.tur(c) + ". Zenodo. " +
         c.doi;
-      satir.push("            <p class=\"ed-yayin-kunye\">" + esc(kunye) +
+      var gorunenKunye = esc(kunye);
+      if (c.yayinSayfasi) {
+        gorunenKunye = esc(kunye.slice(0, -c.doi.length)) +
+          "<a href=\"" + Y.adres(c) + "\">" + esc(c.doi) + "</a>";
+      }
+      satir.push("            <p class=\"ed-yayin-kunye\">" + gorunenKunye +
         " &middot; " + tarih(c.tarih) + " &middot; <a href=\"" +
         Y.lisans(c).url + "\" rel=\"noopener license\">" + Y.lisans(c).ad +
         "</a></p>");
@@ -91,7 +97,7 @@ function liste() {
           "<a href=\"" + esc(c.kod.npm) + "\" rel=\"noopener\">npm</a>. " +
           "Sitedeki araçların hesap çekirdeği.</p>");
       }
-      if (!c.sayfa && !c.kod) {
+      if (!c.sayfa && !c.kod && !c.yayinSayfasi) {
         satir.push("            <p class=\"ed-yayin-baglanti\">" +
           "Bu çalışmayı anlatan bir site yazısı henüz yok.</p>");
       }
@@ -164,6 +170,7 @@ function ldjson() {
       eser.version = c.surum;
     }
     if (c.sayfa) eser.subjectOf = KOKADRES + c.sayfa + "/";
+    if (c.yayinSayfasi) eser.url = KOKADRES + c.yayinSayfasi;
     if (c.pdf) eser.encoding = {
       "@type": "MediaObject", "encodingFormat": "application/pdf",
       "contentUrl": KOKADRES + c.pdf

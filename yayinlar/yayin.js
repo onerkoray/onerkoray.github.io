@@ -15,8 +15,7 @@
  *
  * 23 Kasım 2026: 24446986 ve 24446973 eklendi (Zenodo kaydından; tür
  * "Preprint", öncekiler "Working paper"; tür artık çalışma başına `tur`).
- * Bu ikisinin yerel PDF kopyası yok (pdf: null): künye DOI ile Zenodo'ya
- * bağlanır. Site sahibinin kararı: yeni kayıtlarda yerel kopya tutulmaz.
+ * Bu iki ön baskının ayrı özet sayfaları ve özgün PDF kopyaları var.
  *
  * 23 Kasım 2026: ORCID'de olup listede olmayan iki kayıt eklendi:
  * 23771234 (Working paper, hanehalkı bütçesi) ve 23718278 (Hesap
@@ -197,8 +196,8 @@
     /* 22 Kasım 2026, Zenodo türü Preprint. */
     {
       doi: "10.5281/zenodo.24446973",
-      pdf: null,
-      pdfYok: "tam metin Zenodo kaydında; yerel kopya tutulmuyor, DOI bağlantısı yeterli",
+      pdf: "yayinlar/dosyalar/24446973.pdf",
+      yayinSayfasi: "yayinlar/faktor-hayvanat-bahcesi/",
       tarih: "2026-11-22",
       tur: "Preprint",
       baslik: "Faktör Hayvanat Bahçesi ve Tekrarlanabilirlik Tartışması: " +
@@ -212,8 +211,8 @@
     },
     {
       doi: "10.5281/zenodo.24446986",
-      pdf: null,
-      pdfYok: "tam metin Zenodo kaydında; yerel kopya tutulmuyor, DOI bağlantısı yeterli",
+      pdf: "yayinlar/dosyalar/24446986.pdf",
+      yayinSayfasi: "yayinlar/faiz-orani-riski-ve-banka-kirilganligi/",
       tarih: "2026-11-22",
       tur: "Preprint",
       baslik: "Faiz Oranı Riski, Mevduat İmtiyazı ve Banka Kırılganlığı: " +
