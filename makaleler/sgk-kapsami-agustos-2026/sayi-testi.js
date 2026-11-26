@@ -119,10 +119,9 @@ t.gecsin("prim karşılama", "%" + ond(M.primKarsilama * 100, 1) + "'ını");
 t.gecsin("bütçe açığı", mlyM(-M.butce.acik) + " milyar TL açık öngörüyordu");
 t.gecsin("Ağustos katkısı", mlyM(M.agustosKatki) + " milyar TL");
 t.dogru("açık finansmanı satırı sıfır", M.aylar.every(function (x) { return x.acikFinansmani === 0; }));
-["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos"].forEach(function (ad, i) {
-  var x = M.aylar[i];
-  satir(ad, [mlyM(x.prim), mlyM(x.devletKatkisi), mlyM(x.acik)]);
-});
+/* Aylık tablo devlet katkısı yazısında; burada tekrarlanmaz (ortak metin kapısı). */
+t.gecmesin("aylık tablo tekrarlanmıyor", "ay ay prim geliri, devlet katkısı ve SGK dengesi");
+t.gecsin("aylık tabloya bağlantı", "Ay ay prim, katkı ve denge tablosu");
 
 /* 5 — Kaynak ve yöntem notu. */
 t.gecsin("yöntem değişikliği", "Ocak 2026'dan beri yeni");
