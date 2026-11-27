@@ -1,18 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Koray Öner">
-  <!-- Tavan: biriken bir tutar (kümülatif matrah) kanuni sınıra, SGK prim
-       tavanına dayanır. Eğri 10 saniyede tavana uzanır ve geri çekilir;
-       en az üçte ikisi hep çizilidir, işaret hiçbir karede boşalmaz.
-       "Hareketi azalt" açıkken ve hareketsiz çizimde eğri tamdır.
-       Eğri tek kübik (20 Ekim 2026): iki parçalıyken birleşme noktasında
-       eğim kırılıyor, hareket sırasında tümsek gibi görünüyordu. Düzlük
-       tavandan bir birim aşağıda: 30 px'te ikisi birbirine yapışmasın. -->
-  <style>
-    @keyframes ko-tavan { 0%, 10% { stroke-dashoffset: 20; } 90%, 100% { stroke-dashoffset: 0; } }
-    .ko-egri { animation: ko-tavan 10s cubic-bezier(.45, 0, .55, 1) infinite alternate; }
-    @media (prefers-reduced-motion: reduce) { .ko-egri { animation: none; } }
-  </style>
+  <!-- Ö halkası: tools/marka.js üretir, elle düzenleme. Halka, 2026 asgari ücretinde
+       işverenin ödediği her 100 liranın paylaşımı: net %68,7 (yeşil), çalışan primi
+       %12,1 (çivit), işveren primi %19,2 (kiremit). Kaynak: bordro motoru. -->
   <rect x="1" y="1" width="62" height="62" rx="4" fill="#f7faf8" stroke="#d9e3de" stroke-width="1.5"/>
-  <path d="M10 17H54" stroke="#0e7c66" stroke-width="4"/>
-  <path class="ko-egri" d="M12 50C27 49 31 24.5 54 24.5" fill="none" stroke="#20332d" stroke-width="5.5" stroke-linecap="round" pathLength="58" stroke-dasharray="58" stroke-dashoffset="0"/>
-  <circle cx="12" cy="50" r="3.6" fill="#20332d"/>
+  <circle cx="27" cy="12.5" r="3.2" fill="#20332d"/>
+  <circle cx="37" cy="12.5" r="3.2" fill="#20332d"/>
+  <g fill="none" stroke-width="8.5">
+    <path d="M33.22 22.55A15.5 15.5 0 1 1 19.58 47.28" stroke="#0e7c66"/>
+    <path d="M18.29 45.22A15.5 15.5 0 0 1 16.87 34.62" stroke="#4b64ae"/>
+    <path d="M17.59 32.3A15.5 15.5 0 0 1 30.78 22.55" stroke="#ca653c"/>
+  </g>
 </svg>

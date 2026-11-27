@@ -1276,6 +1276,11 @@ jobs:
       - name: Faviconlar ikon kaynağıyla aynı mı
         run: python tools/favikon.py --check
 
+      # Ö halkasının yayları 2026 asgari ücretinin bordro motorundaki
+      # paylaşımı; logo.svg ve kök favicon motordan sapamaz.
+      - name: Marka işareti bordro motoruyla aynı mı
+        run: node tools/marka.js --check
+
       # Favicon SESSIZ bozulur: sayfa acilir, arac calisir, yalnizca
       # sekmede yanlis simge durur. Test renklerin style.css'ten
       # kopmadigini, her sayfanin bagli oldugu dosyanin GERCEKTEN var

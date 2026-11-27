@@ -208,15 +208,16 @@ def uret():
         if not yerel_favicon_kullaniyor(slug):
             continue
         cikti[slug] = ciz(baslik(slug) or tanim["ad"], tanim["svg"])
-    # Kök marka: "Tavan" işareti (logo.svg'nin sekme hali): biriken bir
-    # tutar kanuni sınıra dayanır. 13 Ekim 2026'ya kadar </> kod simgesiydi;
-    # yapay zekâ görsellerinde çok yaygın olduğu ve siteye ait bir şey
-    # söylemediği için değişti. Aynı kabı kullanır ki hakkımda, iletişim ve
-    # yasal sayfalar da aynı aileden görünsün. Eğri tek kübik (20 Ekim 2026):
-    # iki parçalıyken birleşme noktasında eğim kırılıyordu.
+    # Kök marka: "Ö halkası" (27 Kasım 2026; öncesinde "Tavan", ondan önce
+    # </>). logo.svg'nin sekme hali: iki nokta ve üç yaya bölünmüş halka.
+    # Yaylar 2026 asgari ücretinde işverenin ödediğinin paylaşımı (net,
+    # çalışan primi, işveren primi); sekmede tek renk, boşluklarla ayrılır.
+    # Sembol tools/marka.js'ten gelir (bordro motoru); elle değiştirme,
+    # `node tools/marka.js --sembol` çıktısını yapıştır. --check ikisini bağlar.
     cikti[""] = ciz("Koray Öner",
-                    '<path d="M2 3.5h20"/>'
-                    '<path d="M3 20c6.7-.4 8.5-11.4 19-11.4"/>')
+                    '<path d="M9.6 3h0" stroke-width="3"/><path d="M14.4 3h0" stroke-width="3"/>'
+                    '<g stroke-width="3.6" stroke-linecap="butt"><path d="M12.55 8.22A7 7 0 1 1 6.39 19.39"/>'
+                    '<path d="M5.81 18.46A7 7 0 0 1 5.17 13.67"/><path d="M5.49 12.62A7 7 0 0 1 11.45 8.22"/></g>')
     return cikti
 
 
